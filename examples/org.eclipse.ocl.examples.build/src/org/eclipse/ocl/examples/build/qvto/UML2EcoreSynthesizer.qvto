@@ -31,8 +31,8 @@ property deleteClasses : Set(UML::Class) = deleteTypeMappings.oldTypes->select(o
 
 property oldType2createType : Dict(UML::Type, UML2Ecore::CreateType) = Dict{};
 
-property old2new : Dict(UML::Element, Ecore::EModelElement) = Dict{};
-property new2old : Dict(Ecore::EModelElement, UML2Ecore::Mapping) = Dict{};
+property old2new : Dict(UML::Element, Ecore::ENamedElement) = Dict{};
+property new2old : Dict(Ecore::ENamedElement, UML2Ecore::Mapping) = Dict{};
 property newTypes : List(Ecore::EClassifier) = List{};
 
 main() {
@@ -66,14 +66,14 @@ main() {
 --	var in2out : Dict(UML::Element, Ecore::EModelElement);
 --	newElements = old2new->values()->iterate(v; acc : Set(Ecore::EModelElement) = Set{} | acc->including(v));
 --	var allInTypes : Set(UML1::Type) = in2out->keys()->select(oclIsKindOf(Type)).oclAsType(Type)->asSet();
-	old2new->values()->map resolveElement();
+	old2new->values()->sortedBy(name)->map resolveElement();
 --	object Comment { body := 'association keys size = ' + out2in->keys()->select(oclIsKindOf(Association))->size().toString(); };
 }
 
 /**
  * Pass 1 convert the containment tree.
  */
-helper UML::Element::convertElement(inout output : Ecore::EModelElement)
+helper UML::Element::convertElement(inout output : Ecore::ENamedElement)
 {
 	old2new->put(self, output);
 --	output.ownedComment := self.ownedComment->map convertComment(out2in);
@@ -93,6 +93,8 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 	var createTypes : Set(UML2Ecore::CreateType) := self.typeMappings->select(oclIsKindOf(UML2Ecore::CreateType)).oclAsType(UML2Ecore::CreateType)->asSet();
 --	self.convertNamedElement(out2in, result);
 	result.name := self.newName;
+	result.nsURI := self.newName;
+	result.nsPrefix := self.newName;
 	result.eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->createType(self)->sortedBy(name);
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->createType(self)->sortedBy(name);
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class))->createType(self)->sortedBy(name);
@@ -221,28 +223,43 @@ inherits Ecore::EModelElement::resolveElement
 mapping inout Ecore::EClass::resolveElement()
 inherits Ecore::EClassifier::resolveElement
 {
---	log('resolveElement', self.name);
+	log('resolveElement', self.name);
 	var createType : UML2Ecore::CreateType := new2old->get(self).oclAsType(UML2Ecore::CreateType);
-	var oldSuperClassClosure2 : Set(UML::Type) := getSuperTypes(createType.oldTypes);
---	log('  oldSuperClassClosure', oldSuperClassClosure2.name->asSet()->sortedBy(n | n)->iterate(n; acc : String = '' | acc + ' ' + n));
-	var newSuperClassClosure : Set(UML::Type) := oldSuperClassClosure2->reject(deleteTypeNames->includes(name))-createType.oldTypes;
-	var newSuperClassClosureNames : Set(String) := newSuperClassClosure.name->asSet();
-	var newSuperClassClosure2 : Set(UML::Type) := allTypes->select(newSuperClassClosureNames->includes(name));
---	log('  newSuperClassClosure', newSuperClassClosure2->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
-	var newSuperSuperClassClosure2 : Set(UML::Type) := getSuperTypes(newSuperClassClosure2);
---	log('  newSuperSuperClassClosure', newSuperSuperClassClosure2->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
-	var requiredSuperClasses : Set(UML::Type) := newSuperClassClosure2 - newSuperSuperClassClosure2;
---	log('  requiredSuperClasses', requiredSuperClasses->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
+	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
+	log('  allOldTypes', allOldTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + name));
+	var oldProperSuperClassClosure2 : Set(UML::Type) := getProperSuperTypes(allOldTypes);
+	log('  oldProperSuperClassClosure', oldProperSuperClassClosure2.name->asSet()->sortedBy(n | n)->iterate(n; acc : String = '' | acc + ' ' + n));
+	var newSuperClassClosure : Set(UML::Type) := oldProperSuperClassClosure2->reject(deleteTypeNames->includes(name))-createType.oldTypes;
+	var newProperSuperClassClosure : Set(UML::Type) := getAllTypes(newSuperClassClosure);
+	log('  newProperSuperClassClosure', newProperSuperClassClosure->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
+	var newSuperSuperClassClosure2 : Set(UML::Type) := getProperSuperTypes(newProperSuperClassClosure);
+	log('  newSuperSuperClassClosure', newSuperSuperClassClosure2->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
+	var requiredSuperClasses : Set(UML::Type) := newProperSuperClassClosure - newSuperSuperClassClosure2;
+	log('  requiredSuperClasses', requiredSuperClasses->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
 	self.eSuperTypes := requiredSuperClasses->collect(sc | old2new->get(sc).oclAsType(Ecore::EClass))->asSet();
-	var oldInheritedClasses : Set(UML::Type) := createType.oldTypes->union(oldSuperClassClosure2);
-	var newInheritedClasses : Set(UML::Type) := requiredSuperClasses->union(getSuperTypes(requiredSuperClasses));
+	var oldInheritedClasses : Set(UML::Type) := createType.oldTypes->union(oldProperSuperClassClosure2);
+	log('  oldInheritedClasses', oldInheritedClasses->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
+	var newInheritedClasses : Set(UML::Type) := requiredSuperClasses->union(getProperSuperTypes(requiredSuperClasses));
+	log('  newInheritedClasses', newInheritedClasses->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
 	var mergedClasses : Set(UML::Type) := oldInheritedClasses - newInheritedClasses;
---	log('  mergedClasses', mergedClasses->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
+	log('  mergedClasses', mergedClasses->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
 	var mergedCreateTypes : Set(UML2EcoreMapping::CreateType) := mergedClasses->collect(t | if oldType2createType->hasKey(t) then oldType2createType->get(t) else null endif)->excluding(null)->asSet();
---	log('  mergedCreateTypes', mergedCreateTypes->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	log('  mergedCreateTypes', mergedCreateTypes->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	var inheritedCreateTypes : Set(UML2EcoreMapping::CreateType) := newProperSuperClassClosure->collect(t | if oldType2createType->hasKey(t) then oldType2createType->get(t) else null endif)->excluding(null)->asSet();
+	log('  inheritedCreateTypes', inheritedCreateTypes->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
 	var propertyCreates  : Set(UML2EcoreMapping::CreateProperty) := mergedCreateTypes.propertyMappings->select(oclIsKindOf(UML2EcoreMapping::CreateProperty)).oclAsType(UML2EcoreMapping::CreateProperty)->asSet();
---	log('  propertyCreates', propertyCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
-	propertyCreates->sortedBy(oldProperties->any(true).name)->forEach(pc) {
+	log('  propertyCreates', propertyCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	var inheritedPropertyCreates  : Set(UML2EcoreMapping::CreateProperty) := inheritedCreateTypes.propertyMappings->select(oclIsKindOf(UML2EcoreMapping::CreateProperty)).oclAsType(UML2EcoreMapping::CreateProperty)->asSet();
+	log('  inheritedPropertyCreates', inheritedPropertyCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	var propertyCreateNames  : Set(String) := propertyCreates.newName->asSet();
+	log('  propertyCreateNames', propertyCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	var inheritedPropertyCreateNames  : Set(String) := inheritedPropertyCreates.newName->asSet();
+	log('  inheritedPropertyCreateNames', inheritedPropertyCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	var localPropertyCreateNames  : Set(String) := propertyCreateNames - inheritedPropertyCreateNames;
+	log('  localPropertyCreateNames', localPropertyCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	var localPropertyCreates  : Set(UML2EcoreMapping::CreateProperty) := propertyCreates->select(localPropertyCreateNames->includes(newName));
+	log('  localPropertyCreates', localPropertyCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	localPropertyCreates->sortedBy(oldProperties->any(true).name)->forEach(pc) {
 		var oldProperty : Property := pc.oldProperties->any(true);
 		var oldType : UML::Type := oldProperty.type;
 		var newType : Ecore::EModelElement := old2new->get(oldType);
@@ -252,14 +269,28 @@ inherits Ecore::EClassifier::resolveElement
 	};
 }
   
-helper getSuperTypes(types : Set(UML::Type)) : Set(UML::Type) {
+helper getAllClasses(classes : Set(UML::Class)) : Set(UML::Class) {
+	return getAllTypes(classes)->select(oclIsKindOf(UML::Class)).oclAsType(UML::Class)->asSet();
+}
+  
+helper getAllTypes(types : Set(UML::Type)) : Set(UML::Type) {
+	return getAllTypes(types.name->asSet());
+}
+  
+helper getAllTypes(names : Set(String)) : Set(UML::Type) {
+--	log('  types', types->sortedBy(name)->iterate(t; acc : String = '' | acc + ' ' + t._package.name + '::' + t.name));
+	return allTypes->select(names->includes(name));
+}
+
+helper getProperSuperTypes(types : Set(UML::Type)) : Set(UML::Type) {
 --	log('  types', types->sortedBy(name)->iterate(t; acc : String = '' | acc + ' ' + t._package.name + '::' + t.name));
 	var classes : Set(UML::Class) := types->select(oclIsKindOf(UML::Class)).oclAsType(UML::Class)->asSet();
-	var superClassClosure : Set(UML::Class) := classes->closure(superClass);
-	var interfaceRealizations : Set(UML::InterfaceRealization) := superClassClosure->union(classes).interfaceRealization->asSet()->excluding(null);
+	var selfClasses : Set(UML::Class) := getAllClasses(classes);
+	var properSuperClassClosure : Set(UML::Class) := selfClasses->closure(getAllClasses(superClass));
+	var interfaceRealizations : Set(UML::InterfaceRealization) := properSuperClassClosure->union(selfClasses).interfaceRealization->asSet()->excluding(null);
 --	log('  interfaceRealizations', interfaceRealizations);
 	var superInterfaces : Set(UML::Interface) := interfaceRealizations.contract->asSet();
 --	log('  superInterfaces', superInterfaces.name->asSet()->sortedBy(n | n)->iterate(n; acc : String = '' | acc + ' ' + n));
-	var names : Set(String) := superClassClosure.name->union(superInterfaces.name)->asSet();
-	return allTypes->select(names->includes(name));
+	var names : Set(String) := properSuperClassClosure.name->union(superInterfaces.name)->asSet();
+	return getAllTypes(names);
 }

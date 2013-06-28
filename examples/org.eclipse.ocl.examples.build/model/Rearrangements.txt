@@ -1,0 +1,8 @@
+Operation
+
+Return parameter moved to Operation.type
+Operation inherits TypedElement via Feature and TypedMultiplicityElement to provide non-derived type.
+
+bodyCondition  changed to bodyExpression.
+
+TypedMultiplicityElement

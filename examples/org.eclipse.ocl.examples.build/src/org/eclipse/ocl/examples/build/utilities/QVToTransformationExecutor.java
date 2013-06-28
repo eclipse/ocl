@@ -33,6 +33,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.util.StringBufferLog;
 
 public class QVToTransformationExecutor extends AbstractWorkflowComponent
 {
@@ -113,9 +114,11 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 //		String traceUri = trace != null ? URI.createPlatformResourceURI(trace, true).toString() : null;
 		
 		
+		StringBufferLog qvtoLog = new StringBufferLog();
 		try {
 			logger.info("Executing transformation '" + uri + "'");
 			ExecutionContextImpl executionContext = new ExecutionContextImpl();
+			executionContext.setLog(qvtoLog);
 			initializeConfigurationProperties(executionContext);
 //			executionContext.setMonitor();
 			ExecutionDiagnostic executionDiagnostic = transformationExecutor.execute(executionContext, modelExtents.toArray(new ModelExtent[modelExtents.size()]));
@@ -139,7 +142,7 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		if (out != null) {
 			URI outURI = URI.createURI(out, true);
 			try {
-				logger.info("Creating output:  '" + outURI + "'");
+				logger.info("Creating output:  '" + outURI + "'\n" + qvtoLog.getContents());
 				XMLResource outResource = (XMLResource) resourceSet.createResource(outURI, null);
 				outResource.getContents().addAll(modelExtents.get(modelExtents.size()-1).getContents());
 				outResource.setEncoding(getEncoding());
