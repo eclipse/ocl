@@ -259,7 +259,7 @@ inherits Ecore::EClassifier::resolveElement
 	log('  localPropertyCreateNames', localPropertyCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
 	var localPropertyCreates  : Set(UML2EcoreMapping::CreateProperty) := propertyCreates->select(localPropertyCreateNames->includes(newName));
 	log('  localPropertyCreates', localPropertyCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
-	localPropertyCreates->sortedBy(oldProperties->any(true).name)->forEach(pc) {
+	localPropertyCreates->sortedBy(newName)->forEach(pc) {
 		var oldProperty : Property := pc.oldProperties->any(true);
 		var oldType : UML::Type := oldProperty.type;
 		var newType : Ecore::EModelElement := old2new->get(oldType);
@@ -286,7 +286,9 @@ helper getProperSuperTypes(types : Set(UML::Type)) : Set(UML::Type) {
 --	log('  types', types->sortedBy(name)->iterate(t; acc : String = '' | acc + ' ' + t._package.name + '::' + t.name));
 	var classes : Set(UML::Class) := types->select(oclIsKindOf(UML::Class)).oclAsType(UML::Class)->asSet();
 	var selfClasses : Set(UML::Class) := getAllClasses(classes);
-	var properSuperClassClosure : Set(UML::Class) := selfClasses->closure(getAllClasses(superClass));
+	var properSuperClassClosure1 : Set(UML::Class) := getAllClasses(selfClasses->closure(superClass));
+	var properSuperClassClosure2 : Set(UML::Class) := getAllClasses(properSuperClassClosure1->closure(superClass))->union(properSuperClassClosure1);
+	var properSuperClassClosure : Set(UML::Class) := getAllClasses(properSuperClassClosure2->closure(superClass))->union(properSuperClassClosure2);
 	var interfaceRealizations : Set(UML::InterfaceRealization) := properSuperClassClosure->union(selfClasses).interfaceRealization->asSet()->excluding(null);
 --	log('  interfaceRealizations', interfaceRealizations);
 	var superInterfaces : Set(UML::Interface) := interfaceRealizations.contract->asSet();

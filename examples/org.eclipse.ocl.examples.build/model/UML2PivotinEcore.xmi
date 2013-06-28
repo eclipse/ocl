@@ -109,6 +109,15 @@
       <oldTypes
           xsi:type="uml:Class"
           href="../model-gen/OCL.uml#Type"/>
+      <createProperties
+          newName="ownedProperties">
+        <oldProperties
+            href="../model-gen/UML.uml#DataType-ownedAttribute"/>
+        <oldProperties
+            href="../model-gen/UML.uml#Class-ownedAttribute"/>
+        <oldProperties
+            href="../model-gen/UML.uml#StructuredClassifier-ownedAttribute"/>
+      </createProperties>
     </createTypes>
     <createTypes
         newName="AssociationClass">
