@@ -63,8 +63,7 @@ mapping UML2EcoreControl::CreatePackage::copyCreatePackage() : UML2EcoreMapping:
 
 mapping UML::Package::createCreatePackage() : UML2EcoreMapping::CreatePackage
 {	
-	log('createCreatePackage', self);
-		
+--	log('createCreatePackage', self);		
 	var renameTypeMappings : Set(UML2EcoreControl::CreateType) := Set{}; --self.typeMappings->select(oclIsKindOf(UML2Ecore::CreateType)).oclAsType(UML2Ecore::CreateType)->asSet();
 	var renameTypes : Set(UML::Type) := renameTypeMappings.oldTypes->asSet();
 	var myTypes : Set(UML::Type) := self.ownedType->reject(oclIsKindOf(UML::Association))->asSet();
@@ -166,6 +165,24 @@ inherits UML::Type::createDeleteType
 } */
 
 /*
+ *	Operations
+ */
+
+/*mapping String::createCreateOperation(oldOperations2 : Set(UML::Operation)) : UML2EcoreMapping::CreateOperation
+{
+--	log('  createPropertyMappings', createPropertyMappings->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
+--	log('    namedProperties', createPropertyMappings.oldProperties->flatten()->iterate(n; acc : String = '' | acc + ' ' + n.name));
+--	log('    oldProperties2', oldProperties2->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
+--	log('  createCreateProperty', self);
+	var sameNamedOperations : Set(UML::Operation) := oldOperations2->select(name = self);
+--	log('    sameNamedProperties', sameNamedProperties->iterate(n; acc : String = '' | acc + ' ' + n.name));
+	var createOperations : Set(UML2EcoreControl::CreateOperation) := createOperationMappings->select(oldOperations->intersection(sameNamedOperations)->notEmpty());
+--	log('    createProperties', createProperties->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
+	result.newName := if createOperations->notEmpty() then createOperations->any(true).newName else self endif;
+	result.oldOperations := sameNamedOperations;
+} */
+
+/*
  *	Properties
  */
 property deletePropertiesMappings : Set(UML2EcoreControl::DeleteProperties) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteProperties);
@@ -193,14 +210,19 @@ mapping UML::Property::createDeleteProperty() : UML2EcoreMapping::DeleteProperty
 	result.oldProperties := self->asSet();
 }
   
+/*query selectOperations(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::OperationMapping) =
+	let classes : Set(UML::Class) = types->select(oclIsKindOf(UML::Class)).oclAsType(UML::Class)->asSet(),
+		operations : Set(UML::Operation) = classes.ownedOperation->asSet(),
+		wantedOperationNames : Set(String) = operations.name->asSet()
+	in wantedOperationNames->map createCreateOperation(wantedOperations)->asSequence()->sortedBy(newName)->asOrderedSet(); */
+  
 query selectProperties(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::PropertyMapping) =
 	let classifiers : Set(UML::StructuredClassifier) = types->select(oclIsKindOf(UML::StructuredClassifier)).oclAsType(UML::StructuredClassifier)->asSet(),
 		properties : Set(UML::Property) = classifiers.ownedAttribute->asSet(),
 		unwantedProperties : Set(UML::Property) = properties->select(isDerivedUnion),
-		wantedProperties : Set(UML::Property) = properties - unwantedProperties,
+		wantedProperties : Set(UML::Property) = properties - unwantedProperties - deletePropertiesMappings.oldProperties->asSet(),
 		wantedPropertyNames : Set(String) = wantedProperties.name->asSet(),
 		creates : Sequence(UML2EcoreMapping::PropertyMapping) = wantedPropertyNames->map createCreateProperty(wantedProperties)->asSequence()->sortedBy(newName),
 		deletes : Sequence(UML2EcoreMapping::PropertyMapping) = unwantedProperties->map createDeleteProperty()->asSequence()->sortedBy(oldName)
-	in creates->iterate(c : UML2EcoreMapping::PropertyMapping; acc  : Sequence(UML2EcoreMapping::PropertyMapping) = deletes | acc->including(c))->asOrderedSet();	 
-	
-	
+	in creates->iterate(c : UML2EcoreMapping::PropertyMapping; acc  : Sequence(UML2EcoreMapping::PropertyMapping) = deletes | acc->including(c))->asOrderedSet();
+

@@ -142,7 +142,13 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		if (out != null) {
 			URI outURI = URI.createURI(out, true);
 			try {
-				logger.info("Creating output:  '" + outURI + "'\n" + qvtoLog.getContents());
+				String qvtoLogContents = qvtoLog.getContents().trim();
+				if (qvtoLogContents.length() > 0) {
+					logger.info("Creating output:  '" + outURI + "'\n" + qvtoLogContents);
+				}
+				else {
+					logger.info("Creating output:  '" + outURI);
+				}
 				XMLResource outResource = (XMLResource) resourceSet.createResource(outURI, null);
 				outResource.getContents().addAll(modelExtents.get(modelExtents.size()-1).getContents());
 				outResource.setEncoding(getEncoding());
