@@ -33,7 +33,9 @@
   </mappings>
   <mappings
       xsi:type="u2ec:CreatePackage"
-      newName="pivot">
+      newName="pivot"
+      nsPrefix="pivot"
+      nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot">
     <oldPackages
         href="../model-gen/UML.uml#Classification"/>
     <oldPackages

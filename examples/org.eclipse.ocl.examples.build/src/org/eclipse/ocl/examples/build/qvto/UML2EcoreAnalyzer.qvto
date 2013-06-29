@@ -54,6 +54,8 @@ mapping UML2EcoreControl::CreatePackage::copyCreatePackage() : UML2EcoreMapping:
 	var createTypes : Set(UML2EcoreMapping::CreateType) := myCreateTypes->map copyCreateType()->asSet();
 	var copyTypes : Set(UML2EcoreMapping::CreateType) := myCopyTypeNames->map createCreateType()->asSet();
 	result.newName := self.newName;
+	result.nsPrefix := self.nsPrefix;
+	result.nsURI := self.nsURI;
 	result.oldPackages := self.oldPackages;	
 	result.typeMappings += deleteTypes->sortedBy(oldName);	 
 	result.typeMappings += createTypes->union(copyTypes)->sortedBy(newName);
@@ -114,9 +116,9 @@ helper getAllTypes(names : Set(String)) : Set(UML::Type) {
 
 mapping UML2EcoreControl::CreateType::copyCreateType() : UML2EcoreMapping::CreateType
 {
-	log('copyCreateType', self.newName);
+--	log('copyCreateType', self.newName);
 	var myTypes : Set(UML::Type) := getAllTypes(self.oldTypes->asSet());
-	log('  myTypes', myTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
+--	log('  myTypes', myTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	result.newName := self.newName;
 	result.oldTypes := myTypes;
 	result.propertyMappings := selectProperties(myTypes);	 
@@ -124,7 +126,7 @@ mapping UML2EcoreControl::CreateType::copyCreateType() : UML2EcoreMapping::Creat
 
 mapping String::createCreateType() : UML2EcoreMapping::CreateType
 {
-	log('createCreateType', self);
+--	log('createCreateType', self);
 	var myTypes : Set(UML::Type) := allTypes->select(name = self);
 	result.newName := self;
 	result.oldTypes := myTypes;
@@ -133,7 +135,7 @@ mapping String::createCreateType() : UML2EcoreMapping::CreateType
 
 mapping UML::Type::createCreateType() : UML2EcoreMapping::CreateType
 {
-	log('createCreateType', self.name);
+--	log('createCreateType', self.name);
 	var myTypes : Set(UML::Type) := getAllTypes(self->asSet());
 	result.newName := self.name;
 	result.oldTypes := myTypes;
@@ -149,7 +151,7 @@ inherits UML::Type::createCreateType
 
 mapping UML::Type::createDeleteType() : UML2EcoreMapping::DeleteType
 {
-	log('createDeleteType', self.name);
+--	log('createDeleteType', self.name);
 	var myTypes : Set(UML::Type) := getAllTypes(self->asSet());
 	result.oldName := self.name;
 	result.oldTypes := myTypes;
@@ -172,14 +174,14 @@ property allProperties : Set(UML::Property) = allStructuredClassifiers.ownedAttr
 
 mapping String::createCreateProperty(oldProperties2 : Set(UML::Property)) : UML2EcoreMapping::CreateProperty
 {
-	log('  createPropertyMappings', createPropertyMappings->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
-	log('    namedProperties', createPropertyMappings.oldProperties->flatten()->iterate(n; acc : String = '' | acc + ' ' + n.name));
-	log('    oldProperties2', oldProperties2->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
-	log('  createCreateProperty', self);
+--	log('  createPropertyMappings', createPropertyMappings->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
+--	log('    namedProperties', createPropertyMappings.oldProperties->flatten()->iterate(n; acc : String = '' | acc + ' ' + n.name));
+--	log('    oldProperties2', oldProperties2->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
+--	log('  createCreateProperty', self);
 	var sameNamedProperties : Set(UML::Property) := oldProperties2->select(name = self);
-	log('    sameNamedProperties', sameNamedProperties->iterate(n; acc : String = '' | acc + ' ' + n.name));
+--	log('    sameNamedProperties', sameNamedProperties->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	var createProperties : Set(UML2EcoreControl::CreateProperty) := createPropertyMappings->select(oldProperties->intersection(sameNamedProperties)->notEmpty());
-	log('    createProperties', createProperties->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
+--	log('    createProperties', createProperties->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
 	result.newName := if createProperties->notEmpty() then createProperties->any(true).newName else self endif;
 	result.oldProperties := sameNamedProperties;
 }
