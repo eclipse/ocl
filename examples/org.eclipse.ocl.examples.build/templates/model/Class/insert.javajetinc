@@ -1,7 +1,7 @@
 <%/*-------------------------------------------------------------------------------------%>
-<% * http://www.eclipse.org/OCL/GenModel/Visitor support%>
+<% * http://www.eclipse.org/OCL/GenModel/Visitor support for non-abstract classes%>
 <% *-------------------------------------------------------------------------------------*/%>
-<%if (isImplementation) {%>
+<%if (isImplementation && !genClass.getEcoreClass().isAbstract()) {%>
   <%GenAnnotation visitorAnnotation = genModel.getGenAnnotation("http://www.eclipse.org/OCL/GenModel/Visitor");%>
   <%if (visitorAnnotation != null) {%>
     <%String rootVisitorClassName = visitorAnnotation.getDetails().get("Root Visitor Class");%>
@@ -15,8 +15,7 @@
   <%if (isDerivedVisitor && genModel.useGenerics()) {%>
 	@SuppressWarnings("unchecked")
   <%}%>
-  <%if (genModel.useClassOverrideAnnotation() && !OCLBuildGenModelUtil.isRootVisitableClass(genClass)
-    && !genClass.getEcoreClass().isAbstract()) {%>
+  <%if (genModel.useClassOverrideAnnotation() && !OCLBuildGenModelUtil.isRootVisitableClass(genClass)) {%>
 	@Override
   <%}%>
 	public <%=OCLBuildGenModelUtil.atNullable(genModel)%><R> R accept(<%=OCLBuildGenModelUtil.atNonNull(genModel)%><%=genModel.getImportedName(rootVisitorClassName)%><R> visitor) {
