@@ -15,7 +15,8 @@
   <%if (isDerivedVisitor && genModel.useGenerics()) {%>
 	@SuppressWarnings("unchecked")
   <%}%>
-  <%if (genModel.useClassOverrideAnnotation() && !OCLBuildGenModelUtil.isRootVisitableClass(genClass)) {%>
+  <%if (genModel.useClassOverrideAnnotation() && !OCLBuildGenModelUtil.isRootVisitableClass(genClass)
+    && !genClass.getEcoreClass().isAbstract()) {%>
 	@Override
   <%}%>
 	public <%=OCLBuildGenModelUtil.atNullable(genModel)%><R> R accept(<%=OCLBuildGenModelUtil.atNonNull(genModel)%><%=genModel.getImportedName(rootVisitorClassName)%><R> visitor) {
