@@ -354,22 +354,22 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
     	boolean nestedIsOrdered = reflection.isOrdered("nestedPackage"); // Ecore and UML differ here
     	boolean nestingIsOrdered = reflection.isOrdered("nestingPackage");
 	    @SuppressWarnings("unchecked")
-        Collection<PK> expected1 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5); // closure does not include self (george)
+        Collection<PK> expected1 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5, george); // closure does not include self (george)
         assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
 
 	    @SuppressWarnings("unchecked")
-	    Collection<PK> expected2 = createCollection(nestedIsOrdered, true, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+	    Collection<PK> expected2 = createCollection(nestedIsOrdered, true, pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
 	    @SuppressWarnings("unchecked")
-	    Collection<PK> expected3 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+	    Collection<PK> expected3 = createSet(pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
         assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
 	    @SuppressWarnings("unchecked")
-        Collection<PK> expected4 = createCollection(nestingIsOrdered, true);
+        Collection<PK> expected4 = createCollection(nestingIsOrdered, true, pkg1);
         assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
         // empty closure
         assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
@@ -586,14 +586,8 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
-        Object result = assertQueryEvaluate(getUMLMetamodel(),
-            "let c : Set(%Type) = Set{null} in %ownedType->closure(c)");
-
-        assertTrue(result instanceof Collection<?>);
-
-        Collection<?> collResult = (Collection<?>) result;
-        assertEquals(1, collResult.size());
-        assertNull(collResult.iterator().next());
+	    Collection<Integer> expected3 = createSet(null, 5);
+        assertQueryEquals(pkg1, expected3, "let c : Set(UnlimitedNatural) = Set{null} in 5->closure(c)");
     }
 
 	/**
