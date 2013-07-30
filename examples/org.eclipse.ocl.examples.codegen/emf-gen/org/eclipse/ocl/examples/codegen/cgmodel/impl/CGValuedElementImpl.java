@@ -16,18 +16,18 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectEList;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
+import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
+import org.eclipse.ocl.examples.codegen.cse.ControlPlace;
 
 /**
  * <!-- begin-user-doc -->
@@ -149,6 +149,15 @@ public abstract class CGValuedElementImpl extends CGTypedElementImpl implements 
 	 * {@inheritDoc}
 	 * @generated
 	 */
+	@Override
+	public @Nullable AbstractPlace getPlace(@NonNull Map<CGElement,AbstractPlace> element2place) {
+		return ControlPlace.createPlace(element2place, this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
 	public @NonNull CGValuedElement getReferredValuedElement() {
 		return this;
 	}
@@ -205,9 +214,26 @@ public abstract class CGValuedElementImpl extends CGTypedElementImpl implements 
 	 * {@inheritDoc}
 	 * @generated
 	 */
+	public boolean isCommonable() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
 	public boolean isConstant() {
 		CGValuedElement referredValue = getReferredValuedElement();
 		return (referredValue != this) && referredValue.isConstant();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isContext() {
+		return false;
 	}
 
 	/**

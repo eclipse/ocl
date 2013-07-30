@@ -79,7 +79,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		}
 		
 		@Override
-		public @Nullable Boolean visitCGConstraint(@NonNull CGConstraint cgConstraint) {
+		public @NonNull Boolean visitCGConstraint(@NonNull CGConstraint cgConstraint) {
 			rewriteAsCaught(cgConstraint.getBody());
 			return true;
 		}

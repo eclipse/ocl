@@ -24,13 +24,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.GlobalContext;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
@@ -132,7 +127,7 @@ public abstract class JavaGlobalContext extends AbstractJavaContext implements G
 						break;
 					}
 				}
-				if (isContextable(cgScope)) {
+				if (cgScope.isContext()) {
 					break;
 				}
 			}
@@ -177,13 +172,5 @@ public abstract class JavaGlobalContext extends AbstractJavaContext implements G
 			}
 			return valueName;
 		}
-	}
-
-	protected boolean isContextable(@NonNull CGElement cgScope) {
-		return (cgScope instanceof CGPackage)
-			|| (cgScope instanceof CGClass)
-			|| (cgScope instanceof CGOperation)
-			|| (cgScope instanceof CGProperty)
-			|| (cgScope instanceof CGConstraint);
 	}
 }

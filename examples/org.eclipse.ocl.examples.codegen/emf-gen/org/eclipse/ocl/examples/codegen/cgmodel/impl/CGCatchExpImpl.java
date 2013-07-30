@@ -14,16 +14,18 @@
  */
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCatchExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
+import org.eclipse.ocl.examples.codegen.cse.CatchPlace;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +63,15 @@ public class CGCatchExpImpl extends CGCallExpImpl implements CGCatchExp {
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGCatchExp(this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable AbstractPlace getPlace(@NonNull Map<CGElement,AbstractPlace> element2place) {
+		return CatchPlace.createPlace(element2place, this);
 	}
 
 	/**

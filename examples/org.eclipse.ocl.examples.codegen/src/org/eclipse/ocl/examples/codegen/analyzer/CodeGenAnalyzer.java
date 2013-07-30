@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGReal;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGString;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.cse.CommonSubexpressionEliminator;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
@@ -108,6 +109,9 @@ public class CodeGenAnalyzer
 		//
 		FieldingAnalyzer fieldingAnalyzer = codeGenerator.createFieldingAnalyzer();
 		fieldingAnalyzer.analyze(cgRoot, false);
+		//
+		CommonSubexpressionEliminator cseEliminator = codeGenerator.createCommonSubexpressionEliminator();
+		cseEliminator.optimize(cgRoot);
 	}
 
 	public @NonNull CGConstantExp createCGConstantExp(@NonNull OCLExpression element, @NonNull CGConstant constant) {

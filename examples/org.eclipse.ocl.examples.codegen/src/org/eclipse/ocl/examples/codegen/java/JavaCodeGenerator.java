@@ -24,8 +24,10 @@ import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
+import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.cse.CommonSubexpressionEliminator;
 import org.eclipse.ocl.examples.codegen.generator.AbstractCodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
@@ -195,6 +197,10 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		return new BoxingAnalyzer(getAnalyzer());
 	}
 
+	public @NonNull CommonSubexpressionEliminator createCommonSubexpressionEliminator() {
+		return new CommonSubexpressionEliminator(getAnalyzer());
+	}
+
 	public @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor() {
 		return new CG2JavaPreVisitor(globalContext);
 	}
@@ -233,6 +239,11 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	@Override
 	protected @NonNull NameManager createNameManager() {
 		return new NameManager();
+	}
+
+	@NonNull
+	public ReferencesVisitor createReferencesVisitor() {
+		return ReferencesVisitor.INSTANCE;
 	}
 
 	public @Nullable String getConstantsClass() {

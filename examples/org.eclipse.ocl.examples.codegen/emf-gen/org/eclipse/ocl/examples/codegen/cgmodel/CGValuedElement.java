@@ -99,6 +99,14 @@ public interface CGValuedElement extends CGTypedElement {
 	boolean isCaught();
 
 	/**
+	 * Return true if this value can be shared as part of a Common Subexpression.
+	 *
+	 * @generated
+	 */
+	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGValuedElementModelSpec$8
+	boolean isCommonable();
+
+	/**
 	 * Return true if this value is a local constant (dependent of the user type system).
 	 *
 	 * @generated

@@ -21,7 +21,9 @@ import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
+import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.cse.CommonSubexpressionEliminator;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -34,6 +36,7 @@ public interface CodeGenerator
 	void addProblem(@NonNull Exception e);
 	@NonNull AnalysisVisitor createAnalysisVisitor();
 	@NonNull BoxingAnalyzer createBoxingAnalyzer();
+	@NonNull CommonSubexpressionEliminator createCommonSubexpressionEliminator();
 	@NonNull FieldingAnalyzer createFieldingAnalyzer();
 	@NonNull CodeGenAnalyzer getAnalyzer();
 	@Nullable String getConstantsClass();
@@ -44,6 +47,7 @@ public interface CodeGenerator
 	@NonNull MetaModelManager getMetaModelManager();
 	@NonNull NameManager getNameManager();
 	@NonNull CodeGenOptions getOptions();
+	@NonNull ReferencesVisitor createReferencesVisitor();
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement);
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull ElementId elementId, boolean isBoxed);
 	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull Type staticType);

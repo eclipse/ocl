@@ -14,10 +14,12 @@
  */
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,4 +59,23 @@ public interface CGElement extends EObject {
 	 */
 	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGElementModelSpec$2
 	@Nullable CGElement getParent();
+
+	/**
+	 * Returns the place for this element, updating and reusing element2place as required.
+	 * All parent elements have entries in element2place.
+	 * No child elements have entries in element2place.
+	 * The global place is accessible as the null element.
+	 *
+	 * @generated
+	 */
+	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGValuedElementModelSpec$2
+	@Nullable AbstractPlace getPlace(@NonNull Map<CGElement,AbstractPlace> element2place);
+
+	/**
+	 * Returns true if this node may have its own symbol name context.
+	 *
+	 * @generated
+	 */
+	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGValuedElementModelSpec$9
+	boolean isContext();
 } // CGElement

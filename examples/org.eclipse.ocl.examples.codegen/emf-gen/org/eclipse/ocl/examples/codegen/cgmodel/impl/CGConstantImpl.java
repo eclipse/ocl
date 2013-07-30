@@ -15,9 +15,7 @@
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.jdt.annotation.NonNull;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -68,6 +66,15 @@ public abstract class CGConstantImpl extends CGValuedElementImpl implements CGCo
 	@Override
 	public boolean isBoxed() {
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isCommonable() {
+		return false;
 	}
 
 	/**

@@ -14,21 +14,20 @@
  */
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
+import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
 
 /**
  * <!-- begin-user-doc -->
@@ -166,6 +165,15 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 * @generated
 	 */
 	@Override
+	public @Nullable AbstractPlace getPlace(@NonNull Map<CGElement,AbstractPlace> element2place) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @NonNull CGValuedElement getValue() {
 		return this;
 	}
@@ -185,6 +193,15 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 */
 	@Override
 	public boolean isConstant() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isContext() {
 		return true;
 	}
 

@@ -19,15 +19,8 @@ import org.eclipse.emf.ecore.EPackage
 public class GenerateCGVisitors extends GenerateVisitors
 {
 	override void generateVisitors(EPackage ePackage) {
-		if (!isDerived()) {
-			/* ePackage.generateVisitableInterface(); */
-			/* ePackage.generateAbstractDelegatingVisitor(); */
-			ePackage.generateAbstractExtendingVisitor();
-		} else {
-			/* ePackage.generateAbstractDelegatingVisitor(); */
-			ePackage.generateAbstractExtendingVisitor();
-			/* ePackage.generateAbstractExtendingDelegatingVisitor(); */
-		}
+		ePackage.generateAbstractExtendingVisitor();
+		ePackage.generateAbstractNonNullExtendingVisitor();
 		ePackage.generateVisitorInterface();
 		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor"); */
 		ePackage.generateAbstractVisitor();

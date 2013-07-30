@@ -14,22 +14,22 @@
  */
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
+import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
+import org.eclipse.ocl.examples.codegen.cse.IfPlaces;
 
 /**
  * <!-- begin-user-doc -->
@@ -335,6 +335,15 @@ public class CGIfExpImpl extends CGValuedElementImpl implements CGIfExp {
 	 * @generated
 	 */
 	@Override
+	public @Nullable AbstractPlace getPlace(@NonNull Map<CGElement,AbstractPlace> element2place) {
+		return IfPlaces.createPlaces(element2place, this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isBoxed() {
 		return thenExpression.isBoxed() || elseExpression.isBoxed();
 	}
@@ -346,6 +355,42 @@ public class CGIfExpImpl extends CGValuedElementImpl implements CGIfExp {
 	@Override
 	public boolean isGlobal() {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isInvalid() {
+		return condition.isInvalid() || (condition.isTrue() ? thenExpression.isInvalid() : condition.isFalse() ? elseExpression.isInvalid() : thenExpression.isInvalid() && elseExpression.isInvalid());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isNonInvalid() {
+		return condition.isTrue() ? thenExpression.isNonInvalid() : condition.isFalse() ? elseExpression.isNonInvalid() : thenExpression.isNonInvalid() && elseExpression.isNonInvalid();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isNonNull() {
+		return condition.isTrue() ? thenExpression.isNonNull() : condition.isFalse() ? elseExpression.isNonNull() : thenExpression.isNonNull() && elseExpression.isNonNull();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isNull() {
+		return condition.isTrue() ? thenExpression.isNull() : condition.isFalse() ? elseExpression.isNull() : thenExpression.isNull() && elseExpression.isNull();
 	}
 
 	/**

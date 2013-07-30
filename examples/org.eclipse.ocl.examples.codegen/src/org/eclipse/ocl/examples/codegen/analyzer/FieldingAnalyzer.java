@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractNonNullExtendingCGModelVisitor;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -176,7 +177,7 @@ public class FieldingAnalyzer
 	 * the mustBeCaught/mustBeThrown requirement of their usage.
 	 * The return from each child visit is true if isCaught, false if isThrown or isNonInvalid.
 	 */
-	public static class RewriteVisitor extends AbstractExtendingCGModelVisitor<Boolean, CodeGenAnalyzer>
+	public static class RewriteVisitor extends AbstractNonNullExtendingCGModelVisitor<Boolean, CodeGenAnalyzer>
 	{
 		protected final @NonNull Set<CGVariable> caughtVariables;
 		
@@ -223,20 +224,21 @@ public class FieldingAnalyzer
 		
 		@Override
 		public @NonNull Boolean safeVisit(@Nullable CGElement cgElement) {
-			return (cgElement != null) && DomainUtil.nonNullState(cgElement.accept(this));
+			return (cgElement != null) && visit(cgElement);
 		}
 
+		@Override
 		public @NonNull Boolean visiting(@NonNull CGElement visitable) {
 			throw new UnsupportedOperationException(getClass().getSimpleName() + ": " + visitable.getClass().getSimpleName());
 		}
 
 		@Override
-		public @Nullable Boolean visitCGConstant(@NonNull CGConstant cgConstant) {
+		public @NonNull Boolean visitCGConstant(@NonNull CGConstant cgConstant) {
 			return false;
 		}
 
 		@Override
-		public @Nullable Boolean visitCGConstantExp(@NonNull CGConstantExp cgElement) {
+		public @NonNull Boolean visitCGConstantExp(@NonNull CGConstantExp cgElement) {
 			return safeVisit(cgElement.getReferredConstant());
 		}
 
@@ -282,7 +284,7 @@ public class FieldingAnalyzer
 		}
 
 		@Override
-		public @Nullable Boolean visitCGInvalid(@NonNull CGInvalid object) {
+		public @NonNull Boolean visitCGInvalid(@NonNull CGInvalid object) {
 			return true;
 		}
 

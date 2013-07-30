@@ -15,19 +15,13 @@
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.jdt.annotation.Nullable;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
-
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 
 /**

@@ -15,15 +15,11 @@
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInfinity;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
-
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 
 /**

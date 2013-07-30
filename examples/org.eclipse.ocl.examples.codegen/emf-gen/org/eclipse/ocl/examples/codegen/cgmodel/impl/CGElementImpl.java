@@ -14,6 +14,8 @@
  */
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -22,6 +24,8 @@ import org.eclipse.ocl.examples.codegen.analyzer.CG2StringVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
+import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,6 +89,22 @@ public abstract class CGElementImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	public @Nullable CGElement getParent() {
 		return (CGElement)eContainer();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	public @Nullable AbstractPlace getPlace(@NonNull Map<CGElement,AbstractPlace> element2place) {
+		return GlobalPlace.createPlace(element2place, this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	public boolean isContext() {
+		return true;
 	}
 
 } //CGElementImpl

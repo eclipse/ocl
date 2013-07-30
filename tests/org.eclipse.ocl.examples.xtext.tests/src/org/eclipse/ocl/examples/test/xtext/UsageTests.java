@@ -69,6 +69,8 @@ import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
@@ -342,7 +344,6 @@ public class UsageTests
 		metaModelManager = metaModelManager2;
 		createEcoreFile(metaModelManager2, testFileStem, oclinecoreFile);
 		createGenModelFile(testFileStem + ".genmodel", genmodelFile);
-		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor( org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI, OCLinEcoreGeneratorAdapterFactory.DESCRIPTOR);
 		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 		metaModelManager2.dispose();
@@ -584,6 +585,67 @@ public class UsageTests
 			assertQueryTrue(eObject, "eColor = Color::WHITE");
 		}
 	}
+
+	public void testCSE() throws Exception {
+//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
+//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
+//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
+		String testFileStem = "CSEs";
+		String testProjectName = "cses";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : "org.eclipse.ocl.examples.xtext.tests";
+		String oclinecoreFile = "import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n"
+			+ "package cses : cses = 'http://cses'\n"
+			+ "{\n"
+			+ "    class CSEs\n"
+			+ "    {\n"
+//			+ "        attribute a : ecore::EInt = '3' { readonly };\n"
+			+ "        operation test(a : ecore::EInt, b : ecore::EInt, c : ecore::EInt) : ecore::EInt { body: if a + b + c > 0 then a + b + c else a + b endif; }\n"
+			+ "    }\n"
+			+ "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem);
+		doDelete(testProjectName);
+		doGenModel(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doCompile(testProjectName, testFileStem);
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
+			String qualifiedPackageName = testProjectName + "." + testFileStem + "Package";
+			EPackage ePackage = doLoadPackage(qualifiedPackageName);
+			EClass eClass = (EClass) ePackage.getEClassifier("CSEs");
+			EFactory eFactory = ePackage.getEFactoryInstance();
+			//
+			EObject eObject = eFactory.create(eClass);
+			OCLHelper helper = getHelper();
+			Type contextType = metaModelManager.getType(idResolver.getStaticTypeOf(eObject));
+			helper.setContext(contextType);
+//			ExpressionInOCL query = helper.createQuery("test(3, 2, 1)");
+//			assertCallCount(query, null, 2);
+//			assertCallCount(query, NumericPlusOperation.INSTANCE, 2);
+			assertQueryEquals(eObject, 6, "test(3, 2, 1)");
+			assertQueryEquals(eObject, -5, "test(3, -8, 1)");
+		}
+	}
+
+/*	private void assertCallCount(ExpressionInOCL query, @Nullable LibraryOperation calledOperation, int expectedCount) {
+		List<CGOperationCallExp> calls = new ArrayList<CGOperationCallExp>();
+		for (TreeIterator<EObject> tit = query.getBodyExpression().eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof CGOperationCallExp) {
+				CGOperationCallExp callExp = (CGOperationCallExp)eObject;
+				if (calledOperation == null) {
+					calls.add(callExp);
+				} else if (callExp.getReferredOperation().getImplementation() == calledOperation) {
+					calls.add(callExp);
+				}
+			}
+		}
+		if (calledOperation == null) {
+			assertEquals("Mismatching call count", expectedCount, calls.size());
+		}
+		else {
+			assertEquals("Mismatching call count of " + calledOperation, expectedCount, calls.size());
+		}
+	} */
 
 	protected EPackage doLoadPackage(@NonNull String qualifiedPackageName) throws Exception {
 		Class<?> testClass = Class.forName(qualifiedPackageName);

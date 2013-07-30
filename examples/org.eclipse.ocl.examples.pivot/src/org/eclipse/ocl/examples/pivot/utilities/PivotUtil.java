@@ -335,12 +335,12 @@ public class PivotUtil extends DomainUtil
 			for (Object obj : diagnostic.getData()) {
 				s.append(newLine);
 				s.append("\t");
-				if (obj instanceof Throwable) {
-					s.append(((Throwable)obj).getMessage());
-				}
-				else {
+//				if (obj instanceof Throwable) {
+//					s.append(((Throwable)obj).getMessage());
+//				}
+//				else {
 					s.append(obj);
-				}
+//				}
 			}
 			for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
 				if (childDiagnostic != null) {
