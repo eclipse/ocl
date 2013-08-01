@@ -150,8 +150,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					EnumerationLiteral enumerationLiteral = DomainUtil.nonNullModel(enumerationLiterals.get(i));
 					s.append("		public static final " + atNonNull() + " ");
 					s.appendClassReference(EcoreExecutorEnumerationLiteral.class);
-					s.append(" _");
-					s.appendName(pClass);
+					s.append(" ");
+					s.appendScopedTypeName(pClass);
 					s.append("__");
 					s.appendName(enumerationLiteral);
 					s.append(" = new ");
@@ -161,14 +161,14 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					appendUpperName(pClass);
 					s.append(".getEEnumLiteral(");
 					s.appendString(DomainUtil.nonNullModel(enumerationLiteral.getName()));
-					s.append("), Types._");
-					s.appendName(pClass);
+					s.append("), Types.");
+					s.appendScopedTypeName(pClass);
 					s.append(", " + i + ");\n");
 				}
 				s.append("		private static final " + atNonNull() + " ");
 				s.appendClassReference(EcoreExecutorEnumerationLiteral.class);
-				s.append("[] _");
-				s.appendName(pClass);
+				s.append("[] ");
+				s.appendScopedTypeName(pClass);
 				s.append(" = {");
 				for (int i = 0; i < enumerationLiterals.size(); i++) {
 					EnumerationLiteral enumerationLiteral = DomainUtil.nonNullModel(enumerationLiterals.get(i));
@@ -176,8 +176,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 						s.append(",");
 					}
 					s.append("\n");
-					s.append("			_");
-					s.appendName(pClass);
+					s.append("			");
+					s.appendScopedTypeName(pClass);
 					s.append("__");
 					s.appendName(enumerationLiteral);
 				}
@@ -192,10 +192,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("		static {\n");
 		for (org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
 			if (pClass instanceof Enumeration) {
-				s.append("			Types._");
-				s.appendName(pClass);
-				s.append(".initLiterals(_");
-				s.appendName(pClass);
+				s.append("			Types.");
+				s.appendScopedTypeName(pClass);
+				s.append(".initLiterals(");
+				s.appendScopedTypeName(pClass);
 				s.append(");\n");
 			}
 		}
@@ -213,14 +213,15 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			s.append("\n");
-			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
+			List<org.eclipse.ocl.examples.pivot.Class> allSupertypesSortedByName = getAllSupertypesSortedByName(pClass);
+			for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pSuperClass : allSupertypesSortedByName) {
 				assert pSuperClass != null;
-				s.append("		public static final " + atNonNull() + " ");
+				s.append("		private static final " + atNonNull() + " ");
 				s.appendClassReference(ExecutorFragment.class);
-				s.append(" _");
-				s.appendName(pClass);
+				s.append(" ");
+				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendName(pSuperClass);
+				s.appendUnscopedTypeName(pSuperClass);
 				s.append(" = new ");
 				s.appendClassReference(ExecutorFragment.class);
 				s.append("(");
@@ -245,10 +246,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("\n");
 			s.append("		private static final " + atNonNull() + " ");
 			s.appendClassReference(ExecutorOperation.class);
-			s.append("[] _");
-			s.appendName(pClass);
+			s.append("[] ");
+			s.appendScopedTypeName(pClass);
 			s.append("__");
-			s.appendName(pClass);
+			s.appendUnscopedTypeName(pClass);
 			s.append(" = ");
 			if (sortedOperations.size() <= 0) {
 				s.append("{};\n");
@@ -276,10 +277,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				Collections.sort(sortedSuperOperations, signatureComparator);
 				s.append("		private static final " + atNonNull() + " ");
 				s.appendClassReference(ExecutorOperation.class);
-				s.append("[] _");
-				s.appendName(pClass);
+				s.append("[] ");
+				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendName(pSuperClass);
+				s.appendUnscopedTypeName(pSuperClass);
 				s.append(" = ");
 				if (sortedSuperOperations.size() <= 0) {
 					s.append("{};\n");
@@ -314,14 +315,14 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("\n");
 			for (org.eclipse.ocl.examples.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
 				assert pSuperClass != null;
-				s.append("			Fragments._");
-				s.appendName(pClass);
+				s.append("			Fragments.");
+				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendName(pSuperClass);
-				s.append(".initOperations(_");
-				s.appendName(pClass);
+				s.appendUnscopedTypeName(pSuperClass);
+				s.append(".initOperations(");
+				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendName(pSuperClass);
+				s.appendUnscopedTypeName(pSuperClass);
 				s.append(");\n");
 			}
 		}
@@ -353,8 +354,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("\n");
 			s.append("		private static final " + atNonNull() + " ");
 			s.appendClassReference(ExecutorProperty.class);
-			s.append("[] _");
-			s.appendName(pClass);
+			s.append("[] ");
+			s.appendScopedTypeName(pClass);
 			s.append(" = ");
 			if (sortedProperties.size() <= 0) {
 				s.append("{};\n");
@@ -381,12 +382,12 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("		static {\n");
 		for (/*@NonNull*/ org.eclipse.ocl.examples.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
-			s.append("			Fragments._");
-			s.appendName(pClass);
+			s.append("			Fragments.");
+			s.appendScopedTypeName(pClass);
 			s.append("__");
-			s.appendName(pClass);
-			s.append(".initProperties(_");
-			s.appendName(pClass);
+			s.appendUnscopedTypeName(pClass);
+			s.append(".initProperties(");
+			s.appendScopedTypeName(pClass);
 			s.append(");\n");
 		}
 		s.append("		}\n");
@@ -592,8 +593,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				EcoreExecutorType.class;
 		s.append("		public static final " + atNonNull() + " ");
 		s.appendClassReference(typeClass);
-		s.append(" _");
-		s.appendName(pClass);
+		s.append(" ");
+		s.appendScopedTypeName(pClass);
 		s.append(" = ");
 		if (!hasEcore(pClass)) {
 			s.append("new ");
@@ -620,8 +621,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			for (TemplateParameter parameter : pClass.getOwnedTemplateSignature().getParameter()) {
 				if (parameter instanceof TypeTemplateParameter) {
 					Type parameteredElement = DomainUtil.nonNullModel((Type) parameter.getParameteredElement());
-					s.append(", TypeParameters._");
-					s.appendName(pClass);
+					s.append(", TypeParameters.");
+					s.appendScopedTypeName(pClass);
 					s.append("_");
 					s.appendName(parameteredElement);
 				}
@@ -655,8 +656,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			}
 			isFirst = false;
 			s.append("\n");
-			s.append("			_");
-			s.appendName(pClass);
+			s.append("			");
+			s.appendScopedTypeName(pClass);
 		}
 		s.append("\n");
 		s.append("		};\n");
@@ -715,8 +716,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("\n");
 			s.append("		private static final " + atNonNull() + " ");
 			s.appendClassReference(ExecutorFragment.class);
-			s.append("[] _");
-			s.appendName(pClass);
+			s.append("[] ");
+			s.appendScopedTypeName(pClass);
 			s.append(" =\n");
 			s.append("		{");
 			boolean isFirst = true;
@@ -726,17 +727,17 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append(",");
 				}
 				s.append("\n");
-				s.append("			Fragments._");
-				s.appendName(pClass);
+				s.append("			Fragments.");
+				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendName(superClass);
+				s.appendUnscopedTypeName(superClass);
 				s.append(" /* " + allSuperTypes.get(superClass) + " */");
 				isFirst = false;
 			}
 			s.append("\n");
 			s.append("		};\n");
-			s.append("		private static final " + atNonNull() + " int[] __");
-			s.appendName(pClass);
+			s.append("		private static final " + atNonNull() + " int[] _");
+			s.appendScopedTypeName(pClass);
 			s.append(" = { ");
 			for (int i = 0; i <= myDepth; i++) {
 				if (i > 0) {
@@ -755,10 +756,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			assert pClass != null;
 			s.append("			");
 			pClass.accept(emitLiteralVisitor);
-			s.append(".initFragments(_");
-			s.appendName(pClass);
-			s.append(", __");
-			s.appendName(pClass);
+			s.append(".initFragments(");
+			s.appendScopedTypeName(pClass);
+			s.append(", _");
+			s.appendScopedTypeName(pClass);
 //			if (hasAnotherType(pClass)) {
 //				s.append(", " + genPackage.getPrefix() + "Package.Literals.");
 //				appendUpperName(pClass);
@@ -785,8 +786,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 						Type parameteredElement = DomainUtil.nonNullModel((Type) parameter.getParameteredElement());
 						s.append("		public static final " + atNonNull() + " ");
 						s.appendClassReference(ExecutorTypeParameter.class);
-						s.append(" _");
-						s.appendName(pClass);
+						s.append(" ");
+						s.appendScopedTypeName(pClass);
 						s.append("_");
 						s.appendName(parameteredElement);
 						s.append(" = new ");

@@ -57,7 +57,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	public static final @NonNull String TABLES_CLASS_SUFFIX = "Tables";
 	public static final @NonNull String TABLES_PACKAGE_NAME = "";
 	
-	public static String encodeName(@NonNull NamedElement element) {
+	public static @NonNull String encodeName(@NonNull NamedElement element) {
 		int arity = element instanceof DomainOperation ? ((DomainOperation)element).getOwnedParameter().size() : 0;
 		String rawEncodeName = rawEncodeName(DomainUtil.nonNullModel(element.getName()), arity);
 		if (element instanceof DomainOperation) {

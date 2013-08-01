@@ -209,6 +209,9 @@ public class OCLinEcoreTablesUtils
 		private final @NonNull StringBuilder s = new StringBuilder();
 		private Map<String, String> classReferences = new HashMap<String, String>();
 		
+		protected final @NonNull Map<Type, String> typeNameMap = new HashMap<Type, String>();
+		protected final @NonNull Set<String> typeNameUse = new HashSet<String>();
+		
 		public void append(@Nullable String string) {
 			if (string != null) {
 				s.append(string);
@@ -252,11 +255,44 @@ public class OCLinEcoreTablesUtils
 			s.append(AbstractGenModelHelper.encodeName(namedElement));
 		}
 
+		/**
+		 * Append the encoded name of a type with an _ prefix. The usage of the name is known to be unique to a particular package.
+		 */
+		public void appendScopedTypeName(@NonNull Type theType) {
+			s.append("_" + AbstractGenModelHelper.encodeName(theType));
+		}
+
 		protected void appendString(@NonNull String string) {
 			@SuppressWarnings("null")@NonNull String javaString = Strings.convertToJavaString(string);
 			s.append("\"");
 			s.append(javaString);
 			s.append("\"");
+		}
+
+		/**
+		 * Append the encoded name of a type with a suffix if disambiguation acros packages is required.
+		 */
+		public void appendUnscopedTypeName(@NonNull Type theType) {
+			s.append(getTypeName(theType));
+		}
+		
+		private @NonNull String getTypeName(@NonNull Type theType) {
+			String name = typeNameMap.get(theType);
+			if (name != null) {
+				return name;
+			}
+			name = AbstractGenModelHelper.encodeName(theType);
+			if (typeNameUse.contains(name)) {
+				int index = 1;
+				String candidateName = name + '_' + index;
+				while (typeNameUse.contains(name + '_' + index)) {
+					index++;
+				}
+				name = candidateName;
+			}
+			typeNameMap.put(theType, name);
+			typeNameUse.add(name);
+			return name;
 		}
 
 		public @NonNull List<String> getClassReferences() {
@@ -354,10 +390,10 @@ public class OCLinEcoreTablesUtils
 				}
 				else {
 					s.appendClassReference(prefix);
-					s.append(".TypeParameters._");
-					s.appendName(containerType);
+					s.append(".TypeParameters.");
+					s.appendScopedTypeName(containerType);
 					s.append("_");
-					s.appendName(type);
+					s.appendUnscopedTypeName(type);
 				}
 			}
 			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
@@ -375,7 +411,7 @@ public class OCLinEcoreTablesUtils
 					s.append(".TypeParameters._");
 					containerOperation.accept(emitLiteralVisitor);
 					s.append("_");
-					s.appendName(type);
+					s.appendUnscopedTypeName(type);
 				}
 			}
 			return null;
@@ -396,16 +432,15 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitCollectionType(@NonNull CollectionType type) {
 			CollectionType unspecializedType = PivotUtil.getUnspecializedTemplateableElement(type);
 //			s.appendClassReference(getQualifiedTablesClassName(unspecializedType));
-			s.append("Types._");
-			s.appendName(unspecializedType);
+			s.append("Types.");
+			s.appendScopedTypeName(unspecializedType);
 			return null;
 		}
 
 		@Override
 		public @Nullable Object visitConstraint(@NonNull Constraint constraint) {
 			Type type = DomainUtil.nonNullModel((Type) constraint.eContainer());
-			s.append("_");
-			s.appendName(type);
+			s.appendScopedTypeName(type);
 			s.append("__");
 			s.append(NameQueries.getUniqueText(type, constraint));
 			return null;
@@ -415,8 +450,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitEnumerationLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 			Enumeration enumeration = DomainUtil.nonNullModel(enumerationLiteral.getEnumeration());
 //			s.appendClassReference(getQualifiedTablesClassName(enumeration));
-			s.append("EnumerationLiterals._");
-			s.appendName(enumeration);
+			s.append("EnumerationLiterals.");
+			s.appendScopedTypeName(enumeration);
 			s.append("__");
 			s.appendName(enumerationLiteral);
 			return null;
@@ -424,8 +459,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
-			s.append("_");
-			s.appendName(DomainUtil.nonNullModel(operation.getOwningType()));
+			s.appendScopedTypeName(DomainUtil.nonNullModel(operation.getOwningType()));
 			s.append("__");
 			s.appendName(operation);
 			return null;
@@ -440,8 +474,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitProperty(@NonNull Property property) {
-			s.append("_");
-			s.appendName(DomainUtil.nonNullModel(property.getOwningType()));
+			s.appendScopedTypeName(DomainUtil.nonNullModel(property.getOwningType()));
 			s.append("__");
 			s.appendName(property);
 			return null;
@@ -453,8 +486,8 @@ public class OCLinEcoreTablesUtils
 				s.append("null");
 			}
 			else {
-				s.append("Types._");
-				s.appendName(type);
+				s.append("Types.");
+				s.appendScopedTypeName(type);
 			}
 			return null;
 		}		
@@ -474,8 +507,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitCollectionType(@NonNull CollectionType object) {
 			CollectionType unspecializedObject = PivotUtil.getUnspecializedTemplateableElement(object);
 			s.appendClassReference(getQualifiedTablesClassName(unspecializedObject));
-			s.append(".Types._");
-			s.appendName(unspecializedObject);
+			s.append(".Types.");
+			s.appendScopedTypeName(unspecializedObject);
 			return null;
 		}
 
@@ -483,8 +516,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitEnumerationLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 			Enumeration enumeration = DomainUtil.nonNullModel(enumerationLiteral.getEnumeration());
 			s.appendClassReference(getQualifiedTablesClassName(enumeration));
-			s.append(".EnumerationLiterals._");
-			s.appendName(enumeration);
+			s.append(".EnumerationLiterals.");
+			s.appendScopedTypeName(enumeration);
 			s.append("__");
 			s.appendName(enumerationLiteral);
 			return null;
@@ -494,8 +527,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
 			Type type = DomainUtil.nonNullModel(operation.getOwningType());
 			s.appendClassReference(getQualifiedTablesClassName(type));
-			s.append(".Operations._");
-			s.appendName(type);
+			s.append(".Operations.");
+			s.appendScopedTypeName(type);
 			s.append("__");
 			s.appendName(operation);
 			return null;
@@ -505,8 +538,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitProperty(@NonNull Property property) {
 			Type type = DomainUtil.nonNullModel(property.getOwningType());
 			s.appendClassReference(getQualifiedTablesClassName(type));
-			s.append(".Properties._");
-			s.appendName(type);
+			s.append(".Properties.");
+			s.appendScopedTypeName(type);
 			s.append("__");
 			s.appendName(property);
 			return null;
@@ -516,7 +549,7 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitTupleType(@NonNull TupleType type) {
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".tuple_type_");			// 
-			s.appendName(type);
+			s.appendUnscopedTypeName(type);
 			return null;
 //			[ast.getTablesClassName(genPackage).getPrefixedSymbolName('tuple_type_')/][/template]
 		}
@@ -524,8 +557,8 @@ public class OCLinEcoreTablesUtils
 		@Override
 		public @Nullable Object visitType(@NonNull Type type) {
 			s.appendClassReference(getQualifiedTablesClassName(type));
-			s.append(".Types._");
-			s.appendName(type);
+			s.append(".Types.");
+			s.appendScopedTypeName(type);
 			return null;
 		}		
 	}
@@ -539,6 +572,7 @@ public class OCLinEcoreTablesUtils
 	protected final @NonNull EmitQualifiedLiteralVisitor emitQualifiedLiteralVisitor = new EmitQualifiedLiteralVisitor(s);
 	protected final @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> activeClassesSortedByName;
 	protected final @NonNull Map<DomainParameterTypes, String> templateBindingsNames = new HashMap<DomainParameterTypes, String>();
+	
 
 	protected OCLinEcoreTablesUtils(@NonNull GenPackage genPackage) {
 		this.genPackage = genPackage;
@@ -628,7 +662,7 @@ public class OCLinEcoreTablesUtils
 		return sortedClasses;
 	}
 
-	protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> getAllSupertypesSortedByName(@NonNull org.eclipse.ocl.examples.pivot.Class pClass) {
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getAllSupertypesSortedByName(@NonNull org.eclipse.ocl.examples.pivot.Class pClass) {
 		Map<org.eclipse.ocl.examples.pivot.Class, Integer> results = new HashMap<org.eclipse.ocl.examples.pivot.Class, Integer>();
 		getAllSuperClasses(results, pClass);
 		List<org.eclipse.ocl.examples.pivot.Class> sortedClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(results.keySet());
