@@ -390,7 +390,7 @@ public class JavaStream
 		}
 		if (element != null) {
 			PrettyPrintOptions.Global createOptions = createOptions(element);
-			append(PrettyPrinter.print(element, createOptions) + "\n");
+			append(PrettyPrinter.print(element, createOptions).replace("*/",  "* /") + "\n");
 //			append("«IF expInOcl.messageExpression != null»«(expInOcl.messageExpression as StringLiteralExp).stringSymbol»«ENDIF»\n");
 			popIndentation();
 		}
