@@ -255,6 +255,10 @@ public class OCLinEcoreTablesUtils
 			s.append(AbstractGenModelHelper.encodeName(namedElement));
 		}
 
+		public void appendParameterName(@NonNull NamedElement namedElement) {
+			s.append(AbstractGenModelHelper.encodeName(namedElement));
+		}
+
 		/**
 		 * Append the encoded name of a type with an _ prefix. The usage of the name is known to be unique to a particular package.
 		 */
@@ -394,7 +398,7 @@ public class OCLinEcoreTablesUtils
 					s.append(".TypeParameters.");
 					s.appendScopedTypeName(containerType);
 					s.append("_");
-					s.appendUnscopedTypeName(metaModelManager, type);
+					s.appendParameterName(type);
 				}
 			}
 			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
@@ -412,7 +416,7 @@ public class OCLinEcoreTablesUtils
 					s.append(".TypeParameters._");
 					containerOperation.accept(emitLiteralVisitor);
 					s.append("_");
-					s.appendUnscopedTypeName(metaModelManager, type);
+					s.appendParameterName(type);
 				}
 			}
 			return null;

@@ -438,7 +438,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.append("TypeParameters._");
 							op.accept(emitLiteralVisitor);
 							s.append("_");
-							s.appendName((NamedElement)parameteredElement);
+							s.appendParameterName((NamedElement)parameteredElement);
 						}
 					}
 					s.append(")");
@@ -624,7 +624,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append(", TypeParameters.");
 					s.appendScopedTypeName(pClass);
 					s.append("_");
-					s.appendName(parameteredElement);
+					s.appendParameterName(parameteredElement);
 				}
 			}
 		}
@@ -789,7 +789,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 						s.append(" ");
 						s.appendScopedTypeName(pClass);
 						s.append("_");
-						s.appendName(parameteredElement);
+						s.appendParameterName(parameteredElement);
 						s.append(" = new ");
 						s.appendClassReference(ExecutorTypeParameter.class);
 						s.append("(");
@@ -822,7 +822,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.append(" _");
 							operation.accept(emitLiteralVisitor);
 							s.append("_");
-							s.appendName(parameteredElement);
+							s.appendParameterName(parameteredElement);
 							s.append(" = new ");
 							s.appendClassReference(ExecutorTypeParameter.class);
 							s.append("(");
