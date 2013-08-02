@@ -30,11 +30,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 public class LetPlaces
 {
 	public static @NonNull LocalPlace createPlaces(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGLetExp cgLetExp) {
-		AbstractPlace abstractPlace = element2place.get(cgLetExp);
-		if (abstractPlace == null) {
-			abstractPlace = element2place.get(cgLetExp.getParent());
-		}
-		LocalPlace letPlace = ControlPlace.getLocalPlace(abstractPlace, cgLetExp);
+		ControlPlace letPlace = ControlPlace.createPlace(element2place, cgLetExp);
 		CGValuedElement cgInExp = cgLetExp.getIn();
 		CGValuedElement cgInitExp = cgLetExp.getInit();
 		if ((cgInExp != null) && (cgInitExp != null)) {

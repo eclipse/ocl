@@ -35,11 +35,11 @@ import com.google.common.collect.Multimap;
  */
 public class ControlPlace extends LocalPlace
 {
-	public static @NonNull AbstractPlace createPlace(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGValuedElement cgElement) {
+	public static @NonNull ControlPlace createPlace(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGValuedElement cgElement) {
 		CGElement cgParent = cgElement.getParent();
 		AbstractPlace parentPlace = element2place.get(cgParent);
 		if (parentPlace instanceof ControlPlace) {
-			return parentPlace;
+			return (ControlPlace) parentPlace;
 		}
 		else {
 			return new ControlPlace(getLocalPlace(element2place, cgParent), cgElement);

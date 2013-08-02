@@ -27,8 +27,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 public class CatchPlace extends ControlPlace
 {
 	public static @NonNull LocalPlace createPlace(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGCatchExp cgCatchExp) {
-		CGElement cgParent = cgCatchExp.getParent();
-		LocalPlace catchPlace = getLocalPlace(element2place, cgParent);
+		ControlPlace catchPlace = ControlPlace.createPlace(element2place, cgCatchExp);
 		CGValuedElement cgCaughtExp = cgCatchExp.getSource();
 		if (cgCaughtExp != null) {
 			CatchPlace caughtPlace = new CatchPlace(catchPlace, cgCaughtExp);

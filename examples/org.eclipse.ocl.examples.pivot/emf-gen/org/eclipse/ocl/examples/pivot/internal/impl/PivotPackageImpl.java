@@ -16,6 +16,8 @@
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import static org.eclipse.ocl.examples.pivot.PivotPackage.CLASS;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
