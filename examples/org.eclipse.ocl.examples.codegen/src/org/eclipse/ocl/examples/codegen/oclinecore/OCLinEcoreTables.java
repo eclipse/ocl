@@ -221,7 +221,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append(" ");
 				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendUnscopedTypeName(pSuperClass);
+				s.appendUnscopedTypeName(metaModelManager, pSuperClass);
 				s.append(" = new ");
 				s.appendClassReference(ExecutorFragment.class);
 				s.append("(");
@@ -249,7 +249,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("[] ");
 			s.appendScopedTypeName(pClass);
 			s.append("__");
-			s.appendUnscopedTypeName(pClass);
+			s.appendUnscopedTypeName(metaModelManager, pClass);
 			s.append(" = ");
 			if (sortedOperations.size() <= 0) {
 				s.append("{};\n");
@@ -280,7 +280,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append("[] ");
 				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendUnscopedTypeName(pSuperClass);
+				s.appendUnscopedTypeName(metaModelManager, pSuperClass);
 				s.append(" = ");
 				if (sortedSuperOperations.size() <= 0) {
 					s.append("{};\n");
@@ -318,11 +318,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append("			Fragments.");
 				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendUnscopedTypeName(pSuperClass);
+				s.appendUnscopedTypeName(metaModelManager, pSuperClass);
 				s.append(".initOperations(");
 				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendUnscopedTypeName(pSuperClass);
+				s.appendUnscopedTypeName(metaModelManager, pSuperClass);
 				s.append(");\n");
 			}
 		}
@@ -385,7 +385,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("			Fragments.");
 			s.appendScopedTypeName(pClass);
 			s.append("__");
-			s.appendUnscopedTypeName(pClass);
+			s.appendUnscopedTypeName(metaModelManager, pClass);
 			s.append(".initProperties(");
 			s.appendScopedTypeName(pClass);
 			s.append(");\n");
@@ -730,7 +730,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append("			Fragments.");
 				s.appendScopedTypeName(pClass);
 				s.append("__");
-				s.appendUnscopedTypeName(superClass);
+				s.appendUnscopedTypeName(metaModelManager, superClass);
 				s.append(" /* " + allSuperTypes.get(superClass) + " */");
 				isFirst = false;
 			}

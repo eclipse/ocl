@@ -271,9 +271,10 @@ public class OCLinEcoreTablesUtils
 
 		/**
 		 * Append the encoded name of a type with a suffix if disambiguation acros packages is required.
+		 * @param metaModelManager 
 		 */
-		public void appendUnscopedTypeName(@NonNull Type theType) {
-			s.append(getTypeName(theType));
+		public void appendUnscopedTypeName(@NonNull MetaModelManager metaModelManager, @NonNull Type theType) {
+			s.append(getTypeName(metaModelManager.getPrimaryType(theType)));
 		}
 		
 		private @NonNull String getTypeName(@NonNull Type theType) {
@@ -393,7 +394,7 @@ public class OCLinEcoreTablesUtils
 					s.append(".TypeParameters.");
 					s.appendScopedTypeName(containerType);
 					s.append("_");
-					s.appendUnscopedTypeName(type);
+					s.appendUnscopedTypeName(metaModelManager, type);
 				}
 			}
 			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
@@ -411,7 +412,7 @@ public class OCLinEcoreTablesUtils
 					s.append(".TypeParameters._");
 					containerOperation.accept(emitLiteralVisitor);
 					s.append("_");
-					s.appendUnscopedTypeName(type);
+					s.appendUnscopedTypeName(metaModelManager, type);
 				}
 			}
 			return null;
@@ -549,7 +550,7 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitTupleType(@NonNull TupleType type) {
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".tuple_type_");			// 
-			s.appendUnscopedTypeName(type);
+			s.appendUnscopedTypeName(metaModelManager, type);
 			return null;
 //			[ast.getTablesClassName(genPackage).getPrefixedSymbolName('tuple_type_')/][/template]
 		}
