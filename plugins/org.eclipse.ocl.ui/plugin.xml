@@ -18,4 +18,22 @@
          <filter name="open" value="true"/>
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.ocl.ui.wizards"
+            name="OCL">
+      </category>
+      <wizard
+            category="org.eclipse.ocl.ui.wizards"
+            class="org.eclipse.ocl.ui.wizards.NewCompleteOCLFileWizard"
+            icon="icons/OCLModelFile.gif"
+            id="org.eclipse.ocl.ui.newCompleteOCLFileWizard"
+            name="%wizard.name"
+            project="false">
+         <description>
+            Create a new Complete OCL File
+         </description>
+      </wizard>
+   </extension>
 </plugin>
