@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -107,15 +106,7 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 		s.append(".");
 		s.append(pivotFeature != null ? pivotFeature.getName() : "*");
 		s.append(" : ");
-		String elementName = null;
-		if (csElement instanceof ModelElementCS) {
-			ModelElementCS csModelElement = (ModelElementCS) csElement;
-			elementName = CS2Moniker.toString(csModelElement);
-		}
-		if (elementName == null) {
-			elementName = csElement.toString();
-		}
-		s.append(elementName);
+		s.append(csElement.toString());
 		return s.toString();
 	}
 }
