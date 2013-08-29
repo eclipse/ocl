@@ -20,17 +20,10 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -1824,7 +1817,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, ValuesUtil.UNLIMITED_VALUE, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().upper"); // no change to dynamic bound
 	}
 	
-	@Test public void test_Bug415669() throws Exception {
+	@Test public void test_Bug415669() {
 		assertQueryTrue(null, "let seq : Sequence(String) = Sequence{'foo'} in seq->exists(x | x = 'foo')");
 		assertSemanticErrorQuery("let seq : Sequence(String) = Sequence{'foo'} in seq->exists('foo')", "TODO"); //TODO with real error message
     } 
