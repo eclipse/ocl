@@ -13,10 +13,9 @@
  *   Radek Dvorak - Bugs 261128, 265066
  *   E.D.Willink - Bug 297541
  *   Axel Uhl (SAP AG) - Bug 342644
+ *   Christian W. Damus (CEA LIST) - Bug 416373
  *
  * </copyright>
- *
- * $Id: EvaluationVisitorImpl.java,v 1.8 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl;
@@ -34,6 +33,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -133,6 +134,24 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * Cache supporting dynamic operation lookup. 
 	 */
 	private final TypeChecker.Cached<C, O, P> cachedTypeChecker;
+	
+	/**
+	 * Cache of reusable regex pattern matchers to avoid repeatedly parsing the
+	 * same regexes. As the objects cached are matchers, not {@link Pattern}s,
+	 * it is not thread-safe: these matchers cannot be shared by concurrent
+	 * threads.
+	 */
+	private final Map<String, Matcher> regexMatchers = new java.util.LinkedHashMap<String, Matcher>() {
+
+		private static final long serialVersionUID = 1L;
+
+		private static final int CACHE_SIZE = 50;
+
+		@Override
+		protected boolean removeEldestEntry(Map.Entry<String, Matcher> eldest) {
+			return size() > CACHE_SIZE;
+		}
+	};
 	
 	/**
 	 * Constructor
@@ -1249,7 +1268,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							return Integer.valueOf(1 + ((String) sourceVal).lastIndexOf((String) argVal));
 
 						case PredefinedType.MATCHES:
-							return Boolean.valueOf(((String) sourceVal).matches((String) argVal));
+							return Boolean.valueOf(getRegexMatcher((String) argVal, (String) sourceVal).matches());
 
 						case PredefinedType.STARTS_WITH:
 							return Boolean.valueOf(((String) sourceVal).startsWith((String) argVal));
@@ -1488,10 +1507,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					String sourceString = (String) sourceVal;
 					switch (opCode) {
 						case PredefinedType.REPLACE_ALL:
-							return sourceString.replaceAll((String) arg1, (String) arg2);
+							return getRegexMatcher((String) arg1, sourceString).replaceAll((String) arg2);
 							
 						case PredefinedType.REPLACE_FIRST:
-							return sourceString.replaceFirst((String) arg1, (String) arg2);
+							return getRegexMatcher((String) arg1, sourceString).replaceFirst((String) arg2);
 							
 						case PredefinedType.SUBSTITUTE_ALL:
 							return sourceString.replace((String) arg1, (String) arg2);
@@ -2719,5 +2738,34 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 		return tp.getValue().accept(getVisitor());
+	}
+	
+	/**
+	 * Obtains a cached matcher for the given {@code regex} initialized to a
+	 * string to match. As the objects cached are matchers, not {@link Pattern}
+	 * s, it is not thread-safe: these matchers cannot be shared by concurrent
+	 * threads.
+	 * 
+	 * @param regex
+	 *            a regular expression to get from (or create in) the cache
+	 * @param stringToMatch
+	 *            the search string with which to (re-)initialize the matcher
+	 * 
+	 * @return the cached matcher; never {@code null} (failure to parse the
+	 *         regex raises an exception)
+	 * 
+	 * @since 3.4
+	 */
+	protected Matcher getRegexMatcher(String regex, String stringToMatch) {
+		Matcher result = regexMatchers.get(regex);
+
+		if (result == null) {
+			result = Pattern.compile(regex).matcher(stringToMatch);
+			regexMatchers.put(regex, result);
+		} else {
+			result.reset(stringToMatch);
+		}
+
+		return result;
 	}
 } //EvaluationVisitorImpl
