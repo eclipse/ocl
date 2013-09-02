@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005,2013 IBM Corporation and others.
+ * Copyright (c) 2005,2013 IBM Corporation, CEA LIST, and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,10 +13,9 @@
  *   Radek Dvorak - Bugs 261128, 265066
  *   E.D.Willink - Bug 297541
  *   Axel Uhl (SAP AG) - Bug 342644
+ *   Christian W. Damus (CEA LIST) - Bug 416373
  *
  * </copyright>
- *
- * $Id: EvaluationVisitorImpl.java,v 1.8 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl;
@@ -34,6 +33,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -118,6 +119,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 	private static final String DELIMS = " \t\n\r\f"; //$NON-NLS-1$
 
+	// This is the same as HashMap's default initial capacity
+	private static final int DEFAULT_REGEX_CACHE_LIMIT = 16;
+
+	// this is the same as HashMap's default load factor
+	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
+
 	private static List<String> tokenize(String sourceString, String delims, boolean returnDelims) {
 		StringTokenizer tokenizer = new StringTokenizer(sourceString, delims, returnDelims);
 		List<String> results = new ArrayList<String>();
@@ -133,6 +140,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * Cache supporting dynamic operation lookup. 
 	 */
 	private final TypeChecker.Cached<C, O, P> cachedTypeChecker;
+	
+	/**
+	 * Lazily-created cache of reusable regex pattern matchers to avoid
+	 * repeatedly parsing the same regexes.
+	 */
+	private Map<String, Matcher> regexMatchers;
 	
 	/**
 	 * Constructor
@@ -1249,7 +1262,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							return Integer.valueOf(1 + ((String) sourceVal).lastIndexOf((String) argVal));
 
 						case PredefinedType.MATCHES:
-							return Boolean.valueOf(((String) sourceVal).matches((String) argVal));
+							return Boolean.valueOf(getRegexMatcher((String) argVal, (String) sourceVal).matches());
 
 						case PredefinedType.STARTS_WITH:
 							return Boolean.valueOf(((String) sourceVal).startsWith((String) argVal));
@@ -1488,10 +1501,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					String sourceString = (String) sourceVal;
 					switch (opCode) {
 						case PredefinedType.REPLACE_ALL:
-							return sourceString.replaceAll((String) arg1, (String) arg2);
+							return getRegexMatcher((String) arg1, sourceString).replaceAll((String) arg2);
 							
 						case PredefinedType.REPLACE_FIRST:
-							return sourceString.replaceFirst((String) arg1, (String) arg2);
+							return getRegexMatcher((String) arg1, sourceString).replaceFirst((String) arg2);
 							
 						case PredefinedType.SUBSTITUTE_ALL:
 							return sourceString.replace((String) arg1, (String) arg2);
@@ -2719,5 +2732,69 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 		return tp.getValue().accept(getVisitor());
+	}
+	
+	/**
+	 * Obtains a cached matcher for the given {@code regex} initialized to a
+	 * string to match.
+	 * 
+	 * @param regex
+	 *            a regular expression to get from (or create in) the cache
+	 * @param stringToMatch
+	 *            the search string with which to (re-)initialize the matcher
+	 * 
+	 * @return the cached matcher; never {@code null} (failure to parse the
+	 *         regex raises an exception)
+	 * 
+	 * @see #createRegexCache()
+	 * 
+	 * @since 3.4
+	 */
+	protected Matcher getRegexMatcher(String regex, String stringToMatch) {
+		final Map<String, Matcher> cache = getRegexCache();
+		Matcher result = cache.get(regex);
+
+		if (result == null) {
+			result = Pattern.compile(regex).matcher(stringToMatch);
+			cache.put(regex, result);
+		} else {
+			result.reset(stringToMatch);
+		}
+
+		return result;
+	}
+	
+	private Map<String, Matcher> getRegexCache() {
+		if (regexMatchers == null) {
+			regexMatchers = createRegexCache();
+		}
+		
+		return regexMatchers;
+	}
+	
+	/**
+	 * Creates (on demand) the regular-expression matcher cache. The default
+	 * implementation creates an access-ordered LRU cache with a limit of 16
+	 * entries. Subclasses may override to create a map with whatever different
+	 * performance characteristics may be required.
+	 * 
+	 * @return the new regular-expression matcher cache
+	 * 
+	 * @see #getRegexMatcher(String, String)
+	 * 
+	 * @since 3.4
+	 */
+	protected Map<String, Matcher> createRegexCache() {
+		return new java.util.LinkedHashMap<String, Matcher>(
+			DEFAULT_REGEX_CACHE_LIMIT, DEFAULT_REGEX_CACHE_LOAD_FACTOR, true) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected boolean removeEldestEntry(
+					Map.Entry<String, Matcher> eldest) {
+				return size() > DEFAULT_REGEX_CACHE_LIMIT;
+			}
+		};
 	}
 } //EvaluationVisitorImpl
