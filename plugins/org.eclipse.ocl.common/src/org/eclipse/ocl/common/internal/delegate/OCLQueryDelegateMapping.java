@@ -38,6 +38,7 @@ public class OCLQueryDelegateMapping implements QueryDelegate.Factory
 		this.virtualDelegateMapping = virtualDelegateMapping;
 	}
 
+	@Override
 	public QueryDelegate createQueryDelegate(EClassifier context,
 			Map<String, EClassifier> parameters, String expression) {
 		String delegateURI = virtualDelegateMapping.getPreferredValue();

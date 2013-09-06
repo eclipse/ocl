@@ -113,6 +113,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Company createCompany() {
 		CompanyImpl company = new CompanyImpl();
 		return company;
@@ -123,6 +124,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Employee createEmployee() {
 		EmployeeImpl employee = new EmployeeImpl();
 		return employee;
@@ -153,6 +155,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompanyPackage getCompanyPackage() {
 		return (CompanyPackage)getEPackage();
 	}

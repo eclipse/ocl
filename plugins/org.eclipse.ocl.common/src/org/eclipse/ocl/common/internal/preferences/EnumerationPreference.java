@@ -26,6 +26,7 @@ public class EnumerationPreference<T extends Enum<T>> extends Preference<T>
 		this.type = type;
 	}
 
+	@Override
 	public T getValueOf(String string) {
 		if (string == null) {
 			return null;

@@ -44,6 +44,7 @@ public class OCLValidationDelegateMapping implements EValidator.ValidationDelega
 		virtualDelegateMapping.addListener(this);
 	}
 
+	@Override
 	public void changed(String key, Object oldValue, Object newValue) {
 		reset();
 	}
@@ -65,6 +66,7 @@ public class OCLValidationDelegateMapping implements EValidator.ValidationDelega
 		return validationDelegateRegistry.getValidationDelegate(delegatedURI);
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant,
 			String expression) {
@@ -77,6 +79,7 @@ public class OCLValidationDelegateMapping implements EValidator.ValidationDelega
 		return delegate.validate(eClass, eObject, context, invariant, expression);
 	}
 
+	@Override
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraint,
 			String expression) {
@@ -89,6 +92,7 @@ public class OCLValidationDelegateMapping implements EValidator.ValidationDelega
 		return delegate.validate(eClass, eObject, context, constraint, expression);
 	}
 
+	@Override
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint,
 			String expression) {

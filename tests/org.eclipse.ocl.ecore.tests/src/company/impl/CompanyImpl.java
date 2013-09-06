@@ -123,6 +123,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -132,6 +133,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -144,6 +146,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Employee> getEmployees() {
 		if (employees == null) {
 			employees = new EObjectContainmentWithInverseEList<Employee>(Employee.class, this, CompanyPackage.COMPANY__EMPLOYEES, CompanyPackage.EMPLOYEE__COMPANY);
@@ -156,6 +159,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CompanySizeKind getSize() {
 		return (CompanySizeKind)SIZE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -175,6 +179,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean dummyInvariant(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			CompanyValidator.validate

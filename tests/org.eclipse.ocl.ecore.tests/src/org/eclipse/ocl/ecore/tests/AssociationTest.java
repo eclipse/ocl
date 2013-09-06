@@ -636,6 +636,7 @@ public class AssociationTest
 	//		init();
 		}
 
+		@Override
 		public void init() {
 			initFruitExtensions();
 			

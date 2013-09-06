@@ -545,6 +545,7 @@ public class MessagesTest
 			init();
 		}
 		
+		@Override
 		public void init() {
 			dropSignal = EcoreFactory.eINSTANCE.createEClass();
 			dropSignal.setName("Drop");
