@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   E.D.Willink - Initial API and implementation
- *
+ *   Obeo - OCL File creation wizard page strings externalization
  * </copyright>
  *
  * $Id$
@@ -59,4 +59,29 @@ public class EcoreAndUMLUIMessages
 	public static String LPG_UseCompareToOperation;
 	public static String LPG_UseLongIntegers;
 	public static String LPG_WarnOfXorOrAndPrecedenceChange;
+
+	public static String WizardNewCompleteOCLFileCreationPage_newCompleteOCLFile;
+	public static String WizardNewCompleteOCLFileCreationPage_completeOCLFile;
+	public static String WizardNewCompleteOCLFileCreationPage_fileExtension;
+	public static String WizardNewCompleteOCLFileCreationPage_createCompleteOCLFileBasedOnModel;
+	public static String WizardNewCompleteOCLFileCreationPage_oclFileNameLabel;
+	public static String WizardNewCompleteOCLFileCreationPage_errorTitle;
+	public static String WizardNewCompleteOCLFileCreationPage_internalErrorTitle;
+	public static String WizardNewCompleteOCLFileCreationPage_internalErrorMessage;
+	public static String WizardNewCompleteOCLFileCreationPage_nameExists;
+	public static String WizardNewCompleteOCLFileCreationPage_resourceWillBeFilteredWarning;
+	public static String WizardNewCompleteOCLFileCreationPage_browseRegisteredPackages_label;
+	public static String WizardNewCompleteOCLFileCreationPage_browseTargetPlatformPackages_label;
+	public static String WizardNewCompleteOCLFileCreationPage_selectRegisteredPackageURI;
+	public static String WizardNewCompleteOCLFileCreationPage_packageSelection_label;
+	public static String WizardNewCompleteOCLFileCreationPage_developmentTimeVersion_label;
+	public static String WizardNewCompleteOCLFileCreationPage_runtimeVersion_label;
+	public static String WizardNewCompleteOCLFileCreationPage_runtimePackageDetail_message;
+	public static String WizardNewCompleteOCLFileCreationPage_information_title;
+	public static String WizardNewCompleteOCLFileCreationPage_runtimePackageHeader_message;
+	public static String WizardNewCompleteOCLFileCreationPage_resourceURI_label;
+	public static String WizardNewCompleteOCLFileCreationPage_resourceURIs_label;
+	public static String WizardNewCompleteOCLFileCreationPage_browseFileSystem_label;
+	public static String WizardNewCompleteOCLFileCreationPage_browseWorkspace_label;
+	public static String WizardNewCompleteOCLFileCreationPage_OCLModelFileIcon;
 }
