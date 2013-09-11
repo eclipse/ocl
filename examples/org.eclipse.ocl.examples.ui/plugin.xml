@@ -10,5 +10,23 @@
           properties="resourceSetAvailable"
           type="java.lang.Object"/>
  </extension>
+    <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.ocl.ui.wizards"
+            name="OCL">
+      </category>
+      <wizard
+            category="org.eclipse.ocl.ui.wizards"
+            class="org.eclipse.ocl.examples.ui.wizards.WizardNewCompleteOCLFileCreation"
+            icon="icons/OCLModelFile.gif"
+            id="org.eclipse.ocl.ui.wizardNewCompleteOCLFileCreation"
+            name="%MF_COMPLETE_OCL_WIZARD_NAME"
+            project="false">
+         <description>
+            %MF_COMPLETE_OCL_WIZARD_DESCRIPTION
+         </description>
+      </wizard>
+   </extension>
 
 </plugin>
