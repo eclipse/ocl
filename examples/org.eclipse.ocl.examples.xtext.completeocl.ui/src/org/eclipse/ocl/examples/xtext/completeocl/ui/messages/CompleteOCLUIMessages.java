@@ -32,4 +32,8 @@ public class CompleteOCLUIMessages
 	public static String NewWizardPage_pageDescription;
 	public static String NewWizardPage_pageSummary;
 	public static String NewWizardPage_pageTitle;
+	
+	public static String LoadCompleteOCLResource_browseOCLFiles;
+	public static String LoadCompleteOCLResource_SelectRegisteredOCLFileURI;
+	public static String LoadCompleteOCLResource_OCLFileSelection_label;
 }

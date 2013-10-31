@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 
 <plugin>
+  <extension-point id="complete_ocl_registry" name="Complete OCL Registry" schema="schema/complete_ocl_registry.exsd"/>
 
   <extension point="org.eclipse.core.contenttype.contentTypes">
 	<content-type id="org.eclipse.ocl.examples.completeOCL" name="%completeOCLName" 
