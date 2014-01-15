@@ -754,12 +754,15 @@ public class PivotUtil extends DomainUtil
 		TypeId typeId = query.getTypeId();
 		if (typeId == TypeId.BOOLEAN) {
 			return null;
+		} else if (typeId instanceof TupleTypeId) {
+			TuplePartId statusPartId = ((TupleTypeId) typeId).getPartId(PivotConstants.STATUS_PART_NAME);
+			if (statusPartId != null && statusPartId.getTypeId() == TypeId.BOOLEAN) {
+				return null;
+			}
 		}
-		else {
-			String objectLabel = DomainUtil.getLabel(query.getContextVariable().getType());
-			String constraintTypeName = getConstraintTypeName(query);
-			return DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, constraintTypeName, constraintName, objectLabel);
-		}
+		String objectLabel = DomainUtil.getLabel(query.getContextVariable().getType());
+		String constraintTypeName = getConstraintTypeName(query);
+		return DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, constraintTypeName, constraintName, objectLabel);
 	}
 
 	public static String getConstraintTypeName(@NonNull OpaqueExpression expression) {
