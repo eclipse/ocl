@@ -23,6 +23,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCS" eSuperTypes="#//StructuralFeatureCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ClassCS" eSuperTypes="#//ClassifierCS #//NamespaceCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="ocl::Class {&#xA;&#x9;&#x9;&#x9;&#x9;name = name,&#xA;&#x9;&#x9;&#x9;&#x9;isAbstract = qualifier->exists('abstract'),&#xA;&#x9;&#x9;&#x9;&#x9;ownedAttribute = ownedProperty.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;ownedOperation = ownedOperation.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;superClass = ownedSuperType.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperType" upperBound="-1"
         eType="#//TypedRefCS" unsettable="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperation" upperBound="-1"
@@ -33,11 +38,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierCS" abstract="true" eSuperTypes="#//NamedElementCS #//TypeCS #//TemplateableElementCS">
-    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Type">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="body" value="pivot"/>
-      </eAnnotations>
-    </eOperations>
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//PackageCS"
         eOpposite="#//PackageCS/ownedType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -223,6 +224,11 @@
         transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRefCS" eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//PrimitiveType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="ocl::PrimitiveType {&#xA;&#x9;&#x9;&#x9;&#x9;name = name&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceCS" eSuperTypes="#//StructuralFeatureCS">
@@ -255,11 +261,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructuralFeatureCS" abstract="true"
       eSuperTypes="#//FeatureCS">
-    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="body" value="ocl::Property{&#xA;&#x9;&#x9;&#x9;&#x9;-- TODO&#xA;&#x9;&#x9;&#x9;&#x9;name = name&#xA;&#x9;&#x9;&#x9;}"/>
-      </eAnnotations>
-    </eOperations>
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//ClassCS"
         eOpposite="#//ClassCS/ownedProperty"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -295,8 +297,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateSignature"
         eType="#//TemplateSignatureCS" containment="true" eOpposite="#//TemplateSignatureCS/owningTemplateElement"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TuplePartCS" eSuperTypes="#//TypedElementCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TuplePartCS" eSuperTypes="#//TypedElementCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="ocl::Property {&#xA;&#x9;&#x9;&#x9;&#x9;name = name,&#xA;&#x9;&#x9;&#x9;&#x9;type = ownedType.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleTypeCS" eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//TupleType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="ocl::TupleType {&#xA;&#x9;&#x9;&#x9;&#x9;name = name,&#xA;&#x9;&#x9;&#x9;&#x9;ownedAttribute = ownedParts.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
         eType="#//TuplePartCS" containment="true"/>
@@ -309,7 +322,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuper" eType="#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//ElementRefCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//ElementRefCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="true"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementCS" abstract="true" eSuperTypes="#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//TypedRefCS"
         containment="true"/>
