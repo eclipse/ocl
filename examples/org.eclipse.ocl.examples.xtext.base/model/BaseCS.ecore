@@ -72,6 +72,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementCS" abstract="true" eSuperTypes="#//VisitableCS">
     <eOperations name="getDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="env" eType="#//Environment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="logicalParent" eType="#//ElementCS"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
@@ -361,4 +362,28 @@
     <eLiterals name="Accumulator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ScopeFilter" instanceClassName="org.eclipse.ocl.examples.pivot.scoping.ScopeFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Environment" abstract="true" interface="true">
+    <eOperations name="lookupLocal" eType="#//NamedElementCS">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="lookup" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//NamedElement">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="lookupPathName" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//NamedElement">
+      <eParameters name="name" eType="#//PathNameCS"/>
+    </eOperations>
+    <eOperations name="lookupVariableDeclaration" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//VariableDeclaration">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="lookupType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//VariableDeclaration">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="lookupType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//VariableDeclaration">
+      <eParameters name="name" eType="#//PathNameCS"/>
+    </eOperations>
+    <eOperations name="lookupCollection" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//CollectionType">
+      <eParameters name="collectionKind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="elementType" eType="#//TypedRefCS"/>
+    </eOperations>
+  </eClassifiers>
 </ecore:EPackage>

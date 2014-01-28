@@ -35,7 +35,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//BooleanLiteralExp">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="ocl::BooleanLiteralExp {&#xA;&#x9;&#x9;&#x9;&#x9;booleanSymbol = name&#xA;&#x9;&#x9;&#x9;}"/>
+        <details key="body" value="ocl::BooleanLiteralExp {&#xA;&#x9;&#x9;&#x9;&#x9;booleanSymbol = if name = 'true' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    then true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    else false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    endif,&#xA;&#x9;&#x9;&#x9;&#x9;type = Boolean&#xA;&#x9;&#x9;&#x9;}"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -65,7 +65,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypedRefCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
     <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//CollectionType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#x9;ocl::CollectionType {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;lower = multiplicity.getLower(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;upper = multiplicity.getUpper(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;elementType = ownedType.ast() &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
+        <details key="body" value="&#x9;true"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -75,7 +75,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConstructorExpCS" eSuperTypes="#//NamedExpCS">
     <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//ConstructorExp">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#x9;ocl::ConstructorExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- Use named Expression ?&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value = value,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- type = env.lookupType(value)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;part = ownedParts.ast()&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
+        <details key="body" value="&#x9;ocl::ConstructorExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- Use named Expression ?&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value = value,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;part = ownedParts.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type = env().lookupType(nameExp.pathName) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
@@ -199,8 +199,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//NullLiteralExp"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//NumericLiteralExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::IntegerLiteralExp {&#xA;&#x9;&#x9;&#x9;&#x9;integerSymbol = name -- FIXME&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//BigNumber"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperatorCS" abstract="true" eSuperTypes="#//ExpCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS">
@@ -215,17 +222,38 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="SelfExpCS" eSuperTypes="#//ExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//VariableExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let refVariable : ocl::VariableDeclaration = env().lookupVariableDeclaration(name)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;in ocl::VariableExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;referredVariable = refVariable, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  &#x9;type = refVariable.type &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//StringLiteralExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::StringLiteralExp {&#xA;&#x9;&#x9;&#x9;&#x9;stringSymbol = name,&#xA;&#x9;&#x9;&#x9;&#x9;type = String&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExpCS" eSuperTypes="#//LiteralExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//TupleLiteralExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::TupleLiteralExp {&#xA;&#x9;&#x9;&#x9;&#x9;part = ownedParts.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
         eType="#//TupleLiteralPartCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralPartCS" eSuperTypes="#//VariableCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralPartCS" eSuperTypes="#//VariableCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//TupleLiteralPart">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::TupleLiteralPart {&#xA;&#x9;&#x9;&#x9;&#x9;initExpression = initExpression,&#xA;&#x9;&#x9;&#x9;&#x9;type = ownedType.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeLiteralExpCS" eSuperTypes="#//LiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//TypedRefCS"
