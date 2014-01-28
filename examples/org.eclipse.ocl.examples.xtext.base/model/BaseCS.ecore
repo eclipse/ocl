@@ -381,7 +381,7 @@
     <eOperations name="lookupType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//VariableDeclaration">
       <eParameters name="name" eType="#//PathNameCS"/>
     </eOperations>
-    <eOperations name="lookupCollection" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//CollectionType">
+    <eOperations name="lookupCollectionType" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//CollectionType">
       <eParameters name="collectionKind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="elementType" eType="#//TypedRefCS"/>
     </eOperations>
