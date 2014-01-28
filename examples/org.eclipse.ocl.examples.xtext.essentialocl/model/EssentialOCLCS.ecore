@@ -94,6 +94,11 @@
         eType="#//ExpCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//NamedElementCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//RootCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//ExpressionInOCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::ExpressionInOCL {&#xA;&#x9;&#x9;&#x9;&#x9;bodyExpression = ownedExpression.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
@@ -109,10 +114,20 @@
         transient="true" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpSpecificationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//SpecificationCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//ExpressionInOCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::ExpressionInOCL {&#xA;&#x9;&#x9;&#x9;&#x9;bodyExpression = ownedExpression.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfExpCS" eSuperTypes="#//ExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//IfExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ocl::IfExp {&#xA;&#x9;&#x9;&#x9;&#x9;condition = condition.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;thenExpression = thenExpression.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;elseExpression = elseExpression.ast()&#xA;&#x9;&#x9;&#x9;}"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ExpCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" eType="#//ExpCS"
@@ -134,12 +149,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" lowerBound="1"
         upperBound="-1" eType="#//BinaryOperatorCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//InvalidLiteralExp"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvocationExpCS" eSuperTypes="#//NamedExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
         eType="#//NavigatingArgCS" containment="true" eOpposite="#//NavigatingArgCS/navigatingExp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExpCS" eSuperTypes="#//ExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//LetExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="variable->reverse()->iterate(x : LetVariableCS; result : ocl::LetExp = null |&#xA;&#x9;&#x9;&#x9;&#x9;if result.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;then result = ocl::LetExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;variable = x.letExpression._'in'.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;_'in' = self._'in'.ast()  -- FIXME Check if self refers to context variable or the iterator one&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;else result = ocl::LetExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;variable = x.letExpression._'in'.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;_'in' = result&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;endif)"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
         eType="#//LetVariableCS" containment="true" eOpposite="#//LetVariableCS/letExpression"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" eType="#//ExpCS" containment="true"/>
