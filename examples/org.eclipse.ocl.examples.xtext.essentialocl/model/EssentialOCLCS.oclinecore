@@ -1,4 +1,4 @@
-import basecs : '../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#/';
+import basecs : '../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.oclinecore';
 import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
 
 package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST'
@@ -7,7 +7,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	{
 		operation getNamedElement() : ocl::NamedElement[?];
 		operation getNameExp() : AbstractNameExpCS;
-		operation getPathName() : basecs::PathNameCS[?];
+		operation getPathName() : basecs::basecs::PathNameCS[?];
 
 		/*
 		 * For explicit source invocations, sourceType provides the true source type after resolution of implicit set or implicit collect.
@@ -45,7 +45,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		property ownedType : CollectionTypeCS[?] { composes };
 		property ownedParts : CollectionLiteralPartCS[*] { ordered composes };
 	}
-	class CollectionLiteralPartCS extends basecs::ModelElementCS
+	class CollectionLiteralPartCS extends basecs::basecs::ModelElementCS
 	{
 		operation ast() : ocl::CollectionLiteralPart
 		{
@@ -62,14 +62,14 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		property expressionCS : ExpCS[?] { composes };
 		property lastExpressionCS : ExpCS[?] { composes };
 	}
-	class CollectionTypeCS extends basecs::TypedRefCS,ocl::Nameable
+	class CollectionTypeCS extends basecs::basecs::TypedRefCS,ocl::Nameable
 	{
 		operation ast() : ocl::CollectionType
 		{
 			body: env().lookupCollectionType(name, ownedType);
 		}
 		attribute name : String[?];
-		property ownedType : basecs::TypedRefCS[?] { composes };
+		property ownedType : basecs::basecs::TypedRefCS[?] { composes };
 	}
 	class ConstructorExpCS extends NamedExpCS
 	{
@@ -86,7 +86,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		invariant : ownedParts->notEmpty() implies value->oclIsUndefined()
 					and not value->oclIsUndefined() implies ownedParts->isEmpty();
 	}
-	class ConstructorPartCS extends basecs::ModelElementCS,ocl::Nameable
+	class ConstructorPartCS extends basecs::basecs::ModelElementCS,ocl::Nameable
 	{
 		operation ast() : ocl::ConstructorPart
 		{
@@ -98,7 +98,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		property property : ocl::Property;
 		property initExpression : ExpCS { composes };
 	}
-	class ContextCS extends basecs::NamedElementCS,basecs::RootCS
+	class ContextCS extends basecs::basecs::NamedElementCS,basecs::basecs::RootCS
 	{
 		operation ast() : ocl::ExpressionInOCL
 		{
@@ -108,7 +108,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		}
 		property ownedExpression : ExpCS[?] { composes };
 	}
-	class ExpCS extends basecs::ModelElementCS
+	class ExpCS extends basecs::basecs::ModelElementCS
 	{
 
 		/*
@@ -118,7 +118,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		property parent : OperatorCS[?] { transient !resolve };
 		attribute hasError : Boolean[?] = 'false' { transient };
 	}
-	class ExpSpecificationCS extends basecs::SpecificationCS
+	class ExpSpecificationCS extends basecs::basecs::SpecificationCS
 	{
 		operation ast() : ocl::ExpressionInOCL
 		{
@@ -173,9 +173,14 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		property ownedExpression : ExpCS[2..*] { ordered composes };
 		property ownedOperator : BinaryOperatorCS[+] { ordered composes };
 	}
+	
 	class InvalidLiteralExpCS extends PrimitiveLiteralExpCS
 	{
-		operation ast() : ocl::InvalidLiteralExp;
+		operation ast() : ocl::InvalidLiteralExp {
+			body : ocl::InvalidLiteralExp {
+				type = OclInvalid
+			};
+		}
 	}
 	class InvocationExpCS extends NamedExpCS
 	{
@@ -210,20 +215,20 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	class LiteralExpCS extends ExpCS;
 	class NameExpCS extends AbstractNameExpCS
 	{
-		property pathName : basecs::PathNameCS[?] { composes };
+		property pathName : basecs::basecs::PathNameCS[?] { composes };
 		attribute atPre : Boolean[?] = 'false';
 	}
 	abstract class NamedExpCS extends AbstractNameExpCS
 	{
 		property nameExp : NameExpCS[?] { composes };
 	}
-	class NavigatingArgCS extends basecs::ModelElementCS
+	class NavigatingArgCS extends basecs::basecs::ModelElementCS
 	{
 		property navigatingExp#argument : InvocationExpCS[?];
 		attribute role : NavigationRole[?] { derived transient };
 		attribute prefix : String[?];
 		property name : ExpCS[?] { composes };
-		property ownedType : basecs::TypedRefCS[?] { composes };
+		property ownedType : basecs::basecs::TypedRefCS[?] { composes };
 		property init : ExpCS[?] { composes };
 	}
 	class NavigationOperatorCS extends BinaryOperatorCS;
@@ -233,7 +238,11 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	}
 	class NullLiteralExpCS extends PrimitiveLiteralExpCS
 	{
-		operation ast() : ocl::NullLiteralExp;
+		operation ast() : ocl::NullLiteralExp {
+			body : 	ocl::NullLiteralExp {
+				type = OclVoid
+			};
+		}
 	}
 	class NumberLiteralExpCS extends PrimitiveLiteralExpCS
 	{
@@ -245,7 +254,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		}
 		attribute name : BigNumber[?];
 	}
-	abstract class OperatorCS extends ExpCS,basecs::NamedElementCS
+	abstract class OperatorCS extends ExpCS,basecs::basecs::NamedElementCS
 	{
 		property source : ExpCS { transient !resolve };
 	}
@@ -257,7 +266,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 					if result.oclIsUndefined()
 					then result = ocl::OperationCallExp {
 							name = x.name,
-							source = ownedExpression.ast()							
+							source = ownedExpression.ast()
 							-- referredOperation = name resolution
 						}
 					else result = ocl::OperationCallExp {
@@ -278,7 +287,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 			body: let refVariable : ocl::VariableDeclaration = env().lookupVariableDeclaration(name)
 					in ocl::VariableExp {
 						referredVariable = refVariable, 
-					  	type = refVariable.type 
+						type = refVariable.type 
 					};
 		}
 		attribute name : String[?];
@@ -300,6 +309,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		{
 			body: ocl::TupleLiteralExp {
 				part = ownedParts.ast()
+				-- type = env().lookupTuple(ownedParts)
 			};
 		}
 		property ownedParts : TupleLiteralPartCS[*] { ordered composes };
@@ -309,6 +319,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		operation ast() : ocl::TupleLiteralPart
 		{
 			body: ocl::TupleLiteralPart {
+				name = name,
 				initExpression = initExpression,
 				type = ownedType.ast()
 			};
@@ -316,16 +327,25 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	}
 	class TypeLiteralExpCS extends LiteralExpCS
 	{
-		property ownedType : basecs::TypedRefCS { composes };
+		operation ast() : ocl::TypeExp
+		{
+			body: 
+				let refType : ocl::Type = ownedType.ast()
+				in ocl::TypeExp {
+					referredType = refType,
+					type = refType
+					};
+		}
+		property ownedType : basecs::basecs::TypedRefCS { composes };
 	}
-	class TypeNameExpCS extends basecs::TypedRefCS
+	class TypeNameExpCS extends basecs::basecs::TypedRefCS
 	{
-		property pathName : basecs::PathNameCS[?] { composes };
+		property pathName : basecs::basecs::PathNameCS[?] { composes };
 		property element : ocl::Type[?] { derived readonly transient volatile !resolve };
 	}
 	class UnaryOperatorCS extends OperatorCS;
 	class UnlimitedNaturalLiteralExpCS extends PrimitiveLiteralExpCS;
-	class VariableCS extends basecs::NamedElementCS
+	class VariableCS extends basecs::basecs::NamedElementCS
 	{
 		operation ast() : ocl::Variable
 		{
@@ -335,7 +355,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 				type = ownedType.ast()
 			};
 		}
-		property ownedType : basecs::TypedRefCS[?] { composes };
+		property ownedType : basecs::basecs::TypedRefCS[?] { composes };
 		property initExpression : ExpCS[?] { composes };
 	}
 	datatype BigNumber : 'java.lang.Number' { serializable };
