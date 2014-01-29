@@ -73,9 +73,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstructorExpCS" eSuperTypes="#//NamedExpCS">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details value="ownedParts->notEmpty() implies value->oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;and not value->oclIsUndefined() implies ownedParts->isEmpty()"/>
+    </eAnnotations>
     <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//ConstructorExp">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#x9;ocl::ConstructorExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- Use named Expression ?&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value = value,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;part = ownedParts.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type = env().lookupType(nameExp.pathName) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
+        <details key="body" value="&#x9;ocl::ConstructorExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value = value,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;part = ownedParts.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type = env().lookupType(nameExp.pathName)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
