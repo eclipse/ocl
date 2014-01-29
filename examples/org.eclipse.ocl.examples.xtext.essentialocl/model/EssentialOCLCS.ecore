@@ -24,11 +24,6 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryOperatorCS" eSuperTypes="#//OperatorCS">
-    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//OperationCallExp">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="ocl::OperationCallExp {&#xA;&#x9;&#x9;&#x9;&#x9;source = source.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;argument = argument.ast() &#xA;&#x9;&#x9;&#x9;}"/>
-      </eAnnotations>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="argument" lowerBound="1"
         eType="#//ExpCS" transient="true" resolveProxies="false"/>
   </eClassifiers>
@@ -147,6 +142,11 @@
         defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//ExpCS">
+    <eOperations name="ast" lowerBound="1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//OperationCallExp">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let first : ExpCS = ownedExpression->first(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;others : Sequence(ExpCS) = ownedExpression->excluding(first)&#xA;&#x9;&#x9;&#x9;&#x9;in  others->iterate(x : ExpCS; result : ocl::OperationCallExp = null |&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if result.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;then result = ocl::OperationCallExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;source = first.ast(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;argument = Sequence(ocl::OperationCallExp) {x.ast()}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- referred operation = name resolution&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else result = ocl::OperationCallExp {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;source = result,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;argument = Sequence(ocl::OperationCallExp) {x.ast()}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- referredOperation = name resolution&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif)"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" lowerBound="2"
         upperBound="-1" eType="#//ExpCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" lowerBound="1"
