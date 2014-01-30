@@ -37,7 +37,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		operation ast() : ocl::CollectionLiteralExp
 		{
 			body: ocl::CollectionLiteralExp {
-				kind = ocl::CollectionKind::_Collection,
+				kind = ocl::CollectionKind.allInstances()->any(name=ownedType.name),
 				part = ownedParts.ast(),
 				type = ownedType.ast()
 				};
@@ -120,6 +120,9 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	}
 	class ExpSpecificationCS extends basecs::basecs::SpecificationCS
 	{
+		/*
+		 * FIXME no idea
+		 */
 		operation ast() : ocl::ExpressionInOCL
 		{
 			body: ocl::ExpressionInOCL {
@@ -184,6 +187,11 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	}
 	class InvocationExpCS extends NamedExpCS
 	{
+		/*
+		 * FIXME TODO
+		 */
+		operation ast() : ocl::CallExp;
+		
 		property argument#navigatingExp : NavigatingArgCS[*] { ordered composes };
 	}
 	class LetExpCS extends ExpCS
@@ -218,12 +226,18 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		property pathName : basecs::basecs::PathNameCS[?] { composes };
 		attribute atPre : Boolean[?] = 'false';
 	}
+	
 	abstract class NamedExpCS extends AbstractNameExpCS
 	{
 		property nameExp : NameExpCS[?] { composes };
 	}
 	class NavigatingArgCS extends basecs::basecs::ModelElementCS
 	{
+		/*
+		 * FIXME TODO
+		 */
+		operation ast(): ocl::OCLExpression;
+		
 		property navigatingExp#argument : InvocationExpCS[?];
 		attribute role : NavigationRole[?] { derived transient };
 		attribute prefix : String[?];
@@ -249,7 +263,7 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 		operation ast() : ocl::NumericLiteralExp
 		{
 			body: ocl::IntegerLiteralExp {
-				integerSymbol = name -- FIXME
+				integerSymbol = name -- FIXME Integer/Real/
 			};
 		}
 		attribute name : BigNumber[?];
