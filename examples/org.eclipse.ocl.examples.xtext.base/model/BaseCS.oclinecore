@@ -134,7 +134,12 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		{
 			body: ocl::Enumeration {
 				name = name,
-				ownedLiteral = ownedLiterals.ast()
+				instanceClassName = instanceClassName,
+				isSerializable = not qualifier->exists(x|x = '!serializable'),
+				ownedLiteral = ownedLiterals.ast(),
+				ownedTemplateSignature = ownedTemplateSignature.ast(),
+				ownedAnnotation = ownedAnnotation.ast(),
+				ownedInvariant = ownedConstraint.ast()
 			};
 		}
 		property ownedLiterals : EnumerationLiteralCS[*] { ordered composes !resolve };
@@ -154,12 +159,28 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	abstract class FeatureCS extends TypedElementCS { interface };
 	class ImportCS extends NamespaceCS
 	{
+		operation ast() : ocl::Import 
+		{
+			body: ocl::Import {
+				name = name,
+				importedNamespace = namespace
+				-- importedNamespace = env().lookupNamespace(pathName)
+			};
+		} 
 		property pathName : PathNameCS[?] { composes };
 		property namespace : ocl::Namespace[?] { derived readonly transient volatile !resolve };
 		attribute all : Boolean[?] = 'false' { transient };
 	}
 	class LambdaTypeCS extends TypedRefCS,TemplateableElementCS,ocl::Nameable
 	{
+		operation ast()  :ocl::LambdaType {
+			body : ocl::LambdaType {
+				name = name,
+				contextType = ownedContextType.ast(),
+				parameterType = ownedParameterType.ast(),
+				resultType = ownedResultType.ast()   
+			};
+		}
 		attribute name : String[?];
 		property ownedContextType : TypedRefCS[?] { composes };
 		property ownedParameterType : TypedRefCS[*] { ordered composes !resolve };
@@ -167,6 +188,10 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class LibraryCS extends NamespaceCS
 	{
+		/*
+		 * TODO -> OclLibrary
+		 */
+		operation ast() : ocl::Library;
 		property package : ocl::Namespace[?];
 	}
 	abstract class ModelElementCS extends PivotableElementCS
@@ -184,7 +209,13 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		/*
 		 * TODO
 		 */
-		operation ast() : ocl::Element; 
+		operation ast() : ocl::Element {
+			/* 
+			body : env().lookup(pathName)
+				   -- element
+			*/
+		}
+		
 		property pathName : PathNameCS[?] { composes };
 		property element : ocl::Element[?] { derived readonly transient volatile !resolve };
 	}
