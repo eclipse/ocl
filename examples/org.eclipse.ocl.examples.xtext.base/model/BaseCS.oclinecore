@@ -4,6 +4,15 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 {
 	class AnnotationCS extends AnnotationElementCS
 	{
+		operation ast() : ocl::Annotation {
+			body : ocl::Annotation {
+						name = name,
+						ownedDetail = ownedDetail.ast(),
+						ownedContent = ownedContent.ast(),
+						ownedAnnotation = ownedAnnotation.ast(),
+						reference = ownedReference.ast()
+					};
+		}
 		property ownedContent : ModelElementCS[*] { ordered composes !resolve };
 		property ownedReference : ModelElementRefCS[*] { ordered composes !resolve };
 	}
@@ -11,16 +20,38 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	{
 		property ownedDetail : DetailCS[*] { ordered composes !resolve };
 	}
-	class AttributeCS extends StructuralFeatureCS;
+	class AttributeCS extends StructuralFeatureCS {
+		operation ast() : ocl::Property {
+			body : ocl::Property {
+				name = name,
+				isComposite = qualifier->exists(x|x = 'composite'),
+				isDerived = qualifier->exists(x|x = 'derived'),
+				isID = qualifier->exists(x|x = 'id'),
+				isReadOnly = qualifier->exists(x|x = 'readonly'),
+				isTransient = qualifier->exists(x|x = 'transient'),
+				isUnsettable = qualifier->exists(x|x = 'unsettable'),
+				isVolatile = qualifier->exists(x|x = 'volatile'),
+				default = default,
+				defaultExpression = ownedDefaultExpression.ast(),
+				ownedAnnotation = ownedAnnotation.ast(),
+				type = ownedType.ast()
+			};
+		}
+	}
 	class ClassCS extends ClassifierCS,NamespaceCS
 	{
 		operation ast() : ocl::Class
 		{
 			body: ocl::Class {
 				name = name,
-				isAbstract = qualifier->exists('abstract'),
-				ownedAttribute = ownedProperty.ast(),
+				instanceClassName = instanceClassName,
+				isAbstract = qualifier->exists(x|x ='abstract'),
+				isInterface = qualifier->exists(x|x = 'interface'),
+				ownedTemplateSignature = ownedTemplateSignature.ast(),
+				ownedAnnotation = ownedAnnotation.ast(),
 				ownedOperation = ownedOperation.ast(),
+				ownedAttribute = ownedProperty.ast(),
+				ownedInvariant = ownedConstraint.ast(),
 				superClass = ownedSuperType.ast()
 			};
 		}
@@ -31,6 +62,9 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	abstract class ClassifierCS extends NamedElementCS,TypeCS,TemplateableElementCS
 	{
+		/*
+		 * abstract
+		 */
 		operation ast() : ocl::Type;
 		property owner#ownedType : PackageCS[?];
 		attribute instanceClassName : String[?] { unsettable }
@@ -46,20 +80,45 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class ConstraintCS extends NamedElementCS
 	{
+		/*
+		 * TODO
+		 */
+		operation ast() : ocl::OpaqueExpression;
+		
 		attribute stereotype : String[?];
 		property specification : SpecificationCS[?] { composes };
 		property messageSpecification : SpecificationCS[?] { composes };
 	}
 	class DataTypeCS extends ClassifierCS,NamespaceCS
 	{
+		operation ast() : ocl::DataType {
+			body : ocl::DataType { 
+				name = name,
+				ownedTemplateSignature = ownedTemplateSignature,
+				instanceClassName = instanceClassName,
+				isSerializable = not qualifier->exists(x|x = '!serializable'),
+				ownedAnnotation = ownedAnnotation.ast(),
+				ownedInvariant = ownedConstraint.ast()
+			};
+		} 
 		property literals : EnumerationLiteralCS[*] { ordered composes !resolve };
 	}
 	class DetailCS extends NamedElementCS
-	{
+	{		
+		operation ast() : ocl::Detail {
+			body : ocl::Detail {
+				name = name,
+				value = value
+			};
+		}
 		attribute value : String[*] { ordered };
 	}
 	class DocumentationCS extends AnnotationElementCS
 	{
+		/*
+		 * TODO
+		 */
+		operation ast() : ocl::Annotation;
 		attribute value : String[?];
 	}
 	abstract class ElementCS extends VisitableCS
@@ -85,7 +144,9 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		operation ast() : ocl::EnumerationLiteral
 		{
 			body: ocl::EnumerationLiteral {
-				name = name
+				name = name,
+				value = value,
+				ownedAnnotation = ownedAnnotation
 			};
 		}
 		attribute value : ecore::EInt[?];
@@ -110,12 +171,20 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	abstract class ModelElementCS extends PivotableElementCS
 	{
+		/*
+		 * abstract
+		 */
+		operation ast() : ocl::Element;
 		property ownedAnnotation : AnnotationElementCS[*] { ordered composes !resolve };
 		attribute originalXmiId : String[?] { transient };
 		attribute csi : String[?] { transient };
 	}
 	class ModelElementRefCS extends ElementRefCS
 	{
+		/*
+		 * TODO
+		 */
+		operation ast() : ocl::Element; 
 		property pathName : PathNameCS[?] { composes };
 		property element : ocl::Element[?] { derived readonly transient volatile !resolve };
 	}
@@ -232,6 +301,12 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class SpecificationCS extends ModelElementCS
 	{
+		operation ast() : ocl::OpaqueExpression {
+			body : ocl::OpaqueExpression {
+				language = 'OCL',
+				body = 	Sequence(String){exprString}
+			};
+		}
 		attribute exprString : String[?];
 	}
 	abstract class StructuralFeatureCS extends FeatureCS

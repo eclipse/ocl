@@ -120,13 +120,11 @@ package essentialoclcs : essentialoclcs = 'http://www.eclipse.org/ocl/3.1.0/Esse
 	}
 	class ExpSpecificationCS extends basecs::basecs::SpecificationCS
 	{
-		/*
-		 * FIXME no idea
-		 */
-		operation ast() : ocl::ExpressionInOCL
-		{
-			body: ocl::ExpressionInOCL {
-				bodyExpression = ownedExpression.ast()
+		operation ast() : ocl::OpaqueExpression {
+			body : ocl::OpaqueExpression {
+				language = 'OCL',
+				body = 	Sequence(String){exprString}
+				-- expressionInOCL = ownedExpression.ast() FIXME derived ?
 			};
 		}
 		property ownedExpression : ExpCS[?] { composes !resolve };
