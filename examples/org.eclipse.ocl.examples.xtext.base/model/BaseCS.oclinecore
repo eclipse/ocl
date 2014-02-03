@@ -243,8 +243,16 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		operation ast() : ocl::Operation
 		{
 			body: ocl::Operation {
-				-- TODO
-				name = name
+				name = name,
+				isStatic = qualifier->exists(x|x = 'static'),
+				ownedTemplateSignature = ownedTemplateSignature.ast(),
+				ownedParameter = ownedParameter.ast(),
+				raisedException = ownedException.ast(),
+				ownedAnnotation = ownedAnnotation.ast(),
+				precondition = ownedPrecondition.ast(),
+				postcondition = ownedPostcondition.ast(),
+				bodyExpression = ownedBodyExpression.ast(),
+				type = ownedType.ast()
 			};
 		}
 		property owningClass#ownedOperation : ClassCS[?];
@@ -258,10 +266,12 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	{
 		operation ast() : ocl::Package
 		{
-			body: ocl::Package{
-				-- TODO
+			body: ocl::Package{				
 				name = name,
-				nestedPackage = ownedNestedPackage.ast()
+				nsPrefix = nsPrefix,
+				nsURI = nsURI,
+				nestedPackage = ownedNestedPackage.ast(),
+				ownedType = ownedType.ast()
 			};
 		}
 		operation getClassifier(name : String[?]) : ClassifierCS[?];
@@ -278,8 +288,9 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		operation ast() : ocl::Parameter
 		{
 			body: ocl::Parameter {
-				-- TODO
-				name = name
+				name = name,
+				ownedAnnotation = ownedAnnotation.ast(),
+				type = ownedType.ast()
 			};
 		}
 		property owner#ownedParameter : OperationCS[?];
@@ -317,6 +328,25 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class ReferenceCS extends StructuralFeatureCS
 	{
+		operation ast() : ocl::Property {
+			body : ocl::Property {
+				name = name,
+				isStatic = qualifier->exists(x | x = 'static'),
+				isComposite = qualifier->exists(x | x = 'composite'),
+				isReadOnly = qualifier->exists(x | x = 'readonly'),
+				isResolveProxies = not qualifier->exists( x | x = '!resolve'),
+				isTransient = qualifier->exists(x | x = 'transient'),
+				isUnsettable = qualifier->exists(x | x = 'unsettable'),
+				isVolatile = qualifier->exists(x | x = 'volatile'),
+				opposite = opposite,  
+				keys = keys,
+				defaultExpression = if ownedDefaultExpression->notEmpty()
+									then ownedDefaultExpression.ast()
+									else null
+									endif,
+				type = ownedType.ast()
+			};
+		}
 		property opposite : ocl::Property[?];
 		property keys : ocl::Property[*] { ordered };
 	}
@@ -328,6 +358,12 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class RootPackageCS extends PackageOwnerCS,RootCS
 	{
+		operation ast() : ocl::Root {
+			body : ocl::Root {
+				imports = ownedImport.ast(),
+				nestedPackage = ownedNestedPackage.ast()
+			};
+		}
 		invariant TestConstraint: true;
 	}
 	class SpecificationCS extends ModelElementCS
@@ -342,6 +378,9 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	abstract class StructuralFeatureCS extends FeatureCS
 	{
+		/*
+		 * Abstract
+		 */
 		operation ast() : ocl::Property;
 		property owner#ownedProperty : ClassCS[?];
 		attribute default : String[?];
@@ -349,6 +388,11 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class TemplateBindingCS extends ElementRefCS
 	{
+		operation ast() : ocl::TemplateBinding {
+			body : ocl::TemplateBinding {
+				parameterSubstitution = ownedParameterSubstitution.ast()
+			};
+		}
 		property owningTemplateBindableElement#ownedTemplateBinding : TypedTypeRefCS[?];
 		property ownedParameterSubstitution#owningTemplateBinding : TemplateParameterSubstitutionCS[*] { ordered composes };
 	}
@@ -358,11 +402,21 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class TemplateParameterSubstitutionCS extends ModelElementCS
 	{
+		operation ast() : ocl::TemplateParameterSubstitution {
+			body : ocl::TemplateParameterSubstitution {
+				ownedActual = ownedActualParameter.ast()
+			};
+		}
 		property owningTemplateBinding#ownedParameterSubstitution : TemplateBindingCS[?];
 		property ownedActualParameter : TypeRefCS[?] { composes };
 	}
 	class TemplateSignatureCS extends ModelElementCS
 	{
+		operation ast() : ocl::TemplateSignature {
+			body : ocl::TemplateSignature {
+				ownedParameter = ownedTemplateParameter.ast()
+			};
+		}
 		property owningTemplateElement#ownedTemplateSignature : TemplateableElementCS[?];
 		property ownedTemplateParameter#owningTemplateSignature : TemplateParameterCS[*] { ordered composes };
 	}
@@ -395,15 +449,20 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	abstract class TypeCS extends ModelElementCS { interface };
 	class TypeParameterCS extends TemplateParameterCS,TypeCS
 	{
+		/*
+		 * TODO
+		 */
+		operation ast() : ocl::TypeTemplateParameter;
+		
 		property ownedExtends : TypedRefCS[*] { ordered composes };
 		property ownedSuper : TypedRefCS[?] { composes };
 	}
 	abstract class TypeRefCS extends ElementRefCS
 	{
-		operation ast() : ocl::Type
-		{
-			body: true;
-		}
+		/*
+		 * abstract
+		 */
+		operation ast() : ocl::Type;		
 	}
 	abstract class TypedElementCS extends NamedElementCS
 	{
@@ -417,6 +476,11 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class TypedTypeRefCS extends TypedRefCS
 	{
+		operation ast() : ocl::Type
+		{
+			body: type;
+				-- env().lookupType(pathName);			
+		}
 		property pathName : PathNameCS[?] { composes };
 		property type : ocl::Type[?] { derived readonly transient volatile !resolve };
 		property ownedTemplateBinding#owningTemplateBindableElement : TemplateBindingCS[?] { composes };
@@ -424,6 +488,10 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	abstract class VisitableCS : 'org.eclipse.ocl.examples.xtext.base.basecs.util.VisitableCS' { interface };
 	class WildcardTypeRefCS extends TypeRefCS
 	{
+		/*
+		 * TODO
+		 */
+		operation ast() : ocl::Type;	
 		property extends : TypedRefCS[?] { composes };
 		property super : TypedRefCS[?] { composes };
 	}
