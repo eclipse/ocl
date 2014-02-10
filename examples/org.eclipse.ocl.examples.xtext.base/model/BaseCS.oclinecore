@@ -24,17 +24,18 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		operation ast() : ocl::Property {
 			body : ocl::Property {
 				name = name,
-				isComposite = qualifier->exists(x|x = 'composite'),
-				isDerived = qualifier->exists(x|x = 'derived'),
-				isID = qualifier->exists(x|x = 'id'),
-				isReadOnly = qualifier->exists(x|x = 'readonly'),
-				isTransient = qualifier->exists(x|x = 'transient'),
-				isUnsettable = qualifier->exists(x|x = 'unsettable'),
-				isVolatile = qualifier->exists(x|x = 'volatile'),
+				isComposite = qualifier->includes('composite'),
+				isDerived = qualifier->includes('derived'),
+				isID = qualifier->includes('id'),
+				isReadOnly = qualifier->includes('readonly'),
+				isTransient = qualifier->includes('transient'),
+				isUnsettable = qualifier->includes('unsettable'),
+				isVolatile = qualifier->includes('volatile'),
 				default = default,
 				defaultExpression = ownedDefaultExpression.ast(),
-				ownedAnnotation = ownedAnnotation.ast(),
+				ownedAnnotation = ownedAnnotation.ast(),				
 				type = ownedType.ast()
+				
 			};
 		}
 	}
@@ -45,8 +46,8 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 			body: ocl::Class {
 				name = name,
 				instanceClassName = instanceClassName,
-				isAbstract = qualifier->exists(x|x ='abstract'),
-				isInterface = qualifier->exists(x|x = 'interface'),
+				isAbstract = qualifier->includes('abstract'),
+				isInterface = qualifier->includes( 'interface'),
 				ownedTemplateSignature = ownedTemplateSignature.ast(),
 				ownedAnnotation = ownedAnnotation.ast(),
 				ownedOperation = ownedOperation.ast(),
@@ -96,7 +97,7 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 				name = name,
 				ownedTemplateSignature = ownedTemplateSignature,
 				instanceClassName = instanceClassName,
-				isSerializable = not qualifier->exists(x|x = '!serializable'),
+				isSerializable = not qualifier->includes('!serializable'),
 				ownedAnnotation = ownedAnnotation.ast(),
 				ownedInvariant = ownedConstraint.ast()
 			};
@@ -135,7 +136,7 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 			body: ocl::Enumeration {
 				name = name,
 				instanceClassName = instanceClassName,
-				isSerializable = not qualifier->exists(x|x = '!serializable'),
+				isSerializable = not qualifier->includes('!serializable'),
 				ownedLiteral = ownedLiterals.ast(),
 				ownedTemplateSignature = ownedTemplateSignature.ast(),
 				ownedAnnotation = ownedAnnotation.ast(),
@@ -206,14 +207,8 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 	}
 	class ModelElementRefCS extends ElementRefCS
 	{
-		/*
-		 * TODO
-		 */
 		operation ast() : ocl::Element {
-			/* 
-			body : env().lookup(pathName)
-				   -- element
-			*/
+			body : element;
 		}
 		
 		property pathName : PathNameCS[?] { composes };
@@ -244,7 +239,7 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		{
 			body: ocl::Operation {
 				name = name,
-				isStatic = qualifier->exists(x|x = 'static'),
+				isStatic = qualifier->includes( 'static'),
 				ownedTemplateSignature = ownedTemplateSignature.ast(),
 				ownedParameter = ownedParameter.ast(),
 				raisedException = ownedException.ast(),
@@ -331,20 +326,29 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		operation ast() : ocl::Property {
 			body : ocl::Property {
 				name = name,
-				isStatic = qualifier->exists(x | x = 'static'),
-				isComposite = qualifier->exists(x | x = 'composite'),
-				isReadOnly = qualifier->exists(x | x = 'readonly'),
+				isStatic = qualifier->includes('static'),
+				isComposite = qualifier->includes('composite'),
+				isReadOnly = qualifier->includes('readonly'),
 				isResolveProxies = not qualifier->exists( x | x = '!resolve'),
-				isTransient = qualifier->exists(x | x = 'transient'),
-				isUnsettable = qualifier->exists(x | x = 'unsettable'),
-				isVolatile = qualifier->exists(x | x = 'volatile'),
-				opposite = opposite,  
-				keys = keys,
+				isTransient = qualifier->includes('transient'),
+				isUnsettable = qualifier->includes('unsettable'),
+				isVolatile = qualifier->includes('volatile'),
+				keys = keys, -- FIXME
 				defaultExpression = if ownedDefaultExpression->notEmpty()
 									then ownedDefaultExpression.ast()
 									else null
 									endif,
-				type = ownedType.ast()
+				type = ownedType.ast(),				
+				opposite = if not (opposite = null)
+				 		   then opposite
+				 		   else ocl::Property {
+										name = self.ast().owningType.name, -- FIXME hazard when having different types with same name => two properties with the same name
+										implicit = true,
+										isRequired = false,
+										owningType = ownedType.ast()
+										-- type = env().getCollectionType(ocl::CollectionKind::OrderedSet, thisType)
+								}
+							endif
 			};
 		}
 		property opposite : ocl::Property[?];
@@ -452,7 +456,15 @@ package basecs : basecs = 'http://www.eclipse.org/ocl/3.1.0/BaseCST'
 		/*
 		 * TODO
 		 */
-		operation ast() : ocl::TypeTemplateParameter;
+		operation ast() : ocl::TypeTemplateParameter {
+			body : 	let parameteredElement = ocl::Class {
+						name = self.name
+					}
+					in	ocl::TypeTemplateParameter {
+						ownedParameteredElement = parameteredElement,
+						parameteredElement = parameteredElement
+					};
+		}
 		
 		property ownedExtends : TypedRefCS[*] { ordered composes };
 		property ownedSuper : TypedRefCS[?] { composes };
