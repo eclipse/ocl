@@ -6,44 +6,47 @@ package basecs
 context  AnnotationCS
 def: ast() : ocl::Annotation = 
 	ocl::Annotation {
-			name = name,
-			ownedDetail = ownedDetail.ast(),
-			ownedContent = ownedContent.ast(),
-			ownedAnnotation = ownedAnnotation.ast(),
-			reference = ownedReference.ast()
+		name = name,
+		ownedDetail = ownedDetail.ast(),
+		ownedContent = ownedContent.ast(),
+		ownedAnnotation = ownedAnnotation.ast(),
+		reference = ownedReference.ast()
 	}
 	
 context AttributeCS
 def: ast() : ocl::Property= 
 	ocl::Property {
 		name = name,
-			isComposite = qualifier->includes('composite'),
-			isDerived = qualifier->includes('derived'),
-			isID = qualifier->includes('id'),
-			isReadOnly = qualifier->includes('readonly'),
-			isTransient = qualifier->includes('transient'),
-			isUnsettable = qualifier->includes('unsettable'),
-			isVolatile = qualifier->includes('volatile'),
-			default = default,
-			defaultExpression = ownedDefaultExpression.ast(),
-			ownedAnnotation = ownedAnnotation.ast(),				
-			type = ownedType.ast()
+		isComposite = qualifier->includes('composite'),
+		isDerived = qualifier->includes('derived'),
+		isID = qualifier->includes('id'),
+		isReadOnly = qualifier->includes('readonly'),
+		isTransient = qualifier->includes('transient'),
+		isUnsettable = qualifier->includes('unsettable'),
+		isVolatile = qualifier->includes('volatile'),
+		default = default,
+		defaultExpression = ownedDefaultExpression.ast(),
+		ownedAnnotation = ownedAnnotation.ast(),
+		type = let ordered = not qualifier->includes('!ordered'),
+					unique = not qualifier->includes('!unique')
+				in ownedType.ast(ordered,unique)
+		
 	}
 	
 context ClassCS
 def: ast() : ocl::Class =
 	ocl::Class {
 		name = name,
-			instanceClassName = instanceClassName,
-			isAbstract = qualifier->includes('abstract'),
-			isInterface = qualifier->includes( 'interface'),
-			ownedTemplateSignature = ownedTemplateSignature.ast(),
-			ownedAnnotation = ownedAnnotation.ast(),
-			ownedOperation = ownedOperation.ast(),
-			ownedAttribute = ownedProperty.ast(),
-			ownedInvariant = ownedConstraint.ast(),
-			superClass = ownedSuperType.ast()
-		}
+		instanceClassName = instanceClassName,
+		isAbstract = qualifier->includes('abstract'),
+		isInterface = qualifier->includes( 'interface'),
+		ownedTemplateSignature = ownedTemplateSignature.ast(),
+		ownedAnnotation = ownedAnnotation.ast(),
+		ownedOperation = ownedOperation.ast(),
+		ownedAttribute = ownedProperty.ast(),
+		ownedInvariant = ownedConstraint.ast(),
+		superClass = ownedSuperType.ast()
+	}
 	
 --context ClassifierCS
 --
@@ -166,7 +169,9 @@ def : ast() : ocl::Operation =
 		precondition = ownedPrecondition.ast(),
 		postcondition = ownedPostcondition.ast(),
 		bodyExpression = ownedBodyExpression.ast(),
-		type = ownedType.ast()
+		type = let ordered = not qualifier->includes('!ordered'),
+					unique = not qualifier->includes('!unique')
+				in ownedType.ast(ordered,unique)
 	}
 
 context PackageCS
@@ -225,7 +230,9 @@ def : ast() : ocl::Property =
 							then ownedDefaultExpression.ast()
 							else null
 							endif,
-		type = ownedType.ast(),				
+		type =	let ordered = not qualifier->includes('!ordered'),
+					unique = not qualifier->includes('!unique')
+				in ownedType.ast(ordered,unique),				
 		opposite = if not (opposite = null)
 		 		   then opposite
 		 		   else ocl::Property {
@@ -302,20 +309,59 @@ def : ast() : ocl::TypeTemplateParameter =
 		parameteredElement = parameteredElement
 	}
 
-
-/*
- * abstract
- */
--- context TypeRefCS extends ElementRefCS
---def : ast() : ocl::Type =
---	element.oclAsType(ocl::Type)
-	
+context TypedRefCS
+def : isMultiple() : Boolean = 
+	multiplicity.getUpper() > 1
+def : ast() : ocl::Type =
+	null -- FIXME
+	-- if isMultiple() 
+	-- then env().lookupCollectionType('Collection', self)
+	-- else env().lookupType(pathName)
+	-- endif 
+def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
+	null -- FIXME
+--	if not isMultiple()
+--	then env().lookupType(pathName)
+--	else 
+--		if unique
+--		then
+--			if ordered
+--			then env().lookupCollectionType('OrderedSet', self)
+--			else env().lookupCollectionType('Set', self)
+--			endif
+--		else
+--			if ordered
+--			then env().lookupCollectionType('Sequence', self)
+--			else env().lookupCollectionType('Bag', self)
+--			endif
+--		endif
+--	endif
 
 context TypedTypeRefCS
 def : ast() : ocl::Type =
-	type
-	-- env().lookupType(pathName)
-	
+	if isMultiple()
+	then type 
+	else Collection -- FIXME find collection of the type ?
+	endif
+
+def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
+	if not isMultiple()
+	then type
+	else 
+		if unique
+		then
+			if ordered
+			then OrderedSet -- FIXME 
+			else Set		-- FIXME
+			endif
+		else
+			if ordered
+			then Sequence 	-- FIXME
+			else Bag		-- FIXME
+			endif
+		endif
+	endif	
+
 
 -- context WildcardTypeRefCS
 	
