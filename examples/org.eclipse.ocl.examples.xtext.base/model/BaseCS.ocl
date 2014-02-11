@@ -1,0 +1,340 @@
+import 'BaseCS.ecore'
+import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
+
+package basecs
+
+context  AnnotationCS
+def: ast() : ocl::Annotation = 
+	ocl::Annotation {
+			name = name,
+			ownedDetail = ownedDetail.ast(),
+			ownedContent = ownedContent.ast(),
+			ownedAnnotation = ownedAnnotation.ast(),
+			reference = ownedReference.ast()
+	}
+	
+context AttributeCS
+def: ast() : ocl::Property= 
+	ocl::Property {
+		name = name,
+			isComposite = qualifier->includes('composite'),
+			isDerived = qualifier->includes('derived'),
+			isID = qualifier->includes('id'),
+			isReadOnly = qualifier->includes('readonly'),
+			isTransient = qualifier->includes('transient'),
+			isUnsettable = qualifier->includes('unsettable'),
+			isVolatile = qualifier->includes('volatile'),
+			default = default,
+			defaultExpression = ownedDefaultExpression.ast(),
+			ownedAnnotation = ownedAnnotation.ast(),				
+			type = ownedType.ast()
+	}
+	
+context ClassCS
+def: ast() : ocl::Class =
+	ocl::Class {
+		name = name,
+			instanceClassName = instanceClassName,
+			isAbstract = qualifier->includes('abstract'),
+			isInterface = qualifier->includes( 'interface'),
+			ownedTemplateSignature = ownedTemplateSignature.ast(),
+			ownedAnnotation = ownedAnnotation.ast(),
+			ownedOperation = ownedOperation.ast(),
+			ownedAttribute = ownedProperty.ast(),
+			ownedInvariant = ownedConstraint.ast(),
+			superClass = ownedSuperType.ast()
+		}
+	
+--context ClassifierCS
+--
+--		/*
+--		 * abstract
+--		 */
+--		operation ast() : ocl::Type;
+	
+--context ConstraintCS
+--		/*
+--		 * TODO
+--		 */
+--		operation ast() : ocl::OpaqueExpression;
+		
+	
+context DataTypeCS 
+def: ast() : ocl::DataType =
+	ocl::DataType { 
+				name = name,
+				ownedTemplateSignature = ownedTemplateSignature,
+				instanceClassName = instanceClassName,
+				isSerializable = not qualifier->includes('!serializable'),
+				ownedAnnotation = ownedAnnotation.ast(),
+				ownedInvariant = ownedConstraint.ast()
+	}
+
+context DetailCS
+def: ast() : ocl::Detail = 
+	ocl::Detail {
+		name = name,
+		value = value
+	}
+	
+--context DocumentationCS 
+--		/*
+--		 * TODO
+--		 */
+--		operation ast() : ocl::Annotation;
+
+
+--	abstract class ElementCS extends VisitableCS
+--	{
+--		operation getDescription() : String[?];
+--		operation env() : Environment[?];
+--		property logicalParent : ElementCS[?] { derived readonly transient volatile !resolve };
+--	}
+--	abstract class ElementRefCS extends PivotableElementCS;
+
+context EnumerationCS
+def : ast() : ocl::Enumeration =
+	ocl::Enumeration {
+				name = name,
+				instanceClassName = instanceClassName,
+				isSerializable = not qualifier->includes('!serializable'),
+				ownedLiteral = ownedLiterals.ast(),
+				ownedTemplateSignature = ownedTemplateSignature.ast(),
+				ownedAnnotation = ownedAnnotation.ast(),
+				ownedInvariant = ownedConstraint.ast()
+	}
+
+context EnumerationLiteralCS
+def : ast() : ocl::EnumerationLiteral =
+	ocl::EnumerationLiteral {
+				name = name,
+				value = value,
+				ownedAnnotation = ownedAnnotation
+	}
+
+--context	FeatureCS
+context ImportCS
+def : ast() : ocl::Import =
+	ocl::Import {
+		name = name,
+		importedNamespace = namespace
+		-- importedNamespace = env().lookupNamespace(pathName)
+	}
+
+context LambdaTypeCS 
+def :  ast()  :ocl::LambdaType =
+	ocl::LambdaType {
+		name = name,
+		contextType = ownedContextType.ast(),
+		parameterType = ownedParameterType.ast(),
+		resultType = ownedResultType.ast()   
+	}
+
+--context LibraryCS 
+--		/*
+--		 * TODO -> OclLibrary
+--		 */
+-- def ast() : ocl::Library =
+
+
+context ModelElementCS 
+def : ast() : ocl::Element =
+	pivot
+	
+context ModelElementRefCS 
+def : ast() : ocl::Element  =
+	element
+	
+--	context MultiplicityBoundsCS
+
+--	context  MultiplicityCS
+	
+--	context MultiplicityStringCS 
+	
+--	context NamedElementCS 
+
+--	context NamespaceCS
+	
+context OperationCS 
+def : ast() : ocl::Operation =
+	ocl::Operation {
+		name = name,
+		isStatic = qualifier->includes( 'static'),
+		ownedTemplateSignature = ownedTemplateSignature.ast(),
+		ownedParameter = ownedParameter.ast(),
+		raisedException = ownedException.ast(),
+		ownedAnnotation = ownedAnnotation.ast(),
+		precondition = ownedPrecondition.ast(),
+		postcondition = ownedPostcondition.ast(),
+		bodyExpression = ownedBodyExpression.ast(),
+		type = ownedType.ast()
+	}
+
+context PackageCS
+def : ast() : ocl::Package =
+	ocl::Package{				
+		name = name,
+		nsPrefix = nsPrefix,
+		nsURI = nsURI,
+		nestedPackage = ownedNestedPackage.ast(),
+		ownedType = ownedType.ast()
+	}
+
+-- context PackageOwnerCS
+	
+context ParameterCS 
+def : ast() : ocl::Parameter =
+	ocl::Parameter {
+		name = name,
+		ownedAnnotation = ownedAnnotation.ast(),
+		type = ownedType.ast()
+	}
+	
+context PathElementCS
+def : ast() : ocl::Element = 
+	element 
+	
+-- context PathElementWithURICS
+
+context PathNameCS 
+def : ast() : ocl::Element =
+	element
+	
+context PivotableElementCS
+def : ast() : ocl::Element =
+	pivot
+
+context PrimitiveTypeRefCS
+def : ast() : ocl::PrimitiveType =
+	ocl::PrimitiveType {
+		name = name
+	}
+
+context ReferenceCS
+def : ast() : ocl::Property = 
+	ocl::Property {
+		name = name,
+		isStatic = qualifier->includes('static'),
+		isComposite = qualifier->includes('composite'),
+		isReadOnly = qualifier->includes('readonly'),
+		isResolveProxies = not qualifier->exists( x | x = '!resolve'),
+		isTransient = qualifier->includes('transient'),
+		isUnsettable = qualifier->includes('unsettable'),
+		isVolatile = qualifier->includes('volatile'),
+		keys = keys, -- FIXME
+		defaultExpression = if ownedDefaultExpression->notEmpty()
+							then ownedDefaultExpression.ast()
+							else null
+							endif,
+		type = ownedType.ast(),				
+		opposite = if not (opposite = null)
+		 		   then opposite
+		 		   else ocl::Property {
+								name = self.ast().owningType.name, -- FIXME hazard when having different types with same name => two properties with the same name
+								implicit = true,
+								isRequired = false,
+								owningType = ownedType.ast()
+								-- type = env().getCollectionType(ocl::CollectionKind::OrderedSet, thisType)
+						}
+					endif
+	}
+	
+
+-- context RootCS
+
+context RootPackageCS
+def :ast() : ocl::Root =
+	ocl::Root {
+		imports = ownedImport.ast(),
+		nestedPackage = ownedNestedPackage.ast()
+	}
+	
+context SpecificationCS
+def : ast() : ocl::OpaqueExpression =
+	ocl::OpaqueExpression  {
+		language = 'OCL',
+		_body =	Sequence(String){exprString}
+	}
+	
+	
+-- context StructuralFeatureCS extends FeatureCS
+	
+context TemplateBindingCS
+def : ast() : ocl::TemplateBinding =
+	ocl::TemplateBinding {
+		parameterSubstitution = ownedParameterSubstitution.ast()
+	}
+	
+-- context TemplateParameterCS extends NamedElementCS
+
+context TemplateParameterSubstitutionCS
+def : ast() : ocl::TemplateParameterSubstitution  = 
+	ocl::TemplateParameterSubstitution {
+		ownedActual = ownedActualParameter.ast()
+	}
+	
+context TemplateSignatureCS
+def : ast() : ocl::TemplateSignature =
+	ocl::TemplateSignature {
+		ownedParameter = ownedTemplateParameter.ast()
+	}
+	
+context TuplePartCS
+def : ast() : ocl::Property = 
+	ocl::Property {
+		name = name,
+		type = ownedType.ast()
+	}
+	
+context TupleTypeCS
+def : ast() : ocl::TupleType =
+	ocl::TupleType {
+		name = name,
+		ownedAttribute = ownedParts.ast()
+	}
+	
+context TypeParameterCS 
+def : ast() : ocl::TypeTemplateParameter =
+	let parameteredElement = ocl::Class {
+								name = name
+							}
+	in	ocl::TypeTemplateParameter {
+		ownedParameteredElement = parameteredElement,
+		parameteredElement = parameteredElement
+	}
+
+
+/*
+ * abstract
+ */
+-- context TypeRefCS extends ElementRefCS
+--def : ast() : ocl::Type =
+--	element.oclAsType(ocl::Type)
+	
+
+context TypedTypeRefCS
+def : ast() : ocl::Type =
+	type
+	-- env().lookupType(pathName)
+	
+
+-- context WildcardTypeRefCS
+	
+context Environment
+def : lookupLocal(name : String[?]) : NamedElementCS[?] = 
+	null -- TODO
+def : lookup(name : String[?]) : ocl::NamedElement[?] = 
+	null -- TODO
+def : lookupPathName(name : PathNameCS[?]) : ocl::NamedElement[?] =
+	null -- TODO
+def : lookupVariableDeclaration(name : String[?]) : ocl::VariableDeclaration[?] =
+	null -- TODO
+def : lookupType(name : String[?]) : ocl::VariableDeclaration[?] = 
+	null -- TODO
+def : lookupType(name : PathNameCS[?]) : ocl::VariableDeclaration[?] = 
+	null -- TODO
+def : lookupCollectionType(collectionKind : String[?], elementType : TypedRefCS[?]) : ocl::CollectionType[?] =
+	null -- TODO
+
+	
+endpackage

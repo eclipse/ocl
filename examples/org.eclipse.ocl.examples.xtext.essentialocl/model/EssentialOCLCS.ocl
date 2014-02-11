@@ -1,0 +1,235 @@
+import 'EssentialOCLCS.ecore'
+import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
+
+import '/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCS.ocl' -- To import other OCL definitions
+
+package essentialoclcs
+
+--context AbstractNameExpCS
+--def : ast() : ocl::Element
+--
+--		/*
+--		 * For explicit source invocations, sourceType provides the true source type after resolution of implicit set or implicit collect.
+--		 */
+--		property sourceType : ocl::Type[?] { derived transient !resolve };
+--	}
+
+
+-- context BinaryOperatorCS
+
+context BooleanLiteralExpCS
+def : ast() : ocl::BooleanLiteralExp = 
+	ocl::BooleanLiteralExp {
+		booleanSymbol =	if name = 'true' 
+						then true
+						else false
+						endif,
+		type = Boolean
+	}
+	
+context CollectionLiteralExpCS 
+def : ast() : ocl::CollectionLiteralExp =
+	ocl::CollectionLiteralExp {
+		kind = ocl::CollectionKind.allInstances()->any(name=ownedType.name),
+		part = ownedParts.ast(),
+		type = ownedType.ast()
+	}
+
+context CollectionLiteralPartCS
+def : ast() : ocl::CollectionLiteralPart = 
+	if lastExpressionCS = null
+	then ocl::CollectionItem {
+			item = expressionCS.ast()	
+		}
+	else ocl::CollectionRange {
+			first = expressionCS.ast(),
+			last = lastExpressionCS.ast()
+		}
+	endif
+
+context CollectionTypeCS
+def : ast() : ocl::CollectionType = 
+	 env().lookupCollectionType(name, ownedType)
+
+context ConstructorExpCS
+def : ast() : ocl::ConstructorExp =
+	ocl::ConstructorExp {
+		value = value,
+		part = ownedParts.ast(),
+		type = env().lookupType(nameExp.pathName)
+	}
+--inv : ownedParts->notEmpty() implies value = null
+--		and not (value = null) implies ownedParts->isEmpty()
+	
+context ConstructorPartCS
+def : ast() :  ocl::ConstructorPart =
+	ocl::ConstructorPart {
+		initExpression = initExpression.ast(),
+		referredProperty = property -- TODO
+	}
+	
+context ContextCS
+def : ast() : ocl::ExpressionInOCL = 
+	ocl::ExpressionInOCL {
+		bodyExpression = ownedExpression.ast()
+	}
+
+-- context ExpCS 
+
+context ExpSpecificationCS
+def : ast() : ocl::OpaqueExpression =
+	ocl::OpaqueExpression {
+		language = 'OCL',
+		_body = Sequence(String){exprString}
+		-- expressionInOCL = ownedExpression.ast() FIXME derived ?
+	}
+context IfExpCS
+def : ast() : ocl::IfExp =
+	ocl::IfExp {
+		condition = condition.ast(),
+		thenExpression = thenExpression.ast(),
+		elseExpression = elseExpression.ast()
+	}
+	
+-- TODO	
+-- context IndexExpCS
+
+context InfixExpCS
+def : ast() : ocl::OperationCallExp = 
+	let first : ExpCS = ownedExpression->first(),
+		others : Sequence(ExpCS) = ownedExpression->excluding(first)
+	in  others->iterate(x : ExpCS; result : ocl::OperationCallExp = null |
+					if result = null
+					then result = ocl::OperationCallExp {
+						name = ownedOperator->at(others->indexOf(x)),
+						source = first.ast(),
+						argument = Sequence(ocl::OperationCallExp) {x.ast()}
+						-- referred operation = name resolution
+					}
+					else result = ocl::OperationCallExp {
+						name = ownedOperator->at(others->indexOf(x)),
+						source = result,
+						argument = Sequence(ocl::OperationCallExp) {x.ast()}
+						-- referredOperation = name resolution
+					}
+					endif)
+	
+context InvalidLiteralExpCS
+def : ast() : ocl::InvalidLiteralExp = 
+	ocl::InvalidLiteralExp {
+				type = OclInvalid
+	}
+
+-- TODO context InvocationExpCS
+
+context LetExpCS
+def : ast() : ocl::LetExp = 
+	variable->reverse()->iterate(x : LetVariableCS; result : ocl::LetExp = null |
+				if result = null
+				then result = ocl::LetExp {
+						variable = x.VariableCS::ast(),
+						_'in' = self._'in'.ast()
+					}
+				else result = ocl::LetExp {
+						variable = x.VariableCS::ast(),
+						_'in' = result
+					}	
+				endif
+			)
+
+-- context LetVariableCS extends VariableCS,ExpCS
+-- VariableCS ast() operation works for LetVariableCS	
+	
+	
+-- context	class NameExpCS
+	
+	
+-- TODO context NavigatingArgCS 
+
+
+-- TODO context NavigationOperatorCS
+
+-- TODO context NestedExpCS
+
+context NullLiteralExpCS
+def : ast() : ocl::NullLiteralExp = 
+	ocl::NullLiteralExp {
+		type = OclVoid
+	}
+	
+context NumberLiteralExpCS
+def : ast() : ocl::NumericLiteralExp =
+	ocl::IntegerLiteralExp {
+		integerSymbol = name -- FIXME Integer/Real/
+	}
+	
+context PrefixExpCS
+def : ast() : ocl::OperationCallExp = 
+	ownedOperator->reverse()->iterate(x : UnaryOperatorCS; result : ocl::OperationCallExp = null |
+					if result = null
+					then result = ocl::OperationCallExp {
+							name = x.name,
+							source = ownedExpression.ast()
+							-- referredOperation = name resolution
+						}
+					else result = ocl::OperationCallExp {
+							name = x.name,
+							source = result
+							-- referredOperation = name resolution
+						}
+					endif)
+
+-- context PrimitiveLiteralExpCS 
+
+context SelfExpCS
+def :  ast() : ocl::VariableExp = 
+	let refVariable : ocl::VariableDeclaration = env().lookupVariableDeclaration(name)
+	in ocl::VariableExp {
+			referredVariable = refVariable, 
+			type = refVariable.type 
+	}
+		
+context StringLiteralExpCS
+def : ast() : ocl::StringLiteralExp = 
+	ocl::StringLiteralExp {
+		stringSymbol = name,
+		type = String
+	}
+	
+context TupleLiteralExpCS
+def : ast() : ocl::TupleLiteralExp = 
+	ocl::TupleLiteralExp {
+		part = ownedParts.ast()
+		-- type = env().lookupTuple(ownedParts)
+	}
+
+context TupleLiteralPartCS
+def : ast() : ocl::TupleLiteralPart = 
+	ocl::TupleLiteralPart {
+		name = name,
+		initExpression = initExpression,
+		type = ownedType.ast()
+	}
+	
+context TypeLiteralExpCS
+def : ast() : ocl::TypeExp = 
+	let refType : ocl::Type = ownedType.ast()
+	in ocl::TypeExp {
+			referredType = refType,
+			type = refType
+	}
+
+context TypeNameExpCS
+def : ast() : ocl::Type =
+	element
+	
+-- TODO context UnaryOperatorCS
+-- TODO context UnlimitedNaturalLiteralExpCS
+context VariableCS
+def : ast() : ocl::Variable = 
+	ocl::Variable {
+		name = name,
+		initExpression = initExpression.ast(),
+		type = ownedType.ast()
+	}
+endpackage
