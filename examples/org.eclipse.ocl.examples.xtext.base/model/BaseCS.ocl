@@ -84,13 +84,12 @@ def: ast() : ocl::Detail =
 --		operation ast() : ocl::Annotation;
 
 
---	abstract class ElementCS extends VisitableCS
---	{
---		operation getDescription() : String[?];
---		operation env() : Environment[?];
---		property logicalParent : ElementCS[?] { derived readonly transient volatile !resolve };
---	}
---	abstract class ElementRefCS extends PivotableElementCS;
+context ElementCS
+def : env() : Environment[1] = 
+		null -- TODO
+
+
+-- TODO	context ElementRefCS
 
 context EnumerationCS
 def : ast() : ocl::Enumeration =
