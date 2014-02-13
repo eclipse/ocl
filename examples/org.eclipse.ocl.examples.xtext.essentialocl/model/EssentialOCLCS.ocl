@@ -48,8 +48,12 @@ def : ast() : ocl::CollectionLiteralPart =
 	endif
 
 context CollectionTypeCS
-def : ast() : ocl::CollectionType = 
+def : ast() : ocl::CollectionType =
 	 env().lookupCollectionType(name, ownedType)
+	 -- FIXME I should not create any CollectionType. 
+	 -- There is not any AS reference which might be populated by name resolution
+	 -- For the time being, expressed with an env-based expression
+	 -- what about upper and lower ? 	 
 
 context ConstructorExpCS
 def : ast() : ocl::ConstructorExp =
@@ -77,11 +81,18 @@ def : ast() : ocl::ExpressionInOCL =
 -- context ExpCS 
 
 context ExpSpecificationCS
-def : ast() : ocl::OpaqueExpression =
-	ocl::OpaqueExpression {
+def : ast() : ocl::ExpressionInOCL =
+	ocl::ExpressionInOCL {
 		language = 'OCL',
-		_body = Sequence(String){exprString}
-		-- expressionInOCL = ownedExpression.ast() FIXME derived ?
+		_body = if exprString = null
+				then null
+				else  Sequence(String){exprString}
+				endif,
+		expressionInOCL = 
+				if ownedExpression = null
+				then null 
+				else ownedExpression.ast()
+				endif
 	}
 context IfExpCS
 def : ast() : ocl::IfExp =
@@ -91,7 +102,7 @@ def : ast() : ocl::IfExp =
 		elseExpression = elseExpression.ast()
 	}
 	
--- TODO	
+-- TODO	No idea what is this. Nothing in the spec
 -- context IndexExpCS
 
 context InfixExpCS
@@ -104,20 +115,20 @@ def : ast() : ocl::OperationCallExp =
 						name = ownedOperator->at(others->indexOf(x)),
 						source = first.ast(),
 						argument = Sequence(ocl::OperationCallExp) {x.ast()}
-						-- referred operation = name resolution
+						-- TODO referred operation = name resolution
 					}
 					else result = ocl::OperationCallExp {
 						name = ownedOperator->at(others->indexOf(x)),
 						source = result,
 						argument = Sequence(ocl::OperationCallExp) {x.ast()}
-						-- referredOperation = name resolution
+						-- TODO referredOperation = name resolution
 					}
 					endif)
 	
 context InvalidLiteralExpCS
 def : ast() : ocl::InvalidLiteralExp = 
 	ocl::InvalidLiteralExp {
-				type = OclInvalid
+		type = OclInvalid
 	}
 
 -- TODO context InvocationExpCS
@@ -128,7 +139,7 @@ def : ast() : ocl::LetExp =
 				if result = null
 				then result = ocl::LetExp {
 						variable = x.VariableCS::ast(),
-						_'in' = self._'in'.ast()
+						_'in' = _'in'.ast()
 					}
 				else result = ocl::LetExp {
 						variable = x.VariableCS::ast(),
@@ -137,12 +148,13 @@ def : ast() : ocl::LetExp =
 				endif
 			)
 
--- context LetVariableCS extends VariableCS,ExpCS
--- VariableCS ast() operation works for LetVariableCS	
+-- context LetVariableCS
+-- note: VariableCS::ast() operation works for LetVariableCS
 	
-	
--- context	class NameExpCS
-	
+context	NameExpCS
+def : ast() : ocl::Element =
+	env().lookupPathName(pathName)
+	-- FIXME where is the xtext AS cross-reference ? sourceType ?
 	
 -- TODO context NavigatingArgCS 
 
@@ -224,7 +236,12 @@ def : ast() : ocl::Type =
 	element
 	
 -- TODO context UnaryOperatorCS
--- TODO context UnlimitedNaturalLiteralExpCS
+context UnlimitedNaturalLiteralExpCS
+def : ast() : ocl::UnlimitedNaturalLiteralExp =
+	ocl::UnlimitedNaturalLiteralExp{
+		unlimitedNaturalSymbol = ocl::_UnlimitedNatural{'-1'}
+	}
+
 context VariableCS
 def : ast() : ocl::Variable = 
 	ocl::Variable {
