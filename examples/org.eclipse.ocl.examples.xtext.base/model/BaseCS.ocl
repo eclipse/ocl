@@ -13,12 +13,11 @@ def: ast() : ocl::Annotation =
 		reference = ownedReference.ast()
 	}
 
--- FIXME qualifier->derived not used.	
 context AttributeCS
 def: ast() : ocl::Property= 
 	ocl::Property {
 		name = name,
-		isComposite = qualifier->includes('composite'),
+		isStatic = qualifier->includes('static'),
 		isDerived = qualifier->includes('derived'),
 		isID = qualifier->includes('id'),
 		isReadOnly = qualifier->includes('readonly'),
@@ -32,7 +31,7 @@ def: ast() : ocl::Property=
 					unique = not qualifier->includes('!unique')
 				in ownedType.ast(ordered,unique),
 		owningType = if (qualifier->includes('definition'))
-					 then null -- TODO Look for secondary type, create it if it doesn't exist, and say it's its owningType
+					 then null -- TODO Look for secondary type, create it if it doesn't exist
 					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
 					 endif				
 		
@@ -53,9 +52,10 @@ def: ast() : ocl::Class =
 		superClass = ownedSuperType.ast()
 	}
 
+-- FIXME stereotype, messageSpacification is not used
 context ConstraintCS
 def : ast() : ocl::Constraint =
-	ocl::Constraint { -- FIXME
+	ocl::Constraint { 
 		specification = specification.ast()
 	}
 	
@@ -217,28 +217,28 @@ def : ast() : ocl::PrimitiveType =
 		name = name
 	}
 
--- FIXME qualifier->derived not used.
 context ReferenceCS
 def : ast() : ocl::Property = 
 	ocl::Property {
 		name = name,
 		isStatic = qualifier->includes('static'),
-		isComposite = qualifier->includes('composite'),
+		isComposite = qualifier->includes('compososes'),
+		isDerived = qualifier->includes('derived'),
 		isReadOnly = qualifier->includes('readonly'),
 		isResolveProxies = not qualifier->exists( x | x = '!resolve'),
 		isTransient = qualifier->includes('transient'),
 		isUnsettable = qualifier->includes('unsettable'),
 		isVolatile = qualifier->includes('volatile'),
-		keys = keys, -- No idea what is this
+		keys = keys, -- No idea what is this for
 		default = default, -- default vs defaultExpressions ?
-		ownedAnnotation = ownedAnnotation.ast(),
 		defaultExpression = if ownedDefaultExpression->notEmpty()
 							then ownedDefaultExpression.ast()
 							else null
 							endif,
+		ownedAnnotation = ownedAnnotation.ast(),
 		type =	let ordered = not qualifier->includes('!ordered'),
 					unique = not qualifier->includes('!unique')
-				in ownedType.ast(ordered,unique),				
+				in ownedType.ast(ordered,unique),
 		opposite = if not (opposite = null)
 		 		   then opposite
 		 		   else ocl::Property {
@@ -279,18 +279,19 @@ def : ast() : ocl::OpaqueExpression =
 context TemplateBindingCS
 def : ast() : ocl::TemplateBinding =
 	ocl::TemplateBinding {
-		parameterSubstitution = ownedParameterSubstitution.ast()
+		parameterSubstitution = ownedParameterSubstitution.ast(),
+		signature = owningTemplateBindableElement.ast().ownedTemplateSignature
 	}
 	
--- context TemplateParameterCS extends NamedElementCS
-
+-- See TypeParameterCS
+-- context TemplateParameterCS
 context TemplateParameterSubstitutionCS
 def : ast() : ocl::TemplateParameterSubstitution  = 
 	ocl::TemplateParameterSubstitution {
-		ownedActual = ownedActualParameter.ast(),
+		-- ownedActual. It looks like ownedActual is surplus
 		actual = ownedActualParameter.ast(),
-		formal = owningTemplateBinding.owningTemplateBindableElement.ast()
-		-- TODO think this better, at this point the TPS is not owned yet
+		formal = let elementPosition: Integer = owningTemplateBinding.ownedParameterSubstitution->indexOf(self) 
+				 in owningTemplateBinding.owningTemplateBindableElement.ast().ownedTemplateSignature.ownedParameter->at(elementPosition)
 	}
 	
 context TemplateSignatureCS
@@ -313,11 +314,14 @@ def : ast() : ocl::TupleType =
 		ownedAttribute = ownedParts.ast()
 	}
 	
+-- FIXME why distinct super/extends? Anyway, example of an growing pull
 context TypeParameterCS 
 def : ast() : ocl::TypeTemplateParameter =
 	let parameteredElement = ocl::Class {
-								name = name
-							}
+		name = name,
+		superClass = ownedExtends.ast()->including
+					 (ownedSuper.ast())
+	}
 	in	ocl::TypeTemplateParameter {
 		ownedParameteredElement = parameteredElement,
 		parameteredElement = parameteredElement
