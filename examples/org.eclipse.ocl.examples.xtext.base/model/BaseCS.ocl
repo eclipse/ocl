@@ -27,9 +27,7 @@ def: ast() : ocl::Property=
 		default = default,
 		defaultExpression = ownedDefaultExpression.ast(),
 		ownedAnnotation = ownedAnnotation.ast(),
-		type = let ordered = not qualifier->includes('!ordered'),
-					unique = not qualifier->includes('!unique')
-				in ownedType.ast(ordered,unique),
+		type = ownedType.ast(),
 		owningType = if (qualifier->includes('definition'))
 					 then null -- TODO Look for secondary type, create it if it doesn't exist
 					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
@@ -165,9 +163,7 @@ def : ast() : ocl::Operation =
 		precondition = ownedPrecondition.ast(),
 		postcondition = ownedPostcondition.ast(),
 		bodyExpression = ownedBodyExpression.ast(),
-		type = let ordered = not qualifier->includes('!ordered'),
-					unique = not qualifier->includes('!unique')
-				in ownedType.ast(ordered,unique),
+		type = ownedType.ast(),
 		owningType = if (qualifier->includes('definition'))
 					 then null -- TODO Look for secondary type, create it if it doesn't exist, and say it's its owningType
 					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
@@ -192,9 +188,7 @@ def : ast() : ocl::Parameter =
 	ocl::Parameter {
 		name = name,
 		ownedAnnotation = ownedAnnotation.ast(),
-		type = let ordered = not qualifier->includes('!ordered'),
-					unique = not qualifier->includes('!unique')
-				in ownedType.ast(ordered,unique)
+		type =ownedType.ast()
 	}
 	
 context PathElementCS
@@ -236,9 +230,7 @@ def : ast() : ocl::Property =
 							else null
 							endif,
 		ownedAnnotation = ownedAnnotation.ast(),
-		type =	let ordered = not qualifier->includes('!ordered'),
-					unique = not qualifier->includes('!unique')
-				in ownedType.ast(ordered,unique),
+		type =	ownedType.ast(),
 		opposite = if not (opposite = null)
 		 		   then opposite
 		 		   else ocl::Property {
@@ -329,15 +321,9 @@ def : ast() : ocl::TypeTemplateParameter =
 
 context TypedRefCS
 def : isMultiple() : Boolean = 
-	multiplicity.getUpper() > 1
-def : ast() : ocl::Type =
-	null -- FIXME
-	-- if isMultiple() 
-	-- then env().lookupCollectionType('Collection', self)
-	-- else env().lookupType(pathName)
-	-- endif 
-def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
-	null -- FIXME
+		multiplicity.getUpper() > 1
+--def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
+--	null -- FIXME
 --	if not isMultiple()
 --	then env().lookupType(pathName)
 --	else 
@@ -357,28 +343,32 @@ def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
 
 context TypedTypeRefCS
 def : ast() : ocl::Type =
-	if isMultiple()
-	then type 
-	else Collection -- FIXME find collection of the type ?
+	if not isMultiple()
+	then env().lookupType(self.pathName)
+	else 
+		let ordered = if oclContainer().oclIsKindOf(TypedElementCS)
+					 	then oclContainer().oclAsType(TypedElementCS).qualifier->includes('ordered')
+					 	else false
+					 	endif,
+			unique =  if  oclContainer().oclIsKindOf(TypedElementCS)
+						then oclContainer().oclAsType(TypedElementCS).qualifier->includes('unique')
+						else false
+						endif
+		in
+			if unique
+			then
+				if ordered
+				then env().lookupCollectionType('OrderedSet', self)
+				else env().lookupCollectionType('Set', self)
+				endif
+			else
+				if ordered
+				then env().lookupCollectionType('Sequence', self)
+				else env().lookupCollectionType('Bag', self)
+				endif
+			endif		
 	endif
 
-def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
-	if not isMultiple()
-	then type
-	else 
-		if unique
-		then
-			if ordered
-			then OrderedSet -- FIXME
-			else Set		-- FIXME
-			endif
-		else
-			if ordered
-			then Sequence 	-- FIXME
-			else Bag		-- FIXME
-			endif
-		endif
-	endif	
 
 
 context WildcardTypeRefCS
@@ -396,9 +386,9 @@ def : lookupPathName(name : PathNameCS[?]) : ocl::NamedElement[?] =
 	null -- TODO
 def : lookupVariableDeclaration(name : String[?]) : ocl::VariableDeclaration[?] =
 	null -- TODO
-def : lookupType(name : String[?]) : ocl::VariableDeclaration[?] = 
-	null -- TODO
-def : lookupType(name : PathNameCS[?]) : ocl::VariableDeclaration[?] = 
+--def : lookupType(name : String[?]) : ocl::Type[?] = 
+--	null -- TODO
+def : lookupType(name : PathNameCS[?]) : ocl::Type[?] = 
 	null -- TODO
 def : lookupCollectionType(collectionKind : String[?], elementType : TypedRefCS[?]) : ocl::CollectionType[?] =
 	null -- TODO
