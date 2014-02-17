@@ -24,6 +24,7 @@ def: ast() : ocl::Property=
 		isTransient = qualifier->includes('transient'),
 		isUnsettable = qualifier->includes('unsettable'),
 		isVolatile = qualifier->includes('volatile'),
+		isRequired = isRequired(),
 		default = default,
 		defaultExpression = ownedDefaultExpression.ast(),
 		ownedAnnotation = ownedAnnotation.ast(),
@@ -31,7 +32,8 @@ def: ast() : ocl::Property=
 		owningType = if (qualifier->includes('definition'))
 					 then null -- TODO Look for secondary type, create it if it doesn't exist
 					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
-					 endif				
+					 endif
+		
 		
 	}
 	
@@ -47,7 +49,7 @@ def: ast() : ocl::Class =
 		ownedOperation = ownedOperation.ast(),
 		ownedAttribute = ownedProperty.ast(),
 		ownedInvariant = ownedConstraint.ast(),
-		superClass = ownedSuperType.ast()
+		superClass = ownedSuperType.ast() -- REF
 	}
 
 -- FIXME stereotype, messageSpacification is not used
@@ -115,14 +117,18 @@ def : ast() : ocl::Import =
 		-- importedNamespace = env().lookupNamespace(pathName)
 	}
 
+
+-- FIXME Study. This look like something for OclStdlib
+-- Shouldn't the lambda be looked up in the environment?
 context LambdaTypeCS 
 def :  ast()  :ocl::LambdaType =
 	ocl::LambdaType {
 		name = name,
-		contextType = ownedContextType.ast(),
-		parameterType = ownedParameterType.ast(),
-		resultType = ownedResultType.ast()   
+		contextType = ownedContextType.ast(),	-- REF
+		parameterType = ownedParameterType.ast(),	-- REF
+		resultType = ownedResultType.ast()	--REF
 	}
+	 
 
 -- No idea about this
 --context LibraryCS 
@@ -156,13 +162,14 @@ def : ast() : ocl::Operation =
 	ocl::Operation {
 		name = name,
 		isStatic = qualifier->includes( 'static'),
+		isRequired = isRequired(),
 		ownedTemplateSignature = ownedTemplateSignature.ast(),
 		ownedParameter = ownedParameter.ast(),
 		raisedException = ownedException.ast(),
 		ownedAnnotation = ownedAnnotation.ast(),
 		precondition = ownedPrecondition.ast(),
 		postcondition = ownedPostcondition.ast(),
-		bodyExpression = ownedBodyExpression.ast(),
+		bodyExpression = ownedBodyExpression.ast(),		
 		type = ownedType.ast(),
 		owningType = if (qualifier->includes('definition'))
 					 then null -- TODO Look for secondary type, create it if it doesn't exist, and say it's its owningType
@@ -187,6 +194,7 @@ context ParameterCS
 def : ast() : ocl::Parameter =
 	ocl::Parameter {
 		name = name,
+		isRequired = isRequired(),
 		ownedAnnotation = ownedAnnotation.ast(),
 		type =ownedType.ast()
 	}
@@ -296,6 +304,7 @@ context TuplePartCS
 def : ast() : ocl::Property = 
 	ocl::Property {
 		name = name,
+		isRequired = isRequired(),
 		type = ownedType.ast()
 	}
 	
@@ -318,6 +327,20 @@ def : ast() : ocl::TypeTemplateParameter =
 		ownedParameteredElement = parameteredElement,
 		parameteredElement = parameteredElement
 	}
+
+context TypedElementCS
+def : isRequired() : Boolean =
+	let typeMultiplicity = ownedType.multiplicity
+	in
+		if typeMultiplicity = null
+		then false
+		else
+			if typeMultiplicity.getUpper() = 1 
+			then typeMultiplicity.getLower() = 1
+			else false
+			endif
+		endif
+-- FIXME remove TypedElementCS::optional ?
 
 context TypedRefCS
 def : isMultiple() : Boolean = 
