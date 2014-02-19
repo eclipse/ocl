@@ -49,11 +49,27 @@ def : ast() : ocl::CollectionLiteralPart =
 
 context CollectionTypeCS
 def : ast() : ocl::CollectionType =
-	 env().lookupCollectionType(name, ownedType)
-	 -- FIXME I should not create any CollectionType. 
-	 -- There is not any AS reference which might be populated by name resolution
-	 -- For the time being, expressed with an env-based expression
-	 -- what about upper and lower ? 	 
+	 -- env().lookupCollectionType(name, ownedType)
+	let lower : Integer = 
+			if multiplicity = null
+			then null
+			else multiplicity.getLower()
+			endif,
+		upper : UnlimitedNatural =
+			if multiplicity = null
+			then null
+			else 
+				if multiplicity.getUpper() = -1
+				then *
+				else multiplicity.getUpper()
+				endif
+			endif
+	in	ocl::CollectionType {
+			name = name,
+			elementType = ownedType.ast(),
+			lower = lower,
+			upper = upper
+		}
 
 context ConstructorExpCS
 def : ast() : ocl::ConstructorExp =

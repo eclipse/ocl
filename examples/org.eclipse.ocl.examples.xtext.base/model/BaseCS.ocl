@@ -28,13 +28,11 @@ def: ast() : ocl::Property=
 		default = default,
 		defaultExpression = ownedDefaultExpression.ast(),
 		ownedAnnotation = ownedAnnotation.ast(),
-		type = ownedType.ast(),
+		type = ownedType.ast(), -- REF
 		owningType = if (qualifier->includes('definition'))
 					 then null -- TODO Look for secondary type, create it if it doesn't exist
 					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
 					 endif
-		
-		
 	}
 	
 context ClassCS
@@ -122,12 +120,14 @@ def : ast() : ocl::Import =
 -- Shouldn't the lambda be looked up in the environment?
 context LambdaTypeCS 
 def :  ast()  :ocl::LambdaType =
-	ocl::LambdaType {
-		name = name,
-		contextType = ownedContextType.ast(),	-- REF
-		parameterType = ownedParameterType.ast(),	-- REF
-		resultType = ownedResultType.ast()	--REF
-	}
+	let type : ocl::Type = 
+		ocl::LambdaType {
+			name = name,
+			contextType = ownedContextType.ast(),	-- REF
+			resultType = ownedResultType.ast(),	--REF
+			parameterType = ownedParameterType.ast()	-- REF
+		}
+	in multiplicityType(type)
 	 
 
 -- No idea about this
@@ -214,10 +214,12 @@ def : ast() : ocl::Element =
 	pivot
 
 context PrimitiveTypeRefCS
-def : ast() : ocl::PrimitiveType =
-	ocl::PrimitiveType {
-		name = name
-	}
+def : ast() : ocl::Type =
+	let type : ocl::Type =
+		ocl::PrimitiveType {
+			name = name
+		}
+	in multiplicityType(type)
 
 context ReferenceCS
 def : ast() : ocl::Property = 
@@ -309,13 +311,15 @@ def : ast() : ocl::Property =
 	}
 	
 context TupleTypeCS
-def : ast() : ocl::TupleType =
-	ocl::TupleType {
-		name = name,
-		ownedAttribute = ownedParts.ast()
-	}
+def : ast() : ocl::Type =
+	let type : ocl::Type = 
+		ocl::TupleType {
+			name = name,
+			ownedAttribute = ownedParts.ast()
+		}
+	in multiplicityType(type)
 	
--- FIXME why distinct super/extends? Anyway, example of an growing pull
+-- FIXME why distinct super/extends?
 context TypeParameterCS 
 def : ast() : ocl::TypeTemplateParameter =
 	let parameteredElement = ocl::Class {
@@ -345,6 +349,38 @@ def : isRequired() : Boolean =
 context TypedRefCS
 def : isMultiple() : Boolean = 
 		multiplicity.getUpper() > 1
+def : multiplicityType(type : ocl::Type ) : ocl::Type =
+	if not isMultiple()
+	then type
+	else 
+		let ordered = if oclContainer().oclIsKindOf(TypedElementCS)
+					 	then oclContainer().oclAsType(TypedElementCS).qualifier->includes('ordered')
+					 	else false
+					 	endif,
+			unique =  if  oclContainer().oclIsKindOf(TypedElementCS)
+						then oclContainer().oclAsType(TypedElementCS).qualifier->includes('unique')
+						else false
+						endif,
+			colName = 
+					if unique
+					then
+						if ordered
+						then 'OrderedSet'
+						else 'Set'
+						endif
+					else 
+						if ordered
+						then 'Sequence'
+						else 'Bag'
+						endif
+					endif
+		in
+			ocl:: CollectionType {
+				name = colName,
+				elementType = type
+			}
+	endif
+	 
 --def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
 --	null -- FIXME
 --	if not isMultiple()
@@ -366,33 +402,13 @@ def : isMultiple() : Boolean =
 
 context TypedTypeRefCS
 def : ast() : ocl::Type =
-	if not isMultiple()
-	then env().lookupType(self.pathName)
-	else 
-		let ordered = if oclContainer().oclIsKindOf(TypedElementCS)
-					 	then oclContainer().oclAsType(TypedElementCS).qualifier->includes('ordered')
-					 	else false
-					 	endif,
-			unique =  if  oclContainer().oclIsKindOf(TypedElementCS)
-						then oclContainer().oclAsType(TypedElementCS).qualifier->includes('unique')
-						else false
-						endif
-		in
-			if unique
-			then
-				if ordered
-				then env().lookupCollectionType('OrderedSet', self)
-				else env().lookupCollectionType('Set', self)
-				endif
-			else
-				if ordered
-				then env().lookupCollectionType('Sequence', self)
-				else env().lookupCollectionType('Bag', self)
-				endif
-			endif		
+	--let type : ocl::Type = env().lookupType(self.pathName)
+	--in multiplicityType(type)
+	-- FIXME type is computed by Xtext resolution binding ?
+	if ownedTemplateBinding = null
+	then multiplicityType(type)
+	else null -- TODO
 	endif
-
-
 
 context WildcardTypeRefCS
 def : ast() : ocl::UnspecifiedType =
@@ -415,6 +431,7 @@ def : lookupType(name : PathNameCS[?]) : ocl::Type[?] =
 	null -- TODO
 def : lookupCollectionType(collectionKind : String[?], elementType : TypedRefCS[?]) : ocl::CollectionType[?] =
 	null -- TODO
+	
 
 	
 endpackage
