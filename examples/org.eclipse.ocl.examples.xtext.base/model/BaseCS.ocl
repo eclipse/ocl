@@ -47,9 +47,9 @@ def: ast() : ocl::Class =
 		ownedOperation = ownedOperation.ast(),
 		ownedAttribute = ownedProperty.ast(),
 		ownedInvariant = ownedConstraint.ast(),
-		superClass = if ownedSuperType = null
+		superClass = if ownedSuperType = null -- REF
 					 then ocl::OclElement  
-					 else ownedSuperType.ast() -- REF
+					 else ownedSuperType.ast() 
 					 endif
 	}
 
@@ -149,7 +149,8 @@ def : ast() : ocl::Element =
 
 context ModelElementRefCS 
 def : ast() : ocl::Element  =
-	element
+	-- FIXME element
+	pathName.element
 	
 --	context MultiplicityBoundsCS
 
@@ -287,7 +288,8 @@ context TemplateBindingCS
 def : ast() : ocl::TemplateBinding =
 	ocl::TemplateBinding {
 		parameterSubstitution = ownedParameterSubstitution.ast(),
-		signature = owningTemplateBindableElement.ast().ownedTemplateSignature
+		signature = owningTemplateBindableElement.ast().ownedTemplateSignature -- REF
+				-- Possible loop with TypedTypeRefCS
 	}
 	
 -- See TypeParameterCS
@@ -369,6 +371,8 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 			superType = ocl::CollectionType {
 							name = 'Collection',
 							elementType = type,
+							lower = 0,
+							upper = *,
 							superClass = OclAny	
 						}
 		in
@@ -378,11 +382,15 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 				then ocl::OrderedSetType {
 						name = 'OrderedSet',
 						elementType = type,
+						lower = 0,
+						upper = *,
 						superClass = superType
 					}
 				else ocl::SetType {
 						name = 'Set',
 						elementType = type,
+						lower = 0,
+						upper = *,
 						superClass = superType
 					}
 				endif
@@ -391,11 +399,15 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 				then ocl::SequenceType {
 						name = 'Sequence',
 						elementType = type,
+						lower = 0,
+						upper = *,
 						superClass = superType
 					}
 				else ocl::BagType {
 						name = 'Bag',
 						elementType = type,
+						lower = 0,
+						upper = *,
 						superClass = superType
 					}
 				endif
@@ -423,14 +435,21 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 --	endif
 
 context TypedTypeRefCS
-def : ast() : ocl::Type =
-	--let type : ocl::Type = env().lookupType(self.pathName)
-	--in multiplicityType(type)
-	-- FIXME type is computed by Xtext resolution binding ?
-	if ownedTemplateBinding = null
-	then multiplicityType(type)
-	else null -- TODO
-	endif
+def : ast() : ocl::Type =	
+	let finalType : ocl::Type = 
+		if ownedTemplateBinding = null
+		then type  -- it should return proper type, handcoded in TypedTypeRefCSImpl
+		else specializeType(type, ownedTemplateBinding.ast())
+		endif	
+	in multiplicityType(finalType)
+	
+def : specializeType(type : ocl::Type, tBinding : ocl::TemplateBinding) : ocl::Type =
+	-- TODO 
+	ocl::Class {
+		name = type.name,
+		unspecializedElement = type,
+		templateBinding = tBinding
+	}
 
 context WildcardTypeRefCS
 def : ast() : ocl::UnspecifiedType =
