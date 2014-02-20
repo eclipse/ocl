@@ -47,7 +47,10 @@ def: ast() : ocl::Class =
 		ownedOperation = ownedOperation.ast(),
 		ownedAttribute = ownedProperty.ast(),
 		ownedInvariant = ownedConstraint.ast(),
-		superClass = ownedSuperType.ast() -- REF
+		superClass = if ownedSuperType = null
+					 then ocl::OclElement  
+					 else ownedSuperType.ast() -- REF
+					 endif
 	}
 
 -- FIXME stereotype, messageSpacification is not used
@@ -65,7 +68,8 @@ def: ast() : ocl::DataType =
 		instanceClassName = instanceClassName,
 		isSerializable = not qualifier->includes('!serializable'),
 		ownedAnnotation = ownedAnnotation.ast(),
-		ownedInvariant = ownedConstraint.ast()
+		ownedInvariant = ownedConstraint.ast(),
+		superClass = ocl::OclElement
 	}
 
 context DetailCS
@@ -76,7 +80,7 @@ def: ast() : ocl::Detail =
 	}
 	
 -- TODO: Obsolote. Remove from metamodel and/or grammar ?	
---context DocumentationCS 
+-- context DocumentationCS
 --		
 
 context ElementCS
@@ -95,7 +99,8 @@ def : ast() : ocl::Enumeration =
 		ownedLiteral = ownedLiterals.ast(),
 		ownedTemplateSignature = ownedTemplateSignature.ast(),
 		ownedAnnotation = ownedAnnotation.ast(),
-		ownedInvariant = ownedConstraint.ast()
+		ownedInvariant = ownedConstraint.ast(),
+		superClass = ocl::OclElement
 	}
 
 context EnumerationLiteralCS
@@ -119,7 +124,7 @@ def : ast() : ocl::Import =
 -- FIXME Study. This look like something for OclStdlib
 -- Shouldn't the lambda be looked up in the environment?
 context LambdaTypeCS 
-def :  ast()  :ocl::LambdaType =
+def :  ast() : ocl::Type =
 	let type : ocl::Type = 
 		ocl::LambdaType {
 			name = name,
@@ -357,28 +362,45 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 					 	then oclContainer().oclAsType(TypedElementCS).qualifier->includes('ordered')
 					 	else false
 					 	endif,
-			unique =  if  oclContainer().oclIsKindOf(TypedElementCS)
+			unique = if  oclContainer().oclIsKindOf(TypedElementCS)
 						then oclContainer().oclAsType(TypedElementCS).qualifier->includes('unique')
 						else false
 						endif,
-			colName = 
-					if unique
-					then
-						if ordered
-						then 'OrderedSet'
-						else 'Set'
-						endif
-					else 
-						if ordered
-						then 'Sequence'
-						else 'Bag'
-						endif
-					endif
+			superType = ocl::CollectionType {
+							name = 'Collection',
+							elementType = type,
+							superClass = OclAny	
+						}
 		in
-			ocl:: CollectionType {
-				name = colName,
-				elementType = type
-			}
+			if unique
+			then
+				if ordered
+				then ocl::OrderedSetType {
+						name = 'OrderedSet',
+						elementType = type,
+						superClass = superType
+					}
+				else ocl::SetType {
+						name = 'Set',
+						elementType = type,
+						superClass = superType
+					}
+				endif
+			else 
+				if ordered
+				then ocl::SequenceType {
+						name = 'Sequence',
+						elementType = type,
+						superClass = superType
+					}
+				else ocl::BagType {
+						name = 'Bag',
+						elementType = type,
+						superClass = superType
+					}
+				endif
+			endif
+			
 	endif
 	 
 --def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
