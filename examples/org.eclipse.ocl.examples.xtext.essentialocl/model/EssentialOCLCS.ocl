@@ -14,7 +14,6 @@ package essentialoclcs
 --		property sourceType : ocl::Type[?] { derived transient !resolve };
 --	}
 
-
 -- context BinaryOperatorCS
 
 context BooleanLiteralExpCS
@@ -26,6 +25,27 @@ def : ast() : ocl::BooleanLiteralExp =
 						endif,
 		type = Boolean
 	}
+
+context CallExpCS
+def : cst() : CallExpCS =
+	if not isInvocation 
+	then NavigationCallExpCS {
+			nameExp = nameExp,
+			isAtPre = isAtPre
+		}
+	else
+	if true -- TODO
+		then OperationCallExpCS {			
+			nameExp = nameExp,
+			isAtPre = isAtPre,
+			argument = argument
+		}
+		else LoopExpCS {
+			nameExp = nameExp,
+			argument = argument
+		}
+		endif
+	endif
 	
 context CollectionLiteralExpCS 
 def : ast() : ocl::CollectionLiteralExp =
@@ -71,12 +91,29 @@ def : ast() : ocl::CollectionType =
 			upper = upper
 		}
 
+-- FIXME probably move this to BaseCS.ocl
+-- TODO 
+--context basecs::ConstraintCS
+--def : ast() : ocl::Constraint =
+--	if messageSpecification = null
+--	then basecs::ConstraintCS.ast()
+--	else ocl::Constraint {
+--		specification = ocl::ExpressionInOCL {
+--			variable = ocl::VariableDeclaration {
+--				name = 'self'
+--			}	
+--		}
+--	} 
+--	endif
+	
+	
 context ConstructorExpCS
 def : ast() : ocl::ConstructorExp =
 	ocl::ConstructorExp {
 		value = value,
 		part = ownedParts.ast(),
-		type = env().lookupType(nameExp.pathName)
+		-- type = env().lookupType(nameExp.pathName)
+		type = nameExp.ast().oclAsType(ocl::Type)
 	}
 --inv : ownedParts->notEmpty() implies value = null
 --		and not (value = null) implies ownedParts->isEmpty()
@@ -85,9 +122,10 @@ context ConstructorPartCS
 def : ast() :  ocl::ConstructorPart =
 	ocl::ConstructorPart {
 		initExpression = initExpression.ast(),
-		referredProperty = property -- TODO
+		referredProperty = property -- REF Xtext cross-reference
 	}
 	
+-- TODO special context initializer
 context ContextCS
 def : ast() : ocl::ExpressionInOCL = 
 	ocl::ExpressionInOCL {
@@ -96,20 +134,20 @@ def : ast() : ocl::ExpressionInOCL =
 
 -- context ExpCS 
 
+-- TODO there is a tricky part with respect to the case of having a messageExpression
 context ExpSpecificationCS
 def : ast() : ocl::ExpressionInOCL =
-	ocl::ExpressionInOCL {
+	if ownedExpression = null
+	then ocl::OpaqueExpression {
 		language = 'OCL',
-		_body = if exprString = null
-				then null
-				else  Sequence(String){exprString}
-				endif,
-		expressionInOCL = 
-				if ownedExpression = null
-				then null 
-				else ownedExpression.ast()
-				endif
+		_body = Sequence(String){exprString}
 	}
+	else ocl::ExpressionInOCL {
+		language = 'OCL',
+		expressionInOCL = ownedExpression.ast()
+	}
+	endif
+
 context IfExpCS
 def : ast() : ocl::IfExp =
 	ocl::IfExp {
@@ -147,8 +185,6 @@ def : ast() : ocl::InvalidLiteralExp =
 		type = OclInvalid
 	}
 
--- TODO context InvocationExpCS
-
 context LetExpCS
 def : ast() : ocl::LetExp = 
 	variable->reverse()->iterate(x : LetVariableCS; result : ocl::LetExp = null |
@@ -167,17 +203,27 @@ def : ast() : ocl::LetExp =
 -- context LetVariableCS
 -- note: VariableCS::ast() operation works for LetVariableCS
 	
-context	NameExpCS
-def : ast() : ocl::Element =
-	env().lookupPathName(pathName)
-	-- FIXME where is the xtext AS cross-reference ? sourceType ?
-	
--- TODO context NavigatingArgCS 
+-- TODO context LoopExpCS
 
+context	NameExpCS
+def : ast() : ocl::NamedElement =
+	-- env().lookupPathName(pathName)
+	pathName.ast().oclAsType(ocl::NamedElement) -- FIXME PathNameCS should probably do the conversion
+	
+context NavigatingArgCS
+def : ast() : ocl::Element = -- FIXME
+	if navigatingExp.oclIsKindOf(OperationCallExpCS)
+	then name.ast()
+	else name.ast() -- TODO
+	endif
 
 -- TODO context NavigationOperatorCS
 
--- TODO context NestedExpCS
+-- TODO context NavigationExpCS
+
+context NestedExpCS
+def : ast() : ocl::OCLExpression =
+	source.ast()
 
 context NullLiteralExpCS
 def : ast() : ocl::NullLiteralExp = 
@@ -188,7 +234,16 @@ def : ast() : ocl::NullLiteralExp =
 context NumberLiteralExpCS
 def : ast() : ocl::NumericLiteralExp =
 	ocl::IntegerLiteralExp {
-		integerSymbol = name -- FIXME Integer/Real/
+		integerSymbol = name -- FIXME Integer/Real/		
+	}
+	
+context OperationCallExpCS
+def : ast() : ocl::OperationCallExp =
+	let operation = nameExp.ast().oclAsType(ocl::Operation)
+	in ocl::OperationCallExp {
+		name = operation.name,
+		argument = argument.ast(),
+		referredOperation = operation
 	}
 	
 context PrefixExpCS
@@ -220,7 +275,8 @@ def :  ast() : ocl::VariableExp =
 context StringLiteralExpCS
 def : ast() : ocl::StringLiteralExp = 
 	ocl::StringLiteralExp {
-		stringSymbol = name,
+		stringSymbol = name->iterate(x : String, result : String = '' |
+						result = result.concat(x)),
 		type = String
 	}
 	
@@ -249,13 +305,14 @@ def : ast() : ocl::TypeExp =
 
 context TypeNameExpCS
 def : ast() : ocl::Type =
-	element
+	multiplicityType(element) -- REF element manually hand-coded which returns the proper type  
 	
 -- TODO context UnaryOperatorCS
 context UnlimitedNaturalLiteralExpCS
 def : ast() : ocl::UnlimitedNaturalLiteralExp =
 	ocl::UnlimitedNaturalLiteralExp{
-		unlimitedNaturalSymbol = ocl::_UnlimitedNatural{'-1'}
+		name = '*',
+		unlimitedNaturalSymbol = ocl::_UnlimitedNatural{'*'} -- Remove in M6 
 	}
 
 context VariableCS

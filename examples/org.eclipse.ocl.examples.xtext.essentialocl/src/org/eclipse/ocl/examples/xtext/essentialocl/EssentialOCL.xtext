@@ -302,8 +302,8 @@ PrimaryExpCS returns ExpCS:
 				| (value=StringLiteral)
 				) '}'
 			)
-		|	( (atPre?='@' 'pre')?
-				({InvocationExpCS.nameExp=current} '(' (
+		|	({CallExpCS.nameExp=current} (isAtPre?='@' 'pre')?
+				(isInvocation?='(' (
 					argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
 					(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
 					(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?

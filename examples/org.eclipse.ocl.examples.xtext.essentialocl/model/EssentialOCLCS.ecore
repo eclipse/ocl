@@ -30,6 +30,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CallExpCS" eSuperTypes="#//NamedExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
+        eType="#//NavigatingArgCS" containment="true" eOpposite="#//NavigatingArgCS/navigatingExp"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInvocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAtPre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExpCS" eSuperTypes="#//LiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//CollectionTypeCS"
         containment="true"/>
@@ -98,10 +104,7 @@
         upperBound="-1" eType="#//BinaryOperatorCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InvocationExpCS" eSuperTypes="#//NamedExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
-        eType="#//NavigatingArgCS" containment="true" eOpposite="#//NavigatingArgCS/navigatingExp"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoopExpCS" eSuperTypes="#//CallExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="LetExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
         eType="#//LetVariableCS" containment="true" eOpposite="#//LetVariableCS/letExpression"/>
@@ -123,8 +126,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore#//ModelElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="navigatingExp" eType="#//InvocationExpCS"
-        eOpposite="#//InvocationExpCS/argument"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigatingExp" eType="#//CallExpCS"
+        eOpposite="#//CallExpCS/argument"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="role" eType="#//NavigationRole"
         transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -136,6 +139,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NavigationOperatorCS" eSuperTypes="#//BinaryOperatorCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigationCallExpCS" eSuperTypes="#//CallExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NestedExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ExpCS"
         containment="true"/>
@@ -148,6 +152,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//ExpCS" transient="true" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpCS" eSuperTypes="#//CallExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperator" upperBound="-1"
         eType="#//UnaryOperatorCS" containment="true"/>
@@ -189,7 +194,7 @@
   <eClassifiers xsi:type="ecore:EDataType" name="BigNumber" instanceClassName="java.lang.Number"/>
   <eClassifiers xsi:type="ecore:EEnum" name="NavigationRole">
     <eLiterals name="ITERATOR"/>
-    <eLiterals name="ACCUMULATOR"/>
-    <eLiterals name="EXPRESSION"/>
+    <eLiterals name="ACCUMULATOR" value="1"/>
+    <eLiterals name="EXPRESSION" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

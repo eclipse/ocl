@@ -371,8 +371,6 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 			superType = ocl::CollectionType {
 							name = 'Collection',
 							elementType = type,
-							lower = 0,
-							upper = *,
 							superClass = OclAny	
 						}
 		in
@@ -382,15 +380,11 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 				then ocl::OrderedSetType {
 						name = 'OrderedSet',
 						elementType = type,
-						lower = 0,
-						upper = *,
 						superClass = superType
 					}
 				else ocl::SetType {
 						name = 'Set',
 						elementType = type,
-						lower = 0,
-						upper = *,
 						superClass = superType
 					}
 				endif
@@ -399,15 +393,11 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 				then ocl::SequenceType {
 						name = 'Sequence',
 						elementType = type,
-						lower = 0,
-						upper = *,
 						superClass = superType
 					}
 				else ocl::BagType {
 						name = 'Bag',
 						elementType = type,
-						lower = 0,
-						upper = *,
 						superClass = superType
 					}
 				endif
