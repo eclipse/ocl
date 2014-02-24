@@ -288,7 +288,7 @@ context TemplateBindingCS
 def : ast() : ocl::TemplateBinding =
 	ocl::TemplateBinding {
 		parameterSubstitution = ownedParameterSubstitution.ast(),
-		signature = owningTemplateBindableElement.ast().ownedTemplateSignature -- REF
+		signature = owningTemplateBindableElement.ast().unspecializedElement.ownedTemplateSignature -- REF
 				-- Possible loop with TypedTypeRefCS
 	}
 	
