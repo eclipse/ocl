@@ -428,18 +428,22 @@ context TypedTypeRefCS
 def : ast() : ocl::Type =	
 	let finalType : ocl::Type = 
 		if ownedTemplateBinding = null
-		then type  -- it should return proper type, handcoded in TypedTypeRefCSImpl
-		else specializeType(type, ownedTemplateBinding.ast())
-		endif	
+		then type  -- it should return proper type, hand-coded in TypedTypeRefCSImpl
+		else ocl::Class {
+				name = type.name,
+				unspecializedElement = type,
+				templateBinding = Set{ownedTemplateBinding.ast()}
+			}
+		endif
 	in multiplicityType(finalType)
 	
-def : specializeType(type : ocl::Type, tBinding : ocl::TemplateBinding) : ocl::Type =
-	-- TODO 
-	ocl::Class {
-		name = type.name,
-		unspecializedElement = type,
-		templateBinding = tBinding
-	}
+--def : specializeType(type : ocl::Type, tBinding : ocl::TemplateBinding) : ocl::Type =
+--	-- TODO 
+--	ocl::Class {
+--		name = type.name,
+--		unspecializedElement = type,
+--		templateBinding = tBinding
+--	}
 
 context WildcardTypeRefCS
 def : ast() : ocl::UnspecifiedType =
