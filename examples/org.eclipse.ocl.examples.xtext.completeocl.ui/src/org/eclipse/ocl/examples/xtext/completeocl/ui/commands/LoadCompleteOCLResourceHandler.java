@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2012, 2013 E.D.Willink and others.
+ * Copyright (c) 2012, 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,14 @@
  *
  * Contributors:
  *   E.D.Willink - Initial API and implementation
+ *   Obeo - Enable export and re-use CompleteOCL files for validation
  *
  * </copyright>
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.commands;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,16 +39,19 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -57,7 +63,9 @@ import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
+import org.eclipse.ocl.examples.xtext.completeocl.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
+import org.eclipse.ocl.examples.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
@@ -65,14 +73,19 @@ import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.part.ResourceTransfer;
 import org.eclipse.xtext.resource.XtextResource;
@@ -85,7 +98,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
  * A LoadCompleteOCLResourceHandler supports the OCL->Load Document command.
  * 
  * It provides a pop-up dialog with DND capability for a Complete OCL document to be installed in the
- * ResourceSet associatied with the invoking selection.
+ * ResourceSet associated with the invoking selection.
  */
 public class LoadCompleteOCLResourceHandler extends AbstractHandler
 {
@@ -139,6 +152,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		protected final Shell parent;
 		protected final @NonNull ResourceSet resourceSet;
 		private DropTarget target;
+		private Set<URI> registeredURIsForResourceSet;
 		
 		protected ResourceDialog(Shell parent, EditingDomain domain, @NonNull ResourceSet resourceSet) {
 			super(parent, domain);
@@ -168,7 +182,27 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		@Override
 		protected Control createDialogArea(Composite parent) {
 			Composite createDialogArea = (Composite) super.createDialogArea(parent);
-			
+
+			// Button composite is the first children and we are expected to retrieve it as such...
+			Composite buttonComposite = (Composite)createDialogArea.getChildren()[0];
+
+			Button browseRegisteredOCLFiles = new Button(buttonComposite, SWT.PUSH);
+			browseRegisteredOCLFiles.setText(CompleteOCLUIMessages.LoadCompleteOCLResource_browseOCLFiles);
+			prepareBrowseRegisteredOCLFiles(browseRegisteredOCLFiles);
+			registeredURIsForResourceSet = CompleteOCLRegistry.getRegisteredResourceURIs(resourceSet);
+			if (registeredURIsForResourceSet.isEmpty()) {
+				browseRegisteredOCLFiles.setEnabled(false);
+			} else {
+				browseRegisteredOCLFiles.setEnabled(true);
+			}
+
+			{
+				FormData data = new FormData();
+				Control [] children = buttonComposite.getChildren();
+				data.right = new FormAttachment(children[0], -CONTROL_OFFSET);
+				browseRegisteredOCLFiles.setLayoutData(data);
+			}
+
 			Label helpLabel = new Label(createDialogArea, SWT.CENTER);
 		    helpLabel.setText("You may Drag and Drop from an Eclipse or Operating System Explorer.");
 		    {
@@ -182,6 +216,53 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 			return createDialogArea;
 		}
 		
+		private void prepareBrowseRegisteredOCLFiles(Button browseRegisteredOCLFiles) {
+			browseRegisteredOCLFiles.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent event) {
+					RegisteredOCLFilesDialog registeredOCLFilesDialog = new RegisteredOCLFilesDialog(getShell());
+					registeredOCLFilesDialog.open();
+					Object[] result = registeredOCLFilesDialog.getResult();
+					if (result != null) {
+						StringBuffer uris = new StringBuffer();
+
+						for (int i = 0, length = result.length; i < length; i++) {
+							uris.append(result[i]);
+							uris.append("  ");
+						}
+						uriField.setText((uriField.getText() + "  " + uris.toString()).trim());
+					}
+				}
+			});
+		}
+		
+		private class RegisteredOCLFilesDialog extends ElementListSelectionDialog
+		{
+			public RegisteredOCLFilesDialog(Shell parent) {
+				super(parent, new LabelProvider() {
+					@Override
+					public Image getImage(Object element) {
+						return ExtendedImageRegistry.getInstance().getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage"));
+					}
+				});
+
+				setMultipleSelection(true);
+				setMessage(CompleteOCLUIMessages.LoadCompleteOCLResource_SelectRegisteredOCLFileURI);
+				setFilter("*");
+				setTitle(CompleteOCLUIMessages.LoadCompleteOCLResource_OCLFileSelection_label);
+			}
+			
+			@Override
+			protected Control createDialogArea(Composite parent)
+			{
+				Composite result = (Composite)super.createDialogArea(parent);
+				URI[] uris = registeredURIsForResourceSet.toArray(new URI[registeredURIsForResourceSet.size()]);
+				Arrays.sort(uris, new URIComparator());
+				setListElements(uris);
+				return result;
+			}
+		}
+
 		/**
 		 * Generate a popup to display a primaryMessage and optionally a detailMessage too.
 		 * @param primaryMessage
@@ -398,6 +479,12 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 				return null;
 			}
 			return asResource;
+		}
+	}
+	
+	public static class URIComparator implements Comparator<URI> {
+		public int compare(URI o1, URI o2) {
+			return o1.toString().compareTo(o2.toString());
 		}
 	}
 

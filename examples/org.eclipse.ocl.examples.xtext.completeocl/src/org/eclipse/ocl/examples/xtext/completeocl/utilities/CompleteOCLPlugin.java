@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * Copyright (c) 2010, 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   E.D.Willink - Initial API and implementation
+ *   Obeo - Add complete ocl registry to enable export and re-use CompleteOCL files
  *
  * </copyright>
  *
@@ -21,6 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
+import org.eclipse.ocl.examples.xtext.completeocl.internal.registry.CompleteOCLRegistryReader;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -32,6 +34,7 @@ import org.osgi.framework.BundleContext;
 public final class CompleteOCLPlugin extends EMFPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.completeocl";
 	public static final String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL";
+	public static final String OCL_RESOURCE_REGISTRY_PID = "complete_ocl_registry";
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
