@@ -10,22 +10,27 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.internal.registry;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLPlugin;
 
 /**
- * A plugin extension reader that populates the complete OCL resource registry.
+ * A plugin extension reader that populates the Complete OCL resource registry.
  * 
  * @author <a href="mailto:marwa.rostren@obeo.fr">Marwa Rostren</a>
  */
-public class CompleteOCLRegistryReader
-		extends RegistryReader {
-	private static final String TAG_RESOURCE = "completeOCLResource";
-
-	private static final String ATTRIBUTE_RESOURCE = "resource";
+public class CompleteOCLRegistryReader extends RegistryReader
+{
+	private static final @NonNull String TAG_DOCUMENT = "document";
+	private static final @NonNull String TAG_FOR = "for";
+	private static final @NonNull String ATTRIBUTE_RESOURCE = "resource";
+	private static final @NonNull String ATTRIBUTE_URI = "uri";
 
 	public CompleteOCLRegistryReader() {
 		super(Platform.getExtensionRegistry(), CompleteOCLPlugin.getPlugin()
@@ -35,35 +40,41 @@ public class CompleteOCLRegistryReader
 
 	@Override
 	protected boolean readElement(IConfigurationElement element, boolean add) {
-		if (!TAG_RESOURCE.equals(element.getName())) {
+		String tagName = element.getName();
+		if (TAG_FOR.equals(tagName)) {
+			return true;
+		}
+		if (!TAG_DOCUMENT.equals(tagName)) {
 			return false;
 		}
-
 		final String filePath = element.getAttribute(ATTRIBUTE_RESOURCE);
-		final boolean recognized;
+		boolean recognized = true;
 		if (filePath == null) {
 			logMissingAttribute(element, ATTRIBUTE_RESOURCE);
 			recognized = false;
 		} else {
-			final URI fileURI = makeFileURI(element, filePath);
-			if (add) {
-				CompleteOCLRegistry.addURI(fileURI);
-			} else {
-				CompleteOCLRegistry.removeURI(fileURI);
+			Set<String> nsURIs = new HashSet<String>();
+			for (IConfigurationElement childElement : element.getChildren(TAG_FOR)) {
+				final String nsURI = childElement.getAttribute(ATTRIBUTE_URI);
+				if (nsURI == null) {
+					logMissingAttribute(childElement, ATTRIBUTE_URI);
+					recognized = false;
+				}
+				else {
+					nsURIs.add(nsURI);
+				}
 			}
-			recognized = true;
+			URI declaredURI = URI.createURI(filePath);
+			String bundleName = "/" + element.getDeclaringExtension().getContributor().getName() + "/";
+			URI bundleURI = URI.createPlatformPluginURI(bundleName, true);
+			@SuppressWarnings("null")@NonNull URI fileURI = declaredURI.resolve(bundleURI);
+			if (add) {
+				CompleteOCLRegistry.INSTANCE.addURI(fileURI, nsURIs);
+			} else {
+				CompleteOCLRegistry.INSTANCE.removeURI(fileURI);
+			}
 		}
 
 		return recognized;
-	}
-
-	private URI makeFileURI(IConfigurationElement element, String path) {
-		URI resourceURI = URI.createURI(path);
-		if (resourceURI.isRelative()) {
-			resourceURI = URI.createPlatformPluginURI(element
-				.getDeclaringExtension().getContributor().getName()
-				+ '/' + path, true);
-		}
-		return resourceURI;
 	}
 }

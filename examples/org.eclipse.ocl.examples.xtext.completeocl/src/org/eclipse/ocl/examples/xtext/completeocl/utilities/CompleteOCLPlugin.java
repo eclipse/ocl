@@ -21,8 +21,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.completeocl.internal.registry.CompleteOCLRegistryReader;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -31,17 +32,18 @@ import org.osgi.framework.BundleContext;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class CompleteOCLPlugin extends EMFPlugin {
-	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.completeocl";
-	public static final String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL";
-	public static final String OCL_RESOURCE_REGISTRY_PID = "complete_ocl_registry";
+public final class CompleteOCLPlugin extends EMFPlugin
+{
+	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.completeocl";
+	public static final @NonNull String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL";
+	public static final @NonNull String OCL_RESOURCE_REGISTRY_PID = "complete_ocl_registry";
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final CompleteOCLPlugin INSTANCE = new CompleteOCLPlugin();
+	public static final @NonNull CompleteOCLPlugin INSTANCE = new CompleteOCLPlugin();
 
 	/**
 	 * Keep track of the singleton.
@@ -49,7 +51,7 @@ public final class CompleteOCLPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static Implementation plugin;
+	private static @Nullable Implementation plugin;
 
 	/**
 	 * Create the instance.

@@ -189,7 +189,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 			Button browseRegisteredOCLFiles = new Button(buttonComposite, SWT.PUSH);
 			browseRegisteredOCLFiles.setText(CompleteOCLUIMessages.LoadCompleteOCLResource_browseOCLFiles);
 			prepareBrowseRegisteredOCLFiles(browseRegisteredOCLFiles);
-			registeredURIsForResourceSet = CompleteOCLRegistry.getRegisteredResourceURIs(resourceSet);
+			registeredURIsForResourceSet = CompleteOCLRegistry.INSTANCE.getRegisteredResourceURIs(resourceSet);
 			if (registeredURIsForResourceSet.isEmpty()) {
 				browseRegisteredOCLFiles.setEnabled(false);
 			} else {

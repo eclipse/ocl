@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="completeOCLResource"/>
+            <element ref="document"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,16 +47,41 @@
       </complexType>
    </element>
 
-   <element name="completeOCLResource">
+   <element name="document">
+      <annotation>
+         <documentation>
+            Declaration of a Complete OCL document
+         </documentation>
+      </annotation>
       <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="for"/>
+         </sequence>
          <attribute name="resource" type="string" use="required">
             <annotation>
                <documentation>
-                  A completeOCL file.
+                  The Complete OCL file.
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>
                </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="for">
+      <annotation>
+         <documentation>
+            Declaration of one of the Namepsace URIs for which the Complete OCL document contrubutes additional OCL rules.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="uri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A Namespace URI for which the OCL dcoument may be used.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>
@@ -79,7 +104,7 @@
          This could be used to register the CompleteOCL file &quot;EcoreValidation.ocl&quot; located within a &quot;model&quot; subfolder at the root of the plugin :
 
 &lt;extension point=&quot;org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry&quot;&gt;
-	&lt;completeOCLResource resource=&quot;model/EcoreValidation.ocl&quot;&gt;
+ &lt;completeOCLResource resource=&quot;model/EcoreValidation.ocl&quot;&gt;
 &lt;/completeOCLResource&gt;
       </documentation>
    </annotation>
