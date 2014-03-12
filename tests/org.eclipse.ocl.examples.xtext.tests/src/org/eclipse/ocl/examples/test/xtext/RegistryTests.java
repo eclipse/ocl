@@ -89,6 +89,9 @@ public class RegistryTests extends TestCase
 		assertEquals(setOf, registry.getResourceURIs(listOf_a1_a2));
 	}
 	
+	/**
+	 * Confirm that registrations are counted so after adding twice, it remains till removed twice.
+	 */
 	public void testCompleteOCLRegistry_Rebuild_Counted() {
 		@SuppressWarnings("null")@NonNull URI uriA = URI.createURI("A");
 		@SuppressWarnings("null")@NonNull Set<URI> setOf = Sets.newHashSet();

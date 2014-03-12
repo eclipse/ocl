@@ -96,6 +96,7 @@ public class AllXtextTests
 		}
 		result.addTestSuite(PrettyPrinterTest.class);
 		result.addTestSuite(ProjectMapTest.class);
+		result.addTestSuite(RegistryTests.class);
 		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		result.addTestSuite(StereotypesTest.class);

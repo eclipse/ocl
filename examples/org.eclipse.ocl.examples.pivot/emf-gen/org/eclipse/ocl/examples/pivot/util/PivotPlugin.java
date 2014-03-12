@@ -60,6 +60,7 @@ public final class PivotPlugin
 
 	public static final @NonNull String STANDARD_LIBRARY_PPID = "standard_library";
 	public static final @NonNull String COMPLETE_OCL_REGISTRY_PID = "complete_ocl_registry";
+	public static final @NonNull String COMPLETE_OCL_REGISTRY_QPID = PivotPlugin.PLUGIN_ID + "." + PivotPlugin.COMPLETE_OCL_REGISTRY_PID;
 
 	/**
 	 * Keep track of the singleton.

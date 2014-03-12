@@ -32,7 +32,7 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public class CompleteOCLRegistry
 {
-	public static final @NonNull CompleteOCLRegistry INSTANCE = new CompleteOCLRegistry();
+	public static final @NonNull CompleteOCLRegistry INSTANCE = new CompleteOCLRegistry(null);
 	
 	/**
 	 * A Registration identifies a contribution to a Registry enabling the registry to be rebuilt if a registration is removed.
@@ -88,8 +88,16 @@ public class CompleteOCLRegistry
 		}
 	}
 
-	private @Nullable Map<Registration, Integer> registrations = null;
 	private final @NonNull Map<String, Set<URI>> nsURI2resourceURIs = new HashMap<String, Set<URI>>();
+	private @Nullable Map<Registration, Integer> registrations = null;
+
+	public CompleteOCLRegistry() {
+		this(new HashMap<Registration, Integer>());
+	}
+
+	protected CompleteOCLRegistry(@Nullable Map<Registration, Integer> registrations) {
+		this.registrations = registrations;
+	}
 
 	public synchronized void addRegistration(@NonNull Registration registration) {
 		Map<Registration, Integer> registrations2 = registrations;

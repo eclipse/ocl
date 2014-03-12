@@ -63,6 +63,7 @@ import org.eclipse.ocl.examples.pivot.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator;
+import org.eclipse.ocl.examples.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
@@ -187,9 +188,11 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 			Composite buttonComposite = (Composite)createDialogArea.getChildren()[0];
 
 			Button browseRegisteredOCLFiles = new Button(buttonComposite, SWT.PUSH);
-			browseRegisteredOCLFiles.setText(CompleteOCLUIMessages.LoadCompleteOCLResource_browseOCLFiles);
+			browseRegisteredOCLFiles.setText(CompleteOCLUIMessages.LoadCompleteOCLResource_BrowseRegisteredOCLFiles);
 			prepareBrowseRegisteredOCLFiles(browseRegisteredOCLFiles);
-			registeredURIsForResourceSet = CompleteOCLRegistry.INSTANCE.getResourceURIs(resourceSet);
+//			registeredURIsForResourceSet = CompleteOCLRegistry.INSTANCE.getResourceURIs(resourceSet);
+			CompleteOCLRegistry registry = PDEUtils.createCompleteOCLRegistry();
+			registeredURIsForResourceSet = registry.getResourceURIs(resourceSet);
 			if (registeredURIsForResourceSet.isEmpty()) {
 				browseRegisteredOCLFiles.setEnabled(false);
 			} else {
@@ -250,6 +253,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 				setMessage(CompleteOCLUIMessages.LoadCompleteOCLResource_SelectRegisteredOCLFileURI);
 				setFilter("*");
 				setTitle(CompleteOCLUIMessages.LoadCompleteOCLResource_OCLFileSelection_label);
+				setSize(100, 20);
 			}
 			
 			@Override
