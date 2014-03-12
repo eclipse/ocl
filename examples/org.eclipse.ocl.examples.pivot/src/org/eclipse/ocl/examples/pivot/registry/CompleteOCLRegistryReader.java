@@ -8,7 +8,7 @@
  * Contributors:
  *   Obeo - initial API and implementation 
  */
-package org.eclipse.ocl.examples.xtext.completeocl.internal.registry;
+package org.eclipse.ocl.examples.pivot.registry;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,24 +18,25 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLPlugin;
+import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
 /**
  * A plugin extension reader that populates the Complete OCL resource registry.
  * 
  * @author <a href="mailto:marwa.rostren@obeo.fr">Marwa Rostren</a>
  */
-public class CompleteOCLRegistryReader extends RegistryReader
+class CompleteOCLRegistryReader extends RegistryReader
 {
 	private static final @NonNull String TAG_DOCUMENT = "document";
 	private static final @NonNull String TAG_FOR = "for";
 	private static final @NonNull String ATTRIBUTE_RESOURCE = "resource";
 	private static final @NonNull String ATTRIBUTE_URI = "uri";
+	
+	protected final @NonNull CompleteOCLRegistry registry;
 
-	public CompleteOCLRegistryReader() {
-		super(Platform.getExtensionRegistry(), CompleteOCLPlugin.getPlugin()
-			.getBundle().getSymbolicName(),
-			CompleteOCLPlugin.OCL_RESOURCE_REGISTRY_PID);
+	public CompleteOCLRegistryReader(@NonNull CompleteOCLRegistry registry) {
+		super(Platform.getExtensionRegistry(), PivotPlugin.PLUGIN_ID, PivotPlugin.COMPLETE_OCL_REGISTRY_PID);
+		this.registry = registry;
 	}
 
 	@Override
@@ -67,14 +68,14 @@ public class CompleteOCLRegistryReader extends RegistryReader
 			URI declaredURI = URI.createURI(filePath);
 			String bundleName = "/" + element.getDeclaringExtension().getContributor().getName() + "/";
 			URI bundleURI = URI.createPlatformPluginURI(bundleName, true);
-			@SuppressWarnings("null")@NonNull URI fileURI = declaredURI.resolve(bundleURI);
+			@SuppressWarnings("null")@NonNull URI resourceURI = declaredURI.resolve(bundleURI);
+			CompleteOCLRegistry.Registration registration = new CompleteOCLRegistry.Registration(resourceURI, nsURIs);
 			if (add) {
-				CompleteOCLRegistry.INSTANCE.addURI(fileURI, nsURIs);
+				registry.addRegistration(registration);
 			} else {
-				CompleteOCLRegistry.INSTANCE.removeURI(fileURI);
+				registry.removeRegistration(registration);
 			}
 		}
-
 		return recognized;
 	}
 }

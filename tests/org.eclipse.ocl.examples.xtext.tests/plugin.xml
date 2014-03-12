@@ -153,13 +153,10 @@ The actual constraints are lazily loaded by the first validation run that uses t
             uri="dummy-protocol://dummy-nsuri/ocl/test/Pivot/Company.ecore"
             class="codegen.company.CodegencompanyPackage"/>
    </extension>
-   <extension
-         point="org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry">
-      <document
-            resource="model/ModelWithErrors.ocl">
-         <for
-               uri="http://www.eclipse.org/emf/2002/Ecore">
-         </for>
+   
+   <extension point="org.eclipse.ocl.examples.pivot.complete_ocl_registry">
+      <document resource="model/ModelWithErrors.ocl">
+         <for uri="http://www.eclipse.org/emf/2002/Ecore"/>
       </document>
    </extension>
 

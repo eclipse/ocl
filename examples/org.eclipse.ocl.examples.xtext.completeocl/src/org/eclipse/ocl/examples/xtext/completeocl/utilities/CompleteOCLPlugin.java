@@ -36,7 +36,6 @@ public final class CompleteOCLPlugin extends EMFPlugin
 {
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.completeocl";
 	public static final @NonNull String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL";
-	public static final @NonNull String OCL_RESOURCE_REGISTRY_PID = "complete_ocl_registry";
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->

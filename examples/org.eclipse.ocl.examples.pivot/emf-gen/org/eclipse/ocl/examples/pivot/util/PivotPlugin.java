@@ -59,6 +59,7 @@ public final class PivotPlugin
 	private static final @NonNull String PREFIX_CATCHING = "CAUGHT "; //$NON-NLS-1$
 
 	public static final @NonNull String STANDARD_LIBRARY_PPID = "standard_library";
+	public static final @NonNull String COMPLETE_OCL_REGISTRY_PID = "complete_ocl_registry";
 
 	/**
 	 * Keep track of the singleton.

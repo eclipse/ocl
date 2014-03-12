@@ -59,11 +59,11 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.completeocl.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
 import org.eclipse.swt.SWT;
@@ -189,7 +189,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 			Button browseRegisteredOCLFiles = new Button(buttonComposite, SWT.PUSH);
 			browseRegisteredOCLFiles.setText(CompleteOCLUIMessages.LoadCompleteOCLResource_browseOCLFiles);
 			prepareBrowseRegisteredOCLFiles(browseRegisteredOCLFiles);
-			registeredURIsForResourceSet = CompleteOCLRegistry.INSTANCE.getRegisteredResourceURIs(resourceSet);
+			registeredURIsForResourceSet = CompleteOCLRegistry.INSTANCE.getResourceURIs(resourceSet);
 			if (registeredURIsForResourceSet.isEmpty()) {
 				browseRegisteredOCLFiles.setEnabled(false);
 			} else {
