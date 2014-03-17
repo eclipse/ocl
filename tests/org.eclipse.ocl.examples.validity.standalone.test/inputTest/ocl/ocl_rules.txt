@@ -1,0 +1,2 @@
+inputTest/ocl/eclipse_ocl_rule.ocl
+inputTest/ocl/eclipse_ocl_rule_2.ocl

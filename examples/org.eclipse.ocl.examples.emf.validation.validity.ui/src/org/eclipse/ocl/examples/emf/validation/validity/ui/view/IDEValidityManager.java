@@ -275,7 +275,7 @@ public class IDEValidityManager extends ValidityManager
 		}
 	}
 
-	private @Nullable List<Result> installResultSet(@NonNull ResultSet resultSet, @NonNull IProgressMonitor monitor) {
+	protected @Nullable List<Result> installResultSet(@NonNull ResultSet resultSet, @NonNull IProgressMonitor monitor) {
 		lastResultSet = resultSet;
 		resultsMap.clear();
 		RootNode rootNode = getRootNode();

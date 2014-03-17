@@ -200,7 +200,7 @@ public class ValidityModel
 					ePackageResources.add(resource);
 					String nsURI = ePackage.getNsURI();
 					if (nsURI !=null){
-						List<ConstraintLocator> list = ValidityManager.getConstraintLocators(nsURI);
+						List<ConstraintLocator> list = getConstraintLocators(nsURI);
 						if (list != null) {
 							for (ConstraintLocator constraintLocator : list) {
 								try {
@@ -266,7 +266,7 @@ public class ValidityModel
 		}
 		String nsURI = constrainingObject.eClass().getEPackage().getNsURI();
 		if (nsURI != null) {
-			List<ConstraintLocator> constraintLocators = ValidityManager.getConstraintLocators(nsURI);
+			List<ConstraintLocator> constraintLocators = getConstraintLocators(nsURI);
 			if (constraintLocators != null) {
 				for (ConstraintLocator constraintLocator : constraintLocators) {
 					typeClosure.addAll(constraintLocator.getAllTypes(validityManager, constrainingObject));
@@ -746,7 +746,7 @@ public class ValidityModel
 				String nsURI = ePackage.getNsURI();
 				if (nsURI != null) {
 					monitor.subTask("'" + nsURI + "'");
-					List<ConstraintLocator> list = ValidityManager.getConstraintLocators(nsURI);
+					List<ConstraintLocator> list = getConstraintLocators(nsURI);
 					if (list != null) {
 						@SuppressWarnings("null")@NonNull Set<Resource> ePackageResources = ePackage2resources.get(ePackage);
 						for (ConstraintLocator constraintLocator : list) {
@@ -850,6 +850,10 @@ public class ValidityModel
 
 	public void removeValidatableFilter(@NonNull IVisibilityFilter filter) {
 		validatableFilters.remove(filter);
+	}
+	
+	protected List<ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
+		return ValidityManager.getConstraintLocators(nsURI);
 	}
 	
 	/**
