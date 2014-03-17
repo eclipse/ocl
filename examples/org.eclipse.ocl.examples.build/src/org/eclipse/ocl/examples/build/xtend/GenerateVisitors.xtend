@@ -575,6 +575,21 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 				}
 
 				/**
+				 * Intercept an exception thrown by the delegated visit to perform some post-functionality that may use the visitable object,
+				 * the result of preVisit and the thrown exception to determine the overall wrapped result.
+				 * 
+				 * @return a rethrown RuntimeException or a RuntimeException-wrapped non-RuntimeException.
+				 */
+				protected @Nullable R badVisit(@NonNull «visitablePackageName».«visitableClassName» visitable, @Nullable P prologue, @NonNull Throwable e) throws RuntimeException {
+					if (e instanceof Exception) {
+						throw (RuntimeException)e;
+					}
+					else {
+						throw new RuntimeException(e);
+					}
+				}
+
+				/**
 				 * Obtains the visitor that I wrap.
 				 * 
 				 * @return my wrapped visitor
@@ -614,8 +629,13 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 				«ENDIF»
 				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
 					P prologue = preVisit(object);
-					R result = delegate.visit«eClass.name»(object);
-					return postVisit(object, prologue, result);
+					try {
+						R result = delegate.visit«eClass.name»(object);
+						return postVisit(object, prologue, result);
+					}
+					catch (Throwable e) {
+						return badVisit(object, prologue, e);
+					}
 				}
 				«ENDFOR»
 			}
