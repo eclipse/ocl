@@ -108,6 +108,8 @@ public class EcoreAndUmlProjectPreferencePage extends AbstractProjectPreferenceP
 		horizontalLine.setFont(fieldEditorParent.getFont());
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) EvaluationOptions.ANY_LESS_IS_INVALID,
 			EcoreAndUMLUIMessages.LPG_AnyLessIteratorReturnsInvalid, ANY_LESS_VALUES, fieldEditorParent));
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) EvaluationOptions.CLOSURE_INCLUDES_SOURCES,
+			EcoreAndUMLUIMessages.LPG_ClosureIncludesSources, BOOLEANS, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) EvaluationOptions.LAX_NULL_HANDLING,
 			EcoreAndUMLUIMessages.LPG_LaxNullHandling, BOOLEANS, fieldEditorParent));
 		String[][] Objects = new String[][] {

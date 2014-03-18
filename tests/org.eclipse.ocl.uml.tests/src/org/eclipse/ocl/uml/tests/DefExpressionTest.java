@@ -247,8 +247,7 @@ public class DefExpressionTest
 			
 			oclAllParents = ocl.evaluate(color, expr);
 			assertTrue(oclAllParents instanceof Set<?>);
-			assertTrue(((Set<?>) oclAllParents).size() == 1);
-			assertEquals(((Set<?>) oclAllParents).iterator().next(), color);
+			assertTrue(((Set<?>) oclAllParents).isEmpty());
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
@@ -270,8 +269,7 @@ public class DefExpressionTest
 			
 			oclAllParents = ocl.evaluate(color, expr);
 			assertTrue(oclAllParents instanceof Set<?>);
-			assertTrue(((Set<?>) oclAllParents).size() == 1);
-			assertEquals(((Set<?>) oclAllParents).iterator().next(), color);
+			assertTrue(((Set<?>) oclAllParents).isEmpty());
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}

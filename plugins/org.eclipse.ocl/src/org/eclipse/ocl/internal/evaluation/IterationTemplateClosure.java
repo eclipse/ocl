@@ -26,6 +26,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.options.EvaluationOptions;
 
 /**
  * Instantiation of the iteration template for the <code>closure</code>
@@ -36,6 +37,8 @@ import org.eclipse.ocl.expressions.Variable;
 public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private OCLExpression<C> body;	
+	private int depth = 0;
+	private boolean closureIncludesSources;
 	
 	private IterationTemplateClosure(
 			EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> v,
@@ -43,6 +46,7 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 		super(v);
 		
 		this.body = body;
+		this.closureIncludesSources = EvaluationOptions.getValue(v.getEvaluationEnvironment(), EvaluationOptions.CLOSURE_INCLUDES_SOURCES);
 	}
 	
 	public static<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
@@ -67,13 +71,16 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();		
 		@SuppressWarnings("unchecked")
 		Collection<Object> results = (Collection<Object>) env.getValueOf(resultName);
-		String iterName = iterators.get(0).getName();
-		Object currObj = env.getValueOf(iterName);
-		if (!results.add(currObj)) {
-			return results;
+		if (closureIncludesSources || (depth > 0)) {
+			String iterName = iterators.get(0).getName();
+			Object currObj = env.getValueOf(iterName);
+			if (!results.add(currObj)) {
+				return results;
+			}
 		}
 		if (bodyVal != null) {
 			try {
+				depth++;
 				Collection<?> bodyColl;
 				if (bodyVal instanceof Collection<?>) {
 					bodyColl = (Collection<?>) bodyVal;
@@ -86,6 +93,7 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 				resumeIterators(iterators, iteratorValues);
 			}
 			finally {
+				depth--;
 			}
 		}
 		return results;

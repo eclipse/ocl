@@ -353,26 +353,69 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
     public void test_closure() {
     	boolean nestedIsOrdered = reflection.isOrdered("nestedPackage"); // Ecore and UML differ here
     	boolean nestingIsOrdered = reflection.isOrdered("nestingPackage");
+        //
+        //	Implicitly exclude sources
+        //
 	    @SuppressWarnings("unchecked")
-        Collection<PK> expected1 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5, george); // closure does not include self (george)
-        assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
+        Collection<PK> expected11 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5); // closure does not include self (george)
+        assertQueryEquals(george, expected11, "self->closure(%nestingPackage)");
 
 	    @SuppressWarnings("unchecked")
-	    Collection<PK> expected2 = createCollection(nestedIsOrdered, true, pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
+	    Collection<PK> expected12 = createCollection(nestedIsOrdered, true, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        assertQueryEquals(pkg1, expected12, "self->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected12, "self->asSequence()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected12, "self->closure(%nestedPackage->asSequence())");
 	    @SuppressWarnings("unchecked")
-	    Collection<PK> expected3 = createSet(pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
-        assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
+	    Collection<PK> expected13 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        assertQueryEquals(pkg1, expected13, "self->asBag()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected13, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
 	    @SuppressWarnings("unchecked")
-        Collection<PK> expected4 = createCollection(nestingIsOrdered, true, pkg1);
-        assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
+        Collection<PK> expected14 = createCollection(nestingIsOrdered, true);
+        assertQueryEquals(pkg1, expected14, "self->closure(%nestingPackage)");
         // empty closure
-        assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
+        assertQueryEquals(pkg1, expected14, "self->asSequence()->closure(%nestingPackage)");
+        //
+        //	Explicitly include sources
+        //
+	    EvaluationOptions.setOption(ocl.getEvaluationEnvironment(), EvaluationOptions.CLOSURE_INCLUDES_SOURCES, true);
+	    @SuppressWarnings("unchecked")
+	    Collection<PK> expected21 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5, george); // closure does not include self (george)
+        assertQueryEquals(george, expected21, "self->closure(%nestingPackage)");
+
+	    @SuppressWarnings("unchecked")
+	    Collection<PK> expected22 = createCollection(nestedIsOrdered, true, pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        assertQueryEquals(pkg1, expected22, "self->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected22, "self->asSequence()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected22, "self->closure(%nestedPackage->asSequence())");
+	    @SuppressWarnings("unchecked")
+	    Collection<PK> expected23 = createSet(pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        assertQueryEquals(pkg1, expected23, "self->asBag()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected23, "self->closure(%nestedPackage->asBag())");
+
+        // empty closure
+	    @SuppressWarnings("unchecked")
+        Collection<PK> expected24 = createCollection(nestingIsOrdered, true, pkg1);
+        assertQueryEquals(pkg1, expected24, "self->closure(%nestingPackage)");
+        // empty closure
+        assertQueryEquals(pkg1, expected24, "self->asSequence()->closure(%nestingPackage)");
+        //
+        //	Explicitly exclude sources
+        //
+	    EvaluationOptions.setOption(ocl.getEvaluationEnvironment(), EvaluationOptions.CLOSURE_INCLUDES_SOURCES, false);
+        assertQueryEquals(george, expected11, "self->closure(%nestingPackage)");
+
+        assertQueryEquals(pkg1, expected12, "self->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected12, "self->asSequence()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected12, "self->closure(%nestedPackage->asSequence())");
+        assertQueryEquals(pkg1, expected13, "self->asBag()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected13, "self->closure(%nestedPackage->asBag())");
+
+        // empty closure
+        assertQueryEquals(pkg1, expected14, "self->closure(%nestingPackage)");
+        // empty closure
+        assertQueryEquals(pkg1, expected14, "self->asSequence()->closure(%nestingPackage)");
     }
 
     /**
@@ -586,7 +629,17 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
-	    Collection<Integer> expected3 = createSet(null, 5);
+        Object result = assertQueryEvaluate(getUMLMetamodel(),
+                "let c : Set(%Type) = Set{null} in %ownedType->closure(c)");
+
+        assertTrue(result instanceof Collection<?>);
+
+        Collection<?> collResult = (Collection<?>) result;
+        assertEquals(1, collResult.size());
+        assertNull(collResult.iterator().next());
+
+	    EvaluationOptions.setOption(ocl.getEvaluationEnvironment(), EvaluationOptions.CLOSURE_INCLUDES_SOURCES, true);
+        Collection<Integer> expected3 = createSet(null, 5);
         assertQueryEquals(pkg1, expected3, "let c : Set(UnlimitedNatural) = Set{null} in 5->closure(c)");
     }
 

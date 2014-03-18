@@ -44,6 +44,7 @@ public class EcoreAndUMLUIMessages
 	public static String LPG_AmbiguousAssociationEnds;
 	public static String LPG_AnyLessIteratorReturnsInvalid;
 	public static String LPG_ClosureIterator;
+	public static String LPG_ClosureIncludesSources;
 	public static String LPG_DynamicDispatch;
 	public static String LPG_ConceptualOperationName;
 	public static String LPG_DefinitionConstrainsFeature;

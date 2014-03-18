@@ -95,6 +95,21 @@ public class EvaluationOptions {
     		OCLUtil.PLUGIN_ID, "anyless.invalid", false); //$NON-NLS-1$
 
     /**
+     * <p>
+     * Evaluation option indicating whether a closure includes the sources (true) or excludes them (false, default).
+     * should return invalid (true) or null (false option, default option).
+     * </p><p>
+     * The closure iteration was prototyped by the Classic OCL and omitted sources, however when
+     * adopted by OCL 2.3 sources are included. So the default gives the legacy behavior. Setting
+     * the option true gives the OCL standard behavior.
+     * </p>
+     * 
+     * @since 3.4
+     */
+    public static final Option<Boolean> CLOSURE_INCLUDES_SOURCES = new BooleanOption(
+    		OCLUtil.PLUGIN_ID, "closure.includes.sources", false); //$NON-NLS-1$
+
+    /**
      * Not instantiable by clients.
      */
     private EvaluationOptions() {
