@@ -36,7 +36,6 @@ import org.eclipse.ui.ide.IDE;
  * Wizard allowing the user to create a new OCL rule file.
  * @since 1.2
  */
-@SuppressWarnings({"rawtypes"})	// FIXME - remove after LunaM2 when Platform reverts experimental genercs
 public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 {
 	/** The only page contributing to the wizard */
@@ -114,7 +113,7 @@ public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		IResource selectedResource = null;
-		Iterator it = selection.iterator();
+		Iterator<?> it = selection.iterator();
 		if (it.hasNext()) {
 			Object object = it.next();
 			if (object instanceof IResource) {

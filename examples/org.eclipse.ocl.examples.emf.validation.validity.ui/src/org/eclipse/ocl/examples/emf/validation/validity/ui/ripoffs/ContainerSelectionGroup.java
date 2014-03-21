@@ -47,7 +47,6 @@ import org.eclipse.ui.part.DrillDownComposite;
 /**
  * Workbench-level composite for choosing a container.
  */
-@SuppressWarnings({"rawtypes","unchecked"})	// FIXME - remove after LunaM2 when Platform reverts experimental genercs
 public class ContainerSelectionGroup extends Composite {
 	// The listener to notify of events
 	private Listener listener;
@@ -344,7 +343,7 @@ public class ContainerSelectionGroup extends Composite {
 		selectedContainer = container;
 
 		// expand to and select the specified container
-		List itemsToExpand = new ArrayList();
+		List<IContainer> itemsToExpand = new ArrayList<IContainer>();
 		IContainer parent = container.getParent();
 		while (parent != null) {
 			itemsToExpand.add(0, parent);
