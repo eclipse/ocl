@@ -209,4 +209,9 @@ public abstract class AbstractEssentialOCLRuntimeModule extends DefaultRuntimeMo
 		return org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource.class;
 	}
 
+	// contributed by org.eclipse.ocl.examples.build.fragments.CompatibilityFragment
+	public Class<? extends org.eclipse.xtext.service.GrammarProvider> bindGrammarProvider() {
+		return org.eclipse.ocl.examples.xtext.base.services.CompatibilityGrammarProvider.class;
+	}
+
 }

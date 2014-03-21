@@ -21,6 +21,7 @@
 module GenerateMarkupEditor
 
 import org.eclipse.emf.mwe.utils.*
+import org.eclipse.ocl.examples.build.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
@@ -110,6 +111,8 @@ Workflow {
 
 			// quickfix API 
 			fragment = quickfix.QuickfixProviderFragment {}			
+			// *.xtextbin support on Xtext 2.3		
+			fragment = fragments.CompatibilityFragment {}			
 		}
 	}
 }

@@ -146,6 +146,8 @@ Workflow {
 			fragment = fragments.EssentialOCLFragment {}			
 			// Support Markup in Hover text 
 			fragment = fragments.MarkupHoverFragment {}			
+			// *.xtextbin support on Xtext 2.3		
+			fragment = fragments.CompatibilityFragment {}			
 		}
 	}
 }

@@ -149,4 +149,9 @@ public abstract class AbstractMarkupRuntimeModule extends DefaultRuntimeModule {
 		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.NAMED_BUILDER_SCOPE)).to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
 	}
 
+	// contributed by org.eclipse.ocl.examples.build.fragments.CompatibilityFragment
+	public Class<? extends org.eclipse.xtext.service.GrammarProvider> bindGrammarProvider() {
+		return org.eclipse.ocl.examples.xtext.base.services.CompatibilityGrammarProvider.class;
+	}
+
 }

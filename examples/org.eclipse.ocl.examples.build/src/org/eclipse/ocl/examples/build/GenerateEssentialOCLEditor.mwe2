@@ -148,7 +148,9 @@ Workflow {
 			// EssentialOCL bindings 
 			fragment = fragments.EssentialOCLFragment {}			
 			// Support Markup and Hover text 
-			fragment = fragments.MarkupHoverFragment {}			
+			fragment = fragments.MarkupHoverFragment {}
+			// *.xtextbin support on Xtext 2.3		
+			fragment = fragments.CompatibilityFragment {}			
 		}
 	}
 }
