@@ -14,6 +14,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.ui.commands;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EValidator.Registry;
 import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -41,6 +43,86 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class ValidateHandler extends ValidateAction implements IHandler//2
 {
+	protected final static class Diagnostician_2_8 extends Diagnostician
+	{
+		private final ResourceSet resourceSet;
+		private final AdapterFactory adapterFactory;
+		private final IProgressMonitor progressMonitor;
+
+		protected Diagnostician_2_8(Registry eValidatorRegistry, ResourceSet resourceSet,
+				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
+			super(eValidatorRegistry);
+			this.resourceSet = resourceSet;
+			this.adapterFactory = adapterFactory;
+			this.progressMonitor = progressMonitor;
+		}
+
+		@Override
+		public String getObjectLabel(EObject eObject) {
+			if (adapterFactory != null && !eObject.eIsProxy()) {
+				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProvider.class);
+				if (itemLabelProvider != null) {
+					return itemLabelProvider.getText(eObject);
+				}
+			}
+			return super.getObjectLabel(eObject);
+		}
+
+/*		@Override
+		protected boolean doValidate(EValidator eValidator, EClass eClass, EObject eObject,
+				DiagnosticChain diagnostics, Map<Object, Object> context) {
+			progressMonitor.worked(1);
+			synchronized (resourceSet) {
+				return super.doValidate(eValidator, eClass, eObject, diagnostics, context);
+			}
+		} */
+	}
+	protected final static class Diagnostician_2_9 extends Diagnostician
+	{
+		private final ResourceSet resourceSet;
+		private final AdapterFactory adapterFactory;
+		private final IProgressMonitor progressMonitor;
+
+		protected Diagnostician_2_9(Registry eValidatorRegistry, ResourceSet resourceSet,
+				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
+			super(eValidatorRegistry);
+			this.resourceSet = resourceSet;
+			this.adapterFactory = adapterFactory;
+			this.progressMonitor = progressMonitor;
+		}
+
+		@Override
+		public String getObjectLabel(EObject eObject) {
+			if (adapterFactory != null && !eObject.eIsProxy()) {
+				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProvider.class);
+				if (itemLabelProvider != null) {
+					return itemLabelProvider.getText(eObject);
+				}
+			}
+			return super.getObjectLabel(eObject);
+		}
+
+		@Override
+		protected boolean doValidate(EValidator eValidator, EClass eClass, EObject eObject,
+				DiagnosticChain diagnostics, Map<Object, Object> context) {
+			progressMonitor.worked(1);
+			synchronized (resourceSet) {
+				return super.doValidate(eValidator, eClass, eObject, diagnostics, context);
+			}
+		}
+	}
+
+	private static Boolean diagnosticianHasDoValidate = null; // Use 2.9/2.8 Diagnostician
+
+	protected static boolean diagnosticianHasDoValidate() {
+		for (Method method : Diagnostician.class.getDeclaredMethods()) {
+			if ("doValidate".equals(method.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * @see IHandler#addHandlerListener(IHandlerListener)
 	 */
@@ -53,31 +135,20 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 		final ResourceSet resourceSet = domain.getResourceSet();
 		EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
 		registry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.INSTANCE);
-		return new Diagnostician(registry) {
-
-			@Override
-			public String getObjectLabel(EObject eObject) {
-				if (adapterFactory != null && !eObject.eIsProxy()) {
-					IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory
-						.adapt(eObject, IItemLabelProvider.class);
-					if (itemLabelProvider != null) {
-						return itemLabelProvider.getText(eObject);
-					}
-				}
-				return super.getObjectLabel(eObject);
-			}
-
-			@Override
-			protected boolean doValidate(EValidator eValidator, EClass eClass,
-					EObject eObject, DiagnosticChain diagnostics,
-					Map<Object, Object> context) {
-				progressMonitor.worked(1);
-				synchronized (resourceSet) {
-					return super.doValidate(eValidator, eClass, eObject,
-						diagnostics, context);
+		if (diagnosticianHasDoValidate == null) {
+			diagnosticianHasDoValidate = false;
+			for (Method method : Diagnostician.class.getDeclaredMethods()) {
+				if ("doValidate".equals(method.getName())) {
+					diagnosticianHasDoValidate = true;
 				}
 			}
-		};
+		}
+		if (diagnosticianHasDoValidate) {
+			return new Diagnostician_2_9(registry, resourceSet, adapterFactory, progressMonitor);
+		}
+		else {
+			return new Diagnostician_2_8(registry, resourceSet, adapterFactory, progressMonitor);
+		}
 	}
 
 	/**
