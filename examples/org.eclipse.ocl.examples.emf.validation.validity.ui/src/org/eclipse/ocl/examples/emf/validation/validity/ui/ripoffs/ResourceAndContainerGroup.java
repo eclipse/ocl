@@ -22,8 +22,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.equinox.bidi.StructuredTextTypeHandlerFactory;
-import org.eclipse.jface.util.BidiUtils;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -215,7 +213,7 @@ public class ResourceAndContainerGroup implements Listener {
 		data.widthHint = SIZING_TEXT_FIELD_WIDTH;
 		resourceNameField.setLayoutData(data);
 		resourceNameField.setFont(font);
-		BidiUtils.applyBidiProcessing(resourceNameField, StructuredTextTypeHandlerFactory.FILE);
+//		BidiUtils.applyBidiProcessing(resourceNameField, StructuredTextTypeHandlerFactory.FILE);	-- first available on Kepler
 		validateControls();
 	}
 

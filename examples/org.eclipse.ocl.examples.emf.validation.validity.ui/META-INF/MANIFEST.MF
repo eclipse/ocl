@@ -6,7 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.ocl.examples.emf.validation.validity.ui.plugin.ValidityUIPlugin$Implementation
 Require-Bundle: org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
- org.eclipse.equinox.bidi;bundle-version="[0.9.0,1.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ui.forms;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.emf.ecore.edit;bundle-version="[2.7.0,3.0.0)",
@@ -23,4 +22,5 @@ Export-Package: org.eclipse.ocl.examples.emf.validation.validity.ui.actions,
  org.eclipse.ocl.examples.emf.validation.validity.ui.export,
  org.eclipse.ocl.examples.emf.validation.validity.ui.markers,
  org.eclipse.ocl.examples.emf.validation.validity.ui.plugin,
+ org.eclipse.ocl.examples.emf.validation.validity.ui.ripoffs,
  org.eclipse.ocl.examples.emf.validation.validity.ui.view

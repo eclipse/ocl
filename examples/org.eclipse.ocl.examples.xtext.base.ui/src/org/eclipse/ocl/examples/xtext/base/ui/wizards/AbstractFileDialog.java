@@ -27,9 +27,9 @@ import org.eclipse.emf.ecore.presentation.EcoreActionBarContributor.ExtendedLoad
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.ripoffs.ResourceAndContainerGroup;
 import org.eclipse.ocl.examples.xtext.base.ui.Activator;
 import org.eclipse.ocl.examples.xtext.base.ui.messages.BaseUIMessages;
-import org.eclipse.ocl.examples.xtext.base.ui.ripoffs.ResourceAndContainerGroup;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

@@ -26,10 +26,6 @@ public class BaseUIMessages
 		NLS.initializeMessages(BaseUIMessages.class.getName(), BaseUIMessages.class);
 	}
 
-	// source IDEWorkbenchMessages	
-	public static String ContainerGroup_message;
-	public static String ContainerGroup_selectFolder;
-
 	public static String NewWizardPage_errorTitle;
 	public static String NewWizardPage_file;
 	public static String NewWizardPage_internalErrorTitle;
@@ -39,15 +35,6 @@ public class BaseUIMessages
 	public static String NewWizardPage_pageName;
 	public static String NewWizardPage_resourceURIs_label;
 	public static String NewWizardPage_resourceWillBeFilteredWarning;
-
-	// source IDEWorkbenchMessages	
-	public static String ResourceGroup_resource;
-	public static String ResourceGroup_nameExists;
-	public static String ResourceGroup_folderEmpty;
-	public static String ResourceGroup_noProject;
-	public static String ResourceGroup_emptyName;
-	public static String ResourceGroup_invalidFilename;
-	public static String ResourceGroup_pathOccupied;
 
 	public static String SaveAS_ShellTitle;
 	public static String SaveAS_Title;
