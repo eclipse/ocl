@@ -46,8 +46,7 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 	{
 		private final AdapterFactory adapterFactory;
 
-		protected Diagnostician_2_8(Registry eValidatorRegistry, ResourceSet resourceSet,
-				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
+		protected Diagnostician_2_8(EValidator.Registry eValidatorRegistry, AdapterFactory adapterFactory) {
 			super(eValidatorRegistry);
 			this.adapterFactory = adapterFactory;
 		}
@@ -69,7 +68,7 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 		private final AdapterFactory adapterFactory;
 		private final IProgressMonitor progressMonitor;
 
-		protected Diagnostician_2_9(Registry eValidatorRegistry, ResourceSet resourceSet,
+		protected Diagnostician_2_9(EValidator.Registry eValidatorRegistry, ResourceSet resourceSet,
 				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
 			super(eValidatorRegistry);
 			this.resourceSet = resourceSet;
@@ -133,7 +132,7 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 			return new Diagnostician_2_9(registry, resourceSet, adapterFactory, progressMonitor);
 		}
 		else {
-			return new Diagnostician_2_8(registry, resourceSet, adapterFactory, progressMonitor);
+			return new Diagnostician_2_8(registry, adapterFactory);
 		}
 	}
 
