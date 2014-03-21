@@ -41,11 +41,11 @@ public class LabelGeneratorRegistryReader extends RegistryReader
 		}
 
 		public @NonNull ILabelGenerator<?> getLabelGenerator() {
-			if (labelGenerator == null) {
-				labelGenerator = (ILabelGenerator<?>) createInstance();
+			ILabelGenerator<?> labelGenerator2 = labelGenerator;
+			if (labelGenerator2 == null) {
+				labelGenerator2 = labelGenerator = (ILabelGenerator<?>) createInstance();
 			}
-			assert labelGenerator != null;
-			return labelGenerator;
+			return labelGenerator2;
 		}
 
 		public @NonNull IConfigurationElement getElement() {
