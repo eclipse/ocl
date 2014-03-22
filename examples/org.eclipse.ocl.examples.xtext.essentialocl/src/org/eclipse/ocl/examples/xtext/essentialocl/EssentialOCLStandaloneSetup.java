@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.xtext.base.BaseStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.base.utilities.BinaryGrammarResourceFactoryImpl;
+import org.eclipse.ocl.examples.xtext.base.services.CompatibilityGrammarProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScoping;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
@@ -96,7 +96,7 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 					"xmi", new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl());
 			if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("xtextbin"))
 				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-					"xtextbin", new BinaryGrammarResourceFactoryImpl());
+					"xtextbin", CompatibilityGrammarProvider.BinaryGrammarResourceFactoryImpl.INSTANCE);
 			if (!EPackage.Registry.INSTANCE.containsKey(org.eclipse.xtext.XtextPackage.eNS_URI))
 				EPackage.Registry.INSTANCE.put(org.eclipse.xtext.XtextPackage.eNS_URI, org.eclipse.xtext.XtextPackage.eINSTANCE);
 	

@@ -14,8 +14,13 @@
  */
 package org.eclipse.ocl.examples.xtext.base.services;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.ocl.examples.xtext.base.utilities.BinaryGrammarResourceFactoryImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.parser.BaseEPackageAccess;
@@ -29,10 +34,47 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 /**
- * This adds the Xtext 2.4 *.xtextbin functionality for use on Xtext 2.3
+ * This makes the *.xtextbin grammar functionality for Xtext >= 2.4  available for use on Xtext 2.3
  */
 @Singleton
-public class CompatibilityGrammarProvider extends GrammarProvider {
+public class CompatibilityGrammarProvider extends GrammarProvider
+{
+	/**
+	 * @author Moritz Eysholdt - Initial contribution and API
+	 * <p>
+	 * This copy of org.eclipse.xtext.resource.impl.BinaryGrammarResourceFactoryImpl
+	 * enables binary grammars to be used by an Xtext 2.6 generated editor on Xtext 2.3.1.
+	 */
+	public static class BinaryGrammarResourceFactoryImpl implements Factory
+	{
+		public static final @NonNull BinaryGrammarResourceFactoryImpl INSTANCE = new BinaryGrammarResourceFactoryImpl();
+
+		public Resource createResource(URI uri) {
+			XMIResourceImpl resource = new XMIResourceImpl(uri);
+			
+			// make it a binary resource
+			resource.getDefaultLoadOptions().put(XMLResource.OPTION_BINARY, Boolean.TRUE);
+			resource.getDefaultSaveOptions().put(XMLResource.OPTION_BINARY, Boolean.TRUE);
+			
+			// don't do any resolution, since the only external references point to Ecore elements from EPackages in the registry. 
+			XMLResource.URIHandler uriHandler = new XMLResource.URIHandler() {
+	
+				public void setBaseURI(URI uri) {
+				}
+	
+				public URI resolve(URI uri) {
+					return uri;
+				}
+	
+				public URI deresolve(URI uri) {
+					return uri;
+				}
+			};
+			resource.getDefaultLoadOptions().put(XMLResource.OPTION_URI_HANDLER, uriHandler);
+			resource.getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, uriHandler);
+			return resource;
+		}
+	}
 
 	private final String languageName;
 
@@ -61,7 +103,7 @@ public class CompatibilityGrammarProvider extends GrammarProvider {
 						XtextResourceSet resourceSet = resourceSetProvider.get();
 						if (!resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().containsKey("xtextbin"))
 							resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-							"xtextbin", new BinaryGrammarResourceFactoryImpl());
+							"xtextbin", BinaryGrammarResourceFactoryImpl.INSTANCE);
 						if (classLoader != null) {
 							resourceSet.setClasspathURIContext(classLoader);
 						} else {
