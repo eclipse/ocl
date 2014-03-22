@@ -15,7 +15,6 @@
   <rm:locator pattern="^org\.eclipse\.emf\.validation.*" searchPathRef="emf-validation"/>
   <rm:locator pattern="^org\.eclipse\.emf\.examples\.library.*$" searchPathRef="emf-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
-  <rm:locator pattern="^org\.eclipse\.jdt\.annotation.*" searchPathRef="jdtannot"/>
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="ocl-source-code"/>
   <rm:locator pattern="^org\.eclipse\.uml2.*" searchPathRef="uml"/>
   <rm:locator pattern="^org\.eclipse\.xpand.*" searchPathRef="xpand"/>
@@ -181,15 +180,6 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/tools/gef/updates/releases">
-        <bc:propertyRef key="eclipse.download"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="jdtannot">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(resolve.target.platform=true)(|(build.type=I)(build.type=N)))" readerType="p2" source="false" mutable="false">
-      <rm:property key="buckminster.source" value="false"/>
-      <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="http://download.eclipse.org/releases/kepler">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
