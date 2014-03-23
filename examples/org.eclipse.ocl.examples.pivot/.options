@@ -8,3 +8,12 @@ org.eclipse.ocl.examples.pivot/validate/instance=false
 
 # Trace validation of OpaqueElement bodies 
 org.eclipse.ocl.examples.pivot/validate/opaqueElement=false
+
+# Trace validation of ElementExtension creations 
+org.eclipse.ocl.examples.pivot/uml2pivot/addElementExtension=false
+
+# Trace validation of Import discoveries 
+org.eclipse.ocl.examples.pivot/uml2pivot/addImportedResource=false
+
+# Trace validation of Stereotype Application discoveries 
+org.eclipse.ocl.examples.pivot/uml2pivot/addStereotypeApplication=false

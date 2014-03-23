@@ -49,6 +49,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -67,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
+import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -76,6 +79,10 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public abstract class UML2Pivot extends AbstractEcore2Pivot
 {
+	public static final @NonNull TracingOption ADD_ELEMENT_EXTENSION = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2pivot/addElementExtension");
+	public static final @NonNull TracingOption ADD_IMPORTED_RESOURCE = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2pivot/addImportedResource");
+	public static final @NonNull TracingOption ADD_STEREOTYPE_APPLICATION = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2pivot/addStereotypeApplication");
+	
 	public static final @SuppressWarnings("null")@NonNull String STEREOTYPE_BASE_PREFIX = org.eclipse.uml2.uml.Extension.METACLASS_ROLE_PREFIX; //"base_";
 	public static final @SuppressWarnings("null")@NonNull String STEREOTYPE_EXTENSION_PREFIX = org.eclipse.uml2.uml.Extension.STEREOTYPE_ROLE_PREFIX; //"extension_";
 
@@ -419,6 +426,9 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 					importedResources = new ArrayList<Resource>();
 				}
 				if (!importedResources.contains(importedResource)) {
+					if (ADD_IMPORTED_RESOURCE.isActive()) {
+						ADD_IMPORTED_RESOURCE.println(String.valueOf(importedResource.getURI()));
+					}
 					importedResources.add(importedResource);
 				}
 			}
@@ -443,6 +453,15 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 		@Override
 		public void addStereotypeApplication(@NonNull EObject umlStereotypeApplication) {
+			if (ADD_STEREOTYPE_APPLICATION.isActive()) {
+				if (umlStereotypeApplication instanceof DynamicEObjectImpl) {
+					ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(umlStereotypeApplication.eClass()));
+				}
+				else {
+					ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(umlStereotypeApplication.eClass()));
+//					ADD_STEREOTYPE_APPLICATION.println(umlStereotypeApplication.toString());
+				}
+			}
 			umlStereotypeApplications.add(umlStereotypeApplication);
 			EClass eClass = umlStereotypeApplication.eClass();
 			EPackage ePackage = eClass.getEPackage();
@@ -741,10 +760,28 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 			// is the case for the standard UML profile(s).
 			//
 			Map<EObject, List<org.eclipse.uml2.uml.Element>> stereotypedElements = new HashMap<EObject, List<org.eclipse.uml2.uml.Element>>();
+			Map<EClass, Set<org.eclipse.uml2.uml.Element>> stereotypedElements2 = new HashMap<EClass, Set<org.eclipse.uml2.uml.Element>>();
 			for (EObject umlStereotypeApplication : umlStereotypeApplications) {
 				assert umlStereotypeApplication != null;
-				stereotypedElements.put(umlStereotypeApplication, resolveStereotypedElements(umlStereotypeApplication));
-			}	
+				List<org.eclipse.uml2.uml.Element> resolvedStereotypedElements = resolveStereotypedElements(umlStereotypeApplication);
+				stereotypedElements.put(umlStereotypeApplication, resolvedStereotypedElements);
+				Set<org.eclipse.uml2.uml.Element> set = stereotypedElements2.get(umlStereotypeApplication.eClass());
+				if (set == null) {
+					set = new HashSet<org.eclipse.uml2.uml.Element>();
+					stereotypedElements2.put(umlStereotypeApplication.eClass(), set);
+				}
+				set.addAll(resolvedStereotypedElements);
+			}
+			if (ADD_ELEMENT_EXTENSION.isActive()) {
+				StringBuffer s = new StringBuffer();
+				for (EClass eClass : stereotypedElements2.keySet()) {
+					s.append("\n\t" + EcoreUtils.qualifiedNameFor(eClass));
+					for (org.eclipse.uml2.uml.Element element : stereotypedElements2.get(eClass)) {
+						s.append("\n\t\t" + EcoreUtils.qualifiedNameFor(element));
+					}
+				}
+				ADD_ELEMENT_EXTENSION.println("Applications" + s.toString());
+			}
 			//
 			// Compute the list of UML stereotype application for each stereotyped pivot element.
 			//
@@ -781,6 +818,9 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 						newElementExtension.getSuperClass().add(metaModelManager.getOclAnyType());
 						setOriginalMapping(newElementExtension, umlStereotypeApplication);
 						newElementExtensions.add(newElementExtension);
+						if (ADD_ELEMENT_EXTENSION.isActive()) {
+							ADD_ELEMENT_EXTENSION.println(newElementExtension.toString());
+						}
 					}
 				}
 //				System.out.println("Applying stereotypes to " + pivotStereotypedElement);
