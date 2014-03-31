@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Package xmi:id="_0" name="SubSuperStructure">
     <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs" name="AuxiliaryConstructs">
       <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs-Templates" name="Templates">
@@ -1487,14 +1487,41 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
         <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_b9hMgMaCEeGSosHO1vMMFA" name="String"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_iQY4IOkFEeGPiYoGg5fAqg" name="Profiles">
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_tEhkYLjIEeOjq8qOYXet4Q" name="Boolean"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_oMqCQOkFEeGPiYoGg5fAqg" name="Class"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="_lDhHEOkFEeGPiYoGg5fAqg" name="Package"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_XmK6gLjKEeOjq8qOYXet4Q" name="Element" isAbstract="true"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_lDhHEOkFEeGPiYoGg5fAqg" name="Package">
+          <ownedAttribute xmi:id="_4ZppkLjIEeOjq8qOYXet4Q" name="profileApplication" type="_hi6iYLjIEeOjq8qOYXet4Q" aggregation="composite" association="_wiEz4LjJEeOjq8qOYXet4Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6y4x0LjIEeOjq8qOYXet4Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7Lk-oLjIEeOjq8qOYXet4Q" value="*"/>
+          </ownedAttribute>
+        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_lOhdMOkFEeGPiYoGg5fAqg" name="Profile">
           <generalization xmi:id="_XnqLVX7VEeOu79LxSz8Ylw" general="_lDhHEOkFEeGPiYoGg5fAqg"/>
+          <ownedAttribute xmi:id="_QdKF4LjJEeOjq8qOYXet4Q" name="application" type="_hi6iYLjIEeOjq8qOYXet4Q" association="_iwALILjJEeOjq8qOYXet4Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QdKF4bjJEeOjq8qOYXet4Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QdKF4rjJEeOjq8qOYXet4Q" value="*"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_hi6iYLjIEeOjq8qOYXet4Q" name="ProfileApplication">
+          <generalization xmi:id="_daQZALjKEeOjq8qOYXet4Q" general="_XmK6gLjKEeOjq8qOYXet4Q"/>
+          <ownedAttribute xmi:id="_okNa4LjIEeOjq8qOYXet4Q" name="isStrict" type="_tEhkYLjIEeOjq8qOYXet4Q">
+            <defaultValue xmi:type="uml:LiteralString" xmi:id="_zCR8QLjIEeOjq8qOYXet4Q" value="false"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_D0t-sLjJEeOjq8qOYXet4Q" name="applyingPackage" type="_lDhHEOkFEeGPiYoGg5fAqg" association="_wiEz4LjJEeOjq8qOYXet4Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_D0t-sbjJEeOjq8qOYXet4Q" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_D0t-srjJEeOjq8qOYXet4Q" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_SS1OELjJEeOjq8qOYXet4Q" name="appliedProfile" type="_lOhdMOkFEeGPiYoGg5fAqg" association="_iwALILjJEeOjq8qOYXet4Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SS1OEbjJEeOjq8qOYXet4Q" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SS1OErjJEeOjq8qOYXet4Q" value="1"/>
+          </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_nH7O0OkFEeGPiYoGg5fAqg" name="Stereotype">
           <generalization xmi:id="_XnqLVn7VEeOu79LxSz8Ylw" general="_oMqCQOkFEeGPiYoGg5fAqg"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_iwALILjJEeOjq8qOYXet4Q" name="A_appliedProfile_application" memberEnd="_SS1OELjJEeOjq8qOYXet4Q _QdKF4LjJEeOjq8qOYXet4Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_wiEz4LjJEeOjq8qOYXet4Q" name="A_applyingPackage_profileApplication" memberEnd="_D0t-sLjJEeOjq8qOYXet4Q _4ZppkLjIEeOjq8qOYXet4Q"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_xg6fUPF8Ed-BXqn3guNB1A" name="Sub_IsStatic">
