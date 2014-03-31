@@ -9,6 +9,18 @@ org.eclipse.ocl.examples.pivot/validate/instance=false
 # Trace validation of OpaqueElement bodies 
 org.eclipse.ocl.examples.pivot/validate/opaqueElement=false
 
+# Trace creation of base_xxx properties 
+org.eclipse.ocl.examples.pivot/typeServer/addBaseProperty=false
+
+# Trace creation of extension_xxx properties 
+org.eclipse.ocl.examples.pivot/typeServer/addExtensionProperty=false
+
+# Trace lazy resolution of member operations 
+org.eclipse.ocl.examples.pivot/typeServer/initMemberOperations=false
+
+# Trace lazy resolution of member properties 
+org.eclipse.ocl.examples.pivot/typeServer/initMemberProperties=false
+
 # Trace validation of ElementExtension creations 
 org.eclipse.ocl.examples.pivot/uml2pivot/addElementExtension=false
 

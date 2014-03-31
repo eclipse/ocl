@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.executor.PivotReflectiveFragment;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 import com.google.common.base.Function;
@@ -69,6 +71,11 @@ import com.google.common.collect.Iterators;
  */
 public abstract class AbstractTypeServer extends ReflectiveType implements TypeServer
 {
+	public static final @NonNull TracingOption ADD_BASE_PROPERTY = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/addBaseProperty");
+	public static final @NonNull TracingOption ADD_EXTENSION_PROPERTY = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/addExtensionProperty");
+	public static final @NonNull TracingOption INIT_MEMBER_OPERATIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/initMemberOperations");
+	public static final @NonNull TracingOption INIT_MEMBER_PROPERTIES = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/initMemberProperties");
+
 	public static final class BestOperation implements Function<List<DomainOperation>, DomainOperation> {
 
 		public DomainOperation apply(List<DomainOperation> operations) {
@@ -831,6 +838,9 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	}
 
 	private void initMemberOperationsFrom(@NonNull DomainType type) {
+		if (INIT_MEMBER_OPERATIONS.isActive()) {
+			INIT_MEMBER_OPERATIONS.println(this + " from " + type);
+		}
 		for (DomainOperation pivotOperation : type.getLocalOperations()) {
 			if ((pivotOperation != null) && (pivotOperation.getName() != null)) {		// name may be null for partially initialized Complete OCL document.
 				addedMemberOperation(pivotOperation);
@@ -886,17 +896,24 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return name2properties2;
 	}
 
-	protected void initMemberPropertiesFrom(@NonNull DomainType type) {
-		if (type instanceof Type) {
-			type = PivotUtil.getUnspecializedTemplateableElement((Type) type);
+	protected void initMemberPropertiesFrom(@NonNull DomainType asType) {
+		DomainType asPrimaryType;
+		if (asType instanceof Type) {
+			asPrimaryType = PivotUtil.getUnspecializedTemplateableElement((Type) asType);
 		}
-		if (type instanceof Type) {
-			for (ElementExtension extension : ((Type)type).getExtension()) {
+		else {
+			asPrimaryType = asType;
+		}
+		if (INIT_MEMBER_PROPERTIES.isActive()) {
+			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType);
+		}
+		if (asPrimaryType instanceof Type) {
+			for (ElementExtension extension : ((Type)asPrimaryType).getExtension()) {
 				assert extension != null;
-				initStereotypePropertiesFrom((Type)type, extension);
+				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
 			}
 		}
-		for (DomainProperty pivotProperty : type.getLocalProperties()) {
+		for (DomainProperty pivotProperty : asPrimaryType.getLocalProperties()) {
 			if (pivotProperty != null) {
 				addedMemberProperty(pivotProperty);
 			}
@@ -950,6 +967,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		
 		baseProperty.setOpposite(extensionProperty);
 		extensionProperty.setOpposite(baseProperty);
+		if (ADD_BASE_PROPERTY.isActive()) {
+			ADD_BASE_PROPERTY.println(String.valueOf(baseProperty));
+		}
+		if (ADD_EXTENSION_PROPERTY.isActive()) {
+			ADD_EXTENSION_PROPERTY.println(String.valueOf(extensionProperty));
+		}
 
 /*		String stereotypePropertyName = UML2Pivot.STEREOTYPE; -- needs special ImplementationManager support to distinguish property
 		Property stereotypeProperty = DomainUtil.getNamedElement(extensionType.getOwnedAttribute(), stereotypePropertyName);
