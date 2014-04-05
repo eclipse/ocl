@@ -29,6 +29,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
@@ -62,9 +64,21 @@ public abstract class AbstractValidityTestCase extends TestCase
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.validity.test"; //$NON-NLS-1$
 	public static final @NonNull TracingOption TEST_PROGRESS = new TracingOption(PLUGIN_ID, "test/progress");
 
-	protected static final @NonNull String TEST_LOCATION = EcorePlugin.IS_ECLIPSE_RUNNING ? "platform:/plugin/" : "file:/C:/GIT/org.eclipse.ocl/tests/";
-;
-	protected static final @NonNull String TEST_PROJECT_NAME = /*"test." +*/ PLUGIN_ID;
+	protected static @NonNull String TEST_PROJECT_LOCATION;
+
+	static {
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			TEST_PROJECT_LOCATION = "platform:/plugin/" +PLUGIN_ID;
+		}
+		else {
+			StandaloneProjectMap projectMap = new StandaloneProjectMap();
+			IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(PLUGIN_ID);
+			TEST_PROJECT_LOCATION = projectDescriptor.getLocationURI().toString();
+			if (TEST_PROJECT_LOCATION.endsWith("/")) {
+				TEST_PROJECT_LOCATION = TEST_PROJECT_LOCATION.substring(0, TEST_PROJECT_LOCATION.length()-1);
+			}
+		}
+	}
 
 	protected static final @NonNull String OCL_CONSTRAINTS_MODEL = "model/ecore.ocl";
 	protected static final @NonNull String OCL_CONSTRAINTS_MODEL2 = "model/ecoreTest.ocl";
@@ -80,11 +94,11 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final Integer EXPECTED_RESULTS = EXPECTED_SUCCESSES + EXPECTED_INFOS + EXPECTED_WARNINGS + EXPECTED_ERRORS + EXPECTED_FAILURES;
 
 	protected static final @NonNull String CONSTRAINABLE_ECORE = "ecore in http://www.eclipse.org/emf/2002/Ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecore.ocl.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest.ocl.ecore";
-//	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest2.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/validityModelTest.ecoretest";
+	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in " + TEST_PROJECT_LOCATION + "/model/ecore.ocl.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in " + TEST_PROJECT_LOCATION + "/model/ecoreTest.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in " + TEST_PROJECT_LOCATION + "/model/ecoreTest.ocl.ecore";
+//	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in " + TEST_PROJECT_LOCATION + "/model/ecoreTest2.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_PROJECT_LOCATION + "/model/validityModelTest.ecoretest";
 	protected static final @NonNull String CONSTRAINABLE_EATTRIBUTE_CONSTRAINT = "ecore::EAttribute::eattribute_constraint";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS_CONSTRAINT = "ecore::EClass::eclass_constraint";
 	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT_2 = "ecore::EPackage::epackage_constraint_2";
@@ -96,9 +110,9 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final @NonNull String CONSTRAINABLE_ECLASS3 = "ecoreTest::EClass3";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS5 = "ecoreTest2::Eclass5";
 	
-	protected static final @NonNull String VALIDATABLE_ECORE_TEST = "ecoreTest in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest.ecore";
-	protected static final @NonNull String VALIDATABLE_ECORETEST2 = "ecoreTest2 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest2.ecore";
-	protected static final @NonNull String VALIDATABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/validityModelTest.ecoretest";
+	protected static final @NonNull String VALIDATABLE_ECORE_TEST = "ecoreTest in " + TEST_PROJECT_LOCATION + "/model/ecoreTest.ecore";
+	protected static final @NonNull String VALIDATABLE_ECORETEST2 = "ecoreTest2 in " + TEST_PROJECT_LOCATION + "/model/ecoreTest2.ecore";
+	protected static final @NonNull String VALIDATABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_PROJECT_LOCATION + "/model/validityModelTest.ecoretest";
 	protected static final @NonNull String VALIDATABLE_E_CLASS3_ECLASS5 = "ecoreTest::EClass3";
 	protected static final @NonNull String VALIDATABLE_ECLASS2 = "EClass2";
 	protected static final @NonNull String VALIDATABLE_E_CLASS5 = "Eclass5";
