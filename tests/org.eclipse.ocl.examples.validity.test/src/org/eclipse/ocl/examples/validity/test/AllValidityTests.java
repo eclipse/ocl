@@ -17,12 +17,12 @@ package org.eclipse.ocl.examples.validity.test;
 
 import java.util.Arrays;
 
+import org.eclipse.emf.common.EMFPlugin;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
-
-import org.eclipse.emf.common.EMFPlugin;
 
 /**
  * Tests for the Xtext editor support.
@@ -37,8 +37,8 @@ public class AllValidityTests
 
 	public static void buildSuite(TestSuite suite) {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-//			suite.addTestSuite(HTMLExportOCLValidationResultTests.class);
-//			suite.addTestSuite(TextExportOCLValidationResultTests.class);
+			suite.addTestSuite(HTMLExportOCLValidationResultTests.class);
+			suite.addTestSuite(TextExportOCLValidationResultTests.class);
 			suite.addTestSuite(ValidityManagerTests.class);
 			suite.addTestSuite(ValidityModelTests.class);
 		}

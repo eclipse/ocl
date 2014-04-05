@@ -17,7 +17,7 @@ package org.eclipse.ocl.examples.validity.test;
 
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.StringReader;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -25,11 +25,10 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
-import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.export.HTMLExport;
+import org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,21 +49,18 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 
 	private XPath xPathEngine = null;
 
-	protected void assertXPathTrue(String expression) throws XPathExpressionException, CoreException, IOException {
-		InputStream contents = exportedFile.getContents();
-
-		InputSource stream = new InputSource(contents);
+	protected void assertXPathTrue( @NonNull String contents, String expression) throws XPathExpressionException, CoreException, IOException {
+		InputSource stream = new InputSource(new StringReader(contents));
 		xPathEngine.compile(expression);
 		Object xPathResult = xPathEngine.evaluate(expression, stream, XPathConstants.BOOLEAN);
 		assertTrue("Expected \"" + expression + "\" to be true", (Boolean) xPathResult);
-		contents.close();
 	}
 
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
 		initExporter(HTMLExport.class);
-		initProject(EXPORTED_FILE_NAME);
+		initProject();
 		XPathFactory factory = XPathFactory.newInstance();
 		xPathEngine = factory.newXPath();
 		TEST_PROGRESS.println("xPathEngine = " + xPathEngine);
@@ -73,25 +69,6 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 	@After
 	public void tearDown() throws Exception {
 		super.tearDown();
-	}
-	
-	/**
-	 * Tests the
-	 * {@link org.eclipse.ocl.examples.emf.validation.validity.ui.export.util.AbstractExport#export(Resource, RootNode, org.eclipse.core.runtime.IPath)}
-	 * method this test ensures that the export method invocation produces an
-	 * exported file at the expected place.
-	 * 
-	 * @throws CoreException
-	 */
-	@Test
-	public void testGetFileFullPath() throws CoreException {
-		assertNotNull(exporter);
-
-		assertFalse(exportedFile.exists());
-
-		// launch the results export
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
-		assertTrue(exportedFile.exists());
 	}
 
 	/**
@@ -111,21 +88,15 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.OK);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 		TEST_PROGRESS.println("exported " + ecoreResource.getURI());
 
 		// test the exporteFile content
-		assertXPathTrue(
-				SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				INFO_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
-		assertXPathTrue(
-				WARNING_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
-		assertXPathTrue(
-				ERROR_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
-		assertXPathTrue(
-				FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, INFO_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, WARNING_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, ERROR_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -147,19 +118,13 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.INFO);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertXPathTrue(
-				SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				WARNING_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
-		assertXPathTrue(
-				ERROR_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
-		assertXPathTrue(
-				FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, WARNING_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, ERROR_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -184,19 +149,13 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertXPathTrue(
-				SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				WARNING_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				ERROR_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
-		assertXPathTrue(
-				FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, WARNING_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, ERROR_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -224,19 +183,13 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.ERROR);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertXPathTrue(
-				SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				WARNING_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				ERROR_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
+		assertXPathTrue(exported, SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, WARNING_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, ERROR_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, FAILURE_NUMBER_XPATH_LOCATION + "=0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -267,23 +220,17 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.FATAL);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertXPathTrue(
-				SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				WARNING_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				ERROR_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
-		assertXPathTrue(
-				FAILURE_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, SUCCESS_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, INFO_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, WARNING_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, ERROR_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
+		assertXPathTrue(exported, FAILURE_NUMBER_XPATH_LOCATION + "=1"); //$NON-NLS-1$
 	}
 
 	/**
-	 * Tests that the exportedFile contains the expected diagnostics for a
+	 * Tests that the exported contents contains the expected diagnostics for a
 	 * constraint.
 	 * 
 	 * @throws XPathExpressionException
@@ -298,15 +245,13 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.INFO);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertXPathTrue(
-				"//table[3]/tr[2]/td[5]='null diagnostic message'"); //$NON-NLS-1$
+		assertXPathTrue(exported, "//table[3]/tr[2]/td[5]='null diagnostic message'"); //$NON-NLS-1$
 	}
 
 	/**
-	 * Tests that the exportedFile contains the expected diagnostics for a
+	 * Tests that the exported content contains the expected diagnostics for a
 	 * constraint.
 	 * 
 	 * @throws XPathExpressionException
@@ -325,11 +270,9 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setDiagnostic(diagnostic);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertXPathTrue(
-				"//table[3]/tr[2]/td[5]='" + diagnostic + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+		assertXPathTrue(exported, "//table[3]/tr[2]/td[5]='" + diagnostic + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
@@ -340,12 +283,10 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.FATAL);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test heading
-		assertXPathTrue(
-				"//body/h2[2]='4.1. Failures'");//$NON-NLS-1$
+		assertXPathTrue(exported, "//body/h2[2]='4.1. Failures'");//$NON-NLS-1$
 	}
 
 	@Test
@@ -368,14 +309,13 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				Severity.INFO);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test headings
-		assertXPathTrue("//body/h2[2]='4.1. Infos'");
-		assertXPathTrue("//body/h2[3]='4.2. Warnings'");
-		assertXPathTrue("//body/h2[4]='4.3. Errors'");
-		assertXPathTrue("//body/h2[5]='4.4. Failures'");
+		assertXPathTrue(exported, "//body/h2[2]='4.1. Infos'");
+		assertXPathTrue(exported, "//body/h2[3]='4.2. Warnings'");
+		assertXPathTrue(exported, "//body/h2[4]='4.3. Errors'");
+		assertXPathTrue(exported, "//body/h2[5]='4.4. Failures'");
 	}
 
 	@Test
@@ -412,10 +352,9 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		// test the expected exportedFile content
+		// test the expected exported content
 		// information
 		String expression = "count(//table[3]/tr[" //$NON-NLS-1$
 				+ "td[1]=' Resource: ecoreTest.ocl' " //$NON-NLS-1$
@@ -423,54 +362,54 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				+ " and contains(td[3],'eclass2_constraint')" //$NON-NLS-1$
 				+ " and td[4]='INFO'" //$NON-NLS-1$
 				+ "])=1"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
 		expression = "count(//table[3]/tr[td[1]=' Resource: ecore.ocl' " //$NON-NLS-1$
 				+ " and td[2]='eattribute_constraint'" //$NON-NLS-1$
 				+ " and contains(td[3],'eattribute_constraint')" //$NON-NLS-1$
 				+ " and td[4]='INFO'])"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
-		assertXPathTrue("count(//table[3]/tr)=3");
+		assertXPathTrue(exported, "count(//table[3]/tr)=3");
 
 		// information
 		expression = "//table[3]/tr[3]/td[1]=' Resource: ecore.ocl' " //$NON-NLS-1$
 				+ " and //table[3]/tr[3]/td[2]='eattribute_constraint'" //$NON-NLS-1$
 				+ " and contains(//table[3]/tr[3]/td[3],'eattribute_constraint')" //$NON-NLS-1$
 				+ " and //table[3]/tr[3]/td[4]='INFO'"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
-		assertXPathTrue("count(//table[3]/tr)=3");
+		assertXPathTrue(exported, "count(//table[3]/tr)=3");
 
 		// error
 		expression = "count(//table[5]/tr[td[1]=' Resource: ecoreTest.ocl'" //$NON-NLS-1$
 				+ " and td[2]='eclass1_constraint'" //$NON-NLS-1$
 				+ " and contains(td[3],'eclass1_constraint')" //$NON-NLS-1$
 				+ " and td[4]='ERROR'])=1"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
 		expression = "count(//table[5]/tr[td[1]=' Resource: ecore.ocl'" //$NON-NLS-1$
 				+ " and td[2]='epackage_constraint_2'" //$NON-NLS-1$
 				+ " and contains(td[3],'epackage_constraint_2')" //$NON-NLS-1$
 				+ " and td[4]='ERROR'])=1"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
-		assertXPathTrue("count(//table[5]/tr)=3");
+		assertXPathTrue(exported, "count(//table[5]/tr)=3");
 
 		// fatal
 		expression = "count(//table[6]/tr[td[1]=' Resource: ecore.ocl'" //$NON-NLS-1$
 				+ " and td[2]='epackage_constraint'" //$NON-NLS-1$
 				+ " and contains(td[3],'epackage_constraint')" //$NON-NLS-1$
 				+ " and td[4]='FATAL'])=1"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
 		expression = "count(//table[6]/tr[td[1]=' Resource: ecore.ocl'" //$NON-NLS-1$
 				+ " and td[2]='eclass_constraint'" //$NON-NLS-1$
 				+ " and contains(td[3],'eclass_constraint')" //$NON-NLS-1$
 				+ " and td[4]='FATAL'])=1"; //$NON-NLS-1$
-		assertXPathTrue(expression);
+		assertXPathTrue(exported, expression);
 
-		assertXPathTrue("count(//table[6]/tr)=3");
+		assertXPathTrue(exported, "count(//table[6]/tr)=3");
 	}
 
 	@Test
@@ -506,63 +445,60 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test output file name
-		assertXPathTrue("//table[1]/tr/td[2]='testHtml.html'");
+		assertXPathTrue(exported, "//table[1]/tr/td[2]='" + EXPORTED_FILE_NAME + "'");
 
 		// test resource validated
-		assertXPathTrue("//ul[1]/li='ecoreTest.ecore'");
+		assertXPathTrue(exported, "//ul[1]/li='ecoreTest.ecore'");
 
 		// test author
-		assertXPathTrue("//table[1]/tr[2]/td[2]!=''");
+		assertXPathTrue(exported, "//table[1]/tr[2]/td[2]!=''");
 
 		// tests validation results
 		// Total number
-		assertXPathTrue("//body/table[2]/tr/td[2]=" + EXPECTED_RESULTS);
+		assertXPathTrue(exported, "//body/table[2]/tr/td[2]=" + EXPECTED_RESULTS);
 
 		// Success
-		assertXPathTrue(SUCCESS_NUMBER_XPATH_LOCATION + "=" + EXPECTED_SUCCESSES);
+		assertXPathTrue(exported, SUCCESS_NUMBER_XPATH_LOCATION + "=" + EXPECTED_SUCCESSES);
 
 		// Infos
-		assertXPathTrue(INFO_NUMBER_XPATH_LOCATION + "=" + EXPECTED_INFOS);
+		assertXPathTrue(exported, INFO_NUMBER_XPATH_LOCATION + "=" + EXPECTED_INFOS);
 
 		// Warning
-		assertXPathTrue(WARNING_NUMBER_XPATH_LOCATION + "=" + EXPECTED_WARNINGS);
+		assertXPathTrue(exported, WARNING_NUMBER_XPATH_LOCATION + "=" + EXPECTED_WARNINGS);
 
 		// Errors
-		assertXPathTrue(ERROR_NUMBER_XPATH_LOCATION + "=" + EXPECTED_ERRORS);
+		assertXPathTrue(exported, ERROR_NUMBER_XPATH_LOCATION + "=" + EXPECTED_ERRORS);
 
 		// Failures
-		assertXPathTrue(FAILURE_NUMBER_XPATH_LOCATION + "=" + EXPECTED_FAILURES);
+		assertXPathTrue(exported, FAILURE_NUMBER_XPATH_LOCATION + "=" + EXPECTED_FAILURES);
 	}
 
 	@Test
-	public void testHTMLExport_ModelsValidatedSuccessfully()
-			throws IOException, XPathExpressionException, CoreException {
+	public void testHTMLExport_ModelsValidatedSuccessfully() throws IOException, XPathExpressionException, CoreException {
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test output file name
-		assertXPathTrue("//table[1]/tr/td[2]='testHtml.html'");
+		assertXPathTrue(exported, "//table[1]/tr/td[2]='" + EXPORTED_FILE_NAME + "'");
 
 		// test resource validated
-		assertXPathTrue("//ul[1]/li='ecoreTest.ecore'");
+		assertXPathTrue(exported, "//ul[1]/li='ecoreTest.ecore'");
 
 		// test author
-		assertXPathTrue("//table[1]/tr[2]/td[2]!=''");
+		assertXPathTrue(exported, "//table[1]/tr[2]/td[2]!=''");
 
 		// tests validation results
-		assertXPathTrue("//body/table[2]/tr/td[2]=0");
-		assertXPathTrue("//table[2]/tr[2]/td[2]=0");
-		assertXPathTrue("//table[2]/tr[3]/td[2]=0");
-		assertXPathTrue("//table[2]/tr[4]/td[2]=0");
-		assertXPathTrue("//table[2]/tr[5]/td[2]=0");
-		assertXPathTrue("//table[2]/tr[6]/td[2]=0");
+		assertXPathTrue(exported, "//body/table[2]/tr/td[2]=0");
+		assertXPathTrue(exported, "//table[2]/tr[2]/td[2]=0");
+		assertXPathTrue(exported, "//table[2]/tr[3]/td[2]=0");
+		assertXPathTrue(exported, "//table[2]/tr[4]/td[2]=0");
+		assertXPathTrue(exported, "//table[2]/tr[5]/td[2]=0");
+		assertXPathTrue(exported, "//table[2]/tr[6]/td[2]=0");
 
 		// test logs results
-		assertXPathTrue("//p[1]='No log to display: models has been successfully validated.'");
+		assertXPathTrue(exported, "//p[1]='No log to display: models has been successfully validated.'");
 	}
 }

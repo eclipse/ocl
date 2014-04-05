@@ -14,22 +14,41 @@
  */
 package org.eclipse.ocl.examples.emf.validation.validity.ui.wizards;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.Charset;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ExportResultsDescriptor;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExport;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.plugin.ValidityUIPlugin;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
+
+import com.google.common.io.Files;
 
 /**
  * Wizard allowing the user to export a validation results file.
@@ -85,7 +104,7 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		final IValidityExport selectedExporter = exportDescriptor.getExportExtension();
 		
 		if (selectedExporter != null && selectedResource2 != null && rootNode2 != null && path != null) {
-			selectedExporter.export(selectedResource2, rootNode2, path);
+			export(selectedExporter, selectedResource2, rootNode2, path);
 		}
 	
 		return true;
@@ -126,5 +145,66 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(resourcePath);
 		}
 		return null;
+	}
+
+	public void export(@NonNull IValidityExport selectedExporter, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @NonNull IPath savePath) {
+		final File exportedFile = new File(savePath.toString());
+		final String initialContents = selectedExporter.export(validatedResource, rootNode, exportedFile.getName());
+		final byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));
+		final IRunnableWithProgress op;
+
+		if (exportedFile.isAbsolute()) {
+			op = new IRunnableWithProgress() {
+				public void run(IProgressMonitor monitor) {
+					try {
+						Files.write(byteArrayInputStream, exportedFile);
+					} catch (final IOException e) {
+						handleError(e.getCause(), true);
+					}
+				}
+			};
+		} else {
+			final InputStream contentStream = new ByteArrayInputStream(
+					byteArrayInputStream);
+			final IFile exportedIFile = ResourcesPlugin.getWorkspace()
+					.getRoot().getFile(savePath);
+			op = new IRunnableWithProgress() {
+				public void run(IProgressMonitor monitor) {
+					try {
+						exportedIFile.create(contentStream, true, monitor);
+					} catch (final CoreException e) {
+						handleError(e.getCause(), true);
+					}
+				}
+			};
+		}
+
+		try {
+			op.run(new NullProgressMonitor());
+		} catch (InvocationTargetException e) {
+			handleError(e, false);
+		} catch (InterruptedException e) {
+			handleError(e, false);
+		}
+	}
+	
+	private static void handleError(Throwable t, boolean popup) {
+		final String message = NLS.bind(ValidityUIMessages.NewWizardPage_internalErrorMessage, t.getMessage());
+		final IStatus status;
+		if (t instanceof CoreException) {
+			status = new Status(((CoreException) t).getStatus().getSeverity(), ValidityUIPlugin.PLUGIN_ID, message, t);
+		} else {
+			status = new Status(IStatus.ERROR, ValidityUIPlugin.PLUGIN_ID, message, t);
+		}
+		ValidityUIPlugin.getPlugin().getLog().log(status);
+		
+		if (popup) {
+			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+				public void run() {
+					ErrorDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+							ValidityUIMessages.NewWizardPage_errorTitle, message, status);
+					}
+				});
+		}
 	}
 }

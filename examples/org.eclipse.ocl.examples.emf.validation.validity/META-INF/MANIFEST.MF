@@ -17,7 +17,9 @@ Export-Package: org.eclipse.ocl.examples.emf.validation.validity,
  org.eclipse.ocl.examples.emf.validation.validity.impl,
  org.eclipse.ocl.examples.emf.validation.validity.locator,
  org.eclipse.ocl.examples.emf.validation.validity.manager,
+ org.eclipse.ocl.examples.emf.validation.validity.messages,
  org.eclipse.ocl.examples.emf.validation.validity.util,
  org.eclipse.ocl.examples.emf.validation.validity.utilities
 Bundle-ActivationPolicy: lazy
-Import-Package: org.apache.log4j
+Import-Package: org.apache.commons.lang,
+ org.apache.log4j

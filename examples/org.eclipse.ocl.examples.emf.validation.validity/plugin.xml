@@ -25,4 +25,11 @@
             genModel="model/Validity.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.ocl.examples.emf.validation.validity.validity_exporter">
+       <exporter extension="html" name="HTMLExport"
+             class="org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExport"/>
+       <exporter extension="txt" name="TextExport"
+             class="org.eclipse.ocl.examples.emf.validation.validity.export.TextExport"/>
+    </extension>
+
 </plugin>

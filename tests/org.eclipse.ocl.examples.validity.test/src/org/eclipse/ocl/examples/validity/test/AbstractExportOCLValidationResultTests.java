@@ -15,7 +15,6 @@
  */
 package org.eclipse.ocl.examples.validity.test;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -37,7 +36,6 @@ public class AbstractExportOCLValidationResultTests extends AbstractValidityTest
 	
 	protected IValidityExport exporter;
 	protected IProject project;
-	protected IFile exportedFile;
 	protected EList<Result> results;
 
 	protected void initExporter(@NonNull Class<? extends IValidityExport> exportClass) {
@@ -51,14 +49,12 @@ public class AbstractExportOCLValidationResultTests extends AbstractValidityTest
 		TEST_PROGRESS.println("exporter = " + exporter);
 	}
 
-	protected void initProject(@NonNull String exportedFileName) throws CoreException {
+	protected void initProject() throws CoreException {
 		// create test project to save export models into.
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME);
 		project.create(new NullProgressMonitor());
 		project.open(new NullProgressMonitor());
 		TEST_PROGRESS.println("project = " + project);
-		exportedFile = project.getFile(exportedFileName);
-		TEST_PROGRESS.println("exportedFile = " + exportedFile);
 	}
 
 	@Before

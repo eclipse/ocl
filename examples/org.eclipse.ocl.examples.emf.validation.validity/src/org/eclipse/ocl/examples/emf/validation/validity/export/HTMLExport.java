@@ -12,18 +12,20 @@
  *
  * </copyright>
  */
-package org.eclipse.ocl.examples.emf.validation.validity.ui.export;
+package org.eclipse.ocl.examples.emf.validation.validity.export;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
+import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessages;
 
 /**
  * Exports ocl validation results as an html file.
@@ -36,10 +38,10 @@ public class HTMLExport extends AbstractExport {
 	 * 
 	 * @return exported File contents to be given to new exported file resource
 	 *         instances
+	 * @throws IOException 
 	 */
 	@Override
-	public String createContents(@NonNull Resource validatedResource, RootNode rootNode, String exportedFileName) {
-		StringBuilder html = new StringBuilder();
+	public void createContents(@NonNull Appendable html, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		html.append("<html>\n");
 		html.append("\t<head></head>\n");
 		html.append("\t<body>\n");
@@ -47,10 +49,12 @@ public class HTMLExport extends AbstractExport {
 
 		html.append("\t\t<table border=\"1\">\n");
 
-		html.append("\t\t\t<tr>\n");
-		html.append("\t\t\t\t<td><b>Output file name: </b></td>\n");
-		html.append("\t\t\t\t<td>" + exportedFileName + "</td>\n");
-		html.append("\t\t\t</tr>\n");
+		if (exportedFileName != null) {
+			html.append("\t\t\t<tr>\n");
+			html.append("\t\t\t\t<td><b>Output file name: </b></td>\n");
+			html.append("\t\t\t\t<td>" + exportedFileName + "</td>\n");
+			html.append("\t\t\t</tr>\n");
+		}
 
 		html.append("\t\t\t<tr>\n");
 		html.append("\t\t\t\t<td><b>Author: </b></td>\n");
@@ -166,10 +170,9 @@ public class HTMLExport extends AbstractExport {
 		}
 		html.append("</body>\n");
 		html.append("</html>\n");
-		return html.toString();
 	}
 	
-	private void appendTitlesTable(StringBuilder s) {
+	private void appendTitlesTable(@NonNull Appendable s) throws IOException {
 		s.append("\t\t\t<tr>\n");
 		s.append("\t\t\t\t<td><b>Resource</b></td>\n");
 		s.append("\t\t\t\t<td><b>Invariant</b></td>\n");
@@ -179,14 +182,14 @@ public class HTMLExport extends AbstractExport {
 		s.append("\t\t\t</tr>\n");
 	}
 
-	private void appendLogFile(LeafConstrainingNode node, StringBuilder s, String severity) {
+	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
 		s.append("\t\t\t<tr>\n");
 		Resource resource = node.getConstraintResource();
 		if (resource != null) {
 			s.append("\t\t\t<td> Resource: " + resource.getURI().lastSegment() + "</td>\n");
 		} else {
 			s.append("\t\t\t\t<td>"
-				+ ValidityUIMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
 				+ "</td>\n");
 		}
 		s.append("\t\t\t\t<td>" + node.getLabel() + "</td>\n");
@@ -196,7 +199,7 @@ public class HTMLExport extends AbstractExport {
 			s.append("\t\t\t\t<td>" + expression + "</td>\n");
 		} else {
 			s.append("\t\t\t\t<td>"
-				+ ValidityUIMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
 				+ "</td>\n");
 		}
 		s.append("\t\t\t\t<td>" + severity + "</td>\n");

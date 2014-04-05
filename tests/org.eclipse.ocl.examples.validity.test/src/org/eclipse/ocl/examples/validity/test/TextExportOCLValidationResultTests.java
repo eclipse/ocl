@@ -16,15 +16,16 @@
 package org.eclipse.ocl.examples.validity.test;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.StringReader;
 import java.util.Scanner;
 
 import javax.xml.xpath.XPathExpressionException;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.export.TextExport;
+import org.eclipse.ocl.examples.emf.validation.validity.export.TextExport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,11 +43,8 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 
 	private static final String EXPORTED_FILE_NAME = "testText.txt"; //$NON-NLS-1$
 
-	protected void assertLineContains(int lineNumber, String expression) throws CoreException, IOException {
-		InputStream contents = exportedFile.getContents();
-		InputStream stream = contents;
-
-		Scanner sc = new Scanner(stream);
+	protected void assertLineContains(@NonNull String contents, int lineNumber, String expression) throws CoreException, IOException {
+		Scanner sc = new Scanner(new StringReader(contents));
 		String line = null;
 		int i = 1;
 		while (i <= lineNumber) {
@@ -57,14 +55,13 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 			assertTrue("Expected \"" + line + "\" to contain \"" + expression + "\"", line.contains(expression));
 		}
 		sc.close();
-		contents.close();
 	}
 
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
 		initExporter(TextExport.class);
-		initProject(EXPORTED_FILE_NAME);
+		initProject();
 	}
 
 	@After
@@ -90,15 +87,14 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.OK);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test the exporteFile content
-		assertLineContains(SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(INFO_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
-		assertLineContains(WARNING_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
-		assertLineContains(ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
-		assertLineContains(FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -120,14 +116,13 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.INFO);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertLineContains(SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(WARNING_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
-		assertLineContains(ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
-		assertLineContains(FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -153,14 +148,13 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertLineContains(SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(WARNING_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
-		assertLineContains(FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -189,14 +183,13 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.ERROR);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertLineContains(SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(WARNING_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(ERROR_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
 	}
 
 	/**
@@ -228,18 +221,17 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.FATAL);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertLineContains(SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(WARNING_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(ERROR_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
-		assertLineContains(FAILURE_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
 	}
 
 	/**
-	 * Tests that the exportedFile contains the expected diagnostics for a
+	 * Tests that the exported content contains the expected diagnostics for a
 	 * constraint.
 	 * 
 	 * @throws XPathExpressionException
@@ -253,14 +245,13 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.INFO);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertLineContains(26, "null diagnostic message"); //$NON-NLS-1$
+		assertLineContains(exported, 26, "null diagnostic message"); //$NON-NLS-1$
 	}
 
 	/**
-	 * Tests that the exportedFile contains the expected diagnostics for a
+	 * Tests that the exported content contains the expected diagnostics for a
 	 * constraint.
 	 * 
 	 * @throws XPathExpressionException
@@ -274,7 +265,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				CONSTRAINABLE_EATTRIBUTE_CONSTRAINT, VALIDATABLE_E_ATTRIBUTE3_E_SHORT) //$NON-NLS-1$ //$NON-NLS-2$
 				.setSeverity(Severity.INFO);
 //		exporter.export(TestTool.getIResource(ecoreResource), rootNode, GENERATED_FILE_PATH);
-//		assertLineContains(26, "null diagnostic message"); //$NON-NLS-1$
+//		assertLineContains(exported, 26, "null diagnostic message"); //$NON-NLS-1$
 
 //		clearGeneratedReport();
 		String diagnostic = "Diag INFO"; //$NON-NLS-1$
@@ -283,10 +274,9 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setDiagnostic(diagnostic);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
-		assertLineContains(26, diagnostic);
+		assertLineContains(exported, 26, diagnostic);
 	}
 
 	@Test
@@ -306,29 +296,28 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				Severity.INFO);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test tables headings
-		assertLineContains(22, "ecoreTest.ocl"); //$NON-NLS-1$
-		assertLineContains(23, "eclass2_constraint"); //$NON-NLS-1$
-		assertLineContains(24, "eclass2_constraint"); //$NON-NLS-1$
-		assertLineContains(25, "INFO"); //$NON-NLS-1$
+		assertLineContains(exported, 22, "ecoreTest.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, 23, "eclass2_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 24, "eclass2_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 25, "INFO"); //$NON-NLS-1$
 
-		assertLineContains(29, "ecore.ocl"); //$NON-NLS-1$
-		assertLineContains(30, "eattribute_constraint"); //$NON-NLS-1$
-		assertLineContains(31, "eattribute_constraint"); //$NON-NLS-1$
-		assertLineContains(32, "WARNING"); //$NON-NLS-1$
+		assertLineContains(exported, 29, "ecore.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, 30, "eattribute_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 31, "eattribute_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 32, "WARNING"); //$NON-NLS-1$
 
-		assertLineContains(36, "ecoreTest.ocl"); //$NON-NLS-1$
-		assertLineContains(37, "eclass1_constraint"); //$NON-NLS-1$
-		assertLineContains(38, "eclass1_constraint"); //$NON-NLS-1$
-		assertLineContains(39, "ERROR"); //$NON-NLS-1$
+		assertLineContains(exported, 36, "ecoreTest.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, 37, "eclass1_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 38, "eclass1_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 39, "ERROR"); //$NON-NLS-1$
 
-		assertLineContains(43, "ecore.ocl"); //$NON-NLS-1$
-		assertLineContains(44, "epackage_constraint"); //$NON-NLS-1$
-		assertLineContains(45, "epackage_constraint"); //$NON-NLS-1$
-		assertLineContains(46, "FATAL"); //$NON-NLS-1$
+		assertLineContains(exported, 43, "ecore.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, 44, "epackage_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 45, "epackage_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, 46, "FATAL"); //$NON-NLS-1$
 	}
 
 	@Test
@@ -362,63 +351,60 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// tests validation results
 		// Total number
-		assertLineContains(12, EXPECTED_RESULTS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, 12, EXPECTED_RESULTS.toString()); //$NON-NLS-1$
 
 		// Success
-		assertLineContains(13, EXPECTED_SUCCESSES.toString()); //$NON-NLS-1$
+		assertLineContains(exported, 13, EXPECTED_SUCCESSES.toString()); //$NON-NLS-1$
 
 		// Infos
-		assertLineContains(14, EXPECTED_INFOS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, 14, EXPECTED_INFOS.toString()); //$NON-NLS-1$
 
 		// Warning
-		assertLineContains(15, EXPECTED_WARNINGS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, 15, EXPECTED_WARNINGS.toString()); //$NON-NLS-1$
 
 		// Errors
-		assertLineContains(16, EXPECTED_ERRORS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, 16, EXPECTED_ERRORS.toString()); //$NON-NLS-1$
 
 		// Failures
-		assertLineContains(17, EXPECTED_FAILURES.toString()); //$NON-NLS-1$
+		assertLineContains(exported, 17, EXPECTED_FAILURES.toString()); //$NON-NLS-1$
 	}
 
 	@Test
-	public void testTEXTExport_ModelsValidatedSuccessfully()
-			throws IOException, CoreException {
+	public void testTEXTExport_ModelsValidatedSuccessfully() throws IOException, CoreException {
 		// launch the exporter
-		assertFalse(exportedFile.exists());
-		exporter.export(ecoreResource, rootNode, exportedFile.getFullPath());
+		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
 
 		// test output file name
-		assertLineContains(2, exportedFile.getName());
+		assertLineContains(exported, 2, EXPORTED_FILE_NAME);
 
 		// test resource validated
-		assertLineContains(8, "ecoreTest.ecore"); //$NON-NLS-1$
+		assertLineContains(exported, 8, "ecoreTest.ecore"); //$NON-NLS-1$
 
 		// tests validation results
 		// Total number
-		assertLineContains(12, "0"); //$NON-NLS-1$
+		assertLineContains(exported, 12, "0"); //$NON-NLS-1$
 
 		// Success
-		assertLineContains(13, "0"); //$NON-NLS-1$
+		assertLineContains(exported, 13, "0"); //$NON-NLS-1$
 
 		// Infos
-		assertLineContains(14, "0"); //$NON-NLS-1$
+		assertLineContains(exported, 14, "0"); //$NON-NLS-1$
 
 		// Warning
-		assertLineContains(15, "0"); //$NON-NLS-1$
+		assertLineContains(exported, 15, "0"); //$NON-NLS-1$
 
 		// Errors
-		assertLineContains(16, "0"); //$NON-NLS-1$
+		assertLineContains(exported, 16, "0"); //$NON-NLS-1$
 
 		// Failures
-		assertLineContains(17, "0"); //$NON-NLS-1$
+		assertLineContains(exported, 17, "0"); //$NON-NLS-1$
 
 		// test logs results
-		assertLineContains(21, "No log to display: models has been successfully validated."); //$NON-NLS-1$
+		assertLineContains(exported, 21, "No log to display: models has been successfully validated."); //$NON-NLS-1$
 	}
 
 }

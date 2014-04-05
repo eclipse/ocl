@@ -12,17 +12,19 @@
  *
  * </copyright>
  */
-package org.eclipse.ocl.examples.emf.validation.validity.ui.export;
+package org.eclipse.ocl.examples.emf.validation.validity.export;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
+import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessages;
 
 /**
  * Exports ocl validation results as a txt file.
@@ -35,12 +37,14 @@ public class TextExport extends AbstractExport {
 	 * 
 	 * @return exported File contents to be given to new exported file resource
 	 *         instances
+	 * @throws IOException 
 	 */
 	@Override
-	public String createContents(@NonNull Resource validatedResource, RootNode rootNode, String exportedFileName) {
-		StringBuilder text = new StringBuilder();
+	public void createContents(@NonNull Appendable text, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		text.append("==== GENERAL INFORMATION ====\n");
-		text.append("Output file name: " + exportedFileName + "\n");
+		if (exportedFileName != null) {
+			text.append("Output file name: " + exportedFileName + "\n");
+		}
 		text.append("Author: " + System.getProperty("user.name") + "\n");
 		text.append("\n");
 		text.append("\n");
@@ -99,17 +103,15 @@ public class TextExport extends AbstractExport {
 				}
 			}
 		}
-		return text.toString();
 	}
 
-	private void appendLogFile(LeafConstrainingNode node, StringBuilder s,
-			String severity) {
+	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
 		Resource resource = node.getConstraintResource();
 		if (resource != null) {
 			s.append("\t\t\t Resource: " + resource + "\n");
 		} else {
 			s.append("\t\t\t Resource: "
-				+ ValidityUIMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
 				+ "\n");
 		}
 		s.append("\t\t\t Invariant: " + node.getLabel() + "\n");
@@ -119,7 +121,7 @@ public class TextExport extends AbstractExport {
 			s.append("\t\t\t Expression: " + expression + "\n");
 		} else {
 			s.append("\t\t\t Expression: "
-				+ ValidityUIMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
 				+ "\n");
 		}
 		s.append("\t\t\t Severity: " + severity + "\n");
