@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.ocl.examples.domain,
  org.eclipse.ocl.examples.xtext.completeocl,
- org.eclipse.ocl.examples.xtext.completeocl.ui
+ org.eclipse.ocl.examples.xtext.completeocl.ui,
+ org.eclipse.ocl.examples.validity
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.ocl.examples.validity.test

@@ -14,22 +14,28 @@
  */
 package org.eclipse.ocl.examples.emf.validation.validity.export;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * This will contain all ocl-export extension that have been parsed from the
  * extension point.
  */
-public class ExportResultsRegistry {
-
+public class ValidityExporterRegistry
+{
+	public static final @NonNull ValidityExporterRegistry INSTANCE = new ValidityExporterRegistry();
+	
 	/** List of extensions created from the extension point contributions. */
-	private static final List<ExportResultsDescriptor> EXTENSIONS = new ArrayList<ExportResultsDescriptor>();
+	private final Map<String, IValidityExporterDescriptor> EXTENSIONS = new HashMap<String, IValidityExporterDescriptor>();
 
 	/**
 	 * Utility classes don't need a default constructor.
 	 */
-	private ExportResultsRegistry() {
+	private ValidityExporterRegistry() {
 		// hides constructor
 	}
 
@@ -39,16 +45,21 @@ public class ExportResultsRegistry {
 	 * @param extension
 	 *            The extension that is to be added to the registry.
 	 */
-	public static void addExtension(ExportResultsDescriptor extension) {
-		EXTENSIONS.add(extension);
+	public void addExporter(@NonNull IValidityExporterDescriptor exporter) {
+		EXTENSIONS.put(exporter.getExporterType(), exporter);
 	}
 
 	/**
 	 * Removes all extensions from the registry. This will be called at plugin
 	 * stopping.
 	 */
-	public static void clearRegistry() {
+	public void clearRegistry() {
 		EXTENSIONS.clear();
+	}
+
+	public @Nullable IValidityExporter getExporter(@NonNull String exporterType) {
+		IValidityExporterDescriptor exporter = EXTENSIONS.get(exporterType);
+		return exporter != null ? exporter.getExporter() : null;
 	}
 
 	/**
@@ -56,8 +67,8 @@ public class ExportResultsRegistry {
 	 * 
 	 * @return A copy of the registered extensions list.
 	 */
-	public static List<ExportResultsDescriptor> getRegisteredExtensions() {
-		return new ArrayList<ExportResultsDescriptor>(EXTENSIONS);
+	public Collection<IValidityExporterDescriptor> getRegisteredExtensions() {
+		return EXTENSIONS.values();
 	}
 
 	/**
@@ -67,11 +78,7 @@ public class ExportResultsRegistry {
 	 *            Qualified class name of the extension point which corresponding
 	 *            phantom is to be removed from the registry.
 	 */
-	public static void removeExtension(String extensionClassName) {
-		for (ExportResultsDescriptor extension : getRegisteredExtensions()) {
-			if (extension.getExtensionClassName().equals(extensionClassName)) {
-				EXTENSIONS.remove(extension);
-			}
-		}
+	public void removeExtension(@NonNull String exporterType) {
+		EXTENSIONS.remove(exporterType);
 	}
 }

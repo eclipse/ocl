@@ -48,6 +48,8 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class PivotConstraintLocator extends AbstractConstraintLocator
 {
+	public static @NonNull PivotConstraintLocator INSTANCE = new PivotConstraintLocator();
+	
 	@Override
 	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 		@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {

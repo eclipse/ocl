@@ -20,6 +20,7 @@ import junit.framework.TestCase;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -33,12 +34,22 @@ import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
+import org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassifierConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
+import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
+import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
+import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
+import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.commands.LoadCompleteOCLResourceHandler.Helper;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
@@ -51,6 +62,8 @@ public abstract class AbstractValidityTestCase extends TestCase
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.validity.test"; //$NON-NLS-1$
 	public static final @NonNull TracingOption TEST_PROGRESS = new TracingOption(PLUGIN_ID, "test/progress");
 
+	protected static final @NonNull String TEST_LOCATION = EcorePlugin.IS_ECLIPSE_RUNNING ? "platform:/plugin/" : "file:/C:/GIT/org.eclipse.ocl/tests/";
+;
 	protected static final @NonNull String TEST_PROJECT_NAME = /*"test." +*/ PLUGIN_ID;
 
 	protected static final @NonNull String OCL_CONSTRAINTS_MODEL = "model/ecore.ocl";
@@ -67,11 +80,11 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final Integer EXPECTED_RESULTS = EXPECTED_SUCCESSES + EXPECTED_INFOS + EXPECTED_WARNINGS + EXPECTED_ERRORS + EXPECTED_FAILURES;
 
 	protected static final @NonNull String CONSTRAINABLE_ECORE = "ecore in http://www.eclipse.org/emf/2002/Ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in platform:/plugin/" + TEST_PROJECT_NAME + "/model/ecore.ocl.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in platform:/plugin/" + TEST_PROJECT_NAME + "/model/ecoreTest.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in platform:/plugin/" + TEST_PROJECT_NAME + "/model/ecoreTest.ocl.ecore";
-//	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in platform:/plugin/" + TEST_PROJECT_NAME + "/model/ecoreTest2.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in platform:/plugin/" + TEST_PROJECT_NAME + "/model/validityModelTest.ecoretest";
+	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecore.ocl.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest.ocl.ecore";
+//	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest2.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/validityModelTest.ecoretest";
 	protected static final @NonNull String CONSTRAINABLE_EATTRIBUTE_CONSTRAINT = "ecore::EAttribute::eattribute_constraint";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS_CONSTRAINT = "ecore::EClass::eclass_constraint";
 	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT_2 = "ecore::EPackage::epackage_constraint_2";
@@ -82,10 +95,10 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final @NonNull String CONSTRAINABLE_ECLASS2 = "ecoreTest::EClass2";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS3 = "ecoreTest::EClass3";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS5 = "ecoreTest2::Eclass5";
-
-	protected static final @NonNull String VALIDATABLE_ECORE_TEST = "ecoreTest in platform:/plugin/" + TEST_PROJECT_NAME + "/model/ecoreTest.ecore";
-	protected static final @NonNull String VALIDATABLE_ECORETEST2 = "ecoreTest2 in platform:/plugin/" + TEST_PROJECT_NAME + "/model/ecoreTest2.ecore";
-	protected static final @NonNull String VALIDATABLE_ECLASS1_E1_ATT1 = "Eclass1 in platform:/plugin/" + TEST_PROJECT_NAME + "/model/validityModelTest.ecoretest";
+	
+	protected static final @NonNull String VALIDATABLE_ECORE_TEST = "ecoreTest in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest.ecore";
+	protected static final @NonNull String VALIDATABLE_ECORETEST2 = "ecoreTest2 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/ecoreTest2.ecore";
+	protected static final @NonNull String VALIDATABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_LOCATION + TEST_PROJECT_NAME + "/model/validityModelTest.ecoretest";
 	protected static final @NonNull String VALIDATABLE_E_CLASS3_ECLASS5 = "ecoreTest::EClass3";
 	protected static final @NonNull String VALIDATABLE_ECLASS2 = "EClass2";
 	protected static final @NonNull String VALIDATABLE_E_CLASS5 = "Eclass5";
@@ -187,6 +200,18 @@ public abstract class AbstractValidityTestCase extends TestCase
 		// resources in the global registry.
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			CompleteOCLStandaloneSetup.doSetup();
+			EcoreTestPackage.eINSTANCE.getClass();
+			EcoreTest2Package.eINSTANCE.getClass();
+			ValidityExporterRegistry.INSTANCE.addExporter(new HTMLExporter());
+			ValidityExporterRegistry.INSTANCE.addExporter(new TextExporter());
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassifierConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EValidatorConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/ocl/3.1.0/Pivot", PivotConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/5.0.0/UML", UMLConstraintLocator.INSTANCE);
 		}
 		// Plug the OCL validation mechanism.
 		OCLDelegateDomain.initialize(resourceSet);

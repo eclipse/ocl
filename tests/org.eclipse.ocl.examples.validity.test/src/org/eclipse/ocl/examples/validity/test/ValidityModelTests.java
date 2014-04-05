@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -32,6 +33,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EClass2;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.impl.Eclass1Impl;
@@ -119,7 +121,7 @@ public class ValidityModelTests extends AbstractValidityTestCase
 	@Before
 	public void setUp() throws Exception {
 		initTestModels();
-		initValidityManager(null);
+		initValidityManager(EMFPlugin.IS_ECLIPSE_RUNNING ? null : new ValidityManager());
 	}
 
 	@After

@@ -39,8 +39,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
-import org.eclipse.ocl.examples.emf.validation.validity.export.ExportResultsDescriptor;
-import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExport;
+import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.plugin.ValidityUIPlugin;
 import org.eclipse.osgi.util.NLS;
@@ -62,7 +61,7 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 	private Resource initialResource;
 	
 	/** The only export descriptor contributing to the wizard */
-	private final ExportResultsDescriptor exportDescriptor;
+	private final IValidityExporter exportDescriptor;
 
 	/** The results root node contributing to the wizard */
 	private final RootNode rootNode;
@@ -71,7 +70,7 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 	 * Constructor
 	 */
 	public ExportValidationResultsFileWizard(@NonNull IWorkbench workbench, @NonNull IStructuredSelection initialSelection, 
-			@NonNull RootNode rootNode, @NonNull ExportResultsDescriptor exportDescriptor) {
+			@NonNull RootNode rootNode, @NonNull IValidityExporter exportDescriptor) {
 		super();
 		setWindowTitle(ValidityUIMessages.NewWizardPage_pageTitle);
 		this.exportDescriptor = exportDescriptor;
@@ -101,7 +100,7 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		final Resource selectedResource2 = initialResource;
 		final RootNode rootNode2 = rootNode;
 		final IPath path = wizardPage.getNewExportedFilePath();
-		final IValidityExport selectedExporter = exportDescriptor.getExportExtension();
+		final IValidityExporter selectedExporter = exportDescriptor.getExporter();
 		
 		if (selectedExporter != null && selectedResource2 != null && rootNode2 != null && path != null) {
 			export(selectedExporter, selectedResource2, rootNode2, path);
@@ -120,9 +119,9 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 			initialResource = (Resource) selected;
 			initialIResource = getIResource(initialResource);
 		}
-		String expectedExtension = exportDescriptor.getExtensionAttribute();
-		if (expectedExtension != null && initialIResource != null) {
-			wizardPage = new ExportValidationResultsFileWizardPage(expectedExtension, initialIResource);
+		String preferredExtension = exportDescriptor.getPreferredExtension();
+		if (/*expectedExtension != null && */initialIResource != null) {
+			wizardPage = new ExportValidationResultsFileWizardPage(preferredExtension, initialIResource);
 			addPage(wizardPage);
 		}
 	}
@@ -147,7 +146,7 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		return null;
 	}
 
-	public void export(@NonNull IValidityExport selectedExporter, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @NonNull IPath savePath) {
+	public void export(@NonNull IValidityExporter selectedExporter, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @NonNull IPath savePath) {
 		final File exportedFile = new File(savePath.toString());
 		final String initialContents = selectedExporter.export(validatedResource, rootNode, exportedFile.getName());
 		final byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));

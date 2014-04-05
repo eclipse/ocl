@@ -47,6 +47,8 @@ import org.eclipse.ocl.examples.emf.validation.validity.utilities.ComposedEValid
 
 public class EValidatorConstraintLocator extends AbstractConstraintLocator
 {
+	public static @NonNull EValidatorConstraintLocator INSTANCE = new EValidatorConstraintLocator();
+	
 	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
 		Map<EObject, List<LeafConstrainingNode>> map = null;
@@ -109,7 +111,6 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 			if (monitor.isCanceled()) {
 				return null;
 			}
-//			System.out.println(method);
 			Class<?>[] parameterTypes = method.getParameterTypes();
 			if (Modifier.isPublic(method.getModifiers())
 			 && (parameterTypes.length == 3)

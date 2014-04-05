@@ -15,16 +15,21 @@
  */
 package org.eclipse.ocl.examples.validity.test;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import java.io.IOException;
+import java.net.URL;
+
+import junit.framework.TestCase;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
-import org.eclipse.ocl.examples.emf.validation.validity.export.ExportResultsDescriptor;
-import org.eclipse.ocl.examples.emf.validation.validity.export.ExportResultsRegistry;
-import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExport;
+import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
+import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.junit.After;
 import org.junit.Before;
 
@@ -33,28 +38,45 @@ import org.junit.Before;
  */
 public class AbstractExportOCLValidationResultTests extends AbstractValidityTestCase
 {
-	
-	protected IValidityExport exporter;
-	protected IProject project;
+	protected IValidityExporter exporter;
 	protected EList<Result> results;
 
-	protected void initExporter(@NonNull Class<? extends IValidityExport> exportClass) {
-		exporter = null;
-		for (ExportResultsDescriptor descriptor : ExportResultsRegistry.getRegisteredExtensions()) {
-			if (exportClass.getName().equals(descriptor.getExtensionClassName())) {
-				exporter = descriptor.getExportExtension();
+	protected @NonNull URL getTestResource(@NonNull String resourceName) {
+		URL projectURL = getClass().getClassLoader().getResource(resourceName);
+		try {
+			if ((projectURL != null) && Platform.isRunning()) {
+				try {
+					projectURL = FileLocator.resolve(projectURL);
+				} catch (IOException e) {
+					TestCase.fail(e.getMessage());
+					assert false;;
+				}
 			}
 		}
-		assertNotNull(exporter);
-		TEST_PROGRESS.println("exporter = " + exporter);
+		catch (Throwable e) {}
+		return DomainUtil.nonNullState(projectURL);
+	}
+	
+	protected @NonNull String getProjectFileName(String referenceName) {
+		String projectName = getClass().getPackage().getName().replace('.', '/');
+		URL projectURL = getTestResource(projectName);	
+		assertNotNull(projectURL);
+		return projectURL.getFile().replace("\\", "/") + "/" + referenceName;
 	}
 
-	protected void initProject() throws CoreException {
-		// create test project to save export models into.
-		project = ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME);
-		project.create(new NullProgressMonitor());
-		project.open(new NullProgressMonitor());
-		TEST_PROGRESS.println("project = " + project);
+	protected @NonNull String getHTMLLogFileName() {
+		return getProjectFileName("models/" + getName() + ".html");
+	}
+
+	protected @NonNull String getTextLogFileName() {
+		return getProjectFileName("models/log_" + getName() + ".txt");
+	}
+	
+
+	protected void initExporter(@NonNull String exporterType) {
+		exporter = ValidityExporterRegistry.INSTANCE.getExporter(exporterType);
+		assertNotNull(exporter);
+		TEST_PROGRESS.println("exporter = " + exporter);
 	}
 
 	@Before
@@ -62,18 +84,13 @@ public class AbstractExportOCLValidationResultTests extends AbstractValidityTest
 		TEST_PROGRESS.setState(true);
 		super.setUp();
 		initTestModels();
-		initValidityManager(null);
+		initValidityManager(EMFPlugin.IS_ECLIPSE_RUNNING ? null : new ValidityManager());
 		results = resultSet.getResults();
 		TEST_PROGRESS.println("results = " + results);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		if (project != null) {
-			project.delete(false, new NullProgressMonitor());
-			project = null;
-			TEST_PROGRESS.println("-project");
-		}
 		exporter = null;
 		TEST_PROGRESS.println("-exporter");
 		super.tearDown();

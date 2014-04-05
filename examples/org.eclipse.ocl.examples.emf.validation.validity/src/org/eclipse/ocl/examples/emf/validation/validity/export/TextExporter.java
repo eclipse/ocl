@@ -29,7 +29,33 @@ import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessage
 /**
  * Exports ocl validation results as a txt file.
  */
-public class TextExport extends AbstractExport {
+public class TextExporter extends AbstractExporter
+{
+	public static final @NonNull String EXPORTER_TYPE = "text";
+
+	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
+		Resource resource = node.getConstraintResource();
+		if (resource != null) {
+			s.append("\t\t\t Resource: " + resource.getURI() + "\n");
+		} else {
+			s.append("\t\t\t Resource: "
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
+				+ "\n");
+		}
+		s.append("\t\t\t Invariant: " + node.getLabel() + "\n");
+		
+		String expression = node.getConstraintString();
+		if (expression != null) {
+			s.append("\t\t\t Expression: " + expression + "\n");
+		} else {
+			s.append("\t\t\t Expression: "
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
+				+ "\n");
+		}
+		s.append("\t\t\t Severity: " + severity + "\n");
+		s.append("\t\t\t Message: " + getMessage(node.getWorstResult()) + "\n");
+		s.append("\t\t\t\t-------------\n");
+	}
 
 	/**
 	 * Returns a stream containing the initial contents to be given to new
@@ -104,28 +130,9 @@ public class TextExport extends AbstractExport {
 			}
 		}
 	}
+	
+	public @NonNull String getExporterType() { return EXPORTER_TYPE; }
 
-	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
-		Resource resource = node.getConstraintResource();
-		if (resource != null) {
-			s.append("\t\t\t Resource: " + resource + "\n");
-		} else {
-			s.append("\t\t\t Resource: "
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
-				+ "\n");
-		}
-		s.append("\t\t\t Invariant: " + node.getLabel() + "\n");
-		
-		String expression = node.getConstraintString();
-		if (expression != null) {
-			s.append("\t\t\t Expression: " + expression + "\n");
-		} else {
-			s.append("\t\t\t Expression: "
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
-				+ "\n");
-		}
-		s.append("\t\t\t Severity: " + severity + "\n");
-		s.append("\t\t\t Message: " + getMessage(node.getWorstResult()) + "\n");
-		s.append("\t\t\t\t-------------\n");
-	}
+	@Override
+	public @NonNull String getPreferredExtension() { return "txt"; }
 }

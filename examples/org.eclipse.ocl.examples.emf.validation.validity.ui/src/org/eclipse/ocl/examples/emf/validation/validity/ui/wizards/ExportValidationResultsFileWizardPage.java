@@ -47,7 +47,7 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 	private static final int SIZING_CONTAINER_GROUP_HEIGHT = 120;
 	private static final String NEW_FILE_WIZARD_PAGE = ValidityUIPlugin.PLUGIN_ID + '.' + ValidityUIMessages.NewWizardPage_newFileWizardContextId;
 
-	private final @NonNull String expectedExtension;	
+	private final @Nullable String preferredExtension;	
 
 	// the current resource selection
 	private final @Nullable IResource initialResource;
@@ -63,12 +63,12 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 	 * @param initialResource
 	 *            the current resource selection
 	 */
-	public ExportValidationResultsFileWizardPage(@NonNull String expectedExtension, @NonNull IResource initialResource) {
+	public ExportValidationResultsFileWizardPage(@Nullable String preferredExtension, @NonNull IResource initialResource) {
 		super(ValidityUIMessages.NewWizardPage_pageName);
 		setTitle(ValidityUIMessages.NewWizardPage_pageSummary);
 		setDescription(ValidityUIMessages.NewWizardPage_pageDescription);
 		setPageComplete(false);
-		this.expectedExtension = expectedExtension;
+		this.preferredExtension = preferredExtension;
 		this.initialResource = initialResource;
 	}
 
@@ -95,7 +95,7 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 				ValidityUIMessages.NewWizardPage_fileNameLabel,
 				ValidityUIMessages.NewWizardPage_file, false, SIZING_CONTAINER_GROUP_HEIGHT);
 		resourceGroup.setAllowExistingResources(false);
-		resourceGroup.setResourceExtension(expectedExtension);
+		resourceGroup.setResourceExtension(preferredExtension);
 		return resourceGroup;
 	}
 
@@ -223,10 +223,10 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 			return false;
 		}
 		
-		if (!resourceName.endsWith('.' + expectedExtension)) {
-			setErrorMessage(NLS.bind(ValidityUIMessages.NewWizardPage_wrongExtension, expectedExtension));
-			return false;
-		}
+//		if (!resourceName.endsWith('.' + expectedExtension)) {
+//			setErrorMessage(NLS.bind(ValidityUIMessages.NewWizardPage_wrongExtension, preferredExtension));
+//			return false;
+//		}
 
 		if (group.getAllowExistingResources()) {
 			String problemMessage = NLS.bind(

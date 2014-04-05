@@ -44,6 +44,8 @@ import org.eclipse.ocl.examples.emf.validation.validity.plugin.ValidityPlugin;
 
 public class EClassConstraintLocator extends AbstractConstraintLocator
 {
+	public static @NonNull EClassConstraintLocator INSTANCE = new EClassConstraintLocator();
+	
 	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
 		Map<EObject, List<LeafConstrainingNode>> map = null;

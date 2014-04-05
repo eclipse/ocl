@@ -15,6 +15,7 @@
  */
 package org.eclipse.ocl.examples.validity.test;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
-import org.eclipse.ocl.examples.emf.validation.validity.export.TextExport;
+import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 	private static final int FAILURE_NUMBER_XPATH_LOCATION = 17;
 	private static final int SUCCESS_NUMBER_XPATH_LOCATION = 13;
 
-	private static final String EXPORTED_FILE_NAME = "testText.txt"; //$NON-NLS-1$
+	private String exportedFileName = null;
 
 	protected void assertLineContains(@NonNull String contents, int lineNumber, String expression) throws CoreException, IOException {
 		Scanner sc = new Scanner(new StringReader(contents));
@@ -57,11 +58,20 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		sc.close();
 	}
 
+	protected @NonNull String doTest() throws IOException {
+		String exported = exporter.export(ecoreResource, rootNode, exportedFileName);
+		FileWriter writer = new FileWriter(exportedFileName);
+		writer.append(exported);
+		writer.close();
+		TEST_PROGRESS.println("exported " + ecoreResource.getURI());
+		return exported;
+	}
+
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		initExporter(TextExport.class);
-		initProject();
+		exportedFileName = getProjectFileName(getName() + ".txt");
+		initExporter(TextExporter.EXPORTER_TYPE);
 	}
 
 	@After
@@ -87,7 +97,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.OK);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		// test the exporteFile content
 		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
@@ -116,7 +126,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.INFO);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
 		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
@@ -148,7 +158,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
 		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
@@ -183,7 +193,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.ERROR);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
 		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
@@ -221,7 +231,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.FATAL);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
 		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "1"); //$NON-NLS-1$
@@ -245,7 +255,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.INFO);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		assertLineContains(exported, 26, "null diagnostic message"); //$NON-NLS-1$
 	}
@@ -274,7 +284,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setDiagnostic(diagnostic);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		assertLineContains(exported, 26, diagnostic);
 	}
@@ -296,7 +306,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				Severity.INFO);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		// test tables headings
 		assertLineContains(exported, 22, "ecoreTest.ocl"); //$NON-NLS-1$
@@ -351,7 +361,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 				.setSeverity(Severity.WARNING);
 
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		// tests validation results
 		// Total number
@@ -376,10 +386,10 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 	@Test
 	public void testTEXTExport_ModelsValidatedSuccessfully() throws IOException, CoreException {
 		// launch the exporter
-		String exported = exporter.export(ecoreResource, rootNode, EXPORTED_FILE_NAME);
+		String exported = doTest();
 
 		// test output file name
-		assertLineContains(exported, 2, EXPORTED_FILE_NAME);
+		assertLineContains(exported, 2, exportedFileName);
 
 		// test resource validated
 		assertLineContains(exported, 8, "ecoreTest.ecore"); //$NON-NLS-1$

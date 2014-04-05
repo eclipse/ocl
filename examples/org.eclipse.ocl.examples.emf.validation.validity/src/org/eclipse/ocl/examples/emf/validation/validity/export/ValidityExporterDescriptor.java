@@ -16,56 +16,55 @@ package org.eclipse.ocl.examples.emf.validation.validity.export;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.plugin.ValidityPlugin;
 
 /**
  * Describes an extension as contributed to the validity-exporter extension point.
  */
-public class ExportResultsDescriptor {
+public class ValidityExporterDescriptor implements IValidityExporterDescriptor {
 
 	/** Configuration element of this descriptor. */
 	private final IConfigurationElement element;
-
-	public static final String VALIDITY_EXPORTER_CLASS_ATTRIBUTE = "class"; //$NON-NLS-1$
-
-	public static final String VALIDITY_EXPORTER_NAME_ATTRIBUTE = "name"; //$NON-NLS-1$
-
-	public static final String VALIDITY_EXPORTER_EXTENSION_ATTRIBUTE = "extension"; //$NON-NLS-1$
 
 	/**
 	 * Qualified class name of the exporter extension. This will be used as an
 	 * id to remove contributions.
 	 */
-	private final String extensionClassName;
+	private final @NonNull String exporterClassAttribute;
 
 	/**
 	 * The name of the exporter extension.
 	 */
-	private final String extensionName;
+	private final @NonNull String exporterName;
 
 	/**
 	 * The extension attribute of the exporter.
 	 */
-	private final String extensionAttribute;
+	private final @NonNull String exporterType;
 
 	/**
 	 * We only need to create the instance once, this will keep reference to it.
 	 */
-	private IValidityExport extension;
+	private /*@LazyNonNull*/ IValidityExporter exporter;
 
 	/**
 	 * Instantiates a descriptor with all information.
 	 * 
 	 * @param configuration
 	 *            Configuration element from which to create this descriptor.
+	 * @param exporterName 
+	 * @param exporterType 
+	 * @param validityExporterClassAttribute 
 	 */
-	public ExportResultsDescriptor(IConfigurationElement configuration) {
-		element = configuration;
-		extensionName = configuration.getAttribute(VALIDITY_EXPORTER_NAME_ATTRIBUTE);
-		extensionAttribute = configuration
-			.getAttribute(VALIDITY_EXPORTER_EXTENSION_ATTRIBUTE);
-		extensionClassName = configuration
-			.getAttribute(VALIDITY_EXPORTER_CLASS_ATTRIBUTE);
+	public ValidityExporterDescriptor(IConfigurationElement configuration, @NonNull String exporterClassAttribute,
+			@NonNull String exporterType, @NonNull String exporterName) {
+		this.element = configuration;
+		this.exporterClassAttribute = exporterClassAttribute;
+		this.exporterType = exporterType;
+		this.exporterName = exporterName;
+//		exporterClassName = configuration.getAttribute(VALIDITY_EXPORTER_CLASS_ATTRIBUTE);
 	}
 
 	/**
@@ -73,17 +72,17 @@ public class ExportResultsDescriptor {
 	 * 
 	 * @return This descriptor's "extension" class name.
 	 */
-	public String getExtensionClassName() {
-		return extensionClassName;
-	}
+//	public @NonNull String getExporterClassName() {
+//		return exporterClassName;
+//	}
 
 	/**
 	 * Returns this descriptor's "extension" name.
 	 * 
 	 * @return This descriptor's "extension" name.
 	 */
-	public String getExtensionName() {
-		return extensionName;
+	public @NonNull String getExporterType() {
+		return exporterType;
 	}
 
 	/**
@@ -91,24 +90,23 @@ public class ExportResultsDescriptor {
 	 * 
 	 * @return This descriptor's "exporter" extension.
 	 */
-	public String getExtensionAttribute() {
-		return extensionAttribute;
+	public @NonNull String getExporterName() {
+		return exporterName;
 	}
 
 	/**
-	 * Creates an instance of this descriptor's {@link IValidityExport}.
+	 * Creates an instance of this descriptor's {@link IValidityExporter}.
 	 * 
-	 * @return A new instance of this descriptor's {@link IValidityExport}.
+	 * @return A new instance of this descriptor's {@link IValidityExporter}.
 	 */
-	public IValidityExport getExportExtension() {
-		if (extension == null) {
+	public @Nullable IValidityExporter getExporter() {
+		if (exporter == null) {
 			try {
-				extension = (IValidityExport) element
-					.createExecutableExtension(VALIDITY_EXPORTER_CLASS_ATTRIBUTE);
+				exporter = (IValidityExporter) element.createExecutableExtension(exporterClassAttribute);
 			} catch (CoreException e) {
 				ValidityPlugin.getPlugin().getLog().log(e.getStatus());
 			}
 		}
-		return extension;
+		return exporter;
 	}
 }

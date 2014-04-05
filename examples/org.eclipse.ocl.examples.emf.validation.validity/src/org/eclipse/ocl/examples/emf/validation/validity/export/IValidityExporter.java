@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
  * Clients may also extends AbstractExport instead.
  * </p>
  */
-public interface IValidityExport
+public interface IValidityExporter extends IValidityExporterDescriptor
 {
 	/**
 	 * Export the validity results and return String containing the results.
@@ -56,4 +56,6 @@ public interface IValidityExport
 	 * @throws IOException 
 	 */
 	void export(@NonNull Appendable s, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
+
+	@Nullable String getPreferredExtension();
 }

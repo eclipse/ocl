@@ -70,6 +70,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class UMLConstraintLocator extends AbstractConstraintLocator
 {
+	public static @NonNull UMLConstraintLocator INSTANCE = new UMLConstraintLocator();
+	
 	protected void appendPath(@NonNull StringBuilder s, @NonNull NamedElement eObject) {
 		EObject eContainer = eObject.eContainer();
 		if (eContainer instanceof NamedElement) {

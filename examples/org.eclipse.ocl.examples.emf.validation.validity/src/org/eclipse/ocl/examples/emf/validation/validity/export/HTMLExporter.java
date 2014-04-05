@@ -30,8 +30,45 @@ import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessage
 /**
  * Exports ocl validation results as an html file.
  */
-public class HTMLExport extends AbstractExport {
+public class HTMLExporter extends AbstractExporter
+{
+	public static final @NonNull String EXPORTER_TYPE = "html";
+	
+	private void appendTitlesTable(@NonNull Appendable s) throws IOException {
+		s.append("\t\t\t<tr>\n");
+		s.append("\t\t\t\t<td><b>Resource</b></td>\n");
+		s.append("\t\t\t\t<td><b>Invariant</b></td>\n");
+		s.append("\t\t\t\t<td><b>Expression</b></td>\n");
+		s.append("\t\t\t\t<td><b>Severity</b></td>\n");
+		s.append("\t\t\t\t<td><b>Message</b></td>\n");
+		s.append("\t\t\t</tr>\n");
+	}
 
+	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
+		s.append("\t\t\t<tr>\n");
+		Resource resource = node.getConstraintResource();
+		if (resource != null) {
+			s.append("\t\t\t<td> Resource: " + resource.getURI().lastSegment() + "</td>\n");
+		} else {
+			s.append("\t\t\t\t<td>"
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
+				+ "</td>\n");
+		}
+		s.append("\t\t\t\t<td>" + node.getLabel() + "</td>\n");
+
+		String expression = node.getConstraintString();
+		if (expression != null) {
+			s.append("\t\t\t\t<td>" + expression + "</td>\n");
+		} else {
+			s.append("\t\t\t\t<td>"
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
+				+ "</td>\n");
+		}
+		s.append("\t\t\t\t<td>" + severity + "</td>\n");
+		s.append("\t\t\t\t<td>" + StringEscapeUtils.escapeHtml(getMessage(node.getWorstResult())) + "</td>\n");
+		s.append("\t\t\t</tr>\n");
+	}
+	
 	/**
 	 * Returns a stream containing the initial contents to be given to new
 	 * exported validation results file resource instances.
@@ -172,38 +209,8 @@ public class HTMLExport extends AbstractExport {
 		html.append("</html>\n");
 	}
 	
-	private void appendTitlesTable(@NonNull Appendable s) throws IOException {
-		s.append("\t\t\t<tr>\n");
-		s.append("\t\t\t\t<td><b>Resource</b></td>\n");
-		s.append("\t\t\t\t<td><b>Invariant</b></td>\n");
-		s.append("\t\t\t\t<td><b>Expression</b></td>\n");
-		s.append("\t\t\t\t<td><b>Severity</b></td>\n");
-		s.append("\t\t\t\t<td><b>Message</b></td>\n");
-		s.append("\t\t\t</tr>\n");
-	}
+	public @NonNull String getExporterType() { return EXPORTER_TYPE; }
 
-	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
-		s.append("\t\t\t<tr>\n");
-		Resource resource = node.getConstraintResource();
-		if (resource != null) {
-			s.append("\t\t\t<td> Resource: " + resource.getURI().lastSegment() + "</td>\n");
-		} else {
-			s.append("\t\t\t\t<td>"
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
-				+ "</td>\n");
-		}
-		s.append("\t\t\t\t<td>" + node.getLabel() + "</td>\n");
-
-		String expression = node.getConstraintString();
-		if (expression != null) {
-			s.append("\t\t\t\t<td>" + expression + "</td>\n");
-		} else {
-			s.append("\t\t\t\t<td>"
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
-				+ "</td>\n");
-		}
-		s.append("\t\t\t\t<td>" + severity + "</td>\n");
-		s.append("\t\t\t\t<td>" + StringEscapeUtils.escapeHtml(getMessage(node.getWorstResult())) + "</td>\n");
-		s.append("\t\t\t</tr>\n");
-	}
+	@Override
+	public @NonNull String getPreferredExtension() { return "html"; }
 }

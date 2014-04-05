@@ -52,17 +52,17 @@
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  A more friendly name for the exporter than the type.
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="extension" type="string" use="required">
+         <attribute name="type" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The type of the exporter.
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
@@ -72,7 +72,7 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The class providing the export results capability.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.ocl.examples.pivot.export.results.IValidatorExport"/>

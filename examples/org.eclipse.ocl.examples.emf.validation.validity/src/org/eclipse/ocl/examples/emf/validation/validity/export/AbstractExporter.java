@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 /**
  * Exports ocl validation results.
  */
-public abstract class AbstractExport implements IValidityExport
+public abstract class AbstractExporter implements IValidityExporter
 {
 	protected final @NonNull List<LeafConstrainingNode> validationErrors = new ArrayList<LeafConstrainingNode>();
 	protected final @NonNull List<LeafConstrainingNode> validationFailures = new ArrayList<LeafConstrainingNode>();
@@ -85,6 +85,11 @@ public abstract class AbstractExport implements IValidityExport
 
 	protected int getConstraintCount() {
 		return validationErrors.size() + validationFailures.size() + validationInfos.size() + validationSuccess.size() + validationWarnings.size();
+	}
+
+	@Override
+	public @NonNull IValidityExporter getExporter() {
+		return this;
 	}
 
 	protected String getMessage(Result result) {
