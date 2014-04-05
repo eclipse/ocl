@@ -135,7 +135,6 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 	private IFile getIResource(Resource resource) {
 		if (resource == null)
 			return null;
-	
 		URI resourceURI = resource.getURI();
 		if (resourceURI == null)
 			return null;
@@ -146,37 +145,27 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		return null;
 	}
 
-	public void export(@NonNull IValidityExporter selectedExporter, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @NonNull IPath savePath) {
-		final File exportedFile = new File(savePath.toString());
-		final String initialContents = selectedExporter.export(validatedResource, rootNode, exportedFile.getName());
-		final byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));
-		final IRunnableWithProgress op;
-
-		if (exportedFile.isAbsolute()) {
-			op = new IRunnableWithProgress() {
-				public void run(IProgressMonitor monitor) {
-					try {
+	public void export(final @NonNull IValidityExporter selectedExporter, final @NonNull Resource validatedResource, final @NonNull RootNode rootNode, final @NonNull IPath savePath) {
+		final IRunnableWithProgress op = new IRunnableWithProgress() {
+			public void run(IProgressMonitor monitor) {
+				File exportedFile = new File(savePath.toString());
+				String initialContents = selectedExporter.export(validatedResource, rootNode, exportedFile.getName());
+				byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));
+				try {
+					if (exportedFile.isAbsolute()) {
 						Files.write(byteArrayInputStream, exportedFile);
-					} catch (final IOException e) {
-						handleError(e.getCause(), true);
-					}
-				}
-			};
-		} else {
-			final InputStream contentStream = new ByteArrayInputStream(
-					byteArrayInputStream);
-			final IFile exportedIFile = ResourcesPlugin.getWorkspace()
-					.getRoot().getFile(savePath);
-			op = new IRunnableWithProgress() {
-				public void run(IProgressMonitor monitor) {
-					try {
+					} else {
+						final InputStream contentStream = new ByteArrayInputStream(byteArrayInputStream);
+						final IFile exportedIFile = ResourcesPlugin.getWorkspace().getRoot().getFile(savePath);
 						exportedIFile.create(contentStream, true, monitor);
-					} catch (final CoreException e) {
-						handleError(e.getCause(), true);
 					}
+				} catch (final CoreException e) {
+					handleError(e.getCause(), true);
+				} catch (final IOException e) {
+					handleError(e.getCause(), true);
 				}
-			};
-		}
+			}
+		};
 
 		try {
 			op.run(new NullProgressMonitor());
