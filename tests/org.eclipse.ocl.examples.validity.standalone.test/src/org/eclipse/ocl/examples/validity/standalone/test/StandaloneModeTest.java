@@ -250,7 +250,7 @@ public class StandaloneModeTest {
 			"-exporter", textExporterAttribute};//$NON-NLS-1$
 
 		StandaloneResponse applicationResponse = runtTest(arguments);
-		assertEquals(applicationResponse, StandaloneResponse.EXIT);
+		assertEquals(applicationResponse, StandaloneResponse.VALIDATE);
 
 		File file = new File(expectedTextOutputFilePath);
 

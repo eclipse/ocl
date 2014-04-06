@@ -27,9 +27,10 @@ import java.util.Stack;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.export.AbstractExport;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.export.HTMLExport;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.export.TextExport;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.emf.validation.validity.export.AbstractExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
 import org.eclipse.ocl.examples.validity.standalone.ValidityApplication;
 import org.eclipse.ocl.examples.validity.standalone.internal.ValidityStandaloneMessages;
 
@@ -60,8 +61,8 @@ public class ValidityStandaloneArgumentAnalyzer {
 	private static final Logger logger = Logger
 			.getLogger(ValidityApplication.class);
 
-	private static final TextExport textExporter = new TextExport();
-	private static final HTMLExport htmlExporter = new HTMLExport();
+	private static final TextExporter textExporter = new TextExporter();
+	private static final HTMLExporter htmlExporter = new HTMLExporter();
 
 	/**
 	 * A mandatory argument key of the model file path. This argument key must
@@ -87,7 +88,7 @@ public class ValidityStandaloneArgumentAnalyzer {
 
 	/**
 	 * An optional argument to specify which exporter should be used. By
-	 * default, the “txt” exporter will be used, exporting a textual report of
+	 * default, the ï¿½txtï¿½ exporter will be used, exporting a textual report of
 	 * the validation.
 	 */
 	private static final String EXPORTER_ARG = "-exporter"; //$NON-NLS-1$
@@ -131,8 +132,8 @@ public class ValidityStandaloneArgumentAnalyzer {
 	private Stack<String> tokens = new Stack<String>();
 
 	private IPath modelPath;
-	private IPath outputFilePath;
-	private AbstractExport exporter;
+	private @Nullable File outputFile;
+	private AbstractExporter exporter;
 	private String outputFileExtension;
 	private List<IPath> oclFilesPath = new ArrayList<IPath>();
 	private boolean doRunOCLConstraints = false;
@@ -166,8 +167,8 @@ public class ValidityStandaloneArgumentAnalyzer {
 	 * @return the result path of the output directory where result must be
 	 *         stored.
 	 */
-	public IPath getOutputPath() {
-		return outputFilePath;
+	public @Nullable File getOutputFile() {
+		return outputFile;
 	}
 
 	/**
@@ -186,7 +187,7 @@ public class ValidityStandaloneArgumentAnalyzer {
 	 * 
 	 * @return The validation exporter.
 	 */
-	public AbstractExport getExporter() {
+	public AbstractExporter getExporter() {
 		return exporter;
 	}
 
@@ -329,11 +330,11 @@ public class ValidityStandaloneArgumentAnalyzer {
 			try {
 				File outputFile = File.createTempFile(
 						DEFAULT_EXPORTED_FILE_NAME, "." + TEXT_FILE_EXTENSION); //$NON-NLS-1$
-				outputFilePath = new Path(outputFile.getAbsolutePath());
+//				outputFile = new Path(outputFile.getAbsolutePath());
 			} catch (IOException e) {
 				logger.error(ValidityStandaloneMessages.OCLArgumentAnalyzer_OutputFileCreationProblem);
 			}
-		} else if (outputFilePath == null) {
+		} else if (outputFile == null) {
 			logger.error(ValidityStandaloneMessages.OCLArgumentAnalyzer_OutputFilePathMissing);
 			valid = false;
 		}
@@ -349,15 +350,15 @@ public class ValidityStandaloneArgumentAnalyzer {
 		}
 
 		// validate output file extension
-		if (outputFileExtension != null && outputFilePath != null) {
-			String fileExtension = outputFilePath.getFileExtension();
-			if (!outputFileExtension.equals(fileExtension)) {
-				logger.error(MessageFormat
-						.format(ValidityStandaloneMessages.OCLArgumentAnalyzer_OutputFileInvalidExtension,
-								outputFileExtension));
-				valid = false;
-			}
-		}
+//		if (outputFileExtension != null && outputFilePath != null) {
+//			String fileExtension = outputFilePath.getFileExtension();
+//			if (!outputFileExtension.equals(fileExtension)) {
+//				logger.error(MessageFormat
+//						.format(ValidityStandaloneMessages.OCLArgumentAnalyzer_OutputFileInvalidExtension,
+//								outputFileExtension));
+//				valid = false;
+//			}
+//		}
 
 		// Optional "-locator" argument value
 		if (tokens.contains(REQUIRED_LOCATORS_ARG) && !checkLocators()) {
@@ -430,7 +431,8 @@ public class ValidityStandaloneArgumentAnalyzer {
 				}
 			}
 			if (!file.exists()) {
-				outputFilePath = new Path(file.getAbsolutePath());
+//				outputFilePath = new Path(file.getAbsolutePath());
+				outputFile = file;
 				File outputFolder = file.getParentFile();
 				if (!outputFolder.exists()) {
 					logger.error(ValidityStandaloneMessages.OCLArgumentAnalyzer_OutputDir

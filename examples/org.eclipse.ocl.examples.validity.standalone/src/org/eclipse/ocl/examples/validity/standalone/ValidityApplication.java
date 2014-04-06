@@ -14,6 +14,9 @@
  */
 package org.eclipse.ocl.examples.validity.standalone;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -32,7 +35,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
-import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExport;
+import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
@@ -104,7 +107,7 @@ public class ValidityApplication implements IApplication {
 				validate();
 
 				// export results
-				exportValidationResults(validityManager.getRootNode(), commandAnalyzer.getOutputPath());
+				exportValidationResults(validityManager.getRootNode(), commandAnalyzer.getOutputFile());
 			}
 		} else if (StandaloneResponse.HELP.equals(applicationCodeResponse)) {
 	        System.out.println(ValidityStandaloneMessages.OCLArgumentAnalyzer_help);
@@ -192,12 +195,17 @@ public class ValidityApplication implements IApplication {
 	 * @param outputPath
 	 *            the exported file path.
 	 */
-	private void exportValidationResults(RootNode rootNode, IPath outputPath) {
-		final IValidityExport selectedExporter = commandAnalyzer.getExporter();
-		if (selectedExporter != null && modelResource != null
-				&& rootNode != null && outputPath != null) {
+	private void exportValidationResults(RootNode rootNode, @Nullable File outputFile) {
+		final IValidityExporter selectedExporter = commandAnalyzer.getExporter();
+		if (selectedExporter != null && modelResource != null && rootNode != null) {
 			logger.info(ValidityStandaloneMessages.OCLValidatorApplication_ExportStarting);
-			selectedExporter.export(modelResource, rootNode, outputPath);
+			Appendable s;
+			try {
+				s = outputFile != null ? new FileWriter(outputFile) : System.out;
+				selectedExporter.export(s, modelResource, rootNode, outputFile != null ? outputFile.toString() : null);
+			} catch (IOException e) {
+				logger.error(ValidityStandaloneMessages.OCLValidatorApplication_ExportProblem, e);
+			}
 			logger.info(ValidityStandaloneMessages.OCLValidatorApplication_ExportedFileGenerated);
 		} else {
 			logger.info(ValidityStandaloneMessages.OCLValidatorApplication_ExportProblem);
