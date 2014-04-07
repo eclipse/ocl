@@ -641,7 +641,9 @@ public class PivotTestCase extends TestCase
 	}
 
 	protected void uninstall() {
-		OCLstdlib.uninstall();
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			OCLstdlib.uninstall();
+		}
 		PivotStandaloneSetup.doTearDown();
 		BaseStandaloneSetup.doTearDown();
 		CompleteOCLStandaloneSetup.doTearDown();

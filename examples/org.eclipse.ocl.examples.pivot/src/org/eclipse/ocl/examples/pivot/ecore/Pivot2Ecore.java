@@ -398,10 +398,9 @@ public class Pivot2Ecore extends AbstractConversion
 //		System.out.println("Put1 " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
 		EModelElement oldPivot = createMap.put(pivotElement, eModelElement);
 		assert oldPivot == null;
-		if (pivotElement != primaryElement) {
+		if ((pivotElement != primaryElement) && !createMap.containsKey(primaryElement)) {
 //			System.out.println("Put2 " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
-			EModelElement oldPrimary = createMap.put(primaryElement, eModelElement);
-			assert oldPrimary == null;
+			createMap.put(primaryElement, eModelElement);
 		}
 	}
 }

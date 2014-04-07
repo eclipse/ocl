@@ -44,6 +44,8 @@ import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
 import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
 import org.eclipse.ocl.examples.pivot.tests.StereotypesTest;
 import org.eclipse.ocl.examples.test.ecore.ProjectMapTest;
+import org.eclipse.ocl.examples.test.standalone.StandaloneExecutionTests;
+import org.eclipse.ocl.examples.test.standalone.StandaloneParserTests;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 /**
@@ -104,6 +106,8 @@ public class AllXtextTests
 		result.addTestSuite(PivotDocumentationExamples.class);
 		result.addTestSuite(OCLinEcoreTutorialExamples.class);
 		result.addTestSuite(UsageTests.class);
+		result.addTestSuite(StandaloneExecutionTests.class);
+		result.addTestSuite(StandaloneParserTests.class);
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			result.addTestSuite(CompletionProposalTests.class);
 			result.addTestSuite(ConsoleTests.class);

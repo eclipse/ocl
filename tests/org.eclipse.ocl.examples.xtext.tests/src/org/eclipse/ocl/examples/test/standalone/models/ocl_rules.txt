@@ -1,0 +1,2 @@
+eclipse_ocl_rule.ocl
+eclipse_ocl_rule_2.ocl

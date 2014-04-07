@@ -605,7 +605,9 @@ public class LoadTests extends XtextTestCase
 			metaModelManager.dispose();
 			metaModelManager = null;
 		}
-		StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
+		}
 		super.tearDown();
 	}
 

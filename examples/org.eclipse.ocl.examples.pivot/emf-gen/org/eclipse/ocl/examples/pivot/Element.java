@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.pivot;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 
@@ -60,7 +61,7 @@ public interface Element
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement_OwnedComment()
 	 * @generated
 	 */
-	List<Comment> getOwnedComment();
+	@NonNull List<Comment> getOwnedComment();
 
 	/**
 	 * Returns the value of the '<em><b>Extension</b></em>' containment reference list.
@@ -77,7 +78,7 @@ public interface Element
 	 * @see org.eclipse.ocl.examples.pivot.ElementExtension#getBase
 	 * @generated
 	 */
-	List<ElementExtension> getExtension();
+	@NonNull List<ElementExtension> getExtension();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -92,14 +93,14 @@ public interface Element
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement_OwnedAnnotation()
 	 * @generated
 	 */
-	List<Element> getOwnedAnnotation();
+	@NonNull List<Element> getOwnedAnnotation();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	List<Element> allOwnedElements();
+	@NonNull List<Element> allOwnedElements();
 
 	/**
 	 * <!-- begin-user-doc -->

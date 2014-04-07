@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
@@ -74,7 +75,9 @@ public class ImportTests extends XtextTestCase
 			metaModelManager.dispose();
 			metaModelManager = null;
 		}
-		StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
+		}
 		super.tearDown();
 	}
 

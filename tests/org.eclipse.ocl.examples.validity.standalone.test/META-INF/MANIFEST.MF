@@ -11,4 +11,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit
 Bundle-ActivationPolicy: lazy
 Manifest-Version: 1.0
-Fragment-Host: org.eclipse.ocl.examples.validity.standalone
+Fragment-Host: org.eclipse.ocl.examples.standalone

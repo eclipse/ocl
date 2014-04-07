@@ -114,7 +114,8 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Comment> getOwnedComment()
+	@SuppressWarnings("null")
+	public @NonNull List<Comment> getOwnedComment()
 	{
 		if (ownedComment == null)
 		{
@@ -128,7 +129,8 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ElementExtension> getExtension()
+	@SuppressWarnings("null")
+	public @NonNull List<ElementExtension> getExtension()
 	{
 		if (extension == null)
 		{
@@ -142,7 +144,8 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Element> getOwnedAnnotation()
+	@SuppressWarnings("null")
+	public @NonNull List<Element> getOwnedAnnotation()
 	{
 		if (ownedAnnotation == null)
 		{
@@ -156,7 +159,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Element> allOwnedElements()
+	public @NonNull List<Element> allOwnedElements()
 	{
 		/**
 		 * oclContents()

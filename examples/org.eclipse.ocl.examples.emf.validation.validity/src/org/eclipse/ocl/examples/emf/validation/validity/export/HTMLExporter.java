@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessage
 public class HTMLExporter extends AbstractExporter
 {
 	public static final @NonNull String EXPORTER_TYPE = "html";
+	public static final @NonNull HTMLExporter INSTANCE = new HTMLExporter();
 	
 	private void appendTitlesTable(@NonNull Appendable s) throws IOException {
 		s.append("\t\t\t<tr>\n");

@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessage
 public class TextExporter extends AbstractExporter
 {
 	public static final @NonNull String EXPORTER_TYPE = "text";
+	public static final @NonNull TextExporter INSTANCE = new TextExporter();
 
 	private void appendLogFile(LeafConstrainingNode node, @NonNull Appendable s, String severity) throws IOException {
 		Resource resource = node.getConstraintResource();

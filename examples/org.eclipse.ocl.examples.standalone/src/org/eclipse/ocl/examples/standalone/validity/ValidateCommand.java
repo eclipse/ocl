@@ -1,0 +1,695 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2014 Obeo and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Obeo - initial API and implementation 
+ *
+ * </copyright>
+ */
+package org.eclipse.ocl.examples.standalone.validity;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
+import org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
+import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
+import org.eclipse.ocl.examples.standalone.StandaloneApplication;
+import org.eclipse.ocl.examples.standalone.StandaloneCommand;
+import org.eclipse.ocl.examples.standalone.StandaloneResponse;
+import org.eclipse.ocl.examples.standalone.messages.StandaloneMessages;
+import org.eclipse.ocl.examples.xtext.completeocl.ui.commands.LoadCompleteOCLResourceHandler.Helper;
+
+/**
+ * The ValidateCommand provides model validation.
+ */
+public class ValidateCommand extends StandaloneCommand
+{
+	private static final Logger logger = Logger.getLogger(ValidateCommand.class);
+
+	public static class ExporterToken extends StringToken
+	{
+		public ExporterToken() {
+			super(EXPORTER_ARG, "EXPORTER_ARG");
+		}
+		
+		public boolean check(@NonNull List<String> strings) {
+			return getExporter(strings) != null;
+		}
+
+		private @Nullable IValidityExporter getExporter(@NonNull List<String> strings) {
+			if (strings.size() <= 0) {
+				return null;
+			}
+			String string = strings.get(0);
+			if (string.equals(HTMLExporter.EXPORTER_TYPE)) {
+				return HTMLExporter.INSTANCE;
+			}
+			else if (string.equals(TextExporter.EXPORTER_TYPE)) {
+				return TextExporter.INSTANCE;
+			}
+			return null;
+		}
+
+		public @Nullable IValidityExporter getExporter(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			if (strings == null) {
+				return null;
+			}
+			return getExporter(strings);
+		}
+
+
+		/**
+		 * Gets the validation exporter corresponding to the argument read after the
+		 * <b>-report</b> argument.
+		 * 
+		 * @return The validation exporter.
+		 */
+//		public AbstractExporter getExporter() {
+//			return exporter;
+//		}
+	}
+
+	public static class ModelToken extends StringToken
+	{
+		public ModelToken() {
+			super(MODEL_ARG, "MODEL_ARG");
+		}
+		
+		public boolean check(@NonNull List<String> strings) {
+			return getModelFileName(strings) != null;
+		}
+
+		private @Nullable String getModelFileName(@NonNull List<String> strings) {
+			if (strings.size() <= 0) {
+				return null;
+			}
+			String string = strings.get(0);
+			return getCheckedFileName(string);
+		}
+
+		public @Nullable String getModelFileName(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			if (strings == null) {
+				return null;
+			}
+			return getModelFileName(strings);
+		}
+
+		/**
+		 * Gets the absolute path to the model file deduced from the value specified
+		 * after the argument <b>-model</b>.
+		 * 
+		 * @return the model path as a String.
+		 */
+//		public IPath getModelFilePath() {
+//			return modelPath;
+//		}
+	}
+
+	public static class OutputToken extends StringToken
+	{
+		public OutputToken() {
+			super(OUTPUT_ARG, "OUTPUT_ARG");
+		}
+		
+		public boolean check(@NonNull List<String> strings) {
+			return getOutputFile(strings) != null;
+		}
+
+		private @Nullable File getOutputFile(@NonNull List<String> strings) {
+			if (strings.size() <= 0) {
+				return null;
+			}
+			String string = strings.get(0);
+			try {
+				File file = new File(string).getCanonicalFile();
+				if (file.exists()) {
+					if (file.isFile()) {
+						file.delete();
+					} else {
+						logger.error(StandaloneMessages.OCLArgumentAnalyzer_OutputFile
+								+ file.getAbsolutePath()
+								+ StandaloneMessages.OCLArgumentAnalyzer_NotFile);
+					}
+				}
+				if (!file.exists()) {
+//					outputFilePath = new Path(file.getAbsolutePath());
+//					outputFile = file;
+					File outputFolder = file.getParentFile();
+					if (!outputFolder.exists()) {
+						logger.error(StandaloneMessages.OCLArgumentAnalyzer_OutputDir
+								+ outputFolder.getAbsolutePath()
+								+ StandaloneMessages.OCLArgumentAnalyzer_NotExist);
+					} else {
+						return file;
+					}
+				}
+			} catch (IOException e) {
+				logger.error(e.getMessage());
+			}
+			return null;
+		}
+
+		public File getOutputFile(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			if (strings == null) {
+				return null;
+			}
+			return getOutputFile(strings);
+		}
+	}
+
+	public static class RulesToken extends CommandToken
+	{
+		public RulesToken() {
+			super(RULES_ARG, "RULES_ARG");
+		}
+
+		public boolean check(@NonNull List<String> strings) {
+			if (strings.size() <= 0) {
+//				return false;			-- all files might be ignored
+			}
+			for (String string : strings) {
+				String checkedName = getCheckedFileName(string);
+				if (checkedName == null) {
+					return false; 
+				}
+			}
+			return true;
+		}
+
+		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
+			if (i < arguments.length){
+				String argument = arguments[i++];
+				checkOclFile(strings, argument);
+				return i;
+			}
+			else {
+				logger.error("No argument for '" + name + "'");
+				return -1;
+			}
+		}
+
+		/**
+		 * Checks consistency of the ocl file passed to the command line.
+		 * 
+		 * @param argument
+		 *            is the path to the relative/absolute path to the resource
+		 * @return <code>true</code> if the model exists and is a file,
+		 *         <code>false</code> otherwise.
+		 */
+		private void checkOclFile(@NonNull List<String> strings, @NonNull String argument) {
+			if (argument.startsWith("file:")) {
+				argument = argument.substring(5);
+			}
+			if (isWindows() && argument.startsWith("/")) {
+				argument = argument.substring(1);
+			}
+			boolean ignored = false;
+			try {
+				File file = new File(argument).getCanonicalFile();
+				IPath path = new Path(file.getCanonicalPath());
+				// a txt file may contain relative or absolute path to a set of OCL
+				// files.
+				if (TEXT_FILE_EXTENSION.equals(path.getFileExtension().toLowerCase())) {
+					extractOCLUris(strings, file);
+				} else if (OCL_FILE_EXTENSION.equals(path.getFileExtension().toLowerCase())) {
+					if (!file.exists()) {
+						logger.warn(StandaloneMessages.OCLArgumentAnalyzer_OCLResource
+								+ file.getAbsolutePath()
+								+ StandaloneMessages.OCLArgumentAnalyzer_NotExist);
+						ignored = true;
+					} else if (!file.isFile()) {
+						logger.warn(StandaloneMessages.OCLArgumentAnalyzer_OCLResource
+								+ file.getAbsolutePath()
+								+ StandaloneMessages.OCLArgumentAnalyzer_NotFile);
+						ignored = true;
+					} else if (!file.canRead()) {
+						logger.warn(StandaloneMessages.OCLArgumentAnalyzer_OCLResource
+								+ file.getAbsolutePath()
+								+ StandaloneMessages.OCLArgumentAnalyzer_CannotBeRead);
+						ignored = true;
+					} else {
+						strings.add(file.getAbsolutePath());
+					}
+				} else {
+					logger.warn(StandaloneMessages.OCLArgumentAnalyzer_FileExt
+							+ path.lastSegment()
+							+ StandaloneMessages.OCLArgumentAnalyzer_ExtensionPb);
+					ignored = true;
+				}
+
+				if (ignored) {
+					logger.warn(StandaloneMessages.OCLArgumentAnalyzer_OCLFile
+							+ file.getAbsolutePath()
+							+ StandaloneMessages.OCLArgumentAnalyzer_ignored);
+
+//				} else {
+//					logger.info(StandaloneMessages.OCLArgumentAnalyzer_OCLFile
+//							+ file.getAbsolutePath()
+//							+ StandaloneMessages.OCLArgumentAnalyzer_found);
+				}
+			} catch (IOException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+
+		/**
+		 * Extracts information contained in the text file.
+		 * 
+		 * @param txtFile
+		 *            The file containing relative path to OCL files.
+		 */
+		private void extractOCLUris(@NonNull List<String> strings, File txtFile) {
+			BufferedReader reader;
+			try {
+				reader = new BufferedReader(new FileReader(txtFile));
+				String line = reader.readLine();
+				while (line != null) {
+					File child = new File(txtFile.getParentFile(), line);
+					checkOclFile(strings, child.toString());
+					line = reader.readLine();
+				}
+				reader.close();
+			} catch (FileNotFoundException e) {
+				logger.error(MessageFormat
+						.format(StandaloneMessages.OCLArgumentAnalyzer_OCLFileNotFound,
+								txtFile.getAbsolutePath()));
+			} catch (IOException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+
+		/**
+		 * Gets the collection of OCL resources deduced from values specified after
+		 * the <b>-rule</b> argument.
+		 * 
+		 * @return A List of OCL Uris
+		 */
+		public @NonNull List<String> getOCLFileNames(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			if (strings == null) {
+				return Collections.emptyList();
+			}
+			return strings;
+		}
+	}
+
+	public static class UsingToken extends StringToken
+	{
+		public UsingToken() {
+			super(REQUIRED_LOCATORS_ARG, "REQUIRED_LOCATORS_ARG");
+		}
+		
+		public boolean check(@NonNull List<String> locators) {
+			for (String locator : locators) {
+				if (!ALL_LOCATORS.equals(locator) && !JAVA_LOCATOR.equals(locator) && !OCL_LOCATOR.equals(locator) && !UML_LOCATOR.equals(locator)) {
+					logger.error("Unknown locator '" + locator + "'");
+					return false;
+				}
+			}
+			return true;
+		}
+
+		public boolean doRunJavaConstraints(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			return (strings == null) || strings.contains(JAVA_LOCATOR) || strings.contains(ALL_LOCATORS);
+		}
+
+		public boolean doRunOCLConstraints(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			return (strings == null) || strings.contains(OCL_LOCATOR) || strings.contains(ALL_LOCATORS);
+		}
+
+		public boolean doRunUMLConstraints(@NonNull Map<CommandToken, List<String>> token2strings) {
+			List<String> strings = token2strings.get(this);
+			return (strings == null) || strings.contains(UML_LOCATOR) || strings.contains(ALL_LOCATORS);
+		}
+
+		@Override
+		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
+			if (i < arguments.length){
+				String argument = arguments[i++];
+				String[] locators = argument.split(",");
+				for (String locator : locators) {
+					if (!ALL_LOCATORS.equals(locator) && !JAVA_LOCATOR.equals(locator) && !OCL_LOCATOR.equals(locator) && !UML_LOCATOR.equals(locator)) {
+						logger.error("Unknown locator '" + locator + "'");
+						return -1;
+					}
+				}
+				for (String locator : locators) {
+					strings.add(locator);
+				}
+				return i;
+			}
+			else {
+				logger.error("No argument for '" + name + "'");
+				return -1;
+			}
+		}
+	}
+
+	protected static String getCheckedFileName(@NonNull String string) {
+		if (string.startsWith("file:")) {
+			string = string.substring(5);
+		}
+		if (isWindows() && string.startsWith("/")) {
+			string = string.substring(1);
+		}
+		try {
+			File file = new File(string).getCanonicalFile();
+			if (!file.exists()) {
+				logger.error(StandaloneMessages.OCLArgumentAnalyzer_ModelFile
+						+ file.getAbsolutePath()
+						+ StandaloneMessages.OCLArgumentAnalyzer_NotExist);
+			} else if (!file.isFile()) {
+				logger.error(StandaloneMessages.OCLArgumentAnalyzer_ModelFile
+						+ file.getAbsolutePath()
+						+ StandaloneMessages.OCLArgumentAnalyzer_NotFile);
+			} else {
+				@SuppressWarnings("unused")
+				IPath modelPath = new Path(file.getAbsolutePath());
+//				logger.info(StandaloneMessages.OCLArgumentAnalyzer_ModelFile
+//						+ file.getAbsolutePath()
+//						+ StandaloneMessages.OCLArgumentAnalyzer_found);
+				return string;//modelPath;
+			}
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		return null;
+	}
+
+	/**
+	 * Gets an URI from a file Path.
+	 * 
+	 * @param filePath
+	 *            the file path.
+	 * @return an URI from the path.
+	 */
+	private static URI getFileUri(@NonNull String fileName) {
+		final URI fileUri;
+		File file;
+		try {
+			file = new File(fileName).getCanonicalFile();		// FIXME is this necessary
+			IPath filePath = new Path(file.getAbsolutePath());
+//			IPath filePath = new Path(fileName);
+			if (isRelativePath(filePath)) {
+				fileUri = URI.createPlatformResourceURI(filePath.toString(), true);
+			} else {
+				fileUri = URI.createFileURI(filePath.toString());
+			}
+			return fileUri;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * Checks if the path is relative or absolute.
+	 * 
+	 * @param path
+	 *            a file path.
+	 * @return true if the path is relative, false otherwise.
+	 */
+	private static boolean isRelativePath(IPath path) {
+		try {
+			IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
+			return resource != null && resource.exists();
+		} catch (IllegalStateException exception) {
+			return false;
+		}
+	}
+
+	public static boolean isWindows() {
+		String os = System.getProperty("os.name");
+		return (os != null) && os.startsWith("Windows");
+	}
+
+//	private Resource modelResource;
+
+//	private IDEValidityManager validityManager;
+
+	/**
+	 * A mandatory argument key of the model file path. This argument key must
+	 * be followed by the model file path.
+	 */
+	private static final String MODEL_ARG = "-model"; //$NON-NLS-1$
+
+	/**
+	 * A mandatory argument used to define the paths to the OCL documents
+	 * containing the constraints to evaluate. Users can specify one or several
+	 * OCL Documents paths in the command line, separated with a whitespace. A
+	 * text file containing a list of OCL Documents paths can be used instead,
+	 * in which case all OCL constraints defined in all of these documents will
+	 * be evaluated sequentially.
+	 */
+	private static final String RULES_ARG = "-rules"; //$NON-NLS-1$
+
+	/**
+	 * An optional argument to define the output file path. The exporter will
+	 * create results within that target file.
+	 */
+	private static final String OUTPUT_ARG = "-output"; //$NON-NLS-1$
+
+	/**
+	 * An optional argument to specify which exporter should be used. By
+	 * default, the �txt� exporter will be used, exporting a textual report of
+	 * the validation.
+	 */
+	private static final String EXPORTER_ARG = "-exporter"; //$NON-NLS-1$
+
+	/**
+	 * An optional argument used if the user wishes to run all constraints or to
+	 * only run the OCL, Java or UML constraints validation. Otherwise, all
+	 * constraints will be checked against the input model.
+	 */
+	private static final String REQUIRED_LOCATORS_ARG = "-using"; //$NON-NLS-1$
+
+	/**
+	 * "-exporter" argument value to export validation results using html
+	 * format.
+	 */
+//	private static final String HTML_EXPORTER_NAME = "html"; //$NON-NLS-1$
+
+	/** html file extension. */
+//	private static final String HTML_FILE_EXTENSION = "html"; //$NON-NLS-1$
+	/** txt file extension. */
+//	private static final String TXT_FILE_EXTENSION = "txt"; //$NON-NLS-1$
+
+	/** "-using" argument value to run the all constraints (ocl, java and uml). */
+	private static final String ALL_LOCATORS = "all"; //$NON-NLS-1$
+	/** "-using" argument value to additionally run the OCL constraints. */
+	private static final String OCL_LOCATOR = "ocl"; //$NON-NLS-1$
+	/** "-using" argument value to additionally run the Java constraints. */
+	private static final String JAVA_LOCATOR = "java"; //$NON-NLS-1$
+	/** "-using" argument value to additionally run the UML constraints. */
+	private static final String UML_LOCATOR = "uml"; //$NON-NLS-1$
+
+//	private static final String DEFAULT_EXPORTED_FILE_NAME = "log"; //$NON-NLS-1$ 
+
+	/** Possible "text" extension file for the "-rules" argument entry. */
+	private static final Object TEXT_FILE_EXTENSION = "txt"; //$NON-NLS-1$
+	/** Possible "ocl" extension file for the "-rules" argument entry. */
+	private static final Object OCL_FILE_EXTENSION = "ocl"; //$NON-NLS-1$
+
+	public final @NonNull ExporterToken exporterToken = new ExporterToken();
+	public final @NonNull ModelToken modelToken = new ModelToken();
+	public final @NonNull OutputToken outputToken = new OutputToken();
+	public final @NonNull RulesToken rulesToken = new RulesToken();
+	public final @NonNull UsingToken usingToken = new UsingToken();
+
+	public ValidateCommand(@NonNull StandaloneApplication standaloneApplication) {
+		super(standaloneApplication, "validate", "Validate model");
+		modelToken.setIsRequired();
+		rulesToken.setIsRequired();
+		addToken(modelToken);
+		addToken(rulesToken);
+		addToken(outputToken);
+		addToken(exporterToken);
+		addToken(usingToken);
+	}
+	
+	public @NonNull StandaloneResponse execute(@NonNull Map<CommandToken, List<String>> token2strings) {
+		standaloneApplication.doCompleteOCLSetup();
+		String modelFileName = modelToken.getModelFileName(token2strings);
+		List<String> oclFileNames = rulesToken.getOCLFileNames(token2strings);
+		URI modelURI = getFileUri(modelFileName);
+		// Load model resource
+		Resource modelResource = standaloneApplication.loadModelFile(modelURI);
+		if (modelResource == null) {
+			logger.error(MessageFormat.format(StandaloneMessages.OCLValidatorApplication_ModelLoadProblem, modelFileName));
+			return StandaloneResponse.FAIL;
+		}
+		if (!processResources(modelFileName, oclFileNames)) {
+			logger.error(StandaloneMessages.OCLValidatorApplication_Aborted);
+			return StandaloneResponse.FAIL;
+		}
+		if (ValidationAdapter.findAdapter(standaloneApplication.getResourceSet()) == null) {
+			logger.error(StandaloneMessages.OCLValidatorApplication_Aborted);
+			return StandaloneResponse.FAIL;
+		}
+		StandaloneValidityManager validityManager = initiateValidityManager(standaloneApplication.getResourceSet(), token2strings);
+		
+		if (validityManager != null) {
+			// run the validation
+			validate(validityManager);
+
+			// export results
+			File outputFile = outputToken.getOutputFile(token2strings);
+			exportValidationResults(validityManager.getRootNode(), modelResource, outputFile, token2strings);
+//			try {
+//				exportValidationResults(getOutputWriter(), validityManager.getRootNode());
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+		}
+		return StandaloneResponse.OK;
+	}
+
+	/**
+	 * Exports Validation results.
+	 * 
+	 * @param rootNode
+	 *            the validity model rootNode.
+	 * @param outputPath
+	 *            the exported file path.
+	 */
+	private void exportValidationResults(@NonNull RootNode rootNode, @NonNull Resource modelResource, @Nullable File outputFile, @NonNull Map<CommandToken, List<String>> token2strings) {
+		final IValidityExporter selectedExporter = exporterToken.getExporter(token2strings);
+		if (selectedExporter != null && modelResource != null && rootNode != null) {
+//			logger.info(StandaloneMessages.OCLValidatorApplication_ExportStarting);
+			Appendable s = null;
+			try {
+				s = outputFile != null ? new FileWriter(outputFile) : System.out;
+				selectedExporter.export(s, modelResource, rootNode, outputFile != null ? outputFile.toString() : null);
+			} catch (IOException e) {
+				logger.error(StandaloneMessages.OCLValidatorApplication_ExportProblem, e);
+			} finally {
+				if (s != System.out) {
+					try {
+						((FileWriter)s).close();
+					} catch (IOException e) {}
+				}
+			}
+//			logger.info(StandaloneMessages.OCLValidatorApplication_ExportedFileGenerated);
+//		} else {
+//			logger.info(StandaloneMessages.OCLValidatorApplication_ExportProblem);
+		}
+	}
+
+	/**
+	 * Initiates the validity manager using the resourceSet.
+	 * 
+	 * @param resourceSet
+	 *            the resource set.
+	 */
+	private @NonNull StandaloneValidityManager initiateValidityManager(@NonNull ResourceSet resourceSet, @NonNull Map<CommandToken, List<String>> token2strings) {
+		StandaloneValidityManager validityManager = new StandaloneValidityManager(new ValidityViewRefreshJob());
+		validityManager.setRunJavaConstraints(usingToken.doRunJavaConstraints(token2strings));
+		validityManager.setRunOCLConstraints(usingToken.doRunOCLConstraints(token2strings));
+		validityManager.setRunUMLConstraints(usingToken.doRunUMLConstraints(token2strings));
+		validityManager.setInput(resourceSet);
+		return validityManager;
+	}
+
+	/**
+	 * Loads the entered model and ocl files.
+	 * 
+	 * @param modelFilePath
+	 *            the model to validate file path.
+	 * @param oclPaths
+	 *            the ocl files paths.
+	 * @return true if there is not problem while loading, false otherwise.
+	 */
+	private boolean processResources(@NonNull String modelFilePath, @NonNull List<String> oclFileNames) {
+		boolean allOk = true;
+
+		Helper helper = new Helper(standaloneApplication.getResourceSet()) {
+			@Override
+			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
+				logger.error(primaryMessage + detailMessage);
+				return false;
+			}
+		};
+
+		for (String oclFileName : oclFileNames) {
+			URI oclURI = getFileUri(oclFileName);
+
+			if (allOk && oclURI == null) {
+				logger.error(MessageFormat.format(StandaloneMessages.OCLValidatorApplication_OclUriProblem, oclFileName));
+				allOk = false;
+			}
+
+			// Load ocl models
+//			if (done && standaloneApplication.loadModelFile(oclURI) == null) {
+//				logger.error(MessageFormat.format(StandaloneMessages.OCLValidatorApplication_OclLoadProblem, oclFileName));
+//				done = false;
+//			}
+
+			// Load as ocl documents
+			try {
+				if (allOk) {
+					Resource oclResource = helper.loadResource(oclURI);
+					if (oclResource == null) {
+						logger.error(MessageFormat.format(StandaloneMessages.OCLValidatorApplication_OclLoadProblem, oclFileName));
+						allOk = false;
+					}
+				}
+			} catch (Throwable e) {
+				logger.error(MessageFormat.format(StandaloneMessages.OCLValidatorApplication_OclLoadProblem, oclFileName));
+				allOk = false;
+			}
+		}
+
+		if (allOk && !helper.loadMetaModels()) {
+			logger.error(StandaloneMessages.OCLValidatorApplication_MetaModelsLoadProblem);
+			allOk = false;
+		}
+
+		helper.installPackages();
+		return allOk;
+	}
+
+	/**
+	 * Runs the validation
+	 */
+	private void validate(@NonNull StandaloneValidityManager validityManager) {
+//		logger.info(StandaloneMessages.OCLValidatorApplication_ValidationStarting);
+		validityManager.runValidation(new ValidityView());
+//		logger.info(StandaloneMessages.OCLValidatorApplication_ValidationComplete);
+	}
+}

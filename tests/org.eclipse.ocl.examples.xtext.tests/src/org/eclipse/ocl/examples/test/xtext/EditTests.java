@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -81,7 +82,9 @@ public class EditTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
+		}
 		ocl.dispose();		
 		ocl = null;		
 		super.tearDown();
