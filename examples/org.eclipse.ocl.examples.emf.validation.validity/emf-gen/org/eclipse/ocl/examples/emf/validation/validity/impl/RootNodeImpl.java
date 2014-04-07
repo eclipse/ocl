@@ -15,12 +15,14 @@
 package org.eclipse.ocl.examples.emf.validation.validity.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
@@ -111,12 +113,12 @@ public class RootNodeImpl extends MinimalEObjectImpl.Container implements RootNo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT // Bug 414352 workaround
 	 */
 	@SuppressWarnings("null")
 	public @NonNull EList<RootConstrainingNode> getConstrainingNodes() {
 		if (constrainingNodes == null) {
-			constrainingNodes = new BasicInternalEList<RootConstrainingNode>(RootConstrainingNode.class);
+			constrainingNodes = new EObjectContainmentWithInverseEList<RootConstrainingNode>(RootConstrainingNode.class, this, ValidityPackage.ROOT_NODE__CONSTRAINING_NODES, ValidityPackage.ROOT_CONSTRAINING_NODE__ROOT_NODE);
 		}
 		return constrainingNodes;
 	}
@@ -124,12 +126,12 @@ public class RootNodeImpl extends MinimalEObjectImpl.Container implements RootNo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT // Bug 414352 workaround
 	 */
 	@SuppressWarnings("null")
 	public @NonNull EList<RootValidatableNode> getValidatableNodes() {
 		if (validatableNodes == null) {
-			validatableNodes = new BasicInternalEList<RootValidatableNode>(RootValidatableNode.class);
+			validatableNodes = new EObjectContainmentWithInverseEList<RootValidatableNode>(RootValidatableNode.class, this, ValidityPackage.ROOT_NODE__VALIDATABLE_NODES, ValidityPackage.ROOT_VALIDATABLE_NODE__ROOT_NODE);
 		}
 		return validatableNodes;
 	}
