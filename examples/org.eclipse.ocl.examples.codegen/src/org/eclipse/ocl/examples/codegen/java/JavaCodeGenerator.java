@@ -31,6 +31,8 @@ import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
+import org.eclipse.ocl.examples.codegen.asm3.ASM3JavaAnnotationReader;
+import org.eclipse.ocl.examples.codegen.asm5.ASM5JavaAnnotationReader;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -189,7 +191,8 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	private /*@LazyNonNull*/ JavaGlobalContext globalContext = null;
 	private /*@LazyNonNull*/ GlobalPlace globalPlace = null;
 	private @NonNull Map<ElementId, BoxedDescriptor> boxedDescriptors = new HashMap<ElementId, BoxedDescriptor>();
-	private /*@LazyNonNull*/ JavaAnnotationReader annotationReader = null;
+	private /*@LazyNonNull*/ Object annotationReader = null;
+	private /*@LazyNonNull*/ Method annotationReader_getIsNonNull = null;
 	
 	public JavaCodeGenerator(@NonNull MetaModelManager metaModelManager) {
 		super(metaModelManager);
@@ -306,14 +309,37 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	 * Return true for an @NonNull annotation, false for an @Nullable annotation, null otherwise.
 	 */
 	public Boolean getIsNonNull(@NonNull Method method) {
-		JavaAnnotationReader annotationReader2 = annotationReader;
-		if (annotationReader2 == null) {
+		//
+		// org.objectweb.asm introduced an incompatible change between 3.x and 4.x whereby ClassVisitot changes from an interface to a class.
+		// when running standalone, only one version can be used and we don't know what xtext.common.types may force so we just try both.
+		// construction fails for a compilation error. reflection fails for a missing library. invocation fails for the wrong library.
+		//
+		if (annotationReader == null) {
 			try {
-				annotationReader = annotationReader2 = new JavaAnnotationReader();
+				annotationReader = new ASM5JavaAnnotationReader();
+				annotationReader_getIsNonNull = annotationReader.getClass().getMethod("getIsNonNull", Method.class);
+				return (Boolean) annotationReader_getIsNonNull.invoke(annotationReader, method);
 			}
-			catch (Throwable e) {}	// Fails if no org.objectweb.asm
+			catch (Throwable e1) {	// Fails if no org.objectweb.asm 4.x/5.x
+				try {
+					annotationReader = new ASM3JavaAnnotationReader();
+					annotationReader_getIsNonNull = annotationReader.getClass().getMethod("getIsNonNull", Method.class);
+					return (Boolean) annotationReader_getIsNonNull.invoke(annotationReader, method);
+				}
+				catch (Throwable e2) {	// Fails if no org.objectweb.asm 3.x
+					annotationReader = this;
+					annotationReader_getIsNonNull = null;
+				}
+			}
 		}
-		return (annotationReader2 != null) ? annotationReader2.getIsNonNull(method) : null;
+		if (annotationReader_getIsNonNull == null) {
+			return null;
+		}
+		try {
+			return (Boolean) annotationReader_getIsNonNull.invoke(annotationReader, method);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

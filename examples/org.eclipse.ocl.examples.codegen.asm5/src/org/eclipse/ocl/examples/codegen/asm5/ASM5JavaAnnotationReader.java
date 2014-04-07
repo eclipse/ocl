@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.eclipse.ocl.examples.codegen.java;
+package org.eclipse.ocl.examples.codegen.asm5;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,26 +32,27 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 /**
  * JavaAnnotationReader supports determination of the declared @NonNull, @Nullable state of a method .
  */
-public class JavaAnnotationReader
+public class ASM5JavaAnnotationReader
 {
-	private static final Logger logger = Logger.getLogger(JavaAnnotationReader.class);
+	private static final Logger logger = Logger.getLogger(ASM5JavaAnnotationReader.class);
 
 	private final @NonNull Map<String, Boolean> desc2state = new HashMap<String, Boolean>();
 	private final @NonNull Set<String> readClasses = new HashSet<String>();
 	private final @SuppressWarnings("null")@NonNull String nonNullDesc = Type.getDescriptor(NonNull.class);
 	private final @SuppressWarnings("null")@NonNull String nullableDesc = Type.getDescriptor(Nullable.class);
 
-	public JavaAnnotationReader() {}
-
 	/**
 	 * Return true for an @NonNull annotation, false for an @Nullable annotation, null otherwise.
 	 */
-	public Boolean getIsNonNull(@NonNull Method method) {
+	public ASM5JavaAnnotationReader() {}
+
+	public @Nullable Boolean getIsNonNull(@NonNull Method method) {
 		final String className = method.getDeclaringClass().getName();
 		final String requiredDesc = className + ";" + method.getName() + Type.getMethodDescriptor(method);
 		Boolean state = desc2state.get(requiredDesc);
@@ -69,14 +70,14 @@ public class JavaAnnotationReader
 			String classFileName = className.replace('.', '/') + ".class";
 			classStream = contextClassLoader.getResourceAsStream(classFileName);		
 			final ClassReader cr = new ClassReader(classStream);
-			ClassVisitor cv = new ClassVisitor()
+			ClassVisitor cv = new ClassVisitor(Opcodes.ASM4)
 			{
 				@Override
 				public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
 					final String methodDesc = className + ";" + name + desc;
 //					System.out.println("  ClassVisitor.visitMethod: " + methodDesc);
 					desc2state.put(methodDesc, null);
-					return new MethodVisitor()
+					return new MethodVisitor(Opcodes.ASM4)
 					{
 						@Override
 						public AnnotationVisitor visitAnnotation(String annotationDesc, boolean visible) {
@@ -142,7 +143,7 @@ public class JavaAnnotationReader
 						public void visitIincInsn(int var, int increment) {}
 
 						@Override
-						public void visitTableSwitchInsn(int min, int max, Label dflt, Label[] labels) {}
+						public void visitTableSwitchInsn(int min, int max, Label dflt, Label... labels) {}
 
 						@Override
 						public void visitLookupSwitchInsn(Label dflt, int[] keys, Label[] labels) {}
