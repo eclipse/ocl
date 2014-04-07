@@ -453,17 +453,17 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 		@Override
 		public void addStereotypeApplication(@NonNull EObject umlStereotypeApplication) {
+			@SuppressWarnings("null")@NonNull EClass eClass = umlStereotypeApplication.eClass();
 			if (ADD_STEREOTYPE_APPLICATION.isActive()) {
 				if (umlStereotypeApplication instanceof DynamicEObjectImpl) {
-					ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(umlStereotypeApplication.eClass()));
+					ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(eClass));
 				}
 				else {
-					ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(umlStereotypeApplication.eClass()));
+					ADD_STEREOTYPE_APPLICATION.println(EcoreUtils.qualifiedNameFor(eClass));
 //					ADD_STEREOTYPE_APPLICATION.println(umlStereotypeApplication.toString());
 				}
 			}
 			umlStereotypeApplications.add(umlStereotypeApplication);
-			EClass eClass = umlStereotypeApplication.eClass();
 			EPackage ePackage = eClass.getEPackage();
 			addImportedResource(DomainUtil.nonNullEMF(ePackage.eResource()));
 		}
@@ -775,9 +775,13 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 			if (ADD_ELEMENT_EXTENSION.isActive()) {
 				StringBuffer s = new StringBuffer();
 				for (EClass eClass : stereotypedElements2.keySet()) {
-					s.append("\n\t" + EcoreUtils.qualifiedNameFor(eClass));
-					for (org.eclipse.uml2.uml.Element element : stereotypedElements2.get(eClass)) {
-						s.append("\n\t\t" + EcoreUtils.qualifiedNameFor(element));
+					if (eClass != null) {
+						s.append("\n\t" + EcoreUtils.qualifiedNameFor(eClass));
+						for (org.eclipse.uml2.uml.Element element : stereotypedElements2.get(eClass)) {
+							if (element != null) {
+								s.append("\n\t\t" + EcoreUtils.qualifiedNameFor(element));
+							}
+						}
 					}
 				}
 				ADD_ELEMENT_EXTENSION.println("Applications" + s.toString());

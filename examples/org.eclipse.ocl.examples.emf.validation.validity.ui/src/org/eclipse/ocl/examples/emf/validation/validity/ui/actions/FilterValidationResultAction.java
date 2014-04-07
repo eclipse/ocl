@@ -105,9 +105,9 @@ public final class FilterValidationResultAction extends Action implements IMenuC
 	}
 	
 	private class SwitchFilterAction extends Action {
-		private final Severity severity;
+		private final @NonNull Severity severity;
 		
-		public SwitchFilterAction(String text, String toolTipText, Severity acceptedSeverity) {
+		public SwitchFilterAction(String text, String toolTipText, @NonNull Severity acceptedSeverity) {
 			super(text, IAction.AS_CHECK_BOX);
 			setToolTipText(toolTipText);
 			this.severity = acceptedSeverity;

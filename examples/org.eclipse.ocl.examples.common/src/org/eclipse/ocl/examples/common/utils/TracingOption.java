@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 
 public final class TracingOption implements Appendable
@@ -88,7 +89,7 @@ public final class TracingOption implements Appendable
 		return state;
 	}
 
-	public void println(@NonNull String string) {
+	public void println(@Nullable String string) {
 		if (!resolved) {
 			state = resolveState();
 			resolved = true;
@@ -97,7 +98,7 @@ public final class TracingOption implements Appendable
 			System.out.println(option + " : " + string);		
 	}
 
-	public void println(@NonNull Class<?> clazz, @NonNull String string) {
+	public void println(@NonNull Class<?> clazz, @Nullable String string) {
 		if (!resolved) {
 			state = resolveState();
 			resolved = true;

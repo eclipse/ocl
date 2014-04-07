@@ -108,6 +108,7 @@ public class EnumerationCSImpl extends ClassifierCSImpl implements EnumerationCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Enumeration ast()
 	{
 		try

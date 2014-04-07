@@ -113,6 +113,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
 			projectMap.initializeResourceSet(resourceSet);
@@ -223,6 +224,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
 			projectMap.initializeResourceSet(resourceSet);
@@ -271,6 +273,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
 			projectMap.initializeResourceSet(resourceSet);
@@ -324,6 +327,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
 			assert projectDescriptor != null;
 			IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+			assert packageDescriptor != null;
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
 				projectMap.initializeResourceSet(resourceSet);

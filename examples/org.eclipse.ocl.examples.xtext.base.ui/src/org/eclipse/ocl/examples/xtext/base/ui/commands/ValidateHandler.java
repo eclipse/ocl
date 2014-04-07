@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.EValidator.Registry;
 import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -45,16 +44,12 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 {
 	protected final static class Diagnostician_2_8 extends Diagnostician
 	{
-		private final ResourceSet resourceSet;
 		private final AdapterFactory adapterFactory;
-		private final IProgressMonitor progressMonitor;
 
 		protected Diagnostician_2_8(Registry eValidatorRegistry, ResourceSet resourceSet,
 				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
 			super(eValidatorRegistry);
-			this.resourceSet = resourceSet;
 			this.adapterFactory = adapterFactory;
-			this.progressMonitor = progressMonitor;
 		}
 
 		@Override
@@ -67,15 +62,6 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 			}
 			return super.getObjectLabel(eObject);
 		}
-
-/*		@Override
-		protected boolean doValidate(EValidator eValidator, EClass eClass, EObject eObject,
-				DiagnosticChain diagnostics, Map<Object, Object> context) {
-			progressMonitor.worked(1);
-			synchronized (resourceSet) {
-				return super.doValidate(eValidator, eClass, eObject, diagnostics, context);
-			}
-		} */
 	}
 	protected final static class Diagnostician_2_9 extends Diagnostician
 	{

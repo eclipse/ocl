@@ -44,6 +44,7 @@ public class LabelGeneratorRegistryReader extends RegistryReader
 			ILabelGenerator<?> labelGenerator2 = labelGenerator;
 			if (labelGenerator2 == null) {
 				labelGenerator2 = labelGenerator = (ILabelGenerator<?>) createInstance();
+				assert labelGenerator2 != null;
 			}
 			return labelGenerator2;
 		}
