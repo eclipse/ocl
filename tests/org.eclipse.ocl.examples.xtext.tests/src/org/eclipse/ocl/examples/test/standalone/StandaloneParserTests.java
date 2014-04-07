@@ -153,7 +153,7 @@ public class StandaloneParserTests extends StandaloneTestCase
 		ValidateCommand command = parseCommand(ValidateCommand.class, arguments);
 		Map<CommandToken, List<String>> token2strings = parseValidArguments(command, arguments);
 		assertCommandValid(command, token2strings);
-		assertEquals(TextExporter.INSTANCE, command.exporterToken.getExporter(token2strings));
+		assertTrue(command.exporterToken.getExporter(token2strings) instanceof TextExporter);
 		assertEquals(inputModelName, command.modelToken.getModelFileName(token2strings));
 		assertEquals(getTextLogFileName(), normalize(command.outputToken.getOutputFile(token2strings).toString()));
 		assertEquals(Lists.newArrayList(inputOCLFileName), Lists.newArrayList(normalize(command.rulesToken.getOCLFileNames(token2strings).get(0))));
@@ -172,7 +172,7 @@ public class StandaloneParserTests extends StandaloneTestCase
 		ValidateCommand command = parseCommand(ValidateCommand.class, arguments);
 		Map<CommandToken, List<String>> token2strings = parseValidArguments(command, arguments);
 		assertCommandValid(command, token2strings);
-		assertEquals(HTMLExporter.INSTANCE, command.exporterToken.getExporter(token2strings));
+		assertTrue(command.exporterToken.getExporter(token2strings) instanceof HTMLExporter);
 		assertEquals(inputModelName, command.modelToken.getModelFileName(token2strings));
 		assertEquals(getHTMLLogFileName(), normalize(command.outputToken.getOutputFile(token2strings).toString()));
 		assertEquals(Lists.newArrayList(inputOCLFileName), normalize(command.rulesToken.getOCLFileNames(token2strings)));
@@ -239,7 +239,7 @@ public class StandaloneParserTests extends StandaloneTestCase
 		ValidateCommand command = parseCommand(ValidateCommand.class, arguments);
 		Map<CommandToken, List<String>> token2strings = parseValidArguments(command, arguments);
 		assertCommandValid(command, token2strings);
-		assertEquals(TextExporter.INSTANCE, command.exporterToken.getExporter(token2strings));
+		assertTrue(command.exporterToken.getExporter(token2strings) instanceof TextExporter);
 		assertEquals(inputModelName, command.modelToken.getModelFileName(token2strings));
 		assertEquals(getTextLogFileName(), normalize(command.outputToken.getOutputFile(token2strings).toString()));
 		assertEquals(Lists.newArrayList(inputOCLFileName, inputOCLFileName2), normalize(command.rulesToken.getOCLFileNames(token2strings)));

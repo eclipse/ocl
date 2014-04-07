@@ -28,6 +28,8 @@
    <extension point="org.eclipse.ocl.examples.emf.validation.validity.validity_exporter">
        <exporter type="html" name="HTML Export"
              class="org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExporter"/>
+       <exporter type="model" name="Model Export"
+             class="org.eclipse.ocl.examples.emf.validation.validity.export.ModelExporter"/>
        <exporter type="text" name="Text Export"
              class="org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter"/>
     </extension>

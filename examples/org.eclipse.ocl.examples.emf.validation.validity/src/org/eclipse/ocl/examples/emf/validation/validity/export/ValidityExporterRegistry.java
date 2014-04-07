@@ -28,6 +28,12 @@ import org.eclipse.jdt.annotation.Nullable;
 public class ValidityExporterRegistry
 {
 	public static final @NonNull ValidityExporterRegistry INSTANCE = new ValidityExporterRegistry();
+
+	public static void initialize(@NonNull ValidityExporterRegistry registry) {
+		registry.addExporter(HTMLExporter.INSTANCE);
+		registry.addExporter(ModelExporter.INSTANCE);
+		registry.addExporter(TextExporter.INSTANCE);
+	}
 	
 	/** List of extensions created from the extension point contributions. */
 	private final Map<String, IValidityExporterDescriptor> EXTENSIONS = new HashMap<String, IValidityExporterDescriptor>();

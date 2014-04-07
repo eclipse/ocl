@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand.CommandToken;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -48,7 +49,11 @@ public class StandaloneApplication implements IApplication
 
 	private final @NonNull StandaloneCommandAnalyzer commandAnalyzer = new StandaloneCommandAnalyzer(this);
 
-	public StandaloneApplication() {}
+	public StandaloneApplication() {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			ValidityExporterRegistry.initialize(ValidityExporterRegistry.INSTANCE);
+		}
+	}
 	/**
 	 * Initializes all the needed resource factories to create ecore and ocl
 	 * resources in the global registry.

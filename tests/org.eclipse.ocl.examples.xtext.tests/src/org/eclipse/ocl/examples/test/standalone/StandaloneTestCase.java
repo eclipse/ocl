@@ -18,6 +18,7 @@ import java.net.URL;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 
@@ -52,6 +53,10 @@ public class StandaloneTestCase extends PivotTestCase
 
 	protected @NonNull String getTextLogFileName() {
 		return getProjectFileName("models/log_" + getName() + ".txt");
+	}
+
+	protected @NonNull String getLogFileName(@NonNull IValidityExporter exporter) {
+		return getProjectFileName("models/log_" + getName() + "." + exporter.getPreferredExtension());
 	}
 	
 	@Override

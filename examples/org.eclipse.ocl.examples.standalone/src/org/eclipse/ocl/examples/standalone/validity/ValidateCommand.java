@@ -21,7 +21,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +38,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
-import org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
-import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
+import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporterDescriptor;
+import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
@@ -55,6 +57,17 @@ public class ValidateCommand extends StandaloneCommand
 {
 	private static final Logger logger = Logger.getLogger(ValidateCommand.class);
 
+	protected static final class ExporterComparator implements Comparator<IValidityExporterDescriptor>
+	{
+		public static final @NonNull ExporterComparator INSTANCE = new ExporterComparator();
+
+		@Override
+		public int compare(IValidityExporterDescriptor o1, IValidityExporterDescriptor o2) {
+			String n1 = o1.getExporterType();
+			String n2 = o2.getExporterType();
+			return n1.compareTo(n2);
+		}
+	}
 
 	/**
 	 * An optional argument to specify which exporter should be used. By
@@ -72,7 +85,16 @@ public class ValidateCommand extends StandaloneCommand
 		}
 
 		public @Nullable String getArgsHelp() {
-			return HTMLExporter.EXPORTER_TYPE + "|" + TextExporter.EXPORTER_TYPE;
+			List<IValidityExporterDescriptor> exporters = new ArrayList<IValidityExporterDescriptor>(ValidityExporterRegistry.INSTANCE.getRegisteredExtensions());
+			Collections.sort(exporters, ExporterComparator.INSTANCE);
+			StringBuilder s = new StringBuilder();
+			for (IValidityExporterDescriptor exporter : exporters) {
+				if (s.length() > 0) {
+					s.append("|");
+				}
+				s.append(exporter.getExporterType());
+			}
+			return s.toString();
 		}
 
 		private @Nullable IValidityExporter getExporter(@NonNull List<String> strings) {
@@ -80,13 +102,7 @@ public class ValidateCommand extends StandaloneCommand
 				return null;
 			}
 			String string = strings.get(0);
-			if (string.equals(HTMLExporter.EXPORTER_TYPE)) {
-				return HTMLExporter.INSTANCE;
-			}
-			else if (string.equals(TextExporter.EXPORTER_TYPE)) {
-				return TextExporter.INSTANCE;
-			}
-			return null;
+			return ValidityExporterRegistry.INSTANCE.getExporter(string);
 		}
 
 		public @Nullable IValidityExporter getExporter(@NonNull Map<CommandToken, List<String>> token2strings) {

@@ -37,8 +37,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
-import org.eclipse.ocl.examples.emf.validation.validity.export.HTMLExporter;
-import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassifierConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
@@ -216,8 +214,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 			CompleteOCLStandaloneSetup.doSetup();
 			EcoreTestPackage.eINSTANCE.getClass();
 			EcoreTest2Package.eINSTANCE.getClass();
-			ValidityExporterRegistry.INSTANCE.addExporter(new HTMLExporter());
-			ValidityExporterRegistry.INSTANCE.addExporter(new TextExporter());
+			ValidityExporterRegistry.initialize(ValidityExporterRegistry.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassifierConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EValidatorConstraintLocator.INSTANCE);
