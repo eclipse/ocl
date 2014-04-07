@@ -74,6 +74,20 @@ public final class StandaloneMessages
 	public static String OCLArgumentAnalyzer_NotExist;
 	public static String OCLArgumentAnalyzer_OCLFile;
 	public static String OCLArgumentAnalyzer_OCLResource;
+
+	public static String Standalone_Help;
 	
-	public static String OCLArgumentAnalyzer_help;
+	public static String HelpCommand_Bad;
+	public static String HelpCommand_Help;
+	public static String HelpText_Optional;
+	public static String HelpText_Required;
+	public static String HelpText_repeatable;
+	public static String HelpText_token;
+	
+	public static String ValidateCommand_Help;
+	public static String ValidateCommand_Model_Help;
+	public static String ValidateCommand_Rules_Help;
+	public static String ValidateCommand_Output_Help;
+	public static String ValidateCommand_Exporter_Help;
+	public static String ValidateCommand_Using_Help;
 }

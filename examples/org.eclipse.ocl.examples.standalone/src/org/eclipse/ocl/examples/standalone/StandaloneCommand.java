@@ -15,6 +15,7 @@
 package org.eclipse.ocl.examples.standalone;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,10 @@ public abstract class StandaloneCommand
 
 		public boolean check(@NonNull List<String> strings) {
 			return true;
+		}
+
+		public @Nullable String getArgsHelp() {
+			return null;
 		}
 		
 		public @NonNull String getHelp() {
@@ -84,6 +89,10 @@ public abstract class StandaloneCommand
 
 		public boolean check(@NonNull List<String> strings) {
 			return strings.size() == 1;
+		}
+
+		public @Nullable String getArgsHelp() {
+			return "<string-value>";
 		}
 
 		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
@@ -140,6 +149,10 @@ public abstract class StandaloneCommand
 
 	public @NonNull String getName() {
 		return name;
+	}
+
+	public @NonNull Collection<CommandToken> getTokens() {
+		return tokens.values();
 	}
 	
 	public @Nullable Map<CommandToken, List<String>> parse(@NonNull String[] arguments) {

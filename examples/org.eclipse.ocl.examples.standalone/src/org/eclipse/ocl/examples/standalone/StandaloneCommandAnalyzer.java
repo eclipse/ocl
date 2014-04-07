@@ -14,6 +14,7 @@
  */
 package org.eclipse.ocl.examples.standalone;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +44,10 @@ public class StandaloneCommandAnalyzer
 
 	protected void addCommand(@NonNull StandaloneCommand command) {
 		commands.put(command.getName(), command);
+	}
+
+	public @NonNull Collection<StandaloneCommand> getCommands() {
+		return commands.values();
 	}
 	
 	/**

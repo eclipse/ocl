@@ -55,14 +55,24 @@ public class ValidateCommand extends StandaloneCommand
 {
 	private static final Logger logger = Logger.getLogger(ValidateCommand.class);
 
+
+	/**
+	 * An optional argument to specify which exporter should be used. By
+	 * default, the �txt� exporter will be used, exporting a textual report of
+	 * the validation.
+	 */
 	public static class ExporterToken extends StringToken
 	{
 		public ExporterToken() {
-			super(EXPORTER_ARG, "EXPORTER_ARG");
+			super("-exporter", StandaloneMessages.ValidateCommand_Exporter_Help);
 		}
 		
 		public boolean check(@NonNull List<String> strings) {
 			return getExporter(strings) != null;
+		}
+
+		public @Nullable String getArgsHelp() {
+			return HTMLExporter.EXPORTER_TYPE + "|" + TextExporter.EXPORTER_TYPE;
 		}
 
 		private @Nullable IValidityExporter getExporter(@NonNull List<String> strings) {
@@ -99,14 +109,22 @@ public class ValidateCommand extends StandaloneCommand
 //		}
 	}
 
+	/**
+	 * A mandatory argument key of the model file path. This argument key must
+	 * be followed by the model file path.
+	 */
 	public static class ModelToken extends StringToken
 	{
 		public ModelToken() {
-			super(MODEL_ARG, "MODEL_ARG");
+			super("-model", StandaloneMessages.ValidateCommand_Model_Help);
 		}
 		
 		public boolean check(@NonNull List<String> strings) {
 			return getModelFileName(strings) != null;
+		}
+
+		public @Nullable String getArgsHelp() {
+			return "<file-name>";
 		}
 
 		private @Nullable String getModelFileName(@NonNull List<String> strings) {
@@ -136,14 +154,22 @@ public class ValidateCommand extends StandaloneCommand
 //		}
 	}
 
+	/**
+	 * An optional argument to define the output file path. The exporter will
+	 * create results within that target file.
+	 */
 	public static class OutputToken extends StringToken
 	{
 		public OutputToken() {
-			super(OUTPUT_ARG, "OUTPUT_ARG");
+			super("-output", StandaloneMessages.ValidateCommand_Output_Help);
 		}
 		
 		public boolean check(@NonNull List<String> strings) {
 			return getOutputFile(strings) != null;
+		}
+
+		public @Nullable String getArgsHelp() {
+			return "<file-name>";
 		}
 
 		private @Nullable File getOutputFile(@NonNull List<String> strings) {
@@ -189,10 +215,24 @@ public class ValidateCommand extends StandaloneCommand
 		}
 	}
 
+
+	/**
+	 * A mandatory argument used to define the paths to the OCL documents
+	 * containing the constraints to evaluate. Users can specify one or several
+	 * OCL Documents paths in the command line, separated with a whitespace. A
+	 * text file containing a list of OCL Documents paths can be used instead,
+	 * in which case all OCL constraints defined in all of these documents will
+	 * be evaluated sequentially.
+	 */
 	public static class RulesToken extends CommandToken
 	{
+		/** Possible "text" extension file for the "-rules" argument entry. */
+		private static final Object TEXT_FILE_EXTENSION = "txt"; //$NON-NLS-1$
+		/** Possible "ocl" extension file for the "-rules" argument entry. */
+		private static final Object OCL_FILE_EXTENSION = "ocl"; //$NON-NLS-1$
+
 		public RulesToken() {
-			super(RULES_ARG, "RULES_ARG");
+			super("-rules", StandaloneMessages.ValidateCommand_Rules_Help);
 		}
 
 		public boolean check(@NonNull List<String> strings) {
@@ -310,6 +350,10 @@ public class ValidateCommand extends StandaloneCommand
 			}
 		}
 
+		public @Nullable String getArgsHelp() {
+			return "<file-name>";
+		}
+
 		/**
 		 * Gets the collection of OCL resources deduced from values specified after
 		 * the <b>-rule</b> argument.
@@ -325,10 +369,25 @@ public class ValidateCommand extends StandaloneCommand
 		}
 	}
 
+
+	/**
+	 * An optional argument used if the user wishes to run all constraints or to
+	 * only run the OCL, Java or UML constraints validation. Otherwise, all
+	 * constraints will be checked against the input model.
+	 */
 	public static class UsingToken extends StringToken
 	{
+		/** "-using" argument value to run the all constraints (ocl, java and uml). */
+		private static final String ALL_LOCATORS = "all"; //$NON-NLS-1$
+		/** "-using" argument value to additionally run the OCL constraints. */
+		private static final String OCL_LOCATOR = "ocl"; //$NON-NLS-1$
+		/** "-using" argument value to additionally run the Java constraints. */
+		private static final String JAVA_LOCATOR = "java"; //$NON-NLS-1$
+		/** "-using" argument value to additionally run the UML constraints. */
+		private static final String UML_LOCATOR = "uml"; //$NON-NLS-1$
+
 		public UsingToken() {
-			super(REQUIRED_LOCATORS_ARG, "REQUIRED_LOCATORS_ARG");
+			super("-using", StandaloneMessages.ValidateCommand_Using_Help);
 		}
 		
 		public boolean check(@NonNull List<String> locators) {
@@ -354,6 +413,15 @@ public class ValidateCommand extends StandaloneCommand
 		public boolean doRunUMLConstraints(@NonNull Map<CommandToken, List<String>> token2strings) {
 			List<String> strings = token2strings.get(this);
 			return (strings == null) || strings.contains(UML_LOCATOR) || strings.contains(ALL_LOCATORS);
+		}
+
+		public @Nullable String getArgsHelp() {
+			return ALL_LOCATORS + "|" + JAVA_LOCATOR + "|" + OCL_LOCATOR + "|" + UML_LOCATOR;
+		}
+
+		@Override
+		public boolean isSingleton() {
+			return false;
 		}
 
 		@Override
@@ -458,73 +526,6 @@ public class ValidateCommand extends StandaloneCommand
 		return (os != null) && os.startsWith("Windows");
 	}
 
-//	private Resource modelResource;
-
-//	private IDEValidityManager validityManager;
-
-	/**
-	 * A mandatory argument key of the model file path. This argument key must
-	 * be followed by the model file path.
-	 */
-	private static final String MODEL_ARG = "-model"; //$NON-NLS-1$
-
-	/**
-	 * A mandatory argument used to define the paths to the OCL documents
-	 * containing the constraints to evaluate. Users can specify one or several
-	 * OCL Documents paths in the command line, separated with a whitespace. A
-	 * text file containing a list of OCL Documents paths can be used instead,
-	 * in which case all OCL constraints defined in all of these documents will
-	 * be evaluated sequentially.
-	 */
-	private static final String RULES_ARG = "-rules"; //$NON-NLS-1$
-
-	/**
-	 * An optional argument to define the output file path. The exporter will
-	 * create results within that target file.
-	 */
-	private static final String OUTPUT_ARG = "-output"; //$NON-NLS-1$
-
-	/**
-	 * An optional argument to specify which exporter should be used. By
-	 * default, the �txt� exporter will be used, exporting a textual report of
-	 * the validation.
-	 */
-	private static final String EXPORTER_ARG = "-exporter"; //$NON-NLS-1$
-
-	/**
-	 * An optional argument used if the user wishes to run all constraints or to
-	 * only run the OCL, Java or UML constraints validation. Otherwise, all
-	 * constraints will be checked against the input model.
-	 */
-	private static final String REQUIRED_LOCATORS_ARG = "-using"; //$NON-NLS-1$
-
-	/**
-	 * "-exporter" argument value to export validation results using html
-	 * format.
-	 */
-//	private static final String HTML_EXPORTER_NAME = "html"; //$NON-NLS-1$
-
-	/** html file extension. */
-//	private static final String HTML_FILE_EXTENSION = "html"; //$NON-NLS-1$
-	/** txt file extension. */
-//	private static final String TXT_FILE_EXTENSION = "txt"; //$NON-NLS-1$
-
-	/** "-using" argument value to run the all constraints (ocl, java and uml). */
-	private static final String ALL_LOCATORS = "all"; //$NON-NLS-1$
-	/** "-using" argument value to additionally run the OCL constraints. */
-	private static final String OCL_LOCATOR = "ocl"; //$NON-NLS-1$
-	/** "-using" argument value to additionally run the Java constraints. */
-	private static final String JAVA_LOCATOR = "java"; //$NON-NLS-1$
-	/** "-using" argument value to additionally run the UML constraints. */
-	private static final String UML_LOCATOR = "uml"; //$NON-NLS-1$
-
-//	private static final String DEFAULT_EXPORTED_FILE_NAME = "log"; //$NON-NLS-1$ 
-
-	/** Possible "text" extension file for the "-rules" argument entry. */
-	private static final Object TEXT_FILE_EXTENSION = "txt"; //$NON-NLS-1$
-	/** Possible "ocl" extension file for the "-rules" argument entry. */
-	private static final Object OCL_FILE_EXTENSION = "ocl"; //$NON-NLS-1$
-
 	public final @NonNull ExporterToken exporterToken = new ExporterToken();
 	public final @NonNull ModelToken modelToken = new ModelToken();
 	public final @NonNull OutputToken outputToken = new OutputToken();
@@ -532,7 +533,7 @@ public class ValidateCommand extends StandaloneCommand
 	public final @NonNull UsingToken usingToken = new UsingToken();
 
 	public ValidateCommand(@NonNull StandaloneApplication standaloneApplication) {
-		super(standaloneApplication, "validate", "Validate model");
+		super(standaloneApplication, "validate", StandaloneMessages.ValidateCommand_Help);
 		modelToken.setIsRequired();
 		rulesToken.setIsRequired();
 		addToken(modelToken);

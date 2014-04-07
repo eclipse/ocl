@@ -14,6 +14,7 @@
  */
 package org.eclipse.ocl.examples.standalone;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -86,6 +87,10 @@ public class StandaloneApplication implements IApplication
 			return StandaloneResponse.FAIL;
 		}
 		return command.execute(token2strings);
+	}
+
+	public @NonNull Collection<StandaloneCommand> getCommands() {
+		return commandAnalyzer.getCommands();
 	}
 
 	public @NonNull ResourceSet getResourceSet() {
