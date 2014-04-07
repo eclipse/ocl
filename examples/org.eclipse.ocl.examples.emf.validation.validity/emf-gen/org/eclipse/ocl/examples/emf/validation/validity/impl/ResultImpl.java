@@ -233,8 +233,10 @@ public class ResultImpl extends MinimalEObjectImpl.Container implements Result {
 	public void setSeverity(Severity newSeverity) {
 		if (newSeverity != severity || newSeverity == SEVERITY_EDEFAULT) {
 			setSeverityGen(newSeverity);
-			getResultValidatableNode().setWorstResult(this);
-			getResultConstrainingNode().setWorstResult(this);
+			if (eContainer() != null) {
+				getResultValidatableNode().setWorstResult(this);
+				getResultConstrainingNode().setWorstResult(this);
+			}
 		}
 	}
 
