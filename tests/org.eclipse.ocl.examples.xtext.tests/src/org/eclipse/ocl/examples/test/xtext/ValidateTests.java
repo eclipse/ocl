@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.commands.LoadCompleteOCLResourceHandler.Helper;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -247,7 +247,7 @@ public class ValidateTests extends AbstractValidateTests
 			"The 'AtMostTwoLoans' constraint is violated on 'Member m3'",
 			"The 'UniqueLoans' constraint is violated on 'Member m3'");
 		//
-		Helper helper = new Helper(resourceSet2) {
+		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet2) {
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 				TestCase.fail(primaryMessage + "\n\t" + detailMessage);
@@ -305,7 +305,7 @@ public class ValidateTests extends AbstractValidateTests
 		}
 		assertValidationDiagnostics("Without Complete OCL", resource);
 		//
-		Helper helper = new Helper(resourceSet2) {
+		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet2) {
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 				TestCase.fail(primaryMessage + "\n\t" + detailMessage);

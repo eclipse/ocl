@@ -51,8 +51,8 @@ import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
 import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.commands.LoadCompleteOCLResourceHandler.Helper;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 
 /**
  * Abstract shared functionality for testing.
@@ -238,7 +238,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 		ecoreResource2 = resourceSet2.getResource(ecoreURI2, true);
 		ecoreResource3 = resourceSet2.getResource(ecoreURI3, true);
 
-		Helper helper = new Helper(resourceSet2)
+		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet2)
 		{
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {

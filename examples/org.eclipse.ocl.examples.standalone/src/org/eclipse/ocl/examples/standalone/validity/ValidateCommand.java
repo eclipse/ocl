@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.standalone.messages.StandaloneMessages;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.commands.LoadCompleteOCLResourceHandler.Helper;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 
 /**
  * The ValidateCommand provides model validation.
@@ -653,7 +653,7 @@ public class ValidateCommand extends StandaloneCommand
 	private boolean processResources(@NonNull String modelFilePath, @NonNull List<String> oclFileNames) {
 		boolean allOk = true;
 
-		Helper helper = new Helper(standaloneApplication.getResourceSet()) {
+		CompleteOCLLoader helper = new CompleteOCLLoader(standaloneApplication.getResourceSet()) {
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 				logger.error(primaryMessage + detailMessage);

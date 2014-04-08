@@ -17,32 +17,21 @@ package org.eclipse.ocl.examples.xtext.completeocl.ui.commands;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceStatus;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog;
@@ -52,21 +41,13 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.registry.CompleteOCLRegistry;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator;
 import org.eclipse.ocl.examples.xtext.base.ui.utilities.PDEUtils;
-import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
@@ -305,7 +286,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 
 		@Override
 		protected boolean processResources() {
-			Helper helper = new Helper(resourceSet) {
+			CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet) {
 				@Override
 				protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 					return ResourceDialog.this.error(primaryMessage, detailMessage);
@@ -338,151 +319,6 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		@Override
 		protected boolean processResource(Resource resource) {
 			throw new UnsupportedOperationException();		// Never happens since processResources overridden.
-		}
-	}
-	
-	public static abstract class Helper			// Functionality subject to JUnit exercising
-	{
-		protected final @NonNull ResourceSet resourceSet;
-		protected final @NonNull MetaModelManager metaModelManager;
-		protected final @NonNull Set<EPackage> mmPackages;
-		
-		public Helper(@NonNull ResourceSet resourceSet) {
-			this.resourceSet = resourceSet;
-			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);	// ?? Shared global MMM
-			this.metaModelManager = adapter.getMetaModelManager();
-			this.mmPackages = new HashSet<EPackage>();
-		}
-		
-		public boolean loadMetaModels() {
-			for (Resource resource : resourceSet.getResources()) {
-				assert resource != null;
-				Ecore2Pivot ecore2Pivot = Ecore2Pivot.findAdapter(resource, metaModelManager);
-				if (ecore2Pivot == null) {			// Pivot has its own validation
-					for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-						EObject eObject = tit.next();
-						EClass eClass = eObject.eClass();
-						if (eClass != null) {
-							EPackage mmPackage = eClass.getEPackage();
-							if (mmPackage != null) {
-								mmPackages.add(mmPackage);
-							}
-						}
-					}
-	 			}
-			}
-			Set<Resource> mmResources = new HashSet<Resource>();
-			for (EPackage mmPackage : mmPackages) {
-				Resource mmResource = EcoreUtil.getRootContainer(mmPackage).eResource();
-				if (mmResource != null) {
-					mmResources.add(mmResource);
-				}
- 			}
-			for (Resource mmResource : mmResources) {
-				assert mmResource != null;
-				try {
-					Element pivotRoot = metaModelManager.loadResource(mmResource, null);
-					if (pivotRoot != null) {
-						List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotRoot.eResource().getErrors();
-						assert errors != null;
-						String message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
-						if (message != null) {
-							return error("Failed to load Pivot from '" + mmResource.getURI(), message);
-						}
-					}
-					else {
-						return error("Failed to load Pivot from '" + mmResource.getURI(), "");
-					}
-				} catch (ParserException e) {
-					return error("Failed to load Pivot from '" + mmResource.getURI(), e.getMessage());
-				}
-			}
-			return true;
-		}
-
-		protected abstract boolean error(@NonNull String primaryMessage, @Nullable String detailMessage);
-
-		public void installPackages() {
-			//
-			//	Install validation for all the complemented packages
-			//
-			PivotEObjectValidator.install(resourceSet, metaModelManager);
-			for (EPackage mmPackage : mmPackages) {
-				assert mmPackage != null;
-				PivotEObjectValidator.install(mmPackage);
-			}
-		}
-
-		public boolean loadDocument(@NonNull URI oclURI) {
-			Resource resource = loadResource(oclURI);
-			if (resource == null) {
-				return false;
-			}
-			//
-			//	Identify the packages which the Complete OCL document complements.
-			//
-			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-				EObject eObject = tit.next();
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-					DomainPackage aPackage = metaModelManager.getPrimaryPackage((org.eclipse.ocl.examples.pivot.Package)eObject);
-					if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-						EPackage mmPackage = (EPackage) ((org.eclipse.ocl.examples.pivot.Package)aPackage).getETarget();
-						if (mmPackage != null) {
-							mmPackages.add(mmPackage);
-						}
-					}
-				}
-				else if (eObject instanceof Type) {
-					tit.prune();
-				}
-			}
-			return true;
-		}
-
-		/**
-		 * Load the Xtext resource from oclURI, then convert it to a pivot representation and return it.
-		 * Return null after invoking error() to display any errors in a pop-up.
-		 */
-		public Resource loadResource(@NonNull URI oclURI) {
-			BaseResource xtextResource = null;
-			CompleteOCLStandaloneSetup.init();
-			try {
-				xtextResource = (BaseResource) resourceSet.getResource(oclURI, true);
-			}
-			catch (WrappedException e) {
-				URI retryURI = null;
-				Throwable cause = e.getCause();
-				if (cause instanceof CoreException) {
-					IStatus status = ((CoreException)cause).getStatus();
-					if ((status.getCode() == IResourceStatus.RESOURCE_NOT_FOUND) && status.getPlugin().equals(ResourcesPlugin.PI_RESOURCES)) {
-						if (oclURI.isPlatformResource()) {
-							retryURI = URI.createPlatformPluginURI(oclURI.toPlatformString(false), false);
-						}
-					}
-				}
-				if (retryURI != null) {
-					xtextResource = (BaseResource) resourceSet.getResource(retryURI, true);			
-				}
-				else {
-					throw e;
-				}
-			}
-			List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = xtextResource.getErrors();
-			assert errors != null;
-			String message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
-			if (message != null) {
-				error("Failed to load '" + oclURI, message);
-				return null;
-			}
-			Resource asResource = xtextResource.getASResource(metaModelManager);
-			errors = asResource.getErrors();
-			assert errors != null;
-			message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
-			if (message != null) {
-				error("Failed to load Pivot from '" + oclURI, message);
-				return null;
-			}
-			return asResource;
 		}
 	}
 	
