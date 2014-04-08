@@ -275,33 +275,6 @@ public class IDEValidityManager extends ValidityManager
 		}
 	}
 
-	protected @Nullable List<Result> installResultSet(@NonNull ResultSet resultSet, @NonNull IProgressMonitor monitor) {
-		lastResultSet = resultSet;
-		resultsMap.clear();
-		RootNode rootNode = getRootNode();
-		if (rootNode == null) {
-			return null;
-		}
-		resetResults(rootNode.getValidatableNodes());
-		resetResults(rootNode.getConstrainingNodes());
-		List<Result> results = resultSet.getResults();
-		for (Result result : results) {
-			ResultValidatableNode resultValidatableNode = result.getResultValidatableNode();
-			resultsMap.put(resultValidatableNode, result);
-			if (monitor.isCanceled()) {
-				return null;
-			}
-		}
-		return results;
-	}
-
-	private void resetResults(@NonNull List<? extends AbstractNode> nodes) {
-		for (AbstractNode node : nodes) {
-			resetResults(node.getChildren());
-			node.setWorstResult(null);
-		}	
-	}
-
 	public void runValidation(@NonNull ValidityView validityView) {
 		Job validationJob = new ValidityViewJob(validityView);
 		synchronized (validityJobs) {

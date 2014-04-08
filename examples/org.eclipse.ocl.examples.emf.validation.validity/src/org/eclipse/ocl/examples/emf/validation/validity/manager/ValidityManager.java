@@ -45,6 +45,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.label.ILabelGenerator;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.emf.validation.validity.AbstractNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
@@ -470,6 +471,26 @@ public class ValidityManager
 		
 	} */
 
+	protected @Nullable List<Result> installResultSet(@NonNull ResultSet resultSet, @NonNull IProgressMonitor monitor) {
+		lastResultSet = resultSet;
+		resultsMap.clear();
+		RootNode rootNode = getRootNode();
+		if (rootNode == null) {
+			return null;
+		}
+		resetResults(rootNode.getValidatableNodes());
+		resetResults(rootNode.getConstrainingNodes());
+		List<Result> results = resultSet.getResults();
+		for (Result result : results) {
+			ResultValidatableNode resultValidatableNode = result.getResultValidatableNode();
+			resultsMap.put(resultValidatableNode, result);
+			if (monitor.isCanceled()) {
+				return null;
+			}
+		}
+		return results;
+	}
+
 	public void removeConstrainingFilter(@NonNull IVisibilityFilter filter) {
 		ValidityModel model2 = model;
 		if (model2 != null) {
@@ -489,6 +510,13 @@ public class ValidityManager
 		if (model2 != null) {
 			model2.removeValidatableFilter(filter);
 		}
+	}
+
+	private void resetResults(@NonNull List<? extends AbstractNode> nodes) {
+		for (AbstractNode node : nodes) {
+			resetResults(node.getChildren());
+			node.setWorstResult(null);
+		}	
 	}
 
 	public void setInput(Object newInput) {

@@ -41,8 +41,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporterDescriptor;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
@@ -635,7 +633,7 @@ public class ValidateCommand extends StandaloneCommand
 	 *            the resource set.
 	 */
 	private @NonNull StandaloneValidityManager initiateValidityManager(@NonNull ResourceSet resourceSet, @NonNull Map<CommandToken, List<String>> token2strings) {
-		StandaloneValidityManager validityManager = new StandaloneValidityManager(new ValidityViewRefreshJob());
+		StandaloneValidityManager validityManager = new StandaloneValidityManager();
 		validityManager.setRunJavaConstraints(usingToken.doRunJavaConstraints(token2strings));
 		validityManager.setRunOCLConstraints(usingToken.doRunOCLConstraints(token2strings));
 		validityManager.setRunUMLConstraints(usingToken.doRunUMLConstraints(token2strings));
@@ -706,7 +704,7 @@ public class ValidateCommand extends StandaloneCommand
 	 */
 	private void validate(@NonNull StandaloneValidityManager validityManager) {
 //		logger.info(StandaloneMessages.OCLValidatorApplication_ValidationStarting);
-		validityManager.runValidation(new ValidityView());
+		validityManager.runValidation();
 //		logger.info(StandaloneMessages.OCLValidatorApplication_ValidationComplete);
 	}
 }

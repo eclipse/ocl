@@ -32,23 +32,18 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocato
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassifierConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
-import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
 import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 
-public class StandaloneValidityManager extends IDEValidityManager
+public class StandaloneValidityManager extends ValidityManager
 {
 	private boolean runOCLConstraints = false;
 	private boolean runJavaConstraints = false;
 	private boolean runUMLConstraints = false;
 
-	public StandaloneValidityManager(ValidityViewRefreshJob refreshJob) {
-		super(refreshJob);
-	}
-
+	public StandaloneValidityManager() {}
 
 	/*
 	 * (non-Javadoc)
@@ -96,11 +91,9 @@ public class StandaloneValidityManager extends IDEValidityManager
 		return list;
 	}
 
-	@Override
-	public void runValidation(@NonNull ValidityView validityView) {
+	public void runValidation() {
 		final ResultSet resultSet = createResultSet(new NullProgressMonitor());
-		List<Result> results = installResultSet(resultSet,
-				new NullProgressMonitor());
+		List<Result> results = installResultSet(resultSet, new NullProgressMonitor());
 		for (Result result : results) {
 			try {
 				ValidatableNode validatable = result.getValidatableNode();
