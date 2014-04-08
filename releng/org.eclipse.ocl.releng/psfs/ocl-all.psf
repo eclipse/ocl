@@ -67,9 +67,12 @@ ocl-pivot.psf
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.autogen"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.build"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.codegen"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.codegen.asm3"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.codegen.asm5"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.domain"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.library"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.pivot"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.standalone"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.uml25"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.validity"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.xtext.base"/>
@@ -85,17 +88,22 @@ ocl-pivot.psf
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.xtext.oclinecore.ui"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.xtext.oclstdlib"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.xtext.oclstdlib.ui"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,tests/org.eclipse.ocl.examples.validity.test"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,tests/org.eclipse.ocl.examples.xtext.tests"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1346923266231_5" label="OCL Pivot" name="OCL Pivot">
 <item elementID="=org.eclipse.ocl.examples.autogen" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.build" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.codegen" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.examples.codegen.asm3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.examples.codegen.asm5" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.library" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.pivot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.examples.standalone" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.uml25" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.validity" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.examples.validity.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.xtext.base" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.xtext.base.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.examples.xtext.completeocl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
