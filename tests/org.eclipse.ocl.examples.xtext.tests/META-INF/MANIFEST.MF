@@ -26,7 +26,8 @@ Require-Bundle: org.junit;visibility:=reexport,
  org.eclipse.ocl.examples.uml25,
  org.eclipse.jdt.annotation;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.ocl.examples.standalone,
- org.eclipse.ocl.examples.emf.validation.validity
+ org.eclipse.ocl.examples.emf.validation.validity,
+ org.eclipse.xtext.junit;bundle-version="[2.3.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName

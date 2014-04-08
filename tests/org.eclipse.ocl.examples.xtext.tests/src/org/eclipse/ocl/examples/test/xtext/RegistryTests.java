@@ -21,6 +21,7 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -29,6 +30,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.examples.pivot.registry.CompleteOCLRegistry.Registration;
+import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.xtext.junit.GlobalRegistries;
+import org.eclipse.xtext.junit.GlobalRegistries.GlobalStateMemento;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -38,14 +42,31 @@ import com.google.common.collect.Sets;
  */
 public class RegistryTests extends TestCase
 {
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		TestCaseAppender.INSTANCE.uninstall();
+	}
+
 	public void testCompleteOCLRegistry_Access() {
-		EcorePlugin.ExtensionProcessor.process(null);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		new ProjectMap().initializeResourceSet(resourceSet);
-		resourceSet.getResource(URI.createPlatformPluginURI("/org.eclipse.emf.ecore/model/Ecore.ecore", true), true);
-		CompleteOCLRegistry registry = CompleteOCLRegistry.INSTANCE;
-		Set<URI> registeredResourceURIs = registry.getResourceURIs(resourceSet);
-		assertEquals(1, registeredResourceURIs.size());
+		GlobalStateMemento copyOfGlobalState = null;
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			copyOfGlobalState = GlobalRegistries.makeCopyOfGlobalState();
+		}
+		try {
+			EcorePlugin.ExtensionProcessor.process(null);
+			ResourceSet resourceSet = new ResourceSetImpl();
+			new ProjectMap().initializeResourceSet(resourceSet);
+			resourceSet.getResource(URI.createPlatformPluginURI("/org.eclipse.emf.ecore/model/Ecore.ecore", true), true);
+			CompleteOCLRegistry registry = CompleteOCLRegistry.INSTANCE;
+			Set<URI> registeredResourceURIs = registry.getResourceURIs(resourceSet);
+			assertEquals(1, registeredResourceURIs.size());
+		}
+		finally {		// Remove the bad Xtext ResourceFactories that EcorePlugin.ExtensionProcessor finds
+			if (copyOfGlobalState != null) {
+				copyOfGlobalState.restoreGlobalState();
+			}
+		}
 	}
 	
 	public void testCompleteOCLRegistry_Rebuild() {
