@@ -174,7 +174,7 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 		ResourceAndContainerGroup resourceGroup2 = resourceGroup;
 		IResource resourceSelection2 = initialSelection;
 		if (resourceGroup2 != null && resourceSelection2 != null) {
-			resourceGroup2.setResource(ValidityUIMessages.NewWizardPage_defaultFileName);
+			resourceGroup2.setResource(ValidityUIMessages.NewWizardPage_defaultFileName + "." + preferredExtension);
 			initialPopulateContainerNameField(resourceSelection2);
 		}
 	}

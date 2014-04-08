@@ -54,102 +54,35 @@ import com.google.common.io.Files;
  */
 public class ExportValidationResultsFileWizard extends Wizard implements INewWizard
 {
+	/** The only export descriptor contributing to the wizard */
+	private final @NonNull IValidityExporter exporter;
+
+	/** The results root node contributing to the wizard */
+	private final @NonNull RootNode rootNode;
+
 	/** The only page contributing to the wizard */
 	private ExportValidationResultsFileWizardPage wizardPage;
 
 	/** The selected Resource */
 	private Resource initialResource;
-	
-	/** The only export descriptor contributing to the wizard */
-	private final IValidityExporter exportDescriptor;
-
-	/** The results root node contributing to the wizard */
-	private final RootNode rootNode;
 
 	/**
 	 * Constructor
 	 */
 	public ExportValidationResultsFileWizard(@NonNull IWorkbench workbench, @NonNull IStructuredSelection initialSelection, 
-			@NonNull RootNode rootNode, @NonNull IValidityExporter exportDescriptor) {
+			@NonNull RootNode rootNode, @NonNull IValidityExporter exporter) {
 		super();
 		setWindowTitle(ValidityUIMessages.NewWizardPage_pageTitle);
-		this.exportDescriptor = exportDescriptor;
+		this.exporter = exporter;
 		this.rootNode = rootNode;
 		init(workbench, initialSelection);
 	}
 	
-	/**
-	 * Creates a new Exported validation results file resource in the selected container and
-	 * with the selected name. Creates any missing resource containers along the
-	 * path; does nothing if the container resources already exist.
-	 * <p>
-	 * In normal usage, this method is invoked after the user has pressed Finish
-	 * on the wizard; the enablement of the Finish button implies that all
-	 * controls on on this page currently contain valid values.
-	 * </p>
-	 * <p>
-	 * This method should be called within a workspace modify operation since it
-	 * creates resources.
-	 * </p>
-	 */
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
-	 */
-	@Override
-	public boolean performFinish() {
-		final Resource selectedResource2 = initialResource;
-		final RootNode rootNode2 = rootNode;
-		final IPath path = wizardPage.getNewExportedFilePath();
-		final IValidityExporter selectedExporter = exportDescriptor.getExporter();
-		
-		if (selectedExporter != null && selectedResource2 != null && rootNode2 != null && path != null) {
-			export(selectedExporter, selectedResource2, rootNode2, path);
-		}
-	
-		return true;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		IResource initialIResource = null;
-		Object selected = selection.getFirstElement();
-		if (selected instanceof Resource) {
-			initialResource = (Resource) selected;
-			initialIResource = getIResource(initialResource);
-		}
-		String preferredExtension = exportDescriptor.getPreferredExtension();
-		if (/*expectedExtension != null && */initialIResource != null) {
-			wizardPage = new ExportValidationResultsFileWizardPage(preferredExtension, initialIResource);
-			addPage(wizardPage);
-		}
-	}
-
-	/**
-	 * Returns the file if exists in the workspace
-	 * 
-	 * @param resource
-	 * @return the file if exists in the workspace, null otherwise
-	 */
-	private IFile getIResource(Resource resource) {
-		if (resource == null)
-			return null;
-		URI resourceURI = resource.getURI();
-		if (resourceURI == null)
-			return null;
-		if (resourceURI.isPlatform()) {
-			IPath resourcePath = new Path(resourceURI.toPlatformString(true));
-			return ResourcesPlugin.getWorkspace().getRoot().getFile(resourcePath);
-		}
-		return null;
-	}
-
-	public void export(final @NonNull IValidityExporter selectedExporter, final @NonNull Resource validatedResource, final @NonNull RootNode rootNode, final @NonNull IPath savePath) {
+	public void export(final @NonNull Resource validatedResource, final @NonNull IPath savePath) {
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) {
 				File exportedFile = new File(savePath.toString());
-				String initialContents = selectedExporter.export(validatedResource, rootNode, exportedFile.getName());
+				String initialContents = exporter.export(validatedResource, rootNode, exportedFile.getName());
 				byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));
 				try {
 					if (exportedFile.isAbsolute()) {
@@ -176,6 +109,25 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		}
 	}
 	
+	/**
+	 * Returns the file if exists in the workspace
+	 * 
+	 * @param resource
+	 * @return the file if exists in the workspace, null otherwise
+	 */
+	private IFile getIResource(Resource resource) {
+		if (resource == null)
+			return null;
+		URI resourceURI = resource.getURI();
+		if (resourceURI == null)
+			return null;
+		if (resourceURI.isPlatform()) {
+			IPath resourcePath = new Path(resourceURI.toPlatformString(true));
+			return ResourcesPlugin.getWorkspace().getRoot().getFile(resourcePath);
+		}
+		return null;
+	}
+
 	private static void handleError(Throwable t, boolean popup) {
 		final String message = NLS.bind(ValidityUIMessages.NewWizardPage_internalErrorMessage, t.getMessage());
 		final IStatus status;
@@ -194,5 +146,49 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 					}
 				});
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
+	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		IResource initialIResource = null;
+		Object selected = selection.getFirstElement();
+		if (selected instanceof Resource) {
+			initialResource = (Resource) selected;
+			initialIResource = getIResource(initialResource);
+		}
+		String preferredExtension = exporter.getPreferredExtension();
+		if (/*expectedExtension != null && */initialIResource != null) {
+			wizardPage = new ExportValidationResultsFileWizardPage(preferredExtension, initialIResource);
+			addPage(wizardPage);
+		}
+	}
+
+	/**
+	 * Creates a new Exported validation results file resource in the selected container and
+	 * with the selected name. Creates any missing resource containers along the
+	 * path; does nothing if the container resources already exist.
+	 * <p>
+	 * In normal usage, this method is invoked after the user has pressed Finish
+	 * on the wizard; the enablement of the Finish button implies that all
+	 * controls on on this page currently contain valid values.
+	 * </p>
+	 * <p>
+	 * This method should be called within a workspace modify operation since it
+	 * creates resources.
+	 * </p>
+	 */
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
+	 */
+	@Override
+	public boolean performFinish() {
+		final Resource selectedResource2 = initialResource;
+		final IPath path = wizardPage.getNewExportedFilePath();
+		if ((selectedResource2 != null) && (path != null)) {
+			export(selectedResource2, path);
+		}
+		return true;
 	}
 }
