@@ -30,6 +30,9 @@ public class Activator extends AbstractUIPlugin implements BundleActivator {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.base.ui"; //$NON-NLS-1$
 
+	@SuppressWarnings({"restriction", "unused"})
+	private static org.eclipse.equinox.internal.frameworkadmin.equinox.EquinoxConstants forceDependencyToBeResolvedForPdeCore;
+	
 	// The shared instance
 	private static Activator plugin;
 
