@@ -1,0 +1,20 @@
+#
+# The Buckminster 'fetch' build step precedes the 'build' step.
+#
+# It fetches those dependencioes that would otherwise confuse Buckminster, (See Bug 432088, 432092)
+#
+# At present this is just ASM3 which conflicts with ASM5 demanded by Xtext.
+#
+# Future note: we still get conflict warnings but Buckminster doesn't fail during packaging.
+# It might be better to move asm3 from the build-feature to an asm3-feature which is subsequently included by a packaging-feature.
+#
+setpref complianceLevel=1.5
+
+# We import a target definition which will be our API Base Line
+importtargetdefinition "file://${checkout.location}/org.eclipse.ocl.git/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"
+addbaseline -A "Eclipse OCL API Base Line"
+
+# We set the path of the new target platform
+setpref targetPlatformPath="${checkout.location}/buildroot/target.platform"
+
+import --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.git/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-fetch.mspec"

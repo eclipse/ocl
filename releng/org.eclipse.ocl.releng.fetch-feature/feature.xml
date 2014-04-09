@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.ocl.releng.fetch"
+      label="OCL Build Fetcher"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project"
+      license-feature="org.eclipse.ocl.license"
+      license-feature-version="1.0.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+</feature>
