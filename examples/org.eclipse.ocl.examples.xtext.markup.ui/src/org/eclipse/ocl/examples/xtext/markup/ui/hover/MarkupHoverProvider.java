@@ -282,7 +282,12 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			public Object getInfo() {
 //				return getHoverInfo(object, region, null);
 				return getHoverInfo(object, viewer, region, null);
-			}};
+			}
+
+			public IInformationControlCreator getInformationPresenterControlCreator() {
+				return MarkupHoverProvider.this.getInformationPresenterControlCreator();
+			}
+		};
 	}
 
 	protected XtextBrowserInformationControlInput getHoverInfo(EObject element,
