@@ -44,6 +44,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IResourceDescriptor;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IResourceLoadStatus;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -285,26 +289,32 @@ public class Pivot2Ecore extends AbstractConversion
 
 	public @NonNull XMLResource convertResource(@NonNull Resource asResource, @NonNull URI ecoreURI) {
 		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
-		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
-		List<EObject> contents = ecoreResource.getContents();
-		for (EObject eContent : asResource.getContents()) {
-			if (eContent instanceof Root) {
-				Object results = pass1.safeVisit((Root)eContent);
-				if (results instanceof List<?>) {
-					@SuppressWarnings("unchecked")
-					List<EObject> results2 = (List<EObject>)results;
-					contents.addAll(results2);
+		setGenerationInProgress(asResource, true);
+		try {
+			XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
+			List<EObject> contents = ecoreResource.getContents();
+			for (EObject eContent : asResource.getContents()) {
+				if (eContent instanceof Root) {
+					Object results = pass1.safeVisit((Root)eContent);
+					if (results instanceof List<?>) {
+						@SuppressWarnings("unchecked")
+						List<EObject> results2 = (List<EObject>)results;
+						contents.addAll(results2);
+					}
 				}
 			}
+			for (Element eKey : deferMap) {
+				pass2.safeVisit(eKey);
+			}
+			for (Element pivotElement : createMap.keySet()) {
+				EObject eObject = createMap.get(pivotElement);
+				((PivotObjectImpl) pivotElement).setTarget(eObject);
+			}
+			return ecoreResource;
 		}
-		for (Element eKey : deferMap) {
-			pass2.safeVisit(eKey);
+		finally {
+			setGenerationInProgress(asResource, false);
 		}
-		for (Element pivotElement : createMap.keySet()) {
-			EObject eObject = createMap.get(pivotElement);
-			((PivotObjectImpl) pivotElement).setTarget(eObject);
-		}
-		return ecoreResource;
 	}
 
 	public void defer(@NonNull Element pivotElement) {
@@ -401,6 +411,38 @@ public class Pivot2Ecore extends AbstractConversion
 		if ((pivotElement != primaryElement) && !createMap.containsKey(primaryElement)) {
 //			System.out.println("Put2 " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
 			createMap.put(primaryElement, eModelElement);
+		}
+	}
+
+	protected void setGenerationInProgress(@NonNull Resource asResource, boolean isLoading) {
+		for (EObject eRoot : asResource.getContents()) {
+			if (eRoot instanceof Root) {
+				for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getNestedPackage()) {
+					if (asPackage != null) {
+						setGenerationInProgress(asPackage, isLoading);
+					}
+				}
+			}
+		}
+	}
+
+	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage, boolean isGenerating) {
+		String nsUri = asPackage.getNsURI();
+		if (nsUri != null) {
+			StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(nsUri);
+			IPackageDescriptor packageDescriptor = projectMap.getPackageDescriptor(nsURI);
+			if (packageDescriptor != null) {
+				IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
+				ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+				IResourceLoadStatus resourceLoadStatus = resourceDescriptor.getResourceLoadStatus(resourceSet);
+				resourceLoadStatus.setGenerationInProgress(isGenerating);
+			}
+		}
+		for (org.eclipse.ocl.examples.pivot.Package asNestedPackage : asPackage.getNestedPackage()) {
+			if (asNestedPackage != null) {
+				setGenerationInProgress(asNestedPackage, isGenerating);
+			}
 		}
 	}
 }

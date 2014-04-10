@@ -378,6 +378,11 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		void setConflictHandler(@Nullable IConflictHandler conflictHandler);
 
 		/**
+		 * Set true by Pivot2Ecore to inhibit auto-loading of newly added EPackages.
+		 */
+		void setGenerationInProgress(boolean isGenerating);
+
+		/**
 		 * Define the resource once it has been loaded.
 		 */
 		void setResource(@NonNull Resource resource);
@@ -1049,9 +1054,14 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		protected @Nullable Resource eModel = null;
 
 		/**
+		 * Re-entrancy inhibitor for for generation from Pivot2Ecore.
+		 */
+		protected boolean generativeLoadInProgress = false;
+
+		/**
 		 * Re-entrancy detector for self-referential models such as Ecore.ecore.
 		 */
-		protected boolean modelLoadInProgress = false;
+		protected boolean recursiveLoadInProgress = false;
 
 		protected AbstractResourceLoadStatus(@NonNull IResourceDescriptor resourceDescriptor, @Nullable ResourceSet resourceSet) {
 			this.resourceDescriptor = resourceDescriptor;
@@ -1139,7 +1149,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			Resource eModel2 = eModel;
 			if (eModel2 == null) {
 				try {
-					modelLoadInProgress = true;
+					recursiveLoadInProgress = true;
 					IResourceDescriptor resourceDescriptor2 = getResourceDescriptor();
 					if (resourceDescriptor2.hasEcoreModel()) {
 						URI platformResourceURI = resourceDescriptor2.getPlatformResourceURI();
@@ -1147,7 +1157,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 						resourceSet.createResource(platformResourceURI);  // Calls back to addedResource()
 					}
 				} finally {
-					modelLoadInProgress = false;
+					recursiveLoadInProgress = false;
 				}
 			}
 			return eModel;
@@ -1216,7 +1226,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		public synchronized @Nullable Resource loadDynamicResource(@NonNull URI nsURI) {
-			if (modelLoadInProgress) {					// Recursive load
+			if (recursiveLoadInProgress) {					// Recursive load
 				logger.error("Attempt to load self-referential '" + nsURI + "' as model replaced by registered EPackage");
 				return eModel;
 			}
@@ -1284,10 +1294,18 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			this.conflictHandler = conflictHandler;
 		}
 
+		/**
+		 * Set true by Pivot2Ecore to inhibit auto-loading of newly added EPackages.
+		 */
+		public void setGenerationInProgress(boolean isGenerating) {
+			assert !recursiveLoadInProgress;
+			generativeLoadInProgress = isGenerating;
+		}
+
 		public void setResource(@NonNull Resource resource) {
 			assert eModel == null;
 			eModel = resource;
-			if (!resource.isLoaded()) {
+			if (!resource.isLoaded() && !generativeLoadInProgress) {
 				try {
 					InputStream inputStream = resource.getResourceSet().getURIConverter().createInputStream(resource.getURI());
 					List<Adapter> eAdapters = resource.eAdapters();
@@ -2868,7 +2886,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			alreadyLogged = alreadyLogged2 = new HashSet<String>();
 		}
 		if (alreadyLogged2.add(message)) {
-			logger.error(message, e);
+			logger.info(message, e);
 		}
 		Map<String, Exception> exceptionMap2 = exceptionMap;
 		if (exceptionMap2 == null) {
