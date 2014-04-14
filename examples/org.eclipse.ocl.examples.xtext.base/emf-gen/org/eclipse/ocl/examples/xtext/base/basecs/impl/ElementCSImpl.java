@@ -18,6 +18,7 @@
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -133,6 +134,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 */
 	public ElementCS getLogicalParent()
 	{
-		return (ElementCS) eContainer();
+		EObject eContainer = eContainer();
+		return eContainer instanceof ElementCS ? (ElementCS) eContainer : null;		// Avoid CCE for Bug 432749
 	}
 } //ElementCSImpl
