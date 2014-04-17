@@ -42,6 +42,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "eclipse.staging.area=/shared/download-staging.priv/modeling/mdt/ocl"
 	echo "git.ocl.local.repository.location=${WORKSPACE}/org.eclipse.ocl.git"
 	echo "git.emf.local.repository.location=${WORKSPACE}/org.eclipse.emf.git"
+	echo "git.license.local.repository.location=${WORKSPACE}/org.eclipse.license.git"
 
 	echo
 	echo "# Sign the jars (added by Hudson job definition)"    
