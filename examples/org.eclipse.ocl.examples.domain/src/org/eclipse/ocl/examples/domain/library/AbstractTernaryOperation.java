@@ -39,15 +39,7 @@ public abstract class AbstractTernaryOperation extends AbstractOperation impleme
 		assert argument1 != null;
 		Object firstArgument = evaluator.evaluate(argument0);
 		Object secondArgument = evaluator.evaluate(argument1);
-		return evaluate(evaluator, callExp, sourceValue, firstArgument, secondArgument);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, argumentValues[0], argumentValues[1]);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgumentValue, secondArgumentValue);
+		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgument, secondArgument);
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6

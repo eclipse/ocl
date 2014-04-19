@@ -41,16 +41,6 @@ public abstract class AbstractUntypedBinaryOperation extends AbstractBinaryOpera
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
-		return evaluate(evaluator, sourceValue, argumentValues[0]);
-	}
-
-	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @Nullable Object argumentValue) {
-		return evaluate(evaluator, sourceValue, argumentValue);
-	}
-
-	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
 		return evaluate(evaluator, sourceValue, argumentValue);
 	}

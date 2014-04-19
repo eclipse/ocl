@@ -29,14 +29,6 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 public abstract class AbstractUnaryOperation extends AbstractOperation implements LibraryUnaryOperation
 {
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
-		return evaluate(evaluator, callExp, sourceValue);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue);
-	}
-	
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		return evaluate(evaluator, callExp.getTypeId(), sourceValue);
 	}
 

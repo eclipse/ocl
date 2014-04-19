@@ -668,7 +668,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 			LibraryBinaryOperation implementation = (LibraryBinaryOperation) dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
 			try {
-				Object result = implementation.evaluate(evaluator, operationCallExp, sourceValue, onlyArgument);
+				Object result = implementation.evaluate(evaluator, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
 				return result;
 			} catch (InvalidValueException e) {

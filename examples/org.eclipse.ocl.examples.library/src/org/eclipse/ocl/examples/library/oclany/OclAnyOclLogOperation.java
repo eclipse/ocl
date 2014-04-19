@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -30,7 +29,6 @@ import org.eclipse.ocl.examples.domain.library.AbstractPolyOperation;
 public class OclAnyOclLogOperation extends AbstractPolyOperation
 {
 	public static final @NonNull OclAnyOclLogOperation INSTANCE = new OclAnyOclLogOperation();
-
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		try {
@@ -56,11 +54,6 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp,
-			@Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		throw new UnsupportedOperationException();
 	}
 

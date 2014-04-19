@@ -15,6 +15,7 @@
 package org.eclipse.ocl.examples.pivot.library;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
@@ -23,18 +24,17 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.AbstractPolyOperation;
+import org.eclipse.ocl.examples.domain.library.AbstractOperation;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 /**
  * An EInvokeOperation supports evaluation of an operation call by using eInvoke on the underlying eObject.
  */
-public class EInvokeOperation extends AbstractPolyOperation
+public class EInvokeOperation extends AbstractOperation
 {
 	protected final @NonNull EOperation eOperation;	
 	
@@ -46,56 +46,39 @@ public class EInvokeOperation extends AbstractPolyOperation
 		}
 	}
 
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue,
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+		TypeId typeId = callExp.getTypeId();
+		List<? extends DomainExpression> arguments = callExp.getArgument();
+		if (arguments.size() == 0) {
+			return evaluate(evaluator, typeId, sourceValue);
+		}
+		DomainExpression argument0 = arguments.get(0);
+		assert argument0 != null;
+		Object firstArgument = evaluator.evaluate(argument0);
+		if (arguments.size() == 1) {
+			return evaluate(evaluator, typeId, sourceValue, firstArgument);
+		}
+		DomainExpression argument1 = arguments.get(1);
+		assert argument1 != null;
+		Object secondArgument = evaluator.evaluate(argument1);
+		if (arguments.size() == 2) {
+			return evaluate(evaluator, typeId, sourceValue, firstArgument, secondArgument);
+		}
+		Object[] argumentValues = new Object[arguments.size()];
+		argumentValues[0] = firstArgument;
+		argumentValues[1] = secondArgument;
+		for (int i = 2; i < arguments.size(); i++) {
+			DomainExpression argument = arguments.get(i);
+			assert argument != null;
+			argumentValues[i] = evaluator.evaluate(argument);
+		}
+		return evaluate(evaluator, typeId, sourceValue, argumentValues);
+	}
+
+	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
 			@NonNull Object... argumentValues) {
 		EObject eObject = asNavigableObject(sourceValue);
 		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach(argumentValues);
-		try {
-			Object eResult = eObject.eInvoke(eOperation, arguments);
-			DomainType returnType = callExp.getType();
-			assert returnType != null;
-			return getResultValue(evaluator, returnType.getTypeId(), eResult);
-		} catch (InvocationTargetException e) {
-			return createInvalidValue(e);
-		}
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = asNavigableObject(sourceValue);
-		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach();
-		try {
-			if (eObject instanceof PivotObjectImpl) {		// FIXME use variant EInvokeOperation
-				EObject eTarget = ((PivotObjectImpl)eObject).getETarget();
-				if (eTarget != null) {
-					eObject = eTarget;
-					Object eResult = eObject.eInvoke(eOperation, arguments);
-					Object resultValue = getResultValue(evaluator, returnTypeId, eResult);
-					return evaluator.getIdResolver().boxedValueOf(resultValue);
-				}
-			}
-			Object eResult = eObject.eInvoke(eOperation, arguments);
-			return getResultValue(evaluator, returnTypeId, eResult);
-		} catch (InvocationTargetException e) {
-			return createInvalidValue(e);
-		}
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
-			@Nullable Object argumentValue) {
-		EObject eObject = asNavigableObject(sourceValue);
-		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach(argumentValue);
-		try {
-			Object eResult = eObject.eInvoke(eOperation, arguments);
-			return getResultValue(evaluator, returnTypeId, eResult);
-		} catch (InvocationTargetException e) {
-			return createInvalidValue(e);
-		}
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
-			@Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
-		EObject eObject = asNavigableObject(sourceValue);
-		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach(firstArgumentValue, secondArgumentValue);
 		try {
 			Object eResult = eObject.eInvoke(eOperation, arguments);
 			return getResultValue(evaluator, returnTypeId, eResult);

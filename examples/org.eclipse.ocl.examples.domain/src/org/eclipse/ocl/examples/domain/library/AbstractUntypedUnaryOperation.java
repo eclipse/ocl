@@ -34,16 +34,6 @@ public abstract class AbstractUntypedUnaryOperation extends AbstractUnaryOperati
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
-		return evaluate(evaluator, sourceValue);
-	}
-
-	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
-		return evaluate(evaluator, sourceValue);
-	}
-
-	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		return evaluate(evaluator, sourceValue);
 	}

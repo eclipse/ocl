@@ -23,22 +23,48 @@ import java.util.StringTokenizer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.AbstractPolyOperation;
+import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 
 /**
  * StringTokenizeOperation realises the String::tokenize() library operations.
  */
-public class StringTokenizeOperation extends AbstractPolyOperation 
+public class StringTokenizeOperation extends AbstractOperation implements LibraryUnaryOperation, LibraryBinaryOperation, LibraryTernaryOperation 
 {
 	public static final @NonNull StringTokenizeOperation INSTANCE = new StringTokenizeOperation();
 	private static final @NonNull String DELIMS = " \t\n\r\f"; //$NON-NLS-1$
+
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+		String delims = DELIMS;
+		boolean returnDelims = false;
+		TypeId typeId = callExp.getTypeId();
+		List<? extends DomainExpression> arguments = callExp.getArgument();
+		if (arguments.size() > 0) {
+			if (arguments.size() > 1) {
+				if (arguments.size() > 2) {
+					throw new InvalidValueException(EvaluatorMessages.InvalidArgument, arguments.get(2));
+				}
+				DomainExpression argument1 = arguments.get(1);
+				assert argument1 != null;
+				Object secondArgument = evaluator.evaluate(argument1);
+				returnDelims = asBoolean(secondArgument);
+			}
+			DomainExpression argument0 = arguments.get(0);
+			assert argument0 != null;
+			Object firstArgument = evaluator.evaluate(argument0);
+			delims = asString(firstArgument);
+		}
+		return evaluate(evaluator, (CollectionTypeId)typeId, sourceValue, delims, returnDelims);
+	}
 
 	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		return evaluate(evaluator, (CollectionTypeId)returnTypeId, sourceValue, DELIMS, false);
@@ -55,7 +81,7 @@ public class StringTokenizeOperation extends AbstractPolyOperation
 		return evaluate(evaluator, (CollectionTypeId)returnTypeId, sourceValue, delims, returnDelims);
 	}
 
-	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
+/*	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		String delims = DELIMS;
 		boolean returnDelims = false;
 		if (argumentValues.length > 0) {
@@ -72,9 +98,9 @@ public class StringTokenizeOperation extends AbstractPolyOperation
 			delims = asString(argumentValue0);
 		}
 		return evaluate(evaluator, (CollectionTypeId)DomainUtil.nonNullPivot(callExp.getType()).getTypeId(), sourceValue, delims, returnDelims);
-	}
+	} */
 
-	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull CollectionTypeId returnTypeId, @Nullable Object sourceValue, @NonNull String delims, boolean returnDelims) {
+	private @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull CollectionTypeId returnTypeId, @Nullable Object sourceValue, @NonNull String delims, boolean returnDelims) {
 		String sourceString = asString(sourceValue);
 		StringTokenizer tokenizer = new StringTokenizer(sourceString, delims, returnDelims);
 		List<Object> results = new ArrayList<Object>();

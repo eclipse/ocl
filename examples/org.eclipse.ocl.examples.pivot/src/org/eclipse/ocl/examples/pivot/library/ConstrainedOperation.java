@@ -22,9 +22,9 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.AbstractPolyOperation;
+import org.eclipse.ocl.examples.domain.library.AbstractOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -38,15 +38,26 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * An instance of ConstrainedOperation supports evaluation of
  * an operation defined by constraints.
  */
-public class ConstrainedOperation extends AbstractPolyOperation
+public class ConstrainedOperation extends AbstractOperation
 {
 	protected final @NonNull ExpressionInOCL expressionInOCL;
 	
 	public ConstrainedOperation(@NonNull ExpressionInOCL expressionInOCL) {
 		this.expressionInOCL = expressionInOCL;
 	}
+	
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+		List<? extends DomainExpression> arguments = callExp.getArgument();
+		Object[] argumentValues = new Object[arguments.size()];
+		for (int i = 0; i < arguments.size(); i++) {
+			DomainExpression argument = arguments.get(i);
+			assert argument != null;
+			argumentValues[i] = evaluator.evaluate(argument);
+		}
+		return evaluate(evaluator, callExp, sourceValue, argumentValues);
+	}
 
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
+	private @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		PivotUtil.checkExpression(expressionInOCL);
 		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
@@ -61,38 +72,6 @@ public class ConstrainedOperation extends AbstractPolyOperation
 				nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameters.get(i)), value);
 			}
 		}
-		return nestedVisitor.evaluate(expressionInOCL);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		PivotUtil.checkExpression(expressionInOCL);
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
-		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
-		return nestedVisitor.evaluate(expressionInOCL);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
-		PivotUtil.checkExpression(expressionInOCL);
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
-		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
-		List<Variable> parameters = expressionInOCL.getParameterVariable();
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameters.get(0)), argumentValue);
-		return nestedVisitor.evaluate(expressionInOCL);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
-		PivotUtil.checkExpression(expressionInOCL);
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
-		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
-		List<Variable> parameters = expressionInOCL.getParameterVariable();
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameters.get(0)), firstArgumentValue);
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameters.get(1)), secondArgumentValue);
 		return nestedVisitor.evaluate(expressionInOCL);
 	}
 }

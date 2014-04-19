@@ -21,49 +21,19 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 
 /**
- * OclIsUndefinedOperation realises the oclIsUndefined() library operation.
+ * UnsupportedOperation realises an unimplemented library operation.
  */
-public class UnsupportedOperation extends AbstractPolyOperation implements LibraryProperty
+public class UnsupportedOperation extends AbstractOperation implements LibraryProperty
 {
 	public static final @NonNull UnsupportedOperation INSTANCE = new UnsupportedOperation();
 
-	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue)
-			throws InvalidValueException {
-		throw new UnsupportedOperationException();
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue,
-			@NonNull Object... argumentValues) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue,
-			@Nullable Object argumentValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue,
-			@Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();
 	}
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
-			@Nullable Object argumentValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
-			@Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -36,15 +36,7 @@ public abstract class AbstractBinaryOperation extends AbstractOperation implemen
 		DomainExpression argument0 = arguments.get(0);
 		assert argument0 != null;
 		Object firstArgument = evaluator.evaluate(argument0);
-		return evaluate(evaluator, callExp, sourceValue, firstArgument);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, argumentValues[0]);
-	}
-
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @Nullable Object argumentValue) {
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, argumentValue);
+		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgument);
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6

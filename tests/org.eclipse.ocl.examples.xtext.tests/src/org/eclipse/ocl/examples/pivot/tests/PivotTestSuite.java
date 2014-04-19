@@ -58,7 +58,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
@@ -1238,12 +1238,12 @@ public abstract class PivotTestSuite extends PivotTestCase
 				String className = "TestClass" + testCounter++;
 				File dir = new File(targetFolder, packageName);
 				dir.mkdir();
-				LibraryOperation testInstance = genModelHelper.loadClass(expr, targetFolder, packageName, className, true);
+				LibraryUnaryOperation testInstance = (LibraryUnaryOperation) genModelHelper.loadClass(expr, targetFolder, packageName, className, true);
 				assert testInstance != null;
 				DomainEvaluator evaluator = new EcoreExecutorManager(self, PivotTables.LIBRARY);
 				OperationCallExp callExp = PivotFactory.eINSTANCE.createOperationCallExp();
 				callExp.setType(expr.getType());
-				result = testInstance.evaluate(evaluator, callExp, self);
+				result = testInstance.evaluate(evaluator, callExp.getTypeId(), self);
 			}
 //		} catch (Exception e) {
 //			fail("Evaluation failed: " + e.getLocalizedMessage());
