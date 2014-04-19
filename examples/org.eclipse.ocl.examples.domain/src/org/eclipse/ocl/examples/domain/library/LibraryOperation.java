@@ -27,6 +27,16 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 public interface LibraryOperation extends LibraryFeature
 {
 	/**
+	 * Return the result of evaluating callExp upon sourceValue within the environment
+	 * provided by evaluator. An invalid return may be indicated by throwing an exception,
+	 * returning Java null, or returning OCL invalid.
+	 * <p>
+	 * This method should be used in preference to evaluate() since it allows the derived implementation to short circuit evluation
+	 * and so avoid evlauating unwanted arguments.
+	 */
+	@Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue);
+
+	/**
 	 * Return the result of evaluating operationCall upon sourceVal within the environment
 	 * provided by EvaluationVisitor. An invalid return may be indicated by throwing an exception
 	 * returning Java null or OCL invalid.

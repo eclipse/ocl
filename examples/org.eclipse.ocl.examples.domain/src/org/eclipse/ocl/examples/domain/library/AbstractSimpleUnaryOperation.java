@@ -29,6 +29,11 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 public abstract class AbstractSimpleUnaryOperation extends AbstractUntypedUnaryOperation implements LibrarySimpleUnaryOperation
 {
 	@Override
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+		return evaluate(sourceValue);
+	}
+
+	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		return evaluate(sourceValue);
 	}

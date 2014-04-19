@@ -47,14 +47,6 @@ import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryIteration;
 import org.eclipse.ocl.examples.domain.library.LibraryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryProperty;
-import org.eclipse.ocl.examples.domain.library.LibrarySimpleBinaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibrarySimpleTernaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibrarySimpleUnaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryUntypedBinaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryUntypedTernaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryUntypedUnaryOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerRange;
@@ -639,7 +631,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			throw new EvaluationHaltedException("Canceled");
 		}
 		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
-		Operation staticOperation = DomainUtil.nonNullModel(operationCallExp.getReferredOperation());
+		Operation staticOperation = operationCallExp.getReferredOperation();
+		assert staticOperation != null;
 		//
 		//	Resolve source value
 		//
@@ -657,137 +650,51 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		else {
 			sourceValue = source.accept(undecoratedVisitor);
 		}
-//		if (sourceValue == null) {
-//			throw new InvalidValueException("null operation source");
-//		}
 		//
 		//	Resolve source dispatch type
 		//
  		PivotIdResolver idResolver = metaModelManager.getIdResolver();
 		DomainType dynamicSourceType = idResolver.getStaticTypeOf(sourceValue);
-		List<OCLExpression> arguments = operationCallExp.getArgument();
-		Object onlyArgument = null;
 		List<Parameter> ownedParameters = staticOperation.getOwnedParameter();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
-			onlyArgument =  arguments.get(0).accept(undecoratedVisitor);
+			//
+			//	Resolve and dispatch OclSelf operation
+			//
+			List<OCLExpression> arguments = operationCallExp.getArgument();
+			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
 			if (onlyArgument != null) {
 				DomainType argType = idResolver.getStaticTypeOf(onlyArgument);
 				dynamicSourceType = dynamicSourceType.getCommonType(idResolver, argType);
 			}
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+			try {
+				Object result = implementation.evaluate(evaluator, operationCallExp, sourceValue, onlyArgument);
+				assert !(result instanceof NullValue);
+				return result;
+			} catch (InvalidValueException e) {
+				throw e;
+			} catch (Exception e) {
+				// This is a backstop. Library operations should catch their own exceptions
+				//  and produce a better reason as a result.
+				throw new InvalidValueException(e, "Failed to evaluate '" + staticOperation + "'", sourceValue, operationCallExp);
+			}
 	 	}
-		//
-		//	Resolve operation to dispatch
-		//
-		LibraryFeature implementation = dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
-//		if (implementation == null) {
-//			return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + staticOperation + "'", operationCallExp, sourceValue);
-//		}
-		//
-		//	Dispatch implementation avoiding variable argument list where possible
-		//
-		try {
-			Object result = null;
-			int iSize = arguments.size();
-			switch (iSize) {
-				case 0: {
-					if (implementation instanceof LibrarySimpleUnaryOperation) {
-						result = ((LibrarySimpleUnaryOperation)implementation).evaluate(sourceValue);
-					}
-					else if (implementation instanceof LibraryUntypedUnaryOperation) {
-						result = ((LibraryUntypedUnaryOperation)implementation).evaluate(evaluator, sourceValue);
-					}
-					else {
-						result = ((LibraryUnaryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue);
-					}
-					break;
-				}
-				case 1: {
-					if (onlyArgument == null) {
-						OCLExpression argument0 = arguments.get(0);
-						if (isValidating) {
-							try {
-								onlyArgument = argument0 != null ? undecoratedVisitor.evaluate(argument0) : ValuesUtil.INVALID_VALUE;
-							} catch (InvalidValueException e) {
-								onlyArgument = new InvalidValueException(e);
-							}
-						}
-						else {
-							if (argument0 != null) {
-								onlyArgument = undecoratedVisitor.evaluate(argument0);
-								if (onlyArgument instanceof InvalidValueException) {
-									throw (InvalidValueException)onlyArgument;									
-								}
-//								else if (ValuesUtil.isNull(onlyArgument)) {
-//									return onlyArgument;									
-//								}
-							}
-							else {
-								throw new InvalidValueException("null operation argument");
-//								onlyArgument = ValuesUtil.INVALID_VALUE;						
-							}
-						}
-					}
-					if (implementation instanceof LibrarySimpleBinaryOperation) {
-						result = ((LibrarySimpleBinaryOperation)implementation).evaluate(sourceValue, onlyArgument);
-					}
-					else if (implementation instanceof LibraryUntypedBinaryOperation) {
-						result = ((LibraryUntypedBinaryOperation)implementation).evaluate(evaluator, sourceValue, onlyArgument);
-					}
-					else {
-						result = ((LibraryBinaryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue, onlyArgument);
-					}
-					break;
-				}
-				case 2: {
-					OCLExpression argument0 = arguments.get(0);
-					OCLExpression argument1 = arguments.get(1);
-					if (argument0 == null) {
-						throw new InvalidValueException("Null first argument");
-					}
-					if (argument1 == null) {
-						throw new InvalidValueException("Null second argument");
-					}
-					Object firstArgument = undecoratedVisitor.evaluate(argument0);
-					Object secondArgument = undecoratedVisitor.evaluate(argument1);
-					if (implementation instanceof LibrarySimpleTernaryOperation) {
-						result = ((LibrarySimpleTernaryOperation)implementation).evaluate(sourceValue, firstArgument, secondArgument);
-					}
-					else if (implementation instanceof LibraryUntypedTernaryOperation) {
-						result = ((LibraryUntypedTernaryOperation)implementation).evaluate(evaluator, sourceValue, firstArgument, secondArgument);
-					}
-					else {
-						result = ((LibraryTernaryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue, firstArgument, secondArgument);
-					}
-					break;
-				}
-				default: {
-					Object[] values = new Object[iSize];
-					for (int i = 0; i < iSize; i++) {
-						OCLExpression argumentI = arguments.get(i);
-						if (argumentI == null) {
-							throw new InvalidValueException("Null " + i + "'th argument");
-						}
-						values[i] = undecoratedVisitor.evaluate(argumentI);
-					}
-					result = ((LibraryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue, values);
-					break;
-				}
+		else {
+			//
+			//	Resolve and dispatch regular operation
+			//
+			LibraryOperation implementation = (LibraryOperation) dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+			try {
+				Object result = implementation.dispatch(evaluator, operationCallExp, sourceValue);
+				assert !(result instanceof NullValue);
+				return result;
+			} catch (InvalidValueException e) {
+				throw e;
+			} catch (Exception e) {
+				// This is a backstop. Library operations should catch their own exceptions
+				//  and produce a better reason as a result.
+				throw new InvalidValueException(e, "Failed to evaluate '" + staticOperation + "'", sourceValue, operationCallExp);
 			}
-//			if (result == null) {
-//				throw new InvalidValueException("Java-Null result from '" + staticOperation + "'", null, sourceValue, operationCallExp);
-//			}
-			if (result instanceof NullValue) {
-				throw new InvalidValueException("NullValue result from '" + staticOperation + "'", null, sourceValue, operationCallExp);
-			}
-			return result;
-//		} catch (InvalidValueException e) {
-//			return e.getValue();
-		} catch (InvalidValueException e) {
-			throw e;
-		} catch (Exception e) {
-			// This is a backstop. Library operations should catch their own exceptions
-			//  and produce a better reason as a result.
-			throw new InvalidValueException(e, "Failed to evaluate '" + staticOperation + "'", sourceValue, operationCallExp);
 		}
 	}
 

@@ -16,7 +16,12 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
+import java.util.List;
+
+import org.eclipse.jdt.annotation.NonNull;
+
 public interface DomainCallExp extends DomainExpression
 {
+	@NonNull List<? extends DomainExpression> getArgument();
 	DomainExpression getSource();
 }

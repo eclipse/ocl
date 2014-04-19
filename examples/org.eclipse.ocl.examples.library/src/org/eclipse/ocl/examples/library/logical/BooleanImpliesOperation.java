@@ -16,8 +16,13 @@
  */
 package org.eclipse.ocl.examples.library.logical;
 
+import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
@@ -29,6 +34,24 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 public class BooleanImpliesOperation extends AbstractSimpleBinaryOperation
 {
 	public static final @NonNull BooleanImpliesOperation INSTANCE = new BooleanImpliesOperation();
+
+	@Override
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+		if (sourceValue == Boolean.FALSE) {
+			return TRUE_VALUE;
+		}
+		List<? extends DomainExpression> arguments = callExp.getArgument();
+		DomainExpression argument0 = arguments.get(0);
+		assert argument0 != null;
+		Object firstArgument;
+		try {
+			firstArgument = evaluator.evaluate(argument0);
+		}
+		catch (InvalidValueException e) {
+			firstArgument = new InvalidValueException(e);	// FIXME ?? propagate part of environment
+		}
+		return evaluate(sourceValue, firstArgument);
+	}
 
 	@Override
 	public @Nullable Boolean evaluate(@Nullable Object left, @Nullable Object right) {

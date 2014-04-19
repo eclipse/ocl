@@ -19,11 +19,8 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.io.IOException;
 
 import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -41,13 +38,12 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
  */
 public class ImportTests extends XtextTestCase
 {	
-	public static class SpacedOut extends AbstractOperation
+	public static class SpacedOut extends AbstractSimpleUnaryOperation
 	{
 		public static final SpacedOut INSTANCE = new SpacedOut();
 
 		@Override
-		public Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp,
-				@Nullable Object sourceValue, @NonNull Object... argumentValues) {
+		public Object evaluate(@Nullable Object sourceValue) {
 			String string = sourceValue == null? Value.INVALID_NAME : ValuesUtil.oclToString(sourceValue);
 			return string;
 		}

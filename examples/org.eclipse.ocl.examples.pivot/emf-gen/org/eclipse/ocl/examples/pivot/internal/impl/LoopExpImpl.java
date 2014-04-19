@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -585,5 +586,10 @@ public abstract class LoopExpImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitLoopExp(this);
+	}
+
+	@SuppressWarnings({"null", "unchecked"})
+	public @NonNull List<? extends DomainExpression> getArgument() {
+		return Collections.EMPTY_LIST;
 	}
 } //LoopExpImpl

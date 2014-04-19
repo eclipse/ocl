@@ -16,9 +16,12 @@
  */
 package org.eclipse.ocl.examples.domain.library;
 
+import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 
@@ -28,6 +31,14 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
  */
 public abstract class AbstractBinaryOperation extends AbstractOperation implements LibraryBinaryOperation
 {
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+		List<? extends DomainExpression> arguments = callExp.getArgument();
+		DomainExpression argument0 = arguments.get(0);
+		assert argument0 != null;
+		Object firstArgument = evaluator.evaluate(argument0);
+		return evaluate(evaluator, callExp, sourceValue, firstArgument);
+	}
+
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		return evaluate(evaluator, callExp.getTypeId(), sourceValue, argumentValues[0]);
 	}
