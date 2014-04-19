@@ -48,7 +48,7 @@ public class BooleanAndOperation extends AbstractSimpleBinaryOperation
 			firstArgument = evaluator.evaluate(argument0);
 		}
 		catch (InvalidValueException e) {
-			firstArgument = new InvalidValueException(e);	// FIXME ?? propagate part of environment
+			firstArgument = e;	// FIXME ?? propagate part of environment
 		}
 		return evaluate(sourceValue, firstArgument);
 	}
@@ -61,14 +61,14 @@ public class BooleanAndOperation extends AbstractSimpleBinaryOperation
 		else if ((left == Boolean.TRUE) && (right == Boolean.TRUE)) {
 			return TRUE_VALUE;
 		}
-		if ((left == null) || (right == null)) {
-			return null;
-		}
-		else if (left instanceof InvalidValueException) {
+		if (left instanceof InvalidValueException) {
 			throw (InvalidValueException)left;
 		}
 		else if (right instanceof InvalidValueException) {
 			throw (InvalidValueException)right;
+		}
+		else if ((left == null) || (right == null)) {
+			return null;
 		}
 		else if (!(left instanceof Boolean)) {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BOOLEAN_NAME, getTypeName(left));

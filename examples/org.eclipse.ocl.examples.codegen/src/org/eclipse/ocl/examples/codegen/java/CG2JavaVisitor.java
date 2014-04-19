@@ -1772,17 +1772,19 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 			if (!js.appendLocalStatements(cgSource)) {
 				return false;
 			}
-			js.append("if (");
-			js.appendValueName(cgSource);
-			js.append(" instanceof ");
-			js.appendClassReference(InvalidValueException.class);
-			js.append(") {\n");
-			js.pushIndentation(null);
-				js.append("throw ");
-				js.appendReferenceTo(InvalidValueException.class, cgSource);
-				js.append(";\n");
-			js.popIndentation();
-			js.append("}\n");
+			if (cgSource.isCaught()) {
+				js.append("if (");
+				js.appendValueName(cgSource);
+				js.append(" instanceof ");
+				js.appendClassReference(InvalidValueException.class);
+				js.append(") {\n");
+				js.pushIndentation(null);
+					js.append("throw ");
+					js.appendReferenceTo(InvalidValueException.class, cgSource);
+					js.append(";\n");
+				js.popIndentation();
+				js.append("}\n");
+			}
 		}
 		return true;
 	}

@@ -73,6 +73,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGReal;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGString;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGThrowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePartCallExp;
@@ -394,6 +395,21 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				cgInnerLetExp = cgLetExp;
 			}
 			CGValuedElement cgResult = doVisit(CGValuedElement.class, prototype.getBodyExpression());
+			boolean isValidating = callExp.getReferredOperation().isValidating();
+			if (!isValidating) {
+				for (int i = iMax-1; i >= 0; i--) {
+					@SuppressWarnings("null")@NonNull Variable parameterVariable = parameterVariables.get(i);
+					CGVariable cgParameterVariable = getVariable(parameterVariable);
+					CGValuedElement cgArgument = cgParameterVariable.getInit();
+					if (!cgArgument.isNonInvalid()) {
+						@NonNull CGThrowExp cgThrowExp = CGModelFactory.eINSTANCE.createCGThrowExp();
+						cgThrowExp.setTypeId(cgResult.getTypeId());
+						cgThrowExp.setAst(cgResult.getAst());
+						cgThrowExp.setSource(cgArgument);
+						cgResult = cgThrowExp;
+					}
+				}
+			}
 			cgInnerLetExp.setIn(cgResult);
 			for (CGValuedElement cgLetExp = cgOuterLetExp; cgLetExp != cgResult; cgLetExp = ((CGLetExp) cgLetExp).getIn()) {
 				cgLetExp.setTypeId(cgResult.getTypeId());

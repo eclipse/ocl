@@ -644,7 +644,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				sourceValue = source.accept(undecoratedVisitor);
 			}
 			catch (InvalidValueException e) {
-				sourceValue = new InvalidValueException(e);	// FIXME ?? propagate part of environment
+				sourceValue = e;	// FIXME ?? propagate part of environment
 			}
 		}
 		else {

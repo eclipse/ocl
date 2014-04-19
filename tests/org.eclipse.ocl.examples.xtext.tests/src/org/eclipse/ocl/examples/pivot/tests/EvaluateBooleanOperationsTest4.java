@@ -90,13 +90,13 @@ public class EvaluateBooleanOperationsTest4 extends PivotTestSuite
 		assertQueryFalse(null, "let b : Boolean = null in false and b");
 		assertQueryNull(null, "let b : Boolean = null in true and b");
 		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a and b");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = invalid in a and b");
-		assertQueryNull(null, "let a : Boolean = null in a and Sequence{true}->at(0)");
+		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a and b");
+		assertQueryInvalid(null, "let a : Boolean = null in a and Sequence{true}->at(0)");
 		assertQueryFalse(null, "let a : Boolean = null in a and false");
 		assertQueryNull(null, "let a : Boolean = null in a and true");
 		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a and b");
-		assertQueryNull(null, "let a : Boolean = invalid, b : Boolean = null in a and b");
-		assertQueryNull(null, "let b : Boolean = null in Sequence{true}->at(0) and b");
+		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a and b");
+		assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) and b");
 	}
 
 	@Test public void testBooleanEqual() {
@@ -130,13 +130,13 @@ public class EvaluateBooleanOperationsTest4 extends PivotTestSuite
 		// null
 		assertQueryTrue(null, "let b : Boolean = null in false implies b");
 		assertQueryNull(null, "let b : Boolean = null in true implies b");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = invalid in a implies b");
-		assertQueryNull(null, "let a : Boolean = null in a implies Sequence{true}->at(0)");
+		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a implies b");
+		assertQueryInvalid(null, "let a : Boolean = null in a implies Sequence{true}->at(0)");
 		assertQueryNull(null, "let a : Boolean = null in a implies false");
 		assertQueryTrue(null, "let a : Boolean = null in a implies true");
 		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a implies b");
-		assertQueryNull(null, "let a : Boolean = invalid, b : Boolean = null in a implies b");
-		assertQueryNull(null, "let b : Boolean = null in Sequence{true}->at(0) implies b");
+		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a implies b");
+		assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) implies b");
 	}
 
 	@Test public void testBooleanNot() {
@@ -180,13 +180,13 @@ public class EvaluateBooleanOperationsTest4 extends PivotTestSuite
 		assertQueryNull(null, "let b : Boolean = null in false or b");
 		assertQueryTrue(null, "let b : Boolean = null in true or b");
 		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a or b");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = invalid in a or b");
-		assertQueryNull(null, "let a : Boolean = null in a or Sequence{true}->at(0)");
+		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a or b");
+		assertQueryInvalid(null, "let a : Boolean = null in a or Sequence{true}->at(0)");
 		assertQueryNull(null, "let a : Boolean = null in a or false");
 		assertQueryTrue(null, "let a : Boolean = null in a or true");
 		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a or b");
-		assertQueryNull(null, "let a : Boolean = invalid, b : Boolean = null in a or b");
-		assertQueryNull(null, "let b : Boolean = null in Sequence{true}->at(0) or b");
+		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a or b");
+		assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) or b");
 	}
 
 	@Test public void testBooleanToString() {

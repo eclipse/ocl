@@ -32,18 +32,21 @@ public class BooleanXorOperation extends AbstractSimpleBinaryOperation
 
 	@Override
 	public @Nullable Boolean evaluate(@Nullable Object left, @Nullable Object right) {
-		if (left == Boolean.FALSE) {
+		if (left instanceof InvalidValueException) {
+			throw (InvalidValueException)left;
+		}
+		else if (right instanceof InvalidValueException) {
+			throw (InvalidValueException)right;
+		}
+		else if ((left == null) || (right == null)) {
+			return null;
+		}
+		else if (left == Boolean.FALSE) {
 			if (right == Boolean.TRUE) {
 				return TRUE_VALUE;
 			}
 			else if (right == Boolean.FALSE) {
 				return FALSE_VALUE;
-			}
-			else if (right == null) {
-				return null;
-			}
-			else if (right instanceof InvalidValueException) {
-				throw (InvalidValueException)right;
 			}
 		}
 		else if (left == Boolean.TRUE) {
@@ -52,40 +55,6 @@ public class BooleanXorOperation extends AbstractSimpleBinaryOperation
 			}
 			else if (right == Boolean.FALSE) {
 				return TRUE_VALUE;
-			}
-			else if (right == null) {
-				return null;
-			}
-			else if (right instanceof InvalidValueException) {
-				throw (InvalidValueException)right;
-			}
-		}
-		else if (left == null) {
-			if (right == Boolean.TRUE) {
-				return null;
-			}
-			else if (right == Boolean.FALSE) {
-				return null;
-			}
-			else if (right == null) {
-				return null;
-			}
-			else if (right instanceof InvalidValueException) {
-				throw (InvalidValueException)right;
-			}
-		}
-		else if (left instanceof InvalidValueException) {
-			if (right == Boolean.TRUE) {
-				throw (InvalidValueException)left;
-			}
-			else if (right == Boolean.FALSE) {
-				throw (InvalidValueException)left;
-			}
-			else if (right == null) {
-				throw (InvalidValueException)left;
-			}
-			else if (right instanceof InvalidValueException) {
-				throw (InvalidValueException)left;
 			}
 		}
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BOOLEAN_NAME, getTypeName(left));
