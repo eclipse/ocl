@@ -87,11 +87,6 @@ public class EcoreUtils
 		QUALIFIED_NAME_REGISTRY.install(ENamedElement.class, new AbstractLabelGenerator<ENamedElement>(ENamedElement.class)
 		{
 			public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull ENamedElement labelledObject) {
-				EObject eContainer = labelledObject.eContainer();
-				if (eContainer != null) {
-					labelBuilder.getRegistry().buildSubLabelFor(labelBuilder, eContainer);
-					labelBuilder.appendString("::");
-				}
 				String name = labelledObject.getName();
 				if (name != null)
 					labelBuilder.appendString(name);
@@ -325,8 +320,13 @@ public class EcoreUtils
 	 * @param object to be named
 	 * @return qualified name
 	 */
-	public static @NonNull String qualifiedNameFor(@NonNull Object object) {
-		return QUALIFIED_NAME_REGISTRY.labelFor(object);
+	public static @NonNull String qualifiedNameFor(@Nullable Object object) {
+		if (object == null) {
+			return "<<null>>";
+		}
+		Map<ILabelGenerator.Option<?>, Object> options = new HashMap<ILabelGenerator.Option<?>, Object>();
+		options.put(ILabelGenerator.Builder.SHOW_QUALIFIER, "::");
+		return QUALIFIED_NAME_REGISTRY.labelFor(object, options);
 	}
 
 	/**
@@ -336,7 +336,10 @@ public class EcoreUtils
 	 * @param object to be named
 	 * @return simple name
 	 */
-	public static @NonNull String simpleNameFor(@NonNull Object object) {
+	public static @NonNull String simpleNameFor(@Nullable Object object) {
+		if (object == null) {
+			return "<<null>>";
+		}
 		return SIMPLE_NAME_REGISTRY.labelFor(object);
 	}
 }

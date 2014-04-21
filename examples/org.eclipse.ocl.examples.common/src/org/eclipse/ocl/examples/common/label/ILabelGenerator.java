@@ -63,7 +63,7 @@ public interface ILabelGenerator<T>
 		static final @NonNull Option<Boolean> SHOW_CLASS_SIMPLE_NAME = new Option<Boolean>() {};
 		
 		/**
-		 * If the SHOW_QUALIFIER option is present its va;ue is used as a separator between a container name and a child name.
+		 * If the SHOW_QUALIFIER option is present its value is used as a separator between a container name and a child name.
 		 */
 		static final @NonNull Option<String> SHOW_QUALIFIER = new Option<String>() {};
 		

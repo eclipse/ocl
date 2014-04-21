@@ -169,7 +169,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 			if (eContainer != null) {
 				String showQualifier = s.getOption(ILabelGenerator.Builder.SHOW_QUALIFIER);
 				if (showQualifier != null) {
-					buildSubLabelFor(s, eContainer);
+					buildLabelFor(s, eContainer);
 					s.appendString(showQualifier);
 				}
 			}
