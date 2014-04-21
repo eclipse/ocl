@@ -17,9 +17,7 @@ package org.eclipse.ocl.examples.pivot.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -34,23 +32,32 @@ public class MetaclassAttribution extends AbstractAttribution
 		Metaclass<?> targetClass = (Metaclass<?>) target;
 		Type instanceType = targetClass.getInstanceType();
 		if (instanceType != null) {
-			environmentView.addAllOperations(instanceType, FeatureFilter.SELECT_STATIC);
-			environmentView.addAllProperties(instanceType, FeatureFilter.SELECT_STATIC);
-			if (!environmentView.hasFinalResult()) {
-				environmentView.addAllOperations(instanceType, FeatureFilter.SELECT_NON_STATIC);
-				environmentView.addAllProperties(instanceType, FeatureFilter.SELECT_NON_STATIC);
-			}
+			environmentView.addAllOperations(instanceType, null);
+			environmentView.addAllProperties(instanceType, null);
+//			Type metatype = environmentView.getMetaModelManager().getPivotType(instanceType.eClass().getName());	// FIXME getMetaType
+//			if (metatype != null) {
+//				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);
+//				environmentView.addAllProperties(metatype, FeatureFilter.SELECT_STATIC);
+//			}
 		}
 		if (!environmentView.hasFinalResult()) {
 			environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_NON_STATIC);
 			environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_NON_STATIC);
+//			environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_STATIC);
+//			environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_STATIC);
 //			if (!environmentView.hasFinalResult()) {
-//				environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_STATIC);
-//				environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_STATIC);
+//				environmentView.addAllOperations(targetClass, true);
+//				environmentView.addAllProperties(targetClass, true);
 //			}
 		}
-		if ((instanceType != null) && !environmentView.hasFinalResult()) {
-			EObject eTarget = instanceType.getETarget();
+//		if ((instanceType != null) && !environmentView.hasFinalResult()) {
+//			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+//			Type metatype = metaModelManager.getPivotType(instanceType.eClass().getName());		// FIXME getMetaType
+//			if (metatype != null) {
+//				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);
+//				environmentView.addAllProperties(metatype, FeatureFilter.SELECT_STATIC);
+//			}
+/*			EObject eTarget = instanceType.getETarget();
 			if (eTarget != null) {
 				try {
 					Element element = environmentView.getMetaModelManager().getPivotOf(Element.class, eTarget.eClass());
@@ -58,8 +65,8 @@ public class MetaclassAttribution extends AbstractAttribution
 				} catch (ParserException e) {
 					// Ignore parse failure; could be systemic and prolific
 				}
-			}
-		}
+			} */
+//		}
 //		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 /*		if (targetClass.getOwningTemplateParameter() != null) {
 			org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getOclAnyType(); // WIP use lowerbound

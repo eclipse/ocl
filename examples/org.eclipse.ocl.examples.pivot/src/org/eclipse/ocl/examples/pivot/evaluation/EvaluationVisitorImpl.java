@@ -400,12 +400,26 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return enumLiteral.getEnumerationLiteralId();
 	}
 
+//	private static int depth = 0;
 	@Override
 	public Object visitExpressionInOCL(@NonNull ExpressionInOCL expression) {
 		if ((monitor != null) && monitor.isCanceled()) {
 			throw new EvaluationHaltedException("Canceled");
 		}
-		return safeVisit(expression.getBodyExpression());
+//		Object object = getEvaluationEnvironment().getValueOf(expression.getContextVariable());
+//		System.out.println(++depth + " " + expression.getContextVariable() + " = " + object + "\n\t" + expression);
+//		try {
+			Object result = safeVisit(expression.getBodyExpression());
+//			System.out.println(depth + "\t=> " + result);
+			return result;
+//		}
+//		catch (RuntimeException e) {
+//			System.out.println(depth + "\t=> " + e);
+//			throw e;
+//		}
+//		finally {
+//			--depth;
+//		}
 	}
 
 	/**
@@ -419,7 +433,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OCLExpression expression = null;
 		if (evaluatedCondition == ValuesUtil.TRUE_VALUE) {
 			expression = ifExp.getThenExpression();
-		} else {
+		}
+		else {
 			expression = ifExp.getElseExpression();
 		}
 		return expression.accept(undecoratedVisitor);

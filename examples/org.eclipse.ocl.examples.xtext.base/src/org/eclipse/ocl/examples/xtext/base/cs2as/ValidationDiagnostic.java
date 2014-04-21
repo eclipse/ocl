@@ -35,6 +35,11 @@ public class ValidationDiagnostic extends AbstractDiagnostic
 	}
 
 	@Override
+	public int getColumn() {
+		return -1;
+	}
+
+	@Override
 	public String[] getData() {
 		return null;
 	}		

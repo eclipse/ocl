@@ -22,6 +22,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -137,6 +140,14 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	public @NonNull String getContentType() {
 		return contentType;
 	}
+
+	public @Nullable EOperation getEOperation(@NonNull ASResource asResource, @NonNull EObject eObject) {
+		return null;
+	}
+	
+	public @Nullable EReference getEReference(@NonNull ASResource asResource, @NonNull EObject eObject) {
+		return null;
+	}
 	
 	public int getHandlerPriority(@NonNull EObject eObject) {
 		return CANNOT_HANDLE;
@@ -148,6 +159,10 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	public int getHandlerPriority(@NonNull URI uri) {
 		return CANNOT_HANDLE;
+	}
+
+	public @Nullable String getMetamodelNsURI(@NonNull EPackage ePackage) {
+		return null;
 	}
 
 	public @Nullable URI getPackageURI(@NonNull EObject eObject) {

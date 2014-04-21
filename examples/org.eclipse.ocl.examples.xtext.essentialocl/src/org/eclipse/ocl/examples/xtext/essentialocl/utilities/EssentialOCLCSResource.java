@@ -54,6 +54,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS;
 import org.eclipse.xtext.diagnostics.AbstractDiagnostic;
+import org.eclipse.xtext.diagnostics.DiagnosticMessage;
+import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.SyntaxErrorMessage;
@@ -115,6 +117,21 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 							final String newMessage = message.substring(0, index) + NO_VIABLE_ALTERNATIVE_FOLLOWING + "'" + tokenText + "'" + message.substring(index+NO_VIABLE_ALTERNATIVE_AT_INPUT_EOF.length());
 							diagnostic = new AbstractDiagnostic()
 							{
+								@Override
+								public String getCode() {
+									return syntaxErrorMessage.getIssueCode();
+								}
+
+								@Override
+								public int getColumn() {
+									return -1;
+								}
+
+								@Override
+								public String[] getData() {
+									return syntaxErrorMessage.getIssueData();
+								}
+
 								public String getMessage() {
 									return newMessage;
 								}
@@ -122,16 +139,6 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 								@Override
 								protected INode getNode() {
 									return error;
-								}
-
-								@Override
-								public String getCode() {
-									return syntaxErrorMessage.getIssueCode();
-								}
-
-								@Override
-								public String[] getData() {
-									return syntaxErrorMessage.getIssueData();
 								}
 							};
 						}
@@ -164,6 +171,19 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	public @NonNull CS2Pivot createCS2Pivot(@NonNull Map<? extends /*BaseCS*/Resource, ? extends ASResource> cs2asResourceMap,
 			@NonNull MetaModelManager metaModelManager) {
 		return new EssentialOCLCS2Pivot(cs2asResourceMap, metaModelManager);
+	}
+
+	@Override			// FIXME Bug 380232 workaround
+	protected Diagnostic createDiagnostic(Triple<EObject, EReference, INode> triple, DiagnosticMessage message) {
+		Diagnostic diagnostic = new XtextLinkingDiagnostic(triple.getThird(), message.getMessage(),
+				message.getIssueCode(), message.getIssueData())
+		{
+			@Override
+			public int getColumn() {
+				return -1;
+			}
+		};
+		return diagnostic;
 	}
 
 	public @NonNull Pivot2CS createPivot2CS(@NonNull Map<? extends /*BaseCS*/Resource, ? extends ASResource> cs2asResourceMap,

@@ -1229,8 +1229,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_OwnedComment() {
-		return (EReference)elementEClass.getEStructuralFeatures().get(2);
+	public EReference getElement_Extension()
+	{
+		return (EReference)elementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1238,9 +1239,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_Extension()
-	{
-		return (EReference)elementEClass.getEStructuralFeatures().get(0);
+	public EReference getElement_OwnedComment() {
+		return (EReference)elementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**

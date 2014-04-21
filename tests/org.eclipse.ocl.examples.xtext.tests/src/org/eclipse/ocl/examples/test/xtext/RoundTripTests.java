@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingS
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UML402UMLExtendedMetaData;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.EmfFormatter;
 
@@ -524,6 +525,8 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_Fruit() throws IOException, InterruptedException {
+		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+		uriMap.putAll(UML402UMLExtendedMetaData.getURIMap());
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		doRoundTripFromCompleteOCL(getProjectFileURI("Fruit.ocl"));
 	}

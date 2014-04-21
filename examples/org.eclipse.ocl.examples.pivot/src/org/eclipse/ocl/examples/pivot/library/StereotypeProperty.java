@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -51,12 +52,62 @@ public class StereotypeProperty extends ConstrainedProperty
 		Object boxedValue = null;
 		if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;
-			Property theProperty = DomainUtil.getNamedElement(elementExtension.getOwnedAttribute(), property.getName());
-			if (theProperty == null) {
-				return super.evaluate(evaluator, returnTypeId, sourceValue);
+			String propertyName = property.getName();
+			Property extensionProperty = DomainUtil.getNamedElement(elementExtension.getOwnedAttribute(), propertyName);
+			if (extensionProperty == null) {
+				boolean gotIt = false;
+				String defaultValue = null;
+				OpaqueExpression defaultExpression = null;
+				if (elementExtension.isApplied()) {
+					EObject umlStereotypeApplication = elementExtension.getETarget();
+					if (umlStereotypeApplication != null) {
+						EClass eClass = umlStereotypeApplication.eClass();
+						EStructuralFeature eStructuralFeature = EcoreUtils.getNamedElement(eClass.getEAllStructuralFeatures(), propertyName);
+						if (eStructuralFeature != null) {
+							Object value = umlStereotypeApplication.eGet(eStructuralFeature);
+							defaultValue = value != null ? value.toString() : null;
+							gotIt = true;
+						}
+					}
+				}
+				if (!gotIt && (elementExtension.isApplied() || elementExtension.isRequired())) {
+					Property theProperty = DomainUtil.getNamedElement(elementExtension.getStereotype().getOwnedAttribute(), propertyName);
+					defaultValue = theProperty.getDefault();
+					defaultExpression = theProperty.getDefaultExpression();
+					gotIt = true;
+				}
+				extensionProperty = PivotFactory.eINSTANCE.createProperty();
+				extensionProperty.setName(propertyName);
+				extensionProperty.setIsRequired(property.isRequired());
+				extensionProperty.setIsStatic(property.isStatic());
+				extensionProperty.setType(property.getType());
+				extensionProperty.setDefault(defaultValue);
+				extensionProperty.setDefaultExpression(defaultExpression);
+				elementExtension.getOwnedAttribute().add(extensionProperty);
 			}
-			String defaultValueLiteral = theProperty.getDefault();
-			OpaqueExpression defaultExpression = theProperty.getDefaultExpression();
+/*			Property extensionProperty = DomainUtil.getNamedElement(elementExtension.getOwnedAttribute(), propertyName);
+			if (extensionProperty == null) {
+				boolean gotIt = false;
+				EObject umlStereotypeApplication = elementExtension.getETarget();
+				if (umlStereotypeApplication != null) {
+					EClass eClass = umlStereotypeApplication.eClass();
+					EStructuralFeature eStructuralFeature = EcoreUtils.getNamedElement(eClass.getEAllStructuralFeatures(), propertyName);
+					if (eStructuralFeature != null) {
+						Object value = umlStereotypeApplication.eGet(eStructuralFeature);
+						gotIt = true;
+					}
+				}
+				if (!gotIt && )
+					if (elementExtension.isApplied() && !elementExtension.isRequired()) {
+						return null;
+					}
+			} */
+//			Property theProperty = DomainUtil.getNamedElement(elementExtension.getStereotype().getOwnedAttribute(), property.getName());
+//			if (theProperty == null) {
+//				return super.evaluate(evaluator, returnTypeId, sourceValue);
+//			}
+			String defaultValueLiteral = extensionProperty.getDefault();
+			OpaqueExpression defaultExpression = extensionProperty.getDefaultExpression();
 			if (defaultValueLiteral != null) {
 				boxedValue = idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
 			}

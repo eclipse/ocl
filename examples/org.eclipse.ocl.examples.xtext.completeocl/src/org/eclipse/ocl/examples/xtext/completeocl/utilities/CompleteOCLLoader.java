@@ -75,12 +75,27 @@ public abstract class CompleteOCLLoader
 				}
  			}
 		}
+		String metamodelNsURI = null;
 		Set<Resource> mmResources = new HashSet<Resource>();
-		for (EPackage mmPackage : mmPackages) {
+		for (@SuppressWarnings("null")@NonNull EPackage mmPackage : mmPackages) {
 			Resource mmResource = EcoreUtil.getRootContainer(mmPackage).eResource();
 			if (mmResource != null) {
 				mmResources.add(mmResource);
+				String metaNsURI = metaModelManager.getMetamodelNsURI(mmPackage);
+				if (metaNsURI != null) {
+					if (metamodelNsURI != null) {
+						if (!metamodelNsURI.equals(metaNsURI)) {
+							return error("Conflicting metamodel NsURIs", "'" + metamodelNsURI + "', '" + metaNsURI + "'");
+						}
+					}
+					else {
+						metamodelNsURI = metaNsURI;
+					}
+				}
 			}
+		}
+		if (metamodelNsURI != null) {
+			metaModelManager.setMetamodelNsURI(metamodelNsURI);
 		}
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;

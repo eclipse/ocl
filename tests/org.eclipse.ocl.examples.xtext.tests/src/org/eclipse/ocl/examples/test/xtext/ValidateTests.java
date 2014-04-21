@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -96,7 +97,7 @@ public class ValidateTests extends AbstractValidateTests
 		org.eclipse.uml2.uml.Slot price = confusingBook.getSlots().get(0);
 		org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) price.getOwnedElements().get(0);
 		
-		assertUMLOCLValidationDiagnostics("UML Load", umlResource,
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
 //			DomainUtil.bind(UMLMessages.BodyLanguageSupportError, IllegalStateException.class.getName() + ": " + NLS.bind(UMLMessages.MissingBodyLanguageSupport, "Natural language"), DomainUtil.getLabel(opaqueExpression)),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(invalidBook)),
 			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(partialBook)),
@@ -229,6 +230,7 @@ public class ValidateTests extends AbstractValidateTests
 		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
 		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet2, null);
 		//
 		URI ecoreURI = getTestModelURI("model/OCLinEcoreTutorial.ecore");
 		URI xmiURI = getTestModelURI("model/OCLinEcoreTutorial.xmi");
@@ -263,17 +265,22 @@ public class ValidateTests extends AbstractValidateTests
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Member m3"),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Member m3"),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Book b2"));
+		adapter.getMetaModelManager().dispose();
 	}
+
 	public void testValidate_Validate_completeocl_Bug422583() throws IOException, InterruptedException {
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
 		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet2, null);
 		//
 		URI umlURI = getProjectFileURI("Names.uml");
 		URI oclURI = getProjectFileURI("Bug422583.ocl");
 		String testDocument = 
-				"import uml : 'http://www.eclipse.org/uml2/4.0.0/UML#/'\n" +
+				"import uml : '" + UMLResource.UML_METAMODEL_URI + "#/'\n" +
+//				"import '" + XMI2UMLResource.UML_METAMODEL_NS_URI + "'\n" +
+//				"import uml : 'http://www.eclipse.org/uml2/4.0.0/UML#/'\n" +
 				"package uml\n" +
 				"  context Element\n" +
 				"  def: alwaysTrue() : Boolean = true\n" +
@@ -319,6 +326,7 @@ public class ValidateTests extends AbstractValidateTests
 		assertValidationDiagnostics("Without Complete OCL", resource,
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel));
+		adapter.getMetaModelManager().dispose();
 	}
 
 	@SuppressWarnings("null")

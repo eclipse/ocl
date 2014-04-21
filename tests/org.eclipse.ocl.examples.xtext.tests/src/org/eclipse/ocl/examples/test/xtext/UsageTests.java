@@ -71,9 +71,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -204,9 +204,6 @@ public class UsageTests
 		if (metaModelManager != null) {
 			metaModelManager.dispose();
 			metaModelManager = null;
-		}
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
 		}
 		uninstall();
 		super.tearDown();
@@ -658,6 +655,8 @@ public class UsageTests
 	}
 
 	public void testEnumTypes412685() throws Exception {
+		// FIIXME next line compensates an uninstall overenthusiasm
+		EPackage.Registry.INSTANCE.put(OCLstdlibPackage.eNS_URI, OCLstdlibPackage.eINSTANCE);
 		String testFileStem = "Bug412685";
 		String testProjectName = "bug412685";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;

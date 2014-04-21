@@ -65,7 +65,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	 * @ordered
 	 */
 	protected EList<TypeExtension> extensionOfs;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

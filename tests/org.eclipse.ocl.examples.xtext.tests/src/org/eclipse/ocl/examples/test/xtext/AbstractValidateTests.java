@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
@@ -47,8 +48,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public abstract class AbstractValidateTests extends XtextTestCase
 {	
-	public static @NonNull List<Diagnostic> assertUMLOCLValidationDiagnostics(@NonNull String prefix, @NonNull Resource resource, String... messages) {
+	public static @NonNull List<Diagnostic> assertUMLOCLValidationDiagnostics(@Nullable OCL ocl, @NonNull String prefix, @NonNull Resource resource, String... messages) {
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		if (ocl != null) {
+			validationContext.put(OCL.class,  ocl);
+		}
 		List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
 		for (EObject eObject : resource.getContents()) {
 			EValidatorRegistryImpl registry = new EValidatorRegistryImpl();

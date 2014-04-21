@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 
 /**
@@ -50,12 +51,13 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 		DomainModelManager modelManager = evaluator.getModelManager();
 		DomainProperty thatProperty = property.getOpposite();
 		DomainType thatType = DomainUtil.nonNullModel(property.getType());
-		if (thatType instanceof DomainCollectionType) {
+		boolean isMany = thatType instanceof DomainCollectionType;
+		if (isMany) {
 			thatType = ((DomainCollectionType)thatType).getElementType();
 		}
 		List<Object> results = new ArrayList<Object>();
 		if (thatType != null) {
-			for (EObject eObject : modelManager.get(thatType)) {	// FIXME Use a cache
+			for (EObject eObject : modelManager.get(thatType)) {
 				EClass eClass = eObject.eClass();
 				EStructuralFeature eFeature = eClass.getEStructuralFeature(thatProperty.getName());
 				Object eGet = eObject.eGet(eFeature);
@@ -73,7 +75,18 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 				}
 			}
 		}
-		return evaluator.getIdResolver().createCollectionOfAll(PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
-			PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE, returnTypeId, results);
+		if (isMany) {
+			return evaluator.getIdResolver().createCollectionOfAll(PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
+				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE, returnTypeId, results);
+		}
+		else if (results.size() == 0) {
+			return null;
+		}
+		else if (results.size() == 1) {
+			return results.get(0);
+		}
+		else {
+			throw new InvalidValueException("Multiple opposites for " + property);
+		}
 	}
 }

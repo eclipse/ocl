@@ -112,9 +112,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 {
 	private static final Logger logger = Logger.getLogger(EssentialOCLCSContainmentVisitor.class);
 
-	private static final class NotOperationFilter implements ScopeFilter
+	private static final class NotOperationNotPackageFilter implements ScopeFilter
 	{
-		public static NotOperationFilter INSTANCE = new NotOperationFilter();
+		public static NotOperationNotPackageFilter INSTANCE = new NotOperationNotPackageFilter();
 		
 		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
 				@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
@@ -122,7 +122,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		}
 
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
-			return !(object instanceof Operation);
+			return !(object instanceof Operation) && !(object instanceof org.eclipse.ocl.examples.pivot.Package);
 		}
 	}
 
@@ -300,6 +300,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitIndexExpCS(@NonNull IndexExpCS csElement) {
+		PathNameCS pathName = csElement.getPathName();
+		assert pathName != null;
+		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, NotOperationNotPackageFilter.INSTANCE);
 		return null;
 	}
 
@@ -330,7 +333,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	public Continuation<?> visitNameExpCS(@NonNull NameExpCS csElement) {
 		PathNameCS pathName = csElement.getPathName();
 		assert pathName != null;
-		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, NotOperationFilter.INSTANCE);
+		CS2Pivot.setElementType(pathName, PivotPackage.Literals.ELEMENT, csElement, NotOperationNotPackageFilter.INSTANCE);
 		return null;
 	}
 

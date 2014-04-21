@@ -469,13 +469,26 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 		if (this == type) {
 			return true;
 		}
+		Type instanceType = getInstanceType();
+		if (instanceType instanceof ElementExtension) {									// FIXME Rationalize ElementEXtension metatyping
+			instanceType = ((ElementExtension)instanceType).getStereotype();
+			return instanceType.conformsTo(standardLibrary, type);
+		}
 		String metaTypeName = instanceType.getMetaTypeName();
 		DomainType metaType = standardLibrary.getOclType(metaTypeName);
 		if (type instanceof DomainMetaclass) {
-			return getInstanceType().conformsTo(standardLibrary, DomainUtil.nonNullModel(((DomainMetaclass)type).getInstanceType()));
+			return instanceType.conformsTo(standardLibrary, DomainUtil.nonNullModel(((DomainMetaclass)type).getInstanceType()));
 		}
 		else {
-			return metaType.conformsTo(standardLibrary, type);
+//			boolean conformsTo1 = instanceType.conformsTo(standardLibrary, type);
+			boolean conformsTo2 = metaType.conformsTo(standardLibrary, type);
+//			DomainType metaType2 = ((MetaModelManager)standardLibrary).getIdResolver().getStaticTypeOf(instanceType);
+//			boolean conformsTo3 = metaType2.conformsTo(standardLibrary, type);
+//			if (conformsTo1 != conformsTo2) {
+//				instanceType.conformsTo(standardLibrary, type);
+//				metaType.conformsTo(standardLibrary, type);
+//			}
+			return conformsTo2;
 		}
 	}
 

@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -77,6 +78,7 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -649,7 +651,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitElementExtension(@NonNull ElementExtension as) {
-		appendQualifiedName(as.getPackage(), "::", as);
+		appendName(as);
 		return null;
 	}
 
@@ -1054,6 +1056,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	}
 
 	@Override
+	public String visitProfileApplication(@NonNull ProfileApplication object) {
+		appendQualifiedName(object.getAppliedProfile());
+		append(" applied-to ");
+		appendQualifiedName(object.getApplyingPackage());
+		return null;
+	}
+
+	@Override
 	public String visitProperty(@NonNull Property property) {
 		appendQualifiedName(property.getOwningType(), ".", property);
 		return null;
@@ -1205,6 +1215,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitTypeExp(@NonNull TypeExp t) {
 		appendQualifiedName(t.getReferredType());
+		return null;
+	}
+
+	@Override
+	public String visitTypeExtension(@NonNull TypeExtension object) {
+		appendQualifiedName(object.getType());
+		append(" extended-by ");
+		appendQualifiedName(object.getStereotype());
 		return null;
 	}
 

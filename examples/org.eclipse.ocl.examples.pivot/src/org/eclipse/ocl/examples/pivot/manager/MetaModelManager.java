@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
@@ -76,6 +77,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
@@ -85,6 +87,7 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -102,6 +105,7 @@ import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.State;
+import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -125,11 +129,13 @@ import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalMetamodelException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.osgi.util.NLS;
 
@@ -359,6 +365,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	} */
 	
 	private static final Logger logger = Logger.getLogger(MetaModelManager.class);
+
+	public static final @NonNull TracingOption CREATE_MUTABLE_CLONE = new TracingOption(PivotPlugin.PLUGIN_ID, "mm/createMutableClone");
 
 	@SuppressWarnings("null")
 	public static final @NonNull List<Comment> EMPTY_COMMENT_LIST = Collections.<Comment>emptyList();
@@ -1472,6 +1480,24 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return converter.getCreated(ecoreClass, element);
 	}
 
+	/**
+	 * Return an ElementExtension for asStereotype reusing any that already exist in asElementExtensions.
+	 */
+	public @NonNull ElementExtension getElementExtension(@NonNull Element asStereotypedElement, @NonNull Stereotype asStereotype) {
+		List<ElementExtension> extensions = asStereotypedElement.getExtension();
+		for (ElementExtension asElementExtension : extensions) {
+			if (asElementExtension.getStereotype() == asStereotype) {
+				return asElementExtension;
+			}
+		}
+		@SuppressWarnings("null")@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
+		asElementExtension.setStereotype(asStereotype);
+		asElementExtension.setName(((NamedElement)asStereotypedElement).getName() + "$" + asStereotype.getName());	// FIXME cast
+//		asElementExtension.getSuperClass().add(getOclAnyType());
+		extensions.add(asElementExtension);
+		return asElementExtension;
+	}
+
 	public @NonNull ResourceSet getExternalResourceSet() {
 		ResourceSetImpl externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 == null) {
@@ -1735,6 +1761,16 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return this;
 	}
 
+	public @Nullable String getMetamodelNsURI(@NonNull EPackage ePackage) {
+		for (ASResourceFactory asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
+			String metamodelNsURI = asResourceFactory.getMetamodelNsURI(ePackage);
+			if (metamodelNsURI != null) {
+				return metamodelNsURI;
+			}
+		}
+		return null;
+	}
+
 	public @NonNull Iterable<Property> getMemberProperties(@NonNull Type type, boolean selectStatic) {
 		if (type.getOwningTemplateParameter() != null) {
 			return EMPTY_PROPERTY_LIST;
@@ -1778,12 +1814,18 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	protected @NonNull Type getMutable(@NonNull Type asType) {
+//		if ("Class".equals(asType.getName())) {
+//			System.out.println("Got it");
+//		}
 		Resource asResource = asType.eResource();
 		if (DomainUtil.isRegistered(asResource)) {
 			for (DomainType domainType : getPartialTypes(asType)) {
 				if ((domainType != asType) && (domainType instanceof Type)) {
 					Type asPartialType = (Type)domainType;
 					if (!DomainUtil.isRegistered(asPartialType.eResource())) {
+						if (CREATE_MUTABLE_CLONE.isActive()) {
+							CREATE_MUTABLE_CLONE.println(asType + " " + DomainUtil.debugSimpleName(asType) + " => " + DomainUtil.debugSimpleName(asPartialType));
+						}
 						return asPartialType;
 					}
 				}
@@ -1812,11 +1854,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				if ((domainType != asType) && (domainType instanceof Type)) {
 					Type asPartialType = (Type)domainType;
 					if (!DomainUtil.isRegistered(asPartialType.eResource())) {
+						if (CREATE_MUTABLE_CLONE.isActive()) {
+							CREATE_MUTABLE_CLONE.println(asType + " " + DomainUtil.debugSimpleName(asType) + " => " + DomainUtil.debugSimpleName(asPartialType));
+						}
 						return asPartialType;
 					}
 				}
 			}
-			throw new UnsupportedOperationException("No cloned library type");
+			throw new UnsupportedOperationException("No cloned library type " + asType);
+		}
+		if (CREATE_MUTABLE_CLONE.isActive()) {
+			CREATE_MUTABLE_CLONE.println(asType + " " + DomainUtil.debugSimpleName(asType));
 		}
 		return asType;
 	}
@@ -2633,6 +2681,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		String name = DomainUtil.nonNullState(asLibrary.getName());
 		String nsURI = DomainUtil.nonNullState(asLibrary.getNsURI());
 		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(this, name, asLibrary.getNsPrefix(), nsURI);
+		asResourceSet.getResources().add(oclMetamodel.eResource());
 		setASMetamodel(oclMetamodel);		// Standard meta-model
 		@SuppressWarnings("null")
 		@NonNull Resource asResource = oclMetamodel.eResource();
@@ -3035,6 +3084,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void setLibraryLoadInProgress(boolean libraryLoadInProgress) {
 		this.libraryLoadInProgress = libraryLoadInProgress;	
+	}
+
+	public void setMetamodelNsURI(@NonNull String metaNsURI) {
+		if (asMetamodel == null) {
+			StandardLibraryContribution.REGISTRY.put(metaNsURI, new OCLstdlib.RenamingLoader(metaNsURI));
+			setDefaultStandardLibraryURI(metaNsURI);
+			getASMetamodel();
+		}
+		else if (!metaNsURI.equals(asMetamodel.getNsURI())) {
+			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
+		}
 	}
 
 	public void setTarget(Notifier newTarget) {

@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -56,10 +55,14 @@ public class ClassAttribution extends AbstractAttribution
 		environmentView.addAllOperations(targetClass, null);
 		environmentView.addAllProperties(targetClass, null);
 		environmentView.addAllStates(targetClass);
-		if (!environmentView.hasFinalResult()) {
-			environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_STATIC);
-			environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_STATIC);
-		}
+//		if (!environmentView.hasFinalResult()) {
+//			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+//			Type metatype = metaModelManager.getPivotType(targetClass.eClass().getName());		// FIXME getMetaType
+//			if (metatype != null) {
+//				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);
+//				environmentView.addAllProperties(metatype, FeatureFilter.SELECT_STATIC);
+//			}
+//		}
 		return scopeView.getParent();
 	}
 }

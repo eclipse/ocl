@@ -894,12 +894,12 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 						selectedObject = adapted;
 					}
 	            }
-		    	if (selectedObject instanceof org.eclipse.uml2.uml.Element) {
+		    	/*if (selectedObject instanceof org.eclipse.uml2.uml.Element) {
 				    org.eclipse.uml2.uml.Element selectedElement = (org.eclipse.uml2.uml.Element)selectedObject;
 					MetaModelManager metaModelManager = getMetaModelManager(selectedElement);
 					contextObject = metaModelManager.getPivotOf(Element.class, selectedElement);
 	            }
-	            else if (selectedObject instanceof EObject) {
+	            else*/ if (selectedObject instanceof EObject) {
 	            	contextObject = (EObject) selectedObject;
 	            }
 	            else {
@@ -914,6 +914,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		    	
 			    MetaModelManager metaModelManager = getMetaModelManager(contextObject);
 				PivotIdResolver idResolver = metaModelManager.getIdResolver();
+//				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				DomainType staticType = idResolver.getStaticTypeOf(contextObject);
 				Type contextType = metaModelManager.getType(staticType);
 //				if (contextType != null) {

@@ -21,6 +21,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -32,26 +34,32 @@ public class PackageAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Package targetPackage = (org.eclipse.ocl.examples.pivot.Package)target;
-		if (targetPackage.getImportedPackage().size() > 0) {
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+//		if (targetPackage.getImportedPackage().size() > 0) {
 			Set<org.eclipse.ocl.examples.pivot.Package> allPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-			gatherAllPackages(allPackages, targetPackage);
+			gatherAllPackages(metaModelManager, allPackages, targetPackage);
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package aPackage : allPackages) {
 				environmentView.addAllPackages(aPackage);
 				environmentView.addAllTypes(aPackage);
 			}
-		}
-		else {
-			environmentView.addAllPackages(targetPackage);
-			environmentView.addAllTypes(targetPackage);
-		}
+//		}
+//		else {
+//			environmentView.addAllPackages(targetPackage);
+//			environmentView.addAllTypes(targetPackage);
+//		}
 		return scopeView.getParent();
 	}
 
-	private void gatherAllPackages(@NonNull Set<org.eclipse.ocl.examples.pivot.Package> allPackages,
+	private void gatherAllPackages(@NonNull MetaModelManager metaModelManager, @NonNull Set<org.eclipse.ocl.examples.pivot.Package> allPackages,
 			@NonNull org.eclipse.ocl.examples.pivot.Package targetPackage) {
-		if (allPackages.add(targetPackage)) {
-			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package importedPackage : targetPackage.getImportedPackage()) {
-				gatherAllPackages(allPackages, importedPackage);
+		org.eclipse.ocl.examples.pivot.Package primaryPackage = metaModelManager.getPrimaryElement(targetPackage);
+		if (allPackages.add(primaryPackage)) {
+			for (@SuppressWarnings("null")@NonNull DomainPackage partialPackage : metaModelManager.getPartialPackages(primaryPackage, false)) {
+				if (partialPackage instanceof org.eclipse.ocl.examples.pivot.Package) {
+					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package importedPackage : ((org.eclipse.ocl.examples.pivot.Package)partialPackage).getImportedPackage()) {
+						gatherAllPackages(metaModelManager, allPackages, importedPackage);
+					}
+				}
 			}
 		}
 	}

@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateNameVisibilityTest4;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateNumericOperationsTest4;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateOclAnyOperationsTest4;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateStringOperationsTest4;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest4;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest4;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -45,6 +46,7 @@ import org.junit.runners.Suite;
 	EvaluateNumericOperationsTest4.class,
 	EvaluateOclAnyOperationsTest4.class,
 	EvaluateStringOperationsTest4.class,
+	EvaluateUMLTest4.class,
 	IteratorsTest4.class})
 
 public class AllEvaluationTests {}

@@ -402,9 +402,11 @@ public class PivotUtil extends DomainUtil
 			s.append(diagnostic.getLine());
 			try {
 				int column = diagnostic.getColumn();
-				s.append(":");
-				s.append(column);
-			} catch (Exception e) {}	// UnsupportedOperationException is normal
+				if (column >= 0) {
+					s.append(":");
+					s.append(column);
+				}
+			} catch (Exception e) {}	// UnsupportedOperationException is normal for Bug 380232
 			s.append(": ");
 			s.append(diagnostic.getMessage());
 		}
@@ -778,8 +780,15 @@ public class PivotUtil extends DomainUtil
 	 */
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) {
 			Resource resource = contextElement.eResource();
-			ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
-			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+			MetaModelManager metaModelManager;
+			ResourceSet resourceSet = resource.getResourceSet();
+			if (resourceSet != null) {
+				metaModelManager = MetaModelManager.getAdapter(resourceSet);
+			}
+			else {
+				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(resource, null);
+				metaModelManager = adapter.getMetaModelManager();				
+			}
 			ParserContext parserContext = metaModelManager.getParserContext(contextElement);
 			if (parserContext == null) {
 				logger.error("Unknown context type for " + contextElement.eClass().getName());
@@ -1335,6 +1344,27 @@ public class PivotUtil extends DomainUtil
 		for (T newElement : newElements) {				// Add any newElements not in oldElements
 			if (!newElement.eIsProxy() && !oldElements.contains(newElement)) {
 				oldElements.add(newElement);
+			}
+		}
+	}
+
+	/**
+	 * Detach object from its container so that a child-stealing detection is avoided when attaching to a new container.
+	 */
+	public static void resetContainer(@NonNull EObject eObject) {
+		EStructuralFeature eContainingFeature = eObject.eContainingFeature();
+		if (eContainingFeature != null) {
+			EObject eContainer = eObject.eContainer();
+			if (eContainer != null) {
+				if (!eContainingFeature.isMany()) {
+					eContainer.eSet(eContainingFeature, null);
+				}
+				else {
+					Object objects = eContainer.eGet(eContainingFeature);
+					if (objects instanceof List<?>) {
+						((List<?>)objects).remove(eObject);
+					}
+				}
 			}
 		}
 	}

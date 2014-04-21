@@ -69,7 +69,6 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -1213,9 +1212,9 @@ public class TypeImpl
 		if (owningTemplateParameter != null) {
 			return (TypeId) owningTemplateParameter.getElementId();
 		}
-		else if (eContainer() instanceof Library) {
-			return IdManager.getNsURIPackageId(PivotPackage.eNS_URI, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE).getClassId(name, getTypeParameters().parametersSize());
-		}
+//		else if (eContainer() instanceof Library) {		// FIXME this should not be needed 
+//			return IdManager.getNsURIPackageId(PivotPackage.eNS_URI, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE).getClassId(name, getTypeParameters().parametersSize());
+//		}
 		else {
 			return IdManager.getClassId(this);
 		}

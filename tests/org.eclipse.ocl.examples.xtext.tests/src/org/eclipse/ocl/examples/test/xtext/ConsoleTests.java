@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -170,7 +171,7 @@ public class ConsoleTests extends PivotTestCase
 	public Type frenchClass;
 	public Type germanClass;
 	public Type plainClass;
-	public Type englishClassInEnglish;
+	public ElementExtension englishClassInEnglish;
 	public Type inEnglishStereotype;
 	public Type inFrenchStereotype;
 	public Type inGermanStereotype;

@@ -113,6 +113,7 @@ public class CompleteOCLSplitter
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
 			EStructuralFeature eContainingFeature = object.eContainingFeature();
+			PivotUtil.resetContainer(object);		// Avoid a child-stealing detection
 			if (!eContainingFeature.isMany()) {
 				separateParent.eSet(eContainingFeature, object);
 			}
@@ -128,9 +129,11 @@ public class CompleteOCLSplitter
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
 			if (separateParent instanceof Operation) {
+				PivotUtil.resetContainer(object);
 				((Operation)separateParent).setBodyExpression(object);
 			}
 			if (separateParent instanceof Property) {
+				PivotUtil.resetContainer(object);
 				((Property)separateParent).setDefaultExpression(object);
 			}
 			return object;

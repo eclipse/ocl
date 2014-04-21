@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -62,6 +63,7 @@ import org.eclipse.ocl.examples.pivot.manager.PackageManager;
 import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.manager.RootPackageServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -95,6 +97,19 @@ public class EnvironmentView
 			}
 		}
 	}
+	private static final class MetamodelMergeDisambiguator implements Comparator<Feature>
+	{
+		public int compare(Feature match1, Feature match2) {
+			if (match2.eResource() instanceof OCLMetaModel) {
+				return 1;				// match2 inferior			
+			}
+			if (match1.eResource() instanceof OCLMetaModel) {
+				return -1;				// match1 inferior			
+			}
+			return 0;
+		}
+	}
+	
 
 	private static final class OperationDisambiguator implements Comparator<Operation>
 	{
@@ -164,6 +179,7 @@ public class EnvironmentView
 
 	static {
 		addDisambiguator(Object.class, new ImplicitDisambiguator());
+		addDisambiguator(Feature.class, new MetamodelMergeDisambiguator());
 		addDisambiguator(Operation.class, new OperationDisambiguator());
 		addDisambiguator(Property.class, new PropertyDisambiguator());
 	}
@@ -234,13 +250,13 @@ public class EnvironmentView
 				element = PivotUtil.getLowerBound(instanceType);
 				attribution = PivotUtil.getAttribution(element);
 				attribution.computeLookup(element, this, scopeView);
-//				element = instanceType.getPackage();
-//				if (element != null) {
-//					attribution = PivotUtil.getAttribution(element);
-//					if (attribution != null) {
-//						attribution.computeLookup(element, this, scopeView);
-//					}
-//				}
+			}
+		}
+		else {
+			element = (type2 instanceof Type ? (Type)type2 : type).getPackage();
+			if (element != null) {
+				attribution = PivotUtil.getAttribution(element);
+				attribution.computeLookup(element, this, scopeView);
 			}
 		}
 	}
@@ -392,7 +408,7 @@ public class EnvironmentView
 		}
 	}
 	
-	public void addAllStates(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public void addAllStates(@NonNull Type type) {
 		if (accepts(PivotPackage.Literals.STATE)) {
 			assert metaModelManager.isTypeServeable(type);
 			TypeServer typeServer = metaModelManager.getTypeServer(type);

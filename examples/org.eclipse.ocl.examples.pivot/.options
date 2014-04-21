@@ -27,5 +27,8 @@ org.eclipse.ocl.examples.pivot/uml2pivot/addElementExtension=false
 # Trace validation of Import discoveries 
 org.eclipse.ocl.examples.pivot/uml2pivot/addImportedResource=false
 
+# Trace validation of Profile Application discoveries 
+org.eclipse.ocl.examples.pivot/uml2pivot/addProfileApplication=false
+
 # Trace validation of Stereotype Application discoveries 
 org.eclipse.ocl.examples.pivot/uml2pivot/addStereotypeApplication=false

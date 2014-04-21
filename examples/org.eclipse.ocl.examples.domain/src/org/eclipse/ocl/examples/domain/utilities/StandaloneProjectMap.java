@@ -2626,8 +2626,18 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 	}
 
+	/**
+	 * Leak debugging aid. Set non-null to diagnose MetaModelManager construction and finalization.
+	 */
+	public static WeakHashMap<StandaloneProjectMap,Object> liveStandaloneProjectMaps = null;
+
 	public StandaloneProjectMap() {
 		super();
+		if (liveStandaloneProjectMaps != null) {
+			liveStandaloneProjectMaps.put(this, null);
+			System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName()
+				+ "@" + Integer.toHexString(System.identityHashCode(this)));	
+		}
 	}
 
 	/**
@@ -2679,6 +2689,23 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	protected @NonNull IProjectDescriptor createProjectDescriptor(@NonNull String projectName, @NonNull URI locationURI) {
 		return new ProjectDescriptor(this, projectName, locationURI);
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		if (liveStandaloneProjectMaps != null) {
+			System.out.println("Finalize " + getClass().getSimpleName()
+				+ "@" + Integer.toString(System.identityHashCode(this)));		
+			List<StandaloneProjectMap> keySet = new ArrayList<StandaloneProjectMap>(liveStandaloneProjectMaps.keySet());
+			if (!keySet.isEmpty()) {
+				StringBuilder s = new StringBuilder();
+				s.append(" live");
+				for (StandaloneProjectMap projectMap : keySet) {
+					s.append(" @" + Integer.toHexString(System.identityHashCode(projectMap)));		
+				}
+				System.out.println(s);		
+			}
+		}
 	}
 
 	/**

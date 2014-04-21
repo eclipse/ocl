@@ -17,7 +17,6 @@ package org.eclipse.ocl.examples.test.standalone;
 import java.net.URL;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
@@ -65,10 +64,10 @@ public class StandaloneTestCase extends PivotTestCase
 //		StandaloneProjectMap.PROJECT_MAP_ADD_GEN_MODEL.setState(true);
 //		StandaloneProjectMap.PROJECT_MAP_ADD_GENERATED_PACKAGE.setState(true);
 //		StandaloneProjectMap.PROJECT_MAP_ADD_URI_MAP.setState(true);
-		StandaloneProjectMap.PROJECT_MAP_CONFIGURE.setState(true);
-		StandaloneProjectMap.PROJECT_MAP_GET.setState(true);
+//		StandaloneProjectMap.PROJECT_MAP_CONFIGURE.setState(true);
+//		StandaloneProjectMap.PROJECT_MAP_GET.setState(true);
 //		StandaloneProjectMap.PROJECT_MAP_INSTALL.setState(true);
-		StandaloneProjectMap.PROJECT_MAP_RESOLVE.setState(true);
+//		StandaloneProjectMap.PROJECT_MAP_RESOLVE.setState(true);
 		super.setUp();
 		TestCaseAppender.INSTANCE.uninstall();
 	}

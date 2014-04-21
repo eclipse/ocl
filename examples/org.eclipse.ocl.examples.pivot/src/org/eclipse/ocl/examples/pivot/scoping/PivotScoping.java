@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.pivot.attributes.ClassAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.DataTypeAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.EnumerationAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.ExpressionInOCLAttribution;
-import org.eclipse.ocl.examples.pivot.attributes.ExtensionTypeAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.IterateExpAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.IteratorExpAttribution;
 import org.eclipse.ocl.examples.pivot.attributes.LetExpAttribution;
@@ -43,7 +42,6 @@ public class PivotScoping
 		registry.put(PivotPackage.Literals.CLASS, ClassAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.DATA_TYPE, DataTypeAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.ELEMENT, EmptyAttribution.INSTANCE);
-		registry.put(PivotPackage.Literals.ELEMENT_EXTENSION, ExtensionTypeAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.ENUMERATION, EnumerationAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.EXPRESSION_IN_OCL, ExpressionInOCLAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.INVALID_TYPE, VoidTypeAttribution.INSTANCE);

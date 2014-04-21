@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
@@ -161,6 +162,7 @@ public class UML25LoadTests extends LoadTests
 	}
 	
 	public void testLoad_UML_2_5_Final_UMLDI() throws IOException, InterruptedException, ParserException {
+		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UMLDI.xmi", true);
 		doLoadUML(uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
 	}

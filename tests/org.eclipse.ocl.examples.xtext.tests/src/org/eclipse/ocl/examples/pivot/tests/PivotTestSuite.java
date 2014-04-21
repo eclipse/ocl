@@ -1033,7 +1033,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return eReference;
 	}
 
-	protected OCL createOCL() {
+	protected @NonNull MetaModelManager createMetaModelManager() {
+		return new MetaModelManager(getProjectMap());
+	}
+
+	protected @NonNull OCL createOCL() {
 		Registry packageRegistry = resourceSet.getPackageRegistry();
 		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, metaModelManager);
 		return OCL.newInstance(envFactory);
@@ -1506,7 +1510,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		TestCaseAppender.INSTANCE.install();
  		OCLstdlib.install();
  		doEssentialOCLSetup();
-		metaModelManager = new MetaModelManager(getProjectMap());
+		metaModelManager = createMetaModelManager();
 		idResolver = metaModelManager.getIdResolver();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();

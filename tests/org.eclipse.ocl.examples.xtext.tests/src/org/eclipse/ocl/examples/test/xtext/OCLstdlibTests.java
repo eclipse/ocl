@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -103,7 +104,7 @@ public class OCLstdlibTests extends XtextTestCase
 		return map;
 	}
 
-	protected void doLoadAS(@NonNull ResourceSet resourceSet, @NonNull URI libraryURI, @NonNull Resource javaResource, boolean validateMonikers) {
+	protected Resource doLoadAS(@NonNull ResourceSet resourceSet, @NonNull URI libraryURI, @NonNull Resource javaResource, boolean validateMonikers) {
 		Resource asResource = resourceSet.getResource(libraryURI, true);
 		assertNoResourceErrors("Load failed", asResource);
 		assertNoUnresolvedProxies("File Model", asResource);
@@ -113,7 +114,7 @@ public class OCLstdlibTests extends XtextTestCase
 		assertNoUnresolvedProxies("Java Model", javaResource);
 		assertNoValidationErrors("Java Model", javaResource);
 		if (!validateMonikers) {
-			return;
+			return asResource;
 		}
 		//
 		//	Check similar content
@@ -186,6 +187,7 @@ public class OCLstdlibTests extends XtextTestCase
 				}
 			}
 		}
+		return asResource;
 	}
 
 	@Override
@@ -368,7 +370,8 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
 		Resource javaResource = OCLstdlib.getDefault();
-		doLoadAS(resourceSet, libraryURI, javaResource, true);
+		Resource asResource = doLoadAS(resourceSet, libraryURI, javaResource, true);
+		PivotUtil.getMetaModelManager(asResource).dispose();
 	}
 	
 	/**
@@ -389,6 +392,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Library asLibrary = (Library) metaModelManager.getOclAnyType().getPackage();
 		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(metaModelManager, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
-		doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
+		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
+		PivotUtil.getMetaModelManager(asResource).dispose();
 	}
 }

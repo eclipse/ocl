@@ -543,6 +543,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected @NonNull OCLExpression resolveImplicitAsSet(@NonNull OCLExpression sourceExp, @NonNull Type sourceType, @NonNull NavigationOperatorCS csOperator) {
 		OperationCallExp expression = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, null);
 		expression.setImplicit(true);
+		PivotUtil.resetContainer(sourceExp);
 		expression.setSource(sourceExp);
 		expression.setName("oclAsSet");
 		resolveOperationCall(expression, csOperator, new ImplicitCollectionFilter(sourceType));
@@ -1056,6 +1057,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			templateBindings.put(null, sourceType);		// Use the null key to pass OclSelf without creating an object
 			Type owningType = property.getOwningType();
 			if (owningType instanceof Metaclass) {
+				owningType = PivotUtil.getUnspecializedTemplateableElement(owningType);
 				templateBindings.put(owningType.getOwnedTemplateSignature().getOwnedParameter().get(0), sourceType);		// Use the null key to pass OclSelf without creating an object
 			}
 		}

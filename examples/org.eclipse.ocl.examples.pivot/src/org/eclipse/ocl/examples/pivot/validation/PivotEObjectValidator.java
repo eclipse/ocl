@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
@@ -125,6 +126,15 @@ public class PivotEObjectValidator implements EValidator
 			boolean allOk = true;
 			Type type = metaModelManager.getPivotOfEcore(Type.class, eClassifier);
 			if (type != null) {
+				String typeName = type.getName();
+				if (typeName != null) {
+					Type metatype = metaModelManager.getPivotType(typeName);
+					if (metatype != null) {
+						type = metatype;
+					}
+				}
+			}
+			if (type != null) {
 				for (Constraint constraint : metaModelManager.getAllInvariants(type)) {
 					if (constraint !=  null) {
 						OpaqueExpression specification = constraint.getSpecification();
@@ -162,8 +172,16 @@ public class PivotEObjectValidator implements EValidator
 			assert specification != null;
 			ExpressionInOCL query = specification.getExpressionInOCL();
 			assert query != null;
-			EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, object, query, null);
+			DomainModelManager oldModelManager = null;
 			if (context != null) {
+				oldModelManager = (DomainModelManager) context.get(DomainModelManager.class);
+			}
+			EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, object, query, oldModelManager);
+			if (context != null) {
+				DomainModelManager newModelManager = evaluationVisitor.getModelManager();
+				if (newModelManager != oldModelManager) {
+					context.put(DomainModelManager.class, newModelManager);
+				}
 				Object monitor = context.get(Monitor.class);
 				if (monitor instanceof Monitor) {
 					evaluationVisitor.setMonitor((Monitor) monitor);
@@ -175,7 +193,8 @@ public class PivotEObjectValidator implements EValidator
 				protected String getObjectLabel() {
 					Type type = PivotUtil.getContainingType(constraint);
 					Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
-					EClassifier eClassifier = primaryType != null ?  (EClassifier)primaryType.getETarget() : null;
+					EObject eTarget = primaryType != null ? primaryType.getETarget() : null;
+					EClassifier eClassifier = eTarget instanceof EClassifier ?  (EClassifier)eTarget : null;
 					return DomainUtil.getLabel(eClassifier, object, context);
 				}
 
@@ -209,7 +228,11 @@ public class PivotEObjectValidator implements EValidator
 					return null;
 				}
 			};
-			return constraintEvaluator.evaluate(evaluationVisitor);
+			Diagnostic diagnostic = constraintEvaluator.evaluate(evaluationVisitor);
+			if (diagnostic != null) {			// FIXME Debugging
+				constraintEvaluator.evaluate(evaluationVisitor);
+			}
+			return diagnostic;
 		}
 	}
 

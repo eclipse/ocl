@@ -133,6 +133,9 @@ public abstract class ReflectiveType extends AbstractInheritance
 	}
 
 	public DomainFragment getFragment(int fragmentNumber) {
+		if ((fragments == null) && (this == getOclAnyInheritance())) {
+			installOclAny();
+		}
 		return fragments[fragmentNumber];
 	}
 	

@@ -19,6 +19,10 @@ package org.eclipse.ocl.examples.pivot.manager;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -30,6 +34,34 @@ public class ExtensionTypeServer extends ExtensibleTypeServer
 {
 	public ExtensionTypeServer(@NonNull PackageServer packageServer, @NonNull ElementExtension pivotType) {
 		super(packageServer, pivotType);
+	}
+
+	@Override
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(
+			@Nullable FeatureFilter featureFilter) {
+		// TODO Auto-generated method stub
+		return super.getAllOperations(featureFilter);
+	}
+
+	@Override
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(
+			@Nullable FeatureFilter featureFilter, @NonNull String name) {
+		// TODO Auto-generated method stub
+		return super.getAllOperations(featureFilter, name);
+	}
+
+	@Override
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(
+			@Nullable FeatureFilter featureFilter) {
+		// TODO Auto-generated method stub
+		return super.getAllProperties(featureFilter);
+	}
+
+	@Override
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(
+			@Nullable FeatureFilter featureFilter, @NonNull String name) {
+		// TODO Auto-generated method stub
+		return super.getAllProperties(featureFilter, name);
 	}
 
 	@Override

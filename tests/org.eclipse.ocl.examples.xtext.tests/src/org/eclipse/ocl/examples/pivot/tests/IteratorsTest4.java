@@ -54,7 +54,6 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -114,7 +113,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Before public void setUp() throws Exception {
         super.setUp();
         PivotTables.LIBRARY.getClass();
-		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, DomainUtil.nonNullState(metaModelManager.getASMetamodel()));
+//		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, DomainUtil.nonNullState(metaModelManager.getASMetamodel()));
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:

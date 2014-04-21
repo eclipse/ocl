@@ -75,7 +75,6 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
-
 /**
  * A LoadCompleteOCLResourceHandler supports the OCL->Load Document command.
  * 

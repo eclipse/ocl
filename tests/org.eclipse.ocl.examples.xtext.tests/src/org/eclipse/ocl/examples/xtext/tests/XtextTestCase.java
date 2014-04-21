@@ -363,9 +363,6 @@ public class XtextTestCase extends PivotTestCase
 		metaModelManager = null;
 		resourceSet = null;
 		adapter = null;
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
-		}
 	}
 
 	protected ASResource doLoadASResourceFromString(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String testFile) throws Exception {

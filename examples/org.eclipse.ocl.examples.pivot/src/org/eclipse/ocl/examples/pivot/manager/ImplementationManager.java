@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
@@ -36,14 +39,18 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.library.BaseProperty;
 import org.eclipse.ocl.examples.pivot.library.CompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedProperty;
 import org.eclipse.ocl.examples.pivot.library.ExplicitNavigationProperty;
+import org.eclipse.ocl.examples.pivot.library.ExtensionProperty;
 import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.StaticProperty;
 import org.eclipse.ocl.examples.pivot.library.StereotypeProperty;
 import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
 
 /**
  * ImplementationManager encapsulates the knowledge about known feature implementations.
@@ -130,13 +137,49 @@ public class ImplementationManager
 				return UnsupportedOperation.INSTANCE;
 			}
 		}
+		Type type = property.getType();
+		if (type instanceof Stereotype) {
+			return new ExtensionProperty(property);
+		}
+//		if (property.getOwningType() instanceof Stereotype) {
+//			return new BaseProperty(property);
+//		}
 		OpaqueExpression specification = metaModelManager.getDefaultExpression(property);
 		if (property.isDerived() && (specification != null)) {
 			return new ConstrainedProperty(property);
 		}
 		Property opposite = property.getOpposite();
 		if ((opposite != null) && opposite.isComposite()) {
-			return new CompositionProperty(opposite.getPropertyId());
+			if (property.eContainer() instanceof Stereotype) {
+				return new BaseProperty(property);
+			}
+			if (type != null) {
+				EObject eTarget = opposite.getETarget();
+				if (eTarget instanceof EReference) {
+					return new CompositionProperty((EReference) eTarget, opposite.getPropertyId());
+				}
+				if (eTarget != null) {
+					Resource resource = opposite.eResource();
+					if (resource instanceof ASResource) {
+						ASResource asResource = (ASResource)resource;
+						EReference eReference = asResource.getASResourceFactory().getEReference(asResource, eTarget);
+						if (eReference != null) {
+							return new CompositionProperty(eReference, opposite.getPropertyId());
+						}
+					}
+				}
+/*				eTarget = type.getETarget();
+				if (eTarget != null) {
+					EClass eOwningClass = eTarget.eClass();
+					EClass eOwnedClass = property.getOwningType().getETarget().eClass();
+					EList<EStructuralFeature> ownerStructuralFeatures = eOwningClass.getEAllStructuralFeatures();
+					EList<EStructuralFeature> ownedStructuralFeatures = eOwnedClass.getEAllStructuralFeatures();
+					EStructuralFeature eFeature = EcoreUtils.getNamedElement(ownerStructuralFeatures, opposite.getName());
+					if (eFeature instanceof EReference) {
+						return new CompositionProperty((EReference) eFeature, opposite.getPropertyId());
+					}
+				} */
+			}
 		}
 		if (property.isImplicit()) {
 			return new ImplicitNonCompositionProperty(property);

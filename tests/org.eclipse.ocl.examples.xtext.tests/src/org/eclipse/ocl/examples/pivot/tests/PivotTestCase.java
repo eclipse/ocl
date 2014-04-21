@@ -71,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.PivotStandaloneSetup;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
@@ -105,12 +104,13 @@ public class PivotTestCase extends TestCase
 	/*
 	 * The following may be tweaked to assist debugging.
 	 */
-	public static boolean DEBUG_GC = false;			// True performs an enmthusuastic resource release and GC at the end of each test 
-	public static boolean DEBUG_ID = false;			// TRue prints the start and end of each test.
+	public static boolean DEBUG_GC = false;			// True performs an enthusuastic resource release and GC at the end of each test 
+	public static boolean DEBUG_ID = false;			// True prints the start and end of each test.
 	{
 //		DEBUG_GC = true; 
 //		DEBUG_ID = true;
 //		MetaModelManager.liveMetaModelManagers = new WeakHashMap<MetaModelManager,Object>();	// Prints the create/finalize of each MetaModelManager
+//		StandaloneProjectMap.liveStandaloneProjectMaps = new WeakHashMap<StandaloneProjectMap,Object>();	// Prints the create/finalize of each StandaloneProjectMap
 //		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug privater EMF branch
 	}	
 	
@@ -641,9 +641,6 @@ public class PivotTestCase extends TestCase
 	}
 
 	protected void uninstall() {
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			OCLstdlib.uninstall();
-		}
 		PivotStandaloneSetup.doTearDown();
 		BaseStandaloneSetup.doTearDown();
 		CompleteOCLStandaloneSetup.doTearDown();
@@ -652,6 +649,7 @@ public class PivotTestCase extends TestCase
 		OCLinEcoreStandaloneSetup.doTearDown();
 		OCLstdlibStandaloneSetup.doTearDown();
 		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+		projectMap = null;
 	}
 	
 	public static class GlobalStateMemento

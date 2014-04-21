@@ -16,6 +16,9 @@ package org.eclipse.ocl.examples.pivot.resource;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
@@ -101,6 +104,16 @@ public interface ASResourceFactory extends Resource.Factory
 	@NonNull String getContentType();
 
 	/**
+	 * Return an EOperation for a pivot Operation if one is available.
+	 * <br>
+	 * For UML this locates the corresponding operation in the Eclipse namespace for the OMG namespace.
+	 * @param asResource 
+	 */
+	@Nullable EOperation getEOperation(@NonNull ASResource asResource, @NonNull EObject eObject);
+
+	@Nullable EReference getEReference(@NonNull ASResource asResource, @NonNull EObject eObject);
+
+	/**
 	 * Return a positive handler priority if this factory can handle creation of an OCL AS type from the
 	 * available object, negative if it cannot. Generic handlers such as Ecore return a low priority.
 	 */
@@ -117,6 +130,11 @@ public interface ASResourceFactory extends Resource.Factory
 	 * available URI, negative if it cannot. Generic handlers such as Ecore return a low priority.
 	 */
 	int getHandlerPriority(@NonNull URI uri);
+
+	/**
+	 * Return a specific metamodel NsURI if ePackage has particular requirements as is the case for UML.
+	 */
+	@Nullable String getMetamodelNsURI(@NonNull EPackage ePackage);
 
 	/**
 	 * Return the URI of an eObject if it can be treated as a Package.

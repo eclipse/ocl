@@ -84,6 +84,7 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.examples.pivot.library.EInvokeOperation;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -1765,12 +1766,25 @@ public class OperationImpl
 		}
 		if (bodyImplementation2 == null) {
 			EObject eTarget = getETarget();
-			if ((eTarget instanceof EOperation) && (((EOperation)eTarget).getEType() != null)) {
-				bodyImplementation2 = new EInvokeOperation((EOperation)eTarget);
+			if (eTarget != null) {
+				EOperation eOperation = null;
+				if (eTarget instanceof EOperation) {
+					eOperation = (EOperation) eTarget;
+				}
+				else {
+					Resource resource = eResource();
+					if (resource instanceof ASResource) {
+						ASResource asResource = (ASResource)resource;
+						eOperation = asResource.getASResourceFactory().getEOperation(asResource, eTarget);
+					}
+				}
+				if ((eOperation != null) && (eOperation.getEType() != null)) {
+					bodyImplementation2 = new EInvokeOperation(eOperation);
+				}
 			}
-			else {
-				bodyImplementation2 = UnsupportedOperation.INSTANCE;
-			}
+		}
+		if (bodyImplementation2 == null) {
+			bodyImplementation2 = UnsupportedOperation.INSTANCE;
 		}
 		bodyImplementation = bodyImplementation2;
 		return bodyImplementation2;

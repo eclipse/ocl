@@ -29,8 +29,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
- * The ASResourceFactoryRegistry maintains the mapping from known ASREsource content type
+ * The ASResourceFactoryRegistry maintains the mapping from known ASResource content type
  * identifiers to the ASResourceFactory instance appropriate to the content type.
+ * <p>
+ * 
  */
 public class ASResourceFactoryRegistry
 {

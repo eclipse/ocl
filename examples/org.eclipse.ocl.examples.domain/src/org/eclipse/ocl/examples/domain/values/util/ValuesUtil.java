@@ -135,8 +135,11 @@ public abstract class ValuesUtil
 	}
 
 	public static @NonNull Boolean asBoolean(@Nullable Object value) {
-		if (value instanceof Boolean) {
-			return (Boolean)value;
+		if (value == Boolean.TRUE) {
+			return TRUE_VALUE;
+		}
+		else if (value == Boolean.FALSE) {
+			return FALSE_VALUE;
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BOOLEAN_NAME, getTypeName(value));

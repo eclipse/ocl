@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
 
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -27,7 +26,6 @@ import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.LibraryConstants;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
@@ -70,9 +68,6 @@ public class ImportTests extends XtextTestCase
 		if (metaModelManager != null) {
 			metaModelManager.dispose();
 			metaModelManager = null;
-		}
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
 		}
 		super.tearDown();
 	}

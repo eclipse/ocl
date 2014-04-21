@@ -873,12 +873,12 @@ public class PackageImpl
 						EObject eContainer2 = eContainer();
 						String externalURI = eContainer2 instanceof Root ? ((Root)eContainer2).getExternalURI() : null;
 						@NonNull String nsUri = PivotPackage.eNS_URI;
-						if (nsUri.equals(externalURI)) {
-							packageId2 = IdManager.getNsURIPackageId(nsUri, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE);
-						}
-						else {
+//						if (nsUri.equals(externalURI)) {
+//							packageId2 = IdManager.getNsURIPackageId(nsUri, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE);
+//						}
+//						else {
 							packageId2 = IdManager.getPackageId(this);
-						}
+//						}
 						packageId = packageId2;
 					}
 				}

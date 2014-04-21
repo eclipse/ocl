@@ -59,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -67,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.pivot2cs.CompleteOCLSplitter;
@@ -216,6 +216,7 @@ public class LoadTests extends XtextTestCase
 				adapter.dispose();
 			}
 			metaModelManager.dispose();
+			metaModelManager = null;
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -377,7 +378,7 @@ public class LoadTests extends XtextTestCase
 					allResources.add(asResource);
 				}
 			}
-			OCL ocl = OCL.newInstance();
+			OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(null, metaModelManager));
 			int exceptions = 0;
 //			int parses = 0;
 			StringBuilder s = new StringBuilder();
@@ -604,9 +605,6 @@ public class LoadTests extends XtextTestCase
 		if (metaModelManager != null) {
 			metaModelManager.dispose();
 			metaModelManager = null;
-		}
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
 		}
 		super.tearDown();
 	}
@@ -863,11 +861,13 @@ public class LoadTests extends XtextTestCase
 		ResourceSet resourceSet = new ResourceSetImpl();
 		long start = System.currentTimeMillis();
 		@SuppressWarnings("unused")
-		Resource resource = resourceSet.getResource(uri, true);
+		Resource csResource = resourceSet.getResource(uri, true);
 		long end = System.currentTimeMillis();
 		if ((end-start) > 5000) {		// Takes minutes when grammar bad, miniscule when grammar good but isolated test may have substantial JVM costs
 			fail("Took " + 0.001*(end - start) + " seconds");
 		}
+		CS2PivotResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
+		resourceAdapter.getMetaModelManager().dispose();
 	}
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {

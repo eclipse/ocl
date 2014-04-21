@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
@@ -98,17 +99,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		metaModelManager.setLibraryLoadInProgress(true);
 		metaModelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
 		metaModelManager.setDefaultStandardLibraryURI(pivotNsURI);
-		StandardLibraryContribution.REGISTRY.put(pivotNsURI, new OCLstdlib.Loader()
-		{
-			@Override
-			public @NonNull Resource getResource() {
-				Resource resource = super.getResource();
-				Library library = (Library) resource.getContents().get(0);
-				library.setNsURI(pivotNsURI);
-//				library.setName(ecorePivotPackage.getName());
-				return resource;
-			}			
-		});
+		StandardLibraryContribution.REGISTRY.put(pivotNsURI, new OCLstdlib.RenamingLoader(pivotNsURI));
 //		metaModelManager.getBooleanType();
 		Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		Root pivotRoot = ecore2pivot.getPivotRoot();
@@ -191,10 +182,11 @@ public class ConstraintMerger extends AbstractProjectComponent
 	protected void mergeType(@NonNull MetaModelManager metaModelManager, @NonNull Type primaryType, @NonNull Type mergeType) {
 		List<Constraint> mergeInvariants = mergeType.getOwnedInvariant();
 		List<Constraint> primaryInvariants = primaryType.getOwnedInvariant();
-		for (Constraint mergeInvariant : mergeInvariants) {
+		for (Constraint mergeInvariant : new ArrayList<Constraint>(mergeInvariants)) {
 			mergeInvariant.setIsCallable(true);
+			PivotUtil.resetContainer(mergeInvariant);
+			primaryInvariants.add(mergeInvariant);
 		}
-		primaryInvariants.addAll(mergeInvariants);
 		List<Property> mergeProperties = mergeType.getOwnedAttribute();
 		if (mergeProperties.size() > 0) {
 			List<Property> primaryProperties = primaryType.getOwnedAttribute();
@@ -227,6 +219,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 				}
 				else											// Else simple promotion
 				{
+					PivotUtil.resetContainer(mergeOperation);
 					primaryOperations.add(mergeOperation);
 				}
 			}

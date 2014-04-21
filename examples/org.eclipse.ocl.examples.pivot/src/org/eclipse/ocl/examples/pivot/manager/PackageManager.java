@@ -35,10 +35,12 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -479,6 +481,12 @@ public class PackageManager implements PackageServerParent
 //	}
 	
 	public @NonNull TypeServer getTypeServer(@NonNull DomainType pivotType) {
+		if (pivotType instanceof ElementExtension) {
+			Stereotype stereotype = ((ElementExtension)pivotType).getStereotype();
+			if (stereotype != null) {
+				pivotType = stereotype;
+			}
+		}
 		if (pivotType instanceof TypeServer) {
 			return (TypeServer)pivotType;
 		}
@@ -487,7 +495,7 @@ public class PackageManager implements PackageServerParent
 		if (typeTracker != null) {
 			return typeTracker.getTypeServer();
 		}
-		else if (pivotType instanceof PrimitiveType){
+		else if (pivotType instanceof PrimitiveType) {
 			PrimitiveTypeServer primitiveTypeServer = getPrimitiveTypeServer((PrimitiveType) pivotType);
 			primitiveTypeServer.getTypeTracker(pivotType);
 			return primitiveTypeServer;

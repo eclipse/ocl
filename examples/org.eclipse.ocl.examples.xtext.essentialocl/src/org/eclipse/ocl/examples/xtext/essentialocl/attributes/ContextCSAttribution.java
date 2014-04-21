@@ -40,6 +40,7 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		ContextCS targetElement = (ContextCS)target;
+		environmentView.addRootPackages();
 		ExpressionInOCL pivot = PivotUtil.getPivot(ExpressionInOCL.class, targetElement);
 		if ((pivot != null) && (pivot.getContextVariable() != null) && (pivot.getContextVariable().getType() != null)) {
 			Variable resultVariable = pivot.getResultVariable();
@@ -57,6 +58,9 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 					Type type = contextVariable.getType();
 					if (type != null) {
 						environmentView.addAllElements(type, scopeView);
+//						if (!environmentView.hasFinalResult()) {
+//							environmentView.addElementsOfScope(type.getPackage(), scopeView);
+//						}
 					}
 				}
 			}
@@ -69,13 +73,16 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 					Type contextType = parserContext.getClassContext();
 					if (contextType != null) {
 						environmentView.computeLookups(contextType, null);
+						if (!environmentView.hasFinalResult()) {
+							environmentView.addElementsOfScope(contextType.getPackage(), scopeView);
+						}
 					}
 				}
 			}
 		}
-		if (!environmentView.hasFinalResult()) {
-			environmentView.addRootPackages();
-		}
+//		if (!environmentView.hasFinalResult()) {
+//			environmentView.addRootPackages();
+//		}
 		if ((pivot != null) && !environmentView.hasFinalResult()) {
 			Resource eResource = pivot.eResource();
 			if (eResource != null) {
@@ -83,7 +90,7 @@ public class ContextCSAttribution extends AbstractRootCSAttribution
 				if (baseURI != null) {
 					URI nonPivotBaseURI = PivotUtil.getNonASURI(baseURI);
 					String nonPivotScheme = nonPivotBaseURI.scheme();
-					if ((nonPivotScheme != null) && !"null".equals(nonPivotScheme)) {
+					if ((nonPivotScheme != null) && !"null".equals(nonPivotScheme)) {			// FIXME Is this obsolete code
 						environmentView.addImportedElement(baseURI);
 					}
 				}

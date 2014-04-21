@@ -22,15 +22,15 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -53,9 +53,11 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateMachine;
+import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.executor.PivotReflectiveFragment;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -839,6 +841,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return DomainTypeParameters.EMPTY_LIST;
 	}
 
+//	protected void initExtensionProperties(@NonNull ElementExtension elementExtension) {
+//		Property extensionProperty = createExtensionProperty(elementExtension);
+		// TODO Auto-generated method stub
+		
+//	}
+
 	protected void initMemberFeaturesFrom(@NonNull DomainType pivotType) {
 		if (name2operations != null) {
 			initMemberOperationsFrom(pivotType);
@@ -904,6 +912,9 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	}
 
 	protected @NonNull Map<String, PartialProperties> initMemberProperties() {
+//		if ("Class".equals(name)) {
+//			System.out.println("Got it");
+//		}
 //		System.out.println("initMemberProperties " + toString());
 		Map<String, PartialProperties> name2properties2 = name2properties;
 		if (name2properties2 == null) {
@@ -913,6 +924,10 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 //					initMemberPropertiesFrom(selfType);
 //				}
 //			}
+			Set<Type> metatypes = new HashSet<Type>();
+			List<ElementExtension> allExtensions = null;
+			Set<Stereotype> extendingStereotypes = null;
+			Set<Type> extendedTypes = null;
 			for (DomainInheritance superClass : getAllSuperClasses()) {
 				TypeServer superTypeServer = null;
 				if (superClass instanceof TypeServer) {
@@ -926,15 +941,114 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 						assert superType != null;
 						if (superType instanceof Type) {
 							Type unspecializedType = PivotUtil.getUnspecializedTemplateableElement((Type) superType);
+							List<TypeExtension> extendedBys = unspecializedType.getExtendedBys();
+							if (extendedBys.size() > 0) {
+								if (extendingStereotypes == null) {
+									extendingStereotypes = new HashSet<Stereotype>();
+								}
+								for (TypeExtension typeExtension : extendedBys) {
+									Stereotype stereotype = typeExtension.getStereotype();
+									if (stereotype != null) {
+										extendingStereotypes.add(stereotype);
+									}
+								}
+							}
+							if (unspecializedType instanceof Stereotype) {
+								List<TypeExtension> extensionOfs = ((Stereotype)unspecializedType).getExtensionOfs();
+								if (extensionOfs.size() > 0) {
+									if (extendedTypes == null) {
+										extendedTypes = new HashSet<Type>();
+									}
+									for (TypeExtension typeExtension : extensionOfs) {
+										Type type = typeExtension.getType();
+										if (type != null) {
+											extendedTypes.add(type);
+										}
+									}
+								}
+							}
 							TypeServer unspecializedTypeServer = packageManager.getTypeServer(unspecializedType);
 							for (DomainType unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
 								assert unspecializedPartialType != null;
 								initMemberPropertiesFrom(unspecializedPartialType);
+								if (unspecializedPartialType instanceof Type) {
+									List<ElementExtension> extensions = ((Type)unspecializedPartialType).getExtension();
+									if (extensions.size() > 0) {
+										if (allExtensions == null) {
+											allExtensions = new ArrayList<ElementExtension>();
+										}
+										allExtensions.addAll(extensions);
+									}
+								}
 							}
 						}
 						else {							
 							initMemberPropertiesFrom(superType);
+							if (superType instanceof Type) {
+								List<ElementExtension> extensions = ((Type)superType).getExtension();
+								if (extensions.size() > 0) {
+									if (allExtensions == null) {
+										allExtensions = new ArrayList<ElementExtension>();
+									}
+									allExtensions.addAll(extensions);
+								}
+							}
 						}
+						String metaTypeName = superType.getMetaTypeName();
+						DomainType metaType = packageManager.getMetaModelManager().getOclType(metaTypeName);
+						if (metaType instanceof TypeServer) {
+							metaType = ((TypeServer)metaType).getPivotType();
+						}
+						if (metaType instanceof Type) {
+							metatypes.add((Type) metaType);
+						}
+					}
+				}
+			}
+			if (INIT_MEMBER_PROPERTIES.isActive()) {
+				INIT_MEMBER_PROPERTIES.println(this + " for " + getPivotType() + " " + DomainUtil.debugSimpleName(getPivotType()));
+			}
+			if (extendingStereotypes != null) {
+				Set<Stereotype> allStereotypes = new HashSet<Stereotype>();
+				gatherAllStereotypes(allStereotypes, extendingStereotypes);
+				for (@SuppressWarnings("null")@NonNull Stereotype stereotype : allStereotypes) {
+					Type baseType = getPivotType();
+					initExtensionPropertiesFrom(baseType, stereotype);
+				}
+			}
+/*			if (extendedTypes != null) {
+/*				for (@SuppressWarnings("null")@NonNull Type extendedType : extendedTypes) {
+//					TypeServer extendedTypeServer = null;
+//					if (extendedType instanceof TypeServer) {
+//						extendedTypeServer = (TypeServer)extendedType;
+//					}
+//					else {
+//						extendedTypeServer = packageManager.getTypeServer(extendedType);
+//					}
+//					extendedTypeServer.getAllProperties(false);
+					Type baseType = getPivotType();
+					initStereotypePropertiesFrom(extendedType, (Stereotype)baseType);
+				} * /
+			} */
+/*			if (allExtensions != null) {
+//				Set<Type> allMetatypes = new HashSet<Type>();
+				for (ElementExtension extension : allExtensions) {
+					Stereotype stereotype = extension.getStereotype();
+					if (stereotype != null) {
+						Type baseType = getPivotType();
+						initStereotypePropertiesFrom(baseType, stereotype);
+					}
+				}
+			} */
+			@SuppressWarnings("null")@NonNull String metatypeName = getPivotType().eClass().getName();
+			Type metatype = packageManager.getMetaModelManager().getPivotType(metatypeName);	// FIXME getMetaType
+			if (metatype != null) {
+//				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);
+//				environmentView.addAllProperties(metatype, FeatureFilter.SELECT_STATIC);
+				TypeServer typeServer = packageManager.getMetaModelManager().getTypeServer(metatype);
+				for (DomainProperty property : typeServer.getAllProperties(FeatureFilter.SELECT_STATIC)) {
+					if (property != null) {
+						addedMemberProperty(property);
 					}
 				}
 			}
@@ -947,6 +1061,71 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return name2properties2;
 	}
 
+/*	private void gatherAllMetatypes(@NonNull Set<Type> allMetatypes, @NonNull Iterable<Type> moreMetatypes) {
+		Set<Type> newMetatypes = null;
+		MetaModelManager metaModelManager = getPackageManager().getMetaModelManager();
+		for (@SuppressWarnings("null")@NonNull Type metatype : moreMetatypes) {
+			if (allMetatypes.add(metatype)) {
+				TypeServer metaTypeServer = packageManager.getTypeServer(metatype);
+				if (newMetatypes == null) {
+					newMetatypes = new HashSet<Type>();
+				}
+				for (DomainType partialType : metaTypeServer.getPartialTypes()) {
+					if (partialType instanceof Type) {
+						Type partialMetatype = (Type) partialType;
+						newMetatypes.add(partialMetatype);
+						for (DomainType superType : partialMetatype.getSuperClass()) {
+							if (superType instanceof Type) {
+								Type superMetatype = (Type)superType;
+								superType = metaModelManager.getPrimaryElement(superMetatype);
+								newMetatypes.add(superMetatype);
+							}
+						}
+					}
+				}
+			}
+		}
+		if (newMetatypes != null) {
+			gatherAllMetatypes(allMetatypes, newMetatypes);
+		}
+	} */
+
+	private void gatherAllStereotypes(@NonNull Set<Stereotype> allStereotypes, @NonNull Iterable<Stereotype> moreStereotypes) {
+		Set<Stereotype> newStereotypes = null;
+		MetaModelManager metaModelManager = getPackageManager().getMetaModelManager();
+		for (@SuppressWarnings("null")@NonNull Stereotype stereotype : moreStereotypes) {
+			stereotype = metaModelManager.getPrimaryElement(stereotype);
+			if (allStereotypes.add(stereotype)) {
+				TypeServer superTypeServer = null;
+				if (stereotype instanceof TypeServer) {
+					superTypeServer = (TypeServer)stereotype;
+				}
+				else {
+					superTypeServer = packageManager.getTypeServer(stereotype);
+				}
+				if (newStereotypes == null) {
+					newStereotypes = new HashSet<Stereotype>();
+				}
+				for (DomainType partialType : superTypeServer.getPartialTypes()) {
+					if (partialType instanceof Stereotype) {
+						Stereotype partialStereotype = (Stereotype) partialType;
+						newStereotypes.add(partialStereotype);
+						for (DomainType superType : partialStereotype.getSuperClass()) {
+							if (superType instanceof Stereotype) {
+								Stereotype superStereotype = (Stereotype)superType;
+								superType = metaModelManager.getPrimaryElement(superStereotype);
+								newStereotypes.add(superStereotype);
+							}
+						}
+					}
+				}
+			}
+		}
+		if (newStereotypes != null) {
+			gatherAllStereotypes(allStereotypes, newStereotypes);
+		}
+	}
+
 	protected void initMemberPropertiesFrom(@NonNull DomainType asType) {
 		DomainType asPrimaryType;
 		if (asType instanceof Type) {
@@ -956,12 +1135,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 			asPrimaryType = asType;
 		}
 		if (INIT_MEMBER_PROPERTIES.isActive()) {
-			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType);
+			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType + " " + DomainUtil.debugSimpleName(asPrimaryType));
 		}
 		if (asPrimaryType instanceof Type) {
 			for (ElementExtension extension : ((Type)asPrimaryType).getExtension()) {
 				assert extension != null;
-				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
+//				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
 			}
 		}
 		for (DomainProperty pivotProperty : asPrimaryType.getLocalProperties()) {
@@ -975,7 +1154,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		// TODO Auto-generated method stub // FIXME Prune occlusions		
 	}
 
-	protected void initStereotypePropertiesFrom(@NonNull Type baseType, @NonNull ElementExtension extensionType) {
+/*	protected void initStereotypePropertiesFrom(@NonNull Type baseType, @NonNull ElementExtension extensionType) {
 		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
 		Map<String, PartialProperties> name2properties2 = name2properties;
 		assert name2properties2 != null;
@@ -983,6 +1162,115 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		List<Property> newExtensionProperties = new ArrayList<Property>();
 		List<Property> oldExtensionProperties = extensionType.getOwnedAttribute();
 
+		Property extensionProperty = createExtensionProperty(baseType,
+			extensionType, name2properties2, stereotype);
+
+		String basePropertyName = UML2Pivot.STEREOTYPE_BASE_PREFIX + baseType.eClass().getName();
+		Property baseProperty = DomainUtil.getNamedElement(extensionType.getOwnedAttribute(), basePropertyName);
+		if (baseProperty == null) {
+			baseProperty = PivotFactory.eINSTANCE.createProperty();
+			baseProperty.setName(basePropertyName);
+		}
+		baseProperty.setType(getPivotType());
+		baseProperty.setIsRequired(false);
+		baseProperty.setIsStatic(true);
+		newExtensionProperties.add(baseProperty);
+		
+		baseProperty.setOpposite(extensionProperty);
+		extensionProperty.setOpposite(baseProperty);
+		if (ADD_BASE_PROPERTY.isActive()) {
+			ADD_BASE_PROPERTY.println(EcoreUtils.qualifiedNameFor(getPivotType()) + "::" + baseProperty.getName() + " => " + EcoreUtils.qualifiedNameFor(baseProperty.getType()));
+		}
+		if (ADD_EXTENSION_PROPERTY.isActive()) {
+			ADD_EXTENSION_PROPERTY.println(EcoreUtils.qualifiedNameFor(extensionProperty) + " => " + EcoreUtils.qualifiedNameFor(extensionProperty.getType()));
+		}
+
+/*		String stereotypePropertyName = UML2Pivot.STEREOTYPE; -- needs special ImplementationManager support to distinguish property
+		Property stereotypeProperty = DomainUtil.getNamedElement(extensionType.getOwnedAttribute(), stereotypePropertyName);
+		if (stereotypeProperty == null) {
+			stereotypeProperty = PivotFactory.eINSTANCE.createProperty();
+			stereotypeProperty.setName(stereotypePropertyName);
+		}
+		stereotypeProperty.setType(metaModelManager.getPivotType("Stereotype"));
+		stereotypeProperty.setIsRequired(false);
+		stereotypeProperty.setIsStatic(false);
+		newExtensionProperties.add(stereotypeProperty); * /
+		
+		EObject umlStereotypeApplication = extensionType.getETarget();
+		if (umlStereotypeApplication != null) {
+			EClass eClass = umlStereotypeApplication.eClass();
+			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+				String featureName = eStructuralFeature.getName();
+				if ((featureName != null) && !featureName.startsWith(UML2Pivot.STEREOTYPE_BASE_PREFIX)
+	//			  && (eStructuralFeature instanceof EReference)
+				  /*&& umlStereotypeApplication.eIsSet(eStructuralFeature)* /) {						// Unset for an applicable stereotype that has not been applied
+					Object umlStereotypedElement = umlStereotypeApplication.eGet(eStructuralFeature);
+	//				System.out.println("Element " + featureName + " => " + String.valueOf(umlStereotypedElement));
+					Property referenceProperty = null;
+					for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, false, featureName)) {
+						if (aProperty instanceof Property) {
+							referenceProperty = (Property) aProperty;
+							break;
+						}
+					}
+					Property property = DomainUtil.getNamedElement(oldExtensionProperties, featureName);
+					if (property == null) {
+						property = PivotFactory.eINSTANCE.createProperty();
+						property.setName(featureName);
+					}
+					property.setReferredProperty(referenceProperty);
+					if (referenceProperty != null) {
+						property.setDefault(String.valueOf(umlStereotypedElement));
+						property.setIsRequired(referenceProperty.isRequired());
+						property.setIsStatic(referenceProperty.isStatic());
+						property.setType(referenceProperty.getType());
+					}
+					newExtensionProperties.add(property);
+				}
+			}
+		}
+		else {
+			for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, false)) {
+				Property referenceProperty = (Property)aProperty;
+				String featureName = referenceProperty.getName();
+				Property property = DomainUtil.getNamedElement(oldExtensionProperties, featureName);
+				if (property == null) {
+					property = PivotFactory.eINSTANCE.createProperty();
+					property.setName(featureName);
+				}
+				property.setReferredProperty((Property) referenceProperty);
+				if (referenceProperty != null) {
+//					property.setDefault(String.valueOf(umlStereotypedElement));
+					property.setIsRequired(referenceProperty.isRequired());
+					property.setIsStatic(referenceProperty.isStatic());
+					property.setType(referenceProperty.getType());
+				}
+				newExtensionProperties.add(property);
+			}
+		}
+		PivotUtil.refreshList(oldExtensionProperties, newExtensionProperties);
+	} */
+
+/*	protected @NonNull Property createBaseProperty(@NonNull ElementExtension stereotypeInstance, @NonNull Type baseType) {
+		String basePropertyName = UML2Pivot.STEREOTYPE_BASE_PREFIX + baseType.eClass().getName();
+		Property baseProperty = DomainUtil.getNamedElement(stereotypeInstance.getOwnedAttribute(), basePropertyName);
+		if (baseProperty == null) {
+			baseProperty = PivotFactory.eINSTANCE.createProperty();
+			baseProperty.setName(basePropertyName);
+		}
+		baseProperty.setType(baseType);
+		baseProperty.setIsRequired(true);
+		baseProperty.setIsStatic(true);
+//		newExtensionProperties.add(baseProperty);
+//		addedMemberProperty(baseProperty);
+		stereotypeInstance.getOwnedAttribute().add(baseProperty);
+		return baseProperty;
+	} */
+
+	protected @NonNull Property createExtensionProperty(@NonNull ElementExtension stereotypeInstance, @NonNull Type baseType) {
+		Stereotype stereotype = stereotypeInstance.getStereotype();
+		Map<String, PartialProperties> name2properties2 = name2properties;
+		assert name2properties2 != null;
 		String extensionPropertyName = UML2Pivot.STEREOTYPE_EXTENSION_PREFIX + stereotype.getName();
 		Property extensionProperty = null;
 		PartialProperties partialProperties = name2properties2.get(extensionPropertyName);
@@ -999,30 +1287,43 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		if (extensionProperty == null) {
 			extensionProperty = PivotFactory.eINSTANCE.createProperty();
 			extensionProperty.setName(extensionPropertyName);
+			baseType.getOwnedAttribute().add(extensionProperty);
 		}
-		extensionProperty.setType(extensionType);
-		extensionProperty.setIsRequired(false);
+		extensionProperty.setType(stereotype);
+		boolean isRequired = false;
+		for (TypeExtension typeExtension : stereotype.getExtensionOfs()) {
+			Type metatype = typeExtension.getType();
+			if ((metatype != null) && baseType.conformsTo(packageManager.getMetaModelManager(), metatype)) {
+				isRequired = true;
+				break;
+			}
+		}
+		extensionProperty.setIsRequired(isRequired);
 		extensionProperty.setIsStatic(true);
-		baseType.getOwnedAttribute().add(extensionProperty);
+		return extensionProperty;
+	}
 
-		String basePropertyName = UML2Pivot.STEREOTYPE_BASE_PREFIX + baseType.eClass().getName();
-		Property baseProperty = DomainUtil.getNamedElement(extensionType.getOwnedAttribute(), basePropertyName);
-		if (baseProperty == null) {
-			baseProperty = PivotFactory.eINSTANCE.createProperty();
-			baseProperty.setName(basePropertyName);
-		}
-		baseProperty.setType(baseType);
-		baseProperty.setIsRequired(false);
-		baseProperty.setIsStatic(true);
-		newExtensionProperties.add(baseProperty);
-		
-		baseProperty.setOpposite(extensionProperty);
-		extensionProperty.setOpposite(baseProperty);
-		if (ADD_BASE_PROPERTY.isActive()) {
-			ADD_BASE_PROPERTY.println(String.valueOf(baseProperty));
-		}
+	protected void initExtensionPropertiesFrom(@NonNull Type baseType, @NonNull Stereotype stereotype) {
+		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
+		ElementExtension elementExtension = metaModelManager.getElementExtension(baseType, stereotype);
+//		for (ElementExtension elementExtension : baseType.getExtensions())
+		Map<String, PartialProperties> name2properties2 = name2properties;
+		assert name2properties2 != null;
+//		Type stereotype = extensionType.getStereotype();
+//		List<Property> newExtensionProperties = new ArrayList<Property>();
+//		List<Property> oldExtensionProperties = extensionType.getOwnedAttribute();
+
+		Property extensionProperty = createExtensionProperty(elementExtension, baseType);
+//		Property baseProperty = createBaseProperty(elementExtension, baseType);
+		addedMemberProperty(extensionProperty);
+//		baseProperty.setOpposite(extensionProperty);
+//		extensionProperty.setOpposite(baseProperty);
+//		if (ADD_BASE_PROPERTY.isActive()) {
+//			ADD_BASE_PROPERTY.println(EcoreUtils.qualifiedNameFor(baseProperty) + " => " + EcoreUtils.qualifiedNameFor(baseProperty.getType()));
+//			ADD_BASE_PROPERTY.println(EcoreUtils.qualifiedNameFor(getPivotType()) + "::" + baseProperty.getName() + " => " + EcoreUtils.qualifiedNameFor(baseProperty.getType()));
+//		}
 		if (ADD_EXTENSION_PROPERTY.isActive()) {
-			ADD_EXTENSION_PROPERTY.println(String.valueOf(extensionProperty));
+			ADD_EXTENSION_PROPERTY.println(EcoreUtils.qualifiedNameFor(extensionProperty) + " => " + EcoreUtils.qualifiedNameFor(extensionProperty.getType()));
 		}
 
 /*		String stereotypePropertyName = UML2Pivot.STEREOTYPE; -- needs special ImplementationManager support to distinguish property
@@ -1036,38 +1337,61 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		stereotypeProperty.setIsStatic(false);
 		newExtensionProperties.add(stereotypeProperty); */
 		
-		EObject umlStereotypeApplication = extensionType.getETarget();
-		EClass eClass = umlStereotypeApplication.eClass();
-		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-			String featureName = eStructuralFeature.getName();
-			if ((featureName != null) && !featureName.startsWith(UML2Pivot.STEREOTYPE_BASE_PREFIX)
-//			  && (eStructuralFeature instanceof EReference)
-			  /*&& umlStereotypeApplication.eIsSet(eStructuralFeature)*/) {						// Unset for an applicable stereotype that has not been applied
-				Object umlStereotypedElement = umlStereotypeApplication.eGet(eStructuralFeature);
-//				System.out.println("Element " + featureName + " => " + String.valueOf(umlStereotypedElement));
-				Property referenceProperty = null;
-				for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, FeatureFilter.SELECT_NON_STATIC, featureName)) {
-					if (aProperty instanceof Property) {
-						referenceProperty = (Property) aProperty;
-						break;
+/*		EObject umlStereotypeApplication = elementExtension.getETarget();
+		if (umlStereotypeApplication != null) {
+			EClass eClass = umlStereotypeApplication.eClass();
+			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+				String featureName = eStructuralFeature.getName();
+				if ((featureName != null) && !featureName.startsWith(UML2Pivot.STEREOTYPE_BASE_PREFIX)
+	//			  && (eStructuralFeature instanceof EReference)
+				  /*&& umlStereotypeApplication.eIsSet(eStructuralFeature)* /) {						// Unset for an applicable stereotype that has not been applied
+					Object umlStereotypedElement = umlStereotypeApplication.eGet(eStructuralFeature);
+	//				System.out.println("Element " + featureName + " => " + String.valueOf(umlStereotypedElement));
+					Property referenceProperty = null;
+					for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, FeatureFilter.SELECT_NON_STATIC, featureName)) {
+						if (aProperty instanceof Property) {
+							referenceProperty = (Property) aProperty;
+							break;
+						}
 					}
+					Property property = null; //DomainUtil.getNamedElement(oldExtensionProperties, featureName);
+					if (property == null) {
+						property = PivotFactory.eINSTANCE.createProperty();
+						property.setName(featureName);
+					}
+					property.setReferredProperty(referenceProperty);
+					if (referenceProperty != null) {
+						property.setDefault(String.valueOf(umlStereotypedElement));
+						property.setIsRequired(referenceProperty.isRequired());
+						property.setIsStatic(referenceProperty.isStatic());
+						property.setType(referenceProperty.getType());
+					}
+//					newExtensionProperties.add(property);
+					addedMemberProperty(property);
 				}
-				Property property = DomainUtil.getNamedElement(oldExtensionProperties, featureName);
+			}
+		}
+		else {
+			for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, FeatureFilter.SELECT_NON_STATIC)) {
+				Property referenceProperty = (Property)aProperty;
+				String featureName = referenceProperty.getName();
+				Property property = null; //DomainUtil.getNamedElement(oldExtensionProperties, featureName);
 				if (property == null) {
 					property = PivotFactory.eINSTANCE.createProperty();
 					property.setName(featureName);
 				}
 				property.setReferredProperty(referenceProperty);
 				if (referenceProperty != null) {
-					property.setDefault(String.valueOf(umlStereotypedElement));
+//					property.setDefault(String.valueOf(umlStereotypedElement));
 					property.setIsRequired(referenceProperty.isRequired());
 					property.setIsStatic(referenceProperty.isStatic());
 					property.setType(referenceProperty.getType());
 				}
-				newExtensionProperties.add(property);
+//				newExtensionProperties.add(property);
+//				addedMemberProperty(property);
 			}
-		}
-		PivotUtil.refreshList(oldExtensionProperties, newExtensionProperties);
+		} */
+//		PivotUtil.refreshList(oldExtensionProperties, newExtensionProperties);
 	}
 
 	protected @NonNull Map<String, DomainInheritance> initSuperClasses() {
@@ -1124,6 +1448,30 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 			}
 		}
 	}
+
+/*	protected void initMemberPropertiesFrom(@NonNull DomainType asType) {
+		DomainType asPrimaryType;
+		if (asType instanceof Type) {
+			asPrimaryType = PivotUtil.getUnspecializedTemplateableElement((Type) asType);
+		}
+		else {
+			asPrimaryType = asType;
+		}
+		if (INIT_MEMBER_PROPERTIES.isActive()) {
+			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType + " " + DomainUtil.debugSimpleName(asPrimaryType));
+		}
+		if (asPrimaryType instanceof Type) {
+			for (ElementExtension extension : ((Type)asPrimaryType).getExtensions()) {
+				assert extension != null;
+//				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
+			}
+		}
+		for (DomainProperty pivotProperty : asPrimaryType.getLocalProperties()) {
+			if (pivotProperty != null) {
+				addedMemberProperty(pivotProperty);
+			}
+		}
+	} */
 
 	void removedMemberProperty(@NonNull DomainProperty pivotProperty) {
 		Map<String, PartialProperties> name2properties2 = name2properties;

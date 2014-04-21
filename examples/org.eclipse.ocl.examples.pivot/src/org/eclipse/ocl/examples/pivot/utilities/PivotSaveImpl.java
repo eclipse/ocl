@@ -16,8 +16,14 @@
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -31,6 +37,23 @@ import org.eclipse.ocl.examples.pivot.resource.ASResource;
  */
 public final class PivotSaveImpl extends XMISaveImpl
 {
+	/**
+	 * The Lookup override enforces alphabetical order on saved features.
+	 */
+	public static class Lookup extends XMISaveImpl.Lookup
+	{
+		public Lookup() {
+			super(null, null, null);
+		}
+
+		@Override
+		protected EStructuralFeature[] listFeatures(EClass cls) {
+			EStructuralFeature[] listFeatures = super.listFeatures(cls);
+			Arrays.sort(listFeatures, DomainUtil.ENamedElementComparator.INSTANCE);
+			return listFeatures;
+		}
+	}
+	
 	public PivotSaveImpl(XMLHelper helper) {
 		super(helper);
 	}
@@ -46,11 +69,28 @@ public final class PivotSaveImpl extends XMISaveImpl
 		ASSaver asSaver = new ASSaver(asResource);
 		AS2XMIid as2xmIid = new AS2XMIid();
 		asSaver.localizeSpecializations();
-		Object optionNormalizeContents = options != null ? options.get(ASResource.OPTION_NORMALIZE_CONTENTS) : null;
+		Map<String, Object> saveOptions = new HashMap<String, Object>();
+		if (options != null) {
+			for (Object key : options.keySet()) {
+				saveOptions.put(String.valueOf(key), options.get(key));
+			}
+		}
+		Object optionNormalizeContents = saveOptions.get(ASResource.OPTION_NORMALIZE_CONTENTS);
 		if ((optionNormalizeContents != null) && Boolean.valueOf(optionNormalizeContents.toString())) {
 			asSaver.normalizeContents();
+			int capacity = INDEX_LOOKUP+1;
+			List<Object> lookupTable = new ArrayList<Object>(capacity);
+			for (int i = 0; i < capacity; i++) {
+				if (i == INDEX_LOOKUP) {
+					lookupTable.add(new Lookup());
+				}
+				else {
+					lookupTable.add(null);
+				}
+			}
+			saveOptions.put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
 		}
-		as2xmIid.assignIds(asResourceSet, options);
-		super.init(asResource, options);
+		as2xmIid.assignIds(asResourceSet, saveOptions);
+		super.init(asResource, saveOptions);
 	}
 }

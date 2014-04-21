@@ -486,6 +486,12 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	}
 
 	@Override
+	public Continuation<?> visitPathNameCS(@NonNull PathNameCS object) {
+		// TODO Auto-generated method stub
+		return super.visitPathNameCS(object);
+	}
+
+	@Override
 	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csPrefixExp) {
 		if (!(csPrefixExp.eContainer() instanceof InfixExpCS)) {
 			initializePrefixOperators(csPrefixExp, null);

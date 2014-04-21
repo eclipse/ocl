@@ -207,8 +207,8 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		return converter.bind(csContext, messageTemplate, bindings);
 	}
 
-	public boolean checkForNoErrors(@NonNull Collection<? extends Resource> csResources) {
-		for (Resource csResource : csResources) {
+	public boolean checkForNoErrors(@NonNull Collection<? extends BaseCSResource> csResources) {
+		for (BaseCSResource csResource : csResources) {
 			@SuppressWarnings("null") @NonNull List<Resource.Diagnostic> errors = csResource.getErrors();
 			if (ElementUtil.hasSyntaxError(errors)) {
 				return false;
@@ -933,6 +933,9 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null);
 				}
 			}
+			else if (eContainingFeature == null) {
+				logger.error("No context container for: " + pivotSpecification);
+			}
 			else {
 				logger.error("Unsupported refreshContextVariable for a constraint: " + eContainingFeature);
 			}
@@ -1048,8 +1051,8 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		}
 	}
 
-	protected void resetPivotMappings(@NonNull Collection<? extends Resource> csResources) {
-		for (Resource csResource : csResources) {
+	protected void resetPivotMappings(@NonNull Collection<? extends BaseCSResource> csResources) {
+		for (BaseCSResource csResource : csResources) {
 			for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
 				if (eObject instanceof Pivotable) {
@@ -1277,7 +1280,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		//
 		//	The containment pass may only access the pivot elements of immediate children.
 		//
-		for (Resource csResource : csResources) {
+		for (BaseCSResource csResource : csResources) {
 			for (EObject eObject : csResource.getContents()) {
 				if (eObject instanceof ElementCS) {
 					visitContainment((ElementCS)eObject, continuations);
@@ -1307,7 +1310,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		//
 		//	Perform the pre-order traversal to resolve specializations and references.
 		//
-		for (Resource csResource : csResources) {
+		for (BaseCSResource csResource : csResources) {
 			for (EObject eObject : csResource.getContents()) {
 				if (eObject instanceof ElementCS) {
 					visitInPreOrder((ElementCS)eObject, continuations);
@@ -1339,7 +1342,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		//	Perform the post-order traversal to create and install the bulk of non-package/class
 		//	elements.
 		//
-		for (Resource csResource : csResources) {
+		for (BaseCSResource csResource : csResources) {
 			for (EObject eObject : csResource.getContents()) {
 				if (eObject instanceof ElementCS) {
 					visitInPostOrder((ElementCS)eObject, continuations);
@@ -1381,7 +1384,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		//	Prune obsolete packages
 		//
 		Set<org.eclipse.ocl.examples.pivot.Package> newPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-		for (Resource csResource : csResources) {
+		for (BaseCSResource csResource : csResources) {
 			if (csResource != null) {
 				gatherNewPackages(newPackages, csResource);
 			}
