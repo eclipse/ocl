@@ -132,12 +132,37 @@ public class OCLstdlib extends ASResourceImpl
 	 */
 	public static class Loader implements StandardLibraryContribution
 	{
-		public StandardLibraryContribution getContribution() {
+		public @NonNull StandardLibraryContribution getContribution() {
 			return this;
 		}
 		
 		public @NonNull Resource getResource() {
 			return getDefault();
+		}
+	}
+	
+	/*
+	 *	Define an OCL Standard Library contribution that renames the standard contribution
+	 *  to extend a given actual metamodel NsURI. For UML, this ensures that the self-defining
+	 *  OCL meta-namespaces and the self-defining UML meta-namespaces are the same.
+	 */
+	public static class RenamingLoader implements StandardLibraryContribution
+	{
+		protected final @NonNull String metamodelNsUri;
+
+		public RenamingLoader(@NonNull String metamodelNsUri) {
+			this.metamodelNsUri = metamodelNsUri;
+		}
+		
+		public @NonNull StandardLibraryContribution getContribution() {
+			return this;
+		}
+
+		public @NonNull Resource getResource() {
+			Contents contents = new Contents();
+			Root libraryModel = contents.create("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "ocl", "ocl", metamodelNsUri);
+			Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
+			return resource;
 		}
 	}
 	
