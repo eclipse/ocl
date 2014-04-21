@@ -35,7 +35,7 @@ public class ConsumerValidateTests extends AbstractValidateTests
 		Resource umlResource = doLoadUML(ocl, "umlrt.profile");
 		assertNotNull(umlResource);
 		assert umlResource != null;
-		assertUMLOCLValidationDiagnostics("UML Load", umlResource,
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
 			DomainUtil.bind(OCLMessages.ParsingError, "Opaque Expression", "Errors in 'This is not OCL'\n1: no viable alternative at input 'is'")
 			);
 		ocl.dispose();

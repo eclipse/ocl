@@ -133,7 +133,11 @@ public class PivotIdResolver extends AbstractIdResolver
 		String nsURI = id.getNsURI();
 		DomainPackage nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
 		if (nsURIPackage == null) {
-			metaModelManager.getASMetamodel();
+			metaModelManager.setAutoLoadASMetamodel(true);
+			DomainPackage asMetamodel = metaModelManager.getASMetamodel();
+			if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
+				return asMetamodel;
+			}
 			nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
 			if (nsURIPackage == null) {
 				throw new UnsupportedOperationException();

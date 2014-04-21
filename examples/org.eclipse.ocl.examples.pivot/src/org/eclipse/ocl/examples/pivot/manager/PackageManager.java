@@ -406,7 +406,10 @@ public class PackageManager implements PackageServerParent
 				packageServer = nestingPackageServer.getMemberPackageServer(pivotPackage);
 			}
 			else {
-				packageServer = createRootPackageServer(pivotPackage);
+				packageServer = uri2package.get(pivotPackage.getNsURI());
+				if (packageServer == null) {
+					packageServer = createRootPackageServer(pivotPackage);
+				}
 			}
 			packageServer.assertSamePackage(pivotPackage);
 			packageTracker = packageServer.getPackageTracker(pivotPackage);

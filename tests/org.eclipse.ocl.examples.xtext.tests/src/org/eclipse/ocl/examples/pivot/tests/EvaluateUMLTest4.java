@@ -124,12 +124,12 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 		assertTrue(contextType instanceof Type);
 		org.eclipse.ocl.examples.pivot.Package contextPackage = ((Type)contextType).getPackage();
 		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
-//OK		assertValidQuery((Type)contextType, "self.extension_vStereotype1");	
-//OK		assertSemanticErrorQuery2((Type)contextType, "self.extension_Stereotype1", OCLMessages.UnresolvedProperty_ERROR_, "extension_Stereotype1", "Property");	
-//OK		assertValidQuery((Type)contextType, "self.extension_vStereotype1.base_NamedElement");	
-//OK		assertSemanticErrorQuery2((Type)contextType, "self.extension_vStereotype1.base_Class", OCLMessages.UnresolvedProperty_ERROR_, "base_Class", "Bug431638Profile::vStereotype1");	
-//OK		assertSemanticErrorQuery2((Type)contextType, "self.extension_vStereotype1.string", OCLMessages.UnresolvedProperty_ERROR_, "string", "Bug431638Profile::vStereotype1");	
-//OK		assertValidQuery((Type)contextType, "self.extension_vStereotype1.oclAsType(Bug431638Profile::Stereotype1).string");	
+		assertValidQuery((Type)contextType, "self.extension_vStereotype1");	
+		assertSemanticErrorQuery2((Type)contextType, "self.extension_Stereotype1", OCLMessages.UnresolvedProperty_ERROR_, "extension_Stereotype1", "Property");	
+		assertValidQuery((Type)contextType, "self.extension_vStereotype1.base_NamedElement");	
+		assertSemanticErrorQuery2((Type)contextType, "self.extension_vStereotype1.base_Class", OCLMessages.UnresolvedProperty_ERROR_, "base_Class", "Bug431638Profile::vStereotype1");	
+		assertSemanticErrorQuery2((Type)contextType, "self.extension_vStereotype1.string", OCLMessages.UnresolvedProperty_ERROR_, "string", "Bug431638Profile::vStereotype1");	
+		assertValidQuery((Type)contextType, "self.extension_vStereotype1.oclAsType(Bug431638Profile::Stereotype1).string");	
 
 //OK		assertQueryEquals(context, contextType, "self.oclType()");	
 //OK		assertQueryEquals(context, "Property", "self.oclType().name");	

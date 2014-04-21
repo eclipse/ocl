@@ -1870,13 +1870,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	@Override
-	public DomainPackage getNestedPackage(@NonNull DomainPackage packageServer, @NonNull String name) {
-		return ((PackageServer)packageServer).getMemberPackage(name);
+	public DomainPackage getNestedPackage(@NonNull DomainPackage domainPackage, @NonNull String name) {
+		PackageServer packageServer = getPackageServer(domainPackage);
+		return packageServer.getMemberPackage(name);
 	}
 
 	@Override
-	public DomainType getNestedType(@NonNull DomainPackage packageServer, @NonNull String name) {
-		return ((PackageServer)packageServer).getMemberType(name);
+	public DomainType getNestedType(@NonNull DomainPackage domainPackage, @NonNull String name) {
+		PackageServer packageServer = getPackageServer(domainPackage);
+		return packageServer.getMemberType(name);
 	}
 
 	@Override
@@ -3088,7 +3090,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void setMetamodelNsURI(@NonNull String metaNsURI) {
 		if (asMetamodel == null) {
-			StandardLibraryContribution.REGISTRY.put(metaNsURI, new OCLstdlib.RenamingLoader(metaNsURI));
+			if (StandardLibraryContribution.REGISTRY.get(metaNsURI) == null) {
+				StandardLibraryContribution.REGISTRY.put(metaNsURI, new OCLstdlib.RenamingLoader(metaNsURI));
+			}
 			setDefaultStandardLibraryURI(metaNsURI);
 			getASMetamodel();
 		}

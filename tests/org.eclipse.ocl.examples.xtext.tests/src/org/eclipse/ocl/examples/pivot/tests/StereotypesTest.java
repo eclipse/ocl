@@ -26,8 +26,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Enumeration;
@@ -188,19 +190,21 @@ public class StereotypesTest extends PivotTestSuite
      * Tests M2 navigations using base_XXX and extension_YYY.
      */
     public void test_stereotypeM2Navigation() throws Exception {
-//ok    	assertQueryEquals(mm.englishClass, "EnglishClass", "self.NamedElement::name");
+    	assertQueryEquals(mm.englishClass, "EnglishClass", "self.NamedElement::name");
 //    	assertQueryEquals(mm.englishClass, "EnglishClass", "self.name");
-//ok    	assertSemanticErrorQuery2(mm.englishClass, "self.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "extension_InEnglish", "Model::EnglishClass");
-//ok    	assertQueryEquals(mm.englishClass, mm.englishClassInEnglish, "self.extension_Internationalized");
-//ok    	assertQueryEquals(mm.englishClass, mm.face.getEnumerationLiteral("NORMAL"), "self.extension_Internationalized.face");
-//ok    	assertQueryEquals(mm.germanClass, mm.face.getEnumerationLiteral("BOLD"), "self.extension_Internationalized.face");
-//ok    	assertQueryEquals(mm.englishClassInEnglish, mm.englishClass, "self.base_Class");
+    	assertSemanticErrorQuery2(mm.englishClass, "self.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "extension_InEnglish", "Model::EnglishClass");
+    	assertQueryEquals(mm.englishClass, mm.englishClassInEnglish, "self.extension_Internationalized");
+    	assertQueryEquals(mm.englishClass, mm.face.getEnumerationLiteral("NORMAL"), "self.extension_Internationalized.face");
+    	assertQueryEquals(mm.germanClass, mm.face.getEnumerationLiteral("BOLD"), "self.extension_Internationalized.face");
+    	assertQueryEquals(mm.englishClassInEnglish, mm.englishClass, "self.base_Class");
 //    	assertQueryEquals(mm.englishClass, "EnglishClass$InEnglish", "self.extension_InEnglish.oclType().instanceType.name");
-//ok    	assertSemanticErrorQuery2(mm.englishClass, "self.extension_InGerman", OCLMessages.UnresolvedProperty_ERROR_, "extension_InGerman", "Model::EnglishClass");
-//ok    	assertSemanticErrorQuery2(mm.englishClass, "self.extension_Internationalized.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "extension_InEnglish", "InternationalizedProfile::Internationalized");
-//ok    	assertQueryEquals(mm.englishClass, mm.englishClass, "self.extension_Internationalized.base_Class");
-//ok    	assertQueryEquals(mm.englishClassInEnglish, mm.englishClassInEnglish, "self.base_Class.extension_Internationalized");
-//ok    	assertQueryTrue(mm.englishClass, "extension_Internationalized.base_Class = self");
+//    	assertQueryEquals(mm.englishClass, "EnglishClass$InEnglish", "self.extension_Internationalized.oclType().instanceType.name");
+//    	assertQueryEquals(mm.englishClass, "EnglishClass$InEnglish", "self.extension_Internationalized.oclType().name");
+    	assertSemanticErrorQuery2(mm.englishClass, "self.extension_InGerman", OCLMessages.UnresolvedProperty_ERROR_, "extension_InGerman", "Model::EnglishClass");
+    	assertSemanticErrorQuery2(mm.englishClass, "self.extension_Internationalized.extension_InEnglish", OCLMessages.UnresolvedProperty_ERROR_, "extension_InEnglish", "InternationalizedProfile::Internationalized");
+    	assertQueryEquals(mm.englishClass, mm.englishClass, "self.extension_Internationalized.base_Class");
+    	assertQueryEquals(mm.englishClassInEnglish, mm.englishClassInEnglish, "self.base_Class.extension_Internationalized");
+    	assertQueryTrue(mm.englishClass, "extension_Internationalized.base_Class = self");
     	assertQueryTrue(mm.englishClassInEnglish,  "base_Class.extension_Internationalized = self");
     	assertSemanticErrorQuery2(mm.frenchClass, "self.text", OCLMessages.UnresolvedProperty_ERROR_, "text", "Model::FrenchClass");
 //    	assertQueryEquals(mm.frenchClass, "Merci", "extension_InFrench.oclType().instanceType.ownedAttribute->any(name='text').default");
@@ -229,6 +233,7 @@ public class StereotypesTest extends PivotTestSuite
      * Tests getAppliedStereotypes.
      */
     public void test_MDT_UML2_operations_382978() {
+    	assertQueryEquals(((PivotObjectImpl)mm.englishClass).getETarget(), mm.englishClassInEnglish, "self.extension_Internationalized");
 //M0
     	assertSemanticErrorQuery2(mm.englishClass, "self.getAppliedStereotypes()", OCLMessages.UnresolvedOperation_ERROR_, "getAppliedStereotypes", "Model::EnglishClass");
 //    	assertQueryEquals(m.englishObject, idResolver.createSetOfEach(null, ((PivotObjectImpl)mm.inEnglishStereotype).getETarget()), "self.oclType().getAppliedStereotypes()");
@@ -236,6 +241,9 @@ public class StereotypesTest extends PivotTestSuite
 //M1
     	assertQueryEquals(((PivotObjectImpl)mm.englishClass).getETarget(), idResolver.createSetOfEach(null, ((PivotObjectImpl)mm.inEnglishStereotype).getETarget()), "self.getAppliedStereotypes()");
     	assertQueryEquals(((PivotObjectImpl)mm.englishClass).getETarget(), ((PivotObjectImpl)mm.inEnglishStereotype).getETarget(), "self.getAppliedStereotype('InternationalizedProfile::InEnglish')");
+    	assertQueryEquals(mm.englishClass, mm.englishClassInEnglish, "self.extension_Internationalized");
+    	assertQueryEquals(mm.englishClass, mm.englishClassInEnglish, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InEnglish)");
+    	assertQueryInvalid(mm.englishClass, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InGerman)", DomainUtil.bind(EvaluatorMessages.IncompatibleArgumentType, "InternationalizedProfile::InGerman"), InvalidValueException.class);
     }
 
 	/**

@@ -172,7 +172,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_v5uZSlEXEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v5uZS1EXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZTFEXEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZTFEXEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_v5uZTlEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -224,7 +224,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_v5uZZlEXEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v5uZZ1EXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZaFEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZaFEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_v5uZalEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -276,7 +276,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_v5uZglEXEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v5uZg1EXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZhFEXEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZhFEXEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_v5uZhlEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -302,7 +302,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_v5uZkFEXEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v5uZkVEXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZklEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v5uZklEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_v5uZlFEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -708,7 +708,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_YiyvGlEXEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YiyvG1EXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvHFEXEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvHFEXEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_YiyvHlEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -760,7 +760,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_YiyvNlEXEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YiyvN1EXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvOFEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvOFEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_YiyvOlEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -812,7 +812,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_YiyvUlEXEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YiyvU1EXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvVFEXEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvVFEXEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_YiyvVlEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -838,7 +838,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_YiyvYFEXEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YiyvYVEXEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvYlEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YiyvYlEXEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_YiyvZFEXEeOMYqaaVdNqwA" name="diagnostics">
@@ -1270,7 +1270,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_pYSXelEVEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pYSXe1EVEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXfFEVEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXfFEVEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_pYSXflEVEeOMYqaaVdNqwA" name="diagnostics">
@@ -1322,7 +1322,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_pYSXllEVEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pYSXl1EVEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXmFEVEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXmFEVEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_pYSXmlEVEeOMYqaaVdNqwA" name="diagnostics">
@@ -1374,7 +1374,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_pYSXslEVEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pYSXs1EVEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXtFEVEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXtFEVEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_pYSXtlEVEeOMYqaaVdNqwA" name="diagnostics">
@@ -1400,7 +1400,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_pYSXwFEVEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pYSXwVEVEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXwlEVEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pYSXwlEVEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_pYSXxFEVEeOMYqaaVdNqwA" name="diagnostics">
@@ -1832,7 +1832,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_1N3QmlEQEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1N3Qm1EQEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3QnFEQEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3QnFEQEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_1N3QnlEQEeOMYqaaVdNqwA" name="diagnostics">
@@ -1884,7 +1884,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_1N3QtlEQEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1N3Qt1EQEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3QuFEQEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3QuFEQEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_1N3QulEQEeOMYqaaVdNqwA" name="diagnostics">
@@ -1936,7 +1936,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_1N3Q0lEQEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1N3Q01EQEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3Q1FEQEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3Q1FEQEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_1N3Q1lEQEeOMYqaaVdNqwA" name="diagnostics">
@@ -1962,7 +1962,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_1N3Q4FEQEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1N3Q4VEQEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3Q4lEQEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1N3Q4lEQEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_1N3Q5FEQEeOMYqaaVdNqwA" name="diagnostics">
@@ -2394,7 +2394,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_Eg1FWlEGEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Eg1FW1EGEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FXFEGEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FXFEGEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_Eg1FXlEGEeOMYqaaVdNqwA" name="diagnostics">
@@ -2446,7 +2446,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_Eg1FdlEGEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Eg1Fd1EGEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FeFEGEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FeFEGEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_Eg1FelEGEeOMYqaaVdNqwA" name="diagnostics">
@@ -2498,7 +2498,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_Eg1FklEGEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Eg1Fk1EGEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FlFEGEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FlFEGEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_Eg1FllEGEeOMYqaaVdNqwA" name="diagnostics">
@@ -2524,7 +2524,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_Eg1FoFEGEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Eg1FoVEGEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FolEGEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1FolEGEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_Eg1FpFEGEeOMYqaaVdNqwA" name="diagnostics">
@@ -2741,7 +2741,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_Eg1GH1EGEeOMYqaaVdNqwA" name="Connectorscanonlyconnecttwoports">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Eg1GIFEGEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1GIVEGEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(uml::Port))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Eg1GIVEGEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(UML::Port))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_Eg1GI1EGEeOMYqaaVdNqwA" name="diagnostics">
@@ -2956,7 +2956,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_l3XBqlEFEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l3XBq1EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XBrFEFEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XBrFEFEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_l3XBrlEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3008,7 +3008,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_l3XBxlEFEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l3XBx1EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XByFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XByFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_l3XBylEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3060,7 +3060,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_l3XB4lEFEeOMYqaaVdNqwA" name="Combinedstatemachineconstraintsforcapsules">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l3XB41EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XB5FEFEeOMYqaaVdNqwA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(uml::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XB5FEFEeOMYqaaVdNqwA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(UML::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_l3XB5lEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3086,7 +3086,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_l3XB8FEFEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l3XB8VEFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XB8lEFEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XB8lEFEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_l3XB9FEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3112,7 +3112,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_l3XB_lEFEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l3XB_1EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XCAFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XCAFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_l3XCAlEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3329,7 +3329,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_l3XCfVEFEeOMYqaaVdNqwA" name="Connectorscanonlyconnecttwoports">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l3XCflEFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XCf1EFEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(uml::Port))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l3XCf1EFEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(UML::Port))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_l3XCgVEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3544,7 +3544,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_PL-16lEFEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PL-161EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-17FEFEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-17FEFEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_PL-17lEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3596,7 +3596,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_PL-2BlEFEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PL-2B1EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2CFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2CFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_PL-2ClEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3648,7 +3648,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_PL-2IlEFEeOMYqaaVdNqwA" name="Combinedstatemachineconstraintsforcapsules">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PL-2I1EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2JFEFEeOMYqaaVdNqwA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(uml::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2JFEFEeOMYqaaVdNqwA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(UML::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_PL-2JlEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3674,7 +3674,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_PL-2MFEFEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PL-2MVEFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2MlEFEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2MlEFEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_PL-2NFEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3700,7 +3700,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_PL-2PlEFEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PL-2P1EFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2QFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2QFEFEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_PL-2QlEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -3917,7 +3917,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_PL-2vVEFEeOMYqaaVdNqwA" name="Connectorscanonlyconnecttwoports">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PL-2vlEFEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2v1EFEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(uml::Port))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PL-2v1EFEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(UML::Port))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_PL-2wVEFEeOMYqaaVdNqwA" name="diagnostics">
@@ -4132,7 +4132,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_czEMGVEEEeOMYqaaVdNqwA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_czEMGlEEEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMG1EEEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMG1EEEeOMYqaaVdNqwA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_czEMHVEEEeOMYqaaVdNqwA" name="diagnostics">
@@ -4184,7 +4184,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_czEMNVEEEeOMYqaaVdNqwA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_czEMNlEEEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMN1EEEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMN1EEEeOMYqaaVdNqwA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_czEMOVEEEeOMYqaaVdNqwA" name="diagnostics">
@@ -4236,7 +4236,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_czEMUVEEEeOMYqaaVdNqwA" name="Combinedstatemachineconstraintsforcapsules">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_czEMUlEEEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMU1EEEeOMYqaaVdNqwA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(uml::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMU1EEEeOMYqaaVdNqwA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(UML::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_czEMVVEEEeOMYqaaVdNqwA" name="diagnostics">
@@ -4262,7 +4262,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_czEMX1EEEeOMYqaaVdNqwA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_czEMYFEEEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMYVEEEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMYVEEEeOMYqaaVdNqwA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_czEMY1EEEeOMYqaaVdNqwA" name="diagnostics">
@@ -4288,7 +4288,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_czEMbVEEEeOMYqaaVdNqwA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_czEMblEEEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMb1EEEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEMb1EEEeOMYqaaVdNqwA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_czEMcVEEEeOMYqaaVdNqwA" name="diagnostics">
@@ -4505,7 +4505,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_czEM7FEEEeOMYqaaVdNqwA" name="Connectorscanonlyconnecttwoports">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_czEM7VEEEeOMYqaaVdNqwA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEM7lEEEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(uml::Port))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_czEM7lEEEeOMYqaaVdNqwA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(UML::Port))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_czEM8FEEEeOMYqaaVdNqwA" name="diagnostics">
@@ -4720,7 +4720,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ud9Tr1D0EeOA4ecmvfqvaw" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ud9TsFD0EeOA4ecmvfqvaw" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9TsVD0EeOA4ecmvfqvaw" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9TsVD0EeOA4ecmvfqvaw" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ud9Ts1D0EeOA4ecmvfqvaw" name="diagnostics">
@@ -4772,7 +4772,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ud9Ty1D0EeOA4ecmvfqvaw" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ud9TzFD0EeOA4ecmvfqvaw" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9TzVD0EeOA4ecmvfqvaw" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9TzVD0EeOA4ecmvfqvaw" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ud9Tz1D0EeOA4ecmvfqvaw" name="diagnostics">
@@ -4824,7 +4824,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ud9T51D0EeOA4ecmvfqvaw" name="Combinedstatemachineconstraintsforcapsules">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ud9T6FD0EeOA4ecmvfqvaw" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9T6VD0EeOA4ecmvfqvaw" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(uml::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9T6VD0EeOA4ecmvfqvaw" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(UML::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ud9T61D0EeOA4ecmvfqvaw" name="diagnostics">
@@ -4850,7 +4850,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ud9T9VD0EeOA4ecmvfqvaw" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ud9T9lD0EeOA4ecmvfqvaw" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9T91D0EeOA4ecmvfqvaw" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9T91D0EeOA4ecmvfqvaw" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ud9T-VD0EeOA4ecmvfqvaw" name="diagnostics">
@@ -4876,7 +4876,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ud9UA1D0EeOA4ecmvfqvaw" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ud9UBFD0EeOA4ecmvfqvaw" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9UBVD0EeOA4ecmvfqvaw" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9UBVD0EeOA4ecmvfqvaw" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ud9UB1D0EeOA4ecmvfqvaw" name="diagnostics">
@@ -5093,7 +5093,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ud9UglD0EeOA4ecmvfqvaw" name="Connectorscanonlyconnecttwoports">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ud9Ug1D0EeOA4ecmvfqvaw" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9UhFD0EeOA4ecmvfqvaw" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(uml::Port))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ud9UhFD0EeOA4ecmvfqvaw" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(UML::Port))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ud9UhlD0EeOA4ecmvfqvaw" name="diagnostics">
@@ -5308,7 +5308,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_HnIDyk3YEeO2GMk50x9RWA" name="Privatevisibilityisnotsupportedoncapsulefeatures">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIDy03YEeO2GMk50x9RWA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIDzE3YEeO2GMk50x9RWA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIDzE3YEeO2GMk50x9RWA" key="body" value="base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_HnIDzk3YEeO2GMk50x9RWA" name="diagnostics">
@@ -5360,7 +5360,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_HnID5k3YEeO2GMk50x9RWA" name="Capsulevariablescanonlyhaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnID503YEeO2GMk50x9RWA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnID6E3YEeO2GMk50x9RWA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnID6E3YEeO2GMk50x9RWA" key="body" value="base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_HnID6k3YEeO2GMk50x9RWA" name="diagnostics">
@@ -5412,7 +5412,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_HnIEAk3YEeO2GMk50x9RWA" name="Combinedstatemachineconstraintsforcapsules">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIEA03YEeO2GMk50x9RWA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEBE3YEeO2GMk50x9RWA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(uml::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEBE3YEeO2GMk50x9RWA" key="body" value="let sm = base_Class.classifierBehavior in &#xD;&#xA;sm->notEmpty() implies&#xD;&#xA;   (sm.oclIsTypeOf(UML::StateMachine) -- only state machines allowed&#xD;&#xA;   and (not sm.isReentrant)                   -- no re-entrant behavior&#xD;&#xA;   and (not sm.ownedParameter->isEmpty()) -- no parameters&#xD;&#xA;   and (sm.region->size() = 1) )              -- only a single region allowed "/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_HnIEBk3YEeO2GMk50x9RWA" name="diagnostics">
@@ -5438,7 +5438,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_HnIEEE3YEeO2GMk50x9RWA" name="SAPsunwiredunpublishedportsmusthaveprotectedvisibility">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIEEU3YEeO2GMk50x9RWA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEEk3YEeO2GMk50x9RWA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEEk3YEeO2GMk50x9RWA" key="body" value="let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;&#xA;   (saps->notEmpty()) implies&#xD;&#xA;      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_HnIEFE3YEeO2GMk50x9RWA" name="diagnostics">
@@ -5464,7 +5464,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_HnIEHk3YEeO2GMk50x9RWA" name="Alloperationsofacapsulearesequential">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIEH03YEeO2GMk50x9RWA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEIE3YEeO2GMk50x9RWA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEIE3YEeO2GMk50x9RWA" key="body" value="base_Class.ownedOperation->notEmpty() implies &#xD;&#xA;   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_HnIEIk3YEeO2GMk50x9RWA" name="diagnostics">
@@ -5655,7 +5655,7 @@
         </eOperations>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_HnIEj03YEeO2GMk50x9RWA" name="Connectorscanonlyconnecttwoports">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HnIEkE3YEeO2GMk50x9RWA" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEkU3YEeO2GMk50x9RWA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(uml::Port))"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HnIEkU3YEeO2GMk50x9RWA" key="body" value="base_Connector.end->forAll(e | e.role.oclIsTypeOf(UML::Port))"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_HnIEk03YEeO2GMk50x9RWA" name="diagnostics">
@@ -5779,7 +5779,7 @@
     <ownedRule xmi:type="uml:Constraint" xmi:id="_RXUA0EhWEeO0lv5O1DTHOQ" name="Private visibility is not supported on capsule features" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_huBJgEhWEeO0lv5O1DTHOQ">
         <language>OCL</language>
-        <body>base_Class.feature->forAll (f | f.visibility &lt;> uml::VisibilityKind::private)</body>
+        <body>base_Class.feature->forAll (f | f.visibility &lt;> UML::VisibilityKind::private)</body>
       </specification>
     </ownedRule>
     <ownedRule xmi:type="uml:Constraint" xmi:id="_K04RwEhaEeO0lv5O1DTHOQ" name="A capsule class with behavior must have a variable named &quot;msg&quot;" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
@@ -5791,7 +5791,7 @@
     <ownedRule xmi:type="uml:Constraint" xmi:id="_nrfQsEhaEeO0lv5O1DTHOQ" name="Capsule variables can only have protected visibility" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_8taLUEhaEeO0lv5O1DTHOQ">
         <language>OCL</language>
-        <body>base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(uml::Port)) implies (at.visibility = uml::VisibilityKind::protected))</body>
+        <body>base_Class.ownedAttribute->forAll(at | not(at.oclIsKindOf(UML::Port)) implies (at.visibility = UML::VisibilityKind::protected))</body>
       </specification>
     </ownedRule>
     <ownedRule xmi:type="uml:Constraint" xmi:id="_DoUvAEhbEeO0lv5O1DTHOQ" name="A capsule class cannot have nested classifiers" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
@@ -5811,14 +5811,14 @@
         <language>OCL</language>
         <body>let saps = base_Class.ownedPort->select(p | not p.isService) in&#xD;
    (saps->notEmpty()) implies&#xD;
-      saps->forAll(s | s.visibility = uml::VisibilityKind::protected)</body>
+      saps->forAll(s | s.visibility = UML::VisibilityKind::protected)</body>
       </specification>
     </ownedRule>
     <ownedRule xmi:type="uml:Constraint" xmi:id="_EBz7IEhdEeO0lv5O1DTHOQ" name="All operations of a capsule are sequential" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_YhzNYEhdEeO0lv5O1DTHOQ">
         <language>OCL</language>
         <body>base_Class.ownedOperation->notEmpty() implies &#xD;
-   (base_Class.ownedOperation->forAll(op | op.concurrency = uml::CallConcurrencyKind::sequential))</body>
+   (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::sequential))</body>
       </specification>
     </ownedRule>
     <ownedRule xmi:type="uml:Constraint" xmi:id="_Jag18FD0EeOA4ecmvfqvaw" name="A capsule class only supports state machine behaviors" constrainedElement="_hcMIwEhNEeO0lv5O1DTHOQ">

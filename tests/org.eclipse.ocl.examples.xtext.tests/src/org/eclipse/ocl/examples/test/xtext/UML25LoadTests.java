@@ -140,10 +140,35 @@ public class UML25LoadTests extends LoadTests
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/PrimitiveTypes.xmi", true);
 		doLoadUML(uml_2_5, true, true, true);
 	}
-	
-/*FIXME	public void testLoad_UML_2_5_Final_UML() throws IOException, InterruptedException, ParserException {
+
+/* FIXME passes by itself but corrupts later tests
+	public void testLoad_UML_2_5_Final_UML() throws IOException, InterruptedException, ParserException {
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
+		}
+		final MetaModelManager metaModelManager = this.metaModelManager;
+		metaModelManager.setAutoLoadASMetamodel(false);
+		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.Loader());
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.xmi", true);
 		doLoadUML(uml_2_5, true, true, true);
+		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.RenamingLoader(XMI2UMLResource.UML_METAMODEL_NS_URI));
+		this.metaModelManager.dispose();
+		this.metaModelManager = null;
+	} */
+
+/* FIXME 2 OperationReturnCompatibility warnings
+	public void testLoad_Eclipse_UML_2_5() throws IOException, InterruptedException, ParserException {
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
+		}
+		final MetaModelManager metaModelManager = this.metaModelManager;
+		metaModelManager.setAutoLoadASMetamodel(false);
+		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.Loader());
+		URI uml_2_5 = URI.createURI(UMLResource.UML_METAMODEL_URI, true);
+		doLoadUML(uml_2_5, true, true, true);
+		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.RenamingLoader(XMI2UMLResource.UML_METAMODEL_NS_URI));
+		this.metaModelManager.dispose();
+		this.metaModelManager = null;
 	} */
 	
 	public void testLoad_UML_2_5_Final_DC() throws IOException, InterruptedException, ParserException {
