@@ -39,7 +39,7 @@ public interface AssociationClass
 	/**
 	 * Returns the value of the '<em><b>Unowned Attribute</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getAssociationClass <em>Association Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Unowned Attribute</em>' reference list isn't clear,
@@ -48,7 +48,7 @@ public interface AssociationClass
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unowned Attribute</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAssociationClass_UnownedAttribute()
-	 * @see org.eclipse.ocl.examples.pivot.Property#getAssociation
+	 * @see org.eclipse.ocl.examples.pivot.Property#getAssociationClass
 	 * @generated
 	 */
 	List<Property> getUnownedAttribute();

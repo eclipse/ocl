@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -254,6 +255,8 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.COLLECTION_TYPE__OWNED_ATTRIBUTE:
@@ -270,6 +273,8 @@ public class CollectionTypeImpl
 				return getOwnedRule();
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				return isAbstract();
+			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:
+				return isActive();
 			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
 				return isInterface();
 			case PivotPackage.COLLECTION_TYPE__NESTED_TYPE:
@@ -336,6 +341,10 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
+				return;
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -364,6 +373,9 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:
+				setIsActive((Boolean)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
@@ -434,6 +446,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -457,6 +472,9 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:
+				setIsActive(IS_ACTIVE_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
@@ -515,6 +533,8 @@ public class CollectionTypeImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.COLLECTION_TYPE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.COLLECTION_TYPE__OWNED_ATTRIBUTE:
@@ -531,6 +551,8 @@ public class CollectionTypeImpl
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
+			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:
+				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__NESTED_TYPE:

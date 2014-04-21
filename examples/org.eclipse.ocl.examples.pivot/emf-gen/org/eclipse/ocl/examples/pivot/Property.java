@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.domain.ids.PropertyId;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getAssociationClass <em>Association Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getDefaultExpression <em>Default Expression</em>}</li>
@@ -64,6 +64,33 @@ import org.eclipse.ocl.examples.domain.ids.PropertyId;
  */
 public interface Property
 		extends Feature, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainProperty {
+
+	/**
+	 * Returns the value of the '<em><b>Association Class</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Association Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Association Class</em>' reference.
+	 * @see #setAssociationClass(AssociationClass)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_AssociationClass()
+	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute
+	 * @generated
+	 */
+	AssociationClass getAssociationClass();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getAssociationClass <em>Association Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Association Class</em>' reference.
+	 * @see #getAssociationClass()
+	 * @generated
+	 */
+	void setAssociationClass(AssociationClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
@@ -187,33 +214,6 @@ public interface Property
 	 * @generated
 	 */
 	void setOpposite(Property value);
-
-	/**
-	 * Returns the value of the '<em><b>Association</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Association</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Association</em>' reference.
-	 * @see #setAssociation(AssociationClass)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Association()
-	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute
-	 * @generated
-	 */
-	AssociationClass getAssociation();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Association</em>' reference.
-	 * @see #getAssociation()
-	 * @generated
-	 */
-	void setAssociation(AssociationClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.

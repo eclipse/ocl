@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -127,6 +128,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return basicSetNestingPackage(null, msgs);
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
+				return ((InternalEList<?>)getProfileApplication()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
 				return ((InternalEList<?>)getOwnedPrecedence()).basicRemove(otherEnd, msgs);
 		}
@@ -173,6 +176,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getNsURI();
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return getOwnedType();
+			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
+				return getProfileApplication();
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
 				return getOwnedPrecedence();
 		}
@@ -243,6 +248,10 @@ public class LibraryImpl extends PackageImpl implements Library
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends Type>)newValue);
 				return;
+			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
+				getProfileApplication().clear();
+				getProfileApplication().addAll((Collection<? extends ProfileApplication>)newValue);
+				return;
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
 				getOwnedPrecedence().clear();
 				getOwnedPrecedence().addAll((Collection<? extends Precedence>)newValue);
@@ -306,6 +315,9 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
+			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
+				getProfileApplication().clear();
+				return;
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
 				getOwnedPrecedence().clear();
 				return;
@@ -353,6 +365,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
+			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
+				return profileApplication != null && !profileApplication.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
 				return ownedPrecedence != null && !ownedPrecedence.isEmpty();
 		}

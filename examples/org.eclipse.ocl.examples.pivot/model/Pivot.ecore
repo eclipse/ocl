@@ -128,14 +128,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClass" eSuperTypes="#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="unownedAttribute" ordered="false"
-        upperBound="-1" eType="#//Property" eOpposite="#//Property/association"/>
+        upperBound="-1" eType="#//Property" eOpposite="#//Property/associationClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationClassCallExp" eSuperTypes="#//NavigationCallExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredAssociationClass"
         eType="#//AssociationClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BagType" eSuperTypes="#//CollectionType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Behavior" abstract="true" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Behavior" abstract="true" eSuperTypes="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transition" eType="#//Transition"
+        eOpposite="#//Transition/effect"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
     <eOperations name="TypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -170,6 +173,12 @@
         eType="#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="True when a class is abstract."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="True when a class is active."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" lowerBound="1"
@@ -282,6 +291,9 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
         upperBound="-1" eType="#//Element">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="comment"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="References the Element(s) being commented."/>
       </eAnnotations>
@@ -298,17 +310,24 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entry" ordered="false"
         upperBound="-1" eType="#//Pseudostate">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="connectionPointReference"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The entryPoint kind pseudo states corresponding to this connection point."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exit" ordered="false" upperBound="-1"
         eType="#//Pseudostate">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="connectionPointReference"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The exitPoints kind pseudo states corresponding to this connection point."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"
+        eOpposite="#//State/connection">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The State in which the connection point refreshens are defined."/>
       </eAnnotations>
@@ -340,14 +359,22 @@
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" lowerBound="1"
         eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningState" eType="#//State"
+        eOpposite="#//State/stateInvariant"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedConstraint" ordered="false"
-        upperBound="-1" eType="#//Constraint"/>
+        upperBound="-1" eType="#//Constraint">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="constraint"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="#//OpaqueExpression"
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A condition that must be true when evaluated in order for the constraint to be satisfied."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transition" eType="#//Transition"
+        eOpposite="#//Transition/guard"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstructorExp" eSuperTypes="#//OCLExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//ConstructorPart"
@@ -407,6 +434,9 @@
         eType="#//Element" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
         upperBound="-1" eType="#//Comment" containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="owningElement"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The Comments owned by this element."/>
       </eAnnotations>
@@ -415,8 +445,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="ElementExtension" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base" lowerBound="1" eType="#//Element"
         eOpposite="#//Element/extension"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isApplied" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" lowerBound="1"
-        eType="#//Type"/>
+        eType="#//Stereotype"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExp" eSuperTypes="#//LiteralExp">
     <eOperations name="TypeIsEnumerationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1174,12 +1208,19 @@
         upperBound="-1" eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="raisedException" ordered="false"
         upperBound="-1" eType="#//Type">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="operation"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The exceptions that are declared as possible during an invocation of the operation."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedOperation" ordered="false"
-        upperBound="-1" eType="#//Operation"/>
+        upperBound="-1" eType="#//Operation">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="operation"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationCallExp" eSuperTypes="#//FeatureCallExp #//ReferringElement">
     <eOperations name="ArgumentCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1245,6 +1286,8 @@
         <details key="documentation" value="The set of contained types."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="profileApplication" ordered="false"
+        upperBound="-1" eType="#//ProfileApplication" containment="true" eOpposite="#//ProfileApplication/applyingPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
       eSuperTypes="#//ParameterableElement">
@@ -1308,7 +1351,18 @@
       <details key="documentation" value="A primitive type is a data type implemented by the underlying infrastructure and made available for modeling."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#//Package"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#//Package">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" ordered="false"
+        upperBound="-1" eType="#//ProfileApplication" eOpposite="#//ProfileApplication/appliedProfile"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProfileApplication" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appliedProfile" lowerBound="1"
+        eType="#//Profile" eOpposite="#//Profile/application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="applyingPackage" lowerBound="1"
+        eType="#//Package" eOpposite="#//Package/profileApplication"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStrict" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//Feature #//ParameterableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A property is a typed element that represents an attribute of a class.&#xA;Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
@@ -1331,7 +1385,7 @@
       </eAnnotations>
       <eParameters name="p" lowerBound="1" eType="#//Property"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="association" eType="#//AssociationClass"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associationClass" eType="#//AssociationClass"
         eOpposite="#//AssociationClass/unownedAttribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class"
         changeable="false" volatile="true" transient="true" resolveProxies="false">
@@ -1379,6 +1433,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="keys" ordered="false" upperBound="-1"
         eType="#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="#//Property">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="property"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1."/>
       </eAnnotations>
@@ -1386,10 +1443,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//Type"
         eOpposite="#//Type/ownedAttribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedProperty" ordered="false"
-        upperBound="-1" eType="#//Property"/>
+        upperBound="-1" eType="#//Property">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="property"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsettedProperty" ordered="false"
-        upperBound="-1" eType="#//Property"/>
+        upperBound="-1" eType="#//Property">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="property"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExp" eSuperTypes="#//NavigationCallExp #//ReferringElement">
     <eOperations name="CompatibleResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1438,7 +1503,8 @@
         <details key="documentation" value="Determines the precise type of the Pseudostate and can be one of: entryPoint, exitPoint, initial, deepHistory, shallowHistory, join, fork, junction, terminate or choice."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"
+        eOpposite="#//State/connectionPoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The State that owns this pseudostate and in which it appears."/>
       </eAnnotations>
@@ -1465,12 +1531,14 @@
         <details key="documentation" value="The region of which this region is an extension."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"
+        eOpposite="#//State/region">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" eType="#//StateMachine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" eType="#//StateMachine"
+        eOpposite="#//StateMachine/region">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State."/>
       </eAnnotations>
@@ -1516,19 +1584,19 @@
       <details key="documentation" value="A state models a situation during which some (usually implicit) invariant condition holds."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connection" ordered="false"
-        upperBound="-1" eType="#//ConnectionPointReference" containment="true">
+        upperBound="-1" eType="#//ConnectionPointReference" containment="true" eOpposite="#//ConnectionPointReference/state">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoint" ordered="false"
-        upperBound="-1" eType="#//Pseudostate" containment="true">
+        upperBound="-1" eType="#//Pseudostate" containment="true" eOpposite="#//Pseudostate/state">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deferrableTrigger" ordered="false"
-        upperBound="-1" eType="#//Trigger" containment="true">
+        upperBound="-1" eType="#//Trigger" containment="true" eOpposite="#//Trigger/state">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.&#xA;"/>
       </eAnnotations>
@@ -1584,13 +1652,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="region" ordered="false"
-        upperBound="-1" eType="#//Region" containment="true">
+        upperBound="-1" eType="#//Region" containment="true" eOpposite="#//Region/state">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The regions owned directly by the state."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateInvariant" eType="#//Constraint"
-        containment="true">
+        containment="true" eOpposite="#//Constraint/owningState">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.&#xA;"/>
       </eAnnotations>
@@ -1622,7 +1690,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="region" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Region" containment="true">
+        lowerBound="1" upperBound="-1" eType="#//Region" containment="true" eOpposite="#//Region/stateMachine">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The regions owned directly by the state machine."/>
       </eAnnotations>
@@ -1634,7 +1702,10 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Stereotype" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Stereotype" eSuperTypes="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionOfs" ordered="false"
+        upperBound="-1" eType="#//TypeExtension" containment="true" eOpposite="#//TypeExtension/stereotype"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSymbol" lowerBound="1"
         eType="#//String"/>
@@ -1658,6 +1729,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1"
         eType="#//TemplateSignature">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="templateBinding"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The template signature for the template that is the target of the binding."/>
       </eAnnotations>
@@ -1668,12 +1742,18 @@
       <details key="documentation" value="A template parameter exposes a parameterable element as a formal template parameter of a template."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//ParameterableElement">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="templateParameter"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is the default for this formal template parameter."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDefault" eType="#//ParameterableElement"
         containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="templateParameter"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is owned by this template parameter for the purpose of providing a default."/>
       </eAnnotations>
@@ -1705,18 +1785,27 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actual" lowerBound="1"
         eType="#//ParameterableElement">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="templateParameterSubstitution"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is the actual parameter for this substitution."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="formal" lowerBound="1"
         eType="#//TemplateParameter">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="templateParameterSubstitution"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The formal template parameter that is associated with this substitution."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActual" eType="#//ParameterableElement"
         containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="owningTemplateParameterSubstitution"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The actual parameter that is owned by this substitution."/>
       </eAnnotations>
@@ -1790,13 +1879,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="effect" eType="#//Behavior"
-        containment="true">
+        containment="true" eOpposite="#//Behavior/transition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies an optional behavior to be performed when the transition fires."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//Constraint"
-        containment="true">
+        containment="true" eOpposite="#//Constraint/transition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed."/>
       </eAnnotations>
@@ -1820,13 +1909,18 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" ordered="false"
-        upperBound="-1" eType="#//Trigger" containment="true">
+        upperBound="-1" eType="#//Trigger" containment="true" eOpposite="#//Trigger/transition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies the triggers that may fire the transition."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Trigger" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Trigger" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"
+        eOpposite="#//State/deferrableTrigger"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transition" eType="#//Transition"
+        eOpposite="#//Transition/trigger"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExp" eSuperTypes="#//LiteralExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//TupleLiteralPart"
         containment="true"/>
@@ -1859,6 +1953,8 @@
       <eParameters name="expr" lowerBound="1" eType="#//OCLExpression"/>
       <eParameters name="selfType" lowerBound="1" eType="#//Type"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedBys" ordered="false"
+        upperBound="-1" eType="#//TypeExtension" eOpposite="#//TypeExtension/type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
         eType="#//Property" containment="true" eOpposite="#//Property/owningType"/>
@@ -1878,6 +1974,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OCLExpression #//ReferringElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="#//Type"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeExtension" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1"
+        eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" lowerBound="1"
+        eType="#//Stereotype" eOpposite="#//Stereotype/extensionOfs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"
+        eOpposite="#//Type/extendedBys"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeTemplateParameter" eSuperTypes="#//TemplateParameter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A type template parameter exposes a type as a formal template parameter."/>
@@ -1890,6 +1994,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingType" ordered="false"
         upperBound="-1" eType="#//Type">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="typeTemplateParameter"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </eAnnotations>
@@ -1902,6 +2009,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1"
         eType="#//Boolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="typedElement"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The type of the TypedElement."/>
       </eAnnotations>

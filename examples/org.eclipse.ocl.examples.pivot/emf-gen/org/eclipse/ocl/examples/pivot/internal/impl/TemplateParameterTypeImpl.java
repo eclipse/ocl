@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -144,6 +145,8 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ATTRIBUTE:
@@ -205,6 +208,10 @@ public class TemplateParameterTypeImpl
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -274,6 +281,9 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -328,6 +338,8 @@ public class TemplateParameterTypeImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ATTRIBUTE:

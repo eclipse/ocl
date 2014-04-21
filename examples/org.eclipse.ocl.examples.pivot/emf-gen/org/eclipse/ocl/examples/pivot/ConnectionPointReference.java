@@ -54,24 +54,26 @@ public interface ConnectionPointReference extends Vertex
 	List<Pseudostate> getEntry();
 
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' reference.
+	 * Returns the value of the '<em><b>State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.State#getConnection <em>Connection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The State in which the connection point refreshens are defined.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State</em>' reference.
+	 * @return the value of the '<em>State</em>' container reference.
 	 * @see #setState(State)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConnectionPointReference_State()
+	 * @see org.eclipse.ocl.examples.pivot.State#getConnection
 	 * @generated
 	 */
 	State getState();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ConnectionPointReference#getState <em>State</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ConnectionPointReference#getState <em>State</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' reference.
+	 * @param value the new value of the '<em>State</em>' container reference.
 	 * @see #getState()
 	 * @generated
 	 */

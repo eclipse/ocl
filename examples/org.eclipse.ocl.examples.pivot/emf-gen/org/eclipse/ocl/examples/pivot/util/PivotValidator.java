@@ -96,6 +96,7 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
@@ -128,6 +129,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
@@ -852,6 +854,8 @@ public class PivotValidator
 				return validatePrimitiveType((PrimitiveType)value, diagnostics, context);
 			case PivotPackage.PROFILE:
 				return validateProfile((Profile)value, diagnostics, context);
+			case PivotPackage.PROFILE_APPLICATION:
+				return validateProfileApplication((ProfileApplication)value, diagnostics, context);
 			case PivotPackage.PROPERTY:
 				return validateProperty((Property)value, diagnostics, context);
 			case PivotPackage.PROPERTY_CALL_EXP:
@@ -912,6 +916,8 @@ public class PivotValidator
 				return validateType((Type)value, diagnostics, context);
 			case PivotPackage.TYPE_EXP:
 				return validateTypeExp((TypeExp)value, diagnostics, context);
+			case PivotPackage.TYPE_EXTENSION:
+				return validateTypeExtension((TypeExtension)value, diagnostics, context);
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER:
 				return validateTypeTemplateParameter((TypeTemplateParameter)value, diagnostics, context);
 			case PivotPackage.TYPED_ELEMENT:
@@ -2945,6 +2951,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateProfileApplication(ProfileApplication profileApplication, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)profileApplication, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validatePropertyCallExp(PropertyCallExp propertyCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)propertyCallExp, diagnostics, context)) return false;
@@ -3242,6 +3258,16 @@ public class PivotValidator
 	public boolean validateTypeExp(TypeExp typeExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)typeExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTypeExtension(TypeExtension typeExtension, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)typeExtension, diagnostics, context);
 	}
 
 	/**

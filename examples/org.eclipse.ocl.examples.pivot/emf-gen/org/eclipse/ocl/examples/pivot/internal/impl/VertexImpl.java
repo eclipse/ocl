@@ -121,6 +121,7 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setContainer(Region newContainer)
 	{
 		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.VERTEX__CONTAINER && newContainer != null))

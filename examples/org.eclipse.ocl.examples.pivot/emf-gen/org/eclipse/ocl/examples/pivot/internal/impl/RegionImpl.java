@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -67,26 +68,6 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * @ordered
 	 */
 	protected Region extendedRegion;
-
-	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected State state;
-
-	/**
-	 * The cached value of the '{@link #getStateMachine() <em>State Machine</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStateMachine()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateMachine stateMachine;
 
 	/**
 	 * The cached value of the '{@link #getSubvertex() <em>Subvertex</em>}' containment reference list.
@@ -156,6 +137,14 @@ public class RegionImpl extends NamespaceImpl implements Region
 		{
 			case PivotPackage.REGION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.REGION__STATE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetState((State)otherEnd, msgs);
+			case PivotPackage.REGION__STATE_MACHINE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetStateMachine((StateMachine)otherEnd, msgs);
 			case PivotPackage.REGION__SUBVERTEX:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubvertex()).basicAdd(otherEnd, msgs);
 			case PivotPackage.REGION__TRANSITION:
@@ -185,17 +174,8 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 */
 	public StateMachine getStateMachine()
 	{
-		if (stateMachine != null && ((EObject)stateMachine).eIsProxy())
-		{
-			InternalEObject oldStateMachine = (InternalEObject)stateMachine;
-			stateMachine = (StateMachine)eResolveProxy(oldStateMachine);
-			if (stateMachine != oldStateMachine)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.REGION__STATE_MACHINE, oldStateMachine, stateMachine));
-			}
-		}
-		return stateMachine;
+		if (eContainerFeatureID() != PivotPackage.REGION__STATE_MACHINE) return null;
+		return (StateMachine)eInternalContainer();
 	}
 
 	/**
@@ -203,9 +183,10 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine basicGetStateMachine()
+	public NotificationChain basicSetStateMachine(StateMachine newStateMachine, NotificationChain msgs)
 	{
-		return stateMachine;
+		msgs = eBasicSetContainer((InternalEObject)newStateMachine, PivotPackage.REGION__STATE_MACHINE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -213,12 +194,23 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setStateMachine(StateMachine newStateMachine)
 	{
-		StateMachine oldStateMachine = stateMachine;
-		stateMachine = newStateMachine;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__STATE_MACHINE, oldStateMachine, stateMachine));
+		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__STATE_MACHINE && newStateMachine != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newStateMachine))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newStateMachine != null)
+				msgs = ((InternalEObject)newStateMachine).eInverseAdd(this, PivotPackage.STATE_MACHINE__REGION, StateMachine.class, msgs);
+			msgs = basicSetStateMachine(newStateMachine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__STATE_MACHINE, newStateMachine, newStateMachine));
 	}
 
 	/**
@@ -228,17 +220,8 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 */
 	public State getState()
 	{
-		if (state != null && ((EObject)state).eIsProxy())
-		{
-			InternalEObject oldState = (InternalEObject)state;
-			state = (State)eResolveProxy(oldState);
-			if (state != oldState)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.REGION__STATE, oldState, state));
-			}
-		}
-		return state;
+		if (eContainerFeatureID() != PivotPackage.REGION__STATE) return null;
+		return (State)eInternalContainer();
 	}
 
 	/**
@@ -246,9 +229,10 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State basicGetState()
+	public NotificationChain basicSetState(State newState, NotificationChain msgs)
 	{
-		return state;
+		msgs = eBasicSetContainer((InternalEObject)newState, PivotPackage.REGION__STATE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -256,12 +240,23 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
-		State oldState = state;
-		state = newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__STATE, oldState, state));
+		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__STATE && newState != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newState))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newState != null)
+				msgs = ((InternalEObject)newState).eInverseAdd(this, PivotPackage.STATE__REGION, State.class, msgs);
+			msgs = basicSetState(newState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__STATE, newState, newState));
 	}
 
 	/**
@@ -325,12 +320,34 @@ public class RegionImpl extends NamespaceImpl implements Region
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.REGION__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__STATE:
+				return basicSetState(null, msgs);
+			case PivotPackage.REGION__STATE_MACHINE:
+				return basicSetStateMachine(null, msgs);
 			case PivotPackage.REGION__SUBVERTEX:
 				return ((InternalEList<?>)getSubvertex()).basicRemove(otherEnd, msgs);
 			case PivotPackage.REGION__TRANSITION:
 				return ((InternalEList<?>)getTransition()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.REGION__STATE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__REGION, State.class, msgs);
+			case PivotPackage.REGION__STATE_MACHINE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE_MACHINE__REGION, StateMachine.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
 	/**
@@ -359,11 +376,9 @@ public class RegionImpl extends NamespaceImpl implements Region
 				if (resolve) return getExtendedRegion();
 				return basicGetExtendedRegion();
 			case PivotPackage.REGION__STATE:
-				if (resolve) return getState();
-				return basicGetState();
+				return getState();
 			case PivotPackage.REGION__STATE_MACHINE:
-				if (resolve) return getStateMachine();
-				return basicGetStateMachine();
+				return getStateMachine();
 			case PivotPackage.REGION__SUBVERTEX:
 				return getSubvertex();
 			case PivotPackage.REGION__TRANSITION:
@@ -498,9 +513,9 @@ public class RegionImpl extends NamespaceImpl implements Region
 			case PivotPackage.REGION__EXTENDED_REGION:
 				return extendedRegion != null;
 			case PivotPackage.REGION__STATE:
-				return state != null;
+				return getState() != null;
 			case PivotPackage.REGION__STATE_MACHINE:
-				return stateMachine != null;
+				return getStateMachine() != null;
 			case PivotPackage.REGION__SUBVERTEX:
 				return subvertex != null && !subvertex.isEmpty();
 			case PivotPackage.REGION__TRANSITION:

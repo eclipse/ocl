@@ -114,6 +114,7 @@ public interface Visitor<R>
 	@Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object);
 	@Nullable R visitPrimitiveType(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveType object);
 	@Nullable R visitProfile(@NonNull org.eclipse.ocl.examples.pivot.Profile object);
+	@Nullable R visitProfileApplication(@NonNull org.eclipse.ocl.examples.pivot.ProfileApplication object);
 	@Nullable R visitProperty(@NonNull org.eclipse.ocl.examples.pivot.Property object);
 	@Nullable R visitPropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.PropertyCallExp object);
 	@Nullable R visitPseudostate(@NonNull org.eclipse.ocl.examples.pivot.Pseudostate object);
@@ -143,6 +144,7 @@ public interface Visitor<R>
 	@Nullable R visitTupleType(@NonNull org.eclipse.ocl.examples.pivot.TupleType object);
 	@Nullable R visitType(@NonNull org.eclipse.ocl.examples.pivot.Type object);
 	@Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object);
+	@Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object);
 	@Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object);
 	@Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object);
 	@Nullable R visitTypedMultiplicityElement(@NonNull org.eclipse.ocl.examples.pivot.TypedMultiplicityElement object);

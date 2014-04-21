@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -39,6 +40,8 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.State;
+import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -52,8 +55,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getConstrainedElement <em>Constrained Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getRedefinedConstraint <em>Redefined Constraint</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getSpecification <em>Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getTransition <em>Transition</em>}</li>
  * </ul>
  * </p>
  *
@@ -197,6 +202,52 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Transition getTransition()
+	{
+		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__TRANSITION) return null;
+		return (Transition)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTransition(Transition newTransition, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newTransition, PivotPackage.CONSTRAINT__TRANSITION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("cast")
+	public void setTransition(Transition newTransition)
+	{
+		if (newTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__TRANSITION && newTransition != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newTransition))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newTransition != null)
+				msgs = ((InternalEObject)newTransition).eInverseAdd(this, PivotPackage.TRANSITION__GUARD, Transition.class, msgs);
+			msgs = basicSetTransition(newTransition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__TRANSITION, newTransition, newTransition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isCallable()
 	{
 		return (eFlags & IS_CALLABLE_EFLAG) != 0;
@@ -213,6 +264,52 @@ public class ConstraintImpl
 		if (newIsCallable) eFlags |= IS_CALLABLE_EFLAG; else eFlags &= ~IS_CALLABLE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__IS_CALLABLE, oldIsCallable, newIsCallable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State getOwningState()
+	{
+		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__OWNING_STATE) return null;
+		return (State)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningState(State newOwningState, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningState, PivotPackage.CONSTRAINT__OWNING_STATE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("cast")
+	public void setOwningState(State newOwningState)
+	{
+		if (newOwningState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__OWNING_STATE && newOwningState != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningState))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningState != null)
+				msgs = ((InternalEObject)newOwningState).eInverseAdd(this, PivotPackage.STATE__STATE_INVARIANT, State.class, msgs);
+			msgs = basicSetOwningState(newOwningState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__OWNING_STATE, newOwningState, newOwningState));
 	}
 
 	/**
@@ -247,6 +344,31 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.CONSTRAINT__EXTENSION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningState((State)otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTransition((Transition)otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -258,10 +380,32 @@ public class ConstraintImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				return basicSetOwningState(null, msgs);
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return basicSetSpecification(null, msgs);
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				return basicSetTransition(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__STATE_INVARIANT, State.class, msgs);
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TRANSITION__GUARD, Transition.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
 	/**
@@ -289,10 +433,14 @@ public class ConstraintImpl
 				return getContext();
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				return isCallable();
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				return getOwningState();
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				return getRedefinedConstraint();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return getSpecification();
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				return getTransition();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -332,12 +480,18 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				setIsCallable((Boolean)newValue);
 				return;
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				setOwningState((State)newValue);
+				return;
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				getRedefinedConstraint().clear();
 				getRedefinedConstraint().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				setSpecification((OpaqueExpression)newValue);
+				return;
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				setTransition((Transition)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -373,11 +527,17 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				setIsCallable(IS_CALLABLE_EDEFAULT);
 				return;
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				setOwningState((State)null);
+				return;
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				getRedefinedConstraint().clear();
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				setSpecification((OpaqueExpression)null);
+				return;
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				setTransition((Transition)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -408,10 +568,14 @@ public class ConstraintImpl
 				return getContext() != null;
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				return ((eFlags & IS_CALLABLE_EFLAG) != 0) != IS_CALLABLE_EDEFAULT;
+			case PivotPackage.CONSTRAINT__OWNING_STATE:
+				return getOwningState() != null;
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				return redefinedConstraint != null && !redefinedConstraint.isEmpty();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return specification != null;
+			case PivotPackage.CONSTRAINT__TRANSITION:
+				return getTransition() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

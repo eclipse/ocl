@@ -37,8 +37,10 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElement <em>Constrained Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getRedefinedConstraint <em>Redefined Constraint</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getTransition <em>Transition</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,6 +89,33 @@ public interface Constraint
 	void setSpecification(OpaqueExpression value);
 
 	/**
+	 * Returns the value of the '<em><b>Transition</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Transition#getGuard <em>Guard</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transition</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transition</em>' container reference.
+	 * @see #setTransition(Transition)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Transition()
+	 * @see org.eclipse.ocl.examples.pivot.Transition#getGuard
+	 * @generated
+	 */
+	Transition getTransition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getTransition <em>Transition</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Transition</em>' container reference.
+	 * @see #getTransition()
+	 * @generated
+	 */
+	void setTransition(Transition value);
+
+	/**
 	 * Returns the value of the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -125,6 +154,33 @@ public interface Constraint
 	 * @generated
 	 */
 	void setIsCallable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.State#getStateInvariant <em>State Invariant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning State</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning State</em>' container reference.
+	 * @see #setOwningState(State)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_OwningState()
+	 * @see org.eclipse.ocl.examples.pivot.State#getStateInvariant
+	 * @generated
+	 */
+	State getOwningState();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getOwningState <em>Owning State</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning State</em>' container reference.
+	 * @see #getOwningState()
+	 * @generated
+	 */
+	void setOwningState(State value);
 
 	/**
 	 * Returns the value of the '<em><b>Redefined Constraint</b></em>' reference list.

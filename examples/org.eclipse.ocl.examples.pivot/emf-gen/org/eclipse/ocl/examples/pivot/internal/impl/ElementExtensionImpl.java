@@ -34,11 +34,13 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -50,6 +52,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl#getBase <em>Base</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl#isApplied <em>Is Applied</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  * </p>
@@ -60,6 +64,42 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 {
 	/**
+	 * The default value of the '{@link #isApplied() <em>Is Applied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isApplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_APPLIED_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isApplied() <em>Is Applied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isApplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_APPLIED_EFLAG = 1 << 9;
+	/**
+	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRequired()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_REQUIRED_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRequired()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_REQUIRED_EFLAG = 1 << 10;
+	/**
 	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +107,7 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * @generated
 	 * @ordered
 	 */
-	protected Type stereotype;
+	protected Stereotype stereotype;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,12 +134,12 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getStereotype()
+	public Stereotype getStereotype()
 	{
 		if (stereotype != null && ((EObject)stereotype).eIsProxy())
 		{
 			InternalEObject oldStereotype = (InternalEObject)stereotype;
-			stereotype = (Type)eResolveProxy(oldStereotype);
+			stereotype = (Stereotype)eResolveProxy(oldStereotype);
 			if (stereotype != oldStereotype)
 			{
 				if (eNotificationRequired())
@@ -114,7 +154,7 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetStereotype()
+	public Stereotype basicGetStereotype()
 	{
 		return stereotype;
 	}
@@ -124,9 +164,9 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStereotype(Type newStereotype)
+	public void setStereotype(Stereotype newStereotype)
 	{
-		Type oldStereotype = stereotype;
+		Stereotype oldStereotype = stereotype;
 		stereotype = newStereotype;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ELEMENT_EXTENSION__STEREOTYPE, oldStereotype, stereotype));
@@ -182,6 +222,52 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isApplied()
+	{
+		return (eFlags & IS_APPLIED_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsApplied(boolean newIsApplied)
+	{
+		boolean oldIsApplied = (eFlags & IS_APPLIED_EFLAG) != 0;
+		if (newIsApplied) eFlags |= IS_APPLIED_EFLAG; else eFlags &= ~IS_APPLIED_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ELEMENT_EXTENSION__IS_APPLIED, oldIsApplied, newIsApplied));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isRequired()
+	{
+		return (eFlags & IS_REQUIRED_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsRequired(boolean newIsRequired)
+	{
+		boolean oldIsRequired = (eFlags & IS_REQUIRED_EFLAG) != 0;
+		if (newIsRequired) eFlags |= IS_REQUIRED_EFLAG; else eFlags &= ~IS_REQUIRED_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ELEMENT_EXTENSION__IS_REQUIRED, oldIsRequired, newIsRequired));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -204,6 +290,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
@@ -244,6 +332,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
+				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANT:
@@ -309,6 +399,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
@@ -323,6 +415,10 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return getSuperClass();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase();
+			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
+				return isApplied();
+			case PivotPackage.ELEMENT_EXTENSION__IS_REQUIRED:
+				return isRequired();
 			case PivotPackage.ELEMENT_EXTENSION__STEREOTYPE:
 				if (resolve) return getStereotype();
 				return basicGetStereotype();
@@ -375,6 +471,10 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -400,8 +500,14 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)newValue);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
+				setIsApplied((Boolean)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_REQUIRED:
+				setIsRequired((Boolean)newValue);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__STEREOTYPE:
-				setStereotype((Type)newValue);
+				setStereotype((Stereotype)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -447,6 +553,9 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -468,8 +577,14 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)null);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
+				setIsApplied(IS_APPLIED_EDEFAULT);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_REQUIRED:
+				setIsRequired(IS_REQUIRED_EDEFAULT);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__STEREOTYPE:
-				setStereotype((Type)null);
+				setStereotype((Stereotype)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -505,6 +620,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
@@ -519,10 +636,24 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase() != null;
+			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
+				return ((eFlags & IS_APPLIED_EFLAG) != 0) != IS_APPLIED_EDEFAULT;
+			case PivotPackage.ELEMENT_EXTENSION__IS_REQUIRED:
+				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ELEMENT_EXTENSION__STEREOTYPE:
 				return stereotype != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 	@Override

@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -182,6 +183,8 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
+				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_INVARIANT:
@@ -227,6 +230,8 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_ATTRIBUTE:
@@ -292,6 +297,10 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				return;
 			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -366,6 +375,9 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -424,6 +436,8 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_ATTRIBUTE:

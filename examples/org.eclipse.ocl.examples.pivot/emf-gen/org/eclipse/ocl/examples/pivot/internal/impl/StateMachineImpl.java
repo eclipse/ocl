@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -42,7 +43,9 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -133,7 +136,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		if (region == null)
 		{
-			region = new EObjectContainmentEList<Region>(Region.class, this, PivotPackage.STATE_MACHINE__REGION);
+			region = new EObjectContainmentWithInverseEList<Region>(Region.class, this, PivotPackage.STATE_MACHINE__REGION, PivotPackage.REGION__STATE_MACHINE);
 		}
 		return region;
 	}
@@ -193,6 +196,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__EXTENDED_BYS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
@@ -201,6 +206,12 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__TRANSITION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTransition((Transition)otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__REGION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRegion()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__SUBMACHINE_STATE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubmachineState()).basicAdd(otherEnd, msgs);
 		}
@@ -245,6 +256,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.STATE_MACHINE__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.STATE_MACHINE__EXTENDED_BYS:
+				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANT:
@@ -259,6 +272,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__TRANSITION:
+				return basicSetTransition(null, msgs);
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
 				return ((InternalEList<?>)getConnectionPoint()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__REGION:
@@ -300,6 +315,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.STATE_MACHINE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.STATE_MACHINE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
@@ -316,12 +333,16 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getOwnedRule();
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				return isAbstract();
+			case PivotPackage.STATE_MACHINE__IS_ACTIVE:
+				return isActive();
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				return isInterface();
 			case PivotPackage.STATE_MACHINE__NESTED_TYPE:
 				return getNestedType();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.STATE_MACHINE__TRANSITION:
+				return getTransition();
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
 				return getConnectionPoint();
 			case PivotPackage.STATE_MACHINE__EXTENDED_STATE_MACHINE:
@@ -379,6 +400,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.STATE_MACHINE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
+				return;
 			case PivotPackage.STATE_MACHINE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -408,6 +433,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
 				return;
+			case PivotPackage.STATE_MACHINE__IS_ACTIVE:
+				setIsActive((Boolean)newValue);
+				return;
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
@@ -418,6 +446,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.STATE_MACHINE__TRANSITION:
+				setTransition((Transition)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
 				getConnectionPoint().clear();
@@ -479,6 +510,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.STATE_MACHINE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.STATE_MACHINE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -503,6 +537,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
+			case PivotPackage.STATE_MACHINE__IS_ACTIVE:
+				setIsActive(IS_ACTIVE_EDEFAULT);
+				return;
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
@@ -511,6 +548,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return;
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.STATE_MACHINE__TRANSITION:
+				setTransition((Transition)null);
 				return;
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
 				getConnectionPoint().clear();
@@ -558,6 +598,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.STATE_MACHINE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.STATE_MACHINE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.STATE_MACHINE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
@@ -574,12 +616,16 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
+			case PivotPackage.STATE_MACHINE__IS_ACTIVE:
+				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.STATE_MACHINE__NESTED_TYPE:
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.STATE_MACHINE__TRANSITION:
+				return getTransition() != null;
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
 				return connectionPoint != null && !connectionPoint.isEmpty();
 			case PivotPackage.STATE_MACHINE__EXTENDED_STATE_MACHINE:

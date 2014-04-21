@@ -83,6 +83,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
@@ -113,6 +114,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -227,6 +229,7 @@ public class PivotFactoryImpl
 			case PivotPackage.PRECEDENCE: return (EObject)createPrecedence();
 			case PivotPackage.PRIMITIVE_TYPE: return (EObject)createPrimitiveType();
 			case PivotPackage.PROFILE: return (EObject)createProfile();
+			case PivotPackage.PROFILE_APPLICATION: return (EObject)createProfileApplication();
 			case PivotPackage.PROPERTY: return (EObject)createProperty();
 			case PivotPackage.PROPERTY_CALL_EXP: return (EObject)createPropertyCallExp();
 			case PivotPackage.PSEUDOSTATE: return (EObject)createPseudostate();
@@ -255,6 +258,7 @@ public class PivotFactoryImpl
 			case PivotPackage.TUPLE_TYPE: return (EObject)createTupleType();
 			case PivotPackage.TYPE: return (EObject)createType();
 			case PivotPackage.TYPE_EXP: return (EObject)createTypeExp();
+			case PivotPackage.TYPE_EXTENSION: return (EObject)createTypeExtension();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER: return (EObject)createTypeTemplateParameter();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP: return (EObject)createUnlimitedNaturalLiteralExp();
 			case PivotPackage.UNSPECIFIED_TYPE: return (EObject)createUnspecifiedType();
@@ -1018,6 +1022,17 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ProfileApplication createProfileApplication()
+	{
+		ProfileApplicationImpl profileApplication = new ProfileApplicationImpl();
+		return profileApplication;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PropertyCallExp createPropertyCallExp() {
 		PropertyCallExpImpl propertyCallExp = new PropertyCallExpImpl();
 		return propertyCallExp;
@@ -1208,6 +1223,17 @@ public class PivotFactoryImpl
 	public TypeExp createTypeExp() {
 		TypeExpImpl typeExp = new TypeExpImpl();
 		return typeExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeExtension createTypeExtension()
+	{
+		TypeExtensionImpl typeExtension = new TypeExtensionImpl();
+		return typeExtension;
 	}
 
 	/**

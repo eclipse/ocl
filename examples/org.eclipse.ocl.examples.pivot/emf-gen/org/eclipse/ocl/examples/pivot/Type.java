@@ -36,6 +36,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getExtendedBys <em>Extended Bys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedInvariant <em>Owned Invariant</em>}</li>
@@ -50,6 +51,23 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface Type
 		extends NamedElement, TemplateableElement, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainType {
+
+	/**
+	 * Returns the value of the '<em><b>Extended Bys</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TypeExtension}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TypeExtension#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Bys</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Bys</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_ExtendedBys()
+	 * @see org.eclipse.ocl.examples.pivot.TypeExtension#getType
+	 * @generated
+	 */
+	List<TypeExtension> getExtendedBys();
 
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.

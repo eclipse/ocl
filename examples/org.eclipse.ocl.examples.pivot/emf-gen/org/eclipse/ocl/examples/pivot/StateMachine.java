@@ -43,6 +43,7 @@ public interface StateMachine extends Behavior
 	/**
 	 * Returns the value of the '<em><b>Region</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Region}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Region#getStateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -50,6 +51,7 @@ public interface StateMachine extends Behavior
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Region</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getStateMachine_Region()
+	 * @see org.eclipse.ocl.examples.pivot.Region#getStateMachine
 	 * @generated
 	 */
 	List<Region> getRegion();

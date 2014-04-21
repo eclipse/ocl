@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -232,6 +232,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public void setContainer(Region newContainer)
 	{
 		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRANSITION__CONTAINER && newContainer != null))
@@ -267,6 +268,14 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetContainer((Region)otherEnd, msgs);
+			case PivotPackage.TRANSITION__EFFECT:
+				if (effect != null)
+					msgs = ((InternalEObject)effect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__EFFECT, null, msgs);
+				return basicSetEffect((Behavior)otherEnd, msgs);
+			case PivotPackage.TRANSITION__GUARD:
+				if (guard != null)
+					msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__GUARD, null, msgs);
+				return basicSetGuard((Constraint)otherEnd, msgs);
 			case PivotPackage.TRANSITION__SOURCE:
 				if (source != null)
 					msgs = ((InternalEObject)source).eInverseRemove(this, PivotPackage.VERTEX__OUTGOING, Vertex.class, msgs);
@@ -275,6 +284,8 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 				if (target != null)
 					msgs = ((InternalEObject)target).eInverseRemove(this, PivotPackage.VERTEX__INCOMING, Vertex.class, msgs);
 				return basicSetTarget((Vertex)otherEnd, msgs);
+			case PivotPackage.TRANSITION__TRIGGER:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTrigger()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -454,9 +465,9 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 		{
 			NotificationChain msgs = null;
 			if (guard != null)
-				msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__GUARD, null, msgs);
+				msgs = ((InternalEObject)guard).eInverseRemove(this, PivotPackage.CONSTRAINT__TRANSITION, Constraint.class, msgs);
 			if (newGuard != null)
-				msgs = ((InternalEObject)newGuard).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__GUARD, null, msgs);
+				msgs = ((InternalEObject)newGuard).eInverseAdd(this, PivotPackage.CONSTRAINT__TRANSITION, Constraint.class, msgs);
 			msgs = basicSetGuard(newGuard, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -502,9 +513,9 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 		{
 			NotificationChain msgs = null;
 			if (effect != null)
-				msgs = ((InternalEObject)effect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__EFFECT, null, msgs);
+				msgs = ((InternalEObject)effect).eInverseRemove(this, PivotPackage.BEHAVIOR__TRANSITION, Behavior.class, msgs);
 			if (newEffect != null)
-				msgs = ((InternalEObject)newEffect).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__EFFECT, null, msgs);
+				msgs = ((InternalEObject)newEffect).eInverseAdd(this, PivotPackage.BEHAVIOR__TRANSITION, Behavior.class, msgs);
 			msgs = basicSetEffect(newEffect, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -521,7 +532,7 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		if (trigger == null)
 		{
-			trigger = new EObjectContainmentEList<Trigger>(Trigger.class, this, PivotPackage.TRANSITION__TRIGGER);
+			trigger = new EObjectContainmentWithInverseEList<Trigger>(Trigger.class, this, PivotPackage.TRANSITION__TRIGGER, PivotPackage.TRIGGER__TRANSITION);
 		}
 		return trigger;
 	}

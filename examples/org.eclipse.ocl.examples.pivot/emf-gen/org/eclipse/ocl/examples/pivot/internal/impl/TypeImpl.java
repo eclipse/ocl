@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -80,6 +81,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
@@ -99,6 +101,7 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getExtendedBys <em>Extended Bys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedInvariant <em>Owned Invariant</em>}</li>
@@ -154,6 +157,16 @@ public class TypeImpl
 	 * @ordered
 	 */
 	protected TemplateParameter templateParameter;
+
+	/**
+	 * The cached value of the '{@link #getExtendedBys() <em>Extended Bys</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedBys()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypeExtension> extendedBys;
 
 	/**
 	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
@@ -618,6 +631,20 @@ public class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public List<TypeExtension> getExtendedBys()
+	{
+		if (extendedBys == null)
+		{
+			extendedBys = new EObjectWithInverseResolvingEList<TypeExtension>(TypeExtension.class, this, PivotPackage.TYPE__EXTENDED_BYS, PivotPackage.TYPE_EXTENSION__TYPE);
+		}
+		return extendedBys;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isTemplate() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
 	}
@@ -649,6 +676,8 @@ public class TypeImpl
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.TYPE__EXTENDED_BYS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_OPERATION:
@@ -685,6 +714,8 @@ public class TypeImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.TYPE__EXTENDED_BYS:
+				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_INVARIANT:
@@ -745,6 +776,8 @@ public class TypeImpl
 			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.TYPE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
@@ -804,6 +837,10 @@ public class TypeImpl
 				return;
 			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -870,6 +907,9 @@ public class TypeImpl
 			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -921,6 +961,8 @@ public class TypeImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.TYPE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:

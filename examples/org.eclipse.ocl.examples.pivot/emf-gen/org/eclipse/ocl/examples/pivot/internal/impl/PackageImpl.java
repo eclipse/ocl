@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -65,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsURI <em>Ns URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
  * </p>
  *
@@ -174,6 +176,16 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected EList<Type> ownedType;
+
+	/**
+	 * The cached value of the '{@link #getProfileApplication() <em>Profile Application</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProfileApplication()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProfileApplication> profileApplication;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -340,7 +352,8 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<org.eclipse.ocl.examples.pivot.Package> getImportedPackage()
+	@SuppressWarnings("null")
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getImportedPackage()
 	{
 		if (importedPackage == null)
 		{
@@ -362,6 +375,21 @@ public class PackageImpl
 			ownedType = new EObjectContainmentWithInverseEList<Type>(Type.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE);
 		}
 		return ownedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("null")
+	public @NonNull List<ProfileApplication> getProfileApplication()
+	{
+		if (profileApplication == null)
+		{
+			profileApplication = new EObjectContainmentWithInverseEList<ProfileApplication>(ProfileApplication.class, this, PivotPackage.PACKAGE__PROFILE_APPLICATION, PivotPackage.PROFILE_APPLICATION__APPLYING_PACKAGE);
+		}
+		return profileApplication;
 	}
 
 	/**
@@ -454,6 +482,8 @@ public class PackageImpl
 				return basicSetNestingPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProfileApplication()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -486,6 +516,8 @@ public class PackageImpl
 				return basicSetNestingPackage(null, msgs);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
+				return ((InternalEList<?>)getProfileApplication()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -545,6 +577,8 @@ public class PackageImpl
 				return getNsURI();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return getOwnedType();
+			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
+				return getProfileApplication();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -612,6 +646,10 @@ public class PackageImpl
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends Type>)newValue);
 				return;
+			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
+				getProfileApplication().clear();
+				getProfileApplication().addAll((Collection<? extends ProfileApplication>)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -670,6 +708,9 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
+			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
+				getProfileApplication().clear();
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -713,6 +754,8 @@ public class PackageImpl
 				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
+			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
+				return profileApplication != null && !profileApplication.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

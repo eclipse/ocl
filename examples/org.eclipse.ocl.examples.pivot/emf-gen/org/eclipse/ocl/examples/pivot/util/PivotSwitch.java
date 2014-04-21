@@ -89,6 +89,7 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
@@ -119,6 +120,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
@@ -1172,6 +1174,15 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PivotPackage.PROFILE_APPLICATION:
+			{
+				ProfileApplication profileApplication = (ProfileApplication)theEObject;
+				T1 result = caseProfileApplication(profileApplication);
+				if (result == null) result = caseElement(profileApplication);
+				if (result == null) result = caseVisitable(profileApplication);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PivotPackage.PROPERTY:
 			{
 				Property property = (Property)theEObject;
@@ -1561,6 +1572,15 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(typeExp);
 				if (result == null) result = caseNameable(typeExp);
 				if (result == null) result = caseVisitable(typeExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.TYPE_EXTENSION:
+			{
+				TypeExtension typeExtension = (TypeExtension)theEObject;
+				T1 result = caseTypeExtension(typeExtension);
+				if (result == null) result = caseElement(typeExtension);
+				if (result == null) result = caseVisitable(typeExtension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2504,6 +2524,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Profile Application</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Profile Application</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseProfileApplication(ProfileApplication object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2792,6 +2828,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseTypeExp(TypeExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Extension</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseTypeExtension(TypeExtension object)
+	{
 		return null;
 	}
 

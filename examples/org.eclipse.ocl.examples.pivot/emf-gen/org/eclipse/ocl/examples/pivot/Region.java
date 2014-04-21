@@ -74,48 +74,52 @@ public interface Region extends Namespace
 	List<Transition> getTransition();
 
 	/**
-	 * Returns the value of the '<em><b>State Machine</b></em>' reference.
+	 * Returns the value of the '<em><b>State Machine</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.StateMachine#getRegion <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State Machine</em>' reference.
+	 * @return the value of the '<em>State Machine</em>' container reference.
 	 * @see #setStateMachine(StateMachine)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRegion_StateMachine()
+	 * @see org.eclipse.ocl.examples.pivot.StateMachine#getRegion
 	 * @generated
 	 */
 	StateMachine getStateMachine();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Region#getStateMachine <em>State Machine</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Region#getStateMachine <em>State Machine</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Machine</em>' reference.
+	 * @param value the new value of the '<em>State Machine</em>' container reference.
 	 * @see #getStateMachine()
 	 * @generated
 	 */
 	void setStateMachine(StateMachine value);
 
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' reference.
+	 * Returns the value of the '<em><b>State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.State#getRegion <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State</em>' reference.
+	 * @return the value of the '<em>State</em>' container reference.
 	 * @see #setState(State)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRegion_State()
+	 * @see org.eclipse.ocl.examples.pivot.State#getRegion
 	 * @generated
 	 */
 	State getState();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Region#getState <em>State</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Region#getState <em>State</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' reference.
+	 * @param value the new value of the '<em>State</em>' container reference.
 	 * @see #getState()
 	 * @generated
 	 */

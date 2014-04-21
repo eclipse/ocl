@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -207,6 +208,8 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
@@ -272,6 +275,10 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -344,6 +351,9 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -401,6 +411,8 @@ public class MessageTypeImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.MESSAGE_TYPE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:

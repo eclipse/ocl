@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Behavior;
@@ -385,7 +386,7 @@ public class StateImpl
 	{
 		if (connection == null)
 		{
-			connection = new EObjectContainmentEList<ConnectionPointReference>(ConnectionPointReference.class, this, PivotPackage.STATE__CONNECTION);
+			connection = new EObjectContainmentWithInverseEList<ConnectionPointReference>(ConnectionPointReference.class, this, PivotPackage.STATE__CONNECTION, PivotPackage.CONNECTION_POINT_REFERENCE__STATE);
 		}
 		return connection;
 	}
@@ -442,7 +443,7 @@ public class StateImpl
 	{
 		if (region == null)
 		{
-			region = new EObjectContainmentEList<Region>(Region.class, this, PivotPackage.STATE__REGION);
+			region = new EObjectContainmentWithInverseEList<Region>(Region.class, this, PivotPackage.STATE__REGION, PivotPackage.REGION__STATE);
 		}
 		return region;
 	}
@@ -485,9 +486,9 @@ public class StateImpl
 		{
 			NotificationChain msgs = null;
 			if (stateInvariant != null)
-				msgs = ((InternalEObject)stateInvariant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__STATE_INVARIANT, null, msgs);
+				msgs = ((InternalEObject)stateInvariant).eInverseRemove(this, PivotPackage.CONSTRAINT__OWNING_STATE, Constraint.class, msgs);
 			if (newStateInvariant != null)
-				msgs = ((InternalEObject)newStateInvariant).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__STATE_INVARIANT, null, msgs);
+				msgs = ((InternalEObject)newStateInvariant).eInverseAdd(this, PivotPackage.CONSTRAINT__OWNING_STATE, Constraint.class, msgs);
 			msgs = basicSetStateInvariant(newStateInvariant, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -648,7 +649,7 @@ public class StateImpl
 	{
 		if (connectionPoint == null)
 		{
-			connectionPoint = new EObjectContainmentEList<Pseudostate>(Pseudostate.class, this, PivotPackage.STATE__CONNECTION_POINT);
+			connectionPoint = new EObjectContainmentWithInverseEList<Pseudostate>(Pseudostate.class, this, PivotPackage.STATE__CONNECTION_POINT, PivotPackage.PSEUDOSTATE__STATE);
 		}
 		return connectionPoint;
 	}
@@ -662,7 +663,7 @@ public class StateImpl
 	{
 		if (deferrableTrigger == null)
 		{
-			deferrableTrigger = new EObjectContainmentEList<Trigger>(Trigger.class, this, PivotPackage.STATE__DEFERRABLE_TRIGGER);
+			deferrableTrigger = new EObjectContainmentWithInverseEList<Trigger>(Trigger.class, this, PivotPackage.STATE__DEFERRABLE_TRIGGER, PivotPackage.TRIGGER__STATE);
 		}
 		return deferrableTrigger;
 	}
@@ -688,6 +689,18 @@ public class StateImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE__OUTGOING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__CONNECTION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnection()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__CONNECTION_POINT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectionPoint()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDeferrableTrigger()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__REGION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRegion()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__STATE_INVARIANT:
+				if (stateInvariant != null)
+					msgs = ((InternalEObject)stateInvariant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__STATE_INVARIANT, null, msgs);
+				return basicSetStateInvariant((Constraint)otherEnd, msgs);
 			case PivotPackage.STATE__SUBMACHINE:
 				if (submachine != null)
 					msgs = ((InternalEObject)submachine).eInverseRemove(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATE, StateMachine.class, msgs);

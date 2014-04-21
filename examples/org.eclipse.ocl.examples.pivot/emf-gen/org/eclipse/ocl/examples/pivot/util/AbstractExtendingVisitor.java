@@ -322,6 +322,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitPackage(object);
 	}
 
+	public @Nullable R visitProfileApplication(@NonNull org.eclipse.ocl.examples.pivot.ProfileApplication object) {
+		return visitElement(object);
+	}
+
 	public @Nullable R visitProperty(@NonNull org.eclipse.ocl.examples.pivot.Property object) {
 		return visitFeature(object);
 	}
@@ -436,6 +440,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object) {
 		return visitOCLExpression(object);
+	}
+
+	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
+		return visitElement(object);
 	}
 
 	public @Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object) {

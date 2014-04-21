@@ -803,7 +803,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 //					EClass eClass = umlStereotypeApplication.eClass();
 					List<org.eclipse.uml2.uml.Element> umlStereotypedElements = stereotypedElements.get(umlStereotypeApplication);
 					assert umlStereotypedElements != null;
-					Type pivotStereotype = resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
+					Stereotype pivotStereotype = resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 					if (pivotStereotype == null) {
 						pivotStereotype = resolveStereotype(umlStereotypeApplication, umlStereotypedElements);		// FIXME debugging
 					}
@@ -878,10 +878,10 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		 * Note that the reference ine the UML Stereotype application is a to a particular Ecore version of the Profile, rather than
 		 * to the UML profile, so we have to locate the UML profile by URI and name.
 		 */
-		protected @Nullable Type resolveStereotype(@NonNull EObject umlStereotypeApplication, @NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements) {
+		protected @Nullable Stereotype resolveStereotype(@NonNull EObject umlStereotypeApplication, @NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements) {
 			EClass umlStereotypeEClass = umlStereotypeApplication.eClass();
 			if (!(umlStereotypeApplication instanceof DynamicEObjectImpl)) {					// If stereotyped element has been genmodelled
-				return metaModelManager.getPivotOfEcore(Type.class, umlStereotypeEClass);		// then it is already a Type rather than a Stereotype
+				return metaModelManager.getPivotOfEcore(Stereotype.class, umlStereotypeEClass);		// then it is already a Type rather than a Stereotype
 			}
 			//
 			//	Get the umlStereotypedPackage common to all the base_xxx elements

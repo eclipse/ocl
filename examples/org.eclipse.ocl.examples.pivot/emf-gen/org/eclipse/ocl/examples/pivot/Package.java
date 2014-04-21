@@ -40,6 +40,7 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsURI <em>Ns URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
  * </p>
  *
@@ -128,7 +129,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_ImportedPackage()
 	 * @generated
 	 */
-	List<Package> getImportedPackage();
+	@NonNull List<Package> getImportedPackage();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference list.
@@ -145,6 +146,23 @@ public interface Package
 	 * @generated
 	 */
 	@NonNull List<Type> getOwnedType();
+
+	/**
+	 * Returns the value of the '<em><b>Profile Application</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.ProfileApplication}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.ProfileApplication#getApplyingPackage <em>Applying Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Profile Application</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Profile Application</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_ProfileApplication()
+	 * @see org.eclipse.ocl.examples.pivot.ProfileApplication#getApplyingPackage
+	 * @generated
+	 */
+	@NonNull List<ProfileApplication> getProfileApplication();
 
 	/**
 	 * Returns the value of the '<em><b>Nesting Package</b></em>' container reference.

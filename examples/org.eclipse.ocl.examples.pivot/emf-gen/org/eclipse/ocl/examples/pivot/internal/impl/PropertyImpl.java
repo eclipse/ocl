@@ -86,7 +86,7 @@ import org.eclipse.osgi.util.NLS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getAssociationClass <em>Association Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefaultExpression <em>Default Expression</em>}</li>
@@ -126,14 +126,14 @@ public class PropertyImpl
 	protected TemplateParameter templateParameter;
 
 	/**
-	 * The cached value of the '{@link #getAssociation() <em>Association</em>}' reference.
+	 * The cached value of the '{@link #getAssociationClass() <em>Association Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssociation()
+	 * @see #getAssociationClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected AssociationClass association;
+	protected AssociationClass associationClass;
 
 	/**
 	 * The default value of the '{@link #getDefault() <em>Default</em>}' attribute.
@@ -547,6 +547,74 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public AssociationClass getAssociationClass()
+	{
+		if (associationClass != null && ((EObject)associationClass).eIsProxy())
+		{
+			InternalEObject oldAssociationClass = (InternalEObject)associationClass;
+			associationClass = (AssociationClass)eResolveProxy(oldAssociationClass);
+			if (associationClass != oldAssociationClass)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.PROPERTY__ASSOCIATION_CLASS, oldAssociationClass, associationClass));
+			}
+		}
+		return associationClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AssociationClass basicGetAssociationClass()
+	{
+		return associationClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAssociationClass(AssociationClass newAssociationClass, NotificationChain msgs)
+	{
+		AssociationClass oldAssociationClass = associationClass;
+		associationClass = newAssociationClass;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__ASSOCIATION_CLASS, oldAssociationClass, newAssociationClass);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssociationClass(AssociationClass newAssociationClass)
+	{
+		if (newAssociationClass != associationClass)
+		{
+			NotificationChain msgs = null;
+			if (associationClass != null)
+				msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
+			if (newAssociationClass != null)
+				msgs = ((InternalEObject)newAssociationClass).eInverseAdd(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
+			msgs = basicSetAssociationClass(newAssociationClass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__ASSOCIATION_CLASS, newAssociationClass, newAssociationClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isReadOnly() {
 		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
 	}
@@ -664,71 +732,6 @@ public class PropertyImpl
 		opposite = newOpposite;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OPPOSITE, oldOpposite, opposite));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AssociationClass getAssociation() {
-		if (association != null && ((EObject)association).eIsProxy())
-		{
-			InternalEObject oldAssociation = (InternalEObject)association;
-			association = (AssociationClass)eResolveProxy(oldAssociation);
-			if (association != oldAssociation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.PROPERTY__ASSOCIATION, oldAssociation, association));
-			}
-		}
-		return association;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AssociationClass basicGetAssociation() {
-		return association;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAssociation(
-			AssociationClass newAssociation, NotificationChain msgs) {
-		AssociationClass oldAssociation = association;
-		association = newAssociation;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__ASSOCIATION, oldAssociation, newAssociation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAssociation(AssociationClass newAssociation) {
-		if (newAssociation != association)
-		{
-			NotificationChain msgs = null;
-			if (association != null)
-				msgs = ((InternalEObject)association).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
-			if (newAssociation != null)
-				msgs = ((InternalEObject)newAssociation).eInverseAdd(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
-			msgs = basicSetAssociation(newAssociation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__ASSOCIATION, newAssociation, newAssociation));
 	}
 
 	/**
@@ -1403,10 +1406,10 @@ public class PropertyImpl
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.PROPERTY__ASSOCIATION:
-				if (association != null)
-					msgs = ((InternalEObject)association).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
-				return basicSetAssociation((AssociationClass)otherEnd, msgs);
+			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
+				if (associationClass != null)
+					msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
+				return basicSetAssociationClass((AssociationClass)otherEnd, msgs);
 			case PivotPackage.PROPERTY__OWNING_TYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -1435,8 +1438,8 @@ public class PropertyImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
-			case PivotPackage.PROPERTY__ASSOCIATION:
-				return basicSetAssociation(null, msgs);
+			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
+				return basicSetAssociationClass(null, msgs);
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
 				return basicSetDefaultExpression(null, msgs);
 			case PivotPackage.PROPERTY__OWNING_TYPE:
@@ -1496,9 +1499,9 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
-			case PivotPackage.PROPERTY__ASSOCIATION:
-				if (resolve) return getAssociation();
-				return basicGetAssociation();
+			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
+				if (resolve) return getAssociationClass();
+				return basicGetAssociationClass();
 			case PivotPackage.PROPERTY__CLASS:
 				return getClass_();
 			case PivotPackage.PROPERTY__DEFAULT:
@@ -1587,8 +1590,8 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
-			case PivotPackage.PROPERTY__ASSOCIATION:
-				setAssociation((AssociationClass)newValue);
+			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
+				setAssociationClass((AssociationClass)newValue);
 				return;
 			case PivotPackage.PROPERTY__DEFAULT:
 				setDefault((String)newValue);
@@ -1690,8 +1693,8 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
-			case PivotPackage.PROPERTY__ASSOCIATION:
-				setAssociation((AssociationClass)null);
+			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
+				setAssociationClass((AssociationClass)null);
 				return;
 			case PivotPackage.PROPERTY__DEFAULT:
 				setDefault(DEFAULT_EDEFAULT);
@@ -1779,8 +1782,8 @@ public class PropertyImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				return templateParameter != null;
-			case PivotPackage.PROPERTY__ASSOCIATION:
-				return association != null;
+			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
+				return associationClass != null;
 			case PivotPackage.PROPERTY__CLASS:
 				return getClass_() != null;
 			case PivotPackage.PROPERTY__DEFAULT:

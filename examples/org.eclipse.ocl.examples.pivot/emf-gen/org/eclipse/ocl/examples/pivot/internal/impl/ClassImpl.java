@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -53,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getNestedType <em>Nested Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedBehavior <em>Owned Behavior</em>}</li>
@@ -96,6 +98,26 @@ public class ClassImpl
 	protected static final int IS_ABSTRACT_EFLAG = 1 << 9;
 
 	/**
+	 * The default value of the '{@link #isActive() <em>Is Active</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isActive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ACTIVE_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isActive() <em>Is Active</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isActive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_ACTIVE_EFLAG = 1 << 10;
+
+	/**
 	 * The default value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,7 +135,7 @@ public class ClassImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
+	protected static final int IS_INTERFACE_EFLAG = 1 << 11;
 
 	/**
 	 * The cached value of the '{@link #getNestedType() <em>Nested Type</em>}' containment reference list.
@@ -196,6 +218,29 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isActive()
+	{
+		return (eFlags & IS_ACTIVE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsActive(boolean newIsActive)
+	{
+		boolean oldIsActive = (eFlags & IS_ACTIVE_EFLAG) != 0;
+		if (newIsActive) eFlags |= IS_ACTIVE_EFLAG; else eFlags &= ~IS_ACTIVE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__IS_ACTIVE, oldIsActive, newIsActive));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<Behavior> getOwnedBehavior()
 	{
 		if (ownedBehavior == null)
@@ -229,6 +274,8 @@ public class ClassImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.CLASS__EXTENDED_BYS:
+				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_INVARIANT:
@@ -325,6 +372,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.CLASS__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
@@ -341,6 +390,8 @@ public class ClassImpl
 				return getOwnedRule();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return isAbstract();
+			case PivotPackage.CLASS__IS_ACTIVE:
+				return isActive();
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return isInterface();
 			case PivotPackage.CLASS__NESTED_TYPE:
@@ -395,6 +446,10 @@ public class ClassImpl
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.CLASS__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
+				return;
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -423,6 +478,9 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
+				return;
+			case PivotPackage.CLASS__IS_ACTIVE:
+				setIsActive((Boolean)newValue);
 				return;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
@@ -478,6 +536,9 @@ public class ClassImpl
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.CLASS__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -501,6 +562,9 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case PivotPackage.CLASS__IS_ACTIVE:
+				setIsActive(IS_ACTIVE_EDEFAULT);
 				return;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
@@ -544,6 +608,8 @@ public class ClassImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.CLASS__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
@@ -560,6 +626,8 @@ public class ClassImpl
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
+			case PivotPackage.CLASS__IS_ACTIVE:
+				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.CLASS__NESTED_TYPE:

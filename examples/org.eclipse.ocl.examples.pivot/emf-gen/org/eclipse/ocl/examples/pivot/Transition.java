@@ -151,6 +151,7 @@ public interface Transition extends Namespace
 
 	/**
 	 * Returns the value of the '<em><b>Guard</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Constraint#getTransition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -159,6 +160,7 @@ public interface Transition extends Namespace
 	 * @return the value of the '<em>Guard</em>' containment reference.
 	 * @see #setGuard(Constraint)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTransition_Guard()
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getTransition
 	 * @generated
 	 */
 	Constraint getGuard();
@@ -175,6 +177,7 @@ public interface Transition extends Namespace
 
 	/**
 	 * Returns the value of the '<em><b>Effect</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Behavior#getTransition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -183,6 +186,7 @@ public interface Transition extends Namespace
 	 * @return the value of the '<em>Effect</em>' containment reference.
 	 * @see #setEffect(Behavior)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTransition_Effect()
+	 * @see org.eclipse.ocl.examples.pivot.Behavior#getTransition
 	 * @generated
 	 */
 	Behavior getEffect();
@@ -200,6 +204,7 @@ public interface Transition extends Namespace
 	/**
 	 * Returns the value of the '<em><b>Trigger</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Trigger}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Trigger#getTransition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -207,6 +212,7 @@ public interface Transition extends Namespace
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTransition_Trigger()
+	 * @see org.eclipse.ocl.examples.pivot.Trigger#getTransition
 	 * @generated
 	 */
 	List<Trigger> getTrigger();

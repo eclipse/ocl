@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -218,6 +219,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.UNSPECIFIED_TYPE__EXTENDED_BYS:
+				return getExtendedBys();
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
@@ -234,6 +237,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getOwnedRule();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
 				return isAbstract();
+			case PivotPackage.UNSPECIFIED_TYPE__IS_ACTIVE:
+				return isActive();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_INTERFACE:
 				return isInterface();
 			case PivotPackage.UNSPECIFIED_TYPE__NESTED_TYPE:
@@ -295,6 +300,10 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -323,6 +332,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__IS_ACTIVE:
+				setIsActive((Boolean)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
@@ -385,6 +397,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__EXTENDED_BYS:
+				getExtendedBys().clear();
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -408,6 +423,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__IS_ACTIVE:
+				setIsActive(IS_ACTIVE_EDEFAULT);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
@@ -458,6 +476,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.UNSPECIFIED_TYPE__EXTENDED_BYS:
+				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
@@ -474,6 +494,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
+			case PivotPackage.UNSPECIFIED_TYPE__IS_ACTIVE:
+				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.UNSPECIFIED_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.UNSPECIFIED_TYPE__NESTED_TYPE:

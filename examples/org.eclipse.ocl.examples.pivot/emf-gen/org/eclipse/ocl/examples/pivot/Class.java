@@ -32,6 +32,7 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getNestedType <em>Nested Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
@@ -68,6 +69,31 @@ public interface Class
 	 * @generated
 	 */
 	void setIsAbstract(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Active</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * True when a class is active.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Active</em>' attribute.
+	 * @see #setIsActive(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_IsActive()
+	 * @generated
+	 */
+	boolean isActive();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#isActive <em>Is Active</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Active</em>' attribute.
+	 * @see #isActive()
+	 * @generated
+	 */
+	void setIsActive(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Behavior</b></em>' containment reference list.

@@ -90,6 +90,7 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Profile;
+import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
@@ -120,6 +121,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
@@ -560,6 +562,11 @@ public class PivotAdapterFactory
 				return createProfileAdapter();
 			}
 			@Override
+			public Adapter caseProfileApplication(ProfileApplication object)
+			{
+				return createProfileApplicationAdapter();
+			}
+			@Override
 			public Adapter caseProperty(Property object)
 			{
 				return createPropertyAdapter();
@@ -708,6 +715,11 @@ public class PivotAdapterFactory
 			public Adapter caseTypeExp(TypeExp object)
 			{
 				return createTypeExpAdapter();
+			}
+			@Override
+			public Adapter caseTypeExtension(TypeExtension object)
+			{
+				return createTypeExtensionAdapter();
 			}
 			@Override
 			public Adapter caseTypeTemplateParameter(TypeTemplateParameter object)
@@ -1499,6 +1511,21 @@ public class PivotAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.ProfileApplication <em>Profile Application</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.ProfileApplication
+	 * @generated
+	 */
+	public Adapter createProfileApplicationAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.PropertyCallExp <em>Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1768,6 +1795,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypeExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.TypeExtension <em>Type Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.TypeExtension
+	 * @generated
+	 */
+	public Adapter createTypeExtensionAdapter()
+	{
 		return null;
 	}
 

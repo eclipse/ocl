@@ -490,6 +490,12 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		return postVisit(object, prologue, result);
 	}
 
+	public @Nullable R visitProfileApplication(@NonNull org.eclipse.ocl.examples.pivot.ProfileApplication object) {
+		P prologue = preVisit(object);
+		R result = delegate.visitProfileApplication(object);
+		return postVisit(object, prologue, result);
+	}
+
 	public @Nullable R visitProperty(@NonNull org.eclipse.ocl.examples.pivot.Property object) {
 		P prologue = preVisit(object);
 		R result = delegate.visitProperty(object);
@@ -661,6 +667,12 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object) {
 		P prologue = preVisit(object);
 		R result = delegate.visitTypeExp(object);
+		return postVisit(object, prologue, result);
+	}
+
+	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
+		P prologue = preVisit(object);
+		R result = delegate.visitTypeExtension(object);
 		return postVisit(object, prologue, result);
 	}
 
