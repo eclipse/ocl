@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.DomainProperties;
@@ -80,16 +81,16 @@ public class EcoreReflectiveType extends ReflectiveType
 	}
 
 	@NonNull
-	public Iterable<? extends DomainOperation> getAllOperations(boolean selectStatic) {
+	public Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter) {
 		throw new UnsupportedOperationException();
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(boolean selectStatic) {
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
 			allProperties = allProperties2 = new DomainProperties(this);
 		}
-		return allProperties2.getAllProperties(selectStatic);
+		return allProperties2.getAllProperties(featureFilter);
 	}
 
 	public final @NonNull EClassifier getEClassifier() {

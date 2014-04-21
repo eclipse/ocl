@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -396,19 +397,19 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * nothing is found.
 	 */
 	protected @Nullable List<NamedElement> getInvocations(@NonNull Type asType, @NonNull String name, int iteratorCount, int expressionCount) {
-		Iterable<? extends DomainOperation> instanceOperations = metaModelManager.getAllOperations(asType, false, name);
+		Iterable<? extends DomainOperation> instanceOperations = metaModelManager.getAllOperations(asType, FeatureFilter.SELECT_NON_STATIC, name);
 		List<NamedElement> invocations = getInvocationsInternal(null, instanceOperations, iteratorCount, expressionCount);
 		if (asType instanceof ElementExtension) {
 			Type asStereotype = ((ElementExtension)asType).getStereotype();
 			if (asStereotype != null) {
-				Iterable<? extends DomainOperation> stereotypeOperations = metaModelManager.getAllOperations(asStereotype, false, name);
+				Iterable<? extends DomainOperation> stereotypeOperations = metaModelManager.getAllOperations(asStereotype, FeatureFilter.SELECT_NON_STATIC, name);
 				invocations = getInvocationsInternal(invocations, stereotypeOperations, iteratorCount, expressionCount);
 			}
 		}
 		if (asType instanceof Metaclass<?>) {
 			Type instanceType = ((Metaclass<?>)asType).getInstanceType();
 			if (instanceType != null) {
-				Iterable<? extends DomainOperation> classOperations = metaModelManager.getAllOperations(instanceType, true, name);
+				Iterable<? extends DomainOperation> classOperations = metaModelManager.getAllOperations(instanceType, FeatureFilter.SELECT_STATIC, name);
 				invocations = getInvocationsInternal(invocations, classOperations, iteratorCount, expressionCount);
 			}
 		}

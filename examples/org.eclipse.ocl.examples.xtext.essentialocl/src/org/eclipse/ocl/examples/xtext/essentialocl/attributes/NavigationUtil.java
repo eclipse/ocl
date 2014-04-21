@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -80,7 +81,7 @@ public class NavigationUtil
 		}
 		String name = csPathElement.toString();
 		assert name != null;
-		for (DomainOperation operation : metaModelManager.getAllOperations(type, false, name)) {
+		for (DomainOperation operation : metaModelManager.getAllOperations(type, FeatureFilter.SELECT_NON_STATIC, name)) {
 			return operation instanceof Iteration;		// mixed overload are not allowed
 		}
 		return false;

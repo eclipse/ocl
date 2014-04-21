@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -63,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 
@@ -266,6 +268,25 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				return;
 			}
 		}
+
+		@Override
+		public String toString() {
+			if (resolution != null) {
+				return resolution.toString();
+			}
+			List<DomainProperty> partials2 = partials;
+			if (partials2 == null) {
+				return "";
+			}
+			StringBuilder s = new StringBuilder();
+			for (DomainProperty dProperty : partials2) {
+				if (s.length() > 0) {
+					s.append(",");
+				}
+				s.append(dProperty.toString());
+			}
+			return s.toString();
+		}
 	}
 
 	public static final @NonNull BestOperation bestOperation = new BestOperation();
@@ -462,25 +483,30 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}
 	} */
 
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(boolean selectStatic) {
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter) {
 		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
 		if (name2operations2 == null) {
 			name2operations2 = initMemberOperations();
 		}
 		Iterable<Map<ParametersId, List<DomainOperation>>> itMapListOps = name2operations2.values();
-		@SuppressWarnings("null")
-		@NonNull Iterable<Iterable<List<DomainOperation>>> itItListOps = Iterables.transform(itMapListOps, MAP_VALUES);
-		@SuppressWarnings("null")
-		@NonNull Iterable<List<DomainOperation>> itListOps = Iterables.concat(itItListOps);
-		@SuppressWarnings("null")
-		@NonNull Iterable<DomainOperation> itOps = Iterables.concat(itListOps);
-		@SuppressWarnings("null")
-		@NonNull Iterable<DomainOperation> subItOps = Iterables.filter(itOps, selectStatic ? SELECT_STATIC_OPERATION : REJECT_STATIC_OPERATION);
+		@SuppressWarnings("null")@NonNull Iterable<Iterable<List<DomainOperation>>> itItListOps = Iterables.transform(itMapListOps, MAP_VALUES);
+		@SuppressWarnings("null")@NonNull Iterable<List<DomainOperation>> itListOps = Iterables.concat(itItListOps);
+		@SuppressWarnings("null")@NonNull Iterable<DomainOperation> itOps = Iterables.concat(itListOps);
+		if (featureFilter == null) {
+			return itOps;
+		}
+		@SuppressWarnings("null")@NonNull Iterable<DomainOperation> subItOps = Iterables.filter(itOps,
+			new Predicate<DomainOperation>()
+			{
+				public boolean apply(DomainOperation domainOperation) {
+					return (domainOperation != null) && featureFilter.accept(domainOperation);
+				}
+			});
 		return subItOps;
 	}
 	
 
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(boolean selectStatic, @NonNull String name) {
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(final @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
 		if (name2operations2 == null) {
 			name2operations2 = initMemberOperations();
@@ -489,10 +515,17 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		if ((overloads == null) || overloads.isEmpty()) {
 			return MetaModelManager.EMPTY_OPERATION_LIST;
 		}
-		@SuppressWarnings("null")
-		@NonNull Iterable<DomainOperation> transform = Iterables.concat(overloads.values()); //, bestOperation);
-		@SuppressWarnings("null")
-		@NonNull Iterable<DomainOperation> subItOps = Iterables.filter(transform, selectStatic ? SELECT_STATIC_OPERATION : REJECT_STATIC_OPERATION);
+		@SuppressWarnings("null")@NonNull Iterable<DomainOperation> transform = Iterables.concat(overloads.values()); //, bestOperation);
+		if (featureFilter == null) {
+			return transform;
+		}
+		@SuppressWarnings("null")@NonNull Iterable<DomainOperation> subItOps = Iterables.filter(transform,
+			new Predicate<DomainOperation>()
+			{
+				public boolean apply(DomainOperation domainOperation) {
+					return (domainOperation != null) && featureFilter.accept(domainOperation);
+				}
+			});
 //		for (DomainOperation op : subItOps) {
 //			if (op instanceof EObject) {
 //				assert ((EObject)op).eResource() != null;
@@ -501,24 +534,33 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return subItOps;
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(boolean selectStatic) {
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter) {
 		Map<String, PartialProperties> name2properties2 = name2properties;
 		if (name2properties2 == null) {
 			name2properties2 = initMemberProperties();
 		}
-		@SuppressWarnings("null")
-		@NonNull Iterable<DomainProperty> transform = Iterables.transform(name2properties2.values(), new Function<PartialProperties, DomainProperty>()
+		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> transform = Iterables.transform(name2properties2.values(),
+			new Function<PartialProperties, DomainProperty>()
 			{
 				public DomainProperty apply(PartialProperties properties) {
 					return properties.get();
 				}
 			});
+		if (featureFilter == null) {
+			return transform;
+		}
 		@SuppressWarnings("null")
-		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(transform, selectStatic ? SELECT_STATIC_PROPERTY : REJECT_STATIC_PROPERTY);
+		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(transform,
+			new Predicate<DomainProperty>()
+			{
+				public boolean apply(DomainProperty domainProperty) {
+					return (domainProperty != null) && featureFilter.accept(domainProperty);
+				}
+			});
 		return subItOps;
 	}
 
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(boolean selectStatic, @NonNull String name) {
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		Map<String, PartialProperties> name2properties2 = name2properties;
 		if (name2properties2 == null) {
 			name2properties2 = initMemberProperties();
@@ -529,7 +571,16 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}
 //		@SuppressWarnings("null")
 //		@NonNull List<DomainProperty> singletonList = partials; //Collections.singletonList(partials.get(0));
-		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(partials, selectStatic ? SELECT_STATIC_PROPERTY : REJECT_STATIC_PROPERTY);
+		if (featureFilter == null) {
+			return partials;
+		}
+		@SuppressWarnings("null")@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(partials,
+			new Predicate<DomainProperty>()
+			{
+				public boolean apply(DomainProperty domainProperty) {
+					return (domainProperty != null) && featureFilter.accept(domainProperty);
+				}
+			});
 		return subItOps;
 	}
 
@@ -995,7 +1046,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				Object umlStereotypedElement = umlStereotypeApplication.eGet(eStructuralFeature);
 //				System.out.println("Element " + featureName + " => " + String.valueOf(umlStereotypedElement));
 				Property referenceProperty = null;
-				for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, false, featureName)) {
+				for (DomainProperty aProperty : metaModelManager.getAllProperties(stereotype, FeatureFilter.SELECT_NON_STATIC, featureName)) {
 					if (aProperty instanceof Property) {
 						referenceProperty = (Property) aProperty;
 						break;

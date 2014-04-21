@@ -17,6 +17,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
@@ -39,7 +40,7 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 			if (pivot != null) {
 				Type type = pivot.getType();
 				if (type != null) {
-					environmentView.addAllProperties(type, false);
+					environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
 				}
 			}
 			return null;

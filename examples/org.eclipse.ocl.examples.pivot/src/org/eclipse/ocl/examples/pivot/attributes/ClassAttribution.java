@@ -19,8 +19,9 @@ package org.eclipse.ocl.examples.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -38,8 +39,8 @@ public class ClassAttribution extends AbstractAttribution
 		if (targetClass.getOwningTemplateParameter() != null) {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getOclAnyType(); // WIP use lowerbound
-			environmentView.addAllOperations(type, false);
-			environmentView.addAllProperties(type, false);
+			environmentView.addAllOperations(type, null);
+			environmentView.addAllProperties(type, null);
 			environmentView.addAllStates(type);
 			return null;
 		}
@@ -52,12 +53,12 @@ public class ClassAttribution extends AbstractAttribution
 				}
 			}
 		}
-		environmentView.addAllOperations(targetClass, false);
-		environmentView.addAllProperties(targetClass, false);
+		environmentView.addAllOperations(targetClass, null);
+		environmentView.addAllProperties(targetClass, null);
 		environmentView.addAllStates(targetClass);
 		if (!environmentView.hasFinalResult()) {
-			environmentView.addAllOperations(targetClass, true);
-			environmentView.addAllProperties(targetClass, true);
+			environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_STATIC);
+			environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_STATIC);
 		}
 		return scopeView.getParent();
 	}

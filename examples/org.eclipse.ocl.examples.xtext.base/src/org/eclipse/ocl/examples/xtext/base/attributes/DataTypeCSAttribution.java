@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.base.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -35,8 +36,8 @@ public class DataTypeCSAttribution extends AbstractAttribution
 		DataType pivot = PivotUtil.getPivot(DataType.class, targetElement);
 		if (pivot != null) {
 			environmentView.addElements(PivotUtil.getTemplateParameters(pivot));
-			environmentView.addAllProperties(pivot, false);
-			environmentView.addAllOperations(pivot, false);
+			environmentView.addAllProperties(pivot, FeatureFilter.SELECT_NON_STATIC);
+			environmentView.addAllOperations(pivot, FeatureFilter.SELECT_NON_STATIC);
 		}
 		return scopeView.getParent();
 	}

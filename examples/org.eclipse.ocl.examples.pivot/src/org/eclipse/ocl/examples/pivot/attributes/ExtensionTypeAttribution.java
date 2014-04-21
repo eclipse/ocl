@@ -17,6 +17,7 @@ package org.eclipse.ocl.examples.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -32,16 +33,16 @@ public class ExtensionTypeAttribution extends ClassAttribution
 		ElementExtension targetClass = (ElementExtension) target;
 		Type stereotype = targetClass.getStereotype();
 		if (stereotype != null) {
-			environmentView.addAllOperations(stereotype, false);	// Operations are in the stereotype
+			environmentView.addAllOperations(stereotype, FeatureFilter.SELECT_NON_STATIC);	// Operations are in the stereotype
 		}
-		environmentView.addAllProperties(targetClass, false);		// AbstractTypeServer.initStereotypePropertiesFrom creates local properties
+		environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_NON_STATIC);		// AbstractTypeServer.initStereotypePropertiesFrom creates local properties
 		if (!environmentView.hasFinalResult()) {
 //			Metaclass<?> metaclass = environmentView.getMetaModelManager().getMetaclass(targetClass);
 //			environmentView.addAllProperties(metaclass, false);
 			if (stereotype != null) {
-				environmentView.addAllOperations(stereotype, true);
+				environmentView.addAllOperations(stereotype, FeatureFilter.SELECT_STATIC);
 			}
-			environmentView.addAllProperties(targetClass, true);
+			environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_STATIC);
 		}
 		return scopeView.getParent();
 	}

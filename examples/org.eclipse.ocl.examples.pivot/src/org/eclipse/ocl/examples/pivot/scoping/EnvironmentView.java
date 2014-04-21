@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -264,7 +265,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addAllOperations(@NonNull Type type, boolean selectStatic) {
+	public void addAllOperations(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.ITERATION)		// If ITERATION is acceptable then so too is OPERATION
 				&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want operations when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
@@ -272,15 +273,15 @@ public class EnvironmentView
 			TypeServer typeServer = metaModelManager.getTypeServer(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (DomainOperation operation : typeServer.getAllOperations(selectStatic, name2)) {
-					if ((operation != null) && (operation.isStatic() == selectStatic)) {
+				for (DomainOperation operation : typeServer.getAllOperations(featureFilter, name2)) {
+					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addElement(name2, operation);
 					}
 				}
 			}
 			else {
-				for (DomainOperation operation : typeServer.getAllOperations(selectStatic)) {
-					if ((operation != null) && (operation.isStatic() == selectStatic)) {
+				for (DomainOperation operation : typeServer.getAllOperations(featureFilter)) {
+					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addNamedElement(operation);
 					}
 				}
@@ -368,21 +369,21 @@ public class EnvironmentView
 		}
 	}
 	
-	public void addAllProperties(@NonNull Type type, boolean selectStatic) {
+	public void addAllProperties(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want properties when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
 			TypeServer typeServer = metaModelManager.getTypeServer(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (DomainProperty property : typeServer.getAllProperties(selectStatic, name2)) {
+				for (DomainProperty property : typeServer.getAllProperties(featureFilter, name2)) {
 					if (property != null) {
 						addNamedElement(property);
 					}
 				}
 			}
 			else {
-				for (DomainProperty property : typeServer.getAllProperties(selectStatic)) {
+				for (DomainProperty property : typeServer.getAllProperties(featureFilter)) {
 					if (property != null) {
 						addNamedElement(property);
 					}

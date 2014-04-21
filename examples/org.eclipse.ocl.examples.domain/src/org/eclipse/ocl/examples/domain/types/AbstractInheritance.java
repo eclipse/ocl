@@ -39,46 +39,8 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.examples.domain.values.OCLValue;
 
-import com.google.common.base.Predicate;
-
 public abstract class AbstractInheritance implements DomainInheritance
 {
-	public static final Predicate<DomainOperation> REJECT_STATIC_OPERATION = new RejectStaticOperation();
-
-	public static final Predicate<DomainProperty> REJECT_STATIC_PROPERTY = new RejectStaticProperty();
-
-	public static final Predicate<DomainOperation> SELECT_STATIC_OPERATION = new SelectStaticOperation();
-
-	public static final Predicate<DomainProperty> SELECT_STATIC_PROPERTY = new SelectStaticProperty();
-	
-	public static final class RejectStaticOperation implements Predicate<DomainOperation>
-	{
-		public boolean apply(DomainOperation operation) {
-			return (operation != null) && !operation.isStatic();
-		}
-	}
-
-	public static final class RejectStaticProperty implements Predicate<DomainProperty>
-	{
-		public boolean apply(DomainProperty property) {
-			return (property != null) && !property.isStatic();
-		}
-	}
-	
-	public static final class SelectStaticOperation implements Predicate<DomainOperation>
-	{
-		public boolean apply(DomainOperation operation) {
-			return (operation != null) && operation.isStatic();
-		}
-	}
-
-	public static final class SelectStaticProperty implements Predicate<DomainProperty>
-	{
-		public boolean apply(DomainProperty property) {
-			return (property != null) && property.isStatic();
-		}
-	}
-
 	public static class FragmentIterable implements IndexableIterable<DomainFragment>
 	{
 		protected class Iterator implements java.util.Iterator<DomainFragment>

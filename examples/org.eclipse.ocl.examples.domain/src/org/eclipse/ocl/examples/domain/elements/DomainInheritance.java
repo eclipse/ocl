@@ -34,8 +34,8 @@ public interface DomainInheritance extends DomainType
 {
 	public static DomainInheritance[] EMPTY_ARRAY = new DomainInheritance[0];
 
-	@NonNull Iterable<? extends DomainOperation> getAllOperations(boolean selectStatic);
-	@NonNull Iterable<? extends DomainProperty> getAllProperties(boolean selectStatic);
+	@NonNull Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter);
 	
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters including this one.

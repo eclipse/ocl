@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
@@ -55,12 +56,12 @@ public class ClassCSAttribution extends AbstractAttribution
 				if (pivot instanceof Metaclass<?>) {
 					Type instanceType = ((Metaclass<?>)pivot).getInstanceType();
 					if (instanceType != null) {
-						environmentView.addAllOperations(instanceType, true);
-						environmentView.addAllProperties(instanceType, true);
+						environmentView.addAllOperations(instanceType, FeatureFilter.SELECT_STATIC);
+						environmentView.addAllProperties(instanceType, FeatureFilter.SELECT_STATIC);
 					}
 				}
-				environmentView.addAllOperations(pivot, false);
-				environmentView.addAllProperties(pivot, false);
+				environmentView.addAllOperations(pivot, FeatureFilter.SELECT_NON_STATIC);
+				environmentView.addAllProperties(pivot, FeatureFilter.SELECT_NON_STATIC);
 				environmentView.addAllTypeTemplateParameterables(pivot);
 			}
 		}

@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryOperation;
@@ -514,7 +515,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public MetaModelManager(@NonNull ResourceSet asResourceSet) {
 		if (asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
 			initializeASResourceSet(asResourceSet);
-		};
+		}
 		idResolver = createIdResolver();
 //		System.out.println("ctor " + this);
 		this.asResourceSet = asResourceSet;
@@ -1148,7 +1149,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	protected void finalize() throws Throwable {
 		if (liveMetaModelManagers != null) {
 			System.out.println("Finalize " + PivotUtil.debugSimpleName(this));		
-			Set<MetaModelManager> keySet = liveMetaModelManagers.keySet();
+			List<MetaModelManager> keySet = new ArrayList<MetaModelManager>(liveMetaModelManagers.keySet());
 			if (!keySet.isEmpty()) {
 				StringBuilder s = new StringBuilder();
 				s.append(" live");
@@ -1190,14 +1191,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return knownInvariants;
 	}
 	
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, boolean selectStatic) {
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
 		TypeServer typeServer = packageManager.getTypeServer(type);
-		return typeServer.getAllOperations(selectStatic);
+		return typeServer.getAllOperations(featureFilter);
 	}
 	
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, boolean selectStatic, @NonNull String name) {
+	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		TypeServer typeServer = packageManager.getTypeServer(type);
-		return typeServer.getAllOperations(selectStatic, name);
+		return typeServer.getAllOperations(featureFilter, name);
 	}
 
 	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainOperation pivotOperation) {
@@ -1224,14 +1225,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return packageManager.getAllPackages();
 	}
 	
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, boolean selectStatic) {
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
 		TypeServer typeServer = packageManager.getTypeServer(type);
-		return typeServer.getAllProperties(selectStatic);
+		return typeServer.getAllProperties(featureFilter);
 	}
 	
-	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, boolean selectStatic, @NonNull String name) {
+	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		TypeServer typeServer = packageManager.getTypeServer(type);
-		return typeServer.getAllProperties(selectStatic, name);
+		return typeServer.getAllProperties(featureFilter, name);
 	}
 
 	public @NonNull Iterable<? extends DomainProperty> getAllProperties(@NonNull DomainProperty pivotProperty) {
@@ -2878,9 +2879,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	/**
 	 * Return all matching operations.
 	 */
-	protected void resolveAllOperations(@NonNull Set<Operation> allOperations, @NonNull Type forType, boolean selectStatic, @NonNull String operationName, @NonNull List<Parameter> parameters) {
+	protected void resolveAllOperations(@NonNull Set<Operation> allOperations, @NonNull Type forType, @Nullable FeatureFilter featureFilter, @NonNull String operationName, @NonNull List<Parameter> parameters) {
 		int iMax = parameters.size();
-		for (DomainOperation candidateOperation : getAllOperations(forType, selectStatic, operationName)) {
+		for (DomainOperation candidateOperation : getAllOperations(forType, featureFilter, operationName)) {
 			if (candidateOperation instanceof Operation) {
 				List<Parameter> candidateParameters = ((Operation)candidateOperation).getOwnedParameter();
 				if (candidateParameters.size() == iMax) {
@@ -2908,7 +2909,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		@SuppressWarnings("null") @NonNull Type owningType = operation.getOwningType();
 		@SuppressWarnings("null") @NonNull String operationName = operation.getName();
 		@NonNull List<Parameter> ownedParameter = operation.getOwnedParameter();
-		resolveAllOperations(allOperations, owningType, operation.isStatic(), operationName, ownedParameter);
+		resolveAllOperations(allOperations, owningType, operation.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, operationName, ownedParameter);
 		Operation baseOperation = operation;
 		for (Operation candidateOperation : allOperations) {
 			if (candidateOperation != operation) {

@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Type;
 
@@ -38,10 +39,10 @@ public interface TypeServer extends DomainInheritance
 	@NonNull Iterable<? extends State>  getAllStates(@NonNull String name);
 	@NonNull Iterable<? extends DomainInheritance> getAllSuperClasses();
 	@NonNull Iterable<? extends DomainInheritance> getAllSuperClasses(@NonNull String className);
-	@NonNull Iterable<? extends DomainOperation> getAllOperations(boolean selectStatic);
-	@NonNull Iterable<? extends DomainOperation> getAllOperations(boolean selectStatic, @NonNull String name);
-	@NonNull Iterable<? extends DomainProperty> getAllProperties(boolean selectStatic);
-	@NonNull Iterable<? extends DomainProperty> getAllProperties(boolean selectStatic, @NonNull String name);
+	@NonNull Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainOperation> getAllOperations(@Nullable FeatureFilter featureFilter, @NonNull String name);
+	@NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<? extends DomainProperty> getAllProperties(@Nullable FeatureFilter featureFilter, @NonNull String name);
 	@Nullable DomainOperation getMemberOperation(@NonNull DomainOperation pivotOperation);
 	@Nullable Iterable<? extends DomainOperation> getMemberOperations(@NonNull DomainOperation pivotOperation);
 	@Nullable Iterable<? extends DomainProperty> getMemberProperties(@NonNull DomainProperty pivotProperty);

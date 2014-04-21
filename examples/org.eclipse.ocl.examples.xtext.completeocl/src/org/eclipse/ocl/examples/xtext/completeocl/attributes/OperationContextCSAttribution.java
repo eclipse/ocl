@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
@@ -72,8 +73,8 @@ public class OperationContextCSAttribution extends AbstractAttribution
 					if (element instanceof Type) {
 						Type type = (Type) element;
 //						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-						environmentView.addAllOperations(type, false);
-						environmentView.addAllProperties(type, false);
+						environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
+						environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
 //						if (!environmentView.hasFinalResult()) {
 //							Set<Type> alreadyVisitedTypes = new HashSet<Type>();
 		//					org.eclipse.ocl.examples.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME

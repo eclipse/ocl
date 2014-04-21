@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
@@ -41,8 +42,8 @@ public class PropertyContextCSAttribution extends AbstractAttribution
 			if (property != null) {
 				Type type = property.getOwningType();
 				if (type != null) {
-					environmentView.addAllOperations(type, false);
-					environmentView.addAllProperties(type, false);
+					environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
+					environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
 				}
 			}
 		}

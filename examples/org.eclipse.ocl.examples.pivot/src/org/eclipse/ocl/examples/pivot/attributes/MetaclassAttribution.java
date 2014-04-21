@@ -16,6 +16,7 @@ package org.eclipse.ocl.examples.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -33,19 +34,19 @@ public class MetaclassAttribution extends AbstractAttribution
 		Metaclass<?> targetClass = (Metaclass<?>) target;
 		Type instanceType = targetClass.getInstanceType();
 		if (instanceType != null) {
-			environmentView.addAllOperations(instanceType, true);
-			environmentView.addAllProperties(instanceType, true);
+			environmentView.addAllOperations(instanceType, FeatureFilter.SELECT_STATIC);
+			environmentView.addAllProperties(instanceType, FeatureFilter.SELECT_STATIC);
 			if (!environmentView.hasFinalResult()) {
-				environmentView.addAllOperations(instanceType, false);
-				environmentView.addAllProperties(instanceType, false);
+				environmentView.addAllOperations(instanceType, FeatureFilter.SELECT_NON_STATIC);
+				environmentView.addAllProperties(instanceType, FeatureFilter.SELECT_NON_STATIC);
 			}
 		}
 		if (!environmentView.hasFinalResult()) {
-			environmentView.addAllOperations(targetClass, false);
-			environmentView.addAllProperties(targetClass, false);
+			environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_NON_STATIC);
+			environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_NON_STATIC);
 //			if (!environmentView.hasFinalResult()) {
-//				environmentView.addAllOperations(targetClass, true);
-//				environmentView.addAllProperties(targetClass, true);
+//				environmentView.addAllOperations(targetClass, FeatureFilter.SELECT_STATIC);
+//				environmentView.addAllProperties(targetClass, FeatureFilter.SELECT_STATIC);
 //			}
 		}
 		if ((instanceType != null) && !environmentView.hasFinalResult()) {
