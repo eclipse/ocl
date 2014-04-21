@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Package xmi:id="_0" name="OCL">
     <packagedElement xmi:type="uml:Package" xmi:id="_LrtloIquEd-VzsYvPRGeYg" name="OCL_Associations">
       <packagedElement xmi:type="uml:Class" xmi:id="_RAQocIquEd-VzsYvPRGeYg" name="Class"/>
@@ -11,7 +11,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_c2jhAIquEd-VzsYvPRGeYg" name="Property">
-        <ownedAttribute xmi:id="_gtXagIquEd-VzsYvPRGeYg" name="association" type="_RlTPMIquEd-VzsYvPRGeYg" association="_xpoHUIquEd-VzsYvPRGeYg">
+        <ownedAttribute xmi:id="_gtXagIquEd-VzsYvPRGeYg" name="associationClass" type="_RlTPMIquEd-VzsYvPRGeYg" association="_xpoHUIquEd-VzsYvPRGeYg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiAn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_Yq86gCkjEeCoEMRBQwJFpQ" name="implicit" type="_bJ1-0CkjEeCoEMRBQwJFpQ">
@@ -19,7 +19,7 @@
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpdiBH7VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_xpoHUIquEd-VzsYvPRGeYg" name="A_associationClass_property" memberEnd="_o58aYIquEd-VzsYvPRGeYg _gtXagIquEd-VzsYvPRGeYg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xpoHUIquEd-VzsYvPRGeYg" name="A_associationClass_unownedAttribute" memberEnd="_o58aYIquEd-VzsYvPRGeYg _gtXagIquEd-VzsYvPRGeYg"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_bJ1-0CkjEeCoEMRBQwJFpQ" name="Boolean"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="Actions-CompleteActions" name="OCL_Classes">

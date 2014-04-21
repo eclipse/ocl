@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Package xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_0" name="InfrastructureLibrary">
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_0" name="InfrastructureLibrary">
   <packagedElement xmi:type="uml:Package" xmi:id="Core" name="Core">
     <packagedElement xmi:type="uml:Package" xmi:id="Core-Abstractions" name="Abstractions">
       <packageImport xmi:id="Core-Abstractions-_packageImport.0" importedPackage="Core-PrimitiveTypes"/>
@@ -1725,6 +1725,12 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>True when a class is abstract.</body>
           </ownedComment>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XobAM37VEeOu79LxSz8Ylw" value="false"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_tT8mYMV_EeOUxMGVZGOl2Q" name="isActive" type="Core-PrimitiveTypes-Boolean">
+          <ownedComment xmi:id="_tT8mYcV_EeOUxMGVZGOl2Q" annotatedElement="_tT8mYMV_EeOUxMGVZGOl2Q">
+            <body>True when a class is active.</body>
+          </ownedComment>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_tT8mYsV_EeOUxMGVZGOl2Q" value="false"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="Core-Basic-Class-ownedAttribute" name="ownedAttribute" type="Core-Basic-Property" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedAttribute_class">
           <ownedComment xmi:id="Core-Basic-Class-ownedAttribute-_ownedComment.0" annotatedElement="Core-Basic-Class-ownedAttribute">
