@@ -68,15 +68,18 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.uml2.uml.UMLPackage;
 
 public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 {
@@ -138,7 +141,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public Object caseEClass(EClass eObject) {
 		@SuppressWarnings("null") @NonNull EClass eObject2 = eObject;
-		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.refreshElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject2);
+		org.eclipse.ocl.examples.pivot.Class pivotElement;
+		if (isStereotype(eObject2)) {
+			pivotElement = converter.refreshElement(Stereotype.class, PivotPackage.Literals.STEREOTYPE, eObject2);
+		}
+		else {
+			pivotElement = converter.refreshElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject2);
+		}
 		String oldName = pivotElement.getName();
 		String newName = converter.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
@@ -790,6 +799,22 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		for (EObject eObject : eObjects) {
 			doSwitch(eObject);
 		}
+	}
+
+	private boolean isStereotype(@NonNull EClass eClass) {
+		for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
+			EClassifier eType = eFeature.getEType();
+			if (eType != null) {
+				EPackage ePackage = eType.getEPackage();
+				if (ePackage == UMLPackage.eINSTANCE) {					// ?? is this too narrow ?? SysML ??
+					String name = eFeature.getName();
+					if ((name != null) && name.startsWith(UML2Pivot.STEREOTYPE_BASE_PREFIX)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	protected List<EAnnotation> refreshTypeConstraints(@NonNull org.eclipse.ocl.examples.pivot.Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {
