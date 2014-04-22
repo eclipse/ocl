@@ -1411,12 +1411,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 			return commonType;
 		}
-		if (conformsTo(leftType, rightType, templateParameterSubstitutions)) {
-			return rightType;
-		}
-		if (conformsTo(rightType, leftType, templateParameterSubstitutions)) {
-			return leftType;
-		}
 		if ((leftType instanceof CollectionType) && (rightType instanceof CollectionType)) {
 			DomainInheritance leftInheritance = leftType.getInheritance(this);
 			DomainInheritance rightInheritance = rightType.getInheritance(this);
@@ -1426,6 +1420,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			Type rightElementType = DomainUtil.nonNullModel(((CollectionType)rightType).getElementType());
 			Type commonElementType = getCommonType(leftElementType, rightElementType, templateParameterSubstitutions); 
 			return getCollectionType(commonCollectionType, commonElementType, null, null);
+		}
+		if (conformsTo(leftType, rightType, templateParameterSubstitutions)) {
+			return rightType;
+		}
+		if (conformsTo(rightType, leftType, templateParameterSubstitutions)) {
+			return leftType;
 		}
 		DomainInheritance leftInheritance = leftType.getInheritance(this);
 		DomainInheritance rightInheritance = rightType.getInheritance(this);

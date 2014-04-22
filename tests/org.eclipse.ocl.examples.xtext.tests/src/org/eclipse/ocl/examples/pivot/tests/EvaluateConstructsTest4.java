@@ -66,7 +66,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		super.tearDown();
 	}
 
-	@Test public void testConstruct_if() {		
+	@Test public void testConstruct_if() throws Exception {		
 		assertQueryFalse(null, "if true then false else false endif");
 		assertQueryEquals(null, 1, "if true then 1 else 2 endif");
 		assertQueryEquals(null, 2, "if false then 1 else 2 endif");
@@ -87,6 +87,8 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		assertQueryInvalid(null, "if 4 then 4 else 4 endif",
 			NLS.bind(EvaluatorMessages.TypedValueRequired, "Boolean", "UnlimitedNatural"), null);
 		assertQueryEquals(null, 4, "if 4=4 then 4 else 4 endif");
+		//
+		assertValidQuery(metaModelManager.getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
 	}
 
 	@Test public void testConstruct_let() {		
