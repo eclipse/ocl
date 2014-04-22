@@ -108,7 +108,22 @@
    <extension point="org.eclipse.emf.validation.traversal">
       <traversalStrategy
             class="org.eclipse.ocl.examples.pivot.uml.UMLTraversalStrategy"
+            namespaceUri="http://www.eclipse.org/uml2/2.0.0/UML">
+         <eclass name="Model"/>
+      </traversalStrategy>
+      <traversalStrategy
+            class="org.eclipse.ocl.examples.pivot.uml.UMLTraversalStrategy"
+            namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML">
+         <eclass name="Model"/>
+      </traversalStrategy>
+      <traversalStrategy
+            class="org.eclipse.ocl.examples.pivot.uml.UMLTraversalStrategy"
             namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+         <eclass name="Model"/>
+      </traversalStrategy>
+      <traversalStrategy
+            class="org.eclipse.ocl.examples.pivot.uml.UMLTraversalStrategy"
+            namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
          <eclass name="Model"/>
       </traversalStrategy>
    </extension>
