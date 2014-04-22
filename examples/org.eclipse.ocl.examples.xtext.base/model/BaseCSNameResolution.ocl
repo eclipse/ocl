@@ -1,0 +1,22 @@
+import 'BaseCS.ecore'
+import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
+
+package basecs
+	
+context Environment
+def : lookupLocal(name : String[?]) : NamedElementCS[?] = 
+	null -- TODO
+def : lookup(name : String[?]) : ocl::NamedElement[?] = 
+	null -- TODO
+def : lookupPathName(name : PathNameCS[?]) : ocl::NamedElement[?] =
+	null -- TODO
+def : lookupVariableDeclaration(name : String[?]) : ocl::VariableDeclaration[?] =
+	null -- TODO
+--def : lookupType(name : String[?]) : ocl::Type[?] = 
+--	null -- TODO
+def : lookupType(name : PathNameCS[?]) : ocl::Type[?] = 
+	null -- TODO
+def : lookupCollectionType(collectionKind : String[?], elementType : TypedRefCS[?]) : ocl::CollectionType[?] =
+	null -- TODO
+	
+endpackage
