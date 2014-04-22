@@ -90,38 +90,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 	public static final @SuppressWarnings("null")@NonNull String STEREOTYPE_EXTENSION_PREFIX = org.eclipse.uml2.uml.Extension.STEREOTYPE_ROLE_PREFIX; //"extension_";
 
 	private static final Logger logger = Logger.getLogger(UML2Pivot.class);
-	
-	private static final @NonNull Map<String, String> fixes = new HashMap<String, String>();
-	
-	{
-		/* "result = (" +
-				"if owner.oclIsKindOf(TemplateParameter) and" +
-				"  owner.oclAsType(TemplateParameter).signature.template.oclIsKindOf(Namespace) then" +
-				"    let enclosingNamespace : Namespace =" +
-				"      owner.oclAsType(TemplateParameter).signature.template.oclAsType(Namespace) in" +
-				"        enclosingNamespace.allNamespaces()->prepend(enclosingNamespace)" +
-				"else" +
-				"  if namespace->isEmpty()" +
-				"    then OrderedSet{}" +
-				"  else" +
-				"    namespace.allNamespaces()->prepend(namespace)" +
-				"  endif" +
-				"endif" +
-				")"; */
-		fixes.put("NamedElement::allNamespaces::spec", "result = (" +
-				"if owner = null " +
-				"then OrderedSet{} " +
-				"else " +
-				"    let enclosingNamespace : Namespace = " +
-				"        if owner.oclIsKindOf(TemplateParameter) " +
-				"        and owner.oclAsType(TemplateParameter).signature.template.oclIsKindOf(Namespace) " +
-				"        then owner.oclAsType(TemplateParameter).signature.template.oclAsType(Namespace) " +
-				"        else namespace " +
-				"        endif " +
-				"    in enclosingNamespace.allNamespaces()->prepend(enclosingNamespace) " +
-				"endif" +
-				")");
-	}
 
 	public static @Nullable UML2Pivot findAdapter(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
 		for (Adapter adapter : resource.eAdapters()) {
@@ -499,10 +467,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 						EObject eContainer3 = eContainer2 != null ? eContainer2.eContainer() : null;
 						String name3 = eContainer3 instanceof org.eclipse.uml2.uml.NamedElement ? ((org.eclipse.uml2.uml.NamedElement)eContainer3).getName() : "<null>";
 						key = name3 + "::" + key;
-					}
-					String fix = fixes.get(key);
-					if (fix != null) {
-						opaqueExpression.getBodies().set(0, fix);
 					}
 //					System.out.println(key + " " + body);
 				}
