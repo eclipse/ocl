@@ -27,13 +27,18 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.Stereotype;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -80,11 +85,31 @@ public class UMLOCLEValidator implements EValidator
 		}
 	}
 
+	protected static void gatherTypes(@NonNull Set<Type> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull Type newType) {
+		if (allTypes.add(newType)) {
+			allConstraints.addAll(newType.getOwnedInvariant());
+			for (Type superType : newType.getSuperClass()) {
+				if (superType != null) {
+					gatherTypes(allTypes, allConstraints, superType);
+				}
+			}
+		}
+	}
+
+	protected OCL getOCL(Map<Object, Object> context) {
+		OCL ocl = (OCL) context.get(OCL.class);
+		if (ocl == null) {
+			ocl = OCL.newInstance();
+			context.put(OCL.class, ocl);
+		}
+		return ocl;
+	}
+
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
-	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validate(EClass eClass, final EObject eObject, final DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (eObject instanceof org.eclipse.uml2.uml.OpaqueExpression) {
 			org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)eObject;
 			@SuppressWarnings("null")@NonNull List<String> languages = opaqueExpression.getLanguages();
@@ -93,6 +118,91 @@ public class UMLOCLEValidator implements EValidator
 		}
 		else if (eObject instanceof InstanceSpecification) {
 			return validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
+		}
+		OCL ocl = getOCL(context);
+		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		try {
+			final org.eclipse.ocl.examples.pivot.Element asElement = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Element.class, eObject);
+			if (asElement != null) {
+				List<ElementExtension> extensions = asElement.getExtension();
+				for (final ElementExtension extension : extensions) {
+//					org.eclipse.ocl.examples.pivot.Element base = extension.getBase();
+					Stereotype stereotype = extension.getStereotype();
+					if (stereotype != null) {
+						HashSet<Type> allClassifiers = new HashSet<Type>();
+						HashSet<DomainConstraint> allConstraints = new HashSet<DomainConstraint>();
+						gatherTypes(allClassifiers, allConstraints, stereotype);
+						boolean allOk = true;
+						for (DomainConstraint constraint : allConstraints) {
+							DomainExpression specification = constraint.getSpecification();
+							if (specification instanceof org.eclipse.ocl.examples.pivot.OpaqueExpression) {
+								ExpressionInOCL asExpression = ((org.eclipse.ocl.examples.pivot.OpaqueExpression)specification).getExpressionInOCL();						
+								if (asExpression != null) {
+									EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(extension, asExpression);
+									ConstraintEvaluator<Boolean> constraintEvaluator = new ConstraintEvaluator<Boolean>(asExpression)
+									{
+	//									@Override
+	//									protected String getObjectLabel() {
+	//										Type type = PivotUtil.getContainingType(constraint);
+	//										Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
+	//										EClassifier eClassifier = primaryType != null ?  (EClassifier)primaryType.getETarget() : null;
+	//										return DomainUtil.getLabel(eClassifier, object, context);
+	//									}
+	
+										@Override
+										protected String getObjectLabel() {
+											return DomainUtil.getLabel(extension);
+										}
+	
+										@Override
+										protected Boolean handleExceptionResult(@NonNull Exception e) {
+											if (diagnostics != null) {
+												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
+													0, message,  new Object[] { extension }));
+											}
+											return Boolean.FALSE;
+										}
+	
+										@Override
+										protected Boolean handleFailureResult(@Nullable Object result) {
+											if (diagnostics != null) {
+												String message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+												int severity = getConstraintResultSeverity(result);
+												diagnostics.add(new BasicDiagnostic(severity, UMLValidator.DIAGNOSTIC_SOURCE,
+													0, message,  new Object[] { extension }));
+											}
+											return Boolean.FALSE;
+										}
+	
+										@Override
+										protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
+											if (diagnostics != null) {
+												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
+													0, message,  new Object[] { extension }));
+											}
+											return Boolean.FALSE;
+										}
+	
+										@Override
+										protected Boolean handleSuccessResult() {
+											return Boolean.TRUE;
+										}
+									};
+									if (!constraintEvaluator.evaluate(evaluationVisitor)) {
+										allOk = false;
+									}
+								}
+							}
+						}
+						return allOk;
+					}
+				}
+			}
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return true;
 	}
@@ -104,7 +214,7 @@ public class UMLOCLEValidator implements EValidator
 	/**
 	 * Perform the validation of an instanceSpecification against the bodies defined in opaqueExpression.
 	 */
-	protected boolean validateInstance(@NonNull InstanceSpecification instanceSpecification,
+	protected boolean validateInstance(@NonNull EObject instanceSpecification,
 			@NonNull org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, @Nullable DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		boolean allOk = true;
@@ -239,11 +349,7 @@ public class UMLOCLEValidator implements EValidator
 	 * cached results between successive validations. Returns true if successful, false otherwise.
 	 */
 	protected boolean validateSyntax(final @Nullable EObject instance, @NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
-		OCL ocl = (OCL) context.get(OCL.class);
-		if (ocl == null) {
-			ocl = OCL.newInstance();
-			context.put(OCL.class, ocl);
-		}
+		OCL ocl = getOCL(context);
 		ExpressionInOCL asExpression = null;
 		try {
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();

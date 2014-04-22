@@ -1,161 +1,176 @@
-/**
- * <copyright>
- *
- * Copyright (c) 2014 CEA LIST and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   E.D.Willink (CEA LIST) - initial API and implementation
- *
- * </copyright>
- */
 package org.eclipse.ocl.examples.xtext.base.ui.commands;
-
-import java.lang.reflect.Method;
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.HandlerEvent;
-import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.IHandler2;
 import org.eclipse.core.commands.IHandlerListener;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.ui.action.ValidateAction;
+import org.eclipse.core.runtime.ListenerList;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ocl.examples.pivot.uml.UMLOCLEValidator;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.uml2.uml.UMLPackage;
 
-public class ValidateHandler extends ValidateAction implements IHandler//2
+/**
+ * <p>
+ * This class adapts instances of <code>IAction</code> to <code>IHandler</code>.
+ * </p>
+ * 
+ * Based on ActionHandler,AbstractHandler,EventManager
+ */
+public final class ValidateHandler implements IHandler2
 {
-	protected final static class Diagnostician_2_8 extends Diagnostician
-	{
-		private final AdapterFactory adapterFactory;
-
-		protected Diagnostician_2_8(EValidator.Registry eValidatorRegistry, AdapterFactory adapterFactory) {
-			super(eValidatorRegistry);
-			this.adapterFactory = adapterFactory;
-		}
-
-		@Override
-		public String getObjectLabel(EObject eObject) {
-			if (adapterFactory != null && !eObject.eIsProxy()) {
-				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProvider.class);
-				if (itemLabelProvider != null) {
-					return itemLabelProvider.getText(eObject);
-				}
-			}
-			return super.getObjectLabel(eObject);
-		}
-	}
-	protected final static class Diagnostician_2_9 extends Diagnostician
-	{
-		private final ResourceSet resourceSet;
-		private final AdapterFactory adapterFactory;
-		private final IProgressMonitor progressMonitor;
-
-		protected Diagnostician_2_9(EValidator.Registry eValidatorRegistry, ResourceSet resourceSet,
-				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
-			super(eValidatorRegistry);
-			this.resourceSet = resourceSet;
-			this.adapterFactory = adapterFactory;
-			this.progressMonitor = progressMonitor;
-		}
-
-		@Override
-		public String getObjectLabel(EObject eObject) {
-			if (adapterFactory != null && !eObject.eIsProxy()) {
-				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProvider.class);
-				if (itemLabelProvider != null) {
-					return itemLabelProvider.getText(eObject);
-				}
-			}
-			return super.getObjectLabel(eObject);
-		}
-
-		@Override
-		protected boolean doValidate(EValidator eValidator, EClass eClass, EObject eObject,
-				DiagnosticChain diagnostics, Map<Object, Object> context) {
-			progressMonitor.worked(1);
-			synchronized (resourceSet) {
-				return super.doValidate(eValidator, eClass, eObject, diagnostics, context);
-			}
-		}
-	}
-
-	private static Boolean diagnosticianHasDoValidate = null; // Use 2.9/2.8 Diagnostician
-
-	protected static boolean diagnosticianHasDoValidate() {
-		for (Method method : Diagnostician.class.getDeclaredMethods()) {
-			if ("doValidate".equals(method.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
+	/**
+	 * An empty array that can be returned from a call to
+	 * {@link #getListeners()} when {@link #listenerList} is <code>null</code>.
+	 */
+	private static final Object[] EMPTY_ARRAY = new Object[0];
 
 	/**
-	 * @see IHandler#addHandlerListener(IHandlerListener)
+	 * A collection of objects listening to changes to this manager. This
+	 * collection is <code>null</code> if there are no listeners.
 	 */
-	public void addHandlerListener(final IHandlerListener handlerListener) {
+	private transient ListenerList listenerList = null;
+
+	/**
+	 * Track this base class enabled state.
+	 * 
+	 * @since 3.4
+	 */
+	private boolean baseEnabled = true;
+
+	/**
+	 * The wrapped action. This value is never <code>null</code>.
+	 */
+	private final ValidateCommand action;
+
+	/**
+	 * The property change listener hooked on to the action. This is initialized
+	 * when the first listener is attached to this handler, and is removed when
+	 * the handler is disposed or the last listener is removed.
+	 */
+	private IPropertyChangeListener propertyChangeListener;
+
+	/**
+	 * Creates a new instance of this class given an instance of
+	 * <code>IAction</code>.
+	 * 
+	 * @param action
+	 *            the action. Must not be <code>null</code>.
+	 */
+	public ValidateHandler() {
+		this.action = new ValidateCommand();
+	}
+
+	public final void addHandlerListener(final IHandlerListener handlerListener) {
+		if (!hasListeners()) {
+			attachListener();
+		}
 		addListenerObject(handlerListener);
 	}
 
-	@Override
-	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
-		final ResourceSet resourceSet = domain.getResourceSet();
-		EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
-		registry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.INSTANCE);
-		if (diagnosticianHasDoValidate == null) {
-			diagnosticianHasDoValidate = false;
-			for (Method method : Diagnostician.class.getDeclaredMethods()) {
-				if ("doValidate".equals(method.getName())) {
-					diagnosticianHasDoValidate = true;
+	/**
+	 * Adds a listener to this manager that will be notified when this manager's
+	 * state changes.
+	 * 
+	 * @param listener
+	 *            The listener to be added; must not be <code>null</code>.
+	 */
+	protected synchronized final void addListenerObject(final Object listener) {
+		if (listenerList == null) {
+			listenerList = new ListenerList(ListenerList.IDENTITY);
+		}
+
+		listenerList.add(listener);
+	}
+
+	/**
+	 * When a listener is attached to this handler, then this registers a
+	 * listener with the underlying action.
+	 * 
+	 * @since 3.1
+	 */
+	private final void attachListener() {
+		if (propertyChangeListener == null) {
+			propertyChangeListener = new IPropertyChangeListener() {
+//				@Override
+				public final void propertyChange(
+						final PropertyChangeEvent propertyChangeEvent) {
+					final String property = propertyChangeEvent.getProperty();
+					fireHandlerChanged(new HandlerEvent(ValidateHandler.this,
+							IAction.ENABLED.equals(property),
+							IAction.HANDLED.equals(property)));
 				}
-			}
+			};
 		}
-		if (diagnosticianHasDoValidate) {
-			return new Diagnostician_2_9(registry, resourceSet, adapterFactory, progressMonitor);
-		}
-		else {
-			return new Diagnostician_2_8(registry, adapterFactory);
+
+		this.action.addPropertyChangeListener(propertyChangeListener);
+	}
+
+	/**
+	 * Clears all of the listeners from the listener list.
+	 */
+	protected synchronized final void clearListeners() {
+		if (listenerList != null) {
+			listenerList.clear();
 		}
 	}
 
 	/**
-	 * The default implementation does nothing. Subclasses who attach listeners
-	 * to other objects are encouraged to detach them in this method.
+	 * When no more listeners are registered, then this is used to removed the
+	 * property change listener from the underlying action.
+	 */
+	private final void detachListener() {
+		this.action.removePropertyChangeListener(propertyChangeListener);
+		propertyChangeListener = null;
+	}
+
+	/**
+	 * Removes the property change listener from the action.
 	 * 
 	 * @see org.eclipse.core.commands.IHandler#dispose()
 	 */
-	public void dispose() {
-		// Do nothing.
+	public final void dispose() {
+		if (hasListeners()) {
+			action.removePropertyChangeListener(propertyChangeListener);
+		}
 	}
+
+/*	@Override
+	public final Object execute(final ExecutionEvent event)
+			throws ExecutionException {
+		if ((action.getStyle() == IAction.AS_CHECK_BOX)
+				|| (action.getStyle() == IAction.AS_RADIO_BUTTON)) {
+			action.setChecked(!action.isChecked());
+		}
+		final Object trigger = event.getTrigger();
+		try {
+			ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
+			if (trigger instanceof Event) {
+				action.runWithEvent((Event) trigger);
+			} else {
+				action.runWithEvent(new Event());
+			}
+		} catch (Exception e) {
+			throw new ExecutionException(
+					"While executing the action, an exception occurred", e); //$NON-NLS-1$
+		}
+		return null;
+	} */
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchPart part = HandlerUtil.getActivePart(event);
-		setActiveWorkbenchPart(part);
+		action.setActiveWorkbenchPart(part);
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		if (selection instanceof IStructuredSelection) {
-			setEnabled(updateSelection((IStructuredSelection) selection));
+			setEnabled(action.updateSelection((IStructuredSelection) selection));
 		} else {
 			setEnabled(false);
 		}
-		run();
+		action.run();
 		return null;
 	}
 
@@ -188,6 +203,39 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 	}
 
 	/**
+	 * Returns the action associated with this handler
+	 * 
+	 * @return the action associated with this handler (not null)
+	 * @since 3.1
+	 */
+	public final IAction getAction() {
+		return action;
+	}
+
+	/**
+	 * Returns the listeners attached to this event manager.
+	 * 
+	 * @return The listeners currently attached; may be empty, but never
+	 *         <code>null</code>
+	 */
+	protected final Object[] getListeners() {
+		final ListenerList list = listenerList;
+		if (list == null) {
+			return EMPTY_ARRAY;
+		}
+
+		return list.getListeners();
+	}
+
+	public final boolean isEnabled() {
+		return action.isEnabled();
+	}
+
+	public final boolean isHandled() {
+		return action.isHandled();
+	}
+
+	/**
 	 * <p>
 	 * Returns true iff there is one or more IHandlerListeners attached to this
 	 * AbstractHandler.
@@ -209,9 +257,78 @@ public class ValidateHandler extends ValidateAction implements IHandler//2
 	}
 
 	/**
-	 * @see IHandler#removeHandlerListener(IHandlerListener)
+	 * Whether one or more listeners are attached to the manager.
+	 * 
+	 * @return <code>true</code> if listeners are attached to the manager;
+	 *         <code>false</code> otherwise.
 	 */
-	public void removeHandlerListener(final IHandlerListener handlerListener) {
+	protected final boolean isListenerAttached() {
+		return listenerList != null;
+	}
+
+	public final void removeHandlerListener(final IHandlerListener handlerListener) {
 		removeListenerObject(handlerListener);
+		if (!hasListeners()) {
+			detachListener();
+		}
+	}
+
+	/**
+	 * Removes a listener from this manager.
+	 * 
+	 * @param listener
+	 *            The listener to be removed; must not be <code>null</code>.
+	 */
+	protected synchronized final void removeListenerObject(final Object listener) {
+		if (listenerList != null) {
+			listenerList.remove(listener);
+
+			if (listenerList.isEmpty()) {
+				listenerList = null;
+			}
+		}
+	}
+
+	/**
+	 * Allow the default {@link #isEnabled()} to answer our enabled state. It
+	 * will fire a HandlerEvent if necessary. If clients use this method they
+	 * should also consider overriding {@link #setEnabled(Object)} so they can
+	 * be notified about framework execution contexts.
+	 * 
+	 * @param state
+	 *            the enabled state
+	 * @since 3.4
+	 */
+	protected void setBaseEnabled(boolean state) {
+		if (baseEnabled == state) {
+			return;
+		}
+		baseEnabled = state;
+		fireHandlerChanged(new HandlerEvent(this, true, false));
+	}
+
+	/**
+	 * Called by the framework to allow the handler to update its enabled state
+	 * by extracting the same information available at execution time. Clients
+	 * may override if they need to extract information from the application
+	 * context.
+	 * 
+	 * @param evaluationContext
+	 *            the application context. May be <code>null</code>
+	 * @since 3.4
+	 * @see #setBaseEnabled(boolean)
+	 */
+	public void setEnabled(Object evaluationContext) {
+	}
+
+	@Override
+	public final String toString() {
+		final StringBuffer buffer = new StringBuffer();
+
+		buffer.append("ActionHandler("); //$NON-NLS-1$
+		buffer.append(action);
+		buffer.append(')');
+
+		return buffer.toString();
 	}
 }
