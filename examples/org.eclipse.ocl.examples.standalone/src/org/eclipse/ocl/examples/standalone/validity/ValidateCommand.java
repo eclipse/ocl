@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporterDescriptor;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
@@ -591,6 +592,10 @@ public class ValidateCommand extends StandaloneCommand
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
+			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(modelResource.getResourceSet());
+			if (adapter != null) {
+				adapter.getMetaModelManager().dispose();
+			}
 		}
 		return StandaloneResponse.OK;
 	}

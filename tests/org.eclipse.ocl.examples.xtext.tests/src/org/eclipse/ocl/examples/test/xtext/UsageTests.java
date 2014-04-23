@@ -313,6 +313,7 @@ public class UsageTests
 		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 		metaModelManager2.dispose();
+		metaModelManager = null;
 		return fileURI;
 	}
 

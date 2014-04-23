@@ -63,6 +63,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -593,6 +594,10 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static void unloadResourceSet(@NonNull ResourceSet resourceSet) {
+		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(resourceSet);
+		if (projectMap != null) {
+			projectMap.unload(resourceSet);
+		}
 		for (Resource resource : resourceSet.getResources()) {
 			resource.unload();
 		}
@@ -649,7 +654,10 @@ public class PivotTestCase extends TestCase
 		OCLinEcoreStandaloneSetup.doTearDown();
 		OCLstdlibStandaloneSetup.doTearDown();
 		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
-		projectMap = null;
+		if (projectMap != null) {
+			projectMap.dispose();
+			projectMap = null;
+		}
 	}
 	
 	public static class GlobalStateMemento

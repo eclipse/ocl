@@ -1024,6 +1024,8 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		void initializePlatformResourceMap();
 
 		void initializeURIMap(@NonNull Map<URI, URI> uriMap);
+		
+		void unload(@NonNull ResourceSet resourceSet);
 	}
 	
 	public static abstract class AbstractResourceLoadStatus implements IResourceLoadStatus, Adapter
@@ -1862,15 +1864,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			hasEcoreModel = true;
 		}
 
-		public void unload() {
-			synchronized (resourceSet2resourceLoadStatus) {
-				for (IResourceLoadStatus resourceLoadStatus : resourceSet2resourceLoadStatus.values()) {
-					resourceLoadStatus.dispose();
-				}
-				resourceSet2resourceLoadStatus.clear();
-			}
-		}
-
 		public void unload(@NonNull ResourceSet resourceSet) {
 			if (hasEcoreModel()) {
 				synchronized (resourceSet2resourceLoadStatus) {
@@ -2459,6 +2452,23 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			}
 		}
 
+		public void unload(@NonNull ResourceSet resourceSet) {
+			Collection<IResourceDescriptor> resourceDescriptors = getResourceDescriptors();
+			if (resourceDescriptors != null) {
+				for (IResourceDescriptor resourceDescriptor : resourceDescriptors) {
+					assert resourceDescriptor != null;
+					resourceDescriptor.unload(resourceSet);
+				}
+				Map<URI, IPackageDescriptor> nsURI2packageDescriptor2 = nsURI2packageDescriptor;
+				Registry packageRegistry = resourceSet.getPackageRegistry();
+				if ((nsURI2packageDescriptor2 != null) && (packageRegistry != null)) {
+					for (URI nsURI : nsURI2packageDescriptor2.keySet()) {
+						packageRegistry.remove(nsURI.toString());
+					}
+				}
+			}
+		}
+
 		@Override
 		public String toString() {
 			return name + " => " + locationURI.toString();
@@ -2548,12 +2558,13 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	}
 
 	/**
-	 * Eliminate all fcailities used by the ProjectMap.
+	 * Eliminate all facilities used by the ProjectMap for the resourceSet.
 	 */
 	public static void dispose(@NonNull ResourceSet resourceSet) {
 		StandaloneProjectMap projectMap = findAdapter(resourceSet);
 		if (projectMap != null) {
 			projectMap.unload(resourceSet);
+			projectMap.unsetTarget(resourceSet);
 		}
 	}
 
@@ -3126,15 +3137,10 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	}
 
 	public void unload(@NonNull ResourceSet resourceSet) {
+		resourceSet.eAdapters().remove(this);
 		if (project2descriptor != null) {
 			for (IProjectDescriptor projectDescriptor : project2descriptor.values()) {
-				Collection<IResourceDescriptor> resourceDescriptors = projectDescriptor.getResourceDescriptors();
-				if (resourceDescriptors != null) {
-					for (IResourceDescriptor resourceDescriptor : resourceDescriptors) {
-						assert resourceDescriptor != null;
-						resourceDescriptor.unload(resourceSet);
-					}
-				}
+				projectDescriptor.unload(resourceSet);
 			}
 		}
 	}

@@ -17,8 +17,6 @@
 
 package org.eclipse.ocl.examples.test.ecore;
 
-import junit.framework.TestCase;
-
 import org.apache.log4j.Appender;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -32,26 +30,25 @@ import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 
 /**
  */
-public abstract class AbstractProjectMapTest extends TestCase
+public abstract class AbstractProjectMapTest extends PivotTestCase
 {
-	public static ProjectMap projectMap = new ProjectMap();
-
 /*	protected void doTestProjectMapRegistered(/ *@NonNull* / EPackage modelPackage, @NonNull String modelPath) {
 		URI nsURI = URI.createURI(modelPackage.getNsURI());
 		URI pluginURI = URI.createPlatformPluginURI(modelPath, true);
 		URI resourceURI = URI.createPlatformResourceURI(modelPath, true);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		ProjectMap projectMap = new ProjectMap();
-		projectMap.initializeResourceSet(resourceSet);
-//		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
+		ProjectMap getProjectMap() = new ProjectMap();
+		getProjectMap().initializeResourceSet(resourceSet);
+//		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
-		projectMap.configure(resourceSet, StandaloneProjectMap.LoadModelStrategy.INSTANCE, null);
+		getProjectMap().configure(resourceSet, StandaloneProjectMap.LoadModelStrategy.INSTANCE, null);
 		Resource registeredResource = resourceSet.getPackageRegistry().getEPackage(nsURI.toString()).eResource();
 		assertNull(registeredResource.getResourceSet());		// Registered packages have a private shared resource
 		assertEquals(registeredResource.getURI(), nsURI);
@@ -67,13 +64,13 @@ public abstract class AbstractProjectMapTest extends TestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
 		@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
-		ProjectMap projectMap = new ProjectMap();
-		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
+		ProjectMap getProjectMap() = new ProjectMap();
+		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadEPackageStrategy.INSTANCE, null);
 			Resource resource = resourceSet.getPackageRegistry().getEPackage(nsURI.toString()).eResource();
 			assertTrue(DomainUtil.isRegistered(resource));	
@@ -85,7 +82,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadModelStrategy.INSTANCE, null);
 			Resource resource = resourceSet.getPackageRegistry().getEPackage(nsURI.toString()).eResource();
 			assertFalse(DomainUtil.isRegistered(resource));	
@@ -110,13 +107,13 @@ public abstract class AbstractProjectMapTest extends TestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
+		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
 			EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -130,7 +127,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 			EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
@@ -144,7 +141,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
 			EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -169,7 +166,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
-				projectMap.initializeResourceSet(resourceSet);
+				getProjectMap().initializeResourceSet(resourceSet);
 				EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
 				EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 				EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
@@ -182,7 +179,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			TestCaseLogger.INSTANCE.clear();
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
-				projectMap.initializeResourceSet(resourceSet);
+				getProjectMap().initializeResourceSet(resourceSet);
 				EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 				EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
 				EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
@@ -197,7 +194,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			TestCaseLogger.INSTANCE.clear();
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
-				projectMap.initializeResourceSet(resourceSet);
+				getProjectMap().initializeResourceSet(resourceSet);
 				EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
 				EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 				EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
@@ -221,13 +218,13 @@ public abstract class AbstractProjectMapTest extends TestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
+		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, null);
 			EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -239,7 +236,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, null);
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 			EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
@@ -251,7 +248,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, null);
 			EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -270,13 +267,13 @@ public abstract class AbstractProjectMapTest extends TestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
+		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 			EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -285,11 +282,11 @@ public abstract class AbstractProjectMapTest extends TestCase
 			assertEquals(nsURI.toString(), nsEPackage.getNsURI());
 			assertEquals(nsEPackage, platformPluginEObject);
 			assertEquals(nsEPackage, platformResourceEObject);
-			resourceSet.eAdapters().remove(projectMap);
+			resourceSet.eAdapters().remove(getProjectMap());
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 			EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
@@ -298,11 +295,11 @@ public abstract class AbstractProjectMapTest extends TestCase
 			assertEquals(selfReferential, !platformPluginURI.equals(nsEPackage.eResource().getURI()));
 			assertEquals(selfReferential, nsEPackage != platformPluginEObject);
 			assertEquals(platformPluginEObject, platformResourceEObject);
-			resourceSet.eAdapters().remove(projectMap);
+			resourceSet.eAdapters().remove(getProjectMap());
 		}
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
-			projectMap.initializeResourceSet(resourceSet);
+			getProjectMap().initializeResourceSet(resourceSet);
 			packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 			EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
 			EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -311,7 +308,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			assertEquals(selfReferential, !platformResourceURI.equals(nsEPackage.eResource().getURI()));
 			assertEquals(selfReferential, nsEPackage != platformPluginEObject);
 			assertEquals(platformPluginEObject, platformResourceEObject);
-			resourceSet.eAdapters().remove(projectMap);
+			resourceSet.eAdapters().remove(getProjectMap());
 		}
 	}
 
@@ -324,13 +321,13 @@ public abstract class AbstractProjectMapTest extends TestCase
 			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 			@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 			@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-			IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(project);
+			IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 			assert projectDescriptor != null;
 			IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 			assert packageDescriptor != null;
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
-				projectMap.initializeResourceSet(resourceSet);
+				getProjectMap().initializeResourceSet(resourceSet);
 				packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadDynamicResourceStrategy.INSTANCE, null);
 				EPackage nsEPackage = resourceSet.getPackageRegistry().getEPackage(nsURI.toString());
 				EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
@@ -344,7 +341,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			TestCaseLogger.INSTANCE.clear();
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
-				projectMap.initializeResourceSet(resourceSet);
+				getProjectMap().initializeResourceSet(resourceSet);
 				packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadDynamicResourceStrategy.INSTANCE, null);
 				EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
 				EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
@@ -358,7 +355,7 @@ public abstract class AbstractProjectMapTest extends TestCase
 			TestCaseLogger.INSTANCE.clear();
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
-				projectMap.initializeResourceSet(resourceSet);
+				getProjectMap().initializeResourceSet(resourceSet);
 				packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadDynamicResourceStrategy.INSTANCE, null);
 				EObject platformResourceEObject = resourceSet.getEObject(platformResourceEObjectURI, true);
 				EObject platformPluginEObject = resourceSet.getEObject(platformPluginEObjectURI, true);
