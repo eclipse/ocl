@@ -420,6 +420,10 @@ public class PivotUtil extends DomainUtil
 
 	@SuppressWarnings("null")
 	public static @NonNull URI getASURI(@NonNull URI uri) {
+		if (uri.fragment() != null) {
+			logger.error("Unexpected fragment ignored for '" + uri.toString() + "'");
+			uri = uri.trimFragment();
+		}
 		URI asURI = uri.appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION);
 		if (!isASURI(asURI)) {
 			asURI = uri.appendSegment(PivotConstants.DOT_OCL_AS_FILE_EXTENSION);
