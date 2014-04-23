@@ -251,7 +251,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 //			converter.addProfileApplication(umlProfileApplication);
 			boolean isRequired = false;
 			for (org.eclipse.uml2.uml.Property umlProperty : umlExtension.getOwnedEnds()) {
-				Object eObject = doSwitch(umlProperty);
+				@SuppressWarnings("unused")Object eObject = doSwitch(umlProperty);
 				int lower = umlProperty.getLower();
 				if (lower == 1) {
 					isRequired = false;
@@ -328,6 +328,10 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		assert umlPackage != null;
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, umlPackage);
 		copyPackage(pivotElement, umlPackage);
+		if (pivotElement.getName() == null) {
+			pivotElement.setName("anon_" + Integer.toHexString(System.identityHashCode(umlPackage)));
+			logger.error("Anonymous package named as '" + pivotElement.getName() + "'");
+		}
 		return pivotElement;
 	}
 
@@ -441,7 +445,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 //		System.out.println("Property " + ((org.eclipse.uml2.uml.NamedElement)umlProperty.eContainer()).getName() + "::" + umlProperty.getName() + " => " + DomainUtil.debugSimpleName(pivotElement));
 		copyProperty(pivotElement, umlProperty, null);
 		// NB MDT/UML2's base_XXX/extension_YYY are spurious composites
-		org.eclipse.uml2.uml.Element owner = umlProperty.getOwner();
+		@SuppressWarnings("unused")org.eclipse.uml2.uml.Element owner = umlProperty.getOwner();
 		boolean isComposer = true; //(owner instanceof org.eclipse.uml2.uml.Classifier) && !(owner instanceof org.eclipse.uml2.uml.Association);
 		pivotElement.setIsComposite(isComposer && umlProperty.isComposite());			
 		pivotElement.setImplicit(!isComposer);

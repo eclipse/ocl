@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -83,6 +84,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 {
+	private static final Logger logger = Logger.getLogger(Ecore2PivotDeclarationSwitch.class);
+
 	public static boolean hasDocumentationKey(@Nullable String source, @NonNull EMap<String, String> details) {
 		return (details.size() == 1) && PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE.equals(source)
 			&& details.containsKey(PivotConstants.DOCUMENTATION_ANNOTATION_KEY);
@@ -389,6 +392,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject2);
 		String oldName = pivotElement.getName();
 		String newName = converter.getOriginalName(eObject2);
+		if (newName == null) {
+			newName = "anon_" + Integer.toHexString(System.identityHashCode(eObject2));
+			logger.error("Anonymous package named as '" + newName + "'");
+		}
 		String oldNsURI = pivotElement.getNsURI();
 		String newNsURI = eObject2.getNsURI();
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
@@ -431,7 +438,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (eAnnotation != null) {
 			exclusions.add(eAnnotation);		
 		}
-		copyNamedElement(pivotElement, eObject2);
+		converter.addMapping(eObject2, pivotElement);
+//		copyNamedElement(pivotElement, eObject2);
 		copyAnnotatedElement(pivotElement, eObject2, exclusions);
 		doSwitchAll(pivotElement.getNestedPackage(), eObject2.getESubpackages());
 		doSwitchAll(pivotElement.getOwnedType(), eObject2.getEClassifiers());
