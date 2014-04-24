@@ -1,5 +1,8 @@
 -- NOTE
--- This file will contain some definitions related to environments and name resolution
+-- This file will contain some general definitions related to environments and name resolution
+-- Some ElementCS specific stuff related to environments will be required to be in the BaseCS.ocl
+-- since it needs to access to the AS (for instance to add a NamedElement suitable to be lookup
+-- in the environment)
  
 import 'BaseCS.ecore'
 import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
