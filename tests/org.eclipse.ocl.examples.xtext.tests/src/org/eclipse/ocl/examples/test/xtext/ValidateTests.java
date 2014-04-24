@@ -323,11 +323,9 @@ public class ValidateTests extends AbstractValidateTests
 		assertTrue(helper.loadDocument(oclURI));
 		helper.installPackages();
 		String objectLabel = DomainUtil.getLabel(uNamed);
-		/** FIXME BUG 433289
 		assertValidationDiagnostics("Without Complete OCL", resource,
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel));
-		**/
 		adapter.getMetaModelManager().dispose();
 	}
 
