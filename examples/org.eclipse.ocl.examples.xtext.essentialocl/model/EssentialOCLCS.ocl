@@ -190,16 +190,20 @@ def : ast() : ocl::LetExp =
 	variable->reverse()->iterate(x : LetVariableCS; result : ocl::LetExp = null |
 				if result = null
 				then result = ocl::LetExp {
-						variable = x.VariableCS::ast(),
+						variable = x.ast(),
 						_'in' = _'in'.ast()
 					}
 				else result = ocl::LetExp {
-						variable = x.VariableCS::ast(),
+						variable = x.ast(),
 						_'in' = result
 					}	
 				endif
 			)
-
+inv : self._'in'.env = self.variable->iterate(var : LetVariableCS; 
+		nEnv : basecs::Environment =  self.basecs::ElementCS::env.nestedEnvironment() -- To occlude outer variables 
+		| nEnv.addElement(var.name, var.ast(), false)
+	)
+	
 -- context LetVariableCS
 -- note: VariableCS::ast() operation works for LetVariableCS
 	
@@ -266,7 +270,7 @@ def : ast() : ocl::OperationCallExp =
 
 context SelfExpCS
 def :  ast() : ocl::VariableExp = 
-	let refVariable : ocl::VariableDeclaration = env().lookupVariableDeclaration(name)
+	let refVariable : ocl::VariableDeclaration = env.lookup(name)
 	in ocl::VariableExp {
 			referredVariable = refVariable, 
 			type = refVariable.type 

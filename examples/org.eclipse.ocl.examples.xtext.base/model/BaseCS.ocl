@@ -1,6 +1,6 @@
 import 'BaseCS.ecore'
 import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
-
+import 'BaseCSNameResolution.ocl' -- Environment definitions
 package basecs
 
 context  AnnotationCS
@@ -81,12 +81,7 @@ def: ast() : ocl::Detail =
 	
 -- TODO: Obsolote. Remove from metamodel and/or grammar ?	
 -- context DocumentationCS
---		
-
-context ElementCS
-def : env() : Environment[1] = 
-	null -- TODO
-
+--
 
 --context ElementRefCS 
 

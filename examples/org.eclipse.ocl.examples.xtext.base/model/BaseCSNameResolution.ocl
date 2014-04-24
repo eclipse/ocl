@@ -1,22 +1,177 @@
+-- NOTE
+-- This file will contain some definitions related to environments and name resolution
+ 
 import 'BaseCS.ecore'
 import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
+import 'BaseCS.ocl'
 
 package basecs
+
+context ocl::Namespace
+def: getEnvironmentWithoutParents() : Environment =
+	null -- TODO
 	
 context Environment
-def : lookupLocal(name : String[?]) : NamedElementCS[?] = 
+-- Environment definition as defined by OMG OCL 2.4
+
+-- PROPERTIES 
+-- TODO raise a bug
+-- def : namedElements : NamedElementCS = Sequence{}
+static def : EMPTY_ENV : Environment = Environment{}
+def : parent : Environment = null
+def : namedElements : NamedElementCS[*] = Sequence{}
+
+
+
+-- OPERATIONS
+-- TODO Note: signatures inferred from constraints below. It needs revision
+def : lookupLocal(name : String) : ocl::NamedElement = 
+	null -- TODO 
+def : lookup(name: String) : ocl::NamedElement = -- Modified for a better NamedElement
 	null -- TODO
-def : lookup(name : String[?]) : ocl::NamedElement[?] = 
+def : lookupPathName(names: Sequence(String)) : ocl::Element = -- Not included in the diagram 
+	null --  TODO
+def : addElement(name : String, elem : ocl::Element, imp : Boolean) : Environment = 
 	null -- TODO
-def : lookupPathName(name : PathNameCS[?]) : ocl::NamedElement[?] =
+def : addEnvironment(env : Environment) : Environment = -- Not included in the diagram 
 	null -- TODO
-def : lookupVariableDeclaration(name : String[?]) : ocl::VariableDeclaration[?] =
+def : addNamespace(ns: ocl::Namespace) : Environment = 
+	null --TODO 
+def : nestedEnvironment() : Environment =
 	null -- TODO
---def : lookupType(name : String[?]) : ocl::Type[?] = 
+def : lookupImplicitProperty(name: String) : ocl::Property  = -- Modified to align OCL 2.4 
+	null -- TODO
+def : lookupImplicitSourceForProperty(name: String) : ocl::NamedElement = -- Modified to align OCL 2.4 
+	null --  TODO
+--def : lookupImplicitAssociationEnd() : ocl::AssociationEnd -- Removed to align OCL 2.4 
+--	= null -- TODO 
+def : lookupImplicitOperation(name: String,
+		params : Sequence(ocl::Type)) : ocl::Operation =  -- Modified to align OCL 2.4 
+	null -- TODO
+
+-- TODO raise a bug
+--context ocl::Namespace
+--#def: getEnvironmentWithoutParents() : Environment =
 --	null -- TODO
-def : lookupType(name : PathNameCS[?]) : ocl::Type[?] = 
-	null -- TODO
-def : lookupCollectionType(collectionKind : String[?], elementType : TypedRefCS[?]) : ocl::CollectionType[?] =
+
+-- OCL constraints as defined by OMG OCL 2.4
+
+--context Environment
+--inv EMPTY_ENV_Definition: EMPTY_ENV.namedElements->isEmpty()
+--
+--context Environment::lookupLocal(name : String) : ocl::NamedElement
+--post: result = namedElements->any(v | v.name = name)
+--
+--context Environment::lookup(name: String) : ocl::NamedElement
+--post: result = if not lookupLocal(name).oclIsUndefined() then
+--	lookupLocal(name) --.referredElement
+--	else
+--	parent.lookup(name)
+--	endif
+--
+--context Environment::lookupPathName(names: Sequence(String)) : ocl::Element
+--post:
+--	let firstNamespace : ocl::NamedElement = lookupLocal(names->first()) -- .referredElement
+--	in
+--		if firstNamespace.oclIsKindOf(ocl::Namespace) then
+--			-- indicates a sub namespace of the namespace in which self is present
+--			result = self.nestedEnvironment().addNamespace(
+--				firstNamespace.oclAsType(ocl::Namespace)).lookupPathName( names->subSequence(2, names->size()) )
+--		else
+--			-- search in surrounding namespace
+--			result = parent.lookupPathName( names )
+--		endif
+--
+--context Environment::addElement (name : String, elem : ocl::Element, imp : Boolean) : Environment
+--pre : -- the name must not clash with names already existing in this environment
+--	self.lookupLocal(name).oclIsUndefined()
+--post: 
+--	result.parent = self.parent and
+--	result.namedElements->includesAll (self.namedElements) and
+--	result.namedElements->select (v | v.oclIsNew())->size() = 1 and
+--	result.namedElements->forAll (v | v.oclIsNew() implies
+--		v.name = name and 
+--		v--.referredElement 
+--			= elem -- and
+--		-- v.mayBeImplicit = imp -- NOTE: many implicit properties in Pivot (Property, CallExp, Variable, VariableExp)  
+--		)
+--		
+--
+--context Environment::addEnvironment(env : Environment) : Environment
+--pre : -- the names must not clash with names already existing in this environment
+--	env.namedElements->forAll(nm | self.lookupLocal(nm.name).oclIsUndefined())
+--post: 
+--	result.parent = self.parent and
+--	result.namedElements = self.namedElements->union(env.namedElements)
+--
+--
+--context Environment::addNamespace(ns: ocl::Namespace) : Environment
+--post: 
+--	result.namedElements = ns.getEnvironmentWithoutParents().namedElements->union(
+--						self.namedElements) and
+--	result.parent = self.parent
+--	 
+--context Environment::nestedEnvironment() : Environment
+--post: 
+--	result.namedElements->isEmpty() and
+--	result.parent = self and
+--	result.oclIsNew()
+--
+---- Rubish	
+----context Environment::lookupImplicitProperty(name: String) : ocl::Property
+----post: 
+----	result = lookupImplicitSourceForProperty(name)
+----	
+----context Environment::lookupImplicitSourceForProperty(name: String) : ocl::NamedElement
+----post: 
+----	let foundElement : ocl::NamedElement = 
+----				namedElements -- ->select(mayBeImplicit) NOTE: many implicit properties in Pivot (Property, CallExp, Variable, VariableExp)  
+----					->any(ne | not ne.getType().lookupAttribute(name).oclIsUndefined() )
+----	in
+----		result	=	if foundElement.oclIsUndefined() then
+----						self.parent.lookupImplicitSourceForAttribute(name)
+----					else
+----						foundElement
+----					endif
+----
+----context Environment::lookupImplicitOperation(name: String,
+----		params : Sequence(ocl::Type)) : ocl::Operation
+----post: 
+----	let foundOperation : ocl::Operation = namedElements -- ->select(mayBeImplicit)
+----								->any( ne | not ne.getType().lookupOperation(name, params).oclIsUndefined() )
+----	in
+----		result = if foundOperation.oclIsUndefined() then
+----					self.parent.lookupImplicitOperation(name)
+----				else
+----					foundOperation
+----				endif
+
+
+-------------- OCS2AS STUFF--------------------
+-- So far, OMG stuff which clearly needs to be reworked. Let's build a better description 
+--  
+
+context ElementCS
+def : env : Environment = Environment{}
+
+context Environment 
+def : lookupType(path : PathNameCS): ocl::Type =
 	null -- TODO
 	
+-- Environment additions for our name resolution specification
+--def : lookupLocal(name : String[?]) : ocl::NamedElementCS[?] = 
+--	null -- TODO
+--def : lookup(name : String[?]) : ocl::NamedElement[?] = 
+--	null -- TODO
+--def : lookupPathName(name : PathNameCS[?]) : ocl::NamedElement[?] =
+--	null -- TODO
+-- def : lookupVariableDeclaration(name : String[?]) : ocl::VariableDeclaration[?] =
+--	null -- TODO
+--def : lookupType(name : String[?]) : ocl::Type[?] = 
+--	null -- TODO
+--def : lookupType(name : PathNameCS[?]) : ocl::Type[?] = 
+--	null -- TODO
+--def : lookupCollectionType(collectionKind : String[?], elementType : TypedRefCS[?]) : ocl::CollectionType[?] =
+--	null -- TODO
+
 endpackage
