@@ -52,7 +52,6 @@ import org.eclipse.ocl.examples.autogen.analyzer.AutoAS2CGVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalysisVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoBoxingAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoCG2StringVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoDependencyVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoFieldingAnalyzer;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoReferencesVisitor;
@@ -107,18 +106,17 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 			@Nullable String superProjectPrefix,
 			@Nullable String superProjectName,
 			@Nullable String superVisitorClass) {
-		EPackage ePackage = genPackage.getEcorePackage();
-		assert ePackage != null;
+
 //		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
 //		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
 //		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
 //		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
 //		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
 //		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
-	
-		AutoCG2StringVisitor.FACTORY.getClass();
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(ePackage.eResource()));
-		org.eclipse.ocl.examples.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
+//		AutoCG2StringVisitor.FACTORY.getClass(); TODO investigate what's the commented code for
+		
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(genPackage.eResource()));
+		org.eclipse.ocl.examples.pivot.Package asPackage = getPivotPackage(metaModelManager, genPackage);
 		if (asPackage != null) {
 			GenPackage superGenPackage = null;
 			org.eclipse.ocl.examples.pivot.Package asSuperPackage = null;
@@ -127,8 +125,7 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 					String name = gPackage.getPrefix();
 					if (name.startsWith(superProjectPrefix)) {
 						superGenPackage = gPackage;
-						EPackage eSuperPackage = gPackage.getEcorePackage();
-						asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, eSuperPackage);
+						asSuperPackage = getPivotPackage(metaModelManager, gPackage);
 						break;
 					}
 				}
@@ -141,6 +138,26 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 			autoCodeGenerator.saveSourceFile();
 		}
 	}
+	
+	private static org.eclipse.ocl.examples.pivot.Package getPivotPackage (MetaModelManager mmManager, GenPackage genPackage) {
+		
+		EPackage ePackage = genPackage.getEcorePackage();
+		return  mmManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
+		
+//		URI uri = genPackage.eResource().getURI();
+//		// FIXME assuming the ocl document have the same than GenModel one
+//		URI oclDocUri = URI.createURI(uri.lastSegment().replace(uri.fileExtension(), "ocl")).resolve(uri);   
+//		ResourceSet rSet = genPackage.eResource().getResourceSet();
+//		org.eclipse.ocl.examples.pivot.OCL.initialize(rSet);		
+//		org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
+//		org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(rSet);
+//		CompleteOCLStandaloneSetup.doSetup();
+//		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(rSet.getPackageRegistry(), mmManager));
+//		Resource resource = DomainUtil.nonNullState(ocl.parse(oclDocUri));
+//		Root root = (Root) resource.getContents().get(0);		
+//		return (org.eclipse.ocl.examples.pivot.Package) root.getNestedPackage().get(0);
+	}
+	
 	
 	protected final @NonNull AutoAnalyzer cgAnalyzer;
 	protected final @NonNull org.eclipse.ocl.examples.pivot.Package asPackage;
