@@ -1,5 +1,5 @@
 import 'BaseCS.ecore'
-import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
+--import '/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'
 import 'BaseCSNameResolution.ocl' -- Environment definitions
 package basecs
 
@@ -24,7 +24,7 @@ def: ast() : ocl::Property=
 		isTransient = qualifier->includes('transient'),
 		isUnsettable = qualifier->includes('unsettable'),
 		isVolatile = qualifier->includes('volatile'),
-		isRequired = isRequired(),
+		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
 		default = default,
 		defaultExpression = ownedDefaultExpression.ast(),
 		ownedAnnotation = ownedAnnotation.ast(),
@@ -163,7 +163,7 @@ def : ast() : ocl::Operation =
 	ocl::Operation {
 		name = name,
 		isStatic = qualifier->includes( 'static'),
-		isRequired = isRequired(),
+		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched,
 		ownedTemplateSignature = ownedTemplateSignature.ast(),
 		ownedParameter = ownedParameter.ast(),
 		raisedException = ownedException.ast(),
@@ -195,7 +195,7 @@ context ParameterCS
 def : ast() : ocl::Parameter =
 	ocl::Parameter {
 		name = name,
-		isRequired = isRequired(),
+		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
 		ownedAnnotation = ownedAnnotation.ast(),
 		type =ownedType.ast()
 	}
@@ -308,7 +308,7 @@ context TuplePartCS
 def : ast() : ocl::Property = 
 	ocl::Property {
 		name = name,
-		isRequired = isRequired(),
+		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
 		type = ownedType.ast()
 	}
 	

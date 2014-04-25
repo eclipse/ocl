@@ -42,8 +42,11 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -80,15 +83,19 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
+import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 /**
  * AutoCodeGenerator supports generation of the content of a JavaClassFile to
@@ -141,21 +148,23 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 	
 	private static org.eclipse.ocl.examples.pivot.Package getPivotPackage (MetaModelManager mmManager, GenPackage genPackage) {
 		
-		EPackage ePackage = genPackage.getEcorePackage();
-		return  mmManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
-		
-//		URI uri = genPackage.eResource().getURI();
-//		// FIXME assuming the ocl document have the same than GenModel one
-//		URI oclDocUri = URI.createURI(uri.lastSegment().replace(uri.fileExtension(), "ocl")).resolve(uri);   
-//		ResourceSet rSet = genPackage.eResource().getResourceSet();
-//		org.eclipse.ocl.examples.pivot.OCL.initialize(rSet);		
-//		org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
-//		org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(rSet);
-//		CompleteOCLStandaloneSetup.doSetup();
-//		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(rSet.getPackageRegistry(), mmManager));
-//		Resource resource = DomainUtil.nonNullState(ocl.parse(oclDocUri));
-//		Root root = (Root) resource.getContents().get(0);		
-//		return (org.eclipse.ocl.examples.pivot.Package) root.getNestedPackage().get(0);
+		try { 	// We try to find a CompleteOCL document with the same name as the .genmodel file
+				// If it doesn't exist, it will fallback to the Ecore Package
+			URI uri = genPackage.eResource().getURI();
+			URI oclDocUri = DomainUtil.nonNullState(URI.createURI(uri.lastSegment().replace(uri.fileExtension(), "ocl")).resolve(uri));   
+			ResourceSet rSet = DomainUtil.nonNullState(genPackage.eResource().getResourceSet());
+			org.eclipse.ocl.examples.pivot.OCL.initialize(rSet);		
+			org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
+			org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(rSet);
+			CompleteOCLStandaloneSetup.doSetup();
+			OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(rSet.getPackageRegistry(), mmManager));
+			Resource resource = DomainUtil.nonNullState(ocl.parse(oclDocUri));
+			Root root = (Root) resource.getContents().get(0);
+			return root.getNestedPackage().get(0);	
+		} catch (WrappedException e) {
+			EPackage ePackage = genPackage.getEcorePackage();
+			return  mmManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ePackage);		
+		}
 	}
 	
 	

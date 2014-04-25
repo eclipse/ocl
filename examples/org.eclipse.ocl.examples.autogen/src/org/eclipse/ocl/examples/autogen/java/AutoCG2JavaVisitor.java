@@ -241,7 +241,7 @@ public class AutoCG2JavaVisitor extends CG2JavaVisitor implements AutoCGModelVis
 		for (CGContainmentPart part : object.getParts()) {
 			part.accept(this);
 		}
-		// TODO any heuristic to include comment update ?
+		// TODO any logic to include comment update ?
 		js.append("// AS element comments update;\n");
 		js.append("context.refreshComments(result, self);\n");
 		return true;
