@@ -16,7 +16,11 @@
  */
 package org.eclipse.ocl.examples.pivot.resource;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -42,6 +46,16 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 
 	public @NonNull ASResourceFactory getASResourceFactory() {
 		return asResourceFactory;
+	}
+
+	@Override
+	public Map<Object, Object> getDefaultSaveOptions() {
+		if (defaultSaveOptions == null) {
+			defaultSaveOptions = new HashMap<Object, Object>();
+			defaultSaveOptions.put(XMLResource.OPTION_LINE_WIDTH, 132);
+			defaultSaveOptions.put(XMLResource.OPTION_LINE_DELIMITER, "\n");
+		}
+		return defaultSaveOptions;
 	}
 
 	@Override

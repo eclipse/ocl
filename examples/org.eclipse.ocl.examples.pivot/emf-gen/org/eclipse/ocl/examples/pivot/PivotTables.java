@@ -169,10 +169,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_VariableDeclaration = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getClassId("VariableDeclaration", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_VariableExp = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getClassId("VariableExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Vertex = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getClassId("Vertex", 0);
-    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_Integer = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getDataTypeId("Integer", 0);
     public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_LibraryFeature = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getDataTypeId("LibraryFeature", 0);
-    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_Real = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getDataTypeId("Real", 0);
-    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_UnlimitedNatural = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getDataTypeId("UnlimitedNatural", 0);
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_AssociativityKind = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getEnumerationId("AssociativityKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CollectionKind = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getEnumerationId("CollectionKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_PseudostateKind = PivotTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_3_1_0_s_Pivot.getEnumerationId("PseudostateKind");

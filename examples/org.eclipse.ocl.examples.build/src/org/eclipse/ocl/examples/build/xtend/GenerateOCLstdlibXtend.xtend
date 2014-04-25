@@ -129,9 +129,9 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				/**
 				 * Return true if the default OCL standard Library has been created. 
 				 */
-				public static boolean hasDefault() {
-					return INSTANCE != null;
-				}
+			//	public static boolean hasDefault() {
+			//		return INSTANCE != null;
+			//	}
 			
 				/**
 				 * Install this library in the {@link StandardLibraryContribution#REGISTRY}.
@@ -140,7 +140,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 * extension when running within Eclipse. 
 				 */
 				public static void install() {
-					StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
+					StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new RenamingLoader(PivotPackage.eNS_URI));
 				}
 			
 				/**
@@ -179,7 +179,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					}
 				}
 				
-				/*
+				/**
 				 *	Define an OCL Standard Library contribution that renames the standard contribution
 				 *  to extend a given actual metamodel NsURI. For UML, this ensures that the self-defining
 				 *  OCL meta-namespaces and the self-defining UML meta-namespaces are the same.

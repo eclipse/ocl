@@ -878,7 +878,10 @@ public class OCLMetaModel extends ASResourceImpl
 			final List<Type> ownedTypes = metamodel.getOwnedType();
 			PrimitiveType type;
 			ownedTypes.add(type = _Boolean);
+			ownedTypes.add(type = _Integer);
+			ownedTypes.add(type = _Real);
 			ownedTypes.add(type = _String);
+			ownedTypes.add(type = _UnlimitedNatural);
 		}
 
 		protected void installEnumerations() {
