@@ -38,20 +38,41 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.uml.UMLOCLEValidator;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class ValidateCommand extends ValidateAction
 {
-	protected final static class Diagnostician_2_8 extends Diagnostician
+	protected abstract static class PivotDiagnostician extends Diagnostician
 	{
-		private final AdapterFactory adapterFactory;
+		protected final AdapterFactory adapterFactory;
 
-		protected Diagnostician_2_8(EValidator.Registry eValidatorRegistry, AdapterFactory adapterFactory) {
+		protected PivotDiagnostician(@NonNull EValidator.Registry eValidatorRegistry, ResourceSet resourceSet, AdapterFactory adapterFactory) {
 			super(eValidatorRegistry);
 			this.adapterFactory = adapterFactory;
+			if (resourceSet != null) {
+				OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+			}
+		}
+		
+		@Override
+		public Map<Object, Object> createDefaultContext() {
+			Map<Object, Object> context = super.createDefaultContext();
+		    if (context != null) {
+		    	OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(context);
+		    }
+			return context;
+		}
+	}
+
+	protected final static class Diagnostician_2_8 extends PivotDiagnostician
+	{
+		protected Diagnostician_2_8(@NonNull EValidator.Registry eValidatorRegistry, ResourceSet resourceSet, AdapterFactory adapterFactory) {
+			super(eValidatorRegistry, resourceSet, adapterFactory);
 		}
 
 		@Override
@@ -65,17 +86,15 @@ public class ValidateCommand extends ValidateAction
 			return super.getObjectLabel(eObject);
 		}
 	}
-	protected final static class Diagnostician_2_9 extends Diagnostician
+	protected final static class Diagnostician_2_9 extends PivotDiagnostician
 	{
 		private final ResourceSet resourceSet;
-		private final AdapterFactory adapterFactory;
 		private final IProgressMonitor progressMonitor;
 
-		protected Diagnostician_2_9(EValidator.Registry eValidatorRegistry, ResourceSet resourceSet,
+		protected Diagnostician_2_9(@NonNull EValidator.Registry eValidatorRegistry, ResourceSet resourceSet,
 				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
-			super(eValidatorRegistry);
+			super(eValidatorRegistry, resourceSet, adapterFactory);
 			this.resourceSet = resourceSet;
-			this.adapterFactory = adapterFactory;
 			this.progressMonitor = progressMonitor;
 		}
 
@@ -128,7 +147,7 @@ public class ValidateCommand extends ValidateAction
 			return new Diagnostician_2_9(registry, resourceSet, adapterFactory, progressMonitor);
 		}
 		else {
-			return new Diagnostician_2_8(registry, adapterFactory);
+			return new Diagnostician_2_8(registry, resourceSet, adapterFactory);
 		}
 	}
 

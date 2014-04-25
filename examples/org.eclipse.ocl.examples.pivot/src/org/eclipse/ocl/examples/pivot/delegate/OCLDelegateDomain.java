@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.pivot.delegate;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.notify.Adapter;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.impl.ValidationDelegateRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
@@ -50,6 +52,37 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
  */
 public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListener
 {
+	protected static class PivotOnlyRegistry extends ValidationDelegateRegistryImpl
+	{
+		private static final long serialVersionUID = 1L;
+
+		public static final @NonNull PivotOnlyRegistry INSTANCE = new PivotOnlyRegistry();
+
+		@Override
+		public ValidationDelegate getValidationDelegate(String uri) {
+			return OCLValidationDelegateFactory.Global.INSTANCE;
+		}
+	}
+	
+	protected static class PivotOnlyVirtualDelegateMapping extends VirtualDelegateMapping
+	{
+		public static final @NonNull PivotOnlyVirtualDelegateMapping INSTANCE = new PivotOnlyVirtualDelegateMapping();
+
+		protected PivotOnlyVirtualDelegateMapping() {
+			super("x", "y", "z");
+		}
+
+		@Override
+		public @Nullable String getDefaultValue() {
+			return OCL_DELEGATE_URI_PIVOT;
+		}
+
+		@Override
+		public @Nullable String getPreferredValue() {
+			return OCL_DELEGATE_URI_PIVOT;
+		}
+	}
+
 	/**
 	 * The delegate URI for Ecore annotations using the Pivot evaluator.
 	 */
@@ -105,6 +138,16 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory(oclDelegateURI));
 			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
+	}
+
+	public static void initializePivotOnlyDiagnosticianContext(@NonNull Map<Object, Object> context) {
+		context.put(org.eclipse.emf.ecore.EValidator.ValidationDelegate.Registry.class, PivotOnlyRegistry.INSTANCE);
+	}
+
+	public static void initializePivotOnlyDiagnosticianResourceSet(@NonNull ResourceSet resourceSet) {
+		DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
+		adapter.putRegistry(org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate.Registry.class, PivotOnlyRegistry.INSTANCE);
+		adapter.putRegistry(VirtualDelegateMapping.class, PivotOnlyVirtualDelegateMapping.INSTANCE);
 	}
 
 	protected final @NonNull String uri;
