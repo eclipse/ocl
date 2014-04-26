@@ -328,10 +328,10 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		assert umlPackage != null;
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, umlPackage);
 		copyPackage(pivotElement, umlPackage);
-		if (pivotElement.getName() == null) {
-			pivotElement.setName("anon_" + Integer.toHexString(System.identityHashCode(umlPackage)));
-			logger.error("Anonymous package named as '" + pivotElement.getName() + "'");
-		}
+//		if (pivotElement.getName() == null) {
+//			pivotElement.setName("anon_" + Integer.toHexString(System.identityHashCode(umlPackage)));
+//			logger.error("Anonymous package named as '" + pivotElement.getName() + "'");
+//		}
 		return pivotElement;
 	}
 
@@ -387,7 +387,16 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		if (primaryElement == metaModelManager.getBooleanType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
+		else if (primaryElement == metaModelManager.getIntegerType()) {
+			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
+		}
+		else if (primaryElement == metaModelManager.getRealType()) {
+			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
+		}
 		else if (primaryElement == metaModelManager.getStringType()) {
+			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
+		}
+		else if (primaryElement == metaModelManager.getUnlimitedNaturalType()) {
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
 		else if (ecoreStereotype != null) {

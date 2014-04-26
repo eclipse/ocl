@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -84,8 +83,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 {
-	private static final Logger logger = Logger.getLogger(Ecore2PivotDeclarationSwitch.class);
-
 	public static boolean hasDocumentationKey(@Nullable String source, @NonNull EMap<String, String> details) {
 		return (details.size() == 1) && PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE.equals(source)
 			&& details.containsKey(PivotConstants.DOCUMENTATION_ANNOTATION_KEY);
@@ -228,12 +225,18 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if ("Boolean".equals(newName) && ((instanceClass == Boolean.class) || (instanceClass == boolean.class))) {
 			isPrimitive = true;
 		}
-		else if ("Integer".equals(newName) && ((instanceClass == Integer.class) || (instanceClass == int.class))) {
+		else if ("Integer".equals(newName) && ((instanceClass == Number.class) || (instanceClass == Integer.class) || (instanceClass == int.class))) {
+			isPrimitive = true;
+		}
+		else if ("Real".equals(newName) && (instanceClass == Number.class)) {
 			isPrimitive = true;
 		}
 		else if ("String".equals(newName) && (instanceClass == String.class)) {
 			isPrimitive = true;
 		} 
+		else if ("UnlimitedNatural".equals(newName) && (instanceClass == Number.class)) {
+			isPrimitive = true;
+		}
 		DataType pivotElement = isPrimitive
 				? converter.refreshElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, eObject2)
 				: converter.refreshElement(DataType.class, PivotPackage.Literals.DATA_TYPE, eObject2);
@@ -392,10 +395,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject2);
 		String oldName = pivotElement.getName();
 		String newName = converter.getOriginalName(eObject2);
-		if (newName == null) {
-			newName = "anon_" + Integer.toHexString(System.identityHashCode(eObject2));
-			logger.error("Anonymous package named as '" + newName + "'");
-		}
+//		if (newName == null) {
+//			newName = "anon_" + Integer.toHexString(System.identityHashCode(eObject2));
+//			logger.error("Anonymous package named as '" + newName + "'");
+//		}
 		String oldNsURI = pivotElement.getNsURI();
 		String newNsURI = eObject2.getNsURI();
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));

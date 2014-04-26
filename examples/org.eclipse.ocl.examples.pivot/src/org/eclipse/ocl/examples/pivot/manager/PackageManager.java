@@ -180,25 +180,31 @@ public class PackageManager implements PackageServerParent
 
 	protected @NonNull RootPackageServer createRootPackageServer(@NonNull DomainPackage pivotPackage) {
 		String name = pivotPackage.getName();
-		if (name == null) {
-			throw new IllegalStateException("Unnamed package");
+//		if (name == null) {
+//			throw new IllegalStateException("Unnamed package");
+//		}
+		String nonNullName = name;
+		if (nonNullName == null) {
+			nonNullName = "$anon_" + Integer.toHexString(System.identityHashCode(pivotPackage));
 		}
 		String nsPrefix = pivotPackage.getNsPrefix();
 		String nsURI = pivotPackage.getNsURI();
 		PackageId packageId = pivotPackage.getPackageId();
 		RootPackageServer rootPackageServer;
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
-			rootPackageServer = new OrphanPackageServer(this, name, nsPrefix, nsURI, packageId);
+			rootPackageServer = new OrphanPackageServer(this, nonNullName, nsPrefix, nsURI, packageId);
 		}
 		else {
-			rootPackageServer = new RootPackageServer(this, name, nsPrefix, nsURI, packageId);
+			rootPackageServer = new RootPackageServer(this, nonNullName, nsPrefix, nsURI, packageId);
 		}
-		if (!packageServers.containsKey(name)) {
-			PackageServer oldPackageServer = packageServers.put(name, rootPackageServer);		// New name
-			assert oldPackageServer == null;
-		}
-		else {
-			packageServers.put(name, null);														// Ambiguous name
+		if (name != null) {
+			if (!packageServers.containsKey(name)) {
+				PackageServer oldPackageServer = packageServers.put(name, rootPackageServer);		// New name
+				assert oldPackageServer == null;
+			}
+			else {
+				packageServers.put(name, null);														// Ambiguous name
+			}
 		}
 		if (nsURI != null) {
 			addPackageServer(rootPackageServer);
