@@ -38,6 +38,7 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -142,6 +143,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 
 	public static void initializePivotOnlyDiagnosticianContext(@NonNull Map<Object, Object> context) {
 		context.put(org.eclipse.emf.ecore.EValidator.ValidationDelegate.Registry.class, PivotOnlyRegistry.INSTANCE);
+		context.put(EValidator.SubstitutionLabelProvider.class, DomainSubstitutionLabelProvider.INSTANCE);
 	}
 
 	public static void initializePivotOnlyDiagnosticianResourceSet(@NonNull ResourceSet resourceSet) {

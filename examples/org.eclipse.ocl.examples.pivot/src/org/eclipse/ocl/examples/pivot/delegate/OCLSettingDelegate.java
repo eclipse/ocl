@@ -24,15 +24,15 @@ import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Query;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * An implementation of a setting delegate that computes OCL derived features.
@@ -82,13 +82,9 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 				return unboxedValue;
 			}
 		}
-		catch (InvalidValueException e) {
-			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
-			throw new OCLDelegateException(message, e);
-		}
 		catch (DomainException e) {
-			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
-			throw new OCLDelegateException(message, e);
+			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
+			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 	}
 
@@ -97,7 +93,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 		if (property2 == null) {
 			property2 = property = delegateDomain.getPivot(Property.class, DomainUtil.nonNullEMF(eStructuralFeature));
 			if (property2 == null) {
-				throw new OCLDelegateException("No pivot property for " + eStructuralFeature) ;
+				throw new OCLDelegateException(new SemanticException("No pivot property for " + eStructuralFeature)) ;
 			}
 		}
 		return property2;

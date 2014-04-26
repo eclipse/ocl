@@ -607,7 +607,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			value = variable.accept(undecoratedVisitor);
 		}
 		catch (InvalidValueException e) {
-			value = new InvalidValueException(e);
+			value = e;
 		}
 //		value = ValuesUtil.asValue(value);
     	EvaluationVisitor nestedVisitor = undecoratedVisitor.createNestedEvaluator();		

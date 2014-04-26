@@ -28,22 +28,22 @@ import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Query;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * An implementation of an operation-invocation delegate for OCL body
@@ -87,7 +87,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 					ValidationBehavior.INSTANCE.validate(constraint);
 				}
 				else {
-					throw new OCLDelegateException("Unsupported InvocationDelegate for a " + namedElement.eClass().getName()) ;
+					throw new OCLDelegateException(new SemanticException("Unsupported InvocationDelegate for a " + namedElement.eClass().getName())) ;
 				}
 			}
 			Query query = ocl.createQuery(specification2);
@@ -117,16 +117,9 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 				return unboxedValue;
 			}
 		}
-		catch (InvalidValueException e) {
-			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
-			throw new InvocationTargetException(new OCLDelegateException(message));
-		}
 		catch (DomainException e) {
-			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
-			throw new InvocationTargetException(new OCLDelegateException(message));
-		}
-		catch (OCLDelegateException e) {
-			throw new InvocationTargetException(e);
+			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
+			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 	}
 
@@ -145,7 +138,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		}
 		if (query == null) {
 			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return query;
 	}
@@ -158,7 +151,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 				operation2 = operation = (Operation) pivot;
 			}
 			if (operation2 == null) {
-				throw new OCLDelegateException("No pivot property for " + eOperation) ;
+				throw new OCLDelegateException(new SemanticException("No pivot property for " + eOperation)) ;
 			}
 		}
 		return operation2;

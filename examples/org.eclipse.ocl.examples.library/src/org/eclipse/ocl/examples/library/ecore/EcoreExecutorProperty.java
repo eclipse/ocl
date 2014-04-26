@@ -39,7 +39,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 	}
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = ValuesUtil.asNavigableObject(sourceValue);
+		EObject eObject = ValuesUtil.asNavigableObject(sourceValue, eFeature);
 		Object eValue = eObject.eGet(eFeature);
 		return eValue != null ? evaluator.getIdResolver().boxedValueOf(eValue, eFeature, returnTypeId) : null;
 	}

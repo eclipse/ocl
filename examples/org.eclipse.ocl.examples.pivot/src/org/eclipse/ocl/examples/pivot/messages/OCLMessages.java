@@ -248,7 +248,7 @@ public class OCLMessages
 	public static String ValidationMessageIsNotString_ERROR_;
 	public static String ValidationResultIsInvalid_ERROR_;	
 	public static String ValidationResultIsNull_ERROR_;	
-	public static String ValidationResultIsNotBoolean_ERROR_;
+//	public static String ValidationResultIsNotBoolean_ERROR_;
 	
 	public static String HiddenOppositeOf;
 

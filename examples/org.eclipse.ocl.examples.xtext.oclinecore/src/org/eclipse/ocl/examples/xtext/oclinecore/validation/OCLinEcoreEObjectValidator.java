@@ -18,12 +18,11 @@ package org.eclipse.ocl.examples.xtext.oclinecore.validation;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegateExtension;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateValidator;
 
 /**
  * A OCLinEcoreEObjectValidator enhances the standard EObjectValidator to allow validation failures
@@ -32,92 +31,42 @@ import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegateExtension;
  * 
  * This class may go obsolete once Bug 337792 resolved.
  */
-public class OCLinEcoreEObjectValidator extends EObjectValidator
-{	
-	@Override
-	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context,
-			String validationDelegate, String constraint, String expression, int severity, String source, int code) {
-		assert eClass != null;
-		assert eObject != null;
-		assert constraint != null;
-	    ValidationDelegate delegate = getValidationDelegateRegistry(context).getValidationDelegate(validationDelegate);
-	    if (delegate instanceof ValidationDelegateExtension) {
-	      try
-	      {
-	        return ((ValidationDelegateExtension)delegate).validate(eClass, eObject, diagnostics, context, constraint, expression, severity, source, code);
-	      }
-	      catch (Throwable throwable)
-	      {
-	        if (diagnostics != null)
-	          reportConstraintDelegateException(eClass, eObject, diagnostics, context, constraint, severity, source, code, throwable);
-	      }
-	    }
-	    else if (delegate != null)
-	    {
-	      try
-	      {
-	        if (!delegate.validate(eClass, eObject, context, constraint, expression))
-	        {
-	          if (diagnostics != null)
-	            reportConstraintDelegateViolation(eClass, eObject, diagnostics, context, constraint, severity, source, code);
-	          return false;
-	        }
-	      }
-	      catch (Throwable throwable)
-	      {
-	        if (diagnostics != null)
-	          reportConstraintDelegateException(eClass, eObject, diagnostics, context, constraint, severity, source, code, throwable);
-	      }
-	    }
-	    else
-	    {
-	      if (diagnostics != null)
-	        reportConstraintDelegateNotFound(eClass, eObject, diagnostics, context, constraint, severity, source, code, validationDelegate);
-	    }
-	    return true;
+public class OCLinEcoreEObjectValidator extends OCLDelegateValidator
+{
+	public OCLinEcoreEObjectValidator() {
+		super(null);
 	}
-
+	
+	// Overridden to invoke OCLDelegateValidator
 	@Override
-	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics,
-			Map<Object, Object> context, String validationDelegate, String constraint, String expression, int severity,
-			String source, int code) {
-		assert eDataType != null;
-		assert value != null;
-		assert constraint != null;
-	    ValidationDelegate delegate = getValidationDelegateRegistry(context).getValidationDelegate(validationDelegate);
-	    if (delegate instanceof ValidationDelegateExtension) {
-		      try
-		      {
-		        return ((ValidationDelegateExtension)delegate).validate(eDataType, value, diagnostics, context, constraint, expression, severity, source, code);
-		      }
-		      catch (Throwable throwable)
-		      {
-		        if (diagnostics != null)
-		          reportConstraintDelegateException(eDataType, value, diagnostics, context, constraint, severity, source, code, throwable);
-		      }
-		    }
-		    else if (delegate != null)
-	    {
-	      try
-	      {
-	        if (!delegate.validate(eDataType, value, context, constraint, expression))
-	        {
-	          if (diagnostics != null)
-	            reportConstraintDelegateViolation(eDataType, value, diagnostics, context, constraint, severity, source, code);
-	          return false;
-	        }
-	      }
-	      catch (Throwable throwable)
-	      {
-	        if (diagnostics != null)
-	          reportConstraintDelegateException(eDataType, value, diagnostics, context, constraint, severity, source, code, throwable);
-	      }
-	    }
-	    else
-	    {
-	      if (diagnostics != null)
-	        reportConstraintDelegateNotFound(eDataType, value, diagnostics, context, constraint, severity, source, code, validationDelegate);
-	    }
-	    return true;
+	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (eObject.eIsProxy()) {
+			if (context != null && context.get(ROOT_OBJECT) != null) {
+				if (diagnostics != null) {
+					diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+							EOBJECT__EVERY_PROXY_RESOLVES, "_UI_UnresolvedProxy_diagnostic",
+							new Object[] {
+								getFeatureLabel(eObject.eContainmentFeature(), context),
+								getObjectLabel(eObject.eContainer(), context),
+								getObjectLabel(eObject, context) },
+							new Object[] {
+								eObject.eContainer(),
+								eObject.eContainmentFeature(),
+								eObject },
+							context));
+				}
+				return false;
+			} else {
+				return true;
+			}
+		}
+		else if (eClass.eContainer() == getEPackage()) {
+			return validate(eClass.getClassifierID(), eObject, diagnostics, context);
+		}
+		else {
+			return new OCLDelegateValidator(this) {
+				// Ensure that the class loader for this class will be used downstream.
+			}.validate(eClass, eObject, diagnostics, context);
+		}
 	}
 }

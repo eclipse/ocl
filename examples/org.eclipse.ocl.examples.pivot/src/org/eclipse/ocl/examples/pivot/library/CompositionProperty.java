@@ -42,7 +42,7 @@ public class CompositionProperty extends AbstractProperty
 	}
 	
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = asNavigableObject(sourceValue); 
+		EObject eObject = asNavigableObject(sourceValue, eContainmentFeature); 
 		EObject eContainer = eObject.eContainer();
 		if (eContainer == null) {
 			return null;				// No container

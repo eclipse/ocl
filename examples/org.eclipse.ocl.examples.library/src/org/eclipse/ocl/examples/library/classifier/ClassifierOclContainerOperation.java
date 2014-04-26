@@ -30,7 +30,7 @@ public class ClassifierOclContainerOperation extends AbstractSimpleUnaryOperatio
 
 	@Override
 	public @Nullable Object evaluate(@Nullable Object sourceVal) {
-		EObject object = asNavigableObject(sourceVal);
+		EObject object = asNavigableObject(sourceVal, "oclContainer()"); //$NON-NLS-1$
 		return object.eContainer();
 	}
 }

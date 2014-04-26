@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -77,7 +78,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 			}
 		}
 		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
-		throw new OCLDelegateException(message);
+		throw new OCLDelegateException(new SemanticException(message));
 	}
 
 	@Override

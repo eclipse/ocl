@@ -27,15 +27,16 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -61,10 +62,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		public Boolean evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
 			if (!isBooleanConstraint()) {
-				String objectLabel = DomainUtil.getLabel(expression.getContextVariable().getType());
+				String objectLabel = DomainUtil.getLabel(expression.getType());
 //				String constraintTypeName = getConstraintTypeName(query);
 				String checkMessage = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
-				throw new OCLDelegateException(checkMessage);
+				throw new OCLDelegateException(new EvaluationException(checkMessage));
 			}
 			return super.evaluate(evaluationVisitor);
 		}
@@ -78,19 +79,25 @@ public class OCLValidationDelegate implements ValidationDelegate
 		protected Boolean handleExceptionResult(@NonNull Exception e) {
 			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
-			throw new OCLDelegateException(message, e);
+			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 
 		@Override
 		protected Boolean handleFailureResult(@Nullable Object result) {
-			return Boolean.FALSE;
+			if (result == null) {
+				String message = getConstraintResultMessage(result);
+				throw new OCLDelegateException(new EvaluationException(message));
+			}
+			else {
+				return Boolean.FALSE;
+			}
 		}
 
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
-			throw new OCLDelegateException(message, e);
+			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 
 		@Override
@@ -116,6 +123,26 @@ public class OCLValidationDelegate implements ValidationDelegate
 	protected boolean check(@NonNull EvaluationVisitor evaluationVisitor, @NonNull String constraintName, @NonNull ExpressionInOCL query) {
 		ConstraintEvaluator<Boolean> constraintEvaluator = new CheckingConstraintEvaluator(eClassifier, query);
 		return constraintEvaluator.evaluate(evaluationVisitor);
+	}
+
+	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
+		ExpressionInOCL query = null;
+		OpaqueExpression valueSpecification = constraint.getSpecification();
+		if (valueSpecification instanceof ExpressionInOCL) {
+			query = (ExpressionInOCL) valueSpecification;
+		}
+		else {
+			Type contextType = (Type) constraint.getContext();
+			if (contextType != null) {
+				ClassContext classContext = new ClassContext(metaModelManager, null, contextType);
+				query = ValidationBehavior.INSTANCE.getExpressionInOCL(classContext, constraint);
+			}
+		}
+		if (query == null) {
+			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
+			throw new OCLDelegateException(new SemanticException(message));
+		}
+		return query;
 	}
 
 	@Override
@@ -154,25 +181,29 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 	}
 
-
-	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
-		ExpressionInOCL query = null;
-		OpaqueExpression valueSpecification = constraint.getSpecification();
-		if (valueSpecification instanceof ExpressionInOCL) {
-			query = (ExpressionInOCL) valueSpecification;
+	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics,
+			Map<Object, Object> context, @NonNull EOperation invariant, String expression, int severity, String source, int code) {
+		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
+		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(invariant));
+		if (namedElement instanceof Operation) {
+			Operation operation = (Operation)namedElement;
+			ExpressionInOCL query = InvocationBehavior.INSTANCE.getExpressionInOCL(metaModelManager, operation);
+			InvocationBehavior.INSTANCE.validate(operation);
+			return validateExpressionInOCL(eClass, eObject, null, context, invariant.getName(), null, 0, query);
+		}
+		else if (namedElement instanceof Constraint) {
+			Constraint constraint = (Constraint)namedElement;
+			ExpressionInOCL query = getExpressionInOCL(metaModelManager, constraint);
+			ValidationBehavior.INSTANCE.validate(constraint);
+			return validateExpressionInOCL(eClass, eObject, diagnostics, context,
+				invariant.getName(), source, code, query);
+		}
+		else if (namedElement != null) {
+			throw new ClassCastException(namedElement.getClass().getName() + " does not provide a Constraint");
 		}
 		else {
-			Type contextType = (Type) constraint.getContext();
-			if (contextType != null) {
-				ClassContext classContext = new ClassContext(metaModelManager, null, contextType);
-				query = ValidationBehavior.INSTANCE.getExpressionInOCL(classContext, constraint);
-			}
+			throw new ClassCastException(invariant.eClass().getName() + " does not provide a Constraint");
 		}
-		if (query == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
-			throw new OCLDelegateException(message);
-		}
-		return query;
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
@@ -189,6 +220,11 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return validatePivot(eClass, eObject, null, context, constraintName, null, 0);
 	}
 
+	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context,
+			@NonNull String constraintName, String expression, int severity, String source, int code) {
+		return validatePivot(eClass, eObject, diagnostics, context, constraintName, source, code);
+	}
+
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraintName, String expression) {
 		if (eDataType == null) {
@@ -203,40 +239,9 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return validatePivot(eDataType, value, null, context, constraintName, null, 0);
 	}
 
-	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context,
-			@NonNull String constraintName, String expression, int severity, String source, int code) {
-		return validatePivot(eClass, eObject, diagnostics, context, constraintName, source, code);
-	}
-
 	public boolean validate(@NonNull EDataType eDataType, @NonNull Object value, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context,
 			@NonNull String constraintName, String expression, int severity, String source, int code) {
 		return validatePivot(eDataType, value, diagnostics, context, constraintName, source, code);
-	}
-
-	protected boolean validatePivot(@NonNull EClassifier eClassifier, @NonNull Object value, @Nullable DiagnosticChain diagnostics,
-			Map<Object, Object> context, @NonNull String constraintName, String source, int code) {
-		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
-		Type type = delegateDomain.getPivot(Type.class, eClassifier);
-		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
-		if (constraint == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		ExpressionInOCL query = null;
-		OpaqueExpression valueSpecification = constraint.getSpecification();
-		if (valueSpecification instanceof ExpressionInOCL) {
-			query = (ExpressionInOCL) valueSpecification;
-		}
-		else if (type != null) {
-			ClassContext classContext = new ClassContext(metaModelManager, null, type);
-			query = ValidationBehavior.INSTANCE.getExpressionInOCL(classContext, constraint);
-		}
-		if (query == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		return validateExpressionInOCL(eClassifier, value, diagnostics, context,
-			constraintName, source, code, query);
 	}
 
 	protected boolean validateExpressionInOCL(final @NonNull EClassifier eClassifier, final @NonNull Object value, final @Nullable DiagnosticChain diagnostics,
@@ -250,12 +255,12 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 			@Override
 			protected Boolean handleFailureResult(@Nullable Object result) {
+				if (result == null) {
+					String message = getConstraintResultMessage(result);
+					throw new OCLDelegateException(new EvaluationException(message));
+				}
 				if (diagnostics != null) {
 					String message = getConstraintResultMessage(result);
-					if (message == null) {
-						message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
-							getConstraintTypeName(), getConstraintName(), getObjectLabel());
-					}
 					int severity = getConstraintResultSeverity(result);
 					diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { value }));
 				}
@@ -265,5 +270,31 @@ public class OCLValidationDelegate implements ValidationDelegate
 		OCL ocl = delegateDomain.getOCL();
 		EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(value, query);
 		return constraintEvaluator.evaluate(evaluationVisitor);
+	}
+
+	protected boolean validatePivot(@NonNull EClassifier eClassifier, @NonNull Object value, @Nullable DiagnosticChain diagnostics,
+			Map<Object, Object> context, @NonNull String constraintName, String source, int code) {
+		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
+		Type type = delegateDomain.getPivot(Type.class, eClassifier);
+		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
+		if (constraint == null) {
+			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			throw new OCLDelegateException(new SemanticException(message));
+		}
+		ExpressionInOCL query = null;
+		OpaqueExpression valueSpecification = constraint.getSpecification();
+		if (valueSpecification instanceof ExpressionInOCL) {
+			query = (ExpressionInOCL) valueSpecification;
+		}
+		else if (type != null) {
+			ClassContext classContext = new ClassContext(metaModelManager, null, type);
+			query = ValidationBehavior.INSTANCE.getExpressionInOCL(classContext, constraint);
+		}
+		if (query == null) {
+			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			throw new OCLDelegateException(new SemanticException(message));
+		}
+		return validateExpressionInOCL(eClassifier, value, diagnostics, context,
+			constraintName, source, code, query);
 	}
 }

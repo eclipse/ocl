@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.context.PropertyContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -72,7 +73,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			}
 		}
 		String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
-		throw new OCLDelegateException(message);
+		throw new OCLDelegateException(new SemanticException(message));
 	}
 
 	@Override

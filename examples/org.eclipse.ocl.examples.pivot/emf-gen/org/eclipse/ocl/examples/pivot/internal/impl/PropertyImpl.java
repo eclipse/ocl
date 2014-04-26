@@ -1969,7 +1969,7 @@ public class PropertyImpl
 		EObject eTarget = getETarget();
 		if (eTarget instanceof EStructuralFeature) {
 			EStructuralFeature eFeature = (EStructuralFeature) eTarget;
-			EObject eObject = ValuesUtil.asNavigableObject(objectValue);
+			EObject eObject = ValuesUtil.asNavigableObject(objectValue, eFeature);
 			eObject.eSet(eFeature, unboxedValue);
 			return;
 		}

@@ -20,6 +20,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.TupleValue;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
@@ -33,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 
 /**
  * ConstraintEvaluator provides an abstract framework for evaluation of a constraint with call backs to handle
@@ -75,18 +78,20 @@ public abstract class ConstraintEvaluator<T>
 	 * invoking one of handleSuccessResult, handleFailureResult, handleInvalidResult or handleExceptionResult to provide the return value.
 	 */
 	public T evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
+		Object result = null;
+		boolean status = false;
 		try {
-			Object result = body.accept(evaluationVisitor);
-			boolean status = getConstraintResultStatus(result);
-			if (status) {
-				return handleSuccessResult();
-			}
-			return handleFailureResult(result);
+			result = body.accept(evaluationVisitor);
+			status = getConstraintResultStatus(result);
 		} catch (InvalidValueException e) {
 			return handleInvalidResult(e);
 		} catch (Exception e) {
 			return handleExceptionResult(e);
 		}
+		if (status) {
+			return handleSuccessResult();
+		}
+		return handleFailureResult(result);
 	}
 
 	protected String getConstraintName() {
@@ -101,16 +106,23 @@ public abstract class ConstraintEvaluator<T>
 	 * Return the message of result, which is null
 	 * unless result is a Tuple with a more informative severity part.
 	 */
-	protected @Nullable String getConstraintResultMessage(@Nullable Object result) {
+	protected @NonNull String getConstraintResultMessage(@Nullable Object result) {
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
 			TuplePartId messagePartId = tupleTypeId.getPartId(PivotConstants.MESSAGE_PART_NAME);
 			if (messagePartId != null) {
-				return String.valueOf(tupleValue.getValue(messagePartId));
+				@SuppressWarnings("null")@NonNull String string = String.valueOf(tupleValue.getValue(messagePartId));
+				return string;
 			}
 		}
-		return null;
+		else if (result == null) {
+			return DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_,
+				getConstraintTypeName(), getConstraintName(), getObjectLabel());
+			
+		}
+		return DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+				getConstraintTypeName(), getConstraintName(), getObjectLabel());
 	}
 
 	/**

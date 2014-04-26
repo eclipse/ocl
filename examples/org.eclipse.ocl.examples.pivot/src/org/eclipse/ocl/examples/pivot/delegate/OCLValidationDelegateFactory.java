@@ -92,12 +92,15 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		return validationDelegate.validate(eDataType, value, context, constraint, expression);
 	}
 
-//	public boolean validate(EClass eClass, EObject eObject,
-//			DiagnosticChain diagnostics, Map<Object, Object> context,
-//			EOperation invariant, String expression, int severity, String source, int code) {
-//		ValidationDelegate validationDelegate = getValidationDelegate(eClass);
-//		return validationDelegate.validate(eClass, eObject, diagnostics, context, invariant, expression, severity, source, code);
-//	}
+	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject,
+			@Nullable DiagnosticChain diagnostics, Map<Object, Object> context,
+			@NonNull EOperation invariant, String expression, int severity, String source, int code) {
+		ValidationDelegate validationDelegate = getValidationDelegate(eClass);
+		if (validationDelegate == null) {
+			throw new IllegalStateException("No '" + delegateURI + "' ValidationDelegate for '" + EObjectValidator.getObjectLabel(eObject, context) + "'");
+		}
+		return validationDelegate.validate(eClass, eObject, diagnostics, context, invariant, expression, severity, source, code);
+	}
 
 	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject,
 			@Nullable DiagnosticChain diagnostics, Map<Object, Object> context,

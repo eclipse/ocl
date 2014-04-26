@@ -36,7 +36,7 @@ public class ClassifierOclContentsOperation extends AbstractUnaryOperation
 
 	@Override
 	public @NonNull Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject object = asNavigableObject(sourceValue);
+		EObject object = asNavigableObject(sourceValue, "oclContents()"); //$NON-NLS-1$
     	Set<Object> collection = new HashSet<Object>();
 		for (Object eContent : object.eContents()) {
 			if (eContent != null) {

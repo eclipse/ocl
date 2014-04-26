@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
@@ -191,12 +192,15 @@ public abstract class ValuesUtil
 		}
 	}
 
-	public static @NonNull EObject asNavigableObject(@Nullable Object value) {
+	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation) {
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();
 		}
 		else if (value instanceof EObject) {
 			return (EObject)value;
+		}
+		else if (value == null) {
+			throw new InvalidValueException(("Attempt to navigate from null to '" + EcoreUtils.qualifiedNameFor(navigation) + "'").replace("'", "''"));
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
@@ -208,7 +212,7 @@ public abstract class ValuesUtil
 			return ((Value)value).asObject();
 		}
 		else {
-			return value;			
+			return value;
 		}
 	}
 

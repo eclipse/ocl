@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
@@ -30,13 +31,14 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Query;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.context.EInvocationContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
@@ -113,13 +115,13 @@ public class OCLQueryDelegate implements QueryDelegate
 			DomainType requiredType = nonNullSpecification.getContextVariable().getType();
 			if ((requiredType == null) || !targetType.conformsTo(metaModelManager, requiredType)) {
 				String message = DomainUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
-				throw new OCLDelegateException(message);
+				throw new OCLDelegateException(new SemanticException(message));
 			}
 			List<Variable> parameterVariables = nonNullSpecification.getParameterVariable();
 			int argCount = arguments != null ? arguments.size() : 0;
 			if (parameterVariables.size() != argCount) {
 				String message = DomainUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, argCount, parameterVariables.size());
-				throw new OCLDelegateException(message);
+				throw new OCLDelegateException(new SemanticException(message));
 			}
 			Query query = ocl.createQuery(nonNullSpecification);
 			EvaluationEnvironment env = query.getEvaluationEnvironment();
@@ -129,14 +131,14 @@ public class OCLQueryDelegate implements QueryDelegate
 				Object object = nonNullArguments.get(name);
 				if ((object == null) && !nonNullArguments.containsKey(name)) {
 					String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(nonNullSpecification));
-					throw new OCLDelegateException(message);
+					throw new OCLDelegateException(new SemanticException(message));
 				}
 				Object value = idResolver.boxedValueOf(object);
 				targetType = idResolver.getStaticTypeOf(value);
 				requiredType = DomainUtil.nonNullModel(parameterVariable.getType());
 				if (!targetType.conformsTo(metaModelManager, requiredType)) {
 					String message = DomainUtil.bind(OCLMessages.MismatchedArgumentType_ERROR_, name, targetType, requiredType);
-					throw new OCLDelegateException(message);
+					throw new OCLDelegateException(new SemanticException(message));
 				}
 				env.add(parameterVariable, value);
 			}
@@ -162,15 +164,17 @@ public class OCLQueryDelegate implements QueryDelegate
 				return unboxedValue;
 			}
 		}
-		catch (InvalidValueException e) {
-			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));
-			throw new InvocationTargetException(new OCLDelegateException(message));
+		catch (InvocationTargetException e) {
+			throw e;
 		}
 		catch (DomainException e) {
 			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));
-			throw new InvocationTargetException(new OCLDelegateException(message));
+			throw new InvocationTargetException(new EvaluationException(message));
 		}
-		catch (OCLDelegateException e) {
+		catch (WrappedException e) {
+			throw new InvocationTargetException(e.getCause());
+		}
+		catch (Exception e) {
 			throw new InvocationTargetException(e);
 		}
 	}

@@ -26,6 +26,7 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -50,7 +51,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 			}
 		}
 		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-		throw new OCLDelegateException(message);
+		throw new OCLDelegateException(new SemanticException(message));
 	}
 
 	public @Nullable ValidationDelegate.Factory getDefaultFactory() {

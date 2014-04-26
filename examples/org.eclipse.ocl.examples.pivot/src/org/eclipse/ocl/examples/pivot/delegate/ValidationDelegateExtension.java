@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -37,6 +38,12 @@ public interface ValidationDelegateExtension extends EValidator.ValidationDelega
      * @return the result of the expression evaluation.
      */
     boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context, @NonNull String constraint, String expression, int severity, String source, int code);
+
+    /**
+     * Evaluates the given invariant expression against the object in the given context.
+     * @return the result of the expression evaluation.
+     */
+    boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics, Map<Object, Object> context, @NonNull EOperation invariant, String expression, int severity, String source, int code);
 
     /**
      * Evaluates the given constraint expression against the value in the given context.

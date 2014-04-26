@@ -29,7 +29,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
@@ -159,7 +158,7 @@ public class UMLOCLEValidator implements EValidator
 											if (diagnostics != null) {
 												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
 												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
-													0, message,  new Object[] { extension }));
+													0, message,  new Object[] { extension.eContainer() }));
 											}
 											return Boolean.FALSE;
 										}
@@ -167,10 +166,10 @@ public class UMLOCLEValidator implements EValidator
 										@Override
 										protected Boolean handleFailureResult(@Nullable Object result) {
 											if (diagnostics != null) {
-												String message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
 												int severity = getConstraintResultSeverity(result);
+												String message = getConstraintResultMessage(result);
 												diagnostics.add(new BasicDiagnostic(severity, UMLValidator.DIAGNOSTIC_SOURCE,
-													0, message,  new Object[] { extension }));
+													0, message,  new Object[] { extension.eContainer() }));
 											}
 											return Boolean.FALSE;
 										}
@@ -180,7 +179,7 @@ public class UMLOCLEValidator implements EValidator
 											if (diagnostics != null) {
 												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
 												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
-													0, message,  new Object[] { extension }));
+													0, message,  new Object[] { extension.eContainer() }));
 											}
 											return Boolean.FALSE;
 										}
@@ -403,7 +402,7 @@ public class UMLOCLEValidator implements EValidator
 				@Override
 				protected Boolean handleFailureResult(@Nullable Object result) {
 					if (diagnostics != null) {
-						String message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+						String message = getConstraintResultMessage(result);
 						int severity = getConstraintResultSeverity(result);
 						diagnostics.add(new BasicDiagnostic(severity, UMLValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { instance }));

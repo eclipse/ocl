@@ -37,6 +37,7 @@ import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -138,7 +139,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 					return expressionInOCL;
 				}
 			} catch (ParserException e) {
-				throw new OCLDelegateException(e.getLocalizedMessage(), e);
+				throw new OCLDelegateException(e);
 			}
 		}
 		return null;
@@ -154,7 +155,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 				return parserContext.parse(expression);
 			}
 		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			throw new OCLDelegateException(e);
 		}
 		return null;
 	}
@@ -218,7 +219,8 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 				s.append(diagnostic.getMessage());
 			}
 			if (s != null) {
-				throw new OCLDelegateException(s.toString());
+				@SuppressWarnings("null")@NonNull String string = s.toString();
+				throw new OCLDelegateException(new EvaluationException(string));
 			}
 		}
 	}

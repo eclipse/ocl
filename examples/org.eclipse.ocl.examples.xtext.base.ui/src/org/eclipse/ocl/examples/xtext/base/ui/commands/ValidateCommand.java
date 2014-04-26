@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -41,6 +42,7 @@ import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateValidator;
 import org.eclipse.ocl.examples.pivot.uml.UMLOCLEValidator;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -66,6 +68,21 @@ public class ValidateCommand extends ValidateAction
 		    	OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(context);
 		    }
 			return context;
+		}
+
+		@Override
+		public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+			// copied from superclass, difference: use EValidatorAdapter instead of first value from eValidatorRegistry
+			// fix of bug 397518
+
+			boolean circular = context.get(EObjectValidator.ROOT_OBJECT) == eObject;
+			boolean result = new OCLDelegateValidator(null).validate(eClass, eObject, diagnostics, context);
+			if((result || diagnostics != null) && !circular)
+			{
+				result &= doValidateContents(eObject, diagnostics, context);
+			}
+			return result;
 		}
 	}
 

@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
@@ -345,17 +344,13 @@ public class UMLConstraintLocator extends AbstractConstraintLocator
 					@Override
 					protected Diagnostic handleFailureResult(@Nullable Object result) {
 						String message = getConstraintResultMessage(result);
-						if (message == null) {
-							message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
-								getConstraintTypeName(), getConstraintName(), getObjectLabel());
-						}
 						int severity = getConstraintResultSeverity(result);
 						return new BasicDiagnostic(severity, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 					}
 	
 					@Override
 					protected Diagnostic handleInvalidResult(@NonNull InvalidValueException e) {
-						String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_,
+						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 							getConstraintTypeName(), getConstraintName(), getObjectLabel());
 						return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 					}

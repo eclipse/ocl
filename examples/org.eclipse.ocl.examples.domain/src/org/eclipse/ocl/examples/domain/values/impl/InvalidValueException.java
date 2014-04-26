@@ -68,6 +68,7 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 	
 	public InvalidValueException(@Nullable Exception exception, /*@NonNull*/ String message) {
 		super(message, exception);
+		assert !(exception instanceof InvalidValueException);
 	}
 
 	public InvalidValueException(/*@NonNull*/ String messageTemplate, Object... bindings) {
@@ -76,6 +77,7 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 
 	public InvalidValueException(@NonNull Exception exception) {
 		super(null, exception);
+		assert !(exception instanceof InvalidValueException);
 	}
 
 	public InvalidValueException(@Nullable Exception exception, /*@NonNull*/ String messageTemplate, Object... bindings) {
