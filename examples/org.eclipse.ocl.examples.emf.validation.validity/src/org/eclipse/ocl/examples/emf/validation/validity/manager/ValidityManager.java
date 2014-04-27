@@ -395,7 +395,7 @@ public class ValidityManager
 		return new TypeURI(uri);
 	}
 
-	public @NonNull String getValidatableLabel(@NonNull EObject eObject) {
+	public @NonNull String getValidatableLabel(@NonNull EObject eObject, boolean withContext) {
 		StringBuilder s = new StringBuilder();
 		s.append(EcoreUtils.SIMPLE_NAME_REGISTRY.labelFor(eObject, LABEL_OPTIONS));
 /*		if (eObject instanceof ENamedElement) {
@@ -416,13 +416,15 @@ public class ValidityManager
 				s.append(" | " + eClass.getName());
 			}
 		} */
-		EObject eContainer = eObject.eContainer();
-		if (eContainer == null) {
-			Resource eResource = eObject.eResource();
-			if (eResource != null) {
-				URI uri = eResource.getURI();
-				if (uri != null) {
-					s.append(" in " + uri);
+		if (withContext) {
+			EObject eContainer = eObject.eContainer();
+			if (eContainer == null) {
+				Resource eResource = eObject.eResource();
+				if (eResource != null) {
+					URI uri = eResource.getURI();
+					if (uri != null) {
+						s.append(" in " + uri);
+					}
 				}
 			}
 		}

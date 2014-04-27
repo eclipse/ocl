@@ -680,7 +680,7 @@ public class ValidityModel
 				validatable = rootValidatableNode;
 			}
 			validatable.setEnabled(true);
-			validatable.setLabel(validityManager.getValidatableLabel(eObject));
+			validatable.setLabel(validityManager.getValidatableLabel(eObject, eContainer == null));
 			validatable.setConstrainedObject(eObject);
 			allValidatableNodes.put(validatableURI, validatable);
 			ValidityManager.CREATE_VALIDATABLE.println(validatableURI + " => " + validatable);
