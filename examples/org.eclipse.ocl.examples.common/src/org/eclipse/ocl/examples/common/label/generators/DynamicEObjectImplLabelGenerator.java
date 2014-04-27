@@ -36,9 +36,9 @@ public final class DynamicEObjectImplLabelGenerator extends AbstractLabelGenerat
 		if (eResource != null) {
 			String className = eResource.getClass().getName();
 			if (className.contains("UML")) {
-				labelBuilder.appendString("<");
+				labelBuilder.appendString("«");
 				labelBuilder.appendString(eClass.getName());
-				labelBuilder.appendString(">");
+				labelBuilder.appendString("»");
 				return;
 			}
 		}
