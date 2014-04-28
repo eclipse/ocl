@@ -80,6 +80,10 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
+import org.eclipse.ocl.examples.pivot.lookup.AutoLookupKind;
+import org.eclipse.ocl.examples.pivot.lookup.AutoPivotNameResolution;
+import org.eclipse.ocl.examples.pivot.lookup.NewPivotNameResolutor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -863,17 +867,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
-		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, expression.getName());
-		environmentView.addFilter(filter);
-		Type sourceType = PivotUtil.getType(expression.getSource());
-		int size = 0;
-		if (sourceType != null) {
-			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
-			size = environmentView.computeLookups(lowerBoundType, null);
-		}
-		if (size == 1) {
-			Operation operation = (Operation)environmentView.getContent();
+				
+		NewPivotNameResolutor lResolver = new NewPivotNameResolutor(metaModelManager);
+
+		// environmentView.addFilter(filter);
+		AutoILookupResult<Operation> lResult = lResolver.computeReferredOperationLookup(expression, AutoLookupKind.SINGLE, filter);
+		if (lResult.getSize() == 1) {
+			Operation operation = lResult.getContent();
 			context.setReferredOperation(expression, operation);
 			resolveOperationReturnType(expression);
 		}
@@ -889,6 +889,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 			String boundMessage;
+			Type sourceType = PivotUtil.getType(expression.getSource());
 			if (s.length() > 0) {
 				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, csOperator, sourceType, s.toString());
 			}
