@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,7 +84,9 @@ public class ImplicitCollectFilter extends AbstractOperationFilter<Iteration>
 		TemplateParameter iteratorParameter = templateParameters.get(0);
 		if (bindings != null) {
 			bindings.put(iteratorParameter, iteratorType);
+			return bindings;
+		} else {
+			return new HashMap<TemplateParameter, ParameterableElement>();
 		}
-		return bindings;
 	}
 }

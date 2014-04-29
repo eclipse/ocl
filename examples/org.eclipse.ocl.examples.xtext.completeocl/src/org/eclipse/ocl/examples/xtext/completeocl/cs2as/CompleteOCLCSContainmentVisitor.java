@@ -128,7 +128,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 						}
 					}
 				}				
-				return bindings;
+				return bindings == null ? new HashMap<TemplateParameter, ParameterableElement>() : bindings;
 			}
 			else {
 				return null;

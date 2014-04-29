@@ -271,8 +271,8 @@ public class OperationFilter extends AbstractOperationFilter<Operation>
 			if (accumulatorCount != accumulators) {
 				return null;
 			}
-			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(metaModelManager, candidateIteration);
-			return bindings;
+			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(metaModelManager, candidateIteration);			
+			return bindings == null ? new HashMap<TemplateParameter, ParameterableElement>() : bindings;
 		}
 		else if (object instanceof Operation) {
 			if (iterators > 0) {
@@ -302,7 +302,7 @@ public class OperationFilter extends AbstractOperationFilter<Operation>
 					}
 				}
 			}			
-			return bindings;
+			return bindings == null ? new HashMap<TemplateParameter, ParameterableElement>() : bindings;
 		}
 		else {
 			return null;

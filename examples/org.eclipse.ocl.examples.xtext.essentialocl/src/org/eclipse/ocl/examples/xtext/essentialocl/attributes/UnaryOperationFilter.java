@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +65,7 @@ public class UnaryOperationFilter extends AbstractOperationFilter<Operation>
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
 			
-			return bindings;
+			return bindings == null ? new HashMap<TemplateParameter, ParameterableElement>() : bindings;
 		}
 		else {
 			return null;

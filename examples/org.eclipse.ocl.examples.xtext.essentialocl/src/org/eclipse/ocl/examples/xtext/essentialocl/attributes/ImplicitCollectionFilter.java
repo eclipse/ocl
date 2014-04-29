@@ -74,7 +74,7 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter<Operation>
 					bindings.put(templateParameter, null);
 				}
 			}			
-			return bindings;
+			return bindings == null ? new HashMap<TemplateParameter, ParameterableElement>() : bindings;
 		}
 		else {
 			return null;
