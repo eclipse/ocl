@@ -401,21 +401,48 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 			resolveMultiplicity(pivotElement, umlProperty);
 			doSwitchAll(Property.class, pivotElement.getRedefinedProperty(), umlProperty.getRedefinedProperties());
 	//		doSwitchAll(Property.class, pivotElement.getSubsettedProperty(), umlProperty.getSubsettedProperties());
-			org.eclipse.uml2.uml.ValueSpecification umlValue = umlProperty.getDefaultValue();
-			if (umlValue == null) {
-				pivotElement.setDefaultExpression(null);
-			}
-			else {				
-				OpaqueExpression pivotExpression = (OpaqueExpression) doSwitch(umlValue);
-				Type requiredType = pivotElement.getType();
-				Type defaultValueType = pivotExpression != null ? pivotExpression.getType() : null;
-				if ((requiredType != null) && (defaultValueType != null) && !defaultValueType.conformsTo(metaModelManager, requiredType)) {
-					converter.error("Incompatible '" + defaultValueType + "' initializer for " + pivotElement + " when '" + requiredType + "' required");
+			OpaqueExpression asExpression = null;
+			//
+			//	Synthesize xxx() for idiomatic UML xxx property default.
+			//
+			String propertyName = pivotElement.getName();
+			if (propertyName != null) {
+				org.eclipse.uml2.uml.Class umlClass = umlProperty.getClass_();
+				if (umlClass != null) {
+					for (org.eclipse.uml2.uml.Operation umlOperation : umlClass.getOwnedOperations()) {
+						if (propertyName.equals(umlOperation.getName()) && (umlOperation.getOwnedParameters().size() == 1)) {
+						{
+							org.eclipse.uml2.uml.Constraint bodyCondition = umlOperation.getBodyCondition();
+							if (bodyCondition != null) {
+								List<org.eclipse.uml2.uml.Element> constrainedElement = bodyCondition.getConstrainedElements();
+								if ((constrainedElement.size() >= 2)
+									 && (constrainedElement.get(0) == umlOperation)
+									 && (constrainedElement.get(1) == umlProperty)) {
+										asExpression = PivotFactory.eINSTANCE.createOpaqueExpression();
+										asExpression.getLanguage().add(PivotConstants.OCL_LANGUAGE);
+										asExpression.getBody().add(propertyName + "()");
+										asExpression.setIsRequired(pivotElement.isRequired());
+										asExpression.setType(pivotElement.getType());
+									}
+								}
+							}
+							break;
+						}
+					}
 				}
-				else {
-					pivotElement.setDefaultExpression(pivotExpression);
+			}
+			if (asExpression == null) {
+				org.eclipse.uml2.uml.ValueSpecification umlValue = umlProperty.getDefaultValue();
+				if (umlValue != null) {
+					asExpression = (OpaqueExpression) doSwitch(umlValue);
+					Type requiredType = pivotElement.getType();
+					Type defaultValueType = asExpression != null ? asExpression.getType() : null;
+					if ((requiredType != null) && (defaultValueType != null) && !defaultValueType.conformsTo(metaModelManager, requiredType)) {
+						converter.error("Incompatible '" + defaultValueType + "' initializer for " + pivotElement + " when '" + requiredType + "' required");
+					}
 				}
 			}
+			pivotElement.setDefaultExpression(asExpression);
 		}
 		return pivotElement;
 	}
