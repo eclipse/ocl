@@ -29,8 +29,8 @@ public class AutoPivotNameResolution implements AutoIPivotNameResolution {
 	@NonNull
 	public AutoILookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
 		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified) {
-		AutoILookupContext context = new AutoLookupContext(lookupFeature, lookupElement);
-		AutoLookupResult<Element> result = new AutoLookupResult<Element>(mmManager, lookupFeature, lookupKind, name);
+		AutoILookupContext context = createLookupContext(lookupFeature, lookupElement);
+		AutoILookupResult<Element> result = createLookupResult(mmManager, lookupFeature, lookupKind, name);
 		return executeVisitor(lookupElement, result, context);
 	}
 
@@ -43,10 +43,12 @@ public class AutoPivotNameResolution implements AutoIPivotNameResolution {
 		Type sourceType = PivotUtil.getType(opCallExp.getSource());
 		if (sourceType == null ) {
 			return result; // Empty result
+		} else {
+			// This is not needed, the visitor will do the job 
+			// Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
+			AutoILookupContext context = createLookupContext(eReference, sourceType);
+			return executeVisitor(sourceType, result, context);
 		}
-		Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
-		AutoILookupContext context = createLookupContext(eReference, lowerBoundType);
-		return executeVisitor(lowerBoundType, result, context);
 	}
 	
 	@NonNull

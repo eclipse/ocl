@@ -146,8 +146,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	@Override
 	public @NonNull
 	AutoILookupResult<C> visitUnspecifiedType(@NonNull UnspecifiedType object) {
-		Type lowerBound = object.getLowerBound();
-		return DomainUtil.nonNullState(lowerBound.accept(this));
+		return lookupFromNewElement(object.getLowerBound());
 	}
 	
 	@Override
