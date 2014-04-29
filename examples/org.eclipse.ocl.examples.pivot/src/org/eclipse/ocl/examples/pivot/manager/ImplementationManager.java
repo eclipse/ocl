@@ -205,7 +205,7 @@ public class ImplementationManager
 				return libraryProperty;
 			}
 		}
-		return new ExplicitNavigationProperty(property.getPropertyId());
+		return new ExplicitNavigationProperty(property);
 	}
 	
 	public void dispose() {

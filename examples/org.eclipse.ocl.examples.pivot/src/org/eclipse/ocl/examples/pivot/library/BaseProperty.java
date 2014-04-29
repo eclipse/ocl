@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.Property;
 
 /**
  * The static instance of ExplicitNavigationProperty supports evaluation of
@@ -34,9 +34,9 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
  */
 public class BaseProperty extends AbstractProperty
 {
-	protected @NonNull DomainProperty property;
+	protected @NonNull Property property;
 	
-	public BaseProperty(@NonNull DomainProperty property) {
+	public BaseProperty(@NonNull Property property) {
 		this.property = property;
 	}
 	
@@ -45,14 +45,15 @@ public class BaseProperty extends AbstractProperty
 		if (sourceValue instanceof ElementExtension) {
 			return ((ElementExtension)sourceValue).eContainer(); 
 		}
-		else if (sourceValue instanceof EObject) {
+		if (sourceValue instanceof EObject) {
 			EObject eObject = (EObject)sourceValue;
 			EClass eClass = eObject.eClass();
 			EStructuralFeature eFeature = EcoreUtils.getNamedElement(eClass.getEAllStructuralFeatures(), property.getName());
-			return eObject.eGet(eFeature);
+			if (eFeature != null) {
+				Object baseObject = eObject.eGet(eFeature);
+				return baseObject;
+			}
 		}
-		else {
-			return null;
-		}
+		return null;
 	}
 }
