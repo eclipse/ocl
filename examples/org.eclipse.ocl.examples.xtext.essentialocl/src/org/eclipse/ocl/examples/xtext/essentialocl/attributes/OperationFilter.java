@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -38,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpC
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 
-public class OperationFilter extends AbstractOperationFilter
+public class OperationFilter extends AbstractOperationFilter<Operation>
 {
 	protected final @NonNull List<NavigatingArgCS> csArguments;
 	protected final int iterators;
@@ -236,34 +237,54 @@ public class OperationFilter extends AbstractOperationFilter
 	}
 
 	public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		
+		MetaModelManager mmManager = environmentView.getMetaModelManager();
+		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
+		if (bindings != null) {
+			installBindings(environmentView, object, bindings);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
+			@NonNull Operation object) {
+	
+		MetaModelManager mmManager = lookupResult.getMetaModelManager();
+		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
+		if (bindings != null) {
+			installBindings(lookupResult, object, bindings);
+			return true;
+		}
+		return false;
+	}
+	
+	private Map<TemplateParameter, ParameterableElement> getBindings(@NonNull MetaModelManager metaModelManager, 
+		@NonNull Object object) {
 		if (object instanceof Iteration) {
 			Iteration candidateIteration = (Iteration)object;
 			int iteratorCount = candidateIteration.getOwnedIterator().size();
 			if ((0 < iterators) && (iteratorCount != iterators)) {
-				return false;
+				return null;
 			}
 			int accumulatorCount = candidateIteration.getOwnedAccumulator().size();
 			if (accumulatorCount != accumulators) {
-				return false;
+				return null;
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(metaModelManager, candidateIteration);
-			if (bindings != null) {
-				installBindings(environmentView, object, bindings);
-			}
-			return true;
+			return bindings;
 		}
 		else if (object instanceof Operation) {
 			if (iterators > 0) {
-				return false;
+				return null;
 			}
 			if (accumulators > 0) {
-				return false;
+				return null;
 			}
 			Operation candidateOperation = (Operation)object;
 			List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 			if (expressions != candidateParameters.size()) {
-				return false;
+				return null;
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
 			for (int i = 0; i < expressions; i++) {
@@ -274,20 +295,17 @@ public class OperationFilter extends AbstractOperationFilter
 					Type candidateType = PivotUtil.getType(candidateParameter);
 					Type expressionType = PivotUtil.getType(expression);
 					if ((expressionType == null) || (candidateType == null)) {
-						return false;
+						return null;
 					}
 					if (!metaModelManager.conformsTo(expressionType, candidateType, bindings)) {
-						return false;
+						return null;
 					}
 				}
-			}
-			if (bindings != null) {
-				installBindings(environmentView, object, bindings);
-			}
-			return true;
+			}			
+			return bindings;
 		}
 		else {
-			return false;
+			return null;
 		}
 	}
 }

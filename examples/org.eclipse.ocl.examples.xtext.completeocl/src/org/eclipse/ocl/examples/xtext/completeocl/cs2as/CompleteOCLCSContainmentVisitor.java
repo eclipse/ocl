@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
+import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
@@ -75,15 +76,37 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		}
 
 		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
+		
+			Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
+			if (bindings != null) {
+				installBindings(environmentView, object, bindings);
+				return true;
+			}
+			return false;
+		}
+		
+		public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
+				@NonNull Operation object) {
+				
+			Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
+			if (bindings != null) {
+				installBindings(lookupResult, object, bindings);
+				return true;
+			}
+			return false;
+		}
+		
+		private Map<TemplateParameter, ParameterableElement> getBindings(Object object) {
+			
 			if (object instanceof Iteration) {
-				return false;
+				return null;
 			}
 			if (object instanceof Operation) {
 				Operation candidateOperation = (Operation)object;
 				List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 				int iMax = csParameters.size();
 				if (iMax != candidateParameters.size()) {
-					return false;
+					return null;
 				}
 				Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
 				for (int i = 0; i < iMax; i++) {
@@ -91,29 +114,28 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 					if (candidateParameter != null) {
 						ParameterCS csParameter = csParameters.get(i);
 						if (csParameter == null) {
-							return false;
+							return null;
 						}
 						TypedRefCS csType = csParameter.getOwnedType();
 						Type pType = PivotUtil.getPivot(Type.class, csType);
 						if (pType == null) {
-							return false;
+							return null;
 						}
 						Type candidateType = PivotUtil.getType(candidateParameter);
 						pType = PivotUtil.getType(pType);			// FIXME make this a general facility
 						if ((candidateType == null) || !metaModelManager.conformsTo(pType, candidateType, bindings)) {
-							return false;
+							return null;
 						}
 					}
-				}
-				if (bindings != null) {
-					installBindings(environmentView, object, bindings);
-				}
-				return true;
+				}				
+				return bindings;
 			}
 			else {
-				return false;
+				return null;
 			}
 		}
+
+
 	}
 	
 	/**

@@ -20,10 +20,11 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
-public class ImplicitCollectFilter extends AbstractOperationFilter
+public class ImplicitCollectFilter extends AbstractOperationFilter<Iteration>
 {
 	protected final @NonNull Type iteratorType;
 
@@ -36,32 +37,53 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 	}
 
 	public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
+		
+		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
+		if (bindings != null) {
+			installBindings(environmentView, object, bindings);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean matches(@NonNull AutoILookupResult<Iteration> lookupResult,
+			@NonNull Iteration object) {
+		
+		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
+		if (bindings != null) {
+			installBindings(lookupResult, object, bindings);
+			return true;
+		}
+		return false;
+	}
+	
+	private Map<TemplateParameter, ParameterableElement> getBindings(@NonNull Object object) {
+		
 		if (!(object instanceof Iteration)) {
-			return false;
+			return null;
 		}
 		Iteration candidateIteration = (Iteration)object;
 		int iteratorCount = candidateIteration.getOwnedIterator().size();
 		if (iteratorCount != 1) {
-			return false;
+			return null;
 		}
 		int accumulatorCount = candidateIteration.getOwnedAccumulator().size();
 		if (accumulatorCount != 0) {
-			return false;
+			return null;
 		}
 		TemplateSignature templateSignature = candidateIteration.getOwningType().getOwnedTemplateSignature();
 		if (templateSignature == null) {
-			return false;
+			return null;
 		}
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		if (templateParameters.size() != 1) {
-			return false;
+			return null;
 		}
 		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
 		TemplateParameter iteratorParameter = templateParameters.get(0);
 		if (bindings != null) {
 			bindings.put(iteratorParameter, iteratorType);
 		}
-		installBindings(environmentView, object, bindings);
-		return true;
+		return bindings;
 	}
 }

@@ -21,12 +21,13 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
-public abstract class AbstractOperationFilter implements ScopeFilter
+public abstract class AbstractOperationFilter<C extends Operation> implements ScopeFilter, ScopeFilter.ScopeFilter2<C>
 {
 	protected final @Nullable Type sourceType;
 	
@@ -63,4 +64,12 @@ public abstract class AbstractOperationFilter implements ScopeFilter
 			@Nullable Map<TemplateParameter, ParameterableElement> bindings) {
 		environmentView.setBindings(object, bindings);
 	}
+	
+	protected void installBindings(@NonNull AutoILookupResult<C> lookupResult, @NonNull C object,
+			@Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+		lookupResult.setBindings(object, bindings);
+	}
+	
+	
+	
 }

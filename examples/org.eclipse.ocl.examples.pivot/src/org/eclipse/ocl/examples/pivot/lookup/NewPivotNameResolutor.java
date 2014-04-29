@@ -1,7 +1,7 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 
@@ -13,7 +13,7 @@ public class NewPivotNameResolutor  extends AutoPivotNameResolution {
 
 	@Override
 	@NonNull
-	protected <C extends EObject> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager, 
+	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager, 
 		@NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext context) {
 		return new NewPivotLookupVisitor<C>(mmManager, result, context);
 	};

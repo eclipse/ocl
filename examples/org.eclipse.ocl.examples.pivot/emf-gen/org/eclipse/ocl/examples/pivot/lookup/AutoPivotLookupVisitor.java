@@ -1,6 +1,5 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -10,7 +9,7 @@ import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 
-public class AutoPivotLookupVisitor<C extends EObject> extends AbstractExtendingVisitor<AutoILookupResult<C>, AutoILookupContext>
+public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtendingVisitor<AutoILookupResult<C>, AutoILookupContext>
 	implements AutoIPivotLookupVisitor<C> {
 		 
 	@NonNull final protected MetaModelManager mmManager;
@@ -28,14 +27,21 @@ public class AutoPivotLookupVisitor<C extends EObject> extends AbstractExtending
 	}
 
 	@NonNull
-	protected final AutoILookupResult<C> lookupInNewContext(AutoILookupContext newContext) {
+	protected final AutoILookupResult<C> lookupInNewContext(@Nullable AutoILookupContext newContext) {
 		return newContext == null ? result 
 			: DomainUtil.nonNullState(((Element)newContext.getTarget()).accept(
 				new AutoPivotLookupVisitor<C>(mmManager, result, newContext))); 
 	}
 
 	@NonNull
+	protected AutoILookupResult<C> lookupFromNewElement(Element element) {
+		return DomainUtil.nonNullState(element.accept(this));
+	}
+
+	@NonNull
 	public AutoILookupResult<C> visiting(@NonNull Visitable visitable) {
 		return lookupInParent();
 	}
+	
+	
 }

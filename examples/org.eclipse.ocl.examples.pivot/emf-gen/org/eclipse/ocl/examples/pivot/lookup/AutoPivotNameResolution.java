@@ -50,13 +50,13 @@ public class AutoPivotNameResolution implements AutoIPivotNameResolution {
 	}
 	
 	@NonNull
-	protected <C extends EObject> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager,
+	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager,
 		@NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext context) {
 		return new AutoPivotLookupVisitor<C>(mmManager, result, context);
 	}
 	
 	@NonNull
-	protected <C extends EObject> AutoILookupResult<C> createLookupResult(@NonNull MetaModelManager mmManager, 
+	protected <C extends Element> AutoILookupResult<C> createLookupResult(@NonNull MetaModelManager mmManager, 
 		@NonNull EStructuralFeature lookupFeature, 	@NonNull AutoLookupKind lookupKind, @Nullable String name) {
 		return new AutoLookupResult<C>(mmManager, lookupFeature, lookupKind, name);
 	}
@@ -68,13 +68,13 @@ public class AutoPivotNameResolution implements AutoIPivotNameResolution {
 	}
 	
 	@NonNull
-	protected <C extends EObject> AutoILookupResult<C> executeVisitor(@NonNull Element element, @NonNull AutoILookupResult<C> result, 
+	protected <C extends Element> AutoILookupResult<C> executeVisitor(@NonNull Element element, @NonNull AutoILookupResult<C> result, 
 		@NonNull AutoILookupContext context) { 
 		return resolveDuplicates(element.accept(createLookupVisitor(mmManager, result, context)));
 	}
 	
 	@NonNull
-	protected <C extends EObject> AutoILookupResult<C> resolveDuplicates(@Nullable AutoILookupResult<C> result) {
+	protected <C extends Element> AutoILookupResult<C> resolveDuplicates(@Nullable AutoILookupResult<C> result) {
 		return DomainUtil.nonNullState(result).resolveDuplicates();
 	}
 }

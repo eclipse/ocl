@@ -21,10 +21,11 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 
-public class BinaryOperationFilter extends AbstractOperationFilter
+public class BinaryOperationFilter extends AbstractOperationFilter<Operation>
 {
 	protected final @NonNull Type argumentType;
 	
@@ -34,14 +35,38 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 	}
 
 	public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
+		MetaModelManager mmManager = environmentView.getMetaModelManager();
+		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
+		if (bindings != null) {
+			installBindings(environmentView, object, bindings);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
+			@NonNull Operation object) {
+		
+		MetaModelManager mmManager = lookupResult.getMetaModelManager();
+		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
+		if (bindings != null) {
+			installBindings(lookupResult, object, bindings);
+			return true;
+		}
+		return false;
+	}
+	
+	private Map<TemplateParameter, ParameterableElement> getBindings(@NonNull MetaModelManager metaModelManager, 
+			@NonNull Object object) {
+	
 		if (object instanceof Iteration) {		
-			return false;
+			return null;
 		}
 		else if (object instanceof Operation) {
 			Operation candidateOperation = (Operation)object;
 			List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 			if (candidateParameters.size() != 1) {
-				return false;
+				return null;
 			}
 			Parameter candidateParameter = candidateParameters.get(0);
 			Type candidateType = candidateParameter.getType();
@@ -49,20 +74,18 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 				candidateType = candidateOperation.getOwningType();
 			}
 			if (candidateType == null) {
-				return false;
+				return null;
 			}
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
 			if (!metaModelManager.conformsTo(argumentType, candidateType, bindings)) {
-				return false;
+				return null;
 			}
-			if (bindings != null) {
-				installBindings(environmentView, object, bindings);
-			}
-			return true;
+
+			return bindings;
 		}
 		else {
-			return false;
+			return null;
 		}
 	}
+	
 }
