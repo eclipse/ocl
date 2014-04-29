@@ -32,7 +32,7 @@ public class EvaluatorMessages
 	public static String EObjectRequired;
 	public static String EmptyCollection;
 	public static String ImplementationClassLoadFailure;
-	public static String IncompatibleArgumentType;
+	public static String IncompatibleOclAsTypeSourceType;
 	public static String IncompleteInitialization;
 	public static String IndexOutOfRange;
 	public static String IndexesOutOfRange;

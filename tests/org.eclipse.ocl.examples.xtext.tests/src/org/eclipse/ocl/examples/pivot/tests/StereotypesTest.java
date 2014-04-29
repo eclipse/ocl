@@ -243,7 +243,8 @@ public class StereotypesTest extends PivotTestSuite
     	assertQueryEquals(((PivotObjectImpl)mm.englishClass).getETarget(), ((PivotObjectImpl)mm.inEnglishStereotype).getETarget(), "self.getAppliedStereotype('InternationalizedProfile::InEnglish')");
     	assertQueryEquals(mm.englishClass, mm.englishClassInEnglish, "self.extension_Internationalized");
     	assertQueryEquals(mm.englishClass, mm.englishClassInEnglish, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InEnglish)");
-    	assertQueryInvalid(mm.englishClass, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InGerman)", DomainUtil.bind(EvaluatorMessages.IncompatibleArgumentType, "InternationalizedProfile::InGerman"), InvalidValueException.class);
+    	assertQueryInvalid(mm.englishClass, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InGerman)", DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType,
+    		metaModelManager.getMetaclass(mm.englishClassInEnglish), "InternationalizedProfile::InGerman"), InvalidValueException.class);
     }
 
 	/**

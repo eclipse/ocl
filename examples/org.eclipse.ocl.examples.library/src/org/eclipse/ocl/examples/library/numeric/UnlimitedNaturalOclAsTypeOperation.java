@@ -45,7 +45,7 @@ public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 			return sourceVal;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.IncompatibleArgumentType, argType);
+			throw new InvalidValueException(EvaluatorMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
 		}
 	}
 }
