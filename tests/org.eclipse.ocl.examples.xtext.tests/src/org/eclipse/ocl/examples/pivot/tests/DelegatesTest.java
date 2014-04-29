@@ -122,6 +122,7 @@ public class DelegatesTest extends PivotTestSuite
 	protected static final @NonNull String NO_REFLECTION_COMPANY_XMI = "/model/NoReflectionCompany.xmi";
 	protected static final @NonNull String MODEL_WITH_ERRORS_XMI = "/model/ModelWithErrors.xmi";
 	protected static final @NonNull String MODEL_WITH_ERRORS_OCL = "/model/ModelWithErrors.ocl";
+	public static final @NonNull String VIOLATED_TEMPLATE = "The ''{0}'' constraint is violated on ''{1}''";
 
 	public Resource testResource;
 	public EPackage companyPackage;
@@ -1181,7 +1182,7 @@ public class DelegatesTest extends PivotTestSuite
 		URI uri = getProjectFileURI("Bug408990.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
-		assertValidationDiagnostics("Loading", umlResource, "The 'Stereotype1::IntegerConstraint' constraint is violated on 'Stereotype1 6'");
+		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", "Stereotype1 6"));
 	}
 
 	public void test_tutorial_umlValidation_with_pivot_408990() {
@@ -1195,7 +1196,32 @@ public class DelegatesTest extends PivotTestSuite
 		URI uri = getProjectFileURI("Bug408990.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
-		assertValidationDiagnostics("Loading", umlResource, "The 'Stereotype1::IntegerConstraint' constraint is violated on 'Stereotype1 6'");
+		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", "Stereotype1 6"));
+	}
+
+	public void test_tutorial_umlValidation_with_pivot_432920() {
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
+		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2Pivot.initialize(resourceSet2));
+		}
+		URI uri = getProjectFileURI("Bug432920.uml");
+		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+		assertValidationDiagnostics("Loading", umlResource,
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension")
+			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Property"),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", "My Class Extension")
+			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Class"),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension")
+			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Property"),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", "My Class Extension")
+			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Class"),
+			DomainUtil.bind(VIOLATED_TEMPLATE, "MyPropertyExtension::Constraint1", "My Property Extension"),
+			DomainUtil.bind(VIOLATED_TEMPLATE, "MyPropertyExtension::Constraint2", "My Property Extension"),
+			DomainUtil.bind(VIOLATED_TEMPLATE, "MyPropertyExtension::Constraint2", "My Property Extension"));
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {

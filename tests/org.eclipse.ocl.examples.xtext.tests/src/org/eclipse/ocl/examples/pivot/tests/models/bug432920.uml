@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_Nl52AMx_EeO115AM-iSB0A/10" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_Nl52AMx_EeO115AM-iSB0A/10 bug432920.profile.uml#_Nl52Acx_EeO115AM-iSB0A">
+  <uml:Model xmi:id="_4AwnsMu8EeOeMqI0CKNmBw" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_4Awnscu8EeOeMqI0CKNmBw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5BBK0Mu8EeOeMqI0CKNmBw" name="Class1">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_70fYAMu8EeOeMqI0CKNmBw" name="Attribute1">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HwmksMu9EeOeMqI0CKNmBw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Hwmkscu9EeOeMqI0CKNmBw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7LYJkMu8EeOeMqI0CKNmBw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7Ol1oMu8EeOeMqI0CKNmBw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="bug432920.profile.uml#_Nl52Acx_EeO115AM-iSB0A"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="bug432920.profile.uml#_dN96oMu8EeOeMqI0CKNmBw"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile:MyPropertyExtension xmi:id="_GRGg0Mu9EeOeMqI0CKNmBw" base_NamedElement="_70fYAMu8EeOeMqI0CKNmBw"/>
+  <Profile:MyClassExtension xmi:id="_riJ-cMxrEeO115AM-iSB0A" base_NamedElement="_5BBK0Mu8EeOeMqI0CKNmBw"/>
+  <Profile:MyPropertyExtension xmi:id="_Qi8JgMxsEeO115AM-iSB0A" base_NamedElement="_HwmksMu9EeOeMqI0CKNmBw"/>
+  <Profile:MyClassExtension xmi:id="_Qi8JgcxsEeO115AM-iSB0A" base_NamedElement="_HwmksMu9EeOeMqI0CKNmBw"/>
+  <Profile:MyPropertyExtension xmi:id="_Qi8JgsxsEeO115AM-iSB0A" base_NamedElement="_Hwmkscu9EeOeMqI0CKNmBw"/>
+  <Profile:MyClassExtension xmi:id="_Qi8Jg8xsEeO115AM-iSB0A" base_NamedElement="_Hwmkscu9EeOeMqI0CKNmBw"/>
+</xmi:XMI>
