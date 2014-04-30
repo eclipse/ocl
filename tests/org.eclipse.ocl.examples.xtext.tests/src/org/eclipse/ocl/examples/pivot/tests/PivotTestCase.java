@@ -60,6 +60,7 @@ import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
@@ -69,6 +70,7 @@ import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotStandaloneSetup;
+import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
@@ -287,6 +289,10 @@ public class PivotTestCase extends TestCase
 
 	public static @NonNull List<Diagnostic> assertValidationDiagnostics(@NonNull String prefix, @NonNull Resource resource, String... messages) {
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		return assertValidationDiagnostics(prefix, resource, validationContext, messages);
+	}
+
+	public static @NonNull List<Diagnostic> assertValidationDiagnostics(@NonNull String prefix, @NonNull Resource resource, Map<Object, Object> validationContext, String... messages) {
 		List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
 		for (EObject eObject : resource.getContents()) {
 			Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
@@ -613,6 +619,13 @@ public class PivotTestCase extends TestCase
 	}
 	
 	private GlobalStateMemento makeCopyOfGlobalState = null;
+
+	public void resetRegistries() {
+		final Object object = ValidationDelegate.Factory.Registry.INSTANCE.get(OCLConstants.OCL_DELEGATE_URI);
+		if (object instanceof org.eclipse.ocl.common.internal.delegate.OCLValidationDelegateMapping) {
+			((org.eclipse.ocl.common.internal.delegate.OCLValidationDelegateMapping)object).reset();
+		}
+	}
 
 	@Override
 	protected void setUp() throws Exception {

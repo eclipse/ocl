@@ -1200,6 +1200,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	public void test_tutorial_umlValidation_with_pivot_432920() {
+		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
@@ -1207,10 +1208,13 @@ public class DelegatesTest extends PivotTestSuite
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			assertNull(UML2Pivot.initialize(resourceSet2));
 		}
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet2);
 		URI uri = getProjectFileURI("Bug432920.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
-		assertValidationDiagnostics("Loading", umlResource,
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		assertValidationDiagnostics("Loading", umlResource, validationContext,
 			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension")
 			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Property"),
 			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", "My Class Extension")
@@ -1219,9 +1223,9 @@ public class DelegatesTest extends PivotTestSuite
 			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Property"),
 			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", "My Class Extension")
 			+ "\n - " +  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Class"),
-			DomainUtil.bind(VIOLATED_TEMPLATE, "MyPropertyExtension::Constraint1", "My Property Extension"),
-			DomainUtil.bind(VIOLATED_TEMPLATE, "MyPropertyExtension::Constraint2", "My Property Extension"),
-			DomainUtil.bind(VIOLATED_TEMPLATE, "MyPropertyExtension::Constraint2", "My Property Extension"));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension"),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", "My Property Extension"),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", "My Property Extension"));
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {

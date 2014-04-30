@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
@@ -43,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -236,13 +234,6 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 	}
 	
 	private ResourceSet resourceSet;
-
-	public void resetRegistries() {
-		final Object object = ValidationDelegate.Factory.Registry.INSTANCE.get(OCLConstants.OCL_DELEGATE_URI);
-		if (object instanceof org.eclipse.ocl.common.internal.delegate.OCLValidationDelegateMapping) {
-			((org.eclipse.ocl.common.internal.delegate.OCLValidationDelegateMapping)object).reset();
-		}
-	}
 	
 	@Override
     protected void setUp() throws Exception {

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EValidator.SubstitutionLabelProvider;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
@@ -36,7 +37,7 @@ public class DomainSubstitutionLabelProvider implements SubstitutionLabelProvide
 	 * is mapped to the eValidator, and the EValidator.SubstitutionLabelProvider.class key
 	 * is mapped to a DomainSubstitutionLabelProvider.
 	 */
-	public static Map<Object, Object> createDefaultContext(EValidator eValidator) {
+	public static @NonNull Map<Object, Object> createDefaultContext(EValidator eValidator) {
 		Map<Object, Object> context = new HashMap<Object, Object>();
 		context.put(EValidator.SubstitutionLabelProvider.class, INSTANCE);
 		context.put(EValidator.class, eValidator);
