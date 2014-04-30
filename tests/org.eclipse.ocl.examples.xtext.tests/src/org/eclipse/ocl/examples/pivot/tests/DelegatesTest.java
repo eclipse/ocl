@@ -1209,7 +1209,7 @@ public class DelegatesTest extends PivotTestSuite
 			assertNull(UML2Pivot.initialize(resourceSet2));
 		}
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet2);
-		URI uri = getProjectFileURI("Bug432920.uml");
+		URI uri = getProjectFileURI("bug432920.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
