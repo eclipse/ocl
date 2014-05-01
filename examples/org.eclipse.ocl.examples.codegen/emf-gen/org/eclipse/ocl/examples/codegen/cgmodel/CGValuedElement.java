@@ -189,7 +189,7 @@ public interface CGValuedElement extends CGTypedElement {
 	@Nullable Boolean isEquivalentTo(@NonNull CGValuedElement thatValue);
 
 	/**
-	 * Provided that thatValue does not delegate its equivalence comptatuion, return true/false if this value can be determined to have deep value equivalence/inequivalence to thatValue, null if no determination can be made.
+	 * Provided that thatValue does not delegate its equivalence computation, return true/false if this value can be determined to have deep value equivalence/inequivalence to thatValue, null if no determination can be made.
 	 *
 	 * @generated
 	 */

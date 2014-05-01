@@ -803,7 +803,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 		};
 		
 		public static MethodSpec isEquivalentToInternal = new MyMethodSpec(CGValuedElement.class, "@Nullable Boolean isEquivalentToInternal(@NonNull " + classRef(CGValuedElement.class) + " thatValue)", null,
-			"Provided that thatValue does not delegate its equivalence comptatuion, return true/false if this value can be determined to have deep value equivalence/inequivalence to thatValue, null if no determination can be made.")
+			"Provided that thatValue does not delegate its equivalence computation, return true/false if this value can be determined to have deep value equivalence/inequivalence to thatValue, null if no determination can be made.")
 		{
 			@Override
 			protected @Nullable String getBody(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
@@ -1279,7 +1279,7 @@ public interface Log {
 				return "return false;";
 			}
 			@Override public @NonNull String generateIsNonNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-				return "return (" + cgModelSpec.delegate + " != null) && (" + cgModelSpec.delegate + ".isRequired()  || " + cgModelSpec.delegate + ".isMany());";
+				return "return (" + cgModelSpec.delegate + " != null) && " + cgModelSpec.delegate + ".isRequired();";
 			}
 			@Override public @NonNull String generateIsNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 				return "return false;";

@@ -134,7 +134,7 @@ public abstract class TypedMultiplicityElementImpl
 		if (type instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)type;
 			IntegerValue upperValue = collectionType.getUpperValue();
-			return !(upperValue instanceof UnlimitedValue) && (upperValue.intValue() > 1);
+			return (upperValue instanceof UnlimitedValue) || (upperValue.intValue() > 1);
 		}
 		return false;
 	}

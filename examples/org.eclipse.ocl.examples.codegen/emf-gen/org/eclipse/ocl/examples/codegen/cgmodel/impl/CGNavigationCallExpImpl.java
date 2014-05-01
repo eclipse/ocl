@@ -188,7 +188,7 @@ public abstract class CGNavigationCallExpImpl extends CGCallExpImpl implements C
 	 */
 	@Override
 	public boolean isNonNull() {
-		return (referredProperty != null) && (referredProperty.isRequired()  || referredProperty.isMany());
+		return (referredProperty != null) && referredProperty.isRequired();
 	}
 
 	/**
