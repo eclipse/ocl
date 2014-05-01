@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 
 /**
  * Perform the validation of delegated OCL constraints and invariants.
@@ -64,7 +65,7 @@ public class OCLDelegateValidator extends EObjectValidator
 			assert message == null;
 			message = exception.getLocalizedMessage();
 			Throwable nestedException = exception.getCause();
-			if (nestedException != null) {
+			if ((nestedException != null) && !(exception instanceof EvaluationException)) {
 				message = message + "\n - " + nestedException.getLocalizedMessage();
 			}
 		}

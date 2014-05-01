@@ -78,7 +78,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		protected Boolean handleExceptionResult(@NonNull Throwable e) {
 			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-				getConstraintTypeName(), getConstraintName(), getObjectLabel());
+				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
 			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 
@@ -96,7 +96,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-				getConstraintTypeName(), getConstraintName(), getObjectLabel());
+				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 
