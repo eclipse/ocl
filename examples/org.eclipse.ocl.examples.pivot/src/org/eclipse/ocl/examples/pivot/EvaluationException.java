@@ -28,7 +28,7 @@ public class EvaluationException extends Exception
 		super(message);
 	}
 
-	public EvaluationException(@NonNull String message, @NonNull Exception e) {
+	public EvaluationException(@NonNull String message, @NonNull Throwable e) {
 		super(message, e);
 	}
 }

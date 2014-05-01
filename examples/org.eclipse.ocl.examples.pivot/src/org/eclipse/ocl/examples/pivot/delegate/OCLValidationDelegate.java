@@ -76,7 +76,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 
 		@Override
-		protected Boolean handleExceptionResult(@NonNull Exception e) {
+		protected Boolean handleExceptionResult(@NonNull Throwable e) {
 			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
 			throw new OCLDelegateException(new EvaluationException(message, e));

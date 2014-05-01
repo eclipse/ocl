@@ -154,7 +154,7 @@ public class UMLOCLEValidator implements EValidator
 										}
 	
 										@Override
-										protected Boolean handleExceptionResult(@NonNull Exception e) {
+										protected Boolean handleExceptionResult(@NonNull Throwable e) {
 											if (diagnostics != null) {
 												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
 												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
@@ -390,7 +390,7 @@ public class UMLOCLEValidator implements EValidator
 				}
 
 				@Override
-				protected Boolean handleExceptionResult(@NonNull Exception e) {
+				protected Boolean handleExceptionResult(@NonNull Throwable e) {
 					if (diagnostics != null) {
 						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,

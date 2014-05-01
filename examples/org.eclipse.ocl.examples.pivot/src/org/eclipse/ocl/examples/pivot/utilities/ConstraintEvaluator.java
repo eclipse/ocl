@@ -85,7 +85,7 @@ public abstract class ConstraintEvaluator<T>
 			status = getConstraintResultStatus(result);
 		} catch (InvalidValueException e) {
 			return handleInvalidResult(e);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			return handleExceptionResult(e);
 		}
 		if (status) {
@@ -196,7 +196,7 @@ public abstract class ConstraintEvaluator<T>
 	/**
 	 * Call-back to return the appropriate response for an evaluation that was terminated by an exception.
 	 */
-	protected abstract T handleExceptionResult(@NonNull Exception e);
+	protected abstract T handleExceptionResult(@NonNull Throwable e);
 
 	/**
 	 * Call-back to return the appropriate response for a failed evaluation.
