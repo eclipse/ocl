@@ -144,7 +144,7 @@ public class UMLOCLEValidator implements EValidator
 							if (specification instanceof org.eclipse.ocl.examples.pivot.OpaqueExpression) {
 								ExpressionInOCL asExpression = ((org.eclipse.ocl.examples.pivot.OpaqueExpression)specification).getExpressionInOCL();						
 								if (asExpression != null) {
-									EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(extension, asExpression);
+									EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(extension.getETarget(), asExpression);
 									ConstraintEvaluator<Boolean> constraintEvaluator = new ConstraintEvaluator<Boolean>(asExpression)
 									{
 	//									@Override
