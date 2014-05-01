@@ -82,8 +82,7 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
 import org.eclipse.ocl.examples.pivot.lookup.AutoLookupKind;
-import org.eclipse.ocl.examples.pivot.lookup.AutoPivotNameResolution;
-import org.eclipse.ocl.examples.pivot.lookup.NewPivotNameResolutor;
+import org.eclipse.ocl.examples.pivot.lookup.NewPivotNameResolver;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -165,10 +164,12 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //	private static final Logger logger = Logger.getLogger(EssentialOCLLeft2RightVisitor.class);
 
 	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull NewPivotNameResolver lResolver;
 	
 	public EssentialOCLCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
 		super(context);
 		this.metaModelManager = context.getMetaModelManager();
+		this.lResolver = new NewPivotNameResolver(metaModelManager); // FIXME factory method
 	}
 
 /*	protected OCLExpression zzcheckImplementation(NamedExpCS csNavigatingExp,
@@ -577,12 +578,11 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		IteratorExp implicitCollectExp = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, null);
 		implicitCollectExp.setSource(sourceExp);
 		implicitCollectExp.setImplicit(true);
-		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, "collect");
-		environmentView.addFilter(new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
-		Type lowerBoundType = (Type) PivotUtil.getLowerBound(actualSourceType);
-		environmentView.computeLookups(lowerBoundType, null);
-		Iteration resolvedIteration = (Iteration)environmentView.getContent();
+		implicitCollectExp.setName("collect");
+		AutoILookupResult<Iteration> lResult = lResolver.computeReferredIterationLookup(implicitCollectExp, 
+			AutoLookupKind.SINGLE, new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
+		Iteration resolvedIteration = lResult.getSingleResult();
+		implicitCollectExp.setName(null); // ASBH FIXME otherwise, test cases fail -> ??????
 		if (resolvedIteration == null) {
 			return null;
 		}
@@ -868,12 +868,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
 				
-		NewPivotNameResolutor lResolver = new NewPivotNameResolutor(metaModelManager);
+		
 
 		// environmentView.addFilter(filter);
-		AutoILookupResult<Operation> lResult = lResolver.computeReferredOperationLookup(expression, AutoLookupKind.SINGLE, filter);
+		AutoILookupResult<Operation> lResult = lResolver.computeReferredOperationLookup(expression,
+			AutoLookupKind.SINGLE, filter);
 		if (lResult.getSize() == 1) {
-			Operation operation = lResult.getContent();
+			Operation operation = lResult.getSingleResult();
 			context.setReferredOperation(expression, operation);
 			resolveOperationReturnType(expression);
 		}

@@ -11,32 +11,34 @@ import org.eclipse.jdt.annotation.Nullable;
  * Default implementation of {@link AutoILookupContext}
  * 
  * @author adolfosbh
+ * 
+ *  @param <R> see R at {@link AutoILookupContext}
  */
-public class AutoLookupContext implements AutoILookupContext {
+public class AutoLookupContext<R extends EObject> implements AutoILookupContext<R> {
 	
-	protected final @NonNull EObject target;							// node in which a lookup is to be performed
+	protected final @NonNull R target;							// node in which a lookup is to be performed
 	protected final @NonNull EStructuralFeature lookupFeature;			// target reference on which name resolution will be performed 
-	protected final @Nullable EObject child;							// node from which a lookup is to be performed
+	protected final @Nullable R child;							// node from which a lookup is to be performed
 
-	private AutoLookupContext parent = null; // Lazily computed scope view for target's parent
+	private AutoLookupContext<R> parent = null; // Lazily computed scope view for target's parent
 		
 	protected AutoLookupContext(@NonNull EStructuralFeature lookupFeature , 
-			@NonNull EObject target) {
+			@NonNull R target) {
 		this (lookupFeature, target, null);
 	}
 	
 	protected AutoLookupContext(@NonNull EStructuralFeature lookupFeature ,
-			@NonNull EObject target, @Nullable EObject child) {
+			@NonNull R target, @Nullable R child) {
 		this.target = target;
 		this.lookupFeature = lookupFeature;
 		this.child = child;
 	}
 	
-	public final @NonNull EObject getTarget() {
+	public final @NonNull R getTarget() {
 		return target;
 	}
 	
-	public @Nullable EObject getChild() {
+	public @Nullable R getChild() {
 		return child;
 	}
 	
@@ -51,13 +53,14 @@ public class AutoLookupContext implements AutoILookupContext {
 		return lookupFeature;
 	}
 
-	public @Nullable AutoLookupContext getParent() {
+	public @Nullable AutoLookupContext<R> getParent() {
 		if (parent == null) {
-			EObject container = target.eContainer();
+			@SuppressWarnings("unchecked") // Assumption: All the objects are R as the API specifies 
+			R container = (R) target.eContainer();
 			if (container != null) {
-				parent = new AutoLookupContext(lookupFeature, container, target);
+				parent = new AutoLookupContext<R>(lookupFeature, container, target);
 			} else {
-				parent = null; // TODO
+				parent = null;
 			}
 		}
 		return parent;
@@ -67,7 +70,7 @@ public class AutoLookupContext implements AutoILookupContext {
 
 	@Override
 	public String toString() {
-		EObject target = getTarget();
+		R target = getTarget();
 		StringBuilder s = new StringBuilder();
 		s.append("["); //$NON-NLS-1$
 		s.append(target.eClass().getName());

@@ -9,7 +9,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
 
-public interface AutoIPivotNameResolution {
+public interface AutoIPivotNameResolver {
 	
 	/**
 	 * Generic lookup contract

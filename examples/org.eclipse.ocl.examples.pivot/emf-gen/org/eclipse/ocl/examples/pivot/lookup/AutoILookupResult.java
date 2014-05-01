@@ -1,5 +1,6 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
@@ -32,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
  */
 public interface AutoILookupResult<C extends EObject> {
 
-	
 	/**
 	 * Return true once the AutoILookupResult has accumulated sufficient results
 	 * to satisfy the lookup criterion for which it was created. i.e. any result
@@ -46,7 +46,12 @@ public interface AutoILookupResult<C extends EObject> {
 	int getSize();
 	
 	@Nullable
-	C getContent();
+	C getSingleResult();
+	/**
+	 * @return a list with all matched results. If no results are found,  it will return an empty list
+	 */
+	@NonNull
+	List<C> getAllResults();
 
 	// TEMPORAL STUFF
 	// FIXME can we get rid of this ?
@@ -96,11 +101,14 @@ public interface AutoILookupResult<C extends EObject> {
 	public void addOwnedEnumerationLiteral(@NonNull Enumeration enumeration);
 	
 	// IterateExp
-	public void addVariable(@NonNull IterateExp  iterateExp);	
-	public void addResult(@NonNull IterateExp iterateExp);
+	public void addIterator(@NonNull IterateExp  iterateExp);
+	public void addIterator(@NonNull IterateExp  iterateExp, int index);
+	public void addResult(@NonNull IterateExp iterateExp);	
+
 	
 	// Iterator Exp
-	public void addVariable(@NonNull IteratorExp  iteratorExp);
+	public void addIterator(@NonNull IteratorExp  iteratorExp);
+	public void addIterator(@NonNull IteratorExp  iterateExp, int index);
 	
 	// LetExp
 	public void addVariable(@NonNull LetExp  letExp);

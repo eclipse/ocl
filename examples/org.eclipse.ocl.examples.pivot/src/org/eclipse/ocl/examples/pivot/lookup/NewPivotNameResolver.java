@@ -5,16 +5,16 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 
-public class NewPivotNameResolutor  extends AutoPivotNameResolution {
+public class NewPivotNameResolver  extends AutoPivotNameResolver {
 
-	public NewPivotNameResolutor(@NonNull MetaModelManager mmManager) {
+	public NewPivotNameResolver(@NonNull MetaModelManager mmManager) {
 		super(mmManager);
 	}
 
 	@Override
 	@NonNull
 	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager, 
-		@NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext context) {
+		@NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
 		return new NewPivotLookupVisitor<C>(mmManager, result, context);
 	};
 }

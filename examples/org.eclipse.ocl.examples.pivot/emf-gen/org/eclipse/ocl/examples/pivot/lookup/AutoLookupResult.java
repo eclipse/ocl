@@ -1,6 +1,7 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -124,7 +125,7 @@ public class AutoLookupResult<C extends EObject> implements AutoILookupResult<C>
 	}
 	
 	@SuppressWarnings("serial")
-	private static final class MyList extends ArrayList<Object> {}
+	private static final class MyList<C> extends ArrayList<C> {}
 	
 	private static final Logger logger = Logger.getLogger(AutoLookupResult.class);
 	
@@ -311,16 +312,16 @@ public class AutoLookupResult<C extends EObject> implements AutoILookupResult<C>
 			contentsByName.put(elementName, element);
 			contentsSize++;
 		} else {
-			MyList values;
+			MyList<C> values;
 			if (value instanceof MyList) {
-				values = (MyList)value;
+				values = (MyList<C>)value;
 			} else {
-				values = new MyList();
-				values.add(value);
+				values = new MyList<C>();
+				values.add((C)value);
 				contentsByName.put(elementName, values);
 			}
 			if (!values.contains(element)) {
-				values.add(element);
+				values.add((C)element);
 				contentsSize++;
 			}
 		}
@@ -449,16 +450,24 @@ public class AutoLookupResult<C extends EObject> implements AutoILookupResult<C>
 		}
 	}
 	
-	public void addVariable(@NonNull IterateExp  iterateExp) {
+	public void addIterator(@NonNull IterateExp  iterateExp) {
 		addElements(iterateExp.getIterator());
+	}
+	
+	public void addIterator(@NonNull IterateExp  iteraterExp, int index) {
+		addNamedElement(iteraterExp.getIterator().get(index));
 	}
 	
 	public void addResult(@NonNull IterateExp iterateExp) {
 		addNamedElement(iterateExp.getResult());
 	}
 	
-	public void addVariable(@NonNull IteratorExp  iteratorExp) {
+	public void addIterator(@NonNull IteratorExp  iteratorExp) {
 		addElements(iteratorExp.getIterator());
+	}
+	
+	public void addIterator(@NonNull IteratorExp  iteratorExp, int index) {
+		addNamedElement(iteratorExp.getIterator().get(index));
 	}
 	
 	public void addVariable(@NonNull LetExp  letExp) {
@@ -504,7 +513,7 @@ public class AutoLookupResult<C extends EObject> implements AutoILookupResult<C>
 		}
 	}
 
-	public @Nullable C getContent() {
+	public @Nullable C getSingleResult() {
 		if (contentsSize == 0) {
 			return null;
 		}
@@ -514,7 +523,7 @@ public class AutoLookupResult<C extends EObject> implements AutoILookupResult<C>
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
 			if (value instanceof MyList) {
-				MyList values = (MyList) value;
+				MyList<C> values = (MyList<C>) value; // FIXME 
 				value = values.get(values.size() - 1);
 			}
 			if (value instanceof EObject) {
@@ -522,6 +531,28 @@ public class AutoLookupResult<C extends EObject> implements AutoILookupResult<C>
 			}
 		}
 		return null;
+	}
+	
+	@SuppressWarnings("null")
+	@NonNull
+	public List<C> getAllResults() {
+		if (contentsSize == 0) {
+			return Collections.<C>emptyList();
+		}		
+		if (contentsSize != 1) {
+			logger.warn("Unhandled ambiguous content for '" + name + "'");
+		}
+		List<C> allResults = new ArrayList<C>();
+		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
+			Object value = entry.getValue();
+			if (value instanceof MyList) {
+				allResults.addAll((MyList<C>)value); // FIXME
+			}
+			if (value instanceof EObject) {
+				allResults.add((C)value); // FIXME 
+			}
+		}
+		return allResults;
 	}
 
 	public @NonNull Set<Map.Entry<String, Object>> getEntries() {
