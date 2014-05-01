@@ -29,18 +29,18 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	
 	
 	@NonNull
-	public AutoILookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public AutoIPivotLookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
 		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified) {
 		AutoILookupContext<Element> context = createLookupContext(lookupFeature, lookupElement);
-		AutoILookupResult<Element> result = createLookupResult(mmManager, lookupFeature, lookupKind, name);
+		AutoIPivotLookupResult<Element> result = createLookupResult(mmManager, lookupFeature, lookupKind, name);
 		return executeVisitor(lookupElement, result, context);
 	}
 
 	@NonNull
-	public AutoILookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
+	public AutoIPivotLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
 		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-		AutoILookupResult<Operation> result = createLookupResult(mmManager, eReference, lookupKind, opCallExp.getName());
+		AutoIPivotLookupResult<Operation> result = createLookupResult(mmManager, eReference, lookupKind, opCallExp.getName());
 		result.addFilter(filter);
 		Type sourceType = PivotUtil.getType(opCallExp.getSource()); 
 		if (sourceType == null ) { // FIXME adolfosbh cane assume well-formedness of the opCallExp ?
@@ -55,7 +55,7 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter) {
 		
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;;
-		AutoILookupResult<Iteration> result = createLookupResult(mmManager, eReference, lookupKind, iteratorExp.getName());
+		AutoIPivotLookupResult<Iteration> result = createLookupResult(mmManager, eReference, lookupKind, iteratorExp.getName());
 		result.addFilter(filter);
 		Type sourceType = PivotUtil.getType(iteratorExp.getSource()); 
 		if (!(sourceType instanceof CollectionType)) { // FIXME adolfosbh can we assume well-formedness of the iteratorExp ?
@@ -67,14 +67,14 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	
 	@NonNull
 	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager,
-		@NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
+		@NonNull AutoIPivotLookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
 		return new AutoPivotLookupVisitor<C>(mmManager, result, context);
 	}
 	
 	@NonNull
-	protected <C extends Element> AutoILookupResult<C> createLookupResult(@NonNull MetaModelManager mmManager, 
+	protected <C extends Element> AutoIPivotLookupResult<C> createLookupResult(@NonNull MetaModelManager mmManager, 
 		@NonNull EStructuralFeature lookupFeature, 	@NonNull AutoLookupKind lookupKind, @Nullable String name) {
-		return new AutoLookupResult<C>(mmManager, lookupFeature, lookupKind, name);
+		return new AutoPivotLookupResult<C>(mmManager, lookupFeature, lookupKind, name);
 	}
 	
 	@NonNull
@@ -84,13 +84,13 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	}
 	
 	@NonNull
-	protected <C extends Element> AutoILookupResult<C> executeVisitor(@NonNull Element element, @NonNull AutoILookupResult<C> result, 
+	protected <C extends Element> AutoIPivotLookupResult<C> executeVisitor(@NonNull Element element, @NonNull AutoIPivotLookupResult<C> result, 
 		@NonNull AutoILookupContext<Element> context) { 
 		return resolveDuplicates(element.accept(createLookupVisitor(mmManager, result, context)));
 	}
 	
 	@NonNull
-	protected <C extends Element> AutoILookupResult<C> resolveDuplicates(@Nullable AutoILookupResult<C> result) {
-		return DomainUtil.nonNullState(result).resolveDuplicates();
+	protected <C extends Element> AutoIPivotLookupResult<C> resolveDuplicates(@Nullable AutoIPivotLookupResult<C> result) {
+		return (AutoIPivotLookupResult<C>)DomainUtil.nonNullState(result).resolveDuplicates();
 	}
 }

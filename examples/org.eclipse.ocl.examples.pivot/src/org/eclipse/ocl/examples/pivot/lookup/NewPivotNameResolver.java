@@ -12,9 +12,9 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 	}
 
 	@Override
-	@NonNull
-	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager, 
-		@NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
+	protected @NonNull <C extends Element> 
+	AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager, 
+		@NonNull AutoIPivotLookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
 		return new NewPivotLookupVisitor<C>(mmManager, result, context);
 	};
 }

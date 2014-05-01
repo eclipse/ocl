@@ -32,13 +32,13 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVisitor<C>{
 	
-	public NewPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
+	public NewPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull AutoIPivotLookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
 		super(mmManager, result, context);
 	}
 	
 	@Override
 	public @Nullable
-	AutoILookupResult<C> visitOperation(@NonNull Operation object) {
+	AutoIPivotLookupResult<C> visitOperation(@NonNull Operation object) {
 		EReference containmentReference = context.getToChildReference();
 		if (containmentReference == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
 			
@@ -52,7 +52,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+	AutoIPivotLookupResult<C> visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		
 		assert !(object instanceof Metaclass<?>);
 		if (object.getOwningTemplateParameter() != null) {
@@ -79,7 +79,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @Nullable
-	AutoILookupResult<C> visitDataType(@NonNull DataType object) {
+	AutoIPivotLookupResult<C> visitDataType(@NonNull DataType object) {
 		result.addTypeTemplateParameterables(object);
 		Type behavioralType = object.getBehavioralType();
 		if (behavioralType == null) {
@@ -95,7 +95,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitEnumeration(@NonNull Enumeration object) {
+	AutoIPivotLookupResult<C> visitEnumeration(@NonNull Enumeration object) {
 		result.addOwnedEnumerationLiteral(object);
 		result.addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
 		result.addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
@@ -105,7 +105,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitPackage(@NonNull Package object) {
+	AutoIPivotLookupResult<C> visitPackage(@NonNull Package object) {
 		Set<Package> allPackages = new HashSet<Package>();
 		gatherAllPackages(mmManager, allPackages, object);
 		for (@SuppressWarnings("null")@NonNull Package aPackage : allPackages) {
@@ -131,7 +131,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitRoot(@NonNull Root object) {
+	AutoIPivotLookupResult<C> visitRoot(@NonNull Root object) {
 		result.addNestedPackages(object);
 		result.addRootPackages();
 		return lookupInParentIfNotComplete();
@@ -140,13 +140,13 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitUnspecifiedType(@NonNull UnspecifiedType object) {
+	AutoIPivotLookupResult<C> visitUnspecifiedType(@NonNull UnspecifiedType object) {
 		return lookupFromNewElement(object.getLowerBound());
 	}
 	
 	@Override
 	public @Nullable
-	AutoILookupResult<C> visitLibrary(@NonNull Library object) {
+	AutoIPivotLookupResult<C> visitLibrary(@NonNull Library object) {
 		result.addOwnedPrecedence(object);
 		return super.visitLibrary(object);
 
@@ -154,7 +154,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @Nullable
-	AutoILookupResult<C> visitMetaclass(@NonNull Metaclass<?> object) {
+	AutoIPivotLookupResult<C> visitMetaclass(@NonNull Metaclass<?> object) {
 		Type instanceType = object.getInstanceType();
 		if (instanceType != null) {
 			result.addOwnedOperation(instanceType, null);
@@ -165,7 +165,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @Nullable
-	AutoILookupResult<C> visitIterateExp(@NonNull IterateExp object) {
+	AutoIPivotLookupResult<C> visitIterateExp(@NonNull IterateExp object) {
 
 		EStructuralFeature containmentFeature = context.getToChildReference();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
@@ -195,7 +195,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 
 	@Override
 	public @Nullable
-	AutoILookupResult<C> visitIteratorExp(@NonNull IteratorExp object) {
+	AutoIPivotLookupResult<C> visitIteratorExp(@NonNull IteratorExp object) {
 		
 		EStructuralFeature containmentFeature = context.getToChildReference();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
@@ -218,7 +218,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitLetExp(@NonNull LetExp object) {
+	AutoIPivotLookupResult<C> visitLetExp(@NonNull LetExp object) {
 		EStructuralFeature containmentFeature = context.getToChildReference();
 		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
 			result.addVariable(object);
@@ -228,7 +228,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	
 	@Override
 	public @NonNull
-	AutoILookupResult<C> visitExpressionInOCL(@NonNull ExpressionInOCL object) {
+	AutoIPivotLookupResult<C> visitExpressionInOCL(@NonNull ExpressionInOCL object) {
 		Variable contextVariable = object.getContextVariable();
 		if (contextVariable != null) {
 			lookupFromNewElement(contextVariable.getType());
@@ -236,6 +236,5 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 		result.addContextVariable(object);
 		result.addResultVariable(object);
 		return lookupInParentIfNotComplete();
-		
 	};
 }

@@ -22,7 +22,7 @@ public interface AutoIPivotNameResolver {
 	 * @return
 	 */
 	@NonNull
-	public AutoILookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public AutoIPivotLookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
 		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified);
 	
 	/**
@@ -33,7 +33,7 @@ public interface AutoIPivotNameResolver {
 	 * @return 
 	 */
 	@NonNull
-	public AutoILookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
+	public AutoIPivotLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
 		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter);
 
 }

@@ -9,31 +9,31 @@ import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 
-public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtendingVisitor<AutoILookupResult<C>, AutoILookupContext<Element>>
+public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtendingVisitor<AutoIPivotLookupResult<C>, AutoILookupContext<Element>>
 	implements AutoIPivotLookupVisitor<C> {
 		 
 	@NonNull final protected MetaModelManager mmManager;
-	@NonNull final protected AutoILookupResult<C> result;
+	@NonNull final protected AutoIPivotLookupResult<C> result;
 	
-	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull AutoILookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
+	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull AutoIPivotLookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
 		super(context);
 		this.mmManager = mmManager;
 		this.result = result;
 	}
 
 	@NonNull
-	public AutoILookupResult<C> visiting(@NonNull Visitable visitable) {
+	public AutoIPivotLookupResult<C> visiting(@NonNull Visitable visitable) {
 		return lookupInParentIfNotComplete();
 	}
 	
 	@NonNull
-	protected final AutoILookupResult<C> lookupInNewContext(@Nullable AutoILookupContext<Element> newContext) {
+	protected final AutoIPivotLookupResult<C> lookupInNewContext(@Nullable AutoILookupContext<Element> newContext) {
 		return newContext == null ? result // If we have reached the top element
 			: DomainUtil.nonNullState((newContext.getTarget()).accept( 
 				new AutoPivotLookupVisitor<C>(mmManager, result, newContext))); 
 	}
 	@NonNull
-	protected AutoILookupResult<C> lookupFromNewElement(Element element) {
+	protected AutoIPivotLookupResult<C> lookupFromNewElement(Element element) {
 		return DomainUtil.nonNullState(element.accept(this));
 	}
 	
@@ -45,7 +45,7 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	 * @return
 	 */
 	@NonNull
-	protected AutoILookupResult<C> lookupOnlyLocal() {
+	protected AutoIPivotLookupResult<C> lookupOnlyLocal() {
 		return result;
 	}
 	
@@ -56,7 +56,7 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected AutoILookupResult<C> lookupInParentIfNotComplete() {
+	protected AutoIPivotLookupResult<C> lookupInParentIfNotComplete() {
 		return result.isComplete() ? result : lookupInNewContext(context.getParent());
 	}
 	
@@ -65,7 +65,7 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected AutoILookupResult<C> lookupInParent() {
+	protected AutoIPivotLookupResult<C> lookupInParent() {
 		return lookupInNewContext(context.getParent());
 	}
 	
