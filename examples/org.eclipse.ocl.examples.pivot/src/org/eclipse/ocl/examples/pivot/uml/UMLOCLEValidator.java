@@ -67,7 +67,8 @@ import org.eclipse.uml2.uml.util.UMLValidator;
  */
 public class UMLOCLEValidator implements EValidator
 {
-	public static final @NonNull UMLOCLEValidator INSTANCE = new UMLOCLEValidator();
+	public static final @NonNull UMLOCLEValidator INSTANCE = new UMLOCLEValidator(true);
+	public static final @NonNull UMLOCLEValidator NO_NEW_LINES = new UMLOCLEValidator(false);
 	public static final @NonNull TracingOption VALIDATE_INSTANCE = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/instance");
 	public static final @NonNull TracingOption VALIDATE_OPAQUE_ELEMENT = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/opaqueElement");
 
@@ -93,6 +94,12 @@ public class UMLOCLEValidator implements EValidator
 				}
 			}
 		}
+	}
+	
+	protected final boolean mayUseNewLines;
+
+	public UMLOCLEValidator(boolean mayUseNewLines) {
+		this.mayUseNewLines = mayUseNewLines;
 	}
 
 	protected OCL getOCL(Map<Object, Object> context) {
@@ -156,7 +163,10 @@ public class UMLOCLEValidator implements EValidator
 										@Override
 										protected Boolean handleExceptionResult(@NonNull Throwable e) {
 											if (diagnostics != null) {
-												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
+												if (!mayUseNewLines) {
+													message = message.replace("\n", "");
+												}
 												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 													0, message,  new Object[] { extension.eContainer() }));
 											}

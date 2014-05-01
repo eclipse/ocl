@@ -155,7 +155,7 @@ public class ValidateCommand extends ValidateAction
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
 		final ResourceSet resourceSet = domain.getResourceSet();
 		EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
-		registry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.INSTANCE);
+		registry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.NO_NEW_LINES);
 		if (diagnosticianHasDoValidate == null) {
 			diagnosticianHasDoValidate = false;
 			for (Method method : Diagnostician.class.getDeclaredMethods()) {
