@@ -16,7 +16,6 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -216,15 +215,16 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 		return lookupInParentIfNotComplete();
 	}	
 	
-	@Override
-	public @NonNull
-	AutoIPivotLookupResult<C> visitLetExp(@NonNull LetExp object) {
-		EStructuralFeature containmentFeature = context.getToChildReference();
-		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
-			result.addVariable(object);
-		}
-		return lookupInParentIfNotComplete();
-	}
+//  This is not used by test cases
+//	@Override
+//	public @NonNull
+//	AutoIPivotLookupResult<C> visitLetExp(@NonNull LetExp object) {
+//		EStructuralFeature containmentFeature = context.getToChildReference();
+//		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
+//			result.addVariable(object);
+//		}
+//		return lookupInParentIfNotComplete();
+//	}
 	
 	@Override
 	public @NonNull

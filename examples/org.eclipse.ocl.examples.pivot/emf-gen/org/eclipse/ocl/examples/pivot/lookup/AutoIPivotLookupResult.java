@@ -38,7 +38,6 @@ public interface AutoIPivotLookupResult<C extends Element> extends AutoILookupRe
 	// Operation
 	public void addOwnedParameter(@NonNull Operation object);
 	
-	
 	// Type
 	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter);

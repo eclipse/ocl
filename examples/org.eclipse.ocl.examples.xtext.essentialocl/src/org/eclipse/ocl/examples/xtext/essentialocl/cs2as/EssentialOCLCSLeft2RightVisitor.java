@@ -1616,6 +1616,14 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				expression.setReferredVariable(variableDeclaration);
 				context.setType(expression, variableDeclaration.getType(), true);
 			}
+// ASBH FIXME The VariableExp is orphan, it should be contained by the proper ExpressionInOCL -> a wrong time name resolution case 			
+//			AutoIPivotLookupResult<Variable> lResult = lResolver.computeReferredVariableLookup(expression, AutoLookupKind.SINGLE);
+//			VariableDeclaration variableDeclaration = lResult.getSingleResult();
+//			if (variableDeclaration == null) {
+//				return context.addBadExpressionError(csSelfExp, "The context of 'self' is unspecified");
+//			}
+//			expression.setReferredVariable(variableDeclaration);
+//			context.setType(expression, variableDeclaration.getType(), true);
 		}
 		return expression;
 	}
