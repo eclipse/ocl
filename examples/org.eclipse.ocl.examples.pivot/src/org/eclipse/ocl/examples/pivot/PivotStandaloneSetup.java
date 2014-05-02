@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.common.label.ILabelGenerator;
 import org.eclipse.ocl.examples.common.label.LabelGeneratorRegistry;
+import org.eclipse.ocl.examples.domain.ids.impl.ElementIdLabelGenerator;
 import org.eclipse.ocl.examples.domain.utilities.NameableLabelGenerator;
 import org.eclipse.ocl.examples.pivot.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.examples.pivot.manager.ImplementationManager;
@@ -84,6 +85,7 @@ public class PivotStandaloneSetup //implements ISetup
 		EValidator.Registry.INSTANCE.put(PivotPackage.eINSTANCE, PivotValidator.INSTANCE);
 		LabelGeneratorRegistry.initialize(ILabelGenerator.Registry.INSTANCE);
 		CommentLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
+		ElementIdLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralBooleanLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralIntegerLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralNullLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
