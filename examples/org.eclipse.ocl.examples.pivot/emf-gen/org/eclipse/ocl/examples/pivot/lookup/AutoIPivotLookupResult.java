@@ -1,5 +1,7 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
+import java.util.Map;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
@@ -12,13 +14,23 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
 
 public interface AutoIPivotLookupResult<C extends Element> extends AutoILookupResult<C> {
 
+	public void addFilter(@NonNull ScopeFilter filter);
+	public void removeFilter(@NonNull ScopeFilter filter);
+	@NonNull
+	public MetaModelManager getMetaModelManager();
+	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings);
+	
 	// Generated from NameResolution description
 	
 	// Root

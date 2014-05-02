@@ -1,23 +1,15 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-
-
+		
 /**
  * Interface to carry the results of a lookup process
  * 
- * @author adolfosbh
- *
  */
 public interface AutoILookupResult<C extends EObject> {
 
@@ -42,7 +34,7 @@ public interface AutoILookupResult<C extends EObject> {
 	List<C> getAllResults();
 
 	// TEMPORAL STUFF
-	// FIXME can we get rid of this ?
+	// ASBH FIXME can we get rid of this ?
 	/**
 	 * Convenience method to remove name duplicates so that it can be called
 	 * once the lookup process finishes 
@@ -51,10 +43,5 @@ public interface AutoILookupResult<C extends EObject> {
 	 */
 	@NonNull
 	AutoILookupResult<C> resolveDuplicates();
-	public void addFilter(@NonNull ScopeFilter filter);
-	public void removeFilter(@NonNull ScopeFilter filter);
-	@NonNull
-	public MetaModelManager getMetaModelManager();
-	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings);
 	// END OF TEMPORAL STUFF
 }

@@ -26,7 +26,7 @@ public interface AutoIPivotNameResolver {
 	 * @return
 	 */
 	@NonNull
-	public AutoIPivotLookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public <C extends Element> AutoIPivotLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
 		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified);
 	
 	/**

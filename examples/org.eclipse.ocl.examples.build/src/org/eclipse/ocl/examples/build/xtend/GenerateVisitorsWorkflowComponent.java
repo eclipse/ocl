@@ -149,9 +149,11 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		URI projectFileURI = EcorePlugin.getPlatformResourceMap().get(projectName);
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
 		URI genModelURI = URI.createURI(genModelFile).resolve(projectResourceURI);
-		URI outputURI = URI.createURI(javaFolder + '/' + visitorPackageName.replace('.', '/'));
+		URI outputURI = URI.createURI(javaFolder + '/' + getOutputPackageName().replace('.', '/'));
 		URI resolvedOutputURI = outputURI.resolve(projectFileURI);
-		outputFolder = (resolvedOutputURI.isFile() ? resolvedOutputURI.toFileString() : resolvedOutputURI.toString()) + "/";
+		outputFolder = (resolvedOutputURI.isFile() 
+			? resolvedOutputURI.toFileString()
+			: resolvedOutputURI.toString()) + "/"; // ASBH FIXME folder needs to exist
 
 		log.info("Loading GenModel '" + genModelURI);
 //		try {
@@ -173,10 +175,16 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 //		}
 	}
 
+	/**
+	 * @return the package name in which the visitors will be generated
+	 */
+	protected String getOutputPackageName() {
+		return visitorPackageName;
+	}
 	protected boolean isDerived() {
 		int _length = this.superProjectName.length();
 		return (_length > 0);
-	}
+	}	
 
 	protected boolean needsOverride() {
 		if (genModel != null) {

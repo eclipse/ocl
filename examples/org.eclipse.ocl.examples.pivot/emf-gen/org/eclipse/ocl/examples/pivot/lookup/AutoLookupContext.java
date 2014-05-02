@@ -8,17 +8,15 @@ import org.eclipse.jdt.annotation.Nullable;
 
 
 /**
- * Default implementation of {@link AutoILookupContext}
- * 
- * @author adolfosbh
+ * Default implementation of {@link AutoILookupContext} 
  * 
  *  @param <R> see R at {@link AutoILookupContext}
  */
 public class AutoLookupContext<R extends EObject> implements AutoILookupContext<R> {
 	
-	protected final @NonNull R target;							// node in which a lookup is to be performed
-	protected final @NonNull EStructuralFeature lookupFeature;			// target reference on which name resolution will be performed 
-	protected final @Nullable R child;							// node from which a lookup is to be performed
+	protected final @NonNull R target;                          // node in which a lookup is to be performed
+	protected final @NonNull EStructuralFeature lookupFeature;  // target reference on which name resolution will be performed 
+	protected final @Nullable R child;                          // node from which a lookup is to be performed
 
 	private AutoLookupContext<R> parent = null; // Lazily computed scope view for target's parent
 		
@@ -83,5 +81,4 @@ public class AutoLookupContext<R extends EObject> implements AutoILookupContext<
 		s.append(String.valueOf(target));
 		return s.toString();
 	}
-
 }

@@ -1,18 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2013 E.D.Willink and others.
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2014 Willink Transformations Ltd., University of York and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
-module SubGenerateAutoCSModel
+ *     Adolfo Sanchez-Barbudo Herrera - initial API and implementation
+ * </copyright>
+ */
+module SubGenerateAutoNameResolution
 
-import org.eclipse.ocl.examples.build.utilities.GenerateModel
-import org.eclipse.ocl.examples.build.xtend.GenerateCSVisitors
-import org.eclipse.ocl.examples.build.xtend.GenerateAutoCS2ASVisitors
+import org.eclipse.ocl.examples.build.xtend.GenerateAutoNameResolutionFramework
 import org.eclipse.emf.ecore.resource.ResourceSet
 
 /**
@@ -36,20 +37,19 @@ var modelName
 var projectPrefix
 
 /**
- * The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.examples.xtext.essentialocl", "" for a base visitor.
+ * (Optional) The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.examples.xtext.essentialocl", "" for a base visitor.
  */
-var superProjectName
+var superProjectName = ""
 
 /**
- * The name of the inherited model (the package name in the Ecore model); e.g. "basecs"
+ * (Optional) The name of the inherited model (the package name in the Ecore model); e.g. "basecs"
  */
-var superModelName
+var superModelName = ""
 
 /**
- * The prefix of the inherited project hosting the generated models; e.g. "EssentialOCL", "" for a base visitor.
+ * (Optional) The prefix of the inherited project hosting the generated models; e.g. "EssentialOCL", "" for a base visitor.
  */
 var superProjectPrefix = ""
-
 /**
  * (Optional) The package for generated model interfaces; default: "${projectName}.${modelName}".
  */
@@ -76,7 +76,7 @@ var javaFolder = "emf-gen"
 var visitorPackageName = "${modelPackageName}.util"
 
 /**
- * (Optional) The class of the visitor; default: "${projectPrefix}CSVisitor".
+ * (Optional) The class of the visitor; default: "${projectPrefix}Visitor".
  */
 var visitorClassName = "${projectPrefix}Visitor"
 
@@ -86,7 +86,7 @@ var visitorClassName = "${projectPrefix}Visitor"
 var superVisitorPackageName = "${superModelPackageName}.util"
 
 /**
- * (Optional) The class of the inherited visitor; default: "${superProjectPrefix}Visitor". "" for a base visitor.
+ * (Optional) The class of the inherited visitor; default: "${superProjectPrefix}CSVisitor". "" for a base visitor.
  */
 var superVisitorClassName = "${superProjectPrefix}Visitor"
 
@@ -100,16 +100,28 @@ var visitablePackageName = "org.eclipse.ocl.examples.xtext.base.basecs.util"
  */
 var visitableClassName = "VisitableCS"
 
-/**
- * (Optional) The workspace-relative name of the gen model file; default: "/${projectName}/${genModelFile}"
- */
-//var genModel = "/${projectName}/${genModelFile}"
 
 /**
- *	Generate a Concrete Syntax Model and its visitors as used by the Xtext editors.
+ * (Optional) The package for of the name resolution framework; default: "${modelPackageName}.lookup".
+ */
+var nameResoPackageName = "${modelPackageName}.lookup"
+
+
+/**
+ * (Optional) The name of the base element in the class hierarchy of the context elements meta-model; default org.eclipse.emf.ecore".
+ */
+ var baseElementPackageName = "org.eclipse.emf.ecore"
+
+/**
+ * (Optional) The name of the base element in the class hierarchy of the context elements meta-model; default EObject".
+ */
+var baseElementName = "EObject"
+
+/**
+ *	Generates the name resolution framework
  */
 Workflow {
-    component = GenerateAutoCS2ASVisitors { resourceSet = resourceSet skipOnErrors = true
+    component = GenerateAutoNameResolutionFramework { resourceSet = resourceSet skipOnErrors = true
     	projectName = projectName
     	projectPrefix = projectPrefix
     	superProjectName = superProjectName
@@ -123,5 +135,8 @@ Workflow {
     	superVisitorClassName = superVisitorClassName
     	visitablePackageName = visitablePackageName
     	visitableClassName= visitableClassName
+    	nameResoPackageName = nameResoPackageName
+    	baseElementPackageName = baseElementPackageName
+    	baseElement = baseElementName
     }
 }

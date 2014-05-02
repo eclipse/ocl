@@ -25,16 +25,16 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	}
 		
 	@NonNull
-	public AutoIPivotLookupResult<Element> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public <C extends Element> AutoIPivotLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
 		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified) {
-		AutoILookupContext<Element> context = createLookupContext(lookupFeature, lookupElement);
-		AutoIPivotLookupResult<Element> result = createLookupResult(mmManager, lookupFeature, lookupKind, name);
+		AutoIPivotLookupContext context = createLookupContext(lookupFeature, lookupElement);
+		AutoIPivotLookupResult<C> result = createLookupResult(mmManager, lookupFeature, lookupKind, name);
 		return executeVisitor(lookupElement, result, context);
 	}
 	
 	@NonNull
 	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager,
-		@NonNull AutoIPivotLookupResult<C> result, @NonNull AutoILookupContext<Element> context) {
+		@NonNull AutoIPivotLookupResult<C> result, @NonNull AutoIPivotLookupContext context) {
 		return new AutoPivotLookupVisitor<C>(mmManager, result, context);
 	}
 	
@@ -45,14 +45,14 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	}
 	
 	@NonNull
-	protected AutoILookupContext<Element> createLookupContext(@NonNull EStructuralFeature lookupFeature,
+	protected AutoIPivotLookupContext createLookupContext(@NonNull EStructuralFeature lookupFeature,
 		@NonNull Element lookupElement) {
-		return new AutoLookupContext<Element>(lookupFeature, lookupElement);
+		return new AutoPivotLookupContext(lookupFeature, lookupElement);
 	}
 	
 	@NonNull
 	protected <C extends Element> AutoIPivotLookupResult<C> executeVisitor(@NonNull Element element, @NonNull AutoIPivotLookupResult<C> result, 
-		@NonNull AutoILookupContext<Element> context) { 
+		@NonNull AutoIPivotLookupContext context) { 
 		return resolveDuplicates(element.accept(createLookupVisitor(mmManager, result, context)));
 	}
 	

@@ -38,11 +38,10 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	}
 	
 	// Lookup propagation protocols 
-
 	
 	/**
 	 * Used when ONLY looking up in local 
-	 * @return
+	 * @return the accumulated lookup result
 	 */
 	@NonNull
 	protected AutoIPivotLookupResult<C> lookupOnlyLocal() {
@@ -68,5 +67,4 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	protected AutoIPivotLookupResult<C> lookupInParent() {
 		return lookupInNewContext(context.getParent());
 	}
-	
 }
