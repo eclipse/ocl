@@ -49,7 +49,7 @@ public abstract class AbstractEcore2Pivot extends AbstractConversion implements 
 	
 	public abstract void error(@NonNull String message);
 
-	public @Nullable String getOriginalName(ENamedElement eNamedElement) {
+	public static @Nullable String getOriginalName(ENamedElement eNamedElement) {
 		if (eNamedElement == null) {
 			return null;
 		}

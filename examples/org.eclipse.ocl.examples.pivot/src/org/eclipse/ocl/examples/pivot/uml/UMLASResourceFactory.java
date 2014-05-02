@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
@@ -100,7 +101,8 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 				if ((eReferences != null) && (eReferences.size() > 0)) {
 					EObject eReference = eReferences.get(0);
 					if (eReference instanceof org.eclipse.uml2.uml.Type) {
-						org.eclipse.uml2.uml.Constraint umlConstraint = ((org.eclipse.uml2.uml.Classifier)eReference).getOwnedRule(eOperation.getName());
+						String operationName = AbstractEcore2Pivot.getOriginalName(eOperation);
+						org.eclipse.uml2.uml.Constraint umlConstraint = ((org.eclipse.uml2.uml.Classifier)eReference).getOwnedRule(operationName);
 						if (umlConstraint != null) {
 							return umlConstraint;
 						}
