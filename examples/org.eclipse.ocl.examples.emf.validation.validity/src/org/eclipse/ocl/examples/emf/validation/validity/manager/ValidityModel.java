@@ -420,17 +420,26 @@ public class ValidityModel
 		ValidatableNode validatable = getValidatableNode(constrainedObject);
 		ConstrainingNode constrainingNode = allConstrainingNodes.get(constrainingURI);
 		if (constrainingNode != null) {
-			List<ConstrainingNode> children = constrainingNode.getChildren();
-			if (children.size() > 0) {
-				for (@SuppressWarnings("null")@NonNull ConstrainingNode leafConstrainingNode : children) {
+			createResultNodes(validatable, constrainingNode);
+		}
+	}
+
+	protected void createResultNodes(@NonNull ValidatableNode validatable, @NonNull ConstrainingNode constrainingNode) {
+		List<ConstrainingNode> children = constrainingNode.getChildren();
+		if (children.size() > 0) {
+			for (@SuppressWarnings("null")@NonNull ConstrainingNode childConstrainingNode : children) {
+				if (childConstrainingNode instanceof LeafConstrainingNode) {
 					ResultConstrainingNode resultConstrainingNode = createResultConstrainingNode();
 					ResultValidatableNode resultValidatableNode = createResultValidatableNode();
 					resultConstrainingNode.setResultValidatableNode(resultValidatableNode);
 					resultConstrainingNode.setLabel(getResultConstrainingLabel(validatable));
-					resultValidatableNode.setLabel(getResultValidatableLabel(leafConstrainingNode));
-					leafConstrainingNode.getChildren().add(resultConstrainingNode);
+					resultValidatableNode.setLabel(getResultValidatableLabel(childConstrainingNode));
+					childConstrainingNode.getChildren().add(resultConstrainingNode);
 					validatable.getChildren().add(resultValidatableNode);
 					ValidityManager.CREATE_RESULT.println(resultConstrainingNode + " => " + resultValidatableNode);
+				}
+				else {
+					createResultNodes(validatable, childConstrainingNode);
 				}
 			}
 		}
@@ -488,13 +497,14 @@ public class ValidityModel
 	 *            the corresponding monitor
 	 * @return true if the results are created well, false otherwise
 	 */
-	protected boolean createResults(@NonNull List<Result> results, @NonNull Iterable<? extends ValidatableNode> validatableNodes, @Nullable IProgressMonitor monitor) {
-		for (ValidatableNode validatable : validatableNodes) {
+	protected boolean createResults(@NonNull List<Result> results, @NonNull List<? extends ValidatableNode> validatableNodes, @Nullable IProgressMonitor monitor) {
+		for (int i = 0; i < validatableNodes.size(); i++) {		// Avoid CME from domain growth
+			ValidatableNode validatable = validatableNodes.get(i);
 			AbstractNode parent = validatable.getParent();
 			if (validatable.isEnabled() && (parent == null || parent.isEnabled())) {
 				if (validatable instanceof ResultValidatableNode) {
 					ResultValidatableNode resultValidatableNode = (ResultValidatableNode) validatable;
-					LeafConstrainingNode constraint = (LeafConstrainingNode) resultValidatableNode.getResultConstrainingNode().getParent();
+					ConstrainingNode constraint = resultValidatableNode.getResultConstrainingNode().getParent();
 					Result result = createResult(monitor);
 					if (result == null) {
 						return false;
