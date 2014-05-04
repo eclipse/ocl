@@ -63,6 +63,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.actions.CollapseAllNodesAction;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.actions.DebugValidityAction;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.actions.DisableAllUnusedNodesAction;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.actions.EnableDisableAllNodesAction;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.actions.ExpandAllNodesAction;
@@ -278,6 +279,8 @@ public class ValidityView extends ViewPart implements ISelectionListener
 	private Action expandAllNodesAction;
 	private Action collapseAllNodesAction;
 	private Action runValidationAction;
+	private Action debugValidatableResultAction;
+	private Action debugConstrainingResultAction;
 	private Action lockValidatableNodesAction;
 	private Action forceValidityViewRefreshAction;
 	private Action exportValidationResultAction;
@@ -596,6 +599,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		manager.add(new Separator());
 		manager.add(runValidationAction);
+		manager.add(debugConstrainingResultAction);
 		manager.add(new Separator());
 		manager.add(showConstrainingElementInEditorAction);
 	}
@@ -607,6 +611,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		manager.add(lockValidatableNodesAction);
 		manager.add(forceValidityViewRefreshAction);
 		manager.add(runValidationAction);
+//		manager.add(debugValidationAction);
 		manager.add(new Separator());
 		manager.add(filterValidationResultAction);
 		manager.add(new Separator());
@@ -641,6 +646,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		manager.add(new Separator());
 		manager.add(runValidationAction);
+		manager.add(debugValidatableResultAction);
 		manager.add(new Separator());
 		manager.add(showValidatableElementInEditorAction);
 	}
@@ -732,6 +738,8 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		expandAllNodesAction = new ExpandAllNodesAction(this, true, true);
 		collapseAllNodesAction = new CollapseAllNodesAction(this, true, true);
 		runValidationAction = new RunValidityAction(this);
+		debugValidatableResultAction = new DebugValidityAction(this, getValidatableNodesViewer());
+		debugConstrainingResultAction = new DebugValidityAction(this, getConstrainingNodesViewer());
 
 		exportValidationResultAction = new ExportValidationResultAction(validityManager, this);
 		filterValidationResultAction = new FilterValidationResultAction(this);

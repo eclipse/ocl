@@ -46,6 +46,10 @@ public class ValidityUIMessages
 	public static String ValidityView_Action_RunValidity_Title;
 	public static String ValidityView_Action_RunValidity_ImageLocation;
 	public static String ValidityView_Action_RunValidity_ToolTipText;
+
+	public static String ValidityView_Action_DebugValidity_Title;
+	public static String ValidityView_Action_DebugValidity_ImageLocation;
+	public static String ValidityView_Action_DebugValidity_ToolTipText;
 	
 	public static String ValidityView_Action_ExportResult_Title;
 	public static String ValidityView_Action_ExportResult_ImageLocation;

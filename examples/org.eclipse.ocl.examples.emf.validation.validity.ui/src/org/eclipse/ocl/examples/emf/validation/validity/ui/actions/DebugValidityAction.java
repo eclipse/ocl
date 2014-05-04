@@ -1,0 +1,182 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ */
+package org.eclipse.ocl.examples.emf.validation.validity.ui.actions;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
+import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
+import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
+import org.eclipse.ocl.examples.emf.validation.validity.ResultValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.plugin.ValidityUIPlugin;
+import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
+//import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLEditor;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.ide.IDE;
+
+/**
+ * DebugValidityAction activates ConstraintLOcator.debug() for an unambiguous validatable-node + constraining-node selection.
+ */
+public final class DebugValidityAction extends Action implements ISelectionChangedListener
+{
+	protected final @NonNull ValidityView validityView;
+	protected final @NonNull ISelectionProvider selectionProvider;
+	
+	public DebugValidityAction(@NonNull ValidityView validityView, @NonNull ISelectionProvider selectionProvider) {
+		super(ValidityUIMessages.ValidityView_Action_DebugValidity_Title);
+		this.validityView = validityView;
+		this.selectionProvider = selectionProvider;
+		selectionProvider.addSelectionChangedListener(this);
+		setToolTipText(ValidityUIMessages.ValidityView_Action_DebugValidity_ToolTipText);
+		URL image = (URL) ValidityUIPlugin.INSTANCE.getImage(ValidityUIMessages.ValidityView_Action_DebugValidity_ImageLocation);
+		setImageDescriptor(ImageDescriptor.createFromURL(image));
+	}
+
+	/**
+	 * Return all enabled result constraining nodes at and below constrainingNode.
+	 */
+	protected @NonNull List<ResultConstrainingNode> getEnabledResultConstrainingNodes(@NonNull ConstrainingNode constrainingNode) {
+		List<ResultConstrainingNode> resultConstrainingNodes = new ArrayList<ResultConstrainingNode>();
+		if (constrainingNode instanceof ResultConstrainingNode) {
+			ResultConstrainingNode resultConstrainingNode = (ResultConstrainingNode) constrainingNode;
+			if (resultConstrainingNode.isEnabled()) {
+				resultConstrainingNodes.add(resultConstrainingNode);
+			}
+		}
+		for (TreeIterator<EObject> tit = constrainingNode.eAllContents(); tit.hasNext(); ) {
+			Object eObject = tit.next();
+			if (eObject instanceof ResultConstrainingNode) {
+				ResultConstrainingNode resultConstrainingNode = (ResultConstrainingNode) eObject;
+				if (resultConstrainingNode.isEnabled()) {
+					resultConstrainingNodes.add(resultConstrainingNode);
+				}
+			}
+		}
+		return resultConstrainingNodes;
+	}
+
+	/**
+	 * Return all enabled result validatable nodes at and below validatableNode.
+	 */
+	protected @NonNull List<ResultValidatableNode> getEnabledResultValidatableNodes(@NonNull ValidatableNode validatableNode) {
+		List<ResultValidatableNode> resultValidatableNodes = new ArrayList<ResultValidatableNode>();
+		if (validatableNode instanceof ResultValidatableNode) {
+			ResultValidatableNode resultValidatableNode = (ResultValidatableNode) validatableNode;
+			if (resultValidatableNode.isEnabled()) {
+				resultValidatableNodes.add(resultValidatableNode);
+			}
+		}
+		for (TreeIterator<EObject> tit = validatableNode.eAllContents(); tit.hasNext(); ) {
+			Object eObject = tit.next();
+			if (eObject instanceof ResultValidatableNode) {
+				ResultValidatableNode resultValidatableNode = (ResultValidatableNode) eObject;
+				if (resultValidatableNode.isEnabled()) {
+					resultValidatableNodes.add(resultValidatableNode);
+				}
+			}
+		}
+		return resultValidatableNodes;
+	}
+
+	@Override
+	public void run() {
+		ISelection selection = selectionProvider.getSelection();
+		if (selection instanceof StructuredSelection) {
+			ResultConstrainingNode resultConstrainingNode = null;
+			Object selectedObject = ((StructuredSelection) selection).getFirstElement();
+			if (selectedObject instanceof ConstrainingNode) {
+				resultConstrainingNode = getEnabledResultConstrainingNodes((ConstrainingNode)selectedObject).get(0);
+			}
+			else if (selectedObject instanceof ValidatableNode) {
+				ResultValidatableNode resultValidatableNode = getEnabledResultValidatableNodes((ValidatableNode)selectedObject).get(0);
+				resultConstrainingNode = resultValidatableNode.getResultConstrainingNode();
+			}
+			if (resultConstrainingNode != null) {
+				final Shell shell = validityView.getViewSite().getShell();
+				ConstrainingNode eParent = resultConstrainingNode.getParent();
+				if (eParent instanceof LeafConstrainingNode) {
+					final ResultConstrainingNode finalResultConstrainingNode = resultConstrainingNode;
+					org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator constraintLocator = ((LeafConstrainingNode)eParent).getConstraintLocator();
+					if (constraintLocator instanceof org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator) {
+						final org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator uiConstraintLocator = (org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator)constraintLocator;
+						Thread launchingThread = new Thread("DebugConstraintLauncher")
+						{
+							@Override
+							public void run() {
+					//			Monitor monitor = null;
+								try {
+									if (!uiConstraintLocator.debug(finalResultConstrainingNode, validityView, null)) {
+										MessageDialog.openError(shell, "Constraint Debug Launcher",
+													"Debugging failed for '" + uiConstraintLocator.getName() + "'." );
+									}
+								} catch (final Exception e) {
+									shell.getDisplay().asyncExec(new Runnable()
+									{
+										@Override
+										public void run() {
+											MessageDialog.openError(shell, "Constraint Debug Launcher",
+														"Debugging failed for '" + uiConstraintLocator.getName() + "'." + e.toString());
+											e.printStackTrace();
+										}
+									});
+								}
+							}
+						};
+						launchingThread.start();
+						return;
+					}
+					else {
+						MessageDialog.openError(shell, "Constraint Debug Launcher",
+							"Debugging not supported for '" + constraintLocator.getName() + "'." );
+					}
+				}
+			}
+			assert false; // Never happens
+		}
+	}
+
+	@Override
+	public void selectionChanged(SelectionChangedEvent event) {
+		ISelection selection = selectionProvider.getSelection();
+		if (selection instanceof StructuredSelection) {
+			Object selectedObject = ((StructuredSelection) selection).getFirstElement();
+			if (selectedObject instanceof ConstrainingNode) {
+				setEnabled(getEnabledResultConstrainingNodes((ConstrainingNode)selectedObject).size() == 1);
+			}
+			else if (selectedObject instanceof ValidatableNode) {
+				setEnabled(getEnabledResultValidatableNodes((ValidatableNode)selectedObject).size() == 1);
+			}
+			else {
+				setEnabled(false);
+			}
+		}
+	}
+}

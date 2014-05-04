@@ -4,15 +4,15 @@
 
    <extension point="org.eclipse.ocl.examples.emf.validation.validity.constraint_locator">
    		<locator metaclass="http://www.eclipse.org/ocl/3.1.0/Pivot"
-   			class="org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator"/>
+   			class="org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/uml2/2.0.0/UML"
-   			 class="org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator"/>
+   			 class="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/uml2/3.0.0/UML"
-   			 class="org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator"/>
+   			 class="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/uml2/4.0.0/UML"
-   			 class="org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator"/>
+   			 class="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/uml2/5.0.0/UML"
-   			 class="org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator"/>
+   			 class="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"/>
    </extension>
 
 </plugin>
