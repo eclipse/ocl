@@ -21,11 +21,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.part.IPageSite;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -39,7 +40,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 public class BaseUIUtil
 {
-	public static @Nullable IXtextDocument getActiveDocument(IPageSite site) {
+	public static @Nullable IXtextDocument getActiveDocument(@Nullable IWorkbenchSite site) {
 		try {
 			if (site == null) {
 				return null;
@@ -64,7 +65,7 @@ public class BaseUIUtil
 		}
 	}
 
-	public static @Nullable ISelection getActiveSelection(IPageSite site) {
+	public static @Nullable ISelection getActiveSelection(@Nullable IWorkbenchSite site) {
 		try {
 			if (site == null) {
 				return null;
@@ -96,7 +97,26 @@ public class BaseUIUtil
 		}
 	}
 
-	public static @Nullable Object getXtextOutlineSelection(@NonNull IOutlineNode outlineNodeSelection, IPageSite site) {
+	public static @Nullable Object getSelectedObject(@Nullable ISelection sel, @Nullable IWorkbenchSite site) {
+		Object selectedObject = null;
+		if (sel instanceof ITextSelection) {
+	    	selectedObject = BaseUIUtil.getXtextTextSelection((ITextSelection)sel, site);
+	    }
+	    else {
+	    	if (sel instanceof IStructuredSelection) {
+	            IStructuredSelection ssel = (IStructuredSelection) sel;
+	            if (!ssel.isEmpty()) {
+	                selectedObject = ssel.getFirstElement();
+	            }
+		    }
+		    if (selectedObject instanceof IOutlineNode) {
+	    	    selectedObject = BaseUIUtil.getXtextOutlineSelection((IOutlineNode)selectedObject, site);
+		    }
+	    }
+		return selectedObject;
+	}
+
+	public static @Nullable Object getXtextOutlineSelection(@NonNull IOutlineNode outlineNodeSelection, @Nullable IWorkbenchSite site) {
 		if (outlineNodeSelection instanceof EObjectNode) {
 		    final EObjectNode selectedObjectNode = (EObjectNode) outlineNodeSelection;
 			IXtextDocument xtextDocument = getActiveDocument(site);
@@ -119,7 +139,7 @@ public class BaseUIUtil
 		return null;
 	}
 	
-	public static @Nullable Object getXtextTextSelection(final @NonNull ITextSelection textSelection, IPageSite site) {
+	public static @Nullable Object getXtextTextSelection(final @NonNull ITextSelection textSelection, @Nullable IWorkbenchSite site) {
 		IXtextDocument xtextDocument = getActiveDocument(site);
 		if (xtextDocument == null) {
 			return null;

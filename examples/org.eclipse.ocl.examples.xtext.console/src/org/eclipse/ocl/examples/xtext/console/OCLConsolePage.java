@@ -36,7 +36,6 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
@@ -117,7 +116,6 @@ import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.contentassist.DefaultContentAssistantFactory;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
@@ -985,21 +983,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	}
 	
 	private void selectionChanged(ISelection sel) {
-		Object selectedObject = null;
-		if (sel instanceof ITextSelection) {
-	    	selectedObject = BaseUIUtil.getXtextTextSelection((ITextSelection)sel, getSite());
-	    }
-	    else {
-	    	if (sel instanceof IStructuredSelection) {
-	            IStructuredSelection ssel = (IStructuredSelection) sel;
-	            if (!ssel.isEmpty()) {
-	                selectedObject = ssel.getFirstElement();
-	            }
-		    }
-		    if (selectedObject instanceof IOutlineNode) {
-	    	    selectedObject = BaseUIUtil.getXtextOutlineSelection((IOutlineNode)selectedObject, getSite());
-		    }
-	    }
+		Object selectedObject = BaseUIUtil.getSelectedObject(sel, getSite());
         refreshSelection(selectedObject);
 	}
 
