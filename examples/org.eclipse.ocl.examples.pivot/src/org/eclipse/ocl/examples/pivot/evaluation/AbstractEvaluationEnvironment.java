@@ -24,6 +24,7 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.AbstractBasicEnvironment;
 import org.eclipse.ocl.examples.pivot.Adaptable;
 import org.eclipse.ocl.examples.pivot.Customizable;
@@ -80,9 +81,14 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
 	public @Nullable Object getValueOf(@NonNull DomainTypedElement referredVariable) {
     	Object object = variableValues.get(referredVariable);
         if (object == null) {
-            EvaluationEnvironment parent2 = parent;
-			if ((parent2 != null) && !variableValues.containsKey(referredVariable)) {
-            	object = parent2.getValueOf(referredVariable);
+			if (!variableValues.containsKey(referredVariable)) {
+	            EvaluationEnvironment parent2 = parent;
+				if (parent2 != null) {
+	            	object = parent2.getValueOf(referredVariable);
+	            }
+				else {
+					throw new InvalidValueException("Undefined Variable " + referredVariable);
+				}
             }
         }
         return object;
