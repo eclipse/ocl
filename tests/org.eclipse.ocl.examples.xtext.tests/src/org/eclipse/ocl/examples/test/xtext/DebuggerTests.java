@@ -71,13 +71,7 @@ public class DebuggerTests extends XtextTestCase
 
 	protected IFile copyFile(IProject project, String fileName, String encoding) throws CoreException, FileNotFoundException {
 		URI xmiURI = getProjectFileURI(fileName);
-		String string = xmiURI.toString();
-		if (string.startsWith("file:")) {
-			string = string.substring(5);
-		}
-		if (isWindows() && string.startsWith("/")) {
-			string = string.substring(1);
-		}
+		String string = xmiURI.isFile() ? xmiURI.toFileString() : xmiURI.toString();
 		Reader reader = new BufferedReader(new FileReader(string));
 		if (encoding == null) {
 			encoding = URIConverter.ReadableInputStream.getEncoding(reader);

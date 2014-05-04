@@ -230,11 +230,9 @@ public class UsageTests
 			if (projectPath.startsWith("reference:")) {
 				projectPath = projectPath.substring(10);
 			}
-			if (projectPath.startsWith("file:")) {
-				projectPath = projectPath.substring(5);
-			}
-			if (isWindows() && projectPath.startsWith("/")) {
-				projectPath = projectPath.substring(1);
+			URI uri = URI.createURI(projectPath);
+			if (uri.isFile()) {
+				projectPath =  uri.toFileString().replace("\\", "/");
 			}
 			if (projectPath.endsWith("/")) {
 				projectPath = projectPath + "bin";
@@ -345,11 +343,9 @@ public class UsageTests
 				getCompilationUnits(compilationUnits, project);
 				java.net.URI locationURI = project.getLocationURI();
 				String binURI = locationURI + "/bin";
-				if (binURI.startsWith("file:")) {
-					binURI = binURI.substring(5);
-				}
-				if (isWindows() && binURI.startsWith("/")) {
-					binURI = binURI.substring(1);
+				URI uri = URI.createURI(binURI);
+				if (uri.isFile()) {
+					binURI = uri.toFileString().replace("\\", "/");
 				}
 				compilationOptions.set(1, binURI);
 				new File(locationURI.getPath() + "/bin").mkdirs();

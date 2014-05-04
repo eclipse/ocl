@@ -284,12 +284,8 @@ public class ValidateCommand extends StandaloneCommand
 		 *         <code>false</code> otherwise.
 		 */
 		private void checkOclFile(@NonNull List<String> strings, @NonNull String argument) {
-			if (argument.startsWith("file:")) {
-				argument = argument.substring(5);
-			}
-			if (isWindows() && argument.startsWith("/")) {
-				argument = argument.substring(1);
-			}
+			URI uri = URI.createURI(argument);
+			argument = uri.isFile() ? uri.toFileString() : argument;
 			boolean ignored = false;
 			try {
 				File file = new File(argument).getCanonicalFile();
@@ -463,12 +459,8 @@ public class ValidateCommand extends StandaloneCommand
 	}
 
 	protected static String getCheckedFileName(@NonNull String string) {
-		if (string.startsWith("file:")) {
-			string = string.substring(5);
-		}
-		if (isWindows() && string.startsWith("/")) {
-			string = string.substring(1);
-		}
+		URI uri = URI.createURI(string);
+		string = uri.isFile() ? uri.toFileString() : string;
 		try {
 			File file = new File(string).getCanonicalFile();
 			if (!file.exists()) {

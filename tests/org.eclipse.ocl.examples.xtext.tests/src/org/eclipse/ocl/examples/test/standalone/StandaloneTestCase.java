@@ -16,6 +16,7 @@ package org.eclipse.ocl.examples.test.standalone;
 
 import java.net.URL;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
@@ -32,13 +33,8 @@ public class StandaloneTestCase extends PivotTestCase
 		@SuppressWarnings("null")@NonNull String projectName = getClass().getPackage().getName().replace('.', '/');
 		URL projectURL = getTestResource(projectName);
 		assertNotNull(projectURL);
-		String projectPath = projectURL.toString();
-		if (projectPath.startsWith("file:")) {
-			projectPath = projectPath.substring(5);
-		}
-		if (isWindows() && projectPath.startsWith("/")) {
-			projectPath = projectPath.substring(1);
-		}
+		URI uri = URI.createURI(projectURL.toString());
+		String projectPath = uri.isFile() ? uri.toFileString() : uri.toString();
 		projectPath = projectPath.replace("\\", "/");
 		if (!projectPath.endsWith("/")) {
 			projectPath = projectPath + "/";

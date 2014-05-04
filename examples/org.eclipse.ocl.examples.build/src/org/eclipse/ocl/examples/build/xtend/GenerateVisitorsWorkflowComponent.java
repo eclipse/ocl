@@ -155,10 +155,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		URI genModelURI = URI.createURI(genModelFile).resolve(projectResourceURI);
 		URI outputURI = URI.createURI(javaFolder + '/' + visitorPackageName.replace('.', '/'));
 		URI resolvedOutputURI = outputURI.resolve(projectFileURI);
-		outputFolder = resolvedOutputURI.toString() + "/";
-		if (outputFolder.startsWith("file:/")) {
-			outputFolder = outputFolder.substring(6);
-		}
+		outputFolder = (resolvedOutputURI.isFile() ? resolvedOutputURI.toFileString() : resolvedOutputURI.toString()) + "/";
 
 		log.info("Loading GenModel '" + genModelURI);
 //		try {

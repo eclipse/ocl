@@ -2160,7 +2160,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 							inputStream = jarFile.getInputStream(entry);
 						}
 					} else {
-						inputStream = new FileInputStream(genModelURI.toString().substring(5)); // Lose file:
+						inputStream = new FileInputStream(genModelURI.isFile() ? genModelURI.toFileString() : genModelURI.toString());
 					}
 					if (inputStream != null) {
 						saxParser.parse(inputStream, genModelReader);
