@@ -85,15 +85,6 @@ public class AS2XMIid
 	 * Assign xmi:id values to referenceable elements in asResource re-using the xmi:id
 	 * values read when this AS2ID was constructed.
 	 */
-	@Deprecated // Since Luna M3
-	public void assignIds(@NonNull ASResource asResource) {
-		assignIds(asResource, null);
-	}
-
-	/**
-	 * Assign xmi:id values to referenceable elements in asResource re-using the xmi:id
-	 * values read when this AS2ID was constructed.
-	 */
 	public void assignIds(@NonNull ASResource asResource, @Nullable Map<?, ?> options) {
 		StringBuilder s = null;
 		Map<String, EObject> allIds = new HashMap<String, EObject>();

@@ -112,8 +112,8 @@ public final class CompleteOCLPlugin extends EMFPlugin
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			CompleteOCLStandaloneSetup.init();
 			super.start(context);
+			CompleteOCLStandaloneSetup.init();
 		}
 	}
 }

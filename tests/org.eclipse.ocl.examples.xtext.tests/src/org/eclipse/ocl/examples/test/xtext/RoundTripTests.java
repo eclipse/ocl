@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.MessageBinder;
@@ -269,6 +270,12 @@ public class RoundTripTests extends XtextTestCase
 		MetaModelManager metaModelManager3 = new MetaModelManager();
 		BaseCSResource xtextResource3 = createXtextFromURI(metaModelManager3, outputURI);
 		ASResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3, 1);
+		if (pivotResource1.getID(pivotResource1.getContents().get(0)) == null) {
+			new AS2XMIid().assignIds(pivotResource1, null);
+		}
+		if (pivotResource3.getID(pivotResource3.getContents().get(0)) == null) {
+			new AS2XMIid().assignIds(pivotResource3, null);
+		}
 		String expected = EmfFormatter.listToStr(pivotResource1.getContents());
 		String actual = EmfFormatter.listToStr(pivotResource3.getContents()).replace(".regenerated.oclinecore", ".oclinecore");
 		assertEquals(expected, actual);

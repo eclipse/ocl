@@ -25,6 +25,8 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
+import org.eclipse.ocl.examples.pivot.utilities.AS2XMIidVisitor;
 
 public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 {
@@ -35,8 +37,26 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
+	public @NonNull AS2XMIidVisitor createAS2XMIidVisitor(@NonNull AS2XMIid as2id) {
+		return new CompleteOCLAS2XMIidVisitor(as2id);
+	}
+
+	@Override
+	public @NonNull Resource createResource(URI uri) {
+		assert uri != null;
+		ASResource asResource = new CompleteOCLASResourceImpl(uri, this);
+		configureResource(asResource);
+	    return asResource;
+	}
+
+	@Override
 	public int getHandlerPriority(@NonNull Resource resource) {
 		return resource instanceof CompleteOCLCSResource ? CAN_HANDLE : CANNOT_HANDLE;
+	}
+
+	@Override
+	public int getHandlerPriority(@NonNull URI uri) {
+		return "ocl".equals(uri.fileExtension()) ? CAN_HANDLE : MAY_HANDLE;
 	}
 
 	@Override
