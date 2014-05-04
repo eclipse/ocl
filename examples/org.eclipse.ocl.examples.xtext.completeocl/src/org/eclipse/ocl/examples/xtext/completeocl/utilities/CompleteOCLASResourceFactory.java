@@ -56,7 +56,7 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public int getHandlerPriority(@NonNull URI uri) {
-		return "ocl".equals(uri.fileExtension()) ? CAN_HANDLE : MAY_HANDLE;
+		return "ocl".equals(uri.fileExtension()) ? CAN_HANDLE : CANNOT_HANDLE;
 	}
 
 	@Override
