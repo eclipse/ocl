@@ -1,0 +1,61 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     R.Dvorak and others - QVTo debugger framework
+ *     E.D.Willink - revised API for OCL debugger framework
+ *******************************************************************************/
+package org.eclipse.ocl.examples.debug.vm.launching;
+
+import java.util.List;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticException;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
+
+public abstract class DebuggableRunnerFactory implements IDebuggableRunnerFactory
+{	
+	protected final @NonNull EPackage.Registry packageRegistry;	
+	protected final @NonNull String debuggableURI;
+	protected final @NonNull List<String> modelURIs;
+	protected final @Nullable String traceFileURI;
+
+	protected DebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry, @NonNull String debuggableURI,
+			@NonNull List<String> modelURIs, @Nullable String traceFileURI) {
+		this.packageRegistry = packageRegistry;
+		this.debuggableURI = debuggableURI;
+		this.modelURIs = modelURIs;
+		this.traceFileURI = traceFileURI;
+	}
+	
+	public @NonNull BasicDiagnostic createDiagnostic(@NonNull String message) {
+		return new BasicDiagnostic(Diagnostic.OK, getPluginId(), 0, message, null);
+	}
+
+	protected abstract @NonNull DebuggableRunner createRunner(@NonNull EvaluationContext evaluationContext) throws DiagnosticException;
+
+	protected abstract @NonNull String getPluginId();
+	
+/*	private URI toURI(String uriStr, String uriType) throws DiagnosticException {
+		IllegalArgumentException exc = null;
+		if(uriStr != null) {
+			try {
+				return URI.createURI(uriStr);
+			} catch(IllegalArgumentException e) {
+				exc = e; 
+			}
+		}
+
+		String message = NLS.bind("Invalid {0} URI : ''{1}''", uriType, uriStr);
+		throw new DiagnosticException(OCLDebugUIPlugin.createErrorDiagnostic(message, exc));
+	} */
+}

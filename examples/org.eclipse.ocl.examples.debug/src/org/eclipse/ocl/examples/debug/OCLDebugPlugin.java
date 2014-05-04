@@ -1,0 +1,42 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2013 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *
+ * </copyright>
+ */
+package org.eclipse.ocl.examples.debug;
+
+import org.eclipse.core.runtime.Plugin;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLASResourceFactory;
+import org.osgi.framework.BundleContext;
+
+public class OCLDebugPlugin extends Plugin
+{
+	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.debug";
+	
+	private static OCLDebugPlugin plugin;
+
+	public static OCLDebugPlugin getDefault() {
+		return plugin;
+	}
+
+	public void start(BundleContext bundleContext) throws Exception {
+		super.start(bundleContext);
+		plugin = this;
+		CompleteOCLASResourceFactory.INSTANCE.getClass();		// FIXME An extension point should do this
+	}
+
+	public void stop(BundleContext bundleContext) throws Exception {
+		plugin = null;
+		super.stop(bundleContext);
+	}
+}

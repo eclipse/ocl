@@ -116,6 +116,7 @@ public class AllXtextTests
 			result.addTestSuite(ConsoleTests.class);
 			result.addTestSuite(EditorTests.class);
 			result.addTestSuite(FileNewWizardTest.class);
+//			result.addTestSuite(DebuggerTests.class);
 		}
 		return result;
 	}

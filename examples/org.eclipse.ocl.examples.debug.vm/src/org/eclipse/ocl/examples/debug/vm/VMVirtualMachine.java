@@ -1,0 +1,439 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     R.Dvorak and others - QVTo debugger framework
+ *     E.D.Willink - revised API for OCL debugger framework
+ *******************************************************************************/
+package org.eclipse.ocl.examples.debug.vm;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.debug.core.model.IValue;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.debug.vm.core.VMDebugTarget;
+import org.eclipse.ocl.examples.debug.vm.core.VMLocalValue;
+import org.eclipse.ocl.examples.debug.vm.core.VMLocalValue.LocalValue;
+import org.eclipse.ocl.examples.debug.vm.data.VMBreakpointData;
+import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
+import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IRootVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
+import org.eclipse.ocl.examples.debug.vm.event.VMStartEvent;
+import org.eclipse.ocl.examples.debug.vm.event.VMTerminateEvent;
+import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
+import org.eclipse.ocl.examples.debug.vm.launching.VMDebuggableExecutorAdapter;
+import org.eclipse.ocl.examples.debug.vm.request.VMBreakpointRequest;
+import org.eclipse.ocl.examples.debug.vm.request.VMBreakpointRequest.ActionKind;
+import org.eclipse.ocl.examples.debug.vm.request.VMDetailRequest;
+import org.eclipse.ocl.examples.debug.vm.request.VMRequest;
+import org.eclipse.ocl.examples.debug.vm.request.VMStackFrameRequest;
+import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
+import org.eclipse.ocl.examples.debug.vm.request.VMVariableRequest;
+import org.eclipse.ocl.examples.debug.vm.response.VMBreakpointResponse;
+import org.eclipse.ocl.examples.debug.vm.response.VMDetailResponse;
+import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
+import org.eclipse.ocl.examples.debug.vm.response.VMStackFrameResponse;
+import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+
+public abstract class VMVirtualMachine implements IVMVirtualMachineShell
+{
+	public static final @NonNull TracingOption LOCATION = new TracingOption(DebugVMPlugin.PLUGIN_ID, "location");
+	public static final @NonNull TracingOption PRE_VISIT = new TracingOption(DebugVMPlugin.PLUGIN_ID, "pre-visit");
+	public static final @NonNull TracingOption POST_VISIT = new TracingOption(DebugVMPlugin.PLUGIN_ID, "post-visit");
+	public static final @NonNull TracingOption VISITOR_STACK = new TracingOption(DebugVMPlugin.PLUGIN_ID, "visitorStack");
+	public static final @NonNull TracingOption VM_EVENT = new TracingOption(DebugVMPlugin.PLUGIN_ID, "vmEvent");
+	public static final @NonNull TracingOption VM_REQUEST = new TracingOption(DebugVMPlugin.PLUGIN_ID, "vmRequest");
+	public static final @NonNull TracingOption VM_RESPONSE = new TracingOption(DebugVMPlugin.PLUGIN_ID, "vmResponse");
+	
+	static {
+//		LOCATION.setState(true);
+//		PRE_VISIT.setState(true);
+//		POST_VISIT.setState(true);
+//		VISITOR_STACK.setState(true);
+//		VM_EVENT.setState(true);
+//		VM_REQUEST.setState(true);
+//		VM_RESPONSE.setState(true);
+	}
+
+	private class DebuggerShell implements IVMDebuggerShell
+	{	
+		public @NonNull VMBreakpointManager getBreakPointManager() {
+			return VMVirtualMachine.this.fBreakpointManager;
+		}
+		
+		public void handleVMEvent(@NonNull VMEvent event) {
+			if (VM_EVENT.isActive()) {
+				VM_EVENT.println("?[" + Thread.currentThread().getName() + "] " + event.toString());
+			}
+			if(event instanceof VMStartEvent) {
+				// first start event
+				synchronized (fStateMonitor) {
+					fRunning = true;
+					fStateMonitor.notify();
+				}
+			} else if(event instanceof VMTerminateEvent) {
+				synchronized (fStateMonitor) {
+					fRunning = false;
+					fTerminated = true;
+					fStateMonitor.notify();
+				}				
+			}
+
+			try {
+				fEvents.add(event);				
+			} catch(IllegalStateException e) {
+				// FIXME
+				System.err.println("Event queue full!!!!");
+			}
+		}	
+		
+		public boolean isSessionStarted() {
+			return fInterpreter != null;
+		}
+
+		public VMRequest peekRequest() {
+			synchronized (fLock) {
+				return fRequests.isEmpty() ? null : fRequests.get(0);
+			}
+		}
+		
+		public @Nullable VMRequest popRequest() {
+			synchronized (fLock) {
+				return fRequests.isEmpty() ? null : fRequests.remove(0);
+			}
+		}
+		
+		public void sessionStarted(@NonNull IRootVMEvaluationVisitor<?> evaluator) {
+			fInterpreter = evaluator;
+		}
+		
+		public @Nullable VMRequest waitAndPopRequest(@NonNull VMEvent suspend) throws InterruptedException {
+			// FIXME - should be locked to ensure none can really send a request until
+			// we deliver the event
+			handleVMEvent(suspend);
+			
+			synchronized (fLock) {			
+				while(fRequests.isEmpty()) {
+					fLock.wait();
+				}
+				VMRequest request = fRequests.remove(0);
+				if (VM_REQUEST.isActive()) {
+					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
+				}
+				return request;
+			}		
+		}
+	}
+		
+	private static int execute(@NonNull VMDebuggableExecutorAdapter executorAdapter) {
+		int exitCode = 0;
+		try {
+			Diagnostic diagnostic = executorAdapter.execute();
+			int severity = diagnostic.getSeverity();
+			if(severity == Diagnostic.ERROR || severity == Diagnostic.CANCEL) {
+				System.err.println(diagnostic.toString());
+				exitCode = -1;
+			}
+		} catch (Throwable e) {
+			exitCode = -2;
+			// FIXME Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+		return exitCode;
+	}	
+	
+	public static @Nullable UnitLocation lookupEnvironmentByID(long id, @NonNull List<UnitLocation> stack) {
+		for (UnitLocation location : stack) {
+			IVMEvaluationEnvironment<?> evalEnv = location.getEvalEnv();
+			if (evalEnv.getID() == id) {
+				return location;
+			}
+		}
+		return null;
+	}
+		
+	private final List<VMRequest> fRequests = new ArrayList<VMRequest>();
+	private final BlockingQueue<VMEvent> fEvents = new ArrayBlockingQueue<VMEvent>(50);	
+		
+	protected final @NonNull DebuggableRunner runner;
+	protected final @NonNull MetaModelManager metaModelManager;
+	private final @NonNull IVMDebuggerShell fDebuggerShell;
+	
+	private final @NonNull VMBreakpointManager fBreakpointManager;
+	private @Nullable IRootVMEvaluationVisitor<?> fInterpreter;
+	private final @NonNull VMDebuggableExecutorAdapter fExecutor;
+
+	private boolean fRunning;
+	private boolean fTerminated;
+		
+	private Object fStateMonitor = new Object();
+	private final Object fLock = new Object();	
+	
+	protected VMVirtualMachine(@NonNull DebuggableRunner runner, @NonNull VMDebuggableExecutorAdapter executorAdapter) {
+		this.runner = runner;
+		this.metaModelManager = runner.getMetaModelManager();
+		fExecutor = executorAdapter;
+		fDebuggerShell = new DebuggerShell();
+		fBreakpointManager = new VMBreakpointManager(this, executorAdapter.getUnit());
+		fTerminated = false;
+	}
+	
+	private @NonNull Runnable createVMRunnable() {
+		return new Runnable() {
+			public void run() {
+				int exitCode = -1;
+				try {
+					fExecutor.connect(fDebuggerShell);
+					exitCode = execute(fExecutor);
+				} catch(Throwable e) {
+					getDebugCore().log(e);
+				} finally {
+					fDebuggerShell.handleVMEvent(new VMTerminateEvent(exitCode));
+				}
+			}
+		};
+	}
+	
+	public @Nullable VMStackFrameData createStackFrame(long frameID, @NonNull List<UnitLocation> stack) {	
+		UnitLocation location = lookupEnvironmentByID(frameID, stack);
+		if (location != null) {
+			return createStackFrame(location);
+		}
+
+		// invalid stack frame
+		return null;
+	}
+	
+	protected abstract @Nullable VMStackFrameData createStackFrame(@NonNull UnitLocation location);
+	
+	public IValue evaluate(@NonNull String expressionText, VMDebugTarget debugTarget, long frameID) throws CoreException {
+		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		if (fInterpreter2 == null) {
+			return null;
+		}
+
+		Element astNode = fInterpreter2.getCurrentLocation().getElement();
+        if (astNode == null) {
+            return null;
+        }
+        
+        ConditionChecker localChecker = new ConditionChecker(expressionText, astNode);
+        LocalValue lv = new LocalValue();
+        lv.valueObject = localChecker.evaluate(fInterpreter2);
+        lv.valueType = localChecker.getConditionType();
+        
+		return new VMLocalValue(debugTarget, frameID, new String[] {expressionText}, lv, 
+				fInterpreter2.getEvaluationEnvironment());
+	}
+
+	public @Nullable EvaluationEnvironment getEvaluationEnv() {
+		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		if (fInterpreter2 == null) {
+			return null;
+		}
+		return fInterpreter2.getEvaluationEnvironment();
+	}
+
+	public @NonNull MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
+
+	public @NonNull DebuggableRunner getRunner() {
+		return runner;
+	}
+
+	public @NonNull IDebuggableRunnerFactory getRunnerFactory() {
+		return runner.getRunnerFactory();
+	}
+
+	private @NonNull VMBreakpointResponse handleBreakPointRequest(@NonNull VMBreakpointRequest request) {
+		ActionKind actionKind = request.getActionKind();
+		
+		if(actionKind == VMBreakpointRequest.ActionKind.ADD) {
+			List<VMBreakpointData> allBpData = request.getBreakpointData();
+			if(allBpData != null) {
+				List<Long> addedBpIDs = new ArrayList<Long>();
+				for (VMBreakpointData bpData : allBpData) {
+					if(bpData instanceof VMNewBreakpointData == false) {
+						continue;
+					}
+					
+					VMNewBreakpointData newBreakpoint = (VMNewBreakpointData) bpData;
+					VMBreakpoint breakpoint = fBreakpointManager.createBreakpoint(newBreakpoint);
+					
+					if(breakpoint != null) {
+						addedBpIDs.add(new Long(newBreakpoint.ID));
+						
+						getDebugCore().getTrace().trace(DebugOptions.VM,
+								"Installing breakpoing: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
+										+ newBreakpoint.line + " " //$NON-NLS-1$
+										+ newBreakpoint.targetURI);
+					} else {
+						getDebugCore().getTrace().trace(DebugOptions.VM,
+								"Failed to create breakpoing: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
+										+ newBreakpoint.line + " " //$NON-NLS-1$
+										+ newBreakpoint.targetURI);
+					}
+				}
+				
+				return new VMBreakpointResponse(addedBpIDs);
+			}
+		} else if(actionKind == VMBreakpointRequest.ActionKind.REMOVE) {
+			fBreakpointManager.removeBreakpoint(request.getBreakpointID());
+		} else if(actionKind == VMBreakpointRequest.ActionKind.CHANGE) {
+			fBreakpointManager.changeBreakpoint(request.getBreakpointID(), request.getFirstBreakpointData());
+		}
+		
+		// TODO
+		return new VMBreakpointResponse();
+	}
+	
+	private @NonNull VMResponse handleStackFrameRequest(@NonNull VMStackFrameRequest request) {
+		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		if (fInterpreter2 != null) {
+			List<UnitLocation> locationStack = fInterpreter2.getLocationStack();
+			VMStackFrameData frame = createStackFrame(request.frameID, locationStack);
+			if (frame != null) {
+				VMStackFrameResponse response = new VMStackFrameResponse(frame);
+				if (!locationStack.isEmpty()) {
+					UnitLocation topLocation = locationStack.get(0);
+			    	response.isDeferredExecution = topLocation.isDeferredExecution();
+				}
+				return response;
+			}
+
+		}
+		
+		// FIXME
+		return VMResponse.createERROR(); 
+	}
+	
+	private @Nullable VMResponse handleValueDetailRequest(@NonNull VMDetailRequest request) {
+		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
+		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		if (fInterpreter2 != null) {
+			String detail = VariableFinder.computeDetail(request.getVariableURI(), fInterpreter2.getCurrentLocation().getEvalEnv());		
+			return new VMDetailResponse(detail != null ? detail : ""); //$NON-NLS-1$
+		}
+		else {
+			return null;
+		}
+	}
+	
+	private @Nullable VMResponse handleVariableRequest(@NonNull VMVariableRequest request) {
+		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
+		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		if (fInterpreter2 != null) {
+			return VariableFinder.process(request, fInterpreter2.getLocationStack(), fInterpreter2.getCurrentLocation().getEvalEnv());
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public boolean isTerminated() {
+		return fTerminated;
+	}
+
+	public VMEvent readVMEvent() throws IOException {
+		try {
+			return fEvents.take();
+		} catch(InterruptedException e) {
+			throw new IOException("Waiting for event interrupted");
+		}
+	}
+	
+	public @NonNull VMResponse sendRequest(@NonNull VMRequest request) throws IOException {
+		VMResponse response = null;
+		try {
+			if(request instanceof VMStartRequest) {
+				if (VM_REQUEST.isActive()) {
+					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
+				}
+				response = start();
+			} else if(request instanceof VMBreakpointRequest) {
+				if (VM_REQUEST.isActive()) {
+					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
+				}
+				response = handleBreakPointRequest((VMBreakpointRequest) request);
+			} else if(request instanceof VMStackFrameRequest) {
+				if (VM_REQUEST.isActive()) {
+					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
+				}
+				response = handleStackFrameRequest((VMStackFrameRequest) request);
+			} else if(request instanceof VMVariableRequest) {
+				if (VM_REQUEST.isActive()) {
+					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
+				}
+				response = handleVariableRequest((VMVariableRequest) request);
+			} else if(request instanceof VMDetailRequest) {
+				if (VM_REQUEST.isActive()) {
+					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
+				}
+				response = handleValueDetailRequest((VMDetailRequest) request);
+			}
+		} catch (RuntimeException e) {
+			getDebugCore().log(e);
+			response = VMResponse.createERROR();
+		}
+		if (response != null) {
+			if (VM_RESPONSE.isActive()) {
+				VM_RESPONSE.println("<[" + Thread.currentThread().getName() + "] " + response);
+			}
+			return response;
+		}
+		if (VM_REQUEST.isActive()) {
+			VM_REQUEST.println("?[" + Thread.currentThread().getName() + "] " + request);
+		}
+		synchronized (fLock) {
+			fRequests.add(request);			
+			fLock.notifyAll();
+		}
+		response = VMResponse.createOK();
+		if (VM_RESPONSE.isActive()) {
+			VM_RESPONSE.println("<[" + Thread.currentThread().getName() + "] " + response);
+		}
+		return response;
+	}
+	
+	private @NonNull VMResponse start() {
+		Thread executorThread = new Thread(createVMRunnable(), getDebugCore().getVMThreadName());
+		
+		synchronized (fStateMonitor) {
+			if(fRunning) {
+				return VMResponse.createERROR();
+			}
+
+			executorThread.start();
+			
+			while(!(fRunning || fTerminated)) {
+				try {				
+					fStateMonitor.wait();
+				} catch (InterruptedException e) {					
+					getDebugCore().log(getDebugCore().createStatus(IStatus.ERROR, "VM startup process interrupted"));
+				}
+			}
+		}
+		return VMResponse.createOK();
+	}
+}

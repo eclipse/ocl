@@ -1,0 +1,479 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     R.Dvorak and others - QVTo debugger framework
+ *     E.D.Willink - revised API for OCL debugger framework
+ *******************************************************************************/
+package org.eclipse.ocl.examples.debug.ui.launching;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
+import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.FileEditorInput;
+
+public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunchConstants
+{
+	protected class ContextModifyListener implements ModifyListener
+	{
+		@Override
+		public void modifyText(ModifyEvent e) {
+			if (elementCombo.isDisposed()) {
+				return;
+			}
+			if (!initializing) {
+				updateLaunchConfigurationDialog();
+			}
+		}
+	}
+
+	protected class ContextPathModifyListener implements ModifyListener 
+	{
+		@Override
+		public void modifyText(ModifyEvent e) {
+			if (modelPath.isDisposed()) {
+				return;
+			}
+			String modelName = modelPath.getText();
+			@SuppressWarnings("null")@NonNull URI contextURI = URI.createURI(modelName, true);
+			URI elementsURI = contextURI.trimFragment();
+			try {
+				Resource resource = getMetaModelManager().getExternalResourceSet().getResource(elementsURI, true);
+		        if (resource == null) {
+		        	throw new IOException("There was an error loading the model file. ");
+		        }
+				List<String> elements = new ArrayList<String>();
+				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					String displayString = DomainUtil.getLabel(eObject);
+					URI uri = EcoreUtil.getURI(eObject);
+					elements.add(displayString);
+					element2uri.put(displayString, uri);
+					}
+				Collections.sort(elements);
+				elementCombo.setItems(elements.toArray(new String[elements.size()]));
+			}
+			catch (Exception ex) {
+				setErrorMessage("Failed to load '" + elementsURI + "': " + ex.toString());
+			}
+			if (!initializing) {
+				updateLaunchConfigurationDialog();
+			}
+		}
+	}
+
+	protected class ExpressionModifyListener implements ModifyListener
+	{
+		@Override
+		public void modifyText(ModifyEvent e) {
+			if (expressionCombo.isDisposed()) {
+				return;
+			}
+			if (!initializing) {
+				updateLaunchConfigurationDialog();
+			}
+		}
+	}
+
+	protected class ExpressionPathModifyListener implements ModifyListener
+	{
+		@Override
+		public void modifyText(ModifyEvent e) {
+			if (oclPath.isDisposed()) {
+				return;
+			}
+			String oclName = oclPath.getText();
+			@SuppressWarnings("null")@NonNull URI oclURI = URI.createURI(oclName, true);
+			try {
+				Root root = null;
+		        BaseCSResource xtextResource = null;
+		        xtextResource = (BaseCSResource) getMetaModelManager().getExternalResourceSet().getResource(oclURI, true);
+		        if (xtextResource != null) {
+		    		CS2PivotResourceAdapter adapter = null;
+	    			adapter = xtextResource.getCS2ASAdapter(null);
+//	    			adapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
+	    			ASResource asResource = adapter.getASResource(xtextResource);
+	    			for (EObject eContent : asResource.getContents()) {
+	    	    		root = (Root)eContent;
+	    				break;
+	    			}
+		        } else {
+		        	// TODO Can I get the parsing errors?
+		        	//return null;
+		        }
+		        if (root == null) {
+		        	throw new IOException("There was an error loading the OCL file. ");
+		        }
+				List<String> expressions = new ArrayList<String>();
+				for (TreeIterator<EObject> tit = root.eAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					if (eObject instanceof ExpressionInOCL) {
+						ExpressionInOCL expressionInOCL = (ExpressionInOCL)eObject;
+						String displayString = getDisplayString(expressionInOCL);
+						URI uri = EcoreUtil.getURI(expressionInOCL.eContainer());
+						expressions.add(displayString);
+						expression2uri.put(displayString, uri);
+					}
+				}
+				Collections.sort(expressions);
+				expressionCombo.setItems(expressions.toArray(new String[expressions.size()]));
+			}
+			catch (Exception ex) {
+				setErrorMessage("Failed to load '" + oclName + "': " + ex.toString());
+			}
+			if (!initializing) {
+				updateLaunchConfigurationDialog();
+			}
+		}
+	}
+
+	private static final Logger logger = Logger.getLogger(AbstractLaunchConfigurationTab.class);
+
+	protected Text oclPath;
+	protected Button oclBrowseWS;
+	protected Button oclBrowseFile;
+	protected Button modelBrowseWS;
+	protected Button modelBrowseFile;
+	protected Group modelGroup;
+	protected Group elementGroup;
+	protected Combo expressionCombo;
+	protected Combo elementCombo;
+	protected @Nullable MetaModelManager metaModelManager;		// FIXME Add a dispose() when not visible for a long time
+	private Group expressionGroup;
+	private Text modelPath;
+	private Map<String, URI> expression2uri = new HashMap<String, URI>();
+	private Map<String, URI> element2uri = new HashMap<String, URI>();
+	
+	/**
+	 * Internal flag to suppress redundant recursive updates while initializing controls.
+	 */
+	private boolean initializing = false;
+
+	@Override
+	public boolean canSave() {
+		assert !initializing;
+		ResourceSet resourceSet = getMetaModelManager().getExternalResourceSet();
+		URIConverter uriConverter = resourceSet.getURIConverter();
+		String oclName = oclPath.getText();
+		URI oclURI = URI.createURI(oclName, true);
+		boolean oclExists = uriConverter.exists(oclURI, null);
+		if (!oclExists){
+			setErrorMessage("Selected OCL file '" + oclName + "' does not exist");
+			return false;
+		}
+		String modelName = oclPath.getText();
+		URI modelURI = URI.createURI(modelName, true);
+		boolean modelExists = uriConverter.exists(modelURI, null);
+		if (!modelExists){
+			setErrorMessage("Selected Model file '" + modelName + "' does not exist");
+			return false;
+		}
+		setErrorMessage(null);
+		return true;			
+	}
+
+	@SuppressWarnings("null")
+	public void createControl(Composite parent) {
+		Composite control = createForm(parent);
+		oclPath.addModifyListener(new ExpressionPathModifyListener());
+		expressionCombo.addModifyListener(new ExpressionModifyListener());
+		modelPath.addModifyListener(new ContextPathModifyListener());
+		elementCombo.addModifyListener(new ContextModifyListener());
+		LaunchingUtils.prepareBrowseWorkspaceButton(oclBrowseWS, oclPath, false);
+		LaunchingUtils.prepareBrowseFileSystemButton(oclBrowseFile, oclPath, false);
+		LaunchingUtils.prepareBrowseWorkspaceButton(modelBrowseWS, modelPath, false);
+		LaunchingUtils.prepareBrowseFileSystemButton(modelBrowseFile, modelPath, false);
+		control.setBounds(0, 0, 300, 300);
+		control.layout();
+		control.pack();
+	}
+
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	public Composite createForm(Composite parent) {
+		Composite control = new Composite(parent, SWT.NONE);
+		setControl(control);
+		control.setLayout(new GridLayout(1, false));
+		control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+
+		Group oclGroup = new Group(control, SWT.NONE);
+		oclGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+		oclGroup.setText("OCL");
+		oclGroup.setLayout(new GridLayout(3, false));
+
+		oclPath = new Text(oclGroup, SWT.BORDER);
+		GridData gd_oclPath = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_oclPath.minimumWidth = 100;
+		oclPath.setLayoutData(gd_oclPath);
+		oclBrowseWS = new Button(oclGroup, SWT.NONE);
+		oclBrowseWS.setText("Browse Workspace...");
+		oclBrowseFile = new Button(oclGroup, SWT.NONE);
+		oclBrowseFile.setText("Browse File...");
+		
+		expressionGroup = new Group(control, SWT.NONE);
+		expressionGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		GridLayout gl_expressionGroup = new GridLayout(2, false);
+		gl_expressionGroup.marginWidth = 0;
+		gl_expressionGroup.marginHeight = 0;
+		expressionGroup.setLayout(gl_expressionGroup);
+		
+		Label expressionLabel = new Label(expressionGroup, SWT.READ_ONLY);
+		expressionLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		expressionLabel.setText("Expression");
+		
+		expressionCombo = new Combo(expressionGroup, SWT.NONE);
+		expressionCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		new Label(control, SWT.NONE);
+
+		modelGroup = new Group(control, SWT.NONE);
+		modelGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+		modelGroup.setText("Model");
+		modelGroup.setLayout(new GridLayout(4, false));
+		new Label(modelGroup, SWT.NONE);
+		
+		modelPath = new Text(modelGroup, SWT.BORDER);
+		modelPath.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		modelBrowseWS = new Button(modelGroup, SWT.NONE);
+		modelBrowseWS.setText("Browse Workspace...");
+		
+		modelBrowseFile = new Button(modelGroup, SWT.NONE);
+		modelBrowseFile.setText("Browse File...");
+
+		elementGroup = new Group(control, SWT.NONE);
+		elementGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+		GridLayout gl_elementGroup = new GridLayout(2, false);
+		gl_elementGroup.marginWidth = 0;
+		gl_elementGroup.marginHeight = 0;
+		elementGroup.setLayout(gl_elementGroup);
+		
+		Label elementLabel = new Label(elementGroup, SWT.NONE);
+		elementLabel.setText("Element");
+		
+		elementCombo = new Combo(elementGroup, SWT.READ_ONLY);
+		elementCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		return control;
+	}
+	
+	@Override
+	public void dispose() {
+		MetaModelManager metaModelManager2 = metaModelManager;
+		if (metaModelManager2 != null) {
+			metaModelManager2.dispose();
+			metaModelManager = null;
+		}
+		super.dispose();
+	}
+
+	protected String getDisplayString(@NonNull ExpressionInOCL expressionInOCL) {
+		String typeString = expressionInOCL.getContextVariable().getType().toString();
+		String expressionString = expressionInOCL.toString();
+		String displayString = typeString + ": " + expressionString;
+		return displayString;
+	}
+
+	@Override
+	public Image getImage() {
+		return OCLDebugUIPlugin.getDefault().createImage("icons/OCLModelFile.gif");
+	}
+
+	protected @NonNull MetaModelManager getMetaModelManager() {
+		MetaModelManager metaModelManager2 = metaModelManager;
+		if (metaModelManager2 == null) {
+			metaModelManager = metaModelManager2 = new MetaModelManager();
+		}
+		return metaModelManager2;
+	}
+
+	public String getName() {
+		return "Main";
+	}
+
+	public void initializeFrom(ILaunchConfiguration configuration) {
+		assert !initializing;
+		try {
+			initializing = true;
+			String constraintUri = configuration.getAttribute(CONSTRAINT_URI, "");
+			if (constraintUri.length() > 0) {
+				URI constraintURI = URI.createURI(constraintUri);
+				@SuppressWarnings("null")@NonNull URI oclASURI = constraintURI.trimFragment();
+				URI oclNonASURI = PivotUtil.getNonASURI(oclASURI);
+				oclPath.setText(oclNonASURI.toString());
+				EObject eObject = getMetaModelManager().getASResourceSet().getEObject(constraintURI, true);
+				if (eObject instanceof Constraint) {
+					OpaqueExpression specification = ((Constraint) eObject).getSpecification();
+					ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
+					if (expressionInOCL != null) {
+						String displayString = getDisplayString(expressionInOCL);
+						int index = expressionCombo.indexOf(displayString);
+						expressionCombo.select(index);
+					}
+
+				}
+			}
+			else {
+				oclPath.setText(configuration.getAttribute(OCL_KEY, ""));
+			}
+			String contextUri = configuration.getAttribute(CONTEXT_URI, "");
+			if (contextUri.length() > 0) {
+				URI contextURI = URI.createURI(contextUri);
+				modelPath.setText(contextURI.trimFragment().toString());
+				EObject eObject = getMetaModelManager().getExternalResourceSet().getEObject(contextURI, true);
+				if (eObject  != null) {
+					String displayString = DomainUtil.getLabel(eObject);
+					int index = elementCombo.indexOf(displayString);
+					elementCombo.select(index);
+				}
+			}
+			else {
+				modelPath.setText(configuration.getAttribute(MODEL_URI, ""));
+			}
+		} catch (CoreException e) {
+			//Ignore
+		} finally {
+			initializing = false;
+			updateLaunchConfigurationDialog();
+		}
+	}
+
+	private boolean launchConfigurationExists(@NonNull String name) {
+		ILaunchConfiguration[] cs = new ILaunchConfiguration[]{};
+		try {
+			cs = getLaunchManager().getLaunchConfigurations();
+		}
+		catch (CoreException ex) {
+			logger.error("Failed to access ILaunchConfiguration", ex);
+		}
+		for (int i = 0; i < cs.length; i++) {
+			if (name.equals(cs[i].getName())){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// Return a new launch configuration name that does not
+	// already exists
+	protected String newLaunchConfigurationName(@NonNull String fileName) {
+		if (!launchConfigurationExists(fileName)) {
+			return fileName;
+		}
+		for (int i = 1; true; i++) {
+			String configurationName = fileName + " (" + i + ")";
+			if (!launchConfigurationExists(configurationName)) {
+				return configurationName;
+			}
+		}
+	}
+
+	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
+		int expressionIndex = expressionCombo.getSelectionIndex();
+		if ((0 <= expressionIndex) && (expressionIndex < expressionCombo.getItemCount())) {
+			String expressionText = expressionCombo.getItem(expressionIndex);
+			URI expressionURI = expression2uri.get(expressionText);
+			configuration.setAttribute(CONSTRAINT_URI, expressionURI.toString());
+			configuration.removeAttribute(OCL_KEY);
+		}
+		else {
+			configuration.setAttribute(OCL_KEY, oclPath.getText());
+			configuration.setAttribute(CONSTRAINT_URI, "");
+		}
+		int elementIndex = elementCombo.getSelectionIndex();
+		if ((0 <= elementIndex) && (elementIndex < elementCombo.getItemCount())) {
+			String contextText = elementCombo.getItem(elementIndex);
+			URI contextURI = element2uri.get(contextText);
+			configuration.setAttribute(CONTEXT_URI, contextURI.toString());
+			configuration.removeAttribute(MODEL_URI);
+		}
+		else {
+			configuration.setAttribute(MODEL_URI, modelPath.getText());
+			configuration.setAttribute(CONTEXT_URI, "");
+		}
+	}
+
+	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
+		IWorkbench workbench = PlatformUI.getWorkbench();
+		if (workbench != null) {
+			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+			if (workbenchWindow != null) {
+				IWorkbenchPage activePage = workbenchWindow.getActivePage();
+				if (activePage != null) {
+					IEditorPart activeEditor = activePage.getActiveEditor();
+					if (activeEditor != null) {
+						IEditorInput editorInput = activeEditor.getEditorInput();
+						if (editorInput instanceof FileEditorInput) {
+							IFile iFile = ((FileEditorInput)editorInput).getFile();
+							String activeEditorName = iFile.getName();
+							if (activeEditorName.length() > 0){
+								configuration.rename(newLaunchConfigurationName(activeEditorName));
+								configuration.setAttribute(OCL_KEY, iFile.getFullPath().toString());
+//								configuration.setAttribute(IN_KEY, EMPTY_MAP);
+//								configuration.setAttribute(OUT_KEY, EMPTY_MAP);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void updateLaunchConfigurationDialog() {
+		assert !initializing;
+		super.updateLaunchConfigurationDialog();
+	}
+}
