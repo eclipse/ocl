@@ -45,6 +45,8 @@ public interface DomainIterationManager
 	 */
 	@NonNull DomainIterationManager createNestedIterationManager(@NonNull CollectionValue value);
 
+	void dispose();
+
 	/**
 	 * Evaluate the iteration body for the current iterators and return the evaluation result.
 	 * <br>

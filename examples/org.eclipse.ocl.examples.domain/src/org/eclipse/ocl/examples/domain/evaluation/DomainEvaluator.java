@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.domain.types.IdResolver;
 public interface DomainEvaluator
 {
 	@NonNull DomainEvaluator createNestedEvaluator();
+	void dispose();
 	@Nullable Object evaluate(@NonNull DomainExpression body);
 	@NonNull DomainEvaluationEnvironment getEvaluationEnvironment();
 	@NonNull IdResolver getIdResolver();

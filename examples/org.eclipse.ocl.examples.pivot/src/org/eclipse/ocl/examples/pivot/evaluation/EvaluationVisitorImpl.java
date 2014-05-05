@@ -138,6 +138,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return nestedEvaluationVisitor;
 	}
 
+	public void dispose() {
+		if (undecoratedVisitor != this) {
+			undecoratedVisitor.dispose();
+		}
+	}
+
 	public @Nullable Object evaluate(@NonNull DomainExpression body) {
 		Object value = ((OCLExpression) body).accept(undecoratedVisitor);
 		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null

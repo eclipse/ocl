@@ -70,15 +70,20 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	 * @throws Exception 
 	 */
 	public @Nullable Object evaluateIteration(@NonNull DomainIterationManager iterationManager) {
-		while (true) {
-			if (!iterationManager.hasCurrent()) {
-				return resolveTerminalValue(iterationManager);			
+		try {
+			while (true) {
+				if (!iterationManager.hasCurrent()) {
+					return resolveTerminalValue(iterationManager);			
+				}
+				Object resultVal = updateAccumulator(iterationManager);
+				if (resultVal != CARRY_ON) {
+					return resultVal;
+				}
+				iterationManager.advanceIterators();
 			}
-			Object resultVal = updateAccumulator(iterationManager);
-			if (resultVal != CARRY_ON) {
-				return resultVal;
-			}
-			iterationManager.advanceIterators();
+		}
+		finally {
+			iterationManager.dispose();
 		}
 	}
 

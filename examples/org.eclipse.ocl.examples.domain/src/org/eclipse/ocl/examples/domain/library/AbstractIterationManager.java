@@ -35,6 +35,10 @@ public abstract class AbstractIterationManager implements DomainIterationManager
 		throw new UnsupportedOperationException();	// Only required for single iterator managers
 	}
 
+	public void dispose() {
+		evaluator.dispose();
+	}
+
 	public @Nullable Object get() {
 		throw new UnsupportedOperationException();	// Only required for single iterator managers
 	}

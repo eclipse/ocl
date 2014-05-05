@@ -79,6 +79,10 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 		return new TracingEvaluationVisitor(super.createNestedEvaluator());
 	}
 
+	public void dispose() {
+//		delegate.dispose();
+	}
+
 	public @Nullable Object evaluate(@NonNull DomainExpression body) {
 		return delegate.evaluate(body);
 	}

@@ -80,6 +80,10 @@ public abstract class ExecutorManager implements DomainEvaluator
 		};
 	}
 
+	public void dispose() {
+		// TODO Auto-generated method stub
+	}
+
 	public @NonNull Value evaluate(@NonNull DomainExpression body) {
 		throw new UnsupportedOperationException();
 //		try {
