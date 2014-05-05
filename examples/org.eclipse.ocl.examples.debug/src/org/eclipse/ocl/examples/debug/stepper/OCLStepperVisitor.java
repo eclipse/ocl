@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -49,6 +50,11 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 	@Override
 	public @Nullable IStepper visitExpressionInOCL(@NonNull ExpressionInOCL object) {
 		return PostStepper.INSTANCE;
+	}
+
+	@Override
+	public @Nullable IStepper visitIfExp(@NonNull IfExp object) {
+		return IfExpStepper.INSTANCE;
 	}
 
 	@Override

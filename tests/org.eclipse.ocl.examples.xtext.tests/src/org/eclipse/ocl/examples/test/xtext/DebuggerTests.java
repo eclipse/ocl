@@ -142,7 +142,7 @@ public class DebuggerTests extends XtextTestCase
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(oclResource);
 		org.eclipse.ocl.examples.pivot.Class customerClass = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metaModelManager.getAllInvariants(customerClass);
-		Constraint constraint = DomainUtil.getNamedElement(customerInvariants, "invariant_ofAge");
+		Constraint constraint = DomainUtil.getNamedElement(customerInvariants, "invariant_sizesAgree");
 
 		ILaunchConfigurationWorkingCopy launchConfiguration = createLaunchConfiguration(iProject, constraint, eObject);
 		launchConfiguration.doSave();
