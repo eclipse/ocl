@@ -113,7 +113,7 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 		}
 		Element element = (Element)visitable;
 		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
-		Object result = badVisit(evalEnv, element, preState, e);
+		Object result = badVisit(evalEnv, element, preState, e);		// FIXME bad code exception here is confusing to user
 		if (VMVirtualMachine.POST_VISIT.isActive()) {
 			VMVirtualMachine.POST_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString());
 		}

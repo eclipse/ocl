@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.InvalidValue;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VoidType;
@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 
 public class VariableFinder
 {
-	public static String computeDetail(URI variableURI, @NonNull IVMEvaluationEnvironment<?> fEvalEnv) {
+	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment<?> fEvalEnv) {
 		VariableFinder finder = new VariableFinder(fEvalEnv, false);
 		String[] variablePath = getVariablePath(variableURI);
 		Object valueObject = finder.findStackObject(variablePath);
@@ -65,20 +65,20 @@ public class VariableFinder
 		return null;
 	}
 
-	public static URI createURI(String[] varPath) {
+	public static @NonNull URI createURI(@NonNull String[] varPath) {
 		return createURI(varPath, varPath.length - 1);
 	}
 	
-	public static URI createURI(String[] varPath, int endIndex) {
+	public static @NonNull URI createURI(@NonNull String[] varPath, int endIndex) {
 		String[] segments = new String[endIndex + 1];
 		for (int i = 0; i < segments.length; i++) {
 			segments[i] =  URI.encodeSegment(varPath[i], true);
 		}
-
-		return URI.createHierarchicalURI(segments, null, null);
+		@SuppressWarnings("null") @NonNull URI hierarchicalURI = URI.createHierarchicalURI(segments, null, null);
+		return hierarchicalURI;
 	}
 	
-	public static List<EStructuralFeature> getAllFeatures(@NonNull EClass eClass) {
+	public static @NonNull List<EStructuralFeature> getAllFeatures(@NonNull EClass eClass) {
 		List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		features.addAll(eClass.getEAllStructuralFeatures());
 /* 		if (eClass instanceof Root) {
@@ -137,7 +137,7 @@ public class VariableFinder
 		return URI.decode(variableURI.segment(0));
 	}
 
-	public static List<VMVariableData> getVariables(IVMEvaluationEnvironment<?> evalEnv) {
+	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment<?> evalEnv) {
 		List<VMVariableData> result = new ArrayList<VMVariableData>();
 
 		for (DomainTypedElement variable : evalEnv.getVariables()) {
@@ -147,7 +147,13 @@ public class VariableFinder
 				if (isPredefinedVar(varName, evalEnv)) {
 					var.kind = VMVariableData.PREDEFINED_VAR;
 				}
-				Object value = evalEnv.getValueOf(variable);
+				Object value = null;
+				try {
+					value = evalEnv.getValueOf(variable);
+				}
+				catch (Throwable e) {
+					value = e;
+				}
 				DomainType declaredType = variable.getType();
 				setValueAndType(var, value, declaredType, evalEnv);
 				result.add(var);
@@ -168,14 +174,14 @@ public class VariableFinder
 		return result;
 	}
 	
-	private static boolean isPredefinedVar(String name, IVMEvaluationEnvironment<?> evalEnv) {
+	private static boolean isPredefinedVar(String name, @NonNull IVMEvaluationEnvironment<?> evalEnv) {
 		if(("self".equals(name) || "result".equals(name)) && evalEnv.getOperation() != null) {
 			return true;
 		}
 		return "this".equals(name);
 	}
 
-	public static String[] getVariablePath(URI variableURI) {
+	public static @NonNull String[] getVariablePath(@NonNull URI variableURI) {
 		String[] ids = new String[variableURI.segmentCount()];
 		for (int i = 0; i < ids.length; i++) {
 			ids[i] = URI.decode(variableURI.segment(i));
@@ -183,7 +189,8 @@ public class VariableFinder
 		return ids;
 	}
 
-	public static URI parseURI(String variableURI) throws IllegalArgumentException {
+	@SuppressWarnings("null")
+	public static @NonNull URI parseURI(String variableURI) throws IllegalArgumentException {
 		return URI.createURI(variableURI);
 	}
 	
@@ -244,9 +251,9 @@ public class VariableFinder
 		if (value == null) {
 			vmType = new VMTypeData(VMTypeData.DATATYPE, "OclVoid", declaredTypeName); //$NON-NLS-1$
 			vmValue = null;
-		} else if (value instanceof InvalidValue) {
+		} else if (value instanceof InvalidValueException) {
+			vmValue = new VMValueData(VMValueData.INVALID, "invalid - " + ((InvalidValueException)value).getMessage());
 			vmType = new VMTypeData(VMTypeData.DATATYPE, "OclInvalid", declaredTypeName); //$NON-NLS-1$
-			vmValue = VMValueData.invalid();
 		} else if (value instanceof Resource) {
 			Resource resource = (Resource) value;
 //			EClass eClass = eObject.eClass();
@@ -304,7 +311,7 @@ public class VariableFinder
 		fIsStoreValues = isStoreValues;
 	}
 	
-	public void collectChildVars(Object root, String[] parentPath, @Nullable String containerType, List<VMVariableData> result) {
+	public void collectChildVars(Object root, @NonNull String[] parentPath, @Nullable String containerType, @NonNull List<VMVariableData> result) {
 		String childPath[] = new String[parentPath.length + 1];
 		System.arraycopy(parentPath, 0, childPath, 0, parentPath.length);
 		
@@ -385,7 +392,7 @@ public class VariableFinder
 		return createVariable(varName, kind, elementType, value, uri);
 	} */
 	
-	private @NonNull VMVariableData createFeatureVar(EStructuralFeature feature, Object value, String uri) {
+	private @NonNull VMVariableData createFeatureVar(@NonNull EStructuralFeature feature, Object value, String uri) {
 		String varName = DomainUtil.nonNullModel(feature.getName());
 		String declaredType = getOCLType(feature);
 		
@@ -410,15 +417,10 @@ public class VariableFinder
 		return result;
 	}
 
-	public void find(String[] objectPath, boolean fetchChildVariables, List<VMVariableData> result) {
-		if(objectPath == null) {
-			throw new IllegalArgumentException("null variable path"); //$NON-NLS-1$
-		}
-		
-		if(result == null || result.contains(null)) {
+	public void find(@NonNull String[] objectPath, boolean fetchChildVariables, @NonNull List<VMVariableData> result) {
+		if (result.contains(null)) {
 			throw new IllegalArgumentException("null result variables"); //$NON-NLS-1$
 		}
-		
 		try {	
 			Object referencedObj = findStackObject(objectPath);
 			VMVariableData variable = fTargetVar;
@@ -435,7 +437,7 @@ public class VariableFinder
 		}
 	}
 
-	private Object findChildObject(Object parentObj, @Nullable String optParentDeclaredType, String[] varTreePath, int pathIndex) {
+	private Object findChildObject(Object parentObj, @Nullable String optParentDeclaredType, @NonNull String[] varTreePath, int pathIndex) {
 		URI uri = createURI(varTreePath, pathIndex);
 		// FIXME - deduce the type from actual type, ensure null is not propagated
 		
@@ -450,7 +452,7 @@ public class VariableFinder
 		
 		if (parentObj instanceof EObject) {
 			EObject eObject = (EObject) parentObj;
-			EStructuralFeature eFeature = findFeature(varTreePath[pathIndex], eObject.eClass());
+			EStructuralFeature eFeature = findFeature(DomainUtil.nonNullState(varTreePath[pathIndex]), eObject.eClass());
 			if (eFeature != null) {
 				Object value = getValue(eFeature, eObject);
 				childVar = createFeatureVar(eFeature, value, uri.toString());
@@ -502,7 +504,7 @@ public class VariableFinder
 		return nextObject;
 	}
 	
-	private Object findStackObject(String[] varTreePath) {
+	private @Nullable Object findStackObject(@NonNull String[] varTreePath) {
 		String envVarName = DomainUtil.nonNullState(varTreePath[0]);
 		Set<DomainTypedElement> variables = new HashSet<DomainTypedElement>();
 		for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
@@ -537,7 +539,7 @@ public class VariableFinder
 		return findChildObject(rootObj, fRootDeclaredType, varTreePath, 1); 
 	}
 
-	private Object getElement(Collection<?> collection, int index) {
+	private @Nullable Object getElement(@NonNull Collection<?> collection, int index) {
 		if (collection instanceof EList<?>) {
 			EList<?> eList = (EList<?>) collection;
 			return eList.get(index);
@@ -553,7 +555,7 @@ public class VariableFinder
 		return null;
 	}
 
-	private EStructuralFeature findFeature(String featureRef, EClass actualTarget) {
+	private @Nullable EStructuralFeature findFeature(@NonNull String featureRef, EClass actualTarget) {
 		String actualRef = featureRef.startsWith("+") ? featureRef.substring(1) : featureRef;
 		boolean isIntermediate = featureRef.length() != actualRef.length();
 		
