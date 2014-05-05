@@ -144,10 +144,10 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		}
 	}
 		
-	private static int execute(@NonNull VMDebuggableExecutorAdapter executorAdapter) {
+	private static int execute(@NonNull VMDebuggableExecutorAdapter executorAdapter, @NonNull VMStartRequest startRequest) {
 		int exitCode = 0;
 		try {
-			Diagnostic diagnostic = executorAdapter.execute();
+			Diagnostic diagnostic = executorAdapter.execute(startRequest);
 			int severity = diagnostic.getSeverity();
 			if(severity == Diagnostic.ERROR || severity == Diagnostic.CANCEL) {
 				System.err.println(diagnostic.toString());
@@ -198,13 +198,13 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		fTerminated = false;
 	}
 	
-	private @NonNull Runnable createVMRunnable() {
+	private @NonNull Runnable createVMRunnable(final @NonNull VMStartRequest startRequest) {
 		return new Runnable() {
 			public void run() {
 				int exitCode = -1;
 				try {
 					fExecutor.connect(fDebuggerShell);
-					exitCode = execute(fExecutor);
+					exitCode = execute(fExecutor, startRequest);
 				} catch(Throwable e) {
 					getDebugCore().log(e);
 				} finally {
@@ -370,7 +370,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 				if (VM_REQUEST.isActive()) {
 					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
 				}
-				response = start();
+				response = start((VMStartRequest)request);
 			} else if(request instanceof VMBreakpointRequest) {
 				if (VM_REQUEST.isActive()) {
 					VM_REQUEST.println(">[" + Thread.currentThread().getName() + "] " + request);
@@ -416,8 +416,8 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		return response;
 	}
 	
-	private @NonNull VMResponse start() {
-		Thread executorThread = new Thread(createVMRunnable(), getDebugCore().getVMThreadName());
+	private @NonNull VMResponse start(@NonNull VMStartRequest startRequest) {
+		Thread executorThread = new Thread(createVMRunnable(startRequest), getDebugCore().getVMThreadName());
 		
 		synchronized (fStateMonitor) {
 			if(fRunning) {

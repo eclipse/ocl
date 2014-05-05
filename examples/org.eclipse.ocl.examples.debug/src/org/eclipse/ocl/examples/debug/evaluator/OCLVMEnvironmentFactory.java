@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -65,8 +66,8 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 		return new OCLNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, operation);
 	}
 
-	public @NonNull IOCLVMEvaluationVisitor createEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
-		return new OCLRootVMEvaluationVisitor(env, evalEnv, shell);
+	public @NonNull OCLRootVMEvaluationVisitor createEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
+		return new OCLRootVMEvaluationVisitor(env, evalEnv, DomainUtil.nonNullState(shell));
 	}
 
 	public @NonNull OCLVMModelManager createModelManager(@NonNull MetaModelManager metaModelManager) {

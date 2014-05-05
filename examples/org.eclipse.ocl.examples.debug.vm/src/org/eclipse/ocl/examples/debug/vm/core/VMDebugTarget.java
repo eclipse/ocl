@@ -98,7 +98,7 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 
 		try {
 			// start transformation execution				
-			sendRequest(new VMStartRequest());
+			sendRequest(new VMStartRequest(true));
 		} catch (DebugException e) {
 			getDebugCore().log(e.getStatus());
 			// FIXME - consult status handler to give UI feedback
@@ -520,6 +520,9 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 					VMStartEvent startEvent = (VMStartEvent) event;
 					started(startEvent.mainModuleName);
 					fIsSuspended = startEvent.suspendOnStartup;
+					if (fIsSuspended) {
+						fireSuspendEvent(VMSuspension.STEP_INTO.getDebugEventDetail());
+					}
 				}
 			}
 

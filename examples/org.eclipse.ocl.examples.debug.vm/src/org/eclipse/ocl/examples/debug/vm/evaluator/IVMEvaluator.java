@@ -14,4 +14,6 @@ public interface IVMEvaluator
 	@NonNull MetaModelManager getMetaModelManager();
 
 	void saveModels();
+
+	void setSuspendOnStartUp(boolean suspendOnStartup);
 }

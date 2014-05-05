@@ -19,7 +19,9 @@ import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.request.VMRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 
-
+/**
+ * IVMVirtualMachineShell ,defines the very limited VMVirtualMachine API accessible from the main UI shell.
+ */
 public interface IVMVirtualMachineShell
 {
 	@NonNull VMDebugCore getDebugCore();

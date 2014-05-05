@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.messages.VMMessages;
+import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.EmfUtil;
 import org.eclipse.ocl.examples.debug.vm.utils.ExecutionDiagnostic;
@@ -143,7 +144,7 @@ public abstract class InternalDebuggableExecutor
 		return ctx;
 	}
 
-	private ExecutionDiagnostic doExecute(/*ModelExtent[] args,*/ @NonNull EvaluationContext evaluationContext) throws IOException {
+	private ExecutionDiagnostic doExecute(@NonNull VMStartRequest startRequest, /*ModelExtent[] args,*/ @NonNull EvaluationContext evaluationContext) throws IOException {
 //		QvtOperationalEnvFactory factory = getEnvironmentFactory();
 //		QVTiXtextEvaluator evaluator = null; //evaluationContext.getEvaluator();
 		
@@ -163,6 +164,7 @@ public abstract class InternalDebuggableExecutor
 
 		IVMEvaluator vmEvaluator2 = vmEvaluator;
 		if (vmEvaluator2 != null) {
+			vmEvaluator2.setSuspendOnStartUp(startRequest.suspendOnStartup);
 			vmEvaluator2.execute();
 		}
 
@@ -261,7 +263,7 @@ public abstract class InternalDebuggableExecutor
 	 *             if the context or any of the model parameters is
 	 *             <code>null</code>
 	 */
-	public ExecutionDiagnostic execute(@NonNull EvaluationContext evaluationContext/*, ModelExtent... modelParameters*/) {
+	public ExecutionDiagnostic execute(@NonNull VMStartRequest startRequest, @NonNull EvaluationContext evaluationContext/*, ModelExtent... modelParameters*/) {
 //		checkLegalModelParams(modelParameters);
 
 		// ensure transformation unit is loaded
@@ -273,7 +275,7 @@ public abstract class InternalDebuggableExecutor
 		}
 
 		try {
-			return doExecute(/*modelParameters,*/ createInternalContext(evaluationContext));
+			return doExecute(startRequest, /*modelParameters,*/ createInternalContext(evaluationContext));
 		} catch (InvalidValueException e) {
 			Log logger = evaluationContext.getLog();
 			if (logger != null) {

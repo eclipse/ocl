@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
+import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 
 public interface VMDebuggableExecutorAdapter {
@@ -33,7 +34,7 @@ public interface VMDebuggableExecutorAdapter {
 	 * @throws IllegalStateException
 	 *             if this adapter is not connected to debugger
 	 */
-	Diagnostic execute() throws IllegalStateException;
+	Diagnostic execute(@NonNull VMStartRequest startRequest) throws IllegalStateException;
 
 	/**
 	 * Gets the main compiled unit to be executed

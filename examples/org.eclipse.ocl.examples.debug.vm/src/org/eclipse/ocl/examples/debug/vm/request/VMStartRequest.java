@@ -15,7 +15,14 @@ public class VMStartRequest extends VMRequest
 {
 	private static final long serialVersionUID = -3733108336049294291L;
 
-	public VMStartRequest() {
+	public final boolean suspendOnStartup;
+	
+	public VMStartRequest(boolean suspendOnStartup) {
 		super();
+		this.suspendOnStartup = suspendOnStartup;
+	}
+	
+	public String toString() {
+		return getClass().getSimpleName() + "(suspendOnStartup=" + suspendOnStartup + ")";
 	}
 }

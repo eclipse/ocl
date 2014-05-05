@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
+import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.ExecutionDiagnostic;
 import org.eclipse.ocl.examples.debug.vm.utils.IVMStackTraceElement;
@@ -69,7 +70,7 @@ public class DebuggableRunner
 
 	public @NonNull VMDebuggableExecutorAdapter createDebuggableAdapter(final @NonNull EvaluationContext evaluationContext) {	
 		return new VMDebuggableExecutorAdapter() {
-			public Diagnostic execute() throws IllegalStateException {
+			public Diagnostic execute(@NonNull VMStartRequest startRequest) throws IllegalStateException {
 				if (fDebugShell == null) {
 					throw new IllegalStateException("Executor not connected to debugger"); //$NON-NLS-1$
 				}
@@ -79,7 +80,7 @@ public class DebuggableRunner
 //					OCLDebugUtil.attachEnvironment(mainUnit);
 				}
 				
-				Diagnostic execDiagnostic = DebuggableRunner.this.execute(evaluationContext);
+				Diagnostic execDiagnostic = DebuggableRunner.this.execute(startRequest, evaluationContext);
 				
 				if(execDiagnostic.getSeverity() != Diagnostic.OK) {
 					fErrorLog.println(execDiagnostic);
@@ -98,7 +99,7 @@ public class DebuggableRunner
 		};
 	}
 
-	public Diagnostic execute(@NonNull EvaluationContext evaluationContext) {
+	public Diagnostic execute(@NonNull VMStartRequest startRequest, @NonNull EvaluationContext evaluationContext) {
 		Diagnostic diagnostic = initialize();
 		
 		if(!isSuccess(diagnostic)) {
@@ -108,7 +109,7 @@ public class DebuggableRunner
 //		fExecutor.setEnvironmentFactory(getEnvFactory());
 		try {			
 //			ModelExtent[] params = fModelParams.toArray(new ModelExtent[fModelParams.size()]);
-			ExecutionDiagnostic execDiagnostic = executor.execute(evaluationContext); //, params);
+			ExecutionDiagnostic execDiagnostic = executor.execute(startRequest, evaluationContext); //, params);
 			handleExecution(execDiagnostic);
 			
 //			Trace traces = fExecutor.fTraces;
@@ -195,7 +196,7 @@ public class DebuggableRunner
 	// do nothing
 	}		
 
-	public Diagnostic initialize() {
+	public Diagnostic initialize() {		// FIXME This is called twice, first time from LaunchConfigDelegate fDebugShell is still null
 		IVMEnvironmentFactory envFactory = getEnvFactory();
 		envFactory.setShell(fDebugShell);
 		if(fDiagnostic != null) {

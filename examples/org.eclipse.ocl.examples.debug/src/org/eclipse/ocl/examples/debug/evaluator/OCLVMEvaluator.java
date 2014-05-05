@@ -65,6 +65,7 @@ public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
 	}
     
 	private @Nullable EObject context;
+	private boolean suspendOnStartup = false;
     
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @NonNull URI contextURI) throws IOException {
     	super(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()));
@@ -83,7 +84,8 @@ public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
 		if (contextVariable != null) {
 			evalEnv.add(contextVariable, context);
 		}
-        IOCLVMEvaluationVisitor visitor = envFactory.createEvaluationVisitor(env, evalEnv);
+        OCLRootVMEvaluationVisitor visitor = envFactory.createEvaluationVisitor(env, evalEnv);
+        visitor.start(suspendOnStartup);
         return (Boolean) expressionInOCL.accept(visitor);
 	}
 
@@ -94,4 +96,9 @@ public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
 
 	@Override
 	public void saveModels() {}
+
+	@Override
+	public void setSuspendOnStartUp(boolean suspendOnStartup) {
+		this.suspendOnStartup = suspendOnStartup;
+	}
 }

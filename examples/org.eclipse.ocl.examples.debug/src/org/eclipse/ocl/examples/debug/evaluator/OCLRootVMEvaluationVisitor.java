@@ -51,16 +51,16 @@ import org.eclipse.ocl.examples.pivot.LoopExp;
 
 public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implements IRootVMEvaluationVisitor<ExpressionInOCL>
 {
-	private final IVMDebuggerShell fDebugShell;
+	private final @NonNull IVMDebuggerShell fDebugShell;
 	private final @NonNull VMBreakpointManager fBPM;
 	private UnitLocation fCurrentLocation;
-	private final IterateBreakpointHelper fIterateBPHelper;
+	private final @NonNull IterateBreakpointHelper fIterateBPHelper;
 //	private final List<UnitLocation> fLocationStack;
 	private @NonNull VMSuspension fCurrentStepMode;
-	private @NonNull Stack<OCLVMEvaluationVisitor> visitorStack = new Stack<OCLVMEvaluationVisitor>();
-	private @NonNull Stack<IStepper> stepperStack = new Stack<IStepper>();
+	private final @NonNull Stack<OCLVMEvaluationVisitor> visitorStack = new Stack<OCLVMEvaluationVisitor>();
+	private final @NonNull Stack<IStepper> stepperStack = new Stack<IStepper>();
 
-	public OCLRootVMEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv, IVMDebuggerShell shell) {
+	public OCLRootVMEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
 		super(new OCLVMEvaluationVisitorImpl(env, evalEnv));
 		fDebugShell = shell;
 		fBPM = shell.getBreakPointManager();
@@ -69,31 +69,6 @@ public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		fCurrentStepMode = VMSuspension.UNSPECIFIED;
 		pushVisitor(this);
 		fCurrentLocation = null; //getCurrentLocation();
-//		UnitLocation newLocation = newLocalLocation((IDebugEvaluationEnvironment) evalEnv, transformation, ASTBindingHelper.getStartPosition(transformation)); //, getNodeLength(element));
-//		setCurrentLocation(transformation, newLocation, false);
-
-		fDebugShell.sessionStarted(this);
-
-		VMRequest request = null; 
-		try {
-			// suspend to let others to wake up us on demand
-			OCLDebugCore.TRACE.trace(DebugOptions.EVALUATOR,
-			"Debug evaluator going to initial SUSPEND state"); //$NON-NLS-1$
-			
-			request = shell.waitAndPopRequest(new VMStartEvent(getMainModuleName(), true));
-		} catch (InterruptedException e) {
-			Thread.interrupted();
-			terminate();
-		}
-		
-		if (request instanceof VMResumeRequest) {
-			fCurrentStepMode = ((VMResumeRequest)request).suspension;
-		}
-		else {
-			// TODO - decide a set of request we can handle during initial SUSPEND mode,
-			// or report fError
-			terminate();
-		}
 	}
 
 	@Override
@@ -381,6 +356,34 @@ public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implement
 
 //		fLocationStack.set(0, newLocation);
 		handleLocationChanged(element, newLocation, atEnd);
+	}
+
+	public void start(boolean suspendOnStartup) {
+//		UnitLocation newLocation = newLocalLocation((IDebugEvaluationEnvironment) evalEnv, transformation, ASTBindingHelper.getStartPosition(transformation)); //, getNodeLength(element));
+//		setCurrentLocation(transformation, newLocation, false);
+
+		fDebugShell.sessionStarted(this);
+
+		VMRequest request = null; 
+		try {
+			// suspend to let others to wake up us on demand
+			OCLDebugCore.TRACE.trace(DebugOptions.EVALUATOR,
+			"Debug evaluator going to initial SUSPEND state"); //$NON-NLS-1$
+			
+			request = fDebugShell.waitAndPopRequest(new VMStartEvent(getMainModuleName(), suspendOnStartup));
+		} catch (InterruptedException e) {
+			Thread.interrupted();
+			terminate();
+		}
+		
+		if (request instanceof VMResumeRequest) {
+			fCurrentStepMode = ((VMResumeRequest)request).suspension;
+		}
+		else {
+			// TODO - decide a set of request we can handle during initial SUSPEND mode,
+			// or report fError
+			terminate();
+		}
 	}
 	
 	private void suspendAndWaitForResume(@NonNull UnitLocation location, @NonNull VMSuspension suspension) {
