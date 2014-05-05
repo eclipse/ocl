@@ -57,16 +57,23 @@ public class OCLDebugModelPresentation implements IDebugModelPresentation, IDebu
 
     public Image getImage(Object element) {
 //    	System.out.println("getImage: " + element.getClass().getSimpleName() + " " + element);
-    	if (element instanceof VMStackFrame) {
-        	VMStackFrame frame = (VMStackFrame) element;
+    	if (element instanceof VMDebugTarget) {
+    		return OCLDebugImages.getImage(OCLDebugImages.EXPRESSION_IN_OCL);
+    	}
+    	else if (element instanceof VMThread) {
+        	return null;
+        }
+    	else if (element instanceof VMStackFrame) {
+        	return null;
+/*        	VMStackFrame frame = (VMStackFrame) element;
     		VMLocationData location = frame.getLocation();
     		String elementSignature = location.getElementSignature();
             if (elementSignature != null) {
     			return OCLDebugImages.getImage(OCLDebugImages.MAPPING);
             }
             else {
-    			return OCLDebugImages.getImage(OCLDebugImages.TRANSFORMATION);
-            } 
+    			return OCLDebugImages.getImage(OCLDebugImages.EXPRESSION_IN_OCL);
+            } */
         }
         else if(element instanceof VMVariable) {
     		VMVariable var = (VMVariable) element;
@@ -105,43 +112,39 @@ public class OCLDebugModelPresentation implements IDebugModelPresentation, IDebu
             } catch (CoreException ex) {
                 OCLDebugUIPlugin.log(ex);
             }
-        }
-        
+    	}
         return null;
 	}
 
 	public String getText(Object element) {
 //    	System.out.println("getText: " + element.getClass().getSimpleName() + " " + element);
-        if (element instanceof VMStackFrame) {
-        	VMStackFrame frame = (VMStackFrame) element;
-    		VMLocationData location = frame.getLocation();
-    		String source = frame.getUnitURI().lastSegment();
-    		int line = frame.getLineNumber();
-            StringBuilder s = new StringBuilder();
-            s.append(location.getModule());
-            String elementSignature = location.getElementSignature();
-            if (elementSignature != null) {
-            	s.append("::");
-            	s.append(elementSignature);
-            }
-        	s.append(" - ");
-        	s.append(source);
-        	s.append(":");
-        	s.append(line);
-            return s.toString();
-        } 
+		if (element instanceof VMDebugTarget) {
+        	VMDebugTarget debugTarget = (VMDebugTarget) element;
+			String moduleName = debugTarget.getMainModuleName();
+			String launchConfigName = debugTarget.getLaunch().getLaunchConfiguration().getName();
+			return NLS.bind(DebugUIMessages.OCLDebugModelPresentation_ExpressionInOCLLabel, moduleName, launchConfigName);
+        }
         else if (element instanceof VMThread) {
         	VMThread thread = (VMThread) element;
         	String name = "main"; //$NON-NLS-1$
         	String state = thread.isSuspended() ? DebugUIMessages.OCLDebugModelPresentation_Suspended : DebugUIMessages.OCLDebugModelPresentation_Running;
         	return MessageFormat.format(DebugUIMessages.OCLDebugModelPresentation_ThreadLabel, name, state);
         } 
-        else if (element instanceof VMDebugTarget) {
-        	VMDebugTarget debugTarget = (VMDebugTarget) element;
-			String moduleName = debugTarget.getMainModuleName();
-			String launchConfigName = debugTarget.getLaunch().getLaunchConfiguration().getName();
-			return NLS.bind(DebugUIMessages.OCLDebugModelPresentation_TransformationLabel, moduleName, launchConfigName);
-        }
+		else if (element instanceof VMStackFrame) {
+        	VMStackFrame frame = (VMStackFrame) element;
+    		VMLocationData location = frame.getLocation();
+    		int line = frame.getLineNumber();
+            StringBuilder s = new StringBuilder();
+            String elementSignature = location.getElementSignature();
+            if (elementSignature != null) {
+            	s.append(elementSignature);
+            	s.append(" - ");
+            }
+            s.append(location.getModule());
+        	s.append(" line: ");
+        	s.append(line);
+            return s.toString();
+        } 
         return null;
 	}
 

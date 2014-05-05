@@ -14,7 +14,9 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.core.OCLDebugCore;
 import org.eclipse.ocl.examples.debug.core.OCLEvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
@@ -25,14 +27,13 @@ import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 
 public class OCLVMVirtualMachine extends VMVirtualMachine
 {
@@ -50,6 +51,65 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 		return result.toArray(new VMStackFrameData[result.size()]);
 	}
 	
+	private static boolean appendElementSignature(@NonNull StringBuilder s, @Nullable EObject eObject) {
+        if (eObject instanceof Root) {
+        	return false;
+        }
+        else if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+        	if (appendElementSignature(s, eObject.eContainer())) {
+    	        s.append("::");
+        	}
+	        s.append(((org.eclipse.ocl.examples.pivot.Package)eObject).getName());        
+			return true;
+        }
+        else if (eObject instanceof Type) {
+        	if (appendElementSignature(s, eObject.eContainer())) {
+    	        s.append("::");
+        	}
+	        s.append(((Type)eObject).getName());        
+			return true;
+        }
+        else if (eObject instanceof Operation) {
+        	if (appendElementSignature(s, eObject.eContainer())) {
+    	        s.append("::");
+        	}
+	        Operation operation = (Operation)eObject;
+			s.append(operation.getName());        
+	        s.append("(");        
+	        boolean isFirst = true;;
+	        for (Parameter param : operation.getOwnedParameter()) {
+	            if (!isFirst) {
+	                s.append(", ");
+	            }
+	            Type type = param.getType();
+	            s.append(type.getName());            
+	            isFirst = false;
+	        }
+	        s.append(")");        
+			return true;
+        }
+        else if (eObject instanceof Feature) {
+        	if (appendElementSignature(s, eObject.eContainer())) {
+    	        s.append("::");
+        	}
+	        s.append(((Feature)eObject).getName());        
+			return true;
+        }
+        else if (eObject instanceof Constraint) {
+        	if (appendElementSignature(s, eObject.eContainer())) {
+    	        s.append("::");
+        	}
+	        s.append(((Constraint)eObject).getName());        
+			return true;
+        }
+        else if (eObject != null) {
+        	return appendElementSignature(s, eObject.eContainer());
+        }
+        else {
+        	return false;
+        }
+    }
+	
 	public VMStackFrameData createStackFrame(@NonNull UnitLocation location) {
 		return createStackFrame(location, true);
 	}
@@ -60,8 +120,9 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 		String moduleName = (module != null) ? DomainUtil.nonNullState(module.getName()) : "<null>"; //$NON-NLS-1$
 		
 		NamedElement operation = location.getOperation();
-		String operSignature = (operation != null) ? getElementSignature(operation)
-				: null; //MessageFormat.format("<{0}>", moduleName); //$NON-NLS-1$
+		StringBuilder s = new StringBuilder();
+		appendElementSignature(s, operation);
+		String operSignature = s.toString(); //MessageFormat.format("<{0}>", moduleName); //$NON-NLS-1$
 		
 		List<VMVariableData> vars = VariableFinder.getVariables(evalEnv);
 		String uriString = DomainUtil.nonNullState(location.getURI().toString());
@@ -70,45 +131,6 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 					operSignature, location.getLineNum(), location.getStartPosition(), location.getEndPosition(), varsArray);
 		return vmStackFrame;
 	}
-	
-	private static @NonNull String getElementSignature(@NonNull NamedElement operation) {
-        StringBuilder buf = new StringBuilder();
-        if (operation instanceof ExpressionInOCL) {
-        	buf.append(PrettyPrinter.print(operation));
-        }
-        else if (operation instanceof OCLExpression) {
-        	buf.append(PrettyPrinter.print(operation));
-        }
-        else {
-	        buf.append(operation.getName());        
-	        buf.append('(');
-	        if (operation instanceof Operation) {
-		        boolean isFirst = true;;
-		        for (Parameter param : ((Operation)operation).getOwnedParameter()) {
-		            if (!isFirst) {
-		                buf.append(", ");
-		            }
-		            Type type = param.getType();
-		            buf.append(type.getName());            
-		            isFirst = false;
-		        }
-	        }
-	//        else if (operation instanceof Mapping) {
-	/*	        boolean isFirst = true;;
-		        for (Variable param : ((Mapping)operation).getAllVariables()) {
-		            if (!isFirst) {
-		                buf.append(", ");
-		            }
-		            Type type = param.getType();
-		            buf.append(type.getName());            
-		            isFirst = false;
-		        } */
-	//        }
-	        buf.append(')');
-        }
-        @SuppressWarnings("null")@NonNull String string = buf.toString();
-		return string;
-    }
 
 	public OCLVMVirtualMachine(@NonNull DebuggableRunner runner, @NonNull OCLEvaluationContext evaluationContext) {
 		super(runner, runner.createDebuggableAdapter(evaluationContext));

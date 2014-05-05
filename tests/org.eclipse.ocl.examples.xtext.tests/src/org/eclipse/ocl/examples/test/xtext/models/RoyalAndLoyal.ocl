@@ -260,7 +260,12 @@ inv invariant_ANY :
 inv invariant_ofAge :
 	self.age >= 18
 inv invariant_sizesAgree :
-	self.programs->size() = self.cards->select( i_CustomerCard : CustomerCard | i_CustomerCard.valid = true )->size()
+	self.programs->size()
+	 = self.cards
+	 ->select( i_CustomerCard : CustomerCard 
+	 	| i_CustomerCard.valid = true
+	 )
+	 ->size()
 inv invariant_Customer8 :
 	self.memberships->collect( i_Membership : Membership | i_Membership.account )->select( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.points > 0 )->isEmpty()
 inv invariant_Customer6 :

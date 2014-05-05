@@ -292,8 +292,7 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 		imageRegistry.put(OCLDebugImages.ATTRIBUTE, imageDescriptor("attribute_obj.gif")); //$NON-NLS-1$
 		imageRegistry.put(OCLDebugImages.REFERENCE, imageDescriptor("reference_obj.gif")); //$NON-NLS-1$
 		imageRegistry.put(OCLDebugImages.COLLECTION_ELEMENT, imageDescriptor("index_element_obj.gif")); //$NON-NLS-1$
-		imageRegistry.put(OCLDebugImages.MAPPING, imageDescriptor("Mapping.gif")); //$NON-NLS-1$
-		imageRegistry.put(OCLDebugImages.TRANSFORMATION, imageDescriptor("Transformation.gif")); //$NON-NLS-1$
+		imageRegistry.put(OCLDebugImages.EXPRESSION_IN_OCL, imageDescriptor("ExpressionInOCL.gif")); //$NON-NLS-1$
 		
 /*		imageRegistry.put(OCLDebugImages.INTERM_PROPERTY,				
 				overlayImage("intermprop_ovr.gif", //$NON-NLS-1$ 

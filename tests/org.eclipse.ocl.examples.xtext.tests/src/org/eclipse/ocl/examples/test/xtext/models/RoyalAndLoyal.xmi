@@ -9,5 +9,9 @@
       isMale="true"
       name="FirstCustomer"
       title="Mr"
-      age="19"/>
+      age="19"
+      cards="//@ref_RandL_CustomerCard.0"/>
+  <ref_RandL_CustomerCard
+      valid="true"
+      owner="//@ref_RandL_Customer.0"/>
 </RandL:Container_RandL>

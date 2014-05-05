@@ -39,7 +39,7 @@ public class DebugUIMessages
 
 	public static String OCLDebugModelPresentation_ThreadLabel;
 
-	public static String OCLDebugModelPresentation_TransformationLabel;
+	public static String OCLDebugModelPresentation_ExpressionInOCLLabel;
 
     public static String OCLToggleBreakpointAdapter_VerifyBreakpointJob;
 	public static String OCLToggleBreakpointAdapter_CannotSetBreakpoint;
