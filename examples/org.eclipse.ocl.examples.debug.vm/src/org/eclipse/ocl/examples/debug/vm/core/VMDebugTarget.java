@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.debug.vm.IVMVirtualMachineShell;
 import org.eclipse.ocl.examples.debug.vm.VMEventListener;
 import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
+import org.eclipse.ocl.examples.debug.vm.data.VMSuspension;
 import org.eclipse.ocl.examples.debug.vm.event.VMDisconnectEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMResumeEvent;
@@ -120,7 +121,7 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 		try {
 			// wake up so far suspended VM unless suspendOnStart
 			if (!fIsSuspended) {
-				fVM.sendRequest(new VMResumeRequest(0));
+				fVM.sendRequest(new VMResumeRequest(VMSuspension.UNSPECIFIED));
 			}
 		} catch (IOException e) {
 			getDebugCore().log(e);
@@ -305,11 +306,11 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 	}
 
 	public void resume() throws DebugException {
-		sendRequest(new VMResumeRequest(DebugEvent.UNSPECIFIED));
+		sendRequest(new VMResumeRequest(VMSuspension.UNSPECIFIED));
 	}
 
 	public void suspend() throws DebugException {
-		sendRequest(new VMSuspendRequest(DebugEvent.UNSPECIFIED));
+		sendRequest(new VMSuspendRequest(VMSuspension.UNSPECIFIED));
 	}
 
 	public void breakpointAdded(IBreakpoint breakpoint) {
@@ -503,9 +504,9 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 					fIsSuspended = true;
 					
 					VMSuspendEvent suspend = (VMSuspendEvent) event;					
-					fireSuspendEvent(suspend.detail);
+					fireSuspendEvent(suspend.suspension.getDebugEventDetail());
 					
-					if (suspend.detail == VMSuspendEvent.BREAKPOINT_CONDITION_ERR) {
+					if (suspend.suspension == VMSuspension.BREAKPOINT_CONDITION_ERR) {
 						handleBreakpointConditionError(suspend);
 					}
 					

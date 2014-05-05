@@ -11,23 +11,24 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.request;
 
-import org.eclipse.ocl.examples.debug.vm.event.VMSuspendEvent;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.debug.vm.data.VMSuspension;
 
 public class VMSuspendRequest extends VMRequest
 {
 	private static final long serialVersionUID = 4976429948394821130L;
 
-	public final int detail;
+	public final @NonNull VMSuspension suspension;
 	
-	public VMSuspendRequest(int detail) {
-		this.detail = detail;
+	public VMSuspendRequest(@NonNull VMSuspension suspension) {
+		this.suspension = suspension;
 	}
 	
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		s.append(getClass().getSimpleName());
 		s.append("(");
-		VMSuspendEvent.toDetailString(s, detail);
+		suspension.toString(s);
 		s.append(")");
 		return s.toString();
 	}

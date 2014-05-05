@@ -11,82 +11,33 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.event;
 
-import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.data.VMLocationData;
 import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
+import org.eclipse.ocl.examples.debug.vm.data.VMSuspension;
 
 public class VMSuspendEvent extends VMEvent
 {
 	private static final long serialVersionUID = 2494519177689939386L;
-
-	public static final int BREAKPOINT_CONDITION_ERR = DebugEvent.MODEL_SPECIFIC + 10;
-
-	public static void toDetailString(@NonNull StringBuilder s, int detail) {
-		String prefix = "";
-		if ((detail & DebugEvent.STEP_INTO) != 0) {
-			s.append(prefix); s.append("STEP_INTO");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.STEP_OVER) != 0) {
-			s.append(prefix); s.append("STEP_OVER");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.STEP_RETURN) != 0) {
-			s.append(prefix); s.append("STEP_RETURN");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.STEP_END) != 0) {
-			s.append(prefix); s.append("STEP_END");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.BREAKPOINT) != 0) {
-			s.append(prefix); s.append("BREAKPOINT");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.CLIENT_REQUEST) != 0) {
-			s.append(prefix); s.append("CLIENT_REQUEST");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.EVALUATION) != 0) {
-			s.append(prefix); s.append("EVALUATION");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.EVALUATION_IMPLICIT) != 0) {
-			s.append(prefix); s.append("EVALUATION_IMPLICIT");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.STATE) != 0) {
-			s.append(prefix); s.append("STATE");
-			prefix = "+";
-		}
-		if ((detail & DebugEvent.CONTENT) != 0) {
-			s.append(prefix); s.append("CONTENT");
-			prefix = "+";
-		}
-		if (prefix.equals("")) {
-			s.append("UNSPECIFIED");
-		}
-	}
 
 	public @NonNull VMLocationData location;
 	public @NonNull VMStackFrameData[] stackFrames;
 	public Long breakpointID;
 
 	// TODO - currently using DebugEvent constants, OCL should define its own
-	public int detail;
+	public final @NonNull VMSuspension suspension;
 	
 	public String reason;
 	public String reasonDetail;
 
-	public VMSuspendEvent(@NonNull VMStackFrameData[] stack, int detail) {
+	public VMSuspendEvent(@NonNull VMStackFrameData[] stack, @NonNull VMSuspension suspension) {
 		if (stack.length == 0) {
 			throw new IllegalArgumentException("empty stack"); //$NON-NLS-1$
 		}
 		
 		this.stackFrames = stack;
 		this.location = stack[0].getLocation();
-		this.detail = detail;
+		this.suspension = suspension;
 	}
 		
 	public Long getBreakpointID() {
@@ -122,7 +73,7 @@ public class VMSuspendEvent extends VMEvent
 		StringBuilder s = new StringBuilder();
 		s.append(getClass().getSimpleName());
 		s.append("(");
-		toDetailString(s, detail);
+		suspension.toString(s);
 		if (breakpointID != null) {
 			s.append(" breakpointID:").append(breakpointID); //$NON-NLS-1$
 		}

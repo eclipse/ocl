@@ -23,6 +23,7 @@ import org.eclipse.debug.core.model.IThread;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.VMEventListener;
 import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
+import org.eclipse.ocl.examples.debug.vm.data.VMSuspension;
 import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMSuspendEvent;
 import org.eclipse.ocl.examples.debug.vm.request.VMResumeRequest;
@@ -127,7 +128,7 @@ public class VMThread extends VMDebugElement implements IThread, VMEventListener
 		setStepping(true);		
 		fireResumeEvent(DebugEvent.STEP_INTO);
 
-		getOCLDebugTarget().sendRequest(new VMResumeRequest(DebugEvent.STEP_INTO));
+		getOCLDebugTarget().sendRequest(new VMResumeRequest(VMSuspension.STEP_INTO));
 	}
 
 	public boolean canStepOver() {
@@ -142,7 +143,7 @@ public class VMThread extends VMDebugElement implements IThread, VMEventListener
 		setStepping(true);		
 		fireResumeEvent(DebugEvent.STEP_OVER);
 
-		getOCLDebugTarget().sendRequest(new VMResumeRequest(DebugEvent.STEP_OVER));
+		getOCLDebugTarget().sendRequest(new VMResumeRequest(VMSuspension.STEP_OVER));
 	}
 
 	public boolean canStepReturn() {
@@ -157,7 +158,7 @@ public class VMThread extends VMDebugElement implements IThread, VMEventListener
 		setStepping(true);		
 		fireResumeEvent(DebugEvent.STEP_RETURN);
 
-		getOCLDebugTarget().sendRequest(new VMResumeRequest(DebugEvent.STEP_RETURN));
+		getOCLDebugTarget().sendRequest(new VMResumeRequest(VMSuspension.STEP_RETURN));
 	}
 
 	public boolean isStepping() {
@@ -204,7 +205,7 @@ public class VMThread extends VMDebugElement implements IThread, VMEventListener
 			
 			setStepping(false);
 
-			DebugEvent debugEvent = new DebugEvent(this, DebugEvent.SUSPEND, suspendEvent.detail);
+			DebugEvent debugEvent = new DebugEvent(this, DebugEvent.SUSPEND, suspendEvent.suspension.getDebugEventDetail());
 			debugEvent.setData(suspendEvent.location);
 	        fireEvent(debugEvent);
 		}
