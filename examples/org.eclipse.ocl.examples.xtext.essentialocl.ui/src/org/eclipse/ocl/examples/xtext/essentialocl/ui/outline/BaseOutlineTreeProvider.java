@@ -24,13 +24,10 @@ import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
-import org.eclipse.xtext.util.TextRegion;
 
 /**
  * customization of the default outline structure
@@ -69,11 +66,10 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 		else {
 			eObjectNode = new EObjectNode(modelElement, parentNode, image, text, isLeaf);
 		}
-		ICompositeNode parserNode = NodeModelUtils.getNode(modelElement);
-		if (parserNode != null)
-			eObjectNode.setTextRegion(new TextRegion(parserNode.getOffset(), parserNode.getLength()));
-		if(isLocalElement(parentNode, modelElement))
+		if (isLocalElement(parentNode, modelElement)) {
+			eObjectNode.setTextRegion(locationInFileProvider.getFullTextRegion(modelElement));
 			eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(modelElement));
+		}
 		return eObjectNode;
 	}
 	

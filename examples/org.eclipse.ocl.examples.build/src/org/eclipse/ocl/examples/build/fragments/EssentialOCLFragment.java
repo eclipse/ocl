@@ -19,11 +19,11 @@ package org.eclipse.ocl.examples.build.fragments;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.xtext.base.cs2as.BaseFragmentProvider;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
+import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLHiddenTokenSequencer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
@@ -115,7 +115,7 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment implements Na
 		bindFactory.addTypeToType(AbstractAntlrTokenToAttributeIdMapper.class.getName(), BaseAntlrTokenToAttributeIdMapper.class.getName());
 		bindFactory.addTypeToType(AbstractEditStrategyProvider.class.getName(), BaseAutoEditStrategyProvider.class.getName());
 		bindFactory.addTypeToType(IHighlightingConfiguration.class.getName(), EssentialOCLHighlightingConfiguration.class.getName());
-		bindFactory.addTypeToType(ILocationInFileProvider.class.getName(), BaseLocationInFileProvider.class.getName());
+		bindFactory.addTypeToType(ILocationInFileProvider.class.getName(), EssentialOCLLocationInFileProvider.class.getName());
 //		bindFactory.addTypeToType(org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder.class.getName(), BaseReferenceFinder.class.getName());
 		bindFactory.addTypeToType(ISemanticHighlightingCalculator.class.getName(), EssentialOCLSemanticHighlightingCalculator.class.getName());
 		bindFactory.addTypeToType(ITokenTypeToPartitionTypeMapper.class.getName(), BaseTerminalsTokenTypeToPartitionMapper.class.getName());
