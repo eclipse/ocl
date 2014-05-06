@@ -18,12 +18,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +30,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -40,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -57,15 +53,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
 
-public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunchConstants
+public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 {
 	protected class ContextModifyListener implements ModifyListener
 	{
@@ -74,9 +63,7 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 			if (elementCombo.isDisposed()) {
 				return;
 			}
-			if (!initializing) {
-				updateLaunchConfigurationDialog();
-			}
+			updateLaunchConfigurationDialog();
 		}
 	}
 
@@ -109,9 +96,7 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 			catch (Exception ex) {
 				setErrorMessage("Failed to load '" + elementsURI + "': " + ex.toString());
 			}
-			if (!initializing) {
-				updateLaunchConfigurationDialog();
-			}
+			updateLaunchConfigurationDialog();
 		}
 	}
 
@@ -122,9 +107,7 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 			if (expressionCombo.isDisposed()) {
 				return;
 			}
-			if (!initializing) {
-				updateLaunchConfigurationDialog();
-			}
+			updateLaunchConfigurationDialog();
 		}
 	}
 
@@ -174,13 +157,9 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 			catch (Exception ex) {
 				setErrorMessage("Failed to load '" + oclName + "': " + ex.toString());
 			}
-			if (!initializing) {
-				updateLaunchConfigurationDialog();
-			}
+			updateLaunchConfigurationDialog();
 		}
 	}
-
-	private static final Logger logger = Logger.getLogger(AbstractLaunchConfigurationTab.class);
 
 	protected Text oclPath;
 	protected Button oclBrowseWS;
@@ -191,16 +170,10 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 	protected Group elementGroup;
 	protected Combo expressionCombo;
 	protected Combo elementCombo;
-	protected @Nullable MetaModelManager metaModelManager;		// FIXME Add a dispose() when not visible for a long time
 	private Group expressionGroup;
 	private Text modelPath;
 	private Map<String, URI> expression2uri = new HashMap<String, URI>();
 	private Map<String, URI> element2uri = new HashMap<String, URI>();
-	
-	/**
-	 * Internal flag to suppress redundant recursive updates while initializing controls.
-	 */
-	private boolean initializing = false;
 
 	@Override
 	public boolean canSave() {
@@ -308,16 +281,6 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 		elementCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		return control;
 	}
-	
-	@Override
-	public void dispose() {
-		MetaModelManager metaModelManager2 = metaModelManager;
-		if (metaModelManager2 != null) {
-			metaModelManager2.dispose();
-			metaModelManager = null;
-		}
-		super.dispose();
-	}
 
 	protected String getDisplayString(@NonNull ExpressionInOCL expressionInOCL) {
 		String typeString = expressionInOCL.getContextVariable().getType().toString();
@@ -329,18 +292,6 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 	@Override
 	public Image getImage() {
 		return OCLDebugUIPlugin.getDefault().createImage("icons/OCLModelFile.gif");
-	}
-
-	protected @NonNull MetaModelManager getMetaModelManager() {
-		MetaModelManager metaModelManager2 = metaModelManager;
-		if (metaModelManager2 == null) {
-			metaModelManager = metaModelManager2 = new MetaModelManager();
-		}
-		return metaModelManager2;
-	}
-
-	public String getName() {
-		return "Main";
 	}
 
 	public void initializeFrom(ILaunchConfiguration configuration) {
@@ -390,36 +341,6 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 		}
 	}
 
-	private boolean launchConfigurationExists(@NonNull String name) {
-		ILaunchConfiguration[] cs = new ILaunchConfiguration[]{};
-		try {
-			cs = getLaunchManager().getLaunchConfigurations();
-		}
-		catch (CoreException ex) {
-			logger.error("Failed to access ILaunchConfiguration", ex);
-		}
-		for (int i = 0; i < cs.length; i++) {
-			if (name.equals(cs[i].getName())){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	// Return a new launch configuration name that does not
-	// already exists
-	protected String newLaunchConfigurationName(@NonNull String fileName) {
-		if (!launchConfigurationExists(fileName)) {
-			return fileName;
-		}
-		for (int i = 1; true; i++) {
-			String configurationName = fileName + " (" + i + ")";
-			if (!launchConfigurationExists(configurationName)) {
-				return configurationName;
-			}
-		}
-	}
-
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		int expressionIndex = expressionCombo.getSelectionIndex();
 		if ((0 <= expressionIndex) && (expressionIndex < expressionCombo.getItemCount())) {
@@ -445,35 +366,7 @@ public class MainTab extends AbstractLaunchConfigurationTab implements OCLLaunch
 		}
 	}
 
-	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench != null) {
-			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-			if (workbenchWindow != null) {
-				IWorkbenchPage activePage = workbenchWindow.getActivePage();
-				if (activePage != null) {
-					IEditorPart activeEditor = activePage.getActiveEditor();
-					if (activeEditor != null) {
-						IEditorInput editorInput = activeEditor.getEditorInput();
-						if (editorInput instanceof FileEditorInput) {
-							IFile iFile = ((FileEditorInput)editorInput).getFile();
-							String activeEditorName = iFile.getName();
-							if (activeEditorName.length() > 0){
-								configuration.rename(newLaunchConfigurationName(activeEditorName));
-								configuration.setAttribute(OCL_KEY, iFile.getFullPath().toString());
-//								configuration.setAttribute(IN_KEY, EMPTY_MAP);
-//								configuration.setAttribute(OUT_KEY, EMPTY_MAP);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	@Override
-	public void updateLaunchConfigurationDialog() {
-		assert !initializing;
-		super.updateLaunchConfigurationDialog();
+	protected void setDefaults(@NonNull ILaunchConfigurationWorkingCopy configuration, @NonNull IFile iFile) {
+		configuration.setAttribute(OCL_KEY, iFile.getFullPath().toString());
 	}
 }
