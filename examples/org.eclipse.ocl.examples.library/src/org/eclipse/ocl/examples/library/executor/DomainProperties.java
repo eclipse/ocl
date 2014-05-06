@@ -14,6 +14,7 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -48,11 +48,12 @@ public class DomainProperties
 	}
 
 	public @NonNull Iterable<? extends DomainProperty> getAllProperties(final @Nullable FeatureFilter featureFilter) {
+		@SuppressWarnings("null")@NonNull Collection<DomainProperty> values = name2property.values();
 		if (featureFilter == null) {
-			return name2property.values();
+			return values;
 		}
 		@SuppressWarnings("null")
-		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(name2property.values(),
+		@NonNull Iterable<DomainProperty> subItOps = Iterables.filter(values,
 			new Predicate<DomainProperty>()
 			{
 				public boolean apply(DomainProperty domainProperty) {

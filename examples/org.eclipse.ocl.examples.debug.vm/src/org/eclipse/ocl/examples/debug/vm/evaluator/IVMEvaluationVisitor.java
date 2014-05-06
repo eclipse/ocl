@@ -14,9 +14,8 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.util.Visitor;
 
-public interface IVMEvaluationVisitor<T extends NamedElement> extends Visitor<Object>, EvaluationVisitor
+public interface IVMEvaluationVisitor<T extends NamedElement> extends EvaluationVisitor
 {
 	@NonNull EvaluationVisitor getClonedEvaluator();
 	@NonNull String getPluginId();
