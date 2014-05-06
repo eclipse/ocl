@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluator;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
@@ -31,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
  * 
  * @see OCLPivotEvaluator
  */
-public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
+public class OCLVMEvaluator implements IVMEvaluator
 {
     public static @NonNull EObject loadContext(@NonNull MetaModelManager metaModelManager, @NonNull URI contextURI) throws IOException {
         EObject eObject = metaModelManager.getExternalResourceSet().getEObject(contextURI, true);
@@ -64,18 +65,35 @@ public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
         throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
 	}
     
+	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull ExpressionInOCL expressionInOCL;
+	protected final @NonNull OCLVMEnvironmentFactory envFactory;
+	protected final @NonNull OCLVMEnvironment env;
+	protected final @NonNull IVMModelManager modelManager;
 	private @Nullable EObject context;
 	private boolean suspendOnStartup = false;
-    
+
+    private OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull ExpressionInOCL expressionInOCL) {
+    	this.envFactory = envFactory;
+    	this.metaModelManager = envFactory.getMetaModelManager();
+    	this.expressionInOCL = expressionInOCL;
+    	this.env = envFactory.createEnvironment();
+    	this.modelManager = envFactory.createModelManager(metaModelManager);
+    }
+
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @NonNull URI contextURI) throws IOException {
-    	super(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()));
+    	this(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()));
     	context = loadContext(envFactory.getMetaModelManager(), contextURI);
     }
     
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull Constraint constraint, @NonNull EObject context) throws IOException {
-    	super(envFactory, loadExpression(constraint, EcoreUtil.getURI(constraint)));
+    	this(envFactory, loadExpression(constraint, EcoreUtil.getURI(constraint)));
     	this.context = context;
     }
+
+	public void dispose() {
+		modelManager.dispose();
+	}
 
 	public Boolean execute() {
         ExpressionInOCL expressionInOCL = getExpressionInOCL();
@@ -84,7 +102,7 @@ public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
 		if (contextVariable != null) {
 			evalEnv.add(contextVariable, context);
 		}
-        OCLRootVMEvaluationVisitor visitor = envFactory.createEvaluationVisitor(env, evalEnv);
+        OCLVMRootEvaluationVisitor visitor = envFactory.createEvaluationVisitor(env, evalEnv);
         visitor.start(suspendOnStartup);
         return (Boolean) expressionInOCL.accept(visitor);
 	}
@@ -92,6 +110,26 @@ public class OCLVMEvaluator extends OCLPivotEvaluator implements IVMEvaluator
 	@Override
 	public @NonNull ExpressionInOCL getDebuggable() {
 		return getExpressionInOCL();
+	}
+
+	public final @NonNull OCLVMEnvironment getEnvironment() {
+		return env;
+	}
+
+	public final @NonNull OCLVMEnvironmentFactory getEnvironmentFactory() {
+		return envFactory;
+	}
+
+	public final @NonNull MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
+	
+	public final @NonNull IVMModelManager getModelManager() {
+		return modelManager;
+	}
+	
+	public @NonNull ExpressionInOCL getExpressionInOCL() {
+		return expressionInOCL;
 	}
 
 	@Override

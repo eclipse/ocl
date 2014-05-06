@@ -31,10 +31,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object> implements IStepperVisitor
 {
-	public static @NonNull OCLStepperVisitor INSTANCE = new OCLStepperVisitor();
+	public static @NonNull OCLStepperVisitor INSTANCE = new OCLStepperVisitor(OCLStepperVisitor.class);
 	
-	protected OCLStepperVisitor() {
-		super(OCLStepperVisitor.class);
+	protected OCLStepperVisitor(@NonNull Object context) {
+		super(context);
 	}
 
 	@Override

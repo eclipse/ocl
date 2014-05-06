@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class OCLRootEvaluationEnvironment extends VMRootEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
+public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
 {
 //	private IContext myContext;
 	private List<Runnable> myDeferredTasks;
@@ -44,7 +44,7 @@ public class OCLRootEvaluationEnvironment extends VMRootEvaluationEnvironment<Ex
 	private @NonNull NamedElement myOperation;
 	private final long id;
 
-    public OCLRootEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL, long id) {
+    public OCLVMRootEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL, long id) {
 		super(metaModelManager, modelManager, expressionInOCL);
 		myCurrentIP = expressionInOCL;
 		myOperation = expressionInOCL;
@@ -128,12 +128,12 @@ public class OCLRootEvaluationEnvironment extends VMRootEvaluationEnvironment<Ex
 	}
 
 	@Override
-	public @Nullable OCLRootEvaluationEnvironment getParentEvaluationEnvironment() {
-		return (OCLRootEvaluationEnvironment) super.getParentEvaluationEnvironment();
+	public @Nullable OCLVMRootEvaluationEnvironment getParentEvaluationEnvironment() {
+		return (OCLVMRootEvaluationEnvironment) super.getParentEvaluationEnvironment();
 	}
 
 	@Override
-	public @NonNull OCLRootEvaluationEnvironment getRootEvaluationEnvironment() {
+	public @NonNull OCLVMRootEvaluationEnvironment getRootEvaluationEnvironment() {
 		return this;
 	}
 

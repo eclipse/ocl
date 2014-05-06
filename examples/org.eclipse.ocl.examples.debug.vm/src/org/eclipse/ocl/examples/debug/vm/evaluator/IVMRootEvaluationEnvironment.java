@@ -13,6 +13,6 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.ocl.examples.pivot.NamedElement;
 
-public interface IRootVMEvaluationEnvironment<T extends NamedElement> extends IVMEvaluationEnvironment<T>
+public interface IVMRootEvaluationEnvironment<T extends NamedElement> extends IVMEvaluationEnvironment<T>
 {
 }

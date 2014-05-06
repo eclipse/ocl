@@ -20,5 +20,5 @@ public interface IOCLVMEvaluationEnvironment extends IVMEvaluationEnvironment<Ex
 {
 	@NonNull IOCLVMEvaluationEnvironment createClonedEvaluationEnvironment();
 	@Nullable IOCLVMEvaluationEnvironment getParentEvaluationEnvironment();
-	@NonNull OCLRootEvaluationEnvironment getRootEvaluationEnvironment();
+	@NonNull OCLVMRootEvaluationEnvironment getRootEvaluationEnvironment();
 }

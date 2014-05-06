@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.debug.vm.VMBreakpointManager;
 import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
 import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
 import org.eclipse.ocl.examples.debug.vm.data.VMSuspension;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IRootVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
@@ -49,7 +49,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 
-public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implements IRootVMEvaluationVisitor<ExpressionInOCL>
+public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {
 	private final @NonNull IVMDebuggerShell fDebugShell;
 	private final @NonNull VMBreakpointManager fBPM;
@@ -60,7 +60,7 @@ public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	private final @NonNull Stack<OCLVMEvaluationVisitor> visitorStack = new Stack<OCLVMEvaluationVisitor>();
 	private final @NonNull Stack<IStepper> stepperStack = new Stack<IStepper>();
 
-	public OCLRootVMEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
+	public OCLVMRootEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
 		super(new OCLVMEvaluationVisitorImpl(env, evalEnv));
 		fDebugShell = shell;
 		fBPM = shell.getBreakPointManager();
@@ -158,7 +158,7 @@ public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		return DomainUtil.nonNullState(mainUnit.getModules().get(0).getName());
 	}
 
-	public @NonNull OCLRootVMEvaluationVisitor getRootEvaluationVisitor() {
+	public @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor() {
 		return this;
 	}
 
@@ -262,7 +262,7 @@ public class OCLRootVMEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		return new UnitLocation(startPosition, endPosition, evalEnv, node);
 	}
 
-	public void popVisitor(@NonNull OCLNestedVMEvaluationVisitor evaluationVisitor) {
+	public void popVisitor(@NonNull OCLVMNestedEvaluationVisitor evaluationVisitor) {
 		if (VMVirtualMachine.VISITOR_STACK.isActive()) {
 			VMVirtualMachine.VISITOR_STACK.println("[" + Thread.currentThread().getName() + "] " + "Pop " + evaluationVisitor.toString());
 		}

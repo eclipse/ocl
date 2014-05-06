@@ -16,7 +16,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IRootVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 
@@ -25,7 +25,7 @@ public class LoopExpStepper extends CallExpStepper
 	public static @NonNull LoopExpStepper INSTANCE = new LoopExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IRootVMEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element, @Nullable Element parentElement) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement) {
 		if (parentElement instanceof LoopExp) {
 			rootVMEvaluationVisitor.postIterate((LoopExp)parentElement);
 		}
@@ -33,7 +33,7 @@ public class LoopExpStepper extends CallExpStepper
 	}
 
 	@Override
-	public boolean isPreStoppable(@NonNull IRootVMEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {
+	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {
 		rootVMEvaluationVisitor.preIterate((LoopExp)element);
 		return super.isPreStoppable(rootVMEvaluationVisitor, element);
 	}

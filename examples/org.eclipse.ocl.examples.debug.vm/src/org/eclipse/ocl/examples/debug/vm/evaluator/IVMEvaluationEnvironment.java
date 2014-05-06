@@ -35,7 +35,7 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 	@NonNull Map<String, Resource> getModelParameterVariables();
 	@NonNull NamedElement getOperation();
 	@Nullable IVMEvaluationEnvironment<?> getParentEvaluationEnvironment();
-	@NonNull IRootVMEvaluationEnvironment<T> getRootEvaluationEnvironment();
+	@NonNull IVMRootEvaluationEnvironment<T> getRootEvaluationEnvironment();
 	boolean isDeferredExecution();
 	void processDeferredTasks();
 	@NonNull Element setCurrentIP(@NonNull Element element);

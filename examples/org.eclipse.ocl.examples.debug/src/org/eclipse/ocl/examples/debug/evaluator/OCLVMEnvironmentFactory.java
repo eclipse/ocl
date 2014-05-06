@@ -53,21 +53,21 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	}
 
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL) {
-		return new OCLRootEvaluationEnvironment(getMetaModelManager(), modelManager, expressionInOCL, ++envId);
+		return new OCLVMRootEvaluationEnvironment(getMetaModelManager(), modelManager, expressionInOCL, ++envId);
 	}
 
 	@Override
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent) {
-		return new OCLNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, ((IOCLVMEvaluationEnvironment) parent).getOperation());
+		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, ((IOCLVMEvaluationEnvironment) parent).getOperation());
 	}
 
 //	@Override
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<?> parent, @NonNull NamedElement operation) {
-		return new OCLNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, operation);
+		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, operation);
 	}
 
-	public @NonNull OCLRootVMEvaluationVisitor createEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
-		return new OCLRootVMEvaluationVisitor(env, evalEnv, DomainUtil.nonNullState(shell));
+	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
+		return new OCLVMRootEvaluationVisitor(env, evalEnv, DomainUtil.nonNullState(shell));
 	}
 
 	public @NonNull OCLVMModelManager createModelManager(@NonNull MetaModelManager metaModelManager) {

@@ -25,14 +25,14 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 
-public class OCLNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
+public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
 {
 	private @NonNull Element myCurrentIP;
 	private @NonNull NamedElement myOperation;
     private final int myStackDepth;
 	private final long id;
     
-	public OCLNestedEvaluationEnvironment(@NonNull IOCLVMEvaluationEnvironment evaluationEnvironment, long id, @NonNull NamedElement operation) {
+	public OCLVMNestedEvaluationEnvironment(@NonNull IOCLVMEvaluationEnvironment evaluationEnvironment, long id, @NonNull NamedElement operation) {
 		super(evaluationEnvironment);
 		myStackDepth = evaluationEnvironment.getDepth() + 1;
 		this.id = id;
@@ -86,8 +86,8 @@ public class OCLNestedEvaluationEnvironment extends VMNestedEvaluationEnvironmen
 	}
 
 	@Override
-	public @NonNull OCLRootEvaluationEnvironment getRootEvaluationEnvironment() {
-		return (OCLRootEvaluationEnvironment) rootEvaluationEnvironment;
+	public @NonNull OCLVMRootEvaluationEnvironment getRootEvaluationEnvironment() {
+		return (OCLVMRootEvaluationEnvironment) rootEvaluationEnvironment;
 	}
 
 	public boolean isDeferredExecution() {

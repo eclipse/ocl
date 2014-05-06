@@ -39,6 +39,7 @@ public class GenerateASVisitors extends GenerateVisitors
 			ePackage.generateAbstractGenericVisitor("AS2Moniker", typeof(Object), typeof(AS2Moniker));
 			ePackage.generateAbstractGenericVisitor("ASSaverLocate", typeof(Object), typeof(ASSaver));
 			ePackage.generateAbstractGenericVisitor("ASSaverResolve", typeof(Object), typeof(ASSaver));
+//			ePackage.generateAbstractGenericVisitor("Stepper", typeof(IStepper), typeof(Object));
 		}
 		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.examples.pivot.util.Visitor"); */
 	}

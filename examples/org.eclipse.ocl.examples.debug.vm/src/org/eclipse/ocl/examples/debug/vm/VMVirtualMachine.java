@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.debug.vm.data.VMBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IRootVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMStartEvent;
@@ -122,7 +122,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 			}
 		}
 		
-		public void sessionStarted(@NonNull IRootVMEvaluationVisitor<?> evaluator) {
+		public void sessionStarted(@NonNull IVMRootEvaluationVisitor<?> evaluator) {
 			fInterpreter = evaluator;
 		}
 		
@@ -180,7 +180,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	private final @NonNull IVMDebuggerShell fDebuggerShell;
 	
 	private final @NonNull VMBreakpointManager fBreakpointManager;
-	private @Nullable IRootVMEvaluationVisitor<?> fInterpreter;
+	private @Nullable IVMRootEvaluationVisitor<?> fInterpreter;
 	private final @NonNull VMDebuggableExecutorAdapter fExecutor;
 
 	private boolean fRunning;
@@ -227,7 +227,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	protected abstract @Nullable VMStackFrameData createStackFrame(@NonNull UnitLocation location);
 	
 	public IValue evaluate(@NonNull String expressionText, VMDebugTarget debugTarget, long frameID) throws CoreException {
-		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		IVMRootEvaluationVisitor<?> fInterpreter2 = fInterpreter;
 		if (fInterpreter2 == null) {
 			return null;
 		}
@@ -247,7 +247,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	}
 
 	public @Nullable EvaluationEnvironment getEvaluationEnv() {
-		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		IVMRootEvaluationVisitor<?> fInterpreter2 = fInterpreter;
 		if (fInterpreter2 == null) {
 			return null;
 		}
@@ -309,7 +309,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	}
 	
 	private @NonNull VMResponse handleStackFrameRequest(@NonNull VMStackFrameRequest request) {
-		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		IVMRootEvaluationVisitor<?> fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
 			List<UnitLocation> locationStack = fInterpreter2.getLocationStack();
 			VMStackFrameData frame = createStackFrame(request.frameID, locationStack);
@@ -330,7 +330,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	private @Nullable VMResponse handleValueDetailRequest(@NonNull VMDetailRequest request) {
 		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
-		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		IVMRootEvaluationVisitor<?> fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
 			String detail = VariableFinder.computeDetail(request.getVariableURI(), fInterpreter2.getCurrentLocation().getEvalEnv());		
 			return new VMDetailResponse(detail != null ? detail : ""); //$NON-NLS-1$
@@ -342,7 +342,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	private @Nullable VMResponse handleVariableRequest(@NonNull VMVariableRequest request) {
 		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
-		IRootVMEvaluationVisitor<?> fInterpreter2 = fInterpreter;
+		IVMRootEvaluationVisitor<?> fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
 			return VariableFinder.process(request, fInterpreter2.getLocationStack(), fInterpreter2.getCurrentLocation().getEvalEnv());
 		}

@@ -12,11 +12,16 @@
 package org.eclipse.ocl.examples.debug.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 
 /**
  * OCLVMEvaluationVisitorImpl is the class for ...
  */
-public class OCLVMEvaluationVisitorImpl extends OCLAbstractVMEvaluationVisitor {
+public class OCLVMEvaluationVisitorImpl extends EvaluationVisitorImpl implements IOCLVMEvaluationVisitor {
 
         
     /**
@@ -28,7 +33,7 @@ public class OCLVMEvaluationVisitorImpl extends OCLAbstractVMEvaluationVisitor {
      *            the eval env
      */
     public OCLVMEvaluationVisitorImpl(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
-        super(env, evalEnv);
+        super(env, evalEnv, evalEnv.getModelManager());
     }
 
     @Override
@@ -41,4 +46,34 @@ public class OCLVMEvaluationVisitorImpl extends OCLAbstractVMEvaluationVisitor {
     }
 
 	public void dispose() {}
+
+	@Override
+	public @NonNull IVMEvaluationVisitor<ExpressionInOCL> getClonedEvaluator() {
+		IOCLVMEvaluationEnvironment oldEvaluationEnvironment = getEvaluationEnvironment();
+		IOCLVMEvaluationEnvironment clonedEvaluationEnvironment = oldEvaluationEnvironment.createClonedEvaluationEnvironment();
+		return new OCLVMEvaluationVisitorImpl(getEnvironment(), clonedEvaluationEnvironment);
+	}
+
+    @Override
+	public @NonNull OCLVMEnvironment getEnvironment() {
+		return (OCLVMEnvironment) super.getEnvironment();
+	}
+
+	@Override
+	public @NonNull IOCLVMEvaluationEnvironment getEvaluationEnvironment() {
+		return (IOCLVMEvaluationEnvironment) super.getEvaluationEnvironment();
+	}
+
+	/* (non-Javadoc)
+     * @see org.eclipse.ocl.examples.pivot.evaluation.AbstractEvaluationVisitor#getModelManager()
+     */
+    @Override
+	public @NonNull IVMModelManager getModelManager() {
+		return (IVMModelManager) modelManager;
+	}
+
+	@Override
+	public @NonNull String getPluginId() {
+		return OCLDebugPlugin.PLUGIN_ID;
+	}
 }

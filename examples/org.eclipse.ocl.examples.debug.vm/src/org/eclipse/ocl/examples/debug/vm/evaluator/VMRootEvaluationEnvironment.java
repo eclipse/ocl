@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public abstract class VMRootEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T> implements IRootVMEvaluationEnvironment<T>
+public abstract class VMRootEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T> implements IVMRootEvaluationEnvironment<T>
 {
     protected final @NonNull T debuggableElement;
 

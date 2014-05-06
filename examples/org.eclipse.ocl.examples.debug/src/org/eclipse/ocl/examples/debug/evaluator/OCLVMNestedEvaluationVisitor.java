@@ -16,13 +16,13 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.Element;
 
-public class OCLNestedVMEvaluationVisitor extends OCLVMEvaluationVisitor
+public class OCLVMNestedEvaluationVisitor extends OCLVMEvaluationVisitor
 {
-	protected final @NonNull OCLRootVMEvaluationVisitor root;
+	protected final @NonNull OCLVMRootEvaluationVisitor root;
 	protected final @NonNull OCLVMEvaluationVisitor parent;
 	protected final int depth;
 	
-	protected OCLNestedVMEvaluationVisitor(@NonNull OCLVMEvaluationVisitor parent, @NonNull IOCLVMEvaluationVisitor nestedEvaluationVisitor) {
+	protected OCLVMNestedEvaluationVisitor(@NonNull OCLVMEvaluationVisitor parent, @NonNull IOCLVMEvaluationVisitor nestedEvaluationVisitor) {
 		super(nestedEvaluationVisitor);
 		this.root = parent.getRootEvaluationVisitor();
 		this.parent = parent;
@@ -44,7 +44,7 @@ public class OCLNestedVMEvaluationVisitor extends OCLVMEvaluationVisitor
 		return depth;
 	}
 
-	public @NonNull OCLRootVMEvaluationVisitor getRootEvaluationVisitor() {
+	public @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor() {
 		return root;
 	}
 

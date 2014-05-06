@@ -18,7 +18,7 @@ import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 
-public interface IRootVMEvaluationVisitor<T extends NamedElement> extends IVMEvaluationVisitor<T>
+public interface IVMRootEvaluationVisitor<T extends NamedElement> extends IVMEvaluationVisitor<T>
 {
 	@NonNull UnitLocation getCurrentLocation();
 	@NonNull IVMEvaluationEnvironment<T> getEvaluationEnvironment();

@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IRootVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -28,14 +28,14 @@ public class OperationCallExpStepper extends CallExpStepper
 	public static @NonNull OperationCallExpStepper INSTANCE = new OperationCallExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IRootVMEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element, @Nullable Element parentElement) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement) {
 		OperationCallExp callExp = (OperationCallExp)parentElement;
 		if (callExp != null) {
 			List<OCLExpression> arguments = callExp.getArgument();
 			if (arguments.size() <= 0) {
 				return callExp;
 			}
-			if (arguments.get(arguments.size()-1) == element) {
+			if (arguments.get(arguments.size()-1) == childElement) {
 				return callExp;
 			}
 		}

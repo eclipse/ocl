@@ -194,7 +194,7 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	@Override
 	public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() {
 //		return delegate.createNestedEvaluator();
-		return new OCLNestedVMEvaluationVisitor(this, delegate.createNestedEvaluator());
+		return new OCLVMNestedEvaluationVisitor(this, delegate.createNestedEvaluator());
 	}
 
 	@Override
@@ -251,7 +251,7 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 		return delegate.getRegexPattern(regex);
 	}
 
-	public abstract @NonNull OCLRootVMEvaluationVisitor getRootEvaluationVisitor();
+	public abstract @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor();
  
 	@Override
 	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {

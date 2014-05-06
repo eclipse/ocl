@@ -17,7 +17,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 
 public abstract class VMNestedEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T>
 {
-	protected final @NonNull IRootVMEvaluationEnvironment<T> rootEvaluationEnvironment;
+	protected final @NonNull IVMRootEvaluationEnvironment<T> rootEvaluationEnvironment;
 	
 	public VMNestedEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment) {
 		super(evaluationEnvironment);
@@ -32,7 +32,7 @@ public abstract class VMNestedEvaluationEnvironment<T extends NamedElement> exte
 		return rootEvaluationEnvironment.getDebuggableElement();
 	}
 
-	public @NonNull IRootVMEvaluationEnvironment<T> getRootEvaluationEnvironment() {
+	public @NonNull IVMRootEvaluationEnvironment<T> getRootEvaluationEnvironment() {
 		return rootEvaluationEnvironment;
 	}
 }
