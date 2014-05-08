@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
+<!--
+ocl-releng.psf
+-->
 <provider id="org.eclipse.egit.core.GitProvider">
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.all-feature"/>
@@ -14,7 +17,6 @@
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.examples.tests-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.examples.unified-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.examples.unified.core-feature"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.license-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.master-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,releng/org.eclipse.ocl.releng"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,releng/org.eclipse.ocl.releng.buckminster"/>
@@ -38,7 +40,6 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.tests-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.unified-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.unified.core-feature" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.license-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.master-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.releng" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.releng.buckminster" type="4"/>

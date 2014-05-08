@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
+<!--
+ocl-pivot.psf
+-->
 <provider id="org.eclipse.egit.core.GitProvider">
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.autogen"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.build"/>
