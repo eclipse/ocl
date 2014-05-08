@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
@@ -374,6 +375,9 @@ public class ElementUtil
 				return true;
 			}
 			else if (diagnostic instanceof XtextSyntaxDiagnostic) {
+				return true;
+			}
+			else if (diagnostic instanceof ImportDiagnostic) {
 				return true;
 			}
 		}

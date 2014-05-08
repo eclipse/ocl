@@ -2467,7 +2467,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	public @NonNull TypeServer getTypeServer(@NonNull DomainType pivotType) {
-		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType)) {
+		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType) && !(pivotType instanceof VoidType) && !(pivotType instanceof InvalidType)) {
 			getASMetamodel();
 		}
 		return packageManager.getTypeServer(pivotType);

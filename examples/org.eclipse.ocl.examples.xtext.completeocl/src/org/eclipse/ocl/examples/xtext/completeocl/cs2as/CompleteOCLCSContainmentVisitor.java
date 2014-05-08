@@ -274,7 +274,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				List<PathElementCS> newPath = csElement.getPathName().getPath();
 				PathElementCS lastPathElement = newPath.get(newPath.size() - 1);
 				Element asElement = lastPathElement.getPivot();
-				if (asElement instanceof Nameable) {
+				if ((asElement instanceof Nameable) && !asElement.eIsProxy()) {
 					newName = ((Nameable)asElement).getName();
 				}
 				else {

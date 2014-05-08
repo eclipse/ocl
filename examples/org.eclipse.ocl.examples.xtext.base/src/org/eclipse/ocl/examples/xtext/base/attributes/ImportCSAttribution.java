@@ -73,6 +73,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				for (String key : ePackageNsURIToGenModelLocationMap.keySet()) {
 					environmentView.addElement(key, environmentView.getMetaModelManager().getOclVoidType());
 				}
+				// FIXME platform:/resource/... and local file names
 			}
 			return null;
 		}
