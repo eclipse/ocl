@@ -1415,8 +1415,12 @@ public class PivotUtil extends DomainUtil
 	 * @throws ParserException if eObject cannot be converted to a Pivot element
 	 */
 	public static boolean setParserContext(@NonNull BaseResource resource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
-		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+		AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
+		MetaModelManager metaModelManager = adapter != null ? adapter.getMetaModelManager() : null;
+		if (metaModelManager == null) {
+			ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
+			metaModelManager = MetaModelManager.getAdapter(resourceSet);
+		}
 		Element pivotElement;
 		if (eObject instanceof Element) {
 			pivotElement = (Element) eObject;
