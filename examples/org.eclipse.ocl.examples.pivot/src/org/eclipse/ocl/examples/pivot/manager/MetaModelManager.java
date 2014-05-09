@@ -2289,6 +2289,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return URI.createURI(EcoreUtil.generateUUID() + ".essentialocl");
 	}
 
+	@Override
+	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
+		return packageManager.getRootPackage(name);
+	}
+
 	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		return getSequenceType(getType(elementType), lower, upper);
 	}

@@ -488,6 +488,11 @@ public class PackageManager implements PackageServerParent
 //	public @NonNull Iterable<Root> getRoots() {
 //		return Iterables.transform(rootTrackers, RootTracker.tracker2root);
 //	}
+
+	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
+		RootPackageServer rootPackageServer = packageServers.get(name);
+		return rootPackageServer != null ? rootPackageServer.getPivotPackage() : null;
+	}
 	
 	public @NonNull TypeServer getTypeServer(@NonNull DomainType pivotType) {
 		if (pivotType instanceof ElementExtension) {

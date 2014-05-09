@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profile="http:///schemas/profile/_c5mP0NbCEeOz5e8PFMJwaA/2" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/profile/_c5mP0NbCEeOz5e8PFMJwaA/2 Bug434433.profile.uml#_c5mP0dbCEeOz5e8PFMJwaA">
+  <uml:Model xmi:id="_1TQNMNbAEeOz5e8PFMJwaA" name="model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_2jiJUNbAEeOz5e8PFMJwaA" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_25d9ENbAEeOz5e8PFMJwaA" name="Class2"/>
+    <packagedElement xmi:type="uml:LiteralBoolean" xmi:id="_ijiT0NbCEeOz5e8PFMJwaA" name="MyTrue" value="true"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_6JHv8NbAEeOz5e8PFMJwaA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6LJwQNbAEeOz5e8PFMJwaA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug434433.profile.uml#_c5mP0dbCEeOz5e8PFMJwaA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="Bug434433.profile.uml#_NdBfANbAEeOz5e8PFMJwaA"/>
+    </profileApplication>
+  </uml:Model>
+  <profile:Stereotype1 xmi:id="_7zeY8NbAEeOz5e8PFMJwaA" base_Class="_2jiJUNbAEeOz5e8PFMJwaA" s2="_8y2LQNbAEeOz5e8PFMJwaA" s1="_7zeY8NbAEeOz5e8PFMJwaA"/>
+  <profile:Stereotype2 xmi:id="_8y2LQNbAEeOz5e8PFMJwaA" base_Class="_25d9ENbAEeOz5e8PFMJwaA"/>
+</xmi:XMI>

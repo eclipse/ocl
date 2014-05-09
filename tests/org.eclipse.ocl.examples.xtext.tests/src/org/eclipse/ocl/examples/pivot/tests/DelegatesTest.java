@@ -1228,6 +1228,25 @@ public class DelegatesTest extends PivotTestSuite
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", "My Property Extension"));
 	}
 
+	public void test_tutorial_umlValidation_with_pivot_434433() {
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
+		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2Pivot.initialize(resourceSet2));
+		}
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet2);
+		URI uri = getProjectFileURI("Bug434433.uml");
+		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		assertValidationDiagnostics("Loading", umlResource, validationContext,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint3", "Stereotype1 false"));
+	}
+
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
 		MetaModelManager metaModelManager = new MetaModelManager();
 		try {
