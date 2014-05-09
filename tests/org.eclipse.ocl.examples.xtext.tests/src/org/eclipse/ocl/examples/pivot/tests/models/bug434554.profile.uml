@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_i0i_4Ne1EeOJn9DhJFOkAg" name="Profile" metaclassReference="_nA32YNe1EeOJn9DhJFOkAg" metamodelReference="_i0i_4de1EeOJn9DhJFOkAg">
+  <eAnnotations xmi:id="_xrEIMNe1EeOJn9DhJFOkAg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_xrEvQNe1EeOJn9DhJFOkAg" name="Profile" nsURI="http:///schemas/Profile/_xrBE4Ne1EeOJn9DhJFOkAg/0" nsPrefix="Profile">
+      <eAnnotations xmi:id="_xrEvQde1EeOJn9DhJFOkAg" source="http://www.eclipse.org/emf/2002/Ecore">
+        <details xmi:id="_xrEvQte1EeOJn9DhJFOkAg" key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_xrEvQ9e1EeOJn9DhJFOkAg" name="User">
+        <eAnnotations xmi:id="_xrEvRNe1EeOJn9DhJFOkAg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_pO_TwNe1EeOJn9DhJFOkAg"/>
+        <eOperations xmi:id="_xrEvRde1EeOJn9DhJFOkAg" name="Constraint1">
+          <eAnnotations xmi:id="_xrEvRte1EeOJn9DhJFOkAg" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+            <details xmi:id="_xrEvR9e1EeOJn9DhJFOkAg" key="body" value="false"/>
+          </eAnnotations>
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+          <eParameters xmi:id="_xrEvSde1EeOJn9DhJFOkAg" name="diagnostics">
+            <eAnnotations xmi:id="_xrEvSte1EeOJn9DhJFOkAg" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_xrEvS9e1EeOJn9DhJFOkAg" key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          </eParameters>
+          <eParameters xmi:id="_xrEvTde1EeOJn9DhJFOkAg" name="context">
+            <eAnnotations xmi:id="_xrEvTte1EeOJn9DhJFOkAg" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_xrEvT9e1EeOJn9DhJFOkAg" key="documentation" value="The cache of context-specific information."/>
+            </eAnnotations>
+            <eGenericType xmi:id="_xrEvUNe1EeOJn9DhJFOkAg">
+              <eTypeArguments xmi:id="_xrEvUde1EeOJn9DhJFOkAg">
+                <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+              </eTypeArguments>
+              <eTypeArguments xmi:id="_xrEvUte1EeOJn9DhJFOkAg">
+                <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+              </eTypeArguments>
+              <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_xrEvU9e1EeOJn9DhJFOkAg" name="base_Actor" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Actor"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_nA32YNe1EeOJn9DhJFOkAg" alias="Actor">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Actor"/>
+  </elementImport>
+  <packageImport xmi:id="_i0i_4de1EeOJn9DhJFOkAg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_i0i_4te1EeOJn9DhJFOkAg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_pO_TwNe1EeOJn9DhJFOkAg" name="User">
+    <ownedRule xmi:id="_rUj5INe1EeOJn9DhJFOkAg" name="Constraint1">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_vzBogNe1EeOJn9DhJFOkAg">
+        <language>OCL</language>
+        <body>false</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_qv9-UNe1EeOJn9DhJFOkAg" name="base_Actor" association="_qv-lYNe1EeOJn9DhJFOkAg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Actor"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_qv-lYNe1EeOJn9DhJFOkAg" name="E_User_Actor1" memberEnd="_qv-lYde1EeOJn9DhJFOkAg _qv9-UNe1EeOJn9DhJFOkAg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_qv-lYde1EeOJn9DhJFOkAg" name="extension_User" type="_pO_TwNe1EeOJn9DhJFOkAg" aggregation="composite" association="_qv-lYNe1EeOJn9DhJFOkAg"/>
+  </packagedElement>
+</uml:Profile>

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * Copyright (c) 2010, 2014 E.D.Willink, CEA, and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *  C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 	E.D.Willink - Bug 306079, 322159, 353171
  *  K.Hussey - Bug 331143
+ *  Christian W. Damus (CEA) - Bug 434554
  * 
  * </copyright>
  *
@@ -18,12 +19,18 @@
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import noreflectioncompany.NoreflectioncompanyFactory;
 import noreflectioncompany.NoreflectioncompanyPackage;
@@ -103,11 +110,13 @@ import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
-
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -1258,6 +1267,103 @@ public class DelegatesTest extends PivotTestSuite
 			unloadResourceSet(resourceSet);
 		} finally {
 			metaModelManager.dispose();
+		}
+	}
+
+	public void test_delegateDomainNotLeakedInDynamicProfiles() {
+		CommonOptions.DEFAULT_DELEGATION_MODE
+			.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain
+			.initialize(resourceSet2);
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2Pivot.initialize(resourceSet2));
+		}
+		URI uri = getProjectFileURI("bug434554.uml");
+		Resource umlResource = DomainUtil.nonNullState(resourceSet2
+			.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+
+		// Get a reference to the UML Profile
+		Package umlPackage = (Package) EcoreUtil.getObjectByType(
+			umlResource.getContents(), UMLPackage.Literals.PACKAGE);
+		Profile umlProfile = umlPackage.getAppliedProfile("Profile");
+		final String profileNamespaceURI = umlProfile.getDefinition()
+			.getNsURI();
+
+		final Set<Reference<?>> references = new HashSet<Reference<?>>();
+		final ReferenceQueue<Object> queue = new ReferenceQueue<Object>();
+		references.add(new WeakReference<Profile>(umlProfile, queue));
+
+		// Validate the model. Particular diagnostics don't matter, just that we
+		// executed some OCL on the stereotype
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider
+			.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostician.INSTANCE.validate(umlPackage.getOwnedMember("Actor1")
+			.getStereotypeApplications().get(0), validationContext);
+
+		// Of course, we must remove these hard references
+		umlProfile = null;
+		umlPackage = null;
+
+		// Unload the entire resource set. This should purge all OCL delegate
+		// domains and the UML CacheAdapter
+		for (Resource next : resourceSet2.getResources()) {
+			next.unload();
+		}
+		resourceSet2.getResources().clear();
+
+		// The EPackage references the profile even after it was unloaded
+		resourceSet2.getPackageRegistry().remove(profileNamespaceURI);
+
+		// Try to force garbage collection and dequeue the cleared profile
+		// reference
+		while (!references.isEmpty()) {
+			Reference<?> cleared = null;
+
+			for (int i = 0; (cleared == null) && (i < 3); i++) {
+				collectGarbage();
+
+				try {
+					cleared = queue.remove(1000L);
+				} catch (InterruptedException e) {
+					fail("Test was interrupted.");
+				}
+			}
+
+			if (!references.remove(cleared)) {
+				// Something leaked
+				break;
+			}
+		}
+
+		// Assert that no hard references remain
+		if (!references.isEmpty()) {
+			List<Object> leaked = new ArrayList<Object>(references.size());
+			for (Reference<?> next : references) {
+				Object referent = next.get();
+				if (referent != null) {
+					leaked.add(referent);
+				}
+			}
+
+			assertTrue("Objects leaked: " + leaked, leaked.isEmpty());
+		}
+	}
+
+	void collectGarbage() {
+		// Try a few times to decrease the amount of used heap space
+		final Runtime rt = Runtime.getRuntime();
+
+		Long usedMem = rt.totalMemory() - rt.freeMemory();
+		Long prevUsedMem = usedMem;
+
+		for(int i = 0; (prevUsedMem <= usedMem) && (i < 10); i++) {
+			rt.gc();
+			Thread.yield();
+
+			prevUsedMem = usedMem;
+			usedMem = rt.totalMemory() - rt.freeMemory();
 		}
 	}
 	

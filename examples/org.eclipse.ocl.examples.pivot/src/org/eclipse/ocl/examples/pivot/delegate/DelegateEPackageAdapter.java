@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * Copyright (c) 2010, 2014 E.D.Willink, CEA, and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  * Contributors: 
  *   E.D.Willink - Initial API and implementation
  *   E.D.Willink - Bug 353171
+ *   Christian W. Damus (CEA) - Bug 434554
  *
  * </copyright>
  *
@@ -168,6 +169,12 @@ public class DelegateEPackageAdapter extends AdapterImpl
 	public void setTarget(Notifier newTarget) {
 		EPackage resourceSet = (EPackage) newTarget;
 		super.setTarget(resourceSet);
+	}
+	
+	@Override
+	public void unsetTarget(Notifier oldTarget) {
+		super.unsetTarget(oldTarget);
+		unloadDelegates();
 	}
 
 	public void unloadDelegates() {

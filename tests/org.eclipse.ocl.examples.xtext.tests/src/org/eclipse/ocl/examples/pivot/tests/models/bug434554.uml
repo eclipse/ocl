@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_xrBE4Ne1EeOJn9DhJFOkAg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_xrBE4Ne1EeOJn9DhJFOkAg/0 bug434554.profile.uml#_xrEvQNe1EeOJn9DhJFOkAg">
+  <uml:Model xmi:id="_55SG0Ne1EeOJn9DhJFOkAg" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_55SG0de1EeOJn9DhJFOkAg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Actor" xmi:id="__kn5ANe1EeOJn9DhJFOkAg" name="Actor1"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_9Kzh8Ne1EeOJn9DhJFOkAg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9LF10Ne1EeOJn9DhJFOkAg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="bug434554.profile.uml#_xrEvQNe1EeOJn9DhJFOkAg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="bug434554.profile.uml#_i0i_4Ne1EeOJn9DhJFOkAg"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile:User xmi:id="_Ag3e0Ne2EeOJn9DhJFOkAg" base_Actor="__kn5ANe1EeOJn9DhJFOkAg"/>
+</xmi:XMI>
