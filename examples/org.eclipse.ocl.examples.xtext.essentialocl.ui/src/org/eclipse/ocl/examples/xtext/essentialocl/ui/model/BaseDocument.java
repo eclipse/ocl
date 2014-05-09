@@ -25,7 +25,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.context.EInvocationContext;
 import org.eclipse.ocl.examples.pivot.context.EObjectContext;
+import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.RootCSAttribution;
@@ -63,6 +65,23 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	protected XtextDocumentLocker createDocumentLocker() {
 		myStateAccess = new BaseDocumentLocker();
 		return myStateAccess;
+	}
+
+	@Override
+	public void disposeInput() {
+		modify(new IUnitOfWork<Object, XtextResource>()
+			{
+				public Object exec(XtextResource resource) throws Exception {
+					assert resource != null;
+					AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
+					if (adapter != null) {
+						MetaModelManager metaModelManager = adapter.getMetaModelManager();
+						metaModelManager.dispose();
+					}
+					return null;
+				}
+			});
+		super.disposeInput();
 	}
 
 	protected RootCSAttribution getDocumentAttribution() {
