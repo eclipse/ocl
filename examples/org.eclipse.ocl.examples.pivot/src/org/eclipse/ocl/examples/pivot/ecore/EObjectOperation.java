@@ -100,7 +100,7 @@ public class EObjectOperation extends AbstractOperation
 					EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 					MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
 					ParserContext operationContext = new OperationContext(metaModelManager, null, operation, null);
-					expressionInOCL = operationContext.parse(string);
+					expressionInOCL = operationContext.parse(operation, string);
 				} catch (ParserException e) {
 					throw new InvalidValueException(e, "parse failure", evaluator.getEvaluationEnvironment(), sourceValue, callExp);
 				}

@@ -134,7 +134,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			try {
 				String expression = PivotUtil.getBody(valueSpecification);
 				if (expression != null) {
-					ExpressionInOCL expressionInOCL = parserContext.parse(expression);
+					ExpressionInOCL expressionInOCL = parserContext.parse(constraint, expression);
 					constraint.setSpecification(expressionInOCL);
 					return expressionInOCL;
 				}
@@ -152,7 +152,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		try {
 			String expression = PivotUtil.getBody(specification);
 			if (expression != null) {
-				return parserContext.parse(expression);
+				return parserContext.parse(specification.eContainer(), expression);
 			}
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);

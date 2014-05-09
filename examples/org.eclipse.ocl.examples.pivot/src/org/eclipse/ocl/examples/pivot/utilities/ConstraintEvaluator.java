@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -78,6 +79,10 @@ public abstract class ConstraintEvaluator<T>
 	 * invoking one of handleSuccessResult, handleFailureResult, handleInvalidResult or handleExceptionResult to provide the return value.
 	 */
 	public T evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
+		if ((expression.getContextVariable() == null) && (body instanceof StringLiteralExp)) {
+			@SuppressWarnings("null")@NonNull String stringSymbol = ((StringLiteralExp)body).getStringSymbol();
+			return handleInvalidExpression(stringSymbol);
+		}
 		Object result = null;
 		boolean status = false;
 		try {
@@ -202,6 +207,11 @@ public abstract class ConstraintEvaluator<T>
 	 * Call-back to return the appropriate response for a failed evaluation.
 	 */
 	protected abstract T handleFailureResult(@Nullable Object result);
+
+	/**
+	 * Call-back to return the appropriate response for an unsuccessful parse of the expression.
+	 */
+	protected abstract T handleInvalidExpression(@NonNull String message);
 
 	/**
 	 * Call-back to return the appropriate response for an unsuccessful evaluation with an invalid result.

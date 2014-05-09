@@ -347,6 +347,11 @@ public class UMLConstraintLocator extends AbstractConstraintLocator
 						int severity = getConstraintResultSeverity(result);
 						return new BasicDiagnostic(severity, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 					}
+
+					@Override
+					protected Diagnostic handleInvalidExpression(@NonNull String message) {
+						return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
+					}
 	
 					@Override
 					protected Diagnostic handleInvalidResult(@NonNull InvalidValueException e) {

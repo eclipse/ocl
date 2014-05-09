@@ -73,7 +73,7 @@ public class OCLHelperImpl implements OCLHelper
 			throw new IllegalStateException("Undefined contextOperation");
 		}
 		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, null);
-		return parserContext.parse(expression);
+		return parserContext.parse(contextOperation, expression);
 	}
 
 	public @NonNull ExpressionInOCL createDerivedValueExpression(@NonNull String expression) throws ParserException {
@@ -82,7 +82,7 @@ public class OCLHelperImpl implements OCLHelper
 			throw new IllegalStateException("Undefined contextProperty");
 		}
 		ParserContext parserContext = new PropertyContext(metaModelManager, null, contextProperty);
-		return parserContext.parse(expression);
+		return parserContext.parse(contextProperty, expression);
 	}
 
 	public @NonNull ExpressionInOCL createInvariant(@NonNull String expression) throws ParserException {
@@ -91,25 +91,25 @@ public class OCLHelperImpl implements OCLHelper
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
 		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier);
-		return parserContext.parse(expression);
+		return parserContext.parse(contextClassifier, expression);
 	}
 
 	public @NonNull ExpressionInOCL createPostcondition(@NonNull String expression) throws ParserException {
-		Operation contextOperation = getEnvironment().getContextOperation();
+		Operation contextOperation = getEnvironment().getContextOperation();  // FIXME need contextConstraint
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
 		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, Environment.RESULT_VARIABLE_NAME);
-		return parserContext.parse(expression);
+		return parserContext.parse(contextOperation, expression);
 	}
 
 	public @NonNull ExpressionInOCL createPrecondition(@NonNull String expression) throws ParserException {
-		Operation contextOperation = getEnvironment().getContextOperation();
+		Operation contextOperation = getEnvironment().getContextOperation();  // FIXME need contextConstraint
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
 		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, null);
-		return parserContext.parse(expression);
+		return parserContext.parse(contextOperation, expression);
 	}
 
 	public @NonNull ExpressionInOCL createQuery(@NonNull String expression) throws ParserException {
@@ -121,7 +121,7 @@ public class OCLHelperImpl implements OCLHelper
 		else {
 			parserContext = new ModelContext(metaModelManager, null);
 		}
-		return parserContext.parse(expression);
+		return parserContext.parse(contextClassifier, expression);
 	}
 
 	protected @NonNull ExpressionInOCL createSpecification(@NonNull String expression) throws ParserException {
@@ -130,7 +130,7 @@ public class OCLHelperImpl implements OCLHelper
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
 		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier);
-		return parserContext.parse(expression);
+		return parserContext.parse(contextClassifier, expression);
 	}
 	
 	public @Nullable Property getContextProperty() {

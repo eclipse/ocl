@@ -212,6 +212,11 @@ public class PivotEObjectValidator implements EValidator
 				}
 
 				@Override
+				protected Diagnostic handleInvalidExpression(@NonNull String message) {
+					return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
+				}
+
+				@Override
 				protected Diagnostic handleInvalidResult(@NonNull InvalidValueException e) {
 					String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 						getConstraintTypeName(), getConstraintName(), getObjectLabel());

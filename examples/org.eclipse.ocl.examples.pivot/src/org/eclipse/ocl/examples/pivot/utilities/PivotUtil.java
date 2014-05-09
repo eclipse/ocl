@@ -778,8 +778,8 @@ public class PivotUtil extends DomainUtil
 
 	/**
 	 * Return an OCL AST from a string in the context of a NamedElement. If it is necessary
-	 * to parse OCL concrete syntax and errors result an ExpressionInOCL is returned with a null
-	 * contextVariable, a null bodyExpression, and a StringLiteral messageExpression
+	 * to parse OCL concrete syntax and errors result, an ExpressionInOCL is returned with a null
+	 * contextVariable, a null bodyExpression, and a StringLiteral bodyExpression
 	 * containing the error messages.
 	 */
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) {
@@ -800,7 +800,7 @@ public class PivotUtil extends DomainUtil
 			}
 			ExpressionInOCL expressionInOCL = null;
 			try {				
-				expressionInOCL = parserContext.parse(expression);
+				expressionInOCL = parserContext.parse(contextElement, expression);
 			} catch (ParserException e) {
 				String message = e.getMessage();
 				if (message == null) {
@@ -1213,10 +1213,7 @@ public class PivotUtil extends DomainUtil
 
 	/**
 	 * Return an OCL AST from a string in the context of a NamedElement. If it is necessary
-	 * to parse OCL concrete syntax and errors result an ExpressionInOCL is returned with a null
-	 * contextVariable, a null bodyExpression, and a StringLiteral messageExpression
-	 * containing the error messages.
-	 * @throws ParserException 
+	 * to parse OCL concrete syntax and errors result, a ParserException is thrown.
 	 */
 	public static @NonNull ExpressionInOCL getValidExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) throws ParserException {
 			Resource resource = contextElement.eResource();
@@ -1226,7 +1223,7 @@ public class PivotUtil extends DomainUtil
 			if (parserContext == null) {
 				throw new ParserException("Unknown context type for " + contextElement.eClass().getName());
 			}
-			ExpressionInOCL expressionInOCL = parserContext.parse(expression);
+			ExpressionInOCL expressionInOCL = parserContext.parse(contextElement, expression);
 			return expressionInOCL;
 	}
 

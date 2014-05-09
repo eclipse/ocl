@@ -94,6 +94,11 @@ public class OCLValidationDelegate implements ValidationDelegate
 		}
 
 		@Override
+		protected Boolean handleInvalidExpression(@NonNull String message) {
+			throw new OCLDelegateException(new EvaluationException(message));
+		}
+
+		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
@@ -120,10 +125,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 		this.eClassifier = classifier;
 	}
 
-	protected boolean check(@NonNull EvaluationVisitor evaluationVisitor, @NonNull String constraintName, @NonNull ExpressionInOCL query) {
-		ConstraintEvaluator<Boolean> constraintEvaluator = new CheckingConstraintEvaluator(eClassifier, query);
-		return constraintEvaluator.evaluate(evaluationVisitor);
-	}
+//	protected boolean check(@NonNull EvaluationVisitor evaluationVisitor, @NonNull String constraintName, @NonNull ExpressionInOCL query) {
+//		ConstraintEvaluator<Boolean> constraintEvaluator = new CheckingConstraintEvaluator(eClassifier, query);
+//		return constraintEvaluator.evaluate(evaluationVisitor);
+//	}
 
 	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
 		ExpressionInOCL query = null;

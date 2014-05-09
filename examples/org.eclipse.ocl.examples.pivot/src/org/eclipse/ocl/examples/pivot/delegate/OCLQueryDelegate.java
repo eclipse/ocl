@@ -189,7 +189,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	 */
 	public void prepare() throws InvocationTargetException {
 		try {
-			specification = parserContext.parse(expression);
+			specification = parserContext.parse(parserContext.getClassContext(), expression);
 		} catch (Exception e) {
 			throw new InvocationTargetException(e);
 		}

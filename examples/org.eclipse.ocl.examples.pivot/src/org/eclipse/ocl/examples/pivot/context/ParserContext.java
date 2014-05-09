@@ -16,6 +16,7 @@ package org.eclipse.ocl.examples.pivot.context;
 
 import java.io.IOException;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -73,6 +74,21 @@ public interface ParserContext // extends Adapter
 	 * Create an Abstract Syntax ExpressionInOCL containing the parsed expression.
 	 * 
 	 * @throws ParserException if parsing fails
+	 * @DEprected specify owner/owningList for use in diagnostics
 	 */
+	@Deprecated
 	@NonNull ExpressionInOCL parse(@NonNull String expression) throws ParserException;
+	
+	/**
+	 * Create an Abstract Syntax ExpressionInOCL containing the parsed expression on behalf of a potential owner.
+	 * <p>
+	 * This an invariant/precondition may specify its constraint as the owner
+	 * <br>
+	 * an operation body may specify the operation as the owner
+	 * <p>
+	 * The owner should be non-null but a null value is tolerated for deprecated compatibility.
+	 * 
+	 * @throws ParserException if parsing fails
+	 */
+	@NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException;
 }

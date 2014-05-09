@@ -548,14 +548,14 @@ public class DelegatesTest extends PivotTestSuite
 		//	Syntax error in expression
 		//
 		delegate = factory.createQueryDelegate(companyClass, null, "n=");
-		executeWithException(delegate, amy, null, getErrorsInMessage("'n='") + 
-			DomainUtil.bind("1: no viable alternative following input ''{0}''", "'='"));
+		executeWithException2(delegate, amy, null, getErrorsInMessage("company", "Company", "n=") + 
+			DomainUtil.bind("1: no viable alternative following input ''{0}''", "="));
 		//
 		//	Undeclared variable
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
-		executeWithException(delegate, acme, null, getErrorsInMessage("'" + badName + "'") +
-			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "''"));
+		executeWithException2(delegate, acme, null, getErrorsInMessage("company", "Company", badName) +
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, badName, ""));
 		//
 		//	Definition of undeclared variable
 		//
@@ -668,7 +668,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
-			getErrorsInMessage("gh##jk") +
+			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToLexicalError", "gh##jk") +
 			DomainUtil.bind("1: no viable alternative at input ''{0}''", "#"));
 	}
 
@@ -676,7 +676,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
-			getErrorsInMessage("'5' and 6") +
+			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToSemanticError", "'5' and 6") +
 			DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "and", "String", "UnlimitedNatural"));
 	}
 
@@ -684,7 +684,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
-			getErrorsInMessage("invalid null") +
+			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToSyntacticError", "invalid null") +
 			DomainUtil.bind("1: extraneous input ''{0}'' expecting EOF", "null"));
 	}
 
@@ -932,21 +932,21 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToLexicalError",
-			getErrorsInMessage("@@") + DomainUtil.bind("1: no viable alternative at input ''{0}''", "@"));
+			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToLexicalError", "@@") + DomainUtil.bind("1: no viable alternative at input ''{0}''", "@"));
 	}
 
 	public void test_operationParsingToSemanticError() throws InvocationTargetException {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("self->at(1)") + DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set(modelWithErrors::BadClass)", "1"));
+			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToSemanticError", "self->at(1)") + DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set(modelWithErrors::BadClass)", "1"));
 	}
 
 	public void test_operationParsingToSyntacticError() throws InvocationTargetException {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
-			getErrorsInMessage("let in") + DomainUtil.bind("1: no viable alternative at input ''{0}''", "in"));
+			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToSyntacticError", "let in") + DomainUtil.bind("1: no viable alternative at input ''{0}''", "in"));
 	}
 
 	/**
@@ -1413,6 +1413,17 @@ public class DelegatesTest extends PivotTestSuite
 		}
 	}
 
+	public void executeWithException2(QueryDelegate delegate, Object target, Map<String, Object> bindings, String expectedMessage) {
+		try {
+			@SuppressWarnings("unused")
+			Object object = delegate.execute(target, bindings);
+			fail("Expected to catch InvocationTargetException: " + expectedMessage);
+		} catch (InvocationTargetException e) {
+			Throwable cause = e.getCause();
+			assertEquals(cause.getClass().getSimpleName() + ": ", expectedMessage, cause.getLocalizedMessage());
+		}
+	}
+
 	<T> EList<T> list(T... element) {
 		return new BasicEList<T>(Arrays.asList(element));
 	}
@@ -1510,13 +1521,13 @@ public class DelegatesTest extends PivotTestSuite
 		else if (size != 1) {			// EMF 2.10.0M2 and earlier
 			fail("Validation of '" + constraintName + "' child count: " + size);
 		}
-		String message = getErrorsInMessage(source);
+		String message = getErrorsInMessage(eObject.eClass().getName(), constraintName, source);
 		message += DomainUtil.bind(messageTemplate, bindings);
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, data.get(0));
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
-	protected String getErrorsInMessage(String source) {
-		return source != null ? (DomainUtil.bind(OCLMessages.ErrorsInResource, source) + "\n") : "";
+	protected String getErrorsInMessage(String packageName, String typeName, String source) {
+		return source != null ? (DomainUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, packageName, typeName, source) + "\n") : "";
 	}
 }

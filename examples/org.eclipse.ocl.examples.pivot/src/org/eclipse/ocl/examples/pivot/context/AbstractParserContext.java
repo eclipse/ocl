@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -113,11 +114,19 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		language.add(PivotConstants.OCL_LANGUAGE);
 	}
 
+	@Deprecated
 	public @NonNull ExpressionInOCL parse(@NonNull String expression) throws ParserException {
+		return parse(null, expression);
+	}
+
+	public @NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException {
 		BaseResource resource = null;
 		try {
 			resource = createBaseResource(expression);
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
+			String childName = owner instanceof Nameable ? ((Nameable)owner).getName() : "<unknown>";
+			EObject eContainer = owner != null ? owner.eContainer() : null;
+			String parentName = eContainer instanceof Nameable ? ((Nameable)eContainer).getName() : "<unknown>";
+			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, parentName, childName, expression), resource);
 			ExpressionInOCL expressionInOCL = getExpression(resource);
 			PivotUtil.setBody(expressionInOCL, expression);
 			return expressionInOCL;

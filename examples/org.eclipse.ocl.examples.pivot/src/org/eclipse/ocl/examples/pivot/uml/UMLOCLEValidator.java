@@ -183,11 +183,21 @@ public class UMLOCLEValidator implements EValidator
 											}
 											return Boolean.FALSE;
 										}
+
+										@Override
+										protected Boolean handleInvalidExpression(@NonNull String message) {
+											if (diagnostics != null) {
+												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
+													0, message.replace("\n", " - "), new Object [] { extension.eContainer() }));
+											}
+											return Boolean.FALSE;
+										}
 	
 										@Override
 										protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 											if (diagnostics != null) {
-												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+													getConstraintTypeName(), getConstraintName(), getObjectLabel());
 												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 													0, message,  new Object[] { extension.eContainer() }));
 											}
@@ -421,9 +431,19 @@ public class UMLOCLEValidator implements EValidator
 				}
 
 				@Override
+				protected Boolean handleInvalidExpression(@NonNull String message) {
+					if (diagnostics != null) {
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
+							0, message, new Object [] { instance }));
+					}
+					return Boolean.FALSE;
+				}
+
+				@Override
 				protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 					if (diagnostics != null) {
-						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+							getConstraintTypeName(), getConstraintName(), getObjectLabel());
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { instance }));
 					}
