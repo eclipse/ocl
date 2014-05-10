@@ -963,7 +963,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitOperation(@NonNull Operation operation) {
-		appendQualifiedName(operation.getOwningType(), ".", operation);
+		appendQualifiedName(operation.getOwningType(), "::", operation);
 		appendTemplateBindings(operation.getTemplateBinding());
 		appendTemplateSignature(operation.getOwnedTemplateSignature());
 		append("(");
@@ -1065,7 +1065,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitProperty(@NonNull Property property) {
-		appendQualifiedName(property.getOwningType(), ".", property);
+		appendQualifiedName(property.getOwningType(), "::", property);
 		return null;
 	}
 

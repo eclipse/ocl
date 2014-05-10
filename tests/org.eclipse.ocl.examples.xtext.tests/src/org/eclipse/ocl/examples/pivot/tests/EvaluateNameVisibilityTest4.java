@@ -587,8 +587,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertQueryEquals(testObjectT3a, "T3a::op7", "self.op7()");
 		assertSemanticErrorQuery2(pivotTypeT3a, "self.op8()", OCLMessages.UnresolvedOperation_ERROR_, "T3a::op8",  "Bug411154");
 		assertSemanticErrorQuery2(pivotTypeT3a, "self.op9()", "Ambiguous resolution:\n" +
-				"\tOperation : Bug411154::T2a.op9() : String\n" +
-				"\tOperation : Bug411154::T2b.op9() : String");
+				"\tOperation : Bug411154::T2a::op9() : String\n" +
+				"\tOperation : Bug411154::T2b::op9() : String");
 		//
 		assertQueryEquals(testObjectDomain, "T2a::op1", "t1_2a.op1()");
 		assertSemanticErrorQuery2(pivotTypeDomain, "t1_2a.op2()", OCLMessages.UnresolvedOperation_ERROR_, "T1::op2",  "Bug411154");
@@ -607,7 +607,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op3()", OCLMessages.UnresolvedOperation_ERROR_, "T1::op3",  "Bug411154");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3b.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t1_3b.op5()");
-		assertQueryInvalid(testObjectDomain, "t1_3b.op6()", "Failed to evaluate Bug411154::T1.op6() : String", UnsupportedOperationException.class);
+		assertQueryInvalid(testObjectDomain, "t1_3b.op6()", "Failed to evaluate Bug411154::T1::op6() : String", UnsupportedOperationException.class);
 		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op7()", OCLMessages.UnresolvedOperation_ERROR_, "T1::op7",  "Bug411154");
 		//
 		assertQueryEquals(testObjectDomain, "T3a::op1", "t1_4.op1()");

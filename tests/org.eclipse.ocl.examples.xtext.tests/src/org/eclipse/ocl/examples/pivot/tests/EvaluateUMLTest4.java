@@ -97,7 +97,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 		Type contextType = metaModelManager.getPivotOfEcore(Type.class, c1Class);
 		assert contextType != null;
 		assertSemanticErrorQuery2(contextType, "self.oclIsInState(S2b)", OCLMessages.UnresolvedProperty_ERROR_, "S2b", "Model::C1");	
-		assertQueryInvalid(context, "self.oclIsInState(S1a)", "Failed to evaluate OclAny.oclIsInState(OclState) : Boolean", UnsupportedOperationException.class);	
+		assertQueryInvalid(context, "self.oclIsInState(S1a)", "Failed to evaluate OclAny::oclIsInState(OclState) : Boolean", UnsupportedOperationException.class);	
 	}
 
 	public EObject doLoadUML(OCL ocl, String stem, String fragment) throws IOException {

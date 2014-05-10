@@ -128,7 +128,7 @@ public class ValidateTests extends AbstractValidateTests
 		OCL ocl1 = OCL.newInstance();
 		MetaModelManager metaModelManager1 = ocl1.getMetaModelManager();
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester.total"));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
 		Object property = diagnostics.get(0).getData().get(0);
 		assertEquals(PivotPackage.Literals.PROPERTY, ((EObject)property).eClass());
 		ModelElementCS csElement = ElementUtil.getCsElement((Element) property);
