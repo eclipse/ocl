@@ -197,7 +197,7 @@ public class UMLOCLEValidator implements EValidator
 										protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 											if (diagnostics != null) {
 												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-													getConstraintTypeName(), getConstraintName(), getObjectLabel());
+													getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 													0, message,  new Object[] { extension.eContainer() }));
 											}
@@ -412,7 +412,7 @@ public class UMLOCLEValidator implements EValidator
 				@Override
 				protected Boolean handleExceptionResult(@NonNull Throwable e) {
 					if (diagnostics != null) {
-						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel());
+						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { instance }));
 					}
@@ -443,7 +443,7 @@ public class UMLOCLEValidator implements EValidator
 				protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
 					if (diagnostics != null) {
 						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-							getConstraintTypeName(), getConstraintName(), getObjectLabel());
+							getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { instance }));
 					}

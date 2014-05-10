@@ -38,7 +38,9 @@ import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -77,7 +79,7 @@ public class ValidateTests extends AbstractValidateTests
 		ocl2.dispose();
 	}
 
-	public void testValidate_Bug417062_uml() throws IOException, InterruptedException {
+	public void testValidate_Bug417062_uml() throws IOException, InterruptedException, ParserException {
 //		EcorePlugin.ExtensionProcessor.process(getClass().getClassLoader());
 //		UMLPlugin.ExtensionProcessor.process(getClass().getClassLoader());
 //		new UMLPlugin.BodySupportRegistryReader().readRegistry();
@@ -88,20 +90,22 @@ public class ValidateTests extends AbstractValidateTests
 		Resource umlResource = doLoadUML(ocl, "Bug417062");
 		org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model) umlResource.getContents().get(0);
 		org.eclipse.uml2.uml.Class book = (org.eclipse.uml2.uml.Class) model.getOwnedType("Book");
-//		org.eclipse.uml2.uml.Property price = book.getOwnedAttribute("price", null);
+		org.eclipse.uml2.uml.Property price = book.getOwnedAttribute("price", null);
 		org.eclipse.uml2.uml.Constraint constraint = book.getOwnedRules().get(0);
 //		org.eclipse.uml2.uml.InstanceSpecification validBook = (org.eclipse.uml2.uml.InstanceSpecification) model.getOwnedMember("1) Valid book");
 		org.eclipse.uml2.uml.InstanceSpecification invalidBook = (org.eclipse.uml2.uml.InstanceSpecification) model.getOwnedMember("2) Invalid book");
 		org.eclipse.uml2.uml.InstanceSpecification partialBook = (org.eclipse.uml2.uml.InstanceSpecification) model.getOwnedMember("3) Book with undefined price");
 		org.eclipse.uml2.uml.InstanceSpecification confusingBook = (org.eclipse.uml2.uml.InstanceSpecification) model.getOwnedMember("4) Opaque expressions and other things");
-		org.eclipse.uml2.uml.Slot price = confusingBook.getSlots().get(0);
-		org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) price.getOwnedElements().get(0);
-		
+		org.eclipse.uml2.uml.Slot slot = confusingBook.getSlots().get(0);
+		org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) slot.getOwnedElements().get(0);
+		Property asPrice = ocl.getMetaModelManager().getPivotOf(Property.class, price);
 		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
 //			DomainUtil.bind(UMLMessages.BodyLanguageSupportError, IllegalStateException.class.getName() + ": " + NLS.bind(UMLMessages.MissingBodyLanguageSupport, "Natural language"), DomainUtil.getLabel(opaqueExpression)),
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(invalidBook)),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(partialBook)),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(confusingBook)),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(partialBook),
+				DomainUtil.bind(EvaluatorMessages.TypedValueRequired, "Real", "OclVoid")),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(confusingBook),
+				"Failed to evaluate " + asPrice),
 			DomainUtil.bind(OCLMessages.ParsingError, DomainUtil.getLabel(opaqueExpression), "No containing namespace for 3 + 0.4"));
 		ocl.dispose();
 	}

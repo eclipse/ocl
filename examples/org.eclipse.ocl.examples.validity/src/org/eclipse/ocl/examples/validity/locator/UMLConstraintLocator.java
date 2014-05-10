@@ -356,7 +356,7 @@ public class UMLConstraintLocator extends AbstractConstraintLocator
 					@Override
 					protected Diagnostic handleInvalidResult(@NonNull InvalidValueException e) {
 						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-							getConstraintTypeName(), getConstraintName(), getObjectLabel());
+							getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 						return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 					}
 	
