@@ -10,6 +10,7 @@
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
+import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +68,27 @@ import org.eclipse.uml2.uml.util.UMLValidator;
  */
 public class UMLOCLEValidator implements EValidator
 {
+	protected static final class WeakOCLReference extends WeakReference<OCL>
+	{
+		protected final @NonNull OCL ocl;
+		
+		protected WeakOCLReference(@NonNull OCL ocl) {
+			super(ocl);
+			this.ocl = ocl;
+		}
+
+		@Override
+		public void finalize() {
+			new Thread("OCL-Finalizer")
+			{
+				@Override
+				public void run() {
+					ocl.dispose();
+				}
+			}.start();
+		}
+	}
+
 	public static final @NonNull UMLOCLEValidator INSTANCE = new UMLOCLEValidator(true);
 	public static final @NonNull UMLOCLEValidator NO_NEW_LINES = new UMLOCLEValidator(false);
 	public static final @NonNull TracingOption VALIDATE_INSTANCE = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/instance");
@@ -102,11 +124,19 @@ public class UMLOCLEValidator implements EValidator
 		this.mayUseNewLines = mayUseNewLines;
 	}
 
-	protected OCL getOCL(Map<Object, Object> context) {
-		OCL ocl = (OCL) context.get(OCL.class);
+	/**
+	 * Return the OCL context for the validation, caching the created value in the validation context for re-use by
+	 * further validations. The cached reference is weak to ensure that the OCL context is disposed once no longer in use.
+	 */
+	protected OCL getOCL(@NonNull Map<Object, Object> context) {
+		OCL ocl = null;
+		Object oclRef = context.get(WeakOCLReference.class);
+		if (oclRef instanceof WeakOCLReference) {
+			ocl = ((WeakOCLReference)oclRef).get();
+		}
 		if (ocl == null) {
 			ocl = OCL.newInstance();
-			context.put(OCL.class, ocl);
+			context.put(WeakOCLReference.class, new WeakOCLReference(ocl));
 		}
 		return ocl;
 	}
@@ -116,6 +146,7 @@ public class UMLOCLEValidator implements EValidator
 	}
 
 	public boolean validate(EClass eClass, final EObject eObject, final DiagnosticChain diagnostics, Map<Object, Object> context) {
+		assert context != null;
 		if (eObject instanceof org.eclipse.uml2.uml.OpaqueExpression) {
 			org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)eObject;
 			@SuppressWarnings("null")@NonNull List<String> languages = opaqueExpression.getLanguages();
