@@ -25,11 +25,13 @@ public interface AutoIPivotNameResolver {
 	 * @return
 	 */
 	@NonNull
-	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement, 
+		@NonNull EStructuralFeature lookupFeature,
 		@NonNull String name, boolean isQualified);
 	
 	@NonNull
-	public <C extends Element> AutoIUnnamedLookupResult computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public <C extends Element> AutoIUnnamedLookupResult computeLookup(@NonNull Element lookupElement,
+		@NonNull EStructuralFeature lookupFeature,
 		boolean isQualified);
 	
 	/**

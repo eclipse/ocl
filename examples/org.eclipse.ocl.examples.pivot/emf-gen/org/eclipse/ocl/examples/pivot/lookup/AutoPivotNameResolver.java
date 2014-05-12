@@ -22,9 +22,10 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	public AutoPivotNameResolver(@NonNull MetaModelManager mmManager) {
 		this.mmManager = mmManager;
 	}
-		
+	
 	@NonNull
-	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement,
+		@NonNull EStructuralFeature lookupFeature,
 		@NonNull String name, boolean isQualified) {
 		AutoIPivotLookupContext context = createLookupContext(lookupFeature, lookupElement);
 		AutoIPivotNamedLookupEnvironment<C> env = createLookupEnvironment(mmManager, lookupFeature, name);		
@@ -65,20 +66,23 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	}
 		
 	@NonNull
-	protected <C extends Element> AutoIPivotLookupEnvironment<C> executeVisitor(@NonNull Element element, @NonNull AutoIPivotLookupEnvironment<C> env, 
+	protected <C extends Element> AutoIPivotLookupEnvironment<C> executeVisitor(@NonNull Element element, 
+		@NonNull AutoIPivotLookupEnvironment<C> env, 
 		@NonNull AutoIPivotLookupContext context) { 
 		return DomainUtil.nonNullState(element.accept(createLookupVisitor(mmManager, env, context)));
 	}
 	
 	@NonNull
-	protected <C extends Element> AutoINamedLookupResult<C> computeNamedResult(@NonNull Element element, @NonNull AutoIPivotNamedLookupEnvironment<C> env, 
+	protected <C extends Element> AutoINamedLookupResult<C> computeNamedResult(@NonNull Element element, 
+		@NonNull AutoIPivotNamedLookupEnvironment<C> env, 
 		@NonNull AutoIPivotLookupContext context) { 
 		AutoIPivotLookupEnvironment<C> env2= executeVisitor(element, env, context);		
 		return ((AutoIPivotNamedLookupEnvironment<C>)env2).resolveDuplicates();
 	}		
 	
 	@NonNull
-	protected <C extends Element> AutoIUnnamedLookupResult computeUnnamedResult(@NonNull Element element, @NonNull AutoIPivotUnnamedLookupEnvironment<C> env, 
+	protected <C extends Element> AutoIUnnamedLookupResult computeUnnamedResult(@NonNull Element element, 
+		@NonNull AutoIPivotUnnamedLookupEnvironment<C> env, 
 		@NonNull AutoIPivotLookupContext context) { 
 		AutoIPivotLookupEnvironment<C> env2 = executeVisitor(element, env, context);		
 		return ((AutoIPivotUnnamedLookupEnvironment<C>)env2).getResult();
@@ -103,6 +107,4 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 			@NonNull VariableExp variableExp) {
 		throw new IllegalArgumentException("No auto-generation implemented");
 	}
-
-
 }
