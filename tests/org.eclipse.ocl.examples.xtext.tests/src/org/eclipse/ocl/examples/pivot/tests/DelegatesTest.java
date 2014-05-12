@@ -60,10 +60,12 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -579,6 +581,22 @@ public class DelegatesTest extends PivotTestSuite
 		delegate.prepare();
 		executeWithException(delegate, acme, okBindings,
 			OCLMessages.MismatchedArgumentType_ERROR_, okName, "UnlimitedNatural", "String");
+	}
+
+	public @Nullable EObject getStereotypeApplication(@NonNull org.eclipse.uml2.uml.Element umlElement, @NonNull org.eclipse.uml2.uml.Stereotype umlStereotype) {
+		for (EObject eObject : umlElement.eResource().getContents()) {
+			if (DomainUtil.safeEquals(eObject.eClass().getName(), umlStereotype.getName())) {
+				for (EStructuralFeature eFeature : eObject.eClass().getEAllStructuralFeatures()) {
+					if ((eFeature instanceof EReference) && !eFeature.isMany()) {
+						Object object = eObject.eGet(eFeature);
+						if (object == umlElement) {
+							return eObject;
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	public void test_allInstances() {
@@ -1182,7 +1200,8 @@ public class DelegatesTest extends PivotTestSuite
 		URI uri = getProjectFileURI("Bug408990.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
-		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", "Stereotype1 6"));
+		String label = EcoreUtils.qualifiedNameFor(umlResource.getContents().get(1));
+		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
 	}
 
 	public void test_tutorial_umlValidation_with_pivot_408990() {
@@ -1196,7 +1215,13 @@ public class DelegatesTest extends PivotTestSuite
 		URI uri = getProjectFileURI("Bug408990.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
-		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", "Stereotype1 6"));
+		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
+		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
+		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("Stereotype1");
+		assert (umlClass1 != null) && (umlStereotype1 != null);
+		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
+		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
 	}
 
 	public void test_tutorial_umlValidation_with_pivot_432920() {
@@ -1214,20 +1239,34 @@ public class DelegatesTest extends PivotTestSuite
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
+		org.eclipse.uml2.uml.Property umlAttribute1 = umlClass1.getOwnedAttribute("Attribute1", null);
+		org.eclipse.uml2.uml.ValueSpecification lowerValue = umlAttribute1.getLowerValue();
+		org.eclipse.uml2.uml.ValueSpecification upperValue = umlAttribute1.getUpperValue();
+		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
+		org.eclipse.uml2.uml.Stereotype umlMyClassExtension = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("MyClassExtension");
+		org.eclipse.uml2.uml.Stereotype umlMyPropertyExtension = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("MyPropertyExtension");
+		assert (lowerValue != null) && (upperValue != null) && (umlMyClassExtension != null) && (umlMyPropertyExtension != null);
+		String string1 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(upperValue, umlMyClassExtension));
+		String string2 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(upperValue, umlMyPropertyExtension));
+		String string3 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(lowerValue, umlMyClassExtension));
+		String string4 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(lowerValue, umlMyPropertyExtension));
+		String string5 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlAttribute1, umlMyPropertyExtension));
 		assertValidationDiagnostics("Loading", umlResource, validationContext,
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension",
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", string1,
+				  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Class")),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", string2,
+				  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Property")),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", string3,
+				  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Class")),
+			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", string4,
 			  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Property")),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", "My Class Extension",
-			  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Class")),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension",
-			  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Property")),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", "My Class Extension",
-			  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Class")),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint1", "My Property Extension"),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", "My Property Extension"),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", "My Property Extension"));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint1", string5),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", string2),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", string4));
 	}
-
+	
 	public void test_tutorial_umlValidation_with_pivot_434433() {
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
@@ -1243,8 +1282,14 @@ public class DelegatesTest extends PivotTestSuite
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
+		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
+		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("Stereotype1");
+		assert (umlClass1 != null) && (umlStereotype1 != null);
+		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
 		assertValidationDiagnostics("Loading", umlResource, validationContext,
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint3", "Stereotype1 false"));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint3", label));
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
@@ -1502,7 +1547,8 @@ public class DelegatesTest extends PivotTestSuite
 		Diagnostic diagnostic = diagnostics.get(0);
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		Object objectLabel = DomainUtil.getLabel(eObject);
+		Object objectLabel = EcoreUtils.qualifiedNameFor(eObject);
+//		Object objectLabel = DomainUtil.getLabel(eObject);
 		String message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 			eObject.eClass().getName(), constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());

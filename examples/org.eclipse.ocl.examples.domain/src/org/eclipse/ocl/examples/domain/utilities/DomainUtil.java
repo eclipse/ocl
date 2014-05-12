@@ -21,7 +21,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
@@ -32,12 +31,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.elements.DomainIteration;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
@@ -50,13 +47,7 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
 
 public class DomainUtil
-{	
-	private static final AdapterFactory reflectiveAdapterFactory =
-			new ReflectiveItemProviderAdapterFactory();
-
-	private static final AdapterFactory defaultAdapterFactory =
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
+{
 	private static final String maxIntValue = Integer.toString(Integer.MAX_VALUE);
 	private static final int maxIntSize = maxIntValue.length();	
 	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
@@ -375,14 +366,7 @@ public class DomainUtil
 				return text;
 			}
 		}
-		IItemLabelProvider labeler = (IItemLabelProvider) defaultAdapterFactory.adapt(eObject, IItemLabelProvider.class);		
-		if (labeler == null) {
-			labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(eObject, IItemLabelProvider.class);
-		}		
-		if ((labeler != null) && (eObject != null)) {
-			return labeler.getText(eObject);
-		}
-		return String.valueOf(eObject);
+		return EcoreUtils.qualifiedNameFor(eObject);
 	}
 
 	public static String getIndentation(int depth, @NonNull String string) {

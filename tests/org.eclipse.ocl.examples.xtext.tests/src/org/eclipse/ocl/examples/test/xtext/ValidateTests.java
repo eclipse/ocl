@@ -249,9 +249,9 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		Resource resource = DomainUtil.nonNullState(resourceSet2.getResource(xmiURI, true));
 		assertValidationDiagnostics("Without Complete OCL", resource, 
-			"The 'SufficientCopies' constraint is violated on 'Book b2'",
-			"The 'AtMostTwoLoans' constraint is violated on 'Member m3'",
-			"The 'UniqueLoans' constraint is violated on 'Member m3'");
+			"The 'SufficientCopies' constraint is violated on 'Library lib::Book b2'",
+			"The 'AtMostTwoLoans' constraint is violated on 'Library lib::Member m3'",
+			"The 'UniqueLoans' constraint is violated on 'Library lib::Member m3'");
 		//
 		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet2) {
 			@Override
@@ -265,10 +265,10 @@ public class ValidateTests extends AbstractValidateTests
 		helper.installPackages();
 		
 		assertValidationDiagnostics("Without Complete OCL", resource, 
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "SufficientCopies", "Book b2"),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Member m3"),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Member m3"),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Book b2"));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "SufficientCopies", "Library lib::Book b2"),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Library lib::Member m3"),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Library lib::Member m3"),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Library lib::Book b2"));
 		adapter.getMetaModelManager().dispose();
 	}
 

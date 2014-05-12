@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -255,7 +256,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 		{
 			@Override
 			protected String getObjectLabel() {
-				return DomainUtil.getLabel(eClassifier, value, context);
+				return EcoreUtils.qualifiedNameFor(value);
+//				return DomainUtil.getLabel(eClassifier, value, context);
 			}
 
 			@Override

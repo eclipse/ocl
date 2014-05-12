@@ -24,15 +24,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -68,6 +69,125 @@ import org.eclipse.uml2.uml.util.UMLValidator;
  */
 public class UMLOCLEValidator implements EValidator
 {
+	/**
+	 * ConstraintEvaluatorWithoutDiagnostics provides the minimal ConstraintEvaluator support for
+	 * use when no diagnostics are required.
+	 */
+	public static class ConstraintEvaluatorWithoutDiagnostics extends ConstraintEvaluator<Boolean>
+	{
+		public ConstraintEvaluatorWithoutDiagnostics(@NonNull ExpressionInOCL expression) {
+			super(expression);
+		}
+
+		@Override
+		protected String getObjectLabel() {
+			throw new UnsupportedOperationException(); // Cannot happen;
+		}
+
+		@Override
+		protected Boolean handleExceptionResult(@NonNull Throwable e) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleFailureResult(@Nullable Object result) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidExpression(@NonNull String message) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleSuccessResult() {
+			return Boolean.TRUE;
+		}
+	}
+
+	/**
+	 * ConstraintEvaluatorWithoutDiagnostics provides the richer ConstraintEvaluator support for
+	 * use when diagnostics are required.
+	 */
+	public static class ConstraintEvaluatorWithDiagnostics extends ConstraintEvaluator<Boolean>
+	{
+		protected final @NonNull EObject eObject;
+		protected final @NonNull DiagnosticChain diagnostics;
+		protected final @NonNull EObject diagnosticEObject;
+		protected final boolean mayUseNewLines;
+
+		public ConstraintEvaluatorWithDiagnostics(@NonNull ExpressionInOCL expression, @NonNull EObject eObject,
+				@NonNull DiagnosticChain diagnostics, @NonNull EObject diagnosticEObject, boolean mayUseNewLines) {
+			super(expression);
+			this.diagnosticEObject = diagnosticEObject;
+			this.eObject = eObject;
+			this.diagnostics = diagnostics;
+			this.mayUseNewLines = mayUseNewLines;
+		}
+
+		@Override
+		protected String getObjectLabel() {
+			return EcoreUtils.qualifiedNameFor(eObject);
+		}
+
+		@Override
+		protected Boolean handleExceptionResult(@NonNull Throwable e) {
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
+			if (!mayUseNewLines) {
+				message = message.replace("\n", "");
+			}
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleFailureResult(@Nullable Object result) {
+			int severity = getConstraintResultSeverity(result);
+			String message = getConstraintResultMessage(result);
+			diagnostics.add(new BasicDiagnostic(severity, UMLValidator.DIAGNOSTIC_SOURCE,
+				0, message,  new Object[] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidExpression(@NonNull String message) {
+			String message2 = message;
+			if (!mayUseNewLines) {
+				message2 = message.replace("\n", "");
+			}
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
+				0, message2.replace("\n", " - "), new Object [] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
+			if (!mayUseNewLines) {
+				message = message.replace("\n", "");
+			}
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
+				0, message,  new Object[] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleSuccessResult() {
+			return Boolean.TRUE;
+		}
+	}
+
+	/**
+	 * WeakOCLReference maintains the reference to the OCL context within the Diagnostician context and
+	 * disposes of it once the Diagnostician is done.
+	 */
 	protected static final class WeakOCLReference extends WeakReference<OCL>
 	{
 		protected final @NonNull OCL ocl;
@@ -142,113 +262,64 @@ public class UMLOCLEValidator implements EValidator
 	}
 
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
+	    return validate(eObject.eClass(), eObject, diagnostics, context); 
+//		return true;
 	}
 
-	public boolean validate(EClass eClass, final EObject eObject, final DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		assert context != null;
+		boolean allOk = true;
 		if (eObject instanceof org.eclipse.uml2.uml.OpaqueExpression) {
 			org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)eObject;
 			@SuppressWarnings("null")@NonNull List<String> languages = opaqueExpression.getLanguages();
 			@SuppressWarnings("null")@NonNull List<String> bodies = opaqueExpression.getBodies();
-			return validateOpaqueElement(languages, bodies, opaqueExpression, diagnostics, context);
+			allOk = validateOpaqueElement(languages, bodies, opaqueExpression, diagnostics, context);
 		}
 		else if (eObject instanceof InstanceSpecification) {
-			return validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
+			allOk = validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
 		}
-		OCL ocl = getOCL(context);
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
 		try {
-			final org.eclipse.ocl.examples.pivot.Element asElement = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Element.class, eObject);
-			if (asElement != null) {
-				List<ElementExtension> extensions = asElement.getExtension();
-				for (final ElementExtension extension : extensions) {
-//					org.eclipse.ocl.examples.pivot.Element base = extension.getBase();
-					Stereotype stereotype = extension.getStereotype();
-					if (stereotype != null) {
-						HashSet<Type> allClassifiers = new HashSet<Type>();
-						HashSet<DomainConstraint> allConstraints = new HashSet<DomainConstraint>();
-						gatherTypes(allClassifiers, allConstraints, stereotype);
-						boolean allOk = true;
-						for (DomainConstraint constraint : allConstraints) {
-							DomainExpression specification = constraint.getSpecification();
-							if (specification instanceof org.eclipse.ocl.examples.pivot.OpaqueExpression) {
-								ExpressionInOCL asExpression = ((org.eclipse.ocl.examples.pivot.OpaqueExpression)specification).getExpressionInOCL();						
-								if (asExpression != null) {
-									EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(extension.getETarget(), asExpression);
-									ConstraintEvaluator<Boolean> constraintEvaluator = new ConstraintEvaluator<Boolean>(asExpression)
-									{
-	//									@Override
-	//									protected String getObjectLabel() {
-	//										Type type = PivotUtil.getContainingType(constraint);
-	//										Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
-	//										EClassifier eClassifier = primaryType != null ?  (EClassifier)primaryType.getETarget() : null;
-	//										return DomainUtil.getLabel(eClassifier, object, context);
-	//									}
-	
-										@Override
-										protected String getObjectLabel() {
-											return DomainUtil.getLabel(extension);
-										}
-	
-										@Override
-										protected Boolean handleExceptionResult(@NonNull Throwable e) {
+			if (eObject instanceof org.eclipse.uml2.uml.Element) {
+				List<EObject> umlStereotypeApplications = ((org.eclipse.uml2.uml.Element)eObject).getStereotypeApplications();
+				if (umlStereotypeApplications.size() > 0) {
+					Resource umlResource = umlStereotypeApplications.get(0).eClass().eResource();
+					if (umlResource != null) {
+						OCL ocl = getOCL(context);
+						MetaModelManager metaModelManager = ocl.getMetaModelManager();
+						UML2Pivot uml2pivot = UML2Pivot.getAdapter(umlResource, metaModelManager);
+						uml2pivot.getPivotRoot();
+						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2PivotUtil.computeAppliedStereotypes(umlStereotypeApplications);
+						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
+							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
+							Stereotype stereotype = uml2pivot.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
+							if (stereotype != null) {
+								HashSet<Type> allClassifiers = new HashSet<Type>();
+								HashSet<DomainConstraint> allConstraints = new HashSet<DomainConstraint>();
+								gatherTypes(allClassifiers, allConstraints, stereotype);
+								for (DomainConstraint constraint : allConstraints) {
+									DomainExpression specification = constraint.getSpecification();
+									if (specification instanceof org.eclipse.ocl.examples.pivot.OpaqueExpression) {
+										ExpressionInOCL asExpression = ((org.eclipse.ocl.examples.pivot.OpaqueExpression)specification).getExpressionInOCL();						
+										if (asExpression != null) {
+											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, asExpression);
+											ConstraintEvaluator<Boolean> constraintEvaluator;
 											if (diagnostics != null) {
-												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
-												if (!mayUseNewLines) {
-													message = message.replace("\n", "");
-												}
-												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
-													0, message,  new Object[] { extension.eContainer() }));
+												constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asExpression, umlStereotypeApplication, diagnostics, eObject, mayUseNewLines);
 											}
-											return Boolean.FALSE;
-										}
-	
-										@Override
-										protected Boolean handleFailureResult(@Nullable Object result) {
-											if (diagnostics != null) {
-												int severity = getConstraintResultSeverity(result);
-												String message = getConstraintResultMessage(result);
-												diagnostics.add(new BasicDiagnostic(severity, UMLValidator.DIAGNOSTIC_SOURCE,
-													0, message,  new Object[] { extension.eContainer() }));
+											else {
+												constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asExpression);
 											}
-											return Boolean.FALSE;
-										}
-
-										@Override
-										protected Boolean handleInvalidExpression(@NonNull String message) {
-											if (diagnostics != null) {
-												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
-													0, message.replace("\n", " - "), new Object [] { extension.eContainer() }));
+											if (!constraintEvaluator.evaluate(evaluationVisitor) && (diagnostics == null)) {
+												allOk = false;
 											}
-											return Boolean.FALSE;
 										}
-	
-										@Override
-										protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-											if (diagnostics != null) {
-												String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-													getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
-												diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
-													0, message,  new Object[] { extension.eContainer() }));
-											}
-											return Boolean.FALSE;
-										}
-	
-										@Override
-										protected Boolean handleSuccessResult() {
-											return Boolean.TRUE;
-										}
-									};
-									if (!constraintEvaluator.evaluate(evaluationVisitor)) {
-										allOk = false;
 									}
 								}
 							}
 						}
-						return allOk;
 					}
 				}
+				return allOk;
 			}
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
@@ -280,7 +351,7 @@ public class UMLOCLEValidator implements EValidator
 							if (VALIDATE_INSTANCE.isActive()) {
 								VALIDATE_INSTANCE.println(language + ": " + body);
 							}
-							if (!validateSyntax(instanceSpecification, body, opaqueExpression, diagnostics, context)) {
+							if (!validateSyntax(instanceSpecification, body, opaqueExpression, diagnostics, context) && (diagnostics == null)) {
 								allOk = false;
 								break;
 							}
@@ -293,7 +364,9 @@ public class UMLOCLEValidator implements EValidator
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { opaqueExpression }));
 					}
-					allOk = false;
+					else {
+						allOk = false;
+					}
 				}
 			}
 		}
@@ -320,7 +393,7 @@ public class UMLOCLEValidator implements EValidator
 			ValueSpecification specification = constraint.getSpecification();
 			if (specification instanceof org.eclipse.uml2.uml.OpaqueExpression) {
 				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)specification;
-				if (!validateInstance(instanceSpecification, opaqueExpression, diagnostics, context))
+				if (!validateInstance(instanceSpecification, opaqueExpression, diagnostics, context) && (diagnostics == null))
 					allOk = false;
 			}
 		}
@@ -328,7 +401,7 @@ public class UMLOCLEValidator implements EValidator
 	}
 
 	/**
-	 * Validate the syntax and semantics of any OCL bofy.
+	 * Validate the syntax and semantics of any OCL body.
 	 * <p>
 	 * Returns true if all OCL bodies are valid.
 	 */
@@ -338,7 +411,7 @@ public class UMLOCLEValidator implements EValidator
 	}
 
 	/**
-	 * Validate the syntax and semantics of any OCL bofy.
+	 * Validate the syntax and semantics of any OCL body.
 	 * <p>
 	 * Returns true if all OCL bodies are valid.
 	 */
@@ -372,7 +445,7 @@ public class UMLOCLEValidator implements EValidator
 							if (VALIDATE_OPAQUE_ELEMENT.isActive()) {
 								VALIDATE_OPAQUE_ELEMENT.println(PivotConstants.OCL_LANGUAGE + ": " + body);
 							}
-							if (!validateSyntax(null, body, opaqueElement, diagnostics, context)) {
+							if (!validateSyntax(null, body, opaqueElement, diagnostics, context) && (diagnostics == null)) {
 								allOk = false;
 								break;
 							}
@@ -384,7 +457,9 @@ public class UMLOCLEValidator implements EValidator
 							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 								0, message,  new Object[] { opaqueElement }));
 						}
-						allOk = false;
+						else {
+							allOk = false;
+						}
 					}
 				}
 			}
@@ -408,6 +483,9 @@ public class UMLOCLEValidator implements EValidator
 				if (diagnostics != null) {
 					String objectLabel = DomainUtil.getLabel(opaqueElement);
 					String message = DomainUtil.bind("No pivot for {0}", objectLabel);
+					if (!mayUseNewLines) {
+						message = message.replace("\n", " ");
+					}
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 						0, message,  new Object[] { opaqueElement }));
 				}
@@ -418,6 +496,9 @@ public class UMLOCLEValidator implements EValidator
 			if (diagnostics != null) {
 				String objectLabel = DomainUtil.getLabel(opaqueElement);
 				String message = DomainUtil.bind(OCLMessages.ParsingError, objectLabel, e.getMessage());
+				if (!mayUseNewLines) {
+					message = message.replace("\n", " ");
+				}
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
 					0, message,  new Object[] { opaqueElement }));
 			}
@@ -425,67 +506,13 @@ public class UMLOCLEValidator implements EValidator
 		}
 		if (instance != null) {
 			EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(instance, asExpression);
-			ConstraintEvaluator<Boolean> constraintEvaluator = new ConstraintEvaluator<Boolean>(asExpression)
-			{
-//				@Override
-//				protected String getObjectLabel() {
-//					Type type = PivotUtil.getContainingType(constraint);
-//					Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
-//					EClassifier eClassifier = primaryType != null ?  (EClassifier)primaryType.getETarget() : null;
-//					return DomainUtil.getLabel(eClassifier, object, context);
-//				}
-
-				@Override
-				protected String getObjectLabel() {
-					return DomainUtil.getLabel(instance);
-				}
-
-				@Override
-				protected Boolean handleExceptionResult(@NonNull Throwable e) {
-					if (diagnostics != null) {
-						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
-							0, message,  new Object[] { instance }));
-					}
-					return Boolean.FALSE;
-				}
-
-				@Override
-				protected Boolean handleFailureResult(@Nullable Object result) {
-					if (diagnostics != null) {
-						String message = getConstraintResultMessage(result);
-						int severity = getConstraintResultSeverity(result);
-						diagnostics.add(new BasicDiagnostic(severity, UMLValidator.DIAGNOSTIC_SOURCE,
-							0, message,  new Object[] { instance }));
-					}
-					return Boolean.FALSE;
-				}
-
-				@Override
-				protected Boolean handleInvalidExpression(@NonNull String message) {
-					if (diagnostics != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
-							0, message, new Object [] { instance }));
-					}
-					return Boolean.FALSE;
-				}
-
-				@Override
-				protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-					if (diagnostics != null) {
-						String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-							getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
-							0, message,  new Object[] { instance }));
-					}
-					return Boolean.FALSE;
-				}
-
-				@Override
-				protected Boolean handleSuccessResult() {
-					return Boolean.TRUE;
-				}
-			};
+			ConstraintEvaluator<Boolean> constraintEvaluator;
+			if (diagnostics != null) {
+				constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asExpression, instance, diagnostics, instance, mayUseNewLines);
+			}
+			else {
+				constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asExpression);
+			}
 			return constraintEvaluator.evaluate(evaluationVisitor);
 		}
 		else {

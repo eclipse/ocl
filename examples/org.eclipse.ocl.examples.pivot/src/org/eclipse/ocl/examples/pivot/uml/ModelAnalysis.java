@@ -23,13 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
@@ -78,8 +75,6 @@ public class ModelAnalysis
 			}
 		}
 	}
-
-	private static final Logger logger = Logger.getLogger(UML2Pivot.class);
 
 	protected final @NonNull Outer converter;
 	protected final @NonNull ProfileAnalysis profileAnalysis;
@@ -168,43 +163,6 @@ public class ModelAnalysis
 		}
 	}
 
-	private @NonNull Map<EObject, List<org.eclipse.uml2.uml.Element>> computeAppliedStereotypes(@NonNull Iterable<EObject> umlStereotypeApplications) {
-		//
-		// Compute the list of UML elements stereotyped by each UML stereotype application.
-		//
-		// Note that the UML stereotype application object is an EDynamicObject unless the Profile has been genmodelled as
-		// is the case for the standard UML profile(s).
-		//
-		Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = new HashMap<EObject, List<org.eclipse.uml2.uml.Element>>();
-		for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
-			List<org.eclipse.uml2.uml.Element> umlStereotypedElements = resolveStereotypedElements(umlStereotypeApplication);
-			umlStereotypeApplication2umlStereotypedElements.put(umlStereotypeApplication, umlStereotypedElements);
-		}
-		if (UML2Pivot.ADD_STEREOTYPE_APPLICATION.isActive()) {
-			Map<EClass, Set<org.eclipse.uml2.uml.Element>> umlStereotypeEClass2umlStereotypedElements = new HashMap<EClass, Set<org.eclipse.uml2.uml.Element>>();
-			for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
-				List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
-				Set<org.eclipse.uml2.uml.Element> perEClassUMLStereotypedElements = umlStereotypeEClass2umlStereotypedElements.get(umlStereotypeApplication.eClass());
-				if (perEClassUMLStereotypedElements == null) {
-					perEClassUMLStereotypedElements = new HashSet<org.eclipse.uml2.uml.Element>();
-					umlStereotypeEClass2umlStereotypedElements.put(umlStereotypeApplication.eClass(), perEClassUMLStereotypedElements);
-				}
-				perEClassUMLStereotypedElements.addAll(umlStereotypedElements);
-			}
-			StringBuffer s = new StringBuffer();
-			for (@SuppressWarnings("null")@NonNull EClass umlStereotypeEClass : umlStereotypeEClass2umlStereotypedElements.keySet()) {
-				s.append("\n\t" + EcoreUtils.qualifiedNameFor(umlStereotypeEClass));
-				for (org.eclipse.uml2.uml.Element umlStereotypedElement : umlStereotypeEClass2umlStereotypedElements.get(umlStereotypeEClass)) {
-					if (umlStereotypedElement != null) {
-						s.append("\n\t\t" + EcoreUtils.qualifiedNameFor(umlStereotypedElement));
-					}
-				}
-			}
-			UML2Pivot.ADD_STEREOTYPE_APPLICATION.println("Applications per Stereotype" + s.toString());
-		}
-		return umlStereotypeApplication2umlStereotypedElements;
-	}
-
 	/**
 	 * Update element2elementExtension with an ElementExtension for each of the stereotypeApplications.
 	 */
@@ -222,9 +180,9 @@ public class ModelAnalysis
 //					EClass eClass = umlStereotypeApplication.eClass();
 				@SuppressWarnings("null")@NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
 //					assert umlStereotypedElements != null;
-				Stereotype asStereotype = resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
+				Stereotype asStereotype = converter.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 				if (asStereotype == null) {
-					asStereotype = resolveStereotype(umlStereotypeApplication, umlStereotypedElements);		// FIXME debugging
+					asStereotype = converter.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);		// FIXME debugging
 				}
 				if (asStereotype != null) {
 					ElementExtension elementExtension = metaModelManager.getElementExtension(asStereotypedElement, asStereotype);
@@ -402,8 +360,12 @@ public class ModelAnalysis
 						Type metatype = eClass2metatype.get(eClass);
 						if ((metatype == null) && !eClass2metatype.containsKey(eClass)) {
 							EPackage ePackage = eClass.getEPackage();
-							metatype = profileAnalysis.getMetatype(ePackage.getName(), eClass.getName());
-							eClass2metatype.put(eClass, metatype);
+							String ePackageName = ePackage.getName();
+							String eClassName = eClass.getName();
+							if ((ePackageName != null) && (eClassName != null)) {
+								metatype = profileAnalysis.getMetatype(ePackageName, eClassName);
+								eClass2metatype.put(eClass, metatype);
+							}
 						}
 						if (metatype != null) {
 							Set<TypeExtension> typeExtensions = metatype2typeExtensions.get(metatype);
@@ -418,7 +380,7 @@ public class ModelAnalysis
 		}
 		List<EObject> umlStereotypeApplications2 = umlStereotypeApplications;
 		if (umlStereotypeApplications2 != null) {
-			Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = computeAppliedStereotypes(umlStereotypeApplications2);
+			Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2PivotUtil.computeAppliedStereotypes(umlStereotypeApplications2);
 			installElementExtensionPropertyValues(element2stereotype2extension, umlStereotypeApplication2umlStereotypedElements);
 		}
 //			Map<Metaclass<?>, List<Property>> metaclass2properties = new HashMap<Metaclass<?>, List<Property>>();
@@ -477,72 +439,6 @@ public class ModelAnalysis
 	}
 
 	/**
-	 * Return the UML Stereotype referenced by the UML stereotype application to some UML Stereotyped Elements.
-	 *<p>
-	 * Note that the reference in the UML Stereotype application is to a particular Ecore version of the Profile, rather than
-	 * to the UML profile, so we have to locate the UML profile by URI and name.
-	 */
-	private @Nullable Stereotype resolveStereotype(@NonNull EObject umlStereotypeApplication, @NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements) {
-		EClass umlStereotypeEClass = umlStereotypeApplication.eClass();
-		if (!(umlStereotypeApplication instanceof DynamicEObjectImpl)) {					// If stereotyped element has been genmodelled
-			Stereotype asStereotype = metaModelManager.getPivotOfEcore(Stereotype.class, umlStereotypeEClass);
-			return asStereotype;		// then it is already a Type rather than a Stereotype
-		}
-		//
-		//	Get the umlStereotypedPackage common to all the base_xxx elements
-		//
-		org.eclipse.uml2.uml.Package umlStereotypedPackage = null;
-		for (org.eclipse.uml2.uml.Element umlStereotypedElement : umlStereotypedElements) {
-			for (EObject eObject = umlStereotypedElement; eObject != null; eObject = eObject.eContainer()) {
-				if (eObject instanceof org.eclipse.uml2.uml.Package) {
-					if (umlStereotypedPackage == null) {
-						umlStereotypedPackage = (org.eclipse.uml2.uml.Package)eObject;
-					}
-					else if (umlStereotypedPackage != (org.eclipse.uml2.uml.Package)eObject) {
-						logger.error("Conflicting packages for stereotype application of " + umlStereotypeEClass.getName());
-					}
-					break;
-				}
-			}
-		}
-		//
-		//	Get the pivot profile for which the profileNsURI is an application to the stereotypedPackage 
-		//
-		EPackage umlProfileEPackage = umlStereotypeEClass.getEPackage();
-//			String profileNsURI = umlProfileEPackage.getNsURI();		// FIXME UML profiles have no URI.
-		if (umlStereotypedPackage != null) {
-//				for (org.eclipse.uml2.uml.ProfileApplication umlProfileApplication : umlStereotypedPackage.getProfileApplications()) {
-//					org.eclipse.uml2.uml.Profile umlProfile = umlProfileApplication.getAppliedProfile();
-//					if (profileNsURI.equals(umlProfile.getURI())) {
-//						return umlProfile.getOwnedStereotype(umlStereotypeEClass.getName());
-//					}
-//				}
-			String profileNsURI = umlProfileEPackage.getNsURI();
-			for (org.eclipse.uml2.uml.Package umlPackage = umlStereotypedPackage; umlPackage != null; umlPackage = umlPackage.getNestingPackage()) {
-				for (org.eclipse.uml2.uml.ProfileApplication umlProfileApplication : umlPackage.getProfileApplications()) {
-					org.eclipse.uml2.uml.Profile umlProfile = umlProfileApplication.getAppliedProfile();
-					if (profileNsURI.equals(umlProfile.getURI())) {
-						org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(umlStereotypeEClass.getName());
-						return umlStereotype != null ? converter.getCreated(Stereotype.class, umlStereotype) : null;
-					}
-				}
-			}
-			String profileName = umlProfileEPackage.getName();		// THis is really only needed for a bad legacy test case
-			for (org.eclipse.uml2.uml.Package umlPackage = umlStereotypedPackage; umlPackage != null; umlPackage = umlPackage.getNestingPackage()) {
-				for (org.eclipse.uml2.uml.ProfileApplication umlProfileApplication : umlPackage.getProfileApplications()) {
-					org.eclipse.uml2.uml.Profile umlProfile = umlProfileApplication.getAppliedProfile();
-					if (profileName.equals(umlProfile.getName())) {
-						org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(umlStereotypeEClass.getName());
-						return umlStereotype != null ? converter.getCreated(Stereotype.class, umlStereotype) : null;
-					}
-				}
-			}
-		}
-		logger.error("Missing package for stereotype application of " + umlStereotypeEClass.getName());
-		return null;
-	}
-
-	/**
 	 * Determine the UML stereotype applications for each stereotyped pivot element, from the pre-computed mapping
 	 * of stereotyped UML elements for each UML stereotype application.
 	 * @param umlStereotypeApplications 
@@ -564,26 +460,5 @@ public class ModelAnalysis
 			}
 		}
 		return asElement2umlStereotypeApplications;
-	}
-
-	/**
-	 *	Determine the list of UML elements stereotyped by a UML stereotype application.
-	 *	These are the targets of base_XXX XML elements.
-	 */
-	private @NonNull List<org.eclipse.uml2.uml.Element> resolveStereotypedElements(@NonNull EObject umlStereotypeApplication) {
-		EClass eClass = umlStereotypeApplication.eClass();
-		List<org.eclipse.uml2.uml.Element> umlStereotypedElements = new ArrayList<org.eclipse.uml2.uml.Element>();
-		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-			String featureName = eStructuralFeature.getName();
-			if ((featureName != null) && featureName.startsWith(UML2Pivot.STEREOTYPE_BASE_PREFIX)
-			  && (eStructuralFeature instanceof EReference)
-			  && umlStereotypeApplication.eIsSet(eStructuralFeature)) {						// Unset for an applicable stereotype that has not been applied
-				Object umlStereotypedElement = umlStereotypeApplication.eGet(eStructuralFeature);
-				if (umlStereotypedElement instanceof org.eclipse.uml2.uml.Element) {
-					umlStereotypedElements.add((org.eclipse.uml2.uml.Element) umlStereotypedElement);
-				}
-			}
-		}
-		return umlStereotypedElements;
 	}
 }

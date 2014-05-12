@@ -14,14 +14,26 @@
  */
 package org.eclipse.ocl.examples.common.label.generators;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
 
 public final class DynamicEObjectImplLabelGenerator extends AbstractLabelGenerator<DynamicEObjectImpl>
 {
+	private static final AdapterFactory reflectiveAdapterFactory =
+			new ReflectiveItemProviderAdapterFactory();
+
+	private static final AdapterFactory defaultAdapterFactory =
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
 	public static void initialize(Registry registry) {
 		registry.install(DynamicEObjectImpl.class, new DynamicEObjectImplLabelGenerator());		
 	}
@@ -33,15 +45,29 @@ public final class DynamicEObjectImplLabelGenerator extends AbstractLabelGenerat
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull DynamicEObjectImpl object) {
 		EClass eClass = object.eClass();
 		Resource eResource = object.eResource();
-		if (eResource != null) {
+		if ((eResource != null) && (object.eContainer() == null)) {
 			String className = eResource.getClass().getName();
 			if (className.contains("UML")) {
-				labelBuilder.appendString("«");
-				labelBuilder.appendString(eClass.getName());
-				labelBuilder.appendString("»");
-				return;
+				for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
+					if ((eFeature instanceof EReference) && !eFeature.isMany() && eFeature.getName().startsWith("base_")) {
+						labelBuilder.appendString("«");
+						labelBuilder.appendString(eClass.getName());
+						labelBuilder.appendString("»");
+						labelBuilder.buildLabelFor(object.eGet(eFeature));
+						return;
+					}
+				}
 			}
 		}
-		labelBuilder.appendString(eClass.getName());
+		IItemLabelProvider labeler = (IItemLabelProvider) defaultAdapterFactory.adapt(object, IItemLabelProvider.class);		
+		if (labeler == null) {
+			labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(object, IItemLabelProvider.class);
+		}		
+		if (labeler != null) {
+			labelBuilder.appendString(labeler.getText(object));
+		}
+		else {
+			labelBuilder.appendString(String.valueOf(object));
+		}
 	}
 }

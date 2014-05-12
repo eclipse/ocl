@@ -126,7 +126,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 			String childName = owner instanceof Nameable ? ((Nameable)owner).getName() : "<unknown>";
 			EObject eContainer = owner != null ? owner.eContainer() : null;
 			String parentName = eContainer instanceof Nameable ? ((Nameable)eContainer).getName() : "<unknown>";
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, parentName, childName, expression), resource);
+			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, parentName, childName, expression.trim()), resource);
 			ExpressionInOCL expressionInOCL = getExpression(resource);
 			PivotUtil.setBody(expressionInOCL, expression);
 			return expressionInOCL;
