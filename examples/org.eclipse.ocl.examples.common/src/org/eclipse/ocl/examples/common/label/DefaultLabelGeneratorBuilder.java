@@ -29,8 +29,13 @@ public class DefaultLabelGeneratorBuilder extends AbstractLabelGeneratorBuilder
 {	
 	protected final @NonNull StringBuilder s = new StringBuilder();
 	
+	@Deprecated // Since Luna RC1 - specify labelledObject
 	public DefaultLabelGeneratorBuilder(@NonNull ILabelGenerator.Registry registry, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
-		super(registry, options);
+		this(registry, null, options);
+	}
+	
+	public DefaultLabelGeneratorBuilder(@NonNull ILabelGenerator.Registry registry, @Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
+		super(registry, labelledObject, options);
 	}
 
 	public void appendString(@Nullable String string) {

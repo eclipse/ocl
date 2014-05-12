@@ -31,10 +31,17 @@ import org.eclipse.ocl.examples.common.label.ILabelGenerator.Registry;
 public abstract class AbstractLabelGeneratorBuilder implements ILabelGenerator.Builder
 {	
 	protected final @NonNull ILabelGenerator.Registry registry;
+	protected final @Nullable Object labelledObject;
 	protected @Nullable Map<ILabelGenerator.Option<?>, Object> options = null;
 	
+	@Deprecated // Since Luna RC1 - specify labelledObject
 	protected AbstractLabelGeneratorBuilder(@NonNull ILabelGenerator.Registry registry, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
+		this(registry, null, options);
+	}
+	
+	protected AbstractLabelGeneratorBuilder(@NonNull ILabelGenerator.Registry registry, @Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
 		this.registry = registry;
+		this.labelledObject = labelledObject;
 		this.options = options;
 	}
 
@@ -44,6 +51,10 @@ public abstract class AbstractLabelGeneratorBuilder implements ILabelGenerator.B
 
 	public void buildLabelFor(@Nullable Object object) {
 		registry.buildLabelFor(this, object);
+	}
+
+	public @Nullable Object getLabelledObject() {
+		return labelledObject;
 	}
 
 	@SuppressWarnings("unchecked")

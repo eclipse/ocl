@@ -110,7 +110,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 	public static @NonNull String debugLabelFor(@NonNull Object object) {
 		Map<ILabelGenerator.Option<?>, Object> options = new HashMap<ILabelGenerator.Option<?>, Object>();
 		options.put(ILabelGenerator.Builder.SHOW_CLASS_SIMPLE_NAME, Boolean.TRUE);
-		ILabelGenerator.Builder result = new DefaultLabelGeneratorBuilder(INSTANCE, options);
+		ILabelGenerator.Builder result = new DefaultLabelGeneratorBuilder(INSTANCE, object, options);
 		result.buildLabelFor(object);
 		return result.toString();
 	}
@@ -170,7 +170,9 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 				String showQualifier = s.getOption(ILabelGenerator.Builder.SHOW_QUALIFIER);
 				if (showQualifier != null) {
 					buildLabelFor(s, eContainer);
-					s.appendString(showQualifier);
+					if (s.toString().length() > 0) {
+						s.appendString(showQualifier);
+					}
 				}
 			}
 		}
@@ -209,8 +211,8 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		labelBuilder.appendString(">");
 	}
 	
-  	public @NonNull ILabelGenerator.Builder createDefaultLabelBuilder(@Nullable Map<ILabelGenerator.Option<?>, Object> options) {
-  		return new DefaultLabelGeneratorBuilder(this, options);
+  	public @NonNull ILabelGenerator.Builder createDefaultLabelBuilder(@Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
+  		return new DefaultLabelGeneratorBuilder(this, labelledObject, options);
   	}
     
 	public @Nullable ILabelGenerator<?> get(@NonNull Class<?> labelledClass) {
@@ -268,13 +270,13 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 	}
 
 	public @NonNull String labelFor(@Nullable Object labelledObject) {
-		ILabelGenerator.Builder labelBuilder = createDefaultLabelBuilder(null);
+		ILabelGenerator.Builder labelBuilder = createDefaultLabelBuilder(labelledObject, null);
 		labelBuilder.buildLabelFor(labelledObject);
 		return labelBuilder.toString();
 	}
 
 	public @NonNull String labelFor(@Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
-		ILabelGenerator.Builder labelBuilder = createDefaultLabelBuilder(options);
+		ILabelGenerator.Builder labelBuilder = createDefaultLabelBuilder(labelledObject, options);
 		labelBuilder.buildLabelFor(labelledObject);
 		return labelBuilder.toString();
 	}

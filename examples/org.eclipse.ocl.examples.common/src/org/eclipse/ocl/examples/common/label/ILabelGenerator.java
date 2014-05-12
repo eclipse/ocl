@@ -75,6 +75,7 @@ public interface ILabelGenerator<T>
 		void appendObject(@Nullable Object object);
 		void appendString(@Nullable String string);
 		void buildLabelFor(@Nullable Object labelledObject);
+		@Nullable Object getLabelledObject();
 		@Nullable <T> T getOption(@NonNull Option<T> option);
 		<T> boolean hasOption(@NonNull Option<T> option);
 		Registry getRegistry();

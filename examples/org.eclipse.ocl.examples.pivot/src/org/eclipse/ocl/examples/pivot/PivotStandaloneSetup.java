@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.uml.SlotLabelGenerator;
 import org.eclipse.ocl.examples.pivot.uml.UMLASResourceFactory;
 import org.eclipse.ocl.examples.pivot.uml.UMLExplicitNavigator;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
+import org.eclipse.ocl.examples.pivot.utilities.RootLabelGenerator;
 import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
@@ -84,15 +85,22 @@ public class PivotStandaloneSetup //implements ISetup
 		EPackage.Registry.INSTANCE.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 		EValidator.Registry.INSTANCE.put(PivotPackage.eINSTANCE, PivotValidator.INSTANCE);
 		LabelGeneratorRegistry.initialize(ILabelGenerator.Registry.INSTANCE);
-		CommentLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		ElementIdLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
+		NameableLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
+		//
+		// Pivot
+		//
+		RootLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
+		//
+		// UML
+		//
+		CommentLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralBooleanLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralIntegerLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralNullLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralRealLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralStringLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		LiteralUnlimitedNaturalLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
-		NameableLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		NamedElementLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		OpaqueExpressionLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		PackageImportLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
