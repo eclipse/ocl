@@ -26,50 +26,57 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 	@Override
 	protected @NonNull <C extends Element> 
 	AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager, 
-		@NonNull AutoIPivotLookupResult<C> result, @NonNull AutoIPivotLookupContext context) {
-		return new NewPivotLookupVisitor<C>(mmManager, result, context);
+		@NonNull AutoIPivotLookupEnvironment<C> env, @NonNull AutoIPivotLookupContext context) {
+		return new NewPivotLookupVisitor<C>(mmManager, env, context);
 	};
 	
 	@Override
 	public @NonNull
-	AutoIPivotLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
-		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter) {
+	AutoINamedLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
+		@NonNull ScopeFilter filter) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-		AutoIPivotLookupResult<Operation> result = createLookupResult(mmManager, eReference, lookupKind, opCallExp.getName());
-		result.addFilter(filter);
+		String name = opCallExp.getName();
 		Type sourceType = PivotUtil.getType(opCallExp.getSource()); 
-		if (sourceType == null ) { // FIXME adolfosbh cane assume well-formedness of the opCallExp ?
-			return result; // Empty result
+		if (name == null // FIXME adolfosbh can we assume well-formedness of the opCallExp ?
+			|| sourceType == null ) {
+			return AutoNamedLookupResult.emptyResult(); // Empty result
 		}
+		AutoIPivotNamedLookupEnvironment<Operation> env = createLookupEnvironment(mmManager, eReference, name);
+		env.addFilter(filter);
 		AutoIPivotLookupContext context = createLookupContext(eReference, sourceType);
-		return executeVisitor(sourceType, result, context);
+		return computeNamedResult(sourceType, env, context);
 	}
 	
 	@Override
 	public 	@NonNull
-	AutoIPivotLookupResult<Iteration> computeReferredIterationLookup(@NonNull IteratorExp iteratorExp , 
-		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter) {
-		
+	AutoINamedLookupResult<Iteration> computeReferredIterationLookup(@NonNull IteratorExp iteratorExp, 
+		@NonNull ScopeFilter filter) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;;
-		AutoIPivotLookupResult<Iteration> result = createLookupResult(mmManager, eReference, lookupKind, iteratorExp.getName());
-		result.addFilter(filter);
+		String name =  iteratorExp.getName();
 		Type sourceType = PivotUtil.getType(iteratorExp.getSource());
-		if (!(sourceType instanceof CollectionType)) { // FIXME adolfosbh can we assume well-formedness of the iteratorExp ?
-			return result; // Empty result
+		if (name == null // FIXME adolfosbh can we assume well-formedness of the iteratorExp ?
+			|| !(sourceType instanceof CollectionType)) { 
+			return  AutoNamedLookupResult.emptyResult(); // Empty result
 		}
+		AutoIPivotNamedLookupEnvironment<Iteration> env = createLookupEnvironment(mmManager, eReference, name);
+		env.addFilter(filter);
 		AutoIPivotLookupContext context = createLookupContext(eReference, sourceType);
-		return executeVisitor(sourceType, result, context);
+		return computeNamedResult(sourceType, env, context);
 	}
 
 	@Override
 	
 	public @NonNull
-	AutoIPivotLookupResult<Variable> computeReferredVariableLookup(
-			@NonNull VariableExp variableExp,
-			@NonNull AutoLookupKind lookupKind) {
+	AutoINamedLookupResult<Variable> computeReferredVariableLookup(
+			@NonNull VariableExp variableExp) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE;;
-		AutoIPivotLookupResult<Variable> result = createLookupResult(mmManager, eReference, lookupKind, variableExp.getName());		
+		String name = variableExp.getName();
+		if (name == null) {  // FIXME adolfosbh can we assume well-formedness of the expression ?
+			 return AutoNamedLookupResult.emptyResult(); // Empty result
+		}
+		AutoIPivotNamedLookupEnvironment<Variable> env = createLookupEnvironment(mmManager, eReference, name);
 		AutoIPivotLookupContext context = createLookupContext(eReference, variableExp);
-		return executeVisitor(variableExp, result, context);		
+		return computeNamedResult(variableExp, env, context);		
 	}
+	
 }

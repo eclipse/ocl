@@ -66,7 +66,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
 
 public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContainmentVisitor
 {
-	public class OperationDeclScopeFilter extends AbstractOperationFilter
+	public class OperationDeclScopeFilter extends AbstractOperationFilter<Operation>
 	{
 		private final @NonNull List<ParameterCS> csParameters;
 		

@@ -22,8 +22,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupResult;
+import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 
@@ -46,14 +45,13 @@ public class BinaryOperationFilter extends AbstractOperationFilter<Operation>
 		return false;
 	}
 	
-	public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
+	public boolean matches(@NonNull AutoIPivotLookupEnvironment<Operation> lookupEnv,
 			@NonNull Operation object) {
 		
-		AutoIPivotLookupResult<Operation> lookupResult2 = (AutoIPivotLookupResult<Operation>)lookupResult;
-		MetaModelManager mmManager = lookupResult2.getMetaModelManager();
+		MetaModelManager mmManager = lookupEnv.getMetaModelManager();
 		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
 		if (bindings != null) {
-			installBindings(lookupResult2, object, bindings);
+			installBindings(lookupEnv, object, bindings);
 			return true;
 		}
 		return false;
@@ -90,5 +88,5 @@ public class BinaryOperationFilter extends AbstractOperationFilter<Operation>
 			return null;
 		}
 	}
-	
+
 }

@@ -80,8 +80,7 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
-import org.eclipse.ocl.examples.pivot.lookup.AutoLookupKind;
+import org.eclipse.ocl.examples.pivot.lookup.AutoINamedLookupResult;
 import org.eclipse.ocl.examples.pivot.lookup.NewPivotNameResolver;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -579,8 +578,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		implicitCollectExp.setSource(sourceExp);
 		implicitCollectExp.setImplicit(true);
 		implicitCollectExp.setName("collect");
-		AutoILookupResult<Iteration> lResult = lResolver.computeReferredIterationLookup(implicitCollectExp, 
-			AutoLookupKind.SINGLE, new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
+		AutoINamedLookupResult<Iteration> lResult = lResolver.computeReferredIterationLookup(implicitCollectExp, 
+			new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
 		Iteration resolvedIteration = lResult.getSingleResult();
 		implicitCollectExp.setName(null); // ASBH FIXME otherwise, test cases fail -> ??????
 		if (resolvedIteration == null) {
@@ -868,11 +867,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
 				
-		
-
 		// environmentView.addFilter(filter);
-		AutoILookupResult<Operation> lResult = lResolver.computeReferredOperationLookup(expression,
-			AutoLookupKind.SINGLE, filter);
+		AutoINamedLookupResult<Operation> lResult = lResolver.computeReferredOperationLookup(expression,
+			filter);
 		if (lResult.getSize() == 1) {
 			Operation operation = lResult.getSingleResult();
 			context.setReferredOperation(expression, operation);

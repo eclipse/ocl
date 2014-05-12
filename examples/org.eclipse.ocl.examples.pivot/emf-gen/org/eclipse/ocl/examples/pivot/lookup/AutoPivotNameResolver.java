@@ -2,7 +2,6 @@ package org.eclipse.ocl.examples.pivot.lookup;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -25,23 +24,38 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 	}
 		
 	@NonNull
-	public <C extends Element> AutoIPivotLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
-		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified) {
+	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+		@NonNull String name, boolean isQualified) {
 		AutoIPivotLookupContext context = createLookupContext(lookupFeature, lookupElement);
-		AutoIPivotLookupResult<C> result = createLookupResult(mmManager, lookupFeature, lookupKind, name);
-		return executeVisitor(lookupElement, result, context);
+		AutoIPivotNamedLookupEnvironment<C> env = createLookupEnvironment(mmManager, lookupFeature, name);		
+		return computeNamedResult(lookupElement, env, context);
+	}
+	
+	@NonNull
+	public <C extends Element> AutoIUnnamedLookupResult computeLookup(
+			@NonNull Element lookupElement,
+			@NonNull EStructuralFeature lookupFeature, boolean isQualified) {
+		AutoIPivotLookupContext context = createLookupContext(lookupFeature, lookupElement);
+		AutoIPivotUnnamedLookupEnvironment<C> env = createLookupEnvironment(mmManager, lookupFeature);		
+		return computeUnnamedResult(lookupElement, env, context);
 	}
 	
 	@NonNull
 	protected <C extends Element> AutoIPivotLookupVisitor<C> createLookupVisitor(@NonNull MetaModelManager mmManager,
-		@NonNull AutoIPivotLookupResult<C> result, @NonNull AutoIPivotLookupContext context) {
-		return new AutoPivotLookupVisitor<C>(mmManager, result, context);
+		@NonNull AutoIPivotLookupEnvironment<C> env, @NonNull AutoIPivotLookupContext context) {
+		return new AutoPivotLookupVisitor<C>(mmManager, env, context);
 	}
 	
 	@NonNull
-	protected <C extends Element> AutoIPivotLookupResult<C> createLookupResult(@NonNull MetaModelManager mmManager, 
-		@NonNull EStructuralFeature lookupFeature, 	@NonNull AutoLookupKind lookupKind, @Nullable String name) {
-		return new AutoPivotLookupResult<C>(mmManager, lookupFeature, lookupKind, name);
+	protected <C extends Element> AutoIPivotNamedLookupEnvironment<C> createLookupEnvironment(@NonNull MetaModelManager mmManager, 
+		@NonNull EStructuralFeature lookupFeature, @NonNull String name) {
+		return new AutoPivotNamedLookupEnvironment<C>(mmManager, lookupFeature, name);
+	}
+	
+	@NonNull
+	protected <C extends Element> AutoIPivotUnnamedLookupEnvironment<C> createLookupEnvironment(@NonNull MetaModelManager mmManager, 
+		@NonNull EStructuralFeature lookupFeature) {
+		return new AutoPivotUnnamedLookupEnvironment<C>(mmManager, lookupFeature);
 	}
 	
 	@NonNull
@@ -49,35 +63,46 @@ public class AutoPivotNameResolver implements AutoIPivotNameResolver {
 		@NonNull Element lookupElement) {
 		return new AutoPivotLookupContext(lookupFeature, lookupElement);
 	}
-	
+		
 	@NonNull
-	protected <C extends Element> AutoIPivotLookupResult<C> executeVisitor(@NonNull Element element, @NonNull AutoIPivotLookupResult<C> result, 
+	protected <C extends Element> AutoIPivotLookupEnvironment<C> executeVisitor(@NonNull Element element, @NonNull AutoIPivotLookupEnvironment<C> env, 
 		@NonNull AutoIPivotLookupContext context) { 
-		return resolveDuplicates(element.accept(createLookupVisitor(mmManager, result, context)));
+		return DomainUtil.nonNullState(element.accept(createLookupVisitor(mmManager, env, context)));
 	}
 	
 	@NonNull
-	protected <C extends Element> AutoIPivotLookupResult<C> resolveDuplicates(@Nullable AutoIPivotLookupResult<C> result) {
-		return (AutoIPivotLookupResult<C>)DomainUtil.nonNullState(result).resolveDuplicates();
-	}
+	protected <C extends Element> AutoINamedLookupResult<C> computeNamedResult(@NonNull Element element, @NonNull AutoIPivotNamedLookupEnvironment<C> env, 
+		@NonNull AutoIPivotLookupContext context) { 
+		AutoIPivotLookupEnvironment<C> env2= executeVisitor(element, env, context);		
+		return ((AutoIPivotNamedLookupEnvironment<C>)env2).resolveDuplicates();
+	}		
+	
+	@NonNull
+	protected <C extends Element> AutoIUnnamedLookupResult computeUnnamedResult(@NonNull Element element, @NonNull AutoIPivotUnnamedLookupEnvironment<C> env, 
+		@NonNull AutoIPivotLookupContext context) { 
+		AutoIPivotLookupEnvironment<C> env2 = executeVisitor(element, env, context);		
+		return ((AutoIPivotUnnamedLookupEnvironment<C>)env2).getResult();
+	}	
 
 	@NonNull
-	public AutoIPivotLookupResult<Operation> computeReferredOperationLookup(
+	public AutoINamedLookupResult<Operation> computeReferredOperationLookup(
 			@NonNull OperationCallExp opCallExp,
-			@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter) {
-		throw new IllegalArgumentException("Not auto-generated implemented");
+			@NonNull ScopeFilter filter) {
+		throw new IllegalArgumentException("No auto-generation implemented");
 	}
 
 	@NonNull
-	public AutoIPivotLookupResult<Iteration> computeReferredIterationLookup(
+	public AutoINamedLookupResult<Iteration> computeReferredIterationLookup(
 			@NonNull IteratorExp iteratorExp,
-			@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter) {
-		throw new IllegalArgumentException("Not auto-generated implemented");
+			@NonNull ScopeFilter filter) {
+		throw new IllegalArgumentException("No auto-generation implemented");
 	}
 
 	@NonNull
-	public AutoIPivotLookupResult<Variable> computeReferredVariableLookup(
-			@NonNull VariableExp variableExp, @NonNull AutoLookupKind lookupKind) {
-		throw new IllegalArgumentException("Not auto-generated implemented");
+	public AutoINamedLookupResult<Variable> computeReferredVariableLookup(
+			@NonNull VariableExp variableExp) {
+		throw new IllegalArgumentException("No auto-generation implemented");
 	}
+
+
 }

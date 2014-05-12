@@ -23,13 +23,16 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
 
-public interface AutoIPivotLookupResult<C extends Element> extends AutoILookupResult<C> {
+public interface AutoIPivotLookupEnvironment<C extends Element> extends AutoILookupEnvironment {
 
+	// TEMPORAL STUFF
+	// ASBH FIXME can we get rid of this ?
 	public void addFilter(@NonNull ScopeFilter filter);
 	public void removeFilter(@NonNull ScopeFilter filter);
 	@NonNull
 	public MetaModelManager getMetaModelManager();
 	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings);
+	// END OF TEMPORAL STUFF
 	
 	// Generated from NameResolution description
 	

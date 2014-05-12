@@ -2,7 +2,6 @@ package org.eclipse.ocl.examples.pivot.lookup;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
@@ -26,8 +25,12 @@ public interface AutoIPivotNameResolver {
 	 * @return
 	 */
 	@NonNull
-	public <C extends Element> AutoIPivotLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
-		@NonNull AutoLookupKind lookupKind, @Nullable String name, boolean isQualified);
+	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+		@NonNull String name, boolean isQualified);
+	
+	@NonNull
+	public <C extends Element> AutoIUnnamedLookupResult computeLookup(@NonNull Element lookupElement, @NonNull EStructuralFeature lookupFeature,
+		boolean isQualified);
 	
 	/**
 	 * Resolves the referred operation of OperationCallExp
@@ -37,14 +40,13 @@ public interface AutoIPivotNameResolver {
 	 * @return 
 	 */
 	@NonNull
-	public AutoIPivotLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
-		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter);
+	public AutoINamedLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
+		@NonNull ScopeFilter filter);
 
 	@NonNull
-	public AutoIPivotLookupResult<Iteration> computeReferredIterationLookup(@NonNull IteratorExp iteratorExp, 
-		@NonNull AutoLookupKind lookupKind, @NonNull ScopeFilter filter);
+	public AutoINamedLookupResult<Iteration> computeReferredIterationLookup(@NonNull IteratorExp iteratorExp,
+		@NonNull ScopeFilter filter);
 	
 	@NonNull
-	public AutoIPivotLookupResult<Variable> computeReferredVariableLookup(@NonNull VariableExp variableExp,
-		@NonNull AutoLookupKind lookupKind);
+	public AutoINamedLookupResult<Variable> computeReferredVariableLookup(@NonNull VariableExp variableExp);
 }

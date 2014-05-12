@@ -31,8 +31,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupResult;
+import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -248,14 +247,13 @@ public class OperationFilter extends AbstractOperationFilter<Operation>
 		return false;
 	}
 
-	public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
+	public boolean matches(@NonNull AutoIPivotLookupEnvironment<Operation> lookupResult,
 			@NonNull Operation object) {
 	
-		AutoIPivotLookupResult<Operation> lookupResult2 = (AutoIPivotLookupResult<Operation>)lookupResult;
-		MetaModelManager mmManager = lookupResult2.getMetaModelManager();
+		MetaModelManager mmManager = lookupResult.getMetaModelManager();
 		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
 		if (bindings != null) {
-			installBindings(lookupResult2, object, bindings);
+			installBindings(lookupResult, object, bindings);
 			return true;
 		}
 		return false;

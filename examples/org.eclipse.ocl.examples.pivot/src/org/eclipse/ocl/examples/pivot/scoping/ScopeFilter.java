@@ -12,12 +12,12 @@ package org.eclipse.ocl.examples.pivot.scoping;
 
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
+import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
@@ -39,7 +39,7 @@ public interface ScopeFilter
 	 */
 	boolean matches(@NonNull EnvironmentView environmentView,  @NonNull Object object);
 	
-	interface ScopeFilter2<C extends EObject> extends ScopeFilter {
-		boolean matches(@NonNull AutoILookupResult<C> lookupResult,  @NonNull C object);
+	interface ScopeFilter2<C extends Element> extends ScopeFilter {
+		boolean matches(@NonNull AutoIPivotLookupEnvironment<C> lookupEnv,  @NonNull C object);
 	}
 }
