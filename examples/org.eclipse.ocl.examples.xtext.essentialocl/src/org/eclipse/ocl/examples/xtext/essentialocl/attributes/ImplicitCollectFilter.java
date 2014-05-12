@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
+import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupResult;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -50,9 +51,10 @@ public class ImplicitCollectFilter extends AbstractOperationFilter<Iteration>
 	public boolean matches(@NonNull AutoILookupResult<Iteration> lookupResult,
 			@NonNull Iteration object) {
 		
+		AutoIPivotLookupResult<Iteration> lookupResult2 = (AutoIPivotLookupResult<Iteration>)lookupResult;
 		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
 		if (bindings != null) {
-			installBindings(lookupResult, object, bindings);
+			installBindings(lookupResult2, object, bindings);
 			return true;
 		}
 		return false;
