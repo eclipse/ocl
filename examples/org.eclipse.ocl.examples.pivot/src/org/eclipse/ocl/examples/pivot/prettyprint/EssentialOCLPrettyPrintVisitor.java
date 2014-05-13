@@ -282,8 +282,11 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		else {
 			OCLExpression source = object.getSource();
 			if (source != null) {
-				safeVisit(source.getType());
-				context.append("::");
+				Type sourceType = source.getType();
+				if (sourceType != null) {
+					context.appendQualifiedType(sourceType);
+					context.append("::");
+				}
 			}
 			context.appendName(referredIteration);
 			context.push("(", "");
@@ -355,8 +358,11 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		else {
 			OCLExpression source = object.getSource();
 			if (source != null) {
-				safeVisit(source.getType());
-				context.append("::");
+				Type sourceType = source.getType();
+				if (sourceType != null) {
+					context.appendQualifiedType(sourceType);
+					context.append("::");
+				}
 			}
 			context.appendName(referredIteration);
 			context.push("(", "");
@@ -468,8 +474,11 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		}
 		else {
 			if (source != null) {
-				safeVisit(source.getType());
-				context.append("::");
+				Type sourceType = source.getType();
+				if (sourceType != null) {
+					context.appendQualifiedType(sourceType);
+					context.append("::");
+				}
 			}
 			context.appendName(referredOperation);
 			context.push("(", "");
@@ -498,7 +507,17 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(referredProperty);
 		}
 		else {
-			safeVisit(referredProperty);
+			OCLExpression source = object.getSource();
+			if (source != null) {
+				Type sourceType = source.getType();
+				if (sourceType != null) {
+					context.appendQualifiedType(sourceType);
+					context.append("::");
+				}
+			}
+			context.appendName(referredProperty);
+			context.append(" : ");
+			safeVisit(object.getType());
 		}
 		return null;
 	}
@@ -522,7 +541,17 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(referredProperty);
 		}
 		else {
-			safeVisit(referredProperty);
+			OCLExpression source = object.getSource();
+			if (source != null) {
+				Type sourceType = source.getType();
+				if (sourceType != null) {
+					context.appendQualifiedType(sourceType);
+					context.append("::");
+				}
+			}
+			context.appendName(referredProperty);
+			context.append(" : ");
+			safeVisit(object.getType());
 		}
 		return null;
 	}
