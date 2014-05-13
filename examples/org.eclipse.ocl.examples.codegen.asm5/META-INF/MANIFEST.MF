@@ -6,6 +6,7 @@ Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.ocl.examples.codegen.asm5
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.objectweb.asm;bundle-version="[4.0.0,6.0.0)";resolution:=optional
+Require-Bundle: org.objectweb.asm;bundle-version="[4.0.0,6.0.0)";resolution:=optional,
+ org.eclipse.jdt.annotation;bundle-version="[1.1.0,2.0.0)";resolution:=optional
 Import-Package: org.apache.log4j
 Export-Package: org.eclipse.ocl.examples.codegen.asm5
