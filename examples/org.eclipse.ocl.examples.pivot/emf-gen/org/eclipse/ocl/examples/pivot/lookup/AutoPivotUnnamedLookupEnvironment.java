@@ -20,9 +20,9 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -181,7 +181,7 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 		}
 	}
 	
-	public void addOwnedEnumerationLiteral(@NonNull Enumeration object) {
+	public void addOwnedLiteral(@NonNull Enumeration object) {
 		if (accepts(PivotPackage.Literals.ENUMERATION_LITERAL)) {
 			addElements(object.getOwnedLiteral());
 		}
@@ -206,16 +206,16 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 		}
 	}
 	
-	public void addOwnedState(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+	public void addOwnedBehavior(@NonNull org.eclipse.ocl.examples.pivot.Class aClass) {
 		if (accepts(PivotPackage.Literals.STATE)) {
-			assert metaModelManager.isTypeServeable(type);
-			TypeServer typeServer = metaModelManager.getTypeServer(type);
+			assert metaModelManager.isTypeServeable(aClass);
+			TypeServer typeServer = metaModelManager.getTypeServer(aClass);
 			addElements(typeServer.getAllStates());
 		}
 	}
 	
 
-	public void addAllPackages(@NonNull Package pkge) {
+	public void addNestedPackage(@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			PackageServer parentPackageServer = metaModelManager.getPackageServer(pkge);
 			for (PackageServer packageServer : parentPackageServer.getMemberPackages()) {
@@ -227,7 +227,7 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 		}
 	}
 	
-	public void addOwnedTypes(@NonNull Package pkge) {
+	public void addOwnedType(@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.CLASS)) {
 			PackageServer packageServer = metaModelManager.getPackageServer(pkge);
 			for (TypeServer type : packageServer.getMemberTypes()) {
@@ -239,7 +239,7 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 	}
 	
 	
-	public void addNestedPackages(@NonNull Root root) {
+	public void addNestedPackage(@NonNull Root root) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			addElements(root.getNestedPackage());
 		}
@@ -264,24 +264,16 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 		}
 	}
 	
-	public void addIterator(@NonNull IterateExp  iterateExp) {
-		addElements(iterateExp.getIterator());
+	public void addIterator(@NonNull LoopExp  aLoopExp) {
+		addElements(aLoopExp.getIterator());
 	}
 	
-	public void addIterator(@NonNull IterateExp  iteraterExp, int index) {
-		addNamedElement(iteraterExp.getIterator().get(index));
+	public void addIterator(@NonNull LoopExp  aLoopExp, int index) {
+		addNamedElement(aLoopExp.getIterator().get(index));
 	}
 	
 	public void addResult(@NonNull IterateExp iterateExp) {
 		addNamedElement(iterateExp.getResult());
-	}
-	
-	public void addIterator(@NonNull IteratorExp  iteratorExp) {
-		addElements(iteratorExp.getIterator());
-	}
-	
-	public void addIterator(@NonNull IteratorExp  iteratorExp, int index) {
-		addNamedElement(iteratorExp.getIterator().get(index));
 	}
 	
 	public void addVariable(@NonNull LetExp  letExp) {
@@ -294,6 +286,18 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 	
 	public void addResultVariable(@NonNull ExpressionInOCL expressionInOCL) {
 		addNamedElement(expressionInOCL.getResultVariable());
+	}
+	
+	public void addImports(@NonNull Root aRoot) {
+		addRootPackages();
+	}
+
+	public void addOwnedOperation(@NonNull Type aType) {
+		// FIXME Pending on filter design
+	}
+
+	public void addOwnedAttribute(@NonNull Type aType) {
+		// FIXME Pending on filter design
 	}
 	
 	public void addFilter(@NonNull ScopeFilter filter) {

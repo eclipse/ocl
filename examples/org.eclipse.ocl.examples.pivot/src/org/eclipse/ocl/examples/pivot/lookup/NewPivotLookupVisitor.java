@@ -58,7 +58,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 			org.eclipse.ocl.examples.pivot.Class type = mmManager.getOclAnyType(); // WIP use lowerbound
 			result.addOwnedOperation(type, FeatureFilter.SELECT_NON_STATIC);
 			result.addOwnedProperty(type, FeatureFilter.SELECT_NON_STATIC);
-			result.addOwnedState(type);
+			result.addOwnedBehavior(type);
 			return result;
 		}
 		if (object.getTemplateBinding().size() == 0) {
@@ -72,7 +72,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 		}
 		result.addOwnedOperation(object, null);
 		result.addOwnedProperty(object, null);
-		result.addOwnedState(object);
+		result.addOwnedBehavior(object);
 		return lookupInParentIfNotComplete();
 	}
 	
@@ -95,7 +95,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	@Override
 	public @NonNull
 	AutoIPivotLookupEnvironment<C> visitEnumeration(@NonNull Enumeration object) {
-		result.addOwnedEnumerationLiteral(object);
+		result.addOwnedLiteral(object);
 		result.addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
 		result.addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
 		result.addTypeTemplateParameterables(object);
@@ -108,8 +108,8 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 		Set<Package> allPackages = new HashSet<Package>();
 		gatherAllPackages(mmManager, allPackages, object);
 		for (@SuppressWarnings("null")@NonNull Package aPackage : allPackages) {
-			result.addAllPackages(aPackage);
-			result.addOwnedTypes(aPackage);
+			result.addNestedPackage(aPackage);
+			result.addOwnedType(aPackage);
 		}
 		return lookupInParentIfNotComplete();
 	}
@@ -131,8 +131,8 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 	@Override
 	public @NonNull
 	AutoIPivotLookupEnvironment<C> visitRoot(@NonNull Root object) {
-		result.addNestedPackages(object);
-		result.addRootPackages();
+		result.addNestedPackage(object);
+		result.addImports(object);
 		return lookupInParentIfNotComplete();
 		
 	};
@@ -180,7 +180,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 			lookupFromNewElement(source.getType());
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
-			OCLExpression source = object.getSource();			
+			OCLExpression source = object.getSource();
 			lookupFromNewElement(source.getType());
 			//result.addIterator(object);
 			
@@ -213,7 +213,7 @@ public class NewPivotLookupVisitor<C extends Element> extends AutoPivotLookupVis
 			}
 		}
 		return lookupInParentIfNotComplete();
-	}	
+	}
 	
 //  This is not used by test cases
 //	@Override

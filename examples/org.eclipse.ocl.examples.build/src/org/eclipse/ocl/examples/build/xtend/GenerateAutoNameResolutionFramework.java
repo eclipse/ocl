@@ -15,11 +15,20 @@
 package org.eclipse.ocl.examples.build.xtend;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.autogen.namereso.AutoGenNameResoSpecificFramework;
 import org.eclipse.ocl.examples.autogen.namereso.AutoGenNameResoCommonFramework;
+import org.eclipse.ocl.examples.autogen.namereso.AutoGenNameResoSpecificFramework;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflowComponent
@@ -30,6 +39,8 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 	protected String baseElement;
 	
 	protected String baseElementPackageName;
+	
+	protected String nameResolutionFile;
 	
 	@Override
 	public void checkConfiguration(Issues issues) {
@@ -51,12 +62,25 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 //			AutoCodeGenerator.generate(genPackage, projectPrefix, projectName, visitorPackageName, visitorClassName,
 //				superProjectPrefix, superProjectName, superVisitorClassName);
 		} else {
+			Package nameResoPackage = getNameResoDescriptionPackage();
 			AutoGenNameResoCommonFramework.generateCommonFramework(outputFolder,nameResoPackageName);
 			AutoGenNameResoSpecificFramework.generateSpecificFramework(outputFolder, projectPrefix, modelPackageName,
-				nameResoPackageName, visitorPackageName, visitorClassName, baseElementPackageName, baseElement);
+				nameResoPackageName, visitorPackageName, visitorClassName, baseElementPackageName, baseElement, nameResoPackage);
 		}
 	}
 		
+	@SuppressWarnings("null")
+	private Package getNameResoDescriptionPackage() {
+		
+		// MetaModelManager metaModelManager = PivotUtil.fingetMetaModelManager(DomainUtil.nonNullState(genPackage.eResource()));
+		MetaModelManager mmManager = PivotUtil.findMetaModelManager(resourceSet);		
+		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
+		@NonNull URI nameResoURI = URI.createURI(nameResolutionFile).resolve(projectResourceURI);
+		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(resourceSet.getPackageRegistry(), mmManager));
+		Resource resource = DomainUtil.nonNullState(ocl.parse(nameResoURI));
+		Root root = (Root) resource.getContents().get(0);
+		return root.getNestedPackage().get(0);
+	}
 	/**
 	 * The optional package name in which the name resolution framework will be generated. (e.g. "org.my.project.lookup")
 	 */
@@ -77,6 +101,16 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 	public void setBaseElementPackageName(final String baseElementPackageName) {
 		this.baseElementPackageName = baseElementPackageName;
 	}
+	
+	/**
+	 *The optional project-relative OCL file with the name resolution description file; default: "model/${projectPrefix}NameResolution.ocl".
+	 */
+	
+	public void setNameResolutionFile(final String nameResoOclFile) {
+		this.nameResolutionFile = nameResoOclFile;
+	}
+	
+	
 	/* The framework will be generated in its own  package: nameResoPackageName
 	 * @see org.eclipse.ocl.examples.build.xtend.GenerateVisitorsWorkflowComponent#getOutputPackageName()
 	 */
@@ -84,5 +118,6 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 	protected String getOutputPackageName() {		
 		return nameResoPackageName;
 	}
+	
 	
 }

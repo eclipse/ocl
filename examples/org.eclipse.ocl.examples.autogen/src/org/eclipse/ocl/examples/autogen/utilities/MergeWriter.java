@@ -22,6 +22,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
+ * FIXME adolfosbh copied from org.eclipse.ocl.examples.build project 
+ * 
  * MergeWriter accumulates contributions to an output file which is written when closed.
  * If the output file already exists, any comments preceding the </copyright> declaration are
  * preserved from the existing content and the new leading comments are discarded.

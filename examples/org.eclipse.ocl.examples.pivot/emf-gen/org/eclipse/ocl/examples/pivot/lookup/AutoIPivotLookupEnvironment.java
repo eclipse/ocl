@@ -5,6 +5,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -12,6 +13,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -21,7 +23,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-
 
 public interface AutoIPivotLookupEnvironment<C extends Element> extends AutoILookupEnvironment {
 
@@ -36,47 +37,53 @@ public interface AutoIPivotLookupEnvironment<C extends Element> extends AutoILoo
 	
 	// Generated from NameResolution description
 	
-	// Root
-	public void addRootPackages();
-	public void addNestedPackages(@NonNull Root root);
+	// Class
+	public void addOwnedBehavior(@NonNull Class aClass);
+	
+	// LoopExp
+	public void addIterator(@NonNull LoopExp aLoopExp);
 	
 	// Package
-	public void addAllPackages(@NonNull Package pkge);
-	public void addOwnedTypes(@NonNull Package pkge);
+	public void addOwnedType(@NonNull Package aPackage);
+	public void addNestedPackage(@NonNull Package aPackage);
 	
-	// Library 
-	public void addOwnedPrecedence(@NonNull Library library);
+	// Root
+	public void addNestedPackage(@NonNull Root aRoot);
+	public void addImports(@NonNull Root aRoot);
 	
-	// TemplateableElement
-	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
+	// LetExp
+	public void addVariable(@NonNull LetExp aLetExp);
 	
-	// Operation
-	public void addOwnedParameter(@NonNull Operation object);
+	// IterateExp
+	public void addResult(@NonNull IterateExp aIterateExp);
+	
+	// ExpressionInOCL
+	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	
+	// Library
+	public void addOwnedPrecedence(@NonNull Library aLibrary);
 	
 	// Type
+	public void addOwnedOperation(@NonNull Type aType);
+	public void addOwnedAttribute(@NonNull Type aType);
+	
+	// Enumeration
+	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
+	
+	// Operation
+	public void addOwnedParameter(@NonNull Operation aOperation);
+	
+	// TemplateableElement
+	// FIXME
+	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
+	
+	// Type
+	// FIXME
 	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	
-	// Class
-	public void addOwnedState(@NonNull org.eclipse.ocl.examples.pivot.Class type);
-	
-	// Enumeration
-	public void addOwnedEnumerationLiteral(@NonNull Enumeration enumeration);
-	
-	// IterateExp
-	public void addIterator(@NonNull IterateExp  iterateExp);
-	public void addIterator(@NonNull IterateExp  iterateExp, int index);
-	public void addResult(@NonNull IterateExp iterateExp);	
-
-	
-	// Iterator Exp
-	public void addIterator(@NonNull IteratorExp  iteratorExp);
-	public void addIterator(@NonNull IteratorExp  iterateExp, int index);
-	
-	// LetExp
-	public void addVariable(@NonNull LetExp  letExp);
-	
-	// ExpressionInOCL
-	public void addContextVariable(@NonNull ExpressionInOCL expressionInOCL);
-	public void addResultVariable(@NonNull ExpressionInOCL expressionInOCL);
+	// LoopExp
+	// FIXME
+	public void addIterator(@NonNull LoopExp  aLoopExp, int index);
 }

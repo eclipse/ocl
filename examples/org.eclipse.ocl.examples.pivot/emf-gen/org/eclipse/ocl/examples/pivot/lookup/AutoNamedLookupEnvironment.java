@@ -6,7 +6,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 
 public class AutoNamedLookupEnvironment<C extends EObject> extends  AutoLookupEnvironment
-	implements AutoINamedLookupEnvironment<C>{
+	implements AutoINamedLookupEnvironment<C> {
 
 	@NonNull protected String name;
 	
@@ -22,7 +22,7 @@ public class AutoNamedLookupEnvironment<C extends EObject> extends  AutoLookupEn
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override	
+	@Override
 	public @NonNull
 	AutoINamedLookupResult<C> getResult() {
 		return (AutoINamedLookupResult<C>)super.getResult();
@@ -33,8 +33,7 @@ public class AutoNamedLookupEnvironment<C extends EObject> extends  AutoLookupEn
 				if (name.equals(getName(element))) {
 					addElement(name, element);
 				}
-			}	
+			}
 		}
 	}
 }
-
