@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -533,6 +534,9 @@ public class PrettyPrinter
 			            }
 			            else if (PivotConstants.OCL_NAME.equals(name)) {
 			                i++;
+			            }
+			            else if (rootElement.eContainer() instanceof Root) {
+			                ;
 			            }
 			            else {
 			            	URI uri;
