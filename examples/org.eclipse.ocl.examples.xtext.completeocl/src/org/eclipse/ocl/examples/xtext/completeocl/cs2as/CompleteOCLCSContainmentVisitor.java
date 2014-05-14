@@ -66,7 +66,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
 
 public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContainmentVisitor
 {
-	public class OperationDeclScopeFilter extends AbstractOperationFilter<Operation>
+	public class OperationDeclScopeFilter extends AbstractOperationFilter
 	{
 		private final @NonNull List<ParameterCS> csParameters;
 		
@@ -85,8 +85,13 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			return false;
 		}
 		
+<<<<<<< Upstream, based on origin/master
 		public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
 				@NonNull Operation object) {
+=======
+		public boolean matches(@NonNull AutoIPivotLookupEnvironment lookupResult,
+				@NonNull Object object) {
+>>>>>>> cfda478 [NameReso] Removing the generic parameter of Lookup Environment/Result
 				
 			Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
 			if (bindings != null) {

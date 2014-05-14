@@ -1,12 +1,11 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 
 
-public class AutoNamedLookupEnvironment<C extends EObject> extends  AutoLookupEnvironment
-	implements AutoINamedLookupEnvironment<C> {
+public class AutoNamedLookupEnvironment extends  AutoLookupEnvironment
+	implements AutoINamedLookupEnvironment {
 
 	@NonNull protected String name;
 	
@@ -17,15 +16,14 @@ public class AutoNamedLookupEnvironment<C extends EObject> extends  AutoLookupEn
 	
 	@Override
 	protected @NonNull
-	AutoINamedLookupResult<C> createResult() {
-		return new AutoNamedLookupResult<C>(name);
+	AutoINamedLookupResult createResult() {
+		return new AutoNamedLookupResult(name);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public @NonNull
-	AutoINamedLookupResult<C> getResult() {
-		return (AutoINamedLookupResult<C>)super.getResult();
+	AutoINamedLookupResult getResult() {
+		return (AutoINamedLookupResult)super.getResult();
 	}
 	protected void addElements(Iterable<? extends Object> elements) {
 		if (elements != null) {

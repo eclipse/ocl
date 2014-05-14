@@ -3,11 +3,8 @@ package org.eclipse.ocl.examples.pivot.lookup;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
@@ -25,12 +22,12 @@ public interface AutoIPivotNameResolver {
 	 * @return
 	 */
 	@NonNull
-	public <C extends Element> AutoINamedLookupResult<C> computeLookup(@NonNull Element lookupElement, 
+	public AutoINamedLookupResult computeLookup(@NonNull Element lookupElement, 
 		@NonNull EStructuralFeature lookupFeature,
 		@NonNull String name, boolean isQualified);
 	
 	@NonNull
-	public <C extends Element> AutoIUnnamedLookupResult computeLookup(@NonNull Element lookupElement,
+	public AutoIUnnamedLookupResult computeLookup(@NonNull Element lookupElement,
 		@NonNull EStructuralFeature lookupFeature,
 		boolean isQualified);
 	
@@ -42,13 +39,13 @@ public interface AutoIPivotNameResolver {
 	 * @return 
 	 */
 	@NonNull
-	public AutoINamedLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
+	public AutoINamedLookupResult computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
 		@NonNull ScopeFilter filter);
 
 	@NonNull
-	public AutoINamedLookupResult<Iteration> computeReferredIterationLookup(@NonNull IteratorExp iteratorExp,
+	public AutoINamedLookupResult computeReferredIterationLookup(@NonNull IteratorExp iteratorExp,
 		@NonNull ScopeFilter filter);
 	
 	@NonNull
-	public AutoINamedLookupResult<Variable> computeReferredVariableLookup(@NonNull VariableExp variableExp);
+	public AutoINamedLookupResult computeReferredVariableLookup(@NonNull VariableExp variableExp);
 }

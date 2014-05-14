@@ -10,11 +10,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 
-public class AutoNamedLookupResult<C extends EObject> implements AutoINamedLookupResult<C> {
+public class AutoNamedLookupResult implements AutoINamedLookupResult {
 
 	public static @NonNull  
-	<C extends EObject> AutoINamedLookupResult<C> emptyResult() {
-		return new AutoINamedLookupResult<C>() {
+	<C extends EObject> AutoINamedLookupResult emptyResult() {
+		return new AutoINamedLookupResult() {
 
 			public void addElement(@NonNull String name, @NonNull Object element) {
 				throw new IllegalStateException("This empty result was not conceived to add elements "); 
@@ -31,13 +31,13 @@ public class AutoNamedLookupResult<C extends EObject> implements AutoINamedLooku
 
 			@SuppressWarnings("null")
 			@NonNull
-			public List<C> getAllResults() {
+			public List<Object> getAllResults() {
 				return Collections.emptyList();
 			}
 		};
 	}
 	private static final Logger logger = Logger.getLogger(AutoNamedLookupResult.class);
-	private @NonNull List<C> elements = new ArrayList<C>();
+	private @NonNull List<Object> elements = new ArrayList<Object>();
 	private @NonNull String name; 
 	
 	public AutoNamedLookupResult(@NonNull String name) {
@@ -47,7 +47,7 @@ public class AutoNamedLookupResult<C extends EObject> implements AutoINamedLooku
 	public void addElement(@NonNull String name, @NonNull Object element) {
 		assert(this.name == name);
 		if (!elements.contains(element)) { 	// FIXME use a set ?
-			elements.add((C)element);		// FIXME lose cast
+			elements.add(element);		// FIXME lose cast
 		}
 	}
 
@@ -56,7 +56,7 @@ public class AutoNamedLookupResult<C extends EObject> implements AutoINamedLooku
 	}
 
 	@Nullable
-	public C getSingleResult() {
+	public Object getSingleResult() {
 		int contentsSize = elements.size();
 		if (contentsSize > 1) {
 			logger.warn("Unhandled ambiguous content for '" + name + "'");
@@ -65,7 +65,7 @@ public class AutoNamedLookupResult<C extends EObject> implements AutoINamedLooku
 	}
 
 	@NonNull
-	public List<C> getAllResults() {
+	public List<Object> getAllResults() {
 		return elements;
 	}
 }

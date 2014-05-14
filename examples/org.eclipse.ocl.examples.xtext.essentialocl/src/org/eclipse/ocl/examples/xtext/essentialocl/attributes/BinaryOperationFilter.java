@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -26,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 
-public class BinaryOperationFilter extends AbstractOperationFilter<Operation>
+public class BinaryOperationFilter extends AbstractOperationFilter
 {
 	protected final @NonNull Type argumentType;
 	
@@ -45,8 +46,8 @@ public class BinaryOperationFilter extends AbstractOperationFilter<Operation>
 		return false;
 	}
 	
-	public boolean matches(@NonNull AutoIPivotLookupEnvironment<Operation> lookupEnv,
-			@NonNull Operation object) {
+	public boolean matches(@NonNull AutoIPivotLookupEnvironment lookupEnv,
+			@NonNull Object object) {
 		
 		MetaModelManager mmManager = lookupEnv.getMetaModelManager();
 		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);

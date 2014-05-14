@@ -578,9 +578,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		implicitCollectExp.setSource(sourceExp);
 		implicitCollectExp.setImplicit(true);
 		implicitCollectExp.setName("collect");
-		AutoINamedLookupResult<Iteration> lResult = lResolver.computeReferredIterationLookup(implicitCollectExp, 
+		AutoINamedLookupResult lResult = lResolver.computeReferredIterationLookup(implicitCollectExp, 
 			new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
-		Iteration resolvedIteration = lResult.getSingleResult();
+		Iteration resolvedIteration = (Iteration) lResult.getSingleResult();
 		implicitCollectExp.setName(null); // ASBH FIXME otherwise, test cases fail -> ??????
 		if (resolvedIteration == null) {
 			return null;
@@ -868,10 +868,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
 				
 		// environmentView.addFilter(filter);
-		AutoINamedLookupResult<Operation> lResult = lResolver.computeReferredOperationLookup(expression,
+		AutoINamedLookupResult lResult = lResolver.computeReferredOperationLookup(expression,
 			filter);
 		if (lResult.getSize() == 1) {
-			Operation operation = lResult.getSingleResult();
+			Operation operation = (Operation) lResult.getSingleResult();
 			context.setReferredOperation(expression, operation);
 			resolveOperationReturnType(expression);
 		}

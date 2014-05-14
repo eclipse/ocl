@@ -39,7 +39,7 @@ public interface ScopeFilter
 	 */
 	boolean matches(@NonNull EnvironmentView environmentView,  @NonNull Object object);
 	
-	interface ScopeFilter2<C extends Element> extends ScopeFilter {
-		boolean matches(@NonNull AutoIPivotLookupEnvironment<C> lookupEnv,  @NonNull C object);
+	interface ScopeFilter2 extends ScopeFilter {
+		boolean matches(@NonNull AutoIPivotLookupEnvironment lookupEnv,  @NonNull Object object);
 	}
 }

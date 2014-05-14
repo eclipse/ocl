@@ -44,8 +44,8 @@ import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 
-public class AutoPivotNamedLookupEnvironment<C extends Element> extends AutoNamedLookupEnvironment<C>
-	implements AutoIPivotNamedLookupEnvironment<C>{
+public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
+	implements AutoIPivotNamedLookupEnvironment{
 	
 	
 	private static final class ImplicitDisambiguator implements Comparator<Object>
@@ -152,7 +152,7 @@ public class AutoPivotNamedLookupEnvironment<C extends Element> extends AutoName
 	
 	private final @NonNull MetaModelManager metaModelManager;
 
-	private Map<C, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
 	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
 	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
 
@@ -338,9 +338,9 @@ public class AutoPivotNamedLookupEnvironment<C extends Element> extends AutoName
 		return metaModelManager;
 	}
 	
-	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
 		if (templateBindings == null) {
-			templateBindings = new HashMap<C, Map<TemplateParameter, ParameterableElement>>();
+			templateBindings = new HashMap<Object, Map<TemplateParameter, ParameterableElement>>();
 		}
 		templateBindings.put(object, bindings);
 	}
@@ -393,7 +393,7 @@ public class AutoPivotNamedLookupEnvironment<C extends Element> extends AutoName
 		if (matchers != null) {
 			for (ScopeFilter filter : matchers) {
 				if (filter instanceof ScopeFilter.ScopeFilter2){
-					if (!((ScopeFilter.ScopeFilter2<C>)filter).matches(this, (C)element)) { // FIXME ADOLFOSBH
+					if (!((ScopeFilter.ScopeFilter2)filter).matches(this, element)) { // FIXME ADOLFOSBH
 						return;
 					}
 				}
@@ -416,10 +416,10 @@ public class AutoPivotNamedLookupEnvironment<C extends Element> extends AutoName
 	}
 	
 	@NonNull
-	public AutoINamedLookupResult<C> resolveDuplicates() {
-		AutoINamedLookupResult<C> result = getResult();
+	public AutoINamedLookupResult resolveDuplicates() {
+		AutoINamedLookupResult result = getResult();
 		if (result.getSize() > 1)  {			
-			@NonNull List<C> values = result.getAllResults();
+			@NonNull List<Object> values = result.getAllResults();
 			for (int i = 0; i < values.size()-1;) {
 				boolean iRemoved = false;
 				@SuppressWarnings("null") @NonNull Object iValue = values.get(i);
@@ -465,10 +465,10 @@ public class AutoPivotNamedLookupEnvironment<C extends Element> extends AutoName
 					i++;
 				}				
 			}
-			AutoINamedLookupResult<C> newResult = createResult();
+			AutoINamedLookupResult newResult = createResult();
 			for (int i=0; i < values.size(); i++) {
 				@SuppressWarnings("null") 
-				@NonNull C value = values.get(i);
+				@NonNull Object value = values.get(i);
 				newResult.addElement(name, value);
 			}
 			return newResult;

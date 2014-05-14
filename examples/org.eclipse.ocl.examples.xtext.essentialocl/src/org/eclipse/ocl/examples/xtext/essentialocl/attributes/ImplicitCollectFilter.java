@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -25,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
-public class ImplicitCollectFilter extends AbstractOperationFilter<Iteration>
+public class ImplicitCollectFilter extends AbstractOperationFilter
 {
 	protected final @NonNull Type iteratorType;
 
@@ -47,8 +48,8 @@ public class ImplicitCollectFilter extends AbstractOperationFilter<Iteration>
 		return false;
 	}
 
-	public boolean matches(@NonNull AutoIPivotLookupEnvironment<Iteration> lookupResult,
-			@NonNull Iteration object) {
+	public boolean matches(@NonNull AutoIPivotLookupEnvironment lookupResult,
+			@NonNull Object object) {
 		
 		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
 		if (bindings != null) {

@@ -16,6 +16,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -27,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
-public abstract class AbstractOperationFilter<C extends Operation> implements ScopeFilter, ScopeFilter.ScopeFilter2<C>
+public abstract class AbstractOperationFilter implements ScopeFilter, ScopeFilter.ScopeFilter2
 {
 	protected final @Nullable Type sourceType;
 	
@@ -65,7 +66,7 @@ public abstract class AbstractOperationFilter<C extends Operation> implements Sc
 		environmentView.setBindings(object, bindings);
 	}
 	
-	protected void installBindings(@NonNull AutoIPivotLookupEnvironment<C> lookupResult, @NonNull C object,
+	protected void installBindings(@NonNull AutoIPivotLookupEnvironment lookupResult, @NonNull Object object,
 			@Nullable Map<TemplateParameter, ParameterableElement> bindings) {
 		lookupResult.setBindings(object, bindings);
 	}

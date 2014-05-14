@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
@@ -42,8 +41,8 @@ import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 
-public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUnnamedLookupEnvironment
-	implements AutoIPivotUnnamedLookupEnvironment<C>{
+public class AutoPivotUnnamedLookupEnvironment extends AutoUnnamedLookupEnvironment
+	implements AutoIPivotUnnamedLookupEnvironment{
 	
 	
 	private static final class ImplicitDisambiguator implements Comparator<Object>
@@ -150,7 +149,7 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 	
 	private final @NonNull MetaModelManager metaModelManager;
 
-	private Map<C, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
 	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
 	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
 
@@ -318,9 +317,9 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 		return metaModelManager;
 	}
 	
-	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
 		if (templateBindings == null) {
-			templateBindings = new HashMap<C, Map<TemplateParameter, ParameterableElement>>();
+			templateBindings = new HashMap<Object, Map<TemplateParameter, ParameterableElement>>();
 		}
 		templateBindings.put(object, bindings);
 	}
@@ -355,7 +354,7 @@ public class AutoPivotUnnamedLookupEnvironment<C extends Element> extends AutoUn
 		if (matchers != null) {
 			for (ScopeFilter filter : matchers) {
 				if (filter instanceof ScopeFilter.ScopeFilter2){
-					if (!((ScopeFilter.ScopeFilter2<C>)filter).matches(this, (C)element)) { // FIXME ADOLFOSBH
+					if (!((ScopeFilter.ScopeFilter2)filter).matches(this, element)) { // FIXME ADOLFOSBH
 						return;
 					}
 				}

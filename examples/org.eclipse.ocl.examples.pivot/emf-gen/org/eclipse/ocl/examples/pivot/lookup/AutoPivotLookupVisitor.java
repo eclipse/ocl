@@ -9,31 +9,31 @@ import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 
-public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtendingVisitor<AutoIPivotLookupEnvironment<C>, AutoILookupContext<Element>>
-	implements AutoIPivotLookupVisitor<C> {
+public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotLookupEnvironment, AutoILookupContext<Element>>
+	implements AutoIPivotLookupVisitor {
 		 
 	@NonNull final protected MetaModelManager mmManager;
-	@NonNull final protected AutoIPivotLookupEnvironment<C> result;
+	@NonNull final protected AutoIPivotLookupEnvironment result;
 	
-	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull AutoIPivotLookupEnvironment<C> result, @NonNull AutoILookupContext<Element> context) {
+	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull AutoIPivotLookupEnvironment result, @NonNull AutoILookupContext<Element> context) {
 		super(context);
 		this.mmManager = mmManager;
 		this.result = result;
 	}
 
 	@NonNull
-	public AutoIPivotLookupEnvironment<C> visiting(@NonNull Visitable visitable) {
+	public AutoIPivotLookupEnvironment visiting(@NonNull Visitable visitable) {
 		return lookupInParentIfNotComplete();
 	}
 	
 	@NonNull
-	protected final AutoIPivotLookupEnvironment<C> lookupInNewContext(@Nullable AutoILookupContext<Element> newContext) {
+	protected final AutoIPivotLookupEnvironment lookupInNewContext(@Nullable AutoILookupContext<Element> newContext) {
 		return newContext == null ? result // If we have reached the top element
 			: DomainUtil.nonNullState((newContext.getTarget()).accept( 
-				new AutoPivotLookupVisitor<C>(mmManager, result, newContext))); 
+				new AutoPivotLookupVisitor(mmManager, result, newContext))); 
 	}
 	@NonNull
-	protected AutoIPivotLookupEnvironment<C> lookupFromNewElement(Element element) {
+	protected AutoIPivotLookupEnvironment lookupFromNewElement(Element element) {
 		return DomainUtil.nonNullState(element.accept(this));
 	}
 	
@@ -44,7 +44,7 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected AutoIPivotLookupEnvironment<C> lookupOnlyLocal() {
+	protected AutoIPivotLookupEnvironment lookupOnlyLocal() {
 		return result;
 	}
 	
@@ -55,7 +55,7 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected AutoIPivotLookupEnvironment<C> lookupInParentIfNotComplete() {
+	protected AutoIPivotLookupEnvironment lookupInParentIfNotComplete() {
 		return result.isComplete() ? result : lookupInNewContext(context.getParent());
 	}
 	
@@ -64,7 +64,7 @@ public class AutoPivotLookupVisitor<C extends Element> extends AbstractExtending
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected AutoIPivotLookupEnvironment<C> lookupInParent() {
+	protected AutoIPivotLookupEnvironment lookupInParent() {
 		return lookupInNewContext(context.getParent());
 	}
 }

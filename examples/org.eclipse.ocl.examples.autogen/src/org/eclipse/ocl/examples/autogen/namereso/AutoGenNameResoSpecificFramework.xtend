@@ -23,8 +23,8 @@ class AutoGenNameResoSpecificFramework {
 		@NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 
 		generator.generatePivotNamedEnvironmentItf(outputFolder, projectPrefix, packageName,  baseElmntName);				
-		generator.generatePivotContextItf(outputFolder, projectPrefix, packageName, baseElmntName);
-		generator.generatePivotContextClass(outputFolder, projectPrefix, packageName, baseElmntName);
+		generator.generatePivotContextItf(outputFolder, projectPrefix, packageName, baseElmntPckName, baseElmntName);
+		generator.generatePivotContextClass(outputFolder, projectPrefix, packageName, baseElmntPckName, baseElmntName);
 		generator.generatePivotVisitorItf(outputFolder, projectPrefix,  packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		generator.generatePivotVisitorClass(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		generator.generatePivotNameResolverItf(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
@@ -52,11 +52,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -70,7 +68,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
-public interface «envItf»<C extends «baseElmntName»> extends «commonEnvItf» {
+public interface «envItf» extends «commonEnvItf» {
 
 	// TEMPORAL STUFF
 	// ASBH FIXME can we get rid of this ?
@@ -78,7 +76,7 @@ public interface «envItf»<C extends «baseElmntName»> extends «commonEnvItf�
 	public void removeFilter(@NonNull ScopeFilter filter);
 	@NonNull
 	public MetaModelManager getMetaModelManager();
-	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings);
+	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, ParameterableElement> bindings);
 	// END OF TEMPORAL STUFF
 	
 	// Generated from NameResolution description
@@ -119,13 +117,11 @@ public interface «envItf»<C extends «baseElmntName»> extends «commonEnvItf�
 package «packageName»;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Element;
 
-
-public interface «namedEnvItf»<C extends «baseElmntName»> extends «envItf»<C>{
+public interface «namedEnvItf» extends «envItf»{
 
 	@NonNull
-	public «commonNamedResultItf»<C> getResult();
+	public «commonNamedResultItf» getResult();
 	/**
 	 * Convenience method to remove name duplicates so that it can be called
 	 * once the lookup process finishes 
@@ -133,7 +129,7 @@ public interface «namedEnvItf»<C extends «baseElmntName»> extends «envItf»
 	 * @return returns the {@link «commonNamedResultItf»} after resolving duplicates 
 	 */
 	@NonNull
-	public «commonNamedResultItf»<C> resolveDuplicates();
+	public «commonNamedResultItf» resolveDuplicates();
 }
 	''');
 		writer.close();
@@ -193,8 +189,8 @@ import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 
-public class «namedEnvClass»<C extends «baseElmntName»> extends «commonNamedEnvClass»<C>
-	implements «namedEnvItf»<C>{
+public class «namedEnvClass» extends «commonNamedEnvClass»
+	implements «namedEnvItf»{
 	
 	
 	private static final class ImplicitDisambiguator implements Comparator<Object>
@@ -301,7 +297,7 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 	
 	private final @NonNull MetaModelManager metaModelManager;
 
-	private Map<C, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
 	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
 	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
 
@@ -487,9 +483,9 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 		return metaModelManager;
 	}
 	
-	public void setBindings(@NonNull C object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
 		if (templateBindings == null) {
-			templateBindings = new HashMap<C, Map<TemplateParameter, ParameterableElement>>();
+			templateBindings = new HashMap<Object, Map<TemplateParameter, ParameterableElement>>();
 		}
 		templateBindings.put(object, bindings);
 	}
@@ -542,7 +538,7 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 		if (matchers != null) {
 			for (ScopeFilter filter : matchers) {
 				if (filter instanceof ScopeFilter.ScopeFilter2){
-					if (!((ScopeFilter.ScopeFilter2<C>)filter).matches(this, (C)element)) { // FIXME ADOLFOSBH
+					if (!((ScopeFilter.ScopeFilter2)filter).matches(this, element)) { // FIXME ADOLFOSBH
 						return;
 					}
 				}
@@ -565,10 +561,10 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 	}
 	
 	@NonNull
-	public AutoINamedLookupResult<C> resolveDuplicates() {
-		AutoINamedLookupResult<C> result = getResult();
+	public AutoINamedLookupResult resolveDuplicates() {
+		AutoINamedLookupResult result = getResult();
 		if (result.getSize() > 1)  {			
-			@NonNull List<C> values = result.getAllResults();
+			@NonNull List<Object> values = result.getAllResults();
 			for (int i = 0; i < values.size()-1;) {
 				boolean iRemoved = false;
 				@SuppressWarnings("null") @NonNull Object iValue = values.get(i);
@@ -614,10 +610,10 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 					i++;
 				}				
 			}
-			AutoINamedLookupResult<C> newResult = createResult();
+			AutoINamedLookupResult newResult = createResult();
 			for (int i=0; i < values.size(); i++) {
 				@SuppressWarnings("null") 
-				@NonNull C value = values.get(i);
+				@NonNull Object value = values.get(i);
 				newResult.addElement(name, value);
 			}
 			return newResult;
@@ -632,7 +628,7 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 
 
 	protected def void generatePivotContextItf(@NonNull String outputFolder, @NonNull String projectPrefix,
-		@NonNull String packageName, @NonNull String baseElmntName) {
+		@NonNull String packageName, @NonNull String baseElmntPckgName, @NonNull String baseElmntName) {
 		
 		var String commonContextItf = getCommonContextItf()
 		var String contextItf = getSpecificContextItf(projectPrefix)
@@ -641,7 +637,7 @@ public class «namedEnvClass»<C extends «baseElmntName»> extends «commonName
 		writer.append('''
 package «packageName»;
 
-import org.eclipse.ocl.examples.pivot.Element;
+import «baseElmntPckgName».«baseElmntName»;
 
 public interface «contextItf» extends «commonContextItf»<«baseElmntName»> {
 
@@ -651,7 +647,7 @@ public interface «contextItf» extends «commonContextItf»<«baseElmntName»> 
 	}
 	
 	protected def void generatePivotContextClass(@NonNull String outputFolder, @NonNull String projectPrefix,
-		@NonNull String packageName, @NonNull String baseElmntName) {
+		@NonNull String packageName, @NonNull String baseElmntPckName, @NonNull String baseElmntName) {
 		
 		var String commonContextClass = getCommonContextClass()
 		var String contextClass = getSpecificContextClass(projectPrefix);
@@ -664,7 +660,7 @@ package «packageName»;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Element;
+import «baseElmntPckName».«baseElmntName»;
 
 public class «contextClass» extends «commonContextClass»<«baseElmntName»>
 	implements «contextItf» {
@@ -692,10 +688,9 @@ public class «contextClass» extends «commonContextClass»<«baseElmntName»>
 		writer.append('''
 package «packageName»;
 
-import «baseElmntPckName».«baseElmntName»;
 import «visitorPckName».«visitorName»;
 
-public interface «visitorItf»<C extends «baseElmntName»> extends «visitorName»<«environmentItf»<C>> {
+public interface «visitorItf» extends «visitorName»<«environmentItf»> {
 
 }
 		''');
@@ -717,37 +712,37 @@ package «packageName»;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
+import «baseElemntPckgName».«baseElmntName»;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 
-public class «visitorClass»<C extends «baseElmntName»> extends AbstractExtendingVisitor<«environmentItf»<C>, «commonContextItf»<«baseElmntName»>>
-	implements «visitorItf»<C> {
+public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf», «commonContextItf»<«baseElmntName»>>
+	implements «visitorItf» {
 		 
 	@NonNull final protected MetaModelManager mmManager;
-	@NonNull final protected «environmentItf»<C> result;
+	@NonNull final protected «environmentItf» result;
 	
-	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull «environmentItf»<C> result, @NonNull «commonContextItf»<«baseElmntName»> context) {
+	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull «environmentItf» result, @NonNull «commonContextItf»<«baseElmntName»> context) {
 		super(context);
 		this.mmManager = mmManager;
 		this.result = result;
 	}
 
 	@NonNull
-	public «environmentItf»<C> visiting(@NonNull Visitable visitable) {
+	public «environmentItf» visiting(@NonNull Visitable visitable) {
 		return lookupInParentIfNotComplete();
 	}
 	
 	@NonNull
-	protected final «environmentItf»<C> lookupInNewContext(@Nullable «commonContextItf»<«baseElmntName»> newContext) {
+	protected final «environmentItf» lookupInNewContext(@Nullable «commonContextItf»<«baseElmntName»> newContext) {
 		return newContext == null ? result // If we have reached the top element
 			: DomainUtil.nonNullState((newContext.getTarget()).accept( 
-				new «visitorClass»<C>(mmManager, result, newContext))); 
+				new «visitorClass»(mmManager, result, newContext))); 
 	}
 	@NonNull
-	protected «environmentItf»<C> lookupFromNewElement(Element element) {
+	protected «environmentItf» lookupFromNewElement(Element element) {
 		return DomainUtil.nonNullState(element.accept(this));
 	}
 	
@@ -758,7 +753,7 @@ public class «visitorClass»<C extends «baseElmntName»> extends AbstractExten
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected «environmentItf»<C> lookupOnlyLocal() {
+	protected «environmentItf» lookupOnlyLocal() {
 		return result;
 	}
 	
@@ -769,7 +764,7 @@ public class «visitorClass»<C extends «baseElmntName»> extends AbstractExten
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected «environmentItf»<C> lookupInParentIfNotComplete() {
+	protected «environmentItf» lookupInParentIfNotComplete() {
 		return result.isComplete() ? result : lookupInNewContext(context.getParent());
 	}
 	
@@ -778,7 +773,7 @@ public class «visitorClass»<C extends «baseElmntName»> extends AbstractExten
 	 * @return the accumulated lookup result
 	 */
 	@NonNull
-	protected «environmentItf»<C> lookupInParent() {
+	protected «environmentItf» lookupInParent() {
 		return lookupInNewContext(context.getParent());
 	}
 }
@@ -801,11 +796,8 @@ package «packageName»;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
@@ -823,12 +815,12 @@ public interface «resolverItf» {
 	 * @return
 	 */
 	@NonNull
-	public <C extends Element> «commonNamedResultItf»<C> computeLookup(@NonNull Element lookupElement, 
+	public «commonNamedResultItf» computeLookup(@NonNull Element lookupElement, 
 		@NonNull EStructuralFeature lookupFeature,
 		@NonNull String name, boolean isQualified);
 	
 	@NonNull
-	public <C extends Element> «commonUnnamedResultItf» computeLookup(@NonNull Element lookupElement,
+	public «commonUnnamedResultItf» computeLookup(@NonNull Element lookupElement,
 		@NonNull EStructuralFeature lookupFeature,
 		boolean isQualified);
 	
@@ -840,15 +832,15 @@ public interface «resolverItf» {
 	 * @return 
 	 */
 	@NonNull
-	public AutoINamedLookupResult<Operation> computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
+	public AutoINamedLookupResult computeReferredOperationLookup(@NonNull OperationCallExp opCallExp,
 		@NonNull ScopeFilter filter);
 
 	@NonNull
-	public AutoINamedLookupResult<Iteration> computeReferredIterationLookup(@NonNull IteratorExp iteratorExp,
+	public AutoINamedLookupResult computeReferredIterationLookup(@NonNull IteratorExp iteratorExp,
 		@NonNull ScopeFilter filter);
 	
 	@NonNull
-	public AutoINamedLookupResult<Variable> computeReferredVariableLookup(@NonNull VariableExp variableExp);
+	public AutoINamedLookupResult computeReferredVariableLookup(@NonNull VariableExp variableExp);
 }
 		''');
 		writer.close();
@@ -880,11 +872,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
@@ -900,39 +889,39 @@ public class «resolverClass» implements «resolverItf» {
 	}
 	
 	@NonNull
-	public <C extends «baseElmntName»> «commonNamedResultItf»<C> computeLookup(@NonNull «baseElmntName» lookupElement,
+	public «commonNamedResultItf» computeLookup(@NonNull «baseElmntName» lookupElement,
 		@NonNull EStructuralFeature lookupFeature,
 		@NonNull String name, boolean isQualified) {
 		«contextItf» context = createLookupContext(lookupFeature, lookupElement);
-		«namedEnvItf»<C> env = createLookupEnvironment(mmManager, lookupFeature, name);		
+		«namedEnvItf» env = createLookupEnvironment(mmManager, lookupFeature, name);		
 		return computeNamedResult(lookupElement, env, context);
 	}
 	
 	@NonNull
-	public <C extends «baseElmntName»> «commonUnnamedResultItf» computeLookup(
+	public «commonUnnamedResultItf» computeLookup(
 			@NonNull «baseElmntName» lookupElement,
 			@NonNull EStructuralFeature lookupFeature, boolean isQualified) {
 		«contextItf» context = createLookupContext(lookupFeature, lookupElement);
-		«unnamedEnvItf»<C> env = createLookupEnvironment(mmManager, lookupFeature);		
+		«unnamedEnvItf» env = createLookupEnvironment(mmManager, lookupFeature);		
 		return computeUnnamedResult(lookupElement, env, context);
 	}
 	
 	@NonNull
-	protected <C extends «baseElmntName»> «visitorItf»<C> createLookupVisitor(@NonNull MetaModelManager mmManager,
-		@NonNull «envItf»<C> env, @NonNull «contextItf» context) {
-		return new «visitorClass»<C>(mmManager, env, context);
+	protected  «visitorItf» createLookupVisitor(@NonNull MetaModelManager mmManager,
+		@NonNull «envItf» env, @NonNull «contextItf» context) {
+		return new «visitorClass»(mmManager, env, context);
 	}
 	
 	@NonNull
-	protected <C extends «baseElmntName»> «namedEnvItf»<C> createLookupEnvironment(@NonNull MetaModelManager mmManager, 
+	protected  «namedEnvItf» createLookupEnvironment(@NonNull MetaModelManager mmManager, 
 		@NonNull EStructuralFeature lookupFeature, @NonNull String name) {
-		return new «namedEnvClass»<C>(mmManager, lookupFeature, name);
+		return new «namedEnvClass»(mmManager, lookupFeature, name);
 	}
 	
 	@NonNull
-	protected <C extends «baseElmntName»> «unnamedEnvItf»<C> createLookupEnvironment(@NonNull MetaModelManager mmManager, 
+	protected  «unnamedEnvItf» createLookupEnvironment(@NonNull MetaModelManager mmManager, 
 		@NonNull EStructuralFeature lookupFeature) {
-		return new «unnamedEnvClass»<C>(mmManager, lookupFeature);
+		return new «unnamedEnvClass»(mmManager, lookupFeature);
 	}
 	
 	@NonNull
@@ -942,44 +931,44 @@ public class «resolverClass» implements «resolverItf» {
 	}
 		
 	@NonNull
-	protected <C extends «baseElmntName»> «envItf»<C> executeVisitor(@NonNull «baseElmntName» element, 
-		@NonNull «envItf»<C> env, 
+	protected  «envItf» executeVisitor(@NonNull «baseElmntName» element, 
+		@NonNull «envItf» env, 
 		@NonNull «contextItf» context) { 
 		return DomainUtil.nonNullState(element.accept(createLookupVisitor(mmManager, env, context)));
 	}
 	
 	@NonNull
-	protected <C extends «baseElmntName»> «commonNamedResultItf»<C> computeNamedResult(@NonNull «baseElmntName» element, 
-		@NonNull «namedEnvItf»<C> env, 
+	protected «commonNamedResultItf» computeNamedResult(@NonNull «baseElmntName» element, 
+		@NonNull «namedEnvItf» env, 
 		@NonNull «contextItf» context) { 
-		«envItf»<C> env2= executeVisitor(element, env, context);		
-		return ((«namedEnvItf»<C>)env2).resolveDuplicates();
+		«envItf» env2= executeVisitor(element, env, context);		
+		return ((«namedEnvItf»)env2).resolveDuplicates();
 	}		
 	
 	@NonNull
-	protected <C extends «baseElmntName»> «commonUnnamedResultItf» computeUnnamedResult(@NonNull «baseElmntName» element, 
-		@NonNull «unnamedEnvItf»<C> env, 
+	protected  «commonUnnamedResultItf» computeUnnamedResult(@NonNull «baseElmntName» element, 
+		@NonNull «unnamedEnvItf» env, 
 		@NonNull «contextItf» context) { 
-		«envItf»<C> env2 = executeVisitor(element, env, context);		
-		return ((«unnamedEnvItf»<C>)env2).getResult();
+		«envItf» env2 = executeVisitor(element, env, context);		
+		return ((«unnamedEnvItf»)env2).getResult();
 	}	
 
 	@NonNull
-	public «commonNamedResultItf»<Operation> computeReferredOperationLookup(
+	public «commonNamedResultItf» computeReferredOperationLookup(
 			@NonNull OperationCallExp opCallExp,
 			@NonNull ScopeFilter filter) {
 		throw new IllegalArgumentException("No auto-generation implemented");
 	}
 
 	@NonNull
-	public «commonNamedResultItf»<Iteration> computeReferredIterationLookup(
+	public «commonNamedResultItf» computeReferredIterationLookup(
 			@NonNull IteratorExp iteratorExp,
 			@NonNull ScopeFilter filter) {
 		throw new IllegalArgumentException("No auto-generation implemented");
 	}
 
 	@NonNull
-	public «commonNamedResultItf»<Variable> computeReferredVariableLookup(
+	public «commonNamedResultItf» computeReferredVariableLookup(
 			@NonNull VariableExp variableExp) {
 		throw new IllegalArgumentException("No auto-generation implemented");
 	}

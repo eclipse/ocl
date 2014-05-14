@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -39,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpC
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 
-public class OperationFilter extends AbstractOperationFilter<Operation>
+public class OperationFilter extends AbstractOperationFilter
 {
 	protected final @NonNull List<NavigatingArgCS> csArguments;
 	protected final int iterators;
@@ -247,8 +248,8 @@ public class OperationFilter extends AbstractOperationFilter<Operation>
 		return false;
 	}
 
-	public boolean matches(@NonNull AutoIPivotLookupEnvironment<Operation> lookupResult,
-			@NonNull Operation object) {
+	public boolean matches(@NonNull AutoIPivotLookupEnvironment lookupResult,
+			@NonNull Object object) {
 	
 		MetaModelManager mmManager = lookupResult.getMetaModelManager();
 		Map<TemplateParameter, ParameterableElement> bindings  = getBindings(mmManager, object);
