@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -103,15 +104,15 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 			return editingDomain;
 		}
 		
-		private EObject getEObject(final URI uri, boolean loadOnDemand) {
+		private @Nullable EObject getEObject(final URI uri, boolean loadOnDemand) {
 			IXtextDocument document = editor.getDocument();
 			if (document == null) {		// Bug 348256 reports an unreproducible NPE. May be there is/was an editor start up
 				return null;			//  race condition; just return no object rather than an NPE.
 			}
 			EObject eObject = document.readOnly(new IUnitOfWork<EObject, XtextResource>()
 			{
-				public EObject exec(XtextResource state) throws Exception {
-					return state.getEObject(uri.fragment());
+				public @Nullable EObject exec(@Nullable XtextResource state) throws Exception {
+					return state != null ? state.getEObject(uri.fragment()) : null;
 				}
 			});
 			return eObject;
@@ -140,7 +141,7 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 			if (uri.fragment() != null) {
 				editor.getDocument().readOnly(new IUnitOfWork.Void<XtextResource>() {
 					@Override
-					public void process(XtextResource resource) throws Exception {
+					public void process(@Nullable XtextResource resource) throws Exception {
 						if (resource != null) {
 							EObject object = resource.getEObject(uri.fragment());
 							if (object != null) {

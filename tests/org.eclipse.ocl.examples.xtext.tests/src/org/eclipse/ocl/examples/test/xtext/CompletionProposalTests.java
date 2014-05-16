@@ -175,7 +175,7 @@ public class CompletionProposalTests extends XtextTestCase
 		IXtextDocument document = editor.getDocument();
 		MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
 			@Override
-			public MetaModelManager exec(XtextResource state) throws Exception {
+			public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
 				return PivotUtil.findMetaModelManager(state);
 			}
 		});

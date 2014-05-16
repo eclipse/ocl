@@ -93,7 +93,7 @@ public class SelectionUtil
 		}
 		IXtextDocument document = ((XtextEditor)part).getDocument();
 		Notifier selectedObject = document.readOnly(new IUnitOfWork<Notifier, XtextResource>() {
-			public Notifier exec(XtextResource xtextResource) {
+			public Notifier exec(@Nullable XtextResource xtextResource) {
 				if (xtextResource == null) {
 					return null;
 				}
@@ -125,7 +125,7 @@ public class SelectionUtil
 		final URI selectedURI = selection.getEObjectURI();
 		IXtextDocument document = ((XtextEditor)part).getDocument();
 		Notifier selectedObject = document.readOnly(new IUnitOfWork<Notifier, XtextResource>() {
-			public Notifier exec(XtextResource xtextResource) {
+			public Notifier exec(@Nullable XtextResource xtextResource) {
 				if (xtextResource == null) {
 					return null;
 				}

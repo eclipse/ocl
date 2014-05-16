@@ -71,12 +71,13 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	public void disposeInput() {
 		modify(new IUnitOfWork<Object, XtextResource>()
 			{
-				public Object exec(XtextResource resource) throws Exception {
-					assert resource != null;
-					AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
-					if (adapter != null) {
-						MetaModelManager metaModelManager = adapter.getMetaModelManager();
-						metaModelManager.dispose();
+				public Object exec(@Nullable XtextResource resource) throws Exception {
+					if (resource != null) {
+						AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
+						if (adapter != null) {
+							MetaModelManager metaModelManager = adapter.getMetaModelManager();
+							metaModelManager.dispose();
+						}
 					}
 					return null;
 				}
@@ -87,9 +88,8 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	protected RootCSAttribution getDocumentAttribution() {
 		return readOnly(new IUnitOfWork<RootCSAttribution, XtextResource>()
 			{
-				public RootCSAttribution exec(XtextResource resource) throws Exception {
-					assert resource != null;
-					if (!resource.getContents().isEmpty()) {
+				public RootCSAttribution exec(@Nullable XtextResource resource) throws Exception {
+					if ((resource != null) && !resource.getContents().isEmpty()) {
 						ElementCS csElement = (ElementCS) resource.getContents().get(0);
 						if (csElement != null) {
 							Attribution attribution = PivotUtil.getAttribution(csElement);
@@ -111,11 +111,11 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		return parameters;
 	}
 
-	public ResourceSet getResourceSet() {
+	public @Nullable ResourceSet getResourceSet() {
 		return readOnly(new IUnitOfWork<ResourceSet, XtextResource>()
 			{
-				public ResourceSet exec(XtextResource resource) throws Exception {
-					return resource.getResourceSet();
+				public ResourceSet exec(@Nullable XtextResource resource) throws Exception {
+					return resource != null ? resource.getResourceSet() : null;
 				}
 			});
 	}
@@ -190,9 +190,13 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	public void setContext(final @NonNull EClassifier ecoreContext, final @Nullable Map<String, EClassifier> ecoreParameters) {
 		modify(new IUnitOfWork<Object, XtextResource>()
 		{
-			public Object exec(XtextResource resource) throws Exception {
-				assert resource != null;
-				return setContext((EssentialOCLCSResource) resource, ecoreContext, ecoreParameters);
+			public Object exec(@Nullable XtextResource resource) throws Exception {
+				if (resource instanceof EssentialOCLCSResource) {
+					return setContext((EssentialOCLCSResource) resource, ecoreContext, ecoreParameters);
+				}
+				else {
+					return null;
+				}
 			}
 		});
 

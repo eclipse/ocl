@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ocl.examples.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -63,9 +64,14 @@ public class SaveASHandler extends AbstractHandler
 		try {
 			asURI = document.readOnly(new IUnitOfWork<URI, XtextResource>()
 			{
-				public URI exec(XtextResource resource) throws Exception {
-					Resource asResource = ((BaseCSResource)resource).getASResource(null);
-					return asResource.getURI();
+				public URI exec(@Nullable XtextResource resource) throws Exception {
+					if (resource instanceof BaseCSResource) {
+						Resource asResource = ((BaseCSResource)resource).getASResource(null);
+						return asResource.getURI();
+					}
+					else {
+						return null;
+					}
 				}
 			});
 		} catch (Exception e) {}
@@ -97,14 +103,16 @@ public class SaveASHandler extends AbstractHandler
 		try {
 			document.modify(new IUnitOfWork<Object, XtextResource>()
 			{
-				public Object exec(XtextResource resource) throws Exception {
-					Resource asResource = ((BaseCSResource)resource).getASResource(null);
-					URI oldURI = asResource.getURI();
-					try {
-						asResource.setURI(newURI);
-						asResource.save(null);
-					} finally {
-						asResource.setURI(oldURI);
+				public Object exec(@Nullable XtextResource resource) throws Exception {
+					if (resource instanceof BaseCSResource) {
+						Resource asResource = ((BaseCSResource)resource).getASResource(null);
+						URI oldURI = asResource.getURI();
+						try {
+							asResource.setURI(newURI);
+							asResource.save(null);
+						} finally {
+							asResource.setURI(oldURI);
+						}
 					}
 					return null;
 				}

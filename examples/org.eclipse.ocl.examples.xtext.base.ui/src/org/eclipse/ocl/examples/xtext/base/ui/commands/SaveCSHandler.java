@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ocl.examples.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.osgi.util.NLS;
@@ -64,8 +65,13 @@ public class SaveCSHandler extends AbstractHandler
 		try {
 			csURI = document.readOnly(new IUnitOfWork<URI, XtextResource>()
 			{
-				public URI exec(XtextResource resource) throws Exception {
-					return resource.getURI().appendFileExtension("xmi");
+				public URI exec(@Nullable XtextResource resource) throws Exception {
+					if (resource != null) {
+						return resource.getURI().appendFileExtension("xmi");
+					}
+					else {
+						return null;
+					}
 				}
 			});
 		} catch (Exception e) {}
@@ -97,10 +103,12 @@ public class SaveCSHandler extends AbstractHandler
 		try {
 			document.modify(new IUnitOfWork<Object, XtextResource>()
 			{
-				public Object exec(XtextResource resource) throws Exception {
-					XMIResource xmiResource = new XMIResourceImpl(newURI);
-					xmiResource.getContents().addAll(EcoreUtil.copyAll(resource.getContents()));
-					xmiResource.save(null);
+				public Object exec(@Nullable XtextResource resource) throws Exception {
+					if (resource != null) {
+						XMIResource xmiResource = new XMIResourceImpl(newURI);
+						xmiResource.getContents().addAll(EcoreUtil.copyAll(resource.getContents()));
+						xmiResource.save(null);
+					}
 					return null;
 				}
 			});

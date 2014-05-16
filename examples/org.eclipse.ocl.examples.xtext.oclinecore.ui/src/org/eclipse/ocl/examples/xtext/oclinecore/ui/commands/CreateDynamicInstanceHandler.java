@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -111,7 +112,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 		final ITextSelection selection = (ITextSelection) xtextEditor.getSelectionProvider().getSelection();	// FIXME this is the 'double-clicked' selection
 		IXtextDocument document = xtextEditor.getDocument();
 		selectedClass = document.readOnly(new IUnitOfWork<org.eclipse.ocl.examples.pivot.Class, XtextResource>() {
-			public org.eclipse.ocl.examples.pivot.Class exec(XtextResource xtextResource) {
+			public org.eclipse.ocl.examples.pivot.Class exec(@Nullable XtextResource xtextResource) {
 				if (xtextResource == null) {
 					return null;
 				}

@@ -377,7 +377,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		if (xtextEditor != null) {
 			IXtextDocument document = xtextEditor.getDocument();
 			ResourceSet resourceSet = document.readOnly(new IUnitOfWork<ResourceSet, XtextResource>() {
-				public ResourceSet exec(XtextResource xtextResource) {
+				public ResourceSet exec(@Nullable XtextResource xtextResource) {
 					if (xtextResource == null) {
 						return null;
 					}

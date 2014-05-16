@@ -21,6 +21,7 @@ package org.eclipse.ocl.examples.xtext.console.xtfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextInputListener;
 import org.eclipse.jface.text.TextAttribute;
@@ -234,7 +235,7 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 		if (calculator != null) {
 			((XtextDocument) sourceViewer.getDocument()).readOnly(new IUnitOfWork.Void<XtextResource>() {
 				@Override
-				public void process(XtextResource state) throws Exception {
+				public void process(@Nullable XtextResource state) throws Exception {
 					modelChanged(state);
 				}
 			});

@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -87,10 +88,12 @@ public class SaveExpressionAction extends Action
 					BaseDocument editorDocument = consolePage.getEditorDocument();
 					editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
 					{
-						public Object exec(XtextResource resource) throws Exception {
-							Resource asResource = ((BaseCSResource)resource).getASResource(null);
-							asResource.setURI(URI.createFileURI(file));
-							asResource.save(saveOptions);
+						public Object exec(@Nullable XtextResource resource) throws Exception {
+							if (resource instanceof BaseCSResource) {
+								Resource asResource = ((BaseCSResource)resource).getASResource(null);
+								asResource.setURI(URI.createFileURI(file));
+								asResource.save(saveOptions);
+							}
 							return null;
 						}
 					});

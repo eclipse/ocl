@@ -123,11 +123,17 @@ public class BaseUIUtil
 			if (xtextDocument != null) {
 				final URI eObjectURI = selectedObjectNode.getEObjectURI();
 				if (eObjectURI != null) {
-					return xtextDocument.modify(new IUnitOfWork<EObject, XtextResource>()
+					return xtextDocument.readOnly(new IUnitOfWork<EObject, XtextResource>()
 					{
-						public EObject exec(XtextResource resource) throws Exception {
+						public EObject exec(@Nullable XtextResource resource) throws Exception {
+							if (resource ==  null) {
+								return null;
+							}
 							String fragment = eObjectURI.fragment();
-							return fragment != null ? resource.getEObject(fragment) : null;
+							if (fragment ==  null) {
+								return null;
+							}
+							return resource.getEObject(fragment);
 						}
 					});
 				}
@@ -144,9 +150,12 @@ public class BaseUIUtil
 		if (xtextDocument == null) {
 			return null;
 		}
-		return xtextDocument.modify(new IUnitOfWork<EObject, XtextResource>()
+		return xtextDocument.readOnly(new IUnitOfWork<EObject, XtextResource>()
 		{
-			public EObject exec(XtextResource resource) throws Exception {
+			public EObject exec(@Nullable XtextResource resource) throws Exception {
+				if (resource == null) {
+					return null;
+				}
 				if (resource.getContents().size() <= 0) {
 					return null;
 				}

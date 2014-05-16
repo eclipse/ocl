@@ -513,8 +513,8 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
                 		IXtextDocument xtextDocument = outlinePage.getXtextDocument();
                 		Element pivotElement = xtextDocument.readOnly(new IUnitOfWork<Element, XtextResource>()
                 		{
-							public Element exec(XtextResource state) throws Exception {
-								if (selection instanceof IStructuredSelection) {
+							public Element exec(@Nullable XtextResource state) throws Exception {
+								if ((state != null) && (selection instanceof IStructuredSelection)) {
 									IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 									if (structuredSelection.size() == 1) {
 										Object selectedObject = structuredSelection.getFirstElement();
@@ -720,12 +720,16 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
         	try {
         		value = editorDocument.readOnly(new IUnitOfWork<Object, XtextResource>() {
 
-				public Object exec(XtextResource state) throws Exception {
-					assert state != null;
-					IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
-					EvaluationRunnable runnable = new EvaluationRunnable((BaseResource) state, expression);
-					progressService.busyCursorWhile(runnable);
-					return runnable.getValue();
+				public Object exec(@Nullable XtextResource state) throws Exception {
+					if (state != null) {
+						IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
+						EvaluationRunnable runnable = new EvaluationRunnable((BaseResource) state, expression);
+						progressService.busyCursorWhile(runnable);
+						return runnable.getValue();
+					}
+					else {
+						return null;
+					}
 				}});
            	}
         	catch (Exception e) {
@@ -884,7 +888,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		final BaseDocument editorDocument = getEditorDocument();
 		editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
 		{
-			public Value exec(XtextResource resource) throws Exception {
+			public Value exec(@Nullable XtextResource resource) throws Exception {
 				Object selectedObject = selected;
 		    	if (selectedObject instanceof IAdaptable) {
 		    		Object adapted = ((IAdaptable) selectedObject).getAdapter(EObject.class);
@@ -943,7 +947,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		if (editor != null) {
 			IXtextDocument document = editor.getDocument();
 			MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
-				public MetaModelManager exec(XtextResource state) throws Exception {
+				public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
 					if (state == null) {
 						return null;
 					}

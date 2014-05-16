@@ -20,6 +20,7 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.model.ILineBreakpoint;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -120,7 +121,7 @@ class BreakpointLocationVerifier {
 		Root root = ((XtextDocument)doc).readOnly(new IUnitOfWork<Root, XtextResource>()
 		{
 			@Override
-			public Root exec(XtextResource state) throws Exception {
+			public Root exec(@Nullable XtextResource state) throws Exception {
 				if (state instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)state;
 					CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();

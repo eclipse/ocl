@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -109,7 +110,7 @@ public class EditorTests extends XtextTestCase
 		IXtextDocument document = editor.getDocument();
 		MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
 			@Override
-			public MetaModelManager exec(XtextResource state) throws Exception {
+			public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
 				return PivotUtil.findMetaModelManager(state);
 			}
 		});
@@ -176,7 +177,7 @@ public class EditorTests extends XtextTestCase
 		document.modify(new IUnitOfWork<Object, XtextResource>()
 		{
 			@Override
-			public Object exec(XtextResource resource) throws Exception {
+			public Object exec(@Nullable XtextResource resource) throws Exception {
 				resource.setValidationDisabled(false);
 				PivotResourceValidator resourceValidator = new PivotResourceValidator();
 				resourceValidator.setDiagnostician(Diagnostician.INSTANCE);
@@ -188,7 +189,7 @@ public class EditorTests extends XtextTestCase
 		document.readOnly(new IUnitOfWork<Object, XtextResource>()
 		{
 			@Override
-			public Object exec(XtextResource resource) throws Exception {
+			public Object exec(@Nullable XtextResource resource) throws Exception {
 				assertNoResourceErrors("Loaded CS", resource);
 				CS2Pivot cs2Pivot = PivotUtil.getAdapter(CS2Pivot.class, resource);		// FIXME Wrong class
 				if (cs2Pivot != null) {
@@ -217,7 +218,7 @@ public class EditorTests extends XtextTestCase
 		document.readOnly(new IUnitOfWork<Object, XtextResource>()
 		{
 			@Override
-			public Object exec(XtextResource resource) throws Exception {
+			public Object exec(@Nullable XtextResource resource) throws Exception {
 //				assertNoResourceErrors("Loaded CS", resource);
 				CS2PivotResourceAdapter cs2Pivot = PivotUtil.getAdapter(CS2PivotResourceAdapter.class, resource);
 				if (cs2Pivot != null) {
