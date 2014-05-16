@@ -11,41 +11,37 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.srclookup;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.model.IPersistableSourceLocator;
 import org.eclipse.debug.core.sourcelookup.AbstractSourceLookupDirector;
-import org.eclipse.debug.core.sourcelookup.ISourceLookupDirector;
 import org.eclipse.debug.core.sourcelookup.ISourceLookupParticipant;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 
 public abstract class VMSourceLookupDirector extends AbstractSourceLookupDirector {	
 	
-	private static final String PDE_SOURCE_LOOKUP_DIRECTOR_ID = "org.eclipse.pde.ui.launcher.PDESourceLookupDirector";
+//	private static final String PDE_SOURCE_LOOKUP_DIRECTOR_ID = "org.eclipse.pde.ui.launcher.PDESourceLookupDirector";
 	
-	private ISourceLookupDirector fPDEdelegate;
+//	private ISourceLookupDirector fPDEdelegate;
 	
 	public VMSourceLookupDirector() {
-		try {
-			IPersistableSourceLocator newSourceLocator = DebugPlugin.getDefault().getLaunchManager()
-				.newSourceLocator(PDE_SOURCE_LOOKUP_DIRECTOR_ID);
+//		try {
+//			IPersistableSourceLocator newSourceLocator = DebugPlugin.getDefault().getLaunchManager()
+//				.newSourceLocator(PDE_SOURCE_LOOKUP_DIRECTOR_ID);
 			
-			if(newSourceLocator instanceof ISourceLookupDirector) {
-				fPDEdelegate = (ISourceLookupDirector) newSourceLocator;
-			}
-		} catch (CoreException e) {
-			getDebugCore().log(e.getStatus());
-		}
+//			if(newSourceLocator instanceof ISourceLookupDirector) {
+//				fPDEdelegate = (ISourceLookupDirector) newSourceLocator;
+//			}
+//		} catch (CoreException e) {
+//			getDebugCore().log(e.getStatus());
+//		}
 	}
 
 	protected abstract @NonNull VMDebugCore getDebugCore();
 	
 	public void initializeParticipants() {
 		addParticipants(new ISourceLookupParticipant[] { new VMSourceLookupParticipant(getDebugCore()) });
-		if(fPDEdelegate != null) {
-			fPDEdelegate.initializeParticipants();
-			addParticipants(fPDEdelegate.getParticipants());
-		}
+//		if(fPDEdelegate != null) {
+//			fPDEdelegate.initializeParticipants();
+//			addParticipants(fPDEdelegate.getParticipants());
+//		}
 	}
 }

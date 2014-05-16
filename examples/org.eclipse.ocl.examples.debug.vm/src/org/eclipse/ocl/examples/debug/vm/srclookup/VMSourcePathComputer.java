@@ -11,8 +11,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.srclookup;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -21,10 +21,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.sourcelookup.ISourceContainer;
 import org.eclipse.debug.core.sourcelookup.ISourcePathComputer;
+import org.eclipse.debug.core.sourcelookup.containers.DirectorySourceContainer;
 import org.eclipse.debug.core.sourcelookup.containers.ProjectSourceContainer;
 import org.eclipse.debug.core.sourcelookup.containers.WorkspaceSourceContainer;
 import org.eclipse.emf.common.util.URI;
@@ -32,7 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 public abstract class VMSourcePathComputer implements ISourcePathComputer
 {
-	private static final String JAVA_SRC_COMPUTER_ID = "org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"; //$NON-NLS-1$
+//	private static final String JAVA_SRC_COMPUTER_ID = "org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"; //$NON-NLS-1$
 	
     public static IFile getIFile(String fileUnderWorkspace) {
 		IPath location = new Path(fileUnderWorkspace);
@@ -74,10 +74,10 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 		return ifile;
     }
 	
-	private final ISourcePathComputer fJavaSourcePathComputer;
+//	private final ISourcePathComputer fJavaSourcePathComputer;
 	
 	public VMSourcePathComputer() {
-		fJavaSourcePathComputer = DebugPlugin.getDefault().getLaunchManager().getSourcePathComputer(JAVA_SRC_COMPUTER_ID);
+//		fJavaSourcePathComputer = DebugPlugin.getDefault().getLaunchManager().getSourcePathComputer(JAVA_SRC_COMPUTER_ID);
 	}
 	
 	public abstract @NonNull String getId();
@@ -94,7 +94,7 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 		}
 	    List<ISourceContainer> result = new ArrayList<ISourceContainer>();
 		result.add(sourceContainer);		
-		result.addAll(Arrays.asList(fJavaSourcePathComputer.computeSourceContainers(configuration, monitor)));
+//		result.addAll(Arrays.asList(fJavaSourcePathComputer.computeSourceContainers(configuration, monitor)));
 		return result.toArray(new ISourceContainer[result.size()]);
 	}
 
