@@ -75,7 +75,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(folder, constraint.getName());
 		launchConfiguration.setAttribute(OCLLaunchConstants.CONSTRAINT_URI, constraintURI.toString());
 		launchConfiguration.setAttribute(OCLLaunchConstants.CONTEXT_URI, contextURI.toString());
-		launchConfiguration.doSave();
+//		launchConfiguration.doSave();
 		launchConfiguration.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
 		return true;
 	}
