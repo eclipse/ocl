@@ -25,12 +25,10 @@ public class ASTBindingHelper
 {
 	private static final class UnitLocation2 implements IModuleSourceInfo, LineNumberProvider		// FIXME Unify with UnitLocation/INode
 	{
-//		private @NonNull Element asElement;
 		private @Nullable ModelElementCS csElement;
 		private @Nullable ICompositeNode node;
 		
 		private UnitLocation2(@NonNull Element asElement) {
-//			this.asElement = asElement;
 			this.csElement = ElementUtil.getCsElement(asElement);
 			if (csElement != null) {
 				this.node = NodeModelUtils.getNode(csElement);

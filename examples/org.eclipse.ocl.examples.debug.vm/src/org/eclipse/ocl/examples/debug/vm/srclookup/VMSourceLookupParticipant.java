@@ -35,7 +35,9 @@ public class VMSourceLookupParticipant extends AbstractSourceLookupParticipant
     	if (object instanceof VMStackFrame) {
 			VMStackFrame frame = (VMStackFrame) object;
 			URI unitURI = frame.getUnitURI();
-
+			if (unitURI.isFile()) {
+				return unitURI.toFileString();
+			}
 			IFile sourceFile = findSourceFile(unitURI);
 			if(sourceFile != null) {
 				return sourceFile.getProjectRelativePath().toString();

@@ -84,13 +84,38 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 	
 	public @NonNull ISourceContainer[] computeSourceContainers(ILaunchConfiguration configuration, IProgressMonitor monitor) throws CoreException {
 		assert configuration != null;
-		IFile moduleFile = getModuleFile(configuration);
+		URI moduleURI = getModuleFile(configuration);
 		ISourceContainer sourceContainer;
-		if (moduleFile != null && moduleFile.exists()) {
-			sourceContainer = new ProjectSourceContainer(moduleFile.getProject(), false);
+		if (moduleURI.isFile()) {
+			File moduleFile = new File(moduleURI.toFileString());
+			sourceContainer = new DirectorySourceContainer(moduleFile.getParentFile(), false)
+			{
+
+				@Override
+				public Object[] findSourceElements(String name) throws CoreException {
+					URI nameURI = URI.createFileURI(name);
+					URI directoryURI = URI.createFileURI(getDirectory().toString() + "/");
+					URI relativeURI = nameURI.deresolve(directoryURI);
+					return super.findSourceElements(relativeURI.toString());
+				}
+
+				@Override
+				protected Object[] findSourceElements(String name,
+						ISourceContainer[] containers) throws CoreException {
+					// TODO Auto-generated method stub
+					return super.findSourceElements(name, containers);
+				}
+				
+			};
 		}
 		else {
-			sourceContainer = new WorkspaceSourceContainer();
+			IFile moduleFile = getWorkspaceFile(moduleURI);
+			if (moduleFile != null && moduleFile.exists()) {
+				sourceContainer = new ProjectSourceContainer(moduleFile.getProject(), false);
+			}
+			else {
+				sourceContainer = new WorkspaceSourceContainer();
+			}
 		}
 	    List<ISourceContainer> result = new ArrayList<ISourceContainer>();
 		result.add(sourceContainer);		
@@ -98,5 +123,5 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 		return result.toArray(new ISourceContainer[result.size()]);
 	}
 
-	protected abstract IFile getModuleFile(@NonNull ILaunchConfiguration configuration) throws CoreException;
+	protected abstract URI getModuleFile(@NonNull ILaunchConfiguration configuration) throws CoreException;
 }

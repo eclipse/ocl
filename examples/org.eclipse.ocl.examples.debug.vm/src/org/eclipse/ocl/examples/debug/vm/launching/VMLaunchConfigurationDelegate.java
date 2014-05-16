@@ -139,12 +139,17 @@ public abstract class VMLaunchConfigurationDelegate<EC extends EvaluationContext
 		VMVirtualProcess process = createVirtualProcess(launch, vm);
 		process.setStreamsProxy(streamsProxy);
 		
-		List<IFile> transformationWsFile = getDebugCore().toFiles(runner.getDebuggableURI());
-		if (!transformationWsFile.isEmpty()) {			
-			IFile unitFile = transformationWsFile.get(0);
-			if (unitFile != null) {
-				addSourceModificationListener(unitFile, process);
+		try {
+			List<IFile> transformationWsFile = getDebugCore().toFiles(runner.getDebuggableURI());
+			if (!transformationWsFile.isEmpty()) {			
+				IFile unitFile = transformationWsFile.get(0);
+				if (unitFile != null) {
+					addSourceModificationListener(unitFile, process);
+				}
 			}
+		}
+		catch (IllegalArgumentException e) {
+			// FIXME happens for Console input 'file'
 		}
 		
 		IDebugTarget debugTarget = createDebugTarget(vm, process);		

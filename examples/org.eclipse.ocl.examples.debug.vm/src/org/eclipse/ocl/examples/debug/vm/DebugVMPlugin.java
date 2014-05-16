@@ -14,28 +14,26 @@
  */
 package org.eclipse.ocl.examples.debug.vm;
 
-import org.eclipse.core.runtime.Plugin;
 import org.eclipse.jdt.annotation.NonNull;
-import org.osgi.framework.BundleContext;
 
-public class DebugVMPlugin extends Plugin
+public class DebugVMPlugin //extends Plugin
 {
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.debug.vm";
 	
-	private static DebugVMPlugin plugin;
+//	private static DebugVMPlugin plugin;
 
-	public static DebugVMPlugin getDefault() {
-		return plugin;
-	}
+//	public static DebugVMPlugin getDefault() {
+//		return plugin;
+//	}
 
-	public void start(BundleContext bundleContext) throws Exception {
-		super.start(bundleContext);
-		plugin = this;
+//	public void start(BundleContext bundleContext) throws Exception {
+//		super.start(bundleContext);
+//		plugin = this;
 //		CompleteOCLASResourceFactory.INSTANCE.getClass();		// FIXME An extension point should do this
-	}
+//	}
 
-	public void stop(BundleContext bundleContext) throws Exception {
-		plugin = null;
-		super.stop(bundleContext);
-	}
+//	public void stop(BundleContext bundleContext) throws Exception {
+//		plugin = null;
+//		super.stop(bundleContext);
+//	}
 }

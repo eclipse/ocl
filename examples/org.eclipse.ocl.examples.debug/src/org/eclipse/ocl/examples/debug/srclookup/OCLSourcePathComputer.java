@@ -11,13 +11,17 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.srclookup;
 
-import org.eclipse.core.resources.IFile;
+import java.util.Map;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.vm.srclookup.VMSourcePathComputer;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class OCLSourcePathComputer extends VMSourcePathComputer
@@ -28,18 +32,29 @@ public class OCLSourcePathComputer extends VMSourcePathComputer
 		return ID;
 	}
 
-	protected IFile getModuleFile(@NonNull ILaunchConfiguration configuration) throws CoreException {
+	protected URI getModuleFile(@NonNull ILaunchConfiguration configuration) throws CoreException {
 //      String moduleFileName = configuration.getAttribute(LaunchConstants.MODULE, ""); //$NON-NLS-1$
-      String moduleFileName = configuration.getAttribute(OCLLaunchConstants.CONSTRAINT_URI, ""); //$NON-NLS-1$
-      @SuppressWarnings("null")@NonNull URI trimFragment = URI.createURI(moduleFileName).trimFragment();
-      URI moduleUri = PivotUtil.getNonASURI(trimFragment);
-      IFile moduleFile = getWorkspaceFile(moduleUri);
-      if (moduleFile == null) {
+		Map<String, Object> attributes = configuration.getAttributes();
+		Object contextObject = attributes.get(OCLLaunchConstants.CONTEXT_OBJECT);
+		Object expressionObject = attributes.get(OCLLaunchConstants.EXPRESSION_OBJECT);
+	    URI uri = null;
+		if (((contextObject == null) || (contextObject instanceof EObject)) && (expressionObject instanceof ExpressionInOCL)) {
+			uri = EcoreUtil.getURI((ExpressionInOCL) expressionObject);
+		}
+		else {
+			String moduleFileName = configuration.getAttribute(OCLLaunchConstants.CONSTRAINT_URI, ""); //$NON-NLS-1$
+			uri = URI.createURI(moduleFileName);
+		}
+	@SuppressWarnings("null")@NonNull URI trimFragment = uri.trimFragment();
+      URI moduleURI = PivotUtil.getNonASURI(trimFragment);
+      return moduleURI;
+//      IFile moduleFile = getWorkspaceFile(moduleUri);
+//      if (moduleFile == null) {
       	//IStatus errorStatus = MiscUtil.makeErrorStatus( 
       		//	NLS.bind(Messages.VMLaunchConfigurationDelegate_transformationFileNotFound, moduleFileName));
       	//throw new CoreException(errorStatus);
-      }
+//      }
       
-      return moduleFile;
+//      return moduleFile;
 	}
 }

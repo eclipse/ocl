@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.debug.ui.pages;
 import java.text.MessageFormat;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.ILineBreakpoint;
@@ -44,6 +45,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.xtext.ui.editor.XtextReadonlyEditorInput;
 
 
 public class OCLDebugModelPresentation implements IDebugModelPresentation, IDebugEditorPresentation, IDebugModelPresentationExtension, IColorProvider, ILabelProvider {
@@ -172,13 +174,16 @@ public class OCLDebugModelPresentation implements IDebugModelPresentation, IDebu
 		else if (element instanceof ILineBreakpoint) {
 			return new FileEditorInput((IFile) ((ILineBreakpoint) element).getMarker().getResource());
 		}
+		else if (element instanceof IStorage) {
+			return new XtextReadonlyEditorInput((IStorage) element);
+		}
 		else {
 			return null;
 		}
 	}
 
 	public String getEditorId(IEditorInput input, Object element) {
-		if (element instanceof IFile || element instanceof ILineBreakpoint) {
+		if (element instanceof IStorage || element instanceof ILineBreakpoint) {
 			return CompleteOCLEditor.EDITOR_ID;
 		}
 
