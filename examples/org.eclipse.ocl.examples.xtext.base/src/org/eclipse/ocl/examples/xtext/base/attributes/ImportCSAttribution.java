@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -87,6 +88,13 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			if (name == null) {
 				return;
 			}
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+			PackageServer packageServer = metaModelManager.getPackageManager().getPackageByURI(name);
+			if (packageServer != null) {
+				importedElement = packageServer.getPivotPackage();
+				throwable = null;
+				return;
+			}
 			BaseCSResource csResource = (BaseCSResource) target.eResource();
 			@NonNull URI uri2;
 			try {
@@ -106,7 +114,6 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				return;
 			}
 			try {
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				importedElement = metaModelManager.loadResource(uri2, target.getName(), null);				
 				Resource importedResource = importedElement.eResource();
 				List<Resource.Diagnostic> warnings = importedResource.getWarnings();
