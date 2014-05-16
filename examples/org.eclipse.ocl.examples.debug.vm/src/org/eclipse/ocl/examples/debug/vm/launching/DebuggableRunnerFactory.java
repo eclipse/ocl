@@ -25,14 +25,12 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
 public abstract class DebuggableRunnerFactory implements IDebuggableRunnerFactory
 {	
 	protected final @NonNull EPackage.Registry packageRegistry;	
-	protected final @NonNull String debuggableURI;
 	protected final @NonNull List<String> modelURIs;
 	protected final @Nullable String traceFileURI;
 
-	protected DebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry, @NonNull String debuggableURI,
+	protected DebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry,
 			@NonNull List<String> modelURIs, @Nullable String traceFileURI) {
 		this.packageRegistry = packageRegistry;
-		this.debuggableURI = debuggableURI;
 		this.modelURIs = modelURIs;
 		this.traceFileURI = traceFileURI;
 	}

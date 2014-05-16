@@ -75,7 +75,7 @@ public abstract class VMLaunchConfigurationDelegate<EC extends EvaluationContext
 
 	protected abstract @NonNull VMDebugTarget createDebugTarget(@NonNull IVMVirtualMachineShell vm, @NonNull VMVirtualProcess process);
 
-	protected abstract @NonNull DebuggableRunnerFactory createDebuggableRunnerFactory(@NonNull String uri, @NonNull EPackage.Registry packageRegistry,
+	protected abstract @NonNull DebuggableRunnerFactory createDebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry,
 			@NonNull List<String> modelURIs, @Nullable String traceURI);
 
 	protected abstract @NonNull EC createEvaluationContext(@NonNull ILaunchConfiguration configuration) throws CoreException;
@@ -103,7 +103,7 @@ public abstract class VMLaunchConfigurationDelegate<EC extends EvaluationContext
 		EPackage.Registry packageRegistry = createPackageRegistry(uri);
 		
 		List<String> modelURIs = new ArrayList<String>();
-		DebuggableRunnerFactory runnerFactory = createDebuggableRunnerFactory(uri, packageRegistry, modelURIs, null);
+		DebuggableRunnerFactory runnerFactory = createDebuggableRunnerFactory(packageRegistry, modelURIs, null);
 		
 		try {
 			return runnerFactory.createRunner(evaluationContext);

@@ -43,9 +43,9 @@ public class OCLVMLaunchConfigurationDelegate extends VMLaunchConfigurationDeleg
 		return new OCLDebugTarget(process, vm);
 	}
 
-	protected @NonNull DebuggableRunnerFactory createDebuggableRunnerFactory(@NonNull String uri, @NonNull EPackage.Registry packageRegistry,
+	protected @NonNull DebuggableRunnerFactory createDebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry,
 			@NonNull List<String> modelURIs, @Nullable String traceURI) {
-		return new OCLDebuggableRunnerFactory(packageRegistry, uri, modelURIs, null);
+		return new OCLDebuggableRunnerFactory(packageRegistry, modelURIs, null);
 	}
 	
 	protected @NonNull OCLEvaluationContext createEvaluationContext(@NonNull ILaunchConfiguration configuration) throws CoreException {
