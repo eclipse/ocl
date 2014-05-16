@@ -73,21 +73,20 @@ public class OCLVMEvaluator implements IVMEvaluator
 	private @Nullable EObject context;
 	private boolean suspendOnStartup = false;
 
-    private OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull ExpressionInOCL expressionInOCL) {
+    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @Nullable URI contextURI) throws IOException {
+    	this(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()), contextURI != null ? loadContext(envFactory.getMetaModelManager(), contextURI) : null);
+    }
+
+    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull Constraint constraint, @NonNull EObject context) throws IOException {
+    	this(envFactory, loadExpression(constraint, EcoreUtil.getURI(constraint)), context);
+    }
+    
+    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull ExpressionInOCL expressionInOCL, @Nullable EObject context) throws IOException {
     	this.envFactory = envFactory;
     	this.metaModelManager = envFactory.getMetaModelManager();
     	this.expressionInOCL = expressionInOCL;
     	this.env = envFactory.createEnvironment();
     	this.modelManager = envFactory.createModelManager(metaModelManager);
-    }
-
-    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @NonNull URI contextURI) throws IOException {
-    	this(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()));
-    	context = loadContext(envFactory.getMetaModelManager(), contextURI);
-    }
-    
-    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull Constraint constraint, @NonNull EObject context) throws IOException {
-    	this(envFactory, loadExpression(constraint, EcoreUtil.getURI(constraint)));
     	this.context = context;
     }
 

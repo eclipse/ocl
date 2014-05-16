@@ -19,35 +19,35 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class OCLEvaluationContext extends EvaluationContext
 {
-	private final @Nullable Constraint constraintObject;
+	private final @Nullable ExpressionInOCL expressionObject;
 	private final @Nullable EObject contextObject;
 	private final @NonNull URI constraintURI;
-	private final @NonNull URI contextURI;
+	private final @Nullable URI contextURI;
 
-	public OCLEvaluationContext(@NonNull Constraint constraintObject, @NonNull EObject contextObject) {
-		this.constraintObject = constraintObject;
+	public OCLEvaluationContext(@NonNull ExpressionInOCL expressionObject, @Nullable EObject contextObject) {
+		this.expressionObject = expressionObject;
 		this.contextObject = contextObject;
-		this.constraintURI = DomainUtil.nonNullState(EcoreUtil.getURI(constraintObject));
-		this.contextURI = DomainUtil.nonNullState(EcoreUtil.getURI(contextObject));
+		this.constraintURI = DomainUtil.nonNullState(EcoreUtil.getURI(expressionObject));
+		this.contextURI = contextObject != null ? EcoreUtil.getURI(contextObject) : null;
 	}
 
 	public OCLEvaluationContext(@NonNull URI constraintURI, @NonNull URI contextURI) {
-		this.constraintObject = null;
+		this.expressionObject = null;
 		this.contextObject = null;
 		this.constraintURI = constraintURI;
 		this.contextURI = contextURI;
 	}
 
 	protected @Nullable MetaModelManager findMetaModelManager() {
-		Constraint constraintObject2 = constraintObject;
-		if (constraintObject2 != null) {
-			Resource eResource = constraintObject2.eResource();
+		ExpressionInOCL expressionObject2 = expressionObject;
+		if (expressionObject2 != null) {
+			Resource eResource = expressionObject2.eResource();
 			if (eResource != null) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
 				if (metaModelManager != null) {
@@ -68,10 +68,6 @@ public class OCLEvaluationContext extends EvaluationContext
 		return null;
 	}
 
-	public @Nullable Constraint getConstraintObject() {
-		return constraintObject;
-	}
-
 	public @NonNull URI getConstraintURI() {
 		return constraintURI;
 	}
@@ -80,11 +76,15 @@ public class OCLEvaluationContext extends EvaluationContext
 		return contextObject;
 	}
 
-	public @NonNull URI getContextURI() {
+	public @Nullable URI getContextURI() {
 		return contextURI;
 	}
 
 	public @NonNull URI getDebuggableURI() {
 		return constraintURI;
+	}
+
+	public @Nullable ExpressionInOCL getExpressionObject() {
+		return expressionObject;
 	}
 }

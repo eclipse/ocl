@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 
 public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {
@@ -152,10 +153,15 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	
 	private @NonNull String getMainModuleName() {
 		CompiledUnit mainUnit = fBPM.getUnitManager().getMainUnit();
-		if (mainUnit.getModules().isEmpty()) {
+		List<NamedElement> modules = mainUnit.getModules();
+		if (modules.isEmpty()) {
 			return "<null>"; //$NON-NLS-1$
 		}
-		return DomainUtil.nonNullState(mainUnit.getModules().get(0).getName());
+		String name = modules.get(0).getName();
+		if (name == null) {
+			return "<null>"; //$NON-NLS-1$
+		}
+		return DomainUtil.nonNullState(name);
 	}
 
 	public @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor() {

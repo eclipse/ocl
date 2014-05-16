@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.debug.vm.core.VMVirtualProcess;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunnerFactory;
 import org.eclipse.ocl.examples.debug.vm.launching.VMLaunchConfigurationDelegate;
-import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 
 public class OCLVMLaunchConfigurationDelegate extends VMLaunchConfigurationDelegate<OCLEvaluationContext> implements OCLLaunchConstants
 {
@@ -51,9 +51,9 @@ public class OCLVMLaunchConfigurationDelegate extends VMLaunchConfigurationDeleg
 	protected @NonNull OCLEvaluationContext createEvaluationContext(@NonNull ILaunchConfiguration configuration) throws CoreException {
 		Map<String, Object> attributes = configuration.getAttributes();
 		Object contextObject = attributes.get(CONTEXT_OBJECT);
-		Object constraintObject = attributes.get(CONSTRAINT_OBJECT);
-		if ((contextObject instanceof EObject) && (constraintObject instanceof Constraint)) {
-			return new OCLEvaluationContext((Constraint)constraintObject, (EObject)contextObject);			
+		Object expressionObject = attributes.get(EXPRESSION_OBJECT);
+		if (((contextObject == null) || (contextObject instanceof EObject)) && (expressionObject instanceof ExpressionInOCL)) {
+			return new OCLEvaluationContext((ExpressionInOCL)expressionObject, (EObject)contextObject);			
 		}
 		String expressionUri = configuration.getAttribute(CONSTRAINT_URI, "");
 		@SuppressWarnings("null")@NonNull URI expressionURI = URI.createURI(expressionUri, true);

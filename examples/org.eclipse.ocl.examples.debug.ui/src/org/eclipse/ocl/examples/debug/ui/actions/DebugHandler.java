@@ -78,7 +78,7 @@ public class DebugHandler extends AbstractHandler
 			ILaunchConfigurationWorkingCopy workingCopy = launchConfiguration.getWorkingCopy();
 			Map<String, Object> attributes = new HashMap<String, Object>();
 			attributes.put(OCLLaunchConstants.CONTEXT_OBJECT, context);
-			attributes.put(OCLLaunchConstants.CONSTRAINT_OBJECT, constraint);		
+			attributes.put(OCLLaunchConstants.EXPRESSION_OBJECT, constraint != null ? constraint.getSpecification() : null);		
 			workingCopy.setAttributes(attributes);		
 			workingCopy.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
 		} catch (CoreException e) {

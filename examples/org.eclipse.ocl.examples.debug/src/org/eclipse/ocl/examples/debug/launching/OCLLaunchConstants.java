@@ -20,12 +20,6 @@ public interface OCLLaunchConstants
 {
 	static final @NonNull String LAUNCH_CONFIGURATION_TYPE_ID = "org.eclipse.ocl.examples.debug.launching.OCLLaunchConfigurationDelegate";
 
-
-	/**
-	 * ILaunchConfiguration String attribute for the OCL constraint passed in memory as a Constraint.
-	 */
-	static final @NonNull String CONSTRAINT_OBJECT = "constraintObject";
-
 	/**
 	 * ILaunchConfiguration String attribute for the OCL constraint passed as a URI string.
 	 */
@@ -40,6 +34,11 @@ public interface OCLLaunchConstants
 	 * ILaunchConfiguration String attribute for the context element passed as a URI string.
 	 */
 	static final @NonNull String CONTEXT_URI = "context";
+
+	/**
+	 * ILaunchConfiguration String attribute for the OCL expression passed in memory as an ExpressionInOCL.
+	 */
+	static final @NonNull String EXPRESSION_OBJECT = "expressionObject";
 
 	/**
 	 * ILaunchConfiguration String attribute for the resource containing the context element when the element has not been selected.

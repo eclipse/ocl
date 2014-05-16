@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.debug.core.OCLEvaluationContext;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.launching.InternalDebuggableExecutor;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 
 /**
  * Internal transformation executor
@@ -34,6 +35,12 @@ public class OCLInternalDebuggableExecutor extends InternalDebuggableExecutor
 	}
 
 	protected @NonNull OCLVMEvaluator createEvaluator() throws IOException {
-		return new OCLVMEvaluator((OCLVMEnvironmentFactory) envFactory, evaluationContext.getConstraintURI(), evaluationContext.getContextURI());
+		ExpressionInOCL expressionObject = evaluationContext.getExpressionObject();
+		if (expressionObject != null) {
+			return new OCLVMEvaluator((OCLVMEnvironmentFactory) envFactory, expressionObject, evaluationContext.getContextObject());
+		}
+		else {
+			return new OCLVMEvaluator((OCLVMEnvironmentFactory) envFactory, evaluationContext.getConstraintURI(), evaluationContext.getContextURI());
+		}
 	}
 }
