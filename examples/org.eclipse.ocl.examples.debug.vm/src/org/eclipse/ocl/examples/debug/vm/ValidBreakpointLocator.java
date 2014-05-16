@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 
 public class ValidBreakpointLocator
@@ -39,7 +39,7 @@ public class ValidBreakpointLocator
 	
 	public @NonNull List<Element> getBreakpointableElementsForLine(@NonNull CompiledUnit compiledModule, @NonNull LineNumberProvider lineNumbers, int lineNumber) {
 		List<Element> elements = new ArrayList<Element>();
-		for (Namespace nextModule : compiledModule.getModules()) {
+		for (NamedElement nextModule : compiledModule.getModules()) {
 			for (TreeIterator<EObject> tit = nextModule.eAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
 				if (eObject instanceof Element) {

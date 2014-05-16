@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.IModuleSourceInfo;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public class UnitManager
@@ -99,7 +98,7 @@ public class UnitManager
 		
 		for (CompiledUnit nextUnit : allUnits) {
 			if (nextUnit != null) {
-				for (Root module : nextUnit.getModules()) {
+				for (NamedElement module : nextUnit.getModules()) {
 					if (module != null) {
 						IModuleSourceInfo sourceBinding = ASTBindingHelper.getModuleSourceBinding(module);
 						if(sourceBinding != null) {

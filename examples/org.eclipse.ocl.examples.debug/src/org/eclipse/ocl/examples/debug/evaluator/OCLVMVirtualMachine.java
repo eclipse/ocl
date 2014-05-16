@@ -116,7 +116,7 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 	
 	private static @NonNull VMStackFrameData createStackFrame(@NonNull UnitLocation location, boolean includeVars) {
 		IVMEvaluationEnvironment<?> evalEnv = location.getEvalEnv();
-		Root module = location.getModule();
+		NamedElement module = location.getModule();
 		String moduleName = (module != null) ? DomainUtil.nonNullState(module.getName()) : "<null>"; //$NON-NLS-1$
 		
 		NamedElement operation = location.getOperation();

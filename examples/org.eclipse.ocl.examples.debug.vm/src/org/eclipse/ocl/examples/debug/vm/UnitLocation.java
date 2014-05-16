@@ -12,15 +12,14 @@
 package org.eclipse.ocl.examples.debug.vm;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.IModuleSourceInfo;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 
 public class UnitLocation {
@@ -44,7 +43,7 @@ public class UnitLocation {
 	private final int fDepth;	
 	
     private final Element fElement;
-    private final @NonNull Root fModule;    
+    private final @NonNull NamedElement fModule;    
     private final NamedElement fOperation;
     private final @NonNull IVMEvaluationEnvironment<?> fEvalEnv;    
 	private IModuleSourceInfo fSrcInfo;
@@ -57,7 +56,9 @@ public class UnitLocation {
 		fDepth = evalEnv.getDepth();
 		fOperation = evalEnv.getOperation();
 		
-		fModule = DomainUtil.nonNullState(PivotUtil.getContainingRoot(fEvalEnv.getDebuggableElement()));
+		EObject rootContainer = EcoreUtil.getRootContainer(fEvalEnv.getDebuggableElement());
+		assert rootContainer instanceof NamedElement;
+		fModule = (NamedElement) rootContainer;
 //		if (currentInstance != null) {
 //			fModule = currentInstance.getInstantiatedType();			 
 //		} else if (element instanceof Type) {
@@ -77,7 +78,7 @@ public class UnitLocation {
     	return getSourceInfo().getSourceURI();
 	}
     
-    public @NonNull Root getModule() {
+    public @NonNull NamedElement getModule() {
     	return fModule;
     }
     

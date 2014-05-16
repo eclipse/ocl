@@ -15,20 +15,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class CompiledUnit {
 	
-	private List<Root> modules = new ArrayList<Root>();
+	private @NonNull List<NamedElement> modules = new ArrayList<NamedElement>();
 
 	public CompiledUnit() {
 	}
 
 	public CompiledUnit(@NonNull Element element) {
-		modules.add(PivotUtil.getContainingRoot(element));
+		modules.add((NamedElement) EcoreUtil.getRootContainer(element));
 	}
 
 	public List<CompiledUnit> getCompiledImports() {
@@ -37,10 +38,16 @@ public class CompiledUnit {
 	}
 
 	public URI getURI() {
-		return URI.createURI(modules.get(0).getExternalURI());
+		NamedElement namedElement = modules.get(0);
+		if (namedElement instanceof Root) {
+			return URI.createURI(((Root)namedElement).getExternalURI());
+		}
+		else {
+			return EcoreUtil.getURI(namedElement);
+		}
 	}
 
-	public @NonNull List<Root> getModules() {
+	public @NonNull List<NamedElement> getModules() {
 		return modules;
 	}
 }
