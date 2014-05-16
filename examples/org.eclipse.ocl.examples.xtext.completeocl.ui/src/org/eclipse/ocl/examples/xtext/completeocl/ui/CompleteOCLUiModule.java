@@ -23,6 +23,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory;
+import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 
 import com.google.common.collect.Multimap;
 
@@ -36,6 +37,10 @@ public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
 
 	public CompleteOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+
+	public Class<? extends XtextDocumentProvider> bindXtextDocumentProvider() {
+		return CompleteOCLDocumentProvider.class;
 	}
 
 	public static class Bug382088Workaround extends ParserBasedContentAssistContextFactory.StatefulFactory
