@@ -78,6 +78,7 @@ import org.eclipse.ocl.examples.xtext.base.ui.utilities.BaseUIUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
+import org.eclipse.ocl.examples.xtext.console.actions.DebugAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
@@ -344,6 +345,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	private SourceViewer input;
 	private EmbeddedXtextEditor editor;
 	private String lastOCLExpression;
+	private DebugAction debugAction;
 	
 	private ISelectionService selectionService;
 	private ISelectionListener selectionListener;
@@ -556,12 +558,14 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		CloseAction close = new CloseAction();
 		SaveExpressionAction saveExpression = new SaveExpressionAction(this);
 		LoadExpressionAction loadExpression = new LoadExpressionAction(this);
+		debugAction = new DebugAction(this);
 		
 		IMenuManager menu = getSite().getActionBars().getMenuManager();
 		menu.add(loadExpression);
 		menu.add(saveExpression);
 		menu.add(clear);
 		menu.add(close);
+		menu.add(debugAction);
 	    
 //		IMenuManager metamodelMenu = new MenuManager(
 //		    OCLInterpreterMessages.console_metamodelMenu,
@@ -594,6 +598,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, saveExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, close);
+		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, debugAction);
 	}
 
 	private int convertHeightInCharsToPixels(int i) {
@@ -774,7 +779,11 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		while (workbench.getDisplay().readAndDispatch());
 	}
-    
+
+	public EObject getContextObject() {
+		return contextObject;
+	}
+
 	@Override
     public Control getControl() {
 		return page;
@@ -878,6 +887,10 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		
 		scrollText();
 	} */
+
+	public void internalLaunchDebugger() {
+		debugAction.run();
+	}
 
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
 		metaModelManager.removeListener(this);

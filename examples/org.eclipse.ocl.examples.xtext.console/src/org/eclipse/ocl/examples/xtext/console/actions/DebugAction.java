@@ -1,0 +1,288 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ */
+package org.eclipse.ocl.examples.xtext.console.actions;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
+//import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunchConfigurationType;
+import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
+import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
+import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.progress.IProgressService;
+
+/**
+ * DebugAction launches the OCL debugger using the currently selected object as self abd the text in the Cosle Input as the OCL to execute..
+ */
+public final class DebugAction extends Action
+{
+    /**
+     * The DebugStarter sequences the start up of the debugger off the thread.
+     */
+    protected static class DebugStarter implements IRunnableWithProgress
+	{
+		protected final @NonNull Shell shell;
+    	protected final @NonNull MetaModelManager metaModelManager;
+    	protected final @Nullable EObject contextObject;
+    	protected final @NonNull String expression;
+		
+		public DebugStarter(@NonNull Shell shell, @NonNull MetaModelManager metaModelManager, @Nullable EObject contextObject, @NonNull String expression) {
+			this.shell = shell;
+			this.metaModelManager = metaModelManager;
+			this.contextObject = contextObject;
+			this.expression = expression;
+		}
+
+		/**
+		 * Create a test Complete OCL document that wraps the required OCL text up as the body of a test operation.
+		 * Returns its URI.
+		 */
+		protected @NonNull URI createDocument() throws IOException, CoreException {
+			PivotIdResolver idResolver = metaModelManager.getIdResolver();
+			DomainType staticType = idResolver.getStaticTypeOf(contextObject);
+			Type contextType = metaModelManager.getType(staticType);
+			if (contextType instanceof Metaclass) {
+				contextType = ((Metaclass<?>)contextType).getInstanceType();
+			}
+			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getPackage();
+			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append(".constraints/Debugger.ocl");
+			IFileStore documentStore = EFS.getLocalFileSystem().getStore(documentPath);
+			File documentFile = documentStore.toLocalFile(0, null);
+			documentFile.getParentFile().mkdirs();
+			PrettyPrintOptions.Global printOptions = PrettyPrinter.createOptions(null);
+			printOptions.addReservedNames(PrettyPrinter.restrictedNameList);
+			Writer s = new FileWriter(documentFile);
+			if (contextPackage != null) {
+				String externalURI = null;
+				Root containingRoot = PivotUtil.getContainingRoot(contextPackage);
+				if (containingRoot != null) {
+					externalURI = containingRoot.getExternalURI();
+				}
+				else {
+					externalURI = contextPackage.getNsURI();
+				}
+				s.append("import '" + externalURI + "'\n\n");
+//				s.append("package " + PrettyPrinter.printName(contextPackage, printOptions) + "\n\n");
+			}
+			s.append("context " + PrettyPrinter.printName(contextType, printOptions) + "\n");
+			s.append("def: oclDebuggerExpression() : OclAny = \n\t");
+			s.append(expression.replace("\n", "\n\t"));
+			s.append("\n");
+//			if (contextPackage != null) {
+//				s.append("\n\nendpackage\n");
+//			}
+			s.close();
+			@SuppressWarnings("null")@NonNull URI documentURI = URI.createFileURI(documentFile.toString());
+			return documentURI;
+		}
+
+		/**
+		 * Create and launch an internal launch configuration to debug expressionInOCL applied to contextObject.
+		 */
+		protected void launchDebugger(@Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
+			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
+			ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
+			ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, "test" /*constraint.getName()*/);
+			Map<String,Object> attributes = new HashMap<String,Object>();
+			attributes.put(OCLLaunchConstants.EXPRESSION_OBJECT, expressionInOCL);
+			attributes.put(OCLLaunchConstants.CONTEXT_OBJECT, contextObject);
+			launchConfiguration.setAttributes(attributes);
+			launchConfiguration.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
+		}
+
+		/**
+		 * Load and parse the test document. Returns the embedded ExpressionInOCL.
+		 */
+		protected @Nullable ExpressionInOCL loadDocument(@NonNull URI documentURI) {
+			ResourceSet resourceSet = new ResourceSetImpl();
+			Resource resource = resourceSet.getResource(documentURI, true);
+			if (resource instanceof BaseCSResource) {
+				BaseCSResource csResource = (BaseCSResource)resource;
+				CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
+				if (cs2asAdapter != null) {
+					ASResource asResource = cs2asAdapter.getASResource(csResource);
+					for (EObject eRoot: asResource.getContents()) {
+						if (eRoot instanceof Root) {
+							for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
+								for (Type asType: asPackage.getOwnedType()) {
+									for (Constraint asConstraint : asType.getOwnedInvariant()) {
+										OpaqueExpression specification = asConstraint.getSpecification();
+										if (specification != null) {
+											ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
+											if (expressionInOCL != null) 
+												return expressionInOCL;
+										}
+									}
+									for (Operation asOperation : asType.getOwnedOperation()) {
+										OpaqueExpression bodyExpression = asOperation.getBodyExpression();
+										if (bodyExpression != null) {
+											ExpressionInOCL expressionInOCL = bodyExpression.getExpressionInOCL();
+											if (expressionInOCL != null) 
+												return expressionInOCL;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			return null;
+		}
+
+		protected void openError(final String message) {
+			shell.getDisplay().asyncExec(new Runnable()
+			{
+				public void run() {
+					MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, message);
+				}
+			});
+		}
+
+		protected void openError(final String message, final @NonNull Exception e) {
+			shell.getDisplay().asyncExec(new Runnable()
+			{
+				public void run() {
+					IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
+					ErrorDialog.openError(shell, ConsoleMessages.Debug_Starter, message, status);
+				}
+			});
+		}
+
+		public void run(final IProgressMonitor monitor) {
+			monitor.beginTask(NLS.bind(ConsoleMessages.Debug_Starter, expression), 3);
+			try {
+				monitor.subTask(ConsoleMessages.Debug_ProgressCreate);
+				URI documentURI;
+				try {
+					documentURI = createDocument();
+				} catch (Exception e) {
+					openError(ConsoleMessages.Debug_FailCreate, e);
+					return;
+				}
+				monitor.worked(1);
+				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
+				ExpressionInOCL expressionInOCL = loadDocument(documentURI);
+				if (expressionInOCL == null) {
+					openError(ConsoleMessages.Debug_FailLoad);
+					return;
+				}
+				monitor.worked(1);
+				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
+				try {
+					launchDebugger(contextObject, expressionInOCL);
+				} catch (CoreException e) {
+					openError(ConsoleMessages.Debug_FailLaunch, e);
+				}
+				monitor.worked(1);
+			}
+			finally {
+				monitor.done();
+			}
+		}
+	}
+	
+	protected final @NonNull OCLConsolePage oclConsolePage;
+	
+	public DebugAction(@NonNull OCLConsolePage oclConsolePage) {
+		super(ConsoleMessages.Debug_Title, ImageDescriptor.createFromURL(
+			FileLocator.find(XtextConsolePlugin.getInstance().getBundle(),
+				new Path("$nl$/icons/elcl16/debug.gif"), null)));
+		this.oclConsolePage = oclConsolePage;
+		setToolTipText(ConsoleMessages.Debug_ToolTip);
+	}
+
+	@Override
+	public void run() {
+		Control control = oclConsolePage.getControl();
+		Shell shell = control != null ? control.getShell() : null;
+		if (shell == null) {
+			MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart_NoShell);
+			return;
+		}
+	    EObject contextObject = oclConsolePage.getContextObject();
+    	BaseDocument editorDocument = oclConsolePage.getEditorDocument();
+    	String text = editorDocument.get();
+		String expression = text.trim();
+		if ((expression == null) || (expression.length() <= 0)) {
+			MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart_NoOCL);
+			return;
+		}
+		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
+		MetaModelManager metaModelManager = oclConsolePage.getMetaModelManager(contextObject);
+		DebugStarter runnable = new DebugStarter(shell, metaModelManager, contextObject, expression);
+		try {
+			progressService.run(true, true, runnable);
+		} catch (InvocationTargetException e) {
+			IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
+			ErrorDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart, status);
+		} catch (InterruptedException e) {
+			/* Cancel is not a problem. */
+		}
+	}
+}

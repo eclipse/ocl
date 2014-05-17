@@ -33,6 +33,18 @@ public class ConsoleMessages
 	public static String CloseAction_Tip;
 	public static String Console_Title;
 	public static String Console_TitleWithContext;
+	public static String Debug_FailCreate;
+	public static String Debug_FailLaunch;
+	public static String Debug_FailLoad;
+	public static String Debug_FailStart;
+	public static String Debug_FailStart_NoOCL;
+	public static String Debug_FailStart_NoShell;
+	public static String Debug_ProgressCreate;
+	public static String Debug_ProgressLaunch;
+	public static String Debug_ProgressLoad;
+	public static String Debug_Starter;
+	public static String Debug_Title;
+	public static String Debug_ToolTip;
 	public static String Heading_Evaluating;
 	public static String Heading_Results;
 	public static String LoadAction_Label;
@@ -43,8 +55,6 @@ public class ConsoleMessages
 	public static String LoadActionWarning_NoExpression;
 	public static String LoadResourceAction_Tip;
 	public static String Output_Exception;
-//	public static String Progress_AST;
-//	public static String Progress_CST;
 	public static String Progress_Evaluating;
 	public static String Progress_Extent;
 	public static String Progress_Synchronising;
@@ -62,18 +72,4 @@ public class ConsoleMessages
 	public static String SaveActionWarning_Title;
 	public static String SaveActionWarning_NoExpression;
 	public static String ValueFactory_Cancelable;
-
-	/*	
-	public static String console_noContext;
-	public static String console_badContextForQuery;
-	public static String console_badContextForConstraint;
-	public static String console_loadResourceAction_label;
-	public static String console_metamodelMenu;
-	public static String console_metamodelTip;
-	public static String console_metamodel_ecore;
-	public static String console_metamodel_ecoreTip;
-	public static String console_metamodel_uml;
-	public static String console_metamodel_umlTip;
-	public static String console_modelingLevel;
-	public static String console_modelingLevelTip; */
 }

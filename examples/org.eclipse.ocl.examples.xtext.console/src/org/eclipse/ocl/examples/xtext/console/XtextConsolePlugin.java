@@ -18,6 +18,7 @@
 
 package org.eclipse.ocl.examples.xtext.console;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
 
@@ -28,6 +29,8 @@ import com.google.inject.Module;
  */
 public class XtextConsolePlugin extends EssentialOCLActivator
 {
+	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.console";
+	
 	// The shared instance.
 	private static XtextConsolePlugin plugin;
 
