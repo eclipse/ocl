@@ -94,7 +94,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 		modelManager.dispose();
 	}
 
-	public Boolean execute() {
+	public Object execute() {
         ExpressionInOCL expressionInOCL = getExpressionInOCL();
 		IOCLVMEvaluationEnvironment evalEnv = envFactory.createEvaluationEnvironment(modelManager, expressionInOCL);
 		Variable contextVariable = expressionInOCL.getContextVariable();
@@ -103,7 +103,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 		}
         OCLVMRootEvaluationVisitor visitor = envFactory.createEvaluationVisitor(env, evalEnv);
         visitor.start(suspendOnStartup);
-        return (Boolean) expressionInOCL.accept(visitor);
+        return expressionInOCL.accept(visitor);
 	}
 
 	@Override

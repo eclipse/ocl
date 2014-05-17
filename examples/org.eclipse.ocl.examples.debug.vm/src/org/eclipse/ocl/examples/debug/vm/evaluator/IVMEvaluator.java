@@ -7,7 +7,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public interface IVMEvaluator
 {
-	Boolean execute();
+	Object execute();
 
 	@NonNull NamedElement getDebuggable();
 

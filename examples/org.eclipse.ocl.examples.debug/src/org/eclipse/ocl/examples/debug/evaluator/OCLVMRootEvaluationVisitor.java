@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -289,6 +290,9 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		stepperStack.pop();
 		if (stepperStack.isEmpty()) {
 			return;
+		}
+		if (element instanceof DomainTypedElement) {
+			getEvaluationEnvironment().replace((DomainTypedElement) element, preState);
 		}
 		IStepper parentStepper = stepperStack.peek();
 		Element postElement = parentStepper.isPostStoppable(this, element, preState);

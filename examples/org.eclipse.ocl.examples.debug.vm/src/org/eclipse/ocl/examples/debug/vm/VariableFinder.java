@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
@@ -157,6 +158,37 @@ public class VariableFinder
 				DomainType declaredType = variable.getType();
 				setValueAndType(var, value, declaredType, evalEnv);
 				result.add(var);
+			}
+			else if (variable instanceof OCLExpression) {
+				OCLExpression oclExpression = (OCLExpression) variable;
+				EStructuralFeature eContainingFeature = oclExpression.eContainingFeature();
+				if (eContainingFeature != null) {
+					varName = "$" + eContainingFeature.getName();
+					if (eContainingFeature.isMany()) {
+						EObject eContainer = oclExpression.eContainer();
+						if (eContainer != null) {
+							Object eGet = eContainer.eGet(eContainingFeature);
+							if (eGet instanceof List<?>) {
+								int index = ((List<?>)eGet).indexOf(oclExpression);
+								varName = varName + "[" + index + "]";
+							}
+						}
+					}
+					if (varName != null) {
+						VMVariableData var = new VMVariableData(varName, null);
+						var.kind = VMVariableData.LOCAL;
+						Object value = null;
+						try {
+							value = evalEnv.getValueOf(oclExpression);
+						}
+						catch (Throwable e) {
+							value = e;
+						}
+						DomainType declaredType = oclExpression.getType();
+						setValueAndType(var, value, declaredType, evalEnv);
+						result.add(var);
+					}
+				}
 			}
 		}
 		
