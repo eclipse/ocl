@@ -102,10 +102,7 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      * @param referredVariable
      *            the variable declaration to remove
      * @return the value associated with the removed variable declaration
-     * 
-     * @deprecated let expiry of a nested evaluation environment remove automatically
      */
-    @Deprecated
     Object remove(@NonNull DomainTypedElement referredVariable);
 
     /**
