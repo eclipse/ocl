@@ -71,7 +71,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 				if (length < 0) {
 					length = 0;
 				}
-				System.out.println("offset:" + startOffset + ":" + length + " " + obj.eClass().getName() + " \"" + obj.toString().replace("\n", "\\n") + "\"");
+//				System.out.println("offset:" + startOffset + ":" + length + " " + obj.eClass().getName() + " \"" + obj.toString().replace("\n", "\\n") + "\"");
 				return new TextRegion(startOffset, length);
 			}
 		}

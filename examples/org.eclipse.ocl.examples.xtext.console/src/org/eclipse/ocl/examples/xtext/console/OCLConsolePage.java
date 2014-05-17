@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -886,10 +887,11 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 //		append(String.valueOf(object), color, bold);
 		
 		scrollText();
-	} */
+	} 
+	 * @return */
 
-	public void internalLaunchDebugger() {
-		debugAction.run();
+	protected ILaunch internalLaunchDebugger() {
+		return debugAction.launch();
 	}
 
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {

@@ -34,6 +34,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
@@ -90,7 +91,8 @@ public final class DebugAction extends Action
     	protected final @NonNull MetaModelManager metaModelManager;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull String expression;
-		
+    	private @Nullable ILaunch launch = null;
+
 		public DebugStarter(@NonNull Shell shell, @NonNull MetaModelManager metaModelManager, @Nullable EObject contextObject, @NonNull String expression) {
 			this.shell = shell;
 			this.metaModelManager = metaModelManager;
@@ -140,11 +142,16 @@ public final class DebugAction extends Action
 			@SuppressWarnings("null")@NonNull URI documentURI = URI.createFileURI(documentFile.toString());
 			return documentURI;
 		}
+		
+		public ILaunch getLaunch() {
+			return launch;
+		}
 
 		/**
 		 * Create and launch an internal launch configuration to debug expressionInOCL applied to contextObject.
+		 * @return 
 		 */
-		protected void launchDebugger(@Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
+		protected ILaunch launchDebugger(@Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 			ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
 			ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, "test" /*constraint.getName()*/);
@@ -152,7 +159,7 @@ public final class DebugAction extends Action
 			attributes.put(OCLLaunchConstants.EXPRESSION_OBJECT, expressionInOCL);
 			attributes.put(OCLLaunchConstants.CONTEXT_OBJECT, contextObject);
 			launchConfiguration.setAttributes(attributes);
-			launchConfiguration.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
+			return launchConfiguration.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
 		}
 
 		/**
@@ -235,7 +242,7 @@ public final class DebugAction extends Action
 				monitor.worked(1);
 				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
 				try {
-					launchDebugger(contextObject, expressionInOCL);
+					launch = launchDebugger(contextObject, expressionInOCL);
 				} catch (CoreException e) {
 					openError(ConsoleMessages.Debug_FailLaunch, e);
 				}
@@ -257,13 +264,12 @@ public final class DebugAction extends Action
 		setToolTipText(ConsoleMessages.Debug_ToolTip);
 	}
 
-	@Override
-	public void run() {
+	public ILaunch launch() {
 		Control control = oclConsolePage.getControl();
 		Shell shell = control != null ? control.getShell() : null;
 		if (shell == null) {
 			MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart_NoShell);
-			return;
+			return null;
 		}
 	    EObject contextObject = oclConsolePage.getContextObject();
     	BaseDocument editorDocument = oclConsolePage.getEditorDocument();
@@ -271,7 +277,7 @@ public final class DebugAction extends Action
 		String expression = text.trim();
 		if ((expression == null) || (expression.length() <= 0)) {
 			MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart_NoOCL);
-			return;
+			return null;
 		}
 		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
 		MetaModelManager metaModelManager = oclConsolePage.getMetaModelManager(contextObject);
@@ -284,5 +290,11 @@ public final class DebugAction extends Action
 		} catch (InterruptedException e) {
 			/* Cancel is not a problem. */
 		}
+		return runnable.getLaunch();
+	}
+
+	@Override
+	public void run() {
+		launch();
 	}
 }

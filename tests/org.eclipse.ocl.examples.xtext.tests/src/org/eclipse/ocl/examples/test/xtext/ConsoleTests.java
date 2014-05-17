@@ -18,14 +18,23 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.model.IDebugTarget;
+import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.model.IThread;
+import org.eclipse.debug.internal.ui.DebugUIPlugin;
+import org.eclipse.debug.internal.ui.IInternalDebugUIConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -47,11 +56,13 @@ import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.IConsoleView;
+import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.ui.part.IPageBookViewPage;
 
 /**
  * Tests that exercise the Xtext OCL Console.
  */
+@SuppressWarnings("restriction")
 public class ConsoleTests extends PivotTestCase
 {	
 	public static class TestConsole extends OCLConsole
@@ -129,6 +140,10 @@ public class ConsoleTests extends PivotTestCase
 			return s.toString();
 		}
 
+		public ILaunch launchDebugger() {
+			return internalLaunchDebugger();
+		}
+
 		@Override
 		public void refreshSelection(Object selected) {
 			super.refreshSelection(selected);
@@ -175,8 +190,18 @@ public class ConsoleTests extends PivotTestCase
 	public Type inEnglishStereotype;
 	public Type inFrenchStereotype;
 	public Type inGermanStereotype;
+
+	protected void closeIntro() {
+		IIntroManager introManager = PlatformUI.getWorkbench().getIntroManager();
+		introManager.closeIntro(introManager.getIntro());
+	}
+
+	protected void enableSwitchToDebugPerspectivePreference() {
+		DebugUIPlugin.getDefault().getPreferenceStore().setValue(IInternalDebugUIConstants.PREF_SWITCH_TO_PERSPECTIVE, MessageDialogWithToggle.ALWAYS);
+	}
 	
 	protected @NonNull TestConsolePage openConsole() {
+		closeIntro();
 		flushEvents();
 		TestConsole console = TestConsole.getInstance();
 		IConsoleManager mgr = ConsolePlugin.getDefault().getConsoleManager();
@@ -243,6 +268,25 @@ public class ConsoleTests extends PivotTestCase
 	public void testConsole_oclLog() throws Exception {
 		assertConsoleResult(consolePage, null, "7", "7\n");
 		assertConsoleResult(consolePage, null, "7.oclLog('seven = ')", "seven = 7\n7\n");
+	}
+
+	public void zztestConsole_debugger() throws Exception {
+//		VMVirtualMachine.LOCATION.setState(true);
+//		VMVirtualMachine.PRE_VISIT.setState(true);
+//		VMVirtualMachine.POST_VISIT.setState(true);
+//		VMVirtualMachine.VISITOR_STACK.setState(true);
+//		VMVirtualMachine.VM_EVENT.setState(true);
+//		VMVirtualMachine.VM_REQUEST.setState(true);
+//		VMVirtualMachine.VM_RESPONSE.setState(true);
+		enableSwitchToDebugPerspectivePreference();
+//		assertConsoleResult(consolePage, englishClass, "self.name", "'EnglishClass'\n");
+		assertConsoleResult(consolePage, EcorePackage.Literals.ECLASS, "self.name <> null", "true\n");
+		ILaunch launch = consolePage.launchDebugger();
+		assertNotNull(launch);
+		IDebugTarget debugTarget = launch.getDebugTarget();
+		IThread vmThread = debugTarget.getThreads()[0];
+		vmThread.stepInto();
+		waitForLaunchToTerminate(launch);
 	}
 
 	public void testConsole_UMLallInstances() throws Exception {
@@ -317,5 +361,29 @@ public class ConsoleTests extends PivotTestCase
 			"ecore::EClass::eStructuralFeatures\n" + 
 			"ecore::EClass::eSuperTypes\n" + 
 			"ecore::EClass::interface\n");
+	}
+	
+	protected void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {
+		while (true) {
+			for (int i = 0; i < 10; i++){
+				flushEvents();
+				Thread.sleep(100);
+			}
+			boolean allDead = true;
+			for (IDebugTarget debugTarget : launch.getDebugTargets()) {
+				IProcess process = debugTarget.getProcess();
+				if (!process.isTerminated()) {
+					allDead = false;
+				}
+				for (IThread debugThread : debugTarget.getThreads()) {
+					if (!debugThread.isTerminated()) {
+						allDead = false;
+					}
+				}
+			}
+			if (allDead) {
+				break;
+			}
+		}
 	}
 }
