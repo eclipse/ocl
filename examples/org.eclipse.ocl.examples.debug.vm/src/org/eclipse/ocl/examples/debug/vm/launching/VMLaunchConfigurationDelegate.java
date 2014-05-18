@@ -154,6 +154,7 @@ public abstract class VMLaunchConfigurationDelegate<EC extends EvaluationContext
 		
 		IDebugTarget debugTarget = createDebugTarget(vm, process);		
 		launch.addDebugTarget(debugTarget);
+		debugTarget.getThreads()[0].stepInto();
 	}
 	
 /*	private URI toURI(String uriStr, String uriType) throws DiagnosticException {
