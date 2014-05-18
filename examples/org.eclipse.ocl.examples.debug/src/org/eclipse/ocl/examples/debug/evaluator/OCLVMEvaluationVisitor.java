@@ -128,18 +128,18 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	}
 
 	@Override
-	protected Object postVisit(@NonNull Visitable visitable, @Nullable Element preState, @Nullable Object result) {
+	protected Object postVisit(@NonNull Visitable visitable, @Nullable Element parentElement, @Nullable Object result) {
 		Element element = (Element)visitable;
 		if (VMVirtualMachine.POST_VISIT.isActive()) {
 			VMVirtualMachine.POST_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString() + " => " + result);
 		}
-		setCurrentEnvInstructionPointer(preState);
+		setCurrentEnvInstructionPointer(parentElement);
 		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
-		postVisit(evalEnv, element, preState);
+		postVisit(evalEnv, element, result, parentElement);
 		return result;
 	}
 
-	protected abstract void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Element preState);
+	protected abstract void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result, @Nullable Element parentElement);
 
 	@Override
 	protected @Nullable Element preVisit(@NonNull Visitable visitable) {

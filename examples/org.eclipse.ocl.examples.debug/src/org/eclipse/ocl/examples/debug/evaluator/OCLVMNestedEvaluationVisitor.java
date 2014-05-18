@@ -48,8 +48,8 @@ public class OCLVMNestedEvaluationVisitor extends OCLVMEvaluationVisitor
 		return root;
 	}
 
-	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Element preState) {
-		root.postVisit(evalEnv, element, preState);
+	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result, @Nullable Element parentElement) {
+		root.postVisit(evalEnv, element, result, parentElement);
 	}
 
 	protected @Nullable Element preVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {

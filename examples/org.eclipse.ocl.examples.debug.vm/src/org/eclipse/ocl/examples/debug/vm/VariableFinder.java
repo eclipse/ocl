@@ -143,23 +143,7 @@ public class VariableFinder
 
 		for (DomainTypedElement variable : evalEnv.getVariables()) {
 			String varName = variable.getName();
-			if (varName != null) {
-				VMVariableData var = new VMVariableData(varName, null);
-				if (isPredefinedVar(varName, evalEnv)) {
-					var.kind = VMVariableData.PREDEFINED_VAR;
-				}
-				Object value = null;
-				try {
-					value = evalEnv.getValueOf(variable);
-				}
-				catch (Throwable e) {
-					value = e;
-				}
-				DomainType declaredType = variable.getType();
-				setValueAndType(var, value, declaredType, evalEnv);
-				result.add(var);
-			}
-			else if (variable instanceof OCLExpression) {
+			if (variable instanceof OCLExpression) {
 				OCLExpression oclExpression = (OCLExpression) variable;
 				EStructuralFeature eContainingFeature = oclExpression.eContainingFeature();
 				if (eContainingFeature != null) {
@@ -189,6 +173,22 @@ public class VariableFinder
 						result.add(var);
 					}
 				}
+			}
+			else if (varName != null) {
+				VMVariableData var = new VMVariableData(varName, null);
+				if (isPredefinedVar(varName, evalEnv)) {
+					var.kind = VMVariableData.PREDEFINED_VAR;
+				}
+				Object value = null;
+				try {
+					value = evalEnv.getValueOf(variable);
+				}
+				catch (Throwable e) {
+					value = e;
+				}
+				DomainType declaredType = variable.getType();
+				setValueAndType(var, value, declaredType, evalEnv);
+				result.add(var);
 			}
 		}
 		
