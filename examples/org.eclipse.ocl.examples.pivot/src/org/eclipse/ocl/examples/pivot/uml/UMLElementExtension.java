@@ -25,54 +25,42 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Stereotype;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * UMLElementExtension reifies the extension of a UML element by a Stereotype application as an EObject.
  */
 public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.Internal
 {
-	public static Object getUMLElementExtension(@NonNull IdResolver idResolver, @NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static Object getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EObject eTarget = staticType.getETarget();
 		if (eTarget instanceof org.eclipse.uml2.uml.Stereotype) {
-			org.eclipse.uml2.uml.Stereotype umlAppliedStereotype = null;
-			org.eclipse.uml2.uml.Stereotype umlRequiredStereotype = (org.eclipse.uml2.uml.Stereotype)eTarget;
+			org.eclipse.uml2.uml.Stereotype umlDynamicStereotype = null;
+			org.eclipse.uml2.uml.Stereotype umlStaticStereotype = (org.eclipse.uml2.uml.Stereotype)eTarget;
 			for (org.eclipse.uml2.uml.Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
-				if (appliedStereotype.conformsTo(umlRequiredStereotype)) {
-					if (umlAppliedStereotype != null) {
-						return new InvalidValueException("Ambiguous applied stereotype " + umlRequiredStereotype);
+				if (appliedStereotype.conformsTo(umlStaticStereotype)) {
+					if (umlDynamicStereotype != null) {
+						return new InvalidValueException("Ambiguous applied stereotype " + umlStaticStereotype);
 					}
-					umlAppliedStereotype = appliedStereotype;
+					umlDynamicStereotype = appliedStereotype;
 				}
 			}
-			if (umlAppliedStereotype == null) {
-				return new InvalidValueException("No applied stereotype " + umlRequiredStereotype);
+			if (umlDynamicStereotype == null) {
+				return new InvalidValueException("No applied stereotype " + umlStaticStereotype);
 			}
 			UMLElementExtension umlElementExtension = null;
 			for (Adapter adapter : umlElement.eAdapters()) {
 				if (adapter instanceof UMLElementExtension) {
 					UMLElementExtension extensionsAdapter = (UMLElementExtension) adapter;
-					if (extensionsAdapter.getStereotype() == umlAppliedStereotype) {
+					if (extensionsAdapter.getDynamicStereotype() == umlDynamicStereotype) {
 						umlElementExtension = extensionsAdapter;
 						break;
 					}
 				}
 			}
 			if (umlElementExtension == null) {
-				try {
-					Stereotype dynamicType = ((MetaModelManager)idResolver.getStandardLibrary()).getPivotOf(Stereotype.class, umlAppliedStereotype);
-					if (dynamicType != null) {
-						umlElementExtension = new UMLElementExtension(umlElement, umlAppliedStereotype, staticType, dynamicType);
-					}
-					else {
-						return new InvalidValueException("Unable to resolve stereotype " + umlRequiredStereotype);
-					}
-				} catch (ParserException e) {
-					return new InvalidValueException(e, "Unable to resolve stereotype " + umlRequiredStereotype);
-				}
+				umlElementExtension = new UMLElementExtension(umlElement, umlDynamicStereotype, umlStaticStereotype);
 			}
 			return umlElementExtension;
 		}
@@ -80,29 +68,25 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 	}
 
 	protected final @NonNull org.eclipse.uml2.uml.Element umlElement;
-	protected final @NonNull org.eclipse.uml2.uml.Stereotype umlStereotype;
-	protected final @NonNull Stereotype staticType;
-	protected final @NonNull Stereotype dynamicType;
+	protected final @NonNull org.eclipse.uml2.uml.Stereotype umlDynamicStereotype;
+	protected final @NonNull org.eclipse.uml2.uml.Stereotype umlStaticStereotype;
 	
-	public UMLElementExtension(@NonNull org.eclipse.uml2.uml.Element umlElement, @NonNull org.eclipse.uml2.uml.Stereotype umlStereotype, @NonNull Stereotype staticType, @NonNull Stereotype dynamicType) {
+	public UMLElementExtension(@NonNull org.eclipse.uml2.uml.Element umlElement,
+			@NonNull org.eclipse.uml2.uml.Stereotype umlDynamicStereotype,
+			@NonNull org.eclipse.uml2.uml.Stereotype umlStaticStereotype) {
 		this.umlElement = umlElement;
-		this.umlStereotype = umlStereotype;
-		this.staticType = staticType;
-		this.dynamicType = dynamicType;
+		this.umlDynamicStereotype = umlDynamicStereotype;
+		this.umlStaticStereotype = umlStaticStereotype;
 		// setEClass() - not yet needed
 		umlElement.eAdapters().add(this);
 	}
 
-	public @NonNull Stereotype getDynamicType() {
-		return dynamicType;
+	public @NonNull org.eclipse.uml2.uml.Stereotype getDynamicStereotype() {
+		return umlDynamicStereotype;
 	}
 
-	public @NonNull Stereotype getStaticType() {
-		return staticType;
-	}
-
-	public @NonNull org.eclipse.uml2.uml.Stereotype getStereotype() {
-		return umlStereotype;
+	public @NonNull org.eclipse.uml2.uml.Stereotype getStaticStereotype() {
+		return umlStaticStereotype;
 	}
 
 	public @NonNull org.eclipse.uml2.uml.Element getTarget() {
@@ -110,7 +94,7 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 	}
 
 	public Object getValue(IdResolver idResolver, @NonNull Property property) {
-		Object value = umlElement.getValue(umlStereotype, property.getName());
+		Object value = umlElement.getValue(umlDynamicStereotype, property.getName());
 		if (property.isMany()) {
 			if (value instanceof List<?>) {
 				return idResolver.createCollectionOfAll((CollectionTypeId) property.getTypeId(), (List<?>)value);
@@ -125,7 +109,7 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 	}
 	
 	public boolean isAdapterForType(Object type) {
-		return type == umlStereotype;
+		return type == umlDynamicStereotype;
 	}
 
 	public void notifyChanged(Notification notification) {}

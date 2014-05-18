@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -51,7 +52,14 @@ public class PivotIdResolver extends AbstractIdResolver
 	@Override
 	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof UMLElementExtension) {
-			return ((UMLElementExtension)value).getDynamicType();
+			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getDynamicStereotype();
+			try {
+				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
+				return asStereotype != null ? asStereotype : metaModelManager.getOclInvalidType();
+			} catch (ParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return super.getDynamicTypeOf(value);
 	}
@@ -67,7 +75,15 @@ public class PivotIdResolver extends AbstractIdResolver
 			}
 		}
 		else if (value instanceof UMLElementExtension) {
-			return ((UMLElementExtension)value).getStaticType();
+			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getStaticStereotype();
+			try {
+				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
+				return asStereotype != null ? asStereotype : metaModelManager.getOclInvalidType();
+			} catch (ParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			return ((UMLElementExtension)value).getStaticType();
 		}
 		return super.getStaticTypeOf(value);
 	}

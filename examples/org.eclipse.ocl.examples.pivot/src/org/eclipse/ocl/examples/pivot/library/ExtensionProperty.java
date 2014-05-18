@@ -51,7 +51,7 @@ public class ExtensionProperty extends AbstractProperty
 		DomainType staticType = property.getType();
 		if (sourceValue instanceof org.eclipse.uml2.uml.Element) {
 			if (staticType instanceof Stereotype) {
-				return UMLElementExtension.getUMLElementExtension(evaluator.getIdResolver(), (Stereotype)staticType, (org.eclipse.uml2.uml.Element)sourceValue);
+				return UMLElementExtension.getUMLElementExtension((Stereotype)staticType, (org.eclipse.uml2.uml.Element)sourceValue);
 			}
 		}
 		Element element = null;
