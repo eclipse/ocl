@@ -1308,14 +1308,14 @@ public class DelegatesTest extends PivotTestSuite
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
-//		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
-//		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
-//		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
-//		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("Stereotype1");
-//		assert (umlClass1 != null) && (umlStereotype1 != null);
-//		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
-		assertValidationDiagnostics("Loading", umlResource, validationContext/*,
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint3", label)*/);
+		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Realization umlRealization1 = (org.eclipse.uml2.uml.Realization)umlModel.getPackagedElement("Realization1");
+		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
+		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("ParentRealization");
+		assert (umlRealization1 != null) && (umlStereotype1 != null);
+		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlRealization1, umlStereotype1));
+		assertValidationDiagnostics("Loading", umlResource, validationContext,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "ParentRealization", "In case of a ParentRealization relationship, the supplier should be a child of the client", label));
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
