@@ -499,9 +499,9 @@ public class ProfileAnalysis
 	private @NonNull Map<Type, Set<TypeExtension>> getExtensibleMetatype2typeExtensions(@NonNull Iterable<Stereotype> applicableStereotypes) {
 		Map<Type, Set<TypeExtension>> extensibleMetatype2typeExtensions = new HashMap<Type, Set<TypeExtension>>();
 		for (Stereotype applicableStereotype : applicableStereotypes) {
-			if (applicableStereotype.getName().contains("Parent")) {
-				System.out.println("Got it");
-			}
+//			if (applicableStereotype.getName().contains("Parent")) {
+//				System.out.println("Got it");
+//			}
 			for (TypeExtension typeExtension : applicableStereotype.getExtensionOfs()) {
 				Type extensibleMetatype = typeExtension.getType();
 				if (extensibleMetatype != null) {

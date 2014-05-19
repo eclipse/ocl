@@ -52,6 +52,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Metaclass;
@@ -118,8 +119,8 @@ public final class DebugAction extends Action
 			PrettyPrintOptions.Global printOptions = PrettyPrinter.createOptions(null);
 			printOptions.addReservedNames(PrettyPrinter.restrictedNameList);
 			Writer s = new OutputStreamWriter(documentStream);
+			String externalURI = null;
 			if (contextPackage != null) {
-				String externalURI = null;
 				Root containingRoot = PivotUtil.getContainingRoot(contextPackage);
 				if (containingRoot == null) {
 					externalURI = contextPackage.getNsURI();
@@ -132,7 +133,11 @@ public final class DebugAction extends Action
 				}
 //				s.append("package " + PrettyPrinter.printName(contextPackage, printOptions) + "\n\n");
 			}
-			s.append("context " + PrettyPrinter.printName(contextType, printOptions) + "\n");
+			s.append("context ");
+			if (externalURI == null) {
+				s.append("ocl::");			// FIXME use printOptions, FIXME support UML non-OCL classes
+			}
+			s.append(PrettyPrinter.printName(contextType, printOptions) + "\n");
 			s.append("def: oclDebuggerExpression() : OclAny = \n\t");
 			s.append(expression.replace("\n", "\n\t"));
 			s.append("\n");
@@ -141,8 +146,6 @@ public final class DebugAction extends Action
 //			}
 			s.close();
 			java.net.URI documentURI1 = documentStore.toURI();
-//			File documentFile = documentStore.toLocalFile(EFS.CACHE, monitor);
-//			documentFile.getParentFile().mkdirs();
 			@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
 			return documentURI2;
 		}
@@ -167,36 +170,43 @@ public final class DebugAction extends Action
 		}
 
 		/**
-		 * Load and parse the test document. Returns the embedded ExpressionInOCL.
+		 * Load and parse the test document.
 		 * @throws IOException 
 		 */
-		protected @Nullable ExpressionInOCL loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws IOException {
+		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(documentURI, true);
 			if (resource instanceof BaseCSResource) {
-				BaseCSResource csResource = (BaseCSResource)resource;
-				CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
-				if (cs2asAdapter != null) {
-					ASResource asResource = cs2asAdapter.getASResource(csResource);
-					for (EObject eRoot: asResource.getContents()) {
-						if (eRoot instanceof Root) {
-							for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
-								for (Type asType: asPackage.getOwnedType()) {
-									for (Constraint asConstraint : asType.getOwnedInvariant()) {
-										OpaqueExpression specification = asConstraint.getSpecification();
-										if (specification != null) {
-											ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
-											if (expressionInOCL != null) 
-												return expressionInOCL;
-										}
+				return (BaseCSResource)resource;
+			}
+			return null;
+		}
+
+		/**
+		 * Extract the embedded ExpressionInOCL.
+		 */
+		protected @Nullable ExpressionInOCL loadExpression(IProgressMonitor monitor, BaseCSResource csResource) {
+			CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
+			if (cs2asAdapter != null) {
+				ASResource asResource = cs2asAdapter.getASResource(csResource);
+				for (EObject eRoot: asResource.getContents()) {
+					if (eRoot instanceof Root) {
+						for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
+							for (Type asType: asPackage.getOwnedType()) {
+								for (Constraint asConstraint : asType.getOwnedInvariant()) {
+									OpaqueExpression specification = asConstraint.getSpecification();
+									if (specification != null) {
+										ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
+										if (expressionInOCL != null) 
+											return expressionInOCL;
 									}
-									for (Operation asOperation : asType.getOwnedOperation()) {
-										OpaqueExpression bodyExpression = asOperation.getBodyExpression();
-										if (bodyExpression != null) {
-											ExpressionInOCL expressionInOCL = bodyExpression.getExpressionInOCL();
-											if (expressionInOCL != null) 
-												return expressionInOCL;
-										}
+								}
+								for (Operation asOperation : asType.getOwnedOperation()) {
+									OpaqueExpression bodyExpression = asOperation.getBodyExpression();
+									if (bodyExpression != null) {
+										ExpressionInOCL expressionInOCL = bodyExpression.getExpressionInOCL();
+										if (expressionInOCL != null) 
+											return expressionInOCL;
 									}
 								}
 							}
@@ -239,15 +249,26 @@ public final class DebugAction extends Action
 				}
 				monitor.worked(1);
 				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
-				ExpressionInOCL expressionInOCL;
+				BaseCSResource csResource;
+				@SuppressWarnings("null")@NonNull String debug_FailLoad = ConsoleMessages.Debug_FailLoad;
 				try {
-					expressionInOCL = loadDocument(monitor, documentURI);
-				} catch (IOException e) {
-					openError(ConsoleMessages.Debug_FailLoad, e);
+					csResource = loadDocument(monitor, documentURI);
+				} catch (Exception e) {
+					openError(debug_FailLoad, e);
 					return;
 				}
+				if (csResource == null) {
+					openError(debug_FailLoad);
+					return;
+				}
+				String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(csResource.getErrors()), debug_FailLoad, "\n\t");
+				if (message != null) {
+					openError(message);
+					return;
+				}
+				ExpressionInOCL expressionInOCL = loadExpression(monitor, csResource);
 				if (expressionInOCL == null) {
-					openError(ConsoleMessages.Debug_FailLoad);
+					openError(debug_FailLoad);
 					return;
 				}
 				monitor.worked(1);
