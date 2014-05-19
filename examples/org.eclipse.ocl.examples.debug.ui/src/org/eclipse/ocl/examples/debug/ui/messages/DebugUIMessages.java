@@ -69,4 +69,6 @@ public class DebugUIMessages
 	public static String ModifiedSourceFileHandler_ModifiedDebuggedSource;
     
     public static String OCLBreakpointProperties_RulerActionLabel;
+    
+    public static String DebugHandler_0;
 }

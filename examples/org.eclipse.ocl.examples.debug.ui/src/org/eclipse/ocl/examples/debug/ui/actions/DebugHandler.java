@@ -18,7 +18,10 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -30,12 +33,14 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.debug.ui.messages.DebugUIMessages;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.xtext.base.ui.utilities.BaseUIUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.ISources;
+import org.eclipse.ui.IStorageEditorInput;
 import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -50,8 +55,10 @@ public class DebugHandler extends AbstractHandler
 	public @Nullable Object execute(ExecutionEvent event) throws ExecutionException {
 		Object applicationContext = event.getApplicationContext();
 		@SuppressWarnings("null")@NonNull IWorkbenchSite site = HandlerUtil.getActiveSiteChecked(event);
-		@SuppressWarnings("null")@NonNull IEditorInput editorInput = HandlerUtil.getActiveEditorInputChecked(event);
-		IFile file = ((IFileEditorInput)editorInput).getFile();
+		IFile file = getFileFromEditorInput(HandlerUtil.getActiveEditorInputChecked(event));
+		if (file == null) {
+			return null;
+		}
 		@SuppressWarnings("null")@NonNull ISelection currentSelection = HandlerUtil.getCurrentSelectionChecked(event);
 		Object selectedObject = BaseUIUtil.getSelectedObject(currentSelection, site);
 		if (!(selectedObject instanceof EObject)) {
@@ -73,7 +80,7 @@ public class DebugHandler extends AbstractHandler
 		try {
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 			ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
-			String fileName = file.getFullPath().lastSegment() + ".launch";
+			String fileName = file.getFullPath().lastSegment() + ".launch"; //$NON-NLS-1$
 			ILaunchConfiguration launchConfiguration = launchConfigurationType.newInstance(file.getProject(), fileName);
 			ILaunchConfigurationWorkingCopy workingCopy = launchConfiguration.getWorkingCopy();
 			Map<String, Object> attributes = new HashMap<String, Object>();
@@ -86,5 +93,24 @@ public class DebugHandler extends AbstractHandler
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@Nullable
+	private IFile getFileFromEditorInput(IEditorInput editorInput) throws ExecutionException {
+		IFile file = null;
+		if (editorInput instanceof IFileEditorInput){
+			file = ((IFileEditorInput)editorInput).getFile();
+		} else if (editorInput instanceof IStorageEditorInput) {
+			try {
+				IStorage storage = ((IStorageEditorInput)editorInput).getStorage();
+				IPath path = storage.getFullPath();
+				if (path != null) {
+					file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+				}
+			} catch (CoreException e) {
+				throw new ExecutionException(DebugUIMessages.DebugHandler_0, e); //$NON-NLS-1$
+			}
+		}
+		return file;
 	}
 }
