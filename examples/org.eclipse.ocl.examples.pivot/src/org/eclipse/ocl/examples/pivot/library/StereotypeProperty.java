@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -50,7 +51,10 @@ public class StereotypeProperty extends ConstrainedProperty
 			eObject = ((Metaclass<?>)eObject).getInstanceType();
 		}
 		Object boxedValue = null;
-		if (eObject instanceof ElementExtension) {
+		if (eObject instanceof UMLElementExtension) {
+			return ((UMLElementExtension)eObject).getValue(idResolver, property);
+		}
+		else if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;
 			String propertyName = property.getName();
 			Property extensionProperty = DomainUtil.getNamedElement(elementExtension.getOwnedAttribute(), propertyName);

@@ -398,6 +398,36 @@ public class ProfileAnalysis
 		}
 	}
 
+	public @NonNull Map<Type, Set<TypeExtension>> computeMetatypes2typeExtensions() {
+		Set<Stereotype> applicableStereotypes = allStereotypes; //getOwnedStereotypes(appliedProfileClosure);
+		Map<Type, Set<TypeExtension>> extensibleMetatype2typeExtensions = getExtensibleMetatype2typeExtensions(applicableStereotypes);
+		Map<Type, Set<TypeExtension>> metatype2typeExtensions = new HashMap<Type, Set<TypeExtension>>();
+/*		for (Type metatype : extensibleMetatype2extendingStereotypes.keySet()) {
+//			@SuppressWarnings("null")@NonNull Set<Stereotype> extendingStereotypes = extensibleMetatype2extendingStereotypes.get(metatype);
+//			Set<Stereotype> extendingStereotypeClosure = getStereotypeSubSuperClosure(extendingStereotypes);
+//			extensibleMetatypesClosure.put(metatype, extendingStereotypeClosure);
+		}
+//		Map<Type, Set<TypeExtension>> metatype2typeExtensions = new HashMap<Type, Set<TypeExtension>>();
+		for (@SuppressWarnings("null")@NonNull Type metatype : extensibleMetatype2typeExtensions.keySet()) {
+			Set<TypeExtension> someTypeExtensions = metatype2typeExtensions.get(metatype);
+			if (someTypeExtensions != null) {
+				Set<Type> metatypeSubClosure = getSubMetatypeClosure(metatype);
+				if (metatypeSubClosure != null) {
+					for (Type subMetatype : metatypeSubClosure) {
+						Set<TypeExtension> allTypeExtensions = metatype2typeExtensions.get(subMetatype);
+						if (allTypeExtensions == null) {
+							allTypeExtensions = new HashSet<TypeExtension>();
+							metatype2typeExtensions.put(subMetatype, allTypeExtensions);
+						}
+						allTypeExtensions.addAll(someTypeExtensions);
+					}
+				}
+			}
+		}
+		return metatype2typeExtensions; */
+		return extensibleMetatype2typeExtensions;
+	}
+
 	public @NonNull Map<Type, Set<TypeExtension>> computeMetatypes2typeExtensions(@NonNull Set<Profile> appliedProfileClosure) {
 		Set<Stereotype> applicableStereotypes = getOwnedStereotypes(appliedProfileClosure);
 		Map<Type, Set<TypeExtension>> extensibleMetatype2typeExtensions = getExtensibleMetatype2typeExtensions(applicableStereotypes);
@@ -469,6 +499,9 @@ public class ProfileAnalysis
 	private @NonNull Map<Type, Set<TypeExtension>> getExtensibleMetatype2typeExtensions(@NonNull Iterable<Stereotype> applicableStereotypes) {
 		Map<Type, Set<TypeExtension>> extensibleMetatype2typeExtensions = new HashMap<Type, Set<TypeExtension>>();
 		for (Stereotype applicableStereotype : applicableStereotypes) {
+			if (applicableStereotype.getName().contains("Parent")) {
+				System.out.println("Got it");
+			}
 			for (TypeExtension typeExtension : applicableStereotype.getExtensionOfs()) {
 				Type extensibleMetatype = typeExtension.getType();
 				if (extensibleMetatype != null) {

@@ -397,7 +397,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		private List<Resource.Diagnostic> errors = null;
 
 		protected final @NonNull ProfileAnalysis profileAnalysis = new ProfileAnalysis(this);
-		protected final @NonNull ModelAnalysis applicationAnalysis = new ModelAnalysis(this, profileAnalysis);
+		protected final @NonNull ModelAnalysis modelAnalysis = new ModelAnalysis(this, profileAnalysis);
 		protected final @NonNull UML2PivotDeclarationSwitch declarationPass = new UML2PivotDeclarationSwitch(this);	
 		protected final @NonNull UML2PivotReferenceSwitch referencePass = new UML2PivotReferenceSwitch(this);
 		protected final @NonNull UML2PivotUseSwitch usePass = new UML2PivotUseSwitch(this);
@@ -484,7 +484,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 		@Override
 		public void addProfileApplication(@NonNull ProfileApplication asProfileApplication) {
-			applicationAnalysis.addProfileApplication(asProfileApplication);
+			modelAnalysis.addProfileApplication(asProfileApplication);
 		}
 
 		@Override
@@ -504,7 +504,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 		@Override
 		public void addStereotypeApplication(@NonNull EObject stereotypeApplication) {
-			applicationAnalysis.addStereotypeApplication(stereotypeApplication);
+			modelAnalysis.addStereotypeApplication(stereotypeApplication);
 		}
 
 		@Override
@@ -585,7 +585,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 //					}
 					installImports();
 					installReferencers();
-					applicationAnalysis.installStereotypes();
+					modelAnalysis.installStereotypes();
 					installProperties();
 					installUsers();
 				}

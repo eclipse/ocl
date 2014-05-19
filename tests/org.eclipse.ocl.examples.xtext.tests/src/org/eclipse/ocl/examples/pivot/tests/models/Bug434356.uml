@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ParentsProfile="http:///schemas/ParentsProfile/_RtqXQNoBEeO0yodXPfS-Bw/21" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ParentsProfile/_RtqXQNoBEeO0yodXPfS-Bw/21 Bug434356.profile.uml#_Rtq-UNoBEeO0yodXPfS-Bw">
+  <uml:Model xmi:id="_dQYFANaqEeOC9_yh_Qwj1w" name="ParentModel">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_dQYFAdaqEeOC9_yh_Qwj1w">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kWnu8NaqEeOC9_yh_Qwj1w" name="Class1"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_kuQL0NaqEeOC9_yh_Qwj1w" name="Interface1"/>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_lYbxQNaqEeOC9_yh_Qwj1w" name="Realization1" client="_kWnu8NaqEeOC9_yh_Qwj1w" supplier="_kuQL0NaqEeOC9_yh_Qwj1w"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_w_8m8NaqEeOC9_yh_Qwj1w" name="Class2"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_jlGycNaqEeOC9_yh_Qwj1w">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_j-LZwNaqEeOC9_yh_Qwj1w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug434356.profile.uml#_Rtq-UNoBEeO0yodXPfS-Bw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="Bug434356.profile.uml#_NtyoQNanEeOC9_yh_Qwj1w"/>
+    </profileApplication>
+  </uml:Model>
+  <ParentsProfile:ClassParent xmi:id="_pP8OUNaqEeOC9_yh_Qwj1w" children="_yPXAYNaqEeOC9_yh_Qwj1w _4UM3sNaqEeOC9_yh_Qwj1w" base_Classifier="_kWnu8NaqEeOC9_yh_Qwj1w"/>
+  <ParentsProfile:ClassParent xmi:id="_yPXAYNaqEeOC9_yh_Qwj1w" base_Classifier="_w_8m8NaqEeOC9_yh_Qwj1w"/>
+  <ParentsProfile:InterfaceParent xmi:id="_4UM3sNaqEeOC9_yh_Qwj1w" base_Classifier="_kuQL0NaqEeOC9_yh_Qwj1w"/>
+  <ParentsProfile:ParentRealization xmi:id="_icbdsNarEeOC9_yh_Qwj1w" base_Realization="_lYbxQNaqEeOC9_yh_Qwj1w"/>
+</xmi:XMI>

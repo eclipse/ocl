@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class PivotIdResolver extends AbstractIdResolver
@@ -48,8 +49,15 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull
-	DomainType getStaticTypeOf(@Nullable Object value) {
+	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {
+		if (value instanceof UMLElementExtension) {
+			return ((UMLElementExtension)value).getDynamicType();
+		}
+		return super.getDynamicTypeOf(value);
+	}
+
+	@Override
+	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
 				metaModelManager.getPivotOf(Element.class, (org.eclipse.uml2.uml.Element)value);
@@ -57,6 +65,9 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
 			}
+		}
+		else if (value instanceof UMLElementExtension) {
+			return ((UMLElementExtension)value).getStaticType();
 		}
 		return super.getStaticTypeOf(value);
 	}

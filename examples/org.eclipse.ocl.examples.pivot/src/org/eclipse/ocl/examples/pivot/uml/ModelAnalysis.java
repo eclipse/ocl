@@ -121,6 +121,10 @@ public class ModelAnalysis
 		this.metaModelManager = converter.getMetaModelManager();
 	}
 
+	public void addProfile(@NonNull Profile asProfile) {
+		appliedProfiles.add(asProfile);
+	}
+
 	public void addProfileApplication(@NonNull ProfileApplication asProfileApplication) {
 		asProfileApplications.add(asProfileApplication);
 		Profile asProfile = asProfileApplication.getAppliedProfile();
@@ -346,6 +350,11 @@ public class ModelAnalysis
 		profileAnalysis.analyze();
 		computeAppliedProfile2profileClosure();
 		computePackage2AppliedProfileClosure();
+////				@SuppressWarnings("null")@NonNull Set<Profile> appliedProfileClosure = package2appliedProfileClosure.get(asPackage);
+//				Map<Type, Set<TypeExtension>> metatype2typeExtensions = profileAnalysis.computeMetatypes2typeExtensions(/*appliedProfileClosure*/);
+//				Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension = new HashMap<Element, Map<Stereotype, ElementExtension>>();
+//		for (org.eclipse.ocl.examples.pivot.Package asPackage : package2appliedProfileClosure.keySet()) {
+//			if ((asPackage != null) /*&& !(asPackage instanceof Profile)*/) {
 		Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension = new HashMap<Element, Map<Stereotype, ElementExtension>>();
 		for (org.eclipse.ocl.examples.pivot.Package asPackage : package2appliedProfileClosure.keySet()) {
 			if ((asPackage != null) && !(asPackage instanceof Profile)) {
