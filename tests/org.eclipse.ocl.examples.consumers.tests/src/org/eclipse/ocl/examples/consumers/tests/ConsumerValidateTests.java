@@ -36,7 +36,8 @@ public class ConsumerValidateTests extends AbstractValidateTests
 		assertNotNull(umlResource);
 		assert umlResource != null;
 		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
-			DomainUtil.bind(OCLMessages.ParsingError, "Opaque Expression", "Errors in 'This is not OCL'\n1: no viable alternative at input 'is'")
+			DomainUtil.bind(OCLMessages.ParsingError, "UMLRealTime::Capsule::A deliberately bad constraint::This is not OCL",
+				"The 'UMLRealTime::Capsule' constraint is invalid: 'This is not OCL'\n1: no viable alternative at input 'is'")
 			);
 		ocl.dispose();
 	}
