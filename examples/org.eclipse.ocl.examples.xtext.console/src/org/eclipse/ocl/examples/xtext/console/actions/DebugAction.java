@@ -14,9 +14,9 @@
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
 //import java.nio.file.Path;
@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
@@ -43,6 +42,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.action.Action;
@@ -104,7 +104,7 @@ public final class DebugAction extends Action
 		 * Create a test Complete OCL document that wraps the required OCL text up as the body of a test operation.
 		 * Returns its URI.
 		 */
-		protected @NonNull URI createDocument() throws IOException, CoreException {
+		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
 			PivotIdResolver idResolver = metaModelManager.getIdResolver();
 			DomainType staticType = idResolver.getStaticTypeOf(contextObject);
 			Type contextType = metaModelManager.getType(staticType);
@@ -112,23 +112,24 @@ public final class DebugAction extends Action
 				contextType = ((Metaclass<?>)contextType).getInstanceType();
 			}
 			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getPackage();
-			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append(".constraints/Debugger.ocl");
+			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append("debug" + EcoreUtil.generateUUID() + ".ocl");
 			IFileStore documentStore = EFS.getLocalFileSystem().getStore(documentPath);
-			File documentFile = documentStore.toLocalFile(0, null);
-			documentFile.getParentFile().mkdirs();
+			OutputStream documentStream = documentStore.openOutputStream(0, monitor);
 			PrettyPrintOptions.Global printOptions = PrettyPrinter.createOptions(null);
 			printOptions.addReservedNames(PrettyPrinter.restrictedNameList);
-			Writer s = new FileWriter(documentFile);
+			Writer s = new OutputStreamWriter(documentStream);
 			if (contextPackage != null) {
 				String externalURI = null;
 				Root containingRoot = PivotUtil.getContainingRoot(contextPackage);
-				if (containingRoot != null) {
-					externalURI = containingRoot.getExternalURI();
-				}
-				else {
+				if (containingRoot == null) {
 					externalURI = contextPackage.getNsURI();
 				}
-				s.append("import '" + externalURI + "'\n\n");
+				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getOclAnyType())) {
+					externalURI = containingRoot.getExternalURI();
+				}
+				if (externalURI != null) {
+					s.append("import '" + externalURI + "'\n\n");
+				}
 //				s.append("package " + PrettyPrinter.printName(contextPackage, printOptions) + "\n\n");
 			}
 			s.append("context " + PrettyPrinter.printName(contextType, printOptions) + "\n");
@@ -139,8 +140,11 @@ public final class DebugAction extends Action
 //				s.append("\n\nendpackage\n");
 //			}
 			s.close();
-			@SuppressWarnings("null")@NonNull URI documentURI = URI.createFileURI(documentFile.toString());
-			return documentURI;
+			java.net.URI documentURI1 = documentStore.toURI();
+//			File documentFile = documentStore.toLocalFile(EFS.CACHE, monitor);
+//			documentFile.getParentFile().mkdirs();
+			@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
+			return documentURI2;
 		}
 		
 		public ILaunch getLaunch() {
@@ -151,7 +155,7 @@ public final class DebugAction extends Action
 		 * Create and launch an internal launch configuration to debug expressionInOCL applied to contextObject.
 		 * @return 
 		 */
-		protected ILaunch launchDebugger(@Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
+		protected ILaunch launchDebugger(IProgressMonitor monitor, @Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 			ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
 			ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, "test" /*constraint.getName()*/);
@@ -159,13 +163,14 @@ public final class DebugAction extends Action
 			attributes.put(OCLLaunchConstants.EXPRESSION_OBJECT, expressionInOCL);
 			attributes.put(OCLLaunchConstants.CONTEXT_OBJECT, contextObject);
 			launchConfiguration.setAttributes(attributes);
-			return launchConfiguration.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
+			return launchConfiguration.launch(ILaunchManager.DEBUG_MODE, monitor);
 		}
 
 		/**
 		 * Load and parse the test document. Returns the embedded ExpressionInOCL.
+		 * @throws IOException 
 		 */
-		protected @Nullable ExpressionInOCL loadDocument(@NonNull URI documentURI) {
+		protected @Nullable ExpressionInOCL loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws IOException {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(documentURI, true);
 			if (resource instanceof BaseCSResource) {
@@ -221,20 +226,26 @@ public final class DebugAction extends Action
 			});
 		}
 
-		public void run(final IProgressMonitor monitor) {
+		public void run(IProgressMonitor monitor) {
 			monitor.beginTask(NLS.bind(ConsoleMessages.Debug_Starter, expression), 3);
 			try {
 				monitor.subTask(ConsoleMessages.Debug_ProgressCreate);
 				URI documentURI;
 				try {
-					documentURI = createDocument();
+					documentURI = createDocument(monitor);
 				} catch (Exception e) {
 					openError(ConsoleMessages.Debug_FailCreate, e);
 					return;
 				}
 				monitor.worked(1);
 				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
-				ExpressionInOCL expressionInOCL = loadDocument(documentURI);
+				ExpressionInOCL expressionInOCL;
+				try {
+					expressionInOCL = loadDocument(monitor, documentURI);
+				} catch (IOException e) {
+					openError(ConsoleMessages.Debug_FailLoad, e);
+					return;
+				}
 				if (expressionInOCL == null) {
 					openError(ConsoleMessages.Debug_FailLoad);
 					return;
@@ -242,7 +253,7 @@ public final class DebugAction extends Action
 				monitor.worked(1);
 				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
 				try {
-					launch = launchDebugger(contextObject, expressionInOCL);
+					launch = launchDebugger(monitor, contextObject, expressionInOCL);
 				} catch (CoreException e) {
 					openError(ConsoleMessages.Debug_FailLaunch, e);
 				}
@@ -285,7 +296,8 @@ public final class DebugAction extends Action
 		try {
 			progressService.run(true, true, runnable);
 		} catch (InvocationTargetException e) {
-			IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
+			Throwable targetException = e.getTargetException();
+			IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, targetException.getLocalizedMessage(), targetException);
 			ErrorDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart, status);
 		} catch (InterruptedException e) {
 			/* Cancel is not a problem. */
