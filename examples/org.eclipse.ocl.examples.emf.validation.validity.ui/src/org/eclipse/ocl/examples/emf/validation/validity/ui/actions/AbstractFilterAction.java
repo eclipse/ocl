@@ -27,11 +27,13 @@ public abstract class AbstractFilterAction extends Action
 	protected final @NonNull ValidityView validityView;
 	protected final boolean isValidatableAction;
 	
-	public AbstractFilterAction(String text, int style, String toolTip, String imageLocation, @NonNull ValidityView validityView, boolean isValidatableAction) {
+	public AbstractFilterAction(String text, int style, @NonNull ValidityView validityView, boolean isValidatableAction) {
 		super(text, style);
 		this.validityView = validityView;
 		this.isValidatableAction = isValidatableAction;
-		setToolTipText(toolTip);
+	}
+
+	protected void setImage(String imageLocation) {
 		URL imageURL = (URL) ValidityUIPlugin.INSTANCE.getImage(imageLocation);
 		setImageDescriptor(ImageDescriptor.createFromURL(imageURL));
 	}

@@ -27,16 +27,15 @@ public final class EnableDisableAllNodesAction extends AbstractFilterAction
 	public EnableDisableAllNodesAction(@NonNull ValidityView validityView, boolean enableAll, boolean isValidatableFilterAction) {
 		super(enableAll ? ValidityUIMessages.ValidityView_Action_SelectAllNodes_Title
 						: ValidityUIMessages.ValidityView_Action_DeselectAllNodes_Title,
-			0,
-			isValidatableFilterAction
+			0, validityView, isValidatableFilterAction);
+		this.enableAll = enableAll;
+		setToolTipText(isValidatableFilterAction
 				? enableAll ? ValidityUIMessages.ValidityView_Action_SelectAllValidatableNodes_ToolTipText
 							: ValidityUIMessages.ValidityView_Action_DeselectAllValidatableNodes_ToolTipText
 				: enableAll ? ValidityUIMessages.ValidityView_Action_SelectAllConstrainingNodes_ToolTipText
-							: ValidityUIMessages.ValidityView_Action_DeselectAllConstrainingNodes_ToolTipText,
-			enableAll ? ValidityUIMessages.ValidityView_Action_SelectAllNodes_ImageLocation
-					  : ValidityUIMessages.ValidityView_Action_DeselectAllNodes_ImageLocation,
-			validityView, isValidatableFilterAction);
-		this.enableAll = enableAll;
+							: ValidityUIMessages.ValidityView_Action_DeselectAllConstrainingNodes_ToolTipText);
+		setImage(enableAll ? ValidityUIMessages.ValidityView_Action_SelectAllNodes_ImageLocation
+				  : ValidityUIMessages.ValidityView_Action_DeselectAllNodes_ImageLocation);
 	}
 
 	@Override

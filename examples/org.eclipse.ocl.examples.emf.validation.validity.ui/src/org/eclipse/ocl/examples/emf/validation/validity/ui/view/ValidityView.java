@@ -173,6 +173,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 				final @SuppressWarnings("null")@NonNull Monitor emfMonitor = BasicMonitor.toMonitor(monitor);
 				validityManager.setInput(newSelection, emfMonitor);
 				if (!monitor.isCanceled()) {
+					initializeFilters();
 					ValidityModel model = validityManager.getModel();
 					if (model != null) {
 						model.refreshModel(null, null);
@@ -291,14 +292,14 @@ public class ValidityView extends ViewPart implements ISelectionListener
 	private Action collapseAllValidatableNodesAction;
 	private Action enableAllValidatableNodesAction;
 	private Action disableAllValidatableNodesAction;
-	private Action disableAllUnusedValidatableNodesAction;
+	private DisableAllUnusedNodesAction disableAllUnusedValidatableNodesAction;
 
 	/**Constraining Tool Bar.*/
 	private Action expandAllConstrainingNodesAction;
 	private Action collapseAllConstrainingNodesAction;
 	private Action enableAllConstrainingNodesAction;
 	private Action disableAllConstrainingNodesAction;
-	private Action disableAllUnusedConstrainingNodesAction;
+	private DisableAllUnusedNodesAction disableAllUnusedConstrainingNodesAction;
 
 	/** Double Click action handlers.*/
 	private Action constrainingNodesDoubleClickAction;
@@ -726,6 +727,11 @@ public class ValidityView extends ViewPart implements ISelectionListener
 				validatableNodesDoubleClickAction.run();
 			}
 		});
+	}
+
+	protected void initializeFilters() {
+		disableAllUnusedConstrainingNodesAction.refreshChecked();
+		disableAllUnusedValidatableNodesAction.refreshChecked();
 	}
 
 	private void makeActions() {
