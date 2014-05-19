@@ -296,10 +296,11 @@ public class VariableFinder
 		} else if (value instanceof EObject) {
 			EObject eObject = (EObject) value;
 			EClass eClass = eObject.eClass();
-			String strVal = eClass.getEPackage().getName() + "::" + eClass.getName() + " @" + Integer.toHexString(System.identityHashCode(value));
-			boolean hasVariables = !eClass.getEAllStructuralFeatures().isEmpty() || value instanceof Resource;
+			String qualifiedName = eClass != null ? eClass.getEPackage().getName() + "::" + eClass.getName() : eObject.getClass().getSimpleName();
+			String strVal = qualifiedName + " @" + Integer.toHexString(System.identityHashCode(value));
+			boolean hasVariables = (eClass == null) || !eClass.getEAllStructuralFeatures().isEmpty() || value instanceof Resource;
 			vmValue = new VMValueData(VMValueData.OBJECT_REF, strVal, hasVariables);
-			@SuppressWarnings("null")@NonNull String className = eClass.getName();
+			@SuppressWarnings("null")@NonNull String className = eClass != null ? eClass.getName() : eObject.getClass().getSimpleName();
 			vmType = new VMTypeData(VMTypeData.EOBJECT, className, declaredTypeName);
 		} else if (value instanceof Collection<?>) {
 			Collection<?> collection = (Collection<?>) value;

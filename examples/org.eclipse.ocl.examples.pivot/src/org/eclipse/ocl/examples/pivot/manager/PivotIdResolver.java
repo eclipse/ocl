@@ -15,11 +15,13 @@
 package org.eclipse.ocl.examples.pivot.manager;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -119,6 +121,20 @@ public class PivotIdResolver extends AbstractIdResolver
 					eType = umlClassifier;
 				}
 			} */
+		}
+		else if ((ePackage.eContainer() instanceof EAnnotation) && (ePackage.eContainer().eContainer() instanceof org.eclipse.uml2.uml.Profile)) {
+			org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile)ePackage.eContainer().eContainer();
+			String stereotypeName = UMLUtil.getOriginalName(eClassifier);
+			org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(stereotypeName);
+			try {
+				Stereotype stereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
+				if (stereotype != null) {
+					return stereotype;
+				}
+			} catch (ParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if (ePackage == PivotPackage.eINSTANCE){
 			String typeName = eClassifier.getName();

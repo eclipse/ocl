@@ -15,9 +15,8 @@
 package org.eclipse.ocl.examples.emf.validation.validity.ui.locator;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
@@ -33,5 +32,5 @@ public interface ConstraintUILocator extends ConstraintLocator
 	 * Launch a debugger for the resultConstrainingNode, returning false if debugging is not supported.
 	 * @throws CoreException 
 	 */
-	boolean debug(@NonNull ResultConstrainingNode resultConstrainingNode, @NonNull ValidityView validityView, @Nullable Monitor monitor) throws CoreException;
+	boolean debug(@NonNull ResultConstrainingNode resultConstrainingNode, @NonNull ValidityView validityView, @NonNull IProgressMonitor monitor) throws CoreException;
 }

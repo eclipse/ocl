@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -129,23 +130,22 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 						{
 							@Override
 							public void run() {
-					//			Monitor monitor = null;
 								try {
-									if (!uiConstraintLocator.debug(finalResultConstrainingNode, validityView, null)) {
-										MessageDialog.openError(shell, "Constraint Debug Launcher",
-													"Debugging failed for '" + uiConstraintLocator.getName() + "'." );
+									if (!uiConstraintLocator.debug(finalResultConstrainingNode, validityView, new NullProgressMonitor())) {
+										openError(shell, "Debugging failed for '" + uiConstraintLocator.getName() + "'.");
 									}
 								} catch (final Exception e) {
-									shell.getDisplay().asyncExec(new Runnable()
-									{
-										@Override
-										public void run() {
-											MessageDialog.openError(shell, "Constraint Debug Launcher",
-														"Debugging failed for '" + uiConstraintLocator.getName() + "'." + e.toString());
-											e.printStackTrace();
-										}
-									});
+									openError(shell, "Debugging failed for '" + uiConstraintLocator.getName() + "'." + e.toString());
 								}
+							}
+
+							protected void openError(final Shell shell, final String message) {
+								shell.getDisplay().asyncExec(new Runnable()
+								{
+									public void run() {
+										MessageDialog.openError(shell, "Constraint Debug Launcher", message);
+									}
+								});
 							}
 						};
 						launchingThread.start();
