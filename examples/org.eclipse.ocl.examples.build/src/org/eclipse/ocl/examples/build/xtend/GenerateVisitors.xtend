@@ -666,14 +666,14 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 
 	protected def String generateHeader(@NonNull EPackage ePackage, String javaPackage) {
 		'''
-		/**
+		/*******************************************************************************
 		 * «MergeWriter.getCopyright(copyright).replace("\n", "\n* ")»
 		 *
 		 * This code is auto-generated
 		 * from: «projectName»/«sourceFile»
 		 *
-		 * Do not edit it.
-		 */
+		 * Only the copyright statement is editable.
+		 *******************************************************************************/
 		package	«javaPackage»;
 		'''
 	}

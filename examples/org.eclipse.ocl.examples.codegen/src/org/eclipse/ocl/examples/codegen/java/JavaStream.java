@@ -456,15 +456,15 @@ public class JavaStream
 	}
 
 	public void appendCopyrightHeader() {
-		append("/*\n");
+		append("/*******************************************************************************\n");
 		pushIndentation(" *");
 		append(" «codeGenHelper.getCopyright(' * ')»\n");
-		append("************************************************************************\n");
+		append("\n");
 		append(" This code is 100% auto-generated\n");
 		append(" using: " + getClass().getName() + "\n");
 		append("\n");
 		append(" Do not edit it.\n");
-		append("/\n");
+		append("*******************************************************************************/\n");
 		popIndentation();
 		append("\n");
 	}
