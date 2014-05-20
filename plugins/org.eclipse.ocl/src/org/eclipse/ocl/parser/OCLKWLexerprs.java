@@ -2,7 +2,7 @@
 * Essential OCL Keyword Lexer
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation and others.
+* Copyright (c) 2005, 2012 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -14,29 +14,7 @@
 *   E.D.Willink - Bug 285633, 292112
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396) 
-*
-* </copyright>
-*
-*
-*/
-/**
-* Complete OCL Keyword Lexer
-* <copyright>
-*
-* Copyright (c) 2005, 2009 IBM Corporation and others.
-* All rights reserved.   This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
-* which accompanies this distribution, and is available at
-* http://www.eclipse.org/legal/epl-v10.html
-*
-* Contributors:
-*   IBM - Initial API and implementation
-*   E.D.Willink - Bug 292112
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
-*
-* </copyright>
-*/
+*******************************************************************************/
 
 package org.eclipse.ocl.parser;
 

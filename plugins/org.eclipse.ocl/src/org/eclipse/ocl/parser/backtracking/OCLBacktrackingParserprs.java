@@ -2,7 +2,7 @@
 * Essential OCL Grammar
 * <copyright>
 *
-* Copyright (c) 2005, 2010 IBM Corporation and others.
+* Copyright (c) 2005, 2014 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -18,27 +18,7 @@
 *        - 242153: LPG v 2.0.17 adoption.
 *        - 299396: Introducing new LPG templates
 *        - 300534: Removing the use of deprecated macros.
-* </copyright>
-*/
-/**
-* Complete OCL Grammar
-* <copyright>
-*
-* Copyright (c) 2005, 2009 IBM Corporation and others.
-* All rights reserved.   This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
-* which accompanies this distribution, and is available at
-* http://www.eclipse.org/legal/epl-v10.html
-*
-* Contributors:
-*   IBM - Initial API and implementation
-*   E.D.Willink - Bug 259818, 285633, 292112
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
-*        - 242153: LPG v 2.0.17 adoption.
-*        - 299396: Introducing new LPG templates
-*        - 300534: Removing the use of deprecated macros.
-* </copyright>
-*/
+*******************************************************************************/
 
 package org.eclipse.ocl.parser.backtracking;
 
