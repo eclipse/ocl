@@ -7,7 +7,9 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin$Implementation
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.filesystem;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
+ org.eclipse.debug.core;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.jdt.annotation;bundle-version="[1.1.0,2.0.0)";resolution:=optional,
  org.eclipse.jface.text;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ui;bundle-version="[3.5.0,4.0.0)",
@@ -15,9 +17,7 @@ Require-Bundle: org.eclipse.core.filesystem;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.uml2.uml;bundle-version="[4.0.0,6.0.0)",
  org.eclipse.ocl.examples.emf.validation.validity;visibility:=reexport,
  org.eclipse.ocl.examples.xtext.base,
- org.eclipse.core.resources,
  org.eclipse.ocl.examples.emf.validation.validity.ui,
- org.eclipse.debug.core,
  org.eclipse.ocl.examples.debug,
  org.eclipse.ocl.examples.xtext.console
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
