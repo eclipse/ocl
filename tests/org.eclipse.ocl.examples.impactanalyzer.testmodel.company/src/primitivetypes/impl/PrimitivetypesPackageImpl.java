@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: PrimitivetypesPackageImpl.java,v 1.3 2011/05/10 14:19:00 auhl Exp $
  */
 package primitivetypes.impl;
 

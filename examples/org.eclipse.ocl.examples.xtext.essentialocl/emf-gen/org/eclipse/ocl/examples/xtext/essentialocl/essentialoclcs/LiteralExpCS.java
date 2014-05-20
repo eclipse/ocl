@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LiteralExpCS.java,v 1.2 2010/05/03 05:38:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ParsingTest.java,v 1.4 2009/11/28 18:01:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;

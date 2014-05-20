@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 251808
  *
  * </copyright>
- *
- * $Id: AssociationTest.java,v 1.10 2009/11/28 18:13:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

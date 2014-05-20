@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LibraryDiagnostic.java,v 1.1 2011/05/11 19:49:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2as;
 

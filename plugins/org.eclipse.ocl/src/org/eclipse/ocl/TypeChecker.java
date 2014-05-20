@@ -10,7 +10,6 @@
  *     Zeligsoft - Bug 233673 - Port other bug fixes to this new API
  *     Zeligsoft - Bug 179990
  * 
- * $Id: TypeChecker.java,v 1.3 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl;
 

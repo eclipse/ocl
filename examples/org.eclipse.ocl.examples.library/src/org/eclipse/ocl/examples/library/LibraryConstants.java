@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotConstants.java,v 1.11 2011/05/21 14:56:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 

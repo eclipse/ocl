@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: TupleElement.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
  */
 package data.tuples;
 

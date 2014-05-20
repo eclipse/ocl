@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.9 2011/05/20 19:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2as;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 248869
  *
  * </copyright>
- *
- * $Id: OperationConstraintsTest.java,v 1.9 2009/12/18 06:32:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

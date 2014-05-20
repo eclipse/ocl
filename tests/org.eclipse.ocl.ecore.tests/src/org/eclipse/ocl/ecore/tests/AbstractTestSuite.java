@@ -14,8 +14,6 @@
  *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
- *
- * $Id: AbstractTestSuite.java,v 1.30 2011/05/09 16:43:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

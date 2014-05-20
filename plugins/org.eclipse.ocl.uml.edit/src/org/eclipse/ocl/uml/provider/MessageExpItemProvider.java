@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: MessageExpItemProvider.java,v 1.4 2010/04/08 06:25:38 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 

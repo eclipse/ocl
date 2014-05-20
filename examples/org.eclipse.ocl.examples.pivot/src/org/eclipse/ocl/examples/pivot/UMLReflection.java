@@ -12,8 +12,6 @@
  *	 E.D.Willink Bug 298128
  *
  * </copyright>
- *
- * $Id: UMLReflection.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

@@ -13,8 +13,6 @@
  * The standalone functionality is heavily influenced by org.eclipse.emf.mwe.utils.StandaloneSetup.
  * 
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.domain.utilities;
 

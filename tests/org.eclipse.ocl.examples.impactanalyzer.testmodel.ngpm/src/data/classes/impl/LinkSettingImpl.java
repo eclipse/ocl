@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: LinkSettingImpl.java,v 1.2 2011/03/05 21:51:24 auhl Exp $
  */
 package data.classes.impl;
 

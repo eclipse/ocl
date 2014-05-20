@@ -11,12 +11,9 @@
  *     IBM Corporation - initial API and implementation
  *     Zeligsoft - Bug 256040
  * 
- * $Id: OCLEcorePlugin.java,v 1.6 2010/04/08 06:27:21 ewillink Exp $
  * 
  *
  * </copyright>
- *
- * $Id: OCLEcorePlugin.java,v 1.6 2010/04/08 06:27:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.internal;
 

@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TemplateParameterTypeItemProvider.java,v 1.3 2010/04/08 06:27:40 ewillink Exp $
  */
 package org.eclipse.ocl.types.provider;
 

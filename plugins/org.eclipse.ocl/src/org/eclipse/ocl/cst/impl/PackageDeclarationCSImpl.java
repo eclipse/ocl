@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
- *
- * $Id: PackageDeclarationCSImpl.java,v 1.4 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

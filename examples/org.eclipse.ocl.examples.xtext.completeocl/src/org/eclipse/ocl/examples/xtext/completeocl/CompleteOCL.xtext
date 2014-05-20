@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCL.xtext,v 1.13 2011/05/21 14:55:54 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLUiModule.java,v 1.8 2011/05/15 20:22:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui;
 

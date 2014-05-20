@@ -12,8 +12,6 @@
  *   E.D.Willink - rework of LPG OCL Console for Xtext
  *
  * </copyright>
- *
- * $Id: OCLConsoleFactory.java,v 1.1 2011/03/04 22:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;

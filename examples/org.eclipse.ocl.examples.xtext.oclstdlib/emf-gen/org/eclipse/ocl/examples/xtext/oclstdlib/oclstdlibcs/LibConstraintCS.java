@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: LibConstraintCS.java,v 1.3 2011/03/01 08:46:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs;
 

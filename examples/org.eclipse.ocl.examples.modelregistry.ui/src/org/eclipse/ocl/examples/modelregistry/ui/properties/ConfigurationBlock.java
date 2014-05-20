@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ConfigurationBlock.java,v 1.3 2010/04/08 06:25:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.ui.properties;
 

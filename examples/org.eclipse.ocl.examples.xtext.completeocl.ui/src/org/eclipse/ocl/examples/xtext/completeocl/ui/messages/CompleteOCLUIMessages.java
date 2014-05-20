@@ -10,8 +10,6 @@
  * Contributors:
  *   Obeo - Initial API and implementation
  * </copyright>
- *
- * $Id$
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl.ui.messages;

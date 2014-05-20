@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: InvariantConstraintsTest.java,v 1.5 2009/11/28 18:09:33 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

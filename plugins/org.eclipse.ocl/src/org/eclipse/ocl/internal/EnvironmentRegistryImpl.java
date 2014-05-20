@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EnvironmentRegistryImpl.java,v 1.6 2009/12/18 06:26:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal;

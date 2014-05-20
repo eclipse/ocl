@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: ExpressionsAdapterFactory.java,v 1.8 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.util;
 

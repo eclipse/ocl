@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ModelRegistrationItemProvider.java,v 1.2 2010/04/08 06:24:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.provider;
 

@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Department.java,v 1.3 2011/05/27 10:57:35 auhl Exp $
  */
 package company;
 

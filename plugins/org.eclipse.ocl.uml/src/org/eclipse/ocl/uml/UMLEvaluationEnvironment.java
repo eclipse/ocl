@@ -13,8 +13,6 @@
  *   Bas Elzinga - Bug 259630
  *
  * </copyright>
- *
- * $Id: UMLEvaluationEnvironment.java,v 1.16 2009/09/01 20:11:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;

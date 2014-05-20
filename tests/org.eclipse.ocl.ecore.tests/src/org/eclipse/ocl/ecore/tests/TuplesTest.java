@@ -12,8 +12,6 @@
  *   Zeligsoft - bug 238049
  *
  * </copyright>
- *
- * $Id: TuplesTest.java,v 1.8 2011/05/01 12:11:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

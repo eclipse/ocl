@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLHighlightingConfiguration.java,v 1.1 2010/05/24 19:36:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring;
 

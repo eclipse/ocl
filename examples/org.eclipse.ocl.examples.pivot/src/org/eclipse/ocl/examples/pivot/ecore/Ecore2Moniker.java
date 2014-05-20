@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Ecore2Moniker.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 

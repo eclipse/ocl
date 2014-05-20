@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreFormatter.java,v 1.14 2011/05/21 14:58:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 

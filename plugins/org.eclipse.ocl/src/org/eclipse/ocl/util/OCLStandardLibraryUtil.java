@@ -15,8 +15,6 @@
  *   Axel Uhl (SAP AG) - Bug 342644
  *   
  * </copyright>
- *
- * $Id: OCLStandardLibraryUtil.java,v 1.16 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 

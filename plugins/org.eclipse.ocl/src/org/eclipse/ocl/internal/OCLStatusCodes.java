@@ -12,8 +12,6 @@
  *   Radek Dvorak - Bug 261128
  *
  * </copyright>
- *
- * $Id: OCLStatusCodes.java,v 1.3 2009/01/31 19:47:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal;

@@ -15,8 +15,6 @@
  *   Borland - Bug 266320
  *   
  * </copyright>
- *
- * $Id: AbstractBasicEnvironment.java,v 1.10 2010/01/22 18:37:57 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 

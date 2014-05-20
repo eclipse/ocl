@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: AmbiguousLookupException.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;

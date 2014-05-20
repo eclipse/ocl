@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 241426
  * 
  * </copyright>
- *
- * $Id: SetTypeImpl.java,v 1.9 2008/11/24 00:40:20 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

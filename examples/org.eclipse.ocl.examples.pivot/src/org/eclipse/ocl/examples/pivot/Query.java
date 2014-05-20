@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: QueryBase.java,v 1.4 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;

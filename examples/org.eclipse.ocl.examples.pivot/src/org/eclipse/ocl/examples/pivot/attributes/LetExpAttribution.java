@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LetExpAttribution.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.attributes;
 

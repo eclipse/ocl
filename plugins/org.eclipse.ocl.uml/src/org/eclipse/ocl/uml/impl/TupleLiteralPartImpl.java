@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: TupleLiteralPartImpl.java,v 1.12 2010/04/23 05:52:14 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 

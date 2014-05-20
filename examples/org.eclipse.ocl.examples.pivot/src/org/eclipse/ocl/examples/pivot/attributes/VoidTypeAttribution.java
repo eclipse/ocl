@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: VoidTypeAttribution.java,v 1.1 2011/04/25 19:39:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.attributes;
 

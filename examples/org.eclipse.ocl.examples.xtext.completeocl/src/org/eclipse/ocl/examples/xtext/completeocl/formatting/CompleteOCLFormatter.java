@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLFormatter.java,v 1.9 2011/05/21 14:55:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.formatting;
 

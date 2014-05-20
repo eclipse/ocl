@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 254919, 296409
  *
  * </copyright>
- *
- * $Id: IteratorsTest.java,v 1.11 2009/12/16 21:00:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

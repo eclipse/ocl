@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: IMessages.java,v 1.2 2007/02/14 14:46:07 cdamus Exp $
  */
 package org.eclipse.ocl.internal.l10n;
 

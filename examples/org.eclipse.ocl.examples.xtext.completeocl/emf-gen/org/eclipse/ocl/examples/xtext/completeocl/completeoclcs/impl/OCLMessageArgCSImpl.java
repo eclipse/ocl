@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OclMessageArgCSImpl.java,v 1.3 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ConstraintCSAttribution.java,v 1.3 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.attributes;
 

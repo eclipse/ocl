@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 259818 (add doc comment)
  *   
  * </copyright>
- *
- * $Id: OCLParserErrors.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser.backtracking;

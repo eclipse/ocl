@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 241426
  *
  * </copyright>
- *
- * $Id: TypesValidatorTest.java,v 1.7 2009/11/28 17:52:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

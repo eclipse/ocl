@@ -18,8 +18,6 @@
  *   Borland - Bug 242880
  *
  * </copyright>
- *
- * $Id: AbstractOCLAnalyzer.java,v 1.45 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.parser;
 

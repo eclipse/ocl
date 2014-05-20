@@ -15,8 +15,6 @@
 -- *        - 300534: Removing the use of deprecated macros.
 -- *
 -- * </copyright>
--- *
--- * $Id: EssentialOCLErrors.gi,v 1.5 2010/01/25 11:31:46 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser

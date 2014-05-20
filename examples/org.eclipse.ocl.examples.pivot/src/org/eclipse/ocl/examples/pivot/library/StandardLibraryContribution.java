@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: StandardLibraryContribution.java,v 1.3 2011/02/08 17:51:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 

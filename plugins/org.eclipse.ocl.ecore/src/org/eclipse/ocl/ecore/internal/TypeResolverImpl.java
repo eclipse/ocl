@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 182994
  *
  * </copyright>
- *
- * $Id: TypeResolverImpl.java,v 1.1 2008/09/10 19:21:04 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.internal;
 

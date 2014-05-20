@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: ASTNode.java,v 1.6 2009/12/22 18:54:06 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 

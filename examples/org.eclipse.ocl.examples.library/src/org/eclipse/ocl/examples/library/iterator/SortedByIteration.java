@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: SortedByIteration.java,v 1.9 2011/05/20 15:26:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 

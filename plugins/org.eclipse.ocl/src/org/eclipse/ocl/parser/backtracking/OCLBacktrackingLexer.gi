@@ -14,8 +14,6 @@
 -- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 -- *
 -- * </copyright>
--- *
--- * $Id: OCLBacktrackingLexer.gi,v 1.3 2010/01/22 18:38:05 asanchez Exp $
 -- */
 --
 -- The OCL Backtracking Lexer, which is nominally identical to the

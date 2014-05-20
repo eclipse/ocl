@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BooleanLiteralExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 

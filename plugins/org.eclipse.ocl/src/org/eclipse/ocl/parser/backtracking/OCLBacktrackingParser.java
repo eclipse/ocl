@@ -19,8 +19,6 @@
 *        - 299396: Introducing new LPG templates
 *        - 300534: Removing the use of deprecated macros.
 * </copyright>
-*
-* $Id: EssentialOCL.gi,v 1.8 2010/02/09 21:04:08 ewillink Exp $
 */
 /**
 * Complete OCL Grammar

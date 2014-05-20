@@ -12,8 +12,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
- *
- * $Id: EcoreEnvironmentFactory.java,v 1.6 2011/03/09 13:07:04 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;

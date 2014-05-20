@@ -13,8 +13,6 @@
  *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
- *
- * $Id: CollectionUtil.java,v 1.10 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 

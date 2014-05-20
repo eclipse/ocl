@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Data_bindingPackageImpl.java,v 1.2 2011/03/05 21:52:06 auhl Exp $
  */
 package ui.data_binding.impl;
 

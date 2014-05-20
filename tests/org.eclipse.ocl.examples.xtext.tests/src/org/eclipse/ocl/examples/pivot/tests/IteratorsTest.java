@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 296409, 297541
  *
  * </copyright>
- *
- * $Id: IteratorsTest.java,v 1.9 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

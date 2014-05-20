@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LibraryAttribution.java,v 1.2 2011/05/22 16:42:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.attributes;
 

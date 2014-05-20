@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: BooleanAllInstancesOperation.java,v 1.2 2011/01/24 19:56:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LookupException.java,v 1.5 2007/12/03 13:28:20 cdamus Exp $
  */
 
 package org.eclipse.ocl;

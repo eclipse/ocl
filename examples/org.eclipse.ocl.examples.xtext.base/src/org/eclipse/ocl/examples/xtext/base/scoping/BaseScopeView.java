@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseScopeView.java,v 1.8 2011/05/20 18:26:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 

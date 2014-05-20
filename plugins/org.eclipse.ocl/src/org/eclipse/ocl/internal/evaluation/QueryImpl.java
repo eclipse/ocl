@@ -12,8 +12,6 @@
  *   Radek Dvorak - Bug 261128
  *
  * </copyright>
- *
- * $Id: QueryImpl.java,v 1.7 2010/05/03 09:32:33 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

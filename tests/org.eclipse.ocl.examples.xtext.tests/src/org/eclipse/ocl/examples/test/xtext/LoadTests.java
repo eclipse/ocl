@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LoadTests.java,v 1.25 2011/05/22 21:06:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

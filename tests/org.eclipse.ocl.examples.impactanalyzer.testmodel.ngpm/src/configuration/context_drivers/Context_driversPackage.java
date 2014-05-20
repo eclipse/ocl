@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Context_driversPackage.java,v 1.2 2011/03/05 21:48:55 auhl Exp $
  */
 package configuration.context_drivers;
 

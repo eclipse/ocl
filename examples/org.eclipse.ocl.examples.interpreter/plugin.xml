@@ -16,8 +16,6 @@
  *   E.D.Willink - rework Delegate as Handler - 386701
  *
  * </copyright>
- *
- * $Id: plugin.xml,v 1.3 2010/12/22 12:19:57 asanchez Exp $
  */
 -->
 <plugin>

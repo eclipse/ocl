@@ -12,8 +12,6 @@
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
- *
- * $Id: BasicEnvironment.java,v 1.1 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

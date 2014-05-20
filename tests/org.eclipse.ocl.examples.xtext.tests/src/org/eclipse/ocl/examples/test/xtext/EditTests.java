@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EditTests.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

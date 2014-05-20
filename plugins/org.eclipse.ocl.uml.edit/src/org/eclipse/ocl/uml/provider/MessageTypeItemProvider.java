@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: MessageTypeItemProvider.java,v 1.3 2010/04/08 06:25:44 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 

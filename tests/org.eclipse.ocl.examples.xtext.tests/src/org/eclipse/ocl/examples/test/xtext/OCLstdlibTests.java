@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibTests.java,v 1.9 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

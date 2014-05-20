@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseCSResource.java,v 1.4 2011/03/03 20:09:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 

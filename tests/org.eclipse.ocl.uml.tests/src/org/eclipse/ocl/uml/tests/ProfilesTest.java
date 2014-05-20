@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 241148, 243098, 247079, 179990
  *   
  * </copyright>
- *
- * $Id: ProfilesTest.java,v 1.10 2009/11/28 18:12:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

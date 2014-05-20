@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: DefCSImpl.java,v 1.4 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCL.java,v 1.4 2009/08/26 05:57:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;

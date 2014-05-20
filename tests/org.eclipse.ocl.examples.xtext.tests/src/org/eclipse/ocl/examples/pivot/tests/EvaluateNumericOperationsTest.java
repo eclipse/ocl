@@ -11,8 +11,6 @@
  *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluateNumericOperationsTest.java,v 1.2 2011/03/22 12:33:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

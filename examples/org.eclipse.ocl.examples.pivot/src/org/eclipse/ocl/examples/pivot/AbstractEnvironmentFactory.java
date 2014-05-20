@@ -13,8 +13,6 @@
  *   Borland - Bug 265066
  *   
  * </copyright>
- *
- * $Id: AbstractEnvironmentFactory.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

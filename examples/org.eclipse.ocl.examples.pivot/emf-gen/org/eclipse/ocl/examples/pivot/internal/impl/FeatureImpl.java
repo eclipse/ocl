@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: FeatureImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: CompanyValidator.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
  */
 package company.util;
 

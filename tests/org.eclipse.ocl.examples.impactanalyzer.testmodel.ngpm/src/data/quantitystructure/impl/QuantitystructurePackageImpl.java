@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: QuantitystructurePackageImpl.java,v 1.2 2011/03/05 21:51:25 auhl Exp $
  */
 package data.quantitystructure.impl;
 

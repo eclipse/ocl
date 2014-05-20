@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: IntegerValue.java,v 1.3 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.domain.values;
 

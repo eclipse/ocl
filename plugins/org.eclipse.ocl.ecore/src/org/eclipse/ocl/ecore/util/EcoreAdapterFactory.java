@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 241426
  * 
  * </copyright>
- *
- * $Id: EcoreAdapterFactory.java,v 1.12 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 

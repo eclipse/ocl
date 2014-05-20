@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 297541
  *
  * </copyright>
- *
- * $Id: IterationTemplateClosure.java,v 1.5 2010/01/11 22:28:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

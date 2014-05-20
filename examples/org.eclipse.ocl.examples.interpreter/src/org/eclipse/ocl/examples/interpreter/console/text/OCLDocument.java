@@ -12,8 +12,6 @@
  *   Kenn Hussey - 332962
  *
  * </copyright>
- *
- * $Id: OCLDocument.java,v 1.2 2010/12/22 12:19:57 asanchez Exp $
  */
 
 package org.eclipse.ocl.examples.interpreter.console.text;

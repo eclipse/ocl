@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OclVoidAndOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLQuickfixProvider.java,v 1.1 2010/04/13 06:36:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.quickfix;
 

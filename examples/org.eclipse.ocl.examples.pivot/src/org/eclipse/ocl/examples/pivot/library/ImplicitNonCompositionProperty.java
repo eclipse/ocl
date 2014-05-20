@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ImplicitNonCompositionProperty.java,v 1.1 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 

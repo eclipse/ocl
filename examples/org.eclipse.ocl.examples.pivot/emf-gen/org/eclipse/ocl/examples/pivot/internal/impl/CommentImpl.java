@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: CommentImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

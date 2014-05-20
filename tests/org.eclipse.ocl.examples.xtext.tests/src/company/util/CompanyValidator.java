@@ -1,8 +1,6 @@
 /**
  * <copyright>
  * </copyright>
- *
- * $Id: CompanyValidator.java,v 1.3 2011/03/01 17:25:38 ewillink Exp $
  */
 package company.util;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  *
  * </copyright>
- *
- * $Id: NumericLiteralExp.java,v 1.2 2008/11/24 00:42:43 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 

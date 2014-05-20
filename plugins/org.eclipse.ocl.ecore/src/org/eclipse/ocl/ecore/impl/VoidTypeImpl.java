@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 241426
  * 
  * </copyright>
- *
- * $Id: VoidTypeImpl.java,v 1.7 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

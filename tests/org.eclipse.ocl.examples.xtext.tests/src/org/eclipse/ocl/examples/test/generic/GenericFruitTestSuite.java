@@ -11,8 +11,6 @@
  *   Ed Willink - Bug 254919; Initial API and implementation
  *
  * </copyright>
- *
- * $Id: GenericFruitTestSuite.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;

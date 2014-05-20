@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EnumerationAllInstancesOperation.java,v 1.4 2011/04/25 09:48:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 

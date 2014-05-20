@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ModelFileResolver.java,v 1.2 2010/04/08 06:24:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.standalone;
 

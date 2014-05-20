@@ -12,8 +12,6 @@
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - Bug 397429
  *
  * </copyright>
- *
- * $Id: OCLinEcoreCS2Pivot.java,v 1.4 2011/05/20 15:27:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2as;
 

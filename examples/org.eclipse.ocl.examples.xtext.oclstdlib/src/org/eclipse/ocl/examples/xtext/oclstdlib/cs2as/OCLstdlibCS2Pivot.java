@@ -12,8 +12,6 @@
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - Bug 397429
  *
  * </copyright>
- *
- * $Id: OCLstdlibCS2Pivot.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 

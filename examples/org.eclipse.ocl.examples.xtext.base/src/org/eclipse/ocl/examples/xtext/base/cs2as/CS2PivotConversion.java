@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CS2PivotConversion.java,v 1.23 2011/05/23 05:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2as;
 

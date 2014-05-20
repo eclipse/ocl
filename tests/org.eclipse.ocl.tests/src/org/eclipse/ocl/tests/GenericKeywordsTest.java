@@ -12,8 +12,6 @@
  *   E.D.Willink - Bugs 296409, 295166
  *
  * </copyright>
- *
- * $Id: GenericKeywordsTest.java,v 1.3 2010/02/09 21:04:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;

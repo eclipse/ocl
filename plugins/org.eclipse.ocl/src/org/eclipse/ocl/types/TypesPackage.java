@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 231435, 243976, 207365, 256040
  * 
  * </copyright>
- *
- * $Id: TypesPackage.java,v 1.11 2009/12/22 18:52:41 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 

@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: SapClassImpl.java,v 1.3 2011/03/05 21:37:37 auhl Exp $
  */
 package data.classes.impl;
 

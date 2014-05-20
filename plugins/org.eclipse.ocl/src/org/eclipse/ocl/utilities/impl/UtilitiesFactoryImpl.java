@@ -11,13 +11,9 @@
  *   IBM - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: UtilitiesFactoryImpl.java,v 1.7 2010/04/08 06:26:42 ewillink Exp $
  * /
  *
  * </copyright>
- *
- * $Id: UtilitiesFactoryImpl.java,v 1.7 2010/04/08 06:26:42 ewillink Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 

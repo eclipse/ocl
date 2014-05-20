@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: ExpressionsPackageImpl.java,v 1.12 2010/01/14 12:44:33 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

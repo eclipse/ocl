@@ -20,8 +20,6 @@
  * from: org.eclipse.ocl.examples.build.*.mwe2
  *
  * Do not edit it.
- *
- * $Id$
  */
 package	org.eclipse.ocl.examples.domain.ids;
 

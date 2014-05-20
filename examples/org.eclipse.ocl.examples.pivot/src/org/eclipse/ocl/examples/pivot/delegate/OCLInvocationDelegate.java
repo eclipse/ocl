@@ -11,8 +11,6 @@
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: OCLInvocationDelegate.java,v 1.3 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

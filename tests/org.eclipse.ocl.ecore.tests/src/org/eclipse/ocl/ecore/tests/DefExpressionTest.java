@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 238050
  *
  * </copyright>
- *
- * $Id: DefExpressionTest.java,v 1.9 2009/11/28 17:41:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

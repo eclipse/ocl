@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: MessagesTest.java,v 1.4 2009/11/28 18:07:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

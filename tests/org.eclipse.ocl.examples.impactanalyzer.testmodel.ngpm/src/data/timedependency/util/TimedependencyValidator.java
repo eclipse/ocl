@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: TimedependencyValidator.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package data.timedependency.util;
 

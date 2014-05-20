@@ -12,8 +12,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (University of York) - Bug 415697
  *
  * </copyright>
- *
- * $Id: PivotEnvironmentFactory.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;

@@ -16,7 +16,6 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.20 2010/05/03 09:32:33 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 

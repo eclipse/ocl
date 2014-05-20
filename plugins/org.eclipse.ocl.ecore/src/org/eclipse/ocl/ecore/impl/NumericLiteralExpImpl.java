@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: NumericLiteralExpImpl.java,v 1.5 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

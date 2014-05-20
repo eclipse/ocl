@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: NavigationCallExpImpl.java,v 1.7 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

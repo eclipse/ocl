@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: CollectionLiteralExpImpl.java,v 1.10 2010/04/23 05:52:15 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 

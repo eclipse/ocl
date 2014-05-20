@@ -11,8 +11,6 @@
 -- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
--- *
--- * $Id: OCLParser.g,v 1.14 2010/01/25 11:31:46 asanchez Exp $
 -- */
 --
 -- The Complete OCL Parser

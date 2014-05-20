@@ -11,8 +11,6 @@
  *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluateStringOperationsTest.java,v 1.3 2011/05/07 16:41:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

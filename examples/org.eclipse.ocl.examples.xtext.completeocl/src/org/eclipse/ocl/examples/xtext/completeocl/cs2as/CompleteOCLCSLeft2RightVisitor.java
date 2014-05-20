@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.10 2011/05/23 05:51:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2as;
 

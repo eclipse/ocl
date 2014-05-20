@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: AbapAssociationImplementationAnnotation.java,v 1.1 2011/02/07 17:16:11 auhl Exp $
  */
 package abapmapping;
 

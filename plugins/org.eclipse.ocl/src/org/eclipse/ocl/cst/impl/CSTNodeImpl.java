@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 243976, 207365
  *
  * </copyright>
- *
- * $Id: CSTNodeImpl.java,v 1.6 2009/12/27 15:49:52 asanchez Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

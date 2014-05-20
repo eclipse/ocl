@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLUiModule.java,v 1.7 2011/05/15 20:22:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui;
 

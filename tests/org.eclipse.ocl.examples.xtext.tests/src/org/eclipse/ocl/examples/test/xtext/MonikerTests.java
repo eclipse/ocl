@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: MonikerTests.java,v 1.5 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

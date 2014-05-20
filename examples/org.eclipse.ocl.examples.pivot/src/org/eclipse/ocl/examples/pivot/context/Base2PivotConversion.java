@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractConversion.java,v 1.4 2011/05/11 19:46:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.context;
 

@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 254919, 296409
  *
  * </copyright>
- *
- * $Id: TestReflection.java,v 1.3 2010/04/25 06:50:19 ewillink Exp $
  */
 package org.eclipse.ocl.tests;
 

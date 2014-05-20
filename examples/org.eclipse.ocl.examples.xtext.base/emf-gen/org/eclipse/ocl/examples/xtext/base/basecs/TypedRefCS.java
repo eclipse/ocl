@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypedRefCS.java,v 1.1 2010/05/03 05:24:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.basecs;

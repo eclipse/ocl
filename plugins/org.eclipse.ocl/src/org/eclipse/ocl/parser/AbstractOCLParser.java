@@ -15,8 +15,6 @@
  *   Borland - Bugs 242880, 266320
  *
  * </copyright>
- *
- * $Id: AbstractOCLParser.java,v 1.15 2010/02/09 21:04:08 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 

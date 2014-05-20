@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365 - Maintain currency with JDT compiler
  *
  * </copyright>
- *
- * $Id: FeatureCallExpImpl.java,v 1.8 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

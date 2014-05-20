@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: RegressionTest.java,v 1.3 2009/11/28 17:37:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;

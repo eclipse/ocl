@@ -11,8 +11,6 @@
  *     IBM Corporation - initial API and implementation
  *
  * </copyright>
- *
- * $Id: DecorationOverlayIcon.java,v 1.2 2010/04/08 06:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.ui.icons;	// FIXME Delete me once Eclipse 3.2 support obsolete
 

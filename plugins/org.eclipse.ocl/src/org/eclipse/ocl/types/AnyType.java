@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: AnyType.java,v 1.5 2009/12/22 18:52:41 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 

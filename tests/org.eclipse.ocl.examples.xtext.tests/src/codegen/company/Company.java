@@ -1,8 +1,6 @@
 /**
  * <copyright>
  * </copyright>
- *
- * $Id$
  */
 package codegen.company;
 

@@ -12,8 +12,6 @@
  *   E.D.Willink (CEA LIST) - Bug 388529
  *
  * </copyright>
- *
- * $Id: EvaluateClassifierOperationsTest.java,v 1.6 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

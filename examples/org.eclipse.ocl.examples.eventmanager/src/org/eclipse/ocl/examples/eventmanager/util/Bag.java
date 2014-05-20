@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Bag.java,v 1.1 2011/03/31 15:50:14 auhl Exp $
  */
 package org.eclipse.ocl.examples.eventmanager.util;
 

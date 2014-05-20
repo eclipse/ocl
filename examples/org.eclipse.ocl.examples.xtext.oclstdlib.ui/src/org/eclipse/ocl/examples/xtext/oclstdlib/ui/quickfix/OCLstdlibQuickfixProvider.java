@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibQuickfixProvider.java,v 1.2 2010/05/09 10:29:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.quickfix;
 

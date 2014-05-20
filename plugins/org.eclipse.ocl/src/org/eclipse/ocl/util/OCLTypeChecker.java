@@ -7,8 +7,6 @@
  * 
  * Contributors:
  *     Open Canarias - initial API and implementation
- * 
- * $Id: OCLTypeChecker.java,v 1.1 2008/10/16 01:57:50 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 

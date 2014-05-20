@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ImportCSImpl.java,v 1.3 2011/05/20 15:27:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;

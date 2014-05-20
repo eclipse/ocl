@@ -15,8 +15,6 @@
  *   Borland - Bug 266320
  *   
  * </copyright>
- *
- * $Id: AbstractBasicEnvironment.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

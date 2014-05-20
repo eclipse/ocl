@@ -1,8 +1,6 @@
 /**
  * <copyright>
  * </copyright>
- *
- * $Id: CompanyPackageImpl.java,v 1.1 2011/01/30 10:58:03 ewillink Exp $
  */
 package company.impl;
 

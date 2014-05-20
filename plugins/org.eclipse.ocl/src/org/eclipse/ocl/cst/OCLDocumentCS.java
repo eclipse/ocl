@@ -11,8 +11,6 @@
  *   Zeligsoft - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLDocumentCS.java,v 1.2 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 

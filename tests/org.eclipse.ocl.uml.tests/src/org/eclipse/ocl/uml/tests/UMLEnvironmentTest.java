@@ -13,8 +13,6 @@
  *   E.D.Willink - Bug 295166
  *
  * </copyright>
- *
- * $Id: UMLEnvironmentTest.java,v 1.11 2010/02/09 21:04:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

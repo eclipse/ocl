@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: AmbiguousLookupException.java,v 1.1 2007/12/03 13:19:51 cdamus Exp $
  */
 
 package org.eclipse.ocl;

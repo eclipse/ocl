@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluatorMessages.java,v 1.1 2011/05/07 16:41:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.domain.messages;

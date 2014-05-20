@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: GroupByImpl.java,v 1.3 2011/03/05 21:51:24 auhl Exp $
  */
 package dataaccess.analytics.impl;
 

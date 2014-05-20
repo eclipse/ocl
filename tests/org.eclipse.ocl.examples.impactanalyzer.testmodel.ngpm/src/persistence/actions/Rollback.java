@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Rollback.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
  */
 package persistence.actions;
 

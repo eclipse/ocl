@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: PathNameCSImpl.java,v 1.7 2009/12/27 15:49:51 asanchez Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

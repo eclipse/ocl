@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: InvalidLiteralExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

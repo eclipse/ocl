@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BinaryOperationFilter.java,v 1.3 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 

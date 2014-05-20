@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Company.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
  */
 package company;
 

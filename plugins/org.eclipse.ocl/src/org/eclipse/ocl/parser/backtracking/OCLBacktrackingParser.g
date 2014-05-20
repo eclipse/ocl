@@ -13,8 +13,6 @@
 -- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 -- *
 -- * </copyright>
--- *
--- * $Id: OCLBacktrackingParser.g,v 1.5 2010/01/22 18:38:09 asanchez Exp $
 -- */
 --
 -- The OCL Backtracking Parser

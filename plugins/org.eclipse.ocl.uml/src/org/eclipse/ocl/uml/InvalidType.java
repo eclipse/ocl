@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: InvalidType.java,v 1.10 2009/12/22 18:59:37 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 

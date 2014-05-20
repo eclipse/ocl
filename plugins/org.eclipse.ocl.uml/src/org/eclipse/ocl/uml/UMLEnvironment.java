@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 252600, 251808
  *
  * </copyright>
- *
- * $Id: UMLEnvironment.java,v 1.17 2010/05/03 09:32:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;

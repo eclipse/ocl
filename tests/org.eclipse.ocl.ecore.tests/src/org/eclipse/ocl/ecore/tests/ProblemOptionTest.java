@@ -12,8 +12,6 @@
  *   E.D.Willink - Bugs 295166
  *
  * </copyright>
- *
- * $Id: ProblemOptionTest.java,v 1.5 2010/02/09 21:04:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

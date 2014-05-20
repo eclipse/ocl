@@ -12,8 +12,6 @@
  *   Zeligsoft - Adapted for the UML metamodel
  * 
  * </copyright>
- *
- * $Id: FeatureRedefinitionTest.java,v 1.2 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: LambdaType.java,v 1.1 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

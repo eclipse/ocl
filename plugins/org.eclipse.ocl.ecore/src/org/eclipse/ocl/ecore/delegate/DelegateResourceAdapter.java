@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DelegateResourceAdapter.java,v 1.3 2011/05/07 05:46:49 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

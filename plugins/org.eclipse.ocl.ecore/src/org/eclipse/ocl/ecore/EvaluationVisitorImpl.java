@@ -11,8 +11,6 @@
  *   Axel Uhl - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationVisitorImpl.java,v 1.2 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore;
 

@@ -15,8 +15,6 @@
  *   IBM - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: StateExpImpl.java,v 1.7 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

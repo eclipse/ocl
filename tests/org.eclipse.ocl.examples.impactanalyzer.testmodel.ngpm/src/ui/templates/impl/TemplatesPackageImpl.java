@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: TemplatesPackageImpl.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package ui.templates.impl;
 

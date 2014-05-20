@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 248869
  *
  * </copyright>
- *
- * $Id: LoopExpImpl.java,v 1.8 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

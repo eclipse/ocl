@@ -14,8 +14,6 @@
  *   Adolfo Sanchez-Barbudo Herrera - Bug 234354, 233673
  *
  * </copyright>
- *
- * $Id: AbstractEnvironment.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

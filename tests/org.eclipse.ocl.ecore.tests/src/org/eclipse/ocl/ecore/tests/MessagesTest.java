@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: MessagesTest.java,v 1.8 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

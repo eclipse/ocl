@@ -13,8 +13,6 @@
  *   Borland - Bug 242880
  *
  * </copyright>
- *
- * $Id: ParsingOptions.java,v 1.10 2011/03/09 13:07:03 auhl Exp $
  */
 
 package org.eclipse.ocl.options;

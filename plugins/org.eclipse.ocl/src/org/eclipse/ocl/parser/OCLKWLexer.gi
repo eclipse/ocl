@@ -11,8 +11,6 @@
 -- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
--- *
--- * $Id: OCLKWLexer.gi,v 1.3 2010/01/22 18:37:44 asanchez Exp $
 -- */
 --
 -- The Complete OCL KeyWord Lexer

@@ -11,8 +11,6 @@
 -- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
--- *
--- * $Id: EssentialOCL.gi,v 1.2 2011/01/24 21:31:48 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -88,8 +86,6 @@
  *        - 299396: Introducing new LPG templates
  *        - 300534: Removing the use of deprecated macros.
  * </copyright>
- *
- * $Id: EssentialOCL.gi,v 1.2 2011/01/24 21:31:48 ewillink Exp $
  */
     ./
 %End

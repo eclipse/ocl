@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: CollectionLiteralPartImpl.java,v 1.7 2008/11/24 00:22:42 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

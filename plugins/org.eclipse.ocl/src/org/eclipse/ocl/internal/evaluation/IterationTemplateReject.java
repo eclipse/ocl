@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: IterationTemplateReject.java,v 1.5 2010/02/03 19:54:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

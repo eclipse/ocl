@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 248869, 242236
  *
  * </copyright>
- *
- * $Id: SerializationTest.java,v 1.11 2009/11/28 17:47:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

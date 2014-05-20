@@ -11,8 +11,6 @@
  *     E.D.Willink (Obeo) - initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.test.xtext;
 

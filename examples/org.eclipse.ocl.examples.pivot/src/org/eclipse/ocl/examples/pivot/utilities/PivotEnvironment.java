@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 182994, 252600
  *
  * </copyright>
- *
- * $Id: PivotEnvironment.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;

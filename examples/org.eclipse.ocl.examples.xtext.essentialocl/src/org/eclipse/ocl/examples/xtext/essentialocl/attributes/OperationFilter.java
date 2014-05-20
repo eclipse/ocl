@@ -12,8 +12,6 @@
  *   E.D.Willink (CEA LIST) - Bug 388529
  *
  * </copyright>
- *
- * $Id: OperationFilter.java,v 1.10 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 

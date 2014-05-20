@@ -11,8 +11,6 @@
  *   Ed Willink - Bug 254919; Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLTestSuite.java,v 1.2 2010/04/25 06:50:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

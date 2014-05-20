@@ -12,8 +12,6 @@
  *   Achim Demelt - Bug 245897
  *
  * </copyright>
- *
- * $Id: NumberUtil.java,v 1.2 2008/09/10 18:44:18 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

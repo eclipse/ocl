@@ -13,8 +13,6 @@
  *  K.Hussey - Bug 331143
  * 
  * </copyright>
- *
- * $Id: DelegatesTest.java,v 1.7 2011/05/10 21:18:35 auhl Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 

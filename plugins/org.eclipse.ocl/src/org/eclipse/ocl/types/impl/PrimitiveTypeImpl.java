@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: PrimitiveTypeImpl.java,v 1.6 2008/11/24 00:21:32 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 

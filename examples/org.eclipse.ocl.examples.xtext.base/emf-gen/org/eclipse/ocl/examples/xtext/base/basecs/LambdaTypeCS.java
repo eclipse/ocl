@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: LambdaTypeCS.java,v 1.1 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.basecs;
 

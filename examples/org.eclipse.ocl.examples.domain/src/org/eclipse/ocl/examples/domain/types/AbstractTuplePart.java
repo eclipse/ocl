@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.domain.types;
 import org.eclipse.jdt.annotation.NonNull;

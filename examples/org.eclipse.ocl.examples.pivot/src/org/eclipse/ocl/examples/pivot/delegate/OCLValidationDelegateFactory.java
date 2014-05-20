@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLValidationDelegateFactory.java,v 1.5 2011/05/30 16:09:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

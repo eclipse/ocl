@@ -14,8 +14,6 @@
  *   E.D.Willink - Bug 259818
  *   
  * </copyright>
- *
- * $Id: OCLSyntaxHelper.java,v 1.19 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;

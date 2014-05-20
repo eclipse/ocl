@@ -12,8 +12,6 @@
  *   Adolfo Sanchez-Barbudo Herrera - 222581 generic collection type resolution
  *
  * </copyright>
- *
- * $Id: AbstractTypeResolver.java,v 1.14 2009/12/04 21:25:29 ewillink Exp $
  */
 package org.eclipse.ocl;
 

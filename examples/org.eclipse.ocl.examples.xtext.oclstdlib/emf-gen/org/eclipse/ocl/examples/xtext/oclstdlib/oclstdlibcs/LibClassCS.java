@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: LibClassCS.java,v 1.5 2011/02/15 10:37:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs;
 

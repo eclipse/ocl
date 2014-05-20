@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotPackage.java,v 1.13 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

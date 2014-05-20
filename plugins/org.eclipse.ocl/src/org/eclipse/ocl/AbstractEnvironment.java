@@ -14,8 +14,6 @@
  *   Adolfo Sanchez-Barbudo Herrera - Bug 234354, 233673
  *
  * </copyright>
- *
- * $Id: AbstractEnvironment.java,v 1.21 2010/12/15 17:33:43 ewillink Exp $
  */
 package org.eclipse.ocl;
 

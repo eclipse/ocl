@@ -11,8 +11,6 @@
  *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotSimpleTestSuite.java,v 1.3 2011/04/25 09:49:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

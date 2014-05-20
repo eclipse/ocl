@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: OCLExpressionCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

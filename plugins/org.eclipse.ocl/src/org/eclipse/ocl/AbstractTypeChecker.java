@@ -13,7 +13,6 @@
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     Axel Uhl (SAP AG) - Bug 342644
  *     
- * $Id: AbstractTypeChecker.java,v 1.9 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl;

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 238050
  *
  * </copyright>
- *
- * $Id: DefExpressionTest.java,v 1.10 2009/11/28 18:04:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

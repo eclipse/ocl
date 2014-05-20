@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LetExpCSAttribution.java,v 1.5 2011/03/13 11:44:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.attributes;
 

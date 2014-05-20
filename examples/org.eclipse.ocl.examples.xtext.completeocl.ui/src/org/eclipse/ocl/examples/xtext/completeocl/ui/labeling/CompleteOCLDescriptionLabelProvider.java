@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLDescriptionLabelProvider.java,v 1.1 2010/04/13 06:36:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 

@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ConsoleContext.java,v 1.3 2011/03/05 18:17:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 

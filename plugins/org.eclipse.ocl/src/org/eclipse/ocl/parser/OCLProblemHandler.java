@@ -12,8 +12,6 @@
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
- *
- * $Id: OCLProblemHandler.java,v 1.3 2010/01/22 18:37:46 asanchez Exp $
  */
 package org.eclipse.ocl.parser;
 

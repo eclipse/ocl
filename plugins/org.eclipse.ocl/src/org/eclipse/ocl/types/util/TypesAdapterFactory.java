@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: TypesAdapterFactory.java,v 1.8 2009/12/06 18:13:20 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 

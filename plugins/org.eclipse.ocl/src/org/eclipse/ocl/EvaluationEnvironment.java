@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationEnvironment.java,v 1.4 2007/11/06 19:47:11 cdamus Exp $
  */
 
 package org.eclipse.ocl;

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 241426
  * 
  * </copyright>
- *
- * $Id: BagTypeImpl.java,v 1.10 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

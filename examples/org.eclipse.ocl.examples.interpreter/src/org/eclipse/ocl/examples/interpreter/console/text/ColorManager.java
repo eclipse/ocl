@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ColorManager.java,v 1.1 2010/03/11 10:13:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.interpreter.console.text;

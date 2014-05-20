@@ -13,8 +13,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 297666
  *
  * </copyright>
- *
- * $Id: OCLStandardLibraryImpl.java,v 1.11 2010/02/09 10:32:31 asanchez Exp $
  */
 
 package org.eclipse.ocl.uml.internal;

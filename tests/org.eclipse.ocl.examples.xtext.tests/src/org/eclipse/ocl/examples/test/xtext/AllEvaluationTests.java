@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 298634
  *
  * </copyright>
- *
- * $Id: AllXtextTests.java,v 1.10 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;

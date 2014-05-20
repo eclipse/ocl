@@ -14,8 +14,6 @@
  *   Ed Willink - Bug 254919, 298634
  *
  * </copyright>
- *
- * $Id: AbstractTestSuite.java,v 1.23 2010/05/03 09:38:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

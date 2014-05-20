@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OperationContextDeclCSImpl.java,v 1.8 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.impl;
 

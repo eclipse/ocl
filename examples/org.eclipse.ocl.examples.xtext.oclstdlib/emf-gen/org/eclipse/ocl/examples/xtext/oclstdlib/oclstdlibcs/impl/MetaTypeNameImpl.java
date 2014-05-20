@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: MetaTypeNameImpl.java,v 1.1 2011/02/15 10:37:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.impl;
 

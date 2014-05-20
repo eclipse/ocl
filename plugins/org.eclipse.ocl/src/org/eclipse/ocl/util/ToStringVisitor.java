@@ -13,8 +13,6 @@
  *   Adolfo Sanchez- Barbudo Herrera - 228841 Fix NPE in VariableExp
  *
  * </copyright>
- *
- * $Id: ToStringVisitor.java,v 1.13 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;

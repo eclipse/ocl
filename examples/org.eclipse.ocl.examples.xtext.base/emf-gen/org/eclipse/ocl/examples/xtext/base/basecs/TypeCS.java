@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypeCS.java,v 1.3 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.basecs;

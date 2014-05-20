@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: StatusVariableImpl.java,v 1.2 2011/03/05 21:48:54 auhl Exp $
  */
 package behavioral.status_and_action.design.impl;
 

@@ -12,8 +12,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
- *
- * $Id: ExtensibilityTest.java,v 1.5 2010/12/24 10:18:04 asanchez Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

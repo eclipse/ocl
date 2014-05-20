@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TemplateParameterTypeImpl.java,v 1.2 2010/04/08 06:23:31 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 

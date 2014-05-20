@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: UMLAdapterFactory.java,v 1.10 2010/05/03 09:32:42 ewillink Exp $
  */
 package org.eclipse.ocl.uml.util;
 

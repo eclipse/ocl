@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: UMLFactoryImpl.java,v 1.9 2009/12/06 18:21:24 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 

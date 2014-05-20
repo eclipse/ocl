@@ -12,8 +12,6 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
- *
- * $Id: Environment.java,v 1.7 2010/05/03 09:32:32 ewillink Exp $
  */
 
 package org.eclipse.ocl;

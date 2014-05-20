@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ExpSpecificationCSImpl.java,v 1.1 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
 

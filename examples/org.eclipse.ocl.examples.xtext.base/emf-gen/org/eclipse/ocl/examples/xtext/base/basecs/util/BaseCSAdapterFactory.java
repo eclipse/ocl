@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseCSAdapterFactory.java,v 1.10 2011/05/12 08:46:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.basecs.util;

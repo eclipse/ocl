@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibPlugin.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 

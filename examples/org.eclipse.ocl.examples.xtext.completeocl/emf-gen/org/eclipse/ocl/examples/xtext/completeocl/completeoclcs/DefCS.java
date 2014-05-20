@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: DefCS.java,v 1.5 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs;
 

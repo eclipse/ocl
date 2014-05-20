@@ -11,8 +11,6 @@
  *     Radek Dvorak - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationHaltedException.java,v 1.2 2010/04/08 06:26:42 ewillink Exp $
  */
 package org.eclipse.ocl;
 

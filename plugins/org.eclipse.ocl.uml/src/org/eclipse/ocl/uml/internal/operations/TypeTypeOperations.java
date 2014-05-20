@@ -11,8 +11,6 @@
  *    Zeligsoft - Initial API and implementation
  *    
  * </copyright>
- *
- * $Id: TypeTypeOperations.java,v 1.1 2008/11/24 00:23:27 cdamus Exp $
  */
 package org.eclipse.ocl.uml.internal.operations;
 

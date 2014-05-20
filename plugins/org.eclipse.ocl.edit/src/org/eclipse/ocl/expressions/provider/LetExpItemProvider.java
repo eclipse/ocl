@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: LetExpItemProvider.java,v 1.3 2010/04/08 06:27:39 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 

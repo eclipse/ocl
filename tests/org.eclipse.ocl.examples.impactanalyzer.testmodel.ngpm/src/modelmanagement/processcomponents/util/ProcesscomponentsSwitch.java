@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: ProcesscomponentsSwitch.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package modelmanagement.processcomponents.util;
 

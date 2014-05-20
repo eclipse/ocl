@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLOutlineTreeProvider.java,v 1.5 2011/05/15 20:18:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 

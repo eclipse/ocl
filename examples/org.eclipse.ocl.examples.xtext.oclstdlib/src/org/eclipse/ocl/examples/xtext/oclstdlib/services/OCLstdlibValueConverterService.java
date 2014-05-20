@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibValueConverterService.java,v 1.6 2011/01/24 22:28:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 

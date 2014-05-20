@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypeManager.java,v 1.24 2011/05/27 09:28:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 

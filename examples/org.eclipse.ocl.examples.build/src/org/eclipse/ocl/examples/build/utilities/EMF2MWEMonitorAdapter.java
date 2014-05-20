@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EMF2MWEMonitorAdapter.java,v 1.1 2011/02/02 18:51:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 

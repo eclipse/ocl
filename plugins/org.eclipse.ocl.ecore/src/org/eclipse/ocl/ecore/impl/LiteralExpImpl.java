@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365 - Maintain currency with JDT compiler
  *
  * </copyright>
- *
- * $Id: LiteralExpImpl.java,v 1.7 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

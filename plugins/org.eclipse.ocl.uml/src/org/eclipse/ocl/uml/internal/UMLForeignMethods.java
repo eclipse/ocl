@@ -12,8 +12,6 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *
  * </copyright>
- *
- * $Id: UMLForeignMethods.java,v 1.3 2007/10/15 22:10:02 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;

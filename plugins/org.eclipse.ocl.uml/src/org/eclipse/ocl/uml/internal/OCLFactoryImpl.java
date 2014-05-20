@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLFactoryImpl.java,v 1.1 2007/03/27 18:46:41 cdamus Exp $
  */
 package org.eclipse.ocl.uml.internal;
 

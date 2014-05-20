@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: FeatureCallExpCSImpl.java,v 1.4 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

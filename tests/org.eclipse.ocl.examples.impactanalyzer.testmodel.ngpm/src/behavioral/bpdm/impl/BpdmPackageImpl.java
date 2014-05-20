@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: BpdmPackageImpl.java,v 1.2 2011/03/05 21:39:51 auhl Exp $
  */
 package behavioral.bpdm.impl;
 

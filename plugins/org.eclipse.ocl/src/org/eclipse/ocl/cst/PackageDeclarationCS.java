@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
- *
- * $Id: PackageDeclarationCS.java,v 1.5 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 

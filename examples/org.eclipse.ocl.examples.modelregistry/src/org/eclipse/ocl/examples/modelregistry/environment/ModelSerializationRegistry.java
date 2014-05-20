@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ModelSerializationRegistry.java,v 1.3 2010/04/08 06:23:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.environment;
 

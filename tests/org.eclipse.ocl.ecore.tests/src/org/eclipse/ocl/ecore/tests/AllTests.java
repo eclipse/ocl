@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 298634
  *
  * </copyright>
- *
- * $Id: AllTests.java,v 1.5 2010/01/05 07:47:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

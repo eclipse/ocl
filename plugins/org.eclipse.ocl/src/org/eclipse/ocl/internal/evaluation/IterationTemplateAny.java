@@ -12,8 +12,6 @@
  *   Borland - Bug 265066
  *
  * </copyright>
- *
- * $Id: IterationTemplateAny.java,v 1.5 2009/09/01 20:11:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

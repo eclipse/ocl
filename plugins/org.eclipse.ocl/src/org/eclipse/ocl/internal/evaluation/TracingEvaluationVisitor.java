@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TracingEvaluationVisitor.java,v 1.2 2009/09/01 20:11:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

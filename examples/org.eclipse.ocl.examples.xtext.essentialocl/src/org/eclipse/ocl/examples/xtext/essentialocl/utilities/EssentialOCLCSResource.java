@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLCSResource.java,v 1.15 2011/05/23 08:45:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 

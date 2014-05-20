@@ -13,7 +13,6 @@
  * 
  * </copyright>
  * 
- * $Id: TypeConformanceTests.java,v 1.2 2009/10/07 20:39:29 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 

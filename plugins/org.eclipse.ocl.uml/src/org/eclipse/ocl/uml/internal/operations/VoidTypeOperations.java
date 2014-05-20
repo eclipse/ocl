@@ -11,8 +11,6 @@
  *    Zeligsoft - Initial API and implementation
  *    
  * </copyright>
- *
- * $Id: VoidTypeOperations.java,v 1.1 2008/11/24 00:24:07 cdamus Exp $
  */
 package org.eclipse.ocl.uml.internal.operations;
 

@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: PackageOwnerImpl.java,v 1.3 2011/03/05 21:52:05 auhl Exp $
  */
 package modelmanagement.impl;
 

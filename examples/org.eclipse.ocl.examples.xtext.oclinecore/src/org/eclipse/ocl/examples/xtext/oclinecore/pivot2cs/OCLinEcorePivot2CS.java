@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcorePivot2CS.java,v 1.4 2011/03/01 08:46:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 

@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ObjectValueImpl.java,v 1.9 2011/04/20 19:02:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 

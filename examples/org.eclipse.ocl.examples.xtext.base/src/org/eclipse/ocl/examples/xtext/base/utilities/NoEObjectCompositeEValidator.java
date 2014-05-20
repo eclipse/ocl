@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: NoEObjectCompositeEValidator.java,v 1.4 2011/05/20 20:29:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 

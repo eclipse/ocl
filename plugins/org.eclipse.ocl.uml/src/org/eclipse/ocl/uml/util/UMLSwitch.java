@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: UMLSwitch.java,v 1.10 2009/12/06 18:26:13 ewillink Exp $
  */
 package org.eclipse.ocl.uml.util;
 

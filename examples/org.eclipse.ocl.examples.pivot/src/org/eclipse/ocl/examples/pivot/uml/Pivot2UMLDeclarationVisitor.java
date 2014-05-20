@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Pivot2UMLDeclarationVisitor.java,v 1.7 2011/05/13 18:41:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 

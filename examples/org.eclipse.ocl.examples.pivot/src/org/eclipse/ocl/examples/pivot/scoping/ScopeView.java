@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ScopeView.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.scoping;
 

@@ -12,8 +12,6 @@
  * 	 E.D.Willink - Bug 306079
  *
  * </copyright>
- *
- * $Id: AbstractDelegatedBehavior.java,v 1.4 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

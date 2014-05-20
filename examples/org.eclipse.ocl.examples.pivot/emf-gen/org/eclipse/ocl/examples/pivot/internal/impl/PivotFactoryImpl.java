@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotFactoryImpl.java,v 1.8 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

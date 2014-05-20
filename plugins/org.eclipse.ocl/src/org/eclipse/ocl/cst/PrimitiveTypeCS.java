@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: PrimitiveTypeCS.java,v 1.4 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 

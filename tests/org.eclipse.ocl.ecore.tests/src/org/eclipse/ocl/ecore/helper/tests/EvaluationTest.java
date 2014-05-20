@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationTest.java,v 1.5 2010/12/15 17:34:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;

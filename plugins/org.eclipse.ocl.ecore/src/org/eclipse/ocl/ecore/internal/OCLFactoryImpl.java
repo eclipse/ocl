@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLFactoryImpl.java,v 1.2 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.internal;
 

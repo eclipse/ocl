@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 241426, 207365
  *
  * </copyright>
- *
- * $Id: VariableImpl.java,v 1.12 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractAccessor.java,v 1.2 2010/04/08 06:23:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.model;
 

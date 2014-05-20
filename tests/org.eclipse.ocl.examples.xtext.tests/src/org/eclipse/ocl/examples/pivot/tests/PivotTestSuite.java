@@ -15,8 +15,6 @@
  *   E.D.Willink (CEA LIST) - Bug 388529
  *
  * </copyright>
- *
- * $Id: PivotTestSuite.java,v 1.9 2011/05/30 16:09:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

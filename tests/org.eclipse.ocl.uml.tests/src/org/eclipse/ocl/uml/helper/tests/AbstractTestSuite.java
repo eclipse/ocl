@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractTestSuite.java,v 1.4 2009/11/28 17:54:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;

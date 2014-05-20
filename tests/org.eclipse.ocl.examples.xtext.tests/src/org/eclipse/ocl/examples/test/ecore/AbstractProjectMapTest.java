@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: KeywordsTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;

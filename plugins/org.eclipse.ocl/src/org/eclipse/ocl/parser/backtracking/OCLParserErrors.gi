@@ -15,8 +15,6 @@
 -- *        - 300534: Removing the use of deprecated macros.
 -- *
 -- * </copyright>
--- *
--- * $Id: OCLParserErrors.gi,v 1.4 2010/01/25 11:31:46 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser

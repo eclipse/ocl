@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ReferenceCSImpl.java,v 1.3 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;
 

@@ -11,8 +11,6 @@
  *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluateCollectionOperationsTest.java,v 1.9 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseAutoEditStrategyProvider.java,v 1.1 2011/03/03 20:05:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit;
 

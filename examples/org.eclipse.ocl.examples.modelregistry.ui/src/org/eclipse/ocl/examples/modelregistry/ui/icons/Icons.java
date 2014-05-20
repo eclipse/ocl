@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Icons.java,v 1.2 2010/04/08 06:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.ui.icons;
 

@@ -11,8 +11,6 @@
  *   C.Damus - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: OCLDelegateException.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
  */
 package org.eclipse.ocl.common.internal.delegate;
 

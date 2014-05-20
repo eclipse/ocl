@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  * 
  * </copyright>
- *
- * $Id: AbstractLabelGeneratorBuilder.java,v 1.2 2010/04/08 06:27:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.common.label;
 

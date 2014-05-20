@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  *
  * </copyright>
- *
- * $Id: FeatureCallExp.java,v 1.2 2008/11/24 00:44:54 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 

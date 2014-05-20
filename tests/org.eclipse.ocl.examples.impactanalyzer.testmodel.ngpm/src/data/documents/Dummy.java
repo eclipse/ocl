@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Dummy.java,v 1.1 2011/02/07 17:18:46 auhl Exp $
  */
 package data.documents;
 

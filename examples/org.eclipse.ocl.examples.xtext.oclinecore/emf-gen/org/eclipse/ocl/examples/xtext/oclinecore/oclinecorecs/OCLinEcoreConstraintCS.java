@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreConstraintCS.java,v 1.5 2011/05/13 19:07:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs;
 

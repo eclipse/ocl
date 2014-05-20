@@ -12,8 +12,6 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *
  * </copyright>
- *
- * $Id: EcoreForeignMethods.java,v 1.3 2007/10/15 22:23:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;

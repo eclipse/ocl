@@ -12,8 +12,6 @@
  *   E.D.Willink - rework of LPG OCL Console for Xtext
  *
  * </copyright>
- *
- * $Id: SaveExpressionAction.java,v 1.3 2011/05/13 19:19:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 

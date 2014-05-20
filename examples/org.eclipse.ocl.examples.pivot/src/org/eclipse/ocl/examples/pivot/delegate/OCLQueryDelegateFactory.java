@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 353171
  * 
  * </copyright>
- *
- * $Id: OCLQueryDelegateFactory.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

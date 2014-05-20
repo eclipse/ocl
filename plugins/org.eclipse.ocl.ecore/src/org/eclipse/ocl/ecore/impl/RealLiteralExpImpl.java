@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 241426, 207365
  *
  * </copyright>
- *
- * $Id: RealLiteralExpImpl.java,v 1.9 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLEnvironmentFactory.java,v 1.6 2007/11/06 19:47:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;

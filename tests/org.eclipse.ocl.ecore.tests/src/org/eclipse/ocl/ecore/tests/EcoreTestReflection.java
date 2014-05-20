@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 254919, 296409
  *
  * </copyright>
- *
- * $Id: EcoreTestReflection.java,v 1.4 2011/01/25 10:43:36 auhl Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 

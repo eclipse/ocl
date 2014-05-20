@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcorePlugin.java,v 1.3 2011/01/24 22:28:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.utilities;
 

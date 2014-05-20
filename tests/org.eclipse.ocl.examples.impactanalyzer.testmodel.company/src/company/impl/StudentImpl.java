@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: StudentImpl.java,v 1.2 2011/03/09 14:45:49 auhl Exp $
  */
 package company.impl;
 

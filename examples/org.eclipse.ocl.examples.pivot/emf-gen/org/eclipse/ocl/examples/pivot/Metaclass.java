@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Metaclass.java,v 1.1 2011/04/25 09:49:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

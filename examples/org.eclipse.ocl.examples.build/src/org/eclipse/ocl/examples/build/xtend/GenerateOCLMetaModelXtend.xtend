@@ -107,8 +107,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			 * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
 			 *
 			 * Do not edit it.
-			 *
-			 * $Id$
 			 */
 			package	«javaPackageName»;
 			

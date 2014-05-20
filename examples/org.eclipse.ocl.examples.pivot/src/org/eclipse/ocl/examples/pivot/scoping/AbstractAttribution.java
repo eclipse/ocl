@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractAttribution.java,v 1.5 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.scoping;
 

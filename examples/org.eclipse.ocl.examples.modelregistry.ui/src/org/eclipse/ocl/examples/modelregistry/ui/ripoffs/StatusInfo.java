@@ -12,8 +12,6 @@
  *     E.D.Willink - copied from org.eclipse.jdt.internal.ui.dialogs
  *
  * </copyright>
- *
- * $Id: StatusInfo.java,v 1.2 2010/04/08 06:25:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.ui.ripoffs;
 

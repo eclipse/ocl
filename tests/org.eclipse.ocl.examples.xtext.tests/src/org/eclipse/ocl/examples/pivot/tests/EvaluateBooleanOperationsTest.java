@@ -11,8 +11,6 @@
  *   L.Goubet, E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluateBooleanOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

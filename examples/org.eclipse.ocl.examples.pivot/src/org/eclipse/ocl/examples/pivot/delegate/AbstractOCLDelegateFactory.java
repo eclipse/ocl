@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 353171
  * 
  * </copyright>
- *
- * $Id: AbstractOCLDelegateFactory.java,v 1.5 2011/05/30 16:09:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

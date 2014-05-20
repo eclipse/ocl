@@ -13,8 +13,6 @@
  *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
- *
- * $Id: RegressionTest.java,v 1.14 2011/05/01 10:56:58 auhl Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

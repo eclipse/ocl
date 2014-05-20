@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AliasAdapter.java,v 1.3 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 

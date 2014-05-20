@@ -11,8 +11,6 @@
  *   Zeligsoft - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: OCLExpressionOperations.java,v 1.2 2008/11/24 00:21:50 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: InvalidTypeImpl.java,v 1.7 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 

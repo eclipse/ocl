@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: PrimitiveLiteralExp.java,v 1.5 2009/12/22 18:53:30 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 

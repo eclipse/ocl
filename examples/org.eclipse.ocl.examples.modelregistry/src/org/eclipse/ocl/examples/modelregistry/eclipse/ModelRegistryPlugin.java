@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ModelRegistryPlugin.java,v 1.3 2011/03/12 07:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.eclipse;
 

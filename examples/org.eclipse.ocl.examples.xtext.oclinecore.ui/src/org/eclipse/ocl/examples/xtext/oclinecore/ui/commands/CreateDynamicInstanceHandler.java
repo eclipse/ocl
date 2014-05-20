@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CreateDynamicInstanceHandler.java,v 1.7 2011/05/27 09:28:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 

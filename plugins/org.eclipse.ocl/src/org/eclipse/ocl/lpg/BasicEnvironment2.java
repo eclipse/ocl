@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 242236
  *
  * </copyright>
- *
- * $Id: BasicEnvironment2.java,v 1.1 2008/12/30 11:48:35 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 

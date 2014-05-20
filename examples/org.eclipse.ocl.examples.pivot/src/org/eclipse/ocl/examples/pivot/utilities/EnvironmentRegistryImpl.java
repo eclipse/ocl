@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EnvironmentRegistryImpl.java,v 1.2 2011/04/25 09:49:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;

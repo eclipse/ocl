@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLDocumentTest.java,v 1.6 2009/11/28 18:09:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

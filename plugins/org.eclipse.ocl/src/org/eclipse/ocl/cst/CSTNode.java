@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: CSTNode.java,v 1.5 2009/12/27 15:49:50 asanchez Exp $
  */
 package org.eclipse.ocl.cst;
 

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLParsingOptions.java,v 1.1 2007/11/06 19:47:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.options;

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CS2PivotResourceAdapter.java,v 1.12 2011/05/15 20:20:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 

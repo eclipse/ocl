@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Customizable.java,v 1.1 2007/11/06 19:47:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.options;

@@ -16,8 +16,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
- *
- * $Id: OCL.java,v 1.16 2010/12/24 10:18:07 asanchez Exp $
  */
 package org.eclipse.ocl;
 

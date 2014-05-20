@@ -11,8 +11,6 @@
  *   Zeligsoft - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: AnyTypeOperations.java,v 1.1 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.types.operations;
 

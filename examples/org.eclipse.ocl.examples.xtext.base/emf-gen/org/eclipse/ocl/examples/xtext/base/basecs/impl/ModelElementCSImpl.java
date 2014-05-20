@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ModelElementCSImpl.java,v 1.3 2011/02/11 20:59:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.basecs.impl;

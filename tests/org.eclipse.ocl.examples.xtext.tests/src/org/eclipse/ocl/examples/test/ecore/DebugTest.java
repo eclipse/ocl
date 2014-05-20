@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DebugTest.java,v 1.4 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;

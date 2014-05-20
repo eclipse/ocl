@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLTest.java,v 1.10 2009/11/28 18:17:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

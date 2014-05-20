@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Visitor.java,v 1.4 2008/10/12 01:09:48 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;

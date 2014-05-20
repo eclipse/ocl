@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 360072
  * 
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.ecore.delegate;
 

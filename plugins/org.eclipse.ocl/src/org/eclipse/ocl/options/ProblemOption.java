@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ProblemOption.java,v 1.3 2009/11/09 21:57:32 ewillink Exp $
  */
 package org.eclipse.ocl.options;
 

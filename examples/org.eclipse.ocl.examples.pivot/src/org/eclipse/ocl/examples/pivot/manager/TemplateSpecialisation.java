@@ -11,8 +11,6 @@
  *     E.D.Willink (CEA LIST) - initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.pivot.manager;
 

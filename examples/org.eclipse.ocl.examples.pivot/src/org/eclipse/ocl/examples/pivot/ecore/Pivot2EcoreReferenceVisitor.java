@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Pivot2EcoreReferenceVisitor.java,v 1.5 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 

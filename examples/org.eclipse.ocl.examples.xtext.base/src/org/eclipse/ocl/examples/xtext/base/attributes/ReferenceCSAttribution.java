@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ReferenceCSAttribution.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.attributes;
 

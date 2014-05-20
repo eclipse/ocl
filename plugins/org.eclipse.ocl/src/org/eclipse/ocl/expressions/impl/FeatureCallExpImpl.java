@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: FeatureCallExpImpl.java,v 1.5 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

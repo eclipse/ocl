@@ -14,8 +14,6 @@
  *   Borland - Bug 242880
  *
  * </copyright>
- *
- * $Id: OCLMessages.java,v 1.16 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;

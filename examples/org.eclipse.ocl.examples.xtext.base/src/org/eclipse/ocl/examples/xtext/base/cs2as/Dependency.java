@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Dependency.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2as;
 

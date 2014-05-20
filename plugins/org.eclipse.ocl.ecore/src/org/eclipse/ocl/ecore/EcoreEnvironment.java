@@ -13,8 +13,6 @@
  *   SAP - Bug 339052
  *
  * </copyright>
- *
- * $Id: EcoreEnvironment.java,v 1.11 2011/03/09 13:07:04 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;

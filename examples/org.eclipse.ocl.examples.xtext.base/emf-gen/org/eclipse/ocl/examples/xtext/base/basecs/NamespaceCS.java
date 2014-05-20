@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: NamespaceCS.java,v 1.1 2010/05/03 05:24:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.basecs;

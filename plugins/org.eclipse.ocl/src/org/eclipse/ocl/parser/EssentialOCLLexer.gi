@@ -11,8 +11,6 @@
 -- *   See (or edit) Notice Declaration below
 -- *   
 -- * </copyright>
--- *
--- * $Id: EssentialOCLLexer.gi,v 1.4 2010/02/09 21:04:08 ewillink Exp $
 -- */
 --
 -- The Essential OCL Lexer
@@ -104,8 +102,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
  $copyright_contributions
  * </copyright>
- *
- * $Id: EssentialOCLLexer.gi,v 1.4 2010/02/09 21:04:08 ewillink Exp $
  */
 	./
 %End

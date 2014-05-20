@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypedTypeRefCSAttribution.java,v 1.5 2011/05/11 19:51:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.attributes;
 

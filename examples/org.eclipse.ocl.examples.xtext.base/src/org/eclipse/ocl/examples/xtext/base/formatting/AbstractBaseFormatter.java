@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractBaseFormatter.java,v 1.1 2010/05/23 10:27:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.formatting;
 

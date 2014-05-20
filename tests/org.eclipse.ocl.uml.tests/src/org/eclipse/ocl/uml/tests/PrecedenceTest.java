@@ -13,8 +13,6 @@
  *   E.D.Willink - Bug 288040 xor/or/and
  *
  * </copyright>
- *
- * $Id: PrecedenceTest.java,v 1.11 2009/12/18 06:32:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

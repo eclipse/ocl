@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: BasePreOrderVisitor.java,v 1.13 2011/05/22 21:06:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2as;
 

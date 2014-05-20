@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: ValidationDiagnostic.java,v 1.1 2011/02/11 20:59:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2as;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 241426, 207365
  *
  * </copyright>
- *
- * $Id: UnspecifiedValueExpImpl.java,v 1.7 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

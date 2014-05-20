@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: FormattingHelper.java,v 1.3 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

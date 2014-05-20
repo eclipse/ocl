@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Activator.java,v 1.2 2010/05/09 10:39:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.tests;
 

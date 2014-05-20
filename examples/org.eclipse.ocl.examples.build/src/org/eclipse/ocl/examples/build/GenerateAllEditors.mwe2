@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: GenerateAllEditors.mwe2,v 1.2 2011/01/24 20:54:27 ewillink Exp $
  * 
  * Run As->MWE2 Workflow to regenerate all four editors.
  * If it fails with a stack dump, open each Xtext file individually and do

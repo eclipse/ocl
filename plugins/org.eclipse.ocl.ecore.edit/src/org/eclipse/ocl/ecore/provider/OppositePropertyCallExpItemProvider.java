@@ -11,8 +11,6 @@
  *   Axel Uhl - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OppositePropertyCallExpItemProvider.java,v 1.1 2010/12/15 17:33:19 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 

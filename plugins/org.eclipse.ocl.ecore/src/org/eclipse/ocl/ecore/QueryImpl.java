@@ -12,8 +12,6 @@
  *   Radek Dvorak - Bug 261128
  *
  * </copyright>
- *
- * $Id: QueryImpl.java,v 1.2 2009/01/31 19:46:43 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;

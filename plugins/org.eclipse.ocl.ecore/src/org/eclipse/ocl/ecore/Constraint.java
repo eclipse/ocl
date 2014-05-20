@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  * 
  * </copyright>
- *
- * $Id: Constraint.java,v 1.9 2010/02/08 20:57:00 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 

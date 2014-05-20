@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 400448
  *
  * </copyright>
- *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.13 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

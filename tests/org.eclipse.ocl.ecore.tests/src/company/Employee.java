@@ -11,8 +11,6 @@
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: Employee.java,v 1.5 2011/01/23 22:20:00 auhl Exp $
  */
 package company;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  * 
  * </copyright>
- *
- * $Id: EcoreFactory.java,v 1.9 2010/12/15 17:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 

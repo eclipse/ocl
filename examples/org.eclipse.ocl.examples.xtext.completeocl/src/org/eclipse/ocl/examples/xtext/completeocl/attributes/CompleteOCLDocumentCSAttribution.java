@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLDocumentAttribution.java,v 1.11 2011/05/21 19:04:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.attributes;
 

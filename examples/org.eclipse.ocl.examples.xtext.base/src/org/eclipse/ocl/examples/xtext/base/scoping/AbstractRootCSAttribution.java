@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractRootCSAttribution.java,v 1.6 2011/05/11 19:50:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 

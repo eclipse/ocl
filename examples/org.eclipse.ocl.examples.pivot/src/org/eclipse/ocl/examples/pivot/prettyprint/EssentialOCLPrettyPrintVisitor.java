@@ -11,8 +11,6 @@
  *   E.D. Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: PrettyPrintExprVisitor.java,v 1.7 2011/05/13 18:41:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 

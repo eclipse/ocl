@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: InitOrDerExpressionTest.java,v 1.6 2009/11/28 17:51:17 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

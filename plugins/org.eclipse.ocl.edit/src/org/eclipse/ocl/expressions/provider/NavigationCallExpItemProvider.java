@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: NavigationCallExpItemProvider.java,v 1.3 2010/04/08 06:27:38 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 

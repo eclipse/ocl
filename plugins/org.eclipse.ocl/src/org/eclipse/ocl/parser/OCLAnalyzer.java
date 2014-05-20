@@ -14,8 +14,6 @@
  *   Zeligsoft - Bug 243976, 251349
  *
  * </copyright>
- *
- * $Id: OCLAnalyzer.java,v 1.11 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;

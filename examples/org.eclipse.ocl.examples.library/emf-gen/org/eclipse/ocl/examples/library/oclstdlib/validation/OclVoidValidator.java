@@ -1,6 +1,4 @@
 /**
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.library.oclstdlib.validation;
 

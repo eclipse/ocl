@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Pivot2MonikerVisitor.java,v 1.12 2011/05/07 16:41:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 

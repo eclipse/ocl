@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: CollectionExpressionWithArgument.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
  */
 package dataaccess.expressions.collectionexpressions;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: EnumLiteralExp.java,v 1.8 2009/12/22 18:53:30 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 

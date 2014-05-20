@@ -15,8 +15,6 @@
  *    E.D.Willink - integration of XTFO code uder CQ 4866
  *
  * </copyright>
- *
- * $Id: ToggleSLCommentAction.java,v 1.1 2011/03/04 22:18:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 

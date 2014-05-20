@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: SpecificationCS.java,v 1.1 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.basecs;
 

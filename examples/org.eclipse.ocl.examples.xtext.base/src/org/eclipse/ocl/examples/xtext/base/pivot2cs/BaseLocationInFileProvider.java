@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseLocationInFileProvider.java,v 1.3 2011/05/15 20:19:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 

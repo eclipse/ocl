@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976, 207365
  *
  * </copyright>
- *
- * $Id: IsMarkedPreCSImpl.java,v 1.5 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

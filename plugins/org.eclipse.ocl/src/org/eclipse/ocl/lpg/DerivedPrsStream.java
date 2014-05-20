@@ -11,8 +11,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias)- Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DerivedPrsStream.java,v 1.1 2010/01/22 18:37:53 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 

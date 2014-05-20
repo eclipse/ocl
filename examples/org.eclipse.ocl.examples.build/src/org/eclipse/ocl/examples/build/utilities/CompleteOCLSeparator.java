@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: PruneSuperClasses.java,v 1.3 2011/02/15 19:58:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 

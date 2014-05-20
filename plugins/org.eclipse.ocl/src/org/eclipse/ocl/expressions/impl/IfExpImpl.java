@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: IfExpImpl.java,v 1.8 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

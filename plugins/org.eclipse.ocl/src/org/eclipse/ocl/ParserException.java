@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ParserException.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;

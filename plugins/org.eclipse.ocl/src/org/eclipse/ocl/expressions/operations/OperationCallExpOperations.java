@@ -14,8 +14,6 @@
  *   Adolfo Sanchez-Barbudo Herrera - Bug 236247
  * 
  * </copyright>
- *
- * $Id: OperationCallExpOperations.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 298634
  *
  * </copyright>
- *
- * $Id: AllTestsBacktracking.java,v 1.3 2010/04/25 06:50:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 241426
  * 
  * </copyright>
- *
- * $Id: PrimitiveTypeImpl.java,v 1.6 2008/11/24 00:39:13 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypesValidatorTest.java,v 1.5 2009/11/28 18:15:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

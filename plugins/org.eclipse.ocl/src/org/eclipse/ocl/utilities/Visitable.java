@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Visitable.java,v 1.5 2009/12/22 18:54:07 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 

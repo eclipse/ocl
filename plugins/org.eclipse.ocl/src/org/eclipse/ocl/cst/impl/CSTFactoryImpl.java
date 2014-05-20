@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
- *
- * $Id: CSTFactoryImpl.java,v 1.9 2009/12/27 15:49:51 asanchez Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.8 2011/03/31 21:40:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 

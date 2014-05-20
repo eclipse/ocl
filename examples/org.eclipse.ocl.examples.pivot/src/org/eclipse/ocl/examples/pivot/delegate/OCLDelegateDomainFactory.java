@@ -11,8 +11,6 @@
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: OCLDelegateDomainFactory.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

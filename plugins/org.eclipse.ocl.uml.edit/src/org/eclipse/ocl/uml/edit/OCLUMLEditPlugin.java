@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLUMLEditPlugin.java,v 1.2 2010/04/08 06:25:51 ewillink Exp $
  */
 package org.eclipse.ocl.uml.edit;
 

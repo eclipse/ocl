@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: NavigationCallExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 

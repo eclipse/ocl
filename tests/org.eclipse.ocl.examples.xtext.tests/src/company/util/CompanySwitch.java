@@ -1,8 +1,6 @@
 /**
  * <copyright>
  * </copyright>
- *
- * $Id: CompanySwitch.java,v 1.2 2011/03/01 08:56:02 ewillink Exp $
  */
 package company.util;
 

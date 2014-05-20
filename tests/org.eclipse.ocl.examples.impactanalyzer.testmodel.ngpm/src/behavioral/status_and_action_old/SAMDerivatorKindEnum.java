@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: SAMDerivatorKindEnum.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package behavioral.status_and_action_old;
 

@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ClassifierAllInstancesOperation.java,v 1.4 2011/04/25 09:48:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 

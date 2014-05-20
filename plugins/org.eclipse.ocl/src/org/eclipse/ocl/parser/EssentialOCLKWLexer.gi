@@ -11,8 +11,6 @@
 -- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
--- *
--- * $Id: EssentialOCLKWLexer.gi,v 1.2 2010/01/22 18:37:45 asanchez Exp $
 -- */
 --
 -- The Essential OCL KeyWord Lexer

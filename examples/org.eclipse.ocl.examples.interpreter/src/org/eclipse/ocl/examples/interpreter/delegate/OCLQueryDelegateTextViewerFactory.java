@@ -11,8 +11,6 @@
  *   Kenn Hussey - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLQueryDelegateTextViewerFactory.java,v 1.1 2010/12/22 12:19:57 asanchez Exp $
  */
 package org.eclipse.ocl.examples.interpreter.delegate;
 

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: MessageTypeImpl.java,v 1.9 2010/04/23 05:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 

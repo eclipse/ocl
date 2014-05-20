@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  * 
  * </copyright>
- *
- * $Id: CallOperationAction.java,v 1.6 2008/11/24 00:45:11 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 

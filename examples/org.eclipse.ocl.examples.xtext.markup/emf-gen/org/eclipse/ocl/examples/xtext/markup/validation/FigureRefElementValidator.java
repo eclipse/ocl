@@ -9,8 +9,6 @@
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
 /**
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.xtext.markup.validation;
 

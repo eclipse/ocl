@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: InvalidLiteralExpCSImpl.java,v 1.4 2009/10/10 07:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

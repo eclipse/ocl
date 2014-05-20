@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: XtextConsoleIssueModificationContext.java,v 1.1 2011/03/11 15:26:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console;
 

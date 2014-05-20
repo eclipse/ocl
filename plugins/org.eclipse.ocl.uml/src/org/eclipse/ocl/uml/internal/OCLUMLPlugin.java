@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: OCLUMLPlugin.java,v 1.5 2008/10/12 01:12:33 cdamus Exp $
  */
 package org.eclipse.ocl.uml.internal;
 

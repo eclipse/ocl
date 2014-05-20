@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationVisitorDecorator.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl;

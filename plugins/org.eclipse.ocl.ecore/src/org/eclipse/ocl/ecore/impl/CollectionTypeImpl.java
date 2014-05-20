@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 248869, 207365
  * 
  * </copyright>
- *
- * $Id: CollectionTypeImpl.java,v 1.16 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

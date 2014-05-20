@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UtilitiesItemProviderAdapterFactory.java,v 1.2 2010/04/08 06:27:40 ewillink Exp $
  */
 package org.eclipse.ocl.utilities.provider;
 

@@ -13,8 +13,6 @@
  *   Patrick Könemann - Bug 294200 (history)
  *
  * </copyright>
- *
- * $Id: OCLConsolePage.java,v 1.2 2011/03/14 10:34:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.interpreter.console;

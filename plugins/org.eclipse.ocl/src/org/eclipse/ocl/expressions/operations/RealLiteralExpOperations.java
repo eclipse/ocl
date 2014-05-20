@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: RealLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

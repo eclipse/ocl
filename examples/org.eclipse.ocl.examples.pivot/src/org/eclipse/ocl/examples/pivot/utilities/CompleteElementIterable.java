@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteElementIterable.java,v 1.5 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 

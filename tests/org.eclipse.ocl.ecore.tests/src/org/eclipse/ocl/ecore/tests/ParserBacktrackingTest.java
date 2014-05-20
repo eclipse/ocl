@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 298634
  *
  * </copyright>
- *
- * $Id: ParserBacktrackingTest.java,v 1.4 2010/04/25 06:50:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

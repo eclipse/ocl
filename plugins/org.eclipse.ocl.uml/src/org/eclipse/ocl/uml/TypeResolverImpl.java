@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypeResolverImpl.java,v 1.5 2009/06/25 19:23:24 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 

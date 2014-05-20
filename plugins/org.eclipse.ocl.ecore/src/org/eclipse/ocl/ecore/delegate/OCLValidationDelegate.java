@@ -11,8 +11,6 @@
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLValidationDelegate.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

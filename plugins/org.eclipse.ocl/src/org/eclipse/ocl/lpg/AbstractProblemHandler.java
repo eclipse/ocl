@@ -12,8 +12,6 @@
  *   IBM - Refactor severity and phase as types for localization
  *
  * </copyright>
- *
- * $Id: AbstractProblemHandler.java,v 1.3 2010/01/22 18:38:00 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 

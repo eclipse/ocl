@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: UtilitiesFactory.java,v 1.7 2009/12/22 18:54:06 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 

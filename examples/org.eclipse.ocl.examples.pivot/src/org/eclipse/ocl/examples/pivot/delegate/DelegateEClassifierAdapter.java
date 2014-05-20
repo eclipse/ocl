@@ -12,8 +12,6 @@
  * 	 E.D.Willink - Bug 306079
  *
  * </copyright>
- *
- * $Id: DelegateEClassifierAdapter.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

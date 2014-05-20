@@ -11,8 +11,6 @@
  *   C.Damus - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: ValueConverter.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

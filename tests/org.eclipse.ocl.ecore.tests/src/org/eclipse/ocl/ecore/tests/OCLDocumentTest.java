@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLDocumentTest.java,v 1.8 2009/11/28 17:48:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

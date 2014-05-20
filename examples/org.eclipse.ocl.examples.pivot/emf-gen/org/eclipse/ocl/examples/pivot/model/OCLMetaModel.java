@@ -18,8 +18,6 @@
  * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
  *
  * Do not edit it.
- *
- * $Id$
  */
 package	org.eclipse.ocl.examples.pivot.model;
 

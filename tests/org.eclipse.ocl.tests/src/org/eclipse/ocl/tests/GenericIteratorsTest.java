@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 296409, 297541
  *
  * </copyright>
- *
- * $Id: GenericIteratorsTest.java,v 1.4 2011/05/01 10:57:02 auhl Exp $
  */
 
 package org.eclipse.ocl.tests;

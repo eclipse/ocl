@@ -12,8 +12,6 @@
  *   IBM - Refactor phase and severity as types for localization
  *
  * </copyright>
- *
- * $Id: ProblemHandler.java,v 1.2 2011/03/08 15:14:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

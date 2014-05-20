@@ -13,8 +13,6 @@
  *   Zeligsoft - Bug 245897
  *
  * </copyright>
- *
- * $Id: ComparisonTest.java,v 1.12 2009/11/28 17:40:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

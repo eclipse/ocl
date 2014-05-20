@@ -11,8 +11,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias)- Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DerivedLexStream.java,v 1.2 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

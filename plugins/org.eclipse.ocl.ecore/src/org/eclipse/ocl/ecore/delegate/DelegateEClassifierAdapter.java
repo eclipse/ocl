@@ -12,8 +12,6 @@
  * 	 E.D.Willink - Bug 306079
  *
  * </copyright>
- *
- * $Id: DelegateEClassifierAdapter.java,v 1.3 2010/04/08 06:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

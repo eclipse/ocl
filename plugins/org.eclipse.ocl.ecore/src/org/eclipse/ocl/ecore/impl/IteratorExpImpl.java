@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 248869, 207365
  *
  * </copyright>
- *
- * $Id: IteratorExpImpl.java,v 1.9 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

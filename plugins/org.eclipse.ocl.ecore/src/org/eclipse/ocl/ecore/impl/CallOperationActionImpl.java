@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: CallOperationActionImpl.java,v 1.8 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

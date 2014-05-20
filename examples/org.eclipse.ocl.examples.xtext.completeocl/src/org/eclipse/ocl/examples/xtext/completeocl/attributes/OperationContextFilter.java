@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OperationContextFilter.java,v 1.2 2011/04/25 19:39:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.attributes;
 

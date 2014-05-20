@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: InvalidEvaluationException.java,v 1.1 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.domain.evaluation;

@@ -12,8 +12,6 @@
  * 	 E.D.Willink (CEA LIST) - Bug 425799 - validity view
  *
  * </copyright>
- *
- * $Id: ConstrainedOperation.java,v 1.1 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 

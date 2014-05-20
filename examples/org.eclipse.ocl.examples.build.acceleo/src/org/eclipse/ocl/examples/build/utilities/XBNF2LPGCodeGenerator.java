@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: XtextVisitorCodeGenerator.java,v 1.4 2011/03/17 20:01:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 

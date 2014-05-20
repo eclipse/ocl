@@ -13,8 +13,6 @@
  *	 E.D.Willink Bug 298128
  *
  * </copyright>
- *
- * $Id: UMLReflectionImpl.java,v 1.2 2010/02/08 20:57:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLEcoreEditPlugin.java,v 1.2 2010/04/08 06:27:12 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.edit;
 

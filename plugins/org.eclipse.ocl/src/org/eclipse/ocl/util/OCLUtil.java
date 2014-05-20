@@ -15,8 +15,6 @@
  *   Radek Dvorak - Bug 261128
  *
  * </copyright>
- *
- * $Id: OCLUtil.java,v 1.10 2009/12/04 21:26:07 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 

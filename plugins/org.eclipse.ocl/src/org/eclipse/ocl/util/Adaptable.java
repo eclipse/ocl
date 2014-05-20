@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Adaptable.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;

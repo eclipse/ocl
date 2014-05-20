@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLQuickfixProvider.java,v 1.1 2010/04/13 06:33:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix;
 

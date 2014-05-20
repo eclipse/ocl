@@ -11,8 +11,6 @@
  * E.D.Willink - initial API and implementation
  * 
  * </copyright>
- *
- * $Id: ClassUtils.java,v 1.3 2010/04/08 06:27:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.common.utils;
 

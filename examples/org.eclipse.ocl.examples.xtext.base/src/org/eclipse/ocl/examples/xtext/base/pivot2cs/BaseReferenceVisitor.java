@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseReferenceVisitor.java,v 1.4 2011/05/21 14:56:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 

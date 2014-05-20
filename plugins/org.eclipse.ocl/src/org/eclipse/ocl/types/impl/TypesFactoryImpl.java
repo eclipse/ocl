@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: TypesFactoryImpl.java,v 1.6 2009/12/06 18:12:59 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 

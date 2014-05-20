@@ -13,8 +13,6 @@
  *  K.Hussey - Bug 331143
  * 
  * </copyright>
- *
- * $Id: MoreDelegatesTest.java,v 1.1 2011/05/13 19:16:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 

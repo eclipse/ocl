@@ -15,8 +15,6 @@
  *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
- *
- * $Id: EcoreEvaluationEnvironment.java,v 1.17 2011/05/01 20:31:24 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLHelperTest.java,v 1.3 2009/10/07 20:42:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;

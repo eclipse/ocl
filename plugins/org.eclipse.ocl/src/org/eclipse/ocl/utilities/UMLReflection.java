@@ -12,8 +12,6 @@
  *	 E.D.Willink Bug 298128
  *
  * </copyright>
- *
- * $Id: UMLReflection.java,v 1.7 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 

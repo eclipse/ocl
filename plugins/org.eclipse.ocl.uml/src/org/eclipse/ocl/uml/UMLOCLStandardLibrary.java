@@ -11,8 +11,6 @@
  *     A. Sanchez-Barbudo Herrera - initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLOCLStandardLibrary.java,v 1.4 2010/05/03 09:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 

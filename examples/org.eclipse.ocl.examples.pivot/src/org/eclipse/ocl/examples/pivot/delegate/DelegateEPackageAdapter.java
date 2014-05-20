@@ -13,8 +13,6 @@
  *   Christian W. Damus (CEA LIST) - Bug 434554
  *
  * </copyright>
- *
- * $Id: DelegateEPackageAdapter.java,v 1.3 2011/05/07 05:53:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

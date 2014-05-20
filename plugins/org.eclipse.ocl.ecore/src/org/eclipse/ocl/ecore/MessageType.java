@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  * 
  * </copyright>
- *
- * $Id: MessageType.java,v 1.5 2008/11/24 00:28:27 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 

@@ -11,8 +11,6 @@
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: CompanyAdapterFactory.java,v 1.2 2010/04/25 06:50:16 ewillink Exp $
  */
 package company.util;
 

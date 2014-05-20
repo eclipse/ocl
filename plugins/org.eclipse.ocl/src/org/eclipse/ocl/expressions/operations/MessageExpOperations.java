@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: MessageExpOperations.java,v 1.5 2010/01/14 12:44:33 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

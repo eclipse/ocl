@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreOutlineTreeProvider.java,v 1.3 2011/02/16 08:43:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.outline;
 

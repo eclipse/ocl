@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLFormatter.java,v 1.5 2011/05/07 16:39:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.formatting;
 

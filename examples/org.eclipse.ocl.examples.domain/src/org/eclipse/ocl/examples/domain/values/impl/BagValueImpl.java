@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: BagValueImpl.java,v 1.5 2011/05/07 16:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 

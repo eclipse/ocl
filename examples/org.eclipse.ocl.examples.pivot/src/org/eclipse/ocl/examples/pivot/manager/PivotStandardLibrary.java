@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotStandardLibrary.java,v 1.14 2011/05/22 16:42:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.manager;
 

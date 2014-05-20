@@ -11,8 +11,6 @@
  *   Kenn Hussey - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: OCLQueryDelegate.java,v 1.1 2010/12/09 17:16:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

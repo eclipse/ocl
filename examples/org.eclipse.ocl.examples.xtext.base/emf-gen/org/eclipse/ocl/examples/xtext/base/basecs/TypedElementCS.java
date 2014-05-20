@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypedElementCS.java,v 1.3 2011/04/05 06:19:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.basecs;
 

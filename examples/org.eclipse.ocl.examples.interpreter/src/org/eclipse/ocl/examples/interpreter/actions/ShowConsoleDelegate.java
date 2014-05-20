@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ShowConsoleDelegate.java,v 1.1 2010/03/11 10:13:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.interpreter.actions;

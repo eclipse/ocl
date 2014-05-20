@@ -12,8 +12,6 @@
  *   A. Sanchez-Barbudo - Test case contribution - Bug 236247
  *
  * </copyright>
- *
- * $Id: ExpressionsValidatorTest.java,v 1.5 2009/11/28 18:16:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

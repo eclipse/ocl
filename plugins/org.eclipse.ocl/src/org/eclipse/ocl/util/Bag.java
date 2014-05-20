@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Bag.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 

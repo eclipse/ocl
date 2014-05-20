@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: NonXtextResourceSetBasedProjectProvider.java,v 1.2 2011/01/24 22:05:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 

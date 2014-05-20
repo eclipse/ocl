@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreLabelProvider.java,v 1.8 2011/03/01 08:47:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling;
 

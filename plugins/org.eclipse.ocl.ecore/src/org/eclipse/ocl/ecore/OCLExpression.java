@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 256040
  *
  * </copyright>
- *
- * $Id: OCLExpression.java,v 1.3 2008/11/24 00:42:36 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 

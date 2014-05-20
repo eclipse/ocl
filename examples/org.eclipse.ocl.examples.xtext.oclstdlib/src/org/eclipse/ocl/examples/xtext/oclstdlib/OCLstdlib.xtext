@@ -12,8 +12,6 @@
  * 	 E.D.Willink (Obeo) - Bug 416287 - tuple-valued constraints
  *
  * </copyright> =
- *
- * $Id$
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 

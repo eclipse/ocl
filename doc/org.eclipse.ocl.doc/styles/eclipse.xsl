@@ -9,9 +9,6 @@
 <xsl:import href="chunk.xsl"/>
 
 <!-- ********************************************************************
-     $Id: eclipse.xsl,v 1.2 2011/05/29 16:38:06 ewillink Exp $
-     ********************************************************************
-
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for
      copyright and other information.

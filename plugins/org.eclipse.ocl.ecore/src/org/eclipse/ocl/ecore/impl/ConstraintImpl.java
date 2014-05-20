@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  * 
  * </copyright>
- *
- * $Id: ConstraintImpl.java,v 1.9 2010/12/15 17:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

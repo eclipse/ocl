@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: QueryConstraint.java,v 1.1 2011/02/07 17:17:58 auhl Exp $
  */
 package ap_runtime_constraints;
 

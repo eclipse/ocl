@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotTests.java,v 1.8 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

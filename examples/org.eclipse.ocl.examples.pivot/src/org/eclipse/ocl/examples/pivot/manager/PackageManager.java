@@ -12,8 +12,6 @@
  *     E.D.Willink (CEA LIST) - Bug 399378
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.pivot.manager;
 

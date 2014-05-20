@@ -14,8 +14,6 @@
  *   Borland - Bug 179990
  *
  * </copyright>
- *
- * $Id: ValidationVisitor.java,v 1.14 2010/12/15 17:33:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;

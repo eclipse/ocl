@@ -1,8 +1,6 @@
 /**
  * <copyright>
  * </copyright>
- *
- * $Id: CompanySizeKind.java,v 1.1 2010/08/24 16:16:55 ewillink Exp $
  */
 package noreflectioncompany;
 

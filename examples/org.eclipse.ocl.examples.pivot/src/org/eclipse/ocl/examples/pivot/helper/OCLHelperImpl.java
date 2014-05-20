@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLHelperImpl.java,v 1.6 2011/04/20 19:02:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;

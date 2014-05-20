@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TypeExp.java,v 1.4 2009/12/22 18:59:36 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 

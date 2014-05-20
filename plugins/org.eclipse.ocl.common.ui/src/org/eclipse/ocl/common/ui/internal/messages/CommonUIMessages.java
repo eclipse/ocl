@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  */
 
 package org.eclipse.ocl.common.ui.internal.messages;

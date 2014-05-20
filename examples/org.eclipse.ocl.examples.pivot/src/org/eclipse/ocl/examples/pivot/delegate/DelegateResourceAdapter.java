@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DelegateResourceAdapter.java,v 1.2 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

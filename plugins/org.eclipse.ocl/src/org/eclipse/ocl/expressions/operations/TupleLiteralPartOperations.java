@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: TupleLiteralPartOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

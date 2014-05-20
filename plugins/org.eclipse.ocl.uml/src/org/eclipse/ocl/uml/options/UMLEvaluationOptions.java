@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLEvaluationOptions.java,v 1.2 2010/05/03 09:32:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.options;

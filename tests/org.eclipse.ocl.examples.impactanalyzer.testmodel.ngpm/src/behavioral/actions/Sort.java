@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Sort.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
  */
 package behavioral.actions;
 

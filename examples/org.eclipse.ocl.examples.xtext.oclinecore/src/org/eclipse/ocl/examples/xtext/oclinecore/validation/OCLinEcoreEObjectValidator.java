@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreEObjectValidator.java,v 1.1 2011/03/01 08:46:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.validation;
 

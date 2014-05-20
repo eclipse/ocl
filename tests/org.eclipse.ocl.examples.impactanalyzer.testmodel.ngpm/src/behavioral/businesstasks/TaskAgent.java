@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: TaskAgent.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
  */
 package behavioral.businesstasks;
 

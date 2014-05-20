@@ -11,8 +11,6 @@
  Contributors:
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869
-
- $Id: plugin.xml,v 1.6 2008/11/24 00:25:17 cdamus Exp $
 -->
 
 <plugin>

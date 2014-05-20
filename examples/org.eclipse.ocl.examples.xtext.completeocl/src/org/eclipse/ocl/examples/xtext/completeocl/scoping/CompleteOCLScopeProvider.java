@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLScopeProvider.java,v 1.7 2011/01/24 21:08:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 

@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: CollectIteration.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 

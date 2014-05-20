@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: LibOperationAttribution.java,v 1.6 2011/01/24 22:28:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.attributes;
 

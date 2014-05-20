@@ -11,8 +11,6 @@
  *   E.D. Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TestPrettyPrinter.java,v 1.5 2011/05/13 19:16:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

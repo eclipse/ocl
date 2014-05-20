@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 353171
  * 
  * </copyright>
- *
- * $Id: AbstractOCLDelegateFactory.java,v 1.4 2011/05/07 05:46:49 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 

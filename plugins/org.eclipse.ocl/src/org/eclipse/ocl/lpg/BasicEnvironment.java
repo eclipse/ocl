@@ -12,8 +12,6 @@
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
- *
- * $Id: BasicEnvironment.java,v 1.2 2007/11/06 19:47:11 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 

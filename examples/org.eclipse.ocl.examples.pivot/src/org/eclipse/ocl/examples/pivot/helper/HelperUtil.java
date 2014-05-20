@@ -12,8 +12,6 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
- *
- * $Id: HelperUtil.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;

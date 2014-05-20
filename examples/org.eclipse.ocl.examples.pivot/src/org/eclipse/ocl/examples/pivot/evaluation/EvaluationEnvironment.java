@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationEnvironment.java,v 1.6 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;

@@ -13,8 +13,6 @@
  *   E.D. Willink - Bug 252000
  * 
  * </copyright>
- *
- * $Id: OCLPlugin.java,v 1.7 2008/11/24 00:22:39 cdamus Exp $
  */
 package org.eclipse.ocl.internal;
 

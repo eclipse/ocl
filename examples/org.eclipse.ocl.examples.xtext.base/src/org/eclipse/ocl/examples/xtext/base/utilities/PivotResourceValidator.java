@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: PivotDiagnostician.java,v 1.1 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 

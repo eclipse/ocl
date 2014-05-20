@@ -13,8 +13,6 @@
  *   Borland - Bug 242880
  *
  * </copyright>
- *
- * $Id: CSTPackage.java,v 1.14 2009/12/27 15:49:51 asanchez Exp $
  */
 package org.eclipse.ocl.cst;
 

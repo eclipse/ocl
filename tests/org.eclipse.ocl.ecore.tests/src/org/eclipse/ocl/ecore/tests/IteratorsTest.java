@@ -12,8 +12,6 @@
  *   E.D.Willink - Bug 296409
  *
  * </copyright>
- *
- * $Id: IteratorsTest.java,v 1.10 2009/12/16 21:00:50 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

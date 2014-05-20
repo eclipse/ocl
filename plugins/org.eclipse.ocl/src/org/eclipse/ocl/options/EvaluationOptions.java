@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 253252
  *
  * </copyright>
- *
- * $Id: EvaluationOptions.java,v 1.2 2008/11/05 16:30:17 cdamus Exp $
  */
 
 package org.eclipse.ocl.options;

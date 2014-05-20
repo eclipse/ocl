@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreEditorCallback.java,v 1.1 2011/05/15 20:22:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 

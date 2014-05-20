@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: DocumentsPackage.java,v 1.2 2011/03/05 21:51:23 auhl Exp $
  */
 package data.documents;
 

@@ -11,8 +11,6 @@
  * E.D.Willink - initial API and implementation
  * 
  * </copyright>
- *
- * $Id: XMIUtils.java,v 1.2 2010/04/08 06:27:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.common.utils;
 

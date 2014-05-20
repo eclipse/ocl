@@ -12,8 +12,6 @@
  *     E.D.Willink (CEA LIST) - Bug 399582
  *
  * </copyright>
- *
- * $Id$
  * 
  * Run As->MWE2 Workflow to regenerate the editor.
  * If it fails with a stack dump, open the Xtext file and do

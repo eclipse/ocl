@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: External2Pivot.java,v 1.1 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 

@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: IterationTemplateOne.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;

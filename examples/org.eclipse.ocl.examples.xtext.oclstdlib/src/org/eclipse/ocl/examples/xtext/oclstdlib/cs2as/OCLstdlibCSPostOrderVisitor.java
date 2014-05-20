@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibPostOrderVisitor.java,v 1.7 2011/05/20 15:27:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 

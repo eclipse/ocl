@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: IfExpItemProvider.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 

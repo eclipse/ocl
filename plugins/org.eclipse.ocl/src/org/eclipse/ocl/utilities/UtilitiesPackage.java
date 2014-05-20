@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 231435, 243976, 256040
  * 
  * </copyright>
- *
- * $Id: UtilitiesPackage.java,v 1.12 2009/12/22 18:54:07 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 

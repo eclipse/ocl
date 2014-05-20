@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EssentialOCLLabelProvider.java,v 1.5 2011/03/08 16:20:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 

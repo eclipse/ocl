@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: InvalidLiteralExpImpl.java,v 1.6 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

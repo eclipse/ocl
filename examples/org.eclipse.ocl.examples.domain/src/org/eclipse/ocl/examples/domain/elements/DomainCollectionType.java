@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: Value.java,v 1.6 2011/05/07 16:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.domain.elements;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: Pivot2CSConversion.java,v 1.7 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 

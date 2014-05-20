@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: LoopExpImpl.java,v 1.8 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

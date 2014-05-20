@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: BasicOCLTest.java,v 1.9 2009/11/28 18:16:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

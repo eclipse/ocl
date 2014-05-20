@@ -14,8 +14,6 @@
  *   Obeo - Bug 291310
  *
  * </copyright>
- *
- * $Id: GenericTestSuite.java,v 1.6 2010/02/27 13:27:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;

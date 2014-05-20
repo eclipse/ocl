@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 253252
  *
  * </copyright>
- *
- * $Id: EvaluationOptions.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.options;

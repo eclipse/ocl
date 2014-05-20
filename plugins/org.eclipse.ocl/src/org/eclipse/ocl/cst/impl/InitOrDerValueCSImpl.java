@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: InitOrDerValueCSImpl.java,v 1.5 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

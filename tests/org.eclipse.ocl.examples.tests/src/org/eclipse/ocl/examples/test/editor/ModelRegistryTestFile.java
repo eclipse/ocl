@@ -11,8 +11,6 @@
  * E.D.Willink - initial API and implementation
  * 
  * </copyright>
- *
- * $Id: ModelRegistryTestFile.java,v 1.2 2010/04/25 06:50:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor;
 

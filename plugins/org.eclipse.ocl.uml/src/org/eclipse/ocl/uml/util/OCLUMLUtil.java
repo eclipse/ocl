@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 247079, 251808
  *
  * </copyright>
- *
- * $Id: OCLUMLUtil.java,v 1.8 2008/11/02 17:52:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;

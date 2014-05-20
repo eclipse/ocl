@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: ValidationDelegateExtension.java,v 1.1 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 

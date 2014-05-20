@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: StandardLibraryRegistryReader.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 

@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: AbstractSaveAsHandler.java,v 1.2 2011/01/24 21:56:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.ui.commands;
 

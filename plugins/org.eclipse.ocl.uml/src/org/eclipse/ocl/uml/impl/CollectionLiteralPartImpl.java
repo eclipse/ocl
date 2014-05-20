@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: CollectionLiteralPartImpl.java,v 1.9 2010/04/23 05:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 

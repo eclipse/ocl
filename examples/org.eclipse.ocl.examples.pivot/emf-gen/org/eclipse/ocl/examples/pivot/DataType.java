@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DataType.java,v 1.3 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

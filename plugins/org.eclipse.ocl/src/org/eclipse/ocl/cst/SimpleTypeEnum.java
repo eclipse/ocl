@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 243976
  *
  * </copyright>
- *
- * $Id: SimpleTypeEnum.java,v 1.5 2009/10/04 11:04:56 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 

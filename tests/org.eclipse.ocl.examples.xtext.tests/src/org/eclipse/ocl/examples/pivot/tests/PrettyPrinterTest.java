@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: PrettyPrinterTest.java,v 1.3 2011/05/13 19:15:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;

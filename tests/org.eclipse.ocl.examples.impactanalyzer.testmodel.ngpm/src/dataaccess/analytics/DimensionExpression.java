@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: DimensionExpression.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package dataaccess.analytics;
 

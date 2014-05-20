@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLStandaloneSetup.java,v 1.3 2011/02/02 18:50:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 

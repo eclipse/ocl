@@ -14,8 +14,6 @@
  *   Zeligsoft - Bug 243976
  *   
  * </copyright>
- *
- * $Id: AbstractParser.java,v 1.12 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

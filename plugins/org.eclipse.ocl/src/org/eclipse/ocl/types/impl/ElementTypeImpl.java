@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: ElementTypeImpl.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 

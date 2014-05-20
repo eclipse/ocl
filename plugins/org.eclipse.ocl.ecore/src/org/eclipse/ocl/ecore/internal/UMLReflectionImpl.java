@@ -14,8 +14,6 @@
  *	 E.D.Willink Bug 298128
  *
  * </copyright>
- *
- * $Id: UMLReflectionImpl.java,v 1.13 2010/12/15 17:32:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;

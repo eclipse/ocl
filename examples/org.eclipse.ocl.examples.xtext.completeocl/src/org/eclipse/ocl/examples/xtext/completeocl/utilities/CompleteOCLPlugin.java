@@ -12,8 +12,6 @@
  *   Obeo - Add complete ocl registry to enable export and re-use CompleteOCL files
  *
  * </copyright>
- *
- * $Id: CompleteOCLPlugin.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 

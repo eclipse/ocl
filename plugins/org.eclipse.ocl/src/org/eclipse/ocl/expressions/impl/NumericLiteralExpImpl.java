@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: NumericLiteralExpImpl.java,v 1.4 2008/10/12 01:09:50 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 

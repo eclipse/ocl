@@ -13,8 +13,6 @@
  *       - Bug 259818
  *
  * </copyright>
- *
- * $Id: AbstractAnalyzer.java,v 1.6 2010/02/03 19:54:12 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

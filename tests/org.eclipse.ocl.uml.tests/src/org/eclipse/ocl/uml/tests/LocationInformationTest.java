@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 248869
  *
  * </copyright>
- *
- * $Id: LocationInformationTest.java,v 1.8 2009/12/18 06:32:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

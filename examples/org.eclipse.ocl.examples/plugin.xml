@@ -14,8 +14,6 @@
  *   E.D.Willink - Bug 289761
  *
  * </copyright>
- *
- * $Id: plugin.xml,v 1.2 2011/05/31 15:02:07 asanchez Exp $
  */
 -->
 <?eclipse version="3.0"?>

@@ -13,8 +13,6 @@
  *   Borland - Bug 242880
  *
  * </copyright>
- *
- * $Id: StringLiteralExpCSImpl.java,v 1.4 2009/03/05 14:12:13 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 

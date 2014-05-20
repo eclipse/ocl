@@ -12,8 +12,6 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
- *
- * $Id: SyntaxException.java,v 1.1 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;

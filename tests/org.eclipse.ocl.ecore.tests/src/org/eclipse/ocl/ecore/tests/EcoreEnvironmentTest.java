@@ -15,8 +15,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *
  * </copyright>
- *
- * $Id: EcoreEnvironmentTest.java,v 1.12 2011/01/25 10:43:36 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

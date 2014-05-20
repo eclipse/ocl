@@ -13,8 +13,6 @@
  *   E.D.Willink - rework Delegate as Handler - 386701
  *
  * </copyright>
- *
- * $Id: ShowConsoleDelegate.java,v 1.1 2011/03/04 22:18:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console.actions;

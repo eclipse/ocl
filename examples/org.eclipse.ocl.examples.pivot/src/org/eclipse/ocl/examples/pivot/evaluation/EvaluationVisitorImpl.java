@@ -14,8 +14,6 @@
  *   E.D.Willink - Bug 297541
  *
  * </copyright>
- *
- * $Id: EvaluationVisitorImpl.java,v 1.13 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;

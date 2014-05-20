@@ -11,8 +11,6 @@
  *   Axel Uhl - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DefaultOppositeEndFinder.java,v 1.5 2011/05/10 21:18:33 auhl Exp $
  */
 package org.eclipse.ocl.ecore.opposites;
 

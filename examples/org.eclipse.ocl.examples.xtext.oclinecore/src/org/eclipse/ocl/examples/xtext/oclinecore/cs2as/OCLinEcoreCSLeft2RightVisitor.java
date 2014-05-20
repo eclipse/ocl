@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.9 2011/05/23 05:51:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2as;
 

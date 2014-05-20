@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 238049
  *
  * </copyright>
- *
- * $Id: TuplesTest.java,v 1.7 2009/11/28 18:14:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

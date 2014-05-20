@@ -11,8 +11,6 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EnumerationLiteral.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 

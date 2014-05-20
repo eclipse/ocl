@@ -12,8 +12,6 @@
  *   E.D.Willink - split off from EvaluationVisitor
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 

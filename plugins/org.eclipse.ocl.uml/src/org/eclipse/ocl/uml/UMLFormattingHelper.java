@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: UMLFormattingHelper.java,v 1.1 2007/12/03 18:44:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;

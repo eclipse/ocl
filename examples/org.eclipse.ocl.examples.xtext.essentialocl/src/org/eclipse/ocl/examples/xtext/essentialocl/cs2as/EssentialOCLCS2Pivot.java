@@ -12,8 +12,6 @@
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - Bug 397429
  *
  * </copyright>
- *
- * $Id: EssentialOCLCS2Pivot.java,v 1.10 2011/05/20 15:27:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2as;
 

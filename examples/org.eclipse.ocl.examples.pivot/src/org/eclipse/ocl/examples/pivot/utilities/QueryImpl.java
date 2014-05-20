@@ -12,8 +12,6 @@
  *   Radek Dvorak - Bug 261128
  *
  * </copyright>
- *
- * $Id: QueryBaseImpl.java,v 1.3 2011/02/21 08:37:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;

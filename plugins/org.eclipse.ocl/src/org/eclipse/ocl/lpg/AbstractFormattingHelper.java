@@ -12,8 +12,6 @@
  *   IBM - Javadoc and NLS updates
  *
  * </copyright>
- *
- * $Id: AbstractFormattingHelper.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 

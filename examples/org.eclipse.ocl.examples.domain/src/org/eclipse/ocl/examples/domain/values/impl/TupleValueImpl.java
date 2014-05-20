@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: TupleValueImpl.java,v 1.6 2011/03/14 17:04:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.domain.values.impl;

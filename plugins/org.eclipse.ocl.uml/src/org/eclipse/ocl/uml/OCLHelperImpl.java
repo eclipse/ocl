@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLHelperImpl.java,v 1.4 2008/04/17 19:38:13 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;

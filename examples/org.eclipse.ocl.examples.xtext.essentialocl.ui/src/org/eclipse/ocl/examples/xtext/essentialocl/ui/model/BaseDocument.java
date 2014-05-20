@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: BaseDocument.java,v 1.8 2011/03/18 18:19:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 

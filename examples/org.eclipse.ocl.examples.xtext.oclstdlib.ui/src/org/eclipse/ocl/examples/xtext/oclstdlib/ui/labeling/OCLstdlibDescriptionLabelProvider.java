@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibDescriptionLabelProvider.java,v 1.2 2010/05/17 09:18:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.labeling;
 

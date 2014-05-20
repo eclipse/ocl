@@ -12,8 +12,6 @@
  *   E.D. Willink - Fix NPE in visiting operation call with null source
  *
  * </copyright>
- *
- * $Id: AbstractVisitor.java,v 1.7 2008/04/27 23:16:03 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;

@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 207365
  * 
  * </copyright>
- *
- * $Id: CollectionItemOperations.java,v 1.3 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 

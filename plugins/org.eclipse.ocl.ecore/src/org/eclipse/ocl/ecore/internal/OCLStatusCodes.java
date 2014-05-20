@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLStatusCodes.java,v 1.3 2010/08/24 16:17:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;

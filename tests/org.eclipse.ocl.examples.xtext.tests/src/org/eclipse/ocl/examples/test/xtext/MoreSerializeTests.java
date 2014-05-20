@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: MoreSerializeTests.java,v 1.2 2011/05/14 06:58:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

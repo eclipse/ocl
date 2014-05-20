@@ -13,8 +13,6 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 297666
  * 
  * </copyright>
- *
- * $Id: InvalidType.java,v 1.6 2010/02/09 10:32:33 asanchez Exp $
  */
 package org.eclipse.ocl.types;
 

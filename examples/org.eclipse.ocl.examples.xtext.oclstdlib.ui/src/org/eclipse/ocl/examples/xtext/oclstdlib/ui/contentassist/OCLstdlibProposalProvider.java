@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibProposalProvider.java,v 1.2 2010/05/17 09:18:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.contentassist;
 

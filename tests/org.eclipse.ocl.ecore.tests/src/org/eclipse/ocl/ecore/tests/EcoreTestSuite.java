@@ -12,8 +12,6 @@
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
  *
  * </copyright>
- *
- * $Id: EcoreTestSuite.java,v 1.2 2010/04/25 06:50:15 ewillink Exp $
  */
 
 /**
@@ -29,8 +27,6 @@
  *   Ed Willink - Bug 254919; Initial API and implementation
  *
  * </copyright>
- *
- * $Id: EcoreTestSuite.java,v 1.2 2010/04/25 06:50:15 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 

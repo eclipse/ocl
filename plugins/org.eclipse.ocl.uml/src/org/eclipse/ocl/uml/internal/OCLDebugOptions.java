@@ -11,8 +11,6 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLDebugOptions.java,v 1.2 2007/02/14 14:45:53 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;

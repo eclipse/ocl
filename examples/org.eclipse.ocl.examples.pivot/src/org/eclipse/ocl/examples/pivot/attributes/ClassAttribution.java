@@ -12,8 +12,6 @@
  *   E.D.Willink (CEA LIST) - Bug 388529
  *
  * </copyright>
- *
- * $Id: ClassAttribution.java,v 1.10 2011/05/21 14:56:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.attributes;
 

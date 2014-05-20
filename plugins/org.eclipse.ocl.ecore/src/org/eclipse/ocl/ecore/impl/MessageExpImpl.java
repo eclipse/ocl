@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 248869, 207365
  *
  * </copyright>
- *
- * $Id: MessageExpImpl.java,v 1.10 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 

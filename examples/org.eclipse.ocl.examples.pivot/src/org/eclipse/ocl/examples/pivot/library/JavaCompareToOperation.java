@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: JavaGreaterThanOperation.java,v 1.1 2011/02/08 17:51:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 

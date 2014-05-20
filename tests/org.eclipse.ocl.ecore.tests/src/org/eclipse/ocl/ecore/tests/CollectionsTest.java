@@ -14,8 +14,6 @@
  *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
- *
- * $Id: CollectionsTest.java,v 1.20 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

@@ -8,7 +8,6 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************
- * $Id: Snapshot.java,v 1.1 2011/02/07 17:21:36 auhl Exp $
  */
 package persistence.expressions;
 

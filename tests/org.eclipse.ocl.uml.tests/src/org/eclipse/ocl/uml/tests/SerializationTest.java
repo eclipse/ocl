@@ -12,8 +12,6 @@
  *   Zeligsoft - Bug 242236
  *
  * </copyright>
- *
- * $Id: SerializationTest.java,v 1.11 2009/11/28 18:10:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;

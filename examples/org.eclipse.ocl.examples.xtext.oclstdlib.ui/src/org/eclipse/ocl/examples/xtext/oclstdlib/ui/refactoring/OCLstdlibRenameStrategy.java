@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: OCLstdlibRenameStrategy.java,v 1.1 2011/05/15 20:23:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring;
 
