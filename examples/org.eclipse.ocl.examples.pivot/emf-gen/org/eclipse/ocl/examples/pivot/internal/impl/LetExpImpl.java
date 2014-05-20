@@ -210,7 +210,7 @@ public class LetExpImpl
 		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
 		    final @Nullable /*@Thrown*/ DomainExpression in = this.getIn();
 		    if (in == null) {
-		        throw new InvalidValueException("Null source for \'pivot::TypedElement.type\'");
+		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
 		    final @Nullable /*@Thrown*/ DomainType type_0 = in.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");

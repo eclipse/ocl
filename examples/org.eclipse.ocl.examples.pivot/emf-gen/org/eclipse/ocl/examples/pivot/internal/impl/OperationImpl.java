@@ -1053,7 +1053,7 @@ public class OperationImpl
 		         * name
 		         */
 		        if (_1 == null) {
-		            throw new InvalidValueException("Null source for \'pivot::NamedElement.name\'");
+		            throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
 		        }
 		        final @Nullable /*@Thrown*/ String name = _1.getName();
 		        //
@@ -1112,7 +1112,7 @@ public class OperationImpl
 		         * name
 		         */
 		        if (_1 == null) {
-		            throw new InvalidValueException("Null source for \'pivot::NamedElement.name\'");
+		            throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
 		        }
 		        final @Nullable /*@Thrown*/ String name = _1.getName();
 		        //

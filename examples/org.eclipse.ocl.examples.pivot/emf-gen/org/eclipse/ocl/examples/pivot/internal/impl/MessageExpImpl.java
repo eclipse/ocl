@@ -349,7 +349,7 @@ public class MessageExpImpl
 		        final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_CollectionType_0 = idResolver.getType(PivotTables.CLSSid_CollectionType, null);
 		        final @Nullable /*@Thrown*/ DomainExpression target = this.getTarget();
 		        if (target == null) {
-		            throw new InvalidValueException("Null source for \'pivot::TypedElement.type\'");
+		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType type = target.getType();
 		        final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();

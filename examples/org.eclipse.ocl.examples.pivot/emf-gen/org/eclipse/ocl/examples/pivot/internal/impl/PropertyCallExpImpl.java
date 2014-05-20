@@ -464,7 +464,7 @@ public class PropertyCallExpImpl
 		        try {
 		            final @Nullable /*@Thrown*/ DomainProperty referredProperty = this.getReferredProperty();
 		            if (referredProperty == null) {
-		                throw new InvalidValueException("Null source for \'pivot::NamedElement.isStatic\'");
+		                throw new InvalidValueException("Null source for \'pivot::NamedElement::isStatic\'");
 		            }
 		            final /*@Thrown*/ boolean self_71 = referredProperty.isStatic();
 		            CAUGHT_self_71 = self_71;
@@ -494,7 +494,7 @@ public class PropertyCallExpImpl
 		    try {
 		        final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
 		        if (source == null) {
-		            throw new InvalidValueException("Null source for \'pivot::TypedElement.type\'");
+		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType type = source.getType();
 		        final @NonNull /*@Thrown*/ DomainType getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();

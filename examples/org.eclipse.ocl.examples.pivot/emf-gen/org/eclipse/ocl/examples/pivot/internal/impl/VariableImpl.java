@@ -241,7 +241,7 @@ public class VariableImpl
 		    try {
 		        final @Nullable /*@Thrown*/ DomainExpression initExpression_0 = this.getInitExpression();
 		        if (initExpression_0 == null) {
-		            throw new InvalidValueException("Null source for \'pivot::TypedElement.type\'");
+		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType type = initExpression_0.getType();
 		        final @Nullable /*@Thrown*/ DomainType type_0 = this.getType();

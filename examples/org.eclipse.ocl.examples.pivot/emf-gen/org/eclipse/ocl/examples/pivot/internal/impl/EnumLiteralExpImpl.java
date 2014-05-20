@@ -145,7 +145,7 @@ public class EnumLiteralExpImpl
 		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
 		    final @Nullable /*@Thrown*/ EnumerationLiteral referredEnumLiteral = this.getReferredEnumLiteral();
 		    if (referredEnumLiteral == null) {
-		        throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral.enumeration\'");
+		        throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral::enumeration\'");
 		    }
 		    final @Nullable /*@Thrown*/ Enumeration enumeration = referredEnumLiteral.getEnumeration();
 		    final /*@Thrown*/ boolean eq = (type != null) && (enumeration != null) ? (type.getTypeId() == enumeration.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");

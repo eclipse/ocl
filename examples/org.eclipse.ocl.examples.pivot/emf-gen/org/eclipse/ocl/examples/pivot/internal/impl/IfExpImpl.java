@@ -272,7 +272,7 @@ public class IfExpImpl
 		    final @NonNull /*@NonInvalid*/ DomainType TYP_Boolean_0 = idResolver.getType(TypeId.BOOLEAN, null);
 		    final @Nullable /*@Thrown*/ DomainExpression condition = this.getCondition();
 		    if (condition == null) {
-		        throw new InvalidValueException("Null source for \'pivot::TypedElement.type\'");
+		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
 		    final @Nullable /*@Thrown*/ DomainType type = condition.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");

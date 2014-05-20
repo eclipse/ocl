@@ -250,7 +250,7 @@ public abstract class LoopExpImpl
 		    final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_CollectionType_0 = idResolver.getType(PivotTables.CLSSid_CollectionType, null);
 		    final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
 		    if (source == null) {
-		        throw new InvalidValueException("Null source for \'pivot::TypedElement.type\'");
+		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
 		    final @Nullable /*@Thrown*/ DomainType type = source.getType();
 		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
@@ -308,7 +308,7 @@ public abstract class LoopExpImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_isEmpty;
 		        try {
 		            if (_1 == null) {
-		                throw new InvalidValueException("Null source for \'pivot::Variable.initExpression\'");
+		                throw new InvalidValueException("Null source for \'pivot::Variable::initExpression\'");
 		            }
 		            final @Nullable /*@Thrown*/ DomainExpression initExpression = _1.getInitExpression();
 		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, initExpression);

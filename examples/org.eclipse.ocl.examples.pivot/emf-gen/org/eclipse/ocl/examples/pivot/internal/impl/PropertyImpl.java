@@ -1114,7 +1114,7 @@ public class PropertyImpl
 		    }
 		    final @Nullable /*@Thrown*/ DomainType oclAsType = (DomainType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Type_1);
 		    if (oclAsType == null) {
-		        throw new InvalidValueException("Null source for \'pivot::Type.ownedAttribute\'");
+		        throw new InvalidValueException("Null source for \'pivot::Type::ownedAttribute\'");
 		    }
 		    final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedAttribute = oclAsType.getOwnedAttribute();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedAttribute = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedAttribute);
