@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2007, 2013 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,9 +11,7 @@
  *             - Bugs 243976, 242236, 283509
  *   Zeligsoft - Bugs 245760, 243976, 242236
  *   Borland - Bug 266320
- *   
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.lpg;
 
 import java.util.Collection;

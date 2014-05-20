@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2010,2014 ProxiAD and Others
  * 
  * All rights reserved. This program and the accompanying materials
@@ -15,9 +13,7 @@
  *    Cedric Vidal (ProxiAD) - integration with global scope
  *    E.D.Willink - integration of XTFO code uder CQ 4866
  *    L.Goubert (Obeo) - generalize to XtextResource
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
 import java.util.Collections;

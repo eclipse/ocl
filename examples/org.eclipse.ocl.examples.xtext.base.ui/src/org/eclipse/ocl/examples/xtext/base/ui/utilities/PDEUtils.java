@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2014 Obeo and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,8 +7,7 @@
  *
  * Contributors:
  *   E.D.Willink (Obeo) - Initial API and implementation
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.base.ui.utilities;
 
 import java.util.ArrayList;

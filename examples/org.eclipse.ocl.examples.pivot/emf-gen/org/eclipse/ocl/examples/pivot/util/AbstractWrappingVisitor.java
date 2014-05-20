@@ -1,7 +1,5 @@
-/**
- * <copyright>
- * 
- * Copyright (c) 2012 E.D.Willink and others.
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +7,12 @@
  * 
  * Contributors:
  *   E.D.Willink - Initial API and implementation
- * 
- * </copyright>
  *
  * This code is auto-generated
  * from: org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel
  *
- * Do not edit it.
- */
+ * Only the copyright statement is editable.
+ *******************************************************************************/
 package	org.eclipse.ocl.examples.pivot.util;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -857,8 +853,13 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 
 	public @Nullable R visitProfileApplication(@NonNull org.eclipse.ocl.examples.pivot.ProfileApplication object) {
 		P prologue = preVisit(object);
-		R result = delegate.visitProfileApplication(object);
-		return postVisit(object, prologue, result);
+		try {
+			R result = delegate.visitProfileApplication(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
 	}
 
 	public @Nullable R visitProperty(@NonNull org.eclipse.ocl.examples.pivot.Property object) {
@@ -1182,8 +1183,13 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 
 	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
 		P prologue = preVisit(object);
-		R result = delegate.visitTypeExtension(object);
-		return postVisit(object, prologue, result);
+		try {
+			R result = delegate.visitTypeExtension(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
 	}
 
 	public @Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object) {

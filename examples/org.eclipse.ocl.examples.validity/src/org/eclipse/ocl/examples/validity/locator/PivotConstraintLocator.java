@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2013,2014 CEA LIST and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *	E.D.Willink (CEA LIST) - initial API and implementation
  *  Obeo - Implement constraints validation 
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.validity.locator;
 
 import java.util.List;

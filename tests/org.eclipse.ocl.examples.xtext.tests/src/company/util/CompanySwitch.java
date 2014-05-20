@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package company.util;
 
 import org.eclipse.emf.ecore.EObject;

@@ -8,8 +8,7 @@
  *
  * Contributors:
  *   Obeo - Initial API and implementation
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.emf.validation.validity.ui.view;
 
 import org.eclipse.swt.widgets.Control;

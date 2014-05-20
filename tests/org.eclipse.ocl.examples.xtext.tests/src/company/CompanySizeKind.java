@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package company;
 
 import java.util.Arrays;

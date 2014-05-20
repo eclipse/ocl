@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package noreflectioncompany.impl;
 
 import noreflectioncompany.*;

@@ -11,9 +11,7 @@
  * Contributors:
  *    itemis AG - initial API and implementation
  *    E.D.Willink - integration of XTFO code uder CQ 4866
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
 import java.util.ArrayList;

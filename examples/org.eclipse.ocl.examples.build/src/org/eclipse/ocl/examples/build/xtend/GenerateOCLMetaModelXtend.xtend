@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +7,7 @@
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
 import java.util.Set
@@ -87,9 +83,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		var allTupleTypes = root.getAllTupleTypes();
 		var allTypes = root.getAllTypes();
 		'''
-			/**
-			 * <copyright>
-			 *
+			/*******************************************************************************
 			 * Copyright (c) 2010,2013 E.D.Willink and others.
 			 * All rights reserved. This program and the accompanying materials
 			 * are made available under the terms of the Eclipse Public License v1.0
@@ -99,15 +93,13 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			 * Contributors:
 			 *     E.D.Willink - initial API and implementation
 			 *
-			 * </copyright>
-			 *
 			 * This code is auto-generated
 			 * from: «sourceFile»
 			 * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLMetaModel.xtend
 			 * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
 			 *
 			 * Do not edit it.
-			 */
+			 *******************************************************************************/
 			package	«javaPackageName»;
 			
 			import java.math.BigInteger;

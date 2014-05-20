@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl;
 

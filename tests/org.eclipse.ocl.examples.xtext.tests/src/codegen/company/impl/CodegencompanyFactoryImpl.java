@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package codegen.company.impl;
 
 import codegen.company.*;

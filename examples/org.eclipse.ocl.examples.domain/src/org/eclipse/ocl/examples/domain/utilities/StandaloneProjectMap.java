@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2011, 2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *     E.D.Willink - initial API and implementation
  * 
  * The standalone functionality is heavily influenced by org.eclipse.emf.mwe.utils.StandaloneSetup.
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.domain.utilities;
 
 import java.io.File;

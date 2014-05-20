@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2010, 2012 Kenn Hussey and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   Kenn Hussey - Initial API and implementation
  *   E.D.Willink - Bug 353171
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.ecore.delegate;
 
 import java.util.Map;

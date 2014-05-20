@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2010,2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +7,7 @@
  *
  * Contributors:
  *   E.D.Willink - initial API and implementation
- *   E.D.Willink (CEA List) - Bug 424057 - UML 2.5 CG *
- * </copyright>
- */
+ *   E.D.Willink (CEA List) - Bug 424057 - UML 2.5 CG *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.List;

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005,2013 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,9 +12,7 @@
  *   E.D.Willink - Bug 297541
  *   Axel Uhl (SAP AG) - Bug 342644
  *   Christian W. Damus (CEA LIST) - Bug 416373
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl;
 

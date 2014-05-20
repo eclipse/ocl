@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package noreflectioncompany;
 
 import java.util.Arrays;

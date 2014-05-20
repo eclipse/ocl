@@ -10,9 +10,7 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 182994
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.ecore.internal;
 
 import org.eclipse.emf.common.util.URI;

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2006, 2012 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 207365, 252000
  *   E.D. Willink - Bug 252000
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.internal;
 
 import org.eclipse.core.runtime.Platform;

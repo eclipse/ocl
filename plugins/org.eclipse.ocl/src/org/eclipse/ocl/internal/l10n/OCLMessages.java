@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2012 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   E.D.Willink - Bugs 176110, 191689 
  *   Zeligsoft - Bug 253512
  *   Borland - Bug 242880
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.internal.l10n;
 

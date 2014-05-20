@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package company;
 
 import org.eclipse.emf.ecore.EAttribute;

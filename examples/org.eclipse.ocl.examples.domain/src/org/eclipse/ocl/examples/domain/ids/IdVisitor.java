@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2010, 2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,18 +7,7 @@
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *
- * </copyright>
- *
- * This code is auto-generated
- * from: model/Pivot.ecore
- * by: org.eclipse.ocl.examples.build.acceleo.GenerateVisitor
- * defined by: org.eclipse.ocl.examples.build.acceleo.generateVisitors.mtl
- * invoked by: org.eclipse.ocl.examples.build.utilities.*
- * from: org.eclipse.ocl.examples.build.*.mwe2
- *
- * Do not edit it.
- */
+ *******************************************************************************/
 package	org.eclipse.ocl.examples.domain.ids;
 
 import org.eclipse.jdt.annotation.NonNull;

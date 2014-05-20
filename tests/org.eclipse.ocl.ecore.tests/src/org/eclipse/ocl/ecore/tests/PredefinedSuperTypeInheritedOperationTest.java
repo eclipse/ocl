@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2008, 2009 Borland Software Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   Borland - Initial API and implementation
  *   Zeligsoft - Added suite() and more test cases
- * 
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.ecore.tests;
 

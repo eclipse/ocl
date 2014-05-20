@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling, 297541
  *   Zeligsoft - Bugs 243079, 179990
  *   Borland - Bug 179990
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.parser;
 

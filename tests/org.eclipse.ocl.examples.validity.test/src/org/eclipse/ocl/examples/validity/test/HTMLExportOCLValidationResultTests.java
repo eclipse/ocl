@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2014 Obeo and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   Obeo - initial API and implementation
  *   E.D.Willink (Obeo) - 425799 Validity View Integration
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.validity.test;
 
 

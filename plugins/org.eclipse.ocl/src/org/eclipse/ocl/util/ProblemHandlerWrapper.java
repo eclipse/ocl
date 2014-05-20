@@ -9,9 +9,7 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.util;
 
 import org.eclipse.emf.common.util.Monitor;

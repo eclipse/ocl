@@ -58,8 +58,7 @@
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
  $copyright_contributions
- * </copyright>
- */
+ *******************************************************************************/
 	./
 %End
 

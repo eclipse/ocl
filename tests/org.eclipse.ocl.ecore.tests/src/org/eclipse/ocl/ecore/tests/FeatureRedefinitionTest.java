@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2008, 2009 Stefan Schulze, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   Stefan Schulze - Initial API and implementation
  *   Zeligsoft - Formatting and MDT OCL code conventions
- * 
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.ecore.tests;
 

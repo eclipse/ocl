@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2012, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,9 +11,7 @@
  *   E.D.Willink - 322159
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
  *   Axel Uhl (SAP AG) - Bug 342644
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.ecore;
 

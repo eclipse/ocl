@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2006, 2012 Stefan Schulze, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,10 +8,7 @@
  * Contributors:
  *   Stefan Schulze - Initial API and implementation
  *   Zeligsoft - Bug 245619
- * 
- * </copyright>
- * 
- */
+ *******************************************************************************/
 package org.eclipse.ocl.ecore.tests;
 
 import org.eclipse.emf.ecore.EClass;

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2013 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,14 +7,10 @@
  * 
  * Contributors:
  *   E.D.Willink - Initial API and implementation
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.autogen.java;
 
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2013 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,9 +19,7 @@ package org.eclipse.ocl.examples.autogen.java;
  * 
  * Contributors:
  *   E.D.Willink - Initial API and implementation
- * 
- * </copyright>
- */
+ *******************************************************************************/
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2010 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *       - Bug 259818
  *   Zeligsoft - Bug 243976, 251349
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.parser;
 

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2011,2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,9 +11,7 @@
  *   E.D.Willink - Bug 191689, 254919, 296409, 298634
  *   Obeo - Bug 291310
  *   E.D.Willink (CEA LIST) - Bug 388529
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.examples.pivot.tests;
 

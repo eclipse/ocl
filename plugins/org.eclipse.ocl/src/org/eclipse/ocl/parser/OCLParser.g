@@ -52,8 +52,7 @@
  *        - 242153: LPG v 2.0.17 adoption.
  *        - 299396: Introducing new LPG templates
  *        - 300534: Removing the use of deprecated macros.
- * </copyright>
- */
+ *******************************************************************************/
 	./
 %End
 

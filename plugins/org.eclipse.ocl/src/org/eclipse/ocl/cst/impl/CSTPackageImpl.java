@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2005, 2012 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243976, 251349
  *   Borland - Bug 242880
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.cst.impl;
 
 import lpg.runtime.IToken;

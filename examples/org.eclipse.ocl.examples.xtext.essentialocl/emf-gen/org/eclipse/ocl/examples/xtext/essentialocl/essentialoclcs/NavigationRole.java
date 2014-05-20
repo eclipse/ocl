@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
 import java.util.Arrays;

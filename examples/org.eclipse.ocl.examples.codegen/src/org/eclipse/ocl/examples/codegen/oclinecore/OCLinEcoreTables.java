@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2013 CEA LIST and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   E.D.Willink (CEA LIST) - initial API and implementation
  *   E.D.Willink (CEA LIST) - Bug 424034
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.oclinecore;
 
 import java.util.ArrayList;
@@ -1020,7 +1016,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	public @NonNull String toString() {
 		String copyright = genPackage.getCopyright(" * ");
 		StringBuilder s1 = new StringBuilder();
-		s1.append("/**\n");
+		s1.append("/*******************************************************************************\n");
 		if (copyright != null) {
 			s1.append(" * ");
 			s1.append(copyright.replace("\r", ""));
@@ -1032,7 +1028,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s1.append(" * using: " + getClass().getName() + "\n");
 		s1.append(" *\n");
 		s1.append(" * Do not edit it.\n");
-		s1.append(" */\n");
+		s1.append(" *******************************************************************************/\n");
 		
 		s1.append("package ");
 		s1.append(genPackage.getQualifiedPackageName());

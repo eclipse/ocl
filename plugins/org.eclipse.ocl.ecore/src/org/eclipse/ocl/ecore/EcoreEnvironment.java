@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2012 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 182994, 252600
  *   SAP - Bug 339052
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.ecore;
 

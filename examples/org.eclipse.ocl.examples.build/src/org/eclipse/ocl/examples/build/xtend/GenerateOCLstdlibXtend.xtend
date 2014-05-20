@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +7,7 @@
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.ocl.examples.pivot.DataType
@@ -36,9 +32,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 		var lib = DomainUtil.nonNullState(root.getLibrary());
 		var allEnumerations = root.getSortedEnumerations();
 		'''
-			/**
-			 * <copyright>
-			 *
+			/*******************************************************************************
 			 * Copyright (c) 2010,2013 E.D.Willink and others.
 			 * All rights reserved. This program and the accompanying materials
 			 * are made available under the terms of the Eclipse Public License v1.0
@@ -48,15 +42,13 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			 * Contributors:
 			 *     E.D.Willink - initial API and implementation
 			 *
-			 * </copyright>
-			 *
 			 * This code is auto-generated
 			 * from: «sourceFile»
 			 * by: org.eclipse.ocl.examples.build.xtend.generateOCLstdlib.xtend
 			 * and: org.eclipse.ocl.examples.build.GenerateOCLstdlibModel.mwe2
 			 *
 			 * Do not edit it.
-			 */
+			 *******************************************************************************/
 			package	«javaPackageName»;
 			
 			import java.util.ArrayList;

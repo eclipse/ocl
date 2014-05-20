@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package codegen.company;
 
 import org.eclipse.emf.ecore.EAttribute;

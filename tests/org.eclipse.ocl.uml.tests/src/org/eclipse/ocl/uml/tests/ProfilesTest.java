@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2006, 2011 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 241148, 243098, 247079, 179990
- *   
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.uml.tests;
 

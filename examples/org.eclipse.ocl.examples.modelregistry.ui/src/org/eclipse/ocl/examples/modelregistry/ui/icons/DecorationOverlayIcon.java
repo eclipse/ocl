@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2006 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +7,7 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.modelregistry.ui.icons;	// FIXME Delete me once Eclipse 3.2 support obsolete
 
 import java.util.Arrays;

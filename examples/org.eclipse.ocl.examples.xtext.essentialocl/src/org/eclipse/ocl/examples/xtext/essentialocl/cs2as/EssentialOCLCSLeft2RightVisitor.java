@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2010,2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *   E.D.Willink - initial API and implementation
  *   E.D.Willink (CEA LIST) - Bug 388493
  * 	 E.D.Willink (Obeo) - Bug 416287 - tuple-valued constraints
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2as;
 
 import java.util.ArrayList;

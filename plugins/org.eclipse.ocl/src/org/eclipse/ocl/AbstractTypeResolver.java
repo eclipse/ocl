@@ -10,9 +10,7 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   Adolfo Sanchez-Barbudo Herrera - 222581 generic collection type resolution
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl;
 
 import java.util.Collection;

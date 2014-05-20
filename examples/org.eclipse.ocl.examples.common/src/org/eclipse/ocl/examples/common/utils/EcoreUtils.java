@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2008, 2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  * E.D.Willink - initial API and implementation
  * E.D.Willink - Bug 360072
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.common.utils;
 
 import java.util.Collection;

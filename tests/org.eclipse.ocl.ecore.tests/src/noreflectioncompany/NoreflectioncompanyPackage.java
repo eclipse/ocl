@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package noreflectioncompany;
 
 import org.eclipse.emf.ecore.EAttribute;

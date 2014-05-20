@@ -13,9 +13,7 @@
  *       - Bug 259819
  *   Zeligsoft - Bug 244948
  *   Axel Uhl (SAP AG) - Bug 342644
- *   
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.util;
 
 import static org.eclipse.ocl.utilities.PredefinedType.*;

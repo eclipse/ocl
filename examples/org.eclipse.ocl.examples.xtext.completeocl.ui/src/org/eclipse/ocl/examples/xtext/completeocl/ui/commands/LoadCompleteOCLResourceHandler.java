@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2012, 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *   Obeo - Enable export and re-use CompleteOCL files for validation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.completeocl.ui.commands;
 
 import java.util.Arrays;

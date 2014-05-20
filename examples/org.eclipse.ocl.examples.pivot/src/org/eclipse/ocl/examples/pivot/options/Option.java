@@ -9,9 +9,7 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.options;
 
 import org.eclipse.ocl.examples.pivot.Customizable;

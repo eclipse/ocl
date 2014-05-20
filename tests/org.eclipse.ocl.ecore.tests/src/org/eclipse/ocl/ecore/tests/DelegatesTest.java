@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2010, 2013 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,9 +9,7 @@
  *  C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  * 	E.D.Willink - Bug 306079, 322159, 353171
  *  K.Hussey - Bug 331143
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.ecore.tests;
 
 import java.lang.reflect.InvocationTargetException;

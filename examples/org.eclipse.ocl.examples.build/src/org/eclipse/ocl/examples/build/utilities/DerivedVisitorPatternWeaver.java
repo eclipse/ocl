@@ -8,9 +8,7 @@
  *
  * Contributors:
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - Initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.build.utilities;
 
 import org.eclipse.emf.mwe.core.issues.Issues;

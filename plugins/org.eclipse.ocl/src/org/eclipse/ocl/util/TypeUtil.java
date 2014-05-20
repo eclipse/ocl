@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,10 +11,7 @@
  *   Zeligsoft - Bugs 244886, 245619, 233673, 179990, 242236
  *   Stefan Schulze - Bug 245619
  *   Adolfo Sanchez-Barbudo Herrera - Bug 233673
- * 
- * </copyright>
- * 
- */
+ *******************************************************************************/
 package org.eclipse.ocl.util;
 
 import static org.eclipse.ocl.utilities.UMLReflection.SAME_TYPE;

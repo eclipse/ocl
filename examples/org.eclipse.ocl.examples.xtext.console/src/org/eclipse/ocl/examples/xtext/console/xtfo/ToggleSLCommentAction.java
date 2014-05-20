@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2010,2011 ProxiAD and Others
  * 
  * All rights reserved. This program and the accompanying materials
@@ -13,9 +11,7 @@
  *    itemis AG - source viewer configuration
  *    Sebastian Zarnekow (itemis AG) - synthetic resource creation and source viewer configuration 
  *    E.D.Willink - integration of XTFO code uder CQ 4866
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
 import java.util.HashMap;

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   Adolfo Sanchez-Barbudo Herrera - 231515 Fix NPE in checkArgumentCount
  *   Zeligsoft - Bug 207365
  *   Adolfo Sanchez-Barbudo Herrera - Bug 236247
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.expressions.operations;
 
 import java.util.List;

@@ -1,6 +1,4 @@
-/**
- * <copyright>
- * 
+/*******************************************************************************
  * Copyright (c) 2010, 2012.2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  * Contributors:
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  *   E.D.Willink - Bug 353171
- * 
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EPackage;

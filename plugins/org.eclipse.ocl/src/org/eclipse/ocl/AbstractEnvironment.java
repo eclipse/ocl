@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2006, 2012 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bugs 243079, 244948, 244886, 246469, 233673
  *   Adolfo Sanchez-Barbudo Herrera - Bug 234354, 233673
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl;
 
 import java.util.Collection;

@@ -13,9 +13,7 @@
  *   Zeligsoft - Bugs 233673, 261128
  *   E.D.Willink - Bug 242236
  *   Radek Dvorak - Bug 261128
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.util;
 
 import java.lang.ref.Reference;

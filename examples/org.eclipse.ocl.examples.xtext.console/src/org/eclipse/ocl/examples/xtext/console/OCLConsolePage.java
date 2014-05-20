@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2005, 2013 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   Zeligsoft - Bug 237205
  *   Patrick Könemann - Bug 294200 (history)
  *   E.D.Willink - rework of LPG OCL Console for Xtext
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.console;
 
 import java.util.ArrayList;

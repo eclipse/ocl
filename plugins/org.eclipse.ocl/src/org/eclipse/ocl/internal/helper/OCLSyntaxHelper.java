@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2002, 2012 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bug 207365
  *   E.D.Willink - Bug 259818
- *   
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.internal.helper;
 

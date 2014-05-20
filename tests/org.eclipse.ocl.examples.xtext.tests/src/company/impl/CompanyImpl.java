@@ -1,7 +1,6 @@
 /**
  * <copyright>
- * </copyright>
- */
+ *******************************************************************************/
 package company.impl;
 
 import java.lang.reflect.InvocationTargetException;

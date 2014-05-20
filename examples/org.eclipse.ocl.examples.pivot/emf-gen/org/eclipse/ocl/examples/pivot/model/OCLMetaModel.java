@@ -1,7 +1,5 @@
-/**
- * <copyright>
- *
- * Copyright (c) 2010,2012 E.D.Willink and others.
+/*******************************************************************************
+ * Copyright (c) 2010,2013 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,15 +8,13 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *
- * </copyright>
- *
  * This code is auto-generated
  * from: /org.eclipse.ocl.examples.pivot/model/Pivot.ecore
  * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLMetaModel.xtend
  * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
  *
  * Do not edit it.
- */
+ *******************************************************************************/
 package	org.eclipse.ocl.examples.pivot.model;
 
 import java.math.BigInteger;

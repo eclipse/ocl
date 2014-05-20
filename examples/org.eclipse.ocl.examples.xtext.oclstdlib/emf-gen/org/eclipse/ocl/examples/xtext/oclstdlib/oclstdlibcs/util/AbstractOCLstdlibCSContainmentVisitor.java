@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2010, 2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,8 +13,8 @@
  * This code is auto-generated
  * from: org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCS.genmodel
  *
- * Do not edit it.
- */
+ * Only the copyright statement is editable.
+ *******************************************************************************/
 package	org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util;
 
 import org.eclipse.jdt.annotation.NonNull;

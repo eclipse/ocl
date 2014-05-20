@@ -1,6 +1,4 @@
-/**
- * <copyright>
- *
+/*******************************************************************************
  * Copyright (c) 2006, 2012, 2011 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,9 +10,7 @@
  *   Zeligsoft - Bug 252600
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 297666
  *   Axel Uhl (SAP AG) - Bug 342644
- *
- * </copyright>
- */
+ *******************************************************************************/
 
 package org.eclipse.ocl.ecore.internal;
 
