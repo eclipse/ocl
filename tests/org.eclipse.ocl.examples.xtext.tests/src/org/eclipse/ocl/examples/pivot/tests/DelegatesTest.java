@@ -1287,7 +1287,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 	
 	public void test_tutorial_umlValidation_Bug434356() {
-		UML2Pivot.TYPE_EXTENSIONS.setState(true);
+//		UML2Pivot.TYPE_EXTENSIONS.setState(true);
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);

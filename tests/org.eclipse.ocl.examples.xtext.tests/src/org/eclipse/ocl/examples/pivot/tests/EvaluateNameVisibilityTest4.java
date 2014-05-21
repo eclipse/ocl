@@ -460,7 +460,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_dynamic_dispatch_411154() throws ParserException, IOException {
-		if (useCodeGen) return;								// FIXME disabled pending solution to BUG 411444
+		if (useCodeGen) return;
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
