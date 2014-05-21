@@ -56,7 +56,6 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
@@ -909,11 +908,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		@Nullable String getClassName();
 
 		/**
-		 * Return the project relative Ecore Package URI, which may be null if there is no corresponding Ecore model.
-		 */
-		@Nullable URI getEcorePackageURI();
-
-		/**
 		 * Return the Package Namespace URI.
 		 */
 		@NonNull URI getNsURI();
@@ -922,11 +916,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		 * Return the IResourceDescriptor containing this package.
 		 */
 		@NonNull IResourceDescriptor getResourceDescriptor();
-
-		/**
-		 * Define the project relative Ecore Package URI.
-		 */
-		void setEcorePackageURI(@NonNull URI projectRelativeEcorePackageURI);
 	}
 
 	/**
@@ -1826,34 +1815,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 				platformPluginURI = relativeEcoreModelURI.resolve(pluginURI);
 				locationURI = relativeEcoreModelURI.resolve(projectLocationURI);
 				projectDescriptor.getProjectMap().addResourceDescriptor(this);
-				if (size == 1) {
-					IPackageDescriptor packageDescriptor = packageDescriptors.get(0);
-					if (packageDescriptor != null) {						// Not all EPackages have plugin.xml registrations
-						URI projectRelativeEcorePackageURI = getProjectRelativeEcorePackageURI(firstGenModelRelativeEcorePackageURI);
-						packageDescriptor.setEcorePackageURI(projectRelativeEcorePackageURI);
-					}
-				}
-				else {
-					ResourceSet resourceSet = new ResourceSetImpl();		// FIXME maybe this can be lazy
-					resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-					for (@SuppressWarnings("null")@NonNull String genModelRelativeEcorePackageUri : genModelRelativeEcorePackageUris) {
-						URI ecoreURI = URI.createURI(genModelRelativeEcorePackageUri);
-						URI absoluteEcoreURI = ecoreURI.resolve(absoluteGenModelURI);
-						EObject eObject = resourceSet.getEObject(absoluteEcoreURI, true);
-						if (eObject instanceof EPackage) {
-							EPackage ePackage = (EPackage)eObject;
-							String nsURI = ePackage.getNsURI();
-							if (nsURI != null) {										// EPackage should have an nsURI to match plugin.xml, but ignore if not
-								IPackageDescriptor packageDescriptor = nsURI2packageDescriptor.get(nsURI);
-								if (packageDescriptor != null) {						// Not all EPackages have plugin.xml registrations
-									URI genModelRelativeEcorePackageURI = URI.createURI(genModelRelativeEcorePackageUri);
-									@SuppressWarnings("null")@NonNull URI projectRelativeEcorePackageURI = getProjectRelativeEcorePackageURI(genModelRelativeEcorePackageURI);
-									packageDescriptor.setEcorePackageURI(projectRelativeEcorePackageURI);
-								}
-							}
-						}
-					}
-				}
 			}
 			hasEcoreModel = true;
 		}
@@ -1904,11 +1865,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		 * The Java class name of the compiled EPackage (e.g. org.eclipse.emf.ecore.EcorePackage). 
 		 */
 		protected final @Nullable String className;
-
-		/**
-		 * The project-relative URI of the model for the EPackage (e.g. model/Ecore.ecore#/). 
-		 */
-		private @Nullable URI ecorePackageURI = null;
 		
 		public PackageDescriptor(@NonNull IResourceDescriptor resourceDescriptor, @NonNull URI nsURI, @Nullable String className) {
 			this.resourceDescriptor = resourceDescriptor;
@@ -1928,10 +1884,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return null;
 		}
 
-		public @Nullable URI getEcorePackageURI() {
-			return ecorePackageURI;
-		}
-
 		public @NonNull URI getNsURI() {
 			return namespaceURI;
 		}
@@ -1945,17 +1897,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return resourceDescriptor;
 		}
 
-		public boolean hasEcoreModel() {
-			return ecorePackageURI != null;
-		}
-
-		public void setEcorePackageURI(@NonNull URI projectRelativeEcorePackageURI) {
-			this.ecorePackageURI = projectRelativeEcorePackageURI;
-			if (PROJECT_MAP_ADD_EPACKAGE.isActive()) {
-				PROJECT_MAP_ADD_EPACKAGE.println(namespaceURI + " => " + ecorePackageURI + " : " + className);
-			}
-		}
-
 		@Override
 		public String toString() {
 			StringBuilder s = new StringBuilder();
@@ -1964,10 +1905,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			s.append(className);
 //			s.append(", ");
 //			s.append(genModelURI);
-			if (ecorePackageURI != null) {
-				s.append(", ");
-				s.append(ecorePackageURI);
-			}
 			return s.toString();
 		}
 	}
