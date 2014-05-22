@@ -316,7 +316,13 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 					csPackage = (PackageDeclarationCS)eContainer;
 				}
 			}
-			refreshContextPackage(modelPackage, csPackage);
+			Package contextPackage = contextClassifier.getPackage();
+			if ((csPackage != null) || (contextPackage == null)) {
+				refreshContextPackage(modelPackage, csPackage);
+			}
+			else {
+				modelPackage2contextPackage.put(modelPackage, contextPackage);				
+			}
 		}
 		if (csElement != null) {
 			context.refreshComments(contextClassifier, csElement);
