@@ -29,6 +29,7 @@ public class LabelTests extends TestCase
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			LabelGeneratorRegistry.initialize(registry);
 		}
+		EcorePackage.eINSTANCE.getClass();
 	}
 	
 /*	public void testEcoreURIDebugLabel() {
