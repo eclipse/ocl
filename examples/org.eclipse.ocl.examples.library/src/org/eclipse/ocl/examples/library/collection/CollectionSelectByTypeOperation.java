@@ -36,7 +36,7 @@ public class CollectionSelectByTypeOperation extends AbstractUntypedBinaryOperat
 		boolean changedContents = false;
 		Collection<Object> newElements = new ArrayList<Object>();
         for (Object element : collectionValue.iterable()) {
-			DomainType elementType = evaluator.getStaticTypeOf(element);
+			DomainType elementType = evaluator.getIdResolver().getDynamicTypeOf(element);
 			if (elementType.isEqualTo(standardLibrary, requiredElementType)) {
         		newElements.add(element);
         	}

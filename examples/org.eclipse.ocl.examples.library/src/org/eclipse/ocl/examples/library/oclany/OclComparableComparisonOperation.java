@@ -31,8 +31,8 @@ public abstract class OclComparableComparisonOperation extends AbstractUntypedBi
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object left, @Nullable Object right) {
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		DomainInheritance leftType = evaluator.getStaticTypeOf(left).getInheritance(standardLibrary);
-		DomainInheritance rightType = evaluator.getStaticTypeOf(right).getInheritance(standardLibrary);
+		DomainInheritance leftType = evaluator.getIdResolver().getDynamicTypeOf(left).getInheritance(standardLibrary);
+		DomainInheritance rightType = evaluator.getIdResolver().getDynamicTypeOf(right).getInheritance(standardLibrary);
 		DomainInheritance commonType = leftType.getCommonInheritance(rightType);
 		DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);

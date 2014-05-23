@@ -27,7 +27,7 @@ public class OclAnyOclIsKindOfOperation extends AbstractUntypedBinaryOperation
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		DomainType sourceType = evaluator.getStaticTypeOf(sourceVal);
+		DomainType sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 		DomainType argType = asType(argVal);
 		boolean result = sourceType.conformsTo(standardLibrary, argType);
 		return result;

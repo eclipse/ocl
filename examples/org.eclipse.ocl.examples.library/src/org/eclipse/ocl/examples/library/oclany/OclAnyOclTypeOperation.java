@@ -25,6 +25,7 @@ public class OclAnyOclTypeOperation extends AbstractUntypedUnaryOperation
 
 	@Override
 	public @NonNull DomainType evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal) {
-		return evaluator.getStaticTypeOf(sourceVal);
+//		return evaluator.getStaticTypeOf(sourceVal);
+		return evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 	}
 }

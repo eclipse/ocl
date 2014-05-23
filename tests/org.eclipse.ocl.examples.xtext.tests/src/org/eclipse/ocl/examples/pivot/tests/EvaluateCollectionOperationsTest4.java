@@ -16,7 +16,6 @@ import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.junit.After;
 import org.junit.Before;
@@ -1179,9 +1178,9 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionLower() {
-		assertQueryEquals(null, 0, "Sequence{1, 2.0, '3'}->oclType().lower");
-		assertQueryEquals(null, 0, "Sequence{1, 2.0, 3}->oclAsType(Collection(Real))->oclType().lower");
-		assertQueryEquals(null, 0, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().lower"); // no change to dynamic bound
+		assertQueryEquals(null, 3, "Sequence{1, 2.0, '3'}->oclType().lower");
+		assertQueryEquals(null, 3, "Sequence{1, 2.0, 3}->oclAsType(Collection(Real))->oclType().lower");
+		assertQueryEquals(null, 3, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().lower"); // no change to dynamic bound
 	}
 
 	@Test public void testCollectionMax() {
@@ -1810,8 +1809,8 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionUpper() {
-		assertQueryEquals(null, ValuesUtil.UNLIMITED_VALUE, "Sequence{1, 2.0, '3'}->oclType().upper");
-		assertQueryEquals(null, ValuesUtil.UNLIMITED_VALUE, "Sequence{1, 2.0, 3}->oclAsType(Collection(Real))->oclType().upper");
-		assertQueryEquals(null, ValuesUtil.UNLIMITED_VALUE, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().upper"); // no change to dynamic bound
+		assertQueryEquals(null, 3, "Sequence{1, 2.0, '3'}->oclType().upper");
+		assertQueryEquals(null, 3, "Sequence{1, 2.0, 3}->oclAsType(Collection(Real))->oclType().upper");
+		assertQueryEquals(null, 3, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().upper"); // no change to dynamic bound
 	}
 }

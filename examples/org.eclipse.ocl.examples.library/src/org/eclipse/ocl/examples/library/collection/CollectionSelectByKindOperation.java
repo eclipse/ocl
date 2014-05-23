@@ -40,7 +40,7 @@ public class CollectionSelectByKindOperation extends AbstractUntypedBinaryOperat
         		changedContents = true;
 			}
 			else {
-				DomainType elementType = evaluator.getStaticTypeOf(element);
+				DomainType elementType = evaluator.getIdResolver().getDynamicTypeOf(element);
 				if (elementType.conformsTo(standardLibrary, requiredElementType)) {
 	        		newElements.add(element);
 	        	}
