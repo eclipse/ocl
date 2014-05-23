@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.uml.OpaqueExpressionLabelGenerator;
 import org.eclipse.ocl.examples.pivot.uml.PackageImportLabelGenerator;
 import org.eclipse.ocl.examples.pivot.uml.SlotLabelGenerator;
 import org.eclipse.ocl.examples.pivot.uml.UMLASResourceFactory;
+import org.eclipse.ocl.examples.pivot.uml.UMLElementExtensionLabelGenerator;
 import org.eclipse.ocl.examples.pivot.uml.UMLExplicitNavigator;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.utilities.RootLabelGenerator;
@@ -99,6 +100,7 @@ public class PivotStandaloneSetup //implements ISetup
 		OpaqueExpressionLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		PackageImportLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		SlotLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
+		UMLElementExtensionLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 	}
 	
 	/**

@@ -153,6 +153,8 @@
       	class="org.eclipse.ocl.examples.pivot.uml.PackageImportLabelGenerator"/>
       <generator for="org.eclipse.uml2.uml.Slot"
       	class="org.eclipse.ocl.examples.pivot.uml.SlotLabelGenerator"/>
+      <generator for="org.eclipse.ocl.examples.pivot.uml.UMLElementExtension"
+      	class="org.eclipse.ocl.examples.pivot.uml.UMLElementExtensionLabelGenerator"/>
    </extension>
 
 </plugin>
