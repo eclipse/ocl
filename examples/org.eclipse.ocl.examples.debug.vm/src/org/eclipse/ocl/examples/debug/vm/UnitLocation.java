@@ -119,12 +119,12 @@ public class UnitLocation {
         return fElement;
     }
 	
-    public boolean isTheSameLine(UnitLocation location) {
+    public boolean isTheSameLine(@NonNull UnitLocation location) {
     	return (fEvalEnv == location.fEvalEnv) && (getLineNum() == location.getLineNum());
     }
 	
-    public boolean isTheSameLocation(UnitLocation location) {
-    	return (location != null) && (fEvalEnv == location.fEvalEnv) && (getLineNum() == location.getLineNum())
+    public boolean isTheSameLocation(@NonNull UnitLocation location) {
+    	return (fEvalEnv == location.fEvalEnv) && (getLineNum() == location.getLineNum())
     			&& (startPosition == location.startPosition) && (endPosition == location.endPosition);
     }
     

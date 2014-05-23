@@ -95,7 +95,12 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	
 	private final @NonNull IVMDebuggerShell fDebugShell;
 	private final @NonNull VMBreakpointManager fBPM;
-	private UnitLocation fCurrentLocation;
+	
+	/**
+	 * The location currently displayed at the top of the stack.
+	 * Updated when handleLocationChanged invokes suspendAndWaitForResume.
+	 */
+	private @NonNull UnitLocation fCurrentLocation;
 	private final @NonNull IterateBreakpointHelper fIterateBPHelper;
 //	private final List<UnitLocation> fLocationStack;
 	private @NonNull VMSuspension fCurrentStepMode;
@@ -111,7 +116,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 //		fLocationStack = new ArrayList<UnitLocation>();
 		fCurrentStepMode = VMSuspension.UNSPECIFIED;
 		pushVisitor(this);
-		fCurrentLocation = null; //getCurrentLocation();
+		fCurrentLocation = getCurrentLocation();
 		pcVariable = DomainUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		pcVariable.setName("$pc");
 		String typeName = DomainUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
@@ -154,7 +159,8 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		}
 		if (request instanceof VMResumeRequest) {
 			VMResumeRequest resumeRequest = (VMResumeRequest) request;
-			fCurrentLocation = getCurrentLocation();
+//			fCurrentLocation = getCurrentLocation();
+//			fCurrentLocation = fCurrentStepMode == VMSuspension.STEP_INTO ? null : getCurrentLocation();
 			fCurrentStepMode = resumeRequest.suspension;
 			if (fCurrentStepMode == VMSuspension.UNSPECIFIED) {
 				fIterateBPHelper.removeAllIterateBreakpoints();
@@ -219,12 +225,15 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		return OCLStepperVisitor.INSTANCE;
 	}
 
-	protected void handleLocationChanged(@NonNull Element  element, UnitLocation location, boolean isElementEnd) {
+	protected void handleLocationChanged(@NonNull Element  element, @NonNull UnitLocation location, boolean isElementEnd) {
 		if (VMVirtualMachine.LOCATION.isActive()) {
 			VMVirtualMachine.LOCATION.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString() + " @ " + location + " " + (isElementEnd ? "start" : "end"));
 		}
-//		OCLVMEvaluationVisitor currentVisitor = visitorStack.peek();
-//		UnitLocation fCurrentLocation = currentVisitor.getEvaluationEnvironment().getCurrentLocation();
+//		UnitLocation fCurrentLocation = this.fCurrentLocation;;
+//		if (fCurrentLocation == null) {
+//			OCLVMEvaluationVisitor currentVisitor = visitorStack.peek();
+//			fCurrentLocation = currentVisitor.getEvaluationEnvironment().getCurrentLocation();
+//		}
 //		if (fCurrentLocation == null) {
 //			return;
 //		}
@@ -234,29 +243,23 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 //			validbreakpointlocator.isBreakpointableElementEnd(element))) {
 //			return;
 //		}
-		
-		if (fCurrentStepMode == VMSuspension.STEP_OVER) {
-			if (location.getStackDepth() <= fCurrentLocation.getStackDepth()
-					&& (!location.isTheSameLine(fCurrentLocation)
-						/*|| repeatedInIterator(location, fCurrentLocation)*/ )) {
-				fCurrentLocation = null;
-				suspendAndWaitForResume(location, fCurrentStepMode);
-				return;
-			}
+		boolean doSuspendAndResume = false;
+		if (fCurrentStepMode == VMSuspension.STEP_INTO) {
+			doSuspendAndResume = true;
 		}
-		else if (fCurrentStepMode == VMSuspension.STEP_INTO) {
-			if (!location.isTheSameLocation(fCurrentLocation) /*|| repeatedInIterator(location, fCurrentLocation)*/) {
-				fCurrentLocation = null;
-				suspendAndWaitForResume(location, fCurrentStepMode);
-				return;
+		else if (fCurrentStepMode == VMSuspension.STEP_OVER) {
+			if (isSmallerStackDepth(location) || isNewLine(location) /*|| repeatedInIterator(location, fCurrentLocation)*/ ) {
+				doSuspendAndResume = true;
 			}
 		}
 		else if (fCurrentStepMode == VMSuspension.STEP_RETURN) {
-			if (location.getStackDepth() < fCurrentLocation.getStackDepth()) {
-				fCurrentLocation = null;
-				suspendAndWaitForResume(location, fCurrentStepMode);
-				return;
+			if (isSmallerStackDepth(location)) {
+				doSuspendAndResume = true;
 			}
+		}
+		if (doSuspendAndResume) {
+			suspendAndWaitForResume(location, fCurrentStepMode);
+			return;
 		}
 
 		// check if we trigger a registered breakpoint
@@ -310,6 +313,34 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		
 	}
 
+	/**
+	 * Return true if a call (stack push) has occurred on location wrt the last displayed location.
+	 */
+	protected boolean isLargerStackDepth(@NonNull UnitLocation location) {
+		return location.getStackDepth() > fCurrentLocation.getStackDepth();
+	}
+
+	/**
+	 * Return true if a line change has occurred on location wrt the last displayed location.
+	 */
+	protected boolean isNewLine(@NonNull UnitLocation location) {
+		return !location.isTheSameLine(fCurrentLocation);
+	}
+
+	/**
+	 * Return true if a position change has occurred on location wrrt the last displayed location.
+	 */
+	protected boolean isNewLocation(@NonNull UnitLocation location) {
+		return !location.isTheSameLocation(fCurrentLocation);
+	}
+
+	/**
+	 * Return true if a return (stack pop) has occurred on location wrt the last displayed location.
+	 */
+	protected boolean isSmallerStackDepth(@NonNull UnitLocation location) {
+		return location.getStackDepth() < fCurrentLocation.getStackDepth();
+	}
+
 	private @NonNull UnitLocation newLocalLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element node, int startPosition, int endPosition) {
 		return new UnitLocation(startPosition, endPosition, evalEnv, node);
 	}
@@ -345,10 +376,12 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		IStepper parentStepper = parentStepperEntry.stepper;
 		Element postElement = parentStepper.isPostStoppable(this, element, parentElement);
 		if (postElement != null) {
-			fCurrentLocation = null;
-			UnitLocation unitLocation = parentStepper.createUnitLocation(evalEnv, postElement);
-			setCurrentLocation(postElement, unitLocation, false);
-			processDebugRequest(unitLocation);
+//			if ((fCurrentStepMode == VMSuspension.STEP_OVER) || (fCurrentStepMode == VMSuspension.STEP_OVER)) {
+//				fCurrentLocation = null;
+				UnitLocation unitLocation = parentStepper.createUnitLocation(evalEnv, postElement);
+				setCurrentLocation(postElement, unitLocation, false);
+				processDebugRequest(unitLocation);
+//			}
 		}
 /*		if (element instanceof ExpressionInOCL) {
 			// 
@@ -367,8 +400,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	public void preIterate(@NonNull LoopExp loopExp) {
 		UnitLocation topLocation = getCurrentLocation();
 		boolean skipIterate = (fCurrentStepMode == VMSuspension.UNSPECIFIED)
-				|| ((fCurrentStepMode == VMSuspension.STEP_OVER) && 
-					(topLocation.getStackDepth() > fCurrentLocation.getStackDepth()));
+				|| ((fCurrentStepMode == VMSuspension.STEP_OVER) && isLargerStackDepth(topLocation));
 
 		if (!skipIterate) {
 			/*return*/ fIterateBPHelper.stepIterateElement(loopExp, topLocation);
@@ -450,6 +482,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	}
 	
 	private void suspendAndWaitForResume(@NonNull UnitLocation location, @NonNull VMSuspendEvent suspendEvent) {		
+		fCurrentLocation = location;
 		try {			
 			VMSuspendEvent vmSuspend = suspendEvent;
 			
