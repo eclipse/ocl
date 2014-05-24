@@ -4,7 +4,7 @@
       label="%featureName"
       version="5.0.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.ocl.common"
+      plugin="org.eclipse.ocl.master"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
 
@@ -27,6 +27,12 @@
 
    <includes
          id="org.eclipse.ocl.examples"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.ocl.master"
+         download-size="0"
+         install-size="0"
          version="0.0.0"/>
 
 </feature>
