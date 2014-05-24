@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.VMStackTraceBuilder;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Variable;
 
 public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
 {
@@ -78,6 +79,11 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 	@Override
 	public @NonNull NamedElement getOperation() {
 		return myOperation;
+	}
+
+	@Override
+	@NonNull public Variable getPCVariable() {
+		return rootEvaluationEnvironment.getPCVariable();
 	}
 
 	@Override

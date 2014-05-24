@@ -145,33 +145,20 @@ public class VariableFinder
 			String varName = variable.getName();
 			if (variable instanceof OCLExpression) {
 				OCLExpression oclExpression = (OCLExpression) variable;
-				EStructuralFeature eContainingFeature = oclExpression.eContainingFeature();
-				if (eContainingFeature != null) {
-					varName = "$" + eContainingFeature.getName();
-					if (eContainingFeature.isMany()) {
-						EObject eContainer = oclExpression.eContainer();
-						if (eContainer != null) {
-							Object eGet = eContainer.eGet(eContainingFeature);
-							if (eGet instanceof List<?>) {
-								int index = ((List<?>)eGet).indexOf(oclExpression);
-								varName = varName + "[" + index + "]";
-							}
-						}
+				varName = getTermVariableName(oclExpression);
+				if (varName != null) {
+					VMVariableData var = new VMVariableData(varName, null);
+					var.kind = VMVariableData.LOCAL;
+					Object value = null;
+					try {
+						value = evalEnv.getValueOf(oclExpression);
 					}
-					if (varName != null) {
-						VMVariableData var = new VMVariableData(varName, null);
-						var.kind = VMVariableData.LOCAL;
-						Object value = null;
-						try {
-							value = evalEnv.getValueOf(oclExpression);
-						}
-						catch (Throwable e) {
-							value = e;
-						}
-						DomainType declaredType = oclExpression.getType();
-						setValueAndType(var, value, declaredType, evalEnv);
-						result.add(var);
+					catch (Throwable e) {
+						value = e;
 					}
+					DomainType declaredType = oclExpression.getType();
+					setValueAndType(var, value, declaredType, evalEnv);
+					result.add(var);
 				}
 			}
 			else if (varName != null) {
@@ -538,22 +525,44 @@ public class VariableFinder
 	}
 	
 	private @Nullable Object findStackObject(@NonNull String[] varTreePath) {
+		Object rootObj = null;
+		boolean gotIt = false;
 		String envVarName = DomainUtil.nonNullState(varTreePath[0]);
-		Set<DomainTypedElement> variables = new HashSet<DomainTypedElement>();
-		for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
-			Set<DomainTypedElement> localVariables = evalEnv.getVariables();
-			variables.addAll(localVariables);
-			if (DomainUtil.getNamedElement(localVariables, "self") != null) {
-				break;
+		if (envVarName.startsWith("$")) {
+			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
+				for (DomainTypedElement localVariable : evalEnv.getVariables()) {
+					if (localVariable instanceof OCLExpression) {
+						OCLExpression oclExpression = (OCLExpression) localVariable;
+						String varName = getTermVariableName(oclExpression);
+						if (envVarName.equals(varName)) {
+							rootObj = fEvalEnv.getValueOf(localVariable);
+							gotIt = true;
+							break;
+						}
+					}
+				}
+				if (gotIt) {
+					break;
+				}
 			}
 		}
-		Object rootObj = DomainUtil.getNamedElement(variables, envVarName);
-		if (rootObj instanceof Variable) {
-			rootObj = fEvalEnv.getValueOf((DomainTypedElement)rootObj);
+		if (!gotIt) {
+			Set<DomainTypedElement> variables = new HashSet<DomainTypedElement>();
+			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
+				Set<DomainTypedElement> localVariables = evalEnv.getVariables();
+				variables.addAll(localVariables);
+				if (DomainUtil.getNamedElement(localVariables, "self") != null) {
+					break;
+				}
+			}
+			rootObj = DomainUtil.getNamedElement(variables, envVarName);
+			if (rootObj instanceof Variable) {
+				rootObj = fEvalEnv.getValueOf((DomainTypedElement)rootObj);
+				gotIt = true;
+			}
 		}
-		if (rootObj == null) { //&& !evalEnv.getNames().contains(envVarName)) {
+		if (!gotIt) { //&& !evalEnv.getNames().contains(envVarName)) {
 			rootObj = fEvalEnv.getModelParameterVariables().get(envVarName);
-			
 		}
 		fRootDeclaredType = rootObj instanceof EObject ? ((EObject)rootObj).eClass().getName() : "evalEnv.getTypeOf(envVarName)";
 		if(rootObj != null && varTreePath.length == 1) {
@@ -624,6 +633,26 @@ public class VariableFinder
 //		}
 		
 		return null;
+	}
+
+	protected static String getTermVariableName(@NonNull OCLExpression oclExpression) {
+		EStructuralFeature eContainingFeature = oclExpression.eContainingFeature();
+		if (eContainingFeature == null) {
+			return null;
+		}
+		String varName;
+		varName = "$" + eContainingFeature.getName();
+		if (eContainingFeature.isMany()) {
+			EObject eContainer = oclExpression.eContainer();
+			if (eContainer != null) {
+				Object eGet = eContainer.eGet(eContainingFeature);
+				if (eGet instanceof List<?>) {
+					int index = ((List<?>)eGet).indexOf(oclExpression);
+					varName = varName + "[" + index + "]";
+				}
+			}
+		}
+		return varName;
 	}
 
 	public Object getValue(EStructuralFeature feature, EObject target) {

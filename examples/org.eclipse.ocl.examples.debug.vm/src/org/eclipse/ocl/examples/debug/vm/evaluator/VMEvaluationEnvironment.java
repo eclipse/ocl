@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
+import java.util.Stack;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -20,6 +22,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 public abstract class VMEvaluationEnvironment<T extends NamedElement> extends PivotEvaluationEnvironment implements IVMEvaluationEnvironment<T>
 {
 	protected final @NonNull IVMModelManager modelManager;
+	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
 	
 	protected VMEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager) {
 		super(metaModelManager);
@@ -35,7 +38,13 @@ public abstract class VMEvaluationEnvironment<T extends NamedElement> extends Pi
 		return modelManager;
 	}
 
+	@SuppressWarnings("unchecked")
 	public @Nullable IVMEvaluationEnvironment<T> getParentEvaluationEnvironment() {
 		return (IVMEvaluationEnvironment<T>) parent;
+	}
+
+	@Override
+	public @NonNull Stack<org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment.StepperEntry> getStepperStack() {
+		return stepperStack;
 	}
 }

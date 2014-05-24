@@ -11,7 +11,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
@@ -19,12 +21,49 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 
 public interface IVMEvaluationEnvironment<T extends NamedElement> extends EvaluationEnvironment
 {
+	public class StepperEntry
+	{
+		public final @NonNull IStepper stepper;
+		public final @NonNull Element element;
+		private @Nullable Map<DomainTypedElement, Object> partialResults;
+		
+		public StepperEntry(@NonNull IStepper stepper, @NonNull Element element) {
+			this.stepper = stepper;
+			this.element = element;
+		}
+
+		public void popFrom(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment) {
+			Map<DomainTypedElement, Object> partialResults2 = partialResults;
+			if (partialResults2 != null) {
+				for (DomainTypedElement element : partialResults2.keySet()) {
+					if (element != null) {
+						evaluationEnvironment.remove(element);
+					}
+				}
+				partialResults2.clear();
+				partialResults = null;
+			}
+		}
+
+		public void pushTo(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment, @NonNull DomainTypedElement element, @Nullable Object value) {
+			Map<DomainTypedElement, Object> partialResults2 = partialResults;
+			if (partialResults2 == null) {
+				partialResults = partialResults2 = new HashMap<DomainTypedElement, Object>();
+				evaluationEnvironment.replace(evaluationEnvironment.getPCVariable(), element);
+			}
+			partialResults2.put(element, value);
+			evaluationEnvironment.replace(element, value);
+		}
+	}
+
 	@NonNull Element getCurrentIP();
 	@NonNull UnitLocation getCurrentLocation();
 	@NonNull VMDebugCore getDebugCore();
@@ -34,8 +73,10 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 	@NonNull IVMModelManager getModelManager();
 	@NonNull Map<String, Resource> getModelParameterVariables();
 	@NonNull NamedElement getOperation();
+	@NonNull Variable getPCVariable();
 	@Nullable IVMEvaluationEnvironment<?> getParentEvaluationEnvironment();
 	@NonNull IVMRootEvaluationEnvironment<T> getRootEvaluationEnvironment();
+	@NonNull Stack<StepperEntry> getStepperStack();
 	boolean isDeferredExecution();
 	void processDeferredTasks();
 	@NonNull Element setCurrentIP(@NonNull Element element);

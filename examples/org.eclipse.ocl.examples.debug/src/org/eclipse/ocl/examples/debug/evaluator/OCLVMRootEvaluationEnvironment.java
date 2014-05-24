@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -26,9 +25,13 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.VMRootEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMStackTraceBuilder;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
@@ -43,12 +46,17 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 	private @NonNull Element myCurrentIP;
 	private @NonNull NamedElement myOperation;
 	private final long id;
+	private final @NonNull Variable pcVariable;
 
     public OCLVMRootEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL, long id) {
 		super(metaModelManager, modelManager, expressionInOCL);
 		myCurrentIP = expressionInOCL;
 		myOperation = expressionInOCL;
 		this.id = id;
+		pcVariable = DomainUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
+		pcVariable.setName("$pc");
+		String typeName = DomainUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
+		pcVariable.setType(metaModelManager.getPivotType(typeName));
 	}
 
 	@Override
@@ -130,6 +138,11 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 	@Override
 	public @Nullable OCLVMRootEvaluationEnvironment getParentEvaluationEnvironment() {
 		return (OCLVMRootEvaluationEnvironment) super.getParentEvaluationEnvironment();
+	}
+
+	@Override
+	@NonNull public Variable getPCVariable() {
+		return pcVariable;
 	}
 
 	@Override
