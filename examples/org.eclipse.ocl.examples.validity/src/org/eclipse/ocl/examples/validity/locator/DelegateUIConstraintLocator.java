@@ -33,7 +33,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -168,10 +167,8 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
 			Resource contextResource = contextObject != null ? contextObject.eResource()  : null;
-			ResourceSet resourceSet = contextResource != null ? contextResource.getResourceSet() : null;
-			if (resourceSet == null) {
-				resourceSet = new ResourceSetImpl();
-			}
+			MetaModelManager metaModelManager = contextResource != null ? PivotUtil.getMetaModelManager(contextResource) : new MetaModelManager();
+			ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 			Resource resource = resourceSet.getResource(documentURI, true);
 			if (resource instanceof BaseCSResource) {
 				return (BaseCSResource)resource;
