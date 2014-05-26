@@ -302,12 +302,12 @@
 	</target>
 	
 	<target name="-publish.javadoc" if="publish.javadoc">
-		<echo>Remove existing javadoc</echo>
+		<echo>Remove existing javadoc from ${project.javadoc.directory}</echo>
 		<delete verbose="true">
 			<fileset dir="${project.javadoc.directory}"/>
 		</delete>
 					
-		<echo>Unzipping javadoc</echo>
+		<echo>Unzipping javadoc from ${javadoc.directory}/*-javadoc.zip</echo>
 		<unzip dest="${project.javadoc.directory}">
 			<fileset dir="${javadoc.directory}">
 				<filename name="*-javadoc.zip" />
