@@ -42,6 +42,8 @@ import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -307,6 +309,24 @@ public class VariableFinder
 			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
 			vmType = new VMTypeData(VMTypeData.COLLECTION, className, declaredTypeName);
 			
+		} else if (value instanceof CollectionValue) {
+			CollectionValue collection = (CollectionValue) value;
+			Class<?> javaType = value.getClass();
+
+			StringBuilder strVal = new StringBuilder();
+			if (declaredTypeName != null) {
+				strVal.append(declaredTypeName);
+			} else {
+				strVal.append(javaType.getSimpleName());
+			}
+
+			strVal.append('[').append(collection.size()).append(']');
+			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
+			// TODO - use mapping by runtime class to OCL type
+			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
+			vmType = new VMTypeData(VMTypeData.COLLECTION, className, declaredTypeName);
+			
 		} else {
 			// everything else we see as a data type
 			@SuppressWarnings("null")@NonNull String valueOf = String.valueOf(value);
@@ -373,6 +393,32 @@ public class VariableFinder
 			}
 		} else if(root instanceof Collection<?>) {
 			Collection<?> elements = (Collection<?>) root;
+			String elementType = "(containerType instanceof CollectionType) ? ((CollectionType) containerType) .getElementType() : fFeatureAccessor.getStandardLibrary().getOclAny()";
+									
+//			Dictionary<Object, Object> asDictionary = null;
+//			if(root instanceof Dictionary<?, ?>) {
+//				@SuppressWarnings("unchecked")
+//				Dictionary<Object, Object> dict = (Dictionary<Object, Object>) root;
+//				asDictionary = dict;
+//				elements = asDictionary.keys();
+//			}			
+			
+			int i = 0;
+			for (Object element : elements) {
+				childPath[childPath.length - 1] = String.valueOf(i);
+				VMVariableData elementVar;
+//				if(asDictionary == null) {
+					elementVar = createCollectionElementVar(i, element, elementType, createURI(childPath).toString());
+//				} else {
+//					Object key = element;
+//					Object value = asDictionary.get(element);
+//					elementVar = createDictionaryElementVar(key, value, elementType, createURI(childPath).toString());
+//				}
+				result.add(elementVar);
+				i++;
+			}
+		} else if(root instanceof CollectionValue) {
+			CollectionValue elements = (CollectionValue) root;
 			String elementType = "(containerType instanceof CollectionType) ? ((CollectionType) containerType) .getElementType() : fFeatureAccessor.getStandardLibrary().getOclAny()";
 									
 //			Dictionary<Object, Object> asDictionary = null;
@@ -507,6 +553,33 @@ public class VariableFinder
 			
 			childVar = createCollectionElementVar(elementIndex, element, nextDeclaredType, uri.toString());
 			nextObject = element;
+		} else if (parentObj instanceof CollectionValue) {
+			CollectionValue collection = (CollectionValue) parentObj;
+			int elementIndex = -1;
+			try {
+				elementIndex = Integer.parseInt(varTreePath[pathIndex]);
+			} catch(NumberFormatException e) {
+				// FIXME 
+				throw new IllegalArgumentException();
+			}
+			
+			if (elementIndex < 0 || elementIndex >= collection.intSize()) {
+				// not valid element position in this collection
+				throw new IllegalArgumentException();
+			}
+						
+//			if (optParentDeclaredType instanceof CollectionType) {
+//				CollectionType type = (CollectionType) optParentDeclaredType;
+//				nextDeclaredType = "type.getElementType()";
+//			} else if(nextDeclaredType == null) {
+				// FIXME
+				nextDeclaredType = "OclAny";
+//			}
+
+			Object element = getElement(collection.getElements(), elementIndex);
+			
+			childVar = createCollectionElementVar(elementIndex, element, nextDeclaredType, uri.toString());
+			nextObject = element;
 		}
 
 		int nextIndex = pathIndex + 1;
@@ -564,7 +637,15 @@ public class VariableFinder
 		if (!gotIt) { //&& !evalEnv.getNames().contains(envVarName)) {
 			rootObj = fEvalEnv.getModelParameterVariables().get(envVarName);
 		}
-		fRootDeclaredType = rootObj instanceof EObject ? ((EObject)rootObj).eClass().getName() : "evalEnv.getTypeOf(envVarName)";
+		if (rootObj instanceof EObject) {
+			fRootDeclaredType = ((EObject)rootObj).eClass().getName();
+		}
+		else if (rootObj instanceof Value) {
+			fRootDeclaredType = ((Value)rootObj).getTypeId().toString();
+		}
+		else {
+			fRootDeclaredType = "evalEnv.getTypeOf(envVarName)";		// FIXME
+		}
 		if(rootObj != null && varTreePath.length == 1) {
 			// refers to environment variable only
 			String[] uri = new String[] { envVarName };
