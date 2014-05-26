@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManag
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator.ValidationAdapter;
+import org.eclipse.ocl.examples.validity.locator.DelegateConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
@@ -80,7 +81,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final @NonNull String ECORE_MODEL_NAME2 = "model/validityModelTest.ecoretest";
 	protected static final @NonNull String ECORE_MODEL_NAME3 = "model/ecoreTest2.ecore";
 	
-	protected static final Integer EXPECTED_SUCCESSES = 145;
+	protected static final Integer EXPECTED_SUCCESSES = 147; //145;
 	protected static final Integer EXPECTED_INFOS = 2;
 	protected static final Integer EXPECTED_WARNINGS = 2;
 	protected static final Integer EXPECTED_ERRORS = 2;
@@ -219,6 +220,8 @@ public abstract class AbstractValidityTestCase extends TestCase
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/5.0.0/UML", UMLConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(null, DelegateConstraintLocator.INSTANCE);
 		}
 		// Plug the OCL validation mechanism.
 		OCLDelegateDomain.initialize(resourceSet);

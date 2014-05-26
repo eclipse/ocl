@@ -207,7 +207,7 @@ public class ValidityModelTests extends AbstractValidityTestCase
 //		}
 
 		// Tests that we have all the RootConstrainingNode ecoreTest and ecore.
-		assertHasConstrainingNodes(rootNode, 3/*2*/);
+		assertHasConstrainingNodes(rootNode, 4/*3*//*2*/);
 		final ConstrainingNode _ecore = assertHasConstrainingNodeByLabel(rootNode, CONSTRAINABLE_ECORE, EPackage.class);
 		assertHasConstrainingNodes(_ecore, 45/*3*/);
 		final ConstrainingNode _ecore__EClass = assertHasConstrainingNodeByLabel(_ecore, "EClass", EClass.class);
