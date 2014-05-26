@@ -195,7 +195,8 @@ public class ValidityModel
 					}
 					ePackageResources.add(resource);
 					String nsURI = ePackage.getNsURI();
-					if (nsURI !=null){
+					if (nsURI !=null) {
+						ValidityManager.ANALYZE_RESOURCE.println(" -> " + nsURI);
 						List<ConstraintLocator> list = getConstraintLocators(nsURI);
 						if (list != null) {
 							for (ConstraintLocator constraintLocator : list) {

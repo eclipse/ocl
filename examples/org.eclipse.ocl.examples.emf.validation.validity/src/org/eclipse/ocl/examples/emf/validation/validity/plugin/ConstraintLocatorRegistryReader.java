@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 
@@ -32,11 +33,11 @@ class ConstraintLocatorRegistryReader extends RegistryReader
 
 	static class ConstraintLocatorDescriptor extends PluginClassDescriptor implements ConstraintLocator.Descriptor
 	{
-		protected final @NonNull String uri;
+		protected final @Nullable String uri;
 		protected /*@LazyNonNull*/ ConstraintLocator constraintLocator = null;
 		protected boolean failed = false;
 
-		public ConstraintLocatorDescriptor(@NonNull IConfigurationElement e, @NonNull String uri, @NonNull String className) {
+		public ConstraintLocatorDescriptor(@NonNull IConfigurationElement e, @Nullable String uri, @NonNull String className) {
 			super(e, className);
 			this.uri = uri;
 		}
@@ -60,7 +61,7 @@ class ConstraintLocatorRegistryReader extends RegistryReader
 		}
 
 		@Override
-		public @NonNull String toString() {
+		public @Nullable String toString() {
 			return uri;
 		}
 	}
@@ -73,9 +74,7 @@ class ConstraintLocatorRegistryReader extends RegistryReader
 	protected boolean readElement(IConfigurationElement element, boolean add) {
 		if (element.getName().equals(TAG_LOCATOR)) {
 			String metaclass = element.getAttribute(ATT_METACLASS);
-			if (metaclass == null) {
-				logMissingAttribute(element, ATT_METACLASS);
-			} else if (element.getAttribute(ATT_CLASS) == null) {
+			if (element.getAttribute(ATT_CLASS) == null) {
 				logMissingAttribute(element, ATT_CLASS);
 			} else {
 				if (add) {

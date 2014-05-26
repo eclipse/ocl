@@ -52,7 +52,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
-import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.plugin.ValidityPlugin;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFilter;
 
@@ -129,9 +128,9 @@ public class ValidityManager
 			constraintLocators.put(nsURI, list);
 			List<ConstraintLocator.Descriptor> descriptors = constraintLocatorDescriptors.get(nsURI);
 			if (descriptors == null) {
-				list.add(EValidatorConstraintLocator.INSTANCE);
+				descriptors = constraintLocatorDescriptors.get(null);
 			}
-			else {
+			if (descriptors != null) {
 				for (ConstraintLocator.Descriptor descriptor : descriptors) {
 					list.add(descriptor.getConstraintLocator());
 				}

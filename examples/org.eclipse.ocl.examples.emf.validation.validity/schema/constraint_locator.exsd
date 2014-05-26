@@ -2,9 +2,9 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="org.eclipse.ocl.examples.emf.validation.validity" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
+      <appInfo>
          <meta.schema plugin="org.eclipse.ocl.examples.emf.validation.validity" id="constraint_locator" name="constraint_locator"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          A ConstaintLocator provides a mechanism to locate Constraints applicable to an EObject. Each ConstraintLocator provoides an alternate location algorithm.
       </documentation>
@@ -12,9 +12,9 @@
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <choice>
@@ -39,9 +39,9 @@
                <documentation>
                   
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute translatable="true"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
@@ -49,9 +49,9 @@
 
    <element name="locator">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element labelAttribute="type"/>
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <attribute name="class" type="string" use="required">
@@ -60,15 +60,15 @@
                   A fully qualified name of the Java class implementing &lt;samp&gt;org.eclipse.emf.validation.debug.locator.ConstraintLocator
 &lt;/samp&gt;.
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.emf.validation.debug.locator.ConstraintLocator"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
-         <attribute name="metaclass" type="string" use="required">
+         <attribute name="metaclass" type="string">
             <annotation>
                <documentation>
-                  
+                  The nsURI from which this ConstraintLocator provides constraints. Maybe omitted for a default constraint locator for use whem no explicit ones apply.
                </documentation>
             </annotation>
          </attribute>
@@ -76,36 +76,36 @@
    </element>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="since"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Enter the first release in which this extension point appears.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="examples"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Enter extension point usage example here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="apiinfo"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Enter API information here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="implementation"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Two ConstraintLocators are built-in.
 
