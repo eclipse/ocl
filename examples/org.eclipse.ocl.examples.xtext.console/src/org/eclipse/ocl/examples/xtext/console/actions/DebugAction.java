@@ -170,8 +170,37 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.getResource(documentURI, true);
+			MetaModelManager metaModelManger = new MetaModelManager();
+			ResourceSet externalResourceSet = metaModelManger.getExternalResourceSet();
+			if (contextObject != null) {
+				Resource contextResource = contextObject.eResource();
+				if ((contextResource != null) && (externalResourceSet instanceof ResourceSetImpl)) {
+					Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)externalResourceSet).getURIResourceMap();
+					if (uriResourceMap != null) {
+						ResourceSet contextResourceSet = contextResource.getResourceSet();
+						if (contextResourceSet != null) {
+							for (Resource eResource : contextResourceSet.getResources()) {
+								URI uri = eResource.getURI();
+								if (uri != null) {
+									uriResourceMap.put(uri, eResource);
+								}
+							}
+							if (contextResourceSet instanceof ResourceSetImpl) {
+								Map<URI, Resource> contextResourceMap = ((ResourceSetImpl)contextResourceSet).getURIResourceMap();
+								if (contextResourceMap != null) {
+									for (URI uri : contextResourceMap.keySet()) {
+										uriResourceMap.put(uri, contextResourceMap.get(uri));
+									}
+								}
+							}
+						}
+						else {
+							uriResourceMap.put(contextResource.getURI(), contextResource);
+						}
+					}
+				}
+			}
+			Resource resource = externalResourceSet.getResource(documentURI, true);
 			if (resource instanceof BaseCSResource) {
 				return (BaseCSResource)resource;
 			}
