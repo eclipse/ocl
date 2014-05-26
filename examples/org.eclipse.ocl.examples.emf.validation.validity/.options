@@ -1,16 +1,16 @@
 # Debugging options for the org.eclipse.ocl.examples.xtext.base plug-in
 
 # Turn on analyzeResource discovery announcements
-org.eclipse.ocl.examples.emf.validity/analyze/resource=false
+org.eclipse.ocl.examples.emf.validation.validity/analyze/resource=false
 
 # Turn on ContrainingNode creation announcements
-org.eclipse.ocl.examples.emf.validity/create/constraining=false
+org.eclipse.ocl.examples.emf.validation.validity/create/constraining=false
 
 # Turn on Result***Node creation announcements
-org.eclipse.ocl.examples.emf.validity/create/result=false
+org.eclipse.ocl.examples.emf.validation.validity/create/result=false
 
 # Turn on ValidatableNode creation announcements
-org.eclipse.ocl.examples.emf.validity/create/validatable=false
+org.eclipse.ocl.examples.emf.validation.validity/create/validatable=false
 
 # Turn on locateConstraints resource announcements
-org.eclipse.ocl.examples.emf.validity/locate/resource=false
+org.eclipse.ocl.examples.emf.validation.validity/locate/resource=false
