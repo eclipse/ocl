@@ -13,6 +13,8 @@
    			 class="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/uml2/5.0.0/UML"
    			 class="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"/>
+   		<locator
+   			 class="org.eclipse.ocl.examples.validity.locator.DelegateUIConstraintLocator"/>
    </extension>
 
 </plugin>
