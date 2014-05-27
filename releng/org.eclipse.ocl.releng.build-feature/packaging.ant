@@ -118,6 +118,8 @@
 		<ant antfile="p2RepoTuning/p2RepoTuning.ant" target="tuneup.p2.repository" inheritall="true" />
 		<echo>->   Copying the p2.index file</echo>
 		<copy file="p2.index" todir="${sp:repository}"/>
+		<echo>->   Copying the index.html file</echo>
+		<copy file="index.html" todir="${sp:repository}"/>
 		<echo>Tuning up p2 repository finished</echo>
 	</target>
 
