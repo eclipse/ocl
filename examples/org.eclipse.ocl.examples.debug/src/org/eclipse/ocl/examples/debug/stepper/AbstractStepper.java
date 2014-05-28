@@ -25,7 +25,7 @@ public abstract class AbstractStepper implements IStepper
 {
 	public static @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable INode startNode, @Nullable INode endNode) {
 		int startPosition = startNode != null ? startNode.getOffset() : 0;
-		int endPosition = endNode != null ? endNode.getEndOffset() : 0;
+		int endPosition = endNode != null ? ElementUtil.getEndOffset(endNode) : 0;
 		return new UnitLocation(startPosition, endPosition, evalEnv, element);
 	}
 

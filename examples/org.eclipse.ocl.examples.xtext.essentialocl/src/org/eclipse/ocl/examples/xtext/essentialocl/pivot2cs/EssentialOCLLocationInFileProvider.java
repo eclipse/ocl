@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
@@ -59,7 +60,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 			INode lastNode = NodeModelUtils.getNode(lastCS);
 			if ((firstNode != null) && (lastNode != null)) {
 				int startOffset = firstNode.getOffset();
-				int endOffset = lastNode.getEndOffset();
+				int endOffset = ElementUtil.getEndOffset(lastNode);
 				int length = endOffset - startOffset;
 				if (startOffset < 0) {
 					startOffset = 0;

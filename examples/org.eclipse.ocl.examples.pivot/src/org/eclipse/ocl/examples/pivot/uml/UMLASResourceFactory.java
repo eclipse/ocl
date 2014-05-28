@@ -40,7 +40,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 public final class UMLASResourceFactory extends AbstractASResourceFactory
 {
@@ -91,7 +90,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(EOperation eOperation) {
 		if (EcoreUtil.isInvariant(eOperation)) {
 			EClass eContainingClass = eOperation.getEContainingClass();
-			EAnnotation eAnnotation = eContainingClass.getEAnnotation(UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI);
+			EAnnotation eAnnotation = eContainingClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML"); // UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI
 			if (eAnnotation != null) {
 				List<EObject> eReferences = eAnnotation.getReferences();
 				if ((eReferences != null) && (eReferences.size() > 0)) {

@@ -67,9 +67,11 @@ import org.eclipse.ocl.examples.xtext.base.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
+import org.eclipse.xtext.nodemodel.BidiIterator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.impl.AbstractNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 
@@ -298,6 +300,22 @@ public class ElementUtil
 		return null;
 	}
 
+	/** This makes INode.getEndOffset from Xtext 2.5 available on 2.3 */
+	public static int getEndOffset(@NonNull INode iNode) {
+		if (!(iNode instanceof AbstractNode)) {
+			return -1;
+		}
+		AbstractNode node = (AbstractNode) iNode;
+		BidiIterator<AbstractNode> iter = node .basicIterator();
+		while(iter.hasPrevious()) {
+			INode prev = iter.previous();
+			if (prev instanceof ILeafNode && !((ILeafNode) prev).isHidden()) {
+				return prev.getTotalEndOffset();
+			}
+		}
+		return node.getTotalEndOffset();
+	}
+
 	public static boolean getQualifier(@NonNull List<String> qualifiers, @NonNull String trueString, @NonNull String falseString, boolean defaultValue) {
 		if (qualifiers.contains(trueString)) {
 			return true;
@@ -319,7 +337,7 @@ public class ElementUtil
 	}
 
 	public static @Nullable String getText(@NonNull TypedTypeRefCS csElement, @NonNull EReference feature) {
-		@NonNull List<INode> nodes = NodeModelUtils.findNodesForFeature(csElement, feature);
+		@SuppressWarnings("null")@NonNull List<INode> nodes = NodeModelUtils.findNodesForFeature(csElement, feature);
 //		assert (nodes.size() == 1;
 		if (nodes.isEmpty()) {
 			return null;

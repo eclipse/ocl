@@ -87,7 +87,7 @@ public class ASTBindingHelper
 		if (node == null) {
 			return 0;
 		}
-		return node.getEndOffset();
+		return ElementUtil.getEndOffset(node);
 	}
 	
 //	private static int getNodeLength(@NonNull Element element) {

@@ -122,6 +122,10 @@ public class ValidateCommand extends ValidateAction
 	}
 	protected final static class Diagnostician_2_9 extends PivotDiagnostician
 	{
+		public static void update(ResourceSet resourceSet, BasicDiagnostic resourceSetDiagnostic) {
+			DiagnosticDecorator.DiagnosticAdapter.update(resourceSet, resourceSetDiagnostic);
+		}
+
 		private final ResourceSet resourceSet;
 		private final IProgressMonitor progressMonitor;
 
@@ -331,7 +335,9 @@ public class ValidateCommand extends ValidateAction
 
 			// Inform any decorators.
 			//
-			DiagnosticDecorator.DiagnosticAdapter.update(resourceSet, resourceSetDiagnostic);
+			if (diagnosticianHasDoValidate) {
+				Diagnostician_2_9.update(resourceSet, resourceSetDiagnostic);
+			}
 		}
 	}
 

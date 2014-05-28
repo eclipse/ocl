@@ -47,7 +47,7 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 		if (defaultSaveOptions == null) {
 			defaultSaveOptions = new HashMap<Object, Object>();
 			defaultSaveOptions.put(XMLResource.OPTION_LINE_WIDTH, 132);
-			defaultSaveOptions.put(XMLResource.OPTION_LINE_DELIMITER, "\n");
+			defaultSaveOptions.put("LINE_DELIMITER", "\n");	// XMLResource.OPTION_LINE_DELIMITER
 		}
 		return defaultSaveOptions;
 	}

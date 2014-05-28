@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Version: 3.4.0.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.completeocl.ui; singleton:=true
-Require-Bundle: org.eclipse.jdt.annotation;bundle-version="[1.1.0,2.0.0)";resolution:=optional,
+Require-Bundle: org.eclipse.jdt.annotation;bundle-version="[1.0.0,2.0.0)";resolution:=optional,
  org.eclipse.uml2.uml;bundle-version="[4.0.0,6.0.0)",
  org.eclipse.ocl.examples.xtext.completeocl;bundle-version="[3.3.0,4.0.0)";visibility:=reexport,
  org.eclipse.ocl.examples.xtext.oclinecore.ui;bundle-version="[3.3.0,4.0.0)";visibility:=reexport

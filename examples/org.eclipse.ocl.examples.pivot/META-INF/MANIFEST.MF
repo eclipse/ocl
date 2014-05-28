@@ -31,7 +31,7 @@ Export-Package: org.eclipse.ocl.examples.pivot,
  org.eclipse.ocl.examples.pivot.utilities,
  org.eclipse.ocl.examples.pivot.validation
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
- org.eclipse.jdt.annotation;bundle-version="[1.1.0,2.0.0)";resolution:=optional,
+ org.eclipse.jdt.annotation;bundle-version="[1.0.0,2.0.0)";resolution:=optional,
  org.eclipse.emf.codegen.ecore;bundle-version="[2.7.0,3.0.0)",
  org.eclipse.emf.edit;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
  org.eclipse.emf.mapping.ecore2xml;bundle-version="[2.7.0,3.0.0)",

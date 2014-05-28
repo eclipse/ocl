@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName
 Require-Bundle: org.junit,
- org.eclipse.jdt.annotation;bundle-version="[1.1.0,2.0.0)";resolution:=optional,
+ org.eclipse.jdt.annotation;bundle-version="[1.0.0,2.0.0)";resolution:=optional,
  org.eclipse.ocl.examples.xtext.tests,
  org.eclipse.papyrus.sysml,
  org.eclipse.uml2.uml

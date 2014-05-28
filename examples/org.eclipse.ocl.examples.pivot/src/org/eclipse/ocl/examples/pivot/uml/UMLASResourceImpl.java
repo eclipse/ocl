@@ -57,7 +57,7 @@ public class UMLASResourceImpl extends ASResourceImpl
 			if (XMI2UMLResource.UML_METAMODEL_NS_URI.equals(umlPackage.getURI())) {
 				eClassifier = UMLPackage.eINSTANCE.getEClassifier(typeName);
 			}
-			else if (XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_2_5_NS_URI.equals(umlPackage.getURI())) {
+			else if (XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_NS_URI.equals(umlPackage.getURI())) {
 				eClassifier = TypesPackage.eINSTANCE.getEClassifier(typeName);
 			}
 		}
