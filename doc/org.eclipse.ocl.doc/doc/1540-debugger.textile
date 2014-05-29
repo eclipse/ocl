@@ -1,0 +1,96 @@
+
+h2(#Debugger). Debugger (new in Luna)
+
+The OCL debugger supports debugging OCL constraints. It is a customization of the standard Eclipse debugger and so most of the facilities should be familiar to users of the Eclipse Java debugger.
+
+!{width:90%}images/1540-debugger-image.png(DebuggerImage)!
+
+The screenshot shows
+* Stack Trace showing nested evaluation environments 
+* Variables View showing intermediate and local variables
+* Editor showing input and context after a couple of steps
+* Outline showing the Concrete Syntax Tree context
+
+__The OCL Debugger is very new, there are no doubt many opportunities for ergonomic improvements and bug fixes. Please raise a "Bugzilla":http://bugs.eclipse.org/bugs/enter_bug.cgi?product=MDT.OCL .__
+
+h3. Launching
+
+Debugging an OCL constraint requires the user to provide two pieces of information
+* the expression/constraint to evaluate
+* the self object upon which to operate
+
+These may be provided in a variety of ways
+
+h4. Selected model object and manually entered expression
+
+An arbitrary OCL expression may be entered in the Xtext OCL Console and evaluated on a model object selected using a mouse selection. The Debugger adds an addition debug icon to the Console Tool Bar.
+
+!{width:70%}images/1540-debugger-console-launch.png(DebuggerConsoleLaunch)!
+
+Clicking the debug icon creates a dummy Complete OCL file and then launches the debugger. The expression is encapsulated as an oclDebugExpression operation extension to the type of the selected object. The file provides the source for source level debugging. The console may be re-used while debugging.
+
+h4. Selected model object/constraint combination
+
+The Validity View provides fine-grained display of the evaluation of each constraint applicable to a model element and vice-versa. One of these model element/constraint combinations may be selected and the debugger launched to investigate why validation is producing unexpected results.
+
+!{width:70%}images/1540-debugger-validity-view-launch.png(DebuggerValidityViewLaunch)!
+
+h4. Selected model object and selected constraint
+
+An OCL Expression launch configuration may be created to select a model element and a constraint for execution or debugging.
+
+The launch configuration may be created using *Run->Run Configurations...* or *Debug->Debug Configurations...* from the Eclipse Menu Bar. This requires both Model Element and Constraint to be selected separately.
+
+!{width:70%}images/1540-debugger-run-configuration-launch.png(DebuggerRunConfigurationLaunch)!
+
+Alternatively the context menu in model editors offers an *OCL->Debug...* option that creates a Debug Configuration in which the Model Element is pre-selected from the invoking context.
+
+h3. Stepping
+
+OCL expressions can be very compact and generally occur embedded in a larger application. The debugger is therefore optimized for this usage.
+
+Rather than the line based stepping typical of the Java debugger, the OCL debugger supports term by term stepping, highlighting the next term to be evaluated and showing the intermediate results. 
+
+It is desirable to be able to step by term without modifying source text to insert line breaks. The OCL debugger therefore has a slightly different interpretation of the Step functionalities.
+
+The "Example Debugger View":#Debugger shows the imminent execution of ".size()" after stepping into "self" and ".name".
+
+h4. Step Into
+
+A single OCL AST node is executed. The results can be inspected as inputs of a subsequent AST node.
+
+h4. Step Over
+
+Execution proceeds until the next OCL AST node is associated with a new source line number.
+
+h4. Step Return
+
+Execution proceeds until the next OCL AST node is associated with a reduced stack depth.
+
+h4. Resume
+
+Execution proceeds until the next breakpoint.
+
+h3. Variables View
+
+The Variables View enables the local variables and intermediate results to be examined using OCL syntaxes such as single quotes for Strings.
+
+The "Example Debugger View":#Debugger shows the "self" variable, which is an "ecore::Package" instance, opened to show its fields, amongst which the name is 'tutorial'.
+
+Intermediate variables are named using the property name of the subsequent AST node's input. Thus "$source" shows the OperationCallExp.source input already computed as "self.name". Multiple inputs are diasmbiguated by suffixing as in "$argument[1]".
+
+"$pc" denotes the previous instruction. __Bug. Surely the next would be more useful?__
+
+h3. Breakpoints View
+
+Line breakpoints can be set in the Complete OCL editor and examined in the Breakpoints View. Execution stops when an OCL AST node has been executed that is associated with the line of a breakpoint.
+
+No filtering facilities are yet available.
+
+h3. Outline View
+
+The Outline currently shows the OCL Concrete Syntax Tree which is structurally similar to the Abstract Syntax Tree that is executed. .
+
+__It would be more useful to show the AST and support Node breakpoints on it.__ 
+
+ 

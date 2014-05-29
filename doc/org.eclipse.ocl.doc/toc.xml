@@ -210,6 +210,22 @@
 <topic href="help/ValidityView.html#org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator" label="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"></topic>
 </topic>
 </topic>
+<topic href="help/Debugger.html" label="Debugger (new in Luna)">
+<topic href="help/Debugger.html#Launching" label="Launching">
+<topic href="help/Debugger.html#Selectedmodelobjectandmanuallyenteredexpression" label="Selected model object and manually entered expression"></topic>
+<topic href="help/Debugger.html#Selectedmodelobjectconstraintcombination" label="Selected model object/constraint combination"></topic>
+<topic href="help/Debugger.html#Selectedmodelobjectandselectedconstraint" label="Selected model object and selected constraint"></topic>
+</topic>
+<topic href="help/Debugger.html#Stepping" label="Stepping">
+<topic href="help/Debugger.html#StepInto" label="Step Into"></topic>
+<topic href="help/Debugger.html#StepOver" label="Step Over"></topic>
+<topic href="help/Debugger.html#StepReturn" label="Step Return"></topic>
+<topic href="help/Debugger.html#Resume" label="Resume"></topic>
+</topic>
+<topic href="help/Debugger.html#VariablesView" label="Variables View"></topic>
+<topic href="help/Debugger.html#BreakpointsView" label="Breakpoints View"></topic>
+<topic href="help/Debugger.html#OutlineView" label="Outline View"></topic>
+</topic>
 <topic href="help/Integration.html" label="OCL Integration">
 <topic href="help/Integration.html#Integration-OCLinEcore" label="OCL execution in Ecore / EMF Delegates"></topic>
 <topic href="help/Integration.html#Integration-Messages" label="Custom Validation Messages"></topic>
