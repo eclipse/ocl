@@ -9,6 +9,7 @@
 
 1510-editors.textile
 1520-console.textile
+1530-validity-view.textile
 
 1600-ocl-integration.textile
 

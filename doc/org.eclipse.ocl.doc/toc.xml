@@ -156,6 +156,60 @@
 <topic href="help/InteractiveOCL.html#LoadSaveanexpression" label="Load/Save an expression"></topic>
 </topic>
 </topic>
+<topic href="help/ValidityView.html" label="Validity View (new in Luna)">
+<topic href="help/ValidityView.html#ValidityViewToolBar" label="View Tool Bar">
+<topic href="help/ValidityView.html#ExpandAll" label="Expand All"></topic>
+<topic href="help/ValidityView.html#CollapseAll" label="Collapse All"></topic>
+<topic href="help/ValidityView.html#Pin" label="Pin"></topic>
+<topic href="help/ValidityView.html#Refresh" label="Refresh"></topic>
+<topic href="help/ValidityView.html#Run" label="Run"></topic>
+<topic href="help/ValidityView.html#Filter" label="Filter"></topic>
+<topic href="help/ValidityView.html#Save" label="Save">
+<topic href="help/ValidityView.html#html" label="html"></topic>
+<topic href="help/ValidityView.html#model" label="model"></topic>
+<topic href="help/ValidityView.html#text" label="text"></topic>
+</topic>
+</topic>
+<topic href="help/ValidityView.html#ValidityViewModelElementsPane" label="Model Elements Pane">
+<topic href="help/ValidityView.html#ValidityViewModelElementsToolBar" label="Model Elements Tool Bar">
+<topic href="help/ValidityView.html#ExpandAll2" label="Expand All"></topic>
+<topic href="help/ValidityView.html#CollapseAll2" label="Collapse All"></topic>
+<topic href="help/ValidityView.html#EnableAll" label="Enable All"></topic>
+<topic href="help/ValidityView.html#DisableAll" label="Disable All"></topic>
+<topic href="help/ValidityView.html#ShowHidedisabled" label="Show/Hide disabled"></topic>
+</topic>
+<topic href="help/ValidityView.html#TextFilter" label="Text Filter"></topic>
+<topic href="help/ValidityView.html#ModelElementstree" label="Model Elements tree"></topic>
+<topic href="help/ValidityView.html#ModelElementsContextMenu" label="Model Elements Context Menu">
+<topic href="help/ValidityView.html#ValidateSelection" label="Validate Selection"></topic>
+<topic href="help/ValidityView.html#DebugSingleEnabledSelection" label="Debug Single Enabled Selection"></topic>
+<topic href="help/ValidityView.html#ShowinEditor" label="Show in Editor"></topic>
+</topic>
+</topic>
+<topic href="help/ValidityView.html#ValidityViewMetamodelConstraintsPane" label="Metamodel Constraints Pane">
+<topic href="help/ValidityView.html#ValidityViewMetamodelConstraintsToolBar" label="Metamodel Constraints Tool Bar">
+<topic href="help/ValidityView.html#ExpandAll3" label="Expand All"></topic>
+<topic href="help/ValidityView.html#CollapseAll3" label="Collapse All"></topic>
+<topic href="help/ValidityView.html#EnableAll2" label="Enable All"></topic>
+<topic href="help/ValidityView.html#DisableAll2" label="Disable All"></topic>
+<topic href="help/ValidityView.html#ShowHidedisabled2" label="Show/Hide disabled"></topic>
+</topic>
+<topic href="help/ValidityView.html#TextFilter2" label="Text Filter"></topic>
+<topic href="help/ValidityView.html#MetamodelConstraintstree" label="Metamodel Constraints tree"></topic>
+<topic href="help/ValidityView.html#MetamodelConstraintsContextMenu" label="Metamodel Constraints Context Menu">
+<topic href="help/ValidityView.html#ValidateSelection2" label="Validate Selection"></topic>
+<topic href="help/ValidityView.html#DebugSingleEnabledSelection2" label="Debug Single Enabled Selection"></topic>
+<topic href="help/ValidityView.html#ShowinEditor2" label="Show in Editor"></topic>
+</topic>
+</topic>
+<topic href="help/ValidityView.html#ConstraintLocators" label="Constraint Locators">
+<topic href="help/ValidityView.html#org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator" label="org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator"></topic>
+<topic href="help/ValidityView.html#org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator" label="org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator"></topic>
+<topic href="help/ValidityView.html#org.eclipse.ocl.examples.validity.locator.DelegateUIConstraintLocator" label="org.eclipse.ocl.examples.validity.locator.DelegateUIConstraintLocator"></topic>
+<topic href="help/ValidityView.html#org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator" label="org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator"></topic>
+<topic href="help/ValidityView.html#org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator" label="org.eclipse.ocl.examples.validity.locator.UMLUIConstraintLocator"></topic>
+</topic>
+</topic>
 <topic href="help/Integration.html" label="OCL Integration">
 <topic href="help/Integration.html#Integration-OCLinEcore" label="OCL execution in Ecore / EMF Delegates"></topic>
 <topic href="help/Integration.html#Integration-Messages" label="Custom Validation Messages"></topic>
