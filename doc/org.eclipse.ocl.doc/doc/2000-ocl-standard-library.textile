@@ -2,11 +2,11 @@
 h1(#StandardLibrary). The OCL Standard Library
 
 This documentation on the OCL Standard Library is auto-generated from the
-org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib that defines
-the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.3.1 functionality.
+org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib that defines
+the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
 It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
 
-The library support for the Ecore and UML bindings was upgradedin Juno so that the available operations
+The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
 are similar to those documented here for the Pivot binding.
 
 h2(#Precedences). *Precedences*
@@ -45,6 +45,12 @@ The bag containing all elements of @self@ apart from all occurrences of object.
 
 
 
+@excludingAll(objects : Collection(OclAny)) : Bag(T)@
+
+The bag containing all elements of @self@ apart from all occurrences of all objects.
+
+
+
 @flatten(T2)() : Bag(T2)@
 
 Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as @self@.
@@ -55,6 +61,12 @@ If the element type is a collection type, the result is the bag containing all t
 @including(object : T[?]) : Bag(T)@
 
 The bag containing all elements of @self@ plus object.
+
+
+
+@includingAll(objects : Collection(T)) : Bag(T)@
+
+The bag containing all elements of @self@ and objects.
 
 
 
@@ -79,7 +91,7 @@ The closure of applying body transitively to every distinct element of the sourc
 
 
 
-@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(T)@
+@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V)@
 
 The Bag of elements which results from applying body to every member of the source nonordered collection.
 
@@ -154,88 +166,90 @@ Returns @Set{false, true}@.
 @and(b : Boolean[?]) : Boolean[?] invalidating validating@
 precedence: @AND@
 
-True if both b1 and b are @true@.
+@false@ if either @self@ or @b@ is @false@.
+Otherwise @invalid@ if either @self@ or @b@ is @invalid@ .
+Otherwise @null@ if either @self@ or @b@ is @null@.
+Otherwise @true@.
 
 
 
 bc.. 
 body: if self.oclIsInvalid() then
-		     	if b.oclIsUndefined() then self
-		      	else if b = false then false
-		      	else self endif endif
-		      else if self.oclIsUndefined() then
-		     	if b.oclIsInvalid() then b
-		      	else if b.oclIsUndefined() then invalid
-		      	else if b = false then false
-		      	else invalid endif endif endif
-		      else
-		        if self = false then false
-		        else if b.oclIsInvalid() then b
-		        else if b.oclIsUndefined() then invalid
-		        else b
-		      endif endif endif endif endif
+		        if b.oclIsInvalid() then self
+		        else if b = false then false
+		        else self
+		        endif endif
+		      else if self = false then false
+		      else if b.oclIsInvalid() then b
+		      else if b = false then false
+		      else if self = null then null
+		      else if b = null then null
+		      else true
+		      endif endif endif endif endif endif
 p. 
 @implies(b : Boolean[?]) : Boolean[?] invalidating validating@
 precedence: @IMPLIES@
 
-True if @self@ is @false@, or if @self@ is @true@ and b is @true@.
+@true@ if @self@ is @false@, or if @b@ is @true@.
+Otherwise @invalid@ if either @self@ or @b@ is @invalid@.
+Otherwise @null@ if either @self@ or @b@ is @null@.
+Otherwise @false@.
 
 
 
 bc.. 
 body: if self.oclIsInvalid() then
-		     	if b.oclIsUndefined() then self
-		      	else if b = true then true
-		      	else self endif endif
-		      else if self.oclIsUndefined() then
-		     	if b.oclIsInvalid() then b
-		      	else if b.oclIsUndefined() then invalid
-		      	else if b = true then true
-		      	else invalid endif endif endif
-		      else
-		        if self = false then true
-		        else if b.oclIsInvalid() then b
-		        else if b.oclIsUndefined() then invalid
-		        else b
-		      endif endif endif endif endif
+		        if b.oclIsInvalid() then self
+		        else if b = true then true
+		        else self
+		        endif endif
+		      else if self = false then true
+		      else if b.oclIsInvalid() then b
+		      else if b = true then true
+		      else if self = null then null
+		      else if b = null then b
+		      else false
+		      endif endif endif endif endif endif
 p. 
 @not() : Boolean[?]@
 precedence: @UNARY@
 
-True if @self@ is @false@.
+@true@ if @self@ is @false@.
+@false@ if @self@ is @true@.
+@null@ if @self@ is @null@.
+Otherwise @invalid@.
 
 
 
 bc.. 
-body: if self = true then false
-		      else if self.oclIsInvalid() then self
-		      else if self.oclIsUndefined() then invalid
-		      else true
-		      endif endif endif
+body: if self.oclIsInvalid() then self
+		      else if self = null then null
+		      else self = false
+		      endif endif
 p. 
 @or(b : Boolean[?]) : Boolean[?] invalidating validating@
 precedence: @OR@
 
-True if either @self@ or b is @true@.
+@true@ if either @self@ or @b@ is @true@.
+Otherwise @invalid@ if either @self@ or @b@ is @invalid@.
+Otherwise @null@ if either @self@ or @b@ is @null@.
+Otherwise @false@.
 
 
 
 bc.. 
 body: if self.oclIsInvalid() then
-		     	if b.oclIsUndefined() then self
-		      	else if b = true then true
-		      	else self endif endif
-		      else if self.oclIsUndefined() then
-		     	if b.oclIsInvalid() then b
-		      	else if b.oclIsUndefined() then invalid
-		      	else if b = true then true
-		      	else invalid endif endif endif
-		      else
-		        if self = true then true
-		        else if b.oclIsInvalid() then b
-		        else if b.oclIsUndefined() then invalid
-		        else b
-		      endif endif endif endif endif
+		        if b.oclIsInvalid() then self
+			    else if b = true then true
+		        else self
+		        endif endif
+		      else if self = true then true
+			  else if b.oclIsInvalid() then b
+			  else if b = true then true
+			  else if self = null then null
+			  else if b = null then null
+		      else false
+		      endif endif endif endif endif endif
 p. 
 @toString() : String@
 
@@ -246,10 +260,19 @@ Converts @self@ to a string value.
 @xor(b : Boolean[?]) : Boolean[?]@
 precedence: @XOR@
 
-True if either @self@ or b is @true@, but not both.
+@true@ if @self@ is @true@ and @b@ is @false@, or if @self@ is @false@ and @b@ is @true@.
+@false@ if @self@ is @true@ and @b@ is @true@, or if @self@ is @false@ and @b@ is @false@.
+Otherwise @invalid@ if either @self@ or @b@ is @invalid@.
+Otherwise @null@.
 
 
 
+bc.. 
+body: if self = null then null
+		      else if b = null then null
+		      else self <> b
+		      endif endif
+p. 
 
 
 h2(#Class). **@Class@**
@@ -376,6 +399,12 @@ The collection containing all elements of @self@ apart from object.
 
 
 
+@excludingAll(objects : Collection(OclAny)) : Collection(T)@
+
+The collection containing all elements of @self@ apart from all occurrences of all objects.
+
+
+
 @flatten(T2)() : Collection(T2)@
 
 If the element type is not a collection type, this results in the same collection as @self@.
@@ -398,6 +427,12 @@ Does @self@ contain all the elements of c2 ?
 @including(object : T[?]) : Collection(T)@
 
 The collection containing all elements of @self@ plus object.
+
+
+
+@includingAll(objects : Collection(T)) : Collection(T)@
+
+The collection containing all elements of @self@ and objects.
 
 
 
@@ -447,7 +482,7 @@ Is @self@ not the empty collection?
 
 
 
-@product(T2)(c2 : Collection(T2)) : Set(Tuple(first : T, second : T2))@
+@product(T2)(c2 : Collection(T2)) : Set(Tuple(Tuple(first : T, second : T2)::first : T, Tuple(first : T, second : T2)::second : T2))@
 
 The cartesian product operation of @self@ and c2.
 
@@ -506,33 +541,33 @@ collectNested is defined individually for each subclass of CollectionType.
 
 
 
-@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Collection(T)@
+@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V)@
 
 The Collection of elements which results from applying body to every member of the source collection.
 
 
 
-@exists(i : T[?] | lambda : Lambda T() : Boolean) : Boolean@
+@exists(i : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]@
 
 Results in @true@ if body evaluates to @true@ for at least one element in the source collection.
 
 
 
-@exists(i : T[?], j : T[?] | lambda : Lambda T() : Boolean) : Boolean@
+@exists(i : T[?], j : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]@
 
 
 
-@forAll(i : T[?] | lambda : Lambda T() : Boolean) : Boolean@
+@forAll(i : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]@
 
 Results in @true@ if the body expression evaluates to @true@ for each element in the source collection; otherwise, result is @false@.
 
 
 
-@forAll(i : T[?], j : T[?] | lambda : Lambda T() : Boolean) : Boolean@
+@forAll(i : T[?], j : T[?] | lambda : Lambda T() : Boolean[?]) : Boolean[?]@
 
 
 
-@isUnique(i : T[?] | lambda : Lambda T() : OclAny) : Boolean@
+@isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean@
 
 Results in @true@ if body evaluates to a different value for each element in the source collection; otherwise, result is @false@.
 
@@ -603,6 +638,11 @@ The standard type EnumerationLiteral represents a named constant value of an Enu
 
 
 conformsTo "@OclAny@":#OclAny
+
+*Attributes*
+
+@Enumeration : Bag(Enumeration)@
+
 
 
 
@@ -708,6 +748,13 @@ h2(#Metaclass). **@Metaclass(T)@**
 
 
 conformsTo "@Class@":#Class, "@OclType@":#OclType
+
+*Attributes*
+
+@instanceType : T@
+
+Evaluates to the type of instances.
+
 
 
 
@@ -1012,9 +1059,6 @@ precedence: @OR@
 
 @toString() : String@
 
-operation oclBadOperation() : OclInvalid;
-property oclBadProperty : OclInvalid;
-/**
 Returns 'invalid'.
 
 
@@ -1251,6 +1295,46 @@ Returns @null@.
 
 
 
+h2(#OrderedCollection). **@OrderedCollection(T)@**
+
+The OrderedCollection type provides the shared functionality of the OrderedSet and Sequence
+collections for which the elements are ordered.
+The common supertype of OrderedCollection is Collection.
+
+
+
+conformsTo "@Collection(T)@":#Collection
+
+
+
+*Operations*
+
+@at(index : Integer) : T[?] invalidating@
+
+The i-th element of ordered collection.
+
+
+
+@first() : T[?] invalidating@
+
+The first element in @self@.
+
+
+
+@indexOf(obj : OclAny[?]) : Integer@
+
+The index of object obj in the ordered collection.
+
+
+
+@last() : T[?] invalidating@
+
+The last element in @self@.
+
+
+
+
+
 h2(#OrderedSet). **@OrderedSet(T)@**
 
 The OrderedSet is a Set, the elements of which are ordered.
@@ -1260,7 +1344,7 @@ The common supertype of Sets and OrderedSets is Collection.
 
 
 
-conformsTo "@Sequence(T)@":#Sequence, "@UniqueCollection(T)@":#UniqueCollection
+conformsTo "@OrderedCollection(T)@":#OrderedCollection, "@UniqueCollection(T)@":#UniqueCollection
 
 
 
@@ -1289,11 +1373,23 @@ The set of elements, consisting of all elements of @self@, followed by object.
 
 
 
+@appendAll(objects : OrderedCollection(T)) : OrderedSet(T)@
+
+The set of elements, consisting of all elements of @self@, followed by objects.
+
+
+
 @excluding(object : OclAny[?]) : OrderedSet(T)@
 
 The ordered set  containing all elements of @self@ apart from object.
 
 The order of the remaining elements is not changed.
+
+
+
+@excludingAll(objects : Collection(OclAny)) : OrderedSet(T)@
+
+The ordered set containing all elements of @self@ apart from all occurrences of all objects.
 
 
 
@@ -1331,6 +1427,12 @@ bc..
 post IsSizePlusOne: result->size() = self->size() + 1
 p. 
 
+@prependAll(objects : OrderedCollection(T)) : OrderedSet(T)@
+
+The sequence consisting of objects, followed by all elements in @self@.
+
+
+
 @reverse() : OrderedSet(T)@
 
 The ordered set of elements with same elements but with the opposite order.
@@ -1353,6 +1455,22 @@ The sub-set of @self@ starting at number lower, up to and including element numb
 
 
 *Iterations*
+
+@closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)@
+
+The closure of applying body transitively to every distinct element of the source collection.
+
+
+
+@collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)@
+
+
+
+@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)@
+
+The sequence of elements that results from applying body to every member of the source ordered collection.
+
+
 
 @reject(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)@
 
@@ -1520,7 +1638,7 @@ The common supertype of Sentence and Bags is Collection.
 
 
 
-conformsTo "@Collection(T)@":#Collection
+conformsTo "@OrderedCollection(T)@":#OrderedCollection
 
 
 
@@ -1544,9 +1662,9 @@ The sequence of elements, consisting of all elements of @self@, followed by obje
 
 
 
-@at(index : Integer) : T[?] invalidating@
+@appendAll(objects : OrderedCollection(T)) : Sequence(T)@
 
-The i-th element of sequence.
+The sequence of elements, consisting of all elements of @self@, followed by objects.
 
 
 
@@ -1558,9 +1676,9 @@ The order of the remaining elements is not changed.
 
 
 
-@first() : T[?] invalidating@
+@excludingAll(objects : Collection(OclAny)) : Sequence(T)@
 
-The first element in @self@.
+The sequence containing all elements of @self@ apart from all occurrences of all objects.
 
 
 
@@ -1578,27 +1696,21 @@ The sequence containing all elements of @self@ plus object added as the last ele
 
 
 
-@indexOf(obj : OclAny[?]) : Integer@
-
-The index of object obj in the ordered collection.
-
-
-
 @insertAt(index : Integer, object : T[?]) : Sequence(T) invalidating@
 
 The sequence consisting of @self@ with object inserted at position index.
 
 
 
-@last() : T[?] invalidating@
-
-The last element in @self@.
-
-
-
 @prepend(object : T[?]) : Sequence(T)@
 
 The sequence consisting of object, followed by all elements in @self@.
+
+
+
+@prependAll(objects : OrderedCollection(T)) : Sequence(T)@
+
+The sequence consisting of objects, followed by all elements in @self@.
 
 
 
@@ -1635,7 +1747,7 @@ The closure of applying body transitively to every distinct element of the sourc
 
 
 
-@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(T)@
+@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V)@
 
 The sequence of elements that results from applying body to every member of the source ordered collection.
 
@@ -1667,7 +1779,7 @@ h2(#Set). **@Set(T)@**
 
 
 
-conformsTo "@Bag(T)@":#Bag, "@UniqueCollection(T)@":#UniqueCollection
+conformsTo "@UniqueCollection(T)@":#UniqueCollection
 
 
 
@@ -1698,6 +1810,12 @@ The set containing all elements of @self@ without object.
 
 
 
+@excludingAll(objects : Collection(OclAny)) : Set(T)@
+
+The set containing all elements of @self@ apart from all occurrences of all objects.
+
+
+
 @flatten(T2)() : Set(T2)@
 
 Redefines the Collection operation. If the element type is not a collection type, this results in the same set as @self@.
@@ -1711,6 +1829,12 @@ The set containing all elements of @self@ plus object.
 
 
 
+@includingAll(objects : Collection(T)) : Set(T)@
+
+The set containing all elements of @self@ and objects.
+
+
+
 @selectByKind(TT)(type : Metaclass(TT)) : Set(TT)@
 
 
@@ -1721,6 +1845,22 @@ The set containing all elements of @self@ plus object.
 
 
 *Iterations*
+
+@closure(i : T | lambda : Lambda T() : Set(T)) : Set(T)@
+
+The closure of applying body transitively to every distinct element of the source collection.
+
+
+
+@collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V)@
+
+
+
+@collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V)@
+
+The Bag of elements which results from applying body to every member of the source nonordered collection.
+
+
 
 @reject(i : T[?] | lambda : Lambda T() : Boolean) : Set(T)@
 

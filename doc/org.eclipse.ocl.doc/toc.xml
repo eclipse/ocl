@@ -215,6 +215,7 @@
 <topic href="help/OclTuple.html" label="OclTuple"></topic>
 <topic href="help/OclType.html" label="OclType"></topic>
 <topic href="help/OclVoid.html" label="OclVoid"></topic>
+<topic href="help/OrderedCollection.html" label="OrderedCollection(T)"></topic>
 <topic href="help/OrderedSet.html" label="OrderedSet(T)"></topic>
 <topic href="help/Real.html" label="Real"></topic>
 <topic href="help/Sequence.html" label="Sequence(T)"></topic>
@@ -271,7 +272,7 @@
 <topic href="help/CompleteOCLTutorial.html#custommessages" label="custom messages"></topic>
 <topic href="help/CompleteOCLTutorial.html#operationandpropertycontextdeclarations" label="operation and property context declarations"></topic>
 </topic>
-<topic href="help/CompleteOCLTutorial.html#LoadCompleteOCLResource" label="Load Complete OCL Resource Menu Action"></topic>
+<topic href="help/CompleteOCLTutorial.html#LoadCompleteOCLResource" label="OCL|Load Document Menu Action"></topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLTutorial-EcoreComplements" label="Example Complete OCL complements for Ecore">
 <topic href="help/CompleteOCLTutorial.html#DerivationIsVolatile" label="DerivationIsVolatile"></topic>
 <topic href="help/CompleteOCLTutorial.html#DerivationIsTransient" label="DerivationIsTransient"></topic>
