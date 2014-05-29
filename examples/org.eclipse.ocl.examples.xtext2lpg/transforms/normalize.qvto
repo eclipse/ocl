@@ -258,7 +258,7 @@ when { self.parentRule <> null }
 						
 }
 
-mapping XBNFwc::Alternatives::alternativesNested2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall
+mapping XBNFwc::Alternatives::alternativesNested2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall
 {
 	var me : Alternatives = self;
 	var alternatives : Sequence(AbstractElement) = self.elements;
@@ -300,7 +300,7 @@ mapping XBNF::NegatedToken::negatedToken2element(parentRule : String, subRules :
 	terminal := self.terminal.map element2element(parentRule, subRules, disambiguator, firstRules);
 }
 
-mapping XBNFwc::OneOrMore::oneOrMore2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
+mapping XBNFwc::OneOrMore::oneOrMore2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
 	var oneRule : XBNF::UntypedRule = self.map element2subRule(parentRule, subRules, disambiguator, firstRules);
 	subRules->add(oneRule);
 	var oneOrMoreRule : XBNF::UntypedRule = oneRule.map rule2oneOrMoreSubRule(parentRule, subRules);
@@ -336,7 +336,7 @@ mapping XBNF::Wildcard::wildcard2element(parentRule : String, subRules : List(XB
 	debug := self.debug;
 }
 
-mapping XBNFwc::ZeroOrMore::zeroOrMore2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
+mapping XBNFwc::ZeroOrMore::zeroOrMore2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
 	var oneRule : UntypedRule = self.map element2subRule(parentRule, subRules, disambiguator, firstRules);
 	subRules->add(oneRule);
 	var oneOrMoreRule : UntypedRule = oneRule.map rule2oneOrMoreSubRule(parentRule, subRules);
@@ -367,7 +367,7 @@ mapping XBNFwc::ZeroOrMore::zeroOrMore2element(parentRule : String, subRules : L
 	referredRule := zeroOrMoreRule
 }
 
-mapping XBNFwc::ZeroOrOne::zeroOrOne2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
+mapping XBNFwc::ZeroOrOne::zeroOrOne2element(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::RuleCall {
 	var me : CompoundElement = self;
 	var alternatives : Sequence(AbstractElement) = self.elements;
 	var zeroOrOneRule : UntypedRule = object UntypedRule {
@@ -393,7 +393,7 @@ mapping XBNFwc::ZeroOrOne::zeroOrOne2element(parentRule : String, subRules : Lis
 
 -- Helpers
 
-mapping XBNFwc::CompoundElement::element2subRule(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::UntypedRule {
+mapping XBNFwc::CompoundElement::element2subRule(parentRule : String, inout subRules : List(XBNF::UntypedRule), disambiguator : OclAny, firstRules : Set(TypedRule)) : XBNF::UntypedRule {
 	var me : CompoundElement = self;
 	var alternatives : Sequence(AbstractElement) = self.elements;
 	element := object Disjunction {
