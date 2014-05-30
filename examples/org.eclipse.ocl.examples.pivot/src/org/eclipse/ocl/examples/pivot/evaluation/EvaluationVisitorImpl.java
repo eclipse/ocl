@@ -612,7 +612,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		value = ValuesUtil.asValue(value);
     	EvaluationVisitor nestedVisitor = undecoratedVisitor.createNestedEvaluator();		
 		nestedVisitor.getEvaluationEnvironment().add(variable, value);
-		return expression.accept(nestedVisitor);
+		try {
+			return expression.accept(nestedVisitor);
+		}
+		finally {
+			nestedVisitor.dispose();
+		}
 	}
 	
 	@Override
