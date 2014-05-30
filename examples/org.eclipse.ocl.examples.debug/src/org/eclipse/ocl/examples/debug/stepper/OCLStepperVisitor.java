@@ -20,8 +20,10 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -40,12 +42,12 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 
 	@Override
 	public @Nullable IStepper visitElement(@NonNull Element object) {
-		return ElementStepper.INSTANCE;
+		return PostStepper.INSTANCE;
 	}
 
 	@Override
 	public @Nullable IStepper visitExpressionInOCL(@NonNull ExpressionInOCL object) {
-		return PostStepper.INSTANCE;
+		return ExpressionInOCLStepper.INSTANCE;
 	}
 
 	@Override
@@ -55,12 +57,17 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 
 	@Override
 	public @Nullable IStepper visitIterateExp(@NonNull IterateExp object) {
-		return LoopExpStepper.INSTANCE;
+		return IterateExpStepper.INSTANCE;
 	}
 
 	@Override
 	public @Nullable IStepper visitIteratorExp(@NonNull IteratorExp object) {
 		return LoopExpStepper.INSTANCE;
+	}
+
+	@Override
+	public @Nullable IStepper visitLetExp(@NonNull LetExp object) {
+		return LetExpStepper.INSTANCE;
 	}
 
 	@Override
@@ -71,6 +78,11 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 	@Override
 	public @Nullable IStepper visitPropertyCallExp(@NonNull PropertyCallExp object) {
 		return PropertyCallExpStepper.INSTANCE;
+	}
+
+	@Override
+	public @Nullable IStepper visitVariable(@NonNull Variable object) {
+		return VariableStepper.INSTANCE;
 	}
 
 	@Override

@@ -17,9 +17,11 @@ import java.util.Stack;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.core.OCLDebugCore;
+import org.eclipse.ocl.examples.debug.stepper.AbstractStepper;
 import org.eclipse.ocl.examples.debug.stepper.OCLStepperVisitor;
 import org.eclipse.ocl.examples.debug.vm.ConditionChecker;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
@@ -50,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 
 public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {
@@ -314,40 +317,38 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 //		}
 	}
 
-	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result, @Nullable Element parentElement) {
+	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result, @Nullable Element zzparentElement) {
 		Stack<IVMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
 		if (stepperStack.isEmpty()) {
 			return;
 		}
+		IStepper parentStepper = null;
+		EObject eContainer = element.eContainer();
+		Element parentElement = eContainer instanceof Element ? (Element)eContainer : null;
 		IVMEvaluationEnvironment.StepperEntry childStepperEntry = stepperStack.pop();
 		childStepperEntry.popFrom(evalEnv);
-		if (stepperStack.isEmpty()) {
-			return;
+		if (!stepperStack.isEmpty()) {
+			IVMEvaluationEnvironment.StepperEntry parentStepperEntry = stepperStack.peek();
+			if (element instanceof OCLExpression) { // NB not Variable
+				parentStepperEntry.pushTo(evalEnv, (DomainTypedElement) element, result);
+			}
+			parentStepper = parentStepperEntry.stepper;
 		}
-		IVMEvaluationEnvironment.StepperEntry parentStepperEntry = stepperStack.peek();
-		if (element instanceof DomainTypedElement) {
-			parentStepperEntry.pushTo(evalEnv, (DomainTypedElement) element, result);
+		else if (evalEnv != getEvaluationEnvironment()) {		// Looping
+			if (parentElement != null) {
+				parentStepper = getStepperVisitor().getStepper(parentElement);
+			}
 		}
-		IStepper parentStepper = parentStepperEntry.stepper;
-		Element postElement = parentStepper.isPostStoppable(this, element, parentElement);
-		if (postElement != null) {
+		if (parentStepper != null) {
+			Element postElement = parentStepper.isPostStoppable(this, element, parentElement);
+			if (postElement != null) {
+				evalEnv.setCurrentIP(postElement);
+				evalEnv.replace(evalEnv.getPCVariable(), postElement);
 				UnitLocation unitLocation = parentStepper.createUnitLocation(evalEnv, postElement);
 				setCurrentLocation(postElement, unitLocation, false);
 				processDebugRequest(unitLocation);
-//			}
-		}
-/*		if (element instanceof ExpressionInOCL) {
-			// 
-		} else if (element instanceof LoopExp) {
-			if (preState instanceof VMBreakpoint) {
-				fIterateBPHelper.removeIterateBreakpoint((VMBreakpoint) preState);
 			}
-		} else {
-			int endPosition = ASTBindingHelper.getEndPosition(element);
-			UnitLocation el = newLocalLocation(evalEnv, element, endPosition - 1, endPosition); //, 1);
-			
-			setCurrentLocation(element, el, true);
-		} */
+		}
 	}
 
 	public void preIterate(@NonNull LoopExp loopExp) {
@@ -365,6 +366,14 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		IStepper stepper = getStepperVisitor().getStepper(element);
 		stepperStack.push(new IVMEvaluationEnvironment.StepperEntry(stepper, element));
 		if (stepper.isPreStoppable(this, element)) {
+			if (stepper instanceof AbstractStepper) {
+				Element firstElement = ((AbstractStepper)stepper).getFirstElement(this, element);
+				if (firstElement != null) {
+					element = firstElement;
+				}
+			}
+			setCurrentEnvInstructionPointer(element);
+			evalEnv.replace(evalEnv.getPCVariable(), element);
 			UnitLocation unitLocation = stepper.createUnitLocation(evalEnv, element);
 			setCurrentLocation(element, unitLocation, false);
 			processDebugRequest(unitLocation);

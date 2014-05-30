@@ -13,11 +13,10 @@ package org.eclipse.ocl.examples.debug.stepper;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -27,7 +26,7 @@ public abstract class CallExpStepper extends PostStepper
 	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
 		INode startNode = null;
 		INode endNode = null;
-		ModelElementCS csStartElement = ElementUtil.getCsElement(element);
+		ModelElementCS csStartElement = getCsElement(element);
 		if (csStartElement instanceof NavigationOperatorCS) {
 			ModelElementCS csEndElement = ((NavigationOperatorCS)csStartElement).getArgument();
 			if (csEndElement != null) {
@@ -43,7 +42,7 @@ public abstract class CallExpStepper extends PostStepper
 	}
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement) {
-		return parentElement;
+	public @Nullable Element getFirstElement(@NonNull Element element) {
+		return element instanceof CallExp ? ((CallExp)element).getSource() : element;
 	}
 }

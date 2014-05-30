@@ -14,34 +14,27 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
 
-public class IfExpStepper extends AbstractStepper
+public class LetExpStepper extends AbstractStepper
 {
-	public static @NonNull IfExpStepper INSTANCE = new IfExpStepper();
+	public static @NonNull LetExpStepper INSTANCE = new LetExpStepper();
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof IfExp ? ((IfExp)element).getCondition() : element;
+		return element instanceof LetExp ? ((LetExp)element).getVariable() : element;
 	}
-	
+
 	@Override
 	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
 		EObject parentElement = childElement.eContainer();
-		if (parentElement instanceof IfExp) {
-			IfExp ifExp = (IfExp)parentElement;
-			if (childElement == ifExp.getCondition()) {
-				Object conditionValue = vmEvaluationVisitor.getEvaluationEnvironment().getValueOf((DomainTypedElement) childElement);
-				if (conditionValue == Boolean.TRUE) {
-					return getFirstElement(vmEvaluationVisitor, ifExp.getThenExpression());
-				}
-				else if (conditionValue == Boolean.FALSE) {
-					return getFirstElement(vmEvaluationVisitor, ifExp.getElseExpression());
-				}
-				return ifExp;
+		if (parentElement instanceof LetExp) {
+			LetExp letExp = (LetExp)parentElement;
+			if (childElement == letExp.getVariable()) {
+				return getFirstElement(vmEvaluationVisitor, letExp.getIn());
 			}
+			return letExp;
 		}
 		return null;
 	}

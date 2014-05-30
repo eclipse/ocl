@@ -14,35 +14,29 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Variable;
 
-public class IfExpStepper extends AbstractStepper
+public class IterateExpStepper extends LoopExpStepper
 {
-	public static @NonNull IfExpStepper INSTANCE = new IfExpStepper();
+	public static @NonNull IterateExpStepper INSTANCE = new IterateExpStepper();
 
-	@Override
-	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof IfExp ? ((IfExp)element).getCondition() : element;
-	}
-	
 	@Override
 	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
 		EObject parentElement = childElement.eContainer();
-		if (parentElement instanceof IfExp) {
-			IfExp ifExp = (IfExp)parentElement;
-			if (childElement == ifExp.getCondition()) {
-				Object conditionValue = vmEvaluationVisitor.getEvaluationEnvironment().getValueOf((DomainTypedElement) childElement);
-				if (conditionValue == Boolean.TRUE) {
-					return getFirstElement(vmEvaluationVisitor, ifExp.getThenExpression());
+		if (parentElement instanceof Variable) {
+			parentElement = parentElement.eContainer();
+		}
+		if (parentElement instanceof IterateExp) {
+			IterateExp iterateExp = (IterateExp)parentElement;
+			if (childElement == iterateExp.getSource()) {
+				Variable result = iterateExp.getResult();
+				if (result != null) {
+					return getFirstElement(vmEvaluationVisitor, result);
 				}
-				else if (conditionValue == Boolean.FALSE) {
-					return getFirstElement(vmEvaluationVisitor, ifExp.getElseExpression());
-				}
-				return ifExp;
 			}
 		}
-		return null;
+		return super.isPostStoppable(vmEvaluationVisitor, childElement, zzparentElement);
 	}
 }

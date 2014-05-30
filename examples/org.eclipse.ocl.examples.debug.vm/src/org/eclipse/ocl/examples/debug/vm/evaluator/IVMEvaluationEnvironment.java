@@ -57,7 +57,6 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 			Map<DomainTypedElement, Object> partialResults2 = partialResults;
 			if (partialResults2 == null) {
 				partialResults = partialResults2 = new HashMap<DomainTypedElement, Object>();
-				evaluationEnvironment.replace(evaluationEnvironment.getPCVariable(), element);
 			}
 			partialResults2.put(element, value);
 			evaluationEnvironment.replace(element, value);

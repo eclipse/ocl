@@ -11,15 +11,19 @@
 package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 
-/**
- * An ElementStepper provides the non-standard behaviour of stopping before and after execution of an AST node.
- */
-public class ElementStepper extends AbstractStepper
+public class ExpressionInOCLStepper extends AbstractStepper
 {
-	public static @NonNull ElementStepper INSTANCE = new ElementStepper();
+	public static @NonNull ExpressionInOCLStepper INSTANCE = new ExpressionInOCLStepper();
+
+	@Override
+	public @Nullable Element getFirstElement(@NonNull Element element) {
+		return element instanceof ExpressionInOCL ? ((ExpressionInOCL)element).getBodyExpression() : element;
+	}
 
 	@Override
 	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {

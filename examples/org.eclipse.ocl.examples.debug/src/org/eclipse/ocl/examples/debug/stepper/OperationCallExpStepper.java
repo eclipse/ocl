@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
@@ -24,17 +25,23 @@ public class OperationCallExpStepper extends CallExpStepper
 	public static @NonNull OperationCallExpStepper INSTANCE = new OperationCallExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement) {
-		OperationCallExp callExp = (OperationCallExp)parentElement;
-		if (callExp != null) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
+		EObject parentElement = childElement.eContainer();
+		if (parentElement instanceof OperationCallExp) {
+			OperationCallExp callExp = (OperationCallExp)parentElement;
 			List<OCLExpression> arguments = callExp.getArgument();
-			if (arguments.size() <= 0) {
+			int size = arguments.size();
+			if (size <= 0) {									// No arguments so just done source
 				return callExp;
 			}
-			if (arguments.get(arguments.size()-1) == childElement) {
+			int index = arguments.indexOf(childElement);
+			if (index >= size-1) {								// Just done last argument
 				return callExp;
+			}
+			else {
+				return getFirstElement(vmEvaluationVisitor, arguments.get(index >= 0 ? index+1 : 0));
 			}
 		}
-		return null;
+		return super.isPostStoppable(vmEvaluationVisitor, childElement, zzparentElement);
 	}
 }

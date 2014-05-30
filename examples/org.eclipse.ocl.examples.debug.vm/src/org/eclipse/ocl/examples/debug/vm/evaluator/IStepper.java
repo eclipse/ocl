@@ -26,9 +26,11 @@ public interface IStepper
 	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element);
 	
 	/**
-	 * Return non-null element in which execution may be suspended after executing childElement.
+	 * Return null if no suspension is required after executing childElement, else return the next element to be executed. 
+	 * <p>
+	 * zzparentElement is not used; Change to value of childElement once an API change is acceptable
 	 */
-	@Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement);
+	@Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement);
 
 	/**
 	 * Return true if execution may be suspended before executing element.

@@ -10,22 +10,34 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.stepper;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.Variable;
 
 public class LoopExpStepper extends CallExpStepper
 {
 	public static @NonNull LoopExpStepper INSTANCE = new LoopExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement) {
-		if (parentElement instanceof LoopExp) {
-			rootVMEvaluationVisitor.postIterate((LoopExp)parentElement);
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
+		EObject parentElement = childElement.eContainer();
+		if (parentElement instanceof Variable) {
+			parentElement = parentElement.eContainer();
 		}
-		return parentElement;
+		if (parentElement instanceof LoopExp) {
+			LoopExp loopExp = (LoopExp)parentElement;
+			vmEvaluationVisitor.postIterate(loopExp);
+			OCLExpression body = loopExp.getBody();
+			if (body != null) {
+				return getFirstElement(vmEvaluationVisitor, body);
+			}
+		}
+		return super.isPostStoppable(vmEvaluationVisitor, childElement, zzparentElement);
 	}
 
 	@Override

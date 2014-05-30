@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.stepper;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -31,10 +34,66 @@ public abstract class AbstractStepper implements IStepper
 
 	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
 		INode node = null;
-		ModelElementCS csElement = ElementUtil.getCsElement(element);
+		ModelElementCS csElement = getCsElement(element);
 		if (csElement != null) {
 			node = NodeModelUtils.getNode(csElement);
 		}
 		return createUnitLocation(evalEnv, element, node, node);
+	}
+
+	/**
+	 * Return the CS element for asElement if it exists, or the nearest ancestor of asElement otherwise.
+	 */
+	protected @Nullable ModelElementCS getCsElement(@NonNull Element asElement) {
+		while (true) {
+			ModelElementCS csStartElement = ElementUtil.getCsElement(asElement);
+			if (csStartElement != null) {
+				return csStartElement;
+			}
+			EObject eContainer = asElement.eContainer();
+			if (eContainer instanceof Element) {
+				asElement = (Element)eContainer;
+			}
+			else {
+				return null;
+			}
+		}
+	}
+
+	// FIXME Promote to IStepper once API change acceptable
+	public @Nullable Element getFirstElement(@NonNull Element element) {
+		return null;
+	}
+
+	public @Nullable Element getFirstElement(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @Nullable Element element) {
+		if (element != null) {
+			IStepperVisitor stepperVisitor = vmEvaluationVisitor.getStepperVisitor();
+			if (stepperVisitor instanceof OCLStepperVisitor) {
+				OCLStepperVisitor oclStepperVisitor = (OCLStepperVisitor)stepperVisitor;
+				while (true) {
+					IStepper nextStepper = oclStepperVisitor.getStepper(element);
+					if (!(nextStepper instanceof AbstractStepper)) {
+						break;
+					}
+					Element firstElement = ((AbstractStepper)nextStepper).getFirstElement(element);
+					if (firstElement == null) {
+						break;
+					}
+					element = firstElement;
+				}
+			}
+		}
+		return element;
+	}
+
+	@Override
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
+		EObject parentElement = childElement.eContainer();
+		return parentElement instanceof Element ? (Element)parentElement : null;
+	}
+
+	@Override
+	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {
+		return false;
 	}
 }

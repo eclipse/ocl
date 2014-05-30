@@ -11,21 +11,11 @@
 package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.Element;
 
+/**
+ * A PostStepper provides the default behaviour of stopping after execution of an AST node.
+ */
 public class PostStepper extends AbstractStepper
 {
 	public static @NonNull PostStepper INSTANCE = new PostStepper();
-
-	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element parentElement) {
-		return childElement;
-	}
-
-	@Override
-	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {
-		return false;
-	}
 }
