@@ -1,6 +1,6 @@
 // Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
 
-		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory());
+		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper(EXTLibraryPackage.Literals.LIBRARY);
 		ExpressionInOCL invariant = helper.createInvariant(
 		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
@@ -22,6 +22,6 @@
 		        @SuppressWarnings("unchecked")
 		        Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluate(next);
 		        
-		        System.out.printf("%s: %s%n", next.getName(), categories);
+		        debugPrintf("%s: %s%n\n", next.getName(), categories);
 		    }
 		}

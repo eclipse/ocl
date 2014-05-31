@@ -76,8 +76,8 @@ public class PivotDocumentationExamples extends XtextTestCase
 	}
 	
 	/*
-	 * This 'test' provides the source text for the 'Parsing OCL Document' example
-	 * in org.eclipse.ocl.doc/doc/5120-parsing-constraints.textile
+	 * This 'test' provides the source text for the 'Parsing Constraints and Queries' example
+	 * in org.eclipse.ocl.doc/doc/6310-pivot-parsing-constraints.textile
 	 */
 	public void test_parsingConstraintsExample() throws IOException, ParserException {
 		// create an OCL instance for Ecore
@@ -121,8 +121,8 @@ public class PivotDocumentationExamples extends XtextTestCase
 	
 	
 	/*
-	 * This 'test' provides the source text for the 'Parsing OCL Document' example
-	 * in org.eclipse.ocl.doc/doc/5115-evaluating-constraints.textile
+	 * This 'test' provides the source text for the 'Evaluating Constraints and Queries' example
+	 * in org.eclipse.ocl.doc/doc/6315-pivot-evaluating-constraints.textile
 	 */
 	public void test_evaluatingConstraintsExample() throws IOException, ParserException {
 		OCL ocl = OCL.newInstance();
@@ -174,7 +174,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 
 	/*
 	 * This 'test' provides the source text for the 'Parsing OCL Document' example
-	 * in org.eclipse.ocl.doc/doc/5120-parsing-documents.textile
+	 * in org.eclipse.ocl.doc/doc/6320-pivot-parsing-documents.textile
 	 */
 	public void test_parsingDocumentsExample() throws IOException, ParserException {
 		//-------------------------------------------------------------------------
@@ -195,18 +195,15 @@ public class PivotDocumentationExamples extends XtextTestCase
 	    	EObject next = tit.next();
 	    	if (next instanceof Constraint) {
 		        Constraint constraint = (Constraint)next;
-//				String stereotype = constraint.getStereotype();
-//				if (UMLReflection.INVARIANT.equals(stereotype)) {
-			        ExpressionInOCL expressionInOCL = ocl.getSpecification(constraint);
-			        if (expressionInOCL != null) {
-						String name = constraint.getName();
-						if (name != null) {
-							constraintMap.put(name, expressionInOCL);
-							debugPrintf("%s: %s%n\n", name,
-					        	expressionInOCL.getBodyExpression());
-						}
+		        ExpressionInOCL expressionInOCL = ocl.getSpecification(constraint);
+		        if (expressionInOCL != null) {
+					String name = constraint.getName();
+					if (name != null) {
+						constraintMap.put(name, expressionInOCL);
+						debugPrintf("%s: %s%n\n", name,
+				        	expressionInOCL.getBodyExpression());
 					}
-//				}
+				}
 	    	}
 	    }
 		//-------------------------------------------------------------------------

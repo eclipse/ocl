@@ -2,8 +2,7 @@
 
 		EPackage.Registry registry = new EPackageRegistryImpl();
 		registry.put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
-		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(registry, null);
-		OCL ocl = OCL.newInstance(environmentFactory);
+		OCL ocl = OCL.newInstance(registry);
 
 		// get an OCL text file via some hypothetical API
 		URI uri = getInputURI("/model/parsingDocumentsExample.ocl");
@@ -11,20 +10,18 @@
 		Map<String, ExpressionInOCL> constraintMap = new HashMap<String, ExpressionInOCL>();
 
 		// parse the contents as an OCL document
-		Resource pivotResource = ocl.parse(uri);
-	    for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
+		Resource asResource = ocl.parse(uri);
+	    for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 	    	EObject next = tit.next();
 	    	if (next instanceof Constraint) {
 		        Constraint constraint = (Constraint)next;
-				String stereotype = constraint.getStereotype();
-				if (UMLReflection.INVARIANT.equals(stereotype)) {
-			        ExpressionInOCL expressionInOCL = ocl.getSpecification(constraint);
-			        if (expressionInOCL != null) {
-						String name = constraint.getName();
-						if (name != null) {
-							constraintMap.put(name, expressionInOCL);
-					        System.out.printf("%s: %s%n", name, expressionInOCL.getBodyExpression());
-						}
+		        ExpressionInOCL expressionInOCL = ocl.getSpecification(constraint);
+		        if (expressionInOCL != null) {
+					String name = constraint.getName();
+					if (name != null) {
+						constraintMap.put(name, expressionInOCL);
+						debugPrintf("%s: %s%n\n", name,
+				        	expressionInOCL.getBodyExpression());
 					}
 				}
 	    	}
