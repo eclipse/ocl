@@ -16,8 +16,8 @@
 </topic>
 <topic href="help/UsersGuide.html" label="Users Guide">
 <topic href="help/UsersGuide.html#EclipseOCLs" label="The two Eclipse OCLs">
-<topic href="help/UsersGuide.html#TheclassicEclipseOCLmetamodels" label="The classic Eclipse OCL metamodels"></topic>
-<topic href="help/UsersGuide.html#ThePivotEclipseOCLmetamodel" label="The Pivot Eclipse OCL metamodel"></topic>
+<topic href="help/UsersGuide.html#TheClassicEclipseOCLmetamodels" label="The Classic Eclipse OCL metamodels"></topic>
+<topic href="help/UsersGuide.html#TheUnifiedorPivotEclipseOCLmetamodel" label="The Unified or Pivot Eclipse OCL metamodel"></topic>
 <topic href="help/UsersGuide.html#Thetransition" label="The transition"></topic>
 <topic href="help/UsersGuide.html#APIs" label="APIs">
 <topic href="help/UsersGuide.html#ToolAPIs" label="Tool APIs"></topic>
