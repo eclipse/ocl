@@ -3,23 +3,23 @@ h2(#EclipseOCLs). The two Eclipse OCLs
 
 The Eclipse OCL project is making a transition to a new underlying infrastructure.
 
-h3. The classic Eclipse OCL metamodels
+h3. The Classic Eclipse OCL metamodels
 
-The classic code base emphasized utility for Java programmers. It originally supported Ecore meta-models and evolved to support UML as well. An OCL Console was added to support interactive experimentation with OCL expressions.
+The Classic code base emphasized utility for Java programmers. It originally supported Ecore meta-models and evolved to support UML as well. An OCL Console was added to support interactive experimentation with OCL expressions.
 
-Interactions with the MMT/QVTd project resulted in a refactoring of the grammars so that they could be extended for use by QVT. At the same time the grammars were migrated to use LPG 2. 
+Interactions with the QVTd project resulted in a refactoring of the grammars so that they could be extended for use by QVT. At the same time the grammars were migrated to use LPG 2. 
 
-The dual support for Ecore and UML was achieved by a shared generic meta-model in which the distinctions between Ecore and UML meta-models were accommodated by substantial (often ten parameter) template parameters lists. Sometimes these lists are hidden by derived bindings, but sometimes the full lists are exposed making for rather cumbersome Java code for the OCL developers and OCL consumers alike.
+The dual support for Ecore and UML was achieved by a shared generic meta-model in which the distinctions between Ecore and UML meta-models were accommodated by substantial (often ten parameter) template parameters lists. Sometimes these lists are hidden by derived bindings, but sometimes the full lists are exposed. This gives rather cumbersome Java code for the OCL developers and OCL consumers alike.
 
 The classic evaluator is tightly coupled to Ecore which might appear efficient, but the lack of separation of OCL-specification semantics from Java-implementation seamntics makes accurate implementation of equality in nested collections hard to achieve.
 
 The classic code endeavored to comply with OCL specification despite significant ambiguities in the specification, but since the classic code evolved from an OCL 1.x compliance and Ecore utility there are a number of areas where accurate OMG compliance is hard to achieve.
 
-h3. The Pivot Eclipse OCL metamodel
+h3. The Unified or Pivot Eclipse OCL metamodel
 
-The Pivot metamodel is a prototype for a resolution of a number of fundamental problems with the OCL 2.3.1 specification. The Pivot metamodel is derived from the UML metamodels for UML and OCL to provide a coherent metamodel for UML with executable semantics.
+The Unified or Pivot metamodel is a prototype for a resolution of a number of fundamental problems with the OCL 2.4 specification. The Pivot metamodel is derived from the UML metamodels for UML and OCL to provide a unified metamodel for UML with executable semantics.
 
-In practice, when using the Pivot metamodel for Ecore or UML metamodels, a Pivot metamodel instance is created on the fly to provide the coherent merged OCL functionality for the Ecore or UML metamodel instances. 
+In practice, when using the Pivot metamodel for Ecore or UML metamodels, a Pivot metamodel instance is created on the fly to provide the unified merged OCL functionality for the Ecore or UML metamodel instances. 
 
 From the specification perspective, the Pivot metamodel
 * is UML-aligned
@@ -46,8 +46,9 @@ In the Indigo (3.1) release, the Pivot metamodel prototype was introduced and us
 Therefore when using the OCL Xtext Console the contributing tools are
 * Essential OCL Xtext editor
 * Pivot MetaModel
-* OCL-2.4.oclstdlib library
+* OCL-2.5.oclstdlib library
 * Pivot Evaluator
+* Pivot Debugger
 
 When using the classic OCL Console the contributing tools are
 * LPG parser and hand-coded Syntax Helper
@@ -61,7 +62,9 @@ In the Juno (4.0) release, there is a preliminary Java code generator for the Pi
 
 In the Kepler (4.1) release, the code generator has been substantially improved and a number of internal APIs have evolved accordingly. UML support has been improved to facilitate usage within Papyrus, and extensibility has been improved for use by QVTd.
 
-In the Luna (4.2) release, the transition should be complete and many org.eclipse.ocl.examples.* plugins will be renamed to org.eclipse.ocl.*. All functionality should use the new Pivot metamodel by default. However the classic Ecore and UML support will remain for compatibility.
+In the Luna (5.0) release, further code generation improvements have been made and major new User Interface capabilities added. There is at last an OCL debugger and a Constraint Validity View.
+
+In the Mars (6.0) release, the transition should be complete and many org.eclipse.ocl.examples.* plugins will be renamed to org.eclipse.ocl.*. All functionality should use the new Pivot metamodel by default. However the classic Ecore and UML support will remain for compatibility.
 
 h3. APIs
 

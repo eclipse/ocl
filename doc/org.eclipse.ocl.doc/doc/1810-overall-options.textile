@@ -33,7 +33,7 @@ In Kepler, a prevailing URI in the input file is preserved, unless changed by th
 
 h4(#CodeGenerationMode). Code Generation Mode
 
-Juno introduced an experimental ability to replace the delegated interpreted execution of OCL by direct execution of compiled Java code. This facility has been substantially improved and tested for the Kepler release. Further optimisations are scheduled for Luna.
+Juno introduced an experimental ability to replace the delegated interpreted execution of OCL by direct execution of compiled Java code. This facility has been substantially improved and tested for the Kepler release. some optimisations are have occurred for Luna. Further optimisations are scheduled for Mars.
 
 !{width:70%}images/1810-code-generation-mode.png(Code Generation Mode)!
 

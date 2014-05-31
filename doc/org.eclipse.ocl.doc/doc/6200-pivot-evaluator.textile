@@ -20,7 +20,7 @@ The Juno release of the Pivot evaluator use polymorphic @Value@ representations 
 
 The IntegerValue and RealValue classes avoid the equivalence and accuracy problems of Integer and Double by implementing Object.equals(Object) with OCL semantics.
 
-The costs of the polymorphic Boolean, String and EObject wrappers became apparent when testing the code generator and so the Kepler release uses a hybrid representation. Unboxed values (the natural Ecore and Java representation) are used wherever OCL and Java have compatible semantics, that is for Boolean, String, null, invalid/exception and EObjects that are not Types. Boxed polymorphic value representations are used wherever OCL and Java semantics differ, that is for IntegerValue, RealValue, CollectionValue, TupleValue and TypeValue. This avoids unnecessary conversion costs, but requires many instanceof tests to compensate for the lack of Value polymorphism. When generating code, static analysis can often eliminate many of the instanceof cases and so the hybrid representation is faster.
+The costs of the polymorphic Boolean, String and EObject wrappers became apparent when testing the code generator and so the Kepler and Luna releases use a hybrid representation. Unboxed values (the natural Ecore and Java representation) are used wherever OCL and Java have compatible semantics, that is for Boolean, String, null, invalid/exception and EObjects that are not Types. Boxed polymorphic value representations are used wherever OCL and Java semantics differ, that is for IntegerValue, RealValue, CollectionValue, TupleValue and TypeValue. This avoids unnecessary conversion costs, but requires many instanceof tests to compensate for the lack of Value polymorphism. When generating code, static analysis can often eliminate many of the instanceof cases and so the hybrid representation is faster.
 
 h3(#PivotValues). The Pivot Value System
 
@@ -99,7 +99,7 @@ Library features (properties, operations and iterations) are declared in a Stand
 
 !{width:70%}images/6200-library-declarations.png(Standard Library Declarations)!
 
-The extract from @/org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib@ shows the declaration of the @Collection@ type as a templated type with a @T@ parameter. The @Collection@ type conformsTo (extends/inherits/generalizes) the @OclAny@ type and is an instance of the @CollectionType@ meta-type.
+The extract from @/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib@ shows the declaration of the @Collection@ type as a templated type with a @T@ parameter. The @Collection@ type conformsTo (extends/inherits/generalizes) the @OclAny@ type and is an instance of the @CollectionType@ meta-type.
 
 The @asSet@ operation takes no arguments and returns a @Set(T)@, a set of the collection template type. The declaration is bound to @org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation@ which is the Java class name of the implementation.
 

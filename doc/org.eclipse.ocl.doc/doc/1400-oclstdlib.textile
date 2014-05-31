@@ -4,7 +4,7 @@ The OCL Standard Library Language is used to define the OCL Standard Library, fo
 
 The standard library can be replaced or extended.
 
-The source for the OCL Stnadrad Library may be found at model/OCL-2.4.oclstdlib in the org.eclipse.ocl.examples.library plugin. 
+The source for the OCL Standard Library may be found at model/OCL-2.5.oclstdlib in the org.eclipse.ocl.examples.library plugin. 
 
 h3. Syntax
 

@@ -3,8 +3,8 @@ h2(#PivotParsingConstraints). Parsing Constraints and Queries
 
 This section may be contrasted with the corresponding "Parsing Constraints and Queries":#ParsingConstraints for the Ecore binding to see examples of the small changes needed to migrate from the Ecore binding to the Pivot binding.
 
-The OCL parser provides two APIs for parsing constraint and query expressions. The "@OCLHelper@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html interface is designed primarily for parsing constraints and query expressions
-embedded in models, such as Ecore or UML models.  The "@OCL@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/OCL.html class serves as the main entrypoint into the parsing API but also implements the
+The OCL parser provides two APIs for parsing constraint and query expressions. The "@OCLHelper@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html interface is designed primarily for parsing constraints and query expressions
+embedded in models, such as Ecore or UML models.  The "@OCL@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html class serves as the main entrypoint into the parsing API but also implements the
 parsing of "OCL documents":#PivotParsingDocuments, for example from
 text files.  In both cases, the concept of @Environment@
 is crucial.
@@ -15,20 +15,20 @@ The @OCL@ API provides a Facade for the various objects that support different a
 
 !{width:40%}images/6310-environment.png(Core OCL Environment API)!
 
-The "@OCL@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/OCL.html class is a simple type.
+The "@OCL@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html class is a simple type.
 
 bq.. 
 There is no need for the Ecore/UML template parameters that parameterize the equivalent Ecore/UML class.
 p. 
 
 Behind the scenes, the unified Pivot variants of the primary UML, OCL and user and meta-models, complementing Complete OCL documents and Standard Libraries are maintained by a
-"@MetaModelManager@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/manager/MetaModelManager.html, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct @MetaModelManager@ is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new @MetaModelManager@ is created for each OCL session. Increased metya-model sharing can be achieved by re-using @MetaModelManager@ s when constructing a
-"@PivotEnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html.
+"@MetaModelManager@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetaModelManager.html, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct @MetaModelManager@ is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new @MetaModelManager@ is created for each OCL session. Increased metya-model sharing can be achieved by re-using @MetaModelManager@ s when constructing a
+"@PivotEnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html.
 
 An OCL parsing activity maintains the root and nested parsing context in
-"@Environment@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/Environment.html
+"@Environment@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html
 instances which are created by an
-"@EnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html.
+"@EnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html.
 
 @Environment@ s nest.  Usually the root environment has
 no correlation to an element in the model, or it may correspond to some
@@ -49,7 +49,7 @@ classifier that defines these features, or it may inherit them from some more
 general classifier.
 
 An @Environment@ may contain named
-"@Variable@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/Variable.html s
+"@Variable@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Variable.html s
 to which OCL expressions can refer.  The most common of these is
 @self@.  Others include the parameters defined by an
 operation (and its @result@), in the case of an
@@ -98,7 +98,7 @@ nested @Environment@ s in the host @OCL@
 instance's root environment.
 
 The result of parsing a query expression or a constraint is an
-"@ExpressionInOCL@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/expressions/ExpressionInOCL.html,
+"@ExpressionInOCL@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/ExpressionInOCL.html,
 an instance of the "Abstract Syntax Model":#AbstractSyntax.
 
 bq.. 

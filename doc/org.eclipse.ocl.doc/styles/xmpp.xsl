@@ -39,7 +39,7 @@
                       <xsl:text>Eclipse OCL </xsl:text><xsl:value-of select="//releaseinfo"/>
               </xsl:when>
               <xsl:otherwise>
-                  Eclipse OCL 4.0
+                  Eclipse OCL 5.0
               </xsl:otherwise>
           </xsl:choose>
       </xsl:variable>

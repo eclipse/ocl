@@ -7,13 +7,13 @@ and an "extensibility API":#AdvancedMetamodelBindings that allows
 additional EMF-based metamodels to be plugged in. The indirection through the UML-aligned Pivot metamodel makes OMG compliance much easier and decouples the implementationm from particular bindings. Support for an alternate concrete metamodel representation is therefore comparatively simple. 
 
 p. 
-The OCL API implements support for different target metamodels via the "@EnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html interface. An implementation of this interface binds the metamodel's metaclasses to the generic type parameters of the "@OCL@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/OCL.html class. The metamodel-specific "@Environment@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/Environment.html implementation constructed by this factory implements the reflection capability required by OCL to discover the elements of the model being constrained and the relationships between them.
+The OCL API implements support for different target metamodels via the "@EnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html interface. An implementation of this interface binds the metamodel's metaclasses to the generic type parameters of the "@OCL@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html class. The metamodel-specific "@Environment@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html implementation constructed by this factory implements the reflection capability required by OCL to discover the elements of the model being constrained and the relationships between them.
 
 h3. The Pivot Metamodel Binding
 
-A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the @org.eclipse.ocl.examples.pivot@ plug-in. It is planned to promote this to @org.eclipse.ocl.pivot@ in the Kepler release.
+A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the @org.eclipse.ocl.examples.pivot@ plug-in. It is planned to promote this to @org.eclipse.ocl.pivot@ in the Mars release.
 
-The Pivot metamodel prototypes resolutions of the following problems in the OCL 2.3.1 specification
+The Pivot metamodel prototypes resolutions of the following problems in the OCL 2.4 specification
 * UML-alignment
 * OCL Standard Library model
 * XMI interchange
@@ -33,7 +33,7 @@ The implementation-specific packages provide
 It is anticipated that the performance advantages of a uniform compliant metamodel, without the complexities of the templates from the @org.eclipse.ocl@ plugin, will outweigh the initial overhead of converting an Ecore or UML metamodel to Pivot form. Once this has been demonstrated, the direct Ecore and UML metamodels will be deprecated.
 
 The Pivot binding is provided by the
-"@PivotEnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/4.1.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html class.  For compatibility, as a default, the Pivot environment uses the static @EPackage@ registry to look up package names. This default is deprecated since the domain of @allInstances()@ may be very large when many models are registered.  It should therefore be supplied with an alternative package registry (for example, one local to a @ResourceSet@) for relevant metamodels. The static registry is then used as a backup for package lookups, but not for @allInstances()@.  The Pivot environment factory maintains the Pivot models associated with
+"@PivotEnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html class.  For compatibility, as a default, the Pivot environment uses the static @EPackage@ registry to look up package names. This default is deprecated since the domain of @allInstances()@ may be very large when many models are registered.  It should therefore be supplied with an alternative package registry (for example, one local to a @ResourceSet@) for relevant metamodels. The static registry is then used as a backup for package lookups, but not for @allInstances()@.  The Pivot environment factory maintains the Pivot models associated with
 * Ecore metamodels in use
 * UML metamodels in use
 * Library models in use
@@ -64,4 +64,4 @@ http://www.eclipse.org/emf/2002/Ecore/OCL/LPG for compatibility.
 
 Note that the Indigo and Juno OCLinEcore editor uses the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI and so uses the "Pivot Evaluator":#PivotEvaluator, whereas the Helios OCLinEcore editor used the http://www.eclipse.org/emf/2002/Ecore/OCL URI and so the Ecore evaluator. A file using the http://www.eclipse.org/emf/2002/Ecore/OCL URI will automatically be upgraded to the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI when edited using the Indigo or Juno OCLinEcore editors.
 
-In Kepler, the OCLinEcore editor preserves any existing delegate URI selection. The new "Preferred executor requested for OCL constraints" preference determines the URI when no previous setting is available. This defaults to http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot for backwards compatibility.
+In Kepler and Luna, the OCLinEcore editor preserves any existing delegate URI selection. The new "Preferred executor requested for OCL constraints" preference determines the URI when no previous setting is available. This defaults to http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot for backwards compatibility.

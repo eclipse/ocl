@@ -12,7 +12,7 @@ The Eclipse Modeling Framework (EMF(Eclipse Modeling Framework)) supports the de
 
 OCL(Object Constraint Language) provides a modeling language that allows the behavior to be embedded within the structural meta-models or provided as a complement to those meta-models. As a modeling language, OCL understands the models and so OCL code is much more compact than the equivalent Java. OCL code can be statically checked, whereas the corresponding Java code often uses reflection and so cannot be checked.  
 
-Eclipse OCL is an implementation of the OMG OCL 2.3.1 specification for use with Ecore and UML meta-models.
+Eclipse OCL is an implementation of the OMG OCL 2.4 specification for use with Ecore and UML meta-models.
  
 h2(#GettingStarted). Getting Started
 
@@ -170,7 +170,7 @@ There is now a significant personnel and corporate overlap between the Eclipse O
 
 You can expect future changes in OMG OCL to have an implementation in Eclipse OCL to demonstrate their viability. It is likely that the next version of the OCL specification will use Eclipse OCL and M2T(Model to Text) tooling to eliminate inconsistencies. Eclipse OCL is currently in use to check that the OCL used in the UML 2.5 specification is syntactically and semantically correct.
 
-Direct tooling of the UML 2.5 and OCL 2.5 specifications for the Kepler Eclipse release may demonstrate that the OCL aspects of the specifications is also functionally consistent.
+Direct tooling of the UML 2.5 and OCL 2.5 specifications for the Mars Eclipse release may demonstrate that the OCL aspects of the specifications is also functionally consistent.
 
 h2. Table of Contents
 

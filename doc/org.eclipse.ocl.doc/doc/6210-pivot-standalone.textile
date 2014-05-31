@@ -30,7 +30,7 @@ This initialization ensures that *.uml is understood and that standard pathmap: 
 
 h3. OCL Standard Library
 
-If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib@.
+If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.examples.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib@.
 
 If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2@ launcher for the
 @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/generateOCLstdlib.mtl@ Acceleo template.

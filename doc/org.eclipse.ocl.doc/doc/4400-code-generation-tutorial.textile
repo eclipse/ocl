@@ -1,7 +1,7 @@
 
 h2(#CodeGenerationTutorial). Code Generation tutorial
 
-The direct OCL to Java Code generator was a very experimental functionality for the Juno release. It has been substantially rewritten for Kepler. Optimisations will be activated for Luna.
+The direct OCL to Java Code generator was a very experimental functionality for the Juno release. It has been substantially rewritten for Kepler. Some optimisations have been activated for Luna. 
 
 In this tutorial we will continue the OCLinEcore tutorial and show how to get a direct Java representation of the Ecore model avoiding the need for run-time compilation.
 

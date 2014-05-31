@@ -5,7 +5,7 @@ The Complete OCL provides a language for a document in which OCL complements an 
 
 h3. Syntax
 
-The Complete OCL syntax is defined by the OMG OCL 2.3.1 specification.
+The Complete OCL syntax is defined by the OMG OCL 2.4 specification.
 
 The syntax comprises keywords such as @context@ followed by appropriate names and punctuation and OCL expressions.
 
@@ -34,7 +34,7 @@ A Complete OCL document may
 
 and then provide complements for one of more Packages, Classifiers or Features.
 
-The import, include and library declarations are Eclipse OCL extensions. The OCL 2.3.1 specification provides no mechanism for a Complete OCL document to reference external material.
+The import, include and library declarations are Eclipse OCL extensions. The OCL 2.4 specification provides no mechanism for a Complete OCL document to reference external material.
 
 !{width:60%}images/1300-import.png(Complete OCL Import Syntax)!
 

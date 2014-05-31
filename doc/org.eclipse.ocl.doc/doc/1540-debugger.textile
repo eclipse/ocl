@@ -49,9 +49,9 @@ h3. Stepping
 
 OCL expressions can be very compact and generally occur embedded in a larger application. The debugger is therefore optimized for this usage.
 
-Rather than the line based stepping typical of the Java debugger, the OCL debugger supports term by term stepping, highlighting the next term to be evaluated and showing the intermediate results. 
+Rather than the line based stepping typical of the Java debugger, the OCL debugger supports term by term stepping, highlighting the next term to be evaluated and showing the intermediate results as $-prefixed names in the Variables View. 
 
-It is desirable to be able to step by term without modifying source text to insert line breaks. The OCL debugger therefore has a slightly different interpretation of the Step functionalities.
+The OCL debugger has interpretation of the Step functionalities is adjusted to facilitate stepping to many points in a complex expression without needing to reformat the source with line breaks..
 
 The "Example Debugger View":#Debugger shows the imminent execution of ".size()" after stepping into "self" and ".name".
 
@@ -65,7 +65,7 @@ Execution proceeds until the next OCL AST node is associated with a new source l
 
 h4. Step Return
 
-Execution proceeds until the next OCL AST node is associated with a reduced stack depth.
+Execution proceeds until the next OCL AST node is associated with a reduced stack depth. Iterations and let expressions introduce nested stack entries so step return can step over an iteration. 
 
 h4. Resume
 
@@ -79,7 +79,7 @@ The "Example Debugger View":#Debugger shows the "self" variable, which is an "ec
 
 Intermediate variables are named using the property name of the subsequent AST node's input. Thus "$source" shows the OperationCallExp.source input already computed as "self.name". Multiple inputs are diasmbiguated by suffixing as in "$argument[1]".
 
-"$pc" denotes the previous instruction. __Bug. Surely the next would be more useful?__
+"$pc" identifies the next instruction, which can be examined in just the same way as any other variable.
 
 h3. Breakpoints View
 

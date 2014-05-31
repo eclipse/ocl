@@ -3,9 +3,9 @@ h1(#PivotProgrammersGuide). Pivot Programmers Guide
 The Pivot Programmers Guide describes the ways in which the Pivot binding Eclipse OCL can be used from Java programs.
 
 The Pivot binding was first available as an examples quality prototype in 3.1.0 (Indigo). The Pivot binding 
-will become the preferred binding in 3.3.0 (Kepler). The older Ecore and UML bindings are described in a separate "Ecore/UML Programmers Guide":#ProgrammersGuide.
+will become the preferred binding in 6.0.0 (Mars). The older Ecore and UML bindings are described in a separate "Ecore/UML Programmers Guide":#ProgrammersGuide.
 
-The OCL Parser/Interpreter provides an implementation of the "Object Constraint Language 2.3":http://www.omg.org/spec/OCL/2.3 specification for EMF-based metamodels and models.  It offers OCL
+The OCL Parser/Interpreter provides an implementation of the "Object Constraint Language 2.4":http://www.omg.org/spec/OCL specification for EMF-based metamodels and models.  It offers OCL
 constraint and query parsing and evaluation, model-based validation, and
 provides an infrastructure for content assist in textual editors.
 

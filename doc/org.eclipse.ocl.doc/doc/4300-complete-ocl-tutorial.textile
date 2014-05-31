@@ -1,7 +1,7 @@
 
 h2(#CompleteOCLTutorial). Complete OCL tutorial
 
-This tutorial was written for Eclipse Juno: Eclipse 3.8/4.2, EMF 2.8, OCL 4.0.
+This tutorial was written for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.
 
 h3. Overview 
 
@@ -181,7 +181,7 @@ The *OCL|Load Document* menu action enables a Complete OCL document to be loaded
 The *OCL|Load Document* menu action is added to the right button menu of applications with a ResourceSet accessible from the current selection.
 
 bq.. 
-It has been observed that the extra menu action is not always immediately available, so if you do not see it, hit *Esc* to cancel the menu and right click again.
+It has been observed that the extra menu action is not always immediately available, so if you do not see it, hit *Esc* to cancel the menu, select something corresponding to a model object and right click again.
 p. 
 
 In Juno, suitable applications are
@@ -201,7 +201,7 @@ In Juno, unsuitable applications are
 ** OCLinEcore
 ** Complete OCL
 
-The Kepler release supports Complete OCL complements in Papyrus and OCLinEcore.
+The Luna release supports Complete OCL complements in Papyrus and OCLinEcore.
 
 The *OCL|Load Document* menu action activates the *Load Complete OCL Document* dialog in which you can browse the File system or Workspace for one or more Complete OCL documents to load, or often more conveniently you can just Drag and Drop them from an Operating System Explorer or an Eclipse Explorer.
 
@@ -336,7 +336,7 @@ You may open the *PapyrusTestFile.uml* with the UML Model Editor, load the *Extr
 
 In Juno, The Papyrus UML editor does not use the EValidator framework and so loading Complete OCL documents into Papyrus fails to enhance validation capabilities.
 
-At the time of writing, just before Kepler, the underlying Papyrus problem has been cured but a minor problem remains. It is noit clear whether this will be fixed in Papyrus 0.10.0.
+At the time of writing, just before Luna, the underlying Papyrus problem has been cured but a minor problem remains. It is not clear whether this will be fixed in Papyrus 1.0.0.
 
 h3(#CompleteOCLTutorial-XtextComplements). Example Complete OCL complements for Xtext
 
