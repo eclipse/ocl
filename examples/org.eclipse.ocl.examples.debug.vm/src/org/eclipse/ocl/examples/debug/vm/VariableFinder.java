@@ -54,7 +54,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 public class VariableFinder
 {
 	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment<?> fEvalEnv) {
-		VariableFinder finder = new VariableFinder(fEvalEnv, false);
+		VariableFinder finder = new VariableFinder(fEvalEnv, true);
 		String[] variablePath = getVariablePath(variableURI);
 		Object valueObject = finder.findStackObject(variablePath);
 		
@@ -154,6 +154,7 @@ public class VariableFinder
 					Object value = null;
 					try {
 						value = evalEnv.getValueOf(oclExpression);
+						var.valueObject = value;
 					}
 					catch (Throwable e) {
 						value = e;
@@ -171,6 +172,7 @@ public class VariableFinder
 				Object value = null;
 				try {
 					value = evalEnv.getValueOf(variable);
+					var.valueObject = value;
 				}
 				catch (Throwable e) {
 					value = e;
@@ -227,7 +229,7 @@ public class VariableFinder
 
 		String[] variablePath = getVariablePath(variableURI);
 
-		VariableFinder variableManager = new VariableFinder(fEvalEnv, false);
+		VariableFinder variableManager = new VariableFinder(fEvalEnv, true);
 		
 		List<VMVariableData> variables = new ArrayList<VMVariableData>();
 		variableManager.find(variablePath, request.includeChildVars, variables);

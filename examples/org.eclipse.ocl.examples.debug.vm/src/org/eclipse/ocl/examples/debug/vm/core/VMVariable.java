@@ -73,6 +73,10 @@ public class VMVariable extends VMDebugElement implements IVariable {
 		return this.vmVar.type.declaringType;
 	}	
 
+	public VMVariableData getVmVar() {
+		return vmVar;
+	}
+
 	public boolean hasValueChanged() throws DebugException {
 		return false;
 	}
