@@ -41,6 +41,8 @@ import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.ocl.examples.debug.vm.core.VMVariable;
+import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
@@ -915,7 +917,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	            else*/ if (selectedObject instanceof EObject) {
 	            	contextObject = (EObject) selectedObject;
 	            }
-	            else {
+	            else {		// FIXME else Value in particular CollectionValue
 	            	contextObject = null;
 	            }
 		    	if (resource instanceof BaseCSResource) {
@@ -999,6 +1001,12 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	
 	private void selectionChanged(ISelection sel) {
 		Object selectedObject = BaseUIUtil.getSelectedObject(sel, getSite());
+		if (selectedObject instanceof VMVariable) {					// FIXME move to BaseUIUtil once additional dependency acceptable
+			VMVariableData vmVar = ((VMVariable)selectedObject).getVmVar();
+			if (vmVar != null) {
+				selectedObject = vmVar.valueObject;
+			}
+		}
         refreshSelection(selectedObject);
 	}
 
