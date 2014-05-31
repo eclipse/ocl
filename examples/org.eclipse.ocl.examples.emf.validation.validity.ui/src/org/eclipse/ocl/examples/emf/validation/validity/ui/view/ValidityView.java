@@ -174,32 +174,35 @@ public class ValidityView extends ViewPart implements ISelectionListener
 					if (model != null) {
 						model.refreshModel(null, null);
 					}
-					getForm().getDisplay().asyncExec(new Runnable()
-					{
-						@Override
-						public void run() {
-//							long start = System.currentTimeMillis();
-							RootNode rootNode = validityManager.getRootNode();
-							Object validatableNodesViewerInput = getValidatableNodesViewer().getInput();
-							if (validatableNodesViewerInput == null || !validatableNodesViewerInput.equals(rootNode)) {
-								if (!emfMonitor.isCanceled()) {
-//									System.out.format(Thread.currentThread().getName() + " %3.3f set ValidatableNodes input\n", (System.currentTimeMillis() - start) * 0.001);
-									getValidatableNodesViewer().setInput(rootNode);
+					Form form = getForm();
+					if (!form.isDisposed()) {
+						form.getDisplay().asyncExec(new Runnable()
+						{
+							@Override
+							public void run() {
+//								long start = System.currentTimeMillis();
+								RootNode rootNode = validityManager.getRootNode();
+								Object validatableNodesViewerInput = getValidatableNodesViewer().getInput();
+								if (validatableNodesViewerInput == null || !validatableNodesViewerInput.equals(rootNode)) {
+									if (!emfMonitor.isCanceled()) {
+//										System.out.format(Thread.currentThread().getName() + " %3.3f set ValidatableNodes input\n", (System.currentTimeMillis() - start) * 0.001);
+										getValidatableNodesViewer().setInput(rootNode);
+									}
+									if (!emfMonitor.isCanceled()) {
+//										System.out.format(Thread.currentThread().getName() + " %3.3f set ConstrainingNodes input\n", (System.currentTimeMillis() - start) * 0.001);
+										getConstrainingNodesViewer().setInput(rootNode);
+									}
+									if (!emfMonitor.isCanceled()) {
+//										System.out.format(Thread.currentThread().getName() + " %3.3f set validationRootChanged input\n", (System.currentTimeMillis() - start) * 0.001);
+										filteredValidatableNodesTree.resetFilter();
+										filteredConstrainingNodesTree.resetFilter();
+										validationRootChanged(rootNode);
+									}
 								}
-								if (!emfMonitor.isCanceled()) {
-//									System.out.format(Thread.currentThread().getName() + " %3.3f set ConstrainingNodes input\n", (System.currentTimeMillis() - start) * 0.001);
-									getConstrainingNodesViewer().setInput(rootNode);
-								}
-								if (!emfMonitor.isCanceled()) {
-//									System.out.format(Thread.currentThread().getName() + " %3.3f set validationRootChanged input\n", (System.currentTimeMillis() - start) * 0.001);
-									filteredValidatableNodesTree.resetFilter();
-									filteredConstrainingNodesTree.resetFilter();
-									validationRootChanged(rootNode);
-								}
+//								System.out.format(Thread.currentThread().getName() + " %3.3f done\n", (System.currentTimeMillis() - start) * 0.001);
 							}
-//							System.out.format(Thread.currentThread().getName() + " %3.3f done\n", (System.currentTimeMillis() - start) * 0.001);
-						}
-					});
+						});
+					}
 				}
 //				System.out.format(Thread.currentThread().getName() + " %3.3f done\n", (System.currentTimeMillis() - start) * 0.001);
 				return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;

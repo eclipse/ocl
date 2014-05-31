@@ -383,13 +383,14 @@ public class FilteredCheckboxTree extends FilteredTree {
 
 	@Override
 	public void setEnabled(boolean enabled) {
-		if ((filterText.getStyle() & SWT.ICON_CANCEL) == 0) { // filter uses FilteredTree new look, not native 
-			int filterColor = enabled ? SWT.COLOR_LIST_BACKGROUND : SWT.COLOR_WIDGET_BACKGROUND;
-			filterComposite.setBackground(getDisplay().getSystemColor(filterColor));
+		if (!isDisposed()) {
+			if ((filterText.getStyle() & SWT.ICON_CANCEL) == 0) { // filter uses FilteredTree new look, not native 
+				int filterColor = enabled ? SWT.COLOR_LIST_BACKGROUND : SWT.COLOR_WIDGET_BACKGROUND;
+				filterComposite.setBackground(getDisplay().getSystemColor(filterColor));
+			}
+			filterText.setEnabled(enabled);
+			treeViewer.getTree().setEnabled(enabled);
 		}
-		filterText.setEnabled(enabled);
-		treeViewer.getTree().setEnabled(enabled);
-
 	}
 	
 	public void disableTextWidget() {

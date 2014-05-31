@@ -26,6 +26,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.ocl.examples.emf.validation.validity.AbstractNode;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
+import org.eclipse.swt.widgets.Tree;
 
 /**
  * The ValidationViewRefreshJob provides a delayed refresh of the Validation View trees
@@ -147,7 +148,10 @@ public class ValidityViewRefreshJob extends Job
 		model.refreshModel(grayedValidatableNodes, grayedConstrainingNodes);
 		
 		displayRefresh = new DisplayRefresh(monitor, grayedValidatableNodes, grayedConstrainingNodes);
-		validatableNodesViewer.getTree().getDisplay().asyncExec(displayRefresh);
+		Tree tree = validatableNodesViewer.getTree();
+		if (!tree.isDisposed()) {
+			tree.getDisplay().asyncExec(displayRefresh);
+		}
 //		System.out.println(Thread.currentThread().getName() + " - RefreshJob.done");
 		return Status.OK_STATUS;
 	}

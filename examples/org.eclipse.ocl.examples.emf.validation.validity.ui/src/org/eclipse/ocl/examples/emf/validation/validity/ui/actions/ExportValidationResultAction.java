@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.wizards.ExportValidat
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -151,9 +152,9 @@ public final class ExportValidationResultAction extends Action implements IMenuC
 		private void openExportWizard(@NonNull final IStructuredSelection currentSelection)
 				throws CoreException {
 			final IWorkbenchWindow window = validityView.getSite().getWorkbenchWindow();
-
-			if (window.getShell() != null && window.getWorkbench() != null) {
-				final Display display = window.getShell().getDisplay();
+			Shell shell = window.getShell();
+			if ((shell != null) && !shell.isDisposed() && (window.getWorkbench() != null)) {
+				final Display display = shell.getDisplay();
 				final IWorkbench workbench = window.getWorkbench();
 				final RootNode rootNode = validityManager.getRootNode();
 				if (display != null && workbench != null && rootNode != null) {
@@ -163,8 +164,12 @@ public final class ExportValidationResultAction extends Action implements IMenuC
 							if (exporter == null) {
 								return;
 							}
+							Shell shell = window.getShell();
+							if (shell.isDisposed()) {
+								return;
+							}
 							ExportValidationResultsFileWizard wizard = new ExportValidationResultsFileWizard(workbench, currentSelection, rootNode, exporter);
-							WizardDialog dialog = new WizardDialog(window.getShell(), wizard);
+							WizardDialog dialog = new WizardDialog(shell, wizard);
 							if (dialog.open() != Window.OK) {
 								return;
 							}

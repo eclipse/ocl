@@ -136,12 +136,14 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 							}
 
 							protected void openError(final Shell shell, final String message) {
-								shell.getDisplay().asyncExec(new Runnable()
-								{
-									public void run() {
-										MessageDialog.openError(shell, "Constraint Debug Launcher", message);
-									}
-								});
+								if (!shell.isDisposed()) {
+									shell.getDisplay().asyncExec(new Runnable()
+									{
+										public void run() {
+											MessageDialog.openError(shell, "Constraint Debug Launcher", message);
+										}
+									});
+								}
 							}
 						};
 						launchingThread.start();
