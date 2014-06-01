@@ -7,9 +7,12 @@ In this tutorial we will continue the "OCLinEcore tutorial":#OCLinEcoreTutorial 
 
 h3. Load OCLinEcore Tutorial Example Project
 
-All the material for this tutorial is available as part of the OCLinEcore Example project that you
+The material for the first two parts of this tutorial is available as part of the OCLinEcore Example project that you
 may load by selecting *New* then *Example...* using the right button context menu of the Project Explorer. This
 should give the *New Example* dialog in which you can select the OCL (OCL Constraint Language) Plugins and the OCLinEcore Tutorial.
+
+The material for the third parts of this tutorial is available as part of the CompleteOCL Example project that you
+may load in a similar way.
 
 h3. The OCL Debugger
 
@@ -84,6 +87,8 @@ Select *self.eClassifiers[ 1 ]* so that the bottom line display shows that the s
 
 !{width:90%}images/4500-simple-debugger-image.png(SimpleDebuggerVariables)!
 
+The Variables View provides more insight that the Sample Ecore Properties View, so you may find it convenient to use a trivial OCL debugger session using *self* as the OCL expression to browse arbitrary model data.
+
 h4. Stepping Execution
 
 Click F5 or the *Step Into* icon to advance execution by one AST node evaluation.
@@ -148,6 +153,48 @@ Expanding *$source* in the Variables View shows the Set of three selected Loans 
 
 !{width:90%}images/4500-validation-debugger-step2.png(ValidationDebuggerStep2)!
 
-We can now see that the *$source*, left hand side, of the comparison is 3 and the *$arguments[ 0 ]*, right hand side is 2. A further step and we see the result as *$bodyExpression* demonstrating why the validation failed. 
+We can now see that the *$source*, left hand side, of the comparison is 3 and the *$arguments[ 0 ]*, right hand side is 2. A further step and we see the result as *$bodyExpression* demonstrating why the validation failed.
+
+h3. Debugging Complete OCL validation failure
+
+The two preceding examples displayed their source text in a synthesized Complete OCL document.
+
+In this example we debug a failure fir which the OCL is already available in a Complete OCL document.
+
+Open the *model/EcoreTestFile.ecore* from the Complete OCL project using the Sample Ecore Editor.
+
+Within the Ecore editor use *OCL->Load Document* and then drag and drop *model/ExtraEcoreValidation.ocl* and click *OK* to dismiss the pop up.
+
+Again within the Ecore editor use *OCL->Show Validity View* to see the constraints/element pairs. (If the Validity View was already visible, close it and re-show it since in Luna addition of a Complete OCL document fails to refresh correctly.)
+
+In the Validity View, uncheck the top two MetaModel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.
+
+!{width:90%}images/4500-complete-ocl-debugger-model.png(CompleteOCLDebuggerModel)!
+
+Select the bottom right BadClass model element below the DerivationIsVolatile constraint and invoke *Debug Single Enabled Selection*. (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
+
+!{width:90%}images/4500-complete-ocl-debugger-model.png(CompleteOCLDebuggerImage)!
+
+Both *asError* and *hasDerivation* are OCL-defined so as you step you successively navigate into the defined property and operation.
+
+h3. Console experiments
+
+While debugging, the original OCL expression from the Console is presented in a Complete OCL editor. This editor is readonly so you cannot edit it to correct mistakes or to experiment.
+
+You may however safely use the OCL Console to perform further experiments. Select a suitable self object in the Variable View and cut and paste to prepare your experimental OCL expression.
+
+__In Luna, Console selections cannot be Collections so you are unfortunately restricted to single objects.__ 
+
+h3. Longer range stepping
+
+In the examples above we have only used F5 or *Step Into*.
+
+In principle the tedious stepping through an iteration can be avoided by F7 or *Step Return* which should terminate on the popped evaluation environment at the end of the iteration. __This facility has not been adequately tested in Luna__.
+
+If you arrange for some line breaks in your source text you can use F6 or *Step Next* to proceed until the line number advances. __This facility has not been adequately tested in Luna__. Line breaks can be added in the OCL Console using Shift and Enter together.
+
+h3. Break points
+
+When debugging OCL from Complete OCL documents, the original document is a suitable source for the debugger and so line breakpoints can be set. __This facility has not been adequately tested in Luna__
  
 
