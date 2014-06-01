@@ -10,7 +10,7 @@
  *
  * This file provides additional validation constraints for use during the Complete OCL tutorial.
  *******************************************************************************/
-import uml : 'http://www.eclipse.org/uml2/4.0.0/UML#/'
+import uml : 'http://www.eclipse.org/uml2/5.0.0/UML#/'
 
 context uml::Class
 	

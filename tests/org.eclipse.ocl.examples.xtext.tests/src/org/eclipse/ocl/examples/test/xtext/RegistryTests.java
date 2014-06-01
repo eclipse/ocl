@@ -54,7 +54,9 @@ public class RegistryTests extends TestCase
 			resourceSet.getResource(URI.createPlatformPluginURI("/org.eclipse.emf.ecore/model/Ecore.ecore", true), true);
 			CompleteOCLRegistry registry = CompleteOCLRegistry.INSTANCE;
 			Set<URI> registeredResourceURIs = registry.getResourceURIs(resourceSet);
-			assertEquals(1, registeredResourceURIs.size());
+			assertEquals(EMFPlugin.IS_ECLIPSE_RUNNING ? 2 : 1, registeredResourceURIs.size());
+			// platform:/plugin/org.eclipse.ocl.examples.xtext.tests/model/ModelWithErrors.ocl
+			// (running only) platform:/plugin/org.eclipse.ocl.examples.project.completeocltutorial/model/ExtraEcoreValidation.ocl
 		}
 		finally {		// Remove the bad Xtext ResourceFactories that EcorePlugin.ExtensionProcessor finds
 			if (copyOfGlobalState != null) {

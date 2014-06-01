@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ocl.examples.pivot.complete_ocl_registry">
+      <document resource="model/ExtraEcoreValidation.ocl">
+         <for uri="http://www.eclipse.org/emf/2002/Ecore"/>
+      </document>
+      <document resource="model/ExtraUMLValidation.ocl">
+         <for uri="http://www.eclipse.org/uml2/5.0.0/UML"/>
+      </document>
+      <document resource="model/ExtraXMIValidation.ocl">
+         <for uri="http://www.eclipse.org/ocl/examples/EcoreTestFile.ecore"/>
+      </document>
+      <document resource="model/ExtraXtextValidation.ocl">
+         <for uri="http://www.eclipse.org/2008/Xtext"/>
+      </document>
+   </extension>
+
+</plugin>
