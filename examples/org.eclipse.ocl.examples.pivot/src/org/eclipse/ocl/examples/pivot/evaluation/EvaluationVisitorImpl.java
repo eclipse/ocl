@@ -606,6 +606,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		try {
 			value = variable.accept(undecoratedVisitor);
 		}
+		catch (EvaluationHaltedException e) {
+			throw e;
+		}
 		catch (InvalidValueException e) {
 			value = e;
 		}
@@ -662,6 +665,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		if (isValidating) {
 			try {
 				sourceValue = source.accept(undecoratedVisitor);
+			}
+			catch (EvaluationHaltedException e) {
+				throw e;
 			}
 			catch (InvalidValueException e) {
 				sourceValue = e;	// FIXME ?? propagate part of environment
