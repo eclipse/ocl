@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -72,10 +73,18 @@ public class EObjectOperation extends AbstractOperation
 		if (expressionInOCL == null) {		
 			resolveExpressionInOCL(evaluator, callExp, sourceValue);
 		}
-		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
+		ExpressionInOCL expressionInOCL2 = expressionInOCL;
+		assert expressionInOCL2 != null;
+		DomainEvaluator nestedEvaluator;
+		if (evaluator instanceof EvaluationVisitorImpl) {
+			nestedEvaluator = ((EvaluationVisitorImpl)evaluator).createNestedUndecoratedEvaluator(expressionInOCL2);
+		}
+		else {
+			nestedEvaluator = evaluator.createNestedEvaluator();
+		}
 		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
-		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
-		List<Variable> parameterVariables = expressionInOCL.getParameterVariable();
+		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL2.getContextVariable()), sourceValue);
+		List<Variable> parameterVariables = expressionInOCL2.getParameterVariable();
 		int iMax = Math.min(parameterVariables.size(), argumentValues.length);
 		for (int i = 0; i < iMax; i++) {
 			nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameterVariables.get(i)), argumentValues[i]);

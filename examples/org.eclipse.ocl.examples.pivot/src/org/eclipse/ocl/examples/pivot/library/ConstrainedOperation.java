@@ -53,7 +53,13 @@ public class ConstrainedOperation extends AbstractOperation
 	private @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		PivotUtil.checkExpression(expressionInOCL);
 		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
+		EvaluationVisitor nestedVisitor;
+		if (evaluationVisitor instanceof EvaluationVisitorImpl) {
+			nestedVisitor = ((EvaluationVisitorImpl)evaluationVisitor).createNestedUndecoratedEvaluator(expressionInOCL);
+		}
+		else {
+			nestedVisitor = evaluationVisitor.createNestedEvaluator();
+		}
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
 		List<Variable> parameters = expressionInOCL.getParameterVariable();

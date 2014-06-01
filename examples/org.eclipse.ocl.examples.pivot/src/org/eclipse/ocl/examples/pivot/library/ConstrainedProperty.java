@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -52,7 +53,13 @@ public class ConstrainedProperty extends AbstractProperty
 		}
 		PivotUtil.checkExpression(expression2);
 		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
+		EvaluationVisitor nestedVisitor;
+		if (evaluationVisitor instanceof EvaluationVisitorImpl) {
+			nestedVisitor = ((EvaluationVisitorImpl)evaluationVisitor).createNestedUndecoratedEvaluator(expression2);
+		}
+		else {
+			nestedVisitor = evaluationVisitor.createNestedEvaluator();
+		}
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
 		Variable contextVariable = expression2.getContextVariable();
 		if (contextVariable != null) {

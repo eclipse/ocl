@@ -16,6 +16,9 @@ import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 
 /**
@@ -37,13 +40,24 @@ public class OCLVMEvaluationVisitorImpl extends EvaluationVisitorImpl implements
     }
 
     @Override
-    public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() {
+    public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() { // FIXME Pass 'operation'
     	OCLVMEnvironment vmEnvironment = getEnvironment();
-		OCLVMEnvironmentFactory factory = vmEnvironment.getFactory();
-		IOCLVMEvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
+    	OCLVMEnvironmentFactory factory = vmEnvironment.getFactory();
+    	IOCLVMEvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
         OCLVMEvaluationVisitorImpl ne = new OCLVMEvaluationVisitorImpl(vmEnvironment, nestedEvalEnv);
         return ne;
     }
+
+	@Override
+	@NonNull
+	public EvaluationVisitor createNestedUndecoratedEvaluator(@NonNull NamedElement operation) {
+		EvaluationVisitor nestedEvaluationVisitor = super.createNestedUndecoratedEvaluator(operation);
+		EvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluationVisitor.getEvaluationEnvironment();
+		if (nestedEvaluationEnvironment instanceof OCLVMNestedEvaluationEnvironment) {
+			((OCLVMNestedEvaluationEnvironment)nestedEvaluationEnvironment).setOperation(operation);
+		}
+		return nestedEvaluationVisitor;
+	}
 
 	public void dispose() {}
 

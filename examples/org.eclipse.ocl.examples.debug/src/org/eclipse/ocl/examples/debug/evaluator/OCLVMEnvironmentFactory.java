@@ -57,7 +57,7 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	}
 
 	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent) {
+	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent) { // FIXME Pass 'operation'
 		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, ((IOCLVMEvaluationEnvironment) parent).getOperation());
 	}
 

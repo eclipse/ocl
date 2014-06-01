@@ -192,7 +192,7 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	}
 
 	@Override
-	public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() {
+	public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() { // FIXME Pass 'operation'
 //		return delegate.createNestedEvaluator();
 		return new OCLVMNestedEvaluationVisitor(this, delegate.createNestedEvaluator());
 	}

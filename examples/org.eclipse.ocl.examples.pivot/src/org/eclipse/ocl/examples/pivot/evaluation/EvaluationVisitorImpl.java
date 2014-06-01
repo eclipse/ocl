@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -123,6 +124,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		super(env, evalEnv, modelManager);
 	}
 	
+	// FIXME Revise API so that cannot invoke createNestedEvaluator() by mistake
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
 		Environment environment = getEnvironment();
 		EnvironmentFactory factory = environment.getFactory();
@@ -130,6 +132,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		EvaluationVisitorImpl nestedEvaluationVisitor = new EvaluationVisitorImpl(environment, nestedEvalEnv, getModelManager());
 		nestedEvaluationVisitor.setMonitor(getMonitor());
 		return nestedEvaluationVisitor;
+	}
+	
+	// FIXME Revise API so that cannot invoke createNestedEvaluator() by mistake
+	public @NonNull EvaluationVisitor createNestedUndecoratedEvaluator(@NonNull NamedElement operation) { // FIXME Pass 'operation'
+		return undecoratedVisitor.createNestedEvaluator();
 	}
 
 	public void dispose() {
