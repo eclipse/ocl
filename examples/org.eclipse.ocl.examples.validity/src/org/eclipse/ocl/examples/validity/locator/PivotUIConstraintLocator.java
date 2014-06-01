@@ -10,68 +10,146 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.validity.locator;
 
-import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public class PivotUIConstraintLocator extends PivotConstraintLocator implements ConstraintUILocator
 {
-	public static @NonNull PivotUIConstraintLocator INSTANCE = new PivotUIConstraintLocator();
+    /**
+     * The DebugStarter sequences the start up of the debugger off the thread.
+     */
+    protected static class DebugStarter implements IRunnableWithProgress
+	{
+		protected final @NonNull Shell shell;
+    	protected final @NonNull MetaModelManager metaModelManager;
+    	protected final @Nullable EObject contextObject;
+    	protected final @NonNull ExpressionInOCL constraint;
+    	private @Nullable ILaunch launch = null;
+
+		public DebugStarter(@NonNull Shell shell, @NonNull MetaModelManager metaModelManager, @Nullable EObject contextObject, @NonNull ExpressionInOCL constraint) {
+			this.shell = shell;
+			this.metaModelManager = metaModelManager;
+			this.contextObject = contextObject;
+			this.constraint = constraint;
+		}
+		
+		public ILaunch getLaunch() {
+			return launch;
+		}
+
+		/**
+		 * Create and launch an internal launch configuration to debug expressionInOCL applied to contextObject.
+		 * @return 
+		 */
+		protected ILaunch launchDebugger(IProgressMonitor monitor, @Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
+			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
+			ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
+			ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, "test" /*constraint.getName()*/);
+			Map<String,Object> attributes = new HashMap<String,Object>();
+			attributes.put(OCLLaunchConstants.EXPRESSION_OBJECT, expressionInOCL);
+			attributes.put(OCLLaunchConstants.CONTEXT_OBJECT, contextObject);
+			launchConfiguration.setAttributes(attributes);
+			return launchConfiguration.launch(ILaunchManager.DEBUG_MODE, monitor);
+		}
+
+		protected void openError(final String message, final @NonNull Exception e) {
+			shell.getDisplay().asyncExec(new Runnable()
+			{
+				@Override
+				public void run() {
+					IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
+					ErrorDialog.openError(shell, ConsoleMessages.Debug_Starter, message, status);
+				}
+			});
+		}
+
+		@Override
+		public void run(IProgressMonitor monitor) {
+			String expression = constraint.toString();
+			monitor.beginTask(NLS.bind(ConsoleMessages.Debug_Starter, expression), 1);
+			try {
+				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
+				try {
+					launch = launchDebugger(monitor, contextObject, constraint);
+				} catch (CoreException e) {
+					openError(ConsoleMessages.Debug_FailLaunch, e);
+				}
+				monitor.worked(1);
+			}
+			finally {
+				monitor.done();
+			}
+		}
+	}
+
+    public static @NonNull PivotUIConstraintLocator INSTANCE = new PivotUIConstraintLocator();
 
 	@Override
 	public boolean debug(@NonNull ResultConstrainingNode resultConstrainingNode, final @NonNull ValidityView validityView, @NonNull IProgressMonitor monitor) throws CoreException {
-		final Object object = resultConstrainingNode.getParent().getConstrainingObject();
-		if (!(object instanceof Constraint)) {
-			throw new IllegalStateException("non-Constraint " + object);
+		ValidatableNode validatableNode = resultConstrainingNode.getResultValidatableNode().getParent();
+		assert validatableNode != null;
+		EObject constrainedObject = validatableNode.getConstrainedObject();
+		Resource eResource = constrainedObject.eResource();
+		if (eResource == null) {
+			return false;
+		}
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+		Constraint asConstraint = null;
+		Object constrainingObject = resultConstrainingNode.getParent().getConstrainingObject();
+		if (constrainingObject instanceof Constraint) {
+			asConstraint = (Constraint)constrainingObject;
+		}
+		if (asConstraint == null) {
+			throw new IllegalStateException("no Pivot Constraint");
 //			return false;
 		}
-		Constraint constraint = (Constraint)object;
-		URI constraintURI = EcoreUtil.getURI(constraint);
-        Path path = new Path(constraintURI.toPlatformString(true));
-		OpaqueExpression specification = constraint.getSpecification();
-		String string = specification != null ? PrettyPrinter.print(specification) : "";
-		IPath trimmedPath = path.removeLastSegments(1);
-		IContainer folder = (IContainer) ResourcesPlugin.getWorkspace().getRoot().findMember(trimmedPath);
-		Path tailPath = new Path(constraint.getName() + ".essentialocl");
-		final IFile file = folder.getFile(tailPath);
-		file.create(new URIConverter.ReadableInputStream(string, "UTF-8"), false, null);
-		
+		ExpressionInOCL specification = asConstraint.getSpecification().getExpressionInOCL();
+		if (specification == null) {
+			throw new IllegalStateException("no Pivot specification");
+//			return false;
+		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();
 		if (parent == null) {
 			return false;
 		}
 		EObject eObject = parent.getConstrainedObject();
-		URI contextURI = EcoreUtil.getURI(eObject);
-
-		ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
-		ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
-		ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(folder, constraint.getName());
-		launchConfiguration.setAttribute(OCLLaunchConstants.CONSTRAINT_URI, constraintURI.toString());
-		launchConfiguration.setAttribute(OCLLaunchConstants.CONTEXT_URI, contextURI.toString());
-//		launchConfiguration.doSave();
-		launchConfiguration.launch(ILaunchManager.DEBUG_MODE, new NullProgressMonitor());
-		return true;
+		
+		Shell shell = validityView.getSite().getShell();
+		if (shell == null) {
+			return false;
+		}
+		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, specification);
+		runnable.run(monitor);
+		return runnable.getLaunch() != null;
 	}
 }

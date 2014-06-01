@@ -123,7 +123,6 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 				if (externalURI != null) {
 					s.append("import '" + externalURI + "'\n\n");
 				}
-//				s.append("package " + PrettyPrinter.printName(contextPackage, printOptions) + "\n\n");
 			}
 			s.append("context ");
 			if (externalURI == null) {
@@ -133,9 +132,6 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			s.append("def: oclDebuggerExpression() : OclAny = \n\t");
 			s.append(expression.replace("\n", "\n\t"));
 			s.append("\n");
-//			if (contextPackage != null) {
-//				s.append("\n\nendpackage\n");
-//			}
 			s.close();
 			java.net.URI documentURI1 = documentStore.toURI();
 			@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
@@ -300,30 +296,10 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-/*		final Object object = resultConstrainingNode.getParent().getConstrainingObject();
-		if (!(object instanceof org.eclipse.uml2.uml.Constraint)) {
-			throw new IllegalStateException("non-UML Constraint " + object);
-//			return false;
-		}
-		org.eclipse.uml2.uml.Constraint umlConstraint = (org.eclipse.uml2.uml.Constraint)object;
-		Constraint constraint = null;
-		try {
-			constraint = metaModelManager.getPivotOf(Constraint.class, umlConstraint);
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
 		if (asConstraint == null) {
 			throw new IllegalStateException("no Pivot Constraint");
 //			return false;
 		}
-		
-
-		
-		
-		
-//		URI constraintURI = EcoreUtil.getURI(constraint);
-//        Path path = new Path(constraintURI.toPlatformString(true));
 		OpaqueExpression specification = asConstraint.getSpecification();
 		String expression = specification != null ? PrettyPrinter.print(specification) : "";
 		
@@ -338,38 +314,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			return false;
 		}
 		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, expression);
-		
-		
-//		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
-//		try {
-//			progressService.run(true, true, runnable);
-			runnable.run(monitor);
-//		} catch (InvocationTargetException e) {
-//			Throwable targetException = e.getTargetException();
-//			IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, targetException.getLocalizedMessage(), targetException);
-//			ErrorDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart, status);
-//		} catch (InterruptedException e) {
-			/* Cancel is not a problem. */
-//		}
+		runnable.run(monitor);
 		return runnable.getLaunch() != null;
-/*		
-		
-		IPath trimmedPath = path.removeLastSegments(1);
-		IContainer folder = (IContainer) ResourcesPlugin.getWorkspace().getRoot().findMember(trimmedPath);
-		Path tailPath = new Path(constraint.getName() + ".essentialocl");
-		final IFile file = folder.getFile(tailPath);
-		file.create(new URIConverter.ReadableInputStream(string, "UTF-8"), false, null);
-		
-//		URI contextURI = EcoreUtil.getURI(eObject);
-
-//		ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
-//		ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(OCLLaunchConstants.LAUNCH_CONFIGURATION_TYPE_ID);
-//		ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(folder, constraint.getName());
-//		launchConfiguration.setAttribute(OCLLaunchConstants.CONSTRAINT_URI, constraintURI.toString());
-//		launchConfiguration.setAttribute(OCLLaunchConstants.CONTEXT_URI, contextURI.toString());
-//		launchConfiguration.doSave();
-//		launchConfiguration.launch(ILaunchManager.DEBUG_MODE, monitor);
-		launchDebugger(monitor, eObject, expressionInOCL);
-		return true; */
 	}
 }
