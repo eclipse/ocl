@@ -63,6 +63,11 @@ public class ConstrainedOperation extends AbstractOperation
 				nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameters.get(i)), value);
 			}
 		}
-		return nestedVisitor.evaluate(expressionInOCL);
+		try {
+			return nestedVisitor.evaluate(expressionInOCL);
+		}
+		finally {
+			nestedVisitor.dispose();
+		}
 	}
 }

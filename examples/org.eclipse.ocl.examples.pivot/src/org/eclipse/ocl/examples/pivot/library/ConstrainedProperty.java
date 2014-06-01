@@ -58,6 +58,11 @@ public class ConstrainedProperty extends AbstractProperty
 		if (contextVariable != null) {
 			nestedEvaluationEnvironment.add(contextVariable, sourceValue);
 		}
-		return nestedVisitor.evaluate(expression2);
+		try {
+			return nestedVisitor.evaluate(expression2);
+		}
+		finally {
+			nestedVisitor.dispose();
+		}
 	}
 }

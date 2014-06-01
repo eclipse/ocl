@@ -80,7 +80,12 @@ public class EObjectOperation extends AbstractOperation
 		for (int i = 0; i < iMax; i++) {
 			nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameterVariables.get(i)), argumentValues[i]);
 		}
-		return nestedEvaluator.evaluate(DomainUtil.nonNullPivot(expressionInOCL.getBodyExpression()));
+		try{
+			return nestedEvaluator.evaluate(DomainUtil.nonNullPivot(expressionInOCL2.getBodyExpression()));
+		}
+		finally {
+			nestedEvaluator.dispose();
+		}
 	}
 
 	protected void resolveExpressionInOCL(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
