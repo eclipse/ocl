@@ -53,6 +53,9 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Variable;
 
 public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {
@@ -68,6 +71,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 //	private final List<UnitLocation> fLocationStack;
 	private @NonNull VMSuspension fCurrentStepMode;
 	private final @NonNull Stack<OCLVMEvaluationVisitor> visitorStack = new Stack<OCLVMEvaluationVisitor>();
+	private final @NonNull Variable invalidVariable;
 
 	public OCLVMRootEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
 		super(new OCLVMEvaluationVisitorImpl(env, evalEnv));
@@ -78,6 +82,10 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		fCurrentStepMode = VMSuspension.UNSPECIFIED;
 		pushVisitor(this);
 		fCurrentLocation = getCurrentLocation();
+		invalidVariable = DomainUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
+		invalidVariable.setName("$invalid");
+		String typeName = DomainUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
+		invalidVariable.setType(env.getMetaModelManager().getPivotType(typeName));
 	}
 
 	@Override
@@ -87,6 +95,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		if (!stepperStack.isEmpty()) {
 			stepperStack.pop();
 		}
+		evalEnv.add(invalidVariable, e);
 		int endPosition = ASTBindingHelper.getEndPosition(element);
 		UnitLocation endLocation = newLocalLocation(evalEnv, element, endPosition, endPosition); //, 1);
 		setCurrentLocation(element, endLocation, true);
@@ -344,6 +353,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 			if (postElement != null) {
 				evalEnv.setCurrentIP(postElement);
 				evalEnv.replace(evalEnv.getPCVariable(), postElement);
+				evalEnv.remove(invalidVariable);
 				UnitLocation unitLocation = parentStepper.createUnitLocation(evalEnv, postElement);
 				setCurrentLocation(postElement, unitLocation, false);
 				processDebugRequest(unitLocation);
@@ -374,6 +384,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 			}
 			evalEnv.setCurrentIP(element);
 			evalEnv.replace(evalEnv.getPCVariable(), element);
+			evalEnv.remove(invalidVariable);
 			UnitLocation unitLocation = stepper.createUnitLocation(evalEnv, element);
 			setCurrentLocation(element, unitLocation, false);
 			processDebugRequest(unitLocation);
