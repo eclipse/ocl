@@ -372,7 +372,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 					element = firstElement;
 				}
 			}
-			setCurrentEnvInstructionPointer(element);
+			evalEnv.setCurrentIP(element);
 			evalEnv.replace(evalEnv.getPCVariable(), element);
 			UnitLocation unitLocation = stepper.createUnitLocation(evalEnv, element);
 			setCurrentLocation(element, unitLocation, false);

@@ -147,7 +147,7 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 		if (VMVirtualMachine.PRE_VISIT.isActive()) {
 			VMVirtualMachine.PRE_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString());
 		}
-		Element previousIP = setCurrentEnvInstructionPointer(element);
+		Element previousIP = setCurrentEnvInstructionPointer(null/*element*/);
 		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
 		preVisit(evalEnv, element);
 		return previousIP;
