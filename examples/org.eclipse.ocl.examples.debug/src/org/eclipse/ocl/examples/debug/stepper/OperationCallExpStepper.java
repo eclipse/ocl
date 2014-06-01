@@ -25,7 +25,7 @@ public class OperationCallExpStepper extends CallExpStepper
 	public static @NonNull OperationCallExpStepper INSTANCE = new OperationCallExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof OperationCallExp) {
 			OperationCallExp callExp = (OperationCallExp)parentElement;
@@ -42,6 +42,6 @@ public class OperationCallExpStepper extends CallExpStepper
 				return getFirstElement(vmEvaluationVisitor, arguments.get(index >= 0 ? index+1 : 0));
 			}
 		}
-		return super.isPostStoppable(vmEvaluationVisitor, childElement, zzparentElement);
+		return super.isPostStoppable(vmEvaluationVisitor, childElement, result);
 	}
 }

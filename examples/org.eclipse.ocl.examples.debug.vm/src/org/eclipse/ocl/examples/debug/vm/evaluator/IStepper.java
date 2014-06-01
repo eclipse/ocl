@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.pivot.Element;
 
 /**
- * An IStepper provives the element-type specific strategy for a variety of actions while stepping throuygh souyrce code.
+ * An IStepper provides the element-type specific strategy for a variety of actions while stepping through source code.
  */
 public interface IStepper
 {
@@ -26,11 +26,9 @@ public interface IStepper
 	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element);
 	
 	/**
-	 * Return null if no suspension is required after executing childElement, else return the next element to be executed. 
-	 * <p>
-	 * zzparentElement is not used; Change to value of childElement once an API change is acceptable
+	 * Return null if no suspension is required after execution of childElement gave result, else return the next element to be executed. 
 	 */
-	@Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement);
+	@Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result);
 
 	/**
 	 * Return true if execution may be suspended before executing element.

@@ -326,7 +326,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 //		}
 	}
 
-	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result, @Nullable Element zzparentElement) {
+	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result) {
 		Stack<IVMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
 		if (stepperStack.isEmpty()) {
 			return;
@@ -349,7 +349,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 			}
 		}
 		if (parentStepper != null) {
-			Element postElement = parentStepper.isPostStoppable(this, element, parentElement);
+			Element postElement = parentStepper.isPostStoppable(this, element, result);
 			if (postElement != null) {
 				evalEnv.setCurrentIP(postElement);
 				evalEnv.replace(evalEnv.getPCVariable(), postElement);

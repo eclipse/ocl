@@ -24,7 +24,7 @@ public class LoopExpStepper extends CallExpStepper
 	public static @NonNull LoopExpStepper INSTANCE = new LoopExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Element zzparentElement) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof Variable) {
 			parentElement = parentElement.eContainer();
@@ -37,7 +37,7 @@ public class LoopExpStepper extends CallExpStepper
 				return getFirstElement(vmEvaluationVisitor, body);
 			}
 		}
-		return super.isPostStoppable(vmEvaluationVisitor, childElement, zzparentElement);
+		return super.isPostStoppable(vmEvaluationVisitor, childElement, result);
 	}
 
 	@Override
