@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -42,7 +43,7 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 
 	@Override
 	public @Nullable IStepper visitElement(@NonNull Element object) {
-		return PostStepper.INSTANCE;
+		return NonStepper.INSTANCE;
 	}
 
 	@Override
@@ -68,6 +69,11 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 	@Override
 	public @Nullable IStepper visitLetExp(@NonNull LetExp object) {
 		return LetExpStepper.INSTANCE;
+	}
+
+	@Override
+	public @Nullable IStepper visitOCLExpression(@NonNull OCLExpression object) {
+		return PostStepper.INSTANCE;
 	}
 
 	@Override
