@@ -21,11 +21,10 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.library.AbstractOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -59,10 +58,8 @@ public class ConstrainedOperation extends AbstractOperation
 		nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
 		List<Variable> parameters = expressionInOCL.getParameterVariable();
 		if (!parameters.isEmpty()) {
-			List<OCLExpression> arguments = ((OperationCallExp)callExp).getArgument();
 			for (int i = 0; i < parameters.size(); i++) {
-				OCLExpression argument = arguments.get(i);
-				Object value = argument.accept(evaluationVisitor);
+				Object value = argumentValues[i];
 				nestedEvaluationEnvironment.add(DomainUtil.nonNullModel(parameters.get(i)), value);
 			}
 		}
