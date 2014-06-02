@@ -1,0 +1,45 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.examples.xtext.base.utilities;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
+import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
+
+public final class NamedElementCSLabelGenerator extends AbstractLabelGenerator<NamedElementCS>
+{
+	public static void initialize(Registry registry) {
+		registry.install(NamedElementCS.class, new NamedElementCSLabelGenerator());		
+	}
+	
+	public NamedElementCSLabelGenerator() {
+		super(NamedElementCS.class);
+	}
+
+	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull NamedElementCS object) {
+		String name = object.getName();
+		if (name == null) {
+			Element element = object.getPivot();
+			if (element instanceof Nameable) {
+				name = ((Nameable)element).getName();
+			}
+		}
+		if (name != null)
+			labelBuilder.appendString(name);
+		else {
+			labelBuilder.appendString("<null-named-");
+			labelBuilder.appendString(object.getClass().getSimpleName());
+			labelBuilder.appendString(">");
+		}
+	}
+}

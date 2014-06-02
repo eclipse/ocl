@@ -16,4 +16,9 @@
             genModel="model/BaseCS.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.ocl.examples.common.label_generator">
+      <generator for="org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS"
+      	class="org.eclipse.ocl.examples.xtext.base.utilities.NamedElementCSLabelGenerator"/>
+   </extension>
+
 </plugin>
