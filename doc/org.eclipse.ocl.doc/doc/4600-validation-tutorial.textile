@@ -1,0 +1,113 @@
+
+h2(#ValidationTutorial). Validation tutorial
+
+The standard EMF validation facilities are very useful for avoiding model errors and work well when the models are correct or at least nearly correct. In this tutorial we show how the "Validity View":#ValidityView can provide greater insight into what works and what doesn't.
+
+We will show how to
+* identify all constraints applicable to a particular model element
+** the constraint text
+** the validation status
+* identify all model elements constrained by a particular constraint
+** the constraint text
+** the validation status
+* filter the displayed model elements and constraints
+** by name
+** by status
+** by model
+** by metamodel
+* launch an OCL debugger for a particular mode element and constraint
+
+h3. Load Complete OCL Tutorial Example Project
+
+The material for this tutorial is available as part of the Complete OCL Example project that you
+may load by selecting *New* then *Example...* using the right button context menu of the Project Explorer. This
+should give the *New Example* dialog in which you can select the OCL (OCL Constraint Language) Plugins and the Complete OCL Tutorial.
+
+h3. Load Test Model
+
+Double click on *model/XMITestFile.xmi* to open the model and expand the top entry to show the EPackage.
+
+If the model opens with another editor, close it, and open with the Sample Reflective Ecore Editor by selecting *model/Tutorial.ecore* and then *Open With->Sample Reflective Ecore Model Editor* from the context menu.
+
+Within the editor invoke *OCL->Load Document* to load *model/ExtraEcoreValidation.ocl* and again to load *model/ExtraXMIValidation.ocl*
+
+!{width:70%}images/4600-validation-view-model.png(ValidationViewModel)!
+
+Your source ResourceSet now contains four resources
+* the XMITestFile.xmi model
+* the EcoreTestFile.ecore metamodel
+* the ExtraXMIValidation.ocl additional model validation rules
+* the ExtraEcoreValidation.ocl additional metamodel validation rules
+
+h3. EMF Validation
+
+Select the *XMITestFile.xmi* and invoke *Validate* from the context menu. Click *OK* to dismiss.
+
+!{width:50%}images/4600-validation-view-model-errors.png(ValidationViewModelErrors)!
+
+Select the *EcoreTestFile.ecore* and invoke *Validate* from the context menu. Click *OK* to dismiss.
+
+!{width:70%}images/4600-validation-view-metamodel-errors.png(ValidationViewMetamodelErrors)!
+
+The above results clearly show problems, but necessarily all the problems and do not show what was actually done. Sometimes validation of a model element terminates prematurely once an error has been reported. On other occasions some constraints are not run and so no corresponding errors are detected.
+
+The above limitations are not a problem, when everything is working well, but on when you have a misunderstanding as to what is being validated a bad day can get very much worse.
+
+h4. Validaty View Validation
+
+Select *OCL->Show Validity View* from the editor context menu.
+
+The left hand pane shows the root model elements in a similar way to the Sample Reflective Ecore Editor.
+
+!{width:90%}images/4600-validation-view-model-elements.png(ValidationViewModelElements)!
+
+The right hand pane shows the root metamodel constraint sources.
+
+!{width:90%}images/4600-validation-view-metamodel-constraints.png(ValidationViewMetamodelConstraints)!
+
+Each may be expanded using the control at the start of each line or the more general controls in the tool bars.
+
+Important tip: click the pin icon in the Validity Model tool bar to stop the Validity View chasing your mouse selections.
+
+You may now obtain the more detailed validation results by clicking on the Run icon in the main validation Vire tool bar.
+
+!{width:90%}images/4600-validation-view-root-results.png(ValidationViewRootResults)!
+
+Use the hover text to see how many validations have been rounded up into each root display.
+
+h4. Filtering by Root Models
+
+There are 36 results in total, which is probably more than we want to look at, even for this very small model.
+
+The *ecore in http://www.eclipse.org/emf/2002/Ecore* root constraint is contributing 30 successes without problem, so we ignore it by unchecking the enable checkbox preceding it.
+
+The *basecs in http://www.eclipse.org/ocl/3.1.0/BaseCST* root constraint simularly contributing 2 successes without problem, so we ignore it as well by unchecking the enable checkbox preceding it.
+
+The model is so simple that we can now expand it completely. Click on the + expand icons.
+
+!{width:90%}images/4600-validation-view-some-results.png(ValidationViewSomeResults)!
+
+You can hover over constraints to see the details and invoke *Show In Editor* you navigate to them. 
+
+h4. Filtering by Status
+
+The many successes are often of limited interest, so we may concentrate on Errors by invoking *Show all Errors* from the Filtering pull down towards the right of the main Valiudation View tool bar.
+
+!{width:90%}images/4600-validation-view-error-results.png(ValidationViewErrorResults)!
+
+Having found an error of interest we can see it in context. Select the error, remove the *Show all Errors* filtering, and enable the view of all constraint by clicking the tick icon in the Model Constraint pane tool bar.
+
+!{width:90%}images/4600-validation-view-results-context.png(ValidationViewResultsContext)!
+
+This shows the error, two warnings and seven successes.
+
+Double clicking on the erroneous child constraint makes the constraint visible in the right hand pane, showing that the constraint is only applied to this one model element.
+
+h4. Debugging constraints
+
+Maybe it's time for some debugging. Select the leaf constraint below a model element, or the leaf element below a constraint and invoke *Debug Single Enabled Selection* to start the OCL debugger to step through the problematic constraint on the problematic model element. (Select the debugger perspective explicitly if it doesn'y open automatically.)
+
+Use of the OCL debugger is described in the "Debugger Tutorial:#DebuggerTutorial.
+
+!{width:90%}images/4600-validation-view-debugger.png(ValidationViewDebugger)!
+

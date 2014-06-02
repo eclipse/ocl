@@ -31,6 +31,8 @@
 4200-oclinterpreter-tutorial.textile
 4300-complete-ocl-tutorial.textile
 4400-code-generation-tutorial.textile
+4500-debugger-tutorial.textile
+4600-validation-tutorial.textile
 
 4900-examples-installation.textile
 

@@ -148,7 +148,7 @@ Full model-driven extensibility is planned for the Luna release.
 
 h2. Who Uses OCL and Eclipse OCL?
 
-The OCL specification is defined by the OMG(Object Management Group). It originally evolved as part of UML where it is used for the detailed mathematical aspects that are not appropriate for graphical exposition. OCL 2.0 was split off from UML 2.0 in recognition of its greater utility.
+The OCL specification is defined by the OMG(Object Management Group). It originally evolved as part of UML(Unified Modeling Language) where it is used for the detailed mathematical aspects that are not appropriate for graphical exposition. OCL 2.0 was split off from UML 2.0 in recognition of its greater utility.
 
 Within the OMG context, OCL has been re-used as the foundation for the MOFM2T(Model to Text) Model-to-Text transformation language and the QVT(Query View Transformation) Model-to-Model transformation language. Eclipse implementations of these are available as the Acceleo and QVT Operational projects.
 

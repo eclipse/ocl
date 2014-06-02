@@ -369,6 +369,30 @@
 <topic href="help/CodeGenerationTutorial.html#Directcode" label="Direct code"></topic>
 <topic href="help/CodeGenerationTutorial.html#UsingaGenAnnotation" label="Using a GenAnnotation"></topic>
 </topic>
+<topic href="help/DebuggerTutorial.html" label="Debugger tutorial">
+<topic href="help/DebuggerTutorial.html#LoadOCLinEcoreTutorialExampleProject2" label="Load OCLinEcore Tutorial Example Project"></topic>
+<topic href="help/DebuggerTutorial.html#TheOCLDebugger" label="The OCL Debugger"></topic>
+<topic href="help/DebuggerTutorial.html#VerySimpleDebugsession" label="Very Simple Debug session">
+<topic href="help/DebuggerTutorial.html#Startingthedebugger" label="Starting the debugger"></topic>
+<topic href="help/DebuggerTutorial.html#ExploringVariables" label="Exploring Variables"></topic>
+<topic href="help/DebuggerTutorial.html#SteppingExecution" label="Stepping Execution"></topic>
+</topic>
+<topic href="help/DebuggerTutorial.html#DebuggingaValidationfailure" label="Debugging a Validation failure"></topic>
+<topic href="help/DebuggerTutorial.html#DebuggingCompleteOCLvalidationfailure" label="Debugging Complete OCL validation failure"></topic>
+<topic href="help/DebuggerTutorial.html#Consoleexperiments" label="Console experiments"></topic>
+<topic href="help/DebuggerTutorial.html#Longerrangestepping" label="Longer range stepping"></topic>
+<topic href="help/DebuggerTutorial.html#Breakpoints" label="Break points"></topic>
+</topic>
+<topic href="help/ValidationTutorial.html" label="Validation tutorial">
+<topic href="help/ValidationTutorial.html#LoadCompleteOCLTutorialExampleProject2" label="Load Complete OCL Tutorial Example Project"></topic>
+<topic href="help/ValidationTutorial.html#LoadTestModel" label="Load Test Model"></topic>
+<topic href="help/ValidationTutorial.html#EMFValidation" label="EMF Validation">
+<topic href="help/ValidationTutorial.html#ValidatyViewValidation" label="Validaty View Validation"></topic>
+<topic href="help/ValidationTutorial.html#FilteringbyRootModels" label="Filtering by Root Models"></topic>
+<topic href="help/ValidationTutorial.html#FilteringbyStatus" label="Filtering by Status"></topic>
+<topic href="help/ValidationTutorial.html#Debuggingconstraints" label="Debugging constraints"></topic>
+</topic>
+</topic>
 <topic href="help/Installation.html" label="Installing the Eclipse OCL Examples and Editors">
 <topic href="help/Installation.html#Troubleshooting2" label="Troubleshooting"></topic>
 </topic>
@@ -524,7 +548,10 @@
 <topic href="help/BuildingtheOCLProject.html#httpwww.eclipse.orgOCLGenModelCopyAndPaste" label="http://www.eclipse.org/OCL/GenModel/CopyAndPaste">
 <topic href="help/BuildingtheOCLProject.html#ImplementationDetails2" label="Implementation Details"></topic>
 </topic>
-<topic href="help/BuildingtheOCLProject.html#ImplementationDetails3" label="Implementation Details"></topic>
+<topic href="help/BuildingtheOCLProject.html#ImplementationDetails3" label="Implementation Details">
+<topic href="help/BuildingtheOCLProject.html#org.eclipse.ocl.examples.build" label="org.eclipse.ocl.examples.build"></topic>
+<topic href="help/BuildingtheOCLProject.html#org.eclipse.ocl.examples.build.acceleo" label="org.eclipse.ocl.examples.build.acceleo"></topic>
+</topic>
 </topic>
 </topic>
 <topic href="help/glossary.html" label="A. Glossary"></topic>
