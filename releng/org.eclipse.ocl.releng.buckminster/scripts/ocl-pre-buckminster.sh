@@ -12,7 +12,7 @@
 
 set
 ls $JAVA_HOME
-ls $JAVA_BINDIR
+ls $JAVA_HOME/bin
 
 rm -rf buildroot MDT-OCL.*
 mkdir buildroot
