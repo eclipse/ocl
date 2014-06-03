@@ -133,7 +133,7 @@
             </xsl:call-template>
           </xsl:variable>
           
-          <toc label="{normalize-space($title)}" topic="{$href}">
+          <toc label="{normalize-space($title)}">
             <xsl:apply-templates select="key('id',$rootid)/*" mode="etoc"/>
           </toc>
         </xsl:when>
@@ -156,7 +156,7 @@
             </xsl:call-template>
           </xsl:variable>
           
-          <toc label="{normalize-space($title)}" topic="{$href}">
+          <toc label="{normalize-space($title)}">
             <xsl:apply-templates select="/*/*" mode="etoc"/>
           </toc>
         </xsl:otherwise>
