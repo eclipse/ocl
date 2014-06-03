@@ -10,6 +10,10 @@
 #*******************************************************************************
 #!/bin/bash
 
+set
+ls $JAVA_HOME
+ls $JAVA_BINDIR
+
 rm -rf buildroot MDT-OCL.*
 mkdir buildroot
 :
