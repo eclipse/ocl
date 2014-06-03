@@ -43,11 +43,21 @@
 				<exclude name="**/org/eclipse/ocl/examples/build/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/editor/ocl/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/editor/ui/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/modelregistry/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/project/**"/>
 			</fileset>
+			<excludepackage name="org.osgi.framework"/>
 			<tag name="generated" description="Generated"></tag>
 			<tag name="model" description="Model"></tag>
+			<tag name="noextend"></tag>
+			<tag name="noimplement"></tag>
+			<tag name="noinstantiate"></tag>
+			<tag name="noreference"></tag>
 			<tag name="ordered" description="Ordered"></tag>
+			<tag name="Override" description="FiXME typo"></tag>
+			<tag name="parameter" description="FiXME typo"></tag>
+			<tag name="result" description="FiXME typo"></tag>
+			<tag name="Return" description="FiXME typo"></tag>
 		</javadoc>
 		
 		<!-- Compress the output javadoc in a zip file --> 
