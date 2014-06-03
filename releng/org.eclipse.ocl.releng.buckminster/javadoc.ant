@@ -7,13 +7,14 @@
 		<property name="output" value="./javadoc" />
 		<property name="checkoutLocation" value="../.." />
 		<property name="targetPlatform" value="${eclipse.home}" />
-		<property name="javadoc.java.home" value="${java.home}" />
+		<property name="javadoc" value="javadoc" />
 		<property name="pluginsSourcesLocation" value="${checkoutLocation}/org.eclipse.ocl.git/plugins/" />
 		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.ocl.git/examples/" />
 
 
 		<echo message="Java home: ${java.home}" />
 		<echo message="Javadoc Java home: ${javadoc.java.home}" />
+		<echo message="Javadoc: ${javadoc}" />
 		<echo message="Plugins sources code location: ${pluginsSourcesLocation}" />
 		<echo message="Examples sources code location: ${examplesSourcesLocation}" />		
 		<echo message="Javadoc output location: ${output}" />
@@ -32,7 +33,7 @@
 
 		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" 
 				useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation"
-				executable="${javadoc.java.home}/bin/javadoc"
+				executable="${javadoc}"
 				>
 			<fileset dir="${pluginsSourcesLocation}" defaultexcludes="true">
 				<include name="**/*.java" />
