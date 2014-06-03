@@ -30,7 +30,7 @@ Content-assist is automatically activated on typing any of "@.@", "@->@", "@::@"
 
 h3. Support for Ecore and UML Models
 
-The OCL Console contributes a @Show OCL Console@ menu action to the Ecore and UML editors (for @*.ecore@ and @*.uml@ models).  These actions automatically select the appropriate metamodel in the console.
+The OCL Console contributes an *OCL->Show OCL Console* menu action to the Ecore and UML editors (for @*.ecore@ and @*.uml@ models).  These actions automatically select the appropriate metamodel in the console.
 
 For both Ecore and UML, parsing constraints at the @M1@ (model) level is supported.  This implements a scratch pad for developing OCL constraints in the context of:
 

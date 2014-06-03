@@ -107,7 +107,7 @@ We will now open the Ecore model using the OCLinEcore text editor and provide so
 initial content.
 
 Right-click on the *Tutorial.ecore* file to pop-up the context-sensitive menu
-and select *Open With->OCLinEcore (Ecore) Editor*.
+and select *Open With->OCLinEcore Editor*.
 
 An almost empty text file appears showing the module, the package keyword and an empty name and consequently an error.
 
@@ -322,7 +322,7 @@ left click on *Interactive Xtext OCL*.
 
 !{width:50%}images/4100-ocl_console_menu.png(OCL Console menu)!
 
-Alternatively, you can just invoke *Show Xtext OCL Console* from the right button menu
+Alternatively, you can just invoke *OCL->Show Xtext OCL Console* from the right button menu
 within the *Sample Ecore Editor* or *Sample Reflective Ecore Editor*.
 
 bq.. 

@@ -22,6 +22,7 @@
 <topic href="help/UsersGuide.html#APIs" label="APIs">
 <topic href="help/UsersGuide.html#ToolAPIs" label="Tool APIs"></topic>
 <topic href="help/UsersGuide.html#InternalAPIs" label="Internal APIs"></topic>
+<topic href="help/UsersGuide.html#Versions" label="Versions"></topic>
 </topic>
 </topic>
 <topic href="help/EssentialOCL.html" label="The Essential OCL Language">
@@ -153,6 +154,7 @@
 <topic href="help/InteractiveOCL.html#M1M2" label="M1/M2"></topic>
 <topic href="help/InteractiveOCL.html#ClearConsole" label="Clear Console"></topic>
 <topic href="help/InteractiveOCL.html#CloseConsole" label="Close Console"></topic>
+<topic href="help/InteractiveOCL.html#Debug" label="Debug"></topic>
 <topic href="help/InteractiveOCL.html#LoadSaveanexpression" label="Load/Save an expression"></topic>
 </topic>
 </topic>
@@ -228,8 +230,15 @@
 </topic>
 <topic href="help/Integration.html" label="OCL Integration">
 <topic href="help/Integration.html#Integration-OCLinEcore" label="OCL execution in Ecore / EMF Delegates"></topic>
-<topic href="help/Integration.html#Integration-Messages" label="Custom Validation Messages"></topic>
-<topic href="help/Integration.html#Integration-CompleteOCL" label="CompleteOCL Validation"></topic>
+<topic href="help/Integration.html#Integration-Messages" label="Custom Validation Messages">
+<topic href="help/Integration.html#Underlyingsupport" label="Underlying support"></topic>
+<topic href="help/Integration.html#Editorsyntax" label="Editor syntax"></topic>
+</topic>
+<topic href="help/Integration.html#Integration-CompleteOCL" label="CompleteOCL Validation">
+<topic href="help/Integration.html#BrowseRegisteredOCLFiles..." label="Browse Registered OCL Files..."></topic>
+<topic href="help/Integration.html#BrowseFileSystem..." label="Browse File System..."></topic>
+<topic href="help/Integration.html#BrowseWorkspace..." label="Browse Workspace..."></topic>
+</topic>
 <topic href="help/Integration.html#OCLinEcoreforXtextValidation" label="OCLinEcore for Xtext Validation"></topic>
 <topic href="help/Integration.html#CompleteOCLforXtextValidation" label="Complete OCL for Xtext Validation"></topic>
 </topic>
@@ -553,6 +562,7 @@
 <topic href="help/BuildingtheOCLProject.html#org.eclipse.ocl.examples.build.acceleo" label="org.eclipse.ocl.examples.build.acceleo"></topic>
 </topic>
 </topic>
+<topic href="help/ASM3.html" label="ASM 3"></topic>
 </topic>
 <topic href="help/glossary.html" label="A. Glossary"></topic>
 </toc>

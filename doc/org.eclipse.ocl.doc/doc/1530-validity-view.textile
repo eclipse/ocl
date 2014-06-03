@@ -1,17 +1,20 @@
 
 h2(#ValidityView). Validity View (new in Luna)
 
-The standard EMF validation capabilities provide a useful overview of problems as markers in the source model, Problems View or Pop-up dialogs.
+The standard EMF validation capabilities provide a useful overview of problems:
+* as markers in the source model,
+* as markers in the Problems View,
+* in Pop-up dialogs.
 
-The Validity View provides a much more detailed view of the problems an so assists in debugging bad models and/or bad constaints.
+The *Validity View* provides a much more detailed view of the problems and so assists in debugging bad models and/or bad constaints.
 
 The *Validity View* may be shown by invoking *OCL->Show Validity View* from the right button menu of some model editors such as the *Sample Ecore Model Editor*. Alternatively the *Validity View* view may be created by *Window->Show View->Other... OCL->Validity View*.
 
-!images/1530-validity-view.png(ValidityViewImage)!
+!{width:70%}images/1530-validity-view.png(ValidityViewImage)!
 
-The left-hand pane titled Model Elements provides a Tree View of the Resources in a ResourceSet in a similar fashion to the Sample Ecore Editor. However an additional child element (in blue italics) is added for each constraint applicable to its parent element. Checkboxes enable or disable the element from re-validations and JUnit-like status icons show the status of the most recent validation. Hovertext provides further detail.
+The left-hand pane titled Model Elements provides a tree view of the Resources in a ResourceSet in a similar fashion to the Sample Ecore Editor. However an additional child element (in blue italics) is added for each constraint applicable to its parent element. Checkboxes enable or disable the element from re-validations and JUnit-like status icons show the status of the most recent validation. Hovertext provides further detail.
 
-The right-hand pane title Metamodel Constraint provides a Tree View of the model hierarchies that contribute constraints. An additional child element is added for each model element to which the constraint applies.
+The right-hand pane titled Metamodel Constraints provides a tree view of the model hierarchies that contribute constraints. An additional child element is added for each model element to which the constraint applies.
 
 The displays track the mouse selection in other views. Whenever the mouse selection can be resolved to an EObject, that EObject's ResourceSet populates the left hand pane and constraints affecting the left hand pane populate the right hand pane. Tracking the mouse selection is quite expensive, and probably irritating. It can be inhibited by pinning the view to the current selection.
 
@@ -31,7 +34,7 @@ The minus icon causes the Model Elements and Metamodel Constraints to collapse t
 
 h4. Pin
 
-The pin icon toggles the track current cursor selection. When unpinned, the default, and change in mouse selection may cause recomputation of Model Elements and Metamodel Constraints contents. When pinned the contents are stable.
+The pin icon toggles the track current cursor selection. When unpinned, the default, any change in mouse selection may cause recomputation of Model Elements and Metamodel Constraints contents. When pinned the contents are stable.
 
 h4. Refresh
 
@@ -55,7 +58,7 @@ By default none of the selections are enabled so everything is shown. As soon as
 
 h4. Save
 
-[This functionality does not appear to work in Luna SR0.]
+__This functionality does not appear to work in Luna SR0.__
 
 The floppy disk icon supports export of the validation results.
 
@@ -83,7 +86,7 @@ It comprises a title and tool bar, text filter and scrollable tree of model elem
 
 h4(#ValidityViewModelElementsToolBar). Model Elements Tool Bar
 
-The Model Elements Tool Bar is at the top and right of the left hand pane following the Model Elements. It provides facilities specific to the Model Elements.
+The Model Elements Tool Bar is at the top and right of the left hand pane following the Model Elements title. It provides facilities specific to the Model Elements.
 
 h5. Expand All
 
@@ -120,7 +123,7 @@ The scrollable tree shows the containment hierarchy of all elements in the Resou
 
 The +/- collapse/expand icons preceding each element enable interesting elements to be shown and others folded away.
 
-Each element is preceded by a check box that enables it usage within the next validation run. All elements may be enabled or disabled using the icons in the Model Elements Tool Bar. Enabling/disabling individual elements enables/disables the element's descendants and propagates a partial enable/disable to the element's ancestors.
+Each element is preceded by a check box that enables its usage within the next validation run. All elements may be enabled or disabled using the icons in the Model Elements Tool Bar. Enabling/disabling individual elements enables/disables the element's descendants and propagates a partial enable/disable to the element's ancestors.
 
 The checkbox is followed by a validation status icon.
 * tick for validation successful
@@ -141,7 +144,7 @@ h5. Validate Selection
 
 Revalidates all constraints applicable to the selected Model Element and its children.
 
-[This seems to revalidate all Model Elements regardless in Luna SR0.]
+__This seems to revalidate all Model Elements regardless in Luna SR0.__
 
 h5. Debug Single Enabled Selection
 
@@ -149,13 +152,13 @@ Launches the debugger for the selected Model Element and associated Constraint.
 
 The entry is greyed out if more than one Constraint is selected, so the invocation should normally be made from a leaf Constraint result.
 
-[Debug launching is only available for OCL constraints in Luna SR0.]
+__Debug launching is only available for OCL constraints in Luna SR0.__
 
 h5. Show in Editor
 
 Opens an editor for the selected Model Element or Metamodel Constraint.
 
-[Opening is not available for all forms of constraint in Luna SR0.]
+__Opening is not available for all forms of constraint in Luna SR0.__
 
 h3(#ValidityViewMetamodelConstraintsPane). Metamodel Constraints Pane
 
@@ -202,7 +205,7 @@ The scrollable tree shows the containment hierarchy of all constraints applicabl
 
 The +/- collapse/expand icons preceding each element enable interesting elements to be shown and others folded away.
 
-Each element is preceded by a check box that enables it usage within the next validation run. All elements may be enabled or disabled using the icons in the Model Elements Tool Bar. Enabling/disabling individual elements enables/disables the element's descendants and propagates a partial enable/disable to the element's ancestors.
+Each element is preceded by a check box that enables its usage within the next validation run. All elements may be enabled or disabled using the icons in the Model Elements Tool Bar. Enabling/disabling individual elements enables/disables the element's descendants and propagates a partial enable/disable to the element's ancestors.
 
 The checkbox is followed by a validation status icon.
 * tick for validation successful
@@ -223,7 +226,7 @@ h5. Validate Selection
 
 Revalidates all model elements applicable to the selected constraint and its children.
 
-[This seems to revalidate all Model Elements regardless in Luna SR0.]
+__This seems to revalidate all Model Elements regardless in Luna SR0.__
 
 h5. Debug Single Enabled Selection
 
@@ -231,17 +234,17 @@ Launches the debugger for the selected Model Element and associated Constraint.
 
 The entry is greyed out if more than one Constraint is selected, so the invocation should normally be made from a leaf Model Element result.
 
-[Debug launching is only available for OCL constraints in Luna SR0.]
+__Debug launching is only available for OCL constraints in Luna SR0.__
 
 h5. Show in Editor
 
 Opens an editor for the selected Model Element or Metamodel Constraint.
 
-[Opening is not available for all forms of constraint in Luna SR0.]
+__Opening is not available for all forms of constraint in Luna SR0.__
 
 h3(ConstraintLocator). Constraint Locators
 
-The constraints displayed in the right hand pane are located by constraint locators that are registered by the org.eclipse.ocl.examples.emf.validation.validity.constraint_locator extension point. A constraint locator implements the org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator or the org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator to define location, presentation, execution and debug launching of a particular kind of constraints.
+The constraints displayed in the right hand pane are located by constraint locators that are registered with the org.eclipse.ocl.examples.emf.validation.validity.constraint_locator extension point. A constraint locator implements org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator or the org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator to define location, presentation, execution and debug launching of a particular kind of constraint.
 
 Constraint locators are associated with metamodel namespaces which are determined by the nsURI of the EPackage that contains the EClass of a Model Element EObject. Constraint locators may be registered for a particular metamodel namespace or for no namespace. Those registered for no namespace are activated whenever a namespace is encountered for which no specific constraint locators are registered.
 
