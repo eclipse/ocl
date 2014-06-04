@@ -200,12 +200,12 @@
 
 		<echo>Generating md5 checksums</echo>
 		<checksum algorithm="MD5" fileext=".md5" format="MD5SUM">
-			<fileset dir="${build.drop.directory}" />
+			<fileset dir="${build.drop.directory}/*.zip" />
 		</checksum>
 
 		<echo>Generating SHA-512 checksums</echo>
-		<checksum algorithm="SHA-512" fileext=".sha512">
-			<fileset dir="${build.drop.directory}" />
+		<checksum algorithm="SHA-512" fileext=".sha1" format="MD5SUM">
+			<fileset dir="${build.drop.directory}/*.zip" />
 		</checksum>
 
 		<echo>Copying Test Results</echo>

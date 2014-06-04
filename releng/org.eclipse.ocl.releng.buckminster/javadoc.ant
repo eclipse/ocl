@@ -62,6 +62,7 @@
 		</javadoc>
 		
 		<!-- Compress the output javadoc in a zip file --> 
+		<echo message="Compress javadoc to: ${output}/${projectName}-javadoc.zip" />
 		<zip destfile="${output}/${projectName}-javadoc.zip" basedir="${output}"></zip>
 	</target>
 	
