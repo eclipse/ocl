@@ -203,6 +203,11 @@
 			<fileset dir="${build.drop.directory}" />
 		</checksum>
 
+		<echo>Generating SHA-512 checksums</echo>
+		<checksum algorithm="SHA-512" fileext=".sha512">
+			<fileset dir="${build.drop.directory}" />
+		</checksum>
+
 		<echo>Copying Test Results</echo>
 		<mkdir dir="${build.drop.directory}/testresults" />
 		<copy todir="${build.drop.directory}/testresults">
@@ -306,7 +311,14 @@
 		<delete verbose="true">
 			<fileset dir="${project.javadoc.directory}"/>
 		</delete>
-					
+		
+		<dirset id="dist1.contents" dir="${javadoc.directory}/.." includes="*"/>
+		<property name="prop.dist1.contents" refid="dist1.contents"/>
+		<echo>${javadoc.directory}/..: ${prop.dist1.contents}</echo>
+		<dirset id="dist2.contents" dir="${javadoc.directory}" includes="*"/>
+		<property name="prop.dist2.contents" refid="dist2.contents"/>
+		<echo>${javadoc.directory}: ${prop.dist2.contents}</echo>
+		
 		<echo>Unzipping javadoc from ${javadoc.directory}/MDT-OCL-javadoc.zip</echo>
 		<unzip dest="${project.javadoc.directory}">
 			<fileset dir="${javadoc.directory}">
