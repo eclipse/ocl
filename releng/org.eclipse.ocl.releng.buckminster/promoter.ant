@@ -307,10 +307,10 @@
 			<fileset dir="${project.javadoc.directory}"/>
 		</delete>
 					
-		<echo>Unzipping javadoc from ${javadoc.directory}/*-javadoc.zip</echo>
+		<echo>Unzipping javadoc from ${javadoc.directory}/MDT-OCL-javadoc.zip</echo>
 		<unzip dest="${project.javadoc.directory}">
 			<fileset dir="${javadoc.directory}">
-				<filename name="*-javadoc.zip" />
+				<filename name="MDT-OCL-javadoc.zip" />
 			</fileset>
 		</unzip>
 	</target>
