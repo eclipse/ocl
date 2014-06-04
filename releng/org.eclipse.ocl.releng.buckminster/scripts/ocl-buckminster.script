@@ -16,7 +16,7 @@ import --properties "${checkout.location}/buildroot/build.properties" "org.eclip
 
 build
 
-perform -DtargetPlatformPath="${checkout.location}/buildroot/target.platform" --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#create.javadoc"
+perform -DtargetPlatformPath="${checkout.location}/buildroot/target.platform" -Doutput="${checkout.location}/javadoc" --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#create.javadoc"
 
 # OCL Core Tests
 junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.tests.xml"
