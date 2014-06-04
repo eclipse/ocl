@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ant.AntLaunchConfigurationType">
+<booleanAttribute key="org.eclipse.ant.ui.DEFAULT_VM_INSTALL" value="true"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.eclipse.ocl.releng.buckminster/javadoc.ant"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_45"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.releng.buckminster"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
+<mapAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_PROPERTIES">
+<mapEntry key="eclipse.pdebuild.home" value="/C:/Tools/Eclipse/4.4RC3/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/./"/>
+<mapEntry key="eclipse.pdebuild.scripts" value="/C:/Tools/Eclipse/4.4RC3/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/scripts/"/>
+<mapEntry key="eclipse.pdebuild.templates" value="/C:/Tools/Eclipse/4.4RC3/plugins/org.eclipse.pde.build_3.9.0.v20140415-2029/templates/"/>
+<mapEntry key="examplesSourcesLocation" value="${git_dir:org.eclipse.ocl}/../examples"/>
+<mapEntry key="mustCreateJavadoc" value="true"/>
+<mapEntry key="pluginsSourcesLocation" value="${git_dir:org.eclipse.ocl}/../plugins"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_TARGETS" value="create.javadoc,"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/org.eclipse.ocl.releng.buckminster/javadoc.ant}"/>
+<stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
+</launchConfiguration>

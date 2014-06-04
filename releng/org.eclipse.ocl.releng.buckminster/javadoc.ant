@@ -6,7 +6,7 @@
 		<!-- workspace defaults -->
 		<property name="output" value="./javadoc" />
 		<property name="checkoutLocation" value="../.." />
-		<property name="targetPlatform" value="${eclipse.home}" />
+		<property name="targetPlatform" value="${ant.home}/../.." />
 		<property name="javadoc" value="javadoc" />
 		<property name="pluginsSourcesLocation" value="${checkoutLocation}/org.eclipse.ocl.git/plugins/" />
 		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.ocl.git/examples/" />
@@ -24,6 +24,7 @@
 		<path id="javadoc-classpath">
 			<fileset dir="${targetPlatform}">
 				<include name="**/*.jar" />
+				<exclude name="**/*.source_*.jar" />
 			</fileset>
 		</path>
 
