@@ -161,6 +161,7 @@
 		<property file="${publisher.properties.file.name}" />
 		<fail message="build.archives property must be defined" unless="build.archives" />
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
+		<fail message="javadoc.area property must be defined" unless="javadoc.area" />
 
 		<!-- defaults -->
 		<property name="version" value="3.1.0" />
@@ -172,7 +173,7 @@
 		<property name="testresults.directory" location="${build.archives}/${tests.base}" />
 		<property name="javadoc.directory" location="${build.archives}/${javadoc.base}" />
 
-		<property name="project.javadoc.directory" location="${downloads.area}/javadoc/${version}" />
+		<property name="project.javadoc.directory" location="${javadoc.area}/${version}" />
 		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
 		<available file="${build.drop.directory}" type="dir" property="alreadyPromoted" />
 		<antcall target="publish" inheritall="true" />

@@ -58,6 +58,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "component.name=tools"
 	echo "version=5.0.0"
 	echo "downloads.area=/home/data/httpd/download.eclipse.org/modeling/mdt/ocl"
+	echo "javadoc.area=/home/data/httpd/download.eclipse.org/ocl/javadoc"
 
 
 } > buildroot/build.properties
