@@ -51,7 +51,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      * 
      * Should you conveniently have the context type available, consider using
      * {@link #ImpactAnalyzerImpl(OCLExpression, EClass, boolean, ActivationOption, OCLFactory)} instead.
-     * @param notifyNewContextElements
+     * @param notifyOnNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation events on the
      *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
      *            because when a new element is created, validating the constraint may be useful. For other use cases, registering
@@ -71,7 +71,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @param oppositeEndFinder
      *            used during partial navigation and for metamodel queries
-     * @param notifyNewContextElements
+     * @param notifyOnNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation events on the
      *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
      *            because when a new element is created, validating the constraint may be useful. For other use cases, registering
@@ -97,7 +97,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @param oppositeEndFinder
      *            used during partial navigation and for metamodel queries
-     * @param notifyNewContextElements
+     * @param notifyOnNewContextElements
      *            The analyzer can be parameterized during construction such that it either registers for creation events on the
      *            context type or not. Registering for element creation on the context type is useful for invariants / constraints
      *            because when a new element is created, validating the constraint may be useful. For other use cases, registering

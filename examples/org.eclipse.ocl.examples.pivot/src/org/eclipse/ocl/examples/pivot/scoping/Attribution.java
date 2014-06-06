@@ -25,8 +25,6 @@ import org.eclipse.jdt.annotation.Nullable;
  * 
  * The REGISTRY maintains the helpsers for each type. Missing entries may be lazily populated by following the
  * primary superclasses until an entry is found.
- *
- * @param <T>
  */
 public interface Attribution
 {	

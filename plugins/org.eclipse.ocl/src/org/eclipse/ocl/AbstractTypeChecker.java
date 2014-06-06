@@ -912,8 +912,6 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	 * <tt>T</tt> or <tt>T2</tt>) against the source type of the operation or
 	 * the type of the actual argument, as appropriate.
 	 * 
-	 * @param env
-	 *            the OCL environment
 	 * @param owner
 	 *            the operation source type
 	 * @param paramType

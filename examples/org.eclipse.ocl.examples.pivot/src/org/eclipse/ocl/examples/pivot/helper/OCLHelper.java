@@ -62,8 +62,8 @@ public interface OCLHelper
 	 *
 	 * @param context the OCL context classifier
 	 * 
-	 * @see #setOperationContext(Object, Object)
-     * @see #setPropertyContext(Object, Object)
+	 * @see #setOperationContext(Type, Operation)
+     * @see #setPropertyContext(Type, Property)
 	 */
 	void setContext(@NonNull EClassifier context);
 
@@ -73,8 +73,8 @@ public interface OCLHelper
 	 *
 	 * @param context the OCL context classifier
 	 * 
-	 * @see #setOperationContext(Object, Object)
-     * @see #setPropertyContext(Object, Object)
+	 * @see #setOperationContext(Type, Operation)
+     * @see #setPropertyContext(Type, Property)
 	 */
 	void setContext(@NonNull Type context);
 
@@ -95,7 +95,7 @@ public interface OCLHelper
 	 * @param context the OCL context classifier
 	 * @param operation the OCL context operation
 	 * 
-	 * @see #setContext(Object)
+	 * @see #setContext(EClassifier)
 	 */
 	void setOperationContext(@NonNull EClassifier context, @NonNull EOperation operation);
 	
@@ -109,7 +109,7 @@ public interface OCLHelper
 	 * @param context the OCL context classifier
 	 * @param operation the OCL context operation
 	 * 
-	 * @see #setContext(Object)
+	 * @see #setContext(Type)
 	 */
 	void setOperationContext(@NonNull Type context, @NonNull Operation operation);
 
@@ -131,7 +131,7 @@ public interface OCLHelper
 	 * @param context the OCL context classifier
 	 * @param property the OCL context attribute
 	 * 
-	 * @see #setContext(Object)
+	 * @see #setContext(Type)
 	 */
 	void setPropertyContext(@NonNull Type context, @NonNull Property property);
 	
@@ -145,7 +145,7 @@ public interface OCLHelper
 	 * @param context the OCL context classifier
 	 * @param property the OCL context attribute
 	 * 
-	 * @see #setContext(Object)
+	 * @see #setContext(EClassifier)
 	 */
 	void setPropertyContext(@NonNull EClassifier context, @NonNull EStructuralFeature property);
 
@@ -168,7 +168,7 @@ public interface OCLHelper
      * 
      * @param instance the OCL context instance
      * 
-     * @see #setContext(Object)
+     * @see #setContext(EClassifier)
      */
     void setInstanceContext(@NonNull Object instance);
     
@@ -184,7 +184,7 @@ public interface OCLHelper
      * @param instance the OCL context instance
      * @param operation the OCL context operation
      * 
-     * @see #setOperationContext(Object, Object)
+     * @see #setOperationContext(Type, Operation)
      */
     void setInstanceOperationContext(@NonNull Object instance, @NonNull Operation operation);
     
@@ -200,7 +200,7 @@ public interface OCLHelper
      * @param instance the OCL context instance
      * @param property the OCL context attribute
      * 
-     * @see #setPropertyContext(Object, Object)
+     * @see #setPropertyContext(Type, Property)
      */
     void setInstancePropertyContext(@NonNull Object instance, @NonNull Property property);
 	
@@ -224,9 +224,9 @@ public interface OCLHelper
      * @return my current context environment, or <code>null</code> if I have
      *    not yet been assigned a context
      * 
-     * @see #setContext(Object)
-     * @see #setOperationContext(Object, Object)
-     * @see #setPropertyContext(Object, Object)
+     * @see #setContext(Type)
+     * @see #setOperationContext(Type, Operation)
+     * @see #setPropertyContext(Type, Property)
      */
     @NonNull Environment getEnvironment();
     
@@ -305,7 +305,7 @@ public interface OCLHelper
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 * 
-	 * @see #setOperationContext(Object, Object)
+	 * @see #setOperationContext(Type, Operation)
 	 */
     @NonNull ExpressionInOCL createPrecondition(@NonNull String expression) throws ParserException;
 
@@ -320,7 +320,7 @@ public interface OCLHelper
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 * 
-	 * @see #setOperationContext(Object, Object)
+	 * @see #setOperationContext(Type, Operation)
 	 */
 	@NonNull ExpressionInOCL createPostcondition(@NonNull String expression) throws ParserException;
 
@@ -339,7 +339,7 @@ public interface OCLHelper
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 * 
-	 * @see #setOperationContext(Object, Object)
+	 * @see #setOperationContext(Type, Operation)
 	 */
 	@NonNull ExpressionInOCL createBodyCondition(@NonNull String expression) throws ParserException;
 
@@ -355,7 +355,7 @@ public interface OCLHelper
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 *    or is not valid for my context property
 	 * 
-	 * @see #setPropertyContext(Object, Object)
+	 * @see #setPropertyContext(Type, Property)
 	 */
 //	Constraint createInitialValueExpression(@NonNull String expression) throws ParserException;
 
@@ -371,7 +371,7 @@ public interface OCLHelper
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 *    or is not valid for my context property
 	 * 
-	 * @see #setPropertyContext(Object, Object)
+	 * @see #setPropertyContext(Type, Property)
 	 */
 	@NonNull ExpressionInOCL createDerivedValueExpression(@NonNull String expression) throws ParserException;
 

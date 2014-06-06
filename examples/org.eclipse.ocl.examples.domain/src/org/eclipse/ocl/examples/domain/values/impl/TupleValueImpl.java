@@ -47,7 +47,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
     /**
      * Initializes me with a map of part values.
      * 
-     * @param type my type
+     * @param tupleTypeId my type
      * @param values my parts
      */
     public TupleValueImpl(@NonNull TupleTypeId tupleTypeId, @NonNull Map<? extends TuplePartId, Object> values) {
@@ -63,7 +63,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
      * required by the Collection::product() operation.
      * 
      * @param tupleTypeId my type
-     * @param value my values which are aligned to the tupleTypeId.getParts()
+     * @param values my values which are aligned to the tupleTypeId.getParts()
      */
     public TupleValueImpl(@NonNull TupleTypeId tupleTypeId, @NonNull Object... values) {
 		this.tupleTypeId = tupleTypeId;

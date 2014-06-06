@@ -245,9 +245,6 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 
 		/**
 		 * Generate a popup to display a primaryMessage and optionally a detailMessage too.
-		 * @param primaryMessage
-		 * @param detailMessage
-		 * @return
 		 */
 		protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 			Shell shell = parent;

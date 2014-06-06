@@ -18,8 +18,6 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.OCLValue;
-import org.eclipse.ocl.examples.domain.values.ObjectValue;
-import org.eclipse.ocl.examples.domain.values.Value;
 
 public interface DomainType extends DomainNamespace, OCLValue
 {
@@ -30,9 +28,8 @@ public interface DomainType extends DomainNamespace, OCLValue
 
 	/**
 	 * Return a new instance of this type from valueFactory. Properties may be initialised using
-	 * {@link DomainProperty#initValue(DomainStandardLibrary, ObjectValue, Value) } provided no side-effect free
+	 * {@link DomainProperty#initValue(Object, Object) } provided no side-effect free
 	 * OCL functionality is permitted to use the ObjectValue until initialisation has completed.
-	 * @param value 
 	 */
 	@NonNull Object createInstance();
 
@@ -86,7 +83,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.
-	 * @return
 	 */
 	@NonNull TypeId getTypeId();
 	

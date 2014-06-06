@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.pivot.resource;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.PivotConstants;

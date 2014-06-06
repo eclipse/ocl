@@ -750,7 +750,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		}
 	}
 
-	/** @Deprecated cast first argument to BaseCSResource */
+	/** @deprecated cast first argument to BaseCSResource */
 	@Deprecated
 	public void installRootElement(@NonNull Resource csResource, @NonNull Element pivotElement) {
 		installRootElement((BaseCSResource)csResource, pivotElement);
@@ -980,11 +980,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	 * Return a pivotEClass instance cast to pivotClass registered for csElement.getCSI().
 	 * <p>An existing element is re-used else an new instance is created.
 	 * <p>The pivot element is installed as the original object of csElement. 
-	 * @param <T>
-	 * @param pivotClass
-	 * @param pivotEClass
-	 * @param csElement
-	 * @return
 	 */
 	public @NonNull <T extends Element> T refreshModelElement(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @Nullable ModelElementCS csElement) {
 		assert pivotEClass != null;
@@ -1131,10 +1126,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	 * Update a list of TemplateParameterSubstitution to match a list of TemplateParameter
 	 * by moving/adding/removing existing entries. Once matched each TemplateParameterSubstitution.formal
 	 * references the corresponding TemplateParameter.
-	 * @param eList 
-	 * 
-	 * @param templateSignature
-	 * @param templateBinding
 	 */
 	protected void specializeTemplateParameterSubstitutions(@NonNull List<TemplateParameterSubstitution> templateParameterSubstitutions,
 			@NonNull List<TemplateParameter> templateParameters, @NonNull List<TemplateParameterSubstitutionCS> csTemplateParameterSubstitutions) {
@@ -1246,7 +1237,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 
 	/**
 	 * Sequence the update passes to make the pivot match the CS.
-	 * @param csResources 
 	 */
 	public boolean update() {
 		resetPivotMappings(csResources);

@@ -292,8 +292,8 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
 
     /**
      * There are a few known idiosyncrasies in the OCL "composition" hierarchy. A {@link TupleLiteralExp} does not contain its
-     * {@link TupleLiteralExp#getTuplePart() tuple parts} which are variable declarations, a {@link CollectionLiteralExp} does not
-     * contain its {@link CollectionLiteralExp#getParts() parts}, and of those parts, none of {@link CollectionRange} nor
+     * {@link TupleLiteralExp#getPart() tuple parts} which are variable declarations, a {@link CollectionLiteralExp} does not
+     * contain its {@link CollectionLiteralExp#getPart() parts}, and of those parts, none of {@link CollectionRange} nor
      * {@link CollectionItem} contains the expressions that it uses to describe itself.
      * <p>
      * 

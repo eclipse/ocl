@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
  * A resolvable location is perhaps <tt>platform:/plugin/org.antlr.runtime/</tt> for a bundle or
  * <tt>platform:/resource/org.eclipse.ocl.examples.common/</tt> for an open project.
  * <p>
- * {@link #getProjectMap()} returns a map of project names, but not bundle names, to resolvable location.
+ * {@link #getProjectDescriptors()} returns a map of project names, but not bundle names, to resolvable location.
  * <p>
  * {@link #initializePackageRegistry(ResourceSet)} augments the default EMF startup in a plugin environment
  * whereby the global package registry acquires a registration for each namespace URI
@@ -53,13 +53,13 @@ import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
  * <tt>org.eclipse.emf.ecore.generated_package</tt> declarations ensure that all three URIs resolve to
  * the same Resource eliminating most opportunities for meta-model schizophrenia.
  * <p>
- * {@link #initializePlatformResourceMap()} does nothing since the standard EMF Platform URI Handler
+ * {@link #initializePlatformResourceMap(boolean)} does nothing since the standard EMF Platform URI Handler
  * can open platform resources directly.
  * <p>
- * {@link #initializeGenModelLocationMap(ResourceSet)} does nothing, since the standard EMF startup in a
+ * {@link #initializeGenModelLocationMap(boolean)} does nothing, since the standard EMF startup in a
  * plugin environment populates the {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap()}.
  * <p>
- * {@link #initializeURIMap(URIConverter)} installs explicit URI mappings into the {@link URIConverter}
+ * {@link #initializeURIMap(ResourceSet)} installs explicit URI mappings into the {@link URIConverter}
  * so that for each project so that both <tt>platform:/resource/project</tt> and
  * <tt>platform:/plugin/<i>project</i></tt> reference <tt>platform:/resource/<i>project</i></tt>. An additional
  * backstop URI mapping redirects <tt>platform:/resource</tt> to <tt>platform:/plugin</tt>.

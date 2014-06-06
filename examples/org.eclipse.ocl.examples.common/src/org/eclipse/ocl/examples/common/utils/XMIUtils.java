@@ -36,7 +36,6 @@ public class XMIUtils
 		 * 
 		 * @param eObject
 		 * @param knownIds
-		 * @return
 		 */
 		public String createId(EObject eObject, Set<String> knownIds);
 	}

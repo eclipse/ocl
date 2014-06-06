@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * <p>
  * The behavior is identified by a <i>key</i> and has a value with a type <i>T</i> and a <i>defaultValue</i>.
  * <p>
- * The value may be persisted as a string and reconstructed by {@link #getValueOf()}.
+ * The value may be persisted as a string and reconstructed by {@link #getValueOf(String)}.
  * 
  * @param <T> the type of the option's value
  */

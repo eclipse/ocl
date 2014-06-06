@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * require the individual {@link NewValueClassFilter}s to match based on the
  * same element in case the new value happens to be a collection. For example,
  * assume there are two classes <code>X</code> and <code>Y</code>. Assume there
- * is an {@link AndFiter} with two {@link NewValueClassFilter}s inside, one
+ * is an {@link AndFilter} with two {@link NewValueClassFilter}s inside, one
  * matching <code>X</code>, the other matching <code>Y</code>. If there are two
  * elements in the new value collection of the {@link Notification}, one of type
  * <code>X</code> and the other of type <code>Y</code>, the first

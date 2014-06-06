@@ -50,7 +50,7 @@ public class OCLFactory {
 
 	/**
      * Creates an OCL instance that uses the environment factory provided. See also
-     * {@link OCL#newInstance(org.eclipse.ocl.EnvironmentFactory)}.
+     * {@link org.eclipse.ocl.ecore.OCL#newInstance(org.eclipse.ocl.EnvironmentFactory)}.
      */
     public OCL createOCL(EcoreEnvironmentFactory environmentFactory) {
     	if (!(environmentFactory instanceof EcoreEnvironmentFactoryWithScopedExtentMap)) {

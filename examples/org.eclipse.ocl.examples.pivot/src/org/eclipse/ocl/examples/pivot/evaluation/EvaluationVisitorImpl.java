@@ -868,7 +868,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	/**
 	 * Callback for a VariableExp visit.
 	 * 
-	 * @param v
+	 * @param variableExp
 	 *            the variable expression
 	 * @return the value of the variable
 	 */

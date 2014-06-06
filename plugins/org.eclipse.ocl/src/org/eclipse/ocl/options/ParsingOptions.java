@@ -13,6 +13,7 @@
 
 package org.eclipse.ocl.options;
 
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.util.OCLUtil;
@@ -91,7 +92,7 @@ public class ParsingOptions {
     /**
      * <p>
      * Static instance for the implicit-root-class option token.  It is returned
-     * via an unchecked cast by the {@link #implicitRootClass()} method.
+     * via an unchecked cast by the {@link #implicitRootClass(Environment)} method.
      * </p>
      */
     public static final Option<?> IMPLICIT_ROOT_CLASS =
@@ -151,7 +152,7 @@ public class ParsingOptions {
 		 * root environment is created with a fresh
 		 * {@link EPackageRegistryImpl#EPackageRegistryImpl() registry} that is
 		 * populated with the packages required, e.g., by copying all contents
-		 * of the {@link EPackage.Registry#INSTANCE default package registry}
+		 * of the {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE default package registry}
 		 * using {@link java.util.Map#putAll(java.util.Map)}. Note, that this
 		 * will copy unresolved package descriptors to the new registry without
 		 * resolving them.
@@ -164,7 +165,7 @@ public class ParsingOptions {
     /**
      * <p>
      * Static instance for the lookup-package-by-aliase option token.  It is returned
-     * via an unchecked cast by the {@link #implicitRootClass()} method.
+     * via an unchecked cast by the {@link #implicitRootClass(Environment)} method.
      * </p>
      * @since 3.1
      */
@@ -285,7 +286,7 @@ public class ParsingOptions {
      * @param option the option
      * @param value the option's value
      * 
-     * @see Cusotmizable#setOption(Option, Object)
+     * @see Customizable#setOption(Option, Object)
      */
     public static <T> void setOption(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
             Option<T> option, T value) {
@@ -303,7 +304,7 @@ public class ParsingOptions {
      * Obtains the value of the specified option's setting in the the given
      * environment's options map, adapting the environment as necessary to the
      * {@link Customizable} API.  If not already set, return the option's
-     * {@linkplain #getDefaultValue() default value}.
+     * {@linkplain Option#getDefaultValue() default value}.
      * 
      * @param env an environment on which to query an option
      * @param option an option to query

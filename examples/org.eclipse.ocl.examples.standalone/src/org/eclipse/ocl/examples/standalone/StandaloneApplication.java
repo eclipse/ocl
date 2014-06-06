@@ -50,12 +50,10 @@ public class StandaloneApplication implements IApplication
 			ValidityExporterRegistry.initialize(ValidityExporterRegistry.INSTANCE);
 		}
 	}
+
 	/**
 	 * Initializes all the needed resource factories to create ecore and ocl
 	 * resources in the global registry.
-	 * 
-	 * @param resourceSet
-	 *            the resource set.
 	 */
 	public void doCompleteOCLSetup() {
 		getResourceSet();

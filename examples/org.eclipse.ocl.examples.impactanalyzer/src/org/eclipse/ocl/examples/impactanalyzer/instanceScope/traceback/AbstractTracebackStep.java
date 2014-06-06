@@ -56,8 +56,8 @@ import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
 public abstract class AbstractTracebackStep<E extends OCLExpression> implements TracebackStep {
     /**
      * If set to a non-<code>null</code> class, this step asserts that if the source objects passed to its
-     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)} or
-     * {@link #traceback(Set, UnusedEvaluationRequestSet, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)} operation are not compatible to that
+     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} 
+     * operation are not compatible to that
      * type, then the result set will be empty.
      */
     protected EClass requiredType;
@@ -157,7 +157,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
 
         /**
          * Remembers <code>call</code> as the only operation call through which 
-         * @param orCreateNavigationPath
+         * @param step
          * @param variablesChangingScope
          * @param callToWhichResultsAreSpecific
          */
@@ -519,7 +519,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     }
 
     /**
-     * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
+     * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
      * Which subsequent steps are necessary depends on the respective <code>source</code> {@link OCLExpression} the {@link TracebackStep} was created for.
      */
     protected abstract OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,

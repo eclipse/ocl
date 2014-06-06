@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
@@ -103,10 +102,10 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	}
 	
 	/**
-	 * Creates an {@link OCLInvariantCacheAdapter} for expression <code>e</code> and adds
-	 * it to <code>n</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+	 * Creates an {@link InvariantCacheAdapter} for expression <code>e</code> and adds
+	 * it to <code>n</code>'s adapter list so that {@link #getCachedOCLExpression(EClassifier, String)}
 	 * will return <code>e</code> when called for <code>n</code>. To achieve this, any other
-	 * {@link OCLInvariantCacheAdapter} in <code>n</code>'s adapter list is removed.
+	 * {@link InvariantCacheAdapter} in <code>n</code>'s adapter list is removed.
 	 * 
 	 * @param e if <code>null</code>, the respective cache entry for <code>constraintName</code>
 	 * is removed.
@@ -130,7 +129,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	}
 
 	/**
-	 * Looks for an {@link OCLInvariantCacheAdapter} attached to <code>cls</code>.
+	 * Looks for an {@link InvariantCacheAdapter} attached to <code>cls</code>.
 	 * If such an adapter is found, a cached expression for <code>constraintName</code> is returned.
 	 * The cached expression may be a reserved expression indicating that no OCL expression exists
 	 * and that an unsuccessful attempt to obtain one has been made before.

@@ -45,7 +45,7 @@ public class AbstractVisitor<T>
 	/**
 	 * Initializes me with an initial value for my result.
 	 * 
-	 * @param initialValue my initial result value
+	 * @param result my initial result value
 	 */
 	protected AbstractVisitor(T result) {
 		super(result);

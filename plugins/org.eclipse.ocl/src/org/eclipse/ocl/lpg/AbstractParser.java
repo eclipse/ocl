@@ -343,8 +343,8 @@ public abstract class AbstractParser {
 	 * within it using {@link #decodeEscapeSequence}.
 	 *<p>
 	 * For MDT/OCL 1.3.0 compatibility, a problem is reported if double
-	 * quotes are present and the {@link #ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE}
-	 * severity is not {@link #ProblemHandler.Severity.OK}.
+	 * quotes are present and the {@link ProblemOption#ELEMENT_NAME_QUOTE_ESCAPE}
+	 * severity is not {@link ProblemHandler.Severity#OK}.
 	 * 
 	 * @param token containing string to be decoded
 	 * @return string value of <code>token</code> with escapes replaced
@@ -382,11 +382,11 @@ public abstract class AbstractParser {
 	
 	/**
 	 * Removes any quotes surrounding the string value of a token
-	 * using {@link #unSingleQuote(String,int)} and optionally decode any
+	 * using {@link #unSingleQuote(String)} and optionally decode any
 	 * escape sequences within it using {@link #decodeEscapeSequence}.
 	 *<p>
 	 * For MDT/OCL 1.3.0 compatibility, escape sequences conversion can be disabled
-	 * by resetting {@link #ParsingOption.USE_BACKSLASH_ESCAPE_PROCESSING}.
+	 * by resetting {@link ParsingOptions#USE_BACKSLASH_ESCAPE_PROCESSING}.
 	 * 
 	 * @param token containing string to be decoded
 	 * @return string value of <code>token</code> with escapes replaced
@@ -595,7 +595,7 @@ public abstract class AbstractParser {
 	/**
 	 * Return the value of the next character if it is an octal character.
 	 * 
-	 * @param c potentially octal character
+	 * @param i potentially octal character
 	 * @return the hex value or -1 if the next character is not a octal character
 	 * @since 3.0
 	 */

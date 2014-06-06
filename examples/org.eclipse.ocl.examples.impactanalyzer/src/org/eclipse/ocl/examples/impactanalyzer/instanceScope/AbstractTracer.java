@@ -138,8 +138,8 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 
     /**
      * There are a few known idiosyncrasies in the OCL "composition" hierarchy. A {@link TupleLiteralExp} does not contain its
-     * {@link TupleLiteralExp#getTuplePart() tuple parts} which are variable declarations, a {@link CollectionLiteralExp} does not
-     * contain its {@link CollectionLiteralExp#getParts() parts}, and of those parts, none of {@link CollectionRange} nor
+     * {@link TupleLiteralExp#getPart() tuple parts} which are variable declarations, a {@link CollectionLiteralExp} does not
+     * contain its {@link CollectionLiteralExp#getPart() parts}, and of those parts, none of {@link CollectionRange} nor
      * {@link CollectionItem} contains the expressions that it uses to describe itself.
      * <p>
      * 
@@ -155,7 +155,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     }
 
     /**
-     * Checks if <tt>s</tt> conforms to the {@link OclExpressionInternal#getType type} of the {@link #getExpression()
+     * Checks if <tt>s</tt> conforms to the type of the {@link #getExpression()
      * expression} managed by this tracer. A mismatch may occur because of "reverse polymorphic traversal." In other
      * words, if an expression with a {@link ModelPropertyCallExpInternal#getSource(CoreConnection) source} traces back
      * to its source in order to find out the possible values for <tt>self</tt> that may have produced a specific value,
@@ -323,7 +323,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * This method is a shortcut for {@link AbstractTracer#commonCompositionParent(OCLExpression, OCLExpression)} that uses {@link AbstractTracer#getExpression()} as the origin.
      * See {@link AbstractTracer#commonCompositionParent(OCLExpression, OCLExpression)} for description.
      * @param second
-     * @return
      */
     protected OCLExpression commonCompositionParent(OCLExpression second){
         return commonCompositionParent((OCLExpression) getExpression(), second);

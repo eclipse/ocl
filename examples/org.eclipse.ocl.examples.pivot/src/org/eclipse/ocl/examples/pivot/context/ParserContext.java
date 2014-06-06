@@ -70,7 +70,7 @@ public interface ParserContext // extends Adapter
 	 * Create an Abstract Syntax ExpressionInOCL containing the parsed expression.
 	 * 
 	 * @throws ParserException if parsing fails
-	 * @DEprected specify owner/owningList for use in diagnostics
+	 * @deprecated specify owner/owningList for use in diagnostics
 	 */
 	@Deprecated
 	@NonNull ExpressionInOCL parse(@NonNull String expression) throws ParserException;

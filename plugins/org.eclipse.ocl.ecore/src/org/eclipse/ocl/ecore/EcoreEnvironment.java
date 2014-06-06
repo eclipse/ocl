@@ -133,7 +133,7 @@ public class EcoreEnvironment
 	 * Initializes me with a package registry for package look-ups.
 	 * 
 	 * @param reg a package registry
-	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, null)} instead
+	 * @deprecated Use {@link #EcoreEnvironment(EcoreEnvironmentFactory, Resource)} instead
 	 */
 	@Deprecated
 	protected EcoreEnvironment(EPackage.Registry reg) {
@@ -147,7 +147,7 @@ public class EcoreEnvironment
 	 * resource in which I am persisted (and from which I load myself if it
 	 * already has content).
 	 * 
-	 * @param reg
+	 * @param fac
 	 *            a package registry
 	 * @param resource
 	 *            a resource, which may or may not already have content
@@ -869,7 +869,7 @@ public class EcoreEnvironment
     
     /**
      * This default implementation simply delegates to the
-     * {@link Environment#lookupOppositeProperty(Object, String)} method.
+     * {@link #lookupOppositeProperty(EClassifier, String)} method.
      * 
      * @since 3.1
      */

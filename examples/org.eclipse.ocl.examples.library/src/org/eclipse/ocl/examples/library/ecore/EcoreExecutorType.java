@@ -34,7 +34,7 @@ public class EcoreExecutorType extends ExecutorType
 	
 	/**
 	 * Construct an executable type descriptor in the absence of a known EClassifier. A subsequent
-	 * call of {@link #init(EClassifier)} may define an EClassifier.
+	 * call of {@link #initFragments(ExecutorFragment[], int[], EClassifier)} may define an EClassifier.
 	 */
 	public EcoreExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
 		super(name, evaluationPackage, flags, typeParameters);
@@ -43,7 +43,7 @@ public class EcoreExecutorType extends ExecutorType
 	
 	/**
 	 * Construct an executable type descriptor in the absence of a known EClassifier. A subsequent
-	 * call of {@link #init(EClassifier)} may define an EClassifier.
+	 * call of {@link #initFragments(ExecutorFragment[], int[], EClassifier)} may define an EClassifier.
 	 */
 	public EcoreExecutorType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
 		super(typeId.getName(), evaluationPackage, flags, typeParameters);

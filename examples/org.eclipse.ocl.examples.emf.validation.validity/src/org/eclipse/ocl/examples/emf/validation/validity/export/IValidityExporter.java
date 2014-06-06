@@ -32,7 +32,7 @@ public interface IValidityExporter extends IValidityExporterDescriptor
 	 *            The resource to validate
 	 * @param rootNode
 	 *            The Root Node to export
-	 * @param exportedFileName
+	 * @param fileName
 	 * 			The target file name or null if not known and not to be reported
 	 * @throws IOException 
 	 */

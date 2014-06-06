@@ -19,12 +19,9 @@ import java.util.List;
  * Exception indicating a semantic error in looking up a definition, typically
  * resulting from an ambiguity.
  * <p>
- * Actual instances of this exception are usually more specific, being either
- * {@link AmbiguousLookupException}s or {@link InvalidLookupException}s.
+ * Actual instances of this exception are usually more specific,
+ * {@link AmbiguousLookupException}s.
  * </p>
- * 
- * @see AmbiguousLookupException
- * @see InvalidLookupException
  */
 public class LookupException
 	extends SemanticException {
@@ -87,7 +84,6 @@ public class LookupException
      * @return the matches found by the look-up
      *    
      * @see #getAmbiguousMatches()
-     * @see InvalidLookupException#getInvalidMatch()
      */
     public List<?> getMatches() {
         return matches;
@@ -100,7 +96,6 @@ public class LookupException
 	 * @return the ambiguous matches, or an empty list if the look-up problem
 	 *    was not a matter of ambiguity
 	 *    
-	 * @see InvalidLookupException#getInvalidMatch()
 	 * @see #getMatches()
 	 */
 	public List<?> getAmbiguousMatches() {

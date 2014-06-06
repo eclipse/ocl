@@ -26,12 +26,6 @@ public interface LibraryTernaryOperation extends LibraryOperation {
 	/**
 	 * Return the result of evaluating the operation on source with arg1 and arg2.
 	 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.
-	 *
-	 * @param source source argument
-	 * @param arg1 first argument
-	 * @param arg2 second argument
-	 * @return the evaluated value
-	 * @throws Exception 
 	 */
 	@Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
 }

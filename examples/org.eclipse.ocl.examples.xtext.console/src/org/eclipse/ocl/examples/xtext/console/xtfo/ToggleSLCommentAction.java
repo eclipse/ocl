@@ -16,8 +16,6 @@ package org.eclipse.ocl.examples.xtext.console.xtfo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.BadLocationException;
@@ -36,7 +34,6 @@ import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.texteditor.IUpdate;
-import org.eclipse.ui.texteditor.ResourceAction;
 
 /**
  * This implementation has been copied from org.eclipse.jdt.internal.ui.javaeditor.ToggleCommentAction.
@@ -56,13 +53,6 @@ public final class ToggleSLCommentAction extends Action implements IUpdate {
 	/**
 	 * Creates and initializes the action for the given text editor. The action
 	 * configures its visual representation from the given resource bundle.
-	 *
-	 * @param bundle the resource bundle
-	 * @param prefix a prefix to be prepended to the various resource keys
-	 *   (described in <code>ResourceAction</code> constructor), or
-	 *   <code>null</code> if none
-	 * @param editor the text editor
-	 * @see ResourceAction#ResourceAction(ResourceBundle, String, int)
 	 */
 	public ToggleSLCommentAction(ITextViewer viewer) {
 		fViewer = viewer;

@@ -90,21 +90,10 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	}
 	   
     /**
-     * I dispose my type resolver, if it is an {@link AbstractTypeResolver}
-     * and I am the root environment (which owns the resolver).
+     * Dispose of any owned objects.
      */
     public void dispose() {
     }    
-	
-    /**
-     * Initializes me with the specified parent environment, which should be
-     * of the same type as me.
-     * 
-     * @param parent an environment of the same type as me (or <code>null</code>)
-     */
-//	protected AbstractEnvironment(AbstractEnvironment parent) {	
-//		this(parent);
-//	}
 	
     // implements the interface method
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getContextPackage() {

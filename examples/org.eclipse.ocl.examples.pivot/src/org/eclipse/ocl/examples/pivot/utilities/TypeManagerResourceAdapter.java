@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 
 /**
- * @Deprecated Use MetaModelManagerResourceAdapter.
+ * @deprecated Use MetaModelManagerResourceAdapter.
  */
 @Deprecated
 public class TypeManagerResourceAdapter extends MetaModelManagerResourceAdapter

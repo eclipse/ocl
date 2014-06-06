@@ -14,15 +14,16 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 
 
 
 
 /**
- * All implementations must offer a constructor that takes a {@link CoreConnection} and a {@link OclExpression} impl
+ * All implementations must offer a constructor that takes a {@link OCLFactory} and a {@link OCLExpression} impl
  * subclass of the type handled by them as argument. Furthermore, the implementing classes underly a naming convention.
- * If they handle an {@link OclExpression} type by the MOF name of <tt>X</tt> then the tracer implementation class name
+ * If they handle an {@link OCLExpression} type by the MOF name of <tt>X</tt> then the tracer implementation class name
  * must be <tt>XTracer</tt>.
  * 
  */
@@ -41,11 +42,6 @@ public interface Tracer {
      * @param filterSynthesizer
      *            the filter synthesizer that analyzed an overall expression that contains the expression to be handled by this
      *            tracer
-     * @param classScopeAnalyzer
-     *            retains the results of traversing the outermost expression's tree, a sub-expression of which this tracer will
-     *            analyze in this method. The class scope analyzer in particular remembers the operation calls it found and
-     *            thereby makes it possible to limit the analysis of operation bodies by the scope of those calls actually
-     *            invoking the operation in the context of the outermost expression.
      */
     NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper filterSynthesizer);
 }

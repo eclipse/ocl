@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
  * The AssociationFilterTable manages all Registrations containing
  * {@link StructuralFeatureFilter}.
  * 
- * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
+ * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter
  * @author Daniel Vocke (D044825)
  */
 public class TableForNewValueClassFilter extends TableForEventFilter {

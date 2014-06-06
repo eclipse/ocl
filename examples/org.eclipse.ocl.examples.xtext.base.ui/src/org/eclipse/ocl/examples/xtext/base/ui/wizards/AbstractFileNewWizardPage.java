@@ -52,9 +52,6 @@ public class AbstractFileNewWizardPage extends WizardPage implements Listener
 	 * Creates a new complete OCL file creation wizard page. If the initial
 	 * resource selection contains exactly one container resource then it will
 	 * be used as the default container resource.
-	 * 
-	 * @param selection
-	 *            the current resource selection
 	 */
 	public AbstractFileNewWizardPage(@NonNull AbstractFileNewWizard wizard, @Nullable IResource initialSelection) {
 		super(BaseUIMessages.NewWizardPage_pageName);

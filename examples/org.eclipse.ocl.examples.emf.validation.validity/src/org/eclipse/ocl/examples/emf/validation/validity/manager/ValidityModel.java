@@ -249,10 +249,6 @@ public class ValidityModel
 
 	/**
 	 * Return all types that may provide constraints to an instance of aType.
-	 * 
-	 * @param aType
-	 *            a modelElement
-	 * @return all types that may provide constraints to an instance if aType.
 	 */
 	protected @NonNull Set<TypeURI> buildTypeClosure(@NonNull EObject constrainingObject) {
 		TypeURI typeURI = validityManager.getTypeURI(constrainingObject);
@@ -410,7 +406,7 @@ public class ValidityModel
 	 * 
 	 * @param constrainedObject
 	 *            the constraining object
-	 * @param constrainingType
+	 * @param constrainingURI
 	 *            the uri of the constrainingNode
 	 */
 	protected void createResultNodes(@NonNull EObject constrainedObject, @NonNull ConstrainingURI constrainingURI) {
@@ -562,9 +558,6 @@ public class ValidityModel
 	 * Return the ConstrainingNode node for EObject creating any parent
 	 * ConstrainingNodes that are required to ensure that the returned
 	 * ConstrainingNode is installed in the root.
-	 * 
-	 * @param eObject
-	 * @return the ConstrainingNode node for EObject
 	 */
 	public @NonNull ConstrainingNode getConstrainingNode(@NonNull EObject constrainingObject) {
 		buildTypeClosure(constrainingObject);

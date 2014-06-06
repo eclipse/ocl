@@ -134,7 +134,7 @@ public interface Query {
 	/**
 	 * Obtains the OCL result type of the query.  This may be a classifier
 	 * in the user model, or it may represent a pre-defined OCL data type
-	 * such as {@link DomainStandardLibrary#getBoolean() Boolean}.
+	 * such as {@link DomainStandardLibrary#getBooleanType() Boolean}.
 	 * 
 	 * @return the query's result type
 	 */
@@ -151,8 +151,6 @@ public interface Query {
 	 * Obtains the mapping of classes to their extents (sets of all instances).
 	 * 
 	 * @return the map of classes to their extents
-     *    
-     * @see OCLBase#setModelManager
 	 */
 	public DomainModelManager getModelManager();
 	

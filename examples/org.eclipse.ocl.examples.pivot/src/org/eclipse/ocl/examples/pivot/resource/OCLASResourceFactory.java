@@ -21,8 +21,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 
 /**
- * The <b>Resource Factory</b> associated with the package.
- * @see org.eclipse.ocl.examples.pivot.utilities.PivotResourceImpl
+ * The <b>Resource Factory</b> for the pivot abstract syntax.
  */
 public class OCLASResourceFactory extends AbstractASResourceFactory
 {

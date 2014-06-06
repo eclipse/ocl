@@ -72,8 +72,6 @@ public class AdapterCapsule {
     }
     /**
      * This method is defined here because of convenience reasons. The implementation can be found in subclasses.
-     * 
-     * @param connection
      */
     public void deferNotification(){
         /*
@@ -83,7 +81,6 @@ public class AdapterCapsule {
     
     /**
      * This method is defined here because of convenience reasons. The implementation can be found in subclasses.
-     * @param connection
      */
     public void deliverDeferredEvents(){
         /*
@@ -93,7 +90,6 @@ public class AdapterCapsule {
     
     /**
      * This method is defined here because of convenience reasons. The implementation can be found in subclasses.
-     * @param connection
      */
     public void cancelDeferment(){
         /*

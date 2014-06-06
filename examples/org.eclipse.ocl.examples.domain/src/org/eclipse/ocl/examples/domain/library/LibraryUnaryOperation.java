@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 
 /**
  * LibraryUnaryOperation defines the invocation API of a unary operation using
@@ -27,11 +26,6 @@ public interface LibraryUnaryOperation extends LibraryOperation {
 	/**
 	 * Return the result of evaluating the operation on an argument.
 	 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.
-	 *
-	 * @param argument the argument
-	 * @return the evaluated value
-	 * @throws Exception 
-	 * @throws InvalidValueException 
 	 */
 	@Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue);
 }

@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.options.Option;
 
 //import org.eclipse.ocl.Environment;
-//import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 //import org.eclipse.ocl.util.Adaptable;
 
 

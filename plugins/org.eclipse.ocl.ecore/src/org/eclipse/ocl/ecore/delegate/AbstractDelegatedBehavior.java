@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -79,13 +78,13 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	protected static class ExpressionCacheAdapter extends AdapterImpl
 	{	
 		/**
-		 * Creates an {@link OCLExpressionCacheAdapter} for expression <code>e</code> and adds
-		 * it to <code>modelElement</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+		 * Creates an {@link org.eclipse.ocl.ecore.delegate.AbstractDelegatedBehavior.ExpressionCacheAdapter ExpressionCacheAdapter} for expression <code>e</code> and adds
+		 * it to <code>modelElement</code>'s adapter list so that {@link #getCachedOCLExpression(EModelElement)}
 		 * will return <code>e</code> when called for <code>modelElement</code>. To achieve this, any other
-		 * {@link OCLExpressionCacheAdapter} in <code>modelElement</code>'s adapter list is removed.
+		 * {@link org.eclipse.ocl.ecore.delegate.AbstractDelegatedBehavior.ExpressionCacheAdapter ExpressionCacheAdapter} in <code>modelElement</code>'s adapter list is removed.
 		 * 
 		 * @param e if <code>null</code>, any existing cache entry is removed and no new entry
-		 * is created. {@link #getCachedOCLExpression(Notifier)} will then return <code>null</code>. 
+		 * is created. {@link #getCachedOCLExpression(EModelElement)} will then return <code>null</code>. 
 		 */
 		public static void cacheOCLExpression(EModelElement modelElement, OCLExpression e) {
 			for (Iterator<Adapter> i = modelElement.eAdapters().iterator(); i.hasNext(); ) {
@@ -100,7 +99,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		}	
 
 		/**
-		 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>modelElement</code>.
+		 * Looks for an {@link org.eclipse.ocl.ecore.delegate.AbstractDelegatedBehavior.ExpressionCacheAdapter ExpressionCacheAdapter} attached to <code>modelElement</code>.
 		 * If such an adapter is found, its cached expression is returned. The cached expression
 		 * may be a reserved expression indicating that no OCL expression exists and that an
 		 * unsuccessful attempt to obtain one has been made before.

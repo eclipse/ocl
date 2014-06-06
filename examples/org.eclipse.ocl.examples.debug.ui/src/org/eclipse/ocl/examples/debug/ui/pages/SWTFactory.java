@@ -208,7 +208,7 @@ public class SWTFactory {
 	 * NOP if the button's layout data is not an instance of
 	 * <code>GridData</code>.
 	 * 
-	 * @param the
+	 * @param button
 	 *            button for which to set the dimension hint
 	 */
 	public static void setButtonDimensionHint(Button button) {

@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.impactanalyzer.util;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,8 +26,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
 /**
- * The AnnotatedEObject is a delegate of an {@link EObject} that adds support for {@link Sting} annotations.
- * Additionally it holds a {@link Stack<EStructuralFeature>} to enable the backtracking of {@link TupleLiteralExp}
+ * The AnnotatedEObject is a delegate of an {@link EObject} that adds support for {@link String} annotations.
+ * Additionally it holds a {@link Stack}<{@link EStructuralFeature}> to enable the backtracking of {@link TupleLiteralExp}
  * 
  * @author martin.hanysz
  *

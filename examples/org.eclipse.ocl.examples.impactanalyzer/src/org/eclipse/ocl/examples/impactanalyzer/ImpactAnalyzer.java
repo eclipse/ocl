@@ -72,7 +72,7 @@ public interface ImpactAnalyzer {
 
 	/**
 	 * Determines a superset of the set of context objects for which the overall
-	 * {@link #expression} managed by this instance scope analysis results in
+	 * expression managed by this instance scope analysis results in
 	 * <code>evaluationResult</code> or a collection containing
 	 * <code>evaluationResult</code>. The result is always a valid collection,
 	 * never <code>null</code>, but possibly empty.

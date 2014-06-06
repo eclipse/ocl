@@ -16,7 +16,7 @@ import org.eclipse.ocl.AbstractEvaluationEnvironment;
 
 
 /**
- * Introduces the {@link #navigateOppositeProperty(P, Object)} method to
+ * Introduces the {@link #navigateOppositeProperty(EReference, Object)} method to
  * {@link AbstractEvaluationEnvironment} which implements this interface.
  * 
  * @author Axel Uhl

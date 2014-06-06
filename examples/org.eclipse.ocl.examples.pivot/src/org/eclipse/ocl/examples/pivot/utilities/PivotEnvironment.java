@@ -110,8 +110,8 @@ public class PivotEnvironment extends AbstractEnvironment {
 	 * resource in which I am persisted (and from which I load myself if it
 	 * already has content).
 	 * 
-	 * @param reg
-	 *            a package registry
+	 * @param factory
+	 *            a factory
 	 * @param resource
 	 *            a resource, which may or may not already have content
 	 */

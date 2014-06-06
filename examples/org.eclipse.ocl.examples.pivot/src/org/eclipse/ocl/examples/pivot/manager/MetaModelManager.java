@@ -512,7 +512,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	/**
 	 * Construct a MetaModelManager that will use asResourceSet to contain pivot copies
-	 * of meta-models, and {@link ProjectMap.getAdapter(ResourceSet)} to assist in locating resources.
+	 * of meta-models, and {@link ProjectMap#getAdapter(ResourceSet)} to assist in locating resources.
 	 */
 	public MetaModelManager(@NonNull ResourceSet asResourceSet) {
 		if (asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
@@ -2276,7 +2276,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * with a uniqueContext. If uniqueContext is an Element the moniker is used as
 	 * part of the URI, otherwise a unique value is created and cached for reuse.
 	 * 
-	 * @Deprecated URIs are auto-generated
+	 * @deprecated URIs are auto-generated
 	 */
 	@Deprecated
 	public URI getResourceIdentifier(Object uniqueContext, String subContext) {

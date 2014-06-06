@@ -320,7 +320,9 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
         return result;
     } */
 
-    // implements the inherited specification
+   /**
+    * {@inheritDoc}
+    */
    public @NonNull DomainModelManager createModelManager(@Nullable Object object) {
         if (object instanceof ObjectValue) {
             object = ((ObjectValue) object).getObject();

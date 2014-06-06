@@ -278,7 +278,6 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
      * <tt>Sequence::subSequence(lower : Integer, upper : Integer) : Sequence(T)</tt></li>
      * operation.
      * 
-     * @param self the source sequence
      * @param lower the 1-based (in OCL fashion) inclusive lower bound
      * @param upper the 1-based (in OCL fashion) inclusive upper bound
      * @return the source collection with the object inserted at the index

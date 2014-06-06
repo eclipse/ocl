@@ -85,7 +85,7 @@ public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
      * so that recursive visitation follows the entire decorator chain at
      * every step.
      * 
-     * @param decorator the decorator that is not decorated/
+     * @param evaluationVisitor the evaluationVisitor that is not decorated/
      */
 	void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor);
 }

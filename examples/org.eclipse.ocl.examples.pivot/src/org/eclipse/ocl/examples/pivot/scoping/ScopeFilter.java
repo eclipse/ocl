@@ -34,8 +34,6 @@ public interface ScopeFilter
 	/**
 	 * Return true if the filter accepts eObject as a candidate for
 	 * inclusion in the EnvironmentView.
-	 * 
-	 * @param eObject
 	 */
 	boolean matches(@NonNull EnvironmentView environmentView,  @NonNull Object object);
 }

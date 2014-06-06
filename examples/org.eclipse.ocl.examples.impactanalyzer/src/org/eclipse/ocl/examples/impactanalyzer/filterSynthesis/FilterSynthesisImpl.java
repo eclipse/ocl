@@ -262,7 +262,7 @@ implements OperationBodyToCallMapper {
 
     /**
      * Returns all the calls to the operation whose body is <tt>operationBodyExpression</tt> that are reachable from the root
-     * expression analyzed by this {@link FilterSynthesis}. If no such calls exist, an empty set is returned.
+     * expression analyzed by this {@link FilterSynthesisImpl}. If no such calls exist, an empty set is returned.
      */
     public Set<OperationCallExp> getCallsOf(OCLExpression operationBodyExpression) {
         Set<OperationCallExp> result = visitedOperationBodies.get(operationBodyExpression);

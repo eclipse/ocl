@@ -70,7 +70,7 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 	 * with the behavior name as a key and the delegateURIs as a comma
 	 * separated list.
 	 * 
-	 * 	@Deprecated (since 3.3) Known delegate names are not usefully behavior-specific; use getAllDelegateDomains()
+	 * 	@deprecated (since 3.3) Known delegate names are not usefully behavior-specific; use getAllDelegateDomains()
 	 */
 	@Deprecated // since 3.3
 	protected Map<String, List<DelegateDomain>> delegatedBehaviorMap = null;

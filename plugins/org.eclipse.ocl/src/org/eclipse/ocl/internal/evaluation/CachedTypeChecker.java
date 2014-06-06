@@ -163,8 +163,7 @@ public class CachedTypeChecker<C, O, P, PM> extends BasicTypeChecker<C, O, P, PM
      * Returns null if there is no operation or more than one.
      * 
      * @param name2operationOrOperations
-     * @param staticOperation
-     * @return
+     * @param operation
      */
 	protected O getExactMatchingOperation(Map<String, Object> name2operationOrOperations, O operation) {
 		String requiredName = uml.getName(operation);

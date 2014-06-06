@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;
 
-import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,11 +23,11 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 /**
- * When a {@link LetExp} is traced back, it calls the {@link TracebackStep#traceback(AnnotatedEObject, Set, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)}
+ * When a {@link LetExp} is traced back, it calls the {@link TracebackStep#traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}
  * function for its in-expression, forwarding the <code>source</code> object, the (possibly modified)
  * <code>pendingUnusedEvalRequests</code> and the <code>tracebackCache</code>.
  * 
- * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)
+ * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)
  */
 public class LetTracebackStep extends BranchingTracebackStep<LetExp> {
 

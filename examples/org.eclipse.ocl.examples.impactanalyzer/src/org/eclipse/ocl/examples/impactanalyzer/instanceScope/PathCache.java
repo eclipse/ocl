@@ -19,6 +19,7 @@ import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
@@ -27,8 +28,8 @@ import org.eclipse.ocl.examples.impactanalyzer.util.SemanticIdentity;
 
 
 /**
- * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each {@link AttributeCallExp} and
- * {@link AssociationEndCallExp} subexpression in an OCL expression's expression tree. These {@link NavigationStep}s can each be a
+ * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each {@link PropertyCallExp}
+ *  subexpression in an OCL expression's expression tree. These {@link NavigationStep}s can each be a
  * graph, referring to other potentially composite navigation steps. The graph can even be cyclic, as in the case for recursive
  * operation calls.
  * <p>
@@ -42,7 +43,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.SemanticIdentity;
  * <tt>self</tt> and parameter expressions of the operation called invalid. Additionally, all dependent paths would become invalid
  * too. Identifying and removing those entries from a {@link PathCache} seems to cause more effort than using a new
  * {@link PathCache} object for each expression analyzed, particularly given the fact that the {@link NavigationPath} assembly
- * only has to happen once per life-time of an {@link OCLExpression<EClassifier>} during a session.
+ * only has to happen once per life-time of an {@link OCLExpression} during a session.
  * 
  */
 public class PathCache extends AbstractPathCache<NavigationStep> implements HashCodeChangeListener {

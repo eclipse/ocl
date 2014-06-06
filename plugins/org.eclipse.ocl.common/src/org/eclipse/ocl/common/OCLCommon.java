@@ -149,10 +149,8 @@ public class OCLCommon implements OCLConstants
 	
 	/**
 	 * Return the preference value for 
-	 * @param localKey
-	 * @param defaultValue
+	 * @param option
 	 * @param contexts
-	 * @return
 	 */
 	public static <T> T getPreference(PreferenceableOption<T> option, IScopeContext[] contexts) {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {

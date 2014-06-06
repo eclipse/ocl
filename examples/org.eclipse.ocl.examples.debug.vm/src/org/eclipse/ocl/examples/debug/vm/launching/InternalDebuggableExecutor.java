@@ -66,9 +66,6 @@ public abstract class InternalDebuggableExecutor
 	 * Constructs the executor for the given transformation URI.
 	 * <p>
 	 * No attempt to resolve and load the transformation is done at this step
-	 * 
-	 * @param uri
-	 *            the URI of an existing transformation
 	 */
 	public InternalDebuggableExecutor(@NonNull IVMEnvironmentFactory envFactory, @NonNull URI debuggableURI) {
 		this.envFactory = envFactory;
@@ -252,11 +249,6 @@ public abstract class InternalDebuggableExecutor
 	 * Executes the transformation referred by this executor using the given
 	 * model parameters and execution context.
 	 * 
-	 * @param executionContext
-	 *            the context object keeping the execution environment details
-	 * @param modelParameters
-	 *            the actual model arguments to the transformation
-	 * 
 	 * @return the diagnostic object indicating the execution result status,
 	 *         also keeping the details of possible problems
 	 * @throws IllegalArgumentException
@@ -335,7 +327,7 @@ public abstract class InternalDebuggableExecutor
 	 * <p>
 	 * <b>Remark</b>: This method invocation causes the referenced transformation to
 	 * load if not already done before by direct call to
-	 * {@linkplain #loadTransformation()} or
+	 * {@linkplain #loadDebuggable()} or
 	 * 
 	 * @return compiled unit or <code>null</code> if it failed to be obtained
 	 */

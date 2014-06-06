@@ -95,7 +95,6 @@ public interface ASResourceFactory extends Resource.Factory
 
 	/**
 	 * Return the Content Type Identifier supported by this ASResourceFactory.
-	 * @return
 	 */
 	@NonNull String getContentType();
 
@@ -140,7 +139,6 @@ public interface ASResourceFactory extends Resource.Factory
 	/**
 	 * Return the root element in the Pivot resource resulting from import of the available
 	 * resource. 
-	 * @param uriFragment 
 	 * @throws ParserException 
 	 */
 	@Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource resource, @Nullable URI uri) throws ParserException;

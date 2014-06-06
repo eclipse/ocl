@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.ecore.delegate;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -37,13 +36,13 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	public static final String NAME = "settingDelegates"; //$NON-NLS-1$
 	
 	/**
-	 * Creates an {@link OCLExpressionCacheAdapter} for expression <code>e</code> and adds
-	 * it to <code>property</code>'s adapter list so that {@link #getCachedOCLExpression(Notifier)}
+	 * Creates an {@link org.eclipse.ocl.ecore.delegate.AbstractDelegatedBehavior.ExpressionCacheAdapter ExpressionCacheAdapter} for expression <code>e</code> and adds
+	 * it to <code>property</code>'s adapter list so that {@link #getCachedOCLExpression(EStructuralFeature)}
 	 * will return <code>e</code> when called for <code>property</code>. To achieve this, any other
-	 * {@link OCLExpressionCacheAdapter} in <code>property</code>'s adapter list is removed.
+	 * {@link org.eclipse.ocl.ecore.delegate.AbstractDelegatedBehavior.ExpressionCacheAdapter ExpressionCacheAdapter} in <code>property</code>'s adapter list is removed.
 	 * 
 	 * @param e if <code>null</code>, any existing cache entry is removed and no new entry
-	 * is created. {@link #getCachedOCLExpression(Notifier)} will then return <code>null</code>. 
+	 * is created. {@link #getCachedOCLExpression(EStructuralFeature)} will then return <code>null</code>. 
 	 * 
 	 * @since 3.1
 	 */
@@ -52,7 +51,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	/**
-	 * Looks for an {@link OCLExpressionCacheAdapter} attached to <code>property</code>.
+	 * Looks for an {@link org.eclipse.ocl.ecore.delegate.AbstractDelegatedBehavior.ExpressionCacheAdapter ExpressionCacheAdapter} attached to <code>property</code>.
 	 * If such an adapter is found, its cached expression is returned. The cached expression
 	 * may be a reserved expression indicating that no OCL expression exists and that an
 	 * unsuccessful attempt to obtain one has been made before.

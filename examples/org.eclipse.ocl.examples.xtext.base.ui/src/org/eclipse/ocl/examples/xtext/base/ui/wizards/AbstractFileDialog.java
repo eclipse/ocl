@@ -57,14 +57,6 @@ public abstract class AbstractFileDialog extends ExtendedLoadResourceDialog
 	 * Creates an extended new complete OCL file creation dialog. If the initial
 	 * resource selection contains exactly one container resource then it will
 	 * be used as the default container resource.
-	 * 
-	 * @param parent
-	 *            composite widget to parent the group
-	 * @param domain
-	 * @param selection
-	 *            the current resource selection
-	 * @param listener
-	 *            object interested in changes to the group's fields value
 	 */
 	public AbstractFileDialog(@NonNull AbstractFileNewWizard wizard, @NonNull AbstractFileNewWizardPage wizardPage, @Nullable IResource initialSelection) {
 		super(wizardPage.getShell(), null);
@@ -185,7 +177,7 @@ public abstract class AbstractFileDialog extends ExtendedLoadResourceDialog
 	/**
 	 * Returns true if this selected resource would be filtered from view.
 	 * 
-	 * {@link IWorkspace#validateFiltered(Resource)}
+	 * {@link IWorkspace#validateFiltered(IResource)}
 	 */
 	protected boolean isFilteredByParent() {
 		ResourceAndContainerGroup group = getGroup();

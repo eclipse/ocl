@@ -14,8 +14,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.event.ChangeListener;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -43,7 +41,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.SemanticComparable;
  * associations or ascend the composition hierarchy, using {@link RefObject#refImmediateComposite()}.
  * <p>
  *
- * A navigation step object may change its {@link #hashCode()} over its life time. This particularly has to do with
+ * A navigation step object may change its {@link Object#hashCode()} over its life time. This particularly has to do with
  * the propagation of information taking place after an {@link IndirectingStep} has its actual step set. This can lead
  * to a ripple effect regarding source and target type settings as well as {@link #isAlwaysEmpty()} changes, all
  * affecting a step's hash code and equality definition. Whenever you insert a navigation step into a hashing
@@ -84,14 +82,12 @@ public interface NavigationStep extends SemanticComparable {
     /**
      * Optionally, a navigation step may tell for which OCL expression it was mainly created. This can aid the impact analysis
      * debugging process. May return <tt>null</tt>.
-     *
-     * @return
      */
     Set<OCLExpression> getDebugInfo();
 
     /**
      * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be informed by calling their
-     * {@link ChangeListener#alwaysEmptyChanged(NavigationStep)} method with this step as parameter.
+     * {@link AlwaysEmptyChangeListener#alwaysEmptyChanged(NavigationStep)} method with this step as parameter.
      */
     void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener);
 
@@ -152,7 +148,7 @@ public interface NavigationStep extends SemanticComparable {
 
     /**
      * Sets the set of variables that come into scope when this navigation step is navigated. It is given as an
-     * <code>Set&gt;{@link |Variable}&gt;</code>.
+     * <code>Set&gt;{@link Variable}&gt;</code>.
      * 
      * @param enteringScope
      *            the set of {@link Variable}s representing the variables getting into scope by navigating this step.

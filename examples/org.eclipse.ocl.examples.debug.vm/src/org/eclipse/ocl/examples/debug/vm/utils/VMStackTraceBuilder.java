@@ -40,9 +40,6 @@ public class VMStackTraceBuilder {
 	 * 
 	 * @param evalEnv
 	 *            the evaluation environment representing the top stack trace
-	 *            
-	 * @param astNodeIPOffset explicit the AST node offset representing the current instruction 
-	 *		pointer of execution in a OCL module
 	 */
 	public VMStackTraceBuilder(@NonNull IVMEvaluationEnvironment<?> evalEnv) {
 		fEvalEnv = evalEnv;

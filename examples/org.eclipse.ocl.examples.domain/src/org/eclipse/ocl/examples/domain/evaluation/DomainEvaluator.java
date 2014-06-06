@@ -55,8 +55,8 @@ public interface DomainEvaluator
 	
 	/**
 	 * Request cancelation of the current the evaluation, or reset the request for a new evaluation.
-	 * Cancelation occurs by throwing an {@link EvaluationHaltedException} when {@link #getValuefactory()}
-	 * is next invoked. 
+	 * Cancelation occurs by throwing an {@link EvaluationHaltedException} when an expression,
+	 * operation or iteration is next invoked. 
 	 */
 	void setCanceled(boolean isCanceled);
 

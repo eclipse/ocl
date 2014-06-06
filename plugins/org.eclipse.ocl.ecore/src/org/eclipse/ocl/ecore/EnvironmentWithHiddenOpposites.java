@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.LookupException;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.Variable;
 
 
@@ -79,7 +80,7 @@ EClass, EObject>{
 	 * is <code>classifier</code> or any of <code>classifier</code>'s super
 	 * types and that own an {@link EAnnotation annotation} with source
 	 * {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} containing a detail
-	 * entry with key {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY}.
+	 * entry with key {@link OppositeEndFinder#PROPERTY_OPPOSITE_ROLE_NAME_KEY}.
 	 * The value of the annotation detail is entered into the resulting map as a
 	 * key, the {@link EReference} on which the annotation was found is entered
 	 * into the result map as the corresponding value.

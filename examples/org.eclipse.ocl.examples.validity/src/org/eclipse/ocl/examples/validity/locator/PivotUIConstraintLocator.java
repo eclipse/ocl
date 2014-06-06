@@ -69,7 +69,6 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 
 		/**
 		 * Create and launch an internal launch configuration to debug expressionInOCL applied to contextObject.
-		 * @return 
 		 */
 		protected ILaunch launchDebugger(IProgressMonitor monitor, @Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();

@@ -36,20 +36,7 @@ public final class OCLUtil {
 	}
 
 	/**
-	 * Obtains an adapter for the specified interface type.  Even for
-	 * environments that do not adapt to the following interfaces, this method
-	 * will provide a default implementation for convenience:
-	 * <ul>
-	 * <li>{@link BasicEnvironment}.  In the case that the environment is not
-	 *     intrinsically adaptable to this interface and an extrinsic adapter
-	 *     is provided, multiple adaptations of the same environment will
-	 *     always return the same adapter instance</li>
-     * <li>{@link Customizable}.  In the case that the environment is not
-     *     intrinsically adaptable to this interface it is forcibly adapted to
-     *     the {@link BasicEnvironment} protocol</li>
-	 * <li>{@link ProblemHandler}</li>
-	 * <li>{@link Environment.Lookup}</li>
-	 * </ul>
+	 * Obtains an adapter for the specified interface type.
 	 * 
 	 * @param <T> the requested adapter interface
 	 * 
@@ -100,19 +87,7 @@ public final class OCLUtil {
 	} */
 
 	/**
-	 * Obtains an adapter for the specified interface type.  Even for
-	 * environment factories that do not adapt to the following interfaces,
-	 * this method will provide a default implementation for convenience:
-	 * <ul>
-	 * <li>{@link EnvironmentFactory.Lookup}</li>
-	 * </ul>
-	 * 
-	 * @param <T> the requested adapter interface
-	 * 
-	 * @param factory an environment factory to adapt
-	 * @param adapterType the requested adapter interface
-	 * @return an instance of the requested interface, or <code>null</code>
-	 *     if this environment factory does not adapt to it
+	 * Obtains an adapter for the specified interface type.
 	 */
 	@SuppressWarnings("unchecked")
 	public static @Nullable <T> T getAdapter(@NonNull EnvironmentFactory factory, @NonNull java.lang.Class<T> adapterType) {

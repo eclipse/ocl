@@ -130,7 +130,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	}
 
 	/**
-	 * Default message binder that just invokes {@link NLS.bind}.
+	 * Default message binder that just invokes {@link NLS#bind(String, Object[])}.
 	 */
 	public static class DefaultMessageBinder implements CS2Pivot.MessageBinder
 	{
@@ -142,7 +142,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	}
 
 	/**
-	 * Message binder that prefixes the uri and line number to the return from {@link NLS.bind}.
+	 * Message binder that prefixes the uri and line number to the return from {@link NLS#bind(String, Object[])}.
 	 */
 	public static class MessageBinderWithLineContext implements CS2Pivot.MessageBinder
 	{
@@ -292,7 +292,7 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	
 	/**
 	 * Define an alternative message binder. THe default null messageBinder uses
-	 * {@link NLS.bind} 
+	 * {@link NLS#bind(String, Object[])} 
 	 */
 	public static MessageBinder setMessageBinder(MessageBinder messageBinder) {
 		MessageBinder savedMessageBinder = CS2Pivot.messageBinder;

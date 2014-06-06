@@ -18,7 +18,6 @@ public interface DomainTupleType extends DomainType
 {
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.
-	 * @return
 	 */
 	@NonNull TupleTypeId getTupleTypeId();
 	@NonNull TupleTypeId getTypeId();

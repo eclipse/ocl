@@ -25,27 +25,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
-import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
  * Opposite references declared by the annotation detail
- * {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY} on an
+ * {@link OppositeEndFinder#PROPERTY_OPPOSITE_ROLE_NAME_KEY} on an
  * {@link EAnnotation} with {@link EAnnotation#getSource() source}
  * {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} are retrieved by
  * scanning and caching the Ecore packages that this opposite end finder is
  * aware of at the time of the request. The set of those packages is taken to be
- * the set of {@link EPackage}s resolved by an {@link EPackage.Registry}
- * provided to {@link #getInstance(Registry)}, or the default
- * {@link EPackage.Registry} otherwise. In particular, this won't load any Ecore
+ * the set of {@link EPackage}s resolved by an {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry}
+ * provided to {@link #getInstance(org.eclipse.emf.ecore.EPackage.Registry) getInstance(EPackage.Registry)}, or the default
+ * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} otherwise. In particular, this won't load any Ecore
  * bundles not yet loaded.
  * <p>
  * 
@@ -53,7 +51,7 @@ import org.eclipse.ocl.util.CollectionUtil;
  * interface it is necessary to resolve a package in the registry on which this
  * opposite end finder is based before issuing a request expecting to find
  * hidden opposites from that package. This can, e.g., be triggered by calling
- * {@link EPackage.Registry#getEPackage(String)} for the package's URI.<p>
+ * {@link org.eclipse.emf.ecore.EPackage.Registry#getEPackage(String) EPackage.Registry.getEPackage(String)} for the package's URI.<p>
  * 
  * Navigation across those references is performed either by
  * {@link EObject#eContainer()} in case of containment references or by looking
@@ -66,7 +64,7 @@ import org.eclipse.ocl.util.CollectionUtil;
  * well-defined query scope and a corresponding query engine.<p>
  * 
  * Instances of this class are cached in a {@link WeakHashMap}, keyed by the
- * {@link EPackage.Registry} object used for {@link #getInstance(Registry)}.
+ * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} object used for {@link #getInstance(org.eclipse.emf.ecore.EPackage.Registry) getInstance(EPackage.Registry)}.
  * This means that if the registry gets eligible for garbage collection then
  * so will this opposite end finder.<p>
  * 
@@ -92,13 +90,13 @@ public class DefaultOppositeEndFinder
 	 * resolved is compared to {@link #packages}. Packages that got resolved in the
 	 * registry but weren't cached yet are cached before executing the request.
 	 */
-	private final Registry registry;
+	private final EPackage.Registry registry;
 
 	/**
-	 * Scans all packages from the default {@link EPackage.Registry} that have already been
+	 * Scans all packages from the default {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} that have already been
 	 * loaded. While this is convenient, please keep in mind that this may be fairly random a
 	 * definition of a package set as loading of packages happens on demand. You will get more
-	 * predictable results using {@link #getInstance(Set<EPackage>)}.
+	 * predictable results using {@link #getInstance(org.eclipse.emf.ecore.EPackage.Registry) getInstance(EPackage.Registry)}.
 	 */
 	public static DefaultOppositeEndFinder getInstance() {
 		return getInstance(EPackage.Registry.INSTANCE);
@@ -108,7 +106,7 @@ public class DefaultOppositeEndFinder
 	 * Scans all packages from the <code>registry</code> specified that have already been
 	 * loaded. While this is convenient, please keep in mind that this may be fairly random a
 	 * definition of a package set as loading of packages happens on demand. You will get more
-	 * predictable results using {@link #getInstance(Set<EPackage>)}.
+	 * predictable results using {@link #getInstance(org.eclipse.emf.ecore.EPackage.Registry) getInstance(EPackage.Registry)}.
 	 */
 	public static DefaultOppositeEndFinder getInstance(EPackage.Registry registry) {
 		DefaultOppositeEndFinder result;
@@ -123,7 +121,7 @@ public class DefaultOppositeEndFinder
 		return result;
 	}
 	
-	public DefaultOppositeEndFinder(Registry registry) {
+	public DefaultOppositeEndFinder(EPackage.Registry registry) {
 		this.registry = registry;
 		this.packages = new HashSet<EPackage>();
 		this.oppositeCache = new HashMap<EClass, Map<String,Set<EReference>>>();

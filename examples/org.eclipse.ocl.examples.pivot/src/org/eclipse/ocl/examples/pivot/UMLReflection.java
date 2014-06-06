@@ -28,50 +28,36 @@ public interface UMLReflection {
 
     /**
      * Stereotype applied to classifier invariant constraints.
-     * 
-     * @see #getStereotype
      */
 	@NonNull String INVARIANT = "invariant"; //$NON-NLS-1$
 
     /**
      * Stereotype applied to operation precondition constraints.
-     * 
-     * @see #getStereotype
      */
     @NonNull String PRECONDITION = "precondition"; //$NON-NLS-1$
 
     /**
      * Stereotype applied to operation postcondition constraints.
-     * 
-     * @see #getStereotype
      */
     @NonNull String POSTCONDITION = "postcondition"; //$NON-NLS-1$
 
     /**
      * Stereotype applied to operation body conditions.
-     * 
-     * @see #getStereotype
      */
     @NonNull String BODY = "body"; //$NON-NLS-1$
 
     /**
      * Stereotype applied definition expressions.
-     * 
-     * @see #getStereotype
      */
     @NonNull String DEFINITION = "definition"; //$NON-NLS-1$
 
     /**
      * Stereotype applied initial value expressions.
-     * 
-     * @see #getStereotype
      */
     @NonNull String INITIAL = "initial"; //$NON-NLS-1$
 
     /**
      * Stereotype applied derived value expressions.
-     * 
-     * @see #getStereotype
      */
     @NonNull String DERIVATION = "derivation"; //$NON-NLS-1$
 }

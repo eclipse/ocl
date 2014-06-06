@@ -74,7 +74,7 @@ public class Revalidator extends org.eclipse.ocl.examples.impactanalyzer.Revalid
 	}
 
     /**
-     * @param oclFactory used to create {@link OCL} instances
+     * @param resourceSet used to create {@link OCL} instances
      * @param oppositeEndFinder used to instantiate an {@link OCL} object using
      * {@link OCLFactory#createOCL(OppositeEndFinder)}, and used for the {@link ImpactAnalyzer} when
      * retrieving and navigating hidden opposite references as well as for evaluating

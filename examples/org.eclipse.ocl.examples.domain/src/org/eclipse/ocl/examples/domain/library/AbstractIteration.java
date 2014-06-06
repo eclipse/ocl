@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
 public abstract class AbstractIteration extends AbstractFeature implements LibraryIteration
 {
 	/**
-	 * An out-of-band value that can be returned by {@link updateAccumulator} to signal
+	 * An out-of-band value that can be returned by {@link #updateAccumulator} to signal
 	 * that the iteration should carry on rather than terminate using the returned value.
 	 */
 	protected static final @NonNull Object CARRY_ON = new Object() {
@@ -53,10 +53,10 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	
 	/**
 	 * The default iteration algorithm steps through the iteration domain by invoking
-	 * {@link DomainIterationManager.hasCurrent()} and {@link DomainIterationManager.advanceIterators()}.
-	 * At each step {@link updateAccumulator(DomainIterationManager)} is invoked to update the
+	 * {@link DomainIterationManager#hasCurrent()} and {@link DomainIterationManager#advanceIterators()}.
+	 * At each step {@link #updateAccumulator(DomainIterationManager)} is invoked to update the
 	 * accumulator for that step. A non-null return causes a premature exit and forms the
-	 * return from the overall evaluation. If all steps complete {@link resolveTerminalValue(DomainIterationManager)}
+	 * return from the overall evaluation. If all steps complete {@link #resolveTerminalValue(DomainIterationManager)}
 	 * is invoked to provide the return value.
 	 * <p>
 	 * Derived classes may override this method to change the iteration algorithm or override

@@ -20,13 +20,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 
 public class TuplePartImpl
 		extends PropertyImpl {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param partType 
-	 * @param partId2 
-	 * @generated
-	 */
+
 	protected TuplePartImpl() {
 		super();
 	}

@@ -185,7 +185,7 @@ public abstract class AbstractOCLParser
 	 *            true for a static constraint
 	 * @param simpleNameCS
 	 *            the concrete syntax of the constraint name
-	 * @param oclExpressionCS
+	 * @param defExpressionCS
 	 *            the concrete syntax of the constraint expression
 	 * 
 	 * @return the concrete syntax of the definition constraint

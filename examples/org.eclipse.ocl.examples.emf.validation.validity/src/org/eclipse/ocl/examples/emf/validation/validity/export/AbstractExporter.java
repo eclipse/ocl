@@ -58,8 +58,6 @@ public abstract class AbstractExporter implements IValidityExporter
 	 * @param exportedFileName
 	 * 							The target file name or null if not known and not to be reported
 	 * 
-	 * @return exported String contents to be given to new exported file resource
-	 *         instances
 	 * @throws IOException 
 	 */
 	protected abstract void createContents(@NonNull Appendable s, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;

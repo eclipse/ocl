@@ -31,10 +31,9 @@ import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.context.PropertyContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
 
 /**
- * Implementation of the {@link OCLMetaModel.Helper} convenience interface.
+ * Implementation of the {@link OCLHelper} convenience interface.
  */
 public class OCLHelperImpl implements OCLHelper
 {

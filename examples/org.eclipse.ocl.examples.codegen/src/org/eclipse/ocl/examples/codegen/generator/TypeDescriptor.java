@@ -63,8 +63,7 @@ public interface TypeDescriptor
 			@NonNull CGUnboxExp cgUnboxExp, @NonNull CGValuedElement boxedValue);
 
 	/**
-	 * Return a non-null Collection type descriptor if this type descriptor dedescribes a Collection.
-	 * @return
+	 * Return a non-null Collection type descriptor if this type descriptor describes a Collection.
 	 */
 	@Nullable CollectionDescriptor asCollectionDescriptor();
 	

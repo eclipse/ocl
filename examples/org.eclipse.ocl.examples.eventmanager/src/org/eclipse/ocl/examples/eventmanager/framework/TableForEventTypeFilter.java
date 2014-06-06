@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
 /**
  * The EventTypeFilterTable manages all Registrations containing {@link EventTypeFilter}.
  * 
- * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
+ * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter
  * @author Daniel Vocke (D044825)
  */
 public class TableForEventTypeFilter extends TableForEventFilter {

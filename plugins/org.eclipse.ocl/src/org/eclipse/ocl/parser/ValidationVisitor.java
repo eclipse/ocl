@@ -131,7 +131,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @param problemObject The object being validated, may be null if unknown
 	 * @param problemMessage The problem with problemObject
-	 * @param validationContext Optional context of the validator, may be null
+	 * @param problemContext Optional context of the validator, may be null
 	 * 
 	 * @return TRUE always, since a validation error has been reported.
 	 */
@@ -1315,7 +1315,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @param exp the model property call expression to validate
      * 
-     * @Return true if validation must terminate due to an error
+     * @return true if validation must terminate due to an error
 	 * @since 3.1
 	 */
 	public Boolean visitFeatureCallExp(FeatureCallExp<C> exp) {

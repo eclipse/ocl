@@ -74,7 +74,7 @@ public abstract class LazyModelManager implements DomainModelManager {
 	/**
 	 * Lazily computes the extent of the specified class <code>key</code>.
 	 * 
-	 * @param key a class in the model
+	 * @param type a class in the model
 	 */
 	public @NonNull Set<EObject> get(@NonNull DomainType type) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
@@ -103,7 +103,7 @@ public abstract class LazyModelManager implements DomainModelManager {
      * is an instance of the specified class, according to the metamodel
      * semantics implemented by the environment that created this extent map.
      * 
-     * @param cls a class in the model
+     * @param type a class in the model
      * @param element a potential run-time (M0) instance of that class
      * @return <code>true</code> if this element is an instance of the given
      *    class; <code>false</code> otherwise

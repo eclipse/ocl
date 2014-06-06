@@ -144,7 +144,6 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 
 		/**
 		 * Create and launch an internal launch configuration to debug expressionInOCL applied to contextObject.
-		 * @return 
 		 */
 		protected ILaunch launchDebugger(IProgressMonitor monitor, @Nullable EObject contextObject, @NonNull ExpressionInOCL expressionInOCL) throws CoreException {
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();

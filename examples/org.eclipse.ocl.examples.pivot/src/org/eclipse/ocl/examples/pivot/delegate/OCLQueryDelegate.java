@@ -60,7 +60,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	 *            my domain
 	 * @param context
 	 *            my context
-	 * @param variables
+	 * @param parameters
 	 *            name and types of variables used in my expression
 	 * @param expression
 	 *            the expression that I handle

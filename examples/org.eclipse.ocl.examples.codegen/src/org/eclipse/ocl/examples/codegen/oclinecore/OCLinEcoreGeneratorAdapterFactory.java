@@ -20,7 +20,7 @@ import org.eclipse.emf.common.notify.Adapter;
  * <p>
  * For Eclipse usage it is activated by the <tt>org.eclipse.emf.codegen.ecore.generatorAdapters</tt> extension point regisdtration.
  * <p>
- * For standalone usage, {@link install()} should be invoked.
+ * For standalone usage, {@link #install()} should be invoked.
  */
 public class OCLinEcoreGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory
 {

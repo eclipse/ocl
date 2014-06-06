@@ -29,8 +29,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 /**
  * A OCLVMEvaluator supports loading a transformation as source then loading models, performing a transformation
  * and then saving the models.
- * 
- * @see OCLPivotEvaluator
  */
 public class OCLVMEvaluator implements IVMEvaluator
 {

@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.interpreter.console.TargetMetamodel;
  * Action delegate that ensures that the OCL Console is active and set to
  * target the UML metamodel.
  * 
- * @Deprecated Use ShowUMLConsoleHandler
+ * @deprecated Use ShowUMLConsoleHandler
  */
 @Deprecated
 public class ShowUMLConsoleDelegate

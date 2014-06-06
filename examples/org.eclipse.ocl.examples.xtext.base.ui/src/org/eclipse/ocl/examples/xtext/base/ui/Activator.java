@@ -164,11 +164,6 @@ public class Activator extends AbstractUIPlugin implements BundleActivator {
 
 	/**
 	 * Logs a message with given level into the Eclipse log file
-	 * 
-	 * @param message
-	 *            the message to log
-	 * @param severity
-	 *            the message priority
 	 */
 	public static void log(Exception e) {
 		log(e.getMessage(), IStatus.ERROR, e);

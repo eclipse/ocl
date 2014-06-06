@@ -17,6 +17,8 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCL;
 
 
@@ -65,7 +67,7 @@ public class ExtentMap implements Map<EClass, Set<EObject>> {
      * by the underlying map, meaning that additions to <code>cls</code>'s extent add to the collection
      * returned, and removals from the extent remove from the collection.
      * 
-     * @param key
+     * @param cls
      *            a class in the model
      */
     public Set<EObject> get(Object cls) {

@@ -56,7 +56,7 @@ import org.eclipse.ocl.utilities.TypedElement;
  * A wrapper for {@link OCLFactory}s that records a history of the objects
  * created by it.  This is useful in case any objects that were created ended
  * up not being used, because an error occurred in parsing, and thus need to
- * be {@linkplain ObjectUtil#dispose() disposed).
+ * be {@linkplain ObjectUtil#dispose(Object) disposed}.
  * 
  * @author Christian W. Damus (cdamus)
  * 

@@ -246,7 +246,6 @@ public class CGBuiltInIterationCallExpImpl extends CGIterationCallExpImpl implem
 	}
 
 	/**
-	 * {@inheritDoc}
 	 * @generated
 	 */
 	protected boolean nonNull = false;

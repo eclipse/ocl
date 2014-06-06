@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
@@ -212,7 +211,7 @@ public class UnusedEvaluationRequestSet {
 
     /**
      * Evaluates the <code>requestsToEvaluate</code>. If any of them returns <code>true</code> from its
-     * {@link UnusedEvaluationRequest#evaluate(OppositeEndFinder, OCL)} method, a result will be returned that returns
+     * {@link UnusedEvaluationRequest#evaluate(OppositeEndFinder, OCLFactory)} method, a result will be returned that returns
      * <code>true</code> from its {@link UnusedEvaluationResult#hasProvenUnused()} method. Otherwise, that result's method will
      * return <code>false</code>. If any request's evaluation failed for an unknown variable, the request will be added to a new
      * {@link UnusedEvaluationRequestSet} which is part of this method's result (see

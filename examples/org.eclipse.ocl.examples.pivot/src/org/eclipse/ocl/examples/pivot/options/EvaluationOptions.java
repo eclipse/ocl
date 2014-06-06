@@ -60,7 +60,7 @@ public class EvaluationOptions {
      * @param option the option
      * @param value the option's value
      * 
-     * @see Cusotmizable#setOption(Option, Object)
+     * @see Customizable#setOption(Option, Object)
      */
     public static <T> void setOption(@NonNull EvaluationEnvironment env, @NonNull Option<T> option, @Nullable T value) {
         
@@ -74,7 +74,7 @@ public class EvaluationOptions {
      * Obtains the value of the specified option's setting in the the given
      * environment's options map, adapting the environment as necessary to the
      * {@link Customizable} API.  If not already set, return the option's
-     * {@linkplain #getDefaultValue() default value}.
+     * {@linkplain Option#getDefaultValue() default value}.
      * 
      * @param env an evaluation environment on which to query an option
      * @param option an option to query

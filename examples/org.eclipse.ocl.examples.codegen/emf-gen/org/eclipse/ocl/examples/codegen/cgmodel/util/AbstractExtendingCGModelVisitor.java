@@ -13,8 +13,8 @@
  * This code is auto-generated
  * from: org.eclipse.ocl.examples.codegen/model/cgmodel.genmodel
  *
- * Do not edit it.
- */
+ * Only the copyright statement is editable.
+ *******************************************************************************/
 package	org.eclipse.ocl.examples.codegen.cgmodel.util;
 
 import org.eclipse.jdt.annotation.NonNull;

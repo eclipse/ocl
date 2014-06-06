@@ -20,8 +20,7 @@ import org.eclipse.ocl.examples.common.label.ILabelGenerator;
 
 /**
  * A plugin extension reader that populates the
- * {@link ILabelGenerator.Registry#INSTANCE
- * global} label generator registry. Clients are not expected to use
+ * {@link org.eclipse.ocl.examples.common.label.ILabelGenerator.Registry#INSTANCE ILabelGenerator.Registry.INSTANCE} label generator registry. Clients are not expected to use
  * this class directly.
  */
 public class LabelGeneratorRegistryReader extends RegistryReader

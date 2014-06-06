@@ -1155,7 +1155,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @param option the problem option
      * @return whether I have a setting for it that is not OK
      * 
-     * @see ProblemHandler.Severity#OK
+     * @see org.eclipse.ocl.lpg.ProblemHandler.Severity#OK
      */
     public boolean notOK(Option<ProblemHandler.Severity> option) {
         ProblemHandler.Severity sev = getValue(option);

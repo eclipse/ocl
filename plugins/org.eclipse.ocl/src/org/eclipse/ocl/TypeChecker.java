@@ -294,7 +294,6 @@ public interface TypeChecker<C, O, P> {
 		 * 
 		 * @param dynamicType
 		 * @param staticOperation
-		 * @return
 		 */
 	    O getDynamicOperation(C dynamicType, O staticOperation);
 	    

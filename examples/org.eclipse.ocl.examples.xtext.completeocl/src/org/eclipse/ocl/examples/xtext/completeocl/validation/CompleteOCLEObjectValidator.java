@@ -93,7 +93,6 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	
 	/**
 	 * Perform the loading and installation of the Complete OCL, returning true if successful.
-	 * @return
 	 */
 	public boolean initialize() {
 		Resource ecoreResource = ePackage.eResource();

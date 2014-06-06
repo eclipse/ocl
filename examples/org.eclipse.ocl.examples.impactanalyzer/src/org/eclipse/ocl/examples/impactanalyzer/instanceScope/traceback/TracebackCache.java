@@ -134,7 +134,7 @@ public class TracebackCache {
 
     /**
      * Caches the results of
-     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.OCLFactory)
+     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory)
      * evaluating} an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling
      * for which unknown variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness
      * to be proven.
@@ -145,7 +145,7 @@ public class TracebackCache {
 
     /**
      * Caches the results of
-     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.OCLFactory)
+     * {@link UnusedEvaluationRequest#evaluate(org.eclipse.ocl.ecore.opposites.OppositeEndFinder, org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory)
      * evaluating} an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling
      * for which unknown variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness
      * to be proven.

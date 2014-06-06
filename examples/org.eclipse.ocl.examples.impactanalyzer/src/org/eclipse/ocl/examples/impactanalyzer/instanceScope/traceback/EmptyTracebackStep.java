@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;
 
-import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -44,7 +43,7 @@ public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
      * {@link RealLiteralExp} or an {@link EnumLiteralExp} or a {@link BooleanLiteralExp} or a {@link NullLiteralExp} or an
      * {@link InvalidLiteralExp} is traced back, an empty set is returned.
      * 
-     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)
+     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)
      */
     @Override
     protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,

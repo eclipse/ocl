@@ -281,9 +281,6 @@ public class DelegateInstaller
 
 	/**
 	 * Install all Constraints from pivotPackage and its nestedPackages as OCL Delegates.
-	 * 
-	 * @param metaModelManager
-	 * @param pivotPackage
 	 */
 	public void installDelegates(@NonNull PackageServer packageServer) {
 		boolean hasDelegates = false;

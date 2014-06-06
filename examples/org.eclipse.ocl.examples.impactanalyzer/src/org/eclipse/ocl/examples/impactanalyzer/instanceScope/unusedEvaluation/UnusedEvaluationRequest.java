@@ -146,7 +146,7 @@ public class UnusedEvaluationRequest {
      *            the expression to evaluate
      * @param resultIndicatingUnused
      *            if <code>expression</code> evaluates to this result, this request will return <code>true</code> from its
-     *            {@link #evaluate(OppositeEndFinder, OCL)} method; as a special case, <code>null</code> will be considered "equal"
+     *            {@link #evaluate(OppositeEndFinder, OCLFactory)} method; as a special case, <code>null</code> will be considered "equal"
      *            to an empty collection as the result of evaluating <code>expression</code>
      * @param inferredVariableValues
      *            may be <code>null</code>. In this case, a new {@link Map} is created internally.

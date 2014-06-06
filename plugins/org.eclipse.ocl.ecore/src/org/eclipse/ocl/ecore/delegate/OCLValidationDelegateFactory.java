@@ -41,7 +41,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	/**
 	 * Construct a factory for a known delegate domain.
 	 * 
-	 * @param delegateDomain the delegate domain.
+	 * @param delegateURI the delegate domain.
 	 * @since 3.2
 	 */
 	public OCLValidationDelegateFactory(String delegateURI) {

@@ -480,7 +480,6 @@ public abstract class CGValuedElementImpl extends CGTypedElementImpl implements 
 	}
 
 	/**
-	 * {@inheritDoc}
 	 * @generated
 	 */
 	protected boolean caught = false;
@@ -495,7 +494,6 @@ public abstract class CGValuedElementImpl extends CGTypedElementImpl implements 
 	}
 
 	/**
-	 * {@inheritDoc}
 	 * @generated
 	 */
 	protected String valueName = null;

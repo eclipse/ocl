@@ -31,7 +31,7 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 	}
 	/**
 	 * A <code>Factory</code> wrapper that is used by the
-	 * {@link Factory.Registry}.
+	 * {@link Registry}.
 	 */
 	interface Descriptor<C extends RegisteredContribution<C>> extends RegisteredContribution<C> {
 

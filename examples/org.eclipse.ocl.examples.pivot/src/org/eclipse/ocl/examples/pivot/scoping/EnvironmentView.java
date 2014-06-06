@@ -499,7 +499,6 @@ public class EnvironmentView
 	 *            name of element
 	 * @param element
 	 *            the element
-	 * @return the number of elements added; 1 if added, 0 if not
 	 */
 	public void addElement(/*@NonNull*/ String elementName, /*@NonNull*/ Object element) {
 		if ((elementName == null) || (element == null)) {

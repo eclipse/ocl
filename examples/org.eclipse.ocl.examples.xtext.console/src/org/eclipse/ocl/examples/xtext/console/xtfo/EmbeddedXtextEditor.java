@@ -174,11 +174,7 @@ public class EmbeddedXtextEditor {
 	 * 
 	 * @param control the parent composite that will contain the editor
 	 * @param injector the Guice injector to get Xtext configuration elements
-	 * @param job the synchronization job that will be scheduled/rescheduled at each 
-	 * 		modification of the editor text. It may be use to reconcile the content of 
-	 * 		the editor with something else. 
 	 * @param style the SWT style of the {@link SourceViewer} of this editor.
-	 * @param fileExtension the file extension (without the DOT) of the textual DSL to edit
 	 */
 	public EmbeddedXtextEditor(Composite control, Injector injector, int style) {
 		fControl = control;
@@ -197,11 +193,6 @@ public class EmbeddedXtextEditor {
 	 * 
 	 * @param control the parent composite that will contain the editor
 	 * @param injector the Guice injector to get Xtext configuration elements
-	 * @param job the synchronization job that will be scheduled/rescheduled at each 
-	 * 		modification of the editor text. It may be use to reconcile the content of 
-	 * 		the editor with something else. 
-	 * @param fileExtension the file extension (without the DOT) of the textual DSL to edit
-	 * @param fileExtension
 	 */
 	public EmbeddedXtextEditor(Composite control, Injector injector) {
 		this(control, injector, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
@@ -226,12 +217,7 @@ public class EmbeddedXtextEditor {
 	/**
 	 * Should be called only once, during initialization. 
 	 * 
-	 * Then, you should call {@link #updateText(String, String, String)};
-	 * 
-	 * @param document
-	 * @param prefix
-	 * @param text
-	 * @param suffix
+	 * Then, you should call {@link #update(String)};
 	 */
 	protected void setText(XtextDocument document, String text) {
 		document.set(text);

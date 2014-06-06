@@ -26,7 +26,7 @@ import org.eclipse.ui.console.IConsoleFactory;
  * Action delegate that ensures that the console view is active, with the
  * Interactive OCL console active within it.
  * 
- * @Deprecated Use ShowConsoleHandler
+ * @deprecated Use ShowConsoleHandler
  */
 @Deprecated
 public class ShowConsoleDelegate

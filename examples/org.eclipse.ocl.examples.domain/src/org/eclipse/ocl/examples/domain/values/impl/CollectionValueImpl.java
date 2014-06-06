@@ -297,8 +297,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * <tt>Collection::count(object : T) : Integer</tt>
      * operation.
      * 
-     * @param self the source collection
-     * @param object an object
+     * @param value an object
      * @return the number of occurrences of the object in the collection
      * @throws InvalidValueException 
      */
@@ -326,8 +325,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * <tt>Collection::excludes(object : T) : Boolean</tt>
      * operation.
      * 
-     * @param self the source collection
-     * @param object an object
+     * @param value an object
      * @return whether the collection does not include the object
      */
     public @NonNull Boolean excludes(@Nullable Object value) {
@@ -353,7 +351,6 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * <tt>Collection::excludesAll(c : Collection(T)) : Boolean</tt>
      * operation.
      * 
-     * @param self the source collection
      * @param c another collection
      * @return whether the source collection does not contain any of the
      *     elements of the other
@@ -530,7 +527,6 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
      * <tt>Collection::includesAll(c : Collection(T)) : Boolean</tt>
      * operation.
      * 
-     * @param self the source collection
      * @param c another collection
      * @return whether the source collection includes all of the elements
      *     of the other

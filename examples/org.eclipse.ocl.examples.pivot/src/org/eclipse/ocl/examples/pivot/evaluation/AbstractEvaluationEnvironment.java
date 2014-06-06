@@ -20,8 +20,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.AbstractBasicEnvironment;
-import org.eclipse.ocl.examples.pivot.Adaptable;
-import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -36,10 +34,6 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * See the {@link Environment} class for a description of the
  * generic type parameters of this class. 
- * </p><p>
- * Since the 1.2 release, this interface is {@link Adaptable} to support the
- * optional adapter protocols such as {@link EvaluationEnvironment.Enumerations}
- * and {@link Customizable}.
  * </p>
  * 
  * @author Christian W. Damus (cdamus)
@@ -66,11 +60,11 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
 	}
     
     /**
-     * Returns the value associated with the supplied name
+     * Returns the value associated with the supplied referredVariable
      * 
-     * @param name
-     *            the name whose value is to be returned
-     * @return the value associated with the name
+     * @param referredVariable
+     *            the referredVariable whose value is to be returned
+     * @return the value associated with the referredVariable
      */
 	public @Nullable Object getValueOf(@NonNull DomainTypedElement referredVariable) {
     	Object object = variableValues.get(referredVariable);
@@ -94,10 +88,10 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
 	}
 
     /**
-     * Replaces the current value of the supplied name with the supplied value.
+     * Replaces the current value of the supplied referredVariable with the supplied value.
      * 
-     * @param name
-     *            the name
+     * @param referredVariable
+     *            the referredVariable
      * @param value
      *            the new value
      */
@@ -106,10 +100,10 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
     }
 
     /**
-     * Adds the supplied name and value binding to the environment
+     * Adds the supplied referredVariable and value binding to the environment
      * 
-     * @param name
-     *            the name to add
+     * @param referredVariable
+     *            the referredVariable to add
      * @param value
      *            the associated binding
      */
@@ -128,12 +122,12 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
     }
 
     /**
-     * Removes the supplied name and binding from the environment (if it exists)
+     * Removes the supplied referredVariable and binding from the environment (if it exists)
      * and returns it.
      * 
-     * @param name
-     *            the name to remove
-     * @return the value associated with the removed name
+     * @param referredVariable
+     *            the referredVariable to remove
+     * @return the value associated with the removed referredVariable
      */
     @Deprecated
     public Object remove(@NonNull DomainTypedElement referredVariable) {
@@ -156,10 +150,9 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
     }
     
     /**
-     * By default, a subclass will not support overriding the operations defined
-     * by the OCL Standard Library.  This implementation delegates to the
-     * parent environment (if any), otherwise returns <code>false</code>.
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     public boolean overrides(@NonNull Operation operation, int opcode) {
     	return (getParent() != null)? getParent().overrides(operation, opcode) : false;
     }

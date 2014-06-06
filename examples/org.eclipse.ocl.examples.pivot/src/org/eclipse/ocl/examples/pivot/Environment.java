@@ -45,27 +45,6 @@ import org.eclipse.ocl.examples.pivot.utilities.EnvironmentRegistryImpl;
  * adapters for any environment instance.
  * </p>
  * 
- * @param <PK> is substituted by the metaclass representing the metamodel's
- *    analogue for the UML 2.x <tt>Package</tt>
- * @param <C> corresponds to the UML <tt>Classifier</tt> metaclass
- * @param <O> corresponds to the UML <tt>Operation</tt> metaclass
- * @param <P> corresponds to the UML <tt>Property</tt> metaclass
- * @param <EL> corresponds to the UML <tt>EnumerationLiteral</tt> metaclass
- *    (<tt>Enumeration</tt>s are simply represented as classifiers)
- * @param <PM> corresponds to the UML <tt>Parameter</tt> metaclass
- * @param <S> corresponds to the UML <tt>State</tt> metaclass (for metamodels
- *    that describe state machines)
- * @param <COA> corresponds to the UML <tt>CallOperationAction</tt> metaclass
- *    (used in message expressions)
- * @param <SSA> corresponds to the UML <tt>SendSignalAction</tt> metaclass
- *    (used in message expressions)
- * @param <CT> corresponds to the UML <tt>Constraint</tt> metaclass
- * @param <CLS> corresponds to the UML <tt>Class</tt> metaclass
- * @param <E> corresponds to the UML <tt>Element</tt> metaclass
- * 
- * @author Edith Schonberg (edith)
- * @author Christian W. Damus (cdamus)
- * 
  * @see AbstractEnvironment
  * @see EnvironmentFactory
  */

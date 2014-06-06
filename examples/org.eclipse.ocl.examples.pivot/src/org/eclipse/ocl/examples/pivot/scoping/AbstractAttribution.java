@@ -17,8 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
  * Ann AbstractAttribution provides the basic behaviour for a family of derived
  * classes that provide additional scope/environment behaviour for corresponding
  * CS elements.
- *
- * @param <T>
  */
 public abstract class AbstractAttribution implements Attribution
 {	

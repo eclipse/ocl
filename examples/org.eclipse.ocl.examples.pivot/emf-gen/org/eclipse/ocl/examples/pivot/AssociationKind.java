@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Association Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAssociationKind()
  * @model
  * @generated
  */

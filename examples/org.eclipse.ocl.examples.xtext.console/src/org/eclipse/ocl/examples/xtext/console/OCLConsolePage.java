@@ -128,8 +128,8 @@ import com.google.inject.Injector;
 public class OCLConsolePage extends Page implements MetaModelManagerListener
 {
 	/**
-	 * CancelableEvaluationVisitor refines the EvaluationVisitor to poll the monitor foer cancelation at a variety of significant
-	 * evaluation events, such as feature vists and {@link #getValueFactory()}.
+	 * CancelableEvaluationVisitor refines the EvaluationVisitor to poll the monitor for cancellation at a variety of significant
+	 * evaluation events, such as feature visits and {@link #createNestedEvaluator()}.
 	 */
     protected static class CancelableEvaluationVisitor extends EvaluationVisitorImpl
     {
@@ -399,7 +399,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	
 	/**
 	 * Initializes me.
-	 * @param oclConsole 
+	 * @param console 
 	 */
 	protected OCLConsolePage(OCLConsole console) {
 		super();
@@ -444,7 +444,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	 * Appends the specified text to the output viewer.
 	 * 
 	 * @param text the text to append
-	 * @param color the color to print the text with
+	 * @param rgb the color to print the text with
 	 * @param bold whether to print the text bold
 	 */
 	protected void append(String text, RGB rgb, boolean bold) {
@@ -804,30 +804,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	public BaseDocument getEditorDocument() {
 		return (BaseDocument) editor.getDocument();
 	}
-    
-    /**
-     * Gets the editor image for the specified element.
-     * 
-     * @param element a model element
-     * 
-     * @return the corresponding image
-     *
-    private ImageDescriptor getImage(EObject element) {
-        ImageDescriptor result = null;
-        
-        IItemLabelProvider provider = (IItemLabelProvider) new ComposedAdapterFactory(
-            ComposedAdapterFactory.Descriptor.Registry.INSTANCE).adapt(
-                element, IItemLabelProvider.class);
-        if (provider != null) {
-            Object image = provider.getImage(element);
-            if (image != null) {
-                result = ExtendedImageRegistry.INSTANCE.getImageDescriptor(image);
-            }
-        }
-        
-        return result;
-    } */
-	
+
 	public String getLastOCLExpression() {
 		return lastOCLExpression;
 	}
@@ -844,49 +821,6 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		}
 		return nullMetaModelManager2;
 	}
-	
-	/**
-	 * Prints the specified <code>object</code> to the output viewer.  The
-	 * object is converted to a string using the best matching EMF label
-	 * provider adapter if it is an {@link EObject}; otherwise, just use
-	 * {@link String#valueOf(java.lang.Object)} on it.  If the
-	 * <code>object</code> is a collection or an array, then we print each
-	 * element on a separate line.
-	 * 
-	 * @param object the object or collection to print
-	 * @param color the color to print the <code>object</code> with
-	 * @param bold whether to display it in bold text
-	 *
-	private void print(Value value, Color color, boolean bold) {
-		CollectionValue collectionValue = value.isCollectionValue();
-		if (collectionValue != null) {
-			for (Value elementValue : collectionValue) {
-				append(String.valueOf(elementValue), color, bold);
-			}
-		}
-		else {
-			append(String.valueOf(value), color, bold);
-		}
-/*		Collection<?> toPrint;
-		
-		if (object == null) {
-			toPrint = Collections.EMPTY_SET;
-		} else if (object instanceof Collection) {
-			toPrint = (Collection<?>) object;
-		} else if (object.getClass().isArray()) {
-			toPrint = Arrays.asList((Object[]) object);
-		} else {
-			toPrint = Collections.singleton(object);
-		}
-		
-		for (Iterator<?> iter = toPrint.iterator(); iter.hasNext();) {
-			append(toString(iter.next()), color, bold);
-		} * /
-//		append(String.valueOf(object), color, bold);
-		
-		scrollText();
-	} 
-	 * @return */
 
 	protected ILaunch internalLaunchDebugger() {
 		return debugAction.launch();

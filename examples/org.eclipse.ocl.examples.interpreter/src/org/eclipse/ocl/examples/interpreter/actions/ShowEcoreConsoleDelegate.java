@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.interpreter.console.TargetMetamodel;
  * Action delegate that ensures that the OCL Console is active and set to
  * target the Ecore metamodel.
  * 
- * @Deprecated Use ShowEcoreConsoleHandler
+ * @deprecated Use ShowEcoreConsoleHandler
  */
 @Deprecated
 public class ShowEcoreConsoleDelegate

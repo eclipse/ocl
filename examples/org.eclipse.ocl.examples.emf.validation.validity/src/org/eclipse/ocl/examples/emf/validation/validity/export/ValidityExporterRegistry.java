@@ -44,8 +44,7 @@ public class ValidityExporterRegistry
 	/**
 	 * Adds an extension to the registry.
 	 * 
-	 * @param extension
-	 *            The extension that is to be added to the registry.
+	 * @param exporter
 	 */
 	public void addExporter(@NonNull IValidityExporterDescriptor exporter) {
 		EXTENSIONS.put(exporter.getExporterType(), exporter);
@@ -76,9 +75,7 @@ public class ValidityExporterRegistry
 	/**
 	 * Removes a phantom from the registry.
 	 * 
-	 * @param extensionClassName
-	 *            Qualified class name of the extension point which corresponding
-	 *            phantom is to be removed from the registry.
+	 * @param exporterType
 	 */
 	public void removeExtension(@NonNull String exporterType) {
 		EXTENSIONS.remove(exporterType);

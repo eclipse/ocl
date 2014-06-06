@@ -55,7 +55,7 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 	 * Creates a new exported file creation wizard page. The initial
 	 * resource will be used as the default container resource.
 	 * 
-	 * @param expectedExtension
+	 * @param preferredExtension
 	 * @param initialResource
 	 *            the current resource selection
 	 */

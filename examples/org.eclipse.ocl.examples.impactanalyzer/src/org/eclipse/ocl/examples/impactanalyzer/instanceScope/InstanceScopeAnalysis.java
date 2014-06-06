@@ -70,7 +70,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * Supports a lookup from a source model element of either an attribute value change event or a link add/remove event together
- * with an {@link OCLExpression<EClassifier>} to a set of context objects for which the expression may return a value different
+ * with an {@link OCLExpression} to a set of context objects for which the expression may return a value different
  * from the one it returned before the change event occurred. An instance of this class manages the analysis for all expression
  * occuring within one root OCL expression, including the expressions reachable in operation body expressions where the operation
  * may be called directly of indirectly by the root expression.

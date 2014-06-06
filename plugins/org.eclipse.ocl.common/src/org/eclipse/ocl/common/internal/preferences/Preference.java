@@ -25,7 +25,6 @@ import org.eclipse.ocl.common.preferences.PreferenceableOption;
  * @see BooleanPreference
  * @see ClassPreference
  * @see EnumerationPreference
- * @see IntegerPreference
  * 
  * @param <T> the type of the option's value
  */

@@ -259,7 +259,7 @@ public interface EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E
 	/**
 	 * Creates an instance of the OCLFactoryWithHistory object for this environment.
 	 * 
-	 * @param environment an OCL environment (must not be <code>null</code>)
+	 * @param env an OCL environment (must not be <code>null</code>)
 	 * 
 	 * @return an OCLFactoryWithHistory instance for this environment
 	 * @since 3.1

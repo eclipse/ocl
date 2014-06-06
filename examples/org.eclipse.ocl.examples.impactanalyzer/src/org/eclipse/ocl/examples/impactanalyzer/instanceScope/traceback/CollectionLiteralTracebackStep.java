@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;
 
-import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,6 +19,7 @@ import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
+import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
@@ -28,11 +28,11 @@ import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
 /**
  * When a {@link CollectionLiteralExp} is traced back, it calls the
- * {@link TracebackStep#traceback(AnnotatedEObject, Set, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)} function for the item of those parts, which are
+ * {@link TracebackStep#traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} function for the item of those parts, which are
  * instance of {@link CollectionItem}, forwarding the <code>source</code> object, the (possibly modified)
  * <code>pendingUnusedEvalRequests</code> and the <code>tracebackCache</code>.
  * 
- * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)
+ * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)
  */
 public class CollectionLiteralTracebackStep extends BranchingTracebackStep<CollectionLiteralExp> {
     public CollectionLiteralTracebackStep(CollectionLiteralExp sourceExpression, EClass context,

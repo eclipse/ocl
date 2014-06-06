@@ -62,7 +62,6 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
 
 	/**
 	 * Return the set of all locally registered variables.
-	 * @return
 	 */
 	@NonNull Set<DomainTypedElement> getVariables();
 
@@ -85,7 +84,7 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      * @param value
      *            the associated binding
      *            
-     * @see #replace(String, Object)
+     * @see #replace(DomainTypedElement, Object)
      */
     void add(@NonNull DomainTypedElement referredVariable, Object value);
  
@@ -105,21 +104,9 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
     void clear();
     
     /**
-     * Queries whether this evaluation environment provides a custom
-     * implementation of the specified pre-defined OCL <code>operation</code>.
-     * In the case that the receiver does, then it must implement the
-     * {@link #callOperation} method to apply the operation.
-     * 
-     * @param operation an OCL operation
-     * @param opcode the operation code, if one of the operations pre-defined
-     *    by OCL.  Otherwise, <code>-1</code>
-     *    
-     * @return <code>true</code> if this evaluation environment provides an
-     *    implementation of this <code>operation</code>; <code>false</code>,
-     *    otherwise
-     *    
-     * @see #callOperation
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     boolean overrides(@NonNull Operation operation, int opcode);
    
     /**
@@ -227,24 +214,5 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
     @Deprecated
     Type getType(Object object);
 
-	/**
-	 * Obtains the Java-language value of the specified enumeration literal.
-	 * Often, this is an instance of an EMF-generated enumeration type.
-	 * 
-	 * @param enumerationLiteral the enumeration literal model element
-	 * @return the corresponding run-time instance
-	 */
-//	Value getValue(EnumerationLiteral enumerationLiteral);
-
     @NonNull MetaModelManager getMetaModelManager();
-
-//	@NonNull NullValue throwInvalidEvaluation(InvalidValueException e);
-
-//	@NonNull NullValue throwInvalidEvaluation(String message);
-
-//	@NonNull NullValue throwInvalidEvaluation(String message, DomainExpression expression);
-
-//	@NonNull NullValue throwInvalidEvaluation(String message, DomainExpression expression, Object context);
-
-//	@NonNull NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object context, String message, Object... bindings);
 }

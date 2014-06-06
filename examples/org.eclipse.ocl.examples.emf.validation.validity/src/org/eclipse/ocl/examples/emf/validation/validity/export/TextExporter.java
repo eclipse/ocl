@@ -58,8 +58,6 @@ public class TextExporter extends AbstractExporter
 	 * Returns a stream containing the initial contents to be given to new
 	 * exported validation results file resource instances.
 	 * 
-	 * @return exported File contents to be given to new exported file resource
-	 *         instances
 	 * @throws IOException 
 	 */
 	@Override

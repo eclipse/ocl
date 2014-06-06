@@ -184,7 +184,6 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
      * of this idea has not been finished.
      *
      * @param branchingNavigationStep
-     * @return
      */
     @SuppressWarnings("unused")
     private List<NavigationStep> getFlattenedSubsteps(BranchingNavigationStep branchingNavigationStep){

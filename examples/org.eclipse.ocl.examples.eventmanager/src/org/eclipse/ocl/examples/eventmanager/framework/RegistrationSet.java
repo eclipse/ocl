@@ -68,7 +68,6 @@ public class RegistrationSet {
      * The return value defines the type of the Listener
      * 
      * @see ListenerTypeEnum
-     * @return 
      */
     public ListenerTypeEnum getListenerType() {
         return listenerType;

@@ -14,13 +14,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
-
-
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 /**
- * The AttributeFilterTable manages all Registrations containing {@link PropertyFilter.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.AttributeFilter}.
+ * The AttributeFilterTable manages all Registrations containing {@link StructuralFeatureFilter}.
  * 
- * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
+ * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter
  * @author Daniel Vocke (D044825)
  */
 public class TableForContainmentFilter extends TableForEventFilter {

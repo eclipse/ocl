@@ -15,6 +15,7 @@ package org.eclipse.ocl.examples.pivot;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -32,31 +33,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
  * "directly" by providers of metamodel bindings.
  * It is highly recommended to extend the {@link AbstractEnvironmentFactory}
  * class, instead.
- * </p><p>
- * Since 1.2, the {@link AbstractEnvironmentFactory} implements the
- * {@link Adaptable} interface and provides an adapter for the
- * {@link EnvironmentFactory.Lookup} interface.  Use the
- * {@link OCLUtil#getAdapter(EnvironmentFactory, Class)} method to obtain
- * adapters for any factory instance.
  * </p>
- * 
- * @param <PK> is substituted by the metaclass representing the metamodel's
- *    analogue for the UML 2.x <tt>Package</tt>
- * @param <C> corresponds to the UML <tt>Classifier</tt> metaclass
- * @param <O> corresponds to the UML <tt>Operation</tt> metaclass
- * @param <P> corresponds to the UML <tt>Property</tt> metaclass
- * @param <EL> corresponds to the UML <tt>EnumerationLiteral</tt> metaclass
- *    (<tt>Enumeration</tt>s are simply represented as classifiers)
- * @param <PM> corresponds to the UML <tt>Parameter</tt> metaclass
- * @param <S> corresponds to the UML <tt>State</tt> metaclass (for metamodels
- *    that describe state machines)
- * @param <COA> corresponds to the UML <tt>CallOperationAction</tt> metaclass
- *    (used in message expressions)
- * @param <SSA> corresponds to the UML <tt>SendSignalAction</tt> metaclass
- *    (used in message expressions)
- * @param <CT> corresponds to the UML <tt>Constraint</tt> metaclass
- * @param <CLS> corresponds to the UML <tt>Class</tt> metaclass
- * @param <E> corresponds to the UML <tt>Element</tt> metaclass
  *
  * @author Christian W. Damus (cdamus)
  */
@@ -108,8 +85,8 @@ public interface EnvironmentFactory {
 	 * @param context the context classifier
 	 * @return the environment
 	 * 
-	 * @see #createOperationContext(Environment, Object)
-     * @see #createAttributeContext(Environment, Object)
+	 * @see #createOperationContext(Environment, Operation)
+     * @see #createPropertyContext(Environment, Property)
      * @see #createInstanceContext(Environment, Object)
 	 */
 	@NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull Type context);
@@ -124,14 +101,14 @@ public interface EnvironmentFactory {
      * context classifier (as an OCL type or classifier) will be
      * inferred from the context instance according to the metamodel that the
      * environment factory supports, if possible.  If not possible, then the
-     * {@link DomainStandardLibrary#getOclAny() OclAny} type is assumed.
+     * {@link DomainStandardLibrary#getOclAnyType() OclAny} type is assumed.
      * </p>
      * 
      * @param context the context object or value
      * @return the environment
      * 
-     * @see #createClassifierContext(Environment, Object)
-     * @see DomainStandardLibrary#getOclAny()
+     * @see #createClassifierContext(Environment, Type)
+     * @see DomainStandardLibrary#getOclAnyType()
      */
 	@NonNull Environment createInstanceContext(@NonNull Environment parent, @NonNull Object context);
     
@@ -145,7 +122,7 @@ public interface EnvironmentFactory {
 	 * @param operation an operation in the client's metamodel
 	 * @return the environment
 	 * 
-	 * @see #createClassifierContext(Environment, Object)
+	 * @see #createClassifierContext(Environment, Type)
 	 */
 	@NonNull Environment createOperationContext(@NonNull Environment parent, @NonNull Operation operation);
 	
@@ -159,7 +136,7 @@ public interface EnvironmentFactory {
 	 * @param property an attribute in the client's metamodel
 	 * @return the environment
 	 * 
-	 * @see #createClassifierContext(Environment, Object)
+	 * @see #createClassifierContext(Environment, Type)
 	 */
 	@NonNull Environment createPropertyContext(@NonNull Environment parent, @NonNull Property property);
 	

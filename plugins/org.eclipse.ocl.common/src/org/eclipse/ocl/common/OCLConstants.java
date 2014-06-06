@@ -40,13 +40,13 @@ public interface OCLConstants
 	 * <p>
 	 * For an EPackage, the EAnnotation details may include
 	 * <br>
-	 * an {@link #KEY_FOR_ENVIRONMENT_FACTORY_CLASS environmentFactoryClass} key whose value is the fully qualified
-	 * class name for the {@link EnvironmentFactory}. If no key is specified either the {@link EcoreEnvironmentFactory}
-	 * or {@link EcoreEnvironmentFactoryWithHiddenOpposites} class are used.
+	 * an {@link org.eclipse.ocl.ecore.delegate.OCLDelegateDomain#KEY_FOR_ENVIRONMENT_FACTORY_CLASS environmentFactoryClass} key whose value is the fully qualified
+	 * class name for the {@link org.eclipse.ocl.EnvironmentFactory}. If no key is specified either the {@link org.eclipse.ocl.ecore.EcoreEnvironmentFactory}
+	 * or {@link org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites} class are used.
 	 * <br>
-	 * a {@link #OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY hiddenOpposites} key that may have a <tt>true</tt> value to
-	 * use the {@link EcoreEnvironmentFactoryWithHiddenOpposites} class rather than the {@link EcoreEnvironmentFactory}
-	 * when no {@link #KEY_FOR_ENVIRONMENT_FACTORY_CLASS environmentFactoryClass} key is specified.
+	 * a {@link org.eclipse.ocl.ecore.delegate.OCLDelegateDomain#OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY hiddenOpposites} key that may have a <tt>true</tt> value to
+	 * use the {@link org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites} class rather than the {@link org.eclipse.ocl.ecore.EcoreEnvironmentFactory}
+	 * when no {@link org.eclipse.ocl.ecore.delegate.OCLDelegateDomain#KEY_FOR_ENVIRONMENT_FACTORY_CLASS environmentFactoryClass} key is specified.
 	 * <p>
 	 * Note that the delegate OCL functionality must be enabled by an EPackage Ecore annotation specifying this URI
 	 * as the value of <tt>invocationDelegates</tt>, <tt>settingDelegates</tt> and <tt>validationDelegates</tt> details

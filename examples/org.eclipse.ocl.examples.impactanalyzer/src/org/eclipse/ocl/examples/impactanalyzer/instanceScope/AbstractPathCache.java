@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
  * {@link AbstractPathCache} for <tt>self</tt> and parameter expressions of the operation called invalid. Additionally, all
  * dependent paths would become invalid too. Identifying and removing those entries from a {@link AbstractPathCache} seems to
  * cause more effort than using a new {@link AbstractPathCache} object for each expression analyzed, particularly given the fact
- * that the step assembly only has to happen once per life-time of an {@link OCLExpression<EClassifier>} during
+ * that the step assembly only has to happen once per life-time of an {@link OCLExpression} during
  * a session.
  * 
  */

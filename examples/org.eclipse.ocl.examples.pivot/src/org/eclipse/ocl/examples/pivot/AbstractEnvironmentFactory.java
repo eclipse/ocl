@@ -23,33 +23,7 @@ import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
 
 /**
  * Partial implementation of the {@link EnvironmentFactory} interface, useful
- * for subclassing to define the OCL binding for a metamodel.  This abstract
- * class takes care of some of the more common (and mundane) chores, such as:
- * <ul>
- *   <li>defining the "self" variable in the classifier context</li>
- *   <li>creating variables for operation parameters in an operation context</li>
- * </ul>
- * <p>
- * The subclass's responsibility (in addition to implementing any other
- * interface methods not implemented here) is to define how to:
- * </p>
- * <ul>
- *   <li>{@linkplain #getClassifier obtain} the classifier in the
- *       user model of an input element (which may already be a classifier
- *       or an may be an M0 instance)</li>
- *   <li>{@linkplain #lookupPackage lookup} a package in the model associated
- *       with this environment factory</li>
- * </ul>
- * <p>
- * This class is intended to be extended by clients, for the purpose of
- * implementing metamodel-specific environment factories.
- * </p>
- * <p>
- * See the {@link EnvironmentFactory} class for a description of the
- * generic type parameters of this class. 
- * </p>
- *
- * @author Christian W. Damus (cdamus)
+ * for subclassing to define the Pivot binding for a metamodel.
  */
 public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, Adaptable {
 

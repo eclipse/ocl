@@ -25,7 +25,7 @@ public class EventTypeFilter extends AbstractEventFilter {
 
     /**
      * Creates a new {@link EventTypeFilter} with the given filter type.
-     * For the different types {@see Notifier}
+     * For the different types @see Notifier
      * @param eventType
      * @param negated defines whether the filter is negated
      */

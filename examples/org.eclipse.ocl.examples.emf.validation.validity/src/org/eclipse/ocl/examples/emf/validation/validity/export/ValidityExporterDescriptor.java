@@ -52,7 +52,7 @@ public class ValidityExporterDescriptor implements IValidityExporterDescriptor {
 	 *            Configuration element from which to create this descriptor.
 	 * @param exporterName 
 	 * @param exporterType 
-	 * @param validityExporterClassAttribute 
+	 * @param exporterClassAttribute 
 	 */
 	public ValidityExporterDescriptor(IConfigurationElement configuration, @NonNull String exporterClassAttribute,
 			@NonNull String exporterType, @NonNull String exporterName) {

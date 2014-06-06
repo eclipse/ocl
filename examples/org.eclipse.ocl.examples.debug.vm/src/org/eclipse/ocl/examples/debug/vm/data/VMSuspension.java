@@ -39,7 +39,6 @@ public class VMSuspension implements Serializable
 
 	/**
 	 * Return the underlying framework DebugEvent detail for the suspension.
-	 * @return
 	 */
 	public int getDebugEventDetail() {
 		return detail;

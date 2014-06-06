@@ -97,7 +97,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key,
 	 * the value is the fully qualified name of the class to be used as the {@link EnvironmentFactory}
 	 * for parsing and evaluation for OCL constraints defined in the EPackage. The class must have a
-	 * a constructor that takes a single {@link EPackage.Registry} argument.
+	 * a constructor that takes a single {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} argument.
 	 * 
 	 * @since 3.1
 	 */

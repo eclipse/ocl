@@ -328,7 +328,6 @@ public class PartialEvaluationVisitorImpl extends EvaluationVisitorImpl {
      * @param <T>
      * @param into
      * @param kind
-     * @return
      */
     @SuppressWarnings("unchecked")
     private <T> Collection<T> insertManyAt(Collection<T> into, CollectionKind kind) {

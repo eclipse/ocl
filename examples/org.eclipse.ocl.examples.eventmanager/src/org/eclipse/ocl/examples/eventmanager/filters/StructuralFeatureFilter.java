@@ -25,7 +25,7 @@ public class StructuralFeatureFilter extends AbstractEventFilter {
     /**
      * The standard constructor
      * @param negated set {@link #isNegated()}
-     * @param passes the {@link EStructuralFeature feature} to match
+     * @param feature the {@link EStructuralFeature feature} to match
      */
     public StructuralFeatureFilter(EStructuralFeature feature, boolean negated) {
         super(negated);

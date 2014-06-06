@@ -17,9 +17,9 @@ import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
 /**
- * This filter table manages all Registrations containing {@link PropertyFilter}.
+ * This filter table manages all Registrations containing {@link StructuralFeatureFilter}.
  * 
- * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
+ * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter
  * @author Daniel Vocke (D044825), Axel Uhl
  */
 public class TableForStructuralFeatureFilter extends TableForEventFilter {

@@ -46,7 +46,7 @@ public interface TupleValue extends Value {
     /**
      * Queries the value of the specified tuple part.
      * 
-     * @param part the tuple part (as an attribute)
+     * @param partId the tuple part (as an attribute)
      * @return the corresponding value
      * @throws InvalidValueException 
 	 * @generated NOT

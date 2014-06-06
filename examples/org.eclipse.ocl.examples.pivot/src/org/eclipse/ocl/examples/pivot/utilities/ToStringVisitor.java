@@ -486,8 +486,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
     
     /**
      * Visits the item's item expression.
-     * 
-     * Returns the result of {@link #handleCollectionItem(CollectionItem, Object)}
      */
     @Override
 	public String visitCollectionItem(@NonNull CollectionItem item) {
@@ -497,8 +495,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
     /**
      * Visits the collection literal's parts.
-     * 
-     * Returns the result of {@link #handleCollectionLiteralExp(CollectionLiteralExp, List)}.
      */
 	@Override
 	public String visitCollectionLiteralExp(@NonNull CollectionLiteralExp cl) {
@@ -535,8 +531,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
     
     /**
      * Visits the range's first and last expressions.
-     * 
-     * Returns the result of {@link #handleCollectionRange(CollectionRange, Object, Object)}.
      */
     @Override
 	public String visitCollectionRange(@NonNull CollectionRange range) {
@@ -681,38 +675,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			return PivotUtil.getBody(expression);
 		}
 	}
-
-    /**
-     * Visits the expressions context variable, its parameter variables (if any),
-     * its result variable (if any), and finally its body expression.
-     * 
-     * Returns the result of
-     * {@link #handleExpressionInOCL(ExpressionInOCL, Object, Object, List, Object)}.
-     *
-    @Override
-	public T visitExpressionInOCL(ExpressionInOCL expression) {
-        T contextResult = safeVisit(expression.getContextVariable());
-        
-        Variable resultVar = expression.getResultVariable();
-        T resultResult = safeVisit(resultVar);
-        
-        List<T> parameterResults;
-        List<Variable> parameters = expression.getParameterVariable();
-        
-        if (parameters.isEmpty()) {
-            parameterResults = Collections.emptyList();
-        } else {
-            parameterResults = new java.util.ArrayList<T>(parameters.size());
-            for (Variable iterVar : parameters) {
-                parameterResults.add(safeVisit(iterVar));
-            }
-        }
-        
-        T bodyResult = safeVisit(expression.getBodyExpression());
-        
-        return handleExpressionInOCL(expression, contextResult, resultResult,
-            parameterResults, bodyResult);
-    } */
 
 	/**
 	 * Callback for an IfExp visit.
@@ -903,7 +865,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	
     /**
      * Visits the message expression's target and then its arguments.
-     * Returns the result of {@link #handleMessageExp(MessageExp, Object, List)}.
      */
 	@Override
 	public String visitMessageExp(@NonNull MessageExp messageExp) {
@@ -1258,7 +1219,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
     /**
      * Visits the variable's initialization expression (if any).
-     * Returns the result of {@link #handleVariable(Variable, Object)}.
      */
 	@Override
 	public String visitVariable(@NonNull Variable variable) {

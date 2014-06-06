@@ -308,7 +308,7 @@ protected IToken getIToken(int i) {
 * you should do <code>getRhsTokenText(i)</code>
 * </p>
 * @param i the right hand side token index
-* @result the text of the correspondent right hand side IToken.
+* @return the text of the correspondent right hand side IToken.
 */
 @Deprecated
 protected String getTokenText(int i) {
@@ -319,7 +319,7 @@ protected String getTokenText(int i) {
 * A convenience method to obtain the text of a right hand side IToken.
 *  
 * @param i the right hand side token index
-* @result the text of the correspondent right hand side IToken.
+* @return the text of the correspondent right hand side IToken.
 *
 * @since 3.0
 */

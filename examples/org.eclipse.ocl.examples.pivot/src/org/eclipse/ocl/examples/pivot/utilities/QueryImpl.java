@@ -63,13 +63,6 @@ public class QueryImpl implements Query, ProblemAware
 	private Diagnostic evalProblems;
 	private BasicDiagnostic batchEvalProblems;
 	
-	/**
-	 * 
-	 * @param environment
-	 * @param expr
-	 * @param modelManager may be <code>null</code>, in which case I will use my
-	 *     evaluation environment to create a dynamic extent map
-	 */
 	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL specification) {		
 		this.ocl = ocl;
 		this.environment = ocl.getEnvironment();

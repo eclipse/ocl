@@ -16,29 +16,6 @@ public abstract class UnscopedId extends AbstractTypeId
 {
 	protected final @NonNull String name;
 	protected final int hashCode;
-	
-	/**
-	 * Map from the operation hashCode to the lambda typeIds with the same hash. 
-	 *
-	private @NonNull WeakHashMapOfListOfWeakReference<Integer, DomainParameterTypes, OperationIdImpl> memberOperations =
-		new WeakHashMapOfListOfWeakReference<Integer, DomainParameterTypes, OperationIdImpl>()
-		{
-			@Override
-			protected @NonNull OperationIdImpl newTypeId(@NonNull Integer hashCode, @NonNull DomainParameterTypes parameterTypes, @NonNull String name) {
-				return new OperationIdImpl(UnscopedId.this, name, parameterTypes, hashCode);
-			}		
-		}; */
-
-	/**
-	 * Map from a type parameter name to the corresponding TypeParameterId. 
-	 *
-	private @NonNull WeakHashMapOfWeakReference<String, TypeTemplateParameterId> typeParameters = new WeakHashMapOfWeakReference<String, TypeTemplateParameterId>()
-		{
-			@Override
-			protected @NonNull TypeTemplateParameterId newTypeId(@NonNull String name) {
-				return new TypeParameterIdImpl(UnscopedId.this, name);
-			}
-		}; */
 
 	protected UnscopedId(@NonNull String name) {
 		this.name = name;
@@ -52,20 +29,6 @@ public abstract class UnscopedId extends AbstractTypeId
 	public @NonNull String getName() {
 		return name;
 	}
-
-/*	@Override
-	public @NonNull OperationId getOperationId(@NonNull DomainOperation anOperation) {
-		String name = anOperation.getName();
-		assert name != null;
-		DomainTypeParameters typeParameters = anOperation.getTypeParameters();
-		int hashCode = 47 * hashCode() + 37 * name.hashCode() + typeParameters.hashCode();
-		return memberOperations.getTypeId(hashCode, anOperation.getParameterTypes(), name);
-	} */
-
-//    @Override
-//	public @NonNull TypeTemplateParameterId getTypeParameterId(final @NonNull String name) {
-//    	return typeParameters.getElementId(name);
-//    }
 
 	@Override
 	public final int hashCode() {

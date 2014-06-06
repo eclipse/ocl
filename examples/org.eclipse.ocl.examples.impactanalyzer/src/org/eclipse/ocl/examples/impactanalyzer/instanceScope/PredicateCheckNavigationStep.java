@@ -35,7 +35,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * Evaluates an OCL expression that is expected to be the {@link IteratorExp#getBody() body} expression of an iterator expression.
- * Before the evaluation is triggered, the single iterator variable obtained from {@link LoopExp#getIterators()} is set to the
+ * Before the evaluation is triggered, the single iterator variable obtained from {@link LoopExp#getIterator()} is set to the
  * {@link RefObject} passed to {@link #navigate(CoreConnection, AnnotatedRefObjectImpl, Map, Set)} in the <tt>fromObject</tt>
  * parameter. Depending on the particular type of iterator (<tt>select</tt>, <tt>reject</tt> or <tt>any</tt>), the object is
  * passed on if and only if the OCL expression evaluates to <tt>true</tt>/<tt>false</tt>/<tt>true</tt>, respectively. For any

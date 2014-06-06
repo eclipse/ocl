@@ -481,8 +481,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the rule that we are matching
 	 * @param acc
 	 *            the association class call expression
-	 * @param cstNode
-	 *            context of the call
 	 */
 	protected void checkNotReflexive(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
@@ -960,8 +958,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the <code>PrePostOrBodyDeclCS</code> <code>CSTNode</code>
 	 * @param env
 	 *            the OCL environment
-	 * @param operation
-	 *            the context <code>EOperation</code>
 	 * @return the parsed <code>Constraint</code>
 	 */
 	protected CT prePostOrBodyDeclCS(
@@ -1230,8 +1226,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the <code>InitOrDerValueCS</code> <code>CSTNode</code>
 	 * @param env
 	 *            the OCL environment
-	 * @param property
-	 *            the context <code>EStructuralFeature</code>
 	 * @return the parsed <code>Constraint</code>
 	 */
 	protected CT initOrDerValueCS(
@@ -1324,10 +1318,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the package environment
 	 * @param constraints
 	 *            the constraints list to populate
-	 * 
-	 * @param the
-	 *            classifier context environment, or <code>null</code> of the
-	 *            classifier could not be resolved
 	 */
 	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> classifierContextDeclCS(
 			ClassifierContextDeclCS classifierContextDeclCS,
@@ -2068,8 +2058,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * 
 	 * @since 1.3
 	 */
-	protected boolean isAtPre(VariableExpCS callExp) {
-		IsMarkedPreCS atPre = callExp.getIsMarkedPreCS();
+	protected boolean isAtPre(VariableExpCS variableExp) {
+		IsMarkedPreCS atPre = variableExp.getIsMarkedPreCS();
 		return atPre != null;
 	}
 	
@@ -3227,9 +3217,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the <code>VariableDeclarationCS</code> <code>CSTNode</code>
 	 * @param env
 	 *            the OCL environment
-	 * @param addToEnvironment
-	 *            boolean whether or not to add the the parsed variable to the
-	 *            environment
 	 * @return the parsed <code>VariableDeclaration</code>
 	 */
 	protected TupleLiteralPart<C, P> tupleLiteralPartCS(
@@ -3278,14 +3265,14 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @return the parsed <code>EnumLiteralExp</code>
 	 */
 
-	protected TypeExp<C> typeCS(CSTNode cstNode,
+	protected TypeExp<C> typeCS(CSTNode enumLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type) {
 
 		TypeExp<C> astNode = oclFactory.createTypeExp();
-		initASTMapping(env, astNode, cstNode, null);
+		initASTMapping(env, astNode, enumLiteralExpCS, null);
 		astNode.setReferredType(type);
-		astNode.setType(getTypeType(cstNode, env, type));
+		astNode.setType(getTypeType(enumLiteralExpCS, env, type));
 
 		return astNode;
 	}
@@ -4634,12 +4621,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * Creates a dummy expression of invalid-literal type to be a placeholder
 	 * for a (sub)expression that could not be parsed. The resulting expression
-	 * is {@linkplain #markAsErrorNode(OCLExpression) marked} as an error
+	 * is {@linkplain #markAsErrorNode(TypedElement) marked} as an error
 	 * place-holder expression.
 	 * 
 	 * @return the dummy invalid-literal expression
 	 * 
-	 * @see #markAsErrorNode(OCLExpression)
+	 * @see #markAsErrorNode(TypedElement)
 	 * 
 	 * @deprecated Use the
 	 *             {@link #createDummyInvalidLiteralExp(Environment, CSTNode)}
@@ -4658,7 +4645,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * Creates a dummy expression of invalid-literal type to be a placeholder
 	 * for a (sub)expression that could not be parsed. The resulting expression
-	 * is {@linkplain #markAsErrorNode(OCLExpression) marked} as an error
+	 * is {@linkplain #markAsErrorNode(TypedElement) marked} as an error
 	 * place-holder expression.
 	 * 
 	 * @param env
@@ -4668,7 +4655,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * 
 	 * @return the dummy invalid-literal expression
 	 * 
-	 * @see #markAsErrorNode(OCLExpression)
+	 * @see #markAsErrorNode(TypedElement)
 	 * @see #createDummyInvalidLiteralExp()
 	 * 
 	 * @since 1.3

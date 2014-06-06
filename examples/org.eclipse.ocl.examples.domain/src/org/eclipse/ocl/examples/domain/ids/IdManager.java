@@ -52,7 +52,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 /**
  * IdManager supervises the thread-safe allocation of unique hierarchical identifier to each metamodel element.
  * 
- * @see ElementId.
+ * @see ElementId
  */
 public final class IdManager
 {

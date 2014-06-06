@@ -13,16 +13,17 @@ package org.eclipse.ocl.examples.xtext.base.utilities;
 import org.eclipse.xtext.validation.CompositeEValidator;
 
 /**
+ * @deprecated use
+ * <pre>
+ *@Override
+ *public void configure(Binder binder) {
+ *  super.configure(binder);
+ *  binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
+ *}
+ * </pre>
  * NoEObjectCompositeEValidator worksaround Bug 322639 by ensuring the
  * that CompositeEValidator does not register an additional 
  * EObjectValidator.
- * 
- * @Deprecated use 
- * 	@Override
- *	public void configure(Binder binder) {
- *		super.configure(binder);
- *		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
- *	}
  */
 @Deprecated
 public class NoEObjectCompositeEValidator extends CompositeEValidator

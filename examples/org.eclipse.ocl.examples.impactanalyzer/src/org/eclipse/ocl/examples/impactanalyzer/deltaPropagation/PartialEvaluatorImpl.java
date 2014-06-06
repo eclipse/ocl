@@ -164,7 +164,7 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
      * 
      * The method first applies partial evaluation along chains of {@link CallExp} and operation calls. If the computation of the
      * full value based on old and new source value reaches the end of such a chain of {@link CallExp} and operation
-     * body/operation call constructs, {@link #transitivelyPropagateDelta(OCLExpression, Collection)} tries to
+     * body/operation call constructs, {@link #transitivelyPropagateDelta(OCLExpression, Collection, OperationBodyToCallMapper)} tries to
      * propagate the delta between old and new value further. If the result of this delta propagation is empty for all
      * expressions to which it propagates then this proves that the original change indicated by <tt>oldSourceValue</tt>
      * and <tt>newSourceValue</tt> has no effect on the overall expression.
@@ -385,7 +385,7 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
      * <p>
      * 
      * <b>Postcondition</b>:
-     * <tt>this.{@link #getDeltaPropagationStrategy(OCLExpression) getDeltaPropagationStrategy}(result.getA()) == null</tt>
+     * <tt>this.{@link #getDeltaPropagationStrategy(OCLExpression, OperationBodyToCallMapper) getDeltaPropagationStrategy}(result.getA()) == null</tt>
      * 
      * @param deltaForEValue
      *            may be null, empty or a valid non-empty collection specifying a delta in <tt>e</tt>'s evaluation result

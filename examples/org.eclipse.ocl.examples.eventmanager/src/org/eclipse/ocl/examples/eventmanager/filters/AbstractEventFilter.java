@@ -44,7 +44,6 @@ public abstract class AbstractEventFilter implements EventFilter {
 
     /**
      * Returns the unique property for an {@link AbstractEventFilter} object
-     * @return
      */
     public abstract Object getFilterCriterion();
 

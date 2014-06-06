@@ -75,7 +75,7 @@ public final class OCLUtil {
      *     intrinsically adaptable to this interface it is forcibly adapted to
      *     the {@link BasicEnvironment} protocol</li>
 	 * <li>{@link ProblemHandler}</li>
-	 * <li>{@link Environment.Lookup}</li>
+	 * <li>{@link org.eclipse.ocl.Environment.Lookup Environment.Lookup}</li>
 	 * </ul>
 	 * 
 	 * @param <T> the requested adapter interface
@@ -230,7 +230,7 @@ public final class OCLUtil {
 	 * environment factories that do not adapt to the following interfaces,
 	 * this method will provide a default implementation for convenience:
 	 * <ul>
-	 * <li>{@link EnvironmentFactory.Lookup}</li>
+	 * <li>{@link org.eclipse.ocl.EnvironmentFactory.Lookup EnvironmentFactory.Lookup}</li>
 	 * </ul>
 	 * 
 	 * @param <T> the requested adapter interface
@@ -426,7 +426,7 @@ public final class OCLUtil {
 	 * 
 	 * @return the environment, or <code>null</code> if none can be found
 	 * 
-	 * @see Environment.Registry
+	 * @see org.eclipse.ocl.Environment.Registry
 	 */
 	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getValidationEnvironment(

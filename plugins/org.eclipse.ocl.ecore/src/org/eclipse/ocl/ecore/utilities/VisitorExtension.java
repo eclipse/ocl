@@ -19,7 +19,6 @@ import org.eclipse.ocl.ecore.OppositePropertyCallExp;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.utilities.UtilitiesPackage#getVisitorExtension()
  * @model interface="true" abstract="true"
  */
 public interface VisitorExtension<T> {

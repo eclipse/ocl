@@ -48,7 +48,6 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -68,7 +67,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * StandaloneProjectMap and {@link ProjectMap} provide facilities to assist in
- * preparing the {@link URIConverter}, the {@link EPackage.Registry, andd the
+ * preparing the {@link URIConverter}, the {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry}, and the
  * and URIResourceMap of a {@link ResourceSet} and the global and
  * {@link EcorePlugin#getPlatformResourceMap()} and
  * {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap} to support
@@ -91,7 +90,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * <li>../../org.eclipse.emf.ecore/model/Ecore.ecore</li>
  * </ul>
  * results in the same Resource being returned by {@link
- * ResourceSet.getResource()}.
+ * ResourceSet#getResource(URI, boolean)}.
  * <p>
  * If the classpath contains distinct imported project and JAR versions of
  * Ecore, referencing
@@ -129,7 +128,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * </li>
  * </ul>
  * <p>
- * {@link #getProjectMap()} returns a map of project names and bundle names to a
+ * {@link #getProjectDescriptors()} returns a map of project names and bundle names to a
  * physical location which is established by searching the classpath for folders
  * and JARs containing .project files. If a manifest is also found, the search
  * has found a bundle and the Bundle-SymbolicName is read from the manifest.
@@ -147,19 +146,19 @@ import org.xml.sax.helpers.DefaultHandler;
  * the same Resource eliminating most opportunities for meta-model
  * schizophrenia.
  * <p>
- * {@link #initializePlatformResourceMap()} populates
+ * {@link #initializePlatformResourceMap(boolean)} populates
  * {@link EcorePlugin#getPlatformResourceMap()} with a <i>project</i> to
  * <tt>platform:/resource/<i>project</i></tt> entry for each project and a
  * <i>bundle</i> to <tt>platform:/plugin/<i>bundle</i></tt> entry for each
  * bundle.
  * <p>
- * {@link #initializeGenModelLocationMap(ResourceSet)} exploits the classpath
+ * {@link #initializeGenModelLocationMap(boolean)} exploits the classpath
  * scan for plugins and projects to identify all plugin.xml files and populate
  * the {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap()} from the
  * <tt>org.eclipse.emf.ecore.generated_package</tt> extension points in the same
  * way as occurs automatically in a plugin environment.
  * <p>
- * {@link #initializeURIMap(URIConverter)} installs a
+ * {@link #initializeURIMap(ResourceSet)} installs a
  * <tt>platform:/plugin/<i>project</i></tt> to
  * <tt>platform:/resource/<i>project</i></tt> URI mapping for each project and a
  * <tt>platform:/resource/<i>bundle</i></tt> to
@@ -199,7 +198,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * The classpath is analyzed to identify an IProjectDescriptor per project/bundle within which
  * a plugin.xml is analyzed to identify generated_package extension points leading to a
  * an IResourceDescriptor per genmodel and an IPackageDescriptor per nsURI/className within
- * the IResorceDescriptor. There is usually only one nsURi per genmodel but the greater
+ * the IResorceDescriptor. There is usually only one nsURI per genmodel but the greater
  * generality has to be accommodated. The foregoing constitute a shared model that can be re-used
  * by multiple applications, so long as the classpath content is unchanged.
  * 
@@ -207,7 +206,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * 
  * The actual state is maintained on a per-ResourceSet basis with an IResourceLoadStatus and
  * one or more IPackageDescriptors for in use IResourceDescriptors and IPackageDescriptors. The
- * IResourceLOadStatus is confugured with an IResourceLoadStrategy and an IConflictHandler.
+ * IResourceLoadStatus is confugured with an IResourceLoadStrategy and an IConflictHandler.
  */
 public class StandaloneProjectMap extends SingletonAdapterImpl
 {
@@ -281,7 +280,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return getURI() + " with " + resourceLoadStrategy;
 		}
 
-		public void uninstall(@NonNull Registry packageRegistry) {
+		public void uninstall(@NonNull EPackage.Registry packageRegistry) {
 			if (PROJECT_MAP_INSTALL.isActive()) {
 				PROJECT_MAP_INSTALL.println("" + toString());
 			}
@@ -324,7 +323,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		/**
 		 * Return the first loaded EPackage which may be part of a model or a Java generated EPackageinstance..
-		 * @return
 		 */
 		@Nullable EPackage getFirstEPackage();
 
@@ -838,7 +836,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		/**
 		 * Return the external filespace form of the model URI containing the package.
-		 * @Throws IllegalStateException if there is no Ecore model.
+		 * @throws IllegalStateException if there is no Ecore model.
 		 */
 		@NonNull URI getLocationURI();
 
@@ -849,13 +847,13 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		/**
 		 * Return the platform:/resource form of the model URI containing the package
-		 * @Throws IllegalStateException if there is no Ecore model.
+		 * @throws IllegalStateException if there is no Ecore model.
 		 */
 		@NonNull URI getPlatformResourceURI();
 
 		/**
 		 * Return the platform:/plugin form of the model URI containing the package
-		 * @Throws IllegalStateException if there is no Ecore model.
+		 * @throws IllegalStateException if there is no Ecore model.
 		 */
 		@NonNull URI getPlatformPluginURI();
 
@@ -903,7 +901,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		
 		/**
 		 * Return the classname defined in the generated_packaged extension point, or null if undefined.
-		 * @return
 		 */
 		@Nullable String getClassName();
 
@@ -2012,8 +2009,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	 * PluginReader provides the SAX callbacks to support reading the
 	 * org.eclipse.emf.ecore.generated_package extension point in a plugin.xml
 	 * file and activating the GenModelReader to process the
-	 * ecorePackage locations and invoking {@link addGenModel()} for each
-	 * encounter.
+	 * ecorePackage locations.
 	 */
 	protected static class PluginReader extends DefaultHandler
 	{
@@ -2145,8 +2141,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	/**
 	 * GenModelReader provides the SAX callbacks to support reading
-	 * the genPackages element in a genmodel file and invoking {@link
-	 * addEcorePackage()} for each encounter.
+	 * the genPackages element in a genmodel file.
 	 */
 	protected static class GenModelReader extends DefaultHandler
 	{
@@ -2391,7 +2386,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 					resourceDescriptor.unload(resourceSet);
 				}
 				Map<URI, IPackageDescriptor> nsURI2packageDescriptor2 = nsURI2packageDescriptor;
-				Registry packageRegistry = resourceSet.getPackageRegistry();
+				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
 				if ((nsURI2packageDescriptor2 != null) && (packageRegistry != null)) {
 					for (URI nsURI : nsURI2packageDescriptor2.keySet()) {
 						packageRegistry.remove(nsURI.toString());
@@ -2501,25 +2496,25 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	/**
 	 * Return the EPackage.Registry for a resourceSet or the Global
-	 * {@link EPackage.Registry.INSTANCE} if resourceSet is null.
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE} if resourceSet is null.
 	 */
 	public static @NonNull EPackage.Registry getPackageRegistry(@Nullable ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			@SuppressWarnings("null")
 			@NonNull
-			Registry globalRegistry = EPackage.Registry.INSTANCE;
+			EPackage.Registry globalRegistry = EPackage.Registry.INSTANCE;
 			return globalRegistry;
 		} else {
 			@SuppressWarnings("null")
 			@NonNull
-			Registry packageRegistry = resourceSet.getPackageRegistry();
+			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
 			return packageRegistry;
 		}
 	}
 
 	/**
 	 * Return the Resource.Factory.Registry for a resourceSet or the Global
-	 * {@link Resource.Factory.Registry.INSTANCE} if resourceSet is null.
+	 * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE} if resourceSet is null.
 	 */
 	public static Resource.Factory.Registry getResourceFactoryRegistry(@Nullable ResourceSet resourceSet) {
 		return resourceSet != null
@@ -2529,7 +2524,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	/**
 	 * Return the URIConverter for a resourceSet or the Global
-	 * {@link URIConverter.INSTANCE} if resourceSet is null.
+	 * {@link URIConverter#INSTANCE} if resourceSet is null.
 	 */
 	@SuppressWarnings("null")
 	public static @NonNull URIConverter getURIConverter(@Nullable ResourceSet resourceSet) {
@@ -2538,7 +2533,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	/**
 	 * Return the URI Map for a resourceSet or the Global
-	 * {@link URIConverter.URI_MAP} if resourceSet is null.
+	 * {@link URIConverter#URI_MAP} if resourceSet is null.
 	 */
 	@SuppressWarnings("null")
 	public static @NonNull Map<URI, URI> getURIMap(@Nullable ResourceSet resourceSet) {
@@ -2782,9 +2777,8 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	}
 
 	/**
-	 * Initialize the {@link EcorePlugin#getPlatformResourceMap()} so that in a
-	 * standalone environment and in conjunction with {@link
-	 * initializeURIMap(URIConverter)} URIs such as
+	 * Initialize the {@link EcorePlugin#getPlatformResourceMap()} so that in a standalone
+	 * environment and in conjunction with {@link #initializeURIMap(ResourceSet)} URIs such as
 	 * <tt>platform:/resource/<i>project</i></tt> and
 	 * <tt>platform:/plugin/<i>project</i></tt> are useable.
 	 * <p>

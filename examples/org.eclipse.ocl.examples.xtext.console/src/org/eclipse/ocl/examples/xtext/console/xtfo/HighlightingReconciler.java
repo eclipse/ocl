@@ -106,7 +106,6 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 	 * Add a position with the given range and highlighting if it does not exist already.
 	 * @param offset The range offset
 	 * @param length The range length
-	 * @param highlighting The highlighting
 	 */
 	public void addPosition(int offset, int length, String... ids) {
 		TextAttribute highlighting = ids.length == 1 ? 
@@ -168,8 +167,6 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 	/**
 	 * Install this reconciler on the given editor and presenter.
 	 * 
-	 * @param editor
-	 *            the editor
 	 * @param sourceViewer
 	 *            the source viewer
 	 * @param presenter

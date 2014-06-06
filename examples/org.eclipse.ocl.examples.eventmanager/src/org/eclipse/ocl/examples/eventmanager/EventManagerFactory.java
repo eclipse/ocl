@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
@@ -87,7 +88,7 @@ public interface EventManagerFactory {
      * event type}, such as {@link Notification#ADD} or
      * {@link Notification#REMOVE}.
      * 
-     * {@see EventTypeFilter#EventTypeFilter()}
+     * @see EventTypeFilter#EventTypeFilter(int, boolean)
      */
     EventFilter createEventTypeFilter(int eventType);
 
@@ -143,7 +144,7 @@ public interface EventManagerFactory {
      * not require the individual {@link OldValueClassFilter}s to match based on
      * the same element in case the old value happens to be a collection. For
      * example, assume there are two classes <code>X</code> and <code>Y</code>.
-     * Assume there is an {@link AndFiter} with two {@link OldValueClassFilter}s
+     * Assume there is an {@link AndFilter} with two {@link OldValueClassFilter}s
      * inside, one matching <code>X</code>, the other matching <code>Y</code>.
      * If there are two elements in the old value collection of the
      * {@link Notification}, one of type <code>X</code> and the other of type
@@ -170,7 +171,7 @@ public interface EventManagerFactory {
      * a collection. For example, assume there are two classes <code>X</code>
      * and <code>Y</code> with a class <code>Z</code> that has both,
      * <code>X</code> and <code>Y</code> as its superclasses (multiple
-     * inheritance). Assume there is an {@link AndFiter} with two
+     * inheritance). Assume there is an {@link AndFilter} with two
      * {@link OldValueClassFilterIncludingSubclasses}s inside, one matching
      * <code>X</code>, the other matching <code>Y</code>. If only a single
      * element is the old value of a {@link Notification}, the {@link AndFilter}
@@ -201,7 +202,7 @@ public interface EventManagerFactory {
      * not require the individual {@link NewValueClassFilter}s to match based on
      * the same element in case the new value happens to be a collection. For
      * example, assume there are two classes <code>X</code> and <code>Y</code>.
-     * Assume there is an {@link AndFiter} with two {@link NewValueClassFilter}s
+     * Assume there is an {@link AndFilter} with two {@link NewValueClassFilter}s
      * inside, one matching <code>X</code>, the other matching <code>Y</code>.
      * If there are two elements in the new value collection of the
      * {@link Notification}, one of type <code>X</code> and the other of type
@@ -228,7 +229,7 @@ public interface EventManagerFactory {
      * a collection. For example, assume there are two classes <code>X</code>
      * and <code>Y</code> with a class <code>Z</code> that has both,
      * <code>X</code> and <code>Y</code> as its superclasses (multiple
-     * inheritance). Assume there is an {@link AndFiter} with two
+     * inheritance). Assume there is an {@link AndFilter} with two
      * {@link NewValueClassFilterIncludingSubclasses}s inside, one matching
      * <code>X</code>, the other matching <code>Y</code>. If only a single
      * element is the new value of a {@link Notification}, the {@link AndFilter}
@@ -249,7 +250,7 @@ public interface EventManagerFactory {
      * Constructs an {@link #createAndFilterFor(EventFilter...) AndFilter}
      * combining a {@link #createClassFilter(EClass) ClassFilter} for
      * <code>eClass</code> and a
-     * {@link #createStructuralFeatureFilter(EStructuralFeature) PropertyFilter}
+     * {@link #createStructuralFeatureFilter(EStructuralFeature) StructuralFeatureFilter}
      * for <code>referredProperty</code>.
      */
     EventFilter createFilterForEReference(EClass eClass,
@@ -259,7 +260,7 @@ public interface EventManagerFactory {
      * Constructs an {@link #createAndFilterFor(EventFilter...) AndFilter}
      * combining a {@link #createClassFilter(EClass) ClassFilter} for
      * <code>eClass</code> and an
-     * {@link #createStructuralFeatureFilter(EStructuralFeature) PropertyFilter}
+     * {@link #createStructuralFeatureFilter(EStructuralFeature) StructuralFeatureFilter}
      * for <code>referredProperty</code>.
      */
     EventFilter createFilterForEAttribute(EClass eClass,

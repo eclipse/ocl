@@ -30,113 +30,53 @@ import org.eclipse.ocl.examples.pivot.Type;
 public class ParsingOptions {
 
     /**
-     * <p>
-     * Parsing option indicating whether to reference the defined property or
-     * operation in a <tt>def:</tt> expression as a constrained element of the
-     * constraint, in addition to the context classifier.  The well-formedness
-     * rules for definition constraints in the OCL 2.0 Specification require
-     * that a definition constraint reference only its context classifier as
-     * a constrained element.
-     * </p><p>
-     * The default value of this option is <tt>false</tt>.  For compatibility
-     * with the 1.1 release behaviour, set this option <tt>true</tt>.  Note
-     * that this is not necessary for loading and processing constraints
-     * created by the 1.1 release, only for persisting constraints that will be
-     * consumed by the 1.1 release.
-     * </p>
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     public static final @NonNull Option<Boolean> DEFINITION_CONSTRAINS_FEATURE =
         new BasicOption<Boolean>("definition.constraints.feature", false); //$NON-NLS-1$
 
     /**
-     * <p>
-     * Parsing option indicating whether to interpolate {@literal <},
-     * {@literal <=}, {@literal >}, and {@literal >=} operations when a model
-     * type defines a Java-style <tt>compareTo(...)</tt> operation.
-     * </p><p>
-     * The default value of this option is <tt>false</tt>.  For compatibility
-     * with the 1.1 release behaviour, set this option <tt>true</tt>.
-     * </p>
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     public static final @NonNull Option<Boolean> USE_COMPARE_TO_OPERATION =
         new BasicOption<Boolean>("use.compare.to.operation", false); //$NON-NLS-1$
 
     /**
-     * <p>
-     * Parsing option indicating whether to generate a warning when the
-     * OCL 2.1 parsing of distinct xor, or, and precedences leads to a different
-     * parse to the OCL 2.0 specification of all levels equal.
-     * The default value of this option is <tt>false</tt>.  To diagnose
-     * compatibility with the OCL 2.0  behaviour in the MDT-OCL 1.x release,
-     * set this option <tt>true</tt>.
-     * </p>
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     public static final @NonNull Option<Boolean> WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE =
         new BasicOption<Boolean>("warn.of.xor.or.and.precedence.change", false); //$NON-NLS-1$
 
     /**
-     * <p>
-     * Static instance for the implicit-root-class option token.  It is returned
-     * via an unchecked cast by the {@link #implicitRootClass()} method.
-     * </p>
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     public static final @NonNull Option<?> IMPLICIT_ROOT_CLASS =
         new BasicOption<Object>("implict.root.class", null); //$NON-NLS-1$
 
-	/**
-	 * <p>
-	 * Parsing option indicating whether to process backslash escape sequences (
-	 * <tt>\n</tt>, <tt>\r</tt>, etc.) as specified by OMG Issue 14357 for OCL 2.3.
-	 * </p>
-	 * <p>
-	 * The default value of this option is <tt>true</tt>. To disable
-	 * backslash escaping support, set this option <tt>false</tt>.
-	 * </p>
-	 */
+    /**
+     * @deprecated This Classic OCL API is not used by the Pivot.
+     */
+    @Deprecated
     public static final @NonNull Option<Boolean> USE_BACKSLASH_ESCAPE_PROCESSING =
         new BasicOption<Boolean>("use.backslash.escape.processing", true); //$NON-NLS-1$
 
     /**
-     * <p>
-     * A parsing option specifying a class that's assumed to be the implicit
-     * root of the subject model's class hierarchy.  Note that this excludes
-     * datatypes defined by OCL such as the collections and tuples, and also those
-     * defined by the subject model.  This option is only used in accessing operations
-     * and attributes; for other characteristics of a classifier, a specialized
-     * environment implementation is required.
-     * </p><p>
-     * This option is commonly used to provide access to operations and attributes
-     * defined by an implicit root extends class in Ecore-based models, for example,
-     * such as <tt>EObject</tt>, that is not explicitly referenced in the subject model.
-     * </p><p>
-     * The default value of this option is <tt>null</tt>.
-     * </p>
-     * 
-     * @param <C> the type representing classes in the target metamodel, consistent with
-     *    the current {@link Environment} implementation
-     * 
-     * @param env the environment to which this option is to be applied
-     * 
-     * @return the option token
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static @NonNull Option<Type> implicitRootClass(@NonNull Environment env) {
         return (Option<Type>) IMPLICIT_ROOT_CLASS;
     }
 
     /**
-     * <p>
-     * Parsing option indicating whether to accept <tt>static</tt> as part of a
-     * definition constraint. <tt>static</tt> are a proposed cpability of OCL 2.1,
-     * however they are only available for meta-models that implement the
-     * {@link UMLReflection#setIsStatic(Object, boolean)} method. Therefore use of <tt>static</tt> constraints
-     * will generate an error message on the Ecore binding regardless of this setting.
-     * </p><p>
-     * The default value of this option is <tt>true</tt>.  For stricter compatibility
-     * with OCL 2.0, set this option <tt>false</tt>.
-     * </p>
-     * @see UMLReflection#setIsStatic(Object, boolean)
+     * @deprecated This Classic OCL API is not used by the Pivot.
      */
+    @Deprecated
     public static final @NonNull Option<Boolean> SUPPORT_STATIC_FEATURES =
         new BasicOption<Boolean>("support.static.features", true); //$NON-NLS-1$
 
@@ -155,7 +95,7 @@ public class ParsingOptions {
      * @param option the option
      * @param value the option's value
      * 
-     * @see Cusotmizable#setOption(Option, Object)
+     * @see Customizable#setOption(Option, Object)
      */
     public static <T> void setOption(@NonNull Environment env, @NonNull Option<T> option, @Nullable T value) {
         
@@ -174,7 +114,7 @@ public class ParsingOptions {
      * Obtains the value of the specified option's setting in the the given
      * environment's options map, adapting the environment as necessary to the
      * {@link Customizable} API.  If not already set, return the option's
-     * {@linkplain #getDefaultValue() default value}.
+     * {@linkplain Option#getDefaultValue() default value}.
      * 
      * @param env an environment on which to query an option
      * @param option an option to query

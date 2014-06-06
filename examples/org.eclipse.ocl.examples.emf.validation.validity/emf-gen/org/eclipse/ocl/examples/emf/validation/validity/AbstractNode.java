@@ -179,7 +179,6 @@ public interface AbstractNode extends EObject {
 	
 	/**
 	 * Return the fraction of getChildren() that are visible in an array to suit access by a ContentProvider.
-	 * @return
 	 */
 	@NonNull AbstractNode[] getVisibleChildren();
 	

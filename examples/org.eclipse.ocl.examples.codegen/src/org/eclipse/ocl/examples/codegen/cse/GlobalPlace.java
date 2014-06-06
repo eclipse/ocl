@@ -224,7 +224,6 @@ public class GlobalPlace extends AbstractPlace
 
 	/**
 	 * Optimize the cgRoot tree by eliminating common subexpressions.
-	 * @param globals 
 	 */
 	public void optimize(@NonNull CGElement cgRoot) {
 		element2place.put(null, this);

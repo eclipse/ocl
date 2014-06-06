@@ -150,10 +150,10 @@ public interface ValuesPackage extends EPackage {
 	int NULL_VALUE = 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.values.impl.InvalidValueImpl <em>Invalid Value</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.values.impl.InvalidValueException <em>Invalid Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.domain.values.impl.InvalidValueImpl
+	 * @see org.eclipse.ocl.examples.domain.values.impl.InvalidValueException
 	 * @see org.eclipse.ocl.examples.domain.values.impl.ValuesPackageImpl#getInvalidValue()
 	 * @generated
 	 */
@@ -551,10 +551,10 @@ public interface ValuesPackage extends EPackage {
 		EClass INTEGER_VALUE = eINSTANCE.getIntegerValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.domain.values.impl.InvalidValueImpl <em>Invalid Value</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.domain.values.impl.InvalidValueException <em>Invalid Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.domain.values.impl.InvalidValueImpl
+		 * @see org.eclipse.ocl.examples.domain.values.impl.InvalidValueException
 		 * @see org.eclipse.ocl.examples.domain.values.impl.ValuesPackageImpl#getInvalidValue()
 		 * @generated
 		 */

@@ -141,7 +141,7 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 * Convert an (annotated) Ecore resource to a Pivot Model.
 	 * @param alias 
 	 * 
-	 * @param ecoreResource the annotated Ecore resource
+	 * @param umlResource the annotated Ecore resource
 	 * 
 	 * @return the Pivot root package
 	 */
@@ -159,26 +159,6 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 		}
 		return false;
 	}
-
-	/**
-	 * Convert an (annotated) Ecore object to a pivot element. 
-	 * 
-	 * @param eObject the annotated Ecore object
-	 * 
-	 * @return the pivot element
-	 *
-	public static Element importFromUML(MetaModelManager metaModelManager, String alias, EObject eObject) {
-		if (eObject == null) {
-			return null;
-		}
-		Resource ecoreResource = eObject.eResource();
-		UML2Ecore2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
-		org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
-		if (pivotRoot == null) {
-			return null;
-		}
-		return conversion.createMap.get(eObject);
-	} */
 	
 	protected final @NonNull Resource umlResource;					// Set via eAdapters.add()
 	private UML2EcoreConverterWithReverseMap uml2EcoreConverter = null;

@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
@@ -26,7 +25,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 /**
  * An OCL environment factory that is parameterizable during construction with an
  * {@link OppositeEndFinder} in addition to the default parameterization of the
- * package {@link EPackage.Registry}. If no {@link OppositeEndFinder} is provided to
+ * package {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry}. If no {@link OppositeEndFinder} is provided to
  * the constructor, a {@link DefaultOppositeEndFinder} instance is used.
  * 
  * @author Axel Uhl (D043530)
@@ -57,8 +56,8 @@ public class EcoreEnvironmentFactoryWithScopedExtentMap extends EcoreEnvironment
     /**
      * Initializes me with the default <code>EPackage.Registry</code> that the environments I create will use to look up
      * packages. The {@link OppositeEndFinder} object specified is used. Callers should ensure that the
-     * <code>oppositeEndFinder</code> is consistent with the default {@link EPackage.Registry}. Otherwise,
-     * use {@link #EcoreEnvironmentFactoryWithScopedExtentMap(Registry, OppositeEndFinder)} and specify the
+     * <code>oppositeEndFinder</code> is consistent with the default {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry}. Otherwise,
+     * use {@link #EcoreEnvironmentFactoryWithScopedExtentMap(org.eclipse.emf.ecore.EPackage.Registry, OppositeEndFinder)} and specify the
      * particular package registry used by your opposite end finder.
      */
     public EcoreEnvironmentFactoryWithScopedExtentMap(OppositeEndFinder oppositeEndFinder) {

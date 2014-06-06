@@ -391,7 +391,7 @@ public abstract class AbstractIdResolver implements IdResolver
      * 
 	 * @param isOrdered the required collection ordering
 	 * @param isUnique the required collection uniqueness
-	 * @param values the required collection contents
+	 * @param unboxedValues the required collection contents
 	 * @return the new collection
 	 */
 	public @NonNull CollectionValue createCollectionOfAll(boolean isOrdered, boolean isUnique, @NonNull TypeId elementTypeId, @NonNull Iterable<? extends Object> unboxedValues) {

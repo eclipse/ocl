@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.configuration;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.InstanceScopeAnalysis;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.NavigationStep;

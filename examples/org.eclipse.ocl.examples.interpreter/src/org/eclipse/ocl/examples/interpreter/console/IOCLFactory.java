@@ -32,7 +32,7 @@ public interface IOCLFactory<C> {
     /**
      * Creates a new OCL instance for my target metamodel.
      * 
-     * @param modeling level the active modeling level
+     * @param level the active modeling level
      * 
      * @return an OCL facade
      */
@@ -43,7 +43,7 @@ public interface IOCLFactory<C> {
      * Creates a new OCL instance for my target metamodel, persisted in the
      * specified resource.
      * 
-     * @param modeling level the active modeling level
+     * @param level the active modeling level
      * 
      * @param res a resource in which to persist the OCL environment
      * 

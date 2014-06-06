@@ -55,7 +55,7 @@ abstract public class LogicalOperationFilterImpl extends AbstractEventFilter imp
     }
 
     /**
-     * {@link Set#addAll(Collection)Adds}  a {@link Collection collection} of {@link EventFilter filters} to 
+     * {@link Set#addAll(Collection)}  a {@link Collection collection} of {@link EventFilter filters} to 
      * the {@link #getOperands() operands}
      * @param filters to add
      */
@@ -117,7 +117,7 @@ abstract public class LogicalOperationFilterImpl extends AbstractEventFilter imp
     /**
      * {@link LogicalOperationFilterImpl filter} cannot be negated 
      * @throws IllegalArgumentException
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#setNegated(boolean)
+     * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#setNegated(boolean)
      */
     @Override
     public void setNegated(boolean b) {
@@ -128,7 +128,7 @@ abstract public class LogicalOperationFilterImpl extends AbstractEventFilter imp
      * {@link LogicalOperationFilter logical filters} are never negated, 
      * negation is done by combining with a {@link NotFilter}
      * @return <code>false</code>
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#isNegated()
+     * @see org.eclipse.ocl.examples.eventmanager.EventFilter#isNegated()
      */
     @Override
     public boolean isNegated() {

@@ -197,11 +197,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	/**
 	 * Method used to refresh every {@link RootCS} element.
-	 * 
-	 * @param pivotClass
-	 * @param pivotEClass
-	 * @param csElement
-	 * @return
 	 */
 	protected @NonNull <T extends Root> T refreshRoot(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootCS csElement) {
 		assert pivotEClass != null;
@@ -248,11 +243,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	 * Method used to refresh every {@link RootPackageCS} element.
 	 * 
 	 * There are some Roots which may own packages like those created in OCLinEcore or StdLin documents 
-	 * 
-	 * @param pivotClass
-	 * @param pivotEClass
-	 * @param csElement
-	 * @return
 	 */
 	protected @NonNull <T extends Root> T refreshRootPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootPackageCS csElement) {
 		@NonNull T pivotElement = refreshRoot(pivotClass, pivotEClass,  csElement);

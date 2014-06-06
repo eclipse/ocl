@@ -23,14 +23,6 @@ public class OCLstdlibFileDialog extends AbstractFileDialog
 	 * Creates an extended new OCL Standard Library file creation dialog. If the initial
 	 * resource selection contains exactly one container resource then it will
 	 * be used as the default container resource.
-	 * 
-	 * @param parent
-	 *            composite widget to parent the group
-	 * @param domain
-	 * @param selection
-	 *            the current resource selection
-	 * @param listener
-	 *            object interested in changes to the group's fields value
 	 */
 	public OCLstdlibFileDialog(@NonNull OCLstdlibFileNewWizard wizard, @NonNull AbstractFileNewWizardPage wizardPage, @Nullable IResource initialSelection) {
 		super(wizard, wizardPage, initialSelection);

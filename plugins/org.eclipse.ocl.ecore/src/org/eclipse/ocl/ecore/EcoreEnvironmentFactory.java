@@ -86,14 +86,14 @@ public class EcoreEnvironmentFactory
 	 *            descriptors that are not yet resolved will not be resolved for
 	 *            OCL package name lookups. To ensure that packages can be
 	 *            referenced by their name, clients shall
-	 *            {@link EPackage.Registry#getEPackage(String) resolve} those
+	 *            {@link org.eclipse.emf.ecore.EPackage.Registry#getEPackage(String) EPackage.Registry.getEPackage(String)} those
 	 *            packages explicitly before asking OCL to look them up. See
 	 *            also {@link ParsingOptions#PACKAGE_LOOKUP_STRATEGY} for
 	 *            different package lookup strategies. Note also, that if a
 	 *            {@link EPackageRegistryImpl#EPackageRegistryImpl(org.eclipse.emf.ecore.EPackage.Registry)
 	 *            "delegating registry"} is used, packages contained only by the
 	 *            delegate will not be found by an OCL lookup because
-	 *            {@link EPackage.Registry#values()} only enumerates the
+	 *            {@link org.eclipse.emf.ecore.EPackage.Registry#values() EPackage.Registry.values()} only enumerates the
 	 *            packages / descriptors contained by the outer registry.
 	 */
 	public EcoreEnvironmentFactory(EPackage.Registry reg) {

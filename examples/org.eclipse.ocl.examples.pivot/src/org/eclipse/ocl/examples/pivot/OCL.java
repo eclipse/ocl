@@ -53,11 +53,11 @@ import org.eclipse.ocl.examples.pivot.utilities.QueryImpl;
  * Ecore metamodel to the superclass's generic type parameters.  This frees
  * client code from the long list of parameter substitutions.  This subclass
  * also provides a shortcut to creating an <code>OCL</code> on the shared
- * {@link EcoreEnvironmentFactory} instance.
+ * {@link EnvironmentFactory} instance.
  * 
  * @author Christian W. Damus (cdamus)
  * 
- * @see EcoreEnvironmentFactory
+ * @see EnvironmentFactory
  */
 public class OCL {
 
@@ -194,8 +194,8 @@ public class OCL {
 	 * 
 	 * @return whether the context object satisfies the constraint
 	 * 
-	 * @see #check(Object, OCLExpression)
-	 * @see #evaluate(Object, OCLExpression)
+	 * @see #check(Object, ExpressionInOCL)
+	 * @see #evaluate(Object, ExpressionInOCL)
 	 */
 	public boolean check(Object context, @NonNull Constraint constraint) {
 		OpaqueExpression specification =  constraint.getSpecification();
@@ -212,14 +212,14 @@ public class OCL {
 	 * 
 	 * @param context
 	 *            the <tt>self</tt> object of the constraint
-	 * @param constraint
+	 * @param specification
 	 *            the constraint to check, which must be a boolean-valued
 	 *            expression
 	 * 
 	 * @return whether the context object satisfies the constraint
 	 * 
-	 * @see #check(Object, Object)
-	 * @see #evaluate(Object, OCLExpression)
+	 * @see #check(Object, ExpressionInOCL)
+	 * @see #evaluate(Object, ExpressionInOCL)
 	 * 
 	 * @throws IllegalArgumentException
 	 *             if the constraint expression is not boolean-valued
@@ -318,13 +318,13 @@ public class OCL {
 	 * different bindings for client-supplied "global" variables.
 	 * </p>
 	 * 
-	 * @param query
+	 * @param specification
 	 *            the OCL query expression, which may be interpreted as a
 	 *            constraint if it is boolean-valued
 	 * 
 	 * @return the new query object
 	 * 
-	 * @see #createQuery(Object)
+	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public @NonNull Query createQuery(@NonNull ExpressionInOCL specification) {
 		return new QueryImpl(this, specification);
@@ -345,7 +345,7 @@ public class OCL {
 	 * 
 	 * @return the new query object
 	 * 
-	 * @see #createQuery(OCLExpression)
+	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public Query createQuery(@NonNull Constraint constraint) {
 		OpaqueExpression specification = constraint.getSpecification();
@@ -369,7 +369,7 @@ public class OCL {
 	/**
 	 * Disposes any objects that I have created while I have been in use. This
 	 * includes disposing of any {@link #getConstraints() constraints} that I
-	 * have parsed and {@linkplain Environment.Internal#dispose() disposing} of
+	 * have parsed and {@linkplain Environment#dispose() disposing} of
 	 * my environment.
 	 */
 	public void dispose() {
@@ -403,9 +403,7 @@ public class OCL {
 
 	/**
 	 * Evaluates a query expression on a context object (which is bound to the
-	 * <tt>self</tt> variable). Clients should use the
-	 * {@link #isInvalid(Object)} method to check whether the evaluation result
-	 * is <tt>OclInvalid</tt>.
+	 * <tt>self</tt> variable).
 	 * 
 	 * @param context
 	 *            the context (self) object
@@ -415,8 +413,7 @@ public class OCL {
 	 * @return the value of the expression, or <tt>OclInvalid</tt> if the
 	 *         evaluation fails for reasons other than a run-time exception
 	 * 
-	 * @see #isInvalid(Object)
-	 * @see #check(Object, Object)
+	 * @see #check(Object, ExpressionInOCL)
 	 */
 	public @Nullable Object evaluate(@Nullable Object context, @NonNull ExpressionInOCL expression) {
 		evaluationProblems = null;
@@ -436,7 +433,7 @@ public class OCL {
 	 * 
 	 * @return the constraints that I have parsed
 	 * 
-	 * @see #parse(OCLInput)
+	 * @see #parse(URI)
 	 */
 	public @NonNull List<Constraint> getConstraints() {
 		return constraints;
@@ -751,7 +748,7 @@ public class OCL {
 	 * @throws SemanticException
 	 *             on detection of any well-formedness problem in the expression
 	 * 
-	 * @see #validate(Object)
+	 * @see #validate(Constraint)
 	 */
 	public void validate(@NonNull OCLExpression expression) throws SemanticException {
 		throw new UnsupportedOperationException(getClass().getName() + ".validate");

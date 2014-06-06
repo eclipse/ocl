@@ -177,7 +177,6 @@ public class EcoreUtils
 	 * 
 	 * @param sourceObject
 	 * @param feature
-	 * @return
 	 */
 	public static EClassifier getEType(EObject sourceObject, @NonNull EStructuralFeature feature) {
 		EGenericType targetGenericType = feature.getEGenericType();

@@ -230,9 +230,6 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 	/**
 	 * Set the type and so potentially satisfy some TypeOfDependency. This method ensures that
 	 * type is not set to null.
-	 * 
-	 * @param pivotExpression
-	 * @param type
 	 */
 	@Deprecated
 	public void setType(@NonNull TypedElement pivotElement, Type type) {

@@ -542,7 +542,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * Gets the name of a named <code>elem</code>ent with its initial character
 	 * in lower case.
 	 * 
-	 * @param elem a named element
+	 * @param name a named element
 	 * @return the element's name, with an initial lower case letter
 	 */
 	public static String initialLower(String name) {
@@ -912,8 +912,6 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param constraintType the kind of constraint for which to get completion
 	 *     suggestions
 	 * @param txt the string we got from client that contains the ocl expression
-	 * @param context the context classifier or operation to use for the ocl
-	 *     expression parsing 
 	 * @return a list of {@link Choice}s representing the syntax help choices
 	 *     for the user; could be empty
 	 */

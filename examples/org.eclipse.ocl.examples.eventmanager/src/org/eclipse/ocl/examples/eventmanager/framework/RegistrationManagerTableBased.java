@@ -50,12 +50,12 @@ import org.eclipse.ocl.examples.eventmanager.util.Statistics;
  * </ul>
  * <br>
  * The first two points are defined in the {@link #init()} method which is implemented in the subclass
- * {@link com.RegistrationManagerTableBased.tc.moin.repository.events.framework.SessionRegistrationManager} because originally there also were other
+ * {@link RegistrationManagerTableBased} because originally there also were other
  * subtypes of <code>RegistrationManager</code> (e.g. the GlobalRegistrationManager). <br>
  * This knowledge enables the <code>RegistrationManager</code> to fill the <code>EventFilterTables</code> with new registrations
  * and to compute all listeners that are registered to a certain event. The knowledge of the registrations that belong to a
  * listener is primary for performance improvement at deregistration time. The
- * {@link org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable EventFilterTables} provide registrations for an event in
+ * {@link org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter} provide registrations for an event in
  * one context. When an event is being fired, the <code>RegistrationManager</code> will know which <code>EventFilterTables</code>
  * to ask and can collect all registrations from all affected <code>EventFilterTables</code>. The <code>RegistrationManager</code>
  * has the overview and can merge these candidates into a consolidated set of registrations. Afterwards these Registrations are
@@ -204,11 +204,10 @@ public class RegistrationManagerTableBased {
      * registers a listener with the passed filter expression. The returned object of type <code>RegistrationHandle</code> is
      * intended to be used as handle for deregistration puposes.
      * 
-     * @param filter
+     * @param filterTree
      *            the filter expression (may also be a tree)
      * @param listener
      *            the listener to register
-     * @return an object of type RegistrationHandle (needed for deregistering purposes only)
      */
     public synchronized void register(EventFilter filterTree, WeakReference<? extends Adapter> listener,
             ListenerTypeEnum listenerType) {

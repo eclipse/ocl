@@ -195,7 +195,7 @@ public abstract class AbstractEvaluationVisitor
  
     /**
      * Obtains the visitor on which I perform nested
-     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.  This
+     * {@link Visitable#accept(Visitor)} calls.  This
      * handles the case in which I am decorated by another visitor that must
      * intercept every <tt>visitXxx()</tt> method.  If I internally just
      * recursively visit myself, then this decorator is cut out of the picture.
@@ -208,7 +208,7 @@ public abstract class AbstractEvaluationVisitor
     
     /**
      * Obtains the visitor on which I perform nested
-     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.  This
+     * {@link Visitable#accept(Visitor)} calls.  This
      * handles the case in which I am decorated by another visitor that must
      * intercept every <tt>visitXxx()</tt> method.  If I internally just
      * recursively visit myself, then this decorator is cut out of the picture.
@@ -246,9 +246,9 @@ public abstract class AbstractEvaluationVisitor
 
     /**
      * Sets the visitor on which I perform nested
-     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.
+     * {@link Visitable#accept(Visitor)} calls.
      * 
-     * @param visitor my delegate visitor
+     * @param evaluationVisitor my delegate visitor
      * 
      * @see #getUndecoratedVisitor()
      */
@@ -284,7 +284,7 @@ public abstract class AbstractEvaluationVisitor
 	 * This default implementation asserts that the <tt>constraint</tt> is
 	 * boolean-valued if it is an invariant, pre-condition, or post-condition
 	 * constraint and returns the value of its body expression by delegation to
-	 * {@link #visitExpression(OCLExpression)}.
+	 * {@link Visitable#accept(Visitor)}.
 	 */
 	@Override
     public Object visitConstraint(@NonNull Constraint constraint) {

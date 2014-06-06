@@ -84,10 +84,10 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	public static final @NonNull String USE_NULL_ANNOTATIONS_KEY = "Use Null Annotations";
 
 	/**
-	 * Return true if the genModel has a {@link OCL_GENMODEL_URI} GenAnnotation with a
-	 * {@link USE_DELEGATES_KEY} detail set to true, or if there is no such GenAnnotation and the
-	 * global preference {@link CommonOptions.CODE_GENERATION_MODE}
-	 * has been set to {@link CodeGenerationMode.DELEGATED}
+	 * Return true if the genModel has a {@link #OCL_GENMODEL_URI} GenAnnotation with a
+	 * {@link #USE_DELEGATES_KEY} detail set to true, or if there is no such GenAnnotation and the
+	 * global preference {@link CommonOptions#CODE_GENERATION_MODE}
+	 * has been set to {@link CodeGenerationMode#DELEGATED}
 	 */
 	public static boolean useDelegates(@NonNull GenModel genModel) {
 		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCL_GENMODEL_URI);
@@ -105,8 +105,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	}
 
 	/**
-	 * Return true if the genModel has a {@link OCL_GENMODEL_URI} GenAnnotation with a
-	 * {@link USE_NULL_ANNOTATIONS_KEY} detail set to true.
+	 * Return true if the genModel has a {@link #OCL_GENMODEL_URI} GenAnnotation with a
+	 * {@link #USE_NULL_ANNOTATIONS_KEY} detail set to true.
 	 */
 	public static boolean useNullAnnotations(@NonNull GenModel genModel) {
 		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCL_GENMODEL_URI);

@@ -29,7 +29,7 @@ public class DeferringNotifier extends AdapterCapsule {
 
     /**
      * contains the queued events by each connection that has an open command. The queued events are stored in an {@link EventChain}
-     * in order to simplyfy the notification of multiple events and to improve performance.
+     * in order to simplify the notification of multiple events and to improve performance.
      */
     protected HashSet<Notification> deferredEvents = new HashSet<Notification>();
     

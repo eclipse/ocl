@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 
 /**
  * LibraryBinaryOperation defines the invocation API of a binary operation using
@@ -28,12 +27,6 @@ public interface LibraryBinaryOperation extends LibraryOperation
 	/**
 	 * Return the result of evaluating the operation on left and right arguments.
 	 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.
-	 *
-	 * @param left left argument
-	 * @param right argument
-	 * @return the evaluated value
-	 * @throws Exception 
-	 * @throws InvalidValueException 
 	 */
 	@Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue);
 }

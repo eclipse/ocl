@@ -53,7 +53,9 @@ public abstract class MethodSpec
 	protected void appendHeader(@NonNull StringBuilder s, @Nullable String comment) {
 		s.append("\n");
 		s.append("\t/**\n");
-		if (comment != null) {
+		if ("".equals(comment)) {
+		}
+		else if (comment != null) {
 			for (String commentLine : comment.split("\n")) {
 				s.append("\t * " + commentLine + "\n");
 			}
@@ -81,7 +83,7 @@ public abstract class MethodSpec
 		}
 		else {
 		    if (isRootSpec && (variableDecl != null)) {
-				appendHeader(s, null);
+				appendHeader(s, "");
 			    s.append("\tprotected " + variableDecl + ";\n");
 		    }
 		    String body = getBody(modelSpec, genModel);

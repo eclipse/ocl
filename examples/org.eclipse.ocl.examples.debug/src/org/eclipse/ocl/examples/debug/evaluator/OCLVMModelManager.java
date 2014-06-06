@@ -63,8 +63,8 @@ public class OCLVMModelManager extends VMModelManager
 	 * is an instance of the specified class, according to the metamodel
 	 * semantics implemented by the environment that created this extent map.
 	 *
-	 * @param type the type
-	 * @param element a potential run-time (M0) instance of that class
+	 * @param requiredType the type
+	 * @param eObject a potential run-time (M0) instance of that class
 	 * @return <code>true</code> if this element is an instance of the given
 	 * class; <code>false</code> otherwise
 	 */

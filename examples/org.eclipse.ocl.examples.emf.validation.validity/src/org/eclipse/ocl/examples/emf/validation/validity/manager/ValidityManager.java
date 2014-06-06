@@ -267,9 +267,6 @@ public class ValidityManager
 	 * 
 	 * In such a case, the URI of the first will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass</code> while the URI of the second will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass.1</code>. We wish to "regroup" both invariants
 	 * under the same context in the validity results.
-	 * 
-	 * @param uri
-	 * @return
 	 */
 	private @NonNull URI trimDuplicateContextSuffix(URI uri) {
 		String fragment = uri.fragment();
@@ -353,9 +350,6 @@ public class ValidityManager
 
 	/**
 	 * Returns the eObject uri
-	 * 
-	 * @param eObject
-	 * @return the eObject uri
 	 */
 	public @NonNull TypeURI getTypeURI(@NonNull EObject constrainingObject) {
 		for (EObject eContainer = constrainingObject; eContainer != null; eContainer = eContainer.eContainer()) {
