@@ -1,7 +1,8 @@
 
 h2(#CompleteOCLTutorial). Complete OCL tutorial
 
-This tutorial was written for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.
+This tutorial has been updated for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.
+* Some screenshots may be slightly out of date.
 
 h3. Overview 
 
@@ -17,9 +18,9 @@ In this example you will
 
 h3. Complete OCL Utility
 
-By itself OCL is almost useless, since without any models to operate on, the constraints cannot achieve a great deal.
+By itself, OCL is almost useless, since without any models to operate on, the constraints cannot achieve a great deal.
 
-The simplest way to make OCL useful is to embed OCL expressions within a model to enrich the basic structural characteristics of a model with more complex behavior. OCLinEcore provides this capability for Ecore models. Papyrus provides conceptually similar capabilities for UML models.
+The simplest way to make OCL useful is to embed OCL expressions within a model to enrich the basic structural characteristics of a model with more complex behavior. OCLinEcore provides this capability for Ecore models. Papyrus provides comparable capabilities for UML models.
 
 This tutorial introduces the Complete OCL language which may be used to provide a self-standing document that complements a pre-existing meta-model.
 
@@ -27,7 +28,7 @@ h3. Load Complete OCL Tutorial Example Project
 
 All the material for this tutorial is available as part of the CompleteOCLTutorial Example project that you
 may load by selecting *New* then *Example...* using the right button context menu of the Project Explorer. This
-should give the *New Example* dialog in which you can select the OCL (OCL Constraint Language) Plugins and the Complete OCL Tutorial.
+should give the *New Example* dialog in which you can select the *OCL (OCL Constraint Language) Plugins* and the *Complete OCL Tutorial*.
 
 !{width:70%}images/4300-new-complete-ocl-tutorial.png(New Complete OCL Tutorial Example)!
 
@@ -41,7 +42,7 @@ h3(#CompleteOCLTutorial-language). Complete OCL Language Overview
 
 The Complete OCL language is described in detail in the "Complete OCL":#CompleteOCL section of this documentation.
 In this tutorial we will provide just a brief overview of the language.
-Double click on *ExtraEcoreValidation.ocl* to show the following text that provides examples of many
+If not already open, double click on *ExtraEcoreValidation.ocl* to show the following text that provides examples of many
 important aspects of the Complete OCL syntax.
 
 !{width:60%}images/4300-extra-ecore-content.png(Extra Ecore OCL)!
@@ -93,7 +94,7 @@ the @ecore@ package.
 
 Multiple package context declarations may be used to complement multiple packages.
 
-The package context declaration may be omitted if subsequent classifier context declrations have a fully qualified
+The package context declaration may be omitted if subsequent classifier context declarations have a fully qualified
 name identifying the package.
 
 h4. classifier context declaration
@@ -135,7 +136,7 @@ bc..
 inv DerivationIsTransient: hasDerivation implies transient
 p. 
  
-These invariants are executed when a model is validated in an application that has loaded the complementing Complete OCL document. The significance of this is explained in "OCL|Load Document Menu Action":#LoadCompleteOCLResource.
+These invariants are executed when a model is validated in an application that has loaded the complementing Complete OCL document. The significance of this is explained in "OCL->Load Document Menu Action":#LoadCompleteOCLResource.
 
 The readability of constraints can be significantly enhanced by the use of let-variables or the re-use, as above, of the @hasDerivation@ helper property.  
 
@@ -157,6 +158,8 @@ The severity of a validation failure may be controlled by the non-true value eva
 * a @null@ return indicates an error severity
 * an @invalid@ return indicates a fatal severity
 
+See "Custom Validation Messages":#Integration-Messages for more details.
+
 h4. operation and property context declarations
 
 Complete OCL also allows an incomplete operation or property declaration in the complemented meta-model to be completed.
@@ -164,9 +167,9 @@ Complete OCL also allows an incomplete operation or property declaration in the 
 * initial and derived values may be specified for properties.
 * preconditions, a body and postconditions may be specified for operations.
 
-These facilities are limited use since OCLinEcore avoids the need for incomplete meta-models.
+These facilities are of limited use since OCLinEcore avoids the need for incomplete meta-models.
 
-h3(#LoadCompleteOCLResource). OCL|Load Document Menu Action 
+h3(#LoadCompleteOCLResource). OCL->Load Document Menu Action 
 
 The major disclaimer in the above is that the Complete OCL only complements the complemented meta-model in applications
 that have loaded the Complete OCL.
@@ -174,40 +177,33 @@ that have loaded the Complete OCL.
 Prior to the Juno release, this meant that Complete OCL was only usable in custom Java applications since no standard
 modeling applications would load the complementing document.
 
-The *OCL|Load Document* menu action enables a Complete OCL document to be loaded into a wide variety of applications.
+The *OCL->Load Document* menu action enables a Complete OCL document to be loaded into a wide variety of applications.
 
 !{width:70%}images/4300-load-complete-ocl-resource-menu.png(OCL|Load Document Menu)!
 
-The *OCL|Load Document* menu action is added to the right button menu of applications with a ResourceSet accessible from the current selection.
+The *OCL->Load Document* menu action is added to the right button menu of applications with a ResourceSet accessible from the current selection.
 
 bq.. 
 It has been observed that the extra menu action is not always immediately available, so if you do not see it, hit *Esc* to cancel the menu, select something corresponding to a model object and right click again.
 p. 
 
-In Juno, suitable applications are
+In Luna, suitable applications are
 * an editor generated from an Ecore meta-model
 ** the Sample Ecore Editor
 ** the UML Model Editor
+** the Papyrus Model Editor
 ** your model editor
 * an editor generated by Xtext
 ** the Xtext Editor
 ** the MWE2 Editor
+** the OCLinEcore Editor
 ** your DSL editor
 
-In Juno, unsuitable applications are
-* any editor using the EMF Validation rather than EValidator framework
-** Papyrus
-* editors with distinct Abstract and Syntax Trees
-** OCLinEcore
-** Complete OCL
-
-The Luna release supports Complete OCL complements in Papyrus and OCLinEcore.
-
-The *OCL|Load Document* menu action activates the *Load Complete OCL Document* dialog in which you can browse the File system or Workspace for one or more Complete OCL documents to load, or often more conveniently you can just Drag and Drop them from an Operating System Explorer or an Eclipse Explorer.
+The *OCL->Load Document* menu action activates the *Load Complete OCL Document* dialog in which you can browse Registered Complete OCL Documents, the File system or the Workspace for one or more Complete OCL documents to load, or often more conveniently you can just Drag and Drop them from an Operating System Explorer or an Eclipse Explorer.
 
 !{width:70%}images/4300-load-complete-ocl-resource-dialog.png(Load Complete OCL Document Dialog)!
 
-After clicking OK the documents load.
+After clicking *OK* the documents load.
 
 bq.. 
 Behind the scenes, it is necessary to install global wrappers around all complemented packages. These wrappers are sensitive to the ResourceSet for which complementing has been requested and so although this incurs a small performance penalty for use of the complemented packages in other applications, it should not affect the functional behavior of other applications. 
@@ -217,7 +213,7 @@ h3(#CompleteOCLTutorial-EcoreComplements). Example Complete OCL complements for 
 
 The Sample Ecore Editor has acquired many useful validation rules, so that for many usages just invoking *Validate* is quite sufficient. But what if it isn't? Perhaps you have some style conventions that you wish to apply. Perhaps the built-in rules are not sufficient.
 
-Prior to Juno and the *OCL|Load Document* capability, your only choice would be to check out the Ecore Editor and create a custom variant. Now you can use Complete OCL to extend the Sample Ecore Editor.
+Prior to Juno and the *OCL->Load Document* capability, your only choice would be to check out the Ecore Editor and create a custom variant. Now you can use Complete OCL to extend the Sample Ecore Editor.
 
 We will revisit the *ExtraEcoreValidation.ocl* document that we have just examined and use it to rectify inadequate checking of derived properties by the Sample Ecore Editor. The document provides six invariants, at least three of which detect problems that were encountered by users during the Indigo release cycle.
 
@@ -229,7 +225,7 @@ bc..
 inv DerivationIsVolatile: asError(hasDerivation implies volatile)
 p. 
 
-We therefore want to diagnose that a derivation if an EStructuralFeature has a derivation then the volatile declaration is also present to avoid the derivation being ignored.
+We therefore want to diagnose that if an EStructuralFeature has a derivation then the volatile declaration is also present to avoid the derivation being ignored.
 
 This problem is so serious that the basic expression is wrapped in the @asError@ operation to convert the
 default @true@ / @false@ okay/warning severity into the @true@ / @null@ okay/error severity.
@@ -297,13 +293,15 @@ h3(#CompleteOCLTutorial-EcoreValidation). Validating Ecore with additional Compl
 
 In the "previous section":#CompleteOCLTutorial-EcoreComplements we described additional Complete OCL validation constraints to detect problems with inadequate Sample Ecore diagnosis of derived properties. We will now apply those constraints to a test file.
 
-Select *EcoreTestFile.ecore* and use the right button menu to *Open With -> Sample Ecore Model Editor*. This is probably the default for double-clicking with the left button, but if you open with the OCLinEcore editor the required validation will not work (in Juno).
+Select *EcoreTestFile.ecore* and use the right button menu to *Open With->Sample Ecore Model Editor*. This is probably the default for double-clicking with the left button, but if you open with the OCLinEcore editor the required validation will not work (in Juno).
 
-Now right click within the Sample Ecore Editor pane as described in "OCL|Load Document Menu Action":#LoadCompleteOCLResource and load *ExtraEcoreValidation.ocl*. An additional Resource is shown in the editor tree.
+Now right click within the Sample Ecore Editor pane as described in "OCL->Load Document Menu Action":#LoadCompleteOCLResource and load *ExtraEcoreValidation.ocl*. An additional Resource is shown in the editor tree.
 
 Select a model element such as the *Bad* package and use the right button menu to invoke *Validate*.
 
 !{width:65%}images/4300-extra-ecore-validation.png(Augmented Ecore Validation)!
+
+This shows an error. Depending on the order in which the constraints are evaluated, you may also see one or two warnings. You should use the "Validity View":#ValidityView to see all failures.
 
 If we now open *EcoreTestFile.ecore* with the OCLinEcore editor we can see that the *transient* and *volatile* keywords are indeed missing.
 
@@ -334,6 +332,8 @@ You may open the *PapyrusTestFile.uml* with the UML Model Editor, load the *Extr
 
 !{width:70%}images/4300-extra-uml-validation.png(Augmented UML Validation)!
 
+Unfortunately, this failure is not shown directly in the Luna release; you can see the warning using the "Validity View":#ValidityView.
+
 In Juno, The Papyrus UML editor does not use the EValidator framework and so loading Complete OCL documents into Papyrus fails to enhance validation capabilities.
 
 At the time of writing, just before Luna, the underlying Papyrus problem has been cured but a minor problem remains. It is not clear whether this will be fixed in Papyrus 1.0.0.
@@ -346,7 +346,7 @@ The *ExtraXtextValidation.ocl* file provides some demonstration style checks.
 
 !{width:60%}images/4300-extra-xtext-content.png(Augmented Xtext Content)!
 
-The Xtext root packge is imported and within the package declaration context for the *xtext* package, invariants are supplied for four classes. These are all just examples of how constraints may use the Xtext model. It is not suggested that users should use all of these constraints for real grammars.
+The Xtext root package is imported and within the package declaration context for the *xtext* package, invariants are supplied for four classes. These are all just examples of how constraints may use the Xtext model. It is not suggested that users should use all of these constraints for real grammars.
 
 h4. NoAnonymousImports
 
@@ -399,9 +399,8 @@ You may edit the Xtext test file to delete the "as ecore" in the import statemen
 
 h3. Complete OCL Editor
 
-The Complete OCL editor is invoked automatically for an existing *.ocl file, or, if
-you use *New->File*, to create a new *.ocl file. The editor is Xtext-based and so
-has most of the facilities that you find in many other Eclipse editors.
+The Complete OCL editor is invoked automatically for an existing or new *.ocl file.
+You can create an empty file using either *New->File* or a partial content file using *New->Other...* followed by *OCL* and *Complete OCL File*. The editor is Xtext-based and so has most of the facilities that you find in many other Eclipse editors.
 
 h3. Royal and Loyal Example
 

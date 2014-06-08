@@ -27,9 +27,9 @@ import org.eclipse.jdt.annotation.Nullable;
  * A ComposedEValidator supports validation over a list of EValidators, validation terminating prematurely at
  * the first child EValidator that returns false.
  * <p>
- * A ComposedEValidator may be installed to displace an EValidator.Registry.INSTANCE. This in itself is
+ * A ComposedEValidator may be installed to displace an EValidator.Registry.INSTANCE entry. This in itself is
  * harmless but since the EValidator.Registry.INSTANCE is global, any additional EValidators added to the
- * ComposedEValidator should restrict theior activitioers to ResourceSets in which they are required.
+ * ComposedEValidator should restrict their activities to ResourceSets in which they are required.
  */
 public class ComposedEValidator implements EValidator
 {

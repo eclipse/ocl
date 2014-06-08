@@ -1,6 +1,9 @@
 
 h2(#ValidationTutorial). Validation tutorial
 
+This tutorial was written for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.
+* Some screenshots may be slightly out of date.
+
 The standard EMF validation facilities are very useful for avoiding model errors and work well when the models are correct or at least nearly correct. In this tutorial we show how the "Validity View":#ValidityView can provide greater insight into what works and what doesn't.
 
 We will show how to

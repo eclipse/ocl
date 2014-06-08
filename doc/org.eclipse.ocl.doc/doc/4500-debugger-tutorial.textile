@@ -1,6 +1,9 @@
 
 h2(#DebuggerTutorial). Debugger tutorial
 
+This tutorial was written for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.
+* Some screenshots may be slightly out of date.
+
 In this tutorial we will continue the "OCLinEcore tutorial":#OCLinEcoreTutorial and show how to use the "OCL debugger":#Debugger, first to debug:
 * constraints typed manually in the Console View
 * validation failures from the Validity View
@@ -20,8 +23,8 @@ The OCL debugger is a customization of the Eclipse debugger framework, so most o
 
 There is:
 * a Stack View that shows the current line number in nested Evaluation Environments
-* a Variables View in which local and intermediate variables can be rexamined
-* an Editor in which the source is highlighted to show the next AST node to ne evaluated
+* a Variables View in which local and intermediate variables can be re-examined
+* an Editor in which the source is highlighted to show the next AST node to be evaluated
 * an Outline in which the source is shown in tree form
 * a Breakpoints View in which breakpoints can be controlled
 

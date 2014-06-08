@@ -1,8 +1,8 @@
 
 h2(#OCLinEcoreTutorial). OCLinEcore tutorial
 
-This tutorial was updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.
-* Some screenshots may differ slightly.
+This tutorial has been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.
+* Some screenshots may be slightly out of date.
 
 h3. Overview 
 
@@ -20,6 +20,9 @@ You may then
 * Create an Ecore genmodel
 * Generate Java code for the Ecore model that invokes the OCL expressions.
 
+See the "OCL Debugger tutorial":#DebuggerTutorial for debugging
+See the "Code Generator tutorial":#CodeGenerationTutorial for Java code generation
+
 h3. References
 
 This tutorial assumes that the reader is familiar with generating models using EMF.
@@ -27,7 +30,7 @@ The reader is referred to "Generating an EMF Model":/help/topic/org.eclipse.emf.
 
 Other references:
 * The Object Constraint Language: Getting Your Models Ready for MDA. Jos Warmer and Anneke Kleppe. (Addison-Wesley Object Technology) 
-* "OCL specification":http://www.omg.org/technology/documents/modeling_spec_catalog.htm#OCL.
+* "OCL specification":http://www.omg.org/spec/OCL.
 * "OCLinEcore wiki page":http://wiki.eclipse.org/MDT/OCLinEcore.
 
 h3(#OCLinEcoreTutorial-Installation). Installing the Eclipse OCL Examples
@@ -77,25 +80,31 @@ h4. Create a New Ecore Model
 
 We will now create a new model for this example.
 
-With many alternative editors for *.ecore files, the Eclipse platform is not always sure which to use; it seems to prefer the OCLinEcore editor over the Sample Ecore Editor, so there is an easy and harder way to create a new file.
+First right-click on the *model* folder in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu.
+Select *New->Other...* then select the *OCLinEcore Ecore File* from the *OCL* category. 
 
-For either approach, first right-click on the *model* folder
-in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu.
+!{width:50%}images/4100-new_oclinecore-ecore.png(New OCLinEcore Ecore)!
 
-The easy was is to select *New->File...* and enter *Tutorial.ecore*. If this opens up a text editor showing "package Tutorial" ... then the easy way works. You may skip the 'harder way' since you have already successfully opened your Ecore file with the OCLinEcore editor. 
+bq.. 
+The alternative *OCLinEcore Text File* creates a *.oclinecore text file which preserves whitespace and comments more faithfully but which must be converted to a *.ecore file for many modeling purposes. 
+p. 
 
-The harder way is to select *New->Other...*.
-
-In the *New* dialog left-click to expand *Eclipse Modeling Framework*, then left-click to select
-*Ecore Model*.
-
-!{width:50%}images/4100-new_ecore_model.png(New Ecore Model)!
-
-Left-click on *Next* and then in the *New Ecore Model* dialog type *Tutorial.ecore* as the file name.
+Left-click *Next* and enter *Tutorial.ecore* as the file name. 
 
 !{width:50%}images/4100-new_ecore_model_dialog.png(New Ecore Model Dialog)!
 
-Left-click on *Finish*; The *Sample Ecore* editor for *Tutorial.ecore* may open showing a tree view of a single unnamed @EPackage@. Alternatively the *OCLinEcore* editor may be opened by default, so you can skip the next change-editor step.
+Left-click *Finish* to open up an editor with some minimal example content demonstrating
+* the nesting of attributes or operations or invariants within classes within packages
+* use of OCL to define the body of an operation
+* the syntax for mutually opposite properties
+* use of OCL to define an invariant and a custom error message
+
+!{width:75%}images/4100-empty_oclinecore.png(Empty OCLinEcore Editor)!
+
+Close the editor by left-clicking the cross on the editor tab.
+
+You can see the normal Ecore view of the file by right-clicking on the *Tutorial.ecore* file to pop-up the context-sensitive menu
+and select *Open With->Sample Ecore Model Editor*.
 
 !{width:50%}images/4100-empty_ecore.png(Empty Ecore Editor)!
 
@@ -109,14 +118,15 @@ initial content.
 Right-click on the *Tutorial.ecore* file to pop-up the context-sensitive menu
 and select *Open With->OCLinEcore Editor*.
 
-An almost empty text file appears showing the module, the package keyword and an empty name and consequently an error.
-
-!{width:50%}images/4100-empty_oclinecore.png(Empty OCLinEcore Editor)!
-
-Now type (or cut and paste) the following text into the editor and save the file.
+Now follow the following procedure to cut and paste the following text into the editor.
+* select all existing content (e.g. Ctrl-A)
+* delete all (e.g. Ctrl-X)
+* open "[Text for cut and paste]":../references/4100-metamodel.oclinecore
+* select and copy the text (e.g Ctrl-A and Ctrl-C) from the browser
+* paste (e.g Ctrl-V) in the original editor
+* save the contents (e.g. Ctrl-S)
 
 !{width:70%}images/4100-metamodel.png(Example Metamodel)!
-"[Text for cut and paste]":../references/4100-metamodel.oclinecore
 
 The syntax is defined in "OCLinEcore":#OCLinEcore. It emulates OMG specifications with
 'name : type[multiplicity] { properties }'.
@@ -161,12 +171,6 @@ At this point a corresponding EMF tutorial would show how to generate Java code 
 the meta-model and an editor for the meta-model. Here we are concerned with modeling, so we will 
 continue with the models alone.
 
-In order to create a model from the meta-model, we require the meta-model to exist as a file so that both meta-model and model editors can reference it. Therefore  save the meta-model to a file  by clicking the close cross on the editor tab and answering *Yes* when prompted to save changes. Now reopen the metamodel by selecting *Tutorial.ecore* and selecting *Open With->OCLinEcore (Ecore) editor*.
-
-bq.. 
-It is necessary to explicitly specify *Open With->OCLinEcore (Ecore) editor* once to ensure that the Eclipse platform registers your preference for the OCLinEcore rather than Sample Ecore Editor.
-p. 
-
 In the editor view, double-click on *Library* to select it and then right-click to show the context-sensitive menu
 and then left-click on *Create Dynamic Instance...* to start to create a
 new Dynamic Model with @Library@ at its root.
@@ -179,12 +183,15 @@ p.
 !{width:50%}images/4100-create_dynamic_instance.png(Create Dynamic Instance)!
 
 In the *Create Dynamic Instance* dialog select *Tutorial/model* as
-the parent folder for the *Tutorial.xmi* dynamic model instance and left-click *Finish*.
+the parent folder and enter *Tutorial.xmi* as the file name for the 
+dynamic model instance and left-click *Finish*.
 
 !{width:50%}images/4100-create_dynamic_instance_dialog.png(Create Dynamic Instance Dialog)!
 
-The model is automatically opened for editing using the Sample Reflective Ecore Editor,
-which gives a tree-like presentation of the model. The properties of each node can
+The model is automatically opened for editing. 
+If it is does open with the Sample Reflective Ecore Model Editor,
+close the editor and open explicitly using *Open With->Sample Reflective Ecore Model Editor).
+This gives a tree-like presentation of the model. The properties of each node can
 be seen in the Properties View.
 
 !{width:50%}images/4100-initial_model.png(Initial Model)!
@@ -192,7 +199,7 @@ be seen in the Properties View.
 (If the Properties View is not visible, right-click within the editor and left-click on
 *Show Properties View*.)
 
-Give the library a name such as @lib@.
+Select the Library and use give it a name such as @lib@.
 
 From the right-button menu for @Library@ use *New Child->Books Book* twice,
 use *New Child->Loans Loan* once and *New Child->Members Member* three times
@@ -309,7 +316,7 @@ the example hides a loop over all the loans. More complex examples may easily
 involve three or four levels of hidden loops on a single line, but may equally
 easily have simple errors. It is therefore helpful to simplify expressions
 and use helper operations and properties to modularise them. These may then be
-exercised using the OCL Console.
+exercised using the OCL Console or debugged using the "OCL Debugger":#Debugger.
 
 h3(#OCLinEcoreTutorial-Console). The OCL Console
 
@@ -364,7 +371,7 @@ Simplify the invariant to use the derived property.
 Note that the derived property must also be volatile to avoid problems when
 a model is loaded but has no content.
 
-The derived property is visible in the *Properties* view.
+Reopen *Tutorial.xmi* and select *Book b2* so that the derived property is visible in the *Properties* view.
 
 !{width:50%}images/4100-derived_property.png(Derived Property)!
 
@@ -438,7 +445,7 @@ to generate Java models that invoke OCL.
 
 h4. Java Details
 
-You can check that the OCL appears in your Java by looking at *TutorialValidator.java*
+You can check that the OCL appears in your Java by looking at *tutorial.util.TutorialValidator.java*
 where you'll find the OCL expression as a String awaiting compilation at run-time, and
 the validate invocation that triggers that compilation and execution.
 

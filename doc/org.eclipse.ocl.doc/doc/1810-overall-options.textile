@@ -33,7 +33,11 @@ In Kepler, a prevailing URI in the input file is preserved, unless changed by th
 
 h4(#CodeGenerationMode). Code Generation Mode
 
-Juno introduced an experimental ability to replace the delegated interpreted execution of OCL by direct execution of compiled Java code. This facility has been substantially improved and tested for the Kepler release. some optimisations are have occurred for Luna. Further optimisations are scheduled for Mars.
+Juno introduced an experimental ability to replace the delegated interpreted execution of OCL by direct execution of compiled Java code. This facility has been substantially improved and tested for the Kepler release.
+
+Optimisations for Luna included inlining the bodies directly into the EMF Impl classes; the suggestion "Generate Java Code in xxxBodies classes" should therefore read "Generate Java Code in xxxImpl classes". 
+
+Further optimisations are scheduled for Mars.
 
 !{width:70%}images/1810-code-generation-mode.png(Code Generation Mode)!
 
@@ -45,14 +49,12 @@ Selecting the default delegation mode retains the Helios and Indigo functionalit
 
 h5(#CodeGenerationMode-GENERATED). Generate Java code in xxxBodies classes
 
-Selecting Java code generation causes *genmodel* to run Acceleo templates that generate
+Selecting Java code generation causes *genmodel* to run Xtend templates that generate
 * a _Package_ Tables.java file
-* a bodies package with _Class_ Bodies.java files
+* inline OCL implementations within the _Class_ Impl.java files
 
 The tables file contains an optimised model representation allowing polymorphic operations to be dispatched in constant time.
 
-The bodies files contain a Java class for each OCL expression in each model class.
-
-The implementation files provide wrappers around the bodies to support their invocation for the Ecore API.
+The implementation files contain Java code corresponding to each OCL expression defining operation bodies or property initializers.
 
 Disclaimer: the generated code is experimental has yet to be optimized and so is only about five times faster than the interpreted execution. 

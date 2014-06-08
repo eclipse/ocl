@@ -23,16 +23,18 @@
 1840-model-registry.textile
 1850-syntax-coloring.textile
 1860-editor-templates.textile
+1870-oclinecore-options.textile
 
 2000-ocl-standard-library.textile
 
 4000-tutorials.textile
 4100-oclinecore-tutorial.textile
-4200-oclinterpreter-tutorial.textile
 4300-complete-ocl-tutorial.textile
 4400-code-generation-tutorial.textile
 4500-debugger-tutorial.textile
 4600-validation-tutorial.textile
+
+4200-oclinterpreter-tutorial.textile
 
 4900-examples-installation.textile
 

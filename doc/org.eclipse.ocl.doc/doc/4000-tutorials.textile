@@ -10,7 +10,7 @@ The "OCLinEcore tutorial":#OCLinEcoreTutorial shows how
 * to use the OCL Console to practice evaluation of OCL
 * to generate Java code for Ecore that uses the embedded OCL
 
-The "Working with OCL tutorial":#OCLInterpreterTutorial shows how
+The "Working with Classic OCL tutorial":#OCLInterpreterTutorial shows how
 * the OCL Parser may be invoked from Java
 * the OCL evaluator may be invoked from Java
 

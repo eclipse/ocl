@@ -1,22 +1,24 @@
 
 h2(#OCLinPapyrus). OCL in UML (using Papyrus)
 
+(This documentation applies to Papyrus 1.0.0.)
+
 The behaviour of an UML model may be elaborated using OCL to define
 * operation bodies
 * property derivations/initializers
-* class invariants to be observed by user models
-* metaclass invariants to be observed by class diagrams
+* class invariants to be observed by user model instances
+* stereotype invariants to be observed by user model elements
 * guards for state machines 
 
 h3(#OCLinPapyrus-UML-integration). UML Integration
 
 Although the UML metamodel makes extensive use of OCL to specify its own well-formedness, there is no explicit ability to use OCL within UML. Usage of OCL, or any other language, is enabled by the flexibility of the ValueSpecification class and the OpaqueExpression extension.
 
-The metamodel specifies the usage of a ValueSpecification wherever a value can sensibly be provided by a variety of technologies. Simple values can be provided by for instance a LiteralString or LiteralInteger. More interesting values
+The metamodel specifies the usage of a ValueSpecification wherever a value can sensibly be provided by a variety of technologies. Simple values can be provided by, for instance, a LiteralString or LiteralInteger. More interesting values
 by an OpaqueExpression that has two interesting list features, one of language names and the other of string bodies in the corresponding language. The lists provide an ability to provide implementations in a variety of languages. In practice only
 one is used and if the language name is omitted, an implementation default of OCL is assumed.
 
-Specification of a behaviour such as "name.toUpper()" can be achieved by an OpaqueExpression in which the language is Sequence('OCL') and the body is Sequence('name.toUpper()'). The OCL is therefore embedded in a textual form that has no knowledge of the classes in OCL metamodel.
+Specification of a behaviour such as "name.toUpper()" can be achieved by an OpaqueExpression in which the language is Sequence('OCL') and the body is Sequence('name.toUpper()'). The OCL is therefore embedded in a textual form that has no knowledge of the classes in the OCL metamodel.
 
 Users of the OCL Java API may avoid the need to incur OCL parsing costs by exploiting OCL's ExpressionInOCL class that extends ValueSpecificaion and delegates functionality to an OCLExpression.
 
@@ -24,20 +26,28 @@ h3(#OCLinPapyrus-Class-Invariant). Class Invariant
 
 A class invariant specifies a constraint that must be true for all well-formed instances of the class. It is specified in Papyrus, by:
 
-* creating a Constraint Node on a Class Diagram
-* dismissing the premature editor popup
-* optionally drawing a Link from the Constraint to a Class to be constrained
-* optionally replacing the auto-generated Constraint name
-* defining the Context in which the Constraint is to be evaluated
-* defining the Specification of the Constraint with OCL text
+* create a Constraint Node on a Class Diagram
+** select Constraint on palette
+** click on diagram where you want it
+** click on the Class you want as the Constraint context
+* optionally replace the auto-generated Constraint name
+** select the Constraint
+** type a new name in the Properties View
+* define the Specification of the Constraint with OCL text
+** select the Constraint
+** type F2 (or click again) to open the Essential OCL editor
+** enter the required constraint text
+** click outside the editor to close
 
-!{width:100%}images/1710-class-invariant.png(Papyrus Class Invariant)!
+!{width:50%}images/1710-class-invariant.png(Papyrus Class Invariant)!
 
-Note that the editor that opens automatically when creating a Constraint Node must be dismissed by clicking on the diagram, since no Constraint implicitly or explicitly involving @self@ can be entered before the Context has been defined.
+The «Context» link provides a graphical view of the Context selection in the Properties View. It is the context that defines the type of OCL's @self@ and so defines what is constrained.
 
-Note that the Constrained Element associated with the Link drawn between Constraint and Class has no functional utility. It is the Context that defines OCL's @self@ and so the Context that actually defines what is constrained.
+You may edit the OCL text using direct edit as described above or from The Properties View. (Note that the editor has a significant start up time on the first usage, so be patient).
 
-You may provide the OCL text directly from The Properties View, however the resulting Wizard provides no syntax checking, highlighting or context assist. The Essential OCL editor may be activated by direct edit; select the Constraint then press F2. (Note that the editor has a significant start up time on the first usage, so be patient).
+Your OCL text entry is validated automatically; an error or warning marker will be shown on the Constraint if it is not satisfactory. Once you have corrected the errors you may need to invoke *Validate->Model Tree* to make the marker go away.
+
+!{width:90%}images/1710-class-invariant-error.png(Papyrus Class Invariant Error)!
 
 h3(#OCLinPapyrus-Operation-Constraints). Operation Precondition, Postcondition and Body
 
@@ -47,24 +57,36 @@ Postconditions specify constraints that must be satisfied after operation execut
 
 In OCL, a body-expression defines the functionality of the operation as a result-type-valued expression such as @some-computation@. In contrast in UML, a body-condition defines the functionality of the operation as a Boolean-valued constraint on the result such as @result = some-computation@.
 
-In Papyrus, preconditions, postconditions and a body-condition are all drawn by
-* creating a Constraint Node on a Class Diagram
-* dismissing the premature editor popup
-* optionally replacing the auto-generated Constraint name
-* adding the Constraint to the appropriate Precondition, Postcondition, Body-condition of an Operation
-* defining the Specification of the Constraint with OCL text
+In Papyrus, once the operation has been defined, preconditions, postconditions and a body-condition are all drawn by
+* create a Constraint Node on a Class Diagram
+** select Constraint on palette
+** click on diagram where you want it
+** type Esc since context links cannot be drawn to operations
+* optionally replace the auto-generated Constraint name
+** select the Constraint
+** type a new name in the Properties View
+* define the Constraint Context
+** select the Constraint
+** use the Context *...* browser in the Properties View to locate the operation
+* define the Specification of the Constraint with OCL text
+** select the Constraint
+** type F2 (or click again) to open the Essential OCL editor
+** enter the required constraint text
+** click outside the editor to close
+* define the Constraint as a BodyExpression
+** select the Operation
+** use the BodyExpression *...* browser in the Properties View to select the constraint
+* or define the Constraint as a Precondition or Postcondition
+** select the Operation
+** use either the Precondition or the Postcondition + browser in the Properties View to select the constraint
 
 !{width:90%}images/1710-operation-constraints.png(Papyrus Operation Constraints)!
-
-Note that the editor that opens automatically when creating a Constraint Node must be dismissed by clicking on the diagram, since no Constraint implicitly or explicitly involving @self@ can be entered before the Context has been defined.
-
-Note that in Papyrus 0.10.0, it is not currently possible to draw a Link from Constraint to Operation.
 
 Note that in Papyrus 0.10.0, there is no stereotype display to indicate the precondition/postcondition/body-condition role.
 
 Note that in Papyrus 0.10.0, the Context field in the Properties View for a Constraint should not be used for an Operation since it is unclear which of the three possible constraint features is required. Instead use the Advanced Tab so that the required Constraints can be edited unambiguously.
 
-Note that the OCL expressions for preconditions ad postconditions should be Boolean-valued. The result-valued body-expression form should be used for a body-condition.
+Note that the OCL expressions for preconditions and postconditions should be Boolean-valued. The result-valued body-expression form should be used for a body-condition.
 
 The owning type of the Operation is used as OCL's @self@ context.
 

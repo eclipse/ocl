@@ -4,6 +4,8 @@ h2(#UserInterface). User Interface
 The user interface comprises
 * "Editors":#Editors
 * "Console":#InteractiveOCL
+* "Debugger":#Debugger
+* "Validity View":#ValidityView
 * "Workspace Preference Pages":#PreferencePages
 * "Project Property Pages":#PropertyPages
 * "OCL->Load Document Menu Action":#LoadCompleteOCLResource
@@ -18,6 +20,7 @@ In principle, it is possible to specify project-specific settings, however in pr
 
 The Property pages are:
 * "Overall Options":#OverallOptions
+* "OCLinEcore editor Options":#OCLinEcoreOptions
 * "Options applicable to the Ecore and UML bindings":#EcoreUMLOptions
 * "Options applicable to just the UML bindings":#UMLOptions
 * "The Model Registry":#ModelRegistry
@@ -30,6 +33,7 @@ The Workspace Preference Pages are accessible by invoking *Preferences* from the
 
 The Preference pages are:
 * "Overall Options":#OverallOptions
+* "OCLinEcore editor Options":#OCLinEcoreOptions
 * "Options applicable to the Ecore and UML bindings":#EcoreUMLOptions
 * "Options applicable to just the UML bindings":#UMLOptions
 * "Editor Syntax Coloring":#SyntaxColoring

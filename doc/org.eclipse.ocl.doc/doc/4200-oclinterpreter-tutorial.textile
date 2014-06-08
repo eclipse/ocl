@@ -1,9 +1,9 @@
 
-h2(#OCLInterpreterTutorial). Tutorial: Working with OCL
+h2(#OCLInterpreterTutorial). Working with Classic OCL
 
 h3(overview). Overview
 
-This tutorial illustrates the various services provided by the Eclipse OCL
+This tutorial illustrates the various services provided by the Classic Eclipse OCL
 implementation.
 
 h3(refs). References
@@ -19,7 +19,7 @@ plug-in into your workspace.
 Other references:
 
 * For an environment in which to test the OCL expressions that you will create in this tutorial, install the "Library Metamodel":../references/examples/exampleOverview.html example.
-* "OCL 2.0":http://www.omg.org/technology/documents/modeling_spec_catalog.htm#OCL specification.
+* "OCL 2.0":http://www.omg.org/spec/OCL specification.
 
 h3(parsing). Parsing OCL Expressions
 
