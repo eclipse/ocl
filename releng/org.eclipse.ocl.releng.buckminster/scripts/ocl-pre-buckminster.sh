@@ -74,7 +74,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "tests.base=MDT-OCL.test.results"
 	echo "version=5.0.0"
 	echo "downloads.area=/home/data/httpd/download.eclipse.org/modeling/mdt/ocl"
-	echo "doc.area=/home/data/httpd/download.eclipse.org/ocl"
+	echo "doc.area=/home/data/httpd/download.eclipse.org/ocl/doc"
 	echo "javadoc.area=/home/data/httpd/download.eclipse.org/ocl/javadoc"
 	echo "generateSourceReferences=true"
 

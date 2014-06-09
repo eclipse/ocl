@@ -1,6 +1,6 @@
 h1(#PivotProgrammersGuide). Unified or Pivot Programmers Guide
 
-The Pivot Programmers Guide describes the ways in which the Pivot binding Eclipse OCL can be used from Java programs.
+The Unified or Pivot Programmers Guide describes the ways in which the Pivot binding Eclipse OCL can be used from Java programs.
 
 The Pivot binding was first available as an examples quality prototype in 3.1.0 (Indigo). The Pivot binding 
 will become the preferred binding in 6.0.0 (Mars). The older Ecore and UML bindings are described in a separate "Ecore/UML Programmers Guide":#ProgrammersGuide.
@@ -49,9 +49,11 @@ The OCL implementation is defined in plug-ins for convenient deployment in
 Eclipse, but as is the case for EMF, it can also be used stand-alone.  The
 plug-ins are partitioned thus:
 
-* @org.eclipse.ocl@:  the core parsing, evaluation, and content assist services.  Definition of the OCL Abstract Syntax Model and Environment API.  These APIs are generic, independent of any particular metamodel (though using Ecore/EMF as the meta-meta-model).
-* @org.eclipse.ocl.ecore@:  implementation of the Ecore metamodel environment, binding the generic Environment and AST APIs to the Ecore language.  Provides support for working with OCL constraints and queries targeting Ecore models.
-* @org.eclipse.ocl.uml@:  implementation of the UML metamodel environment, binding the generic Environment and AST APIs to the UML language.  Provides support for working with OCL targeting UML models.
-
-Please refer to the "OCL Interpreter Tutorial":#OCLInterpreterTutorial for review of the code samples.
+* @org.eclipse.ocl.examples.domain@:  the neutral Pivot model interfaces.
+* @org.eclipse.ocl.examples.pivot@:  the neutral Pivot model and evaluator.
+* @org.eclipse.ocl.examples.library@:  the extensible OCL Stndard Library.
+* @org.eclipse.ocl.examples.codegen@:  the OCL to Java code generator.
+* @org.eclipse.ocl.examples.debug...@:  the extensible debugger.
+* @org.eclipse.ocl.examples.validity@:  the Validation View.
+* @org.eclipse.ocl.examples.xtext...@:  Xtext editors.
 

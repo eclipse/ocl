@@ -22,7 +22,7 @@ then
   rm -rf buildroot/buckminster.output/org.eclipse.ocl.releng.buckminster_*-buckminster/javadoc
 fi
 
-if [ ${PUBLISH_DOC} = "true" ]
+if [ ${MANAGE_DOC} = "true" ]
 then
   mkdir MDT-OCL.doc
   cp org.eclipse.ocl.git/doc/org.eclipse.ocl.doc/manual/ocl.pdf MDT-OCL.doc
