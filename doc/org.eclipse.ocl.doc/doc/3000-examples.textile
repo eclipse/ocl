@@ -33,5 +33,11 @@ h2(#OCLinEcoreTutorialExampleProject). OCLinEcore Tutorial Example Project
 
 The OCLinEcore Tutorial project provides the conclusion of the "OCLinEcore Tutorial":OCLinEcoreTutorial and the material for the "Getting Started":GettingStarted quick introduction.
 
-The project provides an example of OCL embedded in Ecore.
+The project provides an example of OCL embedded in Ecore that is also used by the "Code Generation Tutorial":#CodeGenerationTutorial and "Debugger tutorial":#DebuggerTutorial. 
+
+h2(#CompleteOCLTutorialExampleProject). Complete OCL Tutorial Example Project
+
+The Complete OCL Tutorial project provides examples for the the "Complete OCL Tutorial":CompleteOCLTutorial.
+
+The project provides examples Complete OCL documents that complement Ecore, UML, Xtext and XMI.
 

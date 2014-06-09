@@ -3,7 +3,7 @@ h2(#OCLinPapyrus). OCL in UML (using Papyrus)
 
 (This documentation applies to Papyrus 1.0.0.)
 
-The behaviour of an UML model may be elaborated using OCL to define
+The behaviour of a UML model may be elaborated using OCL to define
 * operation bodies
 * property derivations/initializers
 * class invariants to be observed by user model instances
@@ -22,7 +22,9 @@ Specification of a behaviour such as "name.toUpper()" can be achieved by an Opaq
 
 Users of the OCL Java API may avoid the need to incur OCL parsing costs by exploiting OCL's ExpressionInOCL class that extends ValueSpecificaion and delegates functionality to an OCLExpression.
 
-h3(#OCLinPapyrus-Class-Invariant). Class Invariant
+h3(#OCLinPapyrus-Class-Diagram). Class Diagram
+
+h4(#OCLinPapyrus-Class-Invariant). Class Invariant
 
 A class invariant specifies a constraint that must be true for all well-formed instances of the class. It is specified in Papyrus, by:
 
@@ -39,7 +41,7 @@ A class invariant specifies a constraint that must be true for all well-formed i
 ** enter the required constraint text
 ** click outside the editor to close
 
-!{width:50%}images/1710-class-invariant.png(Papyrus Class Invariant)!
+!{width:80%}images/1710-class-invariant.png(Papyrus Class Invariant)!
 
 The «Context» link provides a graphical view of the Context selection in the Properties View. It is the context that defines the type of OCL's @self@ and so defines what is constrained.
 
@@ -47,15 +49,15 @@ You may edit the OCL text using direct edit as described above or from The Prope
 
 Your OCL text entry is validated automatically; an error or warning marker will be shown on the Constraint if it is not satisfactory. Once you have corrected the errors you may need to invoke *Validate->Model Tree* to make the marker go away.
 
-!{width:90%}images/1710-class-invariant-error.png(Papyrus Class Invariant Error)!
+!{width:70%}images/1710-class-invariant-error.png(Papyrus Class Invariant Error)!
 
-h3(#OCLinPapyrus-Operation-Constraints). Operation Precondition, Postcondition and Body
+h4(#OCLinPapyrus-Operation-Constraints). Operation Precondition, Postcondition and Body
 
 Preconditions specify constraints that must be satisfied before operation execution starts. 
 
 Postconditions specify constraints that must be satisfied after operation execution finishes. Postconditions may use the reserved parameter name @result@ to refer to the one result permitted by OCL. The @pre suffix may be used to refer to the state of variables prior to execution of the operation.
 
-In OCL, a body-expression defines the functionality of the operation as a result-type-valued expression such as @some-computation@. In contrast in UML, a body-condition defines the functionality of the operation as a Boolean-valued constraint on the result such as @result = some-computation@.
+In OCL, a body-expression defines the functionality of a query operation as a result-type-valued expression such as @some-computation@. In contrast in UML, a body-condition defines the functionality of the operation as a Boolean-valued constraint on the result such as @result = (some-computation)@. Papyrus supports the OCL interpretation and so the @result = (...)@ wrapper may be omitted.
 
 In Papyrus, once the operation has been defined, preconditions, postconditions and a body-condition are all drawn by
 * create a Constraint Node on a Class Diagram
@@ -66,65 +68,101 @@ In Papyrus, once the operation has been defined, preconditions, postconditions a
 ** select the Constraint
 ** type a new name in the Properties View
 * define the Constraint Context
-** select the Constraint
-** use the Context *...* browser in the Properties View to locate the operation
+** select the Operation
+** use the appropriate Add Elements (+ icon) for Precondition or Postcondition, or the Body condition *...* browser to locate the constraint
 * define the Specification of the Constraint with OCL text
 ** select the Constraint
 ** type F2 (or click again) to open the Essential OCL editor
 ** enter the required constraint text
 ** click outside the editor to close
-* define the Constraint as a BodyExpression
-** select the Operation
-** use the BodyExpression *...* browser in the Properties View to select the constraint
-* or define the Constraint as a Precondition or Postcondition
-** select the Operation
-** use either the Precondition or the Postcondition + browser in the Properties View to select the constraint
+
+Note that the context of Operation Constraints must be specified by assigning a Constraint to one of the precondition/postcondition/bodycondition roles. Assignment of the context of the constraint directly fails to allocate the constraint to its role.
 
 !{width:90%}images/1710-operation-constraints.png(Papyrus Operation Constraints)!
 
-Note that in Papyrus 0.10.0, there is no stereotype display to indicate the precondition/postcondition/body-condition role.
-
-Note that in Papyrus 0.10.0, the Context field in the Properties View for a Constraint should not be used for an Operation since it is unclear which of the three possible constraint features is required. Instead use the Advanced Tab so that the required Constraints can be edited unambiguously.
+Note that in Papyrus 1.0, there is no stereotype display to indicate the precondition/postcondition/body-condition role.
 
 Note that the OCL expressions for preconditions and postconditions should be Boolean-valued. The result-valued body-expression form should be used for a body-condition.
 
 The owning type of the Operation is used as OCL's @self@ context.
 
-h3(#OCLinPapyrus-Property-Initializers). Property Initializers
+The Operation should be a query if a body-condition is provided.
 
-Papyrus 0.10.0 does not support the use of an OCL-valued OpaqueExpression to define the default or derived value of a Property initializer.
+__In Luna, use of @result@ within postconditions incorrectly reports an unknown property. The error can be ignored.__
 
-h3(#OCLinPapyrus-Profile-Constraint). Profile Constraint
+h4(#OCLinPapyrus-Property-Initializers). Property Initializers
+
+An OpaqueExpression whose value is an OCL expression string can be used to define the default or derived value of a Property initializer.
+
+* select the Property to make the Properties View relevant
+* click the Create a new Object (+ icon) for the Default value
+* Select OpaqueExpression from the menu
+* click the Add elements (+ icon) for the Language
+* select OCL in the left pane and click the right arrow to move to the right pane
+* click OK
+* enter the OCL text in the large pane
+* click OK
+
+!{width:90%}images/1710-property-constraint.png(Papyrus Property Constraint)!
+
+__Unfortunately, in Luna, the context does not appear to be correctly set for editor, so there is an error on @self@ and no syntax help.__
+
+h4(#OCLinPapyrus-Profile-Constraint). Profile Constraint
 
 A Profile Constraint is very similar to a Class Invariant. However since the Profile is Constraint is drawn at M2, it may be evaluated at M1 to check a UML Class Diagram for consistency. In contrast a Class Invariant drawn at M1, may be evaluated by user tooling at M0 to validate user models. It is specified in Papyrus, by:
 
-* creating a Constraint Node on a Profile Diagram
-* dismissing the premature editor popup
-* optionally replacing the auto-generated Constraint name
-* defining the Context in which the Constraint is to be evaluated
-* defining the Specification of the Constraint with OCL text
+* create a Constraint Node on a Profile Diagram
+** select Constraint on palette
+** click on diagram where you want it
+** click on the Stereotype you want as the Constraint context
+* optionally replace the auto-generated Constraint name
+** select the Constraint
+** type a new name in the Properties View
+* define the Specification of the Constraint with OCL text
+** select the Constraint
+** type F2 (or click again) to open the Essential OCL editor
+** enter the required constraint text
+** click outside the editor to close
 
 !{width:100%}images/1710-profile-constraint.png(Papyrus Profile Constraint)!
 
-Note that Papyrus 0.10.0 does not support drawing a Link to a Metaclass. This is only a visual inelegance, since the link has no functional significance.
+The OCL text can also be edited within the Properties View.
 
-h3(#OCLinPapyrus-State-Constraint). Statemachine Constraint
+h3(#OCLinPapyrus-StateMachine-Diagram). State Machine Diagram
 
-A Constraint may be aplied to a Statemachine in the same way as for a Class to specify an invarinat of the Statemachine.
+The primary element of a StateMachine diagram is the StateMachine, which is a Type, but does not normally have Properties.
+A StateMachine should therefore be defined as a nested type of a containing type. This may be achieved within Papyrus Model Explorer
+by dragging the StateMachine to be a child of a Class.
 
-h3(#OCLinPapyrus-Transition-Guard). Statemachine Transition Guard
+h4(#OCLinPapyrus-State-Constraint). Statemachine Constraint
 
-The guard condition of a Statemachine Transition may be specified by associating a Constraint with a transition. It is drawn in Papyrus by
+A Constraint may be applied to a Statemachine in the same way as for a Class to specify an invariant of the Statemachine.
 
-* creating a Constraint Node on a Statemachine Diagram
-* dismissing the premature editor popup
-* optionally replacing the auto-generated Constraint name
-* defining the Guard in which the Constraint is to be evaluated
-* defining the Specification of the Constraint with OCL text
+h4(#OCLinPapyrus-Transition-Guard). Statemachine Transition Guard
+
+The guard condition of a Statemachine Transition may be specified by associating a Constraint with a Transition. The Transition should already exist and the Statemachine should be a nested type of a suitable type for OCL's @self@. 
+The guard condition is drawn in Papyrus by
+
+* create a Constraint Node on a StateMachine Diagram
+** select Constraint on palette
+** click on diagram where you want it
+** optionally enter the required constraint text
+** type Esc to close editor
+* optionally replace the auto-generated Constraint name
+** select the Constraint, if not already selected
+** type a new name in the Properties View
+* define the Constraint Context
+** select the Constraint, if not already selected
+** use the Context *...* browser in the Properties View to locate the transition
+* define the Specification of the Constraint with OCL text
+** select the Constraint, if not already selected
+** type F2 (or click again) to open the Essential OCL editor
+** enter the required constraint text
+** click outside the editor to close
 
 !{width:100%}images/1710-transition-guard.png(Papyrus Transition Guard)!
 
 The required Transition is specified as the Guard of the Transition.
 
-The owning type of the Statemachine defines OCL's @self@.
+The owning type of the Statemachine defines OCL's @self@. In the absence of an owning type @self@ will be undefined and OCL constraint validation will fail. You must therefore ensure that the StateMachine has a Class parent and that the Class has the required properties; @name@ for this example. Once Class and properties are defined using a Class diagram. The 
 

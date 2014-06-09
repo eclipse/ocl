@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_sYse0YZLEeKyw49uR6nx3g">
+  <uml:Profile xmi:id="_VxhDkO8QEeOsV64FMIkj1g" name="Profile" metaclassReference="_up1A8O8QEeOsV64FMIkj1g" metamodelReference="_VxhDke8QEeOsV64FMIkj1g">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfp8e8SEeOsV64FMIkj1g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_ojfp8u8SEeOsV64FMIkj1g" name="Profile" nsURI="http:///schemas/Profile/_ojfp8O8SEeOsV64FMIkj1g/0" nsPrefix="Profile">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfp8-8SEeOsV64FMIkj1g" source="http://www.eclipse.org/emf/2002/Ecore">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfp9O8SEeOsV64FMIkj1g" key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+        </eAnnotations>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfqCu8SEeOsV64FMIkj1g" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfqC-8SEeOsV64FMIkj1g" key="Version" value="0.0.1"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfqDO8SEeOsV64FMIkj1g" key="Comment" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfqDe8SEeOsV64FMIkj1g" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfqDu8SEeOsV64FMIkj1g" key="Date" value="2014-06-08"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfqD-8SEeOsV64FMIkj1g" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_ojfp9e8SEeOsV64FMIkj1g" name="Counter">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfp9u8SEeOsV64FMIkj1g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vTyj8O8QEeOsV64FMIkj1g"/>
+          <eOperations xmi:type="ecore:EOperation" xmi:id="_ojfp9-8SEeOsV64FMIkj1g" name="AtLeastTenCounts">
+            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfp-O8SEeOsV64FMIkj1g" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfp-e8SEeOsV64FMIkj1g" key="body" value="self.MaxCount>10"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+            <eParameters xmi:type="ecore:EParameter" xmi:id="_ojfp--8SEeOsV64FMIkj1g" name="diagnostics">
+              <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfp_O8SEeOsV64FMIkj1g" source="http://www.eclipse.org/emf/2002/GenModel">
+                <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfp_e8SEeOsV64FMIkj1g" key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+              </eAnnotations>
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+            </eParameters>
+            <eParameters xmi:type="ecore:EParameter" xmi:id="_ojfp_-8SEeOsV64FMIkj1g" name="context">
+              <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ojfqAO8SEeOsV64FMIkj1g" source="http://www.eclipse.org/emf/2002/GenModel">
+                <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ojfqAe8SEeOsV64FMIkj1g" key="documentation" value="The cache of context-specific information."/>
+              </eAnnotations>
+              <eGenericType xmi:type="ecore:EGenericType" xmi:id="_ojfqAu8SEeOsV64FMIkj1g">
+                <eTypeArguments xmi:type="ecore:EGenericType" xmi:id="_ojfqA-8SEeOsV64FMIkj1g">
+                  <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+                </eTypeArguments>
+                <eTypeArguments xmi:type="ecore:EGenericType" xmi:id="_ojfqBO8SEeOsV64FMIkj1g">
+                  <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+                </eTypeArguments>
+                <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+              </eGenericType>
+            </eParameters>
+          </eOperations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ojfqBe8SEeOsV64FMIkj1g" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ojfqB-8SEeOsV64FMIkj1g" name="MaxCount" ordered="false" lowerBound="1" defaultValueLiteral="0">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_up1A8O8QEeOsV64FMIkj1g" alias="NamedElement">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+    </elementImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_VxhDke8QEeOsV64FMIkj1g">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_VxhDku8QEeOsV64FMIkj1g">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_vTyj8O8QEeOsV64FMIkj1g" name="Counter">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_MEQeoO8REeOsV64FMIkj1g" name="AtLeastTenCounts">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_ZogGwO8REeOsV64FMIkj1g">
+          <language>OCL</language>
+          <body>self.MaxCount>10</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wkIKcO8QEeOsV64FMIkj1g" name="base_NamedElement" association="_wkIKce8QEeOsV64FMIkj1g">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_50Pq8O8QEeOsV64FMIkj1g" name="MaxCount">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_E1ubYO8REeOsV64FMIkj1g"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_wkIKce8QEeOsV64FMIkj1g" name="E_Counter_NamedElement1" memberEnd="_wkIKcu8QEeOsV64FMIkj1g _wkIKcO8QEeOsV64FMIkj1g">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_wkIKcu8QEeOsV64FMIkj1g" name="extension_Counter" type="_vTyj8O8QEeOsV64FMIkj1g" aggregation="composite" association="_wkIKce8QEeOsV64FMIkj1g"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8hQq0u8QEeOsV64FMIkj1g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8hab0O8QEeOsV64FMIkj1g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_sYse0YZLEeKyw49uR6nx3g"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Profile>
+  <ActionLanguage:TextualRepresentation xmi:id="_8hab0e8QEeOsV64FMIkj1g" language="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty"/>
+</xmi:XMI>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_sYse0YZLEeKyw49uR6nx3g">
+  <uml:Model xmi:id="_dS5V4O8GEeOsV64FMIkj1g" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_dS5V4e8GEeOsV64FMIkj1g">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_k2CP0O8JEeOsV64FMIkj1g" name="NamedClass">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8_pUIO8JEeOsV64FMIkj1g" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_dYaIAO8GEeOsV64FMIkj1g" name="StateMachine">
+        <region xmi:type="uml:Region" xmi:id="_dbFBgO8GEeOsV64FMIkj1g" name="Region1">
+          <transition xmi:type="uml:Transition" xmi:id="_GcCdcO8HEeOsV64FMIkj1g" name="IsLong" guard="_zH6E4O8HEeOsV64FMIkj1g" source="_gLX-4O8GEeOsV64FMIkj1g" target="_lNB64O8GEeOsV64FMIkj1g">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_zH6E4O8HEeOsV64FMIkj1g" name="IsLongName">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_lLvPgO8IEeOsV64FMIkj1g">
+                <language>OCL</language>
+                <body>self.name.size() > 32</body>
+              </specification>
+            </ownedRule>
+          </transition>
+          <subvertex xmi:type="uml:State" xmi:id="_gLX-4O8GEeOsV64FMIkj1g" name="ShortName"/>
+          <subvertex xmi:type="uml:State" xmi:id="_lNB64O8GEeOsV64FMIkj1g" name="LongName"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_oN_Kcu8GEeOsV64FMIkj1g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oOSFYO8GEeOsV64FMIkj1g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_sYse0YZLEeKyw49uR6nx3g"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <ActionLanguage:TextualRepresentation xmi:id="_oTpGgO8GEeOsV64FMIkj1g" language="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-5VZoe8JEeOsV64FMIkj1g" language="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty"/>
+</xmi:XMI>

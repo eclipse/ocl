@@ -270,6 +270,7 @@
 <topic href="help/UserInterface.html#ModelRegistry" label="Model Registry"></topic>
 <topic href="help/UserInterface.html#SyntaxColoring" label="Syntax Coloring"></topic>
 <topic href="help/UserInterface.html#EditorTemplates" label="Editor Templates"></topic>
+<topic href="help/UserInterface.html#OCLinEcoreOptions" label="OCLinEcore Options"></topic>
 </topic>
 </topic>
 <topic href="help/StandardLibrary.html" label="The OCL Standard Library">
@@ -327,19 +328,8 @@
 </topic>
 <topic href="help/Tutorials.html#Summary" label="Summary"></topic>
 </topic>
-<topic href="help/OCLInterpreterTutorial.html" label="Tutorial: Working with OCL">
-<topic href="help/OCLInterpreterTutorial.html#Overview3" label="Overview"></topic>
-<topic href="help/OCLInterpreterTutorial.html#References2" label="References"></topic>
-<topic href="help/OCLInterpreterTutorial.html#ParsingOCLExpressions" label="Parsing OCL Expressions"></topic>
-<topic href="help/OCLInterpreterTutorial.html#ParsingOCLConstraints" label="Parsing OCL Constraints"></topic>
-<topic href="help/OCLInterpreterTutorial.html#EvaluatingOCLExpressionsandConstraints" label="Evaluating OCL Expressions and Constraints"></topic>
-<topic href="help/OCLInterpreterTutorial.html#ImplementingContentAssist" label="Implementing Content Assist"></topic>
-<topic href="help/OCLInterpreterTutorial.html#WorkingwiththeAST" label="Working with the AST"></topic>
-<topic href="help/OCLInterpreterTutorial.html#Serialization" label="Serialization"></topic>
-<topic href="help/OCLInterpreterTutorial.html#Summary2" label="Summary"></topic>
-</topic>
 <topic href="help/CompleteOCLTutorial.html" label="Complete OCL tutorial">
-<topic href="help/CompleteOCLTutorial.html#Overview4" label="Overview"></topic>
+<topic href="help/CompleteOCLTutorial.html#Overview3" label="Overview"></topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLUtility" label="Complete OCL Utility"></topic>
 <topic href="help/CompleteOCLTutorial.html#LoadCompleteOCLTutorialExampleProject" label="Load Complete OCL Tutorial Example Project"></topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLTutorial-language" label="Complete OCL Language Overview">
@@ -351,7 +341,7 @@
 <topic href="help/CompleteOCLTutorial.html#custommessages" label="custom messages"></topic>
 <topic href="help/CompleteOCLTutorial.html#operationandpropertycontextdeclarations" label="operation and property context declarations"></topic>
 </topic>
-<topic href="help/CompleteOCLTutorial.html#LoadCompleteOCLResource" label="OCL|Load Document Menu Action"></topic>
+<topic href="help/CompleteOCLTutorial.html#LoadCompleteOCLResource" label="OCL-_gt_Load Document Menu Action"></topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLTutorial-EcoreComplements" label="Example Complete OCL complements for Ecore">
 <topic href="help/CompleteOCLTutorial.html#DerivationIsVolatile" label="DerivationIsVolatile"></topic>
 <topic href="help/CompleteOCLTutorial.html#DerivationIsTransient" label="DerivationIsTransient"></topic>
@@ -371,7 +361,7 @@
 </topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLEditor" label="Complete OCL Editor"></topic>
 <topic href="help/CompleteOCLTutorial.html#RoyalandLoyalExample" label="Royal and Loyal Example"></topic>
-<topic href="help/CompleteOCLTutorial.html#Summary3" label="Summary"></topic>
+<topic href="help/CompleteOCLTutorial.html#Summary2" label="Summary"></topic>
 </topic>
 <topic href="help/CodeGenerationTutorial.html" label="Code Generation tutorial">
 <topic href="help/CodeGenerationTutorial.html#LoadOCLinEcoreTutorialExampleProject" label="Load OCLinEcore Tutorial Example Project"></topic>
@@ -401,6 +391,17 @@
 <topic href="help/ValidationTutorial.html#FilteringbyStatus" label="Filtering by Status"></topic>
 <topic href="help/ValidationTutorial.html#Debuggingconstraints" label="Debugging constraints"></topic>
 </topic>
+</topic>
+<topic href="help/OCLInterpreterTutorial.html" label="Working with Classic OCL">
+<topic href="help/OCLInterpreterTutorial.html#Overview4" label="Overview"></topic>
+<topic href="help/OCLInterpreterTutorial.html#References2" label="References"></topic>
+<topic href="help/OCLInterpreterTutorial.html#ParsingOCLExpressions" label="Parsing OCL Expressions"></topic>
+<topic href="help/OCLInterpreterTutorial.html#ParsingOCLConstraints" label="Parsing OCL Constraints"></topic>
+<topic href="help/OCLInterpreterTutorial.html#EvaluatingOCLExpressionsandConstraints" label="Evaluating OCL Expressions and Constraints"></topic>
+<topic href="help/OCLInterpreterTutorial.html#ImplementingContentAssist" label="Implementing Content Assist"></topic>
+<topic href="help/OCLInterpreterTutorial.html#WorkingwiththeAST" label="Working with the AST"></topic>
+<topic href="help/OCLInterpreterTutorial.html#Serialization" label="Serialization"></topic>
+<topic href="help/OCLInterpreterTutorial.html#Summary3" label="Summary"></topic>
 </topic>
 <topic href="help/Installation.html" label="Installing the Eclipse OCL Examples and Editors">
 <topic href="help/Installation.html#Troubleshooting2" label="Troubleshooting"></topic>
