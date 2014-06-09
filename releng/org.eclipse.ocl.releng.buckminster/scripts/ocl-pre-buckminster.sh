@@ -48,6 +48,10 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "manage.javadoc=${MANAGE_JAVADOC}"
 
 	echo
+	echo "# Define if Hudson Build should create documentation (added by Hudson job definition)"
+	echo "manage.doc=${MANAGE_DOC}"
+
+	echo
 	echo "# Override default locations (added by Hudson job definition)"
 	echo "buckminster.output.root=${WORKSPACE}/buildroot/buckminster.output"
 	echo "buckminster.temp.root=${WORKSPACE}/buildroot/buckminster.temp"
@@ -70,6 +74,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "tests.base=MDT-OCL.test.results"
 	echo "version=5.0.0"
 	echo "downloads.area=/home/data/httpd/download.eclipse.org/modeling/mdt/ocl"
+	echo "doc.area=/home/data/httpd/download.eclipse.org/ocl"
 	echo "javadoc.area=/home/data/httpd/download.eclipse.org/ocl/javadoc"
 	echo "generateSourceReferences=true"
 

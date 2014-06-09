@@ -32,20 +32,8 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "buckminster.build.timestamp=${BUILD_ID}"
 
 	echo
-	echo "# Define the Build Alias (added by Hudson job definition)"
-	echo "#build.alias=${BUILD_ALIAS}"
-
-	echo
 	echo "# Define Hudson Build ID (added by Hudson job definition)"
 	echo "hudson.build.id=${BUILD_ID}"
-
-	echo
-	echo "# Define the Resolve I/N during S build permission (added by Hudson job definition)"
-	echo "#resolve.n4s=${RESOLVE_N4S}"
-
-	echo
-	echo "# Define if Hudson Build should create javadoc (added by Hudson job definition)"
-	echo "#manage.javadoc=${MANAGE_JAVADOC}"
 
 	echo
 	echo "# Override default locations (added by Hudson job definition)"
@@ -56,22 +44,8 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "#git.emf.local.repository.location=${WORKSPACE}/org.eclipse.emf.git"
 
 	echo
-	echo "# Sign the jars (added by Hudson job definition)"
-    echo "#signing.type=eclipse.local"
-	echo "#site.signing=${SITE_SIGNING}"
-
-	echo
 	echo "# Eclipse local download area (added by Hudson job definition"
 	echo "eclipse.download=file:/home/data/httpd/download.eclipse.org"
-	echo
-	echo "# Required Properties for Publishing (added by Hudson job definition)"
-	echo "#packages.base=MDT-OCL.downloads"
-	echo "#tests.base=MDT-OCL.test.results"
-	echo "#version=5.0.0"
-	echo "#downloads.area=/home/data/httpd/download.eclipse.org/modeling/mdt/ocl"
-	echo "#javadoc.area=/home/data/httpd/download.eclipse.org/ocl/javadoc"
-	echo "#generateSourceReferences=true"
-
 
 } > buildroot/build.properties
 :

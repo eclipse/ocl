@@ -13,6 +13,9 @@
 				<property key="buildFile" value="build.xml" />
 				<property key="targets" value="buckminster.build.textile.doc build.update.jar" />
 			</actorProperties>
+            <properties>
+                <cs:property key="mustCreateDoc" value="${manage.doc}"/>
+            </properties>
 		</public>
 	</actions>
 </cspecExtension>

@@ -22,6 +22,7 @@
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
+			<entry key="must.publish.doc" value="${manage.doc}" />
 			<entry key="must.publish.javadoc" value="${manage.javadoc}" />
 		</propertyfile>
 
@@ -161,18 +162,22 @@
 		<property file="${publisher.properties.file.name}" />
 		<fail message="build.archives property must be defined" unless="build.archives" />
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
+		<fail message="doc.area property must be defined" unless="doc.area" />
 		<fail message="javadoc.area property must be defined" unless="javadoc.area" />
 
 		<!-- defaults -->
 		<property name="version" value="3.1.0" />
 		<property name="packages.base" value="downloads" />
 		<property name="tests.base" value="test.results" />
+		<property name="doc.base" value="MDT-OCL" />
 		<property name="javadoc.base" value="javadoc" />
 			
 		<property name="packages.directory" location="${build.archives}/${packages.base}" />
 		<property name="testresults.directory" location="${build.archives}/${tests.base}" />
+		<property name="doc.directory" location="${build.archives}/${doc.base}" />
 		<property name="javadoc.directory" location="${build.archives}/${javadoc.base}" />
 
+		<property name="project.doc.directory" location="${doc.area}/${version}" />
 		<property name="project.javadoc.directory" location="${javadoc.area}/${version}" />
 		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
 		<available file="${build.drop.directory}" type="dir" property="alreadyPromoted" />
@@ -261,6 +266,11 @@
 			<equals arg1="${saved.must.publish.javadoc}" arg2="true"/>
 		</condition>
 		<antcall target="-publish.javadoc" inheritall="true" />
+
+		<condition property="publish.doc">
+			<equals arg1="${saved.must.publish.doc}" arg2="true"/>
+		</condition>
+		<antcall target="-publish.doc" inheritall="true" />
 	</target>
 
 	<target name="-publish.build.repository" if="composite.repository.base">
@@ -309,6 +319,24 @@
 
 	<target name="echo-status" if="alreadyPromoted">
 		<echo>Build ${saved.build.id} already promoted, nothing to do...</echo>
+	</target>
+	
+	<target name="-publish.doc" if="publish.doc">
+		<echo>Remove existing doc from ${project.doc.directory}</echo>
+		<delete verbose="true">
+			<fileset dir="${project.doc.directory}"/>
+		</delete>
+		
+		<dirset id="dist1.contents" dir="${doc.directory}/.." includes="*"/>
+		<property name="prop.dist1.contents" refid="dist1.contents"/>
+		<echo>${doc.directory}/..: ${prop.dist1.contents}</echo>
+		
+		<echo>Copying doc from ${doc.directory}/ocl.pdf</echo>
+		<copy todir="${project.doc.directory}">
+			<fileset dir="${doc.directory}">
+				<filename name="ocl.pdf" />
+			</fileset>
+		</copy>
 	</target>
 	
 	<target name="-publish.javadoc" if="publish.javadoc">
