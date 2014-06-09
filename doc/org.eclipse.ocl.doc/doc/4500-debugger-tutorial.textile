@@ -59,7 +59,7 @@ Start the debugger by clicking the debug icon in the Console View tool bar. (Wai
 
 The debugger should appear automatically. If it doesn't, your start-debugger-automatically-on-resume preference has inhibited it. You can open the Debug perspective manually by invoking *Window->Open Perspective->Debug* from the Eclipse menu bar.
 
-!{width:90%}images/4500-simple-debugger-image.png(SimpleDebuggerImage)!
+!{width:45%}images/4500-simple-debugger-image.png(SimpleDebuggerImage)!
 
 A Complete OCL document is created automatically to encapsulate the OCL expression inside as an additional operation for the type of the self object. This document is shown in the editor; it is readonly. *self* is highlighted since the next evaluation to perform is to evaluate the VariableExp AST node that performs the self access.
 
@@ -89,7 +89,7 @@ Click on the expand/collapse icon to the left of *self.eClassifiers* to show the
 
 Select *self.eClassifiers[ 1 ]* so that the bottom line display shows that the second is named Book. 
 
-!{width:90%}images/4500-simple-debugger-image.png(SimpleDebuggerVariables)!
+!{width:45%}images/4500-simple-debugger-image.png(SimpleDebuggerVariables)!
 
 The Variables View provides more insight that the Sample Ecore Properties View, so you may find it convenient to use a trivial OCL debugger session using *self* as the OCL expression to browse arbitrary model data.
 
@@ -97,7 +97,7 @@ h4. Stepping Execution
 
 Click F5 or the *Step Into* icon to advance execution by one AST node evaluation.
 
-!{width:90%}images/4500-simple-debugger-step1.png(SimpleDebuggerStep1)!
+!{width:40%}images/4500-simple-debugger-step1.png(SimpleDebuggerStep1)!
 
 The editor now highlights *.name* and *$pc* shows a PropertCallyExp as the next execution. *$pc.referredVariable* shows that it is *ecore::ENamedElement:name*.
 
@@ -105,7 +105,7 @@ An additional synthetic variable *$source* shows the result of the *self* evalua
 
 Click F5 or the *Step Into* icon again to advance execution by a further AST node evaluation.
 
-!{width:90%}images/4500-simple-debugger-step2.png(SimpleDebuggerStep2)!
+!{width:40%}images/4500-simple-debugger-step2.png(SimpleDebuggerStep2)!
 
 The whole of *self.name* is highlighted and *$pc* shows that the overall ExpressionInOCL is about to be evaluated. The synthetic *$bodyExpression* for its input shows that *self.name* evaluated to *'tutorial'*.
 
@@ -125,7 +125,7 @@ Select the first line and invoke *Validate* from the context menu. (Wait a secon
 
 These error messages provide insufficient precision to really understand the problems, so click *OK* to dismiss the popup then select *Book b2*, which has an error, and invoke *OCL->Show Validity View* to provide more insight.
 
-!{width:70%}images/4500-validation-debugger-vv1.png(ValidationDebuggerVV1)!
+!{width:50%}images/4500-validation-debugger-vv1.png(ValidationDebuggerVV1)!
 
 Click the *Pin* icon in the Validity View tool bar to avoid thrashing whenever you change mouse selection.
 
@@ -135,11 +135,11 @@ Similarly uncheck the bottom line in the Model Elements since we are not interes
 
 Click on the + tool bar icon so that the detail is shown.
 
-!{width:70%}images/4500-validation-debugger-vv2.png(ValidationDebuggerVV2)!
+!{width:50%}images/4500-validation-debugger-vv2.png(ValidationDebuggerVV2)!
 
 We will now debug the failure of the *tutorial::Book::SufficientCopies* on the *Library lib::Book b2* model element. Select either of the leaf warnings, that is either the *tutorial::Book::SufficientCopies* child of *Book b2* in the left hand pane, or the *Library lib::Book b2* child of *SufficientCopies* in the right hand pane, and invoke *Debug Single Enabled Selection*. Wait a second or two and the debugger starts. If it doesn't, open the Debugger perspective manually.
 
-!{width:90%}images/4500-validation-debugger-image.png(ValidationDebuggerImage)!
+!{width:40%}images/4500-validation-debugger-image.png(ValidationDebuggerImage)!
 
 The debugger shows *library.loans->select((book = self))->size() <= copies* with *library* highlighted as the next execution. The *library* is a shorthand for *self.library* so *$pc* in the Variables View shows a VariableExp for self as the next instruction.
 
@@ -149,13 +149,13 @@ Click F5 or *Step Into* a few more times and the highlight will show the iterati
 
 Continue to Click F5 or *Step Into* until *->size()* is highlighted. 
 
-!{width:90%}images/4500-validation-debugger-step1.png(ValidationDebuggerStep1)!
+!{width:40%}images/4500-validation-debugger-step1.png(ValidationDebuggerStep1)!
 
 Expanding *$source* in the Variables View shows the Set of three selected Loans each of which has the same book as self.
 
  Click F5 or *Step Into* three more times until *<=* is highlighted. 
 
-!{width:90%}images/4500-validation-debugger-step2.png(ValidationDebuggerStep2)!
+!{width:40%}images/4500-validation-debugger-step2.png(ValidationDebuggerStep2)!
 
 We can now see that the *$source*, left hand side, of the comparison is 3 and the *$argument[ 0 ]*, right hand side is 2. A further step and we see the result as *$bodyExpression* demonstrating why the validation failed.
 
@@ -173,11 +173,11 @@ Again within the Ecore editor use *OCL->Show Validity View* to see the constrain
 
 In the Validity View, uncheck the top two MetaModel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.
 
-!{width:90%}images/4500-complete-ocl-debugger-model.png(CompleteOCLDebuggerModel)!
+!{width:60%}images/4500-complete-ocl-debugger-model.png(CompleteOCLDebuggerModel)!
 
 Select the bottom right BadClass model element below the DerivationIsVolatile constraint and invoke *Debug Single Enabled Selection*. (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
 
-!{width:90%}images/4500-complete-ocl-debugger-image.png(CompleteOCLDebuggerImage)!
+!{width:45%}images/4500-complete-ocl-debugger-image.png(CompleteOCLDebuggerImage)!
 
 Both *asError* and *hasDerivation* are OCL-defined so as you step you successively navigate into the defined property and operation.
 

@@ -41,7 +41,7 @@ A class invariant specifies a constraint that must be true for all well-formed i
 ** enter the required constraint text
 ** click outside the editor to close
 
-!{width:80%}images/1710-class-invariant.png(Papyrus Class Invariant)!
+!{width:50%}images/1710-class-invariant.png(Papyrus Class Invariant)!
 
 The «Context» link provides a graphical view of the Context selection in the Properties View. It is the context that defines the type of OCL's @self@ and so defines what is constrained.
 
@@ -49,7 +49,7 @@ You may edit the OCL text using direct edit as described above or from The Prope
 
 Your OCL text entry is validated automatically; an error or warning marker will be shown on the Constraint if it is not satisfactory. Once you have corrected the errors you may need to invoke *Validate->Model Tree* to make the marker go away.
 
-!{width:70%}images/1710-class-invariant-error.png(Papyrus Class Invariant Error)!
+!{width:50%}images/1710-class-invariant-error.png(Papyrus Class Invariant Error)!
 
 h4(#OCLinPapyrus-Operation-Constraints). Operation Precondition, Postcondition and Body
 
@@ -78,7 +78,7 @@ In Papyrus, once the operation has been defined, preconditions, postconditions a
 
 Note that the context of Operation Constraints must be specified by assigning a Constraint to one of the precondition/postcondition/bodycondition roles. Assignment of the context of the constraint directly fails to allocate the constraint to its role.
 
-!{width:90%}images/1710-operation-constraints.png(Papyrus Operation Constraints)!
+!{width:45%}images/1710-operation-constraints.png(Papyrus Operation Constraints)!
 
 Note that in Papyrus 1.0, there is no stereotype display to indicate the precondition/postcondition/body-condition role.
 
@@ -103,7 +103,7 @@ An OpaqueExpression whose value is an OCL expression string can be used to defin
 * enter the OCL text in the large pane
 * click OK
 
-!{width:90%}images/1710-property-constraint.png(Papyrus Property Constraint)!
+!{width:45%}images/1710-property-constraint.png(Papyrus Property Constraint)!
 
 __Unfortunately, in Luna, the context does not appear to be correctly set for editor, so there is an error on @self@ and no syntax help.__
 
@@ -124,7 +124,7 @@ A Profile Constraint is very similar to a Class Invariant. However since the Pro
 ** enter the required constraint text
 ** click outside the editor to close
 
-!{width:100%}images/1710-profile-constraint.png(Papyrus Profile Constraint)!
+!{width:50%}images/1710-profile-constraint.png(Papyrus Profile Constraint)!
 
 The OCL text can also be edited within the Properties View.
 
@@ -160,7 +160,7 @@ The guard condition is drawn in Papyrus by
 ** enter the required constraint text
 ** click outside the editor to close
 
-!{width:100%}images/1710-transition-guard.png(Papyrus Transition Guard)!
+!{width:40%}images/1710-transition-guard.png(Papyrus Transition Guard)!
 
 The required Transition is specified as the Guard of the Transition.
 

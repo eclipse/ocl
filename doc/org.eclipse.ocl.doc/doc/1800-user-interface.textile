@@ -14,7 +14,7 @@ h3(#PropertyPages). Project Property Pages
 
 The Project Property Pages are accessible by invoking *Properties* from the right button context menu of a project.
 
-!{width:50%}images/1800-property-pages.png(Property Pages)!
+!{width:55%}images/1800-property-pages.png(Property Pages)!
 
 In principle, it is possible to specify project-specific settings, however in practice is not often possible for application code to determine the prevailing project. Project-specific properties are therefore often ignored and may be removed in a future release.
 
@@ -29,7 +29,7 @@ h3(#PreferencePages). Workspace Preference Pages
 
 The Workspace Preference Pages are accessible by invoking *Preferences* from the *Window* menu on the toolbar.
 
-!{width:50%}images/1800-preference-pages.png(Preference Pages)!
+!{width:55%}images/1800-preference-pages.png(Preference Pages)!
 
 The Preference pages are:
 * "Overall Options":#OverallOptions

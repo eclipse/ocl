@@ -1,7 +1,6 @@
 <toc label="OCL Documentation">
-<topic href="help/Overview.html" label="Overview">
-<topic href="help/Overview.html#WhatisOCL" label="What is OCL?"></topic>
-<topic href="help/GettingStarted.html" label="Getting Started"></topic>
+<topic href="help/OverviewandGettingStarted.html" label="Overview and Getting Started">
+<topic href="help/OverviewandGettingStarted.html#WhatisOCL" label="What is OCL?"></topic>
 <topic href="help/HowDoesItWork.html" label="How Does It Work?">
 <topic href="help/HowDoesItWork.html#Editing" label="Editing"></topic>
 <topic href="help/HowDoesItWork.html#Execution" label="Execution"></topic>
@@ -11,8 +10,7 @@
 <topic href="help/EclipseOCLisExtensible.html" label="Eclipse OCL is Extensible"></topic>
 <topic href="help/WhoUsesOCLandEclipseOCL.html" label="Who Uses OCL and Eclipse OCL?"></topic>
 <topic href="help/WhoisBehindEclipseOCL.html" label="Who is Behind Eclipse OCL?"></topic>
-<topic href="help/TableofContents.html" label="Table of Contents"></topic>
-<topic href="help/Glossary.html" label="Glossary"></topic>
+<topic href="help/GettingStarted.html" label="Getting Started"></topic>
 </topic>
 <topic href="help/UsersGuide.html" label="Users Guide">
 <topic href="help/UsersGuide.html#EclipseOCLs" label="The two Eclipse OCLs">
@@ -244,12 +242,16 @@
 </topic>
 <topic href="help/OCLinPapyrus.html" label="OCL in UML (using Papyrus)">
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-UML-integration" label="UML Integration"></topic>
+<topic href="help/OCLinPapyrus.html#OCLinPapyrus-Class-Diagram" label="Class Diagram">
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-Class-Invariant" label="Class Invariant"></topic>
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-Operation-Constraints" label="Operation Precondition, Postcondition and Body"></topic>
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-Property-Initializers" label="Property Initializers"></topic>
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-Profile-Constraint" label="Profile Constraint"></topic>
+</topic>
+<topic href="help/OCLinPapyrus.html#OCLinPapyrus-StateMachine-Diagram" label="State Machine Diagram">
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-State-Constraint" label="Statemachine Constraint"></topic>
 <topic href="help/OCLinPapyrus.html#OCLinPapyrus-Transition-Guard" label="Statemachine Transition Guard"></topic>
+</topic>
 </topic>
 <topic href="help/UserInterface.html" label="User Interface">
 <topic href="help/UserInterface.html#PropertyPages" label="Project Property Pages"></topic>
@@ -308,7 +310,7 @@
 </topic>
 <topic href="help/Tutorials.html" label="Tutorials">
 <topic href="help/Tutorials.html#OCLinEcoreTutorial" label="OCLinEcore tutorial">
-<topic href="help/Tutorials.html#Overview2" label="Overview"></topic>
+<topic href="help/Tutorials.html#Overview" label="Overview"></topic>
 <topic href="help/Tutorials.html#References" label="References"></topic>
 <topic href="help/Tutorials.html#OCLinEcoreTutorial-Installation" label="Installing the Eclipse OCL Examples"></topic>
 <topic href="help/Tutorials.html#Troubleshooting" label="Troubleshooting"></topic>
@@ -329,7 +331,7 @@
 <topic href="help/Tutorials.html#Summary" label="Summary"></topic>
 </topic>
 <topic href="help/CompleteOCLTutorial.html" label="Complete OCL tutorial">
-<topic href="help/CompleteOCLTutorial.html#Overview3" label="Overview"></topic>
+<topic href="help/CompleteOCLTutorial.html#Overview2" label="Overview"></topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLUtility" label="Complete OCL Utility"></topic>
 <topic href="help/CompleteOCLTutorial.html#LoadCompleteOCLTutorialExampleProject" label="Load Complete OCL Tutorial Example Project"></topic>
 <topic href="help/CompleteOCLTutorial.html#CompleteOCLTutorial-language" label="Complete OCL Language Overview">
@@ -393,7 +395,7 @@
 </topic>
 </topic>
 <topic href="help/OCLInterpreterTutorial.html" label="Working with Classic OCL">
-<topic href="help/OCLInterpreterTutorial.html#Overview4" label="Overview"></topic>
+<topic href="help/OCLInterpreterTutorial.html#Overview3" label="Overview"></topic>
 <topic href="help/OCLInterpreterTutorial.html#References2" label="References"></topic>
 <topic href="help/OCLInterpreterTutorial.html#ParsingOCLExpressions" label="Parsing OCL Expressions"></topic>
 <topic href="help/OCLInterpreterTutorial.html#ParsingOCLConstraints" label="Parsing OCL Constraints"></topic>
@@ -411,6 +413,7 @@
 <topic href="help/Examples.html#RoyalAndLoyalExample" label="Royal and Loyal Example Project"></topic>
 <topic href="help/EmptyExample.html" label="Empty Example Project"></topic>
 <topic href="help/OCLinEcoreTutorialExampleProject.html" label="OCLinEcore Tutorial Example Project"></topic>
+<topic href="help/CompleteOCLTutorialExampleProject.html" label="Complete OCL Tutorial Example Project"></topic>
 <topic href="help/OCLInterpreterExample.html" label="OCL Interpreter Example">
 <topic href="help/OCLInterpreterExample.html#Introduction" label="Introduction"></topic>
 <topic href="help/OCLInterpreterExample.html#References3" label="References"></topic>
@@ -478,7 +481,7 @@
 <topic href="help/Standalone.html#XtextEditors" label="Xtext Editors"></topic>
 </topic>
 </topic>
-<topic href="help/PivotProgrammersGuide.html" label="Pivot Programmers Guide">
+<topic href="help/PivotProgrammersGuide.html" label="Unified or Pivot Programmers Guide">
 <topic href="help/PivotProgrammersGuide.html#Validators" label="Validators">
 <topic href="help/PivotProgrammersGuide.html#OCLinEcoreEObjectValidator" label="OCLinEcoreEObjectValidator"></topic>
 <topic href="help/PivotProgrammersGuide.html#CompleteOCLEObjectValidator" label="CompleteOCLEObjectValidator"></topic>

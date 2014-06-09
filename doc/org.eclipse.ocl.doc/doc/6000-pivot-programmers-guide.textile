@@ -1,4 +1,4 @@
-h1(#PivotProgrammersGuide). Pivot Programmers Guide
+h1(#PivotProgrammersGuide). Unified or Pivot Programmers Guide
 
 The Pivot Programmers Guide describes the ways in which the Pivot binding Eclipse OCL can be used from Java programs.
 

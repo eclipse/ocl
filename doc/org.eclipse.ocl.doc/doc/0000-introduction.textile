@@ -1,6 +1,8 @@
-h1. Overview
+h1. Overview and Getting Started
 
 For a quick demonstration of OCL enrichment of an Ecore meta-model with computed constraints go to "Getting Started":#GettingStarted.
+
+A PDF version of this documentation is available at "OCL 5.0.0 Documentation":http://download.eclipse.org/ocl/5.0.0/ocl.pdf.
 
 h2. What is OCL?
 
@@ -13,64 +15,6 @@ The Eclipse Modeling Framework (EMF(Eclipse Modeling Framework)) supports the de
 OCL(Object Constraint Language) provides a modeling language that allows the behavior to be embedded within the structural meta-models or provided as a complement to those meta-models. As a modeling language, OCL understands the models and so OCL code is much more compact than the equivalent Java. OCL code can be statically checked, whereas the corresponding Java code often uses reflection and so cannot be checked.  
 
 Eclipse OCL is an implementation of the OMG OCL 2.4 specification for use with Ecore and UML meta-models.
- 
-h2(#GettingStarted). Getting Started
-
-For a very quick demonstration of OCL, you may follow this very abbreviated version of the "OCLinEcore tutorial":#OCLinEcoreTutorial, where you can find "Installation":#Installation instructions. Once you have the OCL Examples and Editors feature installed you may follow these instructions to get an insight into the capabilities of OCL and the Eclipse OCL tooling.
-
-Invoke *File->New->Project...* then select *Examples* then *OCL (Object Constraint Language) Plugins* then *OCLinEcore Tutorial* and *Finish* to create a small example project called *org.eclipse.ocl.examples.project.oclinecoretutorial*. It contains
-* *model/Tutorial.ecore* - a small Library meta-model
-* *model/Tutorial.xmi* - an even smaller Library model
-* *model/Tutorial.genmodel* - a gebnerator for Java code
-
-Select *model/Tutorial.ecore* and use the right button to invoke *Open With->OCLinEcore Editor*. This gives you a textual view of the Ecore file with embedded OCL invariants such as the Book constraint
-
-bc.. 
-invariant SufficientCopies:
-  library.loans->select((book = self))->size() <= copies;
-p. 
-
-This invariant is named SufficientCopies. It 
-* navigates from the implicit self (a Book)
-* via the library 
-* to its loans which it searches
-* to select those loans that satisfy the predicate
-** loaned book is equal to the self Book
-* the size (number) of loans is computed
-* and compared to the number of copies of the self Book
-
-The invariant is satisfied if it evaluates true; i.e. if the number of loans is less than or equal to the number of copies.
-
-You can see this invariant at work, by selecting *model/Tutorial.xmi* and using the right button to invoke *Open With->Sample Reflective Ecore Model Editor*. This gives you a tree view of a small library model.
-
-Expand the root element and then select the *Library lib* element and use the right button menu to invoke *Validate*. You should get a pop-up reporting problems during Validation. Click *Details* and you will see that one of the problems is with the *SufficientCopies* invariant we have just looked at. If you browse the Properties View for *model/Tutorial.xmi*, you can verify that there are three loans but only two copies for the offending Book.
-
-You may evaluate custom OCL queries interactively. From the editor for *Tutorial.xmi*, invoke *OCL->Show Xtext OCL Console* from the context menu. Select *Book b2* in the editor, then in the bottom line of the console enter the OCL expression *loans.member* and then Enter. The results are shown in the panel and identify that all three loans are by *Member m3*.
-
-The expression *loans.member* is an abbreviated form of *self.loans->collect(aLoan : Loan | aLoan.member)* and demonstrates OCL's ability to perform many useful navigations over multi-element properties. The expression
-* navigates from self, the Book b2 selection
-* to its loans, using Book::loans which is a derived property defined in OCL
-* for each of the loans, the iterator variable, aLoan, is assigned to the loan and
-** the body, aLoan.member is evaluated to return the member making the loan
-* the resulting members are collected to return a collection result
-* the result is displayed on three lines in the results panel
-
-You can step through execution using the OCL debugger. In the Console View type PageUp to restore the earlier text entry, then with *Book b2* still selected in the editor, click the debug icon in the Console tool bar. The debugger should open automatically, but if it doesn't, use *Window->Show View->Debug* from the Eclipse menu bar. The Variables View shows model elemnt values. Click F5 or Step Into a few times to progress execution.
-
-You have now seen
-* an Xtext editor that embeds OCL directly in Ecore models to provide programmed enrichment
-* execution of OCL while validating a model using conventional Ecore tooling
-* an interactive Console for custom OCL evaluations
-* execution of a derived property defined in OCL
-* the ability of OCL to express operations on multi-elements compactly
-* the ability to debug OCL execution and browse data
-
-You have not
-* written any Java code
-* generated any plugins
-* needed to start an additional Eclipse session
-
-Please follow the tutorials, examples and reference material for further information.
 
 h2. How Does It Work?
 
@@ -179,12 +123,62 @@ There is now a significant personnel and corporate overlap between the Eclipse O
 You can expect future changes in OMG OCL to have an implementation in Eclipse OCL to demonstrate their viability. It is likely that the next version of the OCL specification will use Eclipse OCL and M2T(Model to Text) tooling to eliminate inconsistencies. Eclipse OCL is currently in use to check that the OCL used in the UML 2.5 specification is syntactically and semantically correct.
 
 Direct tooling of the UML 2.5 and OCL 2.5 specifications for the Mars Eclipse release may demonstrate that the OCL aspects of the specifications is also functionally consistent.
+ 
+h2(#GettingStarted). Getting Started
 
-h2. Table of Contents
+For a very quick demonstration of OCL, you may follow this very abbreviated version of the "OCLinEcore tutorial":#OCLinEcoreTutorial, where you can find "Installation":#Installation instructions. Once you have the OCL Examples and Editors feature installed you may follow these instructions to get an insight into the capabilities of OCL and the Eclipse OCL tooling.
 
-{toc}
+Invoke *File->New->Project...* then select *Examples* then *OCL (Object Constraint Language) Plugins* then *OCLinEcore Tutorial* and *Finish* to create a small example project called *org.eclipse.ocl.examples.project.oclinecoretutorial*. It contains
+* *model/Tutorial.ecore* - a small Library meta-model
+* *model/Tutorial.xmi* - an even smaller Library model
+* *model/Tutorial.genmodel* - a gebnerator for Java code
 
-h2. Glossary
+Select *model/Tutorial.ecore* and use the right button to invoke *Open With->OCLinEcore Editor*. This gives you a textual view of the Ecore file with embedded OCL invariants such as the Book constraint
 
-{glossary}
+bc.. 
+invariant SufficientCopies:
+  library.loans->select((book = self))->size() <= copies;
+p. 
+
+This invariant is named SufficientCopies. It 
+* navigates from the implicit self (a Book)
+* via the library 
+* to its loans which it searches
+* to select those loans that satisfy the predicate
+** loaned book is equal to the self Book
+* the size (number) of loans is computed
+* and compared to the number of copies of the self Book
+
+The invariant is satisfied if it evaluates true; i.e. if the number of loans is less than or equal to the number of copies.
+
+You can see this invariant at work, by selecting *model/Tutorial.xmi* and using the right button to invoke *Open With->Sample Reflective Ecore Model Editor*. This gives you a tree view of a small library model.
+
+Expand the root element and then select the *Library lib* element and use the right button menu to invoke *Validate*. You should get a pop-up reporting problems during Validation. Click *Details* and you will see that one of the problems is with the *SufficientCopies* invariant we have just looked at. If you browse the Properties View for *model/Tutorial.xmi*, you can verify that there are three loans but only two copies for the offending Book.
+
+You may evaluate custom OCL queries interactively. From the editor for *Tutorial.xmi*, invoke *OCL->Show Xtext OCL Console* from the context menu. Select *Book b2* in the editor, then in the bottom line of the console enter the OCL expression *loans.member* and then Enter. The results are shown in the panel and identify that all three loans are by *Member m3*.
+
+The expression *loans.member* is an abbreviated form of *self.loans->collect(aLoan : Loan | aLoan.member)* and demonstrates OCL's ability to perform many useful navigations over multi-element properties. The expression
+* navigates from self, the Book b2 selection
+* to its loans, using Book::loans which is a derived property defined in OCL
+* for each of the loans, the iterator variable, aLoan, is assigned to the loan and
+** the body, aLoan.member is evaluated to return the member making the loan
+* the resulting members are collected to return a collection result
+* the result is displayed on three lines in the results panel
+
+You can step through execution using the OCL debugger. In the Console View type PageUp to restore the earlier text entry, then with *Book b2* still selected in the editor, click the debug icon in the Console tool bar. The debugger should open automatically, but if it doesn't, use *Window->Show View->Debug* from the Eclipse menu bar. The Variables View shows model elemnt values. Click F5 or Step Into a few times to progress execution.
+
+You have now seen
+* an Xtext editor that embeds OCL directly in Ecore models to provide programmed enrichment
+* execution of OCL while validating a model using conventional Ecore tooling
+* an interactive Console for custom OCL evaluations
+* execution of a derived property defined in OCL
+* the ability of OCL to express operations on multi-elements compactly
+* the ability to debug OCL execution and browse data
+
+You have not
+* written any Java code
+* generated any plugins
+* needed to start an additional Eclipse session
+
+Please follow the tutorials, examples and reference material for further information.
 

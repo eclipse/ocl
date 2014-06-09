@@ -3,7 +3,7 @@ h3(#OCLinEcoreOptions). OCLinEcore Options
 
 The options for the OCLinEcore editor.
 
-!{width:50%}images/1870-oclinecore-options.png(OCLinEcore Options)!
+!{width:45%}images/1870-oclinecore-options.png(OCLinEcore Options)!
 
 OCL embedded in Ecore can be executed with either the Classic evaluator or the new Pivot evaluator depending on the URI used to define the embedded EAnnotations. This preference determines the URI written to Ecore files when no URI was previously in use.
 

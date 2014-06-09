@@ -10,7 +10,7 @@ The *Validity View* provides a much more detailed view of the problems and so as
 
 The *Validity View* may be shown by invoking *OCL->Show Validity View* from the right button menu of some model editors such as the *Sample Ecore Model Editor*. Alternatively the *Validity View* view may be created by *Window->Show View->Other... OCL->Validity View*.
 
-!{width:70%}images/1530-validity-view.png(ValidityViewImage)!
+!{width:55%}images/1530-validity-view.png(ValidityViewImage)!
 
 The left-hand pane titled Model Elements provides a tree view of the Resources in a ResourceSet in a similar fashion to the Sample Ecore Editor. However an additional child element (in blue italics) is added for each constraint applicable to its parent element. Checkboxes enable or disable the element from re-validations and JUnit-like status icons show the status of the most recent validation. Hovertext provides further detail.
 

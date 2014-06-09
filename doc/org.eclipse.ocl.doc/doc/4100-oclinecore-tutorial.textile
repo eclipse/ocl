@@ -68,11 +68,11 @@ We will first create a new project for this example; so invoke *File->New->Proje
 In the *New Project* dialog left-click to expand *Eclipse Modeling Framework*, then left-click to select
 *Empty EMF Project*.
 
-!{width:50%}images/4100-new_project.png(New Project)!
+!{width:60%}images/4100-new_project.png(New Project)!
 
 Left-click on *Next* and in the *New Empty EMF Project* dialog type *Tutorial* as the project name.
 
-!{width:50%}images/4100-new_empty_emf_project.png(New Empty EMF Project)!
+!{width:60%}images/4100-new_empty_emf_project.png(New Empty EMF Project)!
 
 Left-click on *Finish*.
 
@@ -83,7 +83,7 @@ We will now create a new model for this example.
 First right-click on the *model* folder in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu.
 Select *New->Other...* then select the *OCLinEcore Ecore File* from the *OCL* category. 
 
-!{width:50%}images/4100-new_oclinecore-ecore.png(New OCLinEcore Ecore)!
+!{width:60%}images/4100-new_oclinecore-ecore.png(New OCLinEcore Ecore)!
 
 bq.. 
 The alternative *OCLinEcore Text File* creates a *.oclinecore text file which preserves whitespace and comments more faithfully but which must be converted to a *.ecore file for many modeling purposes. 
@@ -91,7 +91,7 @@ p.
 
 Left-click *Next* and enter *Tutorial.ecore* as the file name. 
 
-!{width:50%}images/4100-new_ecore_model_dialog.png(New Ecore Model Dialog)!
+!{width:60%}images/4100-new_ecore_model_dialog.png(New Ecore Model Dialog)!
 
 Left-click *Finish* to open up an editor with some minimal example content demonstrating
 * the nesting of attributes or operations or invariants within classes within packages
@@ -99,14 +99,14 @@ Left-click *Finish* to open up an editor with some minimal example content demon
 * the syntax for mutually opposite properties
 * use of OCL to define an invariant and a custom error message
 
-!{width:75%}images/4100-empty_oclinecore.png(Empty OCLinEcore Editor)!
+!{width:50%}images/4100-empty_oclinecore.png(Empty OCLinEcore Editor)!
 
 Close the editor by left-clicking the cross on the editor tab.
 
 You can see the normal Ecore view of the file by right-clicking on the *Tutorial.ecore* file to pop-up the context-sensitive menu
 and select *Open With->Sample Ecore Model Editor*.
 
-!{width:50%}images/4100-empty_ecore.png(Empty Ecore Editor)!
+!{width:60%}images/4100-empty_ecore.png(Empty Ecore Editor)!
 
 Close the editor by left-clicking the cross on the editor tab.
 
@@ -180,13 +180,13 @@ Creating a Dynamic Instance requires a valid *.ecore file to exist. It does not 
 when editing *.oclinecore files.
 p. 
 
-!{width:50%}images/4100-create_dynamic_instance.png(Create Dynamic Instance)!
+!{width:60%}images/4100-create_dynamic_instance.png(Create Dynamic Instance)!
 
 In the *Create Dynamic Instance* dialog select *Tutorial/model* as
 the parent folder and enter *Tutorial.xmi* as the file name for the 
 dynamic model instance and left-click *Finish*.
 
-!{width:50%}images/4100-create_dynamic_instance_dialog.png(Create Dynamic Instance Dialog)!
+!{width:60%}images/4100-create_dynamic_instance_dialog.png(Create Dynamic Instance Dialog)!
 
 The model is automatically opened for editing. 
 If it is does open with the Sample Reflective Ecore Model Editor,
@@ -194,7 +194,7 @@ close the editor and open explicitly using *Open With->Sample Reflective Ecore M
 This gives a tree-like presentation of the model. The properties of each node can
 be seen in the Properties View.
 
-!{width:50%}images/4100-initial_model.png(Initial Model)!
+!{width:60%}images/4100-initial_model.png(Initial Model)!
 
 (If the Properties View is not visible, right-click within the editor and left-click on
 *Show Properties View*.)
@@ -209,26 +209,26 @@ Left-click to select each of the Books and Members in turn and enter a name
 such as @b1@ or @m2@ using the Properties View. Specify that b1
 has one copy and that b2 has 2 copies.
 
-!{width:50%}images/4100-model_copies.png(Model Showing Copies)!
+!{width:60%}images/4100-model_copies.png(Model Showing Copies)!
 
 The books and members now have distinct titles in the outline. 
 When you left-click to select the Loan and edit its Book and Member attributes,
 the associated pull-down has meaningful entries. Specify that the Loan is for
 @b2@ by @m3@.
 
-!{width:50%}images/4100-model_pull_down.png(Model Pull-Down Menu)!
+!{width:60%}images/4100-model_pull_down.png(Model Pull-Down Menu)!
 
 The configuration so far is simple, three members, two books and one loan. We can
 validate that this by right-clicking on the @Library@ node, and left-clicking
 to *Validate* @Library@ and all its children.
 
-!{width:50%}images/4100-validate_menu.png(Validate Menu)!
+!{width:60%}images/4100-validate_menu.png(Validate Menu)!
 
 Since the model is so simple, it is difficult to have anything wrong; most of
 the illegal modeling options such as a Loan composing rather than referencing a
 Book are prevented by the Editor's enforcement of the meta-model.
 
-!{width:50%}images/4100-validation_successful.png(Validation Successful)!
+!{width:60%}images/4100-validation_successful.png(Validation Successful)!
 
 (If you have an error at this point, a *Details* button will lead you to some
 diagnostics that may clarify the problem. Pasting the following XMI 
@@ -301,7 +301,7 @@ For a valid model the SufficientCopies invariant must always be true.
 If you reopen the *Tutorial.xmi* editor and invoke *Validate* for the @Library@,
 you will now get a validation error. Left click *Details* for details.
 
-!{width:50%}images/4100-validation_unsuccessful.png(Validation Unsuccessful)!
+!{width:60%}images/4100-validation_unsuccessful.png(Validation Unsuccessful)!
 
 The *Details* identifies that the @SufficientCopies@ invariant is not
 satisfied for the @b2@ book. 
@@ -327,7 +327,7 @@ To make the OCL Console visible, first make the *Console* view visible by
 *Window->Show View->Console*. Then right click on the *Open Console* and
 left click on *Interactive Xtext OCL*.
 
-!{width:50%}images/4100-ocl_console_menu.png(OCL Console menu)!
+!{width:60%}images/4100-ocl_console_menu.png(OCL Console menu)!
 
 Alternatively, you can just invoke *OCL->Show Xtext OCL Console* from the right button menu
 within the *Sample Ecore Editor* or *Sample Reflective Ecore Editor*.
@@ -347,7 +347,7 @@ pane of the console.
 
 The result of evaluating this query for the Library is shown.
 
-!{width:50%}images/4100-books_query.png(Books Query)!
+!{width:60%}images/4100-books_query.png(Books Query)!
 
 Substantial OCL queries spanning many lines may be entered and so the cursor up
 and cursor down keys move across lines. If you want to access an earlier query,
@@ -365,7 +365,7 @@ Close the *Tutorial.xmi* editor and modify the meta-model to include
 the derived @loans@ property and the helper operation @isAvailable()@.
 Simplify the invariant to use the derived property.
 
-!images/4100-metamodel3.png(Example Metamodel with Features)!
+!{width:70%}images/4100-metamodel3.png(Example Metamodel with Features)!
 "[Text for cut and paste]":../references/4100-metamodel3.oclinecore
 
 Note that the derived property must also be volatile to avoid problems when
@@ -373,18 +373,18 @@ a model is loaded but has no content.
 
 Reopen *Tutorial.xmi* and select *Book b2* so that the derived property is visible in the *Properties* view.
 
-!{width:50%}images/4100-derived_property.png(Derived Property)!
+!{width:60%}images/4100-derived_property.png(Derived Property)!
 
 The helper operation can be evaluated in the *Console* view by selecting book @b2@ and typing @isAvailable()@ for execution.
 
-!{width:50%}images/4100-helper_operation.png(Helper Operation)!
+!{width:60%}images/4100-helper_operation.png(Helper Operation)!
 
 We will now add further helpers and constraints to enforce an
 at most two loans per member policy and to require loans to be unique.
 
 (Don't forget to close *Tutorial.xmi* while changing its meta-model.)
 
-!images/4100-metamodel4.png(Example Metamodel with More Features)!
+!{width:70%}images/4100-metamodel4.png(Example Metamodel with More Features)!
 "[Text for cut and paste]":../references/4100-metamodel4.oclinecore
 
 The additional @books@ property may be evaluated in the OCL
@@ -393,7 +393,7 @@ Console to show which books each member has on loan. The property may also be se
 Select the library again and invoke *Validate* from the right button menu.
 There are now two validation failures. 
 
-!{width:50%}images/4100-two_validation_errors.png(Two Validation Errors)!
+!{width:60%}images/4100-two_validation_errors.png(Two Validation Errors)!
 
 h3(#OCLinEcoreTutorial-genmodel). Generating Java Code
 
@@ -410,29 +410,29 @@ Generating Java code is exactly the same as for any other EMF project. (Prior to
 Select the *Tutorial.ecore* file and invoke *New->Other...* from the right button menu
 and select *Eclipse Modeling Framework* and *EMF Generator Model*.
 
-!{width:50%}images/4100-new_emf_generator.png(New EMF Generator)!
+!{width:60%}images/4100-new_emf_generator.png(New EMF Generator)!
 
 Select *Next*.
 
-!{width:50%}images/4100-new_emf_generator_model.png(New EMF Generator Model)!
+!{width:60%}images/4100-new_emf_generator_model.png(New EMF Generator Model)!
 
 Select *Next*.
 
-!{width:50%}images/4100-new_emf_generator_model_ecore.png(New EMF Generator Model for Ecore)!
+!{width:60%}images/4100-new_emf_generator_model_ecore.png(New EMF Generator Model for Ecore)!
 
 Select *Next*.
 
-!{width:50%}images/4100-new_emf_generator_model_load.png(New EMF Generator Model Load)!
+!{width:60%}images/4100-new_emf_generator_model_load.png(New EMF Generator Model Load)!
 
 Select *Load* and *Next*.
 
-!{width:50%}images/4100-new_emf_generator_model_packages.png(New EMF Generator Model Packages)!
+!{width:60%}images/4100-new_emf_generator_model_packages.png(New EMF Generator Model Packages)!
 
 Select *Finish*.
 
 The *Tutorial.genmodel* editor opens.
 
-!{width:50%}images/4100-gen_model.png(Gen Model)!
+!{width:60%}images/4100-gen_model.png(Gen Model)!
 
 Most of the default settings are suitable. The one that may not be is highlighted. Select the
 root *Tutorial* and scroll down the *Properties* view and set *Operation Reflection*
@@ -441,7 +441,7 @@ to true if it is not already true. (As from EMF 2.8 the default is true.)
 You may now invoke *Generate Model Code* from the right button menu of either *Tutorial*
 to generate Java models that invoke OCL.
 
-!{width:50%}images/4100-gen_model_menu.png(Gen Model Menu)!
+!{width:60%}images/4100-gen_model_menu.png(Gen Model Menu)!
 
 h4. Java Details
 

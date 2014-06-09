@@ -29,7 +29,7 @@ p.
 
 To do this, we define a small Ecore model of our application context, e.g.:
 
-!images/5160-appcontext.png(Application Context Model)!
+!{width:70%}images/5160-appcontext.png(Application Context Model)!
 
 Then, in the code that parses a user's filter condition:
 

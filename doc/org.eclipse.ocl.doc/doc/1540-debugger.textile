@@ -3,7 +3,7 @@ h2(#Debugger). Debugger (new in Luna)
 
 The OCL debugger supports debugging OCL constraints. It is a customization of the standard Eclipse debugger and so most of the facilities should be familiar to users of the Eclipse Java debugger.
 
-!{width:70%}images/1540-debugger-image.png(DebuggerImage)!
+!{width:45%}images/1540-debugger-image.png(DebuggerImage)!
 
 The screenshot shows
 * Debug Stack Trace showing the context of nested evaluation environments 

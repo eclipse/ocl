@@ -25,15 +25,15 @@ from the pull-down menu to *Work with* and be patient while the available update
 are identified. Then type *OCL* in the filter text, click on the expand item preceding
 the *Modeling* category and then check *OCL Examples and Editors SDK*.
 
-!{width:50%}images/4900-install_software.png(Install Software)!
+!{width:60%}images/4900-install_software.png(Install Software)!
 
 Select *Next*.
 
-!{width:50%}images/4900-install_details.png(Install Details)!
+!{width:60%}images/4900-install_details.png(Install Details)!
 
 Select *Next* again and read the license agreement. Set to accept it.
 
-!{width:50%}images/4900-install_license.png(Install License)!
+!{width:60%}images/4900-install_license.png(Install License)!
 
 Select *Finish* and be patient while the software is downloaded and installed.
 Select *Restart Now* when prompted to do so.

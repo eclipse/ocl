@@ -45,7 +45,7 @@ invariant InvariantName:
 	Tuple{
 	    status=boolean-valued-invariant-expression,
 	    message=string-valued-message-expression,
-	    severity=integer-valued-severity-expression, -- -ve error, 0 ok, +ve warning
+	    severity=integer-valued-severity-expression, -- -ve error,0 ok,+ve warn
 	    ...                          -- more custom fields as desired
 	}.status;
 p. 

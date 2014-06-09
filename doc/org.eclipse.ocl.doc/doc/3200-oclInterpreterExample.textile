@@ -17,7 +17,7 @@ This example plug-in is named @org.eclipse.emf.ocl.examples.interpreter@. This p
 
 Please refer to the tutorial "OCL Interpreter Tutorial":#OCLInterpreterTutorial for reviewing the code samples within this example.
 
-!{width:50%}images/3200-lib_editor_contrib.png(OCL Interpreter Example Contributions)!
+!{width:70%}images/3200-lib_editor_contrib.png(OCL Interpreter Example Contributions)!
 
 The bottom field in the console accepts OCL expressions (comments supported). You can press *Enter* to evaluate on the currently selected element. You can press *Ctrl+Enter* or *Shift+Enter* to insert a newline. The top field shows the output and errors. The console can be cleared by the *Eraser* button and closed by the *X* button.
 
