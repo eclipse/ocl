@@ -38,6 +38,8 @@ import org.eclipse.ocl.examples.pivot.tests.InheritanceTests;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
 import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
 import org.eclipse.ocl.examples.pivot.tests.StereotypesTest;
+import org.eclipse.ocl.examples.pivot.tests.UMLValidateTest;
+import org.eclipse.ocl.examples.pivot.tests.ValidateTests;
 import org.eclipse.ocl.examples.test.ecore.ProjectMapTest;
 import org.eclipse.ocl.examples.test.standalone.StandaloneExecutionTests;
 import org.eclipse.ocl.examples.test.standalone.StandaloneParserTests;
@@ -81,6 +83,7 @@ public class AllXtextTests
 		result.addTestSuite(DelegatesTest.class);
 		result.addTestSuite(ErrorTests.class);
 		result.addTestSuite(ImportTests.class);
+		result.addTestSuite(UMLValidateTest.class);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		UMLResourcesUtil.init(resourceSet);
 		LoadTests.getProjectMap().initializeResourceSet(resourceSet);

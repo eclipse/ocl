@@ -19,10 +19,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EList;
@@ -371,29 +369,6 @@ public class XtextTestCase extends PivotTestCase
 		assertNoUnresolvedProxies("File Model", asResource);
 		assertNoValidationErrors("File Model", asResource);
 		return asResource;
-	}
-
-	/**
-	 * Return the difference between expectedMessages and actualMessages, or null if no differences.
-	 * 
-	 * The return is formatted one message per line with a leading new-line followed by
-	 * an expected/actual count in parentheses followed by the messages 
-	 */
-	public static String formatMessageDifferences(Bag<String> expectedMessages, Bag<String> actualMessages) {
-		Set<String> allMessages = new HashSet<String>(expectedMessages);
-		allMessages.addAll(actualMessages);
-		StringBuilder s = null;
-		for (String message : allMessages) {
-			int actualCount = actualMessages.count(message);
-			int expectedCount = expectedMessages.count(message);
-			if (actualCount != expectedCount) {
-				if (s == null) {
-					s = new StringBuilder();
-				}
-				s.append("\n  (" + expectedCount + "/" + actualCount + ") " + message);
-			}
-		}
-		return s != null ? s.toString() : null;
 	}
 
 	protected static boolean hasCorrespondingCS(Element pivotElement) {

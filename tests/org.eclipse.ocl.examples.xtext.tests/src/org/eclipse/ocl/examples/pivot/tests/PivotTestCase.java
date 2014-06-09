@@ -22,8 +22,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import junit.framework.TestCase;
 
@@ -60,6 +62,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -97,6 +100,8 @@ public class PivotTestCase extends TestCase
 {
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
 	private static ProjectMap projectMap = null;
+	
+	protected static boolean noDebug = false;
 
 	/*
 	 * The following may be tweaked to assist debugging.
@@ -323,50 +328,6 @@ public class PivotTestCase extends TestCase
 		}
 	}
 	
-	public @NonNull URI createEcoreFile(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent) throws IOException {
-		return createEcoreFile(metaModelManager, fileName, fileContent, false);
-	}
-	
-	@SuppressWarnings("null")
-	public @NonNull URI createEcoreFile(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
-		String inputName = fileName + ".oclinecore";
-		createOCLinEcoreFile(inputName, fileContent);
-		URI inputURI = getProjectFileURI(inputName);
-		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
-		CS2PivotResourceAdapter adapter = null;
-		try {
-			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
-			BaseCSResource xtextResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
-			assertNoResourceErrors("Load failed", xtextResource);
-			adapter = xtextResource.getCS2ASAdapter(null);
-			Resource asResource = adapter.getASResource(xtextResource);
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, asResource, ecoreURI, null);
-			assertNoResourceErrors("To Ecore errors", ecoreResource);
-			if (assignIds) {
-				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {
-					EObject eObject = tit.next();
-					ecoreResource.setID(eObject,  EcoreUtil.generateUUID());
-				}
-			}
-			ecoreResource.save(null);
-			return ecoreURI;
-		}
-		finally {
-			if (adapter != null) {
-				adapter.dispose();
-			}
-		}
-	}
-	
-	public void createOCLinEcoreFile(String fileName, String fileContent) throws IOException {
-		File file = new File(getProjectFile(), fileName);
-		Writer writer = new FileWriter(file);
-		writer.append(fileContent);
-		writer.close();
-	}
-	
 	public static @NonNull Resource cs2ecore(@NonNull OCL ocl, @NonNull String testDocument, @Nullable URI ecoreURI) throws IOException {
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
@@ -402,6 +363,12 @@ public class PivotTestCase extends TestCase
 			asResource.save(null);
 		}
 		return asResource;
+	}
+	
+	public static void debugPrintln(@NonNull String string) {
+		if (!noDebug) {
+			System.out.println(string);
+		}		
 	}
 
 	public static void doCompleteOCLSetup() {
@@ -467,20 +434,27 @@ public class PivotTestCase extends TestCase
 		}
 	}
 
-	protected @NonNull File getProjectFile() {
-		String projectName = getProjectName();
-		URL projectURL = getTestResource(projectName);	
-		assertNotNull(projectURL);
-		return new File(projectURL.getFile());
-	}
-	
-	protected @NonNull URI getProjectFileURI(String referenceName) {
-		File projectFile = getProjectFile();
-		return DomainUtil.nonNullState(URI.createFileURI(projectFile.toString() + "/" + referenceName));
-	}
-	
-	protected @NonNull String getProjectName() {
-		return getClass().getPackage().getName().replace('.', '/') + "/models";
+	/**
+	 * Return the difference between expectedMessages and actualMessages, or null if no differences.
+	 * 
+	 * The return is formatted one message per line with a leading new-line followed by
+	 * an expected/actual count in parentheses followed by the messages 
+	 */
+	public static String formatMessageDifferences(Bag<String> expectedMessages, Bag<String> actualMessages) {
+		Set<String> allMessages = new HashSet<String>(expectedMessages);
+		allMessages.addAll(actualMessages);
+		StringBuilder s = null;
+		for (String message : allMessages) {
+			int actualCount = actualMessages.count(message);
+			int expectedCount = expectedMessages.count(message);
+			if (actualCount != expectedCount) {
+				if (s == null) {
+					s = new StringBuilder();
+				}
+				s.append("\n  (" + expectedCount + "/" + actualCount + ") " + message);
+			}
+		}
+		return s != null ? s.toString() : null;
 	}
 
 	public static @NonNull ProjectMap getProjectMap() {
@@ -489,29 +463,6 @@ public class PivotTestCase extends TestCase
 			projectMap = projectMap2 = new ProjectMap();
 		}
 		return projectMap2;
-	}
-	
-	public @NonNull URI getTestModelURI(@NonNull String localFileName) {
-		ProjectMap projectMap = getProjectMap();
-		String urlString = projectMap.getLocation(PLUGIN_ID).toString();
-		TestCase.assertNotNull(urlString);
-		return DomainUtil.nonNullEMF(URI.createURI(urlString + localFileName));
-	}
-
-	protected @NonNull URL getTestResource(@NonNull String resourceName) {
-		URL projectURL = getClass().getClassLoader().getResource(resourceName);
-		try {
-			if ((projectURL != null) && Platform.isRunning()) {
-				try {
-					projectURL = FileLocator.resolve(projectURL);
-				} catch (IOException e) {
-					TestCase.fail(e.getMessage());
-					assert false;;
-				}
-			}
-		}
-		catch (Throwable e) {}
-		return DomainUtil.nonNullState(projectURL);
 	}
 
 	public static boolean isWindows() {
@@ -604,14 +555,89 @@ public class PivotTestCase extends TestCase
 		resourceSet.eAdapters().clear();
 	}
 	
-	protected static boolean noDebug = false;
-	
-	public static void debugPrintln(@NonNull String string) {
-		if (!noDebug) {
-			System.out.println(string);
-		}		
+	public @NonNull URI createEcoreFile(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent) throws IOException {
+		return createEcoreFile(metaModelManager, fileName, fileContent, false);
 	}
 	
+	@SuppressWarnings("null")
+	public @NonNull URI createEcoreFile(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
+		String inputName = fileName + ".oclinecore";
+		createOCLinEcoreFile(inputName, fileContent);
+		URI inputURI = getProjectFileURI(inputName);
+		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
+		CS2PivotResourceAdapter adapter = null;
+		try {
+			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
+			BaseCSResource xtextResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
+			assertNoResourceErrors("Load failed", xtextResource);
+			adapter = xtextResource.getCS2ASAdapter(null);
+			Resource asResource = adapter.getASResource(xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
+			XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, asResource, ecoreURI, null);
+			assertNoResourceErrors("To Ecore errors", ecoreResource);
+			if (assignIds) {
+				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					ecoreResource.setID(eObject,  EcoreUtil.generateUUID());
+				}
+			}
+			ecoreResource.save(null);
+			return ecoreURI;
+		}
+		finally {
+			if (adapter != null) {
+				adapter.dispose();
+			}
+		}
+	}
+	
+	public void createOCLinEcoreFile(String fileName, String fileContent) throws IOException {
+		File file = new File(getProjectFile(), fileName);
+		Writer writer = new FileWriter(file);
+		writer.append(fileContent);
+		writer.close();
+	}
+
+	protected @NonNull File getProjectFile() {
+		String projectName = getProjectName();
+		URL projectURL = getTestResource(projectName);	
+		assertNotNull(projectURL);
+		return new File(projectURL.getFile());
+	}
+	
+	protected @NonNull URI getProjectFileURI(String referenceName) {
+		File projectFile = getProjectFile();
+		return DomainUtil.nonNullState(URI.createFileURI(projectFile.toString() + "/" + referenceName));
+	}
+	
+	protected @NonNull String getProjectName() {
+		return getClass().getPackage().getName().replace('.', '/') + "/models";
+	}
+	
+	public @NonNull URI getTestModelURI(@NonNull String localFileName) {
+		ProjectMap projectMap = getProjectMap();
+		String urlString = projectMap.getLocation(PLUGIN_ID).toString();
+		TestCase.assertNotNull(urlString);
+		return DomainUtil.nonNullEMF(URI.createURI(urlString + localFileName));
+	}
+
+	protected @NonNull URL getTestResource(@NonNull String resourceName) {
+		URL projectURL = getClass().getClassLoader().getResource(resourceName);
+		try {
+			if ((projectURL != null) && Platform.isRunning()) {
+				try {
+					projectURL = FileLocator.resolve(projectURL);
+				} catch (IOException e) {
+					TestCase.fail(e.getMessage());
+					assert false;;
+				}
+			}
+		}
+		catch (Throwable e) {}
+		return DomainUtil.nonNullState(projectURL);
+	}
+
 	private GlobalStateMemento makeCopyOfGlobalState = null;
 
 	public void resetRegistries() {

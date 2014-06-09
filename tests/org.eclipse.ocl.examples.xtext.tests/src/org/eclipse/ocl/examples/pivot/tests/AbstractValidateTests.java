@@ -8,13 +8,14 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.test.xtext;
+package org.eclipse.ocl.examples.pivot.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -23,26 +24,33 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.uml.UMLOCLEValidator;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Tests that OCL for model validation works.
  */
-public abstract class AbstractValidateTests extends XtextTestCase
+public abstract class AbstractValidateTests extends PivotTestCase
 {	
 	public static @NonNull List<Diagnostic> assertUMLOCLValidationDiagnostics(@Nullable OCL ocl, @NonNull String prefix, @NonNull Resource resource, String... messages) {
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
@@ -77,6 +85,24 @@ public abstract class AbstractValidateTests extends XtextTestCase
 			fail("Inconsistent validation: (expected/actual) message" + s);
 		}
 	}	
+
+	@SuppressWarnings("deprecation")
+	protected @NonNull ResourceSet createResourceSet() {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		ProjectMap.initializeURIResourceMap(resourceSet);
+		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+    	if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+    		uriMap.putAll(EcorePlugin.computePlatformURIMap());
+    	}
+    	return resourceSet;
+	}
+
+	protected void disposeResourceSet(ResourceSet resourceSet) {
+		for (Resource aResource : resourceSet.getResources()) {
+			aResource.unload();
+		}
+		resourceSet.getResources().clear();
+	}
 
 	@SuppressWarnings("null")
 	public Resource doLoadOCLinEcore(OCL ocl, String stem) throws IOException {
@@ -130,9 +156,19 @@ public abstract class AbstractValidateTests extends XtextTestCase
 		eObject.eSet(eFeature, value);
 	}
 
+	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+    	TestCaseAppender.INSTANCE.install();
+    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+    		OCL.initialize(null);
+    	}
+		doCompleteOCLSetup();
+		doOCLinEcoreSetup();
+		doOCLstdlibSetup();
+		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
+        OCLDelegateDomain.initialize(null);
 	}
 
 	@Override

@@ -54,7 +54,6 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
@@ -94,7 +93,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -118,7 +116,6 @@ public class DelegatesTest extends PivotTestSuite
 	protected static final @NonNull String NO_REFLECTION_COMPANY_XMI = "/model/NoReflectionCompany.xmi";
 	protected static final @NonNull String MODEL_WITH_ERRORS_XMI = "/model/ModelWithErrors.xmi";
 	protected static final @NonNull String MODEL_WITH_ERRORS_OCL = "/model/ModelWithErrors.ocl";
-	public static final @NonNull String VIOLATED_TEMPLATE = "The ''{0}'' constraint is violated on ''{1}''";
 
 	public Resource testResource;
 	public EPackage companyPackage;
@@ -575,22 +572,6 @@ public class DelegatesTest extends PivotTestSuite
 		delegate.prepare();
 		executeWithException(delegate, acme, okBindings,
 			OCLMessages.MismatchedArgumentType_ERROR_, okName, "UnlimitedNatural", "String");
-	}
-
-	public @Nullable EObject getStereotypeApplication(@NonNull org.eclipse.uml2.uml.Element umlElement, @NonNull org.eclipse.uml2.uml.Stereotype umlStereotype) {
-		for (EObject eObject : umlElement.eResource().getContents()) {
-			if (DomainUtil.safeEquals(eObject.eClass().getName(), umlStereotype.getName())) {
-				for (EStructuralFeature eFeature : eObject.eClass().getEAllStructuralFeatures()) {
-					if ((eFeature instanceof EReference) && !eFeature.isMany()) {
-						Object object = eObject.eGet(eFeature);
-						if (object == umlElement) {
-							return eObject;
-						}
-					}
-				}
-			}
-		}
-		return null;
 	}
 
 	public void test_allInstances() {
@@ -1182,134 +1163,6 @@ public class DelegatesTest extends PivotTestSuite
 		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
 		validateTutorial("model/Tutorial2.ecore", "There are 3 loans for the 2 copies of ''b2''");		// Doubled quotes for NLS.bind
 		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
-	}
-
-	public void test_tutorial_umlValidation_with_lpg_408990() {
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLConstants.OCL_DELEGATE_URI_LPG);
-		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet2));
-		}
-		URI uri = getProjectFileURI("Bug408990.uml");
-		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
-		assertNoResourceErrors("Loading", umlResource);
-		String label = EcoreUtils.qualifiedNameFor(umlResource.getContents().get(1));
-		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
-	}
-
-	public void test_tutorial_umlValidation_with_pivot_408990() {
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
-		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet2));
-		}
-		URI uri = getProjectFileURI("Bug408990.uml");
-		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
-		assertNoResourceErrors("Loading", umlResource);
-		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
-		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
-		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
-		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("Stereotype1");
-		assert (umlClass1 != null) && (umlStereotype1 != null);
-		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
-		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
-	}
-
-	public void test_tutorial_umlValidation_with_pivot_432920() {
-		resetRegistries();
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
-		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet2));
-		}
-		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet2);
-		URI uri = getProjectFileURI("bug432920.uml");
-		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
-		assertNoResourceErrors("Loading", umlResource);
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
-		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
-		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
-		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
-		org.eclipse.uml2.uml.Property umlAttribute1 = umlClass1.getOwnedAttribute("Attribute1", null);
-		org.eclipse.uml2.uml.ValueSpecification lowerValue = umlAttribute1.getLowerValue();
-		org.eclipse.uml2.uml.ValueSpecification upperValue = umlAttribute1.getUpperValue();
-		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
-		org.eclipse.uml2.uml.Stereotype umlMyClassExtension = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("MyClassExtension");
-		org.eclipse.uml2.uml.Stereotype umlMyPropertyExtension = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("MyPropertyExtension");
-		assert (lowerValue != null) && (upperValue != null) && (umlMyClassExtension != null) && (umlMyPropertyExtension != null);
-		String string1 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(upperValue, umlMyClassExtension));
-		String string2 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(upperValue, umlMyPropertyExtension));
-		String string3 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(lowerValue, umlMyClassExtension));
-		String string4 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(lowerValue, umlMyPropertyExtension));
-		String string5 = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlAttribute1, umlMyPropertyExtension));
-		assertValidationDiagnostics("Loading", umlResource, validationContext,
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", string1,
-				  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Class")),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", string2,
-				  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralUnlimitedNatural", "Property")),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyClassExtension", "ClassConstraint1", string3,
-				  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Class")),
-			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "MyPropertyExtension", "Constraint1", string4,
-			  DomainUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType, "UML::LiteralInteger", "Property")),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint1", string5),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", string2),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", string4));
-	}
-	
-	public void test_tutorial_umlValidation_with_pivot_434433() {
-		resetRegistries();
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
-		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet2));
-		}
-		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet2);
-		URI uri = getProjectFileURI("Bug434433.uml");
-		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
-		assertNoResourceErrors("Loading", umlResource);
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
-		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
-		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
-		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
-		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
-		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("Stereotype1");
-		assert (umlClass1 != null) && (umlStereotype1 != null);
-		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
-		assertValidationDiagnostics("Loading", umlResource, validationContext,
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint3", label));
-	}
-	
-	public void test_tutorial_umlValidation_Bug434356() {
-//		UML2Pivot.TYPE_EXTENSIONS.setState(true);
-		resetRegistries();
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet2);			
-		OCLDelegateDomain.initialize(resourceSet2, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			assertNull(UML2Pivot.initialize(resourceSet2));
-		}
-		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet2);
-		URI uri = getProjectFileURI("Bug434356.uml");
-		Resource umlResource = DomainUtil.nonNullState(resourceSet2.getResource(uri, true));
-		assertNoResourceErrors("Loading", umlResource);
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
-		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
-		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
-		org.eclipse.uml2.uml.Realization umlRealization1 = (org.eclipse.uml2.uml.Realization)umlModel.getPackagedElement("Realization1");
-		org.eclipse.uml2.uml.Profile umlProfile = umlModel.getProfileApplications().get(0).getAppliedProfile();
-		org.eclipse.uml2.uml.Stereotype umlStereotype1 = (org.eclipse.uml2.uml.Stereotype)umlProfile.getOwnedType("ParentRealization");
-		assert (umlRealization1 != null) && (umlStereotype1 != null);
-		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlRealization1, umlStereotype1));
-		assertValidationDiagnostics("Loading", umlResource, validationContext,
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "ParentRealization", "In case of a ParentRealization relationship, the supplier should be a child of the client", label));
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
