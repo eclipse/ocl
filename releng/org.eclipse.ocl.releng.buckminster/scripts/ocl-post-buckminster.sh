@@ -13,7 +13,7 @@
 mv buildroot/buckminster.output/org.eclipse.ocl.releng.build_*-eclipse.feature/site.p2 MDT-OCL.p2.repository
 mv buildroot/buckminster.output/org.eclipse.ocl.releng.build_*-eclipse.feature/zips MDT-OCL.downloads
 
-/opt/public/common/apache-ant-1.8.1/bin/ant -f publishroot/publisher.ant -Dbuild.archives=${WORKSPACE} 
+echo MANAGE_JAVADOC = ${MANAGE_JAVADOC}
 
 if [ ${MANAGE_JAVADOC} = "true" ]
 then
@@ -22,8 +22,12 @@ then
   rm -rf buildroot/buckminster.output/org.eclipse.ocl.releng.buckminster_*-buckminster/javadoc
 fi
 
+echo MANAGE_DOC = ${MANAGE_DOC}
+
 if [ ${MANAGE_DOC} = "true" ]
 then
   mkdir MDT-OCL.doc
   cp org.eclipse.ocl.git/doc/org.eclipse.ocl.doc/manual/ocl.pdf MDT-OCL.doc
 fi
+
+/opt/public/common/apache-ant-1.8.1/bin/ant -f publishroot/publisher.ant -Dbuild.archives=${WORKSPACE} 
