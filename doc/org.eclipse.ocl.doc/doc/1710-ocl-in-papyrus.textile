@@ -20,7 +20,7 @@ one is used and if the language name is omitted, an implementation default of OC
 
 Specification of a behaviour such as "name.toUpper()" can be achieved by an OpaqueExpression in which the language is Sequence('OCL') and the body is Sequence('name.toUpper()'). The OCL is therefore embedded in a textual form that has no knowledge of the classes in the OCL metamodel.
 
-Users of the OCL Java API may avoid the need to incur OCL parsing costs by exploiting OCL's ExpressionInOCL class that extends ValueSpecificaion and delegates functionality to an OCLExpression.
+Users of the OCL Java API may avoid the need to incur OCL parsing costs by exploiting OCL's ExpressionInOCL class that extends ValueSpecification and delegates functionality to an OCLExpression.
 
 h3(#OCLinPapyrus-Class-Diagram). Class Diagram
 
