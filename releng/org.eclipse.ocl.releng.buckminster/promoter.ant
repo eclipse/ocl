@@ -169,7 +169,7 @@
 		<property name="version" value="3.1.0" />
 		<property name="packages.base" value="downloads" />
 		<property name="tests.base" value="test.results" />
-		<property name="doc.base" value="MDT-OCL" />
+		<property name="doc.base" value="MDT-OCL.doc" />
 		<property name="javadoc.base" value="javadoc" />
 			
 		<property name="packages.directory" location="${build.archives}/${packages.base}" />
@@ -331,7 +331,7 @@
 		<property name="prop.dist1.contents" refid="dist1.contents"/>
 		<echo>${doc.directory}/..: ${prop.dist1.contents}</echo>
 		
-		<echo>Copying doc from ${doc.directory}/ocl.pdf</echo>
+		<echo>Copying ${doc.directory}/ocl.pdf to ${project.doc.directory}</echo>
 		<copy todir="${project.doc.directory}">
 			<fileset dir="${doc.directory}">
 				<filename name="ocl.pdf" />
@@ -349,7 +349,7 @@
 		<property name="prop.dist1.contents" refid="dist1.contents"/>
 		<echo>${javadoc.directory}/..: ${prop.dist1.contents}</echo>
 		
-		<echo>Unzipping javadoc from ${javadoc.directory}/MDT-OCL-javadoc.zip</echo>
+		<echo>Unzipping ${javadoc.directory}/MDT-OCL-javadoc.zip to ${project.javadoc.directory}</echo>
 		<unzip dest="${project.javadoc.directory}">
 			<fileset dir="${javadoc.directory}">
 				<filename name="MDT-OCL-javadoc.zip" />
