@@ -58,8 +58,6 @@ By default none of the selections are enabled so everything is shown. As soon as
 
 h4. Save
 
-__This functionality does not appear to work in Luna SR0.__
-
 The floppy disk icon supports export of the validation results.
 
 The available export formats are extensible through the org.eclipse.ocl.examples.emf.validation.validity.validity_exporter extension point.
@@ -144,8 +142,6 @@ h5. Validate Selection
 
 Revalidates all constraints applicable to the selected Model Element and its children.
 
-__This seems to revalidate all Model Elements regardless in Luna SR0.__
-
 h5. Debug Single Enabled Selection
 
 Launches the debugger for the selected Model Element and associated Constraint.
@@ -225,8 +221,6 @@ The context menu in the metamodel constraints tree offers the following faciliti
 h5. Validate Selection
 
 Revalidates all model elements applicable to the selected constraint and its children.
-
-__This seems to revalidate all Model Elements regardless in Luna SR0.__
 
 h5. Debug Single Enabled Selection
 
