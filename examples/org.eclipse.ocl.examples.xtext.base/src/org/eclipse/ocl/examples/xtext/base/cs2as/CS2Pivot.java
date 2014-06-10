@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -274,22 +275,40 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 			}
 		}
 	}
-	
-	public static void setElementType(@NonNull PathNameCS pathNameCS, /*@NonNull*/ EClass elementType, @NonNull ElementCS csContext, @Nullable ScopeFilter scopeFilter) {
-		assert elementType != null;
-		pathNameCS.setContext(csContext);
-		pathNameCS.setScopeFilter(scopeFilter);
-		List<PathElementCS> path = pathNameCS.getPath();
-		int iMax = path.size()-1;
-		path.get(iMax).setElementType(elementType);
-		if (PivotPackage.Literals.FEATURE.isSuperTypeOf(elementType) && (iMax > 0)) {
-			path.get(--iMax).setElementType(PivotPackage.Literals.TYPE);
-		}
-		for (int i = 0; i < iMax; i++) {
-			path.get(i).setElementType(PivotPackage.Literals.NAMESPACE);
+
+	public static void refreshContext(@NonNull PathNameCS pathNameCS, ElementCS csContext) {
+		if (pathNameCS.getContext() != csContext) {
+			pathNameCS.setContext(csContext);
 		}
 	}
 	
+	public static void refreshElementType(PathElementCS pathElementCS, EClassifier elementType) {
+		if ((pathElementCS != null)  && (pathElementCS.getElementType() != elementType)) {
+			pathElementCS.setElementType(elementType);
+		}
+	}
+
+	public static void refreshScopeFilter(@NonNull PathNameCS pathNameCS, ScopeFilter scopeFilter) {
+		if (pathNameCS.getScopeFilter() != scopeFilter) {
+			pathNameCS.setScopeFilter(scopeFilter);
+		}
+	}
+	
+	public static void setElementType(@NonNull PathNameCS pathNameCS, /*@NonNull*/ EClass elementType, @NonNull ElementCS csContext, @Nullable ScopeFilter scopeFilter) {
+		assert elementType != null;
+		refreshContext(pathNameCS, csContext);
+		refreshScopeFilter(pathNameCS, scopeFilter);
+		List<PathElementCS> path = pathNameCS.getPath();
+		int iMax = path.size()-1;
+		refreshElementType(path.get(iMax), elementType);
+		if (PivotPackage.Literals.FEATURE.isSuperTypeOf(elementType) && (iMax > 0)) {
+			refreshElementType(path.get(--iMax), PivotPackage.Literals.TYPE);
+		}
+		for (int i = 0; i < iMax; i++) {
+			refreshElementType(path.get(i), PivotPackage.Literals.NAMESPACE);
+		}
+	}
+
 	/**
 	 * Define an alternative message binder. THe default null messageBinder uses
 	 * {@link NLS#bind(String, Object[])} 
