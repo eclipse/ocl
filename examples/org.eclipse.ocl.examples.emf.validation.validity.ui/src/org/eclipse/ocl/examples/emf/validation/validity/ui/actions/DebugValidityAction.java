@@ -11,12 +11,9 @@
 package org.eclipse.ocl.examples.emf.validation.validity.ui.actions;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -34,6 +31,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.messages.ValidityUIMessages;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.plugin.ValidityUIPlugin;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
+import org.eclipse.ocl.examples.emf.validation.validity.utilities.ValidityUtils;
 //import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLEditor;
 import org.eclipse.swt.widgets.Shell;
 
@@ -58,47 +56,17 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 	/**
 	 * Return all enabled result constraining nodes at and below constrainingNode.
 	 */
+	@Deprecated
 	protected @NonNull List<ResultConstrainingNode> getEnabledResultConstrainingNodes(@NonNull ConstrainingNode constrainingNode) {
-		List<ResultConstrainingNode> resultConstrainingNodes = new ArrayList<ResultConstrainingNode>();
-		if (constrainingNode instanceof ResultConstrainingNode) {
-			ResultConstrainingNode resultConstrainingNode = (ResultConstrainingNode) constrainingNode;
-			if (resultConstrainingNode.isEnabled()) {
-				resultConstrainingNodes.add(resultConstrainingNode);
-			}
-		}
-		for (TreeIterator<EObject> tit = constrainingNode.eAllContents(); tit.hasNext(); ) {
-			Object eObject = tit.next();
-			if (eObject instanceof ResultConstrainingNode) {
-				ResultConstrainingNode resultConstrainingNode = (ResultConstrainingNode) eObject;
-				if (resultConstrainingNode.isEnabled()) {
-					resultConstrainingNodes.add(resultConstrainingNode);
-				}
-			}
-		}
-		return resultConstrainingNodes;
+		return ValidityUtils.getEnabledResultConstrainingNodes(constrainingNode);
 	}
 
 	/**
 	 * Return all enabled result validatable nodes at and below validatableNode.
 	 */
+	@Deprecated
 	protected @NonNull List<ResultValidatableNode> getEnabledResultValidatableNodes(@NonNull ValidatableNode validatableNode) {
-		List<ResultValidatableNode> resultValidatableNodes = new ArrayList<ResultValidatableNode>();
-		if (validatableNode instanceof ResultValidatableNode) {
-			ResultValidatableNode resultValidatableNode = (ResultValidatableNode) validatableNode;
-			if (resultValidatableNode.isEnabled()) {
-				resultValidatableNodes.add(resultValidatableNode);
-			}
-		}
-		for (TreeIterator<EObject> tit = validatableNode.eAllContents(); tit.hasNext(); ) {
-			Object eObject = tit.next();
-			if (eObject instanceof ResultValidatableNode) {
-				ResultValidatableNode resultValidatableNode = (ResultValidatableNode) eObject;
-				if (resultValidatableNode.isEnabled()) {
-					resultValidatableNodes.add(resultValidatableNode);
-				}
-			}
-		}
-		return resultValidatableNodes;
+		return ValidityUtils.getEnabledResultValidatableNodes(validatableNode);
 	}
 
 	@Override
@@ -108,10 +76,10 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 			ResultConstrainingNode resultConstrainingNode = null;
 			Object selectedObject = ((StructuredSelection) selection).getFirstElement();
 			if (selectedObject instanceof ConstrainingNode) {
-				resultConstrainingNode = getEnabledResultConstrainingNodes((ConstrainingNode)selectedObject).get(0);
+				resultConstrainingNode = ValidityUtils.getEnabledResultConstrainingNodes((ConstrainingNode)selectedObject).get(0);
 			}
 			else if (selectedObject instanceof ValidatableNode) {
-				ResultValidatableNode resultValidatableNode = getEnabledResultValidatableNodes((ValidatableNode)selectedObject).get(0);
+				ResultValidatableNode resultValidatableNode = ValidityUtils.getEnabledResultValidatableNodes((ValidatableNode)selectedObject).get(0);
 				resultConstrainingNode = resultValidatableNode.getResultConstrainingNode();
 			}
 			if (resultConstrainingNode != null) {

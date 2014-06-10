@@ -71,7 +71,7 @@ public class ShowValidityViewHandler extends AbstractHandler {
 			validityView.selectionChanged(part, site.getSelectionProvider().getSelection());
 			
 			if (runValidation) {
-				RunValidityAction runValidationAction = new RunValidityAction(validityView);
+				RunValidityAction runValidationAction = new RunValidityAction(validityView, null);
 				runValidationAction.run();
 			}
 		}

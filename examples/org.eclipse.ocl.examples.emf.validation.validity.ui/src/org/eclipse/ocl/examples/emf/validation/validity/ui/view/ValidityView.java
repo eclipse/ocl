@@ -279,6 +279,8 @@ public class ValidityView extends ViewPart implements ISelectionListener
 	private Action expandAllNodesAction;
 	private Action collapseAllNodesAction;
 	private Action runValidationAction;
+	private Action runValidatableAction;
+	private Action runConstrainingAction;
 	private Action debugValidatableResultAction;
 	private Action debugConstrainingResultAction;
 	private Action lockValidatableNodesAction;
@@ -598,7 +600,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		manager.add(new Separator());
-		manager.add(runValidationAction);
+		manager.add(runConstrainingAction);
 		manager.add(debugConstrainingResultAction);
 		manager.add(new Separator());
 		manager.add(showConstrainingElementInEditorAction);
@@ -645,7 +647,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		// Other plug-ins can contribute their actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		manager.add(new Separator());
-		manager.add(runValidationAction);
+		manager.add(runValidatableAction);
 		manager.add(debugValidatableResultAction);
 		manager.add(new Separator());
 		manager.add(showValidatableElementInEditorAction);
@@ -742,7 +744,9 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		/*Toolbar actions*/
 		expandAllNodesAction = new ExpandAllNodesAction(this, true, true);
 		collapseAllNodesAction = new CollapseAllNodesAction(this, true, true);
-		runValidationAction = new RunValidityAction(this);
+		runValidationAction = new RunValidityAction(this, null);
+		runValidatableAction = new RunValidityAction(this, getValidatableNodesViewer());
+		runConstrainingAction = new RunValidityAction(this, getConstrainingNodesViewer());
 		debugValidatableResultAction = new DebugValidityAction(this, getValidatableNodesViewer());
 		debugConstrainingResultAction = new DebugValidityAction(this, getConstrainingNodesViewer());
 

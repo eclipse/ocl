@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.emf.validation.validity.ui.view;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -82,15 +83,18 @@ public class IDEValidityManager extends ValidityManager
 	private class ValidityViewJob extends Job
 	{
 		protected final @NonNull ValidityView validityView;
+		protected final @Nullable Set<ResultConstrainingNode> selectedNodes;
 		
-		private ValidityViewJob(@NonNull ValidityView validityView) {
+		private ValidityViewJob(@NonNull ValidityView validityView, @Nullable Set<ResultConstrainingNode> selectedNodes) {
 			super("Validity View Validation");
 			this.validityView = validityView;
+			this.selectedNodes = selectedNodes;
 		}
 
 		@Override
 		protected IStatus run(final /*@NonNull*/ IProgressMonitor monitor) {
 			assert monitor != null;
+			Set<ResultConstrainingNode> selectedNodes2 = selectedNodes;
 			try {
 				final ResultSet resultSet = createResultSet(monitor);
 				if (resultSet == null) {
@@ -108,56 +112,58 @@ public class IDEValidityManager extends ValidityManager
 						if (monitor.isCanceled()) {
 							return Status.CANCEL_STATUS;
 						}
-						boolean refreshLabels = (i % 100) == 0;
-						try {
-							ValidatableNode validatable = result.getValidatableNode();
-							if (refreshLabels) {
-								monitor.setTaskName(i + "/" + results.size() + ": " + validatable.toString());
-							}
-							ValidatableNode validatableParent = validatable.getParent();
-							LeafConstrainingNode constraint = result.getLeafConstrainingNode();
-
-							if (constraint !=null){
-								List<ConstrainingNode> constrainingAncestors = getConstrainingNodeAncestors(constraint);
-
-								boolean isConstrainingNodeEnabled = true;
-								for (ConstrainingNode constrainingAncestor: constrainingAncestors){
-									if (!constrainingAncestor.isEnabled()){
-										isConstrainingNodeEnabled = false;
-										break;
-									}
+						if ((selectedNodes2 == null) || selectedNodes2.contains(result.getResultConstrainingNode())) {
+							boolean refreshLabels = (i % 100) == 0;
+							try {
+								ValidatableNode validatable = result.getValidatableNode();
+								if (refreshLabels) {
+									monitor.setTaskName(i + "/" + results.size() + ": " + validatable.toString());
 								}
-								
-								boolean isEnabledForValidation = false;
-								if (isConstrainingNodeEnabled) {
-									if (validatable instanceof ResultValidatableNode) {
-										if (validatableParent != null && validatableParent.isEnabled()) {
+								ValidatableNode validatableParent = validatable.getParent();
+								LeafConstrainingNode constraint = result.getLeafConstrainingNode();
+	
+								if (constraint !=null) {
+									List<ConstrainingNode> constrainingAncestors = getConstrainingNodeAncestors(constraint);
+	
+									boolean isConstrainingNodeEnabled = true;
+									for (ConstrainingNode constrainingAncestor: constrainingAncestors){
+										if (!constrainingAncestor.isEnabled()){
+											isConstrainingNodeEnabled = false;
+											break;
+										}
+									}
+									
+									boolean isEnabledForValidation = false;
+									if (isConstrainingNodeEnabled) {
+										if (validatable instanceof ResultValidatableNode) {
+											if (validatableParent != null && validatableParent.isEnabled()) {
+												isEnabledForValidation = true;
+											} 
+										} else {
 											isEnabledForValidation = true;
-										} 
-									} else {
-										isEnabledForValidation = true;
+										}
 									}
-								}
-
-								if (isEnabledForValidation){
-									ConstraintLocator constraintLocator = constraint.getConstraintLocator();
-									constraintLocator.validate(result, IDEValidityManager.this, emfMonitor);
+	
+									if (isEnabledForValidation){
+										ConstraintLocator constraintLocator = constraint.getConstraintLocator();
+										constraintLocator.validate(result, IDEValidityManager.this, emfMonitor);
+									} else {
+										result.setSeverity(Severity.UNKNOWN);
+									}
 								} else {
 									result.setSeverity(Severity.UNKNOWN);
 								}
-							} else {
-								result.setSeverity(Severity.UNKNOWN);
 							}
-						}
-						catch (Exception e) {
-							result.setException(e);
-							result.setSeverity(Severity.FATAL);
-						}
-						finally {
-							if (refreshLabels) {
-								monitor.worked(100);
+							catch (Exception e) {
+								result.setException(e);
+								result.setSeverity(Severity.FATAL);
 							}
-							i++;
+							finally {
+								if (refreshLabels) {
+									monitor.worked(100);
+								}
+								i++;
+							}
 						}
 					}
 					return Status.OK_STATUS;
@@ -271,8 +277,13 @@ public class IDEValidityManager extends ValidityManager
 		}
 	}
 
+	@Deprecated
 	public void runValidation(@NonNull ValidityView validityView) {
-		Job validationJob = new ValidityViewJob(validityView);
+		runValidation(validityView, null);
+	}
+
+	public void runValidation(@NonNull ValidityView validityView, @Nullable Set<ResultConstrainingNode> selectedNodes) {
+		Job validationJob = new ValidityViewJob(validityView, selectedNodes);
 		synchronized (validityJobs) {
 			validityJobs.add(validationJob);
 		}
