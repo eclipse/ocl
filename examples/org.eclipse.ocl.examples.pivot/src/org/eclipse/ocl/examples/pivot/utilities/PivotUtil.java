@@ -763,13 +763,19 @@ public class PivotUtil extends DomainUtil
 	 * to parse OCL concrete syntax and errors result an ExpressionInOCL is returned with a null
 	 * contextVariable, a null bodyExpression, and a StringLiteral messageExpression
 	 * containing the error messages.
+	 * 
+	 * @deprecated Omit contextElement argument
 	 */
+	@Deprecated
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull OpaqueExpression specification) {
+		return getExpressionInOCL(specification);
+	}
+	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull OpaqueExpression specification) {
 		if (specification instanceof ExpressionInOCL) {
 			return (ExpressionInOCL) specification;
 		}
 		String expression = PivotUtil.getBody(specification);
-		return expression != null ? getExpressionInOCL(contextElement, expression) : null;
+		return expression != null ? getExpressionInOCL(specification, expression) : null;
 	}
 
 	/**
@@ -1213,13 +1219,22 @@ public class PivotUtil extends DomainUtil
 	 */
 	public static @NonNull ExpressionInOCL getValidExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) throws ParserException {
 			Resource resource = contextElement.eResource();
+			if (resource == null) {
+				throw new ParserException("No containing resource for " + contextElement);
+			}
 			ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
 			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 			ParserContext parserContext = metaModelManager.getParserContext(contextElement);
 			if (parserContext == null) {
 				throw new ParserException("Unknown context type for " + contextElement.eClass().getName());
 			}
-			ExpressionInOCL expressionInOCL = parserContext.parse(contextElement, expression);
+//			Namespace contextElement2 = PivotUtil.getContainingNamespace(contextElement);
+//			if (contextElement == null) {
+//				throw new ParserException("No containing namespace for " + contextElement);
+//			}
+			Type classContext = parserContext.getClassContext();
+//			assert classContext == contextElement2;
+			ExpressionInOCL expressionInOCL = parserContext.parse(classContext, expression);
 			return expressionInOCL;
 	}
 

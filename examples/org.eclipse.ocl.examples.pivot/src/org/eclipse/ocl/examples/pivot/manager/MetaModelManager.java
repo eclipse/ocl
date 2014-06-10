@@ -1932,6 +1932,38 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 */
 	public @Nullable ParserContext getParserContext(@NonNull Element element, Object... todoParameters) {
 		Element pivotElement = element;
+		if (element instanceof OpaqueExpression) {
+			EObject pivotContainer = pivotElement.eContainer();
+			if (pivotContainer instanceof Operation) {							// Operation.bodyExpression
+				Operation pivotOperation = (Operation) pivotContainer;
+				return new OperationContext(this, null, pivotOperation, null);
+			}
+			if (pivotContainer instanceof Property) {
+				Property pivotProperty = (Property) pivotContainer;
+				return new PropertyContext(this, null, pivotProperty);
+			}
+			if (pivotContainer instanceof Constraint) {							// Operation.pre/postCondition
+				EObject pivotContainerContainer = pivotContainer.eContainer();
+				if (pivotContainerContainer instanceof Operation) {				
+					Operation pivotOperation = (Operation) pivotContainerContainer;
+					String resultName = null;
+					if (pivotOperation.getPostcondition().contains(pivotContainer)) {
+						Type resultType = pivotOperation.getType();
+						if ((resultType != null) && !(resultType instanceof VoidType)) {
+							resultName = Environment.RESULT_VARIABLE_NAME;
+						}
+					}
+					return new OperationContext(this, null, pivotOperation, resultName);
+				}
+				if (pivotContainerContainer instanceof Type) {				
+					Type pivotType = (Type) pivotContainerContainer;
+					return new ClassContext(this, null, pivotType);
+				}
+			}
+		}
+		//
+		//	The JUnit tests are satisfied by the new code above. The following provides legacy support, perhaps satisfying unusual invocations
+		//
 		if (pivotElement instanceof Constraint) {
 			EObject pivotContainer = pivotElement.eContainer();
 			if (pivotContainer instanceof Operation) {

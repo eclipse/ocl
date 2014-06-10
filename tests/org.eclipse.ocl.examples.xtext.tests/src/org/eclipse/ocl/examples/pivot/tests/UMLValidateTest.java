@@ -110,7 +110,7 @@ public class UMLValidateTest extends AbstractValidateTests
 				DomainUtil.bind(EvaluatorMessages.TypedValueRequired, "Real", "OclVoid")),
 			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(confusingBook),
 				"Failed to evaluate " + asPrice),
-			DomainUtil.bind(OCLMessages.ParsingError, DomainUtil.getLabel(opaqueExpression), "No containing namespace for 3 + 0.4"));
+			DomainUtil.bind(OCLMessages.ParsingError, DomainUtil.getLabel(opaqueExpression), "No containing resource for 3 + 0.4"));
 		ocl.dispose();
 	}
 

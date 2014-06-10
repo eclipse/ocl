@@ -345,7 +345,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		ExpressionInOCL prototype = inlinePrototypes.get(bodyExpression);
 		if (prototype == null) {
 			try {
-				prototype = PivotUtil.getExpressionInOCL(callExp, bodyExpression);
+				prototype = PivotUtil.getExpressionInOCL(bodyExpression);
 			}
 			catch (Exception e) {
 				// FIXME log error
@@ -512,7 +512,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		setAst(cgConstraint, element);
 		OpaqueExpression specification = element.getSpecification();
 		if (specification != null) {
-			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(element, specification);
+			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(specification);
 			if (expressionInOCL != null) {
 				Variable contextVariable = expressionInOCL.getContextVariable();
 				if (contextVariable != null) {
@@ -817,7 +817,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgOperation.setRequired(element.isRequired());
 		OpaqueExpression specification = element.getBodyExpression();
 		if (specification != null) {
-			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(element, specification);
+			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(specification);
 			if (expressionInOCL != null) {
 				Variable contextVariable = expressionInOCL.getContextVariable();
 				if (contextVariable != null) {
@@ -998,7 +998,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgProperty.setRequired(element.isRequired());
 		OpaqueExpression specification = element.getDefaultExpression();
 		if (specification != null) {
-			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(element, specification);
+			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(specification);
 			if (expressionInOCL != null) {
 				Variable contextVariable = expressionInOCL.getContextVariable();
 				if (contextVariable != null) {

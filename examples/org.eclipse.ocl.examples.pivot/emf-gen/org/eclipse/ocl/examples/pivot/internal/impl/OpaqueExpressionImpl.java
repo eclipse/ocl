@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -373,13 +372,7 @@ public class OpaqueExpressionImpl
 	public @Nullable ExpressionInOCL getExpressionInOCL()
 	{
 		if (expressionInOCL == null) {
-			Namespace contextElement = PivotUtil.getContainingNamespace(this);
-			if (contextElement != null) {
-				String expression = PivotUtil.getBody(this);
-				if (expression != null) {
-					setExpressionInOCL(PivotUtil.getExpressionInOCL(contextElement, expression));
-				}
-			}
+			setExpressionInOCL(PivotUtil.getExpressionInOCL(this));
 		}
 		return expressionInOCL;
 	}
@@ -396,15 +389,11 @@ public class OpaqueExpressionImpl
 		if (expressionInOCL2 != null) {
 			return expressionInOCL2;
 		}
-		Namespace contextElement = PivotUtil.getContainingNamespace(this);
-		if (contextElement == null) {
-			throw new ParserException("No containing namespace for " + this);
-		}
 		String expression = PivotUtil.getBody(this);
 		if (expression == null) {
 			throw new ParserException("No body expression for " + this);
 		}
-		expressionInOCL2 = PivotUtil.getValidExpressionInOCL(contextElement, expression);
+		expressionInOCL2 = PivotUtil.getValidExpressionInOCL(this, expression);
 		setExpressionInOCL(expressionInOCL2);
 		return expressionInOCL2;
 	}
