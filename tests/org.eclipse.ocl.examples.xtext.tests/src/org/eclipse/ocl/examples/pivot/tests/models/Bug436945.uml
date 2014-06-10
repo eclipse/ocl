@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="__PabcO1VEeOWme5BoW8JAQ" name="Model">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="__Pabce1VEeOWme5BoW8JAQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1joLQO1YEeOt1twOVEMELg" name="NamedClass">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_efRpYO1ZEeOt1twOVEMELg" name="AtLeastSixCharacters">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_8DhKYO1ZEeOt1twOVEMELg">
+        <language>OCL</language>
+        <body>self.name.size() >= 6</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_3i-M0O1YEeOt1twOVEMELg" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_jDkWMO8VEeOsV64FMIkj1g">
+        <language>OCL</language>
+        <body>self.oclType().name</body>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_7XRyoO1dEeOt1twOVEMELg" name="prefixedName" bodyCondition="_QBk3cO1eEeOt1twOVEMELg" isQuery="true" postcondition="_QlliEO-QEeOb2PFH-I9zGQ" precondition="_H1FaIO-uEeOb2PFH-I9zGQ _Rcv38O-uEeOb2PFH-I9zGQ">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_QBk3cO1eEeOt1twOVEMELg" name="BodyExpression">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_W_AjoO1eEeOt1twOVEMELg">
+          <language>OCL</language>
+          <body>self.name + prefix</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_QlliEO-QEeOb2PFH-I9zGQ" name="PostCondition">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_QlliEe-QEeOb2PFH-I9zGQ">
+          <language>OCL</language>
+          <body>result = self.name + prefix</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_H1FaIO-uEeOb2PFH-I9zGQ" name="NameIsDefined">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_H1FaIe-uEeOb2PFH-I9zGQ">
+          <language>OCL</language>
+          <body>not self.name.oclIsUndefined()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_Rcv38O-uEeOb2PFH-I9zGQ" name="PrefixIsDefined">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_Rcv38e-uEeOb2PFH-I9zGQ">
+          <language>OCL</language>
+          <body>not prefix.oclIsUndefined()</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ESINwO1eEeOt1twOVEMELg" name="prefix">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_OJhJoO1eEeOt1twOVEMELg" name="result" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>

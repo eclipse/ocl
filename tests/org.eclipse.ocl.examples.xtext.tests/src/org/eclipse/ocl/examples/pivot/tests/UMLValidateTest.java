@@ -246,4 +246,36 @@ public class UMLValidateTest extends AbstractValidateTests
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "ParentRealization", "In case of a ParentRealization relationship, the supplier should be a child of the client", label));
 		disposeResourceSet(resourceSet);
 	}
+	
+	public void test_umlValidation_Bug436945() throws IOException {   // This is org.eclipse.ocl.doc/doc/models/1710-m1.uml
+//		UML2Pivot.TYPE_EXTENSIONS.setState(true);
+//		resetRegistries();
+//		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+//		ResourceSet resourceSet = createResourceSet();
+//		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+//		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+//		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+//			assertNull(UML2Pivot.initialize(resourceSet));
+//		}
+//		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+//		URI uri = getProjectFileURI("Bug436945.uml");
+//		Resource umlResource = DomainUtil.nonNullState(resourceSet.getResource(uri, true));
+		OCL ocl = OCL.newInstance();
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug436945");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+//		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		assertValidationDiagnostics("Loading", umlResource, validationContext); //,
+//			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "ParentRealization", "In case of a ParentRealization relationship, the supplier should be a child of the client", label));
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource); //,
+//			DomainUtil.bind(UMLMessages.BodyLanguageSupportError, IllegalStateException.class.getName() + ": " + NLS.bind(UMLMessages.MissingBodyLanguageSupport, "Natural language"), DomainUtil.getLabel(opaqueExpression)),
+//			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(invalidBook)),
+//			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(partialBook),
+//				DomainUtil.bind(EvaluatorMessages.TypedValueRequired, "Real", "OclVoid")),
+//			DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), DomainUtil.getLabel(confusingBook),
+//				"Failed to evaluate " + asPrice),
+//			DomainUtil.bind(OCLMessages.ParsingError, DomainUtil.getLabel(opaqueExpression), "No containing namespace for 3 + 0.4"));
+		ocl.dispose();
+	}
 }
