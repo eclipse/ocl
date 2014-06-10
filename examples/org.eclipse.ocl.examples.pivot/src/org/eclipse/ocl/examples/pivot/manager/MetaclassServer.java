@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -104,9 +105,21 @@ public class MetaclassServer extends ExtensibleTypeServer
 		return metaclass;
 	} */
 
+	@Override
+	@Nullable Type findPivotType() {
+		for (TypeTracker typeTracker : getTypeTrackers()) {
+			DomainType trackedType = typeTracker.getType();
+			if (trackedType instanceof Metaclass) {
+				return (Metaclass<?>)trackedType;
+			}
+		}
+		return super.findPivotType();
+	}
+
 	public synchronized @NonNull Metaclass<?> getMetaclass(@NonNull Type type) {
-		assert getPivotType() instanceof Metaclass;
-		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
+		Type pivotType = getPivotType();
+		assert pivotType instanceof Metaclass;
+		TemplateSignature templateSignature = pivotType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		if (templateParameters.size() != 1) {
 			throw new IllegalArgumentException("Incompatible metaclass template argument count");
