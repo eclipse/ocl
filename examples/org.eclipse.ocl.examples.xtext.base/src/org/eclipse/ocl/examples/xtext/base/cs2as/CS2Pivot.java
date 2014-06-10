@@ -453,6 +453,9 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	public @NonNull <T extends Element> T refreshModelElement(@NonNull Class<T> pivotClass, @NonNull EClass pivotEClass, @Nullable ModelElementCS csElement) {
 		Element pivotElement = csElement != null ? getPivotElement(csElement) : null;
 		@NonNull Element pivotElement2;
+		if (pivotElement != null) {
+			PivotUtil.resetContainer(pivotElement);		// Bypass child-stealing detector
+		}
 		if ((pivotElement == null) || (pivotEClass != pivotElement.eClass())) {
 			@SuppressWarnings("null") @NonNull Element pivotElement3 = (Element) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
 			pivotElement2 = pivotElement3;
