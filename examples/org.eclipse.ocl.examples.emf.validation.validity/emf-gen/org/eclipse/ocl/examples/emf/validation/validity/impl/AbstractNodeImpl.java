@@ -423,7 +423,7 @@ public abstract class AbstractNodeImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	public boolean refreshVisibleChildren(@NonNull Iterable<IVisibilityFilter> visibilityFilters) {
-		List<? extends AbstractNode> children = getChildren();
+		List<? extends AbstractNode> children = new ArrayList<AbstractNode>(getChildren());		// Avoid CME from refresh during discover
 		List<AbstractNode> list = new ArrayList<AbstractNode>(children.size());
 		for (AbstractNode node : children) {
 			if (node.refreshVisibleChildren(visibilityFilters)) {
