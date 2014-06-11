@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
+import org.eclipse.ocl.examples.emf.validation.validity.RootValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessages;
 
@@ -61,7 +62,7 @@ public class TextExporter extends AbstractExporter
 	 * @throws IOException 
 	 */
 	@Override
-	public void createContents(@NonNull Appendable text, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+	public void createContents(@NonNull Appendable text, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		text.append("==== GENERAL INFORMATION ====\n");
 		if (exportedFileName != null) {
 			text.append("Output file name: " + exportedFileName + "\n");
@@ -71,7 +72,10 @@ public class TextExporter extends AbstractExporter
 		text.append("\n");
 		text.append("==== RESOURCES USED ====\n");
 		text.append("Model checked: \n");
-		text.append("\t\t\t\t" + validatedResource.getURI().lastSegment() + "\n");
+		for (RootValidatableNode rootValidatableNode : rootNode.getValidatableNodes()) {
+			Resource eResource = rootValidatableNode.getConstrainedObject().eResource();
+			text.append("\t\t\t\t" + eResource.getURI() + "\n");
+		}
 		text.append("\n");
 		text.append("\n");
 		text.append("==== METRICS ====\n");

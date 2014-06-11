@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.emf.validation.validity.export;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * This interface defines the general contract of the validity results export mechanism.
@@ -21,6 +20,6 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public interface IValidityExporterDescriptor
 {	
-	@Nullable IValidityExporter getExporter();
+	@NonNull IValidityExporter getExporter();
 	@NonNull String getExporterType();
 }

@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.emf.validation.validity.export;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.plugin.ValidityPlugin;
 
 /**
@@ -95,14 +94,16 @@ public class ValidityExporterDescriptor implements IValidityExporterDescriptor {
 	 * 
 	 * @return A new instance of this descriptor's {@link IValidityExporter}.
 	 */
-	public @Nullable IValidityExporter getExporter() {
-		if (exporter == null) {
+	public @NonNull IValidityExporter getExporter() {
+		IValidityExporter exporter2 = exporter;
+		if (exporter2 == null) {
 			try {
-				exporter = (IValidityExporter) element.createExecutableExtension(exporterClassAttribute);
+				exporter = exporter2 = (IValidityExporter) element.createExecutableExtension(exporterClassAttribute);
 			} catch (CoreException e) {
 				ValidityPlugin.getPlugin().getLog().log(e.getStatus());
 			}
 		}
-		return exporter;
+		assert exporter2 != null;
+		return exporter2;
 	}
 }

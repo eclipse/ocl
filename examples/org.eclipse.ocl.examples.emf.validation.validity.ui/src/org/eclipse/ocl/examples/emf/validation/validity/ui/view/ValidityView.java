@@ -13,14 +13,20 @@ package org.eclipse.ocl.examples.emf.validation.validity.ui.view;
 
 import java.lang.reflect.Method;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -306,6 +312,9 @@ public class ValidityView extends ViewPart implements ISelectionListener
 	private Action constrainingNodesDoubleClickAction;
 	private Action validatableNodesDoubleClickAction;
 
+	/** Selection */
+	private @Nullable IWorkbenchPart currentPart;
+	private @Nullable ISelection currentSelection;
 	private @Nullable Notifier selection = null;
 	private @Nullable ChangeSelectionJob setInputJob = null;
 
@@ -553,6 +562,45 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		
 		ColumnViewerToolTipSupport.enableFor(validatableNodesViewer);
 		ColumnViewerToolTipSupport.enableFor(constrainingNodesViewer);
+	}
+
+	/**
+	 * Return the most recent selection as IResource, if it can be converted possibly by resolving the Resource of an EObject. 
+	 */
+	public @Nullable IResource getSelectedResource() {
+		Object selection = null;
+		ISelection currentSelection2 = currentSelection;
+		if (currentSelection2 != null) {
+			selection = SelectionUtil.getNotifierSelection(currentSelection2, currentPart);
+			if ((selection == null) && (currentSelection2 instanceof IStructuredSelection)) {
+				selection = ((IStructuredSelection)currentSelection2).getFirstElement();
+			}
+		}
+		if (selection != null) {
+			if (selection instanceof IAdaptable) {
+				Object adapted = ((IAdaptable)selection).getAdapter(EObject.class);
+				if (adapted == null) {
+					adapted = ((IAdaptable)selection).getAdapter(Resource.class);
+					if (adapted == null) {
+						adapted = ((IAdaptable)selection).getAdapter(IResource.class);
+					}
+				}
+				if (adapted != null) {
+					selection = adapted;
+				}
+			}
+			if (selection instanceof EObject) {
+				selection = ((EObject)selection).eResource();
+			}
+			if (selection instanceof Resource) {
+				URI resourceURI = ((Resource)selection).getURI();
+				if ((resourceURI != null) && resourceURI.isPlatform()) {
+					IPath resourcePath = new Path(resourceURI.toPlatformString(true));
+					selection = ResourcesPlugin.getWorkspace().getRoot().getFile(resourcePath);
+				}
+			}
+		}
+		return selection instanceof IResource ? (IResource)selection : null;
 	}
 	
 	/**
@@ -832,6 +880,8 @@ public class ValidityView extends ViewPart implements ISelectionListener
 	}
 
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		currentPart = part;
+		currentSelection = selection;
 		if (lockValidatableNodesAction.isChecked()) {
 			return;
 		}

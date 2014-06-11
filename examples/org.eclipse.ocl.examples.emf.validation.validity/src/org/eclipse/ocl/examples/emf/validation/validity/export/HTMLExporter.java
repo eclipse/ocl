@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
+import org.eclipse.ocl.examples.emf.validation.validity.RootValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.messages.ValidityMessages;
 
@@ -73,7 +74,7 @@ public class HTMLExporter extends AbstractExporter
 	 * @throws IOException 
 	 */
 	@Override
-	public void createContents(@NonNull Appendable html, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+	public void createContents(@NonNull Appendable html, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		html.append("<html>\n");
 		html.append("\t<head></head>\n");
 		html.append("\t<body>\n");
@@ -102,7 +103,10 @@ public class HTMLExporter extends AbstractExporter
 		html.append("\t\t\t<h2>2.1. Model checked</h2>\n");
 
 		html.append("\t\t\t<ul>\n");
-		html.append("\t\t\t\t<li>" + validatedResource.getURI().lastSegment() + "</li>\n");
+		for (RootValidatableNode rootValidatableNode : rootNode.getValidatableNodes()) {
+			Resource eResource = rootValidatableNode.getConstrainedObject().eResource();
+			html.append("\t\t\t\t<li>" + eResource.getURI() + "</li>\n");
+		}
 
 		html.append("\t\t\t</ul>\n");
 

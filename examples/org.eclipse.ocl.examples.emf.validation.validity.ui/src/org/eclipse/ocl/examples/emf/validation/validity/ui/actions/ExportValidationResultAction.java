@@ -12,17 +12,20 @@ package org.eclipse.ocl.examples.emf.validation.validity.ui.actions;
 
 import java.net.URL;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
@@ -38,9 +41,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 
 public final class ExportValidationResultAction extends Action implements IMenuCreator
@@ -57,11 +58,8 @@ public final class ExportValidationResultAction extends Action implements IMenuC
 		this.validityView = validityView;
 		URL image = (URL) ValidityUIPlugin.INSTANCE.getImage(ValidityUIMessages.ValidityView_Action_ExportResult_ImageLocation);
 		setImageDescriptor(ImageDescriptor.createFromURL(image));
-		
-		if (ValidityExporterRegistry.INSTANCE.getRegisteredExtensions().isEmpty()) {
-			setToolTipText(ValidityUIMessages.ValidityView_Action_ExportResult_ToolTipText_NoExporter);
-		} else {
-			setToolTipText(ValidityUIMessages.ValidityView_Action_ExportResult_ToolTipText_NeedsRun);
+		setToolTipText(ValidityUIMessages.ValidityView_Action_ExportResult_ToolTipText);
+		if (!ValidityExporterRegistry.INSTANCE.getRegisteredExtensions().isEmpty()) {
 			setMenuCreator(this);
 		}
 	}
@@ -122,34 +120,22 @@ public final class ExportValidationResultAction extends Action implements IMenuC
 
 		@Override
 		public void run() {
-			IWorkbenchPage page = validityView.getSite().getPage();
-			IStructuredSelection selection = null;
-			IEditorPart editorPart = page.getActiveEditor();
-			if (editorPart.getSite() != null) {
-				ISelectionProvider selectionProvider = editorPart.getSite().getSelectionProvider();
-				if (selectionProvider != null) {
-					ISelection selection2 = selectionProvider.getSelection();
-					if (!selection2.isEmpty() && selection2 instanceof IStructuredSelection)
-						selection = (IStructuredSelection) selection2;
-				}
-			}
-			if (selection != null) {
-				try {
-					openExportWizard(selection);
-				} catch (CoreException e) {
-					ValidityUIPlugin.getPlugin().getLog().log(e.getStatus());
-				}
+			IResource selection = validityView.getSelectedResource();
+			try {
+				openExportWizard(selection);
+			} catch (CoreException e) {
+				ValidityUIPlugin.getPlugin().getLog().log(e.getStatus());
 			}
 		}
 		
 		/**
 		 * Opens the export wizard for the receiver.
 		 * 
-		 * @param currentSelection
-		 *            The current selection in the active editor part
+		 * @param currentResource
+		 *            The current IResource selection in some part
 		 * @throws CoreException
 		 */
-		private void openExportWizard(@NonNull final IStructuredSelection currentSelection)
+		private void openExportWizard(@Nullable final IResource currentResource)
 				throws CoreException {
 			final IWorkbenchWindow window = validityView.getSite().getWorkbenchWindow();
 			Shell shell = window.getShell();
@@ -161,14 +147,21 @@ public final class ExportValidationResultAction extends Action implements IMenuC
 					display.syncExec(new Runnable() {
 						public void run() {
 							IValidityExporter exporter = exportDescriptor.getExporter();
-							if (exporter == null) {
-								return;
-							}
 							Shell shell = window.getShell();
 							if (shell.isDisposed()) {
 								return;
 							}
-							ExportValidationResultsFileWizard wizard = new ExportValidationResultsFileWizard(workbench, currentSelection, rootNode, exporter);
+							StructuredSelection structuredSelection;
+							if (currentResource == null) {
+								structuredSelection = StructuredSelection.EMPTY;
+							}
+							else if ((currentResource instanceof IProject) && !((IProject)currentResource).isOpen()) {
+								structuredSelection = StructuredSelection.EMPTY;
+							}
+							else {
+								structuredSelection = new StructuredSelection(currentResource);
+							}
+							ExportValidationResultsFileWizard wizard = new ExportValidationResultsFileWizard(workbench, structuredSelection, rootNode, exporter);
 							WizardDialog dialog = new WizardDialog(shell, wizard);
 							if (dialog.open() != Window.OK) {
 								return;
@@ -176,7 +169,7 @@ public final class ExportValidationResultAction extends Action implements IMenuC
 						}
 					});
 				} else {
-					// DO NOTHING 
+					throw new CoreException(new Status(IStatus.ERROR, ValidityUIPlugin.PLUGIN_ID, ValidityUIMessages.ValidityView_Action_ExportError_NoResults));
 				}
 			}
 		}

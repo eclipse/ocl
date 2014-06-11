@@ -53,7 +53,7 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 	}
 
 	protected @NonNull String doTest() throws IOException {
-		String exported = exporter.export(ecoreResource, rootNode, exportedFileName);
+		String exported = exporter.export(rootNode, exportedFileName);
 		FileWriter writer = new FileWriter(exportedFileName);
 		writer.append(exported);
 		writer.close();
@@ -455,7 +455,7 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 		assertXPathTrue(exported, "//table[1]/tr/td[2]='" + exportedFileName + "'");
 
 		// test resource validated
-		assertXPathTrue(exported, "//ul[1]/li='ecoreTest.ecore'");
+		assertXPathTrue(exported, "//ul[1]/li='platform:/plugin/org.eclipse.ocl.examples.validity.test/model/ecoreTest.ecore'");
 
 		// test author
 		assertXPathTrue(exported, "//table[1]/tr[2]/td[2]!=''");
@@ -489,7 +489,11 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 		assertXPathTrue(exported, "//table[1]/tr/td[2]='" + exportedFileName + "'");
 
 		// test resource validated
-		assertXPathTrue(exported, "//ul[1]/li='ecoreTest.ecore'");
+		assertXPathTrue(exported, "//ul[1]/li[1]='" + TEST_PROJECT_LOCATION + "/" + ECORE_MODEL_NAME2 + "'");
+		assertXPathTrue(exported, "//ul[1]/li[2]='" + TEST_PROJECT_LOCATION + "/" + OCL_CONSTRAINTS_MODEL + "'");
+		assertXPathTrue(exported, "//ul[1]/li[3]='" + TEST_PROJECT_LOCATION + "/" + ECORE_MODEL_NAME + "'");
+		assertXPathTrue(exported, "//ul[1]/li[4]='" + TEST_PROJECT_LOCATION + "/" + OCL_CONSTRAINTS_MODEL2 + "'");
+		assertXPathTrue(exported, "//ul[1]/li[5]='" + TEST_PROJECT_LOCATION + "/" + ECORE_MODEL_NAME3 + "'");
 
 		// test author
 		assertXPathTrue(exported, "//table[1]/tr[2]/td[2]!=''");

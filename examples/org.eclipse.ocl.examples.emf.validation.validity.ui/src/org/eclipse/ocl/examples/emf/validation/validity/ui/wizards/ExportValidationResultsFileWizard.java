@@ -25,12 +25,12 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -59,13 +59,10 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 	/** The only page contributing to the wizard */
 	private ExportValidationResultsFileWizardPage wizardPage;
 
-	/** The selected Resource */
-	private Resource initialResource;
-
 	/**
 	 * Constructor
 	 */
-	public ExportValidationResultsFileWizard(@NonNull IWorkbench workbench, @NonNull IStructuredSelection initialSelection, 
+	public ExportValidationResultsFileWizard(@NonNull IWorkbench workbench, @Nullable IStructuredSelection initialSelection, 
 			@NonNull RootNode rootNode, @NonNull IValidityExporter exporter) {
 		super();
 		setWindowTitle(ValidityUIMessages.NewWizardPage_pageTitle);
@@ -74,24 +71,36 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		init(workbench, initialSelection);
 	}
 	
-	public void export(final @NonNull Resource validatedResource, final @NonNull IPath savePath) {
+	public void export(final @Nullable Resource zzvalidatedResource, @NonNull IPath savePath) {
+		final File exportedFile = new File(savePath.toString());
+		final IFile exportedIFile = ResourcesPlugin.getWorkspace().getRoot().getFile(savePath);
+		final boolean fileExists = exportedIFile.exists();
+		if (fileExists) {
+			if (!MessageDialog.openQuestion(getShell(), ValidityUIMessages.NewWizardPage_exists,
+					NLS.bind(ValidityUIMessages.NewWizardPage_overwrite, savePath.toString()))) {
+				return;
+			}
+		}
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) {
-				File exportedFile = new File(savePath.toString());
-				String initialContents = exporter.export(validatedResource, rootNode, exportedFile.getName());
+				String initialContents = exporter.export(rootNode, exportedFile.getName());
 				byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));
 				try {
 					if (exportedFile.isAbsolute()) {
 						Files.write(byteArrayInputStream, exportedFile);
 					} else {
 						final InputStream contentStream = new ByteArrayInputStream(byteArrayInputStream);
-						final IFile exportedIFile = ResourcesPlugin.getWorkspace().getRoot().getFile(savePath);
-						exportedIFile.create(contentStream, true, monitor);
+						if (!fileExists) {
+							exportedIFile.create(contentStream, true, monitor);
+						}
+						else {
+							exportedIFile.setContents(contentStream, true, true, monitor);
+						}
 					}
 				} catch (final CoreException e) {
-					handleError(e.getCause(), true);
+					handleError(e, true);
 				} catch (final IOException e) {
-					handleError(e.getCause(), true);
+					handleError(e, true);
 				}
 			}
 		};
@@ -103,25 +112,6 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		} catch (InterruptedException e) {
 			handleError(e, false);
 		}
-	}
-	
-	/**
-	 * Returns the file if exists in the workspace
-	 * 
-	 * @param resource
-	 * @return the file if exists in the workspace, null otherwise
-	 */
-	private IFile getIResource(Resource resource) {
-		if (resource == null)
-			return null;
-		URI resourceURI = resource.getURI();
-		if (resourceURI == null)
-			return null;
-		if (resourceURI.isPlatform()) {
-			IPath resourcePath = new Path(resourceURI.toPlatformString(true));
-			return ResourcesPlugin.getWorkspace().getRoot().getFile(resourcePath);
-		}
-		return null;
 	}
 
 	private static void handleError(Throwable t, boolean popup) {
@@ -148,17 +138,11 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		IResource initialIResource = null;
-		Object selected = selection.getFirstElement();
-		if (selected instanceof Resource) {
-			initialResource = (Resource) selected;
-			initialIResource = getIResource(initialResource);
-		}
+		Object selected = selection != null ? selection.getFirstElement() : null;
+		IResource initialIResource = selected instanceof IResource ? (IResource)selected : null;
 		String preferredExtension = exporter.getPreferredExtension();
-		if (/*expectedExtension != null && */initialIResource != null) {
-			wizardPage = new ExportValidationResultsFileWizardPage(preferredExtension, initialIResource);
-			addPage(wizardPage);
-		}
+		wizardPage = new ExportValidationResultsFileWizardPage(preferredExtension, initialIResource);
+		addPage(wizardPage);
 	}
 
 	/**
@@ -180,10 +164,9 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 	 */
 	@Override
 	public boolean performFinish() {
-		final Resource selectedResource2 = initialResource;
 		final IPath path = wizardPage.getNewExportedFilePath();
-		if ((selectedResource2 != null) && (path != null)) {
-			export(selectedResource2, path);
+		if (path != null) {
+			export(null, path);
 		}
 		return true;
 	}

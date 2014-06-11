@@ -60,20 +60,30 @@ public abstract class AbstractExporter implements IValidityExporter
 	 * 
 	 * @throws IOException 
 	 */
-	protected abstract void createContents(@NonNull Appendable s, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
+	protected abstract void createContents(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
 
-	public @NonNull String export(@NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) {
+	@Deprecated
+	public @NonNull String export(@Nullable Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) {
+		return export(rootNode, exportedFileName);
+	}
+
+	@Deprecated
+	public void export(@NonNull Appendable s, @Nullable Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+		export(s, rootNode, exportedFileName);
+	}
+
+	public @NonNull String export(@NonNull RootNode rootNode, @Nullable String exportedFileName) {
 		StringBuilder s = new StringBuilder();
 		try {
-			export(s, validatedResource, rootNode, exportedFileName);
+			export(s, rootNode, exportedFileName);
 		} catch (IOException e) { /* StringBuilder doesn't throw IOExceptions */ }
 		@SuppressWarnings("null")@NonNull String string = s.toString();
 		return string;
 	}
 
-	public void export(@NonNull Appendable s, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+	public void export(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		populateMaps(rootNode);
-		createContents(s, validatedResource, rootNode, exportedFileName);
+		createContents(s, rootNode, exportedFileName);
 		clearMaps();
 	}
 

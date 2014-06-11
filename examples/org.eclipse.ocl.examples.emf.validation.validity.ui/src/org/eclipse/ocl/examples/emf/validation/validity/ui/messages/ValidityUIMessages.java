@@ -50,8 +50,8 @@ public class ValidityUIMessages
 	public static String ValidityView_Action_ExportResult_Title;
 	public static String ValidityView_Action_ExportResult_ImageLocation;
 	public static String ValidityView_Action_ExportResult_ToolTipText;
-	public static String ValidityView_Action_ExportResult_ToolTipText_NeedsRun;
-	public static String ValidityView_Action_ExportResult_ToolTipText_NoExporter;
+
+	public static String ValidityView_Action_ExportError_NoResults;
 
 	public static String ValidityView_Action_FilterResult_Title;
 	public static String ValidityView_Action_FilterResult_ImageLocation;
@@ -134,6 +134,9 @@ public class ValidityUIMessages
 	public static String NewWizardPage_pageDescription;
 	public static String NewWizardPage_pageSummary;
 	public static String NewWizardPage_pageTitle;
+
+	public static String NewWizardPage_exists;
+	public static String NewWizardPage_overwrite;
 	
 	public static String ResourceGroup_resource;
 	public static String ResourceGroup_nameExists;

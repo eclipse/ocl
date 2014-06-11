@@ -59,7 +59,7 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 	 * @param initialResource
 	 *            the current resource selection
 	 */
-	public ExportValidationResultsFileWizardPage(@Nullable String preferredExtension, @NonNull IResource initialResource) {
+	public ExportValidationResultsFileWizardPage(@Nullable String preferredExtension, @Nullable IResource initialResource) {
 		super(ValidityUIMessages.NewWizardPage_pageName);
 		setTitle(ValidityUIMessages.NewWizardPage_pageSummary);
 		setDescription(ValidityUIMessages.NewWizardPage_pageDescription);
@@ -90,7 +90,7 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 		ResourceAndContainerGroup resourceGroup = new ResourceAndContainerGroup(parent, this,
 				ValidityUIMessages.NewWizardPage_fileNameLabel,
 				ValidityUIMessages.NewWizardPage_file, false, SIZING_CONTAINER_GROUP_HEIGHT);
-		resourceGroup.setAllowExistingResources(false);
+		resourceGroup.setAllowExistingResources(true);
 		resourceGroup.setResourceExtension(preferredExtension);
 		return resourceGroup;
 	}
@@ -225,17 +225,19 @@ public class ExportValidationResultsFileWizardPage extends WizardPage implements
 //		}
 
 		if (group.getAllowExistingResources()) {
-			String problemMessage = NLS.bind(
-				ValidityUIMessages.NewWizardPage_nameExists,
-				getNewExportedFileName());
-			IPath resourcePath = group.getContainerFullPath().append(getNewExportedFileName());
-			IWorkspaceRoot root = workspace.getRoot();
-			if (root.getFolder(resourcePath).exists()) {
-				setErrorMessage(problemMessage);
-				valid = false;
-			}
-			if (root.getFile(resourcePath).exists()) {
-				setMessage(problemMessage, IMessageProvider.WARNING);
+			IPath containerFullPath = group.getContainerFullPath();
+			if (containerFullPath != null) {
+				String newExportedFileName = getNewExportedFileName();
+				String problemMessage = NLS.bind(ValidityUIMessages.NewWizardPage_nameExists, newExportedFileName);
+				IPath resourcePath = containerFullPath.append(newExportedFileName);
+				IWorkspaceRoot root = workspace.getRoot();
+				if (root.getFolder(resourcePath).exists()) {
+					setErrorMessage(problemMessage);
+					valid = false;
+				}
+				if (root.getFile(resourcePath).exists()) {
+					setMessage(problemMessage, IMessageProvider.WARNING);
+				}
 			}
 		}
 

@@ -573,7 +573,7 @@ public class ValidateCommand extends StandaloneCommand
 
 			// export results
 			File outputFile = outputToken.getOutputFile(token2strings);
-			exportValidationResults(validityManager.getRootNode(), modelResource, outputFile, token2strings);
+			exportValidationResults(validityManager.getRootNode(), outputFile, token2strings);
 //			try {
 //				exportValidationResults(getOutputWriter(), validityManager.getRootNode());
 //			} catch (IOException e) {
@@ -596,14 +596,14 @@ public class ValidateCommand extends StandaloneCommand
 	 * @param outputPath
 	 *            the exported file path.
 	 */
-	private void exportValidationResults(@NonNull RootNode rootNode, @NonNull Resource modelResource, @Nullable File outputFile, @NonNull Map<CommandToken, List<String>> token2strings) {
+	private void exportValidationResults(@NonNull RootNode rootNode, @Nullable File outputFile, @NonNull Map<CommandToken, List<String>> token2strings) {
 		final IValidityExporter selectedExporter = exporterToken.getExporter(token2strings);
-		if (selectedExporter != null && modelResource != null && rootNode != null) {
+		if (selectedExporter != null && rootNode != null) {
 //			logger.info(StandaloneMessages.OCLValidatorApplication_ExportStarting);
 			Appendable s = null;
 			try {
 				s = outputFile != null ? new FileWriter(outputFile) : System.out;
-				selectedExporter.export(s, modelResource, rootNode, outputFile != null ? outputFile.toString() : null);
+				selectedExporter.export(s, rootNode, outputFile != null ? outputFile.toString() : null);
 			} catch (IOException e) {
 				logger.error(StandaloneMessages.OCLValidatorApplication_ExportProblem, e);
 			} finally {

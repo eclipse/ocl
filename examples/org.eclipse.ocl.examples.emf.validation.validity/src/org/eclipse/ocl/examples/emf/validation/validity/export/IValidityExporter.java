@@ -36,7 +36,19 @@ public interface IValidityExporter extends IValidityExporterDescriptor
 	 * 			The target file name or null if not known and not to be reported
 	 * @throws IOException 
 	 */
-	@NonNull String export(@NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String fileName);
+	@Deprecated
+	@NonNull String export(@Nullable Resource validatedResource, @NonNull RootNode rootNode, @Nullable String fileName);
+
+	/**
+	 * Export the validity results and return String containing the results.
+	 * 
+	 * @param rootNode
+	 *            The Root Node to export
+	 * @param fileName
+	 * 			The target file name or null if not known and not to be reported
+	 * @throws IOException 
+	 */
+	@NonNull String export(@NonNull RootNode rootNode, @Nullable String fileName);
 
 	/**
 	 * Export the validity results to an Appendable.
@@ -51,7 +63,21 @@ public interface IValidityExporter extends IValidityExporterDescriptor
 	 * 			The target file name or null if not known and not to be reported
 	 * @throws IOException 
 	 */
-	void export(@NonNull Appendable s, @NonNull Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
+	@Deprecated
+	void export(@NonNull Appendable s, @Nullable Resource validatedResource, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
+
+	/**
+	 * Export the validity results to an Appendable.
+	 * 
+	 * @param s
+	 *            The appendable
+	 * @param rootNode
+	 *            The Root Node to export
+	 * @param exportedFileName
+	 * 			The target file name or null if not known and not to be reported
+	 * @throws IOException 
+	 */
+	void export(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
 
 	@Nullable String getPreferredExtension();
 }

@@ -32,11 +32,12 @@ import org.junit.Test;
  */
 public class TextExportOCLValidationResultTests extends AbstractExportOCLValidationResultTests
 {
-	private static final int WARNING_NUMBER_XPATH_LOCATION = 15;
-	private static final int INFO_NUMBER_XPATH_LOCATION = 14;
-	private static final int ERROR_NUMBER_XPATH_LOCATION = 16;
-	private static final int FAILURE_NUMBER_XPATH_LOCATION = 17;
-	private static final int SUCCESS_NUMBER_XPATH_LOCATION = 13;
+	private static final int TOTAL_NUMBER_XPATH_LOCATION = 16;
+	private static final int SUCCESS_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+1;
+	private static final int INFO_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+2;
+	private static final int WARNING_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+3;
+	private static final int ERROR_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+4;
+	private static final int FAILURE_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+5;
 
 	private String exportedFileName = null;
 
@@ -55,7 +56,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 	}
 
 	protected @NonNull String doTest() throws IOException {
-		String exported = exporter.export(ecoreResource, rootNode, exportedFileName);
+		String exported = exporter.export(rootNode, exportedFileName);
 		FileWriter writer = new FileWriter(exportedFileName);
 		writer.append(exported);
 		writer.close();
@@ -253,7 +254,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		// launch the exporter
 		String exported = doTest();
 
-		assertLineContains(exported, 26, "null diagnostic message"); //$NON-NLS-1$
+		assertLineContains(exported, 30, "null diagnostic message"); //$NON-NLS-1$
 	}
 
 	/**
@@ -282,7 +283,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		// launch the exporter
 		String exported = doTest();
 
-		assertLineContains(exported, 26, diagnostic);
+		assertLineContains(exported, 30, diagnostic);
 	}
 
 	@Test
@@ -305,25 +306,29 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		String exported = doTest();
 
 		// test tables headings
-		assertLineContains(exported, 22, "ecoreTest.ocl"); //$NON-NLS-1$
-		assertLineContains(exported, 23, "eclass2_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 24, "eclass2_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 25, "INFO"); //$NON-NLS-1$
+		int TEST_TABLE_1_LOCATION = FAILURE_NUMBER_XPATH_LOCATION+5;
+		assertLineContains(exported, TEST_TABLE_1_LOCATION, "ecoreTest.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_1_LOCATION+1, "eclass2_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_1_LOCATION+2, "eclass2_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_1_LOCATION+3, "INFO"); //$NON-NLS-1$
 
-		assertLineContains(exported, 29, "ecore.ocl"); //$NON-NLS-1$
-		assertLineContains(exported, 30, "eattribute_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 31, "eattribute_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 32, "WARNING"); //$NON-NLS-1$
+		int TEST_TABLE_2_LOCATION = TEST_TABLE_1_LOCATION+7;
+		assertLineContains(exported, TEST_TABLE_2_LOCATION, "ecore.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_2_LOCATION+1, "eattribute_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_2_LOCATION+2, "eattribute_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_2_LOCATION+3, "WARNING"); //$NON-NLS-1$
 
-		assertLineContains(exported, 36, "ecoreTest.ocl"); //$NON-NLS-1$
-		assertLineContains(exported, 37, "eclass1_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 38, "eclass1_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 39, "ERROR"); //$NON-NLS-1$
+		int TEST_TABLE_3_LOCATION = TEST_TABLE_1_LOCATION+2*7;
+		assertLineContains(exported, TEST_TABLE_3_LOCATION, "ecoreTest.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_3_LOCATION+1, "eclass1_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_3_LOCATION+2, "eclass1_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_3_LOCATION+3, "ERROR"); //$NON-NLS-1$
 
-		assertLineContains(exported, 43, "ecore.ocl"); //$NON-NLS-1$
-		assertLineContains(exported, 44, "epackage_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 45, "epackage_constraint"); //$NON-NLS-1$
-		assertLineContains(exported, 46, "FATAL"); //$NON-NLS-1$
+		int TEST_TABLE_4_LOCATION = TEST_TABLE_1_LOCATION+3*7;
+		assertLineContains(exported, TEST_TABLE_4_LOCATION, "ecore.ocl"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_4_LOCATION+1, "epackage_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_4_LOCATION+2, "epackage_constraint"); //$NON-NLS-1$
+		assertLineContains(exported, TEST_TABLE_4_LOCATION+3, "FATAL"); //$NON-NLS-1$
 	}
 
 	@Test
@@ -360,23 +365,12 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		String exported = doTest();
 
 		// tests validation results
-		// Total number
-		assertLineContains(exported, 12, EXPECTED_RESULTS.toString()); //$NON-NLS-1$
-
-		// Success
-		assertLineContains(exported, 13, EXPECTED_SUCCESSES.toString()); //$NON-NLS-1$
-
-		// Infos
-		assertLineContains(exported, 14, EXPECTED_INFOS.toString()); //$NON-NLS-1$
-
-		// Warning
-		assertLineContains(exported, 15, EXPECTED_WARNINGS.toString()); //$NON-NLS-1$
-
-		// Errors
-		assertLineContains(exported, 16, EXPECTED_ERRORS.toString()); //$NON-NLS-1$
-
-		// Failures
-		assertLineContains(exported, 17, EXPECTED_FAILURES.toString()); //$NON-NLS-1$
+		assertLineContains(exported, TOTAL_NUMBER_XPATH_LOCATION, EXPECTED_RESULTS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, EXPECTED_SUCCESSES.toString()); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, EXPECTED_INFOS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, EXPECTED_WARNINGS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, EXPECTED_ERRORS.toString()); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, EXPECTED_FAILURES.toString()); //$NON-NLS-1$
 	}
 
 	@Test
@@ -388,29 +382,20 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		assertLineContains(exported, 2, exportedFileName);
 
 		// test resource validated
-		assertLineContains(exported, 8, "ecoreTest.ecore"); //$NON-NLS-1$
+		assertLineContains(exported, 8, ECORE_MODEL_NAME2); //$NON-NLS-1$
+		assertLineContains(exported, 9, OCL_CONSTRAINTS_MODEL); //$NON-NLS-1$
+		assertLineContains(exported, 10, ECORE_MODEL_NAME); //$NON-NLS-1$
+		assertLineContains(exported, 11, OCL_CONSTRAINTS_MODEL2); //$NON-NLS-1$
+		assertLineContains(exported, 12, ECORE_MODEL_NAME3); //$NON-NLS-1$
 
 		// tests validation results
-		// Total number
-		assertLineContains(exported, 12, "0"); //$NON-NLS-1$
-
-		// Success
-		assertLineContains(exported, 13, "0"); //$NON-NLS-1$
-
-		// Infos
-		assertLineContains(exported, 14, "0"); //$NON-NLS-1$
-
-		// Warning
-		assertLineContains(exported, 15, "0"); //$NON-NLS-1$
-
-		// Errors
-		assertLineContains(exported, 16, "0"); //$NON-NLS-1$
-
-		// Failures
-		assertLineContains(exported, 17, "0"); //$NON-NLS-1$
-
-		// test logs results
-		assertLineContains(exported, 21, "No log to display: models has been successfully validated."); //$NON-NLS-1$
+		assertLineContains(exported, TOTAL_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, SUCCESS_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, INFO_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, WARNING_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, ERROR_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
+		assertLineContains(exported, FAILURE_NUMBER_XPATH_LOCATION+4, "No log to display: models has been successfully validated."); //$NON-NLS-1$
 	}
 
 }
