@@ -145,7 +145,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			pivotElement = converter.refreshElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject2);
 		}
 		String oldName = pivotElement.getName();
-		String newName = converter.getOriginalName(eObject2);
+		String newName = AbstractEcore2Pivot.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
 			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getPackage();
@@ -216,26 +216,40 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public Object caseEDataType(EDataType eObject) {
 		@SuppressWarnings("null") @NonNull EDataType eObject2 = eObject;
 		Class<?> instanceClass = eObject2.getInstanceClass();
-		String newName = converter.getOriginalName(eObject2);
+		String newName = AbstractEcore2Pivot.getOriginalName(eObject2);
 		boolean isPrimitive = false;
 		if ("Boolean".equals(newName) && ((instanceClass == Boolean.class) || (instanceClass == boolean.class))) {
 			isPrimitive = true;
 		}
-		else if ("Integer".equals(newName) && ((instanceClass == Number.class) || (instanceClass == Integer.class) || (instanceClass == int.class))) {
+		else if ("Integer".equals(newName) && ((instanceClass == Number.class) || (instanceClass == BigInteger.class)
+				|| (instanceClass == Long.class) || (instanceClass == long.class)
+				|| (instanceClass == Integer.class) || (instanceClass == int.class)
+				|| (instanceClass == Short.class) || (instanceClass == short.class)
+				|| (instanceClass == Byte.class) || (instanceClass == byte.class))) {
 			isPrimitive = true;
 		}
-		else if ("Real".equals(newName) && (instanceClass == Number.class)) {
+		else if ("Real".equals(newName) && ((instanceClass == Number.class) || (instanceClass == BigDecimal.class)
+				|| (instanceClass == Double.class) || (instanceClass == double.class)
+				|| (instanceClass == Float.class) || (instanceClass == float.class))) {
 			isPrimitive = true;
 		}
 		else if ("String".equals(newName) && (instanceClass == String.class)) {
 			isPrimitive = true;
 		} 
-		else if ("UnlimitedNatural".equals(newName) && (instanceClass == Number.class)) {
+		else if ("UnlimitedNatural".equals(newName) && ((instanceClass == Number.class) || (instanceClass == BigInteger.class)
+				|| (instanceClass == Long.class) || (instanceClass == long.class)
+				|| (instanceClass == Integer.class) || (instanceClass == int.class)
+				|| (instanceClass == Short.class) || (instanceClass == short.class)
+				|| (instanceClass == Byte.class) || (instanceClass == byte.class))) {
 			isPrimitive = true;
 		}
-		DataType pivotElement = isPrimitive
-				? converter.refreshElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, eObject2)
-				: converter.refreshElement(DataType.class, PivotPackage.Literals.DATA_TYPE, eObject2);
+		DataType pivotElement;
+		if (isPrimitive) {
+			pivotElement = converter.refreshElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, eObject2);
+		}
+		else {
+			pivotElement = converter.refreshElement(DataType.class, PivotPackage.Literals.DATA_TYPE, eObject2);
+		}
 		String oldName = pivotElement.getName();
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
@@ -324,7 +338,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EEnum eObject2 = eObject;
 		Enumeration pivotElement = converter.refreshElement(Enumeration.class, PivotPackage.Literals.ENUMERATION, eObject2);
 		String oldName = pivotElement.getName();
-		String newName = converter.getOriginalName(eObject2);
+		String newName = AbstractEcore2Pivot.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
 			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getPackage();
@@ -390,7 +404,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EPackage eObject2 = eObject;
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject2);
 		String oldName = pivotElement.getName();
-		String newName = converter.getOriginalName(eObject2);
+		String newName = AbstractEcore2Pivot.getOriginalName(eObject2);
 //		if (newName == null) {
 //			newName = "anon_" + Integer.toHexString(System.identityHashCode(eObject2));
 //			logger.error("Anonymous package named as '" + newName + "'");
@@ -486,7 +500,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull ETypeParameter eObject2 = eObject;
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject2);
 		converter.addMapping(eObject2, pivotElement);
-		String name = converter.getOriginalName(eObject2);
+		String name = AbstractEcore2Pivot.getOriginalName(eObject2);
 		pivotElement.setName(name);
 		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
 		if (typeTemplateParameter == null) {
@@ -503,7 +517,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 
 	protected @NonNull Constraint convertEOperation2Constraint(@NonNull EOperation eOperation) {
 		Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-		constraint.setName(converter.getOriginalName(eOperation));
+		constraint.setName(AbstractEcore2Pivot.getOriginalName(eOperation));
 		constraint.setIsCallable(true);
 		String value = null;
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
@@ -697,7 +711,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 
 	protected void copyNamedElement(@NonNull NamedElement pivotElement, @NonNull ENamedElement eNamedElement) {
 		converter.addMapping(eNamedElement, pivotElement);
-		String name = converter.getOriginalName(eNamedElement);
+		String name = AbstractEcore2Pivot.getOriginalName(eNamedElement);
 		pivotElement.setName(name);
 	}
 
