@@ -72,7 +72,7 @@
   </rm:searchPath>
   <rm:searchPath name="emf-source-code">
     <rm:provider componentTypes="osgi.bundle" readerType="git">
-      <rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.git"/>
+      <rm:property key="git.remote.uri" value="/gitroot/emf/org.eclipse.emf.git"/>
       <rm:property key="git.auto.fetch" value="true"/>
       <rm:uri format="{0},examples/{1}">
         <bc:propertyRef key="git.emf.local.repository.location"/>
@@ -82,7 +82,7 @@
   </rm:searchPath>
   <rm:searchPath name="license-source-code">
     <rm:provider componentTypes="eclipse.feature" readerType="git">
-      <rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/cbi/org.eclipse.license.git"/>
+      <rm:property key="git.remote.uri" value="/gitroot/cbi/org.eclipse.license.git"/>
       <rm:property key="git.auto.fetch" value="true"/>
       <rm:uri format="{0},{1}">
         <bc:propertyRef key="git.license.local.repository.location"/>
