@@ -11,6 +11,7 @@
 1520-console.textile
 1530-validity-view.textile
 1540-debugger.textile
+1550-creation-facilities.textile
 
 1600-ocl-integration.textile
 
@@ -26,6 +27,7 @@
 1870-oclinecore-options.textile
 
 2000-ocl-standard-library.textile
+2100-extend-ocl-standard-library.textile
 
 4000-tutorials.textile
 4100-oclinecore-tutorial.textile

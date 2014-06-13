@@ -3,6 +3,7 @@ h2(#UserInterface). User Interface
 
 The user interface comprises
 * "Editors":#Editors
+* "Creation Facilities":#CreationFacilities
 * "Console":#InteractiveOCL
 * "Debugger":#Debugger
 * "Validity View":#ValidityView

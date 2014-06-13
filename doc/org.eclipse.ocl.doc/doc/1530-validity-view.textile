@@ -6,9 +6,15 @@ The standard EMF validation capabilities provide a useful overview of problems:
 * as markers in the Problems View,
 * in Pop-up dialogs.
 
-The *Validity View* provides a much more detailed view of the problems and so assists in debugging bad models and/or bad constaints.
+The *Validity View* provides a much more detailed view of the problems and so assists in debugging bad models and/or bad constraints. It might include more rules than EMFv if Complete OCL documents are loaded to the models. This view may be used to launch the evaluation of **only** a particular set of constraints on a particular model to produce fast and accurate results for every single invariant you can use the validity view.
 
-The *Validity View* may be shown by invoking *OCL->Show Validity View* from the right button menu of some model editors such as the *Sample Ecore Model Editor*. Alternatively the *Validity View* view may be created by *Window->Show View->Other... OCL->Validity View*.
+The *Validity View* may be shown by invoking *OCL->Show Validity View* action from the right button menu of some model editors such as the *Sample Ecore Model Editor*. In this case, all constraints are evaluated and results are displayed in the view. 
+!images/1530-show-validity-view-action.jpg! 
+
+Alternatively the *Validity View* view may be created by *Window->Show View->Other... OCL->Validity View*. In this case, the validation is not launched but all constraints are enabled and can be run using the !images/1530-run-exc.gif! action.
+!images/1530-show-view-validity-view.jpg!
+
+h2(#Content). Validity View content
 
 !{width:55%}images/1530-validity-view.png(ValidityViewImage)!
 
@@ -18,7 +24,36 @@ The right-hand pane titled Metamodel Constraints provides a tree view of the mod
 
 The displays track the mouse selection in other views. Whenever the mouse selection can be resolved to an EObject, that EObject's ResourceSet populates the left hand pane and constraints affecting the left hand pane populate the right hand pane. Tracking the mouse selection is quite expensive, and probably irritating. It can be inhibited by pinning the view to the current selection.
 
-There is generally much too much detail if all elements and constraints are considered and so the view provides many facilities to facilitate focusing on the interesting combinations.
+h3(#Notifications). Evaluation output and notifications
+
+The validation output the validity model and notifies information about:
+
+* The resource name and location in which the constraints are defined
+!images/1530-validity-view-resources.jpg!
+
+* The detailed results for each constraint on the target model:
+** accepted - !images/1530-success-ovr.gif! - if the evaluated constraint is satisfied for all elements
+** Information - !images/1530-info-ovr.gif! - if at least one element in the model does not satisfy the evaluated constraint constraint with severity = information
+** Warning - !images/1530-warning-ovr.gif! - if at least one element in the model does not satisfy the evaluated constraint with severity = warning
+** rejected - !images/1530-error-ovr.gif! - if at least one element in the model does not satisfy the evaluated constraint with severity = error
+** failure - !images/1530-failed-ovr.gif! - if at least one element in the model throws a FATAL error during the constraint evaluation.
+** disabled - !images/1530-disabled-ovr.gif! - if the element is not enabled for validation.
+
+* The detailed results on each model element for all linked constraints
+** valid - !images/1530-success-ovr.gif! - if the element satisfies all its constraints
+** Information - !images/1530-info-ovr.gif! - if the element does not satisfy at least one evaluated constraint with severity = information
+** Warning - !images/1530-warning-ovr.gif! - if the element does not satisfy at least one evaluated constraint with severity = warning
+** invalid - !images/1530-error-ovr.gif! - if the element does not satisfy at least one evaluated constraint with severity = error
+** failure - !images/1530-failed-ovr.gif! - if the validation of at least one constraint throws a FATAL error
+** disabled - !images/1530-disabled-ovr.gif! - if the constraint is not enabled for any element in the model.
+
+h3. Display
+
+The Validity View shows detailed constraints validation results from two different points of view: 
+* Starting from a model element, global result of constraint evaluation (e.g. takes the worst result of the evaluated constraints: one constraint in error and no fatal exception, we'll show the element as having an error). The left section displays the corresponding tree, the constraints applied on each model element being shown 'under' the individual elements.
+* Starting from individual constraints, list of elements on which it's been applied and result of that evaluation. The right section displays the tree of all evaluated constraints (EMF and OCL) and their target model elements this is what we call *context hierarchy*.
+
+!images/1530-validation-results-display.jpg!
 
 h3(#ValidityViewToolBar). View Tool Bar
 
@@ -26,43 +61,43 @@ The View Tool Bar is at the top and right of the view following the Validity Vie
 
 h4. Expand All
 
-The plus icon causes the Model Elements and Metamodel Constraints to be fully expanded to display all their contents. Beware that for large models this may result in slow screen updates. 
+The plus icon !images/1530-expand-all.gif! causes the Model Elements and Metamodel Constraints to be fully expanded to display all their contents. Beware that for large models this may result in slow screen updates (see "Expand All":#ExpandCollapse ). 
 
 h4. Collapse All
 
-The minus icon causes the Model Elements and Metamodel Constraints to collapse to display only their top level elements. 
+The minus icon !images/1530-collapse-all.gif! causes the Model Elements and Metamodel Constraints to collapse to display only their top level elements (see "Collapse All":#ExpandCollapse ). 
 
 h4. Pin
 
-The pin icon toggles the track current cursor selection. When unpinned, the default, any change in mouse selection may cause recomputation of Model Elements and Metamodel Constraints contents. When pinned the contents are stable.
+The pin icon !images/1530-pin.gif! toggles the track current cursor selection. When unpinned, the default, any change in mouse selection may cause recomputation of Model Elements and Metamodel Constraints contents. When pinned the contents are stable (see "Inhibit tracking selection Action":#PinAction ).
 
 h4. Refresh
 
-The double arrow icon causes the Model Elements and Metamodel Constraints to be recomputed. This may be necessary for a metamodel change to be used.
+The double arrow icon !images/1530-refresh.gif! causes the Model Elements and Metamodel Constraints to be recomputed. This may be necessary for a metamodel change to be used (see "Refresh Action":#RefreshAction ).
 
 h4. Run
 
-The white triangle in green circle icon runs a validation on all enabled model element/constraint combinations updating the status indications for constraints in the left hand Model Element and model elements in right hand Constraint pane.
+The white triangle in green circle icon !images/1530-run-exc.gif! runs a validation on all enabled model element/constraint combinations updating the status indications for constraints in the left hand Model Element and model elements in right hand Constraint pane (see "Run Action":#RunAction ).
 
 h4. Filter
 
-The Filtering menu hides unwanted contributions to the display. Each of the validation result statuses can be individually enabled.
+The Filtering menu !images/1530-filter-tsk.gif! hides unwanted contributions to the display. Each of the validation result statuses can be individually enabled (see "Filter Area":#FilterAndSearchAction ).
 
 * Show all errors
-* Show all infos
+* Show all information
 * Show all failures
 * Show all warnings
 * Show all successes
 
-By default none of the selections are enabled so everything is shown. As soon as a specific status is enabled all display elements with other non-enabled statuses are hidden. Thus selecting just *Show all warnings" hides error/info/failure/success results.
+By default none of the selections are enabled so everything is shown. As soon as a specific status is enabled all display elements with other non-enabled statuses are hidden. Thus selecting just *Show all warnings* hides error/info/failure/success results.
 
 h4. Save
 
-The floppy disk icon supports export of the validation results.
+The floppy disk icon !images/1530-save.gif! supports export of the validation results (see "Export":#ExportValiditionResults ).
 
-The available export formats are extensible through the org.eclipse.ocl.examples.emf.validation.validity.validity_exporter extension point.
+The available export formats are extensible through the **org.eclipse.ocl.examples.emf.validation.validity.validity_exporter** extension point (see "Export Extension point":#ExportExtensionPoint ).
 
-The default exporters support
+The default exporters support:
 
 h5. html
 
@@ -74,7 +109,7 @@ An XMI model conforming to validity.ecore containing all results with references
 
 h5. text
 
-A text file summarising the results.
+A text file summarizing the results.
 
 h3(#ValidityViewModelElementsPane). Model Elements Pane
 
@@ -88,29 +123,29 @@ The Model Elements Tool Bar is at the top and right of the left hand pane follow
 
 h5. Expand All
 
-The plus icon causes the Model Elements to be fully expanded to display all their contents. Beware that for large models this may result in slow screen updates. 
+The plus icon !images/1530-expand-all.gif! causes the Model Elements to be fully expanded to display all their contents. Beware that for large models this may result in slow screen updates (see "Expand All":#ExpandCollapse ). 
 
 h5. Collapse All
 
-The minus icon causes the Model Elements to collapse to display only their top level elements. 
+The minus icon !images/1530-collapse-all.gif! causes the Model Elements to collapse to display only their top level elements (see "Collapse All":#ExpandCollapse ). 
 
 h5. Enable All
 
-The tick icon causes all Model Elements to be enabled and so included in the next validation.
+The tick icon !images/1530-select-all.gif!  causes all Model Elements to be enabled and so included in the next validation (see "Enable Elements/Constraints":#EnableDisable ).
 
 h5. Disable All
 
-The no-tick icon causes all Model Elements to be disabled and so excluded from the next validation.
+The no-tick icon !images/1530-deselect-all.gif! causes all Model Elements to be disabled and so excluded from the next validation (see "Disable Elements/Constraints":#EnableDisable ).
 
 h5. Show/Hide disabled 
 
-The document icon with a query controls whether disabled Model Element selections are visible. A diagonal strikethrough shows when selections are hidden.
+The document icon with a query !images/1530-disabled.gif! controls whether disabled Model Element selections are visible. A diagonal strikethrough shows when selections are hidden !images/1530-hide_disabled.gif!.
 
-By default disabled selections are hidden, which allows the unwanted root elements of large models to be unchecked and so hidden before a slow attempt is made to display them.
+By default disabled selections are hidden, which allows the unwanted root elements of large models to be unchecked and so hidden before a slow attempt is made to display them (see "Hide/Show disabled Elements/Constraints":#HideShow ).
 
 h4. Text Filter
 
-The text filter takes a StringMatcher pattern that selects which elements are visible. The pattern may contain
+The text filter !images/1530-search.gif! takes a StringMatcher pattern that selects which elements are visible (see "Search Area":#FilterAndSearchAction ). The pattern may contain
 * a * to match zero or more characters
 * a ? to match exactly one character
 * a \ to escape the following character
@@ -123,12 +158,13 @@ The +/- collapse/expand icons preceding each element enable interesting elements
 
 Each element is preceded by a check box that enables its usage within the next validation run. All elements may be enabled or disabled using the icons in the Model Elements Tool Bar. Enabling/disabling individual elements enables/disables the element's descendants and propagates a partial enable/disable to the element's ancestors.
 
-The checkbox is followed by a validation status icon.
-* tick for validation successful
-* red cross for validation unsuccessful but incomplete
-* blue cross for validation failure (incomplete)
-* amber warning for a validation warning
-* question mark for no validation performed
+The checkbox is followed by a validation status icon (see "Results Identification":#ResultsIdentification ).
+* !images/1530-success-ovr.gif!- tick for validation successful
+* !images/1530-error-ovr.gif!- red cross for validation unsuccessful but incomplete
+* !images/1530-failed-ovr.gif!- blue cross for validation failure (incomplete)
+* !images/1530-warning-ovr.gif!- amber warning for a validation warning
+* !images/1530-info-ovr.gif!- blue "i" for a validation information
+* !images/1530-disabled-ovr.gif!- question mark for no validation performed
 
 The status icon is followed by an element-specific icon identifying its type and label.
 
@@ -152,7 +188,7 @@ __Debug launching is only available for OCL constraints in Luna SR0.__
 
 h5. Show in Editor
 
-Opens an editor for the selected Model Element or Metamodel Constraint.
+!images/1530-show.gif! Opens an editor for the selected Model Element or Metamodel Constraint  (see "Navigation":#NavigationAction ).
 
 __Opening is not available for all forms of constraint in Luna SR0.__
 
@@ -168,29 +204,29 @@ The Metamodel Constraints Tool Bar is at the top and right of the right hand pan
 
 h5. Expand All
 
-The plus icon causes the Metamodel Constraints to be fully expanded to display all their contents. Beware that for large models this may result in slow screen updates. 
+The plus icon !images/1530-expand-all.gif! causes the Metamodel Constraints to be fully expanded to display all their contents. Beware that for large models this may result in slow screen updates (see "Expand All":#ExpandCollapse ). 
 
 h5. Collapse All
 
-The minus icon causes the Metamodel Constraints to collapse to display only their top level elements. 
+The minus icon !images/1530-collapse-all.gif! causes the Metamodel Constraints to collapse to display only their top level elements (see "Collapse All":#ExpandCollapse ). 
 
 h5. Enable All
 
-The tick icon causes all Metamodel Constraints to be enabled and so included in the next validation.
+The tick icon !images/1530-select-all.gif! causes all Metamodel Constraints to be enabled and so included in the next validation (see "Enable Elements/Constraints":#EnableDisable ).
 
 h5. Disable All
 
-The no-tick icon causes all Metamodel Constraints to be disabled and so excluded from the next validation.
+The no-tick icon !images/1530-deselect-all.gif! causes all Metamodel Constraints to be disabled and so excluded from the next validation (see "Disable Elements/Constraints":#EnableDisable ).
 
 h5. Show/Hide disabled 
 
-The document icon with a query controls whether disabled Metamodel Constraints selections are visible. A diagonal strikethrough shows when selections are hidden.
+The document icon with a query !images/1530-disabled.gif! controls whether disabled Metamodel Constraints selections are visible. A diagonal strikethrough shows when selections are hidden !images/1530-hide_disabled.gif!.
 
-By default disabled selections are hidden, which allows the unwanted root elements of large metamodels to be unchecked and so hidden before a slow attempt is made to display them. 
+By default disabled selections are hidden, which allows the unwanted root elements of large metamodels to be unchecked and so hidden before a slow attempt is made to display them (see "Hide/Show disabled Elements/Constraints":#HideShow ). 
 
 h4. Text Filter
 
-The text filter takes a StringMatcher pattern that selects which elements are visible. The pattern may contain
+The text filter !images/1530-search.gif! takes a StringMatcher pattern that selects which elements are visible (see "Search Area":#FilterAndSearchAction ). The pattern may contain
 * a * to match zero or more characters
 * a ? to match exactly one character
 * a \ to escape the following character
@@ -203,12 +239,13 @@ The +/- collapse/expand icons preceding each element enable interesting elements
 
 Each element is preceded by a check box that enables its usage within the next validation run. All elements may be enabled or disabled using the icons in the Model Elements Tool Bar. Enabling/disabling individual elements enables/disables the element's descendants and propagates a partial enable/disable to the element's ancestors.
 
-The checkbox is followed by a validation status icon.
-* tick for validation successful
-* red cross for validation unsuccessful but incomplete
-* blue cross for validation failure (incomplete)
-* amber warning for a validation warning
-* question mark for no validation performed
+The checkbox is followed by a validation status icon (see "Results Identification":#ResultsIdentification ).
+* !images/1530-success-ovr.gif!- tick for validation successful
+* !images/1530-error-ovr.gif!- red cross for validation unsuccessful but incomplete
+* !images/1530-failed-ovr.gif!- blue cross for validation failure (incomplete)
+* !images/1530-warning-ovr.gif!- amber warning for a validation warning
+* !images/1530-info-ovr.gif!- blue "i" for a validation information
+* !images/1530-disabled-ovr.gif!- question mark for no validation performed
 
 The status icon is followed by an element-specific icon identifying its type and label.
 
@@ -232,11 +269,132 @@ __Debug launching is only available for OCL constraints in Luna SR0.__
 
 h5. Show in Editor
 
-Opens an editor for the selected Model Element or Metamodel Constraint.
+!images/1530-show.gif! Opens an editor for the selected Model Element or Metamodel Constraint (see "Navigation":#NavigationAction ).
 
 __Opening is not available for all forms of constraint in Luna SR0.__
 
-h3(ConstraintLocator). Constraint Locators
+h2(#Actions). Validity View actions
+
+h3(#RunAction). Run Action
+
+User can launch manually the enabled constraints validation by pressing the !images/1530-run-exc.gif! action.
+
+h3(#ExportValiditionResults). Export Actions
+
+The Evaluation results can be exported using one of the available exporters !images/1530-save.gif!. 
+
+!images/1530-define-new-exporter.jpg!
+
+The *Export Validation Results* wizard is based on existing eclipse file creation wizards and is composed of:
+* an **Folder Location** field followed by a TreeViewer area containing a tree view of the workspace contents
+* an **Exported file name** field. The extension is filled automatically according to the chosen exporter.
+* a **Finish** button
+* a **Cancel** button
+!images/1530-export-validation-results-wizard.jpg!
+
+# By default, the view provides:
+## *model* Exporter. In this case, the File extension is **.validity**. 
+## *text* Exporter. In this case, the File extension is **.txt**. 
+## *html* Exporter. In this case, the File extension is **.html**.  
+# The user can fill the file name without the extension which will be filled automatically to get the follows: **"file_name".validity** or **"file_name".txt** or **"file_name".html**. If the user fills a wrong extension, the file name will looks like: **"file_name"."wrong_extension".validity** or **"file_name"."wrong_extension".txt** or **"file_name"."wrong_extension".html**.
+# Errors at the top of the wizard can be displayed:
+## if the exported file name is empty:  **Name cannot be empty.**.
+## if the exported file name already exists: **'file name' already exists.**.
+
+h4(#ExportExtensionPoint). Export Extension point
+
+Users can define there own exporters using the export extension point *org.eclipse.ocl.examples.emf.validation.validity.validity_exporter*. 
+The extension is defined in the plugin **"org.eclipse.ocl.examples.emf.validation.validity"**.
+
+!images/1530-export-extension-point.jpg!
+
+# The extension point is used to indicate:
+## The exporter **name** which will be added to the exporters list in the Validity View.
+## The exported file **extension**. 
+## The exporter dedicated class to execute the new export.
+
+h3(#RefreshAction). Refresh view Action
+
+The Validity View is not able to track automatically all selected resource modification. User needs to refresh manually the view by pressing the !images/1530-refresh.gif! action.
+
+h3(#PinAction). Inhibit tracking selection Action
+
+The Validity View allows users to inhibit tracking the editor selection by activating the !images/1530-pin.gif! action.
+
+h3(#NavigationAction). Navigation Actions
+
+The Validity View allows navigation between the view and editors for the elements it displays:
+* view to *model Editor* using the right click > Show In Editor action !images/1530-show.gif! on a Model Element node.
+* view to *ocl file Editor* using the right click > Show In Editor action !images/1530-show.gif! on a Constraining node.
+
+h3(#FilterAndSearchAction). Filters and Search Area
+
+The Validity View provides a way to filter the results displayed in the view:
+* According to the severity !images/1530-filter-tsk.gif!
+** Show All errors
+** Show All infos
+** Show All failures
+** Show All warnings
+** Show All successes
+
+* According to the name of the constraint or model element !images/1530-search.gif!. A text search Area  is available to filter elements of both trees. It is Available when the tree is not empty. This Area uses a SWT « FilteredTree » as an easy way to filter tree elements. It will automatically provide a text field for restricting the entries shown in the tree.
+
+h2(#ValidityViewFacilities). Validity View Facilities
+
+There is generally much too much detail if all elements and constraints are considered and so the view provides many facilities to facilitate focusing on the interesting combinations.
+
+h3(#ResultsIdentification). Results Identification
+
+* User can easily identify a result status referring to displayed icons:
+** !images/1530-error-ovr.gif!- for Error, 
+** !images/1530-failed-ovr.gif!- for Fatal, 
+** !images/1530-warning-ovr.gif!- for Warning, 
+** !images/1530-info-ovr.gif!- for Info, 
+** !images/1530-success-ovr.gif!- for success, 
+** !images/1530-disabled-ovr.gif!- when there are no validation status or the constraint is disabled.
+* The view displays the constraint's failure message if any (info, warning, error, fatal). Hover is available on failed constraints to display their failure messages (errors, info, warnings etc.). !images/1530-hover-message.jpg!
+* For successful constraints, hover display a success message. !images/1530-hover-success-message.jpg!
+* It displays the ocl constraint expression. Hover is available on OCL invariants to display the underlying expression.
+* It displays the ocl file location. Hover is available on OCL invariants to display their full location. !images/1530-hover-expression-message.jpg!
+
+h3(#EnableDisable). Enable/Disable Constraints
+
+* The view provides means to disable and filter out EMFv constraints so that a user has the possibility to launch OCL constraints alone. by disabling the root node of EMFv constraints in the *Metamodel Constraints* section. This will disable all EMFv constraints and their corresponding Leaf in the *Model Elements* section.
+* It enables/disables the validation of a constraint or a set of constraints. This is useful for a user to run a partial validation. Enabling/Disabling a constraint in *Model Elements* section will enable/disable the corresponding constraint in the *Metamodel Constraints* section.
+* It enables/disables the validation of a model element or its sub-elements. This will help user to disable all context constraints disabling all children validation. Enabling/Disabling an element in the *Model Elements* section will enable/disable all corresponding children constraints in the *Metamodel Constraints* section.
+* The view provides a way to select/deselect all model elements using the *Model Elements toolbar actions* !images/1530-select-all.gif!/ !images/1530-deselect-all.gif!
+* The view provides a way to select/deselect all constraints using the *Metamodel Constraints toolbar actions* !images/1530-select-all.gif!/ !images/1530-deselect-all.gif!
+
+An example of disabling all EMFv constraints is shown below:
+!images/1530-disable-all-emf-constraints.jpg!
+
+h3(#HideShow). Hide Constraints-less and Hide Model Elements-less
+
+* The view provides a way to hide all disabled model elements using the *Model Elements toolbar action* !images/1530-disabled.gif!
+* The view provides a way to hide all disabled constraints using the *Metamodel Constraints toolbar action* !images/1530-disabled.gif!
+
+An example of hiding all disabled model elements is shown below:
+!images/1530-hide-all-disabled-elements.jpg!
+
+h3(#ExpandCollapse). Expand/Collapse
+
+* A double-click on any element that's not a leaf in either section will expand or collapse it.
+* To expand/collapse all elements, users can use the *Model Elements toolbar actions* !images/1530-expand-all.gif!/ !images/1530-collapse-all.gif!
+* To expand/collapse all constraints, users can use the *Metamodel Constraints toolbar actions* !images/1530-expand-all.gif!/ !images/1530-collapse-all.gif!
+* To expand/collapse all elements and constraints, users can use the *Validity View toolbar actions* !images/1530-expand-all.gif!/ !images/1530-collapse-all.gif!
+
+h3(#Navigation). Sections Navigation
+
+* Double-clicking on a constraint in the left tab sets the focus on the concerned constraint in the right tab and vice versa.
+
+h3(#ContextMenuBar). Context Menu Bar
+
+* User can launch the validation directly in the view using the !images/1530-run-exc.gif! action of the view's menu bar. This will evaluate all ticked constraints and refresh the results.
+* User can expand/collapse all section elements/constraints using the !images/1530-expand-all.gif!/ !images/1530-collapse-all.gif! actions of the view's menu bar.
+* He can Hide all disabled elements/constraints too using the !images/1530-disabled.gif! action of the view's menu bar.
+
+
+h2(#ConstraintLocator). Constraint Locators
 
 The constraints displayed in the right hand pane are located by constraint locators that are registered with the org.eclipse.ocl.examples.emf.validation.validity.constraint_locator extension point. A constraint locator implements org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator or the org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator to define location, presentation, execution and debug launching of a particular kind of constraint.
 
@@ -244,19 +402,19 @@ Constraint locators are associated with metamodel namespaces which are determine
 
 The following Constraint Locators are available by default.
 
-h4. org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator
+h3. org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator
 
 This constraint locator supports discovery of constraints realized by invariant EOperations in the Java code generated by an EMF genmodel.
 
-h4. org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator
+h3. org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator
 
 This constraint locator supports reflective discovery of validateXXXX methods in the Java code generated by an EMF genmodel using the EValidatorRegistry to identify the relevant Java code.
 
-h4. org.eclipse.ocl.examples.validity.locator.DelegateUIConstraintLocator
+h3. org.eclipse.ocl.examples.validity.locator.DelegateUIConstraintLocator
 
 This constraint locator supports OCL constraints represented as EAnnotations in Ecore metamodels.
 
-h4. org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator
+h3. org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator
 
 This constraint locator supports discovery of org.eclipse.ocl.examples.pivot.Constraint classes in Pivot metamodels.
 

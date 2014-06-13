@@ -1,0 +1,45 @@
+h1(#ExtendedStandardLibrary). Extended OCL Standard Library
+
+The existing OCL Standard Library is fully modeled and extensible. You may therefore define an extended library that imports the standard, or a replacement standard library. In either case you may define additional operations, iterations and properties with a binding to a Java class that implements the appropriate derived LibraryFeature API.
+
+The OCL 'Standard' Library is supported using its own Domain-Specific Language and associated Xtext editor. 
+The built-in OCL Standard Library is compiled by **/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2** from **/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib** into **/org.eclipse.ocl.examples.pivot/emf-gen/org/eclipse/ocl/examples/pivot/model/OCLstdlib.java**. 
+
+This compiled library is registered with the **org.eclipse.ocl.examples.pivot.standard_library** extension point for use under the 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' URI. 
+
+The default library is normally installed by invoking **OCLstdlib.install()**. 
+Additional or replacement libraries may be compiled and registered in similar ways.
+
+You may reference a custom library from a Complete OCL document using a library import.
+
+!images/2100-reference-library.png!
+
+Libraries may define additional types and/or operations:
+
+!images/2100-library-example.png!
+
+Extension libraries may just reference an existing standard library:
+
+!images/2100-extension-library.png!
+
+A library operation may be implemented in Java as:
+
+!images/2100-library-operation-in-java.png!
+
+**org.eclipse.ocl.examples.domain.library.AbstractOperation** requires the most generic varargs arguments. A variety of derived classes such as **AbstractBinaryOperation** support more restricted arguments. The built-in library operation in **org.eclipse.ocl.examples.domain.library** provide many examples of implementations.
+
+A custom library may declare the additional operation and link to its implementation
+
+!images/2100-library-operation-declaration.png!
+
+The custom library has no nsURI of its own so it extends the prevailing standard library. It declares an additional operation for the Real type. The operation is named "spacedOut", takes no arguments and returns a String. The operation name is bound to the the implementation at **org.eclipse.ocl.examples.test.xtext.ImportTests$SpacedOut.INSTANCE**.
+See **/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib** for many examples of operation and iteration declaration and binding to their Java counterparts.
+
+Now that the new operation is declared and implemented, users can deploy it in their ocl documents : 
+
+!images/2100-new-operations-use.png!
+
+Note that library operations may also be implemented in OCL, which can be advantageous when using the code generator where many of the null/invalid possibilities may be pruned by static data flow analysis.
+
+!images/2100-library-operation-in-ocl.png!
+

@@ -1,0 +1,45 @@
+h2(#CreationFacilities). Create New Complete OCL Document (new in Luna)
+
+To create new ocl document, user has two ways: 
+# New -> File -> Text File, name it to *.ocl => the created file is empty.
+# New -> File -> other -> OCL -> Complete OCL File
+
+!images/1530-ocl-editor-new-complete-ocl-file.png!
+
+The Complete OCL File creation wizard is based on existing eclipse wizards and is composed of:
+* an **Folder Location** field followed by a TreeViewer area containing a tree view of the workspace contents
+* an **OCL file name** field. The file extension ''**.ocl**'' is filled automatically.
+* a **Resource URIs** field and four selection buttons:
+** a **Browse Registered Packages...** button
+** a **Browse Target Platform Packages...** button
+** a **Browse File System...** button
+** a **Browse Workspace...** button
+* a **< Back** button
+* a **Next >** button
+* a **Finish** button
+* a **Cancel** button
+
+# The File extension is **.ocl**. The user can fill the file name without the extension which will be filled automatically to get the follows: **"file_name".ocl**. If the user fills a wrong extension, the file name will looks like: **"file_name"."wrong_extension".ocl**
+# Errors at the top of the wizard can be displayed:
+## if the OCL File name is empty:  **Name cannot be empty**.
+## if the OCL file name is invalide: **"invalid_carater" is an invalid character in ressource name '"invalid_file_name".ocl'**.
+## The metamodel uri can be empty. In this case the created ocl file is empty.
+
+!images/1530-ocl-editor-new-complete-ocl-file-location.png!
+
+h3. Creation Wizard Buttons
+
+# The **Browse Registered Packages...** button opens  the Package Selection Wizard and allows the user to select one package URI (platform/runtime) in the list. The  radio button in the Package Selection Wizard bottom allows user to choose the URI version:
+## Development Time Version: e.g: **platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore**
+## Runtime Version: e.g: **http://www.eclipse.org/emf/2002/Ecore**
+!images/1530-ocl-editor-time-version-package-selection.png!
+
+# The **Browse Target Platform Packages...** button opens  the Package Selection Wizard and allows the user to select one package URI (platform) in the list.
+!images/1530-OCL-Editor-package-uri-selection.png!
+
+# The **Browse File System...** button opens  the File System Selection Window and allows the user to select  a local metamodel. The metamodel uri in this case looks like: **file:/"directory_path"/"metamodel_name".ecore**
+# The **Browse Workspace...** button opens  the File Selection Wizard and allows the user to select  a local metamodel from the workspace. The metamodel uri in this case looks like: **platform:/resource/"directory_realtif_path"/"metamodel_name".ecore**
+
+The created OCL File will be initialized with: 
+!images/1530-ocl-editor-new-complete-ocl-file-content.png!
+

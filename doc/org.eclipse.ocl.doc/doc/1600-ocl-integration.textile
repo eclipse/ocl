@@ -94,13 +94,15 @@ The "CompleteOCLEObjectValidator":#CompleteOCLEObjectValidator may be used to in
 
 In many editors an *OCL->Load Document* is available in the context menu to facilitate loading a complementary Complete OCL document.
 
-!{width:70%}images/1600-load-document.png(LoadDocument)!
+!{width:45%}images/1600-load-document.png(LoadDocument)!
 
 You may drag and drop one or more files from within Eclipse or outside Eclipse into the dialog, or use one of the browser buttons to locate a Complete OCL document.
 
 h4. Browse Registered OCL Files...
 
-The org.eclipse.ocl.examples.xtext.completeocl.complete_ocl_registry may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects. In either case clicking *Browse Registered OCL Files...* presents a list of registered Complete OCL documents applicable to the context from which the dialog was invoked.
+The *org.eclipse.ocl.examples.pivot.complete_ocl_registry* may be used to register Complete OCL files against the nsURIs that they complement. These extension points may be defined in plugins or projects.
+
+In either case clicking *Browse Registered OCL Files...* presents a list of registered Complete OCL documents applicable to the context from which the dialog was invoked.
 
 h4. Browse File System...
 

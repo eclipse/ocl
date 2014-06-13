@@ -74,3 +74,33 @@ h3. Open Declaration
 
 It is possible to navigate to a definition provided an editor is already open for the definition. 
 
+h3. Custom severities and messages
+
+To custom severities, user can use the tuples invariants. A tuple valued invariant contains several invariants:
+
+|-----------------------|-----------------------|-----------------------|
+|Invariant| Binding |Type|
+|-----------------------|-----------------------|-----------------------|
+|status expression |**mandatory**| Boolean |
+|severity |**optional**| String |
+|message |**optional**| String |
+|-----------------------|-----------------------|-----------------------|
+
+Separator between tuple invariants: **","**.  We use the same existing grammar and we rely on OMG issue and Tuple grammar, so a tuple looks like : 
+
+!images/1510-custom-tuple-grammar.jpg!
+
+For information, there is no OK severity. The 'dynamic status' is computed by the status expression. The severity is the 'static status' declaration of the invariant (not the result). 
+
+!images/1510-custom-tuple-grammar-ok.jpg!
+
+NB: severity and message are optional so the user can delete it manually and get default ocl severities or messages.
+
+
+* **Example of Information severity tuples**
+!images/1510-custom-tuple-information.jpg!
+* **Example of Error severity tuples**
+!images/1510-custom-tuple-error.jpg!
+* **Example of Warning severity tuples**
+!images/1510-custom-tuple-warning.jpg!
+

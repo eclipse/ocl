@@ -100,7 +100,7 @@ The many successes are often of limited interest, so we may concentrate on Error
 
 Having found an error of interest we can see it in context. Select the error, remove the *Show all Errors* filtering, and enable the view of all constraints by clicking the tick icon in the Model Constraint pane tool bar.
 
-!cimages/4600-validation-view-results-context.png(ValidationViewResultsContext)!
+!images/4600-validation-view-results-context.png(ValidationViewResultsContext)!
 
 This shows the error, two warnings and seven successes.
 

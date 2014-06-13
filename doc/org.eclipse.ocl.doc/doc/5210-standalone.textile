@@ -33,3 +33,68 @@ The Xtext Editors use the Pivot binding and so their initialiation is described 
 
 The Xtext editors may be used with the Ecore or UML bindings in so far as the Complete OCL editor provides a *.ocl document that may be parsed by the LPG parser, and the OCLinEcore editor provides embedded OCL that may be executed by either evaluator.
 
+h2(#CommandLine). Constraints validation using command line
+
+In this section we address the need to execute specific model validation according to one or several OCL Documents using the command line.
+
+h3.  Standalone Application
+
+The need is focused on the ability to manually enter a command to validate a model with a set of OCL constraints and save the evaluation results. OCL tools propose an eclipse runtime application (**org.eclipse.core.runtime.applications**) to cover this need. The application  relies on the same code used by the validity view to run the validation, creates the validity model and finally exports the results in a predefined format (**text** or **html**).
+For the remainder of this document, we assume that **'checkoclfile'** has been chosen as this application's name. 
+
+h3. Synopsis
+
+The application requires several input parameters in order to support the standalone needs. The accepted parameters may increase in the future, but we believe that the following will handle most use cases.
+
+**ocl validate -model <MODEL_PATH> -rules <OCL_RULES_PATH(s)> [-output <OUTPUT_FILE_PATH>] [-exporter text|html] [-using all|ocl|java|uml]**
+
+h3.  Arguments
+
+**-model**
+A mandatory argument key of the model file path. This argument key must be followed by the model file path.
+**-rules**
+A mandatory argument used to define the paths to the OCL documents containing the constraints to evaluate. Users can specify one or several OCL Documents paths in the command line, separated with a whitespace.
+A text file containing a list of OCL Documents paths can be used instead, in which case all OCL constraints defined in all of these documents will be evaluated sequentially.
+**-output**
+An optional argument to define the output file path. The exporter will create results within that target file.
+**-exporter**
+An optional argument to specify which exporter should be used. By default, the “text” exporter will be used, exporting a textual report of the validation.
+**-using**
+This optional argument can be used if the user wishes to run all constraints or to only run the **OCL**, **Java**, **UML** constraints validation. Otherwise, EMF validation rules will also be checked against the input model.
+
+h3. Output
+
+The standalone application allows text/html format export according to the already existing TextExporter and HTMLExporter of the OCL Validity plugins.
+
+h3.  Examples
+
+Example 1: 
+
+**-model model/EcoreTestFile.ecore -rules oclRules/oclRules.ocl -output output -ocl**
+
+This command line must validate the **model/EcoreTestFile.ecore** model using only the constraints defined in **oclRules/oclRules.ocl** and will export the validation results into the **output/log.txt** file using the default TextExporter
+
+Example 2: 
+
+**-model model/EcoreTestFile.ecore -rules oclRules/oclRules.ocl -output output -exporter html -ocl**
+
+This command line must validate the **model/EcoreTestFile.ecore** model using only the constraints defined in **oclRules/oclRules.ocl** constraints will export the validation results into the **output/log.html** file using the HTMLExporter
+
+Example 3: 
+
+**-model model/EcoreTestFile.ecore -rules oclRules/oclRules.ocl -output output**
+
+This command line must validate the **model/EcoreTestFile.ecore** model using both the constraints defined in **oclRules/oclRules.ocl** and the EMFv constraints and will export the validation results into the **output/log.txt** file using the default TextExporter
+
+Example 4: 
+
+**-model model/EcoreTestFile.ecore -rules oclRules/oclRules.ocl -output output -exporter html**
+
+This command line must validate the **model/EcoreTestFile.ecore** model using both the constraints defined in **oclRules/oclRules.ocl** and the EMFv constraints and will export the validation results into the **output/log.html** file using the HTMLExporter
+
+Example 5: 
+
+**-model model/EcoreTestFile.ecore -rules oclRules/oclRules-1.ocl oclRules/oclRules-2.ocl -output output -exporter html**
+
+This command line must validate the **model/EcoreTestFile.ecore** model using the constraints defined in the two ocl documents **oclRules/oclRules-1.ocl** and **oclRules/oclRules-2.ocl** as well as the EMFv constraints and will export the validation results into the **output/log.html** file using the HTMLExporter
+
