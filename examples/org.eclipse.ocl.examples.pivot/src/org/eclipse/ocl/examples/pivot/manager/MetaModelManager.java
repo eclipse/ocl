@@ -544,6 +544,32 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		external2PivotMap.put(uri, external2Pivot);
 	}
 
+	/**
+	 * Add all resources in ResourceSet to the externalResourceSet.
+	 */
+	public void addExternalResources(@NonNull ResourceSet resourceSet) {
+		ResourceSet externalResourceSet = getExternalResourceSet();
+		if (externalResourceSet instanceof ResourceSetImpl) {
+			Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)externalResourceSet).getURIResourceMap();
+			if (uriResourceMap != null) {
+				for (Resource eResource : resourceSet.getResources()) {
+					URI uri = eResource.getURI();
+					if (uri != null) {
+						uriResourceMap.put(uri, eResource);
+					}
+				}
+				if (resourceSet instanceof ResourceSetImpl) {
+					Map<URI, Resource> contextResourceMap = ((ResourceSetImpl)resourceSet).getURIResourceMap();
+					if (contextResourceMap != null) {
+						for (URI uri : contextResourceMap.keySet()) {
+							uriResourceMap.put(uri, contextResourceMap.get(uri));
+						}
+					}
+				}
+			}
+		}
+	}
+
 	public void addGenModel(@NonNull GenModel genModel) {
 		for (@SuppressWarnings("null")@NonNull GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
 			addGenPackage(genPackage);
@@ -2720,7 +2746,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		@NonNull Resource asResource = oclMetamodel.eResource();
 //		asResourceSet.getResources().add(asResource);
 		installResource(asResource);
-		packageManager.addPackageNsURISynonym(OCLMetaModel.PIVOT_URI, nsURI);
 	}
 
 	@Override
@@ -2911,6 +2936,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public @Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) throws ParserException {
 		ASResourceFactory bestFactory = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(resource);
 		if (bestFactory != null) {
+			ResourceSet resourceSet = resource.getResourceSet();
+			if ((resourceSet != null) && (resourceSet != externalResourceSet)) {
+				addExternalResources(resourceSet);
+			}
 			return bestFactory.importFromResource(this, resource, uri);
 		}
 		throw new ParserException("Cannot create pivot from '" + uri + "'");

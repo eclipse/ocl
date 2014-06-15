@@ -177,7 +177,7 @@ class PackageTracker implements Adapter.Internal
 
 	@Override
 	public String toString() {
-		return String.valueOf(target);
+		return target.getName() + " : " + target.getNsURI();
 	}
 
 	public void unsetTarget(Notifier oldTarget) {

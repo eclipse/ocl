@@ -169,32 +169,21 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			MetaModelManager metaModelManger = new MetaModelManager();
-			ResourceSet externalResourceSet = metaModelManger.getExternalResourceSet();
+			MetaModelManager metaModelManager = new MetaModelManager();
+			ResourceSet externalResourceSet = metaModelManager.getExternalResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();
-				if ((contextResource != null) && (externalResourceSet instanceof ResourceSetImpl)) {
-					Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)externalResourceSet).getURIResourceMap();
-					if (uriResourceMap != null) {
-						ResourceSet contextResourceSet = contextResource.getResourceSet();
-						if (contextResourceSet != null) {
-							for (Resource eResource : contextResourceSet.getResources()) {
-								URI uri = eResource.getURI();
-								if (uri != null) {
-									uriResourceMap.put(uri, eResource);
-								}
+				if (contextResource != null) {
+					ResourceSet contextResourceSet = contextResource.getResourceSet();
+					if (contextResourceSet != null) {
+						metaModelManager.addExternalResources(contextResourceSet);
+					}
+					else {
+						if (externalResourceSet instanceof ResourceSetImpl) {
+							Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)externalResourceSet).getURIResourceMap();
+							if (uriResourceMap != null) {
+								uriResourceMap.put(contextResource.getURI(), contextResource);
 							}
-							if (contextResourceSet instanceof ResourceSetImpl) {
-								Map<URI, Resource> contextResourceMap = ((ResourceSetImpl)contextResourceSet).getURIResourceMap();
-								if (contextResourceMap != null) {
-									for (URI uri : contextResourceMap.keySet()) {
-										uriResourceMap.put(uri, contextResourceMap.get(uri));
-									}
-								}
-							}
-						}
-						else {
-							uriResourceMap.put(contextResource.getURI(), contextResource);
 						}
 					}
 				}

@@ -110,7 +110,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 			}
 		}
 		adapter = new Outer(resource, metaModelManager);
-		resource.eAdapters().add(adapter);
 		return adapter;
 	}
 
@@ -595,6 +594,10 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 				}
 				installAliases(asResource);
 				metaModelManager.installResource(asResource);
+				ResourceSet resourceSet = umlResource.getResourceSet();
+				if (resourceSet != null) {
+					metaModelManager.addExternalResources(resourceSet);
+				}
 			}
 			return pivotRoot2;
 		}
@@ -665,7 +668,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 							UML2Pivot adapter = UML2Pivot.findAdapter(importedResource, metaModelManager);
 							if (adapter == null) {
 								Inner importedAdapter = new Inner(importedResource, this);
-								importedResource.eAdapters().add(importedAdapter);
 								URI pivotURI = importedAdapter.createPivotURI();
 								ASResource asResource = metaModelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
 								importedAdapter.installDeclarations(asResource);
@@ -798,6 +800,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 			CONVERT_RESOURCE.println(umlResource.getURI().toString());
 		}
 		this.umlResource = umlResource;
+		umlResource.eAdapters().add(this);
 		metaModelManager.addExternalResource(this);
 		metaModelManager.addListener(this);
 	}
