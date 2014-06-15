@@ -1747,6 +1747,14 @@ public class OperationImpl
 		}
 		LibraryFeature bodyImplementation2 = bodyImplementation;
 		if (bodyImplementation2 == null) {
+			for (Operation redefinedOperation : getRedefinedOperation()) {
+				bodyImplementation2 = redefinedOperation.getImplementation();
+				if (bodyImplementation2 != null) {
+					break;
+				}
+			}
+		}
+		if (bodyImplementation2 == null) {
 			OpaqueExpression specification = getBodyExpression();
 			if (specification != null) {
 				Type owningType = getOwningType();
