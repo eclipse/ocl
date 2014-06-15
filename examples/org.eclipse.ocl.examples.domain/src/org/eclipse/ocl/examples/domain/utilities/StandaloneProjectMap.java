@@ -2632,7 +2632,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	protected void finalize() throws Throwable {
 		if (liveStandaloneProjectMaps != null) {
 			System.out.println("Finalize " + getClass().getSimpleName()
-				+ "@" + Integer.toString(System.identityHashCode(this)));		
+				+ "@" + Integer.toHexString(System.identityHashCode(this)));		
 			List<StandaloneProjectMap> keySet = new ArrayList<StandaloneProjectMap>(liveStandaloneProjectMaps.keySet());
 			if (!keySet.isEmpty()) {
 				StringBuilder s = new StringBuilder();

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSet;
@@ -71,7 +72,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final OCLstdlibPackage eINSTANCE = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage.init();
+	@SuppressWarnings("null")
+	public static final @NonNull OCLstdlibPackage eINSTANCE = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage.init();
 
 	/**
 	 * The meta object id for the '<em>Ocl Any</em>' data type.

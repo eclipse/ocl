@@ -696,7 +696,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 				 * <p>
 				 * Derived implementations of accept() may use getAdapter() to obtain
 				 * richer visitor interfaces.
-				 * @param <R, C>
+				 * @param <R>
 				 * @param visitor
 				 * @return the result of the visit.
 				 */

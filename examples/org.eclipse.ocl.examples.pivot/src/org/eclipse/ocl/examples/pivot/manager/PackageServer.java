@@ -212,6 +212,12 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		return null;
 	}
 
+	public int getIndex(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
+		PackageTracker packageTracker = getPackageTracker(asPackage);
+		assert packageTracker != null;
+		return trackers.indexOf(packageTracker);
+	}
+
 	public @Nullable NestedPackageServer getMemberPackage(@NonNull String memberPackageName) {
 		Map<String, NestedPackageServer> packageServers2 = packageServers;
 		if (packageServers2 == null) {
@@ -416,11 +422,6 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 
 	@Override
 	public String toString() {
-		if (trackers.size() > 0) {
-			return String.valueOf(trackers.get(0).getPackage());
-		}
-		else {
-			return getNsURI();
-		}
+		return getName() + " : " + getNsURI();
 	}
 }

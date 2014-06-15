@@ -55,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.executor.PivotReflectiveFragment;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
+import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView.Disambiguator;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -233,7 +234,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 							List<Comparator<Object>> disambiguators = EnvironmentView.getDisambiguators(key);
 							if (disambiguators != null) {
 								for (Comparator<Object> comparator : disambiguators) {
-									verdict = comparator.compare(iValue, jValue);
+									if (comparator instanceof Disambiguator<?>) {
+										verdict = ((Disambiguator<Object>)comparator).compare(getStandardLibrary(), iValue, jValue);
+									}
+									else {
+										verdict = comparator.compare(iValue, jValue);
+									}
 									if (verdict != 0) {
 										break;
 									}
