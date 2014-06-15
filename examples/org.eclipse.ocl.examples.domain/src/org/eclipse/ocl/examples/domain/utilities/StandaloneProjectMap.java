@@ -1414,7 +1414,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	/**
 	 * A DelegatedSinglePackageResource may be installed in a ResourceSet.uriResourceMap so that the
 	 * generated EPackage is resolved as a dynamically loaded resource.
-	 * Conflicts may be diagnosed durng the delegation.
+	 * Conflicts may be diagnosed during the delegation.
 	 * <p>
 	 * This Resource should never be used for any other purpose.
 	 */

@@ -300,8 +300,7 @@ public class UsageTests
 				project.create(null);
 			}
 		}
-		MetaModelManager metaModelManager2 = new MetaModelManager();
-		metaModelManager = metaModelManager2;
+		MetaModelManager metaModelManager2 = new MetaModelManager(getProjectMap());
 		createEcoreFile(metaModelManager2, testFileStem, oclinecoreFile);
 		createGenModelFile(testFileStem + ".genmodel", genmodelFile);
 		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
@@ -441,7 +440,7 @@ public class UsageTests
 		URI fileURI = genmodelURI; //getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 //		metaModelManager2.dispose();
-		metaModelManager = new MetaModelManager();
+		MetaModelManager metaModelManager = new MetaModelManager(getProjectMap());
 		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 		StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
 		projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);

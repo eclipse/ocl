@@ -71,9 +71,11 @@ import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.BaseStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -674,6 +676,20 @@ public class PivotTestCase extends TestCase
 		}
 		if (DEBUG_ID) {
 			debugPrintln("==> Finish " + getName());
+		}
+		/**
+		 * Reset any PivotEObject.target that may have reverted to proxies when a ProjectMap unloaded,
+		 * and which might be resolved using the wrong strategy in another test.
+		 */
+		for (TreeIterator<EObject> tit = OCLstdlib.getDefault().getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof PivotObjectImpl) {
+				PivotObjectImpl asObject = (PivotObjectImpl)eObject;
+				EObject eTarget = asObject.getETarget();
+				if ((eTarget != null) && eTarget.eIsProxy()) {
+					asObject.setTarget(null);
+				}
+			}
 		}
 		super.tearDown();
 	}
