@@ -11,16 +11,14 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
  * Adds the http://www.eclipse.org/OCL/ASMetamodel annotation.
@@ -35,13 +33,7 @@ public class SetASMetamodel extends WorkflowComponentWithModelSlot
 		log.info("Adding ASMetamodel annotation in '" + resource.getURI() + "'");
 		for (EObject eObject : resource.getContents()) {
 			if (eObject instanceof EPackage) {
-				EPackage ePackage = (EPackage) eObject;
-				EAnnotation eAnnotation = ePackage.getEAnnotation(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
-				if (eAnnotation == null) {
-					eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					eAnnotation.setSource(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
-					ePackage.getEAnnotations().add(eAnnotation);
-				}
+				DomainUtil.getMetamodelAnnotation((EPackage) eObject);	// Install EAnnotation
 			}
 		}
 	}

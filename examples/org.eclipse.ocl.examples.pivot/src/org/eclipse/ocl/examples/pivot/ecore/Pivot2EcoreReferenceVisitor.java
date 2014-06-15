@@ -359,9 +359,7 @@ public class Pivot2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObjec
 			context.getDelegateInstaller().installDelegates(ePackage);
 		}
 		if (context.isPivot(pivotPackage)) {
-			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
-			ePackage.getEAnnotations().add(eAnnotation);
+			DomainUtil.getMetamodelAnnotation(ePackage);
 		}
 		return null;
 	}

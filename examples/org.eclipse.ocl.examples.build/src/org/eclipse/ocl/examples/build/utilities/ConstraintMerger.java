@@ -93,8 +93,14 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		metaModelManager.setLibraryLoadInProgress(true);
 		metaModelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
 		metaModelManager.setDefaultStandardLibraryURI(pivotNsURI);
-		StandardLibraryContribution.REGISTRY.put(pivotNsURI, new OCLstdlib.RenamingLoader(pivotNsURI));
+		StandardLibraryContribution.REGISTRY.put(pivotNsURI, new OCLstdlib.Loader());
 //		metaModelManager.getBooleanType();
+		for (EObject eObject : ecoreResource.getContents()) {
+			if (eObject instanceof EPackage) {
+				EPackage ePackage = (EPackage) eObject;
+				DomainUtil.getMetamodelAnnotation(ePackage); // Install EAnnotation
+			}
+		}
 		Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		Root pivotRoot = ecore2pivot.getPivotRoot();
 //		metaModelManager.setPivotMetaModel(pivotRoot.getNestedPackage().get(0));

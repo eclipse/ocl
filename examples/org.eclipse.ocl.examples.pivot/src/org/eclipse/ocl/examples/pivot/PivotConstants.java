@@ -18,10 +18,11 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 
-public interface PivotConstants
+public interface PivotConstants extends DomainConstants
 {
 	@SuppressWarnings("null")
 	static final @NonNull String PLUGIN_ID = PivotConstants.class.getPackage().getName();
@@ -48,15 +49,6 @@ public interface PivotConstants
 	 */
 	static final @NonNull String IMPORT_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/Import";
 	static final @NonNull String SYSML_ANNOTATION_SOURCE = "http://www.omg.org/spec/SysML";
-	
-	/**
-	 * EPackage annotation indicating that the EPackage is an Ecore serialisation of an OCL AS Metamodel.
-	 * No details are defined for this EAnnotation.
-	 * <p>
-	 * This annotation is used by /org.eclipse.ocl.examples.pivot/model/Pivot.ecore. It is not
-	 * intended to be used by client code.
-	 */
-	static final @NonNull String AS_METAMODEL_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/ASMetamodel";
 	
 	/**
 	 * EPackage annotation indicating that the EPackage is an Ecore serialisation of an OCL AS Library.
@@ -160,7 +152,7 @@ public interface PivotConstants
 	static final @NonNull String ORPHANAGE_NAME = "$$";
 	static final @NonNull String ORPHANAGE_PREFIX = "orphanage";
 	static final @NonNull String ORPHANAGE_URI = "http://www.eclipse.org/ocl/3.1.0/orphanage";
-
+	
 	static final @NonNull String UNKNOWN_TYPE_TEXT = "unknown-type";
 
 	static final @NonNull String WILDCARD_NAME = "wildcard";

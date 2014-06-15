@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -29,6 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainIteration;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
@@ -81,6 +83,14 @@ public class DomainUtil
 	}
 
 	public static final NameableComparator NAMEABLE_COMPARATOR = NameableComparator.INSTANCE;
+
+	/**
+	 * Return the DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE for ePackage or null if none.
+	 */
+	public static @Nullable EAnnotation basicGetMetamodelAnnotation(@NonNull EPackage ePackage) {
+		EAnnotation asMetamodelAnnotation = ePackage.getEAnnotation(DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE);
+		return asMetamodelAnnotation;
+	}
 
 	public static @NonNull String bind(String messageTemplate, Object... bindings) {
 		@SuppressWarnings("null") @NonNull String result = NLS.bind(messageTemplate, bindings);
@@ -402,6 +412,19 @@ public class DomainUtil
 			parameterTypes[iParameter++] = parameterType;
 		}
 		return parameterTypes;
+	}
+
+	/**
+	 * Return the DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE for ePackage, creating it if needed.
+	 */
+	public static @NonNull EAnnotation getMetamodelAnnotation(@NonNull EPackage ePackage) {
+		EAnnotation eAnnotation = ePackage.getEAnnotation(DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE);
+		if (eAnnotation == null) {
+			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			eAnnotation.setSource(DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE);
+			ePackage.getEAnnotations().add(eAnnotation);
+		}
+		return eAnnotation;
 	}
 
 	public static <T extends Nameable> T getNamedElement(Iterable<T> elements, String name) {
