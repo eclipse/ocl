@@ -24,8 +24,10 @@ import java.util.Set;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
@@ -56,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -916,7 +919,15 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.appendClassReference(EcoreExecutorPackage.class);
 		s.append(" PACKAGE = new ");
 		s.appendClassReference(EcoreExecutorPackage.class);
-		s.append("(" + genPackage.getPrefix() + "Package.eINSTANCE);\n");
+		s.append("(" + genPackage.getPrefix() + "Package.eINSTANCE, ");
+		if (pPackage.getPackageId() == IdManager.METAMODEL) {
+			s.appendClassReference(IdManager.class);
+			s.append(".METAMODEL");
+		}
+		else {
+			s.append("null");
+		}
+		s.append(");\n");
 		
 		s.append("\n");
 		s.append("	/**\n");
@@ -1024,8 +1035,18 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		}
 		s1.append(" *************************************************************************\n");
 		s1.append(" * This code is 100% auto-generated\n");
-		s1.append(" * from: " + pPackage.getName() + "\n");
-		s1.append(" * using: " + getClass().getName() + "\n");
+		s1.append(" * from:\n");
+		for (DomainPackage dPackage : metaModelManager.getPartialPackages(pPackage, false)) {
+			if (dPackage instanceof EObject) {
+				EObject eRoot = ((EObject)dPackage).eContainer();
+				if (eRoot instanceof Root) {
+					s1.append(" *   " + ((Root)eRoot).getExternalURI() + "\n");
+				}
+			}
+		}
+		s1.append(" * using:\n");
+		s1.append(" *   " + genPackage.eResource().getURI() + "\n");
+		s1.append(" *   " + getClass().getName() + "\n");
 		s1.append(" *\n");
 		s1.append(" * Do not edit it.\n");
 		s1.append(" *******************************************************************************/\n");

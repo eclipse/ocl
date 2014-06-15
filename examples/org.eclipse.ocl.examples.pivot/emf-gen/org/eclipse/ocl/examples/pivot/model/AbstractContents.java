@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Unlimited;
@@ -63,6 +64,8 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl;
+import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 public class AbstractContents
@@ -162,10 +165,18 @@ public class AbstractContents
 		return pivotType;
 	}
 
+	@Deprecated
 	protected @NonNull Library createLibrary(@NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
+		return createLibrary(name, nsPrefix, nsURI, null);
+	}
+
+	protected @NonNull Library createLibrary(@NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
 		Library pivotLibrary = PivotFactory.eINSTANCE.createLibrary();
 		pivotLibrary.setName(name);
 		pivotLibrary.setNsPrefix(nsPrefix);
+		if (packageId != null) {
+			((LibraryImpl)pivotLibrary).setPackageId(packageId);  // FIXME Add to API
+		}
 		pivotLibrary.setNsURI(nsURI);
 		return pivotLibrary;
 	}
@@ -219,10 +230,19 @@ public class AbstractContents
 		return pivotPackage;
 	}
 
+
+	@Deprecated
 	protected @NonNull Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+		return createPackage(name, nsPrefix, nsURI, null);
+	}
+
+	protected @NonNull Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
 		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(name);
 		pivotPackage.setNsPrefix(nsPrefix);
+		if (packageId != null) {
+			((PackageImpl)pivotPackage).setPackageId(packageId);  // FIXME Add to API
+		}
 		pivotPackage.setNsURI(nsURI);
 		return pivotPackage;
 	}

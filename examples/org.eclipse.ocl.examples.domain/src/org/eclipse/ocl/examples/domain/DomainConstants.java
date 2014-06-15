@@ -22,4 +22,9 @@ public interface DomainConstants
 	 * intended to be used by client code.
 	 */
 	static final @NonNull String AS_METAMODEL_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/ASMetamodel";
+	
+	/**
+	 * The Package name of the shared metamodel.
+	 */
+	static final @NonNull String METAMODEL_NAME = "$metamodel$";
 }

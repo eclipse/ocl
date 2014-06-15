@@ -703,6 +703,7 @@ public class PivotTestCase extends TestCase
 		OCLinEcoreStandaloneSetup.doTearDown();
 		OCLstdlibStandaloneSetup.doTearDown();
 		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+//		OCLstdlib.uninstall(); // should be able to persist
 		if (projectMap != null) {
 			projectMap.dispose();
 			projectMap = null;

@@ -66,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.context.ModelContext;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -636,7 +635,7 @@ public class XtextTestCase extends PivotTestCase
 //		URI projectURI = getProjectFileURI("dummy");
 //		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
 //		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
-		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
+		OCLstdlib.install();
         OCLDelegateDomain.initialize(null);
 	}
 

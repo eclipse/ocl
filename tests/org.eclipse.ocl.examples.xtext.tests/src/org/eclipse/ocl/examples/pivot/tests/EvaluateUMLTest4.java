@@ -20,14 +20,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -51,15 +49,6 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 
 	public EvaluateUMLTest4(boolean useCodeGen) {
 		super(useCodeGen);
-	}
-
-	@Override
-	protected @NonNull MetaModelManager createMetaModelManager() {
-		final @SuppressWarnings("null")@NonNull String umlMetamodelNsUri = XMI2UMLResource.UML_METAMODEL_NS_URI;
-		StandardLibraryContribution.REGISTRY.put(umlMetamodelNsUri, new OCLstdlib.RenamingLoader(umlMetamodelNsUri));
-		MetaModelManager metaModelManager = super.createMetaModelManager();
-		metaModelManager.setDefaultStandardLibraryURI(umlMetamodelNsUri);
-		return metaModelManager;
 	}
 
 	@Override
@@ -117,7 +106,8 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 		DomainType contextType = metaModelManager.getIdResolver().getStaticTypeOf(context);
 		assertTrue(contextType instanceof Type);
 		org.eclipse.ocl.examples.pivot.Package contextPackage = ((Type)contextType).getPackage();
-		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
+//		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
+		assertEquals(IdManager.METAMODEL, contextPackage.getPackageId());
 		assertValidQuery((Type)contextType, "self.extension_vStereotype1");	
 		assertSemanticErrorQuery2((Type)contextType, "self.extension_Stereotype1", OCLMessages.UnresolvedProperty_ERROR_, "extension_Stereotype1", "Property");	
 		assertValidQuery((Type)contextType, "self.extension_vStereotype1.base_NamedElement");	

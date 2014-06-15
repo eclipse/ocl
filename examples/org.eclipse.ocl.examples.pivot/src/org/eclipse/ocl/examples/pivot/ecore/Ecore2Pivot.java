@@ -464,7 +464,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 				String nsURI = ((EPackage)ecoreContents.iterator().next()).getNsURI();
 				if (nsURI != null) {
 					String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
-					OCLstdlib library = OCLstdlib.create(stdlibASUri, "ocl", "ocl", nsURI);
+					OCLstdlib library = OCLstdlib.create(stdlibASUri, "ocl", "ocl", OCLstdlib.STDLIB_URI);
 					metaModelManager.installResource(library);
 //					metaModelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
 				}
@@ -564,8 +564,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 			return false;
 		}
 		EPackage ecorePackage = (EPackage) ecoreRoot;
-		EAnnotation asMetamodelAnnotation = ecorePackage.getEAnnotation(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
-		if (asMetamodelAnnotation != null) {
+		if (DomainUtil.basicGetMetamodelAnnotation(ecorePackage) != null) {
 			return true;
 		}
 		// FIXME Following code should be redundant
@@ -598,16 +597,16 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		if ((asMetamodels != null) && (metaModelManager.getLibraryResource() == null)) {
 			String nsURI = asMetamodels.iterator().next().getNsURI();
 			if (nsURI != null) {
-				String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
-				OCLstdlib library = OCLstdlib.create(stdlibASUri, "ocl", "ocl", nsURI);
+//				String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
+				OCLstdlib library = OCLstdlib.getDefault(); //create(stdlibASUri, "ocl", "ocl", nsURI);
+//				metaModelManager.addPackageNsURISynonym(OCLstdlib.STDLIB_URI, PivotConstants.METAMODEL_URI);
 				metaModelManager.installResource(library);
 //				metaModelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
 			}
 		}
 	}
 	protected void loadImports(@NonNull EPackage ePackage, @Nullable URI baseURI) {
-		EAnnotation asMetamodelAnnotation = ePackage.getEAnnotation(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
-		if (asMetamodelAnnotation != null) {
+		if (DomainUtil.basicGetMetamodelAnnotation(ePackage) != null) {
 			if (asMetamodels == null) {
 				asMetamodels = new HashSet<EPackage>();
 			}

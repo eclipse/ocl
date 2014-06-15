@@ -14,7 +14,9 @@ import org.eclipse.jdt.annotation.NonNull;
 
 
 /**
- * A PackageId provides a unique hierarchical identifier for a package.
+ * A PackageId provides a unique hierarchical semantic identifier for a package.
+ * <p>
+ * Logically merged packages may have different NsURIs but the same PackageId.
  *
  * @see NestedPackageId
  * @see NsURIPackageId

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
@@ -76,6 +77,24 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		String nsURI = userPackage.getNsURI();
 		if (nsURI != null) {
 			nsURI2package.put(nsURI, userPackage);
+			EPackage ePackage = userPackage.getEPackage();
+			if (ePackage != null) {
+				if (DomainUtil.basicGetMetamodelAnnotation(ePackage) != null) {
+					if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
+						roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
+					}
+				}
+			}
+			else {
+				for (DomainType asType : userPackage.getOwnedType()) {
+					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
+						if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
+							roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
+						}
+						break;
+					}
+				}
+			}
 		}
 		else {
 			String name = userPackage.getName();
@@ -249,8 +268,10 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public @NonNull
-	DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+		if (id == IdManager.METAMODEL) {
+			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getPackage());
+		}
 		String name = id.getName();
 		DomainPackage knownPackage = roots2package.get(name);
 		if (knownPackage != null) {

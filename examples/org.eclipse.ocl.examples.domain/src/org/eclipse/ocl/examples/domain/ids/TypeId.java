@@ -17,10 +17,12 @@ import org.eclipse.ocl.examples.domain.ids.impl.OclInvalidTypeIdImpl;
 import org.eclipse.ocl.examples.domain.ids.impl.OclVoidTypeIdImpl;
 
 /**
- * A TypeId provides a unique hierarchical for type which may have many 'actual' type variants.
+ * A TypeId provides a unique hierarchical semantic identifier for type which may have many 'actual' type variants.
  * <p>
  * For instance 'Boolean' is a well-understood conceptual, but it may have many 'actual' as a result of Complete OCL
  * definitions merging additional features in to the 'actual' type.
+ * <p>
+ * Logically merged types may have different package NsURIs but the same TypeId.
  * 
  * @see CollectionTypeId
  * @see LambdaTypeId

@@ -770,12 +770,20 @@ public class PivotUtil extends DomainUtil
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull OpaqueExpression specification) {
 		return getExpressionInOCL(specification);
 	}
+	@Deprecated // Supply a clear MetaModelManager
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull OpaqueExpression specification) {
 		if (specification instanceof ExpressionInOCL) {
 			return (ExpressionInOCL) specification;
 		}
 		String expression = PivotUtil.getBody(specification);
 		return expression != null ? getExpressionInOCL(specification, expression) : null;
+	}
+	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull OpaqueExpression specification) {
+		if (specification instanceof ExpressionInOCL) {
+			return (ExpressionInOCL) specification;
+		}
+		String expression = PivotUtil.getBody(specification);
+		return expression != null ? getExpressionInOCL(metaModelManager, specification, expression) : null;
 	}
 
 	/**
@@ -784,6 +792,7 @@ public class PivotUtil extends DomainUtil
 	 * contextVariable, a null bodyExpression, and a StringLiteral bodyExpression
 	 * containing the error messages.
 	 */
+	@Deprecated // Supply a clear MetaModelManager
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) {
 			Resource resource = contextElement.eResource();
 			MetaModelManager metaModelManager;
@@ -793,25 +802,29 @@ public class PivotUtil extends DomainUtil
 			}
 			else {
 				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(resource, null);
-				metaModelManager = adapter.getMetaModelManager();				
+				metaModelManager = adapter.getMetaModelManager();
 			}
-			ParserContext parserContext = metaModelManager.getParserContext(contextElement);
-			if (parserContext == null) {
-				logger.error("Unknown context type for " + contextElement.eClass().getName());
-				return null;
+			return getExpressionInOCL(metaModelManager, contextElement,expression);
+	}
+
+	public static ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull NamedElement contextElement, @NonNull String expression) {
+		ParserContext parserContext = metaModelManager.getParserContext(contextElement);
+		if (parserContext == null) {
+			logger.error("Unknown context type for " + contextElement.eClass().getName());
+			return null;
+		}
+		ExpressionInOCL expressionInOCL = null;
+		try {				
+			expressionInOCL = parserContext.parse(contextElement, expression);
+		} catch (ParserException e) {
+			String message = e.getMessage();
+			if (message == null) {
+				message = "";
 			}
-			ExpressionInOCL expressionInOCL = null;
-			try {				
-				expressionInOCL = parserContext.parse(contextElement, expression);
-			} catch (ParserException e) {
-				String message = e.getMessage();
-				if (message == null) {
-					message = "";
-				}
-				logger.error(message);
-				return createExpressionInOCLError(message);
-			}
-			return expressionInOCL;
+			logger.error(message);
+			return createExpressionInOCLError(message);
+		}
+		return expressionInOCL;
 	}
 
 	@Deprecated

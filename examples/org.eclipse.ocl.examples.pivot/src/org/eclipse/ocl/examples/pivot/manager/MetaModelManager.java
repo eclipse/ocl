@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
@@ -55,6 +56,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryOperation;
@@ -116,6 +118,7 @@ import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.context.PropertyContext;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
@@ -129,7 +132,6 @@ import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.IllegalMetamodelException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.osgi.util.NLS;
 
@@ -1048,11 +1050,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return Orphanage.getOrphanage(asResourceSet);
 	}
 
+	@Deprecated
 	public @NonNull <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(@NonNull Class<T> pivotClass,
 			@NonNull EClass pivotEClass, @NonNull String name, @Nullable String nsURI) {
+		return createPackage(pivotClass, pivotEClass, name, nsURI, null);
+	}
+
+	public @NonNull <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(@NonNull Class<T> pivotClass,
+			@NonNull EClass pivotEClass, @NonNull String name, @Nullable String nsURI, @Nullable PackageId packageId) {
 		@SuppressWarnings("unchecked")
 		T asPackage = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
 		asPackage.setName(name);
+		if (packageId != null) {
+			((PackageImpl)asPackage).setPackageId(packageId);
+		}
 		asPackage.setNsURI(nsURI);
 		return asPackage;
 	}
@@ -2343,7 +2354,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
-		return packageManager.getRootPackage(name);
+		return name.equals(DomainConstants.METAMODEL_NAME) ? getOclAnyType().getPackage() : packageManager.getRootPackage(name);
 	}
 
 	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
@@ -2738,8 +2749,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		String name = DomainUtil.nonNullState(asLibrary.getName());
-		String nsURI = DomainUtil.nonNullState(asLibrary.getNsURI());
-		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(this, name, asLibrary.getNsPrefix(), nsURI);
+//		String nsURI = DomainUtil.nonNullState(asLibrary.getNsURI());
+		org.eclipse.ocl.examples.pivot.Package oclMetamodel = OCLMetaModel.create(this, name, asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
 		asResourceSet.getResources().add(oclMetamodel.eResource());
 		setASMetamodel(oclMetamodel);		// Standard meta-model
 		@SuppressWarnings("null")
@@ -3133,6 +3144,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void setASMetamodel(DomainPackage asPackage) {
 		asMetamodel = asPackage;
+		String uri = asMetamodel.getNsURI();
+		if (uri != null) {
+			packageManager.addPackageNsURISynonym(uri, DomainConstants.METAMODEL_NAME);
+		}
 	}
 
 	public void setAutoLoadASMetamodel(boolean autoLoadASMetamodel) {
@@ -3150,14 +3165,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void setMetamodelNsURI(@NonNull String metaNsURI) {
 		if (asMetamodel == null) {
-			if (StandardLibraryContribution.REGISTRY.get(metaNsURI) == null) {
-				StandardLibraryContribution.REGISTRY.put(metaNsURI, new OCLstdlib.RenamingLoader(metaNsURI));
-			}
-			setDefaultStandardLibraryURI(metaNsURI);
+//			if (StandardLibraryContribution.REGISTRY.get(metaNsURI) == null) {
+//				StandardLibraryContribution.REGISTRY.put(metaNsURI, new OCLstdlib.Loader());
+//			}
+//			setDefaultStandardLibraryURI(metaNsURI);
 			getASMetamodel();
 		}
 		else if (!metaNsURI.equals(asMetamodel.getNsURI())) {
-			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
+			packageManager.addPackageNsURISynonym(metaNsURI, DomainConstants.METAMODEL_NAME);
+//			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
 		}
 	}
 

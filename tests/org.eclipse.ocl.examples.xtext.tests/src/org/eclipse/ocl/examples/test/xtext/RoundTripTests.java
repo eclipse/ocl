@@ -50,7 +50,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.MessageBinder;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.pivot2cs.CompleteOCLSplitter;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -579,7 +578,7 @@ public class RoundTripTests extends XtextTestCase
 	} */
 
 	public void testUML25RoundTrip() throws IOException, InterruptedException {
-		EssentialOCLLinkingService.DEBUG_RETRY = true;
+//		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.ecore", true);
 		Map<String,Object> options = new HashMap<String, Object>();
 		options.put(Pivot2Ecore.OPTION_ADD_INVARIANT_COMMENTS, true);

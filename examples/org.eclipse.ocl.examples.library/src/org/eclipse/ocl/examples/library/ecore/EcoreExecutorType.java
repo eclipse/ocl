@@ -110,7 +110,7 @@ public class EcoreExecutorType extends ExecutorType
 							typeId2 = TypeId.METACLASS;
 						}
 						else {
-							PackageId packageTypeId = IdManager.getPackageId(evaluationPackage);
+							PackageId packageTypeId = evaluationPackage.getPackageId(); //IdManager.getPackageId(evaluationPackage);
 							DomainTypeParameters typeParameters = getTypeParameters();
 							if (eClassifier instanceof EDataType) {
 								typeId2 = packageTypeId.getDataTypeId(name, typeParameters.parametersSize());

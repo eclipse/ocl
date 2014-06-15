@@ -30,6 +30,9 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.DomainConstants;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
@@ -63,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2PivotDeclarationSwitch;
+import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Extension;
@@ -258,6 +262,10 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			if (umlMetaclass != null) {
 				Package umlMetapackage = umlMetaclass.getPackage();
 				if (umlMetapackage != null) {
+					String nsURI = umlMetapackage.getURI();
+					if (nsURI != null) {
+						metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, DomainConstants.METAMODEL_NAME);
+					}
 					converter.addImportedPackage(umlMetapackage);
 				}
 			}
@@ -405,6 +413,13 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 //			@SuppressWarnings("unused")TypeServer typeServer1 = metaModelManager.getTypeServer(primaryElement);
 //			@SuppressWarnings("unused")TypeServer typeServer2 = metaModelManager.getTypeServer(pivotElement);
 			pivotElement.setBehavioralType(primaryElement);
+			org.eclipse.uml2.uml.Package umlPackage = umlPrimitiveType.getPackage();
+			if (umlPackage != null) {
+				String nsURI = umlPackage.getURI();
+				if (nsURI != null) {
+//					metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, PackageId.METAMODEL_NAME);
+				}
+			}
 		}
 		else {
 //			System.out.println("unknown PrimitiveType " + umlPrimitiveType);
@@ -668,6 +683,32 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			}
 		}
 		pivotElement.setNsPrefix(nsPrefix != null ? nsPrefix.toString() : null);
+		PackageId packageId = null;
+		if (nsURI instanceof String) {
+			String sharedURI = metaModelManager.getPackageManager().getSharedURI((String)nsURI);
+			if (DomainConstants.METAMODEL_NAME.equals(sharedURI)) {
+				packageId = IdManager.METAMODEL;
+			}
+		}
+		if ((packageId == null) && "UML".equals(umlPackage.getName()) && !(umlPackage instanceof org.eclipse.uml2.uml.Profile)) {
+			for (org.eclipse.uml2.uml.Type umlType : umlPackage.getOwnedTypes()) {
+				if ((umlType instanceof org.eclipse.uml2.uml.Class) && "Class".equals(umlType.getName())) {
+					packageId = IdManager.METAMODEL;
+					break;
+				}
+			}
+		}
+		if ((packageId == null) && !(umlPackage instanceof org.eclipse.uml2.uml.Profile)) {
+			for (org.eclipse.uml2.uml.Type umlType : umlPackage.getOwnedTypes()) {
+				if ((umlType instanceof org.eclipse.uml2.uml.PrimitiveType) && "Boolean".equals(umlType.getName())) {
+					packageId = IdManager.METAMODEL;
+					break;
+				}
+			}
+		}
+		if (packageId != null) {
+			((PackageImpl)pivotElement).setPackageId(packageId);
+		}
 		pivotElement.setNsURI(nsURI != null ? nsURI.toString() : null);
 		@Nullable List<org.eclipse.uml2.uml.Element> umlOtherElements = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlNestedPackages = null;

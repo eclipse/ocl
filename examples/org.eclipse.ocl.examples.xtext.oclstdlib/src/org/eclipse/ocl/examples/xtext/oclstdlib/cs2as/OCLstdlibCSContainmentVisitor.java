@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
@@ -23,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -39,6 +42,14 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 {
 	public OCLstdlibCSContainmentVisitor(@NonNull CS2PivotConversion context) {
 		super(context);
+	}
+
+	@Override
+	protected PackageId getPackageId(@NonNull PackageCS csElement) {
+		if (csElement instanceof LibPackageCS) {
+			return IdManager.METAMODEL;
+		}
+		return super.getPackageId(csElement);
 	}
 
 	@Override

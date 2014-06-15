@@ -24,8 +24,10 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.AnyType;
@@ -39,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalMetamodelException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -64,6 +67,16 @@ public class PackageManager implements PackageServerParent
 	 * Map from package URI to primary package. 
 	 */
 	private final @NonNull Map<String, PackageServer> uri2package = new HashMap<String, PackageServer>();
+	
+	/**
+	 * Map of synonym URI to shared URI.
+	 */
+	private final @NonNull Map<String, String> synonymURI2sharedURI = new HashMap<String, String>();
+	
+	/**
+	 * Map of shared URIs to synonyms
+	 */
+	private final @NonNull Map<String, Set<String>> sharedURI2synonymURIs = new HashMap<String, Set<String>>();
 
 	/**
 	 * Map from each merged package to the PackageTracker that supervises its merge. PackageTrackers are only
@@ -117,12 +130,33 @@ public class PackageManager implements PackageServerParent
 	 * The OCL Standard Library is normally registered under it's own nsURI and the OCL Pivot MetaModel is changed to share
 	 * the same URI. This routine allows the original OCL Pivot MetaModel nsURI to reference the merged packes too.
 	 */
-	public void addPackageNsURISynonym(String newUri, String oldURI) {
-		PackageServer packageServer = uri2package.get(oldURI);
-		if (packageServer != null) {
-			@SuppressWarnings("unused") PackageServer oldPackageServer = uri2package.put(newUri, packageServer);
+
+	public void addPackageNsURISynonym(@NonNull String newURI, @NonNull String oldURI) {
+		String sharedURI = synonymURI2sharedURI.get(newURI);
+		if (oldURI.equals(sharedURI)) {
+			return;
 		}
+		if (sharedURI != null) {
+			throw new IllegalMetamodelException(oldURI, sharedURI);	// FIXME Better name
+		}
+		if (sharedURI2synonymURIs.containsKey(newURI)) {
+			throw new IllegalMetamodelException(newURI, sharedURI);	// FIXME Better name
+		}
+		synonymURI2sharedURI.put(newURI, oldURI);
+		Set<String> synonymURIs = sharedURI2synonymURIs.get(oldURI);
+		if (synonymURIs == null) {
+			synonymURIs = new HashSet<String>();
+			sharedURI2synonymURIs.put(oldURI, synonymURIs);
+		}
+		synonymURIs.add(newURI);
+//		packageManager.addPackageNsURISynonym(newURI, oldUri);
 	}
+//	public void addPackageNsURISynonym(String newUri, String oldURI) {
+//		PackageServer packageServer = uri2package.get(oldURI);
+//		if (packageServer != null) {
+//			@SuppressWarnings("unused") PackageServer oldPackageServer = uri2package.put(newUri, packageServer);
+//		}
+//	}
 
 	void addPackageServer(@NonNull PackageServer packageServer) {
 		String nsURI = packageServer.getNsURI();
@@ -137,6 +171,18 @@ public class PackageManager implements PackageServerParent
 	}
 	
 	public synchronized void addRoot(@NonNull Root pivotRoot) {
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : pivotRoot.getNestedPackage()) {
+			String nsURI = asPackage.getNsURI();
+			String sharedURI = getSharedURI(nsURI);
+			if (sharedURI == nsURI) {
+				PackageId packageId = asPackage.getPackageId();
+				if (packageId == IdManager.METAMODEL) {
+					if (nsURI != null) {
+						addPackageNsURISynonym(nsURI, DomainConstants.METAMODEL_NAME);
+					}
+				}
+			}
+		}
 		rootTrackers.add(new RootTracker(this, pivotRoot));
 		for (DomainPackage pivotPackage : pivotRoot.getNestedPackage()) {
 			if (pivotPackage != null) {
@@ -182,7 +228,7 @@ public class PackageManager implements PackageServerParent
 			nonNullName = "$anon_" + Integer.toHexString(System.identityHashCode(pivotPackage));
 		}
 		String nsPrefix = pivotPackage.getNsPrefix();
-		String nsURI = pivotPackage.getNsURI();
+		String nsURI = getSharedURI(pivotPackage.getNsURI());
 		PackageId packageId = pivotPackage.getPackageId();
 		RootPackageServer rootPackageServer;
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
@@ -244,6 +290,12 @@ public class PackageManager implements PackageServerParent
 	void disposedPackageServer(@Nullable String nsURI) {
 		if (nsURI != null) {
 			uri2package.remove(nsURI);
+			Set<String> synonymURIs = sharedURI2synonymURIs.remove(nsURI);
+			if (synonymURIs != null) {
+				for (String synonymURI : synonymURIs) {
+					synonymURI2sharedURI.remove(synonymURI);
+				}
+			}
 		}
 	}
 
@@ -297,14 +349,14 @@ public class PackageManager implements PackageServerParent
 	public @Nullable RootPackageServer getMemberPackage(@NonNull String memberPackageName) {
 		return packageServers.get(memberPackageName);
 	}
-
 	public @NonNull RootPackageServer getMemberPackageServer(@NonNull DomainPackage pivotPackage) {
 		//
 		//	Try to find package by nsURI
 		//
 		String nsURI = pivotPackage.getNsURI();
 		if (nsURI != null) {
-			PackageServer packageServer = uri2package.get(nsURI);
+			String sharedURI = getSharedURI(nsURI);
+			PackageServer packageServer = uri2package.get(sharedURI);
 			if (packageServer != null) {
 				return (RootPackageServer) packageServer;
 			}
@@ -362,7 +414,8 @@ public class PackageManager implements PackageServerParent
 			@SuppressWarnings("null") @NonNull String substring = nsURI.substring(0, lastIndex);
 			nsURI = substring;
 		}
-		return uri2package.get(nsURI);
+		String sharedURI = getSharedURI(nsURI);
+		return uri2package.get(sharedURI);
 	}
 
 	public @NonNull PackageServer getPackageServer(@NonNull DomainPackage pivotPackage) {
@@ -374,7 +427,8 @@ public class PackageManager implements PackageServerParent
 		else {
 			String nsURI = pivotPackage.getNsURI();
 			if (nsURI != null) {
-				packageServer = uri2package.get(nsURI);
+				String sharedURI = getSharedURI(nsURI);
+				packageServer = uri2package.get(sharedURI);
 			}
 			if (packageServer == null) {
 				PackageServerParent packageServerParent;
@@ -406,7 +460,8 @@ public class PackageManager implements PackageServerParent
 				packageServer = nestingPackageServer.getMemberPackageServer(pivotPackage);
 			}
 			else {
-				packageServer = uri2package.get(pivotPackage.getNsURI());
+				String sharedURI = getSharedURI(pivotPackage.getNsURI());
+				packageServer = uri2package.get(sharedURI);
 				if (packageServer == null) {
 					packageServer = createRootPackageServer(pivotPackage);
 				}
@@ -486,6 +541,16 @@ public class PackageManager implements PackageServerParent
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
 		RootPackageServer rootPackageServer = packageServers.get(name);
 		return rootPackageServer != null ? rootPackageServer.getPivotPackage() : null;
+	}
+
+	public @Nullable String getSharedURI(@Nullable String nsURI) {
+		String sharedURI = synonymURI2sharedURI.get(nsURI);
+		if (sharedURI != null) {
+			return sharedURI;
+		}
+		else {
+			return nsURI;
+		}
 	}
 	
 	public @NonNull TypeServer getTypeServer(@NonNull DomainType pivotType) {

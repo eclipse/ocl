@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -114,7 +115,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			else if (defaultExpression != null) {
 				String body = PivotUtil.getBody(defaultExpression);
 				if (body != null) {
-					ExpressionInOCL expr =	PivotUtil.getExpressionInOCL(elementExtension, body);
+					ExpressionInOCL expr =	PivotUtil.getExpressionInOCL((MetaModelManager) evaluator.getStandardLibrary(), elementExtension, body);
 					if (expr != null) {
 						OCLExpression bodyExpression = expr.getBodyExpression();
 						if (bodyExpression != null) {

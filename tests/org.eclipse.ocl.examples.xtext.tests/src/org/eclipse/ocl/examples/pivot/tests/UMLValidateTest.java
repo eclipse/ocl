@@ -80,6 +80,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	protected void tearDown() throws Exception {
 		EValidator.Registry.INSTANCE.remove(null);
 		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+//		OCLstdlib.uninstall();
 		super.tearDown();
 	}
 
@@ -221,6 +222,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	}
 	
 	public void test_umlValidation_Bug434356() {
+//		EssentialOCLLinkingService.DEBUG_RETRY = true;
 //		UML2Pivot.TYPE_EXTENSIONS.setState(true);
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);

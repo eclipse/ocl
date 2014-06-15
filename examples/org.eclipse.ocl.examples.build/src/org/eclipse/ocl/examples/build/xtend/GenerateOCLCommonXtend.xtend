@@ -348,7 +348,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«IF morePackages.size() > 0»
 				«FOR pkg1 : morePackages»
-					protected final @NonNull «pkg1.eClass().name» «pkg1.getPrefixedSymbolName("pk_" + pkg1.partialName())» = create«pkg1.eClass().name»("«pkg1.name»", «IF pkg1.nsPrefix != null»"«pkg1.nsPrefix»"«ELSE»null«ENDIF», «IF pkg1.nsURI != null»"«pkg1.nsURI»"«ELSE»null«ENDIF»);
+					protected final @NonNull «pkg1.eClass().name» «pkg1.getPrefixedSymbolName("pk_" + pkg1.partialName())» = create«pkg1.eClass().name»("«pkg1.name»", «IF pkg1.nsPrefix != null»"«pkg1.nsPrefix»"«ELSE»null«ENDIF», «IF pkg1.nsURI != null»"«pkg1.nsURI»"«ELSE»null«ENDIF», null);
 				«ENDFOR»
 
 			«ENDIF»

@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -97,7 +97,8 @@ public abstract class AbstractValidateTests extends PivotTestCase
     	return resourceSet;
 	}
 
-	protected void disposeResourceSet(ResourceSet resourceSet) {
+	protected void disposeResourceSet(@NonNull ResourceSet resourceSet) {
+		StandaloneProjectMap.dispose(resourceSet);
 		for (Resource aResource : resourceSet.getResources()) {
 			aResource.unload();
 		}
@@ -167,7 +168,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		doCompleteOCLSetup();
 		doOCLinEcoreSetup();
 		doOCLstdlibSetup();
-		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
+		OCLstdlib.install();
         OCLDelegateDomain.initialize(null);
 	}
 

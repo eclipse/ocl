@@ -265,16 +265,17 @@ public class ValidateTests extends AbstractValidateTests
 		createOCLinEcoreFile("Bug422583.ocl", testDocument);
 		//
 		Resource resource = DomainUtil.nonNullState(resourceSet.getResource(umlURI, true));
-		org.eclipse.uml2.uml.NamedElement uNamed = null;
+		org.eclipse.uml2.uml.Class uNamed = null;
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.uml2.uml.Class) {
 				if ("UNamed".equals(((org.eclipse.uml2.uml.Class)eObject).getName())) {
-					uNamed = (org.eclipse.uml2.uml.NamedElement)eObject;
+					uNamed = (org.eclipse.uml2.uml.Class)eObject;
 					break;
 				}
 			}
 		}
+		assert uNamed != null;
 		assertValidationDiagnostics("Without Complete OCL", resource);
 		//
 		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet) {
@@ -287,10 +288,16 @@ public class ValidateTests extends AbstractValidateTests
 		assertTrue(helper.loadMetaModels());
 		assertTrue(helper.loadDocument(oclURI));
 		helper.installPackages();
-		String objectLabel = DomainUtil.getLabel(uNamed);
+		String objectLabel1 = DomainUtil.getLabel(uNamed);
+		String objectLabel2 = DomainUtil.getLabel(uNamed.getPackage());
+		String objectLabel3 = DomainUtil.getLabel(uNamed.getOwnedAttribute("r", null).getLowerValue());
+		String objectLabel4 = DomainUtil.getLabel(uNamed.getOwnedAttribute("s", null).getLowerValue());
 		assertValidationDiagnostics("Without Complete OCL", resource,
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel1),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Package", "elements_public_or_private", objectLabel2),		// FIXME BUG 437450
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel3),	// FIXME BUG 437450
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4));	// FIXME BUG 437450
 		adapter.getMetaModelManager().dispose();
 		disposeResourceSet(resourceSet);
 	}

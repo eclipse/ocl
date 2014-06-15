@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -95,6 +96,10 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		metaModelManager = context.getMetaModelManager();
 	}
 
+	protected PackageId getPackageId(@NonNull PackageCS csElement) {
+		return null;
+	}
+
 	protected void importPackages(@NonNull RootPackageCS csElement) { // FIXME: CS2Pivot.computeRootContainmentFeatures may make this redundant
 		for (LibraryCS csLibrary : csElement.getOwnedLibrary()) {
 			csLibrary.getPackage();						// Resolve the proxy to perform the import.
@@ -167,7 +172,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		}
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = metaModelManager.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI());
+			pivotElement = metaModelManager.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI(), getPackageId(csElement));
 		}
 		else {
 			if (!pivotClass.isAssignableFrom(pivotObject.getClass())) {

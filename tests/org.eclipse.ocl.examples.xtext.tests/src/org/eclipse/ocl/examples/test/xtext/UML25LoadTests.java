@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
@@ -137,21 +136,6 @@ public class UML25LoadTests extends LoadTests
 		doLoadUML(uml_2_5, true, true, true);
 	}
 
-/* FIXME passes by itself but corrupts later tests
-	public void testLoad_UML_2_5_Final_UML() throws IOException, InterruptedException, ParserException {
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
-		}
-		final MetaModelManager metaModelManager = this.metaModelManager;
-		metaModelManager.setAutoLoadASMetamodel(false);
-		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.Loader());
-		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.xmi", true);
-		doLoadUML(uml_2_5, true, true, true);
-		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.RenamingLoader(XMI2UMLResource.UML_METAMODEL_NS_URI));
-		this.metaModelManager.dispose();
-		this.metaModelManager = null;
-	} */
-
 /* FIXME 2 OperationReturnCompatibility warnings
 	public void testLoad_Eclipse_UML_2_5() throws IOException, InterruptedException, ParserException {
 		if (metaModelManager == null) {
@@ -182,8 +166,12 @@ public class UML25LoadTests extends LoadTests
 		doLoadUML(uml_2_5, true, true, true);
 	}
 	
+	public void testLoad_UML_2_5_Final_UML() throws IOException, InterruptedException, ParserException {
+		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.xmi", true);
+		doLoadUML(uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
+	}
+	
 	public void testLoad_UML_2_5_Final_UMLDI() throws IOException, InterruptedException, ParserException {
-		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UMLDI.xmi", true);
 		doLoadUML(uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
 	}

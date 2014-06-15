@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
@@ -63,6 +64,8 @@ public final class IdManager
 	private static @NonNull IdManager PRIVATE_INSTANCE = new IdManager();
 	@Deprecated // or rather make this private
 	public static @NonNull IdManager INSTANCE = PRIVATE_INSTANCE;
+
+	public static final @NonNull RootPackageId METAMODEL = new RootPackageIdImpl(PRIVATE_INSTANCE, DomainConstants.METAMODEL_NAME);
 
 	/**
 	 * Map from the BindingsId hashCode to the elements with the same hash. 
@@ -374,6 +377,9 @@ public final class IdManager
      * Return the typeId for ePackage.
      */
 	public static @NonNull PackageId getPackageId(@NonNull EPackage aPackage) {
+		if (DomainUtil.basicGetMetamodelAnnotation(aPackage) != null) {
+			return METAMODEL;
+		}
 		String nsURI = aPackage.getNsURI();
 		if (nsURI != null) {
 			return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage);
@@ -443,6 +449,9 @@ public final class IdManager
 	 * Return the URI-less unnested package typeId.
 	 */
     public static @NonNull RootPackageId getRootPackageId(@NonNull String name) {
+    	if (DomainConstants.METAMODEL_NAME.equals(name)) {
+    		return METAMODEL;
+    	}
 		WeakReference<RootPackageId> ref = roots.get(name);
 		if (ref != null) {
 			RootPackageId oldTypeId = ref.get();

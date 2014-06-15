@@ -43,7 +43,7 @@ public abstract class GenericKeywordsTest
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, DomainUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null);
+        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, DomainUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
         org.eclipse.ocl.examples.pivot.Class object = createOwnedClass(smalltalk, "Object", false);

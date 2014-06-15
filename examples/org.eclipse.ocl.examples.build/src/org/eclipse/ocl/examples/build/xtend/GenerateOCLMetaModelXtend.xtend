@@ -84,7 +84,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		var allTypes = root.getAllTypes();
 		'''
 			/*******************************************************************************
-			 * Copyright (c) 2010,2013 E.D.Willink and others.
+			 * Copyright (c) 2010,2014 E.D.Willink and others.
 			 * All rights reserved. This program and the accompanying materials
 			 * are made available under the terms of the Eclipse Public License v1.0
 			 * which accompanies this distribution, and is available at
@@ -92,8 +92,8 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			 *
 			 * Contributors:
 			 *     E.D.Willink - initial API and implementation
-			 *
-			 * This code is auto-generated
+			 *******************************************************************************
+			 * This code is 100% auto-generated
 			 * from: «sourceFile»
 			 * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLMetaModel.xtend
 			 * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
@@ -109,6 +109,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
+			import org.eclipse.ocl.examples.domain.ids.IdManager;
 			import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 			import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 			import org.eclipse.ocl.examples.pivot.*;
@@ -187,7 +188,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 						super(standardLibrary);
 						«root.getSymbolName()» = createRoot("«pkg.nsURI»");
-						«pkg.getSymbolName()» = createPackage(name, nsPrefix, nsURI);
+						«pkg.getSymbolName()» = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
 						installPackages();
 						installOclTypes();
 						«IF allPrimitiveTypes.size() > 0»

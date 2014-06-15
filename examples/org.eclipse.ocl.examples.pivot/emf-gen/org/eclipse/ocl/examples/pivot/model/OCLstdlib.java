@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010,2013 E.D.Willink and others.
+ * Copyright (c) 2010,2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,16 +7,14 @@
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *
- * </copyright>
- *
- * This code is auto-generated
+ *******************************************************************************
+ * This code is 100% auto-generated
  * from: /org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib
  * by: org.eclipse.ocl.examples.build.xtend.generateOCLstdlib.xtend
  * and: org.eclipse.ocl.examples.build.GenerateOCLstdlibModel.mwe2
  *
  * Do not edit it.
- */
+ *******************************************************************************/
 package	org.eclipse.ocl.examples.pivot.model;
 
 import java.util.ArrayList;
@@ -35,6 +33,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.*;
 import org.eclipse.ocl.examples.pivot.Class;
@@ -100,7 +100,7 @@ public class OCLstdlib extends ASResourceImpl
 	 * extension when running within Eclipse. 
 	 */
 	public static void install() {
-		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new RenamingLoader(PivotPackage.eNS_URI));
+		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class OCLstdlib extends ASResourceImpl
 		protected @NonNull Root create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
 		{
 			Root theRoot = root = createRoot(asURI);
-			library = createLibrary(name, nsPrefix, nsURI);
+			library = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
 			installPackages();
 			installOclTypes();
 			installPrimitiveTypes();
@@ -247,7 +247,7 @@ public class OCLstdlib extends ASResourceImpl
 			return theRoot;
 		}
 	
-		protected final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/3.1.0/orphanage");
+		protected final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/3.1.0/orphanage", null);
 		
 		protected void installPackages() {
 			root.getNestedPackage().add(orphans);

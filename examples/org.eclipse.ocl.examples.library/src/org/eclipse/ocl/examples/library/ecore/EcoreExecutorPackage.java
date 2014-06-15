@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.ExecutorPackage;
 import org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary;
@@ -36,6 +37,11 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	public EcoreExecutorPackage(/*@NonNull*/ EPackage ePackage) {
 		super(DomainUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), IdManager.getPackageId(ePackage));
+		this.ePackage = ePackage;		
+	}
+
+	public EcoreExecutorPackage(@NonNull EPackage ePackage, @NonNull PackageId packageId) {
+		super(DomainUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), packageId);
 		this.ePackage = ePackage;		
 	}
 

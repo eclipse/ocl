@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -70,7 +69,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
 public class PackageImpl
 		extends NamespaceImpl
 		implements org.eclipse.ocl.examples.pivot.Package {
-
+		
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -334,7 +333,7 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNsURI(String newNsURI) {
+	public void setNsURIGen(String newNsURI) {
 		String oldNsURI = nsURI;
 		nsURI = newNsURI;
 		if (eNotificationRequired())
@@ -852,6 +851,17 @@ public class PackageImpl
 
 	private PackageId packageId = null;
 
+	public @Nullable PackageId basicGetPackageId() {
+		return packageId;
+	}
+
+	public void setNsURI(String newNsURI) {
+		setNsURIGen(newNsURI);
+		if ((packageId == null) && (newNsURI != null)) {
+			setPackageId(IdManager.getPackageId(this));
+		}
+	}
+
 	public @Nullable EPackage getEPackage() {
 		EObject eTarget = getETarget();
 		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
@@ -864,20 +874,16 @@ public class PackageImpl
 				packageId2 = packageId;
 				if (packageId2 == null) {
 					synchronized (this) {
-						EObject eContainer2 = eContainer();
-						String externalURI = eContainer2 instanceof Root ? ((Root)eContainer2).getExternalURI() : null;
-						@NonNull String nsUri = PivotPackage.eNS_URI;
-//						if (nsUri.equals(externalURI)) {
-//							packageId2 = IdManager.getNsURIPackageId(nsUri, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE);
-//						}
-//						else {
-							packageId2 = IdManager.getPackageId(this);
-//						}
-						packageId = packageId2;
+						packageId = packageId2 = IdManager.getPackageId(this);
 					}
 				}
 			}
 		}
 		return packageId2;
+	}
+	
+	public void setPackageId(@NonNull PackageId packageId) {
+		assert this.packageId == null;
+		this.packageId = packageId;
 	}
 } //PackageImpl

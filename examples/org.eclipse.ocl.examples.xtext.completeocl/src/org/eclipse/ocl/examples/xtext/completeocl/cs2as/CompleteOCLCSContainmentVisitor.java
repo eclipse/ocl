@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
@@ -278,6 +279,10 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				}
 			}
 			context.refreshName(contextPackage, DomainUtil.nonNullModel(newName));
+			PackageImpl packageImpl = (PackageImpl)contextPackage;
+			if (packageImpl.basicGetPackageId() == null) {
+				packageImpl.setPackageId(modelPackage.getPackageId());
+			}
 			context.refreshNsURI(contextPackage, modelPackage.getNsURI());
 			modelPackage2contextPackage.put(modelPackage, contextPackage);
 			org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelPackage.getNestingPackage();

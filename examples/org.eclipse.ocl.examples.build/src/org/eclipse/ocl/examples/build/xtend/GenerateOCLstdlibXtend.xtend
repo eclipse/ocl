@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 E.D.Willink and others.
+ * Copyright (c) 2013,2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 		var allEnumerations = root.getSortedEnumerations();
 		'''
 			/*******************************************************************************
-			 * Copyright (c) 2010,2013 E.D.Willink and others.
+			 * Copyright (c) 2010,2014 E.D.Willink and others.
 			 * All rights reserved. This program and the accompanying materials
 			 * are made available under the terms of the Eclipse Public License v1.0
 			 * which accompanies this distribution, and is available at
@@ -41,8 +41,8 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			 *
 			 * Contributors:
 			 *     E.D.Willink - initial API and implementation
-			 *
-			 * This code is auto-generated
+			 *******************************************************************************
+			 * This code is 100% auto-generated
 			 * from: «sourceFile»
 			 * by: org.eclipse.ocl.examples.build.xtend.generateOCLstdlib.xtend
 			 * and: org.eclipse.ocl.examples.build.GenerateOCLstdlibModel.mwe2
@@ -67,6 +67,8 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			import org.eclipse.emf.ecore.resource.ResourceSet;
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
+			import org.eclipse.ocl.examples.domain.ids.IdManager;
+			import org.eclipse.ocl.examples.domain.ids.PackageId;
 			import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 			import org.eclipse.ocl.examples.pivot.*;
 			import org.eclipse.ocl.examples.pivot.Class;
@@ -132,7 +134,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 * extension when running within Eclipse. 
 				 */
 				public static void install() {
-					StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new RenamingLoader(PivotPackage.eNS_URI));
+					StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
 				}
 			
 				/**
@@ -260,7 +262,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					protected @NonNull Root create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
 					{
 						Root theRoot = «root.getSymbolName()» = createRoot(asURI);
-						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI);
+						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
 						installPackages();
 						installOclTypes();
 						installPrimitiveTypes();

@@ -111,8 +111,6 @@ public class UsageTests
 
 	public Logger log;
 
-	public MetaModelManager metaModelManager = null;
-
 	/**
 	 * Checks all resources in a resource set for any errors or warnings.
 	 * 
@@ -197,10 +195,6 @@ public class UsageTests
 	protected void tearDown()
 			throws Exception {
 		log = null;
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
-			metaModelManager = null;
-		}
 		uninstall();
 		super.tearDown();
 	}
@@ -306,7 +300,6 @@ public class UsageTests
 		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 		metaModelManager2.dispose();
-		metaModelManager = null;
 		return fileURI;
 	}
 
@@ -424,8 +417,7 @@ public class UsageTests
 		dir.delete();
 	}
 
-	protected void doGenModel(@NonNull String testProjectName, @NonNull URI genmodelURI)
-			throws Exception {
+	protected void doGenModel(@NonNull String testProjectName, @NonNull URI genmodelURI) throws Exception {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			suppressGitPrefixPopUp();
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -516,6 +508,7 @@ public class UsageTests
 			String s = PivotUtil.formatDiagnostics(diagnostic, "\n");
 			fail("Generation failure" + s);
 		}
+		metaModelManager.dispose();
 	}
 
 	public void testBug370824() throws Exception {
@@ -718,7 +711,7 @@ public class UsageTests
 			//
 			EObject eObject = eFactory.create(eClass);
 			OCLHelper helper = getHelper();
-			Type contextType = metaModelManager.getType(idResolver.getStaticTypeOf(eObject));
+			Type contextType = helper.getOCL().getMetaModelManager().getType(idResolver.getStaticTypeOf(eObject));
 			helper.setContext(contextType);
 //			ExpressionInOCL query = helper.createQuery("test(3, 2, 1)");
 //			assertCallCount(query, null, 2);

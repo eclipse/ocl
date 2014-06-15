@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -65,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
@@ -879,6 +881,14 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		UML2PivotDeclarationSwitch declarationPass = getDeclarationPass();
 		List<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
 		for (EObject eObject : umlResource.getContents()) {
+			EClass eClass = eObject.eClass();
+			EPackage ePackage = eClass.getEPackage();
+			if (ePackage instanceof UMLPackage) {
+				String nsURI = ePackage.getNsURI();
+				if (nsURI != null) {
+					metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, DomainConstants.METAMODEL_NAME);
+				}
+			}
 			Object pivotElement = declarationPass.doSwitch(eObject);
 			if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
 				rootPackages.add((org.eclipse.ocl.examples.pivot.Package) pivotElement);

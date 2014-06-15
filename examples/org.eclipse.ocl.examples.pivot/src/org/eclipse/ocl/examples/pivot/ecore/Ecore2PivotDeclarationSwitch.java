@@ -46,6 +46,8 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLCommon;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -70,11 +72,13 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
@@ -424,6 +428,15 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		}
 		pivotElement.setName(newName);
 		if (eObject2.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
+			if (DomainUtil.basicGetMetamodelAnnotation(eObject2) != null) {
+				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
+			}
+			else if (eObject2 instanceof UMLPackage) {
+				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
+			}
+			else if (eObject2 instanceof TypesPackage) {
+				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
+			}
 			pivotElement.setNsURI(eObject2.getNsURI());
 		}
 		else {
@@ -447,9 +460,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (eAnnotation != null) {
 			exclusions.add(eAnnotation);		
 		}
-		 eAnnotation = eObject2.getEAnnotation(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
-		if (eAnnotation != null) {
-			exclusions.add(eAnnotation);		
+		if (DomainUtil.basicGetMetamodelAnnotation(eObject2) != null) {
+			exclusions.add(DomainUtil.getMetamodelAnnotation(eObject2));		
 		}
 		converter.addMapping(eObject2, pivotElement);
 //		copyNamedElement(pivotElement, eObject2);
