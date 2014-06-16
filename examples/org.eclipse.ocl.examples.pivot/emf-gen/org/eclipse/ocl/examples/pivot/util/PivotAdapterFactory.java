@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
@@ -299,6 +300,11 @@ public class PivotAdapterFactory
 			public Adapter caseDetail(Detail object)
 			{
 				return createDetailAdapter();
+			}
+			@Override
+			public Adapter caseDynamicBehavior(DynamicBehavior object)
+			{
+				return createDynamicBehaviorAdapter();
 			}
 			@Override
 			public Adapter caseDynamicElement(DynamicElement object)
@@ -2358,6 +2364,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createDetailAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.DynamicBehavior <em>Dynamic Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.DynamicBehavior
+	 * @generated
+	 */
+	public Adapter createDynamicBehaviorAdapter()
+	{
 		return null;
 	}
 

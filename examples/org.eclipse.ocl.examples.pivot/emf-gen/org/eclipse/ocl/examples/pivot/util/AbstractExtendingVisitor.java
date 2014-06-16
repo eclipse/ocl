@@ -126,6 +126,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitNamedElement(object);
 	}
 
+	public @Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.examples.pivot.DynamicBehavior object) {
+		return visitBehavior(object);
+	}
+
 	public @Nullable R visitDynamicElement(@NonNull org.eclipse.ocl.examples.pivot.DynamicElement object) {
 		return visitElement(object);
 	}

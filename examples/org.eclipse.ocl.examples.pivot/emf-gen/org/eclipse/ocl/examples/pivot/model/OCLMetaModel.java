@@ -160,6 +160,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _ConstructorPart = createClass(PivotPackage.Literals.CONSTRUCTOR_PART);
 		protected final @NonNull Class _DataType = createClass(PivotPackage.Literals.DATA_TYPE);
 		protected final @NonNull Class _Detail = createClass(PivotPackage.Literals.DETAIL);
+		protected final @NonNull Class _DynamicBehavior = createClass(PivotPackage.Literals.DYNAMIC_BEHAVIOR);
 		protected final @NonNull Class _DynamicElement = createClass(PivotPackage.Literals.DYNAMIC_ELEMENT);
 		protected final @NonNull Class _DynamicProperty = createClass(PivotPackage.Literals.DYNAMIC_PROPERTY);
 		protected final @NonNull Class _DynamicType = createClass(PivotPackage.Literals.DYNAMIC_TYPE);
@@ -549,6 +550,10 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Detail);
 			superClasses = type.getSuperClass();
 			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _DynamicBehavior);
+			superClasses = type.getSuperClass();
+			superClasses.add(_Behavior);
+			superClasses.add(_DynamicType);
 			ownedTypes.add(type = _DynamicElement);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Element);

@@ -324,6 +324,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _ConstructorPart = new EcoreExecutorType(PivotPackage.Literals.CONSTRUCTOR_PART, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _DataType = new EcoreExecutorType(PivotPackage.Literals.DATA_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Detail = new EcoreExecutorType(PivotPackage.Literals.DETAIL, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _DynamicBehavior = new EcoreExecutorType(PivotPackage.Literals.DYNAMIC_BEHAVIOR, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _DynamicElement = new EcoreExecutorType(PivotPackage.Literals.DYNAMIC_ELEMENT, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _DynamicProperty = new EcoreExecutorType(PivotPackage.Literals.DYNAMIC_PROPERTY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _DynamicType = new EcoreExecutorType(PivotPackage.Literals.DYNAMIC_TYPE, PACKAGE, 0);
@@ -452,6 +453,7 @@ public class PivotTables
 			_ConstructorPart,
 			_DataType,
 			_Detail,
+			_DynamicBehavior,
 			_DynamicElement,
 			_DynamicProperty,
 			_DynamicType,
@@ -847,6 +849,23 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Detail__OclAny = new ExecutorFragment(Types._Detail, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Detail__OclElement = new ExecutorFragment(Types._Detail, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Detail__Visitable = new ExecutorFragment(Types._Detail, PivotTables.Types._Visitable);
+
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Behavior = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Behavior);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Class = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Class);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__DynamicBehavior = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._DynamicBehavior);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__DynamicElement = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._DynamicElement);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__DynamicType = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._DynamicType);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Element = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Element);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Nameable = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Nameable);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__NamedElement = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._NamedElement);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Namespace = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Namespace);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__OclAny = new ExecutorFragment(Types._DynamicBehavior, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__OclElement = new ExecutorFragment(Types._DynamicBehavior, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__OclType = new ExecutorFragment(Types._DynamicBehavior, OCLstdlibTables.Types._OclType);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__ParameterableElement = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._ParameterableElement);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__TemplateableElement = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._TemplateableElement);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Type = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Type);
+		private static final @NonNull ExecutorFragment _DynamicBehavior__Visitable = new ExecutorFragment(Types._DynamicBehavior, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _DynamicElement__DynamicElement = new ExecutorFragment(Types._DynamicElement, PivotTables.Types._DynamicElement);
 		private static final @NonNull ExecutorFragment _DynamicElement__Element = new ExecutorFragment(Types._DynamicElement, PivotTables.Types._Element);
@@ -2779,6 +2798,27 @@ public class PivotTables
 		};
 		private static final @NonNull int[] __Detail = { 1,1,2,1,1,1 };
 
+		private static final @NonNull ExecutorFragment[] _DynamicBehavior =
+		{
+			Fragments._DynamicBehavior__OclAny /* 0 */,
+			Fragments._DynamicBehavior__OclElement /* 1 */,
+			Fragments._DynamicBehavior__Nameable /* 2 */,
+			Fragments._DynamicBehavior__OclType /* 2 */,
+			Fragments._DynamicBehavior__Visitable /* 2 */,
+			Fragments._DynamicBehavior__Element /* 3 */,
+			Fragments._DynamicBehavior__DynamicElement /* 4 */,
+			Fragments._DynamicBehavior__NamedElement /* 4 */,
+			Fragments._DynamicBehavior__ParameterableElement /* 4 */,
+			Fragments._DynamicBehavior__TemplateableElement /* 4 */,
+			Fragments._DynamicBehavior__Namespace /* 5 */,
+			Fragments._DynamicBehavior__Type /* 5 */,
+			Fragments._DynamicBehavior__Class /* 6 */,
+			Fragments._DynamicBehavior__DynamicType /* 6 */,
+			Fragments._DynamicBehavior__Behavior /* 7 */,
+			Fragments._DynamicBehavior__DynamicBehavior /* 8 */
+		};
+		private static final @NonNull int[] __DynamicBehavior = { 1,1,3,1,4,2,2,1,1 };
+
 		private static final @NonNull ExecutorFragment[] _DynamicElement =
 		{
 			Fragments._DynamicElement__OclAny /* 0 */,
@@ -4249,6 +4289,7 @@ public class PivotTables
 			Types._ConstructorPart.initFragments(_ConstructorPart, __ConstructorPart);
 			Types._DataType.initFragments(_DataType, __DataType);
 			Types._Detail.initFragments(_Detail, __Detail);
+			Types._DynamicBehavior.initFragments(_DynamicBehavior, __DynamicBehavior);
 			Types._DynamicElement.initFragments(_DynamicElement, __DynamicElement);
 			Types._DynamicProperty.initFragments(_DynamicProperty, __DynamicProperty);
 			Types._DynamicType.initFragments(_DynamicType, __DynamicType);
@@ -5252,6 +5293,55 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Detail__Visitable = {};
+
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__DynamicBehavior = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Behavior = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Class = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__DynamicElement = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__DynamicType = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Element = {
+			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
+			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Nameable = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Namespace = {};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(Metaclass(TT)) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(T)(Metaclass(T)) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(Metaclass(T)) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__OclType = {
+			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__TemplateableElement = {
+			PivotTables.Operations._TemplateableElement__isTemplate /* isTemplate() */,
+			PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Type = {
+			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+		};
+		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _DynamicElement__DynamicElement = {};
 		private static final @NonNull ExecutorOperation[] _DynamicElement__Element = {
@@ -9086,6 +9176,23 @@ public class PivotTables
 			Fragments._Detail__OclElement.initOperations(_Detail__OclElement);
 			Fragments._Detail__Visitable.initOperations(_Detail__Visitable);
 
+			Fragments._DynamicBehavior__Behavior.initOperations(_DynamicBehavior__Behavior);
+			Fragments._DynamicBehavior__Class.initOperations(_DynamicBehavior__Class);
+			Fragments._DynamicBehavior__DynamicBehavior.initOperations(_DynamicBehavior__DynamicBehavior);
+			Fragments._DynamicBehavior__DynamicElement.initOperations(_DynamicBehavior__DynamicElement);
+			Fragments._DynamicBehavior__DynamicType.initOperations(_DynamicBehavior__DynamicType);
+			Fragments._DynamicBehavior__Element.initOperations(_DynamicBehavior__Element);
+			Fragments._DynamicBehavior__Nameable.initOperations(_DynamicBehavior__Nameable);
+			Fragments._DynamicBehavior__NamedElement.initOperations(_DynamicBehavior__NamedElement);
+			Fragments._DynamicBehavior__Namespace.initOperations(_DynamicBehavior__Namespace);
+			Fragments._DynamicBehavior__OclAny.initOperations(_DynamicBehavior__OclAny);
+			Fragments._DynamicBehavior__OclElement.initOperations(_DynamicBehavior__OclElement);
+			Fragments._DynamicBehavior__OclType.initOperations(_DynamicBehavior__OclType);
+			Fragments._DynamicBehavior__ParameterableElement.initOperations(_DynamicBehavior__ParameterableElement);
+			Fragments._DynamicBehavior__TemplateableElement.initOperations(_DynamicBehavior__TemplateableElement);
+			Fragments._DynamicBehavior__Type.initOperations(_DynamicBehavior__Type);
+			Fragments._DynamicBehavior__Visitable.initOperations(_DynamicBehavior__Visitable);
+
 			Fragments._DynamicElement__DynamicElement.initOperations(_DynamicElement__DynamicElement);
 			Fragments._DynamicElement__Element.initOperations(_DynamicElement__Element);
 			Fragments._DynamicElement__OclAny.initOperations(_DynamicElement__OclAny);
@@ -10960,6 +11067,65 @@ public class PivotTables
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
 			PivotTables.Properties._Element__comment__annotatedElement
+		};
+
+		private static final @NonNull ExecutorProperty[] _DynamicBehavior = {
+			PivotTables.Properties._Type__extendedBys,
+			PivotTables.Properties._Element__extension,
+			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__isAbstract,
+			PivotTables.Properties._Class__isActive,
+			PivotTables.Properties._Class__isInterface,
+			PivotTables.Properties._NamedElement__isStatic,
+			PivotTables.Properties._DynamicElement__metaType,
+			PivotTables.Properties._NamedElement__name,
+			PivotTables.Properties._Class__nestedType,
+			PivotTables.Properties._Element__ownedAnnotation,
+			PivotTables.Properties._Type__ownedAttribute,
+			PivotTables.Properties._Class__ownedBehavior,
+			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._Type__ownedInvariant,
+			PivotTables.Properties._Type__ownedOperation,
+			PivotTables.Properties._DynamicType__ownedProperty,
+			PivotTables.Properties._Namespace__ownedRule,
+			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
+			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Type__superClass,
+			PivotTables.Properties._TemplateableElement__templateBinding,
+			PivotTables.Properties._ParameterableElement__templateParameter,
+			PivotTables.Properties._Behavior__transition,
+			PivotTables.Properties._TemplateableElement__unspecializedElement,
+			PivotTables.Properties._Element__Annotation__ownedContent,
+			PivotTables.Properties._Element__Annotation__reference,
+			PivotTables.Properties._Class__Class__nestedType,
+			PivotTables.Properties._Behavior__Class__ownedBehavior,
+			PivotTables.Properties._Type__CollectionType__elementType,
+			PivotTables.Properties._Element__Constraint__constrainedElement,
+			PivotTables.Properties._Namespace__Constraint__context,
+			PivotTables.Properties._Type__DataType__behavioralType,
+			PivotTables.Properties._Type__DynamicElement__metaType,
+			PivotTables.Properties._Element__Element__ownedAnnotation,
+			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Type__LambdaType__contextType,
+			PivotTables.Properties._Type__LambdaType__parameterType,
+			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Metaclass__instanceType,
+			PivotTables.Properties._Behavior__State__doActivity,
+			PivotTables.Properties._Behavior__State__entry,
+			PivotTables.Properties._Behavior__State__exit,
+			PivotTables.Properties._Type__Type__superClass,
+			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__UnspecifiedType__lowerBound,
+			PivotTables.Properties._Type__UnspecifiedType__upperBound,
+			PivotTables.Properties._Element__comment__annotatedElement,
+			PivotTables.Properties._Type__operation__raisedException,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
+			PivotTables.Properties._ParameterableElement__templateParameter__default,
+			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
+			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual,
+			PivotTables.Properties._Type__typeTemplateParameter__constrainingType,
+			PivotTables.Properties._Type__typedElement__type
 		};
 
 		private static final @NonNull ExecutorProperty[] _DynamicElement = {
@@ -13977,6 +14143,7 @@ public class PivotTables
 			Fragments._ConstructorPart__ConstructorPart.initProperties(_ConstructorPart);
 			Fragments._DataType__DataType.initProperties(_DataType);
 			Fragments._Detail__Detail.initProperties(_Detail);
+			Fragments._DynamicBehavior__DynamicBehavior.initProperties(_DynamicBehavior);
 			Fragments._DynamicElement__DynamicElement.initProperties(_DynamicElement);
 			Fragments._DynamicProperty__DynamicProperty.initProperties(_DynamicProperty);
 			Fragments._DynamicType__DynamicType.initProperties(_DynamicType);

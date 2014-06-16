@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
@@ -919,6 +920,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass detailEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dynamicBehaviorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -5119,6 +5127,16 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDynamicBehavior()
+	{
+		return dynamicBehaviorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDynamicElement()
 	{
 		return dynamicElementEClass;
@@ -5537,6 +5555,8 @@ public class PivotPackageImpl
 
 		detailEClass = createEClass(DETAIL);
 		createEAttribute(detailEClass, DETAIL__VALUE);
+
+		dynamicBehaviorEClass = createEClass(DYNAMIC_BEHAVIOR);
 
 		dynamicElementEClass = createEClass(DYNAMIC_ELEMENT);
 		createEReference(dynamicElementEClass, DYNAMIC_ELEMENT__META_TYPE);
@@ -6069,6 +6089,8 @@ public class PivotPackageImpl
 		constructorPartEClass.getESuperTypes().add(this.getTypedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
 		detailEClass.getESuperTypes().add(this.getNamedElement());
+		dynamicBehaviorEClass.getESuperTypes().add(this.getBehavior());
+		dynamicBehaviorEClass.getESuperTypes().add(this.getDynamicType());
 		dynamicElementEClass.getESuperTypes().add(this.getElement());
 		dynamicPropertyEClass.getESuperTypes().add(this.getElement());
 		dynamicTypeEClass.getESuperTypes().add(this.getType());
@@ -6337,6 +6359,8 @@ public class PivotPackageImpl
 
 		initEClass(detailEClass, Detail.class, "Detail", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDetail_Value(), this.getString(), "value", null, 1, -1, Detail.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(dynamicBehaviorEClass, DynamicBehavior.class, "DynamicBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(dynamicElementEClass, DynamicElement.class, "DynamicElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDynamicElement_MetaType(), this.getType(), null, "metaType", null, 1, 1, DynamicElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

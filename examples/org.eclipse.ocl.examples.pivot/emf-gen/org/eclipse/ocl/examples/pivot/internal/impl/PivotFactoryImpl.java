@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
@@ -188,6 +189,7 @@ public class PivotFactoryImpl
 			case PivotPackage.CONSTRUCTOR_PART: return (EObject)createConstructorPart();
 			case PivotPackage.DATA_TYPE: return (EObject)createDataType();
 			case PivotPackage.DETAIL: return (EObject)createDetail();
+			case PivotPackage.DYNAMIC_BEHAVIOR: return (EObject)createDynamicBehavior();
 			case PivotPackage.DYNAMIC_ELEMENT: return (EObject)createDynamicElement();
 			case PivotPackage.DYNAMIC_PROPERTY: return (EObject)createDynamicProperty();
 			case PivotPackage.DYNAMIC_TYPE: return (EObject)createDynamicType();
@@ -586,6 +588,17 @@ public class PivotFactoryImpl
 	public Detail createDetail() {
 		DetailImpl detail = new DetailImpl();
 		return detail;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DynamicBehavior createDynamicBehavior()
+	{
+		DynamicBehaviorImpl dynamicBehavior = new DynamicBehaviorImpl();
+		return dynamicBehavior;
 	}
 
 	/**

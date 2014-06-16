@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
@@ -486,6 +487,25 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(detail);
 				if (result == null) result = caseNameable(detail);
 				if (result == null) result = caseVisitable(detail);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.DYNAMIC_BEHAVIOR:
+			{
+				DynamicBehavior dynamicBehavior = (DynamicBehavior)theEObject;
+				T1 result = caseDynamicBehavior(dynamicBehavior);
+				if (result == null) result = caseBehavior(dynamicBehavior);
+				if (result == null) result = caseDynamicType(dynamicBehavior);
+				if (result == null) result = caseClass(dynamicBehavior);
+				if (result == null) result = caseDynamicElement(dynamicBehavior);
+				if (result == null) result = caseType(dynamicBehavior);
+				if (result == null) result = caseNamespace(dynamicBehavior);
+				if (result == null) result = caseNamedElement(dynamicBehavior);
+				if (result == null) result = caseTemplateableElement(dynamicBehavior);
+				if (result == null) result = caseParameterableElement(dynamicBehavior);
+				if (result == null) result = caseElement(dynamicBehavior);
+				if (result == null) result = caseNameable(dynamicBehavior);
+				if (result == null) result = caseVisitable(dynamicBehavior);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3417,6 +3437,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseDetail(Detail object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseDynamicBehavior(DynamicBehavior object)
+	{
 		return null;
 	}
 

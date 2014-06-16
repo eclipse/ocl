@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
+import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
@@ -746,6 +747,8 @@ public class PivotValidator
 				return validateDataType((DataType)value, diagnostics, context);
 			case PivotPackage.DETAIL:
 				return validateDetail((Detail)value, diagnostics, context);
+			case PivotPackage.DYNAMIC_BEHAVIOR:
+				return validateDynamicBehavior((DynamicBehavior)value, diagnostics, context);
 			case PivotPackage.DYNAMIC_ELEMENT:
 				return validateDynamicElement((DynamicElement)value, diagnostics, context);
 			case PivotPackage.DYNAMIC_PROPERTY:
@@ -1650,6 +1653,26 @@ public class PivotValidator
 	public boolean validateDetail(Detail detail, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)detail, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDynamicBehavior(DynamicBehavior dynamicBehavior, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment((EObject)dynamicBehavior, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)dynamicBehavior, diagnostics, context);
+		if (result || diagnostics != null) result &= validateType_validateUniqueInvariantName(dynamicBehavior, diagnostics, context);
+		return result;
 	}
 
 	/**

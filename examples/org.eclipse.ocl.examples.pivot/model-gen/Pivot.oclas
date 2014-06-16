@@ -25,11 +25,11 @@
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.Annotation" name="Annotation"
         superClass="#T.pivot.NamedElement">
       <ownedAttribute xmi:id="p.pivot.Annotation.ownedContent" isComposite="true"
-          name="ownedContent" opposite="#//@nestedPackage.0/@ownedType.32/@ownedAttribute.3"
+          name="ownedContent" opposite="#//@nestedPackage.0/@ownedType.33/@ownedAttribute.3"
           type="#//@nestedPackage.1/@ownedType.112"/>
       <ownedAttribute xmi:id="p.pivot.Annotation.ownedDetail" isComposite="true" name="ownedDetail"
           opposite="#p.pivot.Detail.Annotation" type="#//@nestedPackage.1/@ownedType.111"/>
-      <ownedAttribute xmi:id="p.pivot.Annotation.reference" name="reference" opposite="#//@nestedPackage.0/@ownedType.32/@ownedAttribute.4"
+      <ownedAttribute xmi:id="p.pivot.Annotation.reference" name="reference" opposite="#//@nestedPackage.0/@ownedType.33/@ownedAttribute.4"
           type="#//@nestedPackage.1/@ownedType.112"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.AnyType" name="AnyType" superClass="#T.pivot.Class"/>
@@ -193,9 +193,9 @@
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.CollectionRange" name="CollectionRange"
         superClass="#T.pivot.CollectionLiteralPart">
       <ownedAttribute xmi:id="p.pivot.CollectionRange.first" isComposite="true" name="first"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.2" type="#T.pivot.OCLExpression"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.2" type="#T.pivot.OCLExpression"/>
       <ownedAttribute xmi:id="p.pivot.CollectionRange.last" isComposite="true" name="last"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.3" type="#T.pivot.OCLExpression"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.3" type="#T.pivot.OCLExpression"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.CollectionType" name="CollectionType"
         superClass="#T.pivot.DataType">
@@ -222,10 +222,10 @@
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.ConnectionPointReference" name="ConnectionPointReference"
         superClass="#T.pivot.Vertex">
       <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.entry" name="entry"
-          opposite="#//@nestedPackage.0/@ownedType.85/@ownedAttribute.4" type="#//@nestedPackage.1/@ownedType.140">
+          opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.4" type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The entryPoint kind pseudo states corresponding to this connection point."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.exit" name="exit" opposite="#//@nestedPackage.0/@ownedType.85/@ownedAttribute.5"
+      <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.exit" name="exit" opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.5"
           type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The exitPoints kind pseudo states corresponding to this connection point."/>
       </ownedAttribute>
@@ -305,6 +305,8 @@
       <ownedAttribute xmi:id="p.pivot.Detail.Annotation" implicit="true" isRequired="false"
           name="Annotation" opposite="#p.pivot.Annotation.ownedDetail" type="#T.pivot.Annotation"/>
     </ownedType>
+    <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.DynamicBehavior" name="DynamicBehavior"
+        superClass="#T.pivot.Behavior #T.pivot.DynamicType"/>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.DynamicElement" name="DynamicElement"
         superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.DynamicElement.metaType" name="metaType" opposite="#p.pivot.Type.DynamicElement"
@@ -424,13 +426,13 @@ oclContents()
           name="bodyExpression" opposite="#p.pivot.OCLExpression.ExpressionInOCL"
           type="#T.pivot.OCLExpression"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.contextVariable" isComposite="true"
-          isRequired="false" name="contextVariable" opposite="#//@nestedPackage.0/@ownedType.124/@ownedAttribute.3"
+          isRequired="false" name="contextVariable" opposite="#//@nestedPackage.0/@ownedType.125/@ownedAttribute.3"
           type="#T.pivot.Variable"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.parameterVariable" isComposite="true"
-          name="parameterVariable" opposite="#//@nestedPackage.0/@ownedType.124/@ownedAttribute.4"
+          name="parameterVariable" opposite="#//@nestedPackage.0/@ownedType.125/@ownedAttribute.4"
           type="#//@nestedPackage.1/@ownedType.123"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.resultVariable" isComposite="true"
-          isRequired="false" name="resultVariable" opposite="#//@nestedPackage.0/@ownedType.124/@ownedAttribute.5"
+          isRequired="false" name="resultVariable" opposite="#//@nestedPackage.0/@ownedType.125/@ownedAttribute.5"
           type="#T.pivot.Variable"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.OpaqueExpression" implicit="true"
           isRequired="false" name="OpaqueExpression" opposite="#p.pivot.OpaqueExpression.expressionInOCL"
@@ -454,11 +456,11 @@ oclContents()
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.IfExp" name="IfExp" superClass="#T.pivot.OCLExpression">
       <ownedAttribute xmi:id="p.pivot.IfExp.condition" isComposite="true" name="condition"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.6" type="#T.pivot.OCLExpression"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.6" type="#T.pivot.OCLExpression"/>
       <ownedAttribute xmi:id="p.pivot.IfExp.elseExpression" isComposite="true" name="elseExpression"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.7" type="#T.pivot.OCLExpression"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.7" type="#T.pivot.OCLExpression"/>
       <ownedAttribute xmi:id="p.pivot.IfExp.thenExpression" isComposite="true" name="thenExpression"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.8" type="#T.pivot.OCLExpression"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.8" type="#T.pivot.OCLExpression"/>
       <ownedInvariant xmi:id="cipivot.IfExp.ConditionTypeIsBoolean" isCallable="true"
           name="ConditionTypeIsBoolean">
         <specification>
@@ -528,10 +530,10 @@ oclContents()
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.Iteration" name="Iteration"
         superClass="#T.pivot.Operation">
       <ownedAttribute xmi:id="p.pivot.Iteration.ownedAccumulator" isComposite="true"
-          name="ownedAccumulator" opposite="#//@nestedPackage.0/@ownedType.75/@ownedAttribute.1"
+          name="ownedAccumulator" opposite="#//@nestedPackage.0/@ownedType.76/@ownedAttribute.1"
           type="#//@nestedPackage.1/@ownedType.117"/>
       <ownedAttribute xmi:id="p.pivot.Iteration.ownedIterator" isComposite="true"
-          name="ownedIterator" opposite="#//@nestedPackage.0/@ownedType.75/@ownedAttribute.2"
+          name="ownedIterator" opposite="#//@nestedPackage.0/@ownedType.76/@ownedAttribute.2"
           type="#//@nestedPackage.1/@ownedType.117"/>
       <ownedAttribute xmi:id="p.pivot.Iteration.LoopExp" implicit="true" name="LoopExp"
           opposite="#p.pivot.LoopExp.referredIteration" type="#//@nestedPackage.1/@ownedType.13"/>
@@ -847,11 +849,11 @@ endif
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.LambdaType" name="LambdaType"
         superClass="#T.pivot.DataType">
-      <ownedAttribute xmi:id="p.pivot.LambdaType.contextType" name="contextType" opposite="#//@nestedPackage.0/@ownedType.114/@ownedAttribute.10"
+      <ownedAttribute xmi:id="p.pivot.LambdaType.contextType" name="contextType" opposite="#//@nestedPackage.0/@ownedType.115/@ownedAttribute.10"
           type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.LambdaType.parameterType" name="parameterType"
-          opposite="#//@nestedPackage.0/@ownedType.114/@ownedAttribute.11" type="#//@nestedPackage.1/@ownedType.125"/>
-      <ownedAttribute xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@nestedPackage.0/@ownedType.114/@ownedAttribute.12"
+          opposite="#//@nestedPackage.0/@ownedType.115/@ownedAttribute.11" type="#//@nestedPackage.1/@ownedType.125"/>
+      <ownedAttribute xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@nestedPackage.0/@ownedType.115/@ownedAttribute.12"
           type="#T.pivot.Type"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.LetExp" name="LetExp" superClass="#T.pivot.OCLExpression">
@@ -905,14 +907,14 @@ endif
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.MessageExp" name="MessageExp"
         superClass="#T.pivot.OCLExpression">
       <ownedAttribute xmi:id="p.pivot.MessageExp.argument" isComposite="true" name="argument"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.11" type="#//@nestedPackage.1/@ownedType.115"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.11" type="#//@nestedPackage.1/@ownedType.115"/>
       <ownedAttribute xmi:id="p.pivot.MessageExp.calledOperation" isComposite="true"
           isRequired="false" name="calledOperation" opposite="#p.pivot.CallOperationAction.MessageExp"
           type="#T.pivot.CallOperationAction"/>
       <ownedAttribute xmi:id="p.pivot.MessageExp.sentSignal" isComposite="true" isRequired="false"
           name="sentSignal" opposite="#p.pivot.SendSignalAction.MessageExp" type="#T.pivot.SendSignalAction"/>
       <ownedAttribute xmi:id="p.pivot.MessageExp.target" isComposite="true" name="target"
-          opposite="#//@nestedPackage.0/@ownedType.65/@ownedAttribute.12" type="#T.pivot.OCLExpression"/>
+          opposite="#//@nestedPackage.0/@ownedType.66/@ownedAttribute.12" type="#T.pivot.OCLExpression"/>
       <ownedInvariant xmi:id="cipivot.MessageExp.OneCallOrOneSend" isCallable="true"
           name="OneCallOrOneSend">
         <specification>
@@ -1332,21 +1334,21 @@ p.oclIsKindOf(self.oclType())
           type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.Property.isVolatile" default="false" name="isVolatile"
           type="#Boolean"/>
-      <ownedAttribute xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@nestedPackage.0/@ownedType.83/@ownedAttribute.23"
+      <ownedAttribute xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@nestedPackage.0/@ownedType.84/@ownedAttribute.23"
           type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite"
-          opposite="#//@nestedPackage.0/@ownedType.83/@ownedAttribute.26" type="#T.pivot.Property">
+          opposite="#//@nestedPackage.0/@ownedType.84/@ownedAttribute.26" type="#T.pivot.Property">
         <ownedComment body="Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Property.owningType" isRequired="false" name="owningType"
           opposite="#p.pivot.Type.ownedAttribute" type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.Property.redefinedProperty" name="redefinedProperty"
-          opposite="#//@nestedPackage.0/@ownedType.83/@ownedAttribute.27" type="#//@nestedPackage.1/@ownedType.139"/>
+          opposite="#//@nestedPackage.0/@ownedType.84/@ownedAttribute.27" type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.Property.referredProperty" isRequired="false"
-          name="referredProperty" opposite="#//@nestedPackage.0/@ownedType.83/@ownedAttribute.24"
+          name="referredProperty" opposite="#//@nestedPackage.0/@ownedType.84/@ownedAttribute.24"
           type="#T.pivot.Property"/>
       <ownedAttribute xmi:id="p.pivot.Property.subsettedProperty" name="subsettedProperty"
-          opposite="#//@nestedPackage.0/@ownedType.83/@ownedAttribute.28" type="#//@nestedPackage.1/@ownedType.139"/>
+          opposite="#//@nestedPackage.0/@ownedType.84/@ownedAttribute.28" type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.Property.ConstructorPart" implicit="true" name="ConstructorPart"
           opposite="#p.pivot.ConstructorPart.referredProperty" type="#//@nestedPackage.1/@ownedType.5"/>
       <ownedAttribute xmi:id="p.pivot.Property.DynamicProperty" implicit="true" name="DynamicProperty"
@@ -1689,12 +1691,12 @@ let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) 
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.TemplateParameter" name="TemplateParameter"
         superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.TemplateParameter.default" isRequired="false"
-          name="default" opposite="#//@nestedPackage.0/@ownedType.76/@ownedAttribute.3"
+          name="default" opposite="#//@nestedPackage.0/@ownedType.77/@ownedAttribute.3"
           type="#T.pivot.ParameterableElement">
         <ownedComment body="The element that is the default for this formal template parameter."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TemplateParameter.ownedDefault" isComposite="true"
-          isRequired="false" name="ownedDefault" opposite="#//@nestedPackage.0/@ownedType.76/@ownedAttribute.4"
+          isRequired="false" name="ownedDefault" opposite="#//@nestedPackage.0/@ownedType.77/@ownedAttribute.4"
           type="#T.pivot.ParameterableElement">
         <ownedAnnotation xsi:type="pivot:Annotation" name="subsets" reference="#p.pivot.TemplateParameter.default"/>
         <ownedComment body="The element that is owned by this template parameter for the purpose of providing a default."/>
@@ -1992,9 +1994,9 @@ let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) 
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.UnspecifiedType" name="UnspecifiedType"
         superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.UnspecifiedType.lowerBound" name="lowerBound"
-          opposite="#//@nestedPackage.0/@ownedType.114/@ownedAttribute.16" type="#T.pivot.Type"/>
+          opposite="#//@nestedPackage.0/@ownedType.115/@ownedAttribute.16" type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.UnspecifiedType.upperBound" name="upperBound"
-          opposite="#//@nestedPackage.0/@ownedType.114/@ownedAttribute.17" type="#T.pivot.Type"/>
+          opposite="#//@nestedPackage.0/@ownedType.115/@ownedAttribute.17" type="#T.pivot.Type"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.UnspecifiedValueExp" name="UnspecifiedValueExp"
         superClass="#T.pivot.OCLExpression"/>

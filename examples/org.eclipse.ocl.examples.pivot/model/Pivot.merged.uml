@@ -440,6 +440,10 @@
             value="*"/>
       </ownedAttribute>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDynamicBehavior" name="DynamicBehavior">
+      <generalization xmi:id="Ppivot.TDynamicBehavior.g0" general="Ppivot.TDynamicType"/>
+      <generalization xmi:id="Ppivot.TDynamicBehavior.g1" general="Ppivot.TBehavior"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDynamicElement" name="DynamicElement">
       <generalization xmi:id="Ppivot.TDynamicElement.g0" general="Ppivot.TElement"/>
       <ownedAttribute xmi:id="Ppivot.TDynamicElement.PmetaType" name="metaType" type="Ppivot.TType"/>
@@ -455,7 +459,6 @@
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDynamicType" name="DynamicType">
       <generalization xmi:id="Ppivot.TDynamicType.g0" general="Ppivot.TDynamicElement"/>
       <generalization xmi:id="Ppivot.TDynamicType.g1" general="Ppivot.TType"/>
-      <ownedAttribute xmi:id="Ppivot.TDynamicType.PmetaType" name="metaType" type="Ppivot.TType"/>
       <ownedAttribute xmi:id="Ppivot.TDynamicType.PownedProperty" name="ownedProperty"
           type="Ppivot.TDynamicProperty" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TDynamicType.PownedProperty.lV"/>

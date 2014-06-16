@@ -48,6 +48,11 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_B_MXsLtdEeGaF-l-UpovSA" name="MDT_OCL_Dynamics">
+      <packagedElement xmi:type="uml:Class" xmi:id="_Lpug0PWKEeOa9vhgxFe-1w" name="Behavior" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Py3gcPWKEeOa9vhgxFe-1w" name="DynamicBehavior">
+        <generalization xmi:id="_Py3gcfWKEeOa9vhgxFe-1w" general="_HLQM4LtdEeGaF-l-UpovSA"/>
+        <generalization xmi:id="_Py3gcvWKEeOa9vhgxFe-1w" general="_Lpug0PWKEeOa9vhgxFe-1w"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_Iq84gLtyEeGaF-l-UpovSA" name="DynamicElement">
         <generalization xmi:id="_Xp6OHX7VEeOu79LxSz8Ylw" general="_VoU6cLtdEeGaF-l-UpovSA"/>
         <ownedAttribute xmi:id="_Iq84grtyEeGaF-l-UpovSA" name="metaType" type="_wP0RwLoxEeGoaKB2Aghcrw"/>
@@ -62,7 +67,6 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_HLQM4LtdEeGaF-l-UpovSA" name="DynamicType">
         <generalization xmi:id="_Xp6OH37VEeOu79LxSz8Ylw" general="_Iq84gLtyEeGaF-l-UpovSA"/>
         <generalization xmi:id="_Xp6OIH7VEeOu79LxSz8Ylw" general="_J_a9oLtdEeGaF-l-UpovSA"/>
-        <ownedAttribute xmi:id="_O8mpULtdEeGaF-l-UpovSA" name="metaType" type="_wP0RwLoxEeGoaKB2Aghcrw"/>
         <ownedAttribute xmi:id="_tJnagLtdEeGaF-l-UpovSA" name="ownedProperty" type="_fGbMkLtdEeGaF-l-UpovSA" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N8H7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6N8X7VEeOu79LxSz8Ylw" value="*"/>

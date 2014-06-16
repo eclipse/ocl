@@ -248,6 +248,15 @@ public interface PivotFactory
 	Detail createDetail();
 
 	/**
+	 * Returns a new object of class '<em>Dynamic Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dynamic Behavior</em>'.
+	 * @generated
+	 */
+	DynamicBehavior createDynamicBehavior();
+
+	/**
 	 * Returns a new object of class '<em>Dynamic Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

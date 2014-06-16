@@ -143,6 +143,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitDetail(object);
 	}
 
+	public @Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.examples.pivot.DynamicBehavior object) {
+		return delegate.visitDynamicBehavior(object);
+	}
+
 	public @Nullable R visitDynamicElement(@NonNull org.eclipse.ocl.examples.pivot.DynamicElement object) {
 		return delegate.visitDynamicElement(object);
 	}

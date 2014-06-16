@@ -62,6 +62,7 @@ public interface Visitor<R>
 	@Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.examples.pivot.ConstructorPart object);
 	@Nullable R visitDataType(@NonNull org.eclipse.ocl.examples.pivot.DataType object);
 	@Nullable R visitDetail(@NonNull org.eclipse.ocl.examples.pivot.Detail object);
+	@Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.examples.pivot.DynamicBehavior object);
 	@Nullable R visitDynamicElement(@NonNull org.eclipse.ocl.examples.pivot.DynamicElement object);
 	@Nullable R visitDynamicProperty(@NonNull org.eclipse.ocl.examples.pivot.DynamicProperty object);
 	@Nullable R visitDynamicType(@NonNull org.eclipse.ocl.examples.pivot.DynamicType object);
