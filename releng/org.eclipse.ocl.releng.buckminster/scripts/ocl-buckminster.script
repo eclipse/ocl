@@ -38,9 +38,6 @@ junit --launch "org.eclipse.ocl.examples.eventmanager.tests/EventManagerTests.la
 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with TracebackSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps.tests.xml"
 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with Traceback+UnusedChecks.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps_with_unused.tests.xml"
 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with NavigationSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.navigationsteps.tests.xml"
-#
-junit --launch "org.eclipse.ocl.examples.validity.test/.settings/OCL Validity View Tests \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.validity.test.standalone.xml"
-junit --launch "org.eclipse.ocl.examples.validity.test/.settings/OCL Validity View Tests \(Plugin\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.validity.test.plugin.xml"
 
 perform --properties "${checkout.location}/buildroot/build.properties" "-Dbuckminster.reference.repository=${reference.repository}" "org.eclipse.ocl.releng.build:eclipse.feature#build"
 perform --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#setup.promoter"
