@@ -382,11 +382,11 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		assertLineContains(exported, 2, exportedFileName);
 
 		// test resource validated
-		assertLineContains(exported, 8, ECORE_MODEL_NAME2); //$NON-NLS-1$
-		assertLineContains(exported, 9, OCL_CONSTRAINTS_MODEL); //$NON-NLS-1$
-		assertLineContains(exported, 10, ECORE_MODEL_NAME); //$NON-NLS-1$
-		assertLineContains(exported, 11, OCL_CONSTRAINTS_MODEL2); //$NON-NLS-1$
-		assertLineContains(exported, 12, ECORE_MODEL_NAME3); //$NON-NLS-1$
+		assertLineContains(exported, 8, OCL_CONSTRAINTS_MODEL); //$NON-NLS-1$
+		assertLineContains(exported, 9, ECORE_MODEL_NAME); //$NON-NLS-1$
+		assertLineContains(exported, 10, OCL_CONSTRAINTS_MODEL2); //$NON-NLS-1$
+		assertLineContains(exported, 11, ECORE_MODEL_NAME3); //$NON-NLS-1$
+		assertLineContains(exported, 12, ECORE_MODEL_NAME2); //$NON-NLS-1$
 
 		// tests validation results
 		assertLineContains(exported, TOTAL_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$

@@ -11,7 +11,10 @@
 package org.eclipse.ocl.examples.emf.validation.validity.export;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -72,9 +75,14 @@ public class TextExporter extends AbstractExporter
 		text.append("\n");
 		text.append("==== RESOURCES USED ====\n");
 		text.append("Model checked: \n");
+		List<String> uriStrings = new ArrayList<String>();
 		for (RootValidatableNode rootValidatableNode : rootNode.getValidatableNodes()) {
 			Resource eResource = rootValidatableNode.getConstrainedObject().eResource();
-			text.append("\t\t\t\t" + eResource.getURI() + "\n");
+			uriStrings.add(eResource.getURI().toString());
+		}
+		Collections.sort(uriStrings);
+		for (String uriString : uriStrings) {
+			text.append("\t\t\t\t" + uriString + "\n");
 		}
 		text.append("\n");
 		text.append("\n");

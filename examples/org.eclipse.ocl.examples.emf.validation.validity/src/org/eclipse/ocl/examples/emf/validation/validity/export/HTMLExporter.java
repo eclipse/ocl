@@ -11,7 +11,10 @@
 package org.eclipse.ocl.examples.emf.validation.validity.export;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -103,9 +106,14 @@ public class HTMLExporter extends AbstractExporter
 		html.append("\t\t\t<h2>2.1. Model checked</h2>\n");
 
 		html.append("\t\t\t<ul>\n");
+		List<String> uriStrings = new ArrayList<String>();
 		for (RootValidatableNode rootValidatableNode : rootNode.getValidatableNodes()) {
 			Resource eResource = rootValidatableNode.getConstrainedObject().eResource();
-			html.append("\t\t\t\t<li>" + eResource.getURI() + "</li>\n");
+			uriStrings.add(eResource.getURI().toString());
+		}
+		Collections.sort(uriStrings);
+		for (String uriString : uriStrings) {
+			html.append("\t\t\t\t<li>" + uriString + "</li>\n");
 		}
 
 		html.append("\t\t\t</ul>\n");
