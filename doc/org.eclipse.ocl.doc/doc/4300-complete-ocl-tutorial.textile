@@ -332,7 +332,7 @@ You may open the *PapyrusTestFile.uml* with the UML Model Editor, load the *Extr
 
 !{width:70%}images/4300-extra-uml-validation.png(Augmented UML Validation)!
 
-Unfortunately, this failure is not shown directly in the Luna release; you can see the warning using the "Validity View":#ValidityView.
+Unfortunately, this failure is not shown directly in the Luna SR0 release; you can see the warning using the "Validity View":#ValidityView. It is correctly shown using Luna SR1, but also accompanied by additional warnings where the OCL from UML 2.5 is defective or exposes limitations in Eclipse UML.
 
 In Juno, The Papyrus UML editor does not use the EValidator framework and so loading Complete OCL documents into Papyrus fails to enhance validation capabilities.
 

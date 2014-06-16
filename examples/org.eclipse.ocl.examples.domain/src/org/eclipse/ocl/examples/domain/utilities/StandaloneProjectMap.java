@@ -744,6 +744,9 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		public void unloadedResource(@NonNull IResourceLoadStatus packageLoadStatus) {}
+
+		@Override
+		public void useGeneratedResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {}
 	}
 
 	/**
@@ -2277,7 +2280,12 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public void configure(@Nullable ResourceSet resourceSet, @NonNull IResourceLoadStrategy resourceLoadStrategy, @Nullable IConflictHandler conflictHandler) {
 			if (genModelURI2packageDescriptor != null) {
 				for (IResourceDescriptor resourceDescriptor : genModelURI2packageDescriptor.values()) {
-					resourceDescriptor.configure(resourceSet, resourceLoadStrategy, conflictHandler);
+					try {
+						resourceDescriptor.configure(resourceSet, resourceLoadStrategy, conflictHandler);
+					}
+					catch (Exception e) {
+						logger.error(e);
+					}
 				}
 			}
 		}

@@ -45,6 +45,7 @@ public abstract class CompleteOCLLoader
 {  // FIXME This is a pragmatic re-use. Redesign as part of a coherent API.
 	protected final @NonNull ResourceSet resourceSet;
 	protected final @NonNull MetaModelManager metaModelManager;
+
 	protected final @NonNull Set<EPackage> mmPackages;
 	
 	public CompleteOCLLoader(@NonNull ResourceSet resourceSet) {
@@ -52,6 +53,10 @@ public abstract class CompleteOCLLoader
 		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);	// ?? Shared global MMM
 		this.metaModelManager = adapter.getMetaModelManager();
 		this.mmPackages = new HashSet<EPackage>();
+	}
+	
+	public @NonNull MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 	
 	public boolean loadMetaModels() {

@@ -13,8 +13,11 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -31,15 +34,19 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -148,6 +155,54 @@ public class UMLValidateTest extends AbstractValidateTests
 		assert (umlClass1 != null) && (umlStereotype1 != null);
 		String label = EcoreUtils.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
 		assertValidationDiagnostics("Loading", umlResource, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
+		disposeResourceSet(resourceSet);
+	}
+
+	public void test_tutorial_umlValidation_436903() {
+		ResourceSet resourceSet = createResourceSet();
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2Pivot.initialize(resourceSet));
+		}
+		else {
+			UMLResourcesUtil.init(resourceSet);
+		}
+		URI uri = getProjectFileURI("PapyrusTestFile.uml");
+		Resource umlResource = DomainUtil.nonNullState(resourceSet.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+		assertValidationDiagnostics("Loading", umlResource); //, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
+		URI oclURI = getProjectFileURI("ExtraUMLValidation.ocl");
+		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet)
+		{
+			@Override
+			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
+				return false;
+			}
+		};
+		MetaModelManager metaModelManager = helper.getMetaModelManager();
+		StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+		projectMap.configure(metaModelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
+		if (!helper.loadMetaModels()) {
+			fail("Failed to loadMetaModels");
+		}
+		//
+		//	Load all the documents
+		//
+		if (!helper.loadDocument(oclURI)) {
+			fail("Failed to loadDocument");
+		}
+		helper.installPackages();
+		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("lowercase");
+//BUG 437450		assertValidationDiagnostics("Loading", umlClass1,
+//		DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "CamelCaseName", EcoreUtils.qualifiedNameFor(umlClass1)));
+		List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(umlClass1, validationContext);
+		diagnostics.addAll(diagnostic.getChildren());
+		assertDiagnostics("Loading", diagnostics,
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "CamelCaseName", EcoreUtils.qualifiedNameFor(umlClass1)));
+		//
 		disposeResourceSet(resourceSet);
 	}
 
