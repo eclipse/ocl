@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicType;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -128,6 +129,18 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		} */
 		converter.queueReference(umlAssociation);	// opposites
 		return this;
+	}
+
+	@Override
+	public Object caseBehavior(org.eclipse.uml2.uml.Behavior umlBehavior) {
+		assert umlBehavior != null;
+		DynamicBehavior pivotElement = converter.refreshElement(DynamicBehavior.class, PivotPackage.Literals.DYNAMIC_BEHAVIOR, umlBehavior);
+		pivotElement.setName(((org.eclipse.uml2.uml.Type)umlBehavior).getName());
+		doSwitchAll(pivotElement.getOwnedAnnotation(), ((org.eclipse.uml2.uml.Element)umlBehavior).getOwnedElements(), null);
+		EClass umlMetaClass = umlBehavior.eClass();
+		Type metaType = metaModelManager.getPivotOfEcore(Type.class, umlMetaClass);
+		pivotElement.setMetaType(metaType);
+		return pivotElement;
 	}
 
 	@Override
