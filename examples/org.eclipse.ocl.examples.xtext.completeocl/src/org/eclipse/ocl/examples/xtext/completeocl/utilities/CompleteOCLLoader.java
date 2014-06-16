@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.validation.PivotEObjectValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -145,10 +146,10 @@ public abstract class CompleteOCLLoader
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
 				DomainPackage aPackage = metaModelManager.getPrimaryPackage((org.eclipse.ocl.examples.pivot.Package)eObject);
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-					EPackage mmPackage = (EPackage) ((org.eclipse.ocl.examples.pivot.Package)aPackage).getETarget();
-					if (mmPackage != null) {
-						mmPackages.add(mmPackage);
+				if (aPackage instanceof PivotObjectImpl) {
+					EObject mmPackage = ((PivotObjectImpl)aPackage).getETarget();
+					if (mmPackage instanceof EPackage) {
+						mmPackages.add((EPackage)mmPackage);
 					}
 				}
 			}

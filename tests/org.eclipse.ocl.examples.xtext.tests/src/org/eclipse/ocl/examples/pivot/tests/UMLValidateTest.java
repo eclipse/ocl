@@ -169,7 +169,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		URI uri = getProjectFileURI("PapyrusTestFile.uml");
 		Resource umlResource = DomainUtil.nonNullState(resourceSet.getResource(uri, true));
 		assertNoResourceErrors("Loading", umlResource);
-		assertValidationDiagnostics("Loading", umlResource); //, DomainUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
+		assertValidationDiagnostics("Loading", umlResource);
 		URI oclURI = getProjectFileURI("ExtraUMLValidation.ocl");
 		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet)
 		{
@@ -202,6 +202,45 @@ public class UMLValidateTest extends AbstractValidateTests
 		diagnostics.addAll(diagnostic.getChildren());
 		assertDiagnostics("Loading", diagnostics,
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "CamelCaseName", EcoreUtils.qualifiedNameFor(umlClass1)));
+		//
+		disposeResourceSet(resourceSet);
+	}
+
+	public void test_umlValidation_404882() {
+		ResourceSet resourceSet = createResourceSet();
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2Pivot.initialize(resourceSet));
+		}
+		else {
+			UMLResourcesUtil.init(resourceSet);
+		}
+		URI uri = getProjectFileURI("Bug404882.uml");
+		Resource umlResource = DomainUtil.nonNullState(resourceSet.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+		assertValidationDiagnostics("Loading", umlResource);
+		URI oclURI = getProjectFileURI("Bug404882.ocl");
+		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet)
+		{
+			@Override
+			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
+				return false;
+			}
+		};
+		MetaModelManager metaModelManager = helper.getMetaModelManager();
+		StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+		projectMap.configure(metaModelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
+		if (!helper.loadMetaModels()) {
+			fail("Failed to loadMetaModels");
+		}
+		//
+		//	Load all the documents
+		//
+		if (!helper.loadDocument(oclURI)) {
+			fail("Failed to loadDocument");
+		}
+		helper.installPackages();
+//BUG 437450				assertValidationDiagnostics("Loading", umlResource);
 		//
 		disposeResourceSet(resourceSet);
 	}

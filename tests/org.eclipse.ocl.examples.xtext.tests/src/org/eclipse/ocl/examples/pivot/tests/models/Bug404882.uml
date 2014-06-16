@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_3OZ-0Km6EeG6cMdGet4Yrg" name="Model">
+  <packageImport xmi:id="_3OZ-0am6EeG6cMdGet4Yrg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7KKpwKm6EeG6cMdGet4Yrg" name="UPPERCASE">
+    <ownedAttribute xmi:id="_-kZU8Km6EeG6cMdGet4Yrg" name="class2" type="_8pz3kKm6EeG6cMdGet4Yrg" association="_-kbKIKm6EeG6cMdGet4Yrg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-kZU8am6EeG6cMdGet4Yrg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-kZU8qm6EeG6cMdGet4Yrg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_L2YAIJxlEeKwKstopIrfJw" name="myprop" visibility="public" isReadOnly="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QE_VoJxlEeKwKstopIrfJw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_LZ9NEJxpEeKwKstopIrfJw" name="yetAnotherProp" visibility="public" isReadOnly="true" isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8pz3kKm6EeG6cMdGet4Yrg" name="lowercase"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_-kbKIKm6EeG6cMdGet4Yrg" name="class1_class2_1" memberEnd="_-kbKIam6EeG6cMdGet4Yrg _-kZU8Km6EeG6cMdGet4Yrg">
+    <ownedEnd xmi:id="_-kbKIam6EeG6cMdGet4Yrg" name="class1" type="_7KKpwKm6EeG6cMdGet4Yrg" association="_-kbKIKm6EeG6cMdGet4Yrg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-kbxMKm6EeG6cMdGet4Yrg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-kbxMam6EeG6cMdGet4Yrg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

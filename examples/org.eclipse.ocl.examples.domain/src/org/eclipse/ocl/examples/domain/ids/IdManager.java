@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfListOfWeakReference
 import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfListOfWeakReference4;
 import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * IdManager supervises the thread-safe allocation of unique hierarchical identifier to each metamodel element.
@@ -382,7 +383,12 @@ public final class IdManager
 		}
 		String nsURI = aPackage.getNsURI();
 		if (nsURI != null) {
-			return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage);
+			if (nsURI.equals(UMLPackage.eNS_URI)) {
+				return IdManager.METAMODEL;
+			}
+			else {
+				return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage);
+			}
 		}
 		String name = aPackage.getName();
 		assert name != null;

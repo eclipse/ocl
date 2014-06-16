@@ -23,13 +23,9 @@ public class NsURIPackageIdImpl extends PackageIdImpl implements NsURIPackageId
 	protected final @Nullable String nsPrefix;
 	private @Nullable EPackage ePackage;
 
-	@SuppressWarnings("null")
 	@Deprecated
 	public NsURIPackageIdImpl(@NonNull IdManager idManager, @NonNull String nsURI, @Nullable EPackage ePackage) {
-		super(nsURI.hashCode());
-		this.nsURI = nsURI;
-		this.nsPrefix = null;
-		this.ePackage = ePackage;
+		this(idManager, nsURI, null, ePackage);
 	}
 
 	@SuppressWarnings("null")
