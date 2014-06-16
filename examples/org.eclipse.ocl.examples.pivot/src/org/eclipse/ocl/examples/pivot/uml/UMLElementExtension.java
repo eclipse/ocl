@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
@@ -29,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
  */
 public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.Internal
 {
-	public static Object getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable Object getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EObject eTarget = staticType.getETarget();
 		if (eTarget instanceof org.eclipse.uml2.uml.Stereotype) {
 			org.eclipse.uml2.uml.Stereotype umlDynamicStereotype = null;
@@ -37,13 +38,13 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 			for (org.eclipse.uml2.uml.Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
 				if (appliedStereotype.conformsTo(umlStaticStereotype)) {
 					if (umlDynamicStereotype != null) {
-						return new InvalidValueException("Ambiguous applied stereotype " + umlStaticStereotype);
+						throw new InvalidValueException("Ambiguous applied stereotype " + umlStaticStereotype);
 					}
 					umlDynamicStereotype = appliedStereotype;
 				}
 			}
 			if (umlDynamicStereotype == null) {
-				return new InvalidValueException("No applied stereotype " + umlStaticStereotype);
+				return null; //new InvalidValueException("No applied stereotype " + umlStaticStereotype);
 			}
 			UMLElementExtension umlElementExtension = null;
 			for (Adapter adapter : umlElement.eAdapters()) {
@@ -60,7 +61,7 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 			}
 			return umlElementExtension;
 		}
-		return new InvalidValueException("Unable to resolve stereotype " + staticType);
+		throw new InvalidValueException("Unable to resolve stereotype " + staticType);
 	}
 
 	protected final @NonNull org.eclipse.uml2.uml.Element umlElement;

@@ -35,10 +35,14 @@ public class UMLConsoleTests extends AbstractConsoleTests
 
 		URI testModelURI = getProjectFileURI("Bug419556.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
-        org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model) umlResource.getContents().get(0);
-        org.eclipse.uml2.uml.Type class1 = model.getOwnedType("Class1");
+        org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+        org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class)model.getOwnedType("Class1");
+        org.eclipse.uml2.uml.Property attribute1 = class1.getOwnedAttribute("Attribute1", null);
         //
 		assertConsoleResult(consolePage, class1, "self.extension_Stereotype3", "Class1$Stereotype3\n");
+		//
+		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype1", "Attribute1$Stereotype1\n");		// Bug 419557
+		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
 		ocl.dispose();
 	}
