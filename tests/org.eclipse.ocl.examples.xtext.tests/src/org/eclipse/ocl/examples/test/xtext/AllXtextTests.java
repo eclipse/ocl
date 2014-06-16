@@ -111,6 +111,8 @@ public class AllXtextTests
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			result.addTestSuite(CompletionProposalTests.class);
 			result.addTestSuite(ConsoleTests.class);
+			result.addTestSuite(EcoreConsoleTests.class);
+			result.addTestSuite(UMLConsoleTests.class);
 			result.addTestSuite(EditorTests.class);
 			result.addTestSuite(FileNewWizardTest.class);
 //			result.addTestSuite(DebuggerTests.class);
