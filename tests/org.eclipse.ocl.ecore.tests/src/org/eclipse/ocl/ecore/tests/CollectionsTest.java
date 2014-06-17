@@ -403,7 +403,7 @@ public class CollectionsTest
 			assertTrue(check(helper,
 				"",
 				"OrderedSet{Sequence{'a', 'b'}, Sequence{'b', 'c', 'd'}}->flatten()" +
-					" = Set{'b', 'c', 'a', 'd'}"));
+					" = OrderedSet{'a', 'b', 'c', 'd'}"));
 
 			assertTrue(check(helper,
 				"",
@@ -500,7 +500,7 @@ public class CollectionsTest
 
 			assertTrue(check(helper, "",
 				"OrderedSet{OrderedSet{}, OrderedSet{}}->flatten()" +
-					" = Set{}"));
+					" = OrderedSet{}"));
 
 			assertTrue(check(helper, "",
 				"Sequence{Sequence{}, Sequence{}}->flatten()" +
@@ -529,7 +529,7 @@ public class CollectionsTest
 			assertTrue(check(helper,
 				"",
 				"OrderedSet{Sequence{Set{'a'}, Set{'b'}}, Sequence{Set{'b', 'c'}, Set{'d'}}}->flatten()" +
-					" = Set{'b', 'c', 'a', 'd'}"));
+					" = OrderedSet{'a', 'b', 'c', 'd'}"));
 
 			assertTrue(check(helper,
 				"",
@@ -560,7 +560,7 @@ public class CollectionsTest
 			assertTrue(check(helper,
 				"",
 				"OrderedSet{OrderedSet{Sequence{}, Sequence{}}, OrderedSet{Sequence{}, Sequence{}}}->flatten()" +
-					" = Set{}"));
+					" = OrderedSet{}"));
 
 			assertTrue(check(helper,
 				"",

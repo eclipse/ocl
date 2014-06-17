@@ -468,44 +468,28 @@ public class CollectionUtil {
         // Note: As OCL 2.3 (OMG 10-11-42) section A.2.5.8 fails to specify how to
         // flatten an OrderedSet, we choose to flatten it into an OrderedSet
         // represented by a LinkedHashSet.
-        Collection<?> result = self;
-        
-        for (;;) {
-            if (result.isEmpty()) {
+        Collection<Object> result = null;
+        for (Object object : self) {
+        	if (object instanceof Collection<?>) {
+                result = createNewCollectionOfSameKind(self);
                 break;
-            }
-            
-            Iterator<?> it = result.iterator();
-            Object object = it.next();
-    
-            // if the element type is not a collection type, the result is the
-            // current collection.
-            if (!(object instanceof Collection<?>)) {
-                break;
-            }
-    
-            Collection<Object> newResult = null;
-            if (result instanceof Bag<?>) {
-                newResult = createNewBag();
-            } else if (result instanceof Set<?>) {
-                newResult = createNewSet();
-            } else {
-                // Sequence
-                newResult = createNewSequence();
-            }
-            
-            // the element type is a collection type -- flatten one level
-            newResult.addAll((Collection<?>) object);
-            while (it.hasNext()) {
-                newResult.addAll((Collection<?>) it.next());
-            }
-            
-            result = newResult;
-            // loop until the result is empty or the first element is not a
-            // collection
+        	}
         }
-        
+        if (result == null) {			// Already flat
+        	return self;
+        }
+        flattenRecursion(result, self);
         return result;
+    }
+    private static void flattenRecursion(Collection<Object> result, Collection<?> children) {
+        for (Object object : children) {
+        	if (object instanceof Collection<?>) {
+                flattenRecursion(result, (Collection<?>) object);
+        	}
+        	else {
+        		result.add(object);
+        	}
+        }
     }
 
     /**
