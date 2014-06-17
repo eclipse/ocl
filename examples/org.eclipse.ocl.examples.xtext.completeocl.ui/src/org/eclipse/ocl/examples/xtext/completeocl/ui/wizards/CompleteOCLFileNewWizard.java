@@ -10,7 +10,12 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.completeocl.ui.wizards;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -55,14 +60,21 @@ public class CompleteOCLFileNewWizard extends AbstractFileNewWizard
 		String firstTypeName = null;
 		String firstPropertyName = null;
 		StringBuilder s = new StringBuilder();
-		List<URI> uris = dialog.getURIs();
+		Set<URI> uris = new HashSet<URI>(dialog.getURIs());
 		if (uris.size() > 0) {
+			List<URI> sortedURIs = new ArrayList<URI>(uris);
+			Collections.sort(sortedURIs, new Comparator<URI>()
+			{
+				public int compare(URI o1, URI o2) {
+					return o1.toString().compareTo(o2.toString());
+				}
+			});
 			ResourceSet resourceSet = new ResourceSetImpl();
-			URI newURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-			for (URI uri : uris) {
-				@SuppressWarnings("null")@NonNull URI deresolvedURI = uri.deresolve(newURI);
+			for (URI uri : sortedURIs) {
 				try {
 					Resource resource = resourceSet.getResource(uri, true);
+					URI newURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
+					@SuppressWarnings("null")@NonNull URI deresolvedURI = uri.deresolve(newURI);
 					s.append("import '" + ValuesUtil.oclToString(deresolvedURI) + "'\n");
 					if (firstPropertyName == null) {
 						for (EObject eObject : resource.getContents()) {
