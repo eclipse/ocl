@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -281,53 +282,56 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertQueryEquals(testObject, 198, textQuery);
 	}
 	
-	@Test public void test_unnavigable_opposite_property() throws ParserException, IOException {
+	@Test public void test_cg_name_occlusion_401692() throws ParserException, IOException {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
 		String metaModelText =
-				"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
-				"package pkg : pkg = 'pkg' {\n" +
-				"  class A {\n" +
-				"    property b : B;\n" +
-				"  }\n" +
-				"  class AA extends A {}\n" +
-				"  class B {}\n" +
+				"package scope = 'abc'\n" + 
+				"{\n" + 
+				"	class A\n" + 
+				"	{\n" + 
+				"		attribute d : String;\n" + 
+				"		attribute e : String;\n" + 
+				"	}\n" + 
+				"	class B\n" + 
+				"	{\n" + 
+				"		operation findA(e : String) : A[?]\n" + 
+				"		{\n" + 
+				"			body:\n" + 
+				"				let found : OrderedSet(A) = as->select(a : A | a.d = e) in if found->size() > 0 then found->first() else null endif;\n" + 
+				"		}\n" + 
+				"		property as : A[*] { ordered composes };\n" + 
+				"	}\n" + 
 				"}\n";
 		Resource metaModel = cs2pivot(getOCL(), metaModelText);
 		Root pivotRoot = (Root) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getNestedPackage().get(0);
 		Type pivotTypeA = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "A");
-		Type pivotTypeAA = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "AA");
 		Type pivotTypeB = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "B");
 		EPackage ePackage = metaModelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
 		EClass eClassA = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeA);
-		EClass eClassAA = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeAA);
 		EClass eClassB = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeB);
-		EReference eReferenceAb = metaModelManager.getEcoreOfPivot(EReference.class, DomainUtil.getNamedElement(pivotTypeA.getOwnedAttribute(), "b"));
+		EAttribute eAttributeAd = metaModelManager.getEcoreOfPivot(EAttribute.class, DomainUtil.getNamedElement(pivotTypeA.getOwnedAttribute(), "d"));
+		EAttribute eAttributeAe = metaModelManager.getEcoreOfPivot(EAttribute.class, DomainUtil.getNamedElement(pivotTypeA.getOwnedAttribute(), "e"));
+		EReference eReferenceBas = metaModelManager.getEcoreOfPivot(EReference.class, DomainUtil.getNamedElement(pivotTypeB.getOwnedAttribute(), "as"));
 		EFactory eFactory = ePackage.getEFactoryInstance();
 		Resource resource = new ResourceImpl();
 		EObject testObjectA1 = eFactory.create(eClassA);
+		testObjectA1.eSet(eAttributeAd, "d1");
+		testObjectA1.eSet(eAttributeAe, "e1");
 		EObject testObjectA2 = eFactory.create(eClassA);
-		EObject testObjectAA = eFactory.create(eClassAA);
+		testObjectA2.eSet(eAttributeAd, "d2");
+		testObjectA2.eSet(eAttributeAe, "e2");
 		EObject testObjectB = eFactory.create(eClassB);
-		resource.getContents().add(testObjectA1);
-		resource.getContents().add(testObjectA2);
-		resource.getContents().add(testObjectAA);
 		resource.getContents().add(testObjectB);
-		assertQueryEquals(testObjectB, idResolver.createBagOfEach(null), "self.A");
-		testObjectA1.eSet(eReferenceAb, testObjectB);
-		assertQueryEquals(testObjectB, idResolver.createBagOfEach(null, testObjectA1), "self.A");
-		testObjectA2.eSet(eReferenceAb, testObjectB);
-		assertQueryEquals(testObjectB, idResolver.createBagOfEach(null, testObjectA1, testObjectA2), "self.A");
-		testObjectA1.eUnset(eReferenceAb);
-		assertQueryEquals(testObjectB, idResolver.createBagOfEach(null, testObjectA2), "self.A");
-		testObjectAA.eSet(eReferenceAb, testObjectB);
-		assertQueryEquals(testObjectB, idResolver.createBagOfEach(null, testObjectA2, testObjectAA), "self.A");
-		assertQueryEquals(testObjectA1, null, "self.b");
-		assertQueryEquals(testObjectA2, testObjectB, "self.b");
-		assertQueryEquals(testObjectAA, testObjectB, "self.b");
+		@SuppressWarnings("unchecked")List<EObject> as = (List<EObject>) testObjectB.eGet(eReferenceBas);
+		as.add(testObjectA1);
+		as.add(testObjectA2);
+		//
+		assertQueryEquals(testObjectB, testObjectA1, "self.findA('d1')");
+		assertQueryEquals(testObjectB, null, "self.findA('e2')");
 	}
 	
 	@Test public void test_cg_tuple_access() throws ParserException, IOException {
