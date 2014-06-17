@@ -1,0 +1,595 @@
+/*
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - initial API and implementation
+ */
+package org.eclipse.ocl.examples.pivot.validation;
+
+import java.lang.ref.WeakReference;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreValidator;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.common.OCLCommon;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
+import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+
+/**
+ * EcoreOCLEValidator provides the validation support for Ecore elements that exploit OCL.
+ * <p>
+ * Typically used with a Diagnostician as:
+ * <pre>
+ *	EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
+ *	registry.put(EcorePackage.eINSTANCE, EcoreOCLEValidator.INSTANCE);
+ *	Diagnostician diagnostician = new Diagnostician(registry);
+ *	Diagnostic diagnostic = dignostician.validate(eObject, validationContext);
+ * </pre>
+ */
+public class EcoreOCLEValidator implements EValidator
+{
+	public static final String UNKNOWN_DETAIL = "Unknown ''{0}'' detail for ''{1}''";
+	public static final String MISSING_DELEGATE = "Missing ''{0}'' delegate for ''{1}''";
+	public static final String EXTRA_CONSTRAINTS_ANNOTATION_ENTRY = "Extra ''constraints'' annotation entry for ''{0}'' in ''{1}''";
+	public static final String MISSING_CONSTRAINTS_ANNOTATION_ENTRY = "Missing ''constraints'' annotation entry for ''{0}'' in ''{1}''";
+	public static final String MISSING_CONSTRAINTS = "Missing constraints annotation for ''{0}''";
+	public static final String PARSING_ERROR_2 = "Parsing error ''{0}'' for ''{1}'' ''{2}''";
+	public static final String PARSING_ERROR_1 = "Parsing error ''{0}'' for ''{1}''";
+	public static final String INCOMPATIBLE_TYPE_2 = "Incompatible type ''{0}'' for ''{1}'' ''{2}''";
+	public static final String INCOMPATIBLE_TYPE_1 = "Incompatible type ''{0}'' for ''{1}''";
+	public static final String NULL_EXPRESSION = "Null expression for ''{0}''";
+	public static final String NULL_PROPERTY_KEY = "Non-null ''derivation'' or ''initial'' detail allowed for ''{0}''";
+	public static final String EXTRA_PROPERTY_KEY = "Only ''derivation'' or ''initial'' detail allowed for ''{0}''";
+	public static final String DOUBLE_PROPERTY_KEY = "Both ''derivation'' and ''initial'' detail for ''{0}''";
+	public static final String MISSING_PROPERTY_KEY = "Missing ''" + SettingBehavior.DERIVATION_CONSTRAINT_KEY + "'' or ''" + SettingBehavior.INITIAL_CONSTRAINT_KEY + "'' detail for ''{0}''";
+
+	/**
+	 * ConstraintEvaluatorWithoutDiagnostics provides the minimal ConstraintEvaluator support for
+	 * use when no diagnostics are required.
+	 */
+	public static class ConstraintEvaluatorWithoutDiagnostics extends ConstraintEvaluator<Boolean>
+	{
+		public ConstraintEvaluatorWithoutDiagnostics(@NonNull ExpressionInOCL expression) {
+			super(expression);
+		}
+
+		@Override
+		protected String getObjectLabel() {
+			throw new UnsupportedOperationException(); // Cannot happen;
+		}
+
+		@Override
+		protected Boolean handleExceptionResult(@NonNull Throwable e) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleFailureResult(@Nullable Object result) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidExpression(@NonNull String message) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleSuccessResult() {
+			return Boolean.TRUE;
+		}
+	}
+
+	/**
+	 * ConstraintEvaluatorWithoutDiagnostics provides the richer ConstraintEvaluator support for
+	 * use when diagnostics are required.
+	 */
+	public static class ConstraintEvaluatorWithDiagnostics extends ConstraintEvaluator<Boolean>
+	{
+		protected final @NonNull EObject eObject;
+		protected final @NonNull DiagnosticChain diagnostics;
+		protected final @NonNull EObject diagnosticEObject;
+		protected final boolean mayUseNewLines;
+
+		public ConstraintEvaluatorWithDiagnostics(@NonNull ExpressionInOCL expression, @NonNull EObject eObject,
+				@NonNull DiagnosticChain diagnostics, @NonNull EObject diagnosticEObject, boolean mayUseNewLines) {
+			super(expression);
+			this.diagnosticEObject = diagnosticEObject;
+			this.eObject = eObject;
+			this.diagnostics = diagnostics;
+			this.mayUseNewLines = mayUseNewLines;
+		}
+
+		@Override
+		protected String getObjectLabel() {
+			return EcoreUtils.qualifiedNameFor(eObject);
+		}
+
+		@Override
+		protected Boolean handleExceptionResult(@NonNull Throwable e) {
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
+			if (!mayUseNewLines) {
+				message = message.replace("\n", "");
+			}
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleFailureResult(@Nullable Object result) {
+			int severity = getConstraintResultSeverity(result);
+			String message = getConstraintResultMessage(result);
+			diagnostics.add(new BasicDiagnostic(severity, EcoreValidator.DIAGNOSTIC_SOURCE,
+				0, message,  new Object[] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidExpression(@NonNull String message) {
+			String message2 = message;
+			if (!mayUseNewLines) {
+				message2 = message.replace("\n", "");
+			}
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
+				0, message2.replace("\n", " - "), new Object [] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
+			if (!mayUseNewLines) {
+				message = message.replace("\n", "");
+			}
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+				0, message,  new Object[] { diagnosticEObject }));
+			return Boolean.FALSE;
+		}
+
+		@Override
+		protected Boolean handleSuccessResult() {
+			return Boolean.TRUE;
+		}
+	}
+
+	/**
+	 * WeakOCLReference maintains the reference to the OCL context within the Diagnostician context and
+	 * disposes of it once the Diagnostician is done.
+	 */
+	protected static final class WeakOCLReference extends WeakReference<OCL>
+	{
+		protected final @NonNull OCL ocl;
+		
+		protected WeakOCLReference(@NonNull OCL ocl) {
+			super(ocl);
+			this.ocl = ocl;
+		}
+
+		@Override
+		public void finalize() {
+			new Thread("OCL-Finalizer")
+			{
+				@Override
+				public void run() {
+					ocl.dispose();
+				}
+			}.start();
+		}
+	}
+
+	public static final @NonNull EcoreOCLEValidator INSTANCE = new EcoreOCLEValidator(true);
+	public static final @NonNull EcoreOCLEValidator NO_NEW_LINES = new EcoreOCLEValidator(false);
+	public static final @NonNull TracingOption VALIDATE_INSTANCE = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/instance");
+	public static final @NonNull TracingOption VALIDATE_OPAQUE_ELEMENT = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/opaqueElement");
+
+	protected static void gatherTypes(@NonNull Set<Type> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull Type newType) {
+		if (allTypes.add(newType)) {
+			allConstraints.addAll(newType.getOwnedInvariant());
+			for (Type superType : newType.getSuperClass()) {
+				if (superType != null) {
+					gatherTypes(allTypes, allConstraints, superType);
+				}
+			}
+		}
+	}
+	
+	protected final boolean mayUseNewLines;
+
+	public EcoreOCLEValidator(boolean mayUseNewLines) {
+		this.mayUseNewLines = mayUseNewLines;
+	}
+
+	/**
+	 * Return the OCL context for the validation, caching the created value in the validation context for re-use by
+	 * further validations. The cached reference is weak to ensure that the OCL context is disposed once no longer in use.
+	 */
+	protected OCL getOCL(@NonNull Map<Object, Object> context) {
+		OCL ocl = null;
+		Object oclRef = context.get(WeakOCLReference.class);
+		if (oclRef instanceof WeakOCLReference) {
+			ocl = ((WeakOCLReference)oclRef).get();
+		}
+		if (ocl == null) {
+			ocl = OCL.newInstance();
+			context.put(WeakOCLReference.class, new WeakOCLReference(ocl));
+		}
+		return ocl;
+	}
+
+	protected boolean isOCL(List<String> someDelegates) {
+		for (String aDelegate : someDelegates) {
+			if (OCLCommon.isDelegateURI(aDelegate)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	    return validate(eObject.eClass(), eObject, diagnostics, context); 
+//		return true;
+	}
+
+	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		assert context != null;
+		boolean allOk = true;
+		if (eObject instanceof EPackage) {
+			EPackage ePackage = (EPackage)eObject;
+			allOk = validateEPackage(ePackage, diagnostics, context);
+		}
+		else if (eObject instanceof EClassifier) {
+			EClassifier eClassifier = (EClassifier)eObject;
+			allOk = validateEClassifier(eClassifier, diagnostics, context);
+		}
+		else if (eObject instanceof EOperation) {
+			EOperation eOperation = (EOperation)eObject;
+			allOk = validateEOperation(eOperation, diagnostics, context);
+		}
+		else if (eObject instanceof EStructuralFeature) {
+			EStructuralFeature eStructuralFeature = (EStructuralFeature)eObject;
+			allOk = validateEStructuralFeature(eStructuralFeature, diagnostics, context);
+		}
+		return allOk;
+	}
+
+	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	protected boolean validateEClassifier(@NonNull EClassifier eClassifier, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+		boolean allOk = true;
+		String constraintsAnnotation = EcoreUtil.getAnnotation(eClassifier, EcorePackage.eNS_URI, "constraints");
+		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eClassifier);
+		if (eAnnotation != null) {
+			OCL ocl = getOCL(context);
+			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			EMap<String, String> details = eAnnotation.getDetails();
+			for (String constraintName : details.keySet()) {
+				String value = details.get(constraintName);
+				allOk = validateExpression(metaModelManager, eClassifier, value, metaModelManager.getBooleanType(), constraintName, diagnostics, context);
+			}
+			if (constraintsAnnotation == null) {
+				if (diagnostics != null) {
+					String objectLabel = EObjectValidator.getObjectLabel(eClassifier, context);
+					String message = DomainUtil.bind(MISSING_CONSTRAINTS, objectLabel);
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+						0, message,  new Object[] { eClassifier }));
+				}
+				else {
+					allOk = false;
+				}
+			}
+			else {
+				Set<String> ecoreConstraints = new HashSet<String>(EcoreUtil.getConstraints(eClassifier));
+				Set<String> oclConstraints = new HashSet<String>(details.keySet());
+				oclConstraints.removeAll(ecoreConstraints);
+				ecoreConstraints.removeAll(details.keySet());
+				for (String aConstraint : oclConstraints) {
+					if (diagnostics != null) {
+						String objectLabel = EObjectValidator.getObjectLabel(eClassifier, context);
+						String message = DomainUtil.bind(MISSING_CONSTRAINTS_ANNOTATION_ENTRY, aConstraint, objectLabel);
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+							0, message,  new Object[] { eClassifier }));
+					}
+					else {
+						allOk = false;
+					}
+				}
+				for (String aConstraint : ecoreConstraints) {
+					if (diagnostics != null) {
+						String objectLabel = EObjectValidator.getObjectLabel(eClassifier, context);
+						String message = DomainUtil.bind(EXTRA_CONSTRAINTS_ANNOTATION_ENTRY, aConstraint, objectLabel);
+						diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, EcoreValidator.DIAGNOSTIC_SOURCE,
+							0, message,  new Object[] { eClassifier }));
+					}
+					else {
+						allOk = false;
+					}
+				}
+			}
+		}
+		return allOk;
+	}
+
+	protected boolean validateEPackage(@NonNull EPackage ePackage, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+		boolean allOk = true;
+		boolean needsInvocationDelegates = false;
+		boolean needsSettingDelegates = false;
+		boolean needsValidationDelegates = false;
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (OCLCommon.getDelegateAnnotation(eClassifier) != null) {
+				needsValidationDelegates = true;
+			}
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				for (EOperation eOperation : eClass.getEOperations()) {
+					if (OCLCommon.getDelegateAnnotation(eOperation) != null) {
+						needsInvocationDelegates = true;
+					}
+				}
+				for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+					if (OCLCommon.getDelegateAnnotation(eStructuralFeature) != null) {
+						needsSettingDelegates = true;
+					}
+				}
+			}
+		}
+		boolean hasInvocationDelegates = isOCL(EcoreUtil.getInvocationDelegates(ePackage));
+		boolean hasSettingDelegates = isOCL(EcoreUtil.getSettingDelegates(ePackage));
+		boolean hasValidationDelegates = isOCL(EcoreUtil.getValidationDelegates(ePackage));
+		if (needsInvocationDelegates && !hasInvocationDelegates) {
+			if (diagnostics != null) {
+				String objectLabel = EObjectValidator.getObjectLabel(ePackage, context);
+				String message = DomainUtil.bind(MISSING_DELEGATE, InvocationBehavior.NAME, objectLabel);
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { ePackage }));
+			}
+			else {
+				allOk = false;
+			}
+		}
+		if (needsSettingDelegates && !hasSettingDelegates) {
+			if (diagnostics != null) {
+				String objectLabel = EObjectValidator.getObjectLabel(ePackage, context);
+				String message = DomainUtil.bind(MISSING_DELEGATE, SettingBehavior.NAME, objectLabel);
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { ePackage }));
+			}
+			else {
+				allOk = false;
+			}
+		}
+		if (needsValidationDelegates && !hasValidationDelegates) {
+			if (diagnostics != null) {
+				String objectLabel = EObjectValidator.getObjectLabel(ePackage, context);
+				String message = DomainUtil.bind(MISSING_DELEGATE, ValidationBehavior.NAME, objectLabel);
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { ePackage }));
+			}
+			else {
+				allOk = false;
+			}
+		}
+		return allOk;
+	}
+
+	protected boolean validateEOperation(@NonNull EOperation eOperation, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+		boolean allOk = true;
+		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
+		if (eAnnotation != null) {
+			OCL ocl = getOCL(context);
+			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			EMap<String, String> details = eAnnotation.getDetails();
+			Set<String> knownKeys = new HashSet<String>();
+			if (details.containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY)) {
+				knownKeys.add(InvocationBehavior.BODY_CONSTRAINT_KEY);
+				String value = details.get(InvocationBehavior.BODY_CONSTRAINT_KEY);
+				Type requiredType = EcoreUtil.isInvariant(eOperation) ? metaModelManager.getBooleanType() : null;
+				allOk = validateExpression(metaModelManager, eOperation, value, requiredType, InvocationBehavior.BODY_CONSTRAINT_KEY, diagnostics, context);
+			}
+			if (details.containsKey("pre")) {
+				knownKeys.add("pre");
+				String value = details.get("pre");
+				allOk = validateExpression(metaModelManager, eOperation, value, metaModelManager.getBooleanType(), "pre", diagnostics, context);
+			}
+			if (details.containsKey("post")) {
+				knownKeys.add("post");
+				String value = details.get("post");
+				allOk = validateExpression(metaModelManager, eOperation, value, metaModelManager.getBooleanType(), "post", diagnostics, context);
+			}
+			Set<String> actualKeys = details.keySet();
+			Set<String> unknownKeys = new HashSet<String>(actualKeys);
+			unknownKeys.removeAll(knownKeys);
+			if (unknownKeys.size() > 0) {
+				if (diagnostics != null) {
+					for (String unknownKey : unknownKeys) {
+						String objectLabel = EObjectValidator.getObjectLabel(eOperation, context);
+						String message = DomainUtil.bind(UNKNOWN_DETAIL, unknownKey, objectLabel);
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+							0, message,  new Object[] { eOperation }));
+					}
+				}
+				else {
+					allOk = false;
+				}
+			}
+		}
+		return allOk;
+	}
+
+	protected boolean validateEStructuralFeature(@NonNull EStructuralFeature eStructuralFeature, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+		boolean allOk = true;
+		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eStructuralFeature);
+		if (eAnnotation != null) {
+			EMap<String, String> details = eAnnotation.getDetails();
+			int entries = 0;
+			String value = null;
+			if (details.containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY)) {
+				entries++;
+				value = details.get(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
+			}
+			if (details.containsKey(SettingBehavior.INITIAL_CONSTRAINT_KEY)) {
+				entries++;
+				value = details.get(SettingBehavior.INITIAL_CONSTRAINT_KEY);
+			}
+			if (entries == 0) {
+				if (diagnostics != null) {
+					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
+					String message = DomainUtil.bind(MISSING_PROPERTY_KEY, objectLabel);
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+						0, message,  new Object[] { eStructuralFeature }));
+				}
+				else {
+					allOk = false;
+				}
+			}
+			else if (entries == 2) {
+				if (diagnostics != null) {
+					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
+					String message = DomainUtil.bind(DOUBLE_PROPERTY_KEY, objectLabel);
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+						0, message,  new Object[] { eStructuralFeature }));
+				}
+				else {
+					allOk = false;
+				}
+			}
+			else if (details.size() != 1) {
+				if (diagnostics != null) {
+					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
+					String message = DomainUtil.bind(EXTRA_PROPERTY_KEY, objectLabel);
+					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, EcoreValidator.DIAGNOSTIC_SOURCE,
+						0, message,  new Object[] { eStructuralFeature }));
+				}
+				else {
+					allOk = false;
+				}
+			}
+			else if (value == null) {
+				if (diagnostics != null) {
+					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
+					String message = DomainUtil.bind(NULL_PROPERTY_KEY, objectLabel);
+					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, EcoreValidator.DIAGNOSTIC_SOURCE,
+						0, message,  new Object[] { eStructuralFeature }));
+				}
+				else {
+					allOk = false;
+				}
+			}
+			else {
+				OCL ocl = getOCL(context);
+				MetaModelManager metaModelManager = ocl.getMetaModelManager();
+				allOk = validateExpression(metaModelManager, eStructuralFeature, value, null, null, diagnostics, context);
+			}
+		}
+		return allOk;
+	}
+
+	protected boolean validateExpression(@NonNull MetaModelManager metaModelManager, @NonNull ENamedElement eNamedElement, @Nullable String expression, @Nullable Type requiredType, @Nullable String role, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+		if (expression == null) {
+			if (diagnostics != null) {
+				String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
+				String message = DomainUtil.bind(NULL_EXPRESSION, objectLabel);
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { eNamedElement }));
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		try {
+			NamedElement asNamedElement = metaModelManager.getPivotOf(NamedElement.class, eNamedElement);
+			if (asNamedElement != null) {
+				ExpressionInOCL expressionInOCL = PivotUtil.getValidExpressionInOCL(asNamedElement, expression);
+				Type asExpressionType = expressionInOCL.getType();
+				Type asType;
+				if (requiredType != null) {
+					asType = requiredType;
+				}
+				else if (asNamedElement instanceof TypedElement) {
+					asType = ((TypedElement)asNamedElement).getType();
+				}
+				else {
+					asType = null;
+				}
+				assert asType != null;
+				assert asExpressionType != null;
+				if (!metaModelManager.conformsTo(asExpressionType, asType, null)) {
+					metaModelManager.conformsTo(asExpressionType, asType, null);			// Debugging
+					if (diagnostics != null) {
+						String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
+						String message = role == null ? DomainUtil.bind(INCOMPATIBLE_TYPE_1, asExpressionType, objectLabel)
+							: DomainUtil.bind(INCOMPATIBLE_TYPE_2, asExpressionType, objectLabel, role);
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+							0, message,  new Object[] { eNamedElement }));
+					}
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		catch (ParserException e) {
+			if (diagnostics != null) {
+				String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
+				String message = role == null ? DomainUtil.bind(PARSING_ERROR_1, e, objectLabel)
+					: DomainUtil.bind(PARSING_ERROR_2, e, objectLabel, role);
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { eNamedElement }));
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
+	}
+}

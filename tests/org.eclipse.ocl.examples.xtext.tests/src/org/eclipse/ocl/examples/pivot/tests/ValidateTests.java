@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2012 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,31 +11,44 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
@@ -50,6 +63,30 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  */
 public class ValidateTests extends AbstractValidateTests
 {	
+	public static @NonNull List<Diagnostic> assertEcoreOCLValidationDiagnostics(@Nullable OCL ocl, @NonNull String prefix, @NonNull Resource resource, String... messages) {
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		if (ocl != null) {
+			validationContext.put(OCL.class,  ocl);
+		}
+		List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
+		for (EObject eObject : resource.getContents()) {
+			EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
+			registry.put(EcorePackage.eINSTANCE, EcoreOCLEValidator.INSTANCE);
+			Diagnostician dignostician = new Diagnostician(registry);
+			Diagnostic diagnostic = dignostician.validate(eObject, validationContext);
+			diagnostics.addAll(diagnostic.getChildren());
+		}
+		return assertDiagnostics(prefix, diagnostics, messages);
+	}
+
+	public Resource doLoadEcore(OCL ocl, String stem) throws IOException {
+		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		String ecoreName = stem + ".ecore";
+		URI ecoreURI = getProjectFileURI(ecoreName);
+		Resource ecoreResource = metaModelManager.getExternalResourceSet().getResource(ecoreURI, true);
+		return ecoreResource;
+	}
+
 	public void testValidate_Bug366229_oclinecore() throws IOException, InterruptedException {
 		//
 		//	Create model
@@ -68,6 +105,35 @@ public class ValidateTests extends AbstractValidateTests
 		EValidator.Registry.INSTANCE.put(overloadsPackage, EObjectValidator.INSTANCE);
 		checkValidationDiagnostics(testInstance, Diagnostic.ERROR);
 		ocl2.dispose();
+	}
+
+	public void testValidate_Bug418551_ecore() throws IOException, InterruptedException {
+		//
+		//	Create model
+		//
+		OCL ocl = OCL.newInstance();
+		Resource ecoreResource = doLoadEcore(ocl, "Bug418551");
+		EPackage temp = (EPackage) ecoreResource.getContents().get(0);
+		EClass tester = (EClass) temp.getEClassifier("Tester");
+		EOperation badOp = EcoreUtils.getNamedElement(tester.getEOperations(), "badOp");
+		//
+		//	Check EObjectValidator errors
+		//
+		checkValidationDiagnostics(temp, Diagnostic.ERROR);
+		assertEcoreOCLValidationDiagnostics(ocl, "Ecore Load", ecoreResource,
+			DomainUtil.bind(EcoreOCLEValidator.MISSING_DELEGATE, InvocationBehavior.NAME, DomainUtil.getLabel(temp)),
+			DomainUtil.bind(EcoreOCLEValidator.MISSING_DELEGATE, SettingBehavior.NAME, DomainUtil.getLabel(temp)),
+			DomainUtil.bind(EcoreOCLEValidator.MISSING_DELEGATE, ValidationBehavior.NAME, DomainUtil.getLabel(temp)),
+			DomainUtil.bind(EcoreOCLEValidator.MISSING_CONSTRAINTS_ANNOTATION_ENTRY, "extraInvariant", DomainUtil.getLabel(tester)),
+			DomainUtil.bind(EcoreOCLEValidator.EXTRA_CONSTRAINTS_ANNOTATION_ENTRY, "missingInvariant", DomainUtil.getLabel(tester)),
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "String", DomainUtil.getLabel(badOp), "body"),
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "UnlimitedNatural", DomainUtil.getLabel(badOp), "pre"),
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "UnlimitedNatural", DomainUtil.getLabel(badOp), "post"),
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_1, "Boolean", DomainUtil.getLabel(tester.getEStructuralFeature("badType"))),
+			DomainUtil.bind(EcoreOCLEValidator.MISSING_PROPERTY_KEY, DomainUtil.getLabel(tester.getEStructuralFeature("badDetailName"))),
+			DomainUtil.bind(EcoreOCLEValidator.DOUBLE_PROPERTY_KEY, DomainUtil.getLabel(tester.getEStructuralFeature("derivationAndInitial"))));
+		//
+		ocl.dispose();
 	}
 
 	public void testValidate_Bug418552_oclinecore() throws IOException, InterruptedException {
@@ -97,6 +163,26 @@ public class ValidateTests extends AbstractValidateTests
 		assertEquals(7, node.getStartLine());
 		assertEquals(10, node.getEndLine());
 		metaModelManager1.dispose();
+	}
+
+	public void testValidate_Pivot_ecore() throws IOException, InterruptedException {
+		//
+		//	Create model
+		//
+		OCL ocl = OCL.newInstance();
+		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		URI ecoreURI = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", true);
+		Resource ecoreResource = metaModelManager.getExternalResourceSet().getResource(ecoreURI, true);
+		//
+		//	Check EObjectValidator errors
+		//
+		EPackage pkg = (EPackage) ecoreResource.getContents().get(0);
+		EClass cls = (EClass) pkg.getEClassifier("Element");
+		EOperation op = EcoreUtils.getNamedElement(cls.getEOperations(), "allOwnedElements");
+		assertEcoreOCLValidationDiagnostics(ocl, "Ecore Load", ecoreResource,
+			DomainUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "Set(OclElement)", DomainUtil.getLabel(op), "body")); // FIXME BUG 437616 resolve Element/OclElement conflict
+		//
+		ocl.dispose();
 	}
 
 	public void testValidate_Validate_completeocl() throws IOException, InterruptedException {
