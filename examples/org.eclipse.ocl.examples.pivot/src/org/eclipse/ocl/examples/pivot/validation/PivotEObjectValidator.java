@@ -226,7 +226,7 @@ public class PivotEObjectValidator implements EValidator
 			};
 			Diagnostic diagnostic = constraintEvaluator.evaluate(evaluationVisitor);
 			if (diagnostic != null) {			// FIXME Debugging
-				constraintEvaluator.evaluate(evaluationVisitor);
+//				constraintEvaluator.evaluate(evaluationVisitor);
 			}
 			return diagnostic;
 		}
