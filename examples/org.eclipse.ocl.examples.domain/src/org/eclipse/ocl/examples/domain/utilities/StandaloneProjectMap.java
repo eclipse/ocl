@@ -250,8 +250,17 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			}
 		}
 
+		public @Nullable EPackage basicGetEPackage() {
+			IResourceLoadStatus resourceLoadStatus = packageLoadStatus.getResourceLoadStatus();
+			IResourceLoadStrategy resourceLoadStrategy = resourceLoadStatus.getResourceLoadStrategy();
+			if (PROJECT_MAP_GET.isActive()) {
+				PROJECT_MAP_GET.println("BasicGet " + getURI() + " with " + resourceLoadStrategy + " in " + DomainUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
+			}
+			return resourceLoadStrategy.basicGetEPackage(packageLoadStatus);
+		}
+
 		public EFactory getEFactory() {
-			EPackage ePackage = getEPackage();
+			EPackage ePackage = basicGetEPackage();
 			if (ePackage != null) {
 				return ePackage.getEFactoryInstance();
 			}
@@ -478,6 +487,11 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		void addedGeneratedPackage(@NonNull IPackageLoadStatus packageLoadStatus, @NonNull EPackage ePackage);
 
 		/**
+		 * Return the EPackage in response to an EPackage.Registry access through an EPackageDescriptor, null if not loaded.
+		 */
+		@Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus);
+
+		/**
 		 * Configure the resourceLoadStatus to udse this strategy and a conflictHandler.
 		 */
 		void configure(@NonNull IResourceLoadStatus resourceLoadStatus, @Nullable IConflictHandler conflictHandler);
@@ -517,6 +531,10 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		public void addedGeneratedPackage(@NonNull IPackageLoadStatus packageLoadStatus, @NonNull EPackage ePackage) {
 			throw new UnsupportedOperationException();
+		}
+
+		public @Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
+			return null;
 		}
 
 		public void configure(@NonNull IResourceLoadStatus resourceLoadStatus, @Nullable IConflictHandler conflictHandler) {
@@ -584,6 +602,11 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		public static final @NonNull IResourceLoadStrategy INSTANCE = new LoadedStrategy();
+
+		@Override
+		public @Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
+			return getEPackage(packageLoadStatus);
+		}
 		
 		public @Nullable EPackage getEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
 			return packageLoadStatus.getFirstEPackage();
@@ -603,6 +626,11 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		@Override
 		public void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {
 //			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public @Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
+			return getEPackage(packageLoadStatus);
 		}
 		
 		public @Nullable EPackage getEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
@@ -631,6 +659,11 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		@Override
 		public void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {}
+
+		@Override
+		public @Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
+			return getEPackage(packageLoadStatus);
+		}
 		
 		public @Nullable EPackage getEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
 			EPackage ePackage = packageLoadStatus.getConflictingGeneratedPackage();
@@ -1536,7 +1569,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			String className = packageDescriptor.getClassName();
 			if (className != null) {
 				try {
-					Class<?> javaClass = Class.forName(className);
+					Class<?> javaClass = Thread.currentThread().getContextClassLoader().loadClass(className);
 					Field field = javaClass.getField("eINSTANCE");
 					return (EPackage) field.get(null);
 				} catch (ClassNotFoundException e) {
