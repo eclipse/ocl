@@ -714,6 +714,9 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public void unloadedResource(@NonNull IResourceLoadStatus packageLoadStatus) {
 			packageLoadStatus.unloadedResource();
 		}
+
+		@Override
+		public void useGeneratedResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {}
 	}
 
 	/**
