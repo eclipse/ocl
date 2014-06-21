@@ -7,12 +7,12 @@ However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, you
 
 bc.. 
 org.eclipse.ocl.examples.pivot.OCL.initialize(resourceSet);
-org.eclipse.ocl.examples.pivot.uml.UML2Pivot.initialize(resourceSet)
+org.eclipse.ocl.examples.pivot.uml.UML2Pivot.initialize(resourceSet);
 org.eclipse.ocl.examples.pivot.model.OCLstdlib.install();
-org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet)
-org.eclipse.ocl.examples.completeocl.CompleteOCLStandaloneSetup.doSetup()
-org.eclipse.ocl.examples.oclinecore.OCLinEcoreStandaloneSetup.doSetup()
-org.eclipse.ocl.examples.oclstdlib.OCLstdlibStandaloneSetup.doSetup()
+org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);
+org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
+org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();
+org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();
 org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
 
 p. 
@@ -45,7 +45,7 @@ If you have textual OCL embedded within Ecore models you need to register the EM
 
 This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.
 
-If you neglect to register delegates, you may get an error of the form "An exception occurred while delegating evaluation of the ..."
+If you neglect to register delegates before generated EMF classes are initialized, you may get an NPE or an error of the form "An exception occurred while delegating evaluation of the ..."
 
 h3. Xtext Parsers
 
