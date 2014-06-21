@@ -14,14 +14,9 @@ package org.eclipse.ocl.examples.test.xtext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
 
 /**
  * Tests that exercise the Xtext OCL Console using a UML model.
@@ -44,6 +39,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype1", "Attribute1$Stereotype1\n");		// Bug 419557
 		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
+		consolePage.cancelValidation();
 		ocl.dispose();
 	}
 
@@ -65,37 +61,46 @@ public class UMLConsoleTests extends AbstractConsoleTests
 //		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype1", "Attribute1$Stereotype1\n");		// Bug 419557
 //		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
+		consolePage.cancelValidation();
 		ocl.dispose();
 	}
 
-	@SuppressWarnings({"null", "unused"})
+	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
 		OCL ocl = OCL.newInstance();
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
 		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 
-		URI testModelURI = getTestModelURI("model/InternationalizedClasses.uml");
-        Resource umlResource = resourceSet.getResource(testModelURI, true);
-        ASResource asResource = ocl.uml2pivot(umlResource);
-        Root root = (Root) asResource.getContents().get(0);
-        org.eclipse.ocl.examples.pivot.Package modelPackage = DomainUtil.getNamedElement(root.getNestedPackage(), "Model");
-        Type englishClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "EnglishClass");
-        Type frenchClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "FrenchClass");
-        Type germanClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "GermanClass");
-        Type plainClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "PlainClass");
-        PackageServer profile = metaModelManager.getPackageManager().getPackageByURI("http://www.eclipse.org/ocl/examples/Internationalized");
-        Type inEnglishStereotype = profile.getMemberType("InEnglish");
-        Type inFrenchStereotype = profile.getMemberType("InFrench");
-        Type inGermanStereotype = profile.getMemberType("InGerman");
-        ElementExtension englishClassInEnglish = DomainUtil.getNamedElement(englishClass.getExtension(), "EnglishClass$InEnglish");
+        Resource umlResource = resourceSet.getResource(getTestModelURI("model/InternationalizedClasses.uml"), true);
+        Resource umlProfileResource = resourceSet.getResource(getTestModelURI("model/Internationalized.profile.uml"), true);
+//        ASResource asResource = ocl.uml2pivot(umlResource);
+//        Root root = (Root) asResource.getContents().get(0);
+//        org.eclipse.ocl.examples.pivot.Package modelPackage = DomainUtil.getNamedElement(root.getNestedPackage(), "Model");
+        org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
+        org.eclipse.uml2.uml.Type umlEnglishClass = umlPackage.getOwnedType("EnglishClass");
+        org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) umlProfileResource.getContents().get(0);
+        org.eclipse.uml2.uml.Stereotype umlInEnglishStereotype = umlProfile.getOwnedStereotype("InEnglish");
+        org.eclipse.uml2.uml.Stereotype umlInFrenchStereotype = umlProfile.getOwnedStereotype("InFrench");
+        org.eclipse.uml2.uml.Stereotype umlInGermanStereotype = umlProfile.getOwnedStereotype("InGerman");
+        Type asEnglishClass = metaModelManager.getPivotOf(Type.class, umlEnglishClass);
+//        Type englishClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "EnglishClass");
+//        Type frenchClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "FrenchClass");
+//        Type germanClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "GermanClass");
+//        Type plainClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "PlainClass");
+//        PackageServer profile = metaModelManager.getPackageManager().getPackageByURI("http://www.eclipse.org/ocl/examples/Internationalized");
+//        Type inEnglishStereotype = profile.getMemberType("InEnglish");
+//        Type inFrenchStereotype = profile.getMemberType("InFrench");
+//        Type inGermanStereotype = profile.getMemberType("InGerman");
+//        ElementExtension englishClassInEnglish = DomainUtil.getNamedElement(englishClass.getExtension(), "EnglishClass$InEnglish");
         //
-		assertConsoleResult(consolePage, englishClass, "self.name", "'EnglishClass'\n");
+		assertConsoleResult(consolePage, umlEnglishClass, "self.name", "'EnglishClass'\n");
 		// allInstances
-		assertConsoleResult(consolePage, englishClass.getETarget(), "Stereotype.allInstances()->sortedBy(name)", "");		// Tests Bug 392981
-		assertConsoleResult(consolePage, englishClass, "Stereotype.allInstances()->sortedBy(name)", "");
-		assertConsoleResult(consolePage, inEnglishStereotype, "Stereotype.allInstances()->sortedBy(name)", "InternationalizedProfile::InEnglish\nInternationalizedProfile::InFrench\nInternationalizedProfile::InGerman\nInternationalizedProfile::Internationalized\n");
-		assertConsoleResult(consolePage, englishClass, "Class.allInstances()->sortedBy(name)", "Model::EnglishClass\nModel::FrenchClass\nModel::GermanClass\nModel::LanguageClass\nModel::PlainClass\nString\n");
+		assertConsoleResult(consolePage, umlEnglishClass, "Stereotype.allInstances()->sortedBy(name)", "");		// Tests Bug 382981
+		assertConsoleResult(consolePage, umlInEnglishStereotype, "Stereotype.allInstances()->sortedBy(name)", "InternationalizedProfile::InEnglish\nInternationalizedProfile::InFrench\nInternationalizedProfile::InGerman\nInternationalizedProfile::Internationalized\n");
+		assertConsoleResult(consolePage, umlEnglishClass, "Class.allInstances()->sortedBy(name)", "Model::EnglishClass\nModel::FrenchClass\nModel::GermanClass\nModel::LanguageClass\nModel::PlainClass\n");
+		assertConsoleResult(consolePage, asEnglishClass, "ocl::Class.allInstances()->sortedBy(name)", "Model::EnglishClass\nModel::FrenchClass\nModel::GermanClass\nModel::LanguageClass\nModel::PlainClass\nString\n");
 		//
+		consolePage.cancelValidation();
 		ocl.dispose();
 	}
 }

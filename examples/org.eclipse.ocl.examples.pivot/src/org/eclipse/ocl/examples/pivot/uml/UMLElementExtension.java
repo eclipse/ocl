@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
  */
 public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.Internal
 {
-	public static @Nullable Object getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable UMLElementExtension getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EObject eTarget = staticType.getETarget();
 		if (eTarget instanceof org.eclipse.uml2.uml.Stereotype) {
 			org.eclipse.uml2.uml.Stereotype umlDynamicStereotype = null;
@@ -113,6 +113,28 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == umlElement;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		if (umlElement instanceof org.eclipse.uml2.uml.NamedElement) {
+			s.append(((org.eclipse.uml2.uml.NamedElement)umlElement).getName());
+		}
+		else {
+			s.append("(");
+			s.append(umlElement.eClass().getName());
+			s.append(")");
+		}
+		s.append("«");
+		s.append(umlDynamicStereotype.getName());
+		if (umlDynamicStereotype != umlStaticStereotype) {
+			s.append("(");
+			s.append(umlStaticStereotype.getName());
+			s.append(")");
+		}
+		s.append("»");
+		return s.toString();
 	}
 
 	public void unsetTarget(Notifier oldTarget) {

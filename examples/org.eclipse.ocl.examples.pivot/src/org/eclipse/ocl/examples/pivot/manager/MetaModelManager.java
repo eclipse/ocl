@@ -56,6 +56,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
@@ -132,8 +133,11 @@ import org.eclipse.ocl.examples.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.uml2.types.TypesPackage;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.collect.Iterables;
 
@@ -1215,14 +1219,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		Set<Constraint> knownInvariants = new HashSet<Constraint>();
 		for (DomainType partialSuperType : getPartialTypes(pivotType)) {
 			if (partialSuperType instanceof Type) {
-				knownInvariants.addAll(((Type)partialSuperType).getOwnedInvariant());
+				DomainPackage partialPackage = partialSuperType.getPackage();
+				if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
+					knownInvariants.addAll(((Type)partialSuperType).getOwnedInvariant());
+				}
 			}
 		}
 		for (DomainType superType : getAllSuperClasses(pivotType)) {
 			if (superType != null) {
 				for (DomainType partialSuperType : getPartialTypes(superType)) {
 					if (partialSuperType instanceof Type) {
-						knownInvariants.addAll(((Type)partialSuperType).getOwnedInvariant());
+						DomainPackage partialPackage = partialSuperType.getPackage();
+						if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
+							knownInvariants.addAll(((Type)partialSuperType).getOwnedInvariant());
+						}
 					}
 				}
 			}
@@ -1835,6 +1845,28 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return metaclass;
 	}
 
+	public @NonNull PackageId getMetapackageId(@NonNull DomainPackage dPackage) {
+		if (dPackage instanceof PivotObjectImpl) {
+			EObject eTarget = ((PivotObjectImpl)dPackage).getETarget();
+			if (eTarget != null) {
+				EClass eClass = eTarget.eClass();
+				if (eClass != null) {
+					EPackage ePackage = eClass.getEPackage();
+					if (ePackage instanceof UMLPackage) {
+						return IdManager.getRootPackageId(DomainConstants.UML_METAMODEL_NAME);
+					}
+					else if (ePackage instanceof TypesPackage) {
+						return IdManager.getRootPackageId(DomainConstants.TYPES_METAMODEL_NAME);
+					}
+//					if (ePackage instanceof EcorePackage) {
+//						return IdManager.getRootPackageId(DomainConstants.ECORE_METAMODEL_NAME);
+//					}
+				}
+			}
+		}
+		return IdManager.METAMODEL;
+	}
+
 	@Override
 	public DomainType getMetaType(@NonNull DomainType instanceType) {
 		if (instanceType instanceof PrimitiveType) {
@@ -2354,7 +2386,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
-		return name.equals(DomainConstants.METAMODEL_NAME) ? getOclAnyType().getPackage() : packageManager.getRootPackage(name);
+		return packageManager.getRootPackage(name);
 	}
 
 	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {

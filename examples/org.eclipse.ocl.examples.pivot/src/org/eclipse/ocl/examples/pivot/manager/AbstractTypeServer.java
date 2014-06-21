@@ -29,11 +29,13 @@ import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
@@ -912,19 +914,9 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	}
 
 	protected @NonNull Map<String, PartialProperties> initMemberProperties() {
-//		if ("Class".equals(name)) {
-//			System.out.println("Got it");
-//		}
-//		System.out.println("initMemberProperties " + toString());
 		Map<String, PartialProperties> name2properties2 = name2properties;
 		if (name2properties2 == null) {
 			name2properties2 = name2properties = new HashMap<String, PartialProperties>();
-//			for (DomainType selfType : getPartialTypes()) {
-//				if (selfType != null) {
-//					initMemberPropertiesFrom(selfType);
-//				}
-//			}
-			Set<Type> metatypes = new HashSet<Type>();
 			List<ElementExtension> allExtensions = null;
 			Set<Stereotype> extendingStereotypes = null;
 			Set<Type> extendedTypes = null;
@@ -994,14 +986,6 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 								}
 							}
 						}
-						String metaTypeName = superType.getMetaTypeName();
-						DomainType metaType = packageManager.getMetaModelManager().getOclType(metaTypeName);
-						if (metaType instanceof TypeServer) {
-							metaType = ((TypeServer)metaType).getPivotType();
-						}
-						if (metaType instanceof Type) {
-							metatypes.add((Type) metaType);
-						}
 					}
 				}
 			}
@@ -1016,36 +1000,15 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					initExtensionPropertiesFrom(baseType, stereotype);
 				}
 			}
-/*			if (extendedTypes != null) {
-/*				for (@SuppressWarnings("null")@NonNull Type extendedType : extendedTypes) {
-//					TypeServer extendedTypeServer = null;
-//					if (extendedType instanceof TypeServer) {
-//						extendedTypeServer = (TypeServer)extendedType;
-//					}
-//					else {
-//						extendedTypeServer = packageManager.getTypeServer(extendedType);
-//					}
-//					extendedTypeServer.getAllProperties(false);
-					Type baseType = getPivotType();
-					initStereotypePropertiesFrom(extendedType, (Stereotype)baseType);
-				} * /
-			} */
-/*			if (allExtensions != null) {
-//				Set<Type> allMetatypes = new HashSet<Type>();
-				for (ElementExtension extension : allExtensions) {
-					Stereotype stereotype = extension.getStereotype();
-					if (stereotype != null) {
-						Type baseType = getPivotType();
-						initStereotypePropertiesFrom(baseType, stereotype);
-					}
-				}
-			} */
 			@SuppressWarnings("null")@NonNull String metatypeName = getPivotType().eClass().getName();
-			Type metatype = packageManager.getMetaModelManager().getPivotType(metatypeName);	// FIXME getMetaType
+			RootPackageServer rootPackageServer = getPackageServer().getRootPackageServer();
+			PackageId metapackageId = rootPackageServer.getMetapackageId();
+			MetaModelManager metaModelManager = packageManager.getMetaModelManager();
+			DomainPackage metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
+			PackageServer metapackageServer = metaModelManager.getPackageServer(metapackage);
+			DomainType metatype = metapackageServer.getType(metatypeName);
 			if (metatype != null) {
-//				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);
-//				environmentView.addAllProperties(metatype, FeatureFilter.SELECT_STATIC);
-				TypeServer typeServer = packageManager.getMetaModelManager().getTypeServer(metatype);
+				TypeServer typeServer = metaModelManager.getTypeServer(metatype);
 				for (DomainProperty property : typeServer.getAllProperties(FeatureFilter.SELECT_STATIC)) {
 					if (property != null) {
 						addedMemberProperty(property);
@@ -1060,35 +1023,6 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}	
 		return name2properties2;
 	}
-
-/*	private void gatherAllMetatypes(@NonNull Set<Type> allMetatypes, @NonNull Iterable<Type> moreMetatypes) {
-		Set<Type> newMetatypes = null;
-		MetaModelManager metaModelManager = getPackageManager().getMetaModelManager();
-		for (@SuppressWarnings("null")@NonNull Type metatype : moreMetatypes) {
-			if (allMetatypes.add(metatype)) {
-				TypeServer metaTypeServer = packageManager.getTypeServer(metatype);
-				if (newMetatypes == null) {
-					newMetatypes = new HashSet<Type>();
-				}
-				for (DomainType partialType : metaTypeServer.getPartialTypes()) {
-					if (partialType instanceof Type) {
-						Type partialMetatype = (Type) partialType;
-						newMetatypes.add(partialMetatype);
-						for (DomainType superType : partialMetatype.getSuperClass()) {
-							if (superType instanceof Type) {
-								Type superMetatype = (Type)superType;
-								superType = metaModelManager.getPrimaryElement(superMetatype);
-								newMetatypes.add(superMetatype);
-							}
-						}
-					}
-				}
-			}
-		}
-		if (newMetatypes != null) {
-			gatherAllMetatypes(allMetatypes, newMetatypes);
-		}
-	} */
 
 	private void gatherAllStereotypes(@NonNull Set<Stereotype> allStereotypes, @NonNull Iterable<Stereotype> moreStereotypes) {
 		Set<Stereotype> newStereotypes = null;

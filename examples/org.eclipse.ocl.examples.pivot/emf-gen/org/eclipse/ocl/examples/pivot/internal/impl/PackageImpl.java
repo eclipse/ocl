@@ -886,4 +886,14 @@ public class PackageImpl
 		assert this.packageId == null;
 		this.packageId = packageId;
 	}
+
+	private boolean ignoreInvariants = false;		// FIXME Model this (used to suppress bad OMG UML 2.5 invariants)
+	
+	public void setIgnoreInvariants(boolean ignoreInvariants) {
+		this.ignoreInvariants = ignoreInvariants;
+	}
+	
+	public boolean isIgnoreInvariants() {
+		return ignoreInvariants;
+	}
 } //PackageImpl

@@ -27,4 +27,14 @@ public interface DomainConstants
 	 * The Package name of the shared metamodel.
 	 */
 	static final @NonNull String METAMODEL_NAME = "$metamodel$";
+	
+	/**
+	 * The Package name of the shared types metamodel.
+	 */
+	static final @NonNull String TYPES_METAMODEL_NAME = "$types$";	// FIXME Use extension point
+	
+	/**
+	 * The Package name of the shared uml metamodel.
+	 */
+	static final @NonNull String UML_METAMODEL_NAME = "$uml$";	// FIXME Use extension point
 }

@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.pivot.manager;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 
 /**
@@ -21,8 +22,16 @@ import org.eclipse.ocl.examples.domain.ids.PackageId;
  */
 public class RootPackageServer extends PackageServer
 {	
+	private final @NonNull PackageId metapackageId;
+
+	@Deprecated // specify metaPackageId
 	public RootPackageServer(@NonNull PackageManager packageManager, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
+		this(packageManager, name, nsPrefix, nsURI, packageId, IdManager.METAMODEL);
+	}
+
+	public RootPackageServer(@NonNull PackageManager packageManager, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {
 		super(packageManager, name, nsPrefix, nsURI, packageId);
+		this.metapackageId = metapackageId;
 	}
 
 	@Override
@@ -44,6 +53,10 @@ public class RootPackageServer extends PackageServer
 	public void dispose() {
 		super.dispose();
 		packageManager.disposedRootPackageServer(this);
+	}
+	
+	public @NonNull PackageId getMetapackageId() {
+		return metapackageId;
 	}
 
 	public @Nullable DomainPackage getNestingPackage() {

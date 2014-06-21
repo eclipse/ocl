@@ -57,9 +57,11 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				Element importedElement2 = importedElement;
 				if (importedElement2 != null) {
 					Resource importedResource = importedElement2.eResource();
-					List<Resource.Diagnostic> errors = importedResource.getErrors();
-					if (errors.size() == 0) {
-						environmentView.addElement(name, importedElement2);		// The name we imported must be a good name for the element
+					if (importedResource != null) {
+						List<Resource.Diagnostic> errors = importedResource.getErrors();
+						if (errors.size() == 0) {
+							environmentView.addElement(name, importedElement2);		// The name we imported must be a good name for the element
+						}
 					}
 				}
 			}
@@ -110,19 +112,21 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			try {
 				importedElement = metaModelManager.loadResource(uri2, target.getName(), null);				
 				Resource importedResource = importedElement.eResource();
-				List<Resource.Diagnostic> warnings = importedResource.getWarnings();
-				if (warnings.size() > 0) {
-					INode node = NodeModelUtils.getNode(target);
-					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, DomainUtil.bind(OCLMessages.WarningsInURI, uri2), "\n\t");
-					Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
-					csResource.getWarnings().add(resourceDiagnostic);
-				}
-				List<Resource.Diagnostic> errors = importedResource.getErrors();
-				if (errors.size() > 0) {
-					INode node = NodeModelUtils.getNode(target);
-					String errorMessage = PivotUtil.formatResourceDiagnostics(errors, DomainUtil.bind(OCLMessages.ErrorsInURI, uri), "\n\t");
-					Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
-					csResource.getErrors().add(resourceDiagnostic);
+				if (importedResource != null) {
+					List<Resource.Diagnostic> warnings = importedResource.getWarnings();
+					if (warnings.size() > 0) {
+						INode node = NodeModelUtils.getNode(target);
+						String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, DomainUtil.bind(OCLMessages.WarningsInURI, uri2), "\n\t");
+						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
+						csResource.getWarnings().add(resourceDiagnostic);
+					}
+					List<Resource.Diagnostic> errors = importedResource.getErrors();
+					if (errors.size() > 0) {
+						INode node = NodeModelUtils.getNode(target);
+						String errorMessage = PivotUtil.formatResourceDiagnostics(errors, DomainUtil.bind(OCLMessages.ErrorsInURI, uri), "\n\t");
+						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
+						csResource.getErrors().add(resourceDiagnostic);
+					}
 				}
 			} catch (WrappedException e) {
 				throwable = e.exception();

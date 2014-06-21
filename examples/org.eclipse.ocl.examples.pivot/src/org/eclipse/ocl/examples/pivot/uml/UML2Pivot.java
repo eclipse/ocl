@@ -60,15 +60,16 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.ecore.AbstractEcore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PackageManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
-import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -562,8 +563,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		public @NonNull Root getPivotRoot() throws ParserException {
 			Root pivotRoot2 = pivotRoot;
 			if (pivotRoot2 == null) {
-				@SuppressWarnings("null")@NonNull String umlMetamodelNsUri = XMI2UMLResource.UML_METAMODEL_NS_URI;
-				metaModelManager.setMetamodelNsURI(umlMetamodelNsUri);			// ?? prescan to discover Profiles and Extension metaclasses
 				URI pivotURI = createPivotURI();
 				ASResource asResource = metaModelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
 				try {
@@ -805,6 +804,10 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		umlResource.eAdapters().add(this);
 		metaModelManager.addExternalResource(this);
 		metaModelManager.addListener(this);
+		PackageManager packageManager = metaModelManager.getPackageManager();
+		packageManager.addPackageNsURISynonym(DomainUtil.nonNullEMF(UMLPackage.eNS_URI), DomainConstants.UML_METAMODEL_NAME);
+		packageManager.addPackageNsURISynonym(DomainUtil.nonNullEMF(TypesPackage.eNS_URI), DomainConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
+		// FIXME All known synonyms
 	}
 	
 	public abstract void addCreated(@NonNull EObject umlElement, @NonNull Element pivotElement);
@@ -881,14 +884,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		UML2PivotDeclarationSwitch declarationPass = getDeclarationPass();
 		List<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
 		for (EObject eObject : umlResource.getContents()) {
-			EClass eClass = eObject.eClass();
-			EPackage ePackage = eClass.getEPackage();
-			if (ePackage instanceof UMLPackage) {
-				String nsURI = ePackage.getNsURI();
-				if (nsURI != null) {
-					metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, DomainConstants.METAMODEL_NAME);
-				}
-			}
 			Object pivotElement = declarationPass.doSwitch(eObject);
 			if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
 				rootPackages.add((org.eclipse.ocl.examples.pivot.Package) pivotElement);

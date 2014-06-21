@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLCommon;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -432,10 +433,21 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
 			}
 			else if (eObject2 instanceof UMLPackage) {
-				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
+				@SuppressWarnings("null")@NonNull String nsUri = UMLPackage.eNS_URI;
+				metaModelManager.getPackageManager().addPackageNsURISynonym(nsUri, DomainConstants.UML_METAMODEL_NAME);
+				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(DomainConstants.UML_METAMODEL_NAME));
 			}
 			else if (eObject2 instanceof TypesPackage) {
-				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
+				@SuppressWarnings("null")@NonNull String nsUri = TypesPackage.eNS_URI;
+				metaModelManager.getPackageManager().addPackageNsURISynonym(nsUri, DomainConstants.TYPES_METAMODEL_NAME);
+				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(DomainConstants.TYPES_METAMODEL_NAME));
+			}
+			else {
+				String nsURI = eObject2.getNsURI();
+				String sharedNsURI = metaModelManager.getPackageManager().getSharedURI(nsURI);
+				if ((sharedNsURI != null) && !sharedNsURI.equals(nsURI)) {
+					((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedNsURI));
+				}
 			}
 			pivotElement.setNsURI(eObject2.getNsURI());
 		}

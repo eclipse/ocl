@@ -49,7 +49,9 @@ public class StereotypeProperty extends ConstrainedProperty
 		}
 		Object boxedValue = null;
 		if (eObject instanceof UMLElementExtension) {
-			return ((UMLElementExtension)eObject).getValue(idResolver, property);
+			Object unboxedValue = ((UMLElementExtension)eObject).getValue(idResolver, property);
+			boxedValue = unboxedValue != null ? idResolver.boxedValueOf(unboxedValue/*, eFeature, returnTypeId*/) : null;
+			return boxedValue;
 		}
 		else if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;

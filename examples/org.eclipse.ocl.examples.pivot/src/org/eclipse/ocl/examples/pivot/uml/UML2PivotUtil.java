@@ -17,13 +17,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 //import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * UML2PivotUtil provides a variety of helpful routines for dealing with UML midels in conjunction with the Pivot-based OCL.
@@ -67,6 +73,31 @@ public class UML2PivotUtil
 			UML2Pivot.ADD_STEREOTYPE_APPLICATION.println("Applications per Stereotype" + s.toString());
 		}
 		return umlStereotypeApplication2umlStereotypedElements;
+	}
+
+	/**
+	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
+	 */
+	public static @Nullable DomainType getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+		EClass umlEClass = umlElement.eClass();
+		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {
+			for (org.eclipse.uml2.uml.Class umlMetaclass : umlStereotype.getAllExtendedMetaclasses()) {
+				org.eclipse.uml2.uml.Package umlPackage = umlMetaclass.getPackage();
+				org.eclipse.uml2.uml.Type umlType = umlPackage.getOwnedType(umlEClass.getName());
+				if (umlType != null) {
+					try {
+						Type umlAStype = metaModelManager.getPivotOf(Type.class, umlType);
+						if (umlAStype != null) {
+							return umlAStype;
+						}
+					} catch (ParserException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	/**

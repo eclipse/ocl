@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.uml2.uml.UMLPackage;
 
 public class PivotModelManager extends LazyModelManager
 {	
@@ -43,10 +42,6 @@ public class PivotModelManager extends LazyModelManager
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType = null;
 		if (ePackage == PivotPackage.eINSTANCE) {
-			String name = DomainUtil.nonNullEMF(eClass.getName());
-			objectType = metaModelManager.getPivotType(name);
-		}
-		else if (ePackage == UMLPackage.eINSTANCE) {
 			String name = DomainUtil.nonNullEMF(eClass.getName());
 			objectType = metaModelManager.getPivotType(name);
 		}

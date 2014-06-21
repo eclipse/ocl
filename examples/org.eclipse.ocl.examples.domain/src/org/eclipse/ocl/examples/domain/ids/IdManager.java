@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfListOfWeakReference
 import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfListOfWeakReference4;
 import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -383,8 +384,11 @@ public final class IdManager
 		}
 		String nsURI = aPackage.getNsURI();
 		if (nsURI != null) {
-			if (nsURI.equals(UMLPackage.eNS_URI)) {
-				return IdManager.METAMODEL;
+			if (nsURI.equals(UMLPackage.eNS_URI)) {		// FIXME use extension point
+				return getRootPackageId(DomainConstants.UML_METAMODEL_NAME);
+			}
+			else if (nsURI.equals(TypesPackage.eNS_URI)) {		// FIXME use extension point
+				return getRootPackageId(DomainConstants.TYPES_METAMODEL_NAME);
 			}
 			else {
 				return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage);

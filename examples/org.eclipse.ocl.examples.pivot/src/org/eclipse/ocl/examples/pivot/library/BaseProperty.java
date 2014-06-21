@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 
 /**
  * The static instance of ExplicitNavigationProperty supports evaluation of
@@ -38,6 +39,9 @@ public class BaseProperty extends AbstractProperty
 //		return property.getType(); 
 		if (sourceValue instanceof ElementExtension) {
 			return ((ElementExtension)sourceValue).eContainer(); 
+		}
+		if (sourceValue instanceof UMLElementExtension) {
+			return ((UMLElementExtension)sourceValue).getTarget(); 
 		}
 		if (sourceValue instanceof EObject) {
 			EObject eObject = (EObject)sourceValue;

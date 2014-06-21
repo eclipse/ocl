@@ -61,6 +61,7 @@ import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
 import org.eclipse.ocl.examples.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.examples.domain.ids.PropertyId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
@@ -627,6 +628,14 @@ public abstract class AbstractIdResolver implements IdResolver
 			return (DomainOperation) element;
 		}
 		throw new IllegalStateException("No " + operationId); //$NON-NLS-1$
+	}
+
+	public @NonNull DomainPackage getPackage(@NonNull PackageId packageId) {
+		DomainElement element = packageId.accept(this);
+		if (element instanceof DomainPackage) {
+			return (DomainPackage) element;
+		}
+		throw new IllegalStateException("No " + packageId); //$NON-NLS-1$
 	}
 
 	public @NonNull DomainProperty getProperty(@NonNull PropertyId propertyId) {

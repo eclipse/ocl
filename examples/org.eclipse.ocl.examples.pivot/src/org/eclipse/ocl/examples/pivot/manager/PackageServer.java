@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.ReflectivePackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -305,7 +306,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		return addTrackedPackage(pivotPackage);
 	}
 
-	abstract @Nullable PackageServerParent getParentPackageServer();
+	abstract @Nullable PackageServerParent getParentPackageServer();  // FIXME Change to PackageServer
 
 	@SuppressWarnings("null")
 	public @NonNull Iterable<DomainPackage> getPartialPackages() {
@@ -324,6 +325,15 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 			}
 		}
 		return representativePackage2;
+	}
+
+	public @NonNull RootPackageServer getRootPackageServer() {
+		for (PackageServer packageServer = this; packageServer != null; packageServer = (PackageServer)packageServer.getParentPackageServer()) {
+			if (packageServer instanceof RootPackageServer) {
+				return (RootPackageServer) packageServer;
+			}
+		}
+		return DomainUtil.nonNullState(null);		// Never happens
 	}
 
 	@Override

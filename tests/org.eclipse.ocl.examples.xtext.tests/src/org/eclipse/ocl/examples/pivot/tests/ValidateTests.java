@@ -54,7 +54,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
-import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -329,9 +328,9 @@ public class ValidateTests extends AbstractValidateTests
 		URI umlURI = getProjectFileURI("Names.uml");
 		URI oclURI = getProjectFileURI("Bug422583.ocl");
 		String testDocument = 
-				"import uml : '" + UMLResource.UML_METAMODEL_URI + "#/'\n" +
-//				"import '" + XMI2UMLResource.UML_METAMODEL_NS_URI + "'\n" +
-//				"import uml : 'http://www.eclipse.org/uml2/4.0.0/UML#/'\n" +
+//				"import uml : '" + UMLResource.UML_METAMODEL_URI + "#/'\n" +
+//				"import uml : '" + XMI2UMLResource.UML_METAMODEL_NS_URI + "'\n" +
+				"import uml : 'http://www.eclipse.org/uml2/5.0.0/UML#/'\n" +
 				"package uml\n" +
 				"  context Element\n" +
 				"  def: alwaysTrue() : Boolean = true\n" +
@@ -375,13 +374,13 @@ public class ValidateTests extends AbstractValidateTests
 		assertTrue(helper.loadDocument(oclURI));
 		helper.installPackages();
 		String objectLabel1 = DomainUtil.getLabel(uNamed);
-		String objectLabel3 = DomainUtil.getLabel(uNamed.getOwnedAttribute("r", null).getLowerValue());
-		String objectLabel4 = DomainUtil.getLabel(uNamed.getOwnedAttribute("s", null).getLowerValue());
+//		String objectLabel3 = DomainUtil.getLabel(uNamed.getOwnedAttribute("r", null).getLowerValue());
+//		String objectLabel4 = DomainUtil.getLabel(uNamed.getOwnedAttribute("s", null).getLowerValue());
 		assertValidationDiagnostics("Without Complete OCL", resource,
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel1),
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1),
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1)/*,
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel3),	// FIXME BUG 437450
-			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4));	// FIXME BUG 437450
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4)*/);	// FIXME BUG 437450
 		adapter.getMetaModelManager().dispose();
 		disposeResourceSet(resourceSet);
 	}

@@ -121,35 +121,16 @@ public class PivotEObjectValidator implements EValidator
 			boolean allOk = true;
 			Type type = metaModelManager.getPivotOfEcore(Type.class, eClassifier);
 			if (type != null) {
-				String typeName = type.getName();
-				if (typeName != null) {
-					Type metatype = metaModelManager.getPivotType(typeName);
-					if (metatype != null) {
-						type = metatype;
-					}
-				}
-			}
-			if (type != null) {
 				for (Constraint constraint : metaModelManager.getAllInvariants(type)) {
 					if (constraint !=  null) {
-						OpaqueExpression specification = constraint.getSpecification();
-						if (specification != null) {
-							ExpressionInOCL query = specification.getExpressionInOCL();
-							if (query != null) {
-								Variable contextVariable = query.getContextVariable();
-								OCLExpression bodyExpression = query.getBodyExpression();
-								if ((contextVariable != null) && (bodyExpression != null)) {	// May be null for declations of hand coded Java
-									Diagnostic diagnostic = validate(constraint, object, context);
-									if (diagnostic != null) {
-										if (diagnostics != null) {
-											diagnostics.add(diagnostic);
-										}
-										allOk = false;
-										if (diagnostic.getSeverity() == Diagnostic.ERROR) {
-											break;		// Generate many warnings but only one error
-										}
-									}
-								}
+						Diagnostic diagnostic = validate(constraint, object, context);
+						if (diagnostic != null) {
+							if (diagnostics != null) {
+								diagnostics.add(diagnostic);
+							}
+							allOk = false;
+							if (diagnostic.getSeverity() == Diagnostic.ERROR) {
+								return allOk;		// Generate many warnings but only one error
 							}
 						}
 					}
@@ -163,10 +144,22 @@ public class PivotEObjectValidator implements EValidator
 		 * Returns null for no problem or a warning/error severity diagnostic for a problem.
 		 */
 		public @Nullable Diagnostic validate(final @NonNull Constraint constraint, final @Nullable Object object, final @Nullable Map<Object, Object> context) {
-			final OpaqueExpression specification = constraint.getSpecification();
-			assert specification != null;
+			OpaqueExpression specification = constraint.getSpecification();
+			if (specification == null) {
+				return null;
+			}
 			ExpressionInOCL query = specification.getExpressionInOCL();
-			assert query != null;
+			if (query == null) {
+				return null;
+			}
+			Variable contextVariable = query.getContextVariable();
+			if (contextVariable == null) {
+				return null;
+			}
+			OCLExpression bodyExpression = query.getBodyExpression();
+			if (bodyExpression == null) {	// May be null for declations of hand coded Java
+				return null;
+			}
 			DomainModelManager oldModelManager = null;
 			if (context != null) {
 				oldModelManager = (DomainModelManager) context.get(DomainModelManager.class);

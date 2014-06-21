@@ -149,18 +149,17 @@ public class PackageManager implements PackageServerParent
 			sharedURI2synonymURIs.put(oldURI, synonymURIs);
 		}
 		synonymURIs.add(newURI);
-//		packageManager.addPackageNsURISynonym(newURI, oldUri);
 	}
-//	public void addPackageNsURISynonym(String newUri, String oldURI) {
-//		PackageServer packageServer = uri2package.get(oldURI);
-//		if (packageServer != null) {
-//			@SuppressWarnings("unused") PackageServer oldPackageServer = uri2package.put(newUri, packageServer);
-//		}
-//	}
 
 	void addPackageServer(@NonNull PackageServer packageServer) {
 		String nsURI = packageServer.getNsURI();
 		PackageServer oldPackageServer = uri2package.put(nsURI, packageServer);
+		if (packageServer instanceof RootPackageServer) {
+			String sharedNsURI = getSharedURI(nsURI);
+			if ((sharedNsURI != null) && (sharedNsURI == nsURI)) {
+				packageServers.put(nsURI, (RootPackageServer) packageServer);
+			}
+		}
 		assert oldPackageServer == null;
 	}
 
@@ -235,7 +234,8 @@ public class PackageManager implements PackageServerParent
 			rootPackageServer = new OrphanPackageServer(this, nonNullName, nsPrefix, nsURI, packageId);
 		}
 		else {
-			rootPackageServer = new RootPackageServer(this, nonNullName, nsPrefix, nsURI, packageId);
+			PackageId metapackageId = metaModelManager.getMetapackageId(pivotPackage);
+			rootPackageServer = new RootPackageServer(this, nonNullName, nsPrefix, nsURI, packageId, metapackageId);
 		}
 		if (name != null) {
 			if (!packageServers.containsKey(name)) {
@@ -539,8 +539,11 @@ public class PackageManager implements PackageServerParent
 //	}
 
 	public @Nullable org.eclipse.ocl.examples.pivot.Package getRootPackage(@NonNull String name) {
-		RootPackageServer rootPackageServer = packageServers.get(name);
-		return rootPackageServer != null ? rootPackageServer.getPivotPackage() : null;
+		PackageServer packageServer = packageServers.get(name);
+//		if (packageServer == null) {
+//			packageServer = uri2package.get(name);		// FIXME avoid double lookup
+//		}
+		return packageServer != null ? packageServer.getPivotPackage() : null;
 	}
 
 	public @Nullable String getSharedURI(@Nullable String nsURI) {

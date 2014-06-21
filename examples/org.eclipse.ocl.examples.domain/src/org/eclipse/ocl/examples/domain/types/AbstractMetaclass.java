@@ -73,7 +73,7 @@ public class AbstractMetaclass extends AbstractSpecializedType implements Domain
 		return instanceType;
 	}
 	
-	protected @Nullable DomainType getMetaType() {
+	protected @Nullable DomainType getMetaType() {	// FIXME Overload for UML to keep namespace
 		if (metaType == null) {
 			synchronized (this) {
 				if (metaType == null) {

@@ -63,19 +63,21 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	@Override
 	public void disposeInput() {
-		modify(new IUnitOfWork<Object, XtextResource>()
+		MetaModelManager metaModelManager = readOnly(new IUnitOfWork<MetaModelManager, XtextResource>()
 			{
-				public Object exec(@Nullable XtextResource resource) throws Exception {
+				public MetaModelManager exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
 						AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
 						if (adapter != null) {
-							MetaModelManager metaModelManager = adapter.getMetaModelManager();
-							metaModelManager.dispose();
+							return adapter.getMetaModelManager();
 						}
 					}
 					return null;
 				}
 			});
+		if (metaModelManager != null) {
+			metaModelManager.dispose();
+		}
 		super.disposeInput();
 	}
 

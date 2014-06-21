@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -475,6 +476,23 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 			XtextConsolePlugin.getInstance().getLog().log(status);
 		}
 	}
+
+	public void cancelValidation() {
+		BaseDocument editorDocument = getEditorDocument();
+		Job validationJob = editorDocument.getValidationJob();
+		if (validationJob != null) {
+			validationJob.cancel();
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {}
+			while (validationJob.getState() == Job.RUNNING) {
+				validationJob.cancel();
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {}
+			};
+		}
+	}
 	
 	@Override
     public void createControl(Composite parent) {
@@ -893,7 +911,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	public void reset() {
 		if (editor != null) {
 			IXtextDocument document = editor.getDocument();
-			MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
+			MetaModelManager metaModelManager = document.readOnly(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
 				public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
 					if (state == null) {
 						return null;
@@ -923,7 +941,9 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 
 	protected void resetDocument() {
 		IDocument doc = getDocument();
-		doc.set(""); //$NON-NLS-1$
+		if (doc != null) {
+			doc.set(""); //$NON-NLS-1$
+		}
 	}
 	
 	/**

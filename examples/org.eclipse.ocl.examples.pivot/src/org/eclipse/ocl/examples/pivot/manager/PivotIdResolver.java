@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.pivot.manager;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -27,12 +28,14 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.DomainInvalidTypeImpl;
 import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.uml.UML2PivotUtil;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -48,8 +51,31 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
+	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
+		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
+			org.eclipse.uml2.uml.EnumerationLiteral umlEnumerationLiteral = (org.eclipse.uml2.uml.EnumerationLiteral) unboxedValue;
+			try {
+				EnumerationLiteral asEnumerationLiteral = metaModelManager.getPivotOf(EnumerationLiteral.class, umlEnumerationLiteral);
+				if (asEnumerationLiteral != null) {
+					return asEnumerationLiteral.getEnumerationLiteralId();
+				}
+			} catch (ParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return super.boxedValueOf(unboxedValue);
+	}
+
+	@Override
 	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {
-		if (value instanceof UMLElementExtension) {
+		if (value instanceof org.eclipse.uml2.uml.Element) {
+			DomainType metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			if (metaType != null) {
+				return metaType;
+			}
+		}
+		else if (value instanceof UMLElementExtension) {
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getDynamicStereotype();
 			try {
 				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
@@ -66,10 +92,21 @@ public class PivotIdResolver extends AbstractIdResolver
 	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
-				metaModelManager.getPivotOf(Element.class, (org.eclipse.uml2.uml.Element)value);
+				org.eclipse.uml2.uml.Element umlElement = (org.eclipse.uml2.uml.Element)value;
+				metaModelManager.getPivotOf(Element.class, umlElement); // Needed by test_stereotypes_Bug431638
+				EClass umlEClass = umlElement.eClass();
+				Type umlAStype = metaModelManager.getPivotOf(Type.class, umlEClass);
+				if (umlAStype != null) {
+					return umlAStype;
+				}
+				
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
+			}
+			DomainType metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			if (metaType != null) {
+				return metaType;
 			}
 		}
 		else if (value instanceof UMLElementExtension) {

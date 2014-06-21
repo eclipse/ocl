@@ -112,11 +112,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 
     @Test public void test_implicit_source() {
-        assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "nestedPackage->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package diambiguated away
-//
         assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "ownedType->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "let name : String = 'String' in ownedType->select(name = 'Integer') = Set{Integer}");
-        assertQueryTrue(metaModelManager.getIntegerType(), "package.ownedType->select(name = self.name) = Set{Integer}");
+        assertQueryTrue(-1, "let type : Type = oclType() in type.package.ownedType->select(name = type.name) = Set{Integer}");
         assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "nestedPackage->select(oclIsKindOf(Integer))->isEmpty()");
         assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "nestedPackage->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
     }
@@ -175,13 +173,13 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			    "bodyConstraint.specification = null";
 		Type testType = metaModelManager.getIntegerType();
 		assert testType.getOwnedInvariant().isEmpty();
-		assertQueryTrue(metaModelManager.getMetaclass(testType), textQuery);
+		assertQueryTrue(testType, textQuery);
 //		assertQueryTrue(ValuesUtil.createTypeValue(metaModelManager.getMetaclass(testType)), textQuery);
 	}
 	
 	@Test public void test_let_implies_let_implies() {
 		String textQuery = 
-			    "let bodyConstraint : Constraint = ownedInvariant->any(name = 'body')\n" + 
+			    "let bodyConstraint : Constraint = oclType().ownedInvariant->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
 			    "let bodySpecification : ValueSpecification = bodyConstraint.specification\n" +
 			    "in bodySpecification <> null and\n" +
@@ -190,7 +188,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 //	    "CompatibleBody(bodySpecification)";
 		Type testType = metaModelManager.getIntegerType();
 		assert testType.getOwnedInvariant().isEmpty();
-		assertQueryTrue(metaModelManager.getMetaclass(testType), textQuery);
+		assertQueryTrue(-1, textQuery);
 	}
 	
 	@Test public void test_no_self() throws ParserException {
