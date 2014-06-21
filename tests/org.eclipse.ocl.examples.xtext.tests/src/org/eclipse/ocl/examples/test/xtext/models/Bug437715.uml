@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:StereotypeAssociation="http:///schemas/StereotypeAssociation/_A1J0wPcbEeO27N3puiBy8Q/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/StereotypeAssociation/_A1J0wPcbEeO27N3puiBy8Q/5 Bug437715.profile.uml#_A1J0wfcbEeO27N3puiBy8Q">
+  <uml:Model xmi:id="_Kw0MoPcbEeO27N3puiBy8Q" name="model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Nn8KwPcbEeO27N3puiBy8Q" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_N7kRYPcbEeO27N3puiBy8Q" name="Class2"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_NRWPsPcbEeO27N3puiBy8Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NUpbUPcbEeO27N3puiBy8Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug437715.profile.uml#_A1J0wfcbEeO27N3puiBy8Q"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="Bug437715.profile.uml#_I2ZsMMY4EeOuueFddAvFAA"/>
+    </profileApplication>
+  </uml:Model>
+  <StereotypeAssociation:Stereotype1 xmi:id="_O_QjAPcbEeO27N3puiBy8Q" stereotype2="_QEtvMPcbEeO27N3puiBy8Q" base_Class="_Nn8KwPcbEeO27N3puiBy8Q"/>
+  <StereotypeAssociation:Stereotype2 xmi:id="_QEtvMPcbEeO27N3puiBy8Q" base_Class="_N7kRYPcbEeO27N3puiBy8Q" stereotype1="_O_QjAPcbEeO27N3puiBy8Q"/>
+</xmi:XMI>

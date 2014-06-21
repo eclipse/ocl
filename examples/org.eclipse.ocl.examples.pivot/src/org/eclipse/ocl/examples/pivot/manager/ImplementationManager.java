@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.library.StaticProperty;
 import org.eclipse.ocl.examples.pivot.library.StereotypeProperty;
 import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 
 /**
  * ImplementationManager encapsulates the knowledge about known feature implementations.
@@ -132,7 +133,7 @@ public class ImplementationManager
 			}
 		}
 		Type type = property.getType();
-		if (type instanceof Stereotype) {
+		if ((type instanceof Stereotype) && property.getName().startsWith(UML2Pivot.STEREOTYPE_EXTENSION_PREFIX)) {
 			return new ExtensionProperty(property);
 		}
 //		if (property.getOwningType() instanceof Stereotype) {

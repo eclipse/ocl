@@ -47,6 +47,27 @@ public class UMLConsoleTests extends AbstractConsoleTests
 		ocl.dispose();
 	}
 
+	public void testConsole_Bug437715() throws Exception {
+		OCL ocl = OCL.newInstance();
+		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+
+		URI testModelURI = getProjectFileURI("Bug437715.uml");
+        Resource umlResource = resourceSet.getResource(testModelURI, true);
+        org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+        org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class)model.getOwnedType("Class1");
+        org.eclipse.uml2.uml.Class class2 = (org.eclipse.uml2.uml.Class)model.getOwnedType("Class2");
+//        org.eclipse.uml2.uml.Property attribute1 = class1.getOwnedAttribute("Attribute1", null);
+        //
+		assertConsoleResult(consolePage, class1, "self.extension_Stereotype1.stereotype2", "«Stereotype2»model::Class2\n");
+		assertConsoleResult(consolePage, class2, "self.extension_Stereotype2.stereotype1", "«Stereotype1»model::Class1\n");
+		//
+//		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype1", "Attribute1$Stereotype1\n");		// Bug 419557
+//		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
+		//
+		ocl.dispose();
+	}
+
 	@SuppressWarnings({"null", "unused"})
 	public void testConsole_UML() throws Exception {
 		OCL ocl = OCL.newInstance();
