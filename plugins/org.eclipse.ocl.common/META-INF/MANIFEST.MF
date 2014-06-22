@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.common;singleton:=true
 Bundle-Localization: plugin
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.2.1.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.common,
  org.eclipse.ocl.common.delegate,
@@ -11,7 +11,8 @@ Export-Package: org.eclipse.ocl.common,
   x-friends:="org.eclipse.ocl.ecore,
    org.eclipse.ocl.examples.pivot,
    org.eclipse.ocl.ecore.tests,
-   org.eclipse.ocl.examples.xtext.tests",
+   org.eclipse.ocl.examples.xtext.tests,
+   org.eclipse.ocl.examples.debug",
  org.eclipse.ocl.common.internal.messages,
  org.eclipse.ocl.common.internal.options,
  org.eclipse.ocl.common.internal.preferences,

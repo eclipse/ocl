@@ -83,6 +83,8 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	 */
 	public static final @NonNull String OCL_DELEGATE_URI_PIVOT = OCLConstants.OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
 	
+	public static final @NonNull String OCL_DELEGATE_URI_DEBUG = OCLConstants.OCL_DELEGATE_URI_SLASH + "Debug"; //$NON-NLS-1$
+	
 	/**
 	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
 	 * to support usage of the Pivot OCL Delegate Evaluator for the Pivot OCL Delegate URI. 

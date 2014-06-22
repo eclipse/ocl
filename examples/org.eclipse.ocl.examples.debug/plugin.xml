@@ -39,4 +39,24 @@
          	delegateClass="org.eclipse.ocl.examples.debug.core.OCLWatchExpressionDelegate"/>
     </extension-->   
 
+  <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.delegate.OCLValidationDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.setting_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.delegate.OCLSettingDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.delegate.OCLInvocationDelegateFactory$Global" />
+  </extension>
+ 
+  <extension point = "org.eclipse.emf.ecore.query_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.delegate.OCLQueryDelegateFactory$Global" />
+  </extension>
+
 </plugin>
