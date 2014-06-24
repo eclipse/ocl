@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupResult;
+import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
@@ -85,13 +85,9 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			return false;
 		}
 		
-<<<<<<< Upstream, based on origin/master
-		public boolean matches(@NonNull AutoILookupResult<Operation> lookupResult,
-				@NonNull Operation object) {
-=======
 		public boolean matches(@NonNull AutoIPivotLookupEnvironment lookupResult,
 				@NonNull Object object) {
->>>>>>> cfda478 [NameReso] Removing the generic parameter of Lookup Environment/Result
+
 				
 			Map<TemplateParameter, ParameterableElement> bindings  = getBindings(object);
 			if (bindings != null) {
