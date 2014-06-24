@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -47,25 +48,58 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 	implements AutoIPivotNamedLookupEnvironment{
 	
-	
-	private static final class ImplicitDisambiguator implements Comparator<Object>
+	public static abstract class Disambiguator<T> implements Comparator<T>
 	{
-		public int compare(Object match1, Object match2) {
+	    public int compare(T o1, T o2) {
+		    throw new UnsupportedOperationException();
+	    }
+	    
+	    public abstract int compare(@NonNull MetaModelManager metaModelManager, @NonNull T o1, @NonNull T o2);
+	}
+	
+	private static final class ImplicitDisambiguator extends Disambiguator<Object>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @NonNull Object match2) {
 			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
 			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
 			if (!match1IsImplicit) {
-				return match2IsImplicit ? 1 : 0;				// match2 inferior
+				return match2IsImplicit ? 1 : 0;				// match2 inferior			
 			}
 			else {
-				return match2IsImplicit ? 0 : -1;				// match1 inferior
+				return match2IsImplicit ? 0 : -1;				// match1 inferior			
 			}
 		}
 	}
-
-	private static final class OperationDisambiguator implements Comparator<Operation>
+	
+	private static final class MetamodelMergeDisambiguator extends Disambiguator<Feature>
 	{
-		@SuppressWarnings("null")
-		public int compare(Operation match1, Operation match2) {
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Feature match1, @NonNull Feature match2) {
+			org.eclipse.ocl.examples.pivot.Package p1 = PivotUtil.getContainingPackage(match1);
+			org.eclipse.ocl.examples.pivot.Package p2 = PivotUtil.getContainingPackage(match2);
+			if (p1 == null) {
+				return 0;
+			}
+			if (p2 == null) {
+				return 0;
+			}
+			PackageManager packageManager = metaModelManager.getPackageManager();
+			PackageServer s1 = packageManager.getPackageServer(p1);
+			PackageServer s2 = packageManager.getPackageServer(p2);
+			if (s1 != s2) {
+				return 0;
+			}
+			int i1 = s1.getIndex(p1);
+			int i2 = s2.getIndex(p2);
+			return i2 - i1;
+		}
+	}
+
+	private static final class OperationDisambiguator extends Disambiguator<Operation>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Operation match1, @NonNull Operation match2) {
 			if (isRedefinitionOf(match1, match2)) {
 				return 1;				// match2 inferior			
 			}
@@ -91,10 +125,10 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		}
 	}
 
-	private static final class PropertyDisambiguator implements Comparator<Property>
+	private static final class PropertyDisambiguator extends Disambiguator<Property>
 	{
-		@SuppressWarnings("null")
-		public int compare(Property match1, Property match2) {
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Property match1, @NonNull Property match2) {
 			if (isRedefinitionOf(match1, match2)) {
 				return 1;				// match2 inferior			
 			}
@@ -119,12 +153,13 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 			return false;
 		}
 	}
-	
-	private static @NonNull LinkedHashMap<Class<?>, List<Comparator<Object>>> disambiguatorMap =
-			new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
+			
+	private static @NonNull LinkedHashMap<Class<?>, List<Comparator<Object>>> disambiguatorMap =	// FIXME narrow API to Disambiguator
+		new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
 
 	static {
 		addDisambiguator(Object.class, new ImplicitDisambiguator());
+		addDisambiguator(Feature.class, new MetamodelMergeDisambiguator());
 		addDisambiguator(Operation.class, new OperationDisambiguator());
 		addDisambiguator(Property.class, new PropertyDisambiguator());
 	}
@@ -432,7 +467,11 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 					for (Class<?> key : disambiguatorMap.keySet()) {
 						if (key.isAssignableFrom(iClass) && key.isAssignableFrom(jClass)) {
 							for (Comparator<Object> comparator : disambiguatorMap.get(key)) {
-								verdict = comparator.compare(iValue, jValue);
+								if (comparator instanceof Disambiguator<?>) {
+									verdict = ((Disambiguator<Object>)comparator).compare(metaModelManager, iValue, jValue);
+								} else {
+									verdict = comparator.compare(iValue, jValue);
+								}
 								if (verdict != 0) {
 									break;
 								}
