@@ -16,12 +16,16 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -42,10 +46,33 @@ import org.eclipse.xtext.resource.XtextResource;
  */
 public class SerializeTests extends XtextTestCase
 {
+	protected interface ResourceSetInitializer
+	{
+		void initializeResourceSet(@NonNull ResourceSet resourceSet);
+	}
+
+	protected Map<Object, Object> createLoadedEcoreOptions() {
+		Map<Object, Object> options = new HashMap<Object, Object>();
+		options.put(ResourceSetInitializer.class, new ResourceSetInitializer()
+		{
+			public void initializeResourceSet(@NonNull ResourceSet resourceSet) {
+				IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
+				if (projectDescriptor != null) {
+					@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createURI(EcorePackage.eNS_URI);
+					IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(ecoreURI);
+					if (packageDescriptor != null) {
+						packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+					}
+				}
+			}
+		});
+		return options;
+	}
+
 	public XtextResource doSerialize(@NonNull String stem) throws Exception {
 		return doSerialize(stem, stem, null, true, true);
 	}
-	public XtextResource doSerialize(@NonNull String stem, @NonNull String referenceStem, @Nullable Map<String, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
+	public XtextResource doSerialize(@NonNull String stem, @NonNull String referenceStem, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
 		String inputName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		String referenceName = referenceStem + ".ecore";
@@ -53,7 +80,8 @@ public class SerializeTests extends XtextTestCase
 		return doSerialize(inputURI, stem, referenceURI, options, doCompare, validateSaved);
 	}
 	@SuppressWarnings("null")
-	public XtextResource doSerialize(@NonNull URI inputURI, @NonNull String stem, @NonNull URI referenceURI, @Nullable Map<String, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
+	public XtextResource doSerialize(@NonNull URI inputURI, @NonNull String stem, @NonNull URI referenceURI, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
+		ResourceSetInitializer resourceSetInitializer = options != null ? (ResourceSetInitializer)options.get(ResourceSetInitializer.class) : null;
 		ResourceSet resourceSet = new ResourceSetImpl();
 		getProjectMap().initializeResourceSet(resourceSet);
 		String outputName = stem + ".serialized.oclinecore";
@@ -66,15 +94,19 @@ public class SerializeTests extends XtextTestCase
 		//	Ecore to Pivot
 		//		
 		OCL ocl1 = OCL.newInstance();
-		XtextResource xtextResource = null;
+		XtextResource xtextResource1 = null;
 		try {
+			MetaModelManager metaModelManager1 = ocl1.getMetaModelManager();
+			if (resourceSetInitializer != null) {
+				resourceSetInitializer.initializeResourceSet(metaModelManager1.getExternalResourceSet());
+			}
 			ASResource asResource = ocl1.ecore2pivot(ecoreResource);
 			assertNoResourceErrors("Normalisation failed", asResource);
 			assertNoValidationErrors("Normalisation invalid", asResource);
 			//
 			//	Pivot to CS
 			//		
-			xtextResource = pivot2cs(ocl1, resourceSet, asResource, outputURI);
+			xtextResource1 = pivot2cs(ocl1, resourceSet, asResource, outputURI);
 			resourceSet.getResources().clear();
 		}
 		finally {
@@ -84,6 +116,9 @@ public class SerializeTests extends XtextTestCase
 		OCL ocl2 = OCL.newInstance();
 		try {
 			MetaModelManager metaModelManager2 = ocl2.getMetaModelManager();
+			if (resourceSetInitializer != null) {
+				resourceSetInitializer.initializeResourceSet(metaModelManager2.getExternalResourceSet());
+			}
 			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.createResource(outputURI);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource2, metaModelManager2);
 			xtextResource2.load(null);
@@ -115,7 +150,7 @@ public class SerializeTests extends XtextTestCase
 			if (doCompare) {	// Workaround for Bug 354621
 				assertSameModel(referenceResource, ecoreResource2);		
 			}
-			return xtextResource;
+			return xtextResource1;
 		}
 		finally {
 			ocl2.dispose();
@@ -394,13 +429,15 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_EssentialOCLCST() throws Exception {
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
-		doSerialize(uri, stem, uri, null, false, true);		// FIXME URIs don't quite compare
+		Map<Object, Object> options = createLoadedEcoreOptions();
+		doSerialize(uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
 	}
 
 	public void testSerialize_OCLinEcoreCST() throws Exception {
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
-		doSerialize(uri, stem, uri, null, false, true);		// FIXME URIs don't quite compare
+		Map<Object, Object> options = createLoadedEcoreOptions();
+		doSerialize(uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
 //		doSerialize("OCLinEcoreCST");
 	}
 
@@ -422,7 +459,7 @@ public class SerializeTests extends XtextTestCase
 	}	
 	
 	public void testSerialize_States() throws Exception {
-		Map<String, Object> options = new HashMap<String, Object>();
+		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put("cs2asErrors", 
 			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "substring", "OclInvalid", "1, 1"));
 		doSerialize("States", "States", options, true, true);

@@ -22,6 +22,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -34,6 +35,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.domain.values.Unlimited;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -221,11 +225,9 @@ public class LoadTests extends XtextTestCase
 		return xmiResource;
 	}
 	
-	public void doLoadEcore(URI inputURI) throws IOException {
+	public void doLoadEcore(@NonNull ResourceSet resourceSet, URI inputURI) throws IOException {
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		getProjectMap().initializeResourceSet(resourceSet);
 		String extension = inputURI.fileExtension();
 		String stem = inputURI.trimFileExtension().lastSegment();
 //		String outputName = stem + "." + extension + ".xmi";
@@ -257,7 +259,6 @@ public class LoadTests extends XtextTestCase
 		}
 		finally {
 			metaModelManager.dispose();
-			unloadResourceSet(resourceSet);
 		}		
 //		Resource xmiResource = resourceSet.createResource(outputURI);
 //		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -711,7 +712,19 @@ public class LoadTests extends XtextTestCase
 	}	
 	
 	public void testLoad_BaseCST_ecore() throws IOException, InterruptedException {
-		doLoadEcore(URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore", true));
+		ProjectMap projectMap = getProjectMap();
+		ResourceSet resourceSet = new ResourceSetImpl();
+		projectMap.initializeResourceSet(resourceSet);
+		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.emf.ecore");
+		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
+		packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.base/model/BaseCS.ecore", true);
+		try {
+			doLoadEcore(resourceSet, uri);
+		}
+		finally {
+			unloadResourceSet(resourceSet);
+		}
 	}
 	
 //	public void testLoad_Bug7_ocl() throws IOException, InterruptedException {
@@ -854,7 +867,6 @@ public class LoadTests extends XtextTestCase
 		URI uri = getProjectFileURI("Bug401953.essentialocl");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		long start = System.currentTimeMillis();
-		@SuppressWarnings("unused")
 		Resource csResource = resourceSet.getResource(uri, true);
 		long end = System.currentTimeMillis();
 		if ((end-start) > 5000) {		// Takes minutes when grammar bad, miniscule when grammar good but isolated test may have substantial JVM costs
