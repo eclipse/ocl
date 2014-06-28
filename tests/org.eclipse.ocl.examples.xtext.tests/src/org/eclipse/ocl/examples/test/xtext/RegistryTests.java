@@ -15,6 +15,7 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -27,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.registry.CompleteOCLRegistry.Registration;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.xtext.junit.GlobalRegistries;
 import org.eclipse.xtext.junit.GlobalRegistries.GlobalStateMemento;
+import org.osgi.framework.Bundle;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -54,7 +56,14 @@ public class RegistryTests extends TestCase
 			resourceSet.getResource(URI.createPlatformPluginURI("/org.eclipse.emf.ecore/model/Ecore.ecore", true), true);
 			CompleteOCLRegistry registry = CompleteOCLRegistry.INSTANCE;
 			Set<URI> registeredResourceURIs = registry.getResourceURIs(resourceSet);
-			assertEquals(EMFPlugin.IS_ECLIPSE_RUNNING ? 2 : 1, registeredResourceURIs.size());
+			int expectedSize = 1;
+			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+				Bundle bundle = Platform.getBundle("org.eclipse.ocl.examples.project.completeocltutorial");
+				if (bundle != null) {
+					expectedSize++;
+				}
+			}
+			assertEquals(expectedSize, registeredResourceURIs.size());
 			// platform:/plugin/org.eclipse.ocl.examples.xtext.tests/model/ModelWithErrors.ocl
 			// (running only) platform:/plugin/org.eclipse.ocl.examples.project.completeocltutorial/model/ExtraEcoreValidation.ocl
 		}
