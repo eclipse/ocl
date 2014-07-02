@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
+import org.eclipse.ocl.examples.pivot.scoping.EmptyAttribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.ImportCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
@@ -61,13 +62,23 @@ public class EssentialOCLScoping
 {	
 	public static void init() {
 		Map<EClassifier, Attribution> registry = Attribution.REGISTRY;
+		registry.put(EssentialOCLCSPackage.Literals.COLLECTION_LITERAL_EXP_CS, EmptyAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.COLLECTION_LITERAL_PART_CS, EmptyAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS, ConstructorPartCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.CONTEXT_CS, ContextCSAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.CURLY_BRACKETED_CLAUSE_CS, EmptyAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, ExpSpecificationCSAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.IF_EXP_CS, EmptyAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.INFIX_EXP_CS, EmptyAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.LET_EXP_CS, LetExpCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.LET_VARIABLE_CS, LetVariableCSAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.NAME_EXP_CS, EmptyAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.NESTED_EXP_CS, EmptyAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATING_ARG_CS, NavigatingArgCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATION_OPERATOR_CS, NavigationOperatorCSAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.OPERATOR_CS, EmptyAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.TUPLE_LITERAL_EXP_CS, EmptyAttribution.INSTANCE);
+		registry.put(EssentialOCLCSPackage.Literals.TUPLE_LITERAL_PART_CS, EmptyAttribution.INSTANCE);
 		CS2Pivot.addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());			
 	}
 	
@@ -101,11 +112,17 @@ public class EssentialOCLScoping
 			if ((index + 1) < path.size()) {
 				messageTemplate = OCLMessages.UnresolvedNamespace_ERROR_;
 			}
-			else if ((csContext instanceof NameExpCS) && (((NameExpCS)csContext).getRoundBracketedClause() != null)) {
+			else if (csContext instanceof NameExpCS) {
 				NameExpCS csNameExp = (NameExpCS)csContext;
 				navigationArgument = csNameExp;
-				argumentText = getOperationArguments(csNameExp.getRoundBracketedClause());
-				messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
+				RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getRoundBracketedClause();
+				if (csRoundBracketedClause != null) {
+					argumentText = getOperationArguments(csRoundBracketedClause);
+					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
+				}
+				else {
+					messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
+				}
 			}
 			else if (csContext instanceof TypeNameExpCS) {
 				messageTemplate = OCLMessages.UnresolvedType_ERROR_;

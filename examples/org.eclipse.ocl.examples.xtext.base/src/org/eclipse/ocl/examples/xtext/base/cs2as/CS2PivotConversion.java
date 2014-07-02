@@ -106,6 +106,8 @@ import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
+import com.google.common.collect.Iterables;
+
 public class CS2PivotConversion extends AbstractBase2PivotConversion
 {	
 	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
@@ -1004,10 +1006,10 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	}
 
 	public <T extends Element> void refreshPivotList(@NonNull Class<T> pivotClass, /*@NonNull*/ List<? super T> pivotElements,
-			/*@NonNull*/ List<? extends ModelElementCS> csElements) {
+			/*@NonNull*/ Iterable<? extends ModelElementCS> csElements) {
 		assert pivotElements != null;
 		assert csElements != null;
-		if (pivotElements.isEmpty() && csElements.isEmpty()) {
+		if (pivotElements.isEmpty() && Iterables.isEmpty(csElements)) {
 			return;
 		}
 		List<T> newPivotElements = new ArrayList<T>();
@@ -1288,6 +1290,17 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				}
 			}
 		}
+		//
+		//	Put all orphan root pivot elements in their resources.
+		//
+		for (BaseCSResource csResource : csResources) {
+			if (csResource != null) {
+				installRootContents(csResource);
+			}
+		}
+		//
+		//
+		//
 		while (continuations.size() > 0) {
 			List<BasicContinuation<?>> moreContinuations = progressContinuations(continuations);
 			if (moreContinuations == null) {
@@ -1299,14 +1312,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				break;
 			}
 			continuations = moreContinuations;
-		}
-		//
-		//	Put all orphan root pivot elements in their resources.
-		//
-		for (BaseCSResource csResource : csResources) {
-			if (csResource != null) {
-				installRootContents(csResource);
-			}
 		}
 		//
 		//	Perform the pre-order traversal to resolve specializations and references.

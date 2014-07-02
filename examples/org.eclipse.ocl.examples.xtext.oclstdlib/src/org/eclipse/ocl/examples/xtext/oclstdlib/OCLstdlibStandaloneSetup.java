@@ -39,6 +39,7 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 	}
 
 	public static void init() {
+		OCLstdlibCSPackage.eINSTANCE.getName();
 		OCLstdlibScoping.init();
 		OCLstdlibASResourceFactory.INSTANCE.getClass();
 //		OCLstdlibCS2Pivot.FACTORY.getClass();

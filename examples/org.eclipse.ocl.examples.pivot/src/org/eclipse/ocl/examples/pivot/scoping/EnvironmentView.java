@@ -739,6 +739,32 @@ public class EnvironmentView
 					break;					// The NULLSCOPEVIEW
 				}
 				Attribution attribution = aScope.getAttribution();
+/*				if (aTarget instanceof Pivotable) {
+					if (attribution instanceof EmptyAttribution) {
+						Element pivot = PivotUtil.getPivot(Element.class, (Pivotable)aTarget);
+						if (pivot != null) {
+							EObject child = scopeView.getChild();
+							return computeLookups(pivot, PivotUtil.getPivot(Element.class, / *child instanceof Pivotable ? (Pivotable)child :* / null));	
+						}
+						else {
+							break;
+						}
+					}
+					else {
+						String className = aTarget.getClass().getSimpleName();
+						if (!className.startsWith("PathElementWithURICS") && !className.startsWith("PathElementCS") && !className.startsWith("ImportCS")) {
+							Element pivot = PivotUtil.getPivot(Element.class, (Pivotable)aTarget);
+							if (pivot != null) {
+//								return computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
+							}
+						}
+					}
+				} */
+//				PivotableElementCS targetElement = (PivotableElementCS)target;
+//				Element pivot = PivotUtil.getPivot(Element.class, targetElement);
+//				if (pivot != null) {
+//					environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
+//				}
 				aScope = attribution.computeLookup(aTarget, this, aScope);
 			}
 		}
