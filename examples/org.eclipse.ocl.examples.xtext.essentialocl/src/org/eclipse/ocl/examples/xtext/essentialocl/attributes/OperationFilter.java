@@ -34,9 +34,9 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 
 public class OperationFilter extends AbstractOperationFilter
 {
@@ -45,12 +45,12 @@ public class OperationFilter extends AbstractOperationFilter
 	protected final int accumulators;
 	protected final int expressions;
 	
-	public OperationFilter(@Nullable Type sourceType, @NonNull InvocationExpCS csNavigatingExp) {
+	public OperationFilter(@Nullable Type sourceType, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		super(sourceType);
 		int accumulators = 0;
 		int iterators = 0;
 		int expressions = 0;
-		@SuppressWarnings("null") @NonNull List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
+		List<NavigatingArgCS> csArguments = csRoundBracketedClause.getArguments();
 		this.csArguments = csArguments;
 		for (NavigatingArgCS csNavigatingArg : csArguments) {
 			if (csNavigatingArg.getRole() == NavigationRole.ITERATOR) {

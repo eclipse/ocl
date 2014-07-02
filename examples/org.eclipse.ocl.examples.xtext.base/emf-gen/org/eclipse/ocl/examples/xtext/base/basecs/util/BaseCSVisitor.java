@@ -48,6 +48,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitClassCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ClassCS object);
 	@Nullable R visitClassifierCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS object);
 	@Nullable R visitConstraintCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS object);
+	@Nullable R visitContextLessElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS object);
 	@Nullable R visitDataTypeCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS object);
 	@Nullable R visitDetailCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DetailCS object);
 	@Nullable R visitDocumentationCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS object);

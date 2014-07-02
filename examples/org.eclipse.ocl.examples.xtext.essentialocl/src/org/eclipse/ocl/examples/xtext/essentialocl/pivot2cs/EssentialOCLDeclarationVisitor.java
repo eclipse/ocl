@@ -82,8 +82,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
@@ -91,7 +91,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificati
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
@@ -101,6 +100,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
@@ -351,15 +351,16 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitConstructorExp(@NonNull ConstructorExp asConstructorExp) {
-		ConstructorExpCS csConstructorExp = EssentialOCLCSFactory.eINSTANCE.createConstructorExpCS();
-		csConstructorExp.setPivot(asConstructorExp);
-		csConstructorExp.setNameExp(createNameExpCS(asConstructorExp.getType()));
-		List<ConstructorPartCS> csOwnedParts = csConstructorExp.getOwnedParts();
+		NameExpCS csNameExp = createNameExpCS(asConstructorExp.getType());
+		csNameExp.setPivot(asConstructorExp);
+		CurlyBracketedClauseCS csCurlyBracketedClause = EssentialOCLCSFactory.eINSTANCE.createCurlyBracketedClauseCS();
+		csNameExp.setCurlyBracketedClause(csCurlyBracketedClause);;
+		List<ConstructorPartCS> csOwnedParts = csCurlyBracketedClause.getOwnedParts();
 		for (ConstructorPart asPart : asConstructorExp.getPart()) {
 			csOwnedParts.add(context.visitDeclaration(ConstructorPartCS.class, asPart));
 		}
-		csConstructorExp.setValue(asConstructorExp.getValue());
-		return csConstructorExp;
+		csCurlyBracketedClause.setValue(asConstructorExp.getValue());
+		return csNameExp;
 	}
 
 	@Override
@@ -414,20 +415,21 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitIterateExp(@NonNull IterateExp asIterateExp) {
-		InvocationExpCS csInvocationExp = EssentialOCLCSFactory.eINSTANCE.createInvocationExpCS();
-		csInvocationExp.setPivot(asIterateExp);
-		csInvocationExp.setNameExp(createNameExpCS(asIterateExp.getReferredIteration()));
+		NameExpCS csNameExp = createNameExpCS(asIterateExp.getReferredIteration());
+		csNameExp.setPivot(asIterateExp);
+		RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
+		csNameExp.setRoundBracketedClause(csRoundBracketedClause);;
 		String prefix = null;
 		for (Variable asIterator : asIterateExp.getIterator()) {
 			if (!asIterator.isImplicit()) {
-				csInvocationExp.getArgument().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
+				csRoundBracketedClause.getArguments().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
 				prefix = ",";
 			}
 		}
 		Variable asResult = asIterateExp.getResult();
-		csInvocationExp.getArgument().add(createNavigatingArgCS(";", asResult, asResult, asResult.getInitExpression()));
-		csInvocationExp.getArgument().add(createNavigatingArgCS("|", asIterateExp.getBody()));
-		return createNavigationOperatorCS(asIterateExp.getSource(), csInvocationExp, false);
+		csRoundBracketedClause.getArguments().add(createNavigatingArgCS(";", asResult, asResult, asResult.getInitExpression()));
+		csRoundBracketedClause.getArguments().add(createNavigatingArgCS("|", asIterateExp.getBody()));
+		return createNavigationOperatorCS(asIterateExp.getSource(), csNameExp, false);
 	}
 
 	@Override
@@ -439,24 +441,23 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				return createNavigationOperatorCS(asIteratorExp.getSource(), (ExpCS) csExp, true);
 			}
 		}
-//		else {
-			InvocationExpCS csInvocationExp = EssentialOCLCSFactory.eINSTANCE.createInvocationExpCS();
-			csInvocationExp.setPivot(asIteratorExp);
-			csInvocationExp.setNameExp(createNameExpCS(asIteratorExp.getReferredIteration()));
-			String prefix = null;
-			for (Variable asIterator : asIteratorExp.getIterator()) {
-				if (!asIterator.isImplicit()) {
-					csInvocationExp.getArgument().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
-					prefix = ",";
-				}
+		NameExpCS csNameExp = createNameExpCS(asIteratorExp.getReferredIteration());
+		csNameExp.setPivot(asIteratorExp);
+		RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
+		csNameExp.setRoundBracketedClause(csRoundBracketedClause);;
+		String prefix = null;
+		for (Variable asIterator : asIteratorExp.getIterator()) {
+			if (!asIterator.isImplicit()) {
+				csRoundBracketedClause.getArguments().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
+				prefix = ",";
 			}
-			
-			if (prefix != null) {
-				prefix = "|";
-			}
-			csInvocationExp.getArgument().add(createNavigatingArgCS(prefix, body));
-			return createNavigationOperatorCS(asIteratorExp.getSource(), csInvocationExp, false);
-//		}
+		}
+		
+		if (prefix != null) {
+			prefix = "|";
+		}
+		csRoundBracketedClause.getArguments().add(createNavigatingArgCS(prefix, body));
+		return createNavigationOperatorCS(asIteratorExp.getSource(), csNameExp, false);
 	}
 	
 	@Override
@@ -509,15 +510,16 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		List<OCLExpression> asArguments = asOperationCallExp.getArgument();
 		OCLExpression asSource = asOperationCallExp.getSource();
 		if ((asPrecedence == null) || (asSource == null)) {
-			InvocationExpCS csInvocationExp = EssentialOCLCSFactory.eINSTANCE.createInvocationExpCS();
-			csInvocationExp.setPivot(asOperationCallExp);
-			csInvocationExp.setNameExp(createNameExpCS(asOperation));
+			NameExpCS csNameExp = createNameExpCS(asOperationCallExp.getReferredOperation());
+			csNameExp.setPivot(asOperationCallExp);
+			RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
+			csNameExp.setRoundBracketedClause(csRoundBracketedClause);;
 			String prefix = null;
 			for (OCLExpression asArgument : asArguments) {
-				csInvocationExp.getArgument().add(createNavigatingArgCS(prefix, asArgument));
+				csRoundBracketedClause.getArguments().add(createNavigatingArgCS(prefix, asArgument));
 				prefix = ",";
 			}
-			return createNavigationOperatorCS(asSource, csInvocationExp, false);
+			return createNavigationOperatorCS(asSource, csNameExp, false);
 		} else {
 			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 			if (asArguments.size() == 1) {

@@ -110,6 +110,11 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 				return createConstraintCSAdapter();
 			}
 			@Override
+			public Adapter caseContextLessElementCS(ContextLessElementCS object)
+			{
+				return createContextLessElementCSAdapter();
+			}
+			@Override
 			public Adapter caseDataTypeCS(DataTypeCS object)
 			{
 				return createDataTypeCSAdapter();
@@ -457,6 +462,21 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConstraintCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS <em>Context Less Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS
+	 * @generated
+	 */
+	public Adapter createContextLessElementCSAdapter()
 	{
 		return null;
 	}

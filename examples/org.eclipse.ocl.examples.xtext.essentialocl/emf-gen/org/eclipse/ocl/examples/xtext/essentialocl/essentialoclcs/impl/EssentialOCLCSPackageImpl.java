@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -28,20 +27,18 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionType
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
@@ -51,7 +48,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralE
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
@@ -70,13 +69,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 public class EssentialOCLCSPackageImpl
 		extends EPackageImpl
 		implements EssentialOCLCSPackage {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractNameExpCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,6 +111,13 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass contextCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass curlyBracketedClauseCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,13 +194,6 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedExpCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass navigatingArgCSEClass = null;
 
 	/**
@@ -244,7 +236,21 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass roundBracketedClauseCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass selfExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass squareBracketedClauseCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -286,13 +292,6 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass invocationExpCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass nullLiteralExpCSEClass = null;
 
 	/**
@@ -322,13 +321,6 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass ifExpCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass indexExpCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -420,25 +412,6 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractNameExpCS() {
-		return abstractNameExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractNameExpCS_SourceType()
-	{
-		return (EReference)abstractNameExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getBinaryOperatorCS() {
 		return binaryOperatorCSEClass;
 	}
@@ -511,7 +484,8 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConstructorExpCS() {
+	public EClass getConstructorExpCS()
+	{
 		return constructorExpCSEClass;
 	}
 
@@ -520,7 +494,8 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstructorExpCS_OwnedParts() {
+	public EReference getConstructorExpCS_PathName()
+	{
 		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -529,8 +504,19 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstructorExpCS_Value() {
-		return (EAttribute)constructorExpCSEClass.getEStructuralFeatures().get(1);
+	public EReference getConstructorExpCS_OwnedParts()
+	{
+		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstructorExpCS_Value()
+	{
+		return (EAttribute)constructorExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -547,7 +533,8 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstructorPartCS_Property() {
+	public EReference getConstructorPartCS_CurlyBracketClause()
+	{
 		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -556,8 +543,17 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstructorPartCS_InitExpression() {
+	public EReference getConstructorPartCS_Property() {
 		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstructorPartCS_InitExpression() {
+		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -576,6 +572,46 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getContextCS_OwnedExpression() {
 		return (EReference)contextCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCurlyBracketedClauseCS()
+	{
+		return curlyBracketedClauseCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCurlyBracketedClauseCS_NameExp()
+	{
+		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCurlyBracketedClauseCS_OwnedParts()
+	{
+		return (EReference)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCurlyBracketedClauseCS_Value()
+	{
+		return (EAttribute)curlyBracketedClauseCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -746,7 +782,8 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNameExpCS_PathName() {
+	public EReference getNameExpCS_PathName()
+	{
 		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -764,8 +801,9 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedExpCS() {
-		return namedExpCSEClass;
+	public EReference getNameExpCS_CurlyBracketedClause()
+	{
+		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -773,8 +811,29 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedExpCS_NameExp() {
-		return (EReference)namedExpCSEClass.getEStructuralFeatures().get(0);
+	public EReference getNameExpCS_RoundBracketedClause()
+	{
+		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNameExpCS_SquareBracketedClauses()
+	{
+		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNameExpCS_SourceType()
+	{
+		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -791,7 +850,8 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNavigatingArgCS_NavigatingExp() {
+	public EReference getNavigatingArgCS_RoundBracketedClause()
+	{
 		return (EReference)navigatingArgCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -935,6 +995,36 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRoundBracketedClauseCS()
+	{
+		return roundBracketedClauseCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRoundBracketedClauseCS_NameExp()
+	{
+		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRoundBracketedClauseCS_Arguments()
+	{
+		return (EReference)roundBracketedClauseCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSelfExpCS() {
 		return selfExpCSEClass;
 	}
@@ -946,6 +1036,36 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EAttribute getSelfExpCS_Name() {
 		return (EAttribute)selfExpCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSquareBracketedClauseCS()
+	{
+		return squareBracketedClauseCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSquareBracketedClauseCS_NameExp()
+	{
+		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSquareBracketedClauseCS_Terms()
+	{
+		return (EReference)squareBracketedClauseCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1018,24 +1138,6 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EClass getInvalidLiteralExpCS() {
 		return invalidLiteralExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getInvocationExpCS() {
-		return invocationExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInvocationExpCS_Argument() {
-		return (EReference)invocationExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1142,42 +1244,6 @@ public class EssentialOCLCSPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIndexExpCS() {
-		return indexExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIndexExpCS_FirstIndexes() {
-		return (EReference)indexExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIndexExpCS_SecondIndexes() {
-		return (EReference)indexExpCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIndexExpCS_AtPre() {
-		return (EAttribute)indexExpCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getInfixExpCS() {
 		return infixExpCSEClass;
 	}
@@ -1264,9 +1330,6 @@ public class EssentialOCLCSPackageImpl
 		isCreated = true;
 
 		// Create classes and their features
-		abstractNameExpCSEClass = createEClass(ABSTRACT_NAME_EXP_CS);
-		createEReference(abstractNameExpCSEClass, ABSTRACT_NAME_EXP_CS__SOURCE_TYPE);
-
 		binaryOperatorCSEClass = createEClass(BINARY_OPERATOR_CS);
 		createEReference(binaryOperatorCSEClass, BINARY_OPERATOR_CS__ARGUMENT);
 
@@ -1286,15 +1349,22 @@ public class EssentialOCLCSPackageImpl
 		createEReference(collectionTypeCSEClass, COLLECTION_TYPE_CS__OWNED_TYPE);
 
 		constructorExpCSEClass = createEClass(CONSTRUCTOR_EXP_CS);
+		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__PATH_NAME);
 		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__OWNED_PARTS);
 		createEAttribute(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__VALUE);
 
 		constructorPartCSEClass = createEClass(CONSTRUCTOR_PART_CS);
+		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__PROPERTY);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__INIT_EXPRESSION);
 
 		contextCSEClass = createEClass(CONTEXT_CS);
 		createEReference(contextCSEClass, CONTEXT_CS__OWNED_EXPRESSION);
+
+		curlyBracketedClauseCSEClass = createEClass(CURLY_BRACKETED_CLAUSE_CS);
+		createEReference(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__NAME_EXP);
+		createEReference(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS);
+		createEAttribute(curlyBracketedClauseCSEClass, CURLY_BRACKETED_CLAUSE_CS__VALUE);
 
 		expCSEClass = createEClass(EXP_CS);
 		createEReference(expCSEClass, EXP_CS__PARENT);
@@ -1308,19 +1378,11 @@ public class EssentialOCLCSPackageImpl
 		createEReference(ifExpCSEClass, IF_EXP_CS__THEN_EXPRESSION);
 		createEReference(ifExpCSEClass, IF_EXP_CS__ELSE_EXPRESSION);
 
-		indexExpCSEClass = createEClass(INDEX_EXP_CS);
-		createEReference(indexExpCSEClass, INDEX_EXP_CS__FIRST_INDEXES);
-		createEReference(indexExpCSEClass, INDEX_EXP_CS__SECOND_INDEXES);
-		createEAttribute(indexExpCSEClass, INDEX_EXP_CS__AT_PRE);
-
 		infixExpCSEClass = createEClass(INFIX_EXP_CS);
 		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_EXPRESSION);
 		createEReference(infixExpCSEClass, INFIX_EXP_CS__OWNED_OPERATOR);
 
 		invalidLiteralExpCSEClass = createEClass(INVALID_LITERAL_EXP_CS);
-
-		invocationExpCSEClass = createEClass(INVOCATION_EXP_CS);
-		createEReference(invocationExpCSEClass, INVOCATION_EXP_CS__ARGUMENT);
 
 		letExpCSEClass = createEClass(LET_EXP_CS);
 		createEReference(letExpCSEClass, LET_EXP_CS__VARIABLE);
@@ -1334,12 +1396,13 @@ public class EssentialOCLCSPackageImpl
 		nameExpCSEClass = createEClass(NAME_EXP_CS);
 		createEReference(nameExpCSEClass, NAME_EXP_CS__PATH_NAME);
 		createEAttribute(nameExpCSEClass, NAME_EXP_CS__AT_PRE);
-
-		namedExpCSEClass = createEClass(NAMED_EXP_CS);
-		createEReference(namedExpCSEClass, NAMED_EXP_CS__NAME_EXP);
+		createEReference(nameExpCSEClass, NAME_EXP_CS__CURLY_BRACKETED_CLAUSE);
+		createEReference(nameExpCSEClass, NAME_EXP_CS__ROUND_BRACKETED_CLAUSE);
+		createEReference(nameExpCSEClass, NAME_EXP_CS__SQUARE_BRACKETED_CLAUSES);
+		createEReference(nameExpCSEClass, NAME_EXP_CS__SOURCE_TYPE);
 
 		navigatingArgCSEClass = createEClass(NAVIGATING_ARG_CS);
-		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__NAVIGATING_EXP);
+		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE);
 		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__ROLE);
 		createEAttribute(navigatingArgCSEClass, NAVIGATING_ARG_CS__PREFIX);
 		createEReference(navigatingArgCSEClass, NAVIGATING_ARG_CS__NAME);
@@ -1365,8 +1428,16 @@ public class EssentialOCLCSPackageImpl
 
 		primitiveLiteralExpCSEClass = createEClass(PRIMITIVE_LITERAL_EXP_CS);
 
+		roundBracketedClauseCSEClass = createEClass(ROUND_BRACKETED_CLAUSE_CS);
+		createEReference(roundBracketedClauseCSEClass, ROUND_BRACKETED_CLAUSE_CS__NAME_EXP);
+		createEReference(roundBracketedClauseCSEClass, ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS);
+
 		selfExpCSEClass = createEClass(SELF_EXP_CS);
 		createEAttribute(selfExpCSEClass, SELF_EXP_CS__NAME);
+
+		squareBracketedClauseCSEClass = createEClass(SQUARE_BRACKETED_CLAUSE_CS);
+		createEReference(squareBracketedClauseCSEClass, SQUARE_BRACKETED_CLAUSE_CS__NAME_EXP);
+		createEReference(squareBracketedClauseCSEClass, SQUARE_BRACKETED_CLAUSE_CS__TERMS);
 
 		stringLiteralExpCSEClass = createEClass(STRING_LITERAL_EXP_CS);
 		createEAttribute(stringLiteralExpCSEClass, STRING_LITERAL_EXP_CS__NAME);
@@ -1422,39 +1493,36 @@ public class EssentialOCLCSPackageImpl
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 		BaseCSPackage theBaseCSPackage = (BaseCSPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSPackage.eNS_URI);
+		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		abstractNameExpCSEClass.getESuperTypes().add(this.getExpCS());
 		binaryOperatorCSEClass.getESuperTypes().add(this.getOperatorCS());
 		booleanLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		collectionLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		collectionTypeCSEClass.getESuperTypes().add(theBaseCSPackage.getTypedRefCS());
 		collectionTypeCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
-		constructorExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
+		constructorExpCSEClass.getESuperTypes().add(this.getExpCS());
 		constructorPartCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		constructorPartCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		contextCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 		contextCSEClass.getESuperTypes().add(theBaseCSPackage.getRootCS());
+		curlyBracketedClauseCSEClass.getESuperTypes().add(theBaseCSPackage.getContextLessElementCS());
 		expCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		expSpecificationCSEClass.getESuperTypes().add(theBaseCSPackage.getSpecificationCS());
 		ifExpCSEClass.getESuperTypes().add(this.getExpCS());
-		indexExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
 		infixExpCSEClass.getESuperTypes().add(this.getExpCS());
 		invalidLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
-		invocationExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
 		letExpCSEClass.getESuperTypes().add(this.getExpCS());
 		letVariableCSEClass.getESuperTypes().add(this.getVariableCS());
 		letVariableCSEClass.getESuperTypes().add(this.getExpCS());
 		literalExpCSEClass.getESuperTypes().add(this.getExpCS());
-		nameExpCSEClass.getESuperTypes().add(this.getAbstractNameExpCS());
-		namedExpCSEClass.getESuperTypes().add(this.getAbstractNameExpCS());
+		nameExpCSEClass.getESuperTypes().add(this.getExpCS());
 		navigatingArgCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		navigationOperatorCSEClass.getESuperTypes().add(this.getBinaryOperatorCS());
 		nestedExpCSEClass.getESuperTypes().add(this.getExpCS());
@@ -1464,7 +1532,9 @@ public class EssentialOCLCSPackageImpl
 		operatorCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 		prefixExpCSEClass.getESuperTypes().add(this.getExpCS());
 		primitiveLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
+		roundBracketedClauseCSEClass.getESuperTypes().add(theBaseCSPackage.getContextLessElementCS());
 		selfExpCSEClass.getESuperTypes().add(this.getExpCS());
+		squareBracketedClauseCSEClass.getESuperTypes().add(theBaseCSPackage.getContextLessElementCS());
 		stringLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		tupleLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		tupleLiteralPartCSEClass.getESuperTypes().add(this.getVariableCS());
@@ -1475,15 +1545,6 @@ public class EssentialOCLCSPackageImpl
 		variableCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(abstractNameExpCSEClass, AbstractNameExpCS.class, "AbstractNameExpCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAbstractNameExpCS_SourceType(), thePivotPackage.getType(), null, "sourceType", null, 0, 1, AbstractNameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		addEOperation(abstractNameExpCSEClass, thePivotPackage.getNamedElement(), "getNamedElement", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		addEOperation(abstractNameExpCSEClass, this.getAbstractNameExpCS(), "getNameExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		addEOperation(abstractNameExpCSEClass, theBaseCSPackage.getPathNameCS(), "getPathName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(binaryOperatorCSEClass, BinaryOperatorCS.class, "BinaryOperatorCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getBinaryOperatorCS_Argument(), this.getExpCS(), null, "argument", null, 1, 1, BinaryOperatorCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -1503,15 +1564,22 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getCollectionTypeCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constructorExpCSEClass, ConstructorExpCS.class, "ConstructorExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getConstructorExpCS_PathName(), theBaseCSPackage.getPathNameCS(), null, "pathName", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstructorExpCS_OwnedParts(), this.getConstructorPartCS(), null, "ownedParts", null, 0, -1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstructorExpCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constructorPartCSEClass, ConstructorPartCS.class, "ConstructorPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getConstructorPartCS_CurlyBracketClause(), this.getCurlyBracketedClauseCS(), this.getCurlyBracketedClauseCS_OwnedParts(), "curlyBracketClause", null, 0, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstructorPartCS_Property(), thePivotPackage.getProperty(), null, "property", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstructorPartCS_InitExpression(), this.getExpCS(), null, "initExpression", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(contextCSEClass, ContextCS.class, "ContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getContextCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(curlyBracketedClauseCSEClass, CurlyBracketedClauseCS.class, "CurlyBracketedClauseCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCurlyBracketedClauseCS_NameExp(), this.getNameExpCS(), this.getNameExpCS_CurlyBracketedClause(), "nameExp", null, 0, 1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCurlyBracketedClauseCS_OwnedParts(), this.getConstructorPartCS(), this.getConstructorPartCS_CurlyBracketClause(), "ownedParts", null, 0, -1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getCurlyBracketedClauseCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, CurlyBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(expCSEClass, ExpCS.class, "ExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getExpCS_Parent(), this.getOperatorCS(), null, "parent", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1525,19 +1593,11 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getIfExpCS_ThenExpression(), this.getExpCS(), null, "thenExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfExpCS_ElseExpression(), this.getExpCS(), null, "elseExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(indexExpCSEClass, IndexExpCS.class, "IndexExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIndexExpCS_FirstIndexes(), this.getExpCS(), null, "firstIndexes", null, 1, -1, IndexExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIndexExpCS_SecondIndexes(), this.getExpCS(), null, "secondIndexes", null, 0, -1, IndexExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getIndexExpCS_AtPre(), ecorePackage.getEBoolean(), "atPre", "false", 0, 1, IndexExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
 		initEClass(infixExpCSEClass, InfixExpCS.class, "InfixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getInfixExpCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 2, -1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getInfixExpCS_OwnedOperator(), this.getBinaryOperatorCS(), null, "ownedOperator", null, 1, -1, InfixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(invalidLiteralExpCSEClass, InvalidLiteralExpCS.class, "InvalidLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(invocationExpCSEClass, InvocationExpCS.class, "InvocationExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getInvocationExpCS_Argument(), this.getNavigatingArgCS(), this.getNavigatingArgCS_NavigatingExp(), "argument", null, 0, -1, InvocationExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(letExpCSEClass, LetExpCS.class, "LetExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getLetExpCS_Variable(), this.getLetVariableCS(), this.getLetVariableCS_LetExpression(), "variable", null, 0, -1, LetExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1551,12 +1611,13 @@ public class EssentialOCLCSPackageImpl
 		initEClass(nameExpCSEClass, NameExpCS.class, "NameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNameExpCS_PathName(), theBaseCSPackage.getPathNameCS(), null, "pathName", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNameExpCS_AtPre(), ecorePackage.getEBoolean(), "atPre", "false", 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
-		initEClass(namedExpCSEClass, NamedExpCS.class, "NamedExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNamedExpCS_NameExp(), this.getNameExpCS(), null, "nameExp", null, 0, 1, NamedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNameExpCS_CurlyBracketedClause(), this.getCurlyBracketedClauseCS(), this.getCurlyBracketedClauseCS_NameExp(), "curlyBracketedClause", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNameExpCS_RoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_NameExp(), "roundBracketedClause", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNameExpCS_SquareBracketedClauses(), this.getSquareBracketedClauseCS(), this.getSquareBracketedClauseCS_NameExp(), "squareBracketedClauses", null, 0, 2, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNameExpCS_SourceType(), thePivotPackage.getType(), null, "sourceType", null, 0, 1, NameExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(navigatingArgCSEClass, NavigatingArgCS.class, "NavigatingArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigatingArgCS_NavigatingExp(), this.getInvocationExpCS(), this.getInvocationExpCS_Argument(), "navigatingExp", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNavigatingArgCS_RoundBracketedClause(), this.getRoundBracketedClauseCS(), this.getRoundBracketedClauseCS_Arguments(), "roundBracketedClause", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNavigatingArgCS_Role(), this.getNavigationRole(), "role", null, 0, 1, NavigatingArgCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNavigatingArgCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigatingArgCS_Name(), this.getExpCS(), null, "name", null, 0, 1, NavigatingArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1582,8 +1643,16 @@ public class EssentialOCLCSPackageImpl
 
 		initEClass(primitiveLiteralExpCSEClass, PrimitiveLiteralExpCS.class, "PrimitiveLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEClass(roundBracketedClauseCSEClass, RoundBracketedClauseCS.class, "RoundBracketedClauseCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getRoundBracketedClauseCS_NameExp(), this.getNameExpCS(), this.getNameExpCS_RoundBracketedClause(), "nameExp", null, 0, 1, RoundBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRoundBracketedClauseCS_Arguments(), this.getNavigatingArgCS(), this.getNavigatingArgCS_RoundBracketedClause(), "arguments", null, 0, -1, RoundBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(selfExpCSEClass, SelfExpCS.class, "SelfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSelfExpCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, SelfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(squareBracketedClauseCSEClass, SquareBracketedClauseCS.class, "SquareBracketedClauseCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getSquareBracketedClauseCS_NameExp(), this.getNameExpCS(), this.getNameExpCS_SquareBracketedClauses(), "nameExp", null, 0, 1, SquareBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSquareBracketedClauseCS_Terms(), this.getExpCS(), null, "terms", null, 1, -1, SquareBracketedClauseCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stringLiteralExpCSEClass, StringLiteralExpCS.class, "StringLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringLiteralExpCS_Name(), ecorePackage.getEString(), "name", null, 0, -1, StringLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

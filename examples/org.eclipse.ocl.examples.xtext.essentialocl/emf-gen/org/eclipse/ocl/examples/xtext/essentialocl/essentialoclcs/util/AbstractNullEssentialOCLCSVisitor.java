@@ -68,6 +68,10 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitCurlyBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS object) {
+		return null;
+	}
+
 	public @Nullable R visitExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS object) {
 		return null;
 	}
@@ -80,19 +84,11 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitIndexExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS object) {
-		return null;
-	}
-
 	public @Nullable R visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS object) {
 		return null;
 	}
 
 	public @Nullable R visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS object) {
-		return null;
-	}
-
-	public @Nullable R visitInvocationExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS object) {
 		return null;
 	}
 
@@ -109,10 +105,6 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 	}
 
 	public @Nullable R visitNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS object) {
-		return null;
-	}
-
-	public @Nullable R visitNamedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS object) {
 		return null;
 	}
 
@@ -148,7 +140,15 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS object) {
+		return null;
+	}
+
 	public @Nullable R visitSelfExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS object) {
+		return null;
+	}
+
+	public @Nullable R visitSquareBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS object) {
 		return null;
 	}
 

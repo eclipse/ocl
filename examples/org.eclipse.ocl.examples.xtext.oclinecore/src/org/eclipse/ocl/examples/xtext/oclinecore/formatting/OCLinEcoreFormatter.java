@@ -47,17 +47,21 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    
 		configureCollectionLiteralExpCS(c, f.getCollectionLiteralExpCSAccess());
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
+		configureCurlyBracketedClauseCS(c, f.getCurlyBracketedClauseCSAccess());
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
+	    configureNameExpCS(c, f.getNameExpCSAccess());
 	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
 	    configurePathNameCS(c, f.getPathNameCSAccess());
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
+		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
+		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());

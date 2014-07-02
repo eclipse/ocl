@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getName <em>Name</em>}</li>
@@ -38,32 +38,32 @@ public interface NavigatingArgCS
 		extends ModelElementCS {
 
 	/**
-	 * Returns the value of the '<em><b>Navigating Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS#getArgument <em>Argument</em>}'.
+	 * Returns the value of the '<em><b>Round Bracketed Clause</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getArguments <em>Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Navigating Exp</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Round Bracketed Clause</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Navigating Exp</em>' container reference.
-	 * @see #setNavigatingExp(InvocationExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_NavigatingExp()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS#getArgument
-	 * @model opposite="argument" transient="false"
+	 * @return the value of the '<em>Round Bracketed Clause</em>' container reference.
+	 * @see #setRoundBracketedClause(RoundBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS_RoundBracketedClause()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS#getArguments
+	 * @model opposite="arguments" transient="false"
 	 * @generated
 	 */
-	InvocationExpCS getNavigatingExp();
+	RoundBracketedClauseCS getRoundBracketedClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS#getRoundBracketedClause <em>Round Bracketed Clause</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Navigating Exp</em>' container reference.
-	 * @see #getNavigatingExp()
+	 * @param value the new value of the '<em>Round Bracketed Clause</em>' container reference.
+	 * @see #getRoundBracketedClause()
 	 * @generated
 	 */
-	void setNavigatingExp(InvocationExpCS value);
+	void setRoundBracketedClause(RoundBracketedClauseCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Role</b></em>' attribute.

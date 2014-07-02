@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getCurlyBracketClause <em>Curly Bracket Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getInitExpression <em>Init Expression</em>}</li>
  * </ul>
@@ -33,6 +34,34 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
  */
 public interface ConstructorPartCS
 		extends ModelElementCS, Nameable {
+
+	/**
+	 * Returns the value of the '<em><b>Curly Bracket Clause</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts <em>Owned Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Curly Bracket Clause</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Curly Bracket Clause</em>' container reference.
+	 * @see #setCurlyBracketClause(CurlyBracketedClauseCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS_CurlyBracketClause()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS#getOwnedParts
+	 * @model opposite="ownedParts" transient="false"
+	 * @generated
+	 */
+	CurlyBracketedClauseCS getCurlyBracketClause();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS#getCurlyBracketClause <em>Curly Bracket Clause</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Curly Bracket Clause</em>' container reference.
+	 * @see #getCurlyBracketClause()
+	 * @generated
+	 */
+	void setCurlyBracketClause(CurlyBracketedClauseCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' reference.

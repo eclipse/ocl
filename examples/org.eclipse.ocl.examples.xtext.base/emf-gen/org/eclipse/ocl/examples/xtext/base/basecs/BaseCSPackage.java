@@ -76,7 +76,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getVisitableCS()
 	 * @generated
 	 */
-	int VISITABLE_CS = 51;
+	int VISITABLE_CS = 52;
 
 	/**
 	 * The number of structural features of the '<em>Visitable CS</em>' class.
@@ -95,7 +95,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getElementCS()
 	 * @generated
 	 */
-	int ELEMENT_CS = 9;
+	int ELEMENT_CS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -123,7 +123,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPivotableElementCS()
 	 * @generated
 	 */
-	int PIVOTABLE_ELEMENT_CS = 31;
+	int PIVOTABLE_ELEMENT_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -160,7 +160,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getModelElementCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS = 17;
+	int MODEL_ELEMENT_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -234,7 +234,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getDetailCS()
 	 * @generated
 	 */
-	int DETAIL_CS = 7;
+	int DETAIL_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ImportCSImpl <em>Import CS</em>}' class.
@@ -244,7 +244,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getImportCS()
 	 * @generated
 	 */
-	int IMPORT_CS = 14;
+	int IMPORT_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.NamedElementCSImpl <em>Named Element CS</em>}' class.
@@ -254,7 +254,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getNamedElementCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_CS = 22;
+	int NAMED_ELEMENT_CS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -346,7 +346,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 48;
+	int TYPED_ELEMENT_CS = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.FeatureCS <em>Feature CS</em>}' class.
@@ -356,7 +356,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getFeatureCS()
 	 * @generated
 	 */
-	int FEATURE_CS = 13;
+	int FEATURE_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.StructuralFeatureCSImpl <em>Structural Feature CS</em>}' class.
@@ -366,7 +366,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 37;
+	int STRUCTURAL_FEATURE_CS = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -396,7 +396,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getLibraryCS()
 	 * @generated
 	 */
-	int LIBRARY_CS = 16;
+	int LIBRARY_CS = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.NamespaceCS <em>Namespace CS</em>}' class.
@@ -406,7 +406,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getNamespaceCS()
 	 * @generated
 	 */
-	int NAMESPACE_CS = 23;
+	int NAMESPACE_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.OperationCSImpl <em>Operation CS</em>}' class.
@@ -416,7 +416,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getOperationCS()
 	 * @generated
 	 */
-	int OPERATION_CS = 24;
+	int OPERATION_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -426,7 +426,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPackageCS()
 	 * @generated
 	 */
-	int PACKAGE_CS = 25;
+	int PACKAGE_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -436,7 +436,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getParameterCS()
 	 * @generated
 	 */
-	int PARAMETER_CS = 27;
+	int PARAMETER_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.PrimitiveTypeRefCSImpl <em>Primitive Type Ref CS</em>}' class.
@@ -446,7 +446,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 32;
+	int PRIMITIVE_TYPE_REF_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -456,7 +456,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 33;
+	int REFERENCE_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TypeCS <em>Type CS</em>}' class.
@@ -466,7 +466,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 45;
+	int TYPE_CS = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypeParameterCSImpl <em>Type Parameter CS</em>}' class.
@@ -476,7 +476,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 46;
+	int TYPE_PARAMETER_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
@@ -486,7 +486,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTypedTypeRefCS()
 	 * @generated
 	 */
-	int TYPED_TYPE_REF_CS = 50;
+	int TYPED_TYPE_REF_CS = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.WildcardTypeRefCSImpl <em>Wildcard Type Ref CS</em>}' class.
@@ -496,7 +496,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getWildcardTypeRefCS()
 	 * @generated
 	 */
-	int WILDCARD_TYPE_REF_CS = 52;
+	int WILDCARD_TYPE_REF_CS = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypeRefCSImpl <em>Type Ref CS</em>}' class.
@@ -506,7 +506,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 47;
+	int TYPE_REF_CS = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -516,7 +516,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTypedRefCS()
 	 * @generated
 	 */
-	int TYPED_REF_CS = 49;
+	int TYPED_REF_CS = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.AnnotationCSImpl <em>Annotation CS</em>}' class.
@@ -536,7 +536,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateBindingCS()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING_CS = 38;
+	int TEMPLATE_BINDING_CS = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterCSImpl <em>Template Parameter CS</em>}' class.
@@ -546,7 +546,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateParameterCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_CS = 39;
+	int TEMPLATE_PARAMETER_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterSubstitutionCSImpl <em>Template Parameter Substitution CS</em>}' class.
@@ -556,7 +556,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 40;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateSignatureCSImpl <em>Template Signature CS</em>}' class.
@@ -566,7 +566,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateSignatureCS()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE_CS = 41;
+	int TEMPLATE_SIGNATURE_CS = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateableElementCS <em>Templateable Element CS</em>}' class.
@@ -576,7 +576,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTemplateableElementCS()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT_CS = 42;
+	int TEMPLATEABLE_ELEMENT_CS = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
@@ -596,7 +596,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getDataTypeCS()
 	 * @generated
 	 */
-	int DATA_TYPE_CS = 6;
+	int DATA_TYPE_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DocumentationCSImpl <em>Documentation CS</em>}' class.
@@ -606,7 +606,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getDocumentationCS()
 	 * @generated
 	 */
-	int DOCUMENTATION_CS = 8;
+	int DOCUMENTATION_CS = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.EnumerationCSImpl <em>Enumeration CS</em>}' class.
@@ -616,7 +616,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getEnumerationCS()
 	 * @generated
 	 */
-	int ENUMERATION_CS = 11;
+	int ENUMERATION_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.EnumerationLiteralCSImpl <em>Enumeration Literal CS</em>}' class.
@@ -626,7 +626,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getEnumerationLiteralCS()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL_CS = 12;
+	int ENUMERATION_LITERAL_CS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1455,7 +1455,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getElementRefCS()
 	 * @generated
 	 */
-	int ELEMENT_REF_CS = 10;
+	int ELEMENT_REF_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.LambdaTypeCSImpl <em>Lambda Type CS</em>}' class.
@@ -1465,7 +1465,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getLambdaTypeCS()
 	 * @generated
 	 */
-	int LAMBDA_TYPE_CS = 15;
+	int LAMBDA_TYPE_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementRefCSImpl <em>Model Element Ref CS</em>}' class.
@@ -1475,7 +1475,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getModelElementRefCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_REF_CS = 18;
+	int MODEL_ELEMENT_REF_CS = 19;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1566,6 +1566,34 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl <em>Context Less Element CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getContextLessElementCS()
+	 * @generated
+	 */
+	int CONTEXT_LESS_ELEMENT_CS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_LESS_ELEMENT_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
+	 * The number of structural features of the '<em>Context Less Element CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2277,7 +2305,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_CS = 20;
+	int MULTIPLICITY_CS = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityBoundsCSImpl <em>Multiplicity Bounds CS</em>}' class.
@@ -2287,7 +2315,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityBoundsCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_BOUNDS_CS = 19;
+	int MULTIPLICITY_BOUNDS_CS = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.MultiplicityStringCSImpl <em>Multiplicity String CS</em>}' class.
@@ -2297,7 +2325,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getMultiplicityStringCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_STRING_CS = 21;
+	int MULTIPLICITY_STRING_CS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2739,7 +2767,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPackageOwnerCS()
 	 * @generated
 	 */
-	int PACKAGE_OWNER_CS = 26;
+	int PACKAGE_OWNER_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3010,7 +3038,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPathElementCS()
 	 * @generated
 	 */
-	int PATH_ELEMENT_CS = 28;
+	int PATH_ELEMENT_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3065,7 +3093,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPathElementWithURICS()
 	 * @generated
 	 */
-	int PATH_ELEMENT_WITH_URICS = 29;
+	int PATH_ELEMENT_WITH_URICS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3129,7 +3157,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getPathNameCS()
 	 * @generated
 	 */
-	int PATH_NAME_CS = 30;
+	int PATH_NAME_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3373,7 +3401,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getRootCS()
 	 * @generated
 	 */
-	int ROOT_CS = 34;
+	int ROOT_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3455,7 +3483,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getRootPackageCS()
 	 * @generated
 	 */
-	int ROOT_PACKAGE_CS = 35;
+	int ROOT_PACKAGE_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3546,7 +3574,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getSpecificationCS()
 	 * @generated
 	 */
-	int SPECIFICATION_CS = 36;
+	int SPECIFICATION_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3907,7 +3935,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTuplePartCS()
 	 * @generated
 	 */
-	int TUPLE_PART_CS = 43;
+	int TUPLE_PART_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4007,7 +4035,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getTupleTypeCS()
 	 * @generated
 	 */
-	int TUPLE_TYPE_CS = 44;
+	int TUPLE_TYPE_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4324,7 +4352,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getIteratorKind()
 	 * @generated
 	 */
-	int ITERATOR_KIND = 53;
+	int ITERATOR_KIND = 54;
 
 
 	/**
@@ -4335,7 +4363,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 	 * @generated
 	 */
-	int SCOPE_FILTER = 54;
+	int SCOPE_FILTER = 55;
 
 
 	/**
@@ -4551,6 +4579,16 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConstraintCS_MessageSpecification();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS <em>Context Less Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Context Less Element CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS
+	 * @generated
+	 */
+	EClass getContextLessElementCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS <em>Data Type CS</em>}'.
@@ -6040,6 +6078,16 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRAINT_CS__MESSAGE_SPECIFICATION = eINSTANCE.getConstraintCS_MessageSpecification();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl <em>Context Less Element CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.base.basecs.impl.BaseCSPackageImpl#getContextLessElementCS()
+		 * @generated
+		 */
+		EClass CONTEXT_LESS_ELEMENT_CS = eINSTANCE.getContextLessElementCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.DataTypeCSImpl <em>Data Type CS</em>}' class.

@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getNavigatingExp <em>Navigating Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getRoundBracketedClause <em>Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl#getName <em>Name</em>}</li>
@@ -144,9 +144,10 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvocationExpCS getNavigatingExp() {
-		if (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP) return null;
-		return (InvocationExpCS)eInternalContainer();
+	public RoundBracketedClauseCS getRoundBracketedClause()
+	{
+		if (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE) return null;
+		return (RoundBracketedClauseCS)eInternalContainer();
 	}
 
 	/**
@@ -154,9 +155,9 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNavigatingExp(
-			InvocationExpCS newNavigatingExp, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newNavigatingExp, EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP, msgs);
+	public NotificationChain basicSetRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newRoundBracketedClause, EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE, msgs);
 		return msgs;
 	}
 
@@ -165,21 +166,22 @@ public class NavigatingArgCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNavigatingExp(InvocationExpCS newNavigatingExp) {
-		if (newNavigatingExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP && newNavigatingExp != null))
+	public void setRoundBracketedClause(RoundBracketedClauseCS newRoundBracketedClause)
+	{
+		if (newRoundBracketedClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE && newRoundBracketedClause != null))
 		{
-			if (EcoreUtil.isAncestor(this, newNavigatingExp))
+			if (EcoreUtil.isAncestor(this, newRoundBracketedClause))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newNavigatingExp != null)
-				msgs = ((InternalEObject)newNavigatingExp).eInverseAdd(this, EssentialOCLCSPackage.INVOCATION_EXP_CS__ARGUMENT, InvocationExpCS.class, msgs);
-			msgs = basicSetNavigatingExp(newNavigatingExp, msgs);
+			if (newRoundBracketedClause != null)
+				msgs = ((InternalEObject)newRoundBracketedClause).eInverseAdd(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS, RoundBracketedClauseCS.class, msgs);
+			msgs = basicSetRoundBracketedClause(newRoundBracketedClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP, newNavigatingExp, newNavigatingExp));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE, newRoundBracketedClause, newRoundBracketedClause));
 	}
 
 	/**
@@ -380,10 +382,10 @@ public class NavigatingArgCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetNavigatingExp((InvocationExpCS)otherEnd, msgs);
+				return basicSetRoundBracketedClause((RoundBracketedClauseCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -398,8 +400,8 @@ public class NavigatingArgCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				return basicSetNavigatingExp(null, msgs);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+				return basicSetRoundBracketedClause(null, msgs);
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAME:
 				return basicSetName(null, msgs);
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__OWNED_TYPE:
@@ -420,8 +422,8 @@ public class NavigatingArgCSImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.INVOCATION_EXP_CS__ARGUMENT, InvocationExpCS.class, msgs);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS__ARGUMENTS, RoundBracketedClauseCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -435,8 +437,8 @@ public class NavigatingArgCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				return getNavigatingExp();
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+				return getRoundBracketedClause();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				return getRole();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__PREFIX:
@@ -460,8 +462,8 @@ public class NavigatingArgCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				setNavigatingExp((InvocationExpCS)newValue);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+				setRoundBracketedClause((RoundBracketedClauseCS)newValue);
 				return;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				setRole((NavigationRole)newValue);
@@ -491,8 +493,8 @@ public class NavigatingArgCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				setNavigatingExp((InvocationExpCS)null);
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+				setRoundBracketedClause((RoundBracketedClauseCS)null);
 				return;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				setRole(ROLE_EDEFAULT);
@@ -522,8 +524,8 @@ public class NavigatingArgCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				return getNavigatingExp() != null;
+			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROUND_BRACKETED_CLAUSE:
+				return getRoundBracketedClause() != null;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__ROLE:
 				return role != ROLE_EDEFAULT;
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS__PREFIX:

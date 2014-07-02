@@ -79,12 +79,14 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 import org.eclipse.xtext.util.EmfFormatter;
 
@@ -400,7 +402,7 @@ public class XtextTestCase extends PivotTestCase
 //		return true;
 //	}
 
-	protected static boolean hasCorrespondingPivot(ModelElementCS csElement) {
+	public static boolean hasCorrespondingPivot(ModelElementCS csElement) {
 		if (csElement instanceof TupleTypeCS) {
 			return true;
 		}
@@ -422,7 +424,13 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof NavigatingArgCS) {
 			return false;
 		}
-		if (csElement instanceof InvocationExpCS) {
+		if (csElement instanceof CurlyBracketedClauseCS) {
+			return false;
+		}
+		if (csElement instanceof RoundBracketedClauseCS) {
+			return false;
+		}
+		if (csElement instanceof SquareBracketedClauseCS) {
 			return false;
 		}
 		if (csElement instanceof NavigationOperatorCS) {
@@ -437,7 +445,7 @@ public class XtextTestCase extends PivotTestCase
 		return true;
 	}
 
-	protected static boolean hasUniqueMoniker(ModelElementCS csElement) {
+	public static boolean hasUniqueMoniker(ModelElementCS csElement) {
 		if (csElement instanceof TupleTypeCS) {
 			return false;
 		}
@@ -453,7 +461,13 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof PrefixExpCS) {
 			return false;
 		}
-		if (csElement instanceof InvocationExpCS) {
+		if (csElement instanceof CurlyBracketedClauseCS) {
+			return false;
+		}
+		if (csElement instanceof RoundBracketedClauseCS) {
+			return false;
+		}
+		if (csElement instanceof SquareBracketedClauseCS) {
 			return false;
 		}
 		if (csElement instanceof NavigationOperatorCS) {

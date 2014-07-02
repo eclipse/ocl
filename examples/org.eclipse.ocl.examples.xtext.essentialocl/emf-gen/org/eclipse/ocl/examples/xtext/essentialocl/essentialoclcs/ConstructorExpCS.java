@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}</li>
  * </ul>
@@ -30,7 +32,33 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ConstructorExpCS
-		extends NamedExpCS {
+		extends ExpCS {
+
+	/**
+	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Path Name</em>' containment reference.
+	 * @see #setPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_PathName()
+	 * @model containment="true"
+	 * @generated
+	 */
+	PathNameCS getPathName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getPathName <em>Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Path Name</em>' containment reference.
+	 * @see #getPathName()
+	 * @generated
+	 */
+	void setPathName(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.

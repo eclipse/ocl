@@ -17,11 +17,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
@@ -44,12 +41,12 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		createChildren(parentNode, constraint.getSpecification());
 	}
 
-	protected void _createChildren(IOutlineNode parentNode, InvocationExpCS csExp) {
+/*	protected void _createChildren(IOutlineNode parentNode, InvocationExpCS csExp) {
 		// createNode(parentNode, csExp.getNameExp());
 		for (NavigatingArgCS csArgument : csExp.getArgument()) {
 			createNode(parentNode, csArgument);
 		}
-	}
+	} */
 
 	protected void _createChildren(IOutlineNode parentNode, NavigationOperatorCS csOperator) {
 		createNode(parentNode, csOperator.getSource());
@@ -124,13 +121,13 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		return true;
 	}
 
-	protected boolean _isLeaf(IndexExpCS csExp) {
-		return false;
-	}
+//	protected boolean _isLeaf(IndexExpCS csExp) {
+//		return false;
+//	}
 
-	protected boolean _isLeaf(InvocationExpCS csExp) {
-		return false;
-	}
+//	protected boolean _isLeaf(InvocationExpCS csExp) {
+//		return false;
+//	}
 
 	protected boolean _isLeaf(NameExpCS csExp) {
 		return true;

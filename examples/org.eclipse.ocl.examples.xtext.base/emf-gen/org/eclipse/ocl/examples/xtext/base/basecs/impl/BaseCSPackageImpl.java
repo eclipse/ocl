@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS;
@@ -129,6 +130,13 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	private EClass constraintCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contextLessElementCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -739,6 +747,16 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	public EReference getConstraintCS_MessageSpecification()
 	{
 		return (EReference)constraintCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContextLessElementCS()
+	{
+		return contextLessElementCSEClass;
 	}
 
 	/**
@@ -1967,6 +1985,8 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(constraintCSEClass, CONSTRAINT_CS__SPECIFICATION);
 		createEReference(constraintCSEClass, CONSTRAINT_CS__MESSAGE_SPECIFICATION);
 
+		contextLessElementCSEClass = createEClass(CONTEXT_LESS_ELEMENT_CS);
+
 		dataTypeCSEClass = createEClass(DATA_TYPE_CS);
 		createEReference(dataTypeCSEClass, DATA_TYPE_CS__LITERALS);
 
@@ -2182,6 +2202,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		classifierCSEClass.getESuperTypes().add(this.getTypeCS());
 		classifierCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
 		constraintCSEClass.getESuperTypes().add(this.getNamedElementCS());
+		contextLessElementCSEClass.getESuperTypes().add(this.getElementCS());
 		dataTypeCSEClass.getESuperTypes().add(this.getClassifierCS());
 		dataTypeCSEClass.getESuperTypes().add(this.getNamespaceCS());
 		detailCSEClass.getESuperTypes().add(this.getNamedElementCS());
@@ -2271,6 +2292,8 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEAttribute(getConstraintCS_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraintCS_Specification(), this.getSpecificationCS(), null, "specification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraintCS_MessageSpecification(), this.getSpecificationCS(), null, "messageSpecification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(contextLessElementCSEClass, ContextLessElementCS.class, "ContextLessElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(dataTypeCSEClass, DataTypeCS.class, "DataTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDataTypeCS_Literals(), this.getEnumerationLiteralCS(), null, "literals", null, 0, -1, DataTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

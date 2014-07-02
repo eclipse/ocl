@@ -17,8 +17,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 
 public class NavigationOperatorCSAttribution extends AbstractAttribution
@@ -34,8 +34,8 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 		NavigationOperatorCS targetElement = (NavigationOperatorCS)target;
 		EObject child = scopeView.getChild();
 		ExpCS argument = targetElement.getArgument();
-		if ((child == argument) && (child instanceof AbstractNameExpCS)) {
-			Type type = ((AbstractNameExpCS)child).getSourceType();
+		if ((child == argument) && (child instanceof NameExpCS)) {
+			Type type = ((NameExpCS)child).getSourceType();
 			if (type != null) {
 				environmentView.addElementsOfScope(type, scopeView);
 				return null;											// Explicit navigation must be resolved in source

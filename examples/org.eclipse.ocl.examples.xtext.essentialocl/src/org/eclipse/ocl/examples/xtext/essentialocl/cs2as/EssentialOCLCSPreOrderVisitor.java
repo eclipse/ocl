@@ -10,20 +10,16 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2as;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.MultiplicityCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BasicContinuation;
@@ -32,14 +28,10 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
@@ -140,22 +132,17 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 	}
 
 	@Override
-	public Continuation<?> visitConstructorExpCS(@NonNull ConstructorExpCS csConstructorExp) {
-		return null;
-	}
-
-	@Override
 	public Continuation<?> visitContextCS(@NonNull ContextCS csContext) {
 		return null;
 	}
 
 	@Override
-	public Continuation<?> visitExpCS(@NonNull ExpCS csExp) {
+	public Continuation<?> visitContextLessElementCS(@NonNull ContextLessElementCS csElement) {
 		return null;
 	}
 
 	@Override
-	public Continuation<?> visitInvocationExpCS(@NonNull InvocationExpCS csNavigatingExp) {
+	public Continuation<?> visitExpCS(@NonNull ExpCS csExp) {
 		return null;
 	}
 
@@ -166,27 +153,6 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 	@Override
 	public Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS csNavigatingArg) {
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitNavigationOperatorCS(@NonNull NavigationOperatorCS object) {
-		EObject eContainer = object.eContainer();
-		if (eContainer instanceof InfixExpCS) {
-			InfixExpCS csInfixExp = (InfixExpCS)eContainer;
-			int index = csInfixExp.getOwnedOperator().indexOf(object);
-			if (index >= 0) {
-				List<ExpCS> expressions = csInfixExp.getOwnedExpression();
-				if ((index+1) < expressions.size()) {
-					ExpCS csExp = expressions.get(index+1);
-					if ((csExp instanceof NameExpCS) && !(csExp instanceof InvocationExpCS)) {
-						PathNameCS pathName = ((NameExpCS) csExp).getPathName();
-						assert pathName != null;
-						CS2Pivot.setElementType(pathName, PivotPackage.Literals.PROPERTY, csExp, null);
-					}
-				}
-			}
-		}
 		return null;
 	}
 

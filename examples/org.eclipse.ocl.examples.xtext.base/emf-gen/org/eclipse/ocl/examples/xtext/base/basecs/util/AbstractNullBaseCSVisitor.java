@@ -60,6 +60,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitContextLessElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS object) {
+		return null;
+	}
+
 	public @Nullable R visitDataTypeCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS object) {
 		return null;
 	}

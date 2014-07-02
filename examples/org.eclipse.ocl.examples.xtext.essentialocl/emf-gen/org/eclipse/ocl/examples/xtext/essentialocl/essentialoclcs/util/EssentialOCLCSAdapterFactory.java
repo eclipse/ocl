@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
@@ -90,11 +91,6 @@ public class EssentialOCLCSAdapterFactory
 	protected EssentialOCLCSSwitch<Adapter> modelSwitch = new EssentialOCLCSSwitch<Adapter>()
 		{
 			@Override
-			public Adapter caseAbstractNameExpCS(AbstractNameExpCS object)
-			{
-				return createAbstractNameExpCSAdapter();
-			}
-			@Override
 			public Adapter caseBinaryOperatorCS(BinaryOperatorCS object)
 			{
 				return createBinaryOperatorCSAdapter();
@@ -135,6 +131,11 @@ public class EssentialOCLCSAdapterFactory
 				return createContextCSAdapter();
 			}
 			@Override
+			public Adapter caseCurlyBracketedClauseCS(CurlyBracketedClauseCS object)
+			{
+				return createCurlyBracketedClauseCSAdapter();
+			}
+			@Override
 			public Adapter caseExpCS(ExpCS object)
 			{
 				return createExpCSAdapter();
@@ -150,11 +151,6 @@ public class EssentialOCLCSAdapterFactory
 				return createIfExpCSAdapter();
 			}
 			@Override
-			public Adapter caseIndexExpCS(IndexExpCS object)
-			{
-				return createIndexExpCSAdapter();
-			}
-			@Override
 			public Adapter caseInfixExpCS(InfixExpCS object)
 			{
 				return createInfixExpCSAdapter();
@@ -163,11 +159,6 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseInvalidLiteralExpCS(InvalidLiteralExpCS object)
 			{
 				return createInvalidLiteralExpCSAdapter();
-			}
-			@Override
-			public Adapter caseInvocationExpCS(InvocationExpCS object)
-			{
-				return createInvocationExpCSAdapter();
 			}
 			@Override
 			public Adapter caseLetExpCS(LetExpCS object)
@@ -188,11 +179,6 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseNameExpCS(NameExpCS object)
 			{
 				return createNameExpCSAdapter();
-			}
-			@Override
-			public Adapter caseNamedExpCS(NamedExpCS object)
-			{
-				return createNamedExpCSAdapter();
 			}
 			@Override
 			public Adapter caseNavigatingArgCS(NavigatingArgCS object)
@@ -235,9 +221,19 @@ public class EssentialOCLCSAdapterFactory
 				return createPrimitiveLiteralExpCSAdapter();
 			}
 			@Override
+			public Adapter caseRoundBracketedClauseCS(RoundBracketedClauseCS object)
+			{
+				return createRoundBracketedClauseCSAdapter();
+			}
+			@Override
 			public Adapter caseSelfExpCS(SelfExpCS object)
 			{
 				return createSelfExpCSAdapter();
+			}
+			@Override
+			public Adapter caseSquareBracketedClauseCS(SquareBracketedClauseCS object)
+			{
+				return createSquareBracketedClauseCSAdapter();
 			}
 			@Override
 			public Adapter caseStringLiteralExpCS(StringLiteralExpCS object)
@@ -335,6 +331,11 @@ public class EssentialOCLCSAdapterFactory
 				return createRootCSAdapter();
 			}
 			@Override
+			public Adapter caseContextLessElementCS(ContextLessElementCS object)
+			{
+				return createContextLessElementCSAdapter();
+			}
+			@Override
 			public Adapter caseSpecificationCS(SpecificationCS object)
 			{
 				return createSpecificationCSAdapter();
@@ -357,20 +358,6 @@ public class EssentialOCLCSAdapterFactory
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject)target);
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS <em>Abstract Name Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS
-	 * @generated
-	 */
-	public Adapter createAbstractNameExpCSAdapter() {
-		return null;
 	}
 
 	/**
@@ -453,7 +440,8 @@ public class EssentialOCLCSAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS
 	 * @generated
 	 */
-	public Adapter createConstructorExpCSAdapter() {
+	public Adapter createConstructorExpCSAdapter()
+	{
 		return null;
 	}
 
@@ -482,6 +470,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createContextCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS <em>Curly Bracketed Clause CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS
+	 * @generated
+	 */
+	public Adapter createCurlyBracketedClauseCSAdapter()
+	{
 		return null;
 	}
 
@@ -528,20 +531,6 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS <em>Index Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS
-	 * @generated
-	 */
-	public Adapter createIndexExpCSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS <em>Infix Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -566,20 +555,6 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createInvalidLiteralExpCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS <em>Invocation Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS
-	 * @generated
-	 */
-	public Adapter createInvocationExpCSAdapter() {
 		return null;
 	}
 
@@ -636,20 +611,6 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createNameExpCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS <em>Named Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS
-	 * @generated
-	 */
-	public Adapter createNamedExpCSAdapter() {
 		return null;
 	}
 
@@ -766,6 +727,21 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS <em>Round Bracketed Clause CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS
+	 * @generated
+	 */
+	public Adapter createRoundBracketedClauseCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS <em>Self Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -776,6 +752,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createSelfExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS <em>Square Bracketed Clause CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS
+	 * @generated
+	 */
+	public Adapter createSquareBracketedClauseCSAdapter()
+	{
 		return null;
 	}
 
@@ -1042,6 +1033,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createRootCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS <em>Context Less Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS
+	 * @generated
+	 */
+	public Adapter createContextLessElementCSAdapter()
+	{
 		return null;
 	}
 

@@ -17,7 +17,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
@@ -92,8 +92,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		else if (csParent instanceof NavigatingArgCS) {
 			return (NavigatingArgCS) csParent;
 		}
-		else if (csParent instanceof InvocationExpCS) {
-			return getPivotingChildCS((InvocationExpCS) csParent);
+		else if (csParent instanceof NameExpCS) {
+			return getPivotingChildCS((NameExpCS) csParent);
 		}
 		else if (csParent instanceof NestedExpCS) {
 			return getPivotingChildCS((NestedExpCS) csParent);

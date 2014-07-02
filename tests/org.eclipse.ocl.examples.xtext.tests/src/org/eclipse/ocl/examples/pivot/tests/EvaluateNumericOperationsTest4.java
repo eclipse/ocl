@@ -127,8 +127,8 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		assertSemanticErrorQuery("3 .1", "bad navigation argument");
 		assertSemanticErrorQuery("3. 1", "bad navigation argument");
 		assertSemanticErrorQuery("3.1 e1", "extraneous input ''{0}'' expecting EOF", "e1");
-		assertSemanticErrorQuery("3.1e 1", "missing EOF at ''{0}''", "e");
-		assertSemanticErrorQuery("3.1e+ 1", "missing EOF at ''{0}''", "e");
+		assertSemanticErrorQuery("3.1e 1", "no viable alternative at ''{0}''", "e");
+		assertSemanticErrorQuery("3.1e+ 1", "no viable alternative at ''{0}''", "e");
 	}
     
 	@Test public void testNumberAbs() {

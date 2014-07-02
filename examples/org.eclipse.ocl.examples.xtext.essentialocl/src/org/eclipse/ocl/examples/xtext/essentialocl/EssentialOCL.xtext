@@ -284,28 +284,29 @@ PrimaryExpCS returns ExpCS:
 | 	TupleLiteralExpCS
 | 	CollectionLiteralExpCS
 | 	TypeLiteralExpCS
-| 	({NameExpCS} pathName=PathNameCS
-		(
-			(({IndexExpCS.nameExp=current} '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
-										('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
-										(atPre?='@' 'pre')?
-			))
-		|
-			({ConstructorExpCS.nameExp=current} '{'
-				( ((ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)*))?
-				| (value=StringLiteral)
-				) '}'
-			)
-		|	( (atPre?='@' 'pre')?
-				({InvocationExpCS.nameExp=current} '(' (
-					argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
-					(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
-					(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?
-					)? ')'
-				)?
-			)
-		)
-	);
+| 	NameExpCS;
+
+NameExpCS returns NameExpCS:
+	pathName=PathNameCS squareBracketedClauses+=SquareBracketedClauseCS*
+	roundBracketedClause=RoundBracketedClauseCS? curlyBracketedClause=CurlyBracketedClauseCS? (atPre?='@' 'pre')?;
+
+CurlyBracketedClauseCS:
+	{CurlyBracketedClauseCS} '{'
+		( ((ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)*))?
+		| (value=StringLiteral)
+		) '}'
+	;
+	
+RoundBracketedClauseCS:
+	{RoundBracketedClauseCS} '(' (
+		arguments+=NavigatingArgCS (arguments+=NavigatingCommaArgCS)*
+		(arguments+=NavigatingSemiArgCS (arguments+=NavigatingCommaArgCS)*)?
+		(arguments+=NavigatingBarArgCS (arguments+=NavigatingCommaArgCS)*)?
+		)? ')'
+	;
+
+SquareBracketedClauseCS:
+	'[' terms+=ExpCS (',' terms+=ExpCS)* ']';
 
 NavigatingArgCS returns NavigatingArgCS:
 	name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
@@ -68,7 +69,7 @@ public class EssentialOCLCSSwitch<T>
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -88,19 +89,6 @@ public class EssentialOCLCSSwitch<T>
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
-			case EssentialOCLCSPackage.ABSTRACT_NAME_EXP_CS:
-			{
-				AbstractNameExpCS abstractNameExpCS = (AbstractNameExpCS)theEObject;
-				T result = caseAbstractNameExpCS(abstractNameExpCS);
-				if (result == null) result = caseExpCS(abstractNameExpCS);
-				if (result == null) result = caseModelElementCS(abstractNameExpCS);
-				if (result == null) result = casePivotableElementCS(abstractNameExpCS);
-				if (result == null) result = caseElementCS(abstractNameExpCS);
-				if (result == null) result = casePivotable(abstractNameExpCS);
-				if (result == null) result = caseVisitableCS(abstractNameExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSPackage.BINARY_OPERATOR_CS:
 			{
 				BinaryOperatorCS binaryOperatorCS = (BinaryOperatorCS)theEObject;
@@ -177,8 +165,6 @@ public class EssentialOCLCSSwitch<T>
 			{
 				ConstructorExpCS constructorExpCS = (ConstructorExpCS)theEObject;
 				T result = caseConstructorExpCS(constructorExpCS);
-				if (result == null) result = caseNamedExpCS(constructorExpCS);
-				if (result == null) result = caseAbstractNameExpCS(constructorExpCS);
 				if (result == null) result = caseExpCS(constructorExpCS);
 				if (result == null) result = caseModelElementCS(constructorExpCS);
 				if (result == null) result = casePivotableElementCS(constructorExpCS);
@@ -213,6 +199,16 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(contextCS);
 				if (result == null) result = casePivotable(contextCS);
 				if (result == null) result = caseVisitableCS(contextCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS:
+			{
+				CurlyBracketedClauseCS curlyBracketedClauseCS = (CurlyBracketedClauseCS)theEObject;
+				T result = caseCurlyBracketedClauseCS(curlyBracketedClauseCS);
+				if (result == null) result = caseContextLessElementCS(curlyBracketedClauseCS);
+				if (result == null) result = caseElementCS(curlyBracketedClauseCS);
+				if (result == null) result = caseVisitableCS(curlyBracketedClauseCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -254,21 +250,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSPackage.INDEX_EXP_CS:
-			{
-				IndexExpCS indexExpCS = (IndexExpCS)theEObject;
-				T result = caseIndexExpCS(indexExpCS);
-				if (result == null) result = caseNamedExpCS(indexExpCS);
-				if (result == null) result = caseAbstractNameExpCS(indexExpCS);
-				if (result == null) result = caseExpCS(indexExpCS);
-				if (result == null) result = caseModelElementCS(indexExpCS);
-				if (result == null) result = casePivotableElementCS(indexExpCS);
-				if (result == null) result = caseElementCS(indexExpCS);
-				if (result == null) result = casePivotable(indexExpCS);
-				if (result == null) result = caseVisitableCS(indexExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSPackage.INFIX_EXP_CS:
 			{
 				InfixExpCS infixExpCS = (InfixExpCS)theEObject;
@@ -294,21 +275,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(invalidLiteralExpCS);
 				if (result == null) result = casePivotable(invalidLiteralExpCS);
 				if (result == null) result = caseVisitableCS(invalidLiteralExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSPackage.INVOCATION_EXP_CS:
-			{
-				InvocationExpCS invocationExpCS = (InvocationExpCS)theEObject;
-				T result = caseInvocationExpCS(invocationExpCS);
-				if (result == null) result = caseNamedExpCS(invocationExpCS);
-				if (result == null) result = caseAbstractNameExpCS(invocationExpCS);
-				if (result == null) result = caseExpCS(invocationExpCS);
-				if (result == null) result = caseModelElementCS(invocationExpCS);
-				if (result == null) result = casePivotableElementCS(invocationExpCS);
-				if (result == null) result = caseElementCS(invocationExpCS);
-				if (result == null) result = casePivotable(invocationExpCS);
-				if (result == null) result = caseVisitableCS(invocationExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -358,27 +324,12 @@ public class EssentialOCLCSSwitch<T>
 			{
 				NameExpCS nameExpCS = (NameExpCS)theEObject;
 				T result = caseNameExpCS(nameExpCS);
-				if (result == null) result = caseAbstractNameExpCS(nameExpCS);
 				if (result == null) result = caseExpCS(nameExpCS);
 				if (result == null) result = caseModelElementCS(nameExpCS);
 				if (result == null) result = casePivotableElementCS(nameExpCS);
 				if (result == null) result = caseElementCS(nameExpCS);
 				if (result == null) result = casePivotable(nameExpCS);
 				if (result == null) result = caseVisitableCS(nameExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSPackage.NAMED_EXP_CS:
-			{
-				NamedExpCS namedExpCS = (NamedExpCS)theEObject;
-				T result = caseNamedExpCS(namedExpCS);
-				if (result == null) result = caseAbstractNameExpCS(namedExpCS);
-				if (result == null) result = caseExpCS(namedExpCS);
-				if (result == null) result = caseModelElementCS(namedExpCS);
-				if (result == null) result = casePivotableElementCS(namedExpCS);
-				if (result == null) result = caseElementCS(namedExpCS);
-				if (result == null) result = casePivotable(namedExpCS);
-				if (result == null) result = caseVisitableCS(namedExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -496,6 +447,16 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS:
+			{
+				RoundBracketedClauseCS roundBracketedClauseCS = (RoundBracketedClauseCS)theEObject;
+				T result = caseRoundBracketedClauseCS(roundBracketedClauseCS);
+				if (result == null) result = caseContextLessElementCS(roundBracketedClauseCS);
+				if (result == null) result = caseElementCS(roundBracketedClauseCS);
+				if (result == null) result = caseVisitableCS(roundBracketedClauseCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.SELF_EXP_CS:
 			{
 				SelfExpCS selfExpCS = (SelfExpCS)theEObject;
@@ -506,6 +467,16 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(selfExpCS);
 				if (result == null) result = casePivotable(selfExpCS);
 				if (result == null) result = caseVisitableCS(selfExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS:
+			{
+				SquareBracketedClauseCS squareBracketedClauseCS = (SquareBracketedClauseCS)theEObject;
+				T result = caseSquareBracketedClauseCS(squareBracketedClauseCS);
+				if (result == null) result = caseContextLessElementCS(squareBracketedClauseCS);
+				if (result == null) result = caseElementCS(squareBracketedClauseCS);
+				if (result == null) result = caseVisitableCS(squareBracketedClauseCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -631,21 +602,6 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Name Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Name Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractNameExpCS(AbstractNameExpCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Binary Operator CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -731,7 +687,8 @@ public class EssentialOCLCSSwitch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConstructorExpCS(ConstructorExpCS object) {
+	public T caseConstructorExpCS(ConstructorExpCS object)
+	{
 		return null;
 	}
 
@@ -762,6 +719,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseContextCS(ContextCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Curly Bracketed Clause CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Curly Bracketed Clause CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCurlyBracketedClauseCS(CurlyBracketedClauseCS object)
+	{
 		return null;
 	}
 
@@ -811,21 +784,6 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Index Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Index Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIndexExpCS(IndexExpCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Infix Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -852,21 +810,6 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseInvalidLiteralExpCS(InvalidLiteralExpCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Invocation Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Invocation Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInvocationExpCS(InvocationExpCS object) {
 		return null;
 	}
 
@@ -927,21 +870,6 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseNameExpCS(NameExpCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamedExpCS(NamedExpCS object) {
 		return null;
 	}
 
@@ -1066,6 +994,22 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Round Bracketed Clause CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Round Bracketed Clause CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRoundBracketedClauseCS(RoundBracketedClauseCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Self Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1077,6 +1021,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseSelfExpCS(SelfExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Square Bracketed Clause CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Square Bracketed Clause CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSquareBracketedClauseCS(SquareBracketedClauseCS object)
+	{
 		return null;
 	}
 
@@ -1364,6 +1324,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseRootCS(RootCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Context Less Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Context Less Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContextLessElementCS(ContextLessElementCS object)
+	{
 		return null;
 	}
 

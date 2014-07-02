@@ -55,7 +55,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS;
 import org.eclipse.xtext.diagnostics.AbstractDiagnostic;
@@ -72,8 +72,47 @@ import org.eclipse.xtext.util.Triple;
 
 public class EssentialOCLCSResource extends LazyLinkingResource implements BaseCSResource2
 {	
+	protected static class RenamedDiagnostic extends AbstractDiagnostic
+	{
+		private final SyntaxErrorMessage syntaxErrorMessage;
+		private final INode error;
+		private final String newMessage;
+
+		protected RenamedDiagnostic(SyntaxErrorMessage syntaxErrorMessage, INode error, String newMessage) {
+			this.syntaxErrorMessage = syntaxErrorMessage;
+			this.error = error;
+			this.newMessage = newMessage;
+		}
+
+		@Override
+		public String getCode() {
+			return syntaxErrorMessage.getIssueCode();
+		}
+
+		@Override
+		public int getColumn() {
+			return -1;
+		}
+
+		@Override
+		public String[] getData() {
+			return syntaxErrorMessage.getIssueData();
+		}
+
+		public String getMessage() {
+			return newMessage;
+		}
+
+		@Override
+		protected INode getNode() {
+			return error;
+		}
+	}
+
 	private static final String NO_VIABLE_ALTERNATIVE_AT_INPUT_EOF = "no viable alternative at input '<EOF>'";
 	private static final String NO_VIABLE_ALTERNATIVE_FOLLOWING = "no viable alternative following input ";
+	private static final String NO_VIABLE_ALTERNATIVE_AT = "no viable alternative at ";
+	private static final String MISSING_EOF_AT = "missing EOF at ";
 	
 	private static final Logger logger = Logger.getLogger(EssentialOCLCSResource.class);
 	
@@ -120,32 +159,17 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 						String tokenText = NodeModelUtils.getTokenText(error);
 						if (tokenText != null) {
 							final String newMessage = message.substring(0, index) + NO_VIABLE_ALTERNATIVE_FOLLOWING + "'" + tokenText + "'" + message.substring(index+NO_VIABLE_ALTERNATIVE_AT_INPUT_EOF.length());
-							diagnostic = new AbstractDiagnostic()
-							{
-								@Override
-								public String getCode() {
-									return syntaxErrorMessage.getIssueCode();
-								}
-
-								@Override
-								public int getColumn() {
-									return -1;
-								}
-
-								@Override
-								public String[] getData() {
-									return syntaxErrorMessage.getIssueData();
-								}
-
-								public String getMessage() {
-									return newMessage;
-								}
-
-								@Override
-								protected INode getNode() {
-									return error;
-								}
-							};
+							diagnostic = new RenamedDiagnostic(syntaxErrorMessage, error, newMessage);
+						}
+					}
+				}
+				else if ((message != null) && message.contains(MISSING_EOF_AT)){
+					int index = message.indexOf(MISSING_EOF_AT);
+					if (index >= 0) {
+						String tokenText = NodeModelUtils.getTokenText(error);
+						if (tokenText != null) {
+							final String newMessage = message.substring(0, index) + NO_VIABLE_ALTERNATIVE_AT + message.substring(index+MISSING_EOF_AT.length());
+							diagnostic = new RenamedDiagnostic(syntaxErrorMessage, error, newMessage);
 						}
 					}
 				}
@@ -302,7 +326,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				return true;
 			}
 			csElement = csElement.getLogicalParent();
-			if (!(csElement instanceof NavigationOperatorCS) && !(csElement instanceof NamedExpCS)) {
+			if (!(csElement instanceof NavigationOperatorCS) && !(csElement instanceof NameExpCS)) {
 				break;
 			}
 		}

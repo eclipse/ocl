@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
@@ -35,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl#getValue <em>Value</em>}</li>
  * </ul>
@@ -43,8 +45,18 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * @generated
  */
 public class ConstructorExpCSImpl
-		extends NamedExpCSImpl
+		extends ExpCSImpl
 		implements ConstructorExpCS {
+
+	/**
+	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPathName()
+	 * @generated
+	 * @ordered
+	 */
+	protected PathNameCS pathName;
 
 	/**
 	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
@@ -93,6 +105,54 @@ public class ConstructorExpCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSPackage.Literals.CONSTRUCTOR_EXP_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PathNameCS getPathName()
+	{
+		return pathName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
+	{
+		PathNameCS oldPathName = pathName;
+		pathName = newPathName;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME, oldPathName, newPathName);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPathName(PathNameCS newPathName)
+	{
+		if (newPathName != pathName)
+		{
+			NotificationChain msgs = null;
+			if (pathName != null)
+				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME, null, msgs);
+			if (newPathName != null)
+				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME, null, msgs);
+			msgs = basicSetPathName(newPathName, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME, newPathName, newPathName));
 	}
 
 	/**
@@ -149,6 +209,8 @@ public class ConstructorExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME:
+				return basicSetPathName(null, msgs);
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
 		}
@@ -164,6 +226,8 @@ public class ConstructorExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME:
+				return getPathName();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				return getOwnedParts();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:
@@ -182,6 +246,9 @@ public class ConstructorExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME:
+				setPathName((PathNameCS)newValue);
+				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
@@ -202,6 +269,9 @@ public class ConstructorExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME:
+				setPathName((PathNameCS)null);
+				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				return;
@@ -221,6 +291,8 @@ public class ConstructorExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PATH_NAME:
+				return pathName != null;
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE:

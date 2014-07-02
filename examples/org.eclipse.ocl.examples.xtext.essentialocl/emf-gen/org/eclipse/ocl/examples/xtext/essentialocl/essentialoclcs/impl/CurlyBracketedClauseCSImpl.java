@@ -1,0 +1,348 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.xtext.base.basecs.impl.ContextLessElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Curly Bracketed Clause CS</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getNameExp <em>Name Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CurlyBracketedClauseCSImpl#getValue <em>Value</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl implements CurlyBracketedClauseCS
+{
+	/**
+	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedParts()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstructorPartCS> ownedParts;
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CurlyBracketedClauseCSImpl()
+	{
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return EssentialOCLCSPackage.Literals.CURLY_BRACKETED_CLAUSE_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NameExpCS getNameExp()
+	{
+		if (eContainerFeatureID() != EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP) return null;
+		return (NameExpCS)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetNameExp(NameExpCS newNameExp, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newNameExp, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNameExp(NameExpCS newNameExp)
+	{
+		if (newNameExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP && newNameExp != null))
+		{
+			if (EcoreUtil.isAncestor(this, newNameExp))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newNameExp != null)
+				msgs = ((InternalEObject)newNameExp).eInverseAdd(this, EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE, NameExpCS.class, msgs);
+			msgs = basicSetNameExp(newNameExp, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP, newNameExp, newNameExp));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConstructorPartCS> getOwnedParts()
+	{
+		if (ownedParts == null)
+		{
+			ownedParts = new EObjectContainmentWithInverseEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE);
+		}
+		return ownedParts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getValue()
+	{
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(String newValue)
+	{
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE, oldValue, value));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetNameExp((NameExpCS)otherEnd, msgs);
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParts()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				return basicSetNameExp(null, msgs);
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.NAME_EXP_CS__CURLY_BRACKETED_CLAUSE, NameExpCS.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				return getNameExp();
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				return getOwnedParts();
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
+				return getValue();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				setNameExp((NameExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				getOwnedParts().clear();
+				getOwnedParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
+				setValue((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				setNameExp((NameExpCS)null);
+				return;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				getOwnedParts().clear();
+				return;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__NAME_EXP:
+				return getNameExp() != null;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
+				return ownedParts != null && !ownedParts.isEmpty();
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
+		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitCurlyBracketedClauseCS(this);
+	}
+
+} //CurlyBracketedClauseCSImpl

@@ -59,6 +59,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageSpecification" eType="#//SpecificationCS"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextLessElementCS" abstract="true"
+      eSuperTypes="#//ElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypeCS" eSuperTypes="#//ClassifierCS #//NamespaceCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
         eType="#//EnumerationLiteralCS" containment="true" resolveProxies="false"/>

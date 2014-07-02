@@ -33,11 +33,19 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -235,7 +243,41 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		}
 		return documentationNodes;
 	}
+
+	private static final class TypeValueFilter implements ScopeFilter
+	{
+		public static TypeValueFilter INSTANCE = new TypeValueFilter();
+		
+		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
+				@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
+			return 0;
+		}
+
+		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
+			if (object instanceof Type) {
+				return true;
+			}
+			if (object instanceof TypedElement) {
+				return ((TypedElement)object).getType() instanceof Metaclass<?>;
+			}
+			return false;
+		}
+	}
 	
+	private static final class UndecoratedNameFilter implements ScopeFilter
+	{
+		public static UndecoratedNameFilter INSTANCE = new UndecoratedNameFilter();
+		
+		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
+				@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
+			return 0;
+		}
+
+		public boolean matches(@NonNull EnvironmentView environmentView, @NonNull Object object) {
+			return !(object instanceof Operation) && !(object instanceof org.eclipse.ocl.examples.pivot.Package);
+		}
+	}
+
 	public static MessageBinder getMessageBinder() {
 		return messageBinder;
 	}
@@ -459,6 +501,56 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 
 	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
 		return this.metaModelManager == metaModelManager;
+	}
+
+	public @Nullable Iteration lookupIteration(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
+		setElementType(csPathName, PivotPackage.Literals.ITERATION, csElement, scopeFilter);
+		Element namedElement = csPathName.getElement();
+		if (namedElement instanceof Iteration) {
+			return (Iteration) namedElement;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public @Nullable Operation lookupOperation(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
+		setElementType(csPathName, PivotPackage.Literals.OPERATION, csElement, scopeFilter);
+		Element namedElement = csPathName.getElement();
+		if (namedElement instanceof Operation) {
+			return (Operation) namedElement;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public @Nullable Type lookupType(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
+		setElementType(csPathName, PivotPackage.Literals.TYPE, csElement, null);
+		Element namedElement = csPathName.getElement();
+		if (namedElement instanceof Type) {
+			return (Type) namedElement;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public @Nullable Type lookupTypeValue(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
+		setElementType(csPathName, PivotPackage.Literals.NAMED_ELEMENT, csElement, TypeValueFilter.INSTANCE);	// Type or Variable
+		Element namedElement = csPathName.getElement();
+		if (namedElement instanceof Type) {
+			return (Type) namedElement;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public @Nullable Element lookupUndecoratedName(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
+		setElementType(csPathName, PivotPackage.Literals.ELEMENT, csElement, UndecoratedNameFilter.INSTANCE);
+		Element namedElement = csPathName.getElement();
+		return namedElement;
 	}
 
 	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {

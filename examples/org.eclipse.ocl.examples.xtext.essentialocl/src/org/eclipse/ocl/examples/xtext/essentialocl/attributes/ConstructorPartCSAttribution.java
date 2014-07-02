@@ -20,8 +20,10 @@ import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 
 public class ConstructorPartCSAttribution extends AbstractAttribution
 {
@@ -31,8 +33,10 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS__PROPERTY) {
-			ConstructorExpCS targetElement = (ConstructorExpCS)target.eContainer();
-			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, targetElement);
+			ConstructorPartCS targetElement = (ConstructorPartCS)target;
+			CurlyBracketedClauseCS csCurlyBracketClause = targetElement.getCurlyBracketClause();
+			NameExpCS csNameExp = csCurlyBracketClause.getNameExp();
+			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, csNameExp);
 			if (pivot != null) {
 				Type type = pivot.getType();
 				if (type != null) {

@@ -64,7 +64,7 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS csElement) {
-		return visitNamedExpCS(csElement);
+		return visitExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS csElement) {
@@ -73,6 +73,10 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 
 	public @Nullable Continuation<?> visitContextCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS csElement) {
 		return visitNamedElementCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitCurlyBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS csElement) {
+		return visitContextLessElementCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS csElement) {
@@ -87,20 +91,12 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		return visitExpCS(csElement);
 	}
 
-	public @Nullable Continuation<?> visitIndexExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS csElement) {
-		return visitNamedExpCS(csElement);
-	}
-
 	public @Nullable Continuation<?> visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
-	}
-
-	public @Nullable Continuation<?> visitInvocationExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS csElement) {
-		return visitNamedExpCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS csElement) {
@@ -116,10 +112,6 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	public @Nullable Continuation<?> visitNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS csElement) {
-		return visitExpCS(csElement);
-	}
-
-	public @Nullable Continuation<?> visitNamedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
@@ -155,8 +147,16 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		return visitLiteralExpCS(csElement);
 	}
 
+	public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS csElement) {
+		return visitContextLessElementCS(csElement);
+	}
+
 	public @Nullable Continuation<?> visitSelfExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS csElement) {
 		return visitExpCS(csElement);
+	}
+
+	public @Nullable Continuation<?> visitSquareBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS csElement) {
+		return visitContextLessElementCS(csElement);
 	}
 
 	public @Nullable Continuation<?> visitStringLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS csElement) {

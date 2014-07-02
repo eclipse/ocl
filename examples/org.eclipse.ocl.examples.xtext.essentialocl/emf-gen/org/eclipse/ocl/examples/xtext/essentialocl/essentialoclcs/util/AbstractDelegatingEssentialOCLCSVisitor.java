@@ -68,6 +68,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitContextCS(object);
 	}
 
+	public @Nullable R visitCurlyBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS object) {
+		return delegate.visitCurlyBracketedClauseCS(object);
+	}
+
 	public @Nullable R visitExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS object) {
 		return delegate.visitExpCS(object);
 	}
@@ -80,20 +84,12 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitIfExpCS(object);
 	}
 
-	public @Nullable R visitIndexExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS object) {
-		return delegate.visitIndexExpCS(object);
-	}
-
 	public @Nullable R visitInfixExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS object) {
 		return delegate.visitInfixExpCS(object);
 	}
 
 	public @Nullable R visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS object) {
 		return delegate.visitInvalidLiteralExpCS(object);
-	}
-
-	public @Nullable R visitInvocationExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS object) {
-		return delegate.visitInvocationExpCS(object);
 	}
 
 	public @Nullable R visitLetExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS object) {
@@ -110,10 +106,6 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public @Nullable R visitNameExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS object) {
 		return delegate.visitNameExpCS(object);
-	}
-
-	public @Nullable R visitNamedExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS object) {
-		return delegate.visitNamedExpCS(object);
 	}
 
 	public @Nullable R visitNavigatingArgCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS object) {
@@ -148,8 +140,16 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitPrimitiveLiteralExpCS(object);
 	}
 
+	public @Nullable R visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS object) {
+		return delegate.visitRoundBracketedClauseCS(object);
+	}
+
 	public @Nullable R visitSelfExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS object) {
 		return delegate.visitSelfExpCS(object);
+	}
+
+	public @Nullable R visitSquareBracketedClauseCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS object) {
+		return delegate.visitSquareBracketedClauseCS(object);
 	}
 
 	public @Nullable R visitStringLiteralExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS object) {

@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 
 import com.google.common.collect.UnmodifiableIterator;
 
@@ -51,7 +51,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 
 	/**
 	 * Assess csParent invoked from csChild and invoke setNext() if csParent provides a source variable.
-	 * Return true if the hieerachical assessment is complete, false to continue.
+	 * Return true if the hierarchical assessment is complete, false to continue.
 	 */
 	protected boolean doNext(@NonNull ElementCS csParent, @NonNull ElementCS csChild) {
 		if (csParent instanceof ContextCS) {
@@ -86,8 +86,8 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 				}
 			}
 		}
-		else if (csParent instanceof InvocationExpCS) {
-			OCLExpression asCallExp = PivotUtil.getPivot(OCLExpression.class, (InvocationExpCS)csParent);
+		else if ((csParent instanceof NameExpCS) && (((NameExpCS)csParent).getRoundBracketedClause() != null)){
+			OCLExpression asCallExp = PivotUtil.getPivot(OCLExpression.class, (NameExpCS)csParent);
 			if (asCallExp instanceof LoopExp) {
 				List<Variable> asIterators = ((LoopExp)asCallExp).getIterator();
 				if (asIterators.size() == 1) {

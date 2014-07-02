@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2014 E.D.Willink and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.serializer;
 
 import com.google.inject.Inject;
@@ -27,15 +17,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
@@ -45,7 +33,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
@@ -204,16 +194,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 					return; 
 				}
 				else break;
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS:
-				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
-				   context == grammarAccess.getNavigatingArgExpCSRule() ||
-				   context == grammarAccess.getPrefixedExpCSRule() ||
-				   context == grammarAccess.getPrimaryExpCSRule()) {
-					sequence_PrimaryExpCS(context, (ConstructorExpCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS:
 				if(context == grammarAccess.getConstructorPartCSRule()) {
 					sequence_ConstructorPartCS(context, (ConstructorPartCS) semanticObject); 
@@ -226,6 +206,12 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 					return; 
 				}
 				else break;
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS:
+				if(context == grammarAccess.getCurlyBracketedClauseCSRule()) {
+					sequence_CurlyBracketedClauseCS(context, (CurlyBracketedClauseCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case EssentialOCLCSPackage.IF_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
 				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
@@ -234,16 +220,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 				   context == grammarAccess.getPrefixedExpCSRule() ||
 				   context == grammarAccess.getPrimaryExpCSRule()) {
 					sequence_IfExpCS(context, (IfExpCS) semanticObject); 
-					return; 
-				}
-				else break;
-			case EssentialOCLCSPackage.INDEX_EXP_CS:
-				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
-				   context == grammarAccess.getNavigatingArgExpCSRule() ||
-				   context == grammarAccess.getPrefixedExpCSRule() ||
-				   context == grammarAccess.getPrimaryExpCSRule()) {
-					sequence_PrimaryExpCS(context, (IndexExpCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -266,16 +242,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 					return; 
 				}
 				else break;
-			case EssentialOCLCSPackage.INVOCATION_EXP_CS:
-				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
-				   context == grammarAccess.getNavigatingArgExpCSRule() ||
-				   context == grammarAccess.getPrefixedExpCSRule() ||
-				   context == grammarAccess.getPrimaryExpCSRule()) {
-					sequence_PrimaryExpCS(context, (InvocationExpCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case EssentialOCLCSPackage.LET_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
 				   context == grammarAccess.getLetExpCSRule() ||
@@ -291,18 +257,13 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 				}
 				else break;
 			case EssentialOCLCSPackage.NAME_EXP_CS:
-				if(context == grammarAccess.getPrimaryExpCSAccess().getConstructorExpCSNameExpAction_7_2_1_0() ||
-				   context == grammarAccess.getPrimaryExpCSAccess().getIndexExpCSNameExpAction_7_2_0_0()) {
-					sequence_PrimaryExpCS_ConstructorExpCS_7_2_1_0_IndexExpCS_7_2_0_0(context, (NameExpCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getExpCSRule() ||
+				if(context == grammarAccess.getExpCSRule() ||
 				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
+				   context == grammarAccess.getNameExpCSRule() ||
 				   context == grammarAccess.getNavigatingArgExpCSRule() ||
 				   context == grammarAccess.getPrefixedExpCSRule() ||
-				   context == grammarAccess.getPrimaryExpCSRule() ||
-				   context == grammarAccess.getPrimaryExpCSAccess().getInvocationExpCSNameExpAction_7_2_2_1_0()) {
-					sequence_PrimaryExpCS(context, (NameExpCS) semanticObject); 
+				   context == grammarAccess.getPrimaryExpCSRule()) {
+					sequence_NameExpCS(context, (NameExpCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -379,6 +340,12 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 					return; 
 				}
 				else break;
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS:
+				if(context == grammarAccess.getRoundBracketedClauseCSRule()) {
+					sequence_RoundBracketedClauseCS(context, (RoundBracketedClauseCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case EssentialOCLCSPackage.SELF_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
 				   context == grammarAccess.getExpCSAccess().getInfixExpCSOwnedExpressionAction_0_1_0() ||
@@ -387,6 +354,12 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 				   context == grammarAccess.getPrimaryExpCSRule() ||
 				   context == grammarAccess.getSelfExpCSRule()) {
 					sequence_SelfExpCS(context, (SelfExpCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS:
+				if(context == grammarAccess.getSquareBracketedClauseCSRule()) {
+					sequence_SquareBracketedClauseCS(context, (SquareBracketedClauseCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -522,6 +495,15 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	 *     (property=[Property|UnrestrictedName] initExpression=ExpCS)
 	 */
 	protected void sequence_ConstructorPartCS(EObject context, ConstructorPartCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)? | value=StringLiteral)
+	 */
+	protected void sequence_CurlyBracketedClauseCS(EObject context, CurlyBracketedClauseCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -671,6 +653,21 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
+	 *     (
+	 *         pathName=PathNameCS 
+	 *         squareBracketedClauses+=SquareBracketedClauseCS* 
+	 *         roundBracketedClause=RoundBracketedClauseCS? 
+	 *         curlyBracketedClause=CurlyBracketedClauseCS? 
+	 *         atPre?='@'?
+	 *     )
+	 */
+	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (name=NavigatingArgExpCS (ownedType=TypeExpCS init=ExpCS?)?)
 	 */
 	protected void sequence_NavigatingArgCS(EObject context, NavigatingArgCS semanticObject) {
@@ -761,62 +758,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (nameExp=PrimaryExpCS_ConstructorExpCS_7_2_1_0 ((ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)? | value=StringLiteral))
-	 */
-	protected void sequence_PrimaryExpCS(EObject context, ConstructorExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     pathName=PathNameCS
-	 */
-	protected void sequence_PrimaryExpCS_ConstructorExpCS_7_2_1_0_IndexExpCS_7_2_0_0(EObject context, NameExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (nameExp=PrimaryExpCS_IndexExpCS_7_2_0_0 firstIndexes+=ExpCS firstIndexes+=ExpCS* (secondIndexes+=ExpCS secondIndexes+=ExpCS*)? atPre?='@'?)
-	 */
-	protected void sequence_PrimaryExpCS(EObject context, IndexExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         (
-	 *             nameExp=PrimaryExpCS_InvocationExpCS_7_2_2_1_0 
-	 *             (
-	 *                 argument+=NavigatingArgCS 
-	 *                 argument+=NavigatingCommaArgCS* 
-	 *                 (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)? 
-	 *                 (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?
-	 *             )?
-	 *         ) | 
-	 *         nameExp=PrimaryExpCS_InvocationExpCS_7_2_2_1_0
-	 *     )
-	 */
-	protected void sequence_PrimaryExpCS(EObject context, InvocationExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (pathName=PathNameCS atPre?='@'?)
-	 */
-	protected void sequence_PrimaryExpCS(EObject context, NameExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     name=PrimitiveTypeIdentifier
 	 */
 	protected void sequence_PrimitiveTypeCS(EObject context, PrimitiveTypeRefCS semanticObject) {
@@ -844,9 +785,34 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
+	 *     (
+	 *         (
+	 *             arguments+=NavigatingArgCS 
+	 *             arguments+=NavigatingCommaArgCS* 
+	 *             (arguments+=NavigatingSemiArgCS arguments+=NavigatingCommaArgCS*)? 
+	 *             (arguments+=NavigatingBarArgCS arguments+=NavigatingCommaArgCS*)?
+	 *         )?
+	 *     )
+	 */
+	protected void sequence_RoundBracketedClauseCS(EObject context, RoundBracketedClauseCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     {SelfExpCS}
 	 */
 	protected void sequence_SelfExpCS(EObject context, SelfExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (terms+=ExpCS terms+=ExpCS*)
+	 */
+	protected void sequence_SquareBracketedClauseCS(EObject context, SquareBracketedClauseCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

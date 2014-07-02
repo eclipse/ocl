@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TuplePartCS;
@@ -21,7 +20,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
@@ -108,11 +106,6 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 
 	protected String text(InvalidLiteralExpCS ele) {
 		return "invalid";
-	}
-
-	protected String text(InvocationExpCS ele) {
-		NamedElement namedElement = ele.getNamedElement();
-		return String.valueOf(namedElement != null ? namedElement.getName() : null);
 	}
 
 	protected String text(NameExpCS ele) {

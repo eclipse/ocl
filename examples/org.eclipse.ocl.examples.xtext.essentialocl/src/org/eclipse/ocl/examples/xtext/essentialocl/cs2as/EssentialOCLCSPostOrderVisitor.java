@@ -26,15 +26,13 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.BasicContinuation;
@@ -48,19 +46,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.AbstractEssentialOCLCSPostOrderVisitor;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.ILeafNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOrderVisitor
 {
@@ -325,35 +316,6 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		}
 	}
 
-	private void setParameterRole(NavigatingArgCS csArgument, NavigationRole aRole) {
-		csArgument.setRole(aRole);
-/*		if ((csArgument.getOwnedType() == null) && (csArgument.getInit() == null)) {
-			ExpCS csExp = csArgument.getName();
-			if (csExp instanceof InfixExpCS) {
-				InfixExpCS csInfixExp = (InfixExpCS)csExp;
-				// If init without type is ever legal; Fixup a = b				
-			}
-		} */
-		ExpCS csName = csArgument.getName();
-		if (csName instanceof NameExpCS) {
-			PathNameCS csPathName = ((NameExpCS)csName).getPathName();
-			@NonNull Variable parameter = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
-			ICompositeNode node = NodeModelUtils.getNode(csName);
-			if (node != null) {
-				ILeafNode leafNode = ElementUtil.getLeafNode(node);
-				if (leafNode != null) {
-					String varName = leafNode.getText();
-					assert varName != null;
-					context.refreshName(parameter, varName);
-					List<PathElementCS> path = csPathName.getPath();
-					PathElementCS csPathElement = path.get(path.size()-1);
-					csPathElement.setElement(parameter);	// Resolve the reference that is actually a definition
-					csPathElement.setElementType(null);		// Indicate a definition to the syntax colouring
-				}
-			}
-		}
-	}
-
 	private void setSource(OperatorCS csParent, ExpCS csSource) {
 		if (csSource != null) {
 			csSource.setParent(csParent);
@@ -408,6 +370,11 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	}
 
 	@Override
+	public Continuation<?> visitContextLessElementCS(@NonNull ContextLessElementCS csElement) {
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitExpCS(@NonNull ExpCS csExp) {
 		return null;
 	}
@@ -432,47 +399,6 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		//	Interleave the Prefix Operators.
 		//
 		interleavePrefixes(csInfixExp);
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitInvocationExpCS(@NonNull InvocationExpCS csNavigatingExp) {
-		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
-		if (csArguments.size() > 0) {
-			// Last argument is always an expression
-			//	then preceding initialized terms are accumulators
-			//	 then preceding terms are iterators
-			NavigationRole role = NavigationRole.EXPRESSION;
-			for (int i = csArguments.size()-1; i >= 0; i--) {
-				NavigatingArgCS csArgument = csArguments.get(i);
-				switch (role) {
-					case EXPRESSION: {
-						csArgument.setRole(NavigationRole.EXPRESSION);
-						if ("|".equals(csArgument.getPrefix())) {
-							role = NavigationRole.ACCUMULATOR;
-						}
-						break;
-					}
-					case ACCUMULATOR: {
-						if (csArgument.getInit() != null) {
-							setParameterRole(csArgument, NavigationRole.ACCUMULATOR);
-							if (";".equals(csArgument.getPrefix())) {
-								role = NavigationRole.ITERATOR;
-							}
-						}
-						else {
-							role = NavigationRole.ITERATOR;
-							setParameterRole(csArgument, NavigationRole.ITERATOR);
-						}
-						break;
-					}
-					case ITERATOR: {
-						setParameterRole(csArgument, NavigationRole.ITERATOR);
-						break;
-					}
-				}
-			}
-		}
 		return null;
 	}
 

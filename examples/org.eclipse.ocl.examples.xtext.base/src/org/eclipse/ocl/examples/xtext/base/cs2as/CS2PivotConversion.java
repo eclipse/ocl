@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.context.AbstractBase2PivotConversion;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
@@ -83,6 +84,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS;
@@ -785,6 +787,26 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			}
 		}
 		return false;
+	}
+
+	public @Nullable Iteration lookupIteration(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
+		return converter.lookupIteration(csElement, csPathName, scopeFilter);
+	}
+
+	public @Nullable Operation lookupOperation(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
+		return converter.lookupOperation(csElement, csPathName, scopeFilter);
+	}
+
+	public @Nullable Type lookupType(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
+		return converter.lookupType(csElement, csPathName);
+	}
+
+	public @Nullable Type lookupTypeValue(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
+		return converter.lookupTypeValue(csElement, csPathName);
+	}
+
+	public @Nullable Element lookupUndecoratedName(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
+		return converter.lookupUndecoratedName(csElement, csPathName);
 	}
 
 	/**

@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
-import org.eclipse.ocl.examples.pivot.scoping.EmptyAttribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.ImportCSAttribution;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot.MessageBinder;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ConstructorPartCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ContextCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.ExpSpecificationCSAttribution;
-import org.eclipse.ocl.examples.xtext.essentialocl.attributes.InvocationExpCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetExpCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.LetVariableCSAttribution;
 import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigatingArgCSAttribution;
@@ -50,12 +48,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.attributes.NavigationOperator
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 
 public class EssentialOCLScoping
@@ -65,12 +64,10 @@ public class EssentialOCLScoping
 		registry.put(EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS, ConstructorPartCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.CONTEXT_CS, ContextCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, ExpSpecificationCSAttribution.INSTANCE);
-		registry.put(EssentialOCLCSPackage.Literals.INVOCATION_EXP_CS, InvocationExpCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.LET_EXP_CS, LetExpCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.LET_VARIABLE_CS, LetVariableCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATING_ARG_CS, NavigatingArgCSAttribution.INSTANCE);
 		registry.put(EssentialOCLCSPackage.Literals.NAVIGATION_OPERATOR_CS, NavigationOperatorCSAttribution.INSTANCE);
-		registry.put(EssentialOCLCSPackage.Literals.TUPLE_LITERAL_EXP_CS, EmptyAttribution.INSTANCE);
 		CS2Pivot.addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());			
 	}
 	
@@ -104,10 +101,10 @@ public class EssentialOCLScoping
 			if ((index + 1) < path.size()) {
 				messageTemplate = OCLMessages.UnresolvedNamespace_ERROR_;
 			}
-			else if (csContext instanceof InvocationExpCS) {
-				InvocationExpCS csNavigatingExp = (InvocationExpCS)csContext;
-				navigationArgument = csNavigatingExp;
-				argumentText = getOperationArguments(csNavigatingExp);
+			else if ((csContext instanceof NameExpCS) && (((NameExpCS)csContext).getRoundBracketedClause() != null)) {
+				NameExpCS csNameExp = (NameExpCS)csContext;
+				navigationArgument = csNameExp;
+				argumentText = getOperationArguments(csNameExp.getRoundBracketedClause());
 				messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
 			}
 			else if (csContext instanceof TypeNameExpCS) {
@@ -140,7 +137,7 @@ public class EssentialOCLScoping
 				}
 				EObject eContainer = aSource.eContainer();
 				if (eContainer instanceof NavigatingArgCS) {
-					aSource = ((NavigatingArgCS)eContainer).getNavigatingExp();
+					aSource = ((NavigatingArgCS)eContainer).getRoundBracketedClause().getNameExp();
 				}
 				else if (eContainer instanceof InfixExpCS) {
 					aSource = (InfixExpCS)eContainer;
@@ -190,8 +187,8 @@ public class EssentialOCLScoping
 			return messageText;
 		}
 		
-		public String getOperationArguments(InvocationExpCS csNavigatingExp) {
-			List<NavigatingArgCS> arguments = csNavigatingExp.getArgument();
+		public String getOperationArguments(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
+			List<NavigatingArgCS> arguments =csRoundBracketedClause.getArguments();
 			StringBuilder s = new StringBuilder();
 			for (NavigatingArgCS csArgument : arguments) {
 				TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);

@@ -1,11 +1,11 @@
-/*
+/*******************************************************************************
  * «codeGenHelper.getCopyright(' * ')»
- *************************************************************************
+ *
  * This code is 100% auto-generated
  * using: org.eclipse.ocl.examples.codegen.java.JavaStream
  *
  * Do not edit it.
- */
+ ********************************************************************************/
 
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2as;
 
@@ -17,7 +17,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2as.NewBaseCSContainmentVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -26,18 +25,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionType
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NestedExpCS;
@@ -46,7 +43,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralE
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
@@ -74,10 +73,6 @@ public class AutoEssentialOCLCSContainmentVisitor
         super(context);
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
-    }
-    
-    public @Nullable Continuation<?> visitAbstractNameExpCS(@NonNull AbstractNameExpCS self) {
-        throw new UnsupportedOperationException("visitAbstractNameExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitBinaryOperatorCS(@NonNull BinaryOperatorCS self) {
@@ -112,6 +107,10 @@ public class AutoEssentialOCLCSContainmentVisitor
         throw new UnsupportedOperationException("visitContextCS is not supported by " + getClass().getName());
     }
     
+    public @Nullable Continuation<?> visitCurlyBracketedClauseCS(@NonNull CurlyBracketedClauseCS self) {
+        throw new UnsupportedOperationException("visitCurlyBracketedClauseCS is not supported by " + getClass().getName());
+    }
+    
     public @Nullable Continuation<?> visitExpCS(@NonNull ExpCS self) {
         throw new UnsupportedOperationException("visitExpCS is not supported by " + getClass().getName());
     }
@@ -124,20 +123,12 @@ public class AutoEssentialOCLCSContainmentVisitor
         throw new UnsupportedOperationException("visitIfExpCS is not supported by " + getClass().getName());
     }
     
-    public @Nullable Continuation<?> visitIndexExpCS(@NonNull IndexExpCS self) {
-        throw new UnsupportedOperationException("visitIndexExpCS is not supported by " + getClass().getName());
-    }
-    
     public @Nullable Continuation<?> visitInfixExpCS(@NonNull InfixExpCS self) {
         throw new UnsupportedOperationException("visitInfixExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull InvalidLiteralExpCS self) {
         throw new UnsupportedOperationException("visitInvalidLiteralExpCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitInvocationExpCS(@NonNull InvocationExpCS self) {
-        throw new UnsupportedOperationException("visitInvocationExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitLetExpCS(@NonNull LetExpCS self) {
@@ -154,10 +145,6 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitNameExpCS(@NonNull NameExpCS self) {
         throw new UnsupportedOperationException("visitNameExpCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitNamedExpCS(@NonNull NamedExpCS self) {
-        throw new UnsupportedOperationException("visitNamedExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS self) {
@@ -192,8 +179,16 @@ public class AutoEssentialOCLCSContainmentVisitor
         throw new UnsupportedOperationException("visitPrimitiveLiteralExpCS is not supported by " + getClass().getName());
     }
     
+    public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull RoundBracketedClauseCS self) {
+        throw new UnsupportedOperationException("visitRoundBracketedClauseCS is not supported by " + getClass().getName());
+    }
+    
     public @Nullable Continuation<?> visitSelfExpCS(@NonNull SelfExpCS self) {
         throw new UnsupportedOperationException("visitSelfExpCS is not supported by " + getClass().getName());
+    }
+    
+    public @Nullable Continuation<?> visitSquareBracketedClauseCS(@NonNull SquareBracketedClauseCS self) {
+        throw new UnsupportedOperationException("visitSquareBracketedClauseCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitStringLiteralExpCS(@NonNull StringLiteralExpCS self) {

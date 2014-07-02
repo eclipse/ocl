@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.DocumentationCS;
@@ -163,6 +164,8 @@ public class BaseCSValidator extends EObjectValidator
 				return validateClassifierCS((ClassifierCS)value, diagnostics, context);
 			case BaseCSPackage.CONSTRAINT_CS:
 				return validateConstraintCS((ConstraintCS)value, diagnostics, context);
+			case BaseCSPackage.CONTEXT_LESS_ELEMENT_CS:
+				return validateContextLessElementCS((ContextLessElementCS)value, diagnostics, context);
 			case BaseCSPackage.DATA_TYPE_CS:
 				return validateDataTypeCS((DataTypeCS)value, diagnostics, context);
 			case BaseCSPackage.DETAIL_CS:
@@ -324,6 +327,16 @@ public class BaseCSValidator extends EObjectValidator
 	public boolean validateConstraintCS(ConstraintCS constraintCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(constraintCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContextLessElementCS(ContextLessElementCS contextLessElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(contextLessElementCS, diagnostics, context);
 	}
 
 	/**

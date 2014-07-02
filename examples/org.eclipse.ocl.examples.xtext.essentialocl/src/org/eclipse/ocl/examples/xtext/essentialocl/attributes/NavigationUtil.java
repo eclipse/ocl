@@ -23,23 +23,23 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 
 public class NavigationUtil
 {
 	/**
 	 * Return the NavigationOperatorCS for which csExp is the left node of the navigation operator's argument tree.
 	 */
-	public static @Nullable NavigationOperatorCS getNavigationOperator(@NonNull AbstractNameExpCS csExp) {
+	public static @Nullable NavigationOperatorCS getNavigationOperator(@NonNull NameExpCS csExp) {
 		EObject eContainer = csExp.eContainer();
-		if (eContainer instanceof AbstractNameExpCS) {
-			csExp = (AbstractNameExpCS) eContainer;
+		if (eContainer instanceof NameExpCS) {
+			csExp = (NameExpCS) eContainer;
 		}
 		for (ExpCS csChild = csExp; true; csChild = csChild.getParent()) {
 			OperatorCS csOperator = csChild.getParent();
@@ -59,13 +59,14 @@ public class NavigationUtil
 		}
 	}
 
-	public static boolean isIteration(@NonNull MetaModelManager metaModelManager, @NonNull InvocationExpCS csInvocationExp, @NonNull CollectionType type) {
-		for (NavigatingArgCS csArg : csInvocationExp.getArgument()) {
+	public static boolean isIteration(@NonNull MetaModelManager metaModelManager, @NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull CollectionType type) {
+		for (NavigatingArgCS csArg : csRoundBracketedClause.getArguments()) {
 			if (csArg.getRole() != NavigationRole.EXPRESSION) {
 				return true;
 			}
 		}
-		PathNameCS pathName = csInvocationExp.getPathName();
+		NameExpCS csNameExp = csRoundBracketedClause.getNameExp();
+		PathNameCS pathName = csNameExp.getPathName();
 		List<PathElementCS> path = pathName.getPath();
 		if (path.size() != 1) {
 			return false;

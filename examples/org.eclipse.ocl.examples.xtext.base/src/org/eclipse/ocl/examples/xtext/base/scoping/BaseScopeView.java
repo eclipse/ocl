@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
+import org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateBindingCS;
@@ -298,7 +299,8 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		}
 		else if (object instanceof NamedElement) {
 			EObject csRef = getTarget();
-			while ((csRef.eContainer() instanceof TypeRefCS)
+			while ((csRef.eContainer() instanceof ContextLessElementCS)
+					|| (csRef.eContainer() instanceof TypeRefCS)
 					|| (csRef.eContainer() instanceof TemplateParameterSubstitutionCS)
 					|| (csRef.eContainer() instanceof TemplateBindingCS)) {
 				csRef = csRef.eContainer();

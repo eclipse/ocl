@@ -86,6 +86,15 @@ public interface EssentialOCLCSFactory
 	ContextCS createContextCS();
 
 	/**
+	 * Returns a new object of class '<em>Curly Bracketed Clause CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Curly Bracketed Clause CS</em>'.
+	 * @generated
+	 */
+	CurlyBracketedClauseCS createCurlyBracketedClauseCS();
+
+	/**
 	 * Returns a new object of class '<em>Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,6 +239,15 @@ public interface EssentialOCLCSFactory
 	PrimitiveLiteralExpCS createPrimitiveLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Round Bracketed Clause CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Round Bracketed Clause CS</em>'.
+	 * @generated
+	 */
+	RoundBracketedClauseCS createRoundBracketedClauseCS();
+
+	/**
 	 * Returns a new object of class '<em>Self Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +255,15 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	SelfExpCS createSelfExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Square Bracketed Clause CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Square Bracketed Clause CS</em>'.
+	 * @generated
+	 */
+	SquareBracketedClauseCS createSquareBracketedClauseCS();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp CS</em>'.
@@ -284,15 +311,6 @@ public interface EssentialOCLCSFactory
 	InvalidLiteralExpCS createInvalidLiteralExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Invocation Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Invocation Exp CS</em>'.
-	 * @generated
-	 */
-	InvocationExpCS createInvocationExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Null Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,15 +336,6 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	IfExpCS createIfExpCS();
-
-	/**
-	 * Returns a new object of class '<em>Index Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Index Exp CS</em>'.
-	 * @generated
-	 */
-	IndexExpCS createIndexExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Infix Exp CS</em>'.

@@ -53,6 +53,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//ConstraintCS/specification"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//ConstraintCS/messageSpecification"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="BaseCS.ecore#//ContextLessElementCS"/>
     <genClasses ecoreClass="BaseCS.ecore#//DataTypeCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//DataTypeCS/literals"/>
     </genClasses>

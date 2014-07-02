@@ -29,10 +29,11 @@ import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationRole;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 
 public class NavigatingArgCSAttribution extends AbstractAttribution
 {
@@ -42,7 +43,8 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		NavigatingArgCS fromArgument = (NavigatingArgCS)target;
 		NavigationRole role = fromArgument.getRole();
-		InvocationExpCS targetElement = (InvocationExpCS) fromArgument.getLogicalParent();
+		RoundBracketedClauseCS csRoundBracketedClause = fromArgument.getRoundBracketedClause();
+		NameExpCS targetElement = csRoundBracketedClause.getNameExp();
 		assert targetElement != null;
 		NavigationOperatorCS csNavigationOperator = NavigationUtil.getNavigationOperator(targetElement);
 		OCLExpression pivot = PivotUtil.getPivot(OCLExpression.class, targetElement);	// NB QVTr's RelationCallExp is not a CallExp
@@ -111,7 +113,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 							elementType = type;
 							collectionType = metaModelManager.getSetType();
 						}
-						if (NavigationUtil.isIteration(metaModelManager, targetElement, collectionType)) {
+						if (NavigationUtil.isIteration(metaModelManager, csRoundBracketedClause, collectionType)) {
 							if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 								EClassifier requiredType = environmentView.getRequiredType();
 								try {
@@ -132,10 +134,10 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 			}
 		}
 		if (csNavigationOperator != null) {
-			return scopeView.getParent().getParent().getParent();	// Leapfrog over InvocationExpCS and its source operator
+			return scopeView.getParent().getParent().getParent().getParent();	// Leapfrog over RoundBracketedClauseCS, InvocationExpCS and its source operator
 		}
 		else {
-			return scopeView.getParent().getParent();				// Leapfrog over InvocationExpCS
+			return scopeView.getParent().getParent().getParent();				// Leapfrog over RoundBracketedClauseCS, InvocationExpCS
 		}
 	}
 }

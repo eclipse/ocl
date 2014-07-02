@@ -662,7 +662,8 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToLexicalError", "gh##jk") +
-			DomainUtil.bind("1: no viable alternative at input ''{0}''", "#"));
+			DomainUtil.bind("1: no viable alternative at ''{0}''", "#") + "\n" +
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "gh", ""));
 	}
 
 	public void test_attributeParsingToSemanticError() {

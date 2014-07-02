@@ -16,12 +16,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.xtext.base.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.EssentialOCLCSVisitor;
@@ -33,6 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.util.Essential
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getCurlyBracketClause <em>Curly Bracket Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl#getInitExpression <em>Init Expression</em>}</li>
  * </ul>
@@ -81,6 +84,51 @@ public class ConstructorPartCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CurlyBracketedClauseCS getCurlyBracketClause()
+	{
+		if (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE) return null;
+		return (CurlyBracketedClauseCS)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCurlyBracketClause(CurlyBracketedClauseCS newCurlyBracketClause, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newCurlyBracketClause, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCurlyBracketClause(CurlyBracketedClauseCS newCurlyBracketClause)
+	{
+		if (newCurlyBracketClause != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE && newCurlyBracketClause != null))
+		{
+			if (EcoreUtil.isAncestor(this, newCurlyBracketClause))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newCurlyBracketClause != null)
+				msgs = ((InternalEObject)newCurlyBracketClause).eInverseAdd(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, CurlyBracketedClauseCS.class, msgs);
+			msgs = basicSetCurlyBracketClause(newCurlyBracketClause, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE, newCurlyBracketClause, newCurlyBracketClause));
 	}
 
 	/**
@@ -175,10 +223,30 @@ public class ConstructorPartCSImpl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetCurlyBracketClause((CurlyBracketedClauseCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				return basicSetCurlyBracketClause(null, msgs);
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:
 				return basicSetInitExpression(null, msgs);
 		}
@@ -191,9 +259,27 @@ public class ConstructorPartCSImpl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, CurlyBracketedClauseCS.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				return getCurlyBracketClause();
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
 				if (resolve) return getProperty();
 				return basicGetProperty();
@@ -212,6 +298,9 @@ public class ConstructorPartCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				setCurlyBracketClause((CurlyBracketedClauseCS)newValue);
+				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
 				setProperty((Property)newValue);
 				return;
@@ -231,6 +320,9 @@ public class ConstructorPartCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				setCurlyBracketClause((CurlyBracketedClauseCS)null);
+				return;
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
 				setProperty((Property)null);
 				return;
@@ -250,6 +342,8 @@ public class ConstructorPartCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE:
+				return getCurlyBracketClause() != null;
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__PROPERTY:
 				return property != null;
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__INIT_EXPRESSION:

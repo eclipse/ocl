@@ -57,7 +57,7 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -169,6 +169,15 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(constraintCS);
 				if (result == null) result = casePivotable(constraintCS);
 				if (result == null) result = caseVisitableCS(constraintCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSPackage.CONTEXT_LESS_ELEMENT_CS:
+			{
+				ContextLessElementCS contextLessElementCS = (ContextLessElementCS)theEObject;
+				T result = caseContextLessElementCS(contextLessElementCS);
+				if (result == null) result = caseElementCS(contextLessElementCS);
+				if (result == null) result = caseVisitableCS(contextLessElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -879,6 +888,22 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstraintCS(ConstraintCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Context Less Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Context Less Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContextLessElementCS(ContextLessElementCS object)
 	{
 		return null;
 	}

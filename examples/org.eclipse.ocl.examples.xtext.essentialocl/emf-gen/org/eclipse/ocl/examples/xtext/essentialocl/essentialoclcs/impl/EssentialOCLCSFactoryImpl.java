@@ -16,23 +16,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvalidLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.LiteralExpCS;
@@ -45,7 +44,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NullLiteralExp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.PrimitiveLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TupleLiteralPartCS;
@@ -114,13 +115,12 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS: return createConstructorExpCS();
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS: return createConstructorPartCS();
 			case EssentialOCLCSPackage.CONTEXT_CS: return createContextCS();
+			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS: return createCurlyBracketedClauseCS();
 			case EssentialOCLCSPackage.EXP_CS: return createExpCS();
 			case EssentialOCLCSPackage.EXP_SPECIFICATION_CS: return createExpSpecificationCS();
 			case EssentialOCLCSPackage.IF_EXP_CS: return createIfExpCS();
-			case EssentialOCLCSPackage.INDEX_EXP_CS: return createIndexExpCS();
 			case EssentialOCLCSPackage.INFIX_EXP_CS: return createInfixExpCS();
 			case EssentialOCLCSPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
-			case EssentialOCLCSPackage.INVOCATION_EXP_CS: return createInvocationExpCS();
 			case EssentialOCLCSPackage.LET_EXP_CS: return createLetExpCS();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS: return createLetVariableCS();
 			case EssentialOCLCSPackage.LITERAL_EXP_CS: return createLiteralExpCS();
@@ -132,7 +132,9 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS: return createPrefixExpCS();
 			case EssentialOCLCSPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
+			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS: return createRoundBracketedClauseCS();
 			case EssentialOCLCSPackage.SELF_EXP_CS: return createSelfExpCS();
+			case EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS: return createSquareBracketedClauseCS();
 			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS: return createStringLiteralExpCS();
 			case EssentialOCLCSPackage.TUPLE_LITERAL_EXP_CS: return createTupleLiteralExpCS();
 			case EssentialOCLCSPackage.TUPLE_LITERAL_PART_CS: return createTupleLiteralPartCS();
@@ -217,7 +219,8 @@ public class EssentialOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstructorExpCS createConstructorExpCS() {
+	public ConstructorExpCS createConstructorExpCS()
+	{
 		ConstructorExpCSImpl constructorExpCS = new ConstructorExpCSImpl();
 		return constructorExpCS;
 	}
@@ -240,6 +243,17 @@ public class EssentialOCLCSFactoryImpl
 	public ContextCS createContextCS() {
 		ContextCSImpl contextCS = new ContextCSImpl();
 		return contextCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CurlyBracketedClauseCS createCurlyBracketedClauseCS()
+	{
+		CurlyBracketedClauseCSImpl curlyBracketedClauseCS = new CurlyBracketedClauseCSImpl();
+		return curlyBracketedClauseCS;
 	}
 
 	/**
@@ -419,9 +433,31 @@ public class EssentialOCLCSFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RoundBracketedClauseCS createRoundBracketedClauseCS()
+	{
+		RoundBracketedClauseCSImpl roundBracketedClauseCS = new RoundBracketedClauseCSImpl();
+		return roundBracketedClauseCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SelfExpCS createSelfExpCS() {
 		SelfExpCSImpl selfExpCS = new SelfExpCSImpl();
 		return selfExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SquareBracketedClauseCS createSquareBracketedClauseCS()
+	{
+		SquareBracketedClauseCSImpl squareBracketedClauseCS = new SquareBracketedClauseCSImpl();
+		return squareBracketedClauseCS;
 	}
 
 	/**
@@ -472,16 +508,6 @@ public class EssentialOCLCSFactoryImpl
 	public InvalidLiteralExpCS createInvalidLiteralExpCS() {
 		InvalidLiteralExpCSImpl invalidLiteralExpCS = new InvalidLiteralExpCSImpl();
 		return invalidLiteralExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InvocationExpCS createInvocationExpCS() {
-		InvocationExpCSImpl invocationExpCS = new InvocationExpCSImpl();
-		return invocationExpCS;
 	}
 
 	/**
@@ -541,16 +567,6 @@ public class EssentialOCLCSFactoryImpl
 	public IfExpCS createIfExpCS() {
 		IfExpCSImpl ifExpCS = new IfExpCSImpl();
 		return ifExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IndexExpCS createIndexExpCS() {
-		IndexExpCSImpl indexExpCS = new IndexExpCSImpl();
-		return indexExpCS;
 	}
 
 	/**

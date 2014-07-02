@@ -81,6 +81,10 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitConstraintCS(object);
 	}
 
+	public @Nullable R visitContextLessElementCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.ContextLessElementCS object) {
+		return delegate.visitContextLessElementCS(object);
+	}
+
 	public @Nullable R visitDataTypeCS(@NonNull org.eclipse.ocl.examples.xtext.base.basecs.DataTypeCS object) {
 		return delegate.visitDataTypeCS(object);
 	}
