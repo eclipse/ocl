@@ -1,111 +1,75 @@
+import 'Environment.ecore'
 import 'Pivot.ecore'
 
 package pivot
 
-context Element
-def : namedElements : Set(Tuple(name:String, element: Element)) =
-	Set{}
-def : env() : Element =
-	Element{}
-
-def : addElement(el : NamedElement) : Element =
-	Element {
-		namedElements = self.namedElements
-				->including(
-					Tuple{name = el.name, element = el}
-				)
-	}
-
-def : addElements(els : Collection(NamedElement)) : Element =
-	Element {
-		namedElements = self.namedElements
-				->includingAll(els
-					->collect(el :NamedElement | 
-						Tuple{name = el.name, element = el}
-					))
-	}
-	
-def : nestedEnv() : Element =
-	Element {
-		namedElements = self.namedElements
-	}
-
 context Root
-def : _env() : Element =
-	env()
+def : _env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.imports)
 		.addElements(self.nestedPackage)
 
 context Package
-def : _env() : Element =
-	env()
+def : _env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.nestedPackage)
 		.addElements(self.ownedType)
 
 context Library
-def : _env() : Element =
-	env()
+def : _env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.nestedPackage)
 		.addElements(self.ownedType)
 		.addElements(self.ownedPrecedence)
 	
 context Class
-def : _env() : Element =
-	env()
+def : _env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.ownedAttribute)
 		.addElements(self.ownedOperation)
 		.addElements(self.ownedBehavior)
 
 context Enumeration
-def : _env() : Element =
-	env()
+def : _env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.ownedLiteral)
 
 context Operation
-def : ownedParameter_env() : Element =
-	env()
+def : ownedParameter_env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement.oclAsType(Type))
 
-def : _env() : Element =
-	env()
+def : _env(env : env::Environment) : env::Environment =
+	env
 		.addElements(self.ownedParameter)
 		.addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement.oclAsType(Type))
 
 context LetExp
-def : in_env() : Element =
-	env()
-		.nestedEnv()
+def : in_env(env : env::Environment) : env::Environment =
+	env.nestedEnv()
 		.addElement(self.variable)
 
 context IterateExp
-def : iterator_env() : Element =
-	env()
-		.nestedEnv()
-		.addElements(self.iterator) -- TODO each iterator will have different elements added to the env
-def : result_env() : Element =
-	env()
-		.nestedEnv()
+def : iterator_env(env : env::Environment) : env::Environment =
+	env
+def : result_env(env : env::Environment) : env::Environment =
+	env.nestedEnv()
 		.addElements(self.iterator)
-def : body_env() : Element =
-	env()
-		.nestedEnv()		
+def : body_env(env : env::Environment) : env::Environment =
+	env.nestedEnv()		
 		.addElements(self.iterator)
 		.addElement(self.result)
 
 context IteratorExp
-def : iterator_env() : Element =
-	env()
-		.nestedEnv()
-		.addElements(self.iterator) -- TODO each iterator will have different elements added to the env
-def : body_env() : Element =
-	env()
-		.nestedEnv()
+def : iterator_env(env : env::Environment) : env::Environment =
+	env
+def : body_env(env : env::Environment) : env::Environment =
+	env.nestedEnv()
 		.addElements(self.iterator)
 
 context ExpressionInOCL
-def : iterator_env() : Element =
-	env()
-		.nestedEnv()
+def : iterator_env(env : env::Environment) : env::Environment =
+	env.nestedEnv()
 		.addElement(self.contextVariable)
 		.addElement(self.resultVariable)
 
