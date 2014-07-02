@@ -39,6 +39,11 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
+	public int getHandlerPriority(@NonNull URI uri) {
+		return "oclinecore".equals(uri.fileExtension()) ? CAN_HANDLE : CANNOT_HANDLE;
+	}
+
+	@Override
 	public URI getPackageURI(@NonNull EObject eObject) {
 		if (eObject instanceof RootPackageCS) {
 			Element pivot = ((RootPackageCS)eObject).getPivot();

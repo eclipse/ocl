@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
@@ -20,5 +21,10 @@ public class EssentialOCLASResourceFactory extends AbstractASResourceFactory
 	
 	protected EssentialOCLASResourceFactory() {
 		super(ASResource.ESSENTIALOCL_CONTENT_TYPE, null);
+	}
+
+	@Override
+	public int getHandlerPriority(@NonNull URI uri) {
+		return "essentialocl".equals(uri.fileExtension()) ? CAN_HANDLE : CANNOT_HANDLE;
 	}
 }

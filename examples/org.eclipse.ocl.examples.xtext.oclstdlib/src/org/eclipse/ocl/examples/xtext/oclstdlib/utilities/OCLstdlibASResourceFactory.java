@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.resource.AbstractASResourceFactory;
@@ -20,5 +21,10 @@ public final class OCLstdlibASResourceFactory extends AbstractASResourceFactory
 	
 	protected OCLstdlibASResourceFactory() {
 		super(ASResource.OCLSTDLIB_CONTENT_TYPE, null);
+	}
+
+	@Override
+	public int getHandlerPriority(@NonNull URI uri) {
+		return "oclstdlib".equals(uri.fileExtension()) ? CAN_HANDLE : CANNOT_HANDLE;
 	}
 }
