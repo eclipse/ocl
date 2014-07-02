@@ -19,17 +19,16 @@ import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS;
 
-public class PivotCSAttribution extends AbstractAttribution
+public class PivotableElementCSAttribution extends AbstractAttribution
 {
-	public static final PivotCSAttribution INSTANCE = new PivotCSAttribution();
+	public static final PivotableElementCSAttribution INSTANCE = new PivotableElementCSAttribution();
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-		PivotableElementCS targetElement = (PivotableElementCS)target;
-		Element pivot = PivotUtil.getPivot(Element.class, targetElement);
-		if (pivot != null) {
+		Element pivot = PivotUtil.getPivot(Element.class, (PivotableElementCS)target);
+		if ((pivot != null) && (pivot.eResource() != null)) {
 			environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
 		}
-		return null;
+		return scopeView.getParent();
 	}
 }

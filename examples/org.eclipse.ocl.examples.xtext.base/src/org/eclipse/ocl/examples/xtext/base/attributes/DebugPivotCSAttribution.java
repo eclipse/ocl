@@ -25,11 +25,12 @@ public class DebugPivotCSAttribution extends AbstractAttribution
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-		PivotableElementCS targetElement = (PivotableElementCS)target;
-		Element pivot = PivotUtil.getPivot(Element.class, targetElement);
-		if (pivot != null) {
-			environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
+		if (target instanceof PivotableElementCS) {
+			Element pivot = PivotUtil.getPivot(Element.class, (PivotableElementCS)target);
+			if ((pivot != null) && (pivot.eResource() != null)) {
+				environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
+			}
 		}
-		return null;
+		return scopeView.getParent();
 	}
 }

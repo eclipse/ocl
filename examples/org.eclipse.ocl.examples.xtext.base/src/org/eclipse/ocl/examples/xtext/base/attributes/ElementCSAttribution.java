@@ -12,12 +12,9 @@ package org.eclipse.ocl.examples.xtext.base.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.basecs.PivotableElementCS;
 
 public class ElementCSAttribution extends AbstractAttribution
 {
@@ -25,15 +22,6 @@ public class ElementCSAttribution extends AbstractAttribution
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-//		return scopeView.getParent();
-		PivotableElementCS targetElement = (PivotableElementCS)target;
-		Element pivot = PivotUtil.getPivot(Element.class, targetElement);
-		if (pivot != null) {
-			environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
-			return null;
-		}
-		else {
-			return scopeView.getParent();
-		}
+		return scopeView.getParent();
 	}
 }

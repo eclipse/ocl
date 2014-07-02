@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibcs.util.OCLstdlibCSValidator;
-import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScoping;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibASResourceFactory;
 
 import com.google.inject.Injector;
@@ -40,7 +39,6 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 
 	public static void init() {
 		OCLstdlibCSPackage.eINSTANCE.getName();
-		OCLstdlibScoping.init();
 		OCLstdlibASResourceFactory.INSTANCE.getClass();
 //		OCLstdlibCS2Pivot.FACTORY.getClass();
 		EPackage.Registry.INSTANCE.put(OCLstdlibCSPackage.eNS_URI, OCLstdlibCSPackage.eINSTANCE);

@@ -275,6 +275,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 
 	@Override
 	public Continuation<?> visitReferenceCS(@NonNull ReferenceCS csReference) {
+		Continuation<?> continuation = super.visitReferenceCS(csReference);
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
 		if (pivotElement != null) {
 			Property pivotOpposite = csReference.getOpposite();
@@ -283,13 +284,13 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 			}
 			pivotElement.setOpposite(pivotOpposite);
 			context.refreshList(pivotElement.getKeys(), csReference.getKeys());
-			BasicContinuation<?> continuation = visitTypedElementCS(csReference);
-			assert continuation == null;
+//			BasicContinuation<?> continuation = visitTypedElementCS(csReference);
+//			assert continuation == null;
 			if (pivotOpposite == null) {
 				metaModelManager.installPropertyDeclaration(pivotElement);
 			}
 		}
-		return super.visitReferenceCS(csReference);
+		return continuation;
 	}
 
 	@Override
