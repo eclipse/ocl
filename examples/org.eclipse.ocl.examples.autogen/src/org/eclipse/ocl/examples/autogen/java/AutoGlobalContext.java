@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *   E.D.Willink - Initial API and implementation
+ *   Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Framework Refactoring 
  *******************************************************************************/
 package org.eclipse.ocl.examples.autogen.java;
 
@@ -29,11 +30,6 @@ public class AutoGlobalContext extends JavaGlobalContext
 	
 	public AutoGlobalContext(@NonNull JavaCodeGenerator codeGenerator) {
 		super(codeGenerator);
-		nameManager.reserveName(JavaConstants.EVALUATOR_NAME, null);
-		nameManager.reserveName("context", null);
-		nameManager.reserveName("converter", null);
-		nameManager.reserveName("element", null);
-		nameManager.reserveName("result", null);
 	}
 	
 	@Override

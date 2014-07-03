@@ -17,6 +17,7 @@ Export-Package: org.eclipse.ocl.examples.autogen,
  org.eclipse.ocl.examples.autogen.autocgmodel,
  org.eclipse.ocl.examples.autogen.autocgmodel.impl,
  org.eclipse.ocl.examples.autogen.autocgmodel.util,
+ org.eclipse.ocl.examples.autogen.cs2as,
  org.eclipse.ocl.examples.autogen.java,
  org.eclipse.ocl.examples.autogen.namereso,
  org.eclipse.ocl.examples.autogen.utilities
