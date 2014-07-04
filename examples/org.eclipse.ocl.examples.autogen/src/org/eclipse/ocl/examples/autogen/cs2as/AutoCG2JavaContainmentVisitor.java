@@ -8,7 +8,6 @@
  * Contributors:
  *		 Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation
  */
-
 package org.eclipse.ocl.examples.autogen.cs2as;
 
 import java.util.List;
@@ -26,8 +25,6 @@ import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
@@ -48,10 +45,26 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 	implements AutoCGModelVisitor<Boolean>{
 
 	public AutoCG2JavaContainmentVisitor(@NonNull AutoCodeGenerator codeGenerator,
-			@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals) {
-		super(codeGenerator, cgPackage, sortedGlobals);
+			@Nullable List<CGValuedElement> sortedGlobals) {
+		super(codeGenerator, sortedGlobals);
 	}
+	
+	@Override
+	protected void doClassFields() {
 
+	    js.append("protected final ");
+	    js.appendIsRequired(true);
+	    js.append(" ");
+	    js.appendClassReference(CS2Pivot.class);
+	    js.append(" converter;\n");
+	    js.append("protected final ");
+	    js.appendIsRequired(true);
+	    js.append(" ");
+	    js.appendClassReference(IdResolver.class);
+	    js.append(" idResolver;\n");
+	};
+	
+	@Override
 	protected void doConstructor(@NonNull CGClass cgClass) {
 		js.append("/**\n");
 		js.append(" * Initializes me with an initial value for my result.\n");
@@ -71,6 +84,7 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 		js.append("}\n");
 	}
 
+	@Override
 	protected void doVisiting() {
 		js.append("public ");
 		js.appendIsRequired(false);
@@ -87,6 +101,11 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 		js.append("}\n");
 	}
 
+	@Override
+	protected void doAdditionalClassMethods() {
+		// No addtional methods
+	}
+	
 	public @NonNull Boolean visitCGASTCallExp(@NonNull CGASTCallExp object) {
 		CGValuedElement cgSource = DomainUtil.nonNullState(object.getSource());
 		TypeDescriptor typeDescriptor = context.getTypeDescriptor(object);
@@ -97,72 +116,6 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 		js.append(" = ");
 		js.appendReferenceTo(typeDescriptor, cgSource);
 		js.append(".getPivot();\n");
-		return true;
-	}
-
-	@Override
-	public @NonNull Boolean visitCGClass(@NonNull CGClass cgClass) {		
-		String className = cgClass.getName();
-		js.append("public class " + className);
-		List<CGClass> cgSuperTypes = cgClass.getSuperTypes();
-		boolean isFirst = true;
-		for (CGClass cgSuperType : cgSuperTypes) {
-			if (!cgSuperType.isInterface()) {
-				if (isFirst) {
-					js.append("\n\textends ");
-				}
-				else {
-					js.append(", ");
-				}
-				js.appendClassReference(cgSuperType);
-				isFirst = false;
-			}
-		}
-		isFirst = true;
-		for (CGClass cgSuperType : cgSuperTypes) {
-			if (cgSuperType.isInterface()) {
-				if (isFirst) {
-					js.append("\n\timplements ");
-				}
-				else {
-					js.append(", ");
-				}
-				js.appendClassReference(cgSuperType);
-				isFirst = false;
-			}
-		}
-		js.append("\n");
-		js.append("{\n");
-		js.pushIndentation(null);
-		if (sortedGlobals != null) {
-			for (CGValuedElement cgElement : sortedGlobals) {
-				assert cgElement.isGlobal();
-				cgElement.accept(this);
-			}
-		}
-		js.append("\n");
-	    js.append("protected final ");
-	    js.appendIsRequired(true);
-	    js.append(" ");
-	    js.appendClassReference(CS2Pivot.class);
-	    js.append(" converter;\n");
-	    js.append("protected final ");
-	    js.appendIsRequired(true);
-	    js.append(" ");
-	    js.appendClassReference(IdResolver.class);
-	    js.append(" idResolver;\n");
-		js.append("\n");
-		doConstructor(cgClass);
-		if (cgSuperTypes.size() <= 1) {
-			js.append("\n");
-			doVisiting();
-		}
-		for (CGOperation cgOperation : cgClass.getOperations()) {
-			js.append("\n");
-			cgOperation.accept(this);
-		}
-		js.popIndentation();
-		js.append("}\n");
 		return true;
 	}
 

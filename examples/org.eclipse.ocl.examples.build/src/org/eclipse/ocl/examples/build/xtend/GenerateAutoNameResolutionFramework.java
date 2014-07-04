@@ -36,11 +36,11 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 	
 	protected String nameResoPackageName;
 	
+	protected String nameResolutionFile;
+	
 	protected String baseElement;
 	
 	protected String baseElementPackageName;
-	
-	protected String nameResolutionFile;
 	
 	@Override
 	public void checkConfiguration(Issues issues) {
@@ -64,7 +64,7 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 		} else {
 			Package nameResoPackage = getNameResoDescriptionPackage();
 			AutoGenNameResoCommonFramework.generateCommonFramework(outputFolder,nameResoPackageName);
-			AutoGenNameResoSpecificFramework.generateSpecificFramework(outputFolder, projectPrefix, modelPackageName,
+			AutoGenNameResoSpecificFramework.generateSpecificFramework(outputFolder, genPackage, projectPrefix, modelPackageName,
 				nameResoPackageName, visitorPackageName, visitorClassName, baseElementPackageName, baseElement, nameResoPackage);
 		}
 	}

@@ -1,11 +1,11 @@
-/*
+/*******************************************************************************
  * «codeGenHelper.getCopyright(' * ')»
- *************************************************************************
+ *
  * This code is 100% auto-generated
  * using: org.eclipse.ocl.examples.codegen.java.JavaStream
  *
  * Do not edit it.
- */
+ ********************************************************************************/
 
 package org.eclipse.ocl.examples.xtext.completeocl.cs2as;
 
@@ -49,6 +49,7 @@ public class AutoCompleteOCLCSContainmentVisitor
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
+    
     
     public @Nullable Continuation<?> visitClassifierContextDeclCS(@NonNull ClassifierContextDeclCS self) {
         throw new UnsupportedOperationException("visitClassifierContextDeclCS is not supported by " + getClass().getName());

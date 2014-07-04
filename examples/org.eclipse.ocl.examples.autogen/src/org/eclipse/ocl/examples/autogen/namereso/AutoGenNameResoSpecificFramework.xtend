@@ -17,6 +17,7 @@ import java.util.Map
 import org.eclipse.ocl.examples.pivot.Property
 import org.eclipse.ocl.examples.pivot.Type
 import java.util.List
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
 class AutoGenNameResoSpecificFramework {
 	
@@ -28,7 +29,7 @@ class AutoGenNameResoSpecificFramework {
 	 * 
 	 * 
 	 */
-	def public static generateSpecificFramework(@NonNull String outputFolder, @NonNull String projectPrefix, @NonNull String modelPckName,
+	def public static generateSpecificFramework(@NonNull String outputFolder, @NonNull GenPackage genPackage, @NonNull String projectPrefix, @NonNull String modelPckName,
 		@NonNull String packageName, @NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElmntPckName, 
 		@NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 
@@ -36,13 +37,13 @@ class AutoGenNameResoSpecificFramework {
 		generator.generatePivotContextItf(outputFolder, projectPrefix, packageName, baseElmntPckName, baseElmntName);
 		generator.generatePivotContextClass(outputFolder, projectPrefix, packageName, baseElmntPckName, baseElmntName);
 		generator.generatePivotVisitorItf(outputFolder, projectPrefix,  packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
-		generator.generatePivotVisitorClass(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		generator.generatePivotNameResolverItf(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		generator.generatePivotNameResolverClass(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		
 		// Generation from Complete OCL file
 		generator.generatePivotEnvironmentItf(outputFolder, projectPrefix, packageName, baseElmntName, nameResoPackage);
 		generator.generatePivotNamedEnvironmentClass(outputFolder, projectPrefix, packageName,  baseElmntName, nameResoPackage);
+		AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
 	}
 	
 	protected def void generatePivotEnvironmentItf(@NonNull String outputFolder, @NonNull String projectPrefix,

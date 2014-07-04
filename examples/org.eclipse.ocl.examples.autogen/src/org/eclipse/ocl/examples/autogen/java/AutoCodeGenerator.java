@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.AutoCodeGenOptions;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
+import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
@@ -54,7 +55,6 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	//protected final @Nullable GenPackage superGenPackage;
 	protected final @NonNull Map<String, CGPackage> externalPackages = new HashMap<String, CGPackage>();
 	protected final @NonNull String projectPrefix;
-	protected final @NonNull String projectName;
 	protected final @NonNull String visitorPackage; 
 	protected final @NonNull String visitorClass;
 	protected final @Nullable String superProjectPrefix;
@@ -67,7 +67,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			@Nullable org.eclipse.ocl.examples.pivot.Package asSuperPackage,
 			@NonNull GenPackage genPackage, // @Nullable GenPackage superGenPackage,
 			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
-			@NonNull String projectName,    // there is no point of providing a different to compute it here. To improve the framework, make use of the
+											// there is no point of providing a different to compute it here. To improve the framework, make use of the
 			@NonNull String visitorPackage,	// genModel base logic in the whole framework simplyfying the number of parameters to deal with. Then, these parameters may be removed
 			@NonNull String visitorClass,
 			@Nullable String superProjectPrefix,
@@ -83,7 +83,6 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		this.genPackage = genPackage;
 		// this.superGenPackage = superGenPackage;
 		this.projectPrefix = projectPrefix;
-		this.projectName = projectName;
 		this.visitorPackage = visitorPackage;
 		this.visitorClass = visitorClass;
 		this.superProjectPrefix = superProjectPrefix;
@@ -92,52 +91,67 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	}
 
 	@Override
-	public @NonNull AnalysisVisitor createAnalysisVisitor() {
+	@NonNull
+	public final AnalysisVisitor createAnalysisVisitor() {
 		return cFactory.createAnalysisVisitor(cgAnalyzer);
 	}
 
 	@Override
-	public @NonNull BoxingAnalyzer createBoxingAnalyzer() {
+	@NonNull
+	public final BoxingAnalyzer createBoxingAnalyzer() {
 		return cFactory.createBoxingAnalyzer(cgAnalyzer);
 	}
 
 	@Override
-	public @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor() {
+	@NonNull
+	public final CG2JavaPreVisitor createCG2JavaPreVisitor() {
 		return cFactory.createCG2JavaPreVisitor(getGlobalContext());
 	}
 
 	@Override
-	public @NonNull DependencyVisitor createDependencyVisitor() {
+	@NonNull
+	public final DependencyVisitor createDependencyVisitor() {
 		return cFactory.createDependencyVisitor(cgAnalyzer, getGlobalContext(),
 			getGlobalPlace());
 	}
 
 	@Override
-	public @NonNull FieldingAnalyzer createFieldingAnalyzer() {
+	@NonNull
+	public final FieldingAnalyzer createFieldingAnalyzer() {
 		return cFactory.createFieldingAnalyzer(cgAnalyzer);
 	}
 	
 	@Override
-	public @NonNull ReferencesVisitor createReferencesVisitor() {
+	@NonNull
+	public final ReferencesVisitor createReferencesVisitor() {
 		return cFactory.createReferencesVisitor();
 	}
 	
-	protected AutoCG2JavaVisitor createCG2JavaVisitor(@NonNull CGPackage cgPackage,
+	@NonNull
+	protected final AutoCG2JavaVisitor createCG2JavaVisitor(
 			@Nullable List<CGValuedElement> sortedGlobals) {
-		return cFactory.createCG2JavaVisitor(this, cgPackage, sortedGlobals);
+		return cFactory.createCG2JavaVisitor(this, sortedGlobals);
 	}
 	
 	@Override
-	protected @NonNull AutoGlobalContext createGlobalContext() {
+	@NonNull
+	protected final AutoGlobalContext createGlobalContext() {
 		return cFactory.createGlobalContext(this);
 	}
 	
-	protected @NonNull AutoAnalyzer createAnalyser() {
+	@NonNull
+	protected final AS2CGVisitor createAS2CGVisitor() {	
+		return cFactory.createAS2CGVisitor(cgAnalyzer);
+	}
+	
+	@NonNull
+	protected AutoAnalyzer createAnalyser() {
 		return new AutoAnalyzer(this);
 	}
 
 	@Override
-	protected @NonNull AutoCodeGenOptions createOptions() {
+	@NonNull
+	protected AutoCodeGenOptions createOptions() {
 		return new AutoCodeGenOptions();
 	}
 

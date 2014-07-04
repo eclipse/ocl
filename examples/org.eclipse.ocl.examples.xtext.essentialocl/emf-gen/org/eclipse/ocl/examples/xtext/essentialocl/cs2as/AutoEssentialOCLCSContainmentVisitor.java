@@ -1,11 +1,11 @@
-/*
+/*******************************************************************************
  * «codeGenHelper.getCopyright(' * ')»
- *************************************************************************
+ *
  * This code is 100% auto-generated
  * using: org.eclipse.ocl.examples.codegen.java.JavaStream
  *
  * Do not edit it.
- */
+ ********************************************************************************/
 
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2as;
 
@@ -75,6 +75,7 @@ public class AutoEssentialOCLCSContainmentVisitor
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
+    
     
     public @Nullable Continuation<?> visitAbstractNameExpCS(@NonNull AbstractNameExpCS self) {
         throw new UnsupportedOperationException("visitAbstractNameExpCS is not supported by " + getClass().getName());

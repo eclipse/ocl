@@ -1,11 +1,11 @@
-/*
+/*******************************************************************************
  * «codeGenHelper.getCopyright(' * ')»
- *************************************************************************
+ *
  * This code is 100% auto-generated
  * using: org.eclipse.ocl.examples.codegen.java.JavaStream
  *
  * Do not edit it.
- */
+ ********************************************************************************/
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2as;
 
@@ -46,6 +46,7 @@ public class AutoOCLstdlibCSContainmentVisitor
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
+    
     
     public @Nullable Continuation<?> visitJavaImplementationCS(@NonNull JavaImplementationCS self) {
         throw new UnsupportedOperationException("visitJavaImplementationCS is not supported by " + getClass().getName());

@@ -1,11 +1,11 @@
-/*
+/*******************************************************************************
  * «codeGenHelper.getCopyright(' * ')»
- *************************************************************************
+ *
  * This code is 100% auto-generated
  * using: org.eclipse.ocl.examples.codegen.java.JavaStream
  *
  * Do not edit it.
- */
+ ********************************************************************************/
 
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2as;
 
@@ -39,6 +39,7 @@ public class AutoOCLinEcoreCSContainmentVisitor
         this.converter = context.getConverter();
         this.idResolver = converter.getMetaModelManager().getIdResolver();
     }
+    
     
     public @Nullable Continuation<?> visitOCLinEcoreConstraintCS(@NonNull OCLinEcoreConstraintCS self) {
         throw new UnsupportedOperationException("visitOCLinEcoreConstraintCS is not supported by " + getClass().getName());

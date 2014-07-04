@@ -16,24 +16,103 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
 
 /**
  * A AutoCG2JavaVisitor supports generation of Java code from an optimized Auto CG transformation tree.
  */
-public class AutoCG2JavaVisitor extends CG2JavaVisitor
+public abstract class AutoCG2JavaVisitor extends CG2JavaVisitor
 {
 	protected final @NonNull AutoAnalyzer analyzer;
-	protected final @NonNull CGPackage cgPackage;
 	protected final @Nullable List<CGValuedElement> sortedGlobals;
 	
-	public AutoCG2JavaVisitor(@NonNull AutoCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
+	public AutoCG2JavaVisitor(@NonNull AutoCodeGenerator codeGenerator,
 			@Nullable List<CGValuedElement> sortedGlobals) {
 		super(codeGenerator);
 		this.analyzer = codeGenerator.getAnalyzer();
-		this.cgPackage = cgPackage;
 		this.sortedGlobals = sortedGlobals;
 	}
+	
+	
+	@Override
+	public @NonNull Boolean visitCGClass(@NonNull CGClass cgClass) {		
+		String className = cgClass.getName();
+		js.append("public class " + className);
+		
+		List<CGClass> cgSuperTypes = cgClass.getSuperTypes();
+		printClassExtendsImplements(cgSuperTypes);
+
+		js.append("\n");
+		js.append("{\n");		
+		js.pushIndentation(null);
+				
+		if (sortedGlobals != null) {
+			for (CGValuedElement cgElement : sortedGlobals) {
+				assert cgElement.isGlobal();
+				cgElement.accept(this);
+			}
+		}
+		
+		js.append("\n");
+		doClassFields();
+		
+		js.append("\n");
+		doConstructor(cgClass);
+		if (cgSuperTypes.size() <= 1) {
+			js.append("\n");
+			doVisiting();
+		}
+		
+		js.append("\n");
+		doAdditionalClassMethods();
+		
+		for (CGOperation cgOperation : cgClass.getOperations()) {
+			js.append("\n");
+			cgOperation.accept(this);
+		}
+		js.popIndentation();
+		js.append("}\n");
+		return true;
+	}
+	
+	private void printClassExtendsImplements(List<CGClass> cgSuperTypes) {
+		
+		boolean isFirst = true;
+		for (CGClass cgSuperType : cgSuperTypes) {
+			if (!cgSuperType.isInterface()) {
+				if (isFirst) {
+					js.append("\n\textends ");
+				}
+				else {
+					js.append(", ");
+				}
+				js.appendClassReference(cgSuperType);
+				isFirst = false;
+			}
+		}
+		isFirst = true;
+		for (CGClass cgSuperType : cgSuperTypes) {
+			if (cgSuperType.isInterface()) {
+				if (isFirst) {
+					js.append("\n\timplements ");
+				}
+				else {
+					js.append(", ");
+				}
+				js.appendClassReference(cgSuperType);
+				isFirst = false;
+			}
+		}
+	}
+	
+	abstract protected void doClassFields();
+	
+	abstract protected void doConstructor(@NonNull CGClass cgClass);
+	
+	abstract protected void doVisiting();
+	
+	abstract protected void doAdditionalClassMethods();
 }

@@ -15,12 +15,12 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
+import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
@@ -28,6 +28,9 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 
 public interface IAutoCGComponentFactory {
 	
+	@NonNull
+	public AS2CGVisitor createAS2CGVisitor(@NonNull AutoAnalyzer analyzer);
+			
 	@NonNull
 	public AnalysisVisitor createAnalysisVisitor(@NonNull AutoAnalyzer analyzer);
 
@@ -49,7 +52,7 @@ public interface IAutoCGComponentFactory {
 	
 	@NonNull
 	public AutoCG2JavaVisitor createCG2JavaVisitor(@NonNull AutoCodeGenerator codeGenerator, 
-			@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals);
+			@Nullable List<CGValuedElement> sortedGlobals);
 	
 	@NonNull 
 	public AutoGlobalContext createGlobalContext(@NonNull AutoCodeGenerator codeGenerator);

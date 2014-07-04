@@ -1,3 +1,13 @@
+/**
+ * Copyright (c) 2014 Willink Transformations, University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		 Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation
+ */
 package org.eclipse.ocl.examples.autogen.cs2as;
 
 import java.io.IOException;
@@ -16,7 +26,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoAS2CGVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoCG2StringVisitor;
 import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody;
@@ -49,19 +58,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2as.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 
-
-/**
- * Copyright (c) 2014 Willink Transformations, University of York and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *		 Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation
- */
-
 public class AutoCS2ASCodeGenerator extends AutoCodeGenerator {
+
+	protected final @NonNull String projectName;
 
 	public static void generate(@NonNull GenPackage genPackage,
 			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
@@ -114,8 +113,9 @@ public class AutoCS2ASCodeGenerator extends AutoCodeGenerator {
 			@NonNull String visitorClass, @Nullable String superProjectPrefix,
 			@Nullable String superManualVisitorPackage, @Nullable String superVisitorClass) {
 		super(metaModelManager, cFactory, asPackage, asSuperPackage, genPackage, projectPrefix,
-			projectName, visitorPackage, visitorClass, superProjectPrefix,
+			visitorPackage, visitorClass, superProjectPrefix,
 			superManualVisitorPackage, superVisitorClass);
+		this.projectName = projectName;
 	}
 
 	
@@ -143,7 +143,7 @@ public class AutoCS2ASCodeGenerator extends AutoCodeGenerator {
 		CGPackage cgPackage = createCGPackage();
 		optimize(cgPackage);
 		List<CGValuedElement> sortedGlobals = prepareGlobals();
-		AutoCG2JavaVisitor generator = createCG2JavaVisitor(cgPackage, sortedGlobals);
+		AutoCG2JavaVisitor generator = createCG2JavaVisitor(sortedGlobals);
 		generator.safeVisit(cgPackage);
 		Set<String> allImports = generator.getAllImports();
 		Map<String, String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
@@ -161,7 +161,7 @@ public class AutoCS2ASCodeGenerator extends AutoCodeGenerator {
 		
 		//String className = prefix + "AutoContainmentVisitor";
 		String className = getAutoVisitorClassName(prefix);
-		AS2CGVisitor as2cgVisitor = new AutoAS2CGVisitor(cgAnalyzer, getGlobalContext());
+		AS2CGVisitor as2cgVisitor = createAS2CGVisitor();
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		cgPackage.setName(packageName);
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();

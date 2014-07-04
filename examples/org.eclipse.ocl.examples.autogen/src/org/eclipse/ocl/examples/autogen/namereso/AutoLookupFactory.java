@@ -8,20 +8,15 @@
  * Contributors:
  *		 Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation
  */
-package org.eclipse.ocl.examples.autogen.cs2as;
+package org.eclipse.ocl.examples.autogen.namereso;
 
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoAS2CGVisitor;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalysisVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoBoxingAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoDependencyVisitor;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoFieldingAnalyzer;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoReferencesVisitor;
-import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaPreVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.autogen.java.AutoGlobalContext;
@@ -37,22 +32,27 @@ import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 
 
-public class AutoCS2ASFactory  implements IAutoCGComponentFactory {
+public class AutoLookupFactory  implements IAutoCGComponentFactory {
 
 	@NonNull
+	public AS2CGVisitor createAS2CGVisitor(@NonNull AutoAnalyzer analyzer) {
+		return new AS2CGVisitor(analyzer);
+	}
+	
+	@NonNull
 	public AnalysisVisitor createAnalysisVisitor(@NonNull AutoAnalyzer analyzer) {
-		return new AutoAnalysisVisitor(analyzer);
+		return new AnalysisVisitor(analyzer);
 	}
 
 	@NonNull
 	public BoxingAnalyzer createBoxingAnalyzer(@NonNull AutoAnalyzer analyzer) {
-		return new AutoBoxingAnalyzer(analyzer);
+		return new BoxingAnalyzer(analyzer);
 	}
 
 	@NonNull
 	public CG2JavaPreVisitor createCG2JavaPreVisitor(
 			@NonNull AutoGlobalContext javaContext) {
-		return new AutoCG2JavaPreVisitor(javaContext);
+		return new CG2JavaPreVisitor(javaContext);
 	}
 
 	@NonNull
@@ -60,7 +60,7 @@ public class AutoCS2ASFactory  implements IAutoCGComponentFactory {
 			@NonNull AutoAnalyzer analyzer,
 			@NonNull AutoGlobalContext globalContext,
 			@NonNull GlobalPlace globalPlace) {
-		return new AutoDependencyVisitor(analyzer, globalContext, globalPlace);
+		return new DependencyVisitor(analyzer, globalPlace);
 	}
 
 	@NonNull
@@ -76,23 +76,14 @@ public class AutoCS2ASFactory  implements IAutoCGComponentFactory {
 	
 	@NonNull
 	public AutoCG2JavaVisitor createCG2JavaVisitor(
-			@NonNull AutoCodeGenerator codeGenerator,
+			@NonNull AutoCodeGenerator codeGenerator,			
 			@Nullable List<CGValuedElement> sortedGlobals) {
-		return new AutoCG2JavaContainmentVisitor(codeGenerator, sortedGlobals);
+		return new AutoCG2JavaLookupVisitor(codeGenerator, sortedGlobals);
 	}
-	
-	@NonNull
-	public AS2CGVisitor createAS2CGVisitor(
-			@NonNull AutoAnalyzer analyzer) {
-		return new AutoAS2CGVisitor(analyzer);
-	}
-	
 	
 	@NonNull
 	public AutoGlobalContext createGlobalContext(
 		@NonNull AutoCodeGenerator codeGenerator) {
-		return new AutoCS2ASGlobalContext(codeGenerator);
+		return new AutoLookupGlobalContext(codeGenerator);
 	}
-	
-	
 }
