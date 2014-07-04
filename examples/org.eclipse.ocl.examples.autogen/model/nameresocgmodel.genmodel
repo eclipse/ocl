@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText="&lt;copyright>&#xD;&#xA;&#xD;&#xA;Copyright (c) 2014 Willink Transformations, University of York and others.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;&#x9; Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation&#xD;&#xA;&#xD;&#xA;&lt;/copyright>"
+    modelDirectory="/org.eclipse.ocl.examples.autogen/emf-gen" editDirectory="/org.eclipse.ocl.examples.autogen.edit/emf-gen"
+    editorDirectory="/org.eclipse.ocl.examples.autogen.editor/emf-gen" modelPluginID="org.eclipse.ocl.examples.autogen"
+    modelName="NameResoCGmodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    suppressEMFTypes="true" testsDirectory="/org.eclipse.ocl.examples.autogen.tests/emf-gen"
+    booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    language="" usedGenPackages="../../org.eclipse.ocl.examples.codegen/model/cgmodel.genmodel#//cgmodel"
+    importOrganizing="true">
+  <foreignModel>nameresocgmodel.ecore</foreignModel>
+  <genPackages prefix="NameResoCGModel" basePackage="org.eclipse.ocl.examples.autogen"
+      disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.ocl.examples.autogen.nameresocgmodel"
+      ecorePackage="nameresocgmodel.ecore#/">
+    <genClasses ecoreClass="nameresocgmodel.ecore#//CGAddCall"/>
+  </genPackages>
+</genmodel:GenModel>

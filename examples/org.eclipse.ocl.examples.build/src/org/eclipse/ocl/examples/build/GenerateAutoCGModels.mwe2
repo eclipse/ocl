@@ -34,6 +34,12 @@ Workflow {
 		genModel = "/org.eclipse.ocl.examples.autogen/model/autocgmodel.genmodel"
 		clearResourceSet = false
 	}
+	
+	component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+		genModel = "/org.eclipse.ocl.examples.autogen/model/nameresocgmodel.genmodel"
+		clearResourceSet = false
+	}
+	
     component = GenerateCGVisitors { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.examples.autogen"
     	projectPrefix = "AutoCGModel"
@@ -44,6 +50,22 @@ Workflow {
     	modelPackageName = "org.eclipse.ocl.examples.autogen.autocgmodel"
     	visitorPackageName = "org.eclipse.ocl.examples.autogen.autocgmodel.util"
     	visitorClassName = "AutoCGModelVisitor"
+    	superVisitorPackageName = "org.eclipse.ocl.examples.codegen.cgmodel.util"
+    	superVisitorClassName = "CGModelVisitor"
+    	visitablePackageName = "org.eclipse.ocl.examples.codegen.cgmodel"
+    	visitableClassName= "CGElement"
+    }
+    
+     component = GenerateCGVisitors { resourceSet = resourceSet
+    	projectName = "org.eclipse.ocl.examples.autogen"
+    	projectPrefix = "NameResoCGModel"
+    	superProjectName = "org.eclipse.ocl.examples.codegen"
+    	superProjectPrefix = "CGModel"
+    	genModelFile = "model/nameresocgmodel.genmodel"
+    	javaFolder = "emf-gen"
+    	modelPackageName = "org.eclipse.ocl.examples.autogen.nameresocgmodel"
+    	visitorPackageName = "org.eclipse.ocl.examples.autogen.nameresocgmodel.util"
+    	visitorClassName = "NameResoCGModelVisitor"
     	superVisitorPackageName = "org.eclipse.ocl.examples.codegen.cgmodel.util"
     	superVisitorClassName = "CGModelVisitor"
     	visitablePackageName = "org.eclipse.ocl.examples.codegen.cgmodel"

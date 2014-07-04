@@ -1,27 +1,29 @@
-/*******************************************************************************
- * Copyright (c) 2013 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2014 Willink Transformations, University of York and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   E.D.Willink - Initial API and implementation
- *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.autocgmodel.util;
+ * 	 Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.eclipse.ocl.examples.autogen.nameresocgmodel.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.ocl.examples.autogen.autocgmodel.*;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.*;
 
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -38,17 +40,24 @@ import org.eclipse.ocl.examples.domain.elements.Nameable;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage
+ * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage
  * @generated
  */
-public class AutoCGModelSwitch<T> extends Switch<T> {
+public class NameResoCGModelSwitch<T> extends Switch<T> {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "<copyright>\r\n\r\nCopyright (c) 2014 Willink Transformations, University of York and others.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n\t Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation\r\n\r\n</copyright>";
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AutoCGModelPackage modelPackage;
+	protected static NameResoCGModelPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -56,9 +65,9 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AutoCGModelSwitch() {
+	public NameResoCGModelSwitch() {
 		if (modelPackage == null) {
-			modelPackage = AutoCGModelPackage.eINSTANCE;
+			modelPackage = NameResoCGModelPackage.eINSTANCE;
 		}
 	}
 
@@ -85,51 +94,16 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case AutoCGModelPackage.CGAST_CALL_EXP: {
-				CGASTCallExp cgastCallExp = (CGASTCallExp)theEObject;
-				T result = caseCGASTCallExp(cgastCallExp);
-				if (result == null) result = caseCGOperationCallExp(cgastCallExp);
-				if (result == null) result = caseCGCallExp(cgastCallExp);
-				if (result == null) result = caseCGValuedElement(cgastCallExp);
-				if (result == null) result = caseCGTypedElement(cgastCallExp);
-				if (result == null) result = caseCGNamedElement(cgastCallExp);
-				if (result == null) result = caseCGElement(cgastCallExp);
-				if (result == null) result = caseNameable(cgastCallExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AutoCGModelPackage.CG_CONTAINMENT_VISIT: {
-				CGContainmentVisit cgContainmentVisit = (CGContainmentVisit)theEObject;
-				T result = caseCGContainmentVisit(cgContainmentVisit);
-				if (result == null) result = caseCGOperation(cgContainmentVisit);
-				if (result == null) result = caseCGCallable(cgContainmentVisit);
-				if (result == null) result = caseCGValuedElement(cgContainmentVisit);
-				if (result == null) result = caseCGTypedElement(cgContainmentVisit);
-				if (result == null) result = caseCGNamedElement(cgContainmentVisit);
-				if (result == null) result = caseCGElement(cgContainmentVisit);
-				if (result == null) result = caseNameable(cgContainmentVisit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AutoCGModelPackage.CG_CONTAINMENT_PART: {
-				CGContainmentPart cgContainmentPart = (CGContainmentPart)theEObject;
-				T result = caseCGContainmentPart(cgContainmentPart);
-				if (result == null) result = caseCGValuedElement(cgContainmentPart);
-				if (result == null) result = caseCGTypedElement(cgContainmentPart);
-				if (result == null) result = caseCGNamedElement(cgContainmentPart);
-				if (result == null) result = caseCGElement(cgContainmentPart);
-				if (result == null) result = caseNameable(cgContainmentPart);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AutoCGModelPackage.CG_CONTAINMENT_BODY: {
-				CGContainmentBody cgContainmentBody = (CGContainmentBody)theEObject;
-				T result = caseCGContainmentBody(cgContainmentBody);
-				if (result == null) result = caseCGValuedElement(cgContainmentBody);
-				if (result == null) result = caseCGTypedElement(cgContainmentBody);
-				if (result == null) result = caseCGNamedElement(cgContainmentBody);
-				if (result == null) result = caseCGElement(cgContainmentBody);
-				if (result == null) result = caseNameable(cgContainmentBody);
+			case NameResoCGModelPackage.CG_ADD_CALL: {
+				CGAddCall cgAddCall = (CGAddCall)theEObject;
+				T result = caseCGAddCall(cgAddCall);
+				if (result == null) result = caseCGOperationCallExp(cgAddCall);
+				if (result == null) result = caseCGCallExp(cgAddCall);
+				if (result == null) result = caseCGValuedElement(cgAddCall);
+				if (result == null) result = caseCGTypedElement(cgAddCall);
+				if (result == null) result = caseCGNamedElement(cgAddCall);
+				if (result == null) result = caseCGElement(cgAddCall);
+				if (result == null) result = caseNameable(cgAddCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,62 +112,17 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CGAST Call Exp</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CG Add Call</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CGAST Call Exp</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CG Add Call</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCGASTCallExp(CGASTCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Containment Visit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Containment Visit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCGContainmentVisit(CGContainmentVisit object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Containment Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Containment Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCGContainmentPart(CGContainmentPart object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Containment Body</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Containment Body</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCGContainmentBody(CGContainmentBody object) {
+	public T caseCGAddCall(CGAddCall object) {
 		return null;
 	}
 
@@ -303,36 +232,6 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Callable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Callable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCGCallable(CGCallable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCGOperation(CGOperation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -348,4 +247,4 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //AutoCGModelSwitch
+} //NameResoCGModelSwitch

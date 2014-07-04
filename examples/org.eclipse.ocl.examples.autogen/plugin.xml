@@ -34,6 +34,21 @@
    </extension>
 
    <extension point="org.eclipse.core.contenttype.contentTypes">
+      <!-- @generated nameresocgmodel -->
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            file-extensions="nameresocgmodel"
+            id="org.eclipse.ocl.examples.autogen.nameresocgmodel"
+            name="%_UI_NameResoCGModel_content_type"
+            priority="normal">
+         <describer class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+            <parameter name="namespace" value="http://www.eclipse.org/ocl/1.0.0/NameResoCG"/>
+            <parameter name="kind" value="xmi"/>
+         </describer>
+      </content-type>
+   </extension>
+
+   <extension point="org.eclipse.core.contenttype.contentTypes">
       <!-- @generated autocgmodel -->
       <content-type
             base-type="org.eclipse.emf.ecore.xmi"
@@ -46,6 +61,14 @@
             <parameter name="kind" value="xmi"/>
          </describer>
       </content-type>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nameresocgmodel -->
+      <package
+            uri="http://www.eclipse.org/ocl/1.0.0/NameResoCG"
+            class="org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage"
+            genModel="model/nameresocgmodel.genmodel"/>
    </extension>
 
 </plugin>

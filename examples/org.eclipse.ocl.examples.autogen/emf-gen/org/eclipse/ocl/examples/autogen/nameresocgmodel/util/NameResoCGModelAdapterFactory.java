@@ -1,14 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2013 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2014 Willink Transformations, University of York and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   E.D.Willink - Initial API and implementation
- *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.autocgmodel.util;
+ * 	 Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.eclipse.ocl.examples.autogen.nameresocgmodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -17,13 +21,11 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.ocl.examples.autogen.autocgmodel.*;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.*;
 
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -35,17 +37,24 @@ import org.eclipse.ocl.examples.domain.elements.Nameable;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage
+ * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage
  * @generated
  */
-public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
+public class NameResoCGModelAdapterFactory extends AdapterFactoryImpl {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "<copyright>\r\n\r\nCopyright (c) 2014 Willink Transformations, University of York and others.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n\t Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation\r\n\r\n</copyright>";
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AutoCGModelPackage modelPackage;
+	protected static NameResoCGModelPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -53,9 +62,9 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AutoCGModelAdapterFactory() {
+	public NameResoCGModelAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = AutoCGModelPackage.eINSTANCE;
+			modelPackage = NameResoCGModelPackage.eINSTANCE;
 		}
 	}
 
@@ -84,23 +93,11 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AutoCGModelSwitch<Adapter> modelSwitch =
-		new AutoCGModelSwitch<Adapter>() {
+	protected NameResoCGModelSwitch<Adapter> modelSwitch =
+		new NameResoCGModelSwitch<Adapter>() {
 			@Override
-			public Adapter caseCGASTCallExp(CGASTCallExp object) {
-				return createCGASTCallExpAdapter();
-			}
-			@Override
-			public Adapter caseCGContainmentVisit(CGContainmentVisit object) {
-				return createCGContainmentVisitAdapter();
-			}
-			@Override
-			public Adapter caseCGContainmentPart(CGContainmentPart object) {
-				return createCGContainmentPartAdapter();
-			}
-			@Override
-			public Adapter caseCGContainmentBody(CGContainmentBody object) {
-				return createCGContainmentBodyAdapter();
+			public Adapter caseCGAddCall(CGAddCall object) {
+				return createCGAddCallAdapter();
 			}
 			@Override
 			public Adapter caseCGElement(CGElement object) {
@@ -131,14 +128,6 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGOperationCallExpAdapter();
 			}
 			@Override
-			public Adapter caseCGCallable(CGCallable object) {
-				return createCGCallableAdapter();
-			}
-			@Override
-			public Adapter caseCGOperation(CGOperation object) {
-				return createCGOperationAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -159,58 +148,16 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp <em>CGAST Call Exp</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall <em>CG Add Call</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp
+	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall
 	 * @generated
 	 */
-	public Adapter createCGASTCallExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit <em>CG Containment Visit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit
-	 * @generated
-	 */
-	public Adapter createCGContainmentVisitAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart <em>CG Containment Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart
-	 * @generated
-	 */
-	public Adapter createCGContainmentPartAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody <em>CG Containment Body</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody
-	 * @generated
-	 */
-	public Adapter createCGContainmentBodyAdapter() {
+	public Adapter createCGAddCallAdapter() {
 		return null;
 	}
 
@@ -313,34 +260,6 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCallable <em>CG Callable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGCallable
-	 * @generated
-	 */
-	public Adapter createCGCallableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperation <em>CG Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGOperation
-	 * @generated
-	 */
-	public Adapter createCGOperationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
@@ -352,4 +271,4 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //AutoCGModelAdapterFactory
+} //NameResoCGModelAdapterFactory
