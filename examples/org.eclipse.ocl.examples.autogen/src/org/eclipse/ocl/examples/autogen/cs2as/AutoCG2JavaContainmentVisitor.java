@@ -50,7 +50,7 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 	}
 	
 	@Override
-	protected void doClassFields() {
+	protected void doClassFields(@NonNull CGClass cgClass) {
 
 	    js.append("protected final ");
 	    js.appendIsRequired(true);
@@ -85,7 +85,7 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 	}
 
 	@Override
-	protected void doVisiting() {
+	protected void doVisiting(@NonNull CGClass cgClass) {
 		js.append("public ");
 		js.appendIsRequired(false);
 		js.append(" ");
@@ -102,7 +102,7 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 	}
 
 	@Override
-	protected void doAdditionalClassMethods() {
+	protected void doAdditionalClassMethods(@NonNull CGClass cgClass) {
 		// No addtional methods
 	}
 	

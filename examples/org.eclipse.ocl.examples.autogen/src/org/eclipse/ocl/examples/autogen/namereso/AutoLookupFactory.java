@@ -78,7 +78,7 @@ public class AutoLookupFactory  implements IAutoCGComponentFactory {
 	public AutoCG2JavaVisitor createCG2JavaVisitor(
 			@NonNull AutoCodeGenerator codeGenerator,			
 			@Nullable List<CGValuedElement> sortedGlobals) {
-		return new AutoCG2JavaLookupVisitor(codeGenerator, sortedGlobals);
+		return new AutoCG2JavaLookupVisitor((AutoLookupCodeGenerator)codeGenerator, sortedGlobals);
 	}
 	
 	@NonNull

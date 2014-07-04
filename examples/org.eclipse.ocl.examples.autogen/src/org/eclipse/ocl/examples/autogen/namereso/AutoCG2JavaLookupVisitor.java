@@ -15,29 +15,27 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
-import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupContext;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 
 public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 
-	public AutoCG2JavaLookupVisitor(@NonNull AutoCodeGenerator codeGenerator,
+	protected final AutoNameResoCGNamesProvider nProvider;
+	public AutoCG2JavaLookupVisitor(@NonNull AutoLookupCodeGenerator codeGenerator,
 			@Nullable List<CGValuedElement> sortedGlobals) {
 		super(codeGenerator, sortedGlobals);
+		nProvider = codeGenerator.getCGNamesProvider(); 
 	}
 
 	@Override
-	protected void doClassFields() {
+	protected void doClassFields(@NonNull CGClass cgClass) {
 
 		js.appendIsRequired(true);
 	    js.append(" protected final ");
@@ -45,7 +43,7 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 	    js.append(" mmManager;\n");
 	    js.appendIsRequired(true);
 	    js.append(" protected final ");
-	    js.appendClassReference(AutoIPivotLookupEnvironment.class);
+	    js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 	    js.append(" result;\n");
 	};
 	
@@ -59,11 +57,14 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.append(" mmManager, ");
 		js.appendIsRequired(true);
 		js.append(" ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" result, ");
 		js.appendIsRequired(true);
 		js.append(" ");
-		js.appendClassReference(AutoILookupContext.class, Element.class);
+		js.appendClassReference(nProvider.getCommonContextItf());
+		js.append("<");
+		js.appendClassReference("org.eclipse.ocl.examples.pivot.Element"); // FIXME ADOLFOSBH parametrize
+		js.append(">");		
 		js.append(" context) {\n");
 		
 		js.pushIndentation(null);
@@ -75,15 +76,15 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 	}
 
 	@Override
-	protected void doVisiting() {
+	protected void doVisiting(@NonNull CGClass cgClass) {
 		js.append("public ");
 		js.appendIsRequired(false);
 		js.append(" ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" visiting(");
 		js.appendIsRequired(true);
 		js.append(" ");
-		js.appendClassReference(Visitable.class);
+		js.appendClassReference(Visitable.class); // FIXME parametrize
 		js.append(" visitable) {\n");
 		js.pushIndentation(null);
 		js.append("return lookupInParentIfNotComplete();\n");
@@ -93,19 +94,22 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 
 
 	@Override
-	protected void doAdditionalClassMethods() {
+	protected void doAdditionalClassMethods(@NonNull CGClass cgClass) {
 				
-		doVisiting(); // FIXME This is a nasty workaround, due to the fragile logic in
+		doVisiting(cgClass); // FIXME This is a nasty workaround, due to the fragile logic in
 					  // AutoCG2JavaVisitor::visitCGClass to print the doVisiting method
 		
 		js.appendIsRequired(true);
 		js.append("\n");
 		js.append("protected final ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" lookupInNewContext(");
 		js.appendIsRequired(false);
 		js.append(" ");
-		js.appendClassReference(AutoILookupContext.class, Element.class);
+		js.appendClassReference(nProvider.getCommonContextItf());
+		js.append("<");
+		js.appendClassReference("org.eclipse.ocl.examples.pivot.Element"); // FIXME ADOLFOSBH parametrize
+		js.append(">");		
 		js.append("newContext) {\n");
 		js.pushIndentation(null);
 		js.append("return newContext == null ? result // If we have reached the top element\n");
@@ -121,9 +125,9 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.appendIsRequired(true);
 		js.append("\n");
 		js.append("protected ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" lookupFromNewElement(");
-		js.appendClassReference(Element.class);
+		js.appendClassReference("org.eclipse.ocl.examples.pivot.Element");
 		js.append(" element) {\n");
 		js.pushIndentation(null);
 		js.append("return ");
@@ -142,7 +146,7 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.appendIsRequired(true);
 		js.append("\n");
 		js.append("protected ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" lookupOnlyLocal() {\n");
 		js.pushIndentation(null);
 		js.append("return result;\n");
@@ -159,7 +163,7 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.appendIsRequired(true);
 		js.append("\n");
 		js.append("protected ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" lookupInParentIfNotComplete() {\n");
 		js.pushIndentation(null);
 		js.append("return result.isComplete() ? result : lookupInNewContext(context.getParent());\n");
@@ -174,7 +178,7 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.appendIsRequired(true);
 		js.append("\n");
 		js.append("protected ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" lookupInParent() {\n");
 		js.pushIndentation(null);
 		js.append("return lookupInNewContext(context.getParent());\n");
@@ -192,7 +196,7 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.append("public ");
 		js.appendIsRequired(false);
 		js.append(" ");
-		js.appendClassReference(AutoIPivotLookupEnvironment.class);
+		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
 		js.append(" " + object.getName() + "(");
 		js.appendIsRequired(true);
 		js.append(" ");
@@ -209,5 +213,5 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.append("}\n");
 		return true;
 	}
-
+	
 }

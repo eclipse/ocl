@@ -163,6 +163,11 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		String packageName = javaClass.getPackage().getName();
 		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
 		CGClass externalClass = getExternalClass(packageName, className, javaClass.isInterface());
+		addTemplateParameters(externalClass, javaGenerics);
+		return externalClass;
+	}
+	
+	private void addTemplateParameters(CGClass externalClass, CGClass... javaGenerics) {
 		if (javaGenerics != null) {
 			for (CGClass javaGeneric : javaGenerics) {
 				if (javaGeneric == null) {
@@ -171,7 +176,6 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 				externalClass.getTemplateParameters().add(javaGeneric);
 			}
 		}
-		return externalClass;
 	}
 
 	protected @NonNull CGClass getExternalClass(@Nullable String packageName, @NonNull String className, boolean isInterface) {
@@ -189,6 +193,12 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			cgPackage.getClasses().add(cgClass);
 		}
 		return cgClass;
+	}
+	
+	protected @NonNull CGClass getExternalClass(@Nullable String packageName, @NonNull String className, boolean isInterface, CGClass... javaGenerics) {
+		CGClass externalClass = getExternalClass(packageName, className, isInterface);
+		addTemplateParameters(externalClass, javaGenerics);
+		return externalClass;
 	}
 
 	@Override

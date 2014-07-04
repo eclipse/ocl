@@ -21,36 +21,40 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
 class AutoGenNameResoSpecificFramework {
 	
-	private static final String autoPrefix = "Auto"
-	private static final AutoGenNameResoSpecificFramework generator = new AutoGenNameResoSpecificFramework();
-	
+	private final AutoNameResoCGNamesProvider nProvider;
+		
 	/**
 	 * Parameters:
-	 * 
-	 * 
 	 */
 	def public static generateSpecificFramework(@NonNull String outputFolder, @NonNull GenPackage genPackage, @NonNull String projectPrefix, @NonNull String modelPckName,
 		@NonNull String packageName, @NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElmntPckName, 
 		@NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 
-		generator.generatePivotNamedEnvironmentItf(outputFolder, projectPrefix, packageName,  baseElmntName);				
-		generator.generatePivotContextItf(outputFolder, projectPrefix, packageName, baseElmntPckName, baseElmntName);
-		generator.generatePivotContextClass(outputFolder, projectPrefix, packageName, baseElmntPckName, baseElmntName);
-		generator.generatePivotVisitorItf(outputFolder, projectPrefix,  packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
-		generator.generatePivotNameResolverItf(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
-		generator.generatePivotNameResolverClass(outputFolder, projectPrefix, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
+		var AutoGenNameResoSpecificFramework generator = new AutoGenNameResoSpecificFramework(projectPrefix);
+		generator.generatePivotNamedEnvironmentItf(outputFolder, packageName,  baseElmntName);				
+		generator.generatePivotContextItf(outputFolder, packageName, baseElmntPckName, baseElmntName);
+		generator.generatePivotContextClass(outputFolder, packageName, baseElmntPckName, baseElmntName);
+		generator.generatePivotVisitorItf(outputFolder,  packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
+		generator.generatePivotNameResolverItf(outputFolder, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
+		generator.generatePivotNameResolverClass(outputFolder, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		
 		// Generation from Complete OCL file
-		generator.generatePivotEnvironmentItf(outputFolder, projectPrefix, packageName, baseElmntName, nameResoPackage);
-		generator.generatePivotNamedEnvironmentClass(outputFolder, projectPrefix, packageName,  baseElmntName, nameResoPackage);
+		generator.generatePivotEnvironmentItf(outputFolder, packageName, baseElmntName, nameResoPackage);
+		generator.generatePivotNamedEnvironmentClass(outputFolder, packageName,  baseElmntName, nameResoPackage);
 		AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
 	}
 	
-	protected def void generatePivotEnvironmentItf(@NonNull String outputFolder, @NonNull String projectPrefix,
-		@NonNull String packageName, @NonNull String baseElmntName, @NonNull Package nameResoPackage) {
-		
-		var String commonEnvItf = getCommonEnvironmentItf()
-		var String envItf = getSpecificEnvironmentItf(projectPrefix)
+	
+	new(@NonNull String projectPrefix) {
+		nProvider = new AutoNameResoCGNamesProvider(projectPrefix);
+	}
+	
+	protected def void generatePivotEnvironmentItf(@NonNull String outputFolder,
+		@NonNull String packageName, @NonNull String baseElmntName, 
+		@NonNull Package nameResoPackage) {
+				
+		var String commonEnvItf = nProvider.getCommonEnvironmentItf()
+		var String envItf = nProvider.getSpecificEnvironmentItf()
 		var Map<Type, List<Property>> type2properties = NameResolutionUtil.computeType2EnvAddingFeatures(nameResoPackage);
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«envItf».java''')
@@ -116,12 +120,12 @@ public interface «envItf» extends «commonEnvItf» {
 		writer.close();
 	}
 	
-	protected def void generatePivotNamedEnvironmentItf(@NonNull String outputFolder, @NonNull String projectPrefix, 
+	protected def void generatePivotNamedEnvironmentItf(@NonNull String outputFolder,
 		@NonNull String packageName, @NonNull String baseElmntName) {
 		
-		var String namedEnvItf = getSpecificNamedEnvironmentItf(projectPrefix)
-		var String envItf = getSpecificEnvironmentItf(projectPrefix)
-		var String commonNamedResultItf = getCommonNamedResultItf()
+		var String namedEnvItf = nProvider.getSpecificNamedEnvironmentItf()
+		var String envItf = nProvider.getSpecificEnvironmentItf()
+		var String commonNamedResultItf = nProvider.getCommonNamedResultItf()
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«namedEnvItf».java''');
 		writer.append('''
@@ -145,12 +149,12 @@ public interface «namedEnvItf» extends «envItf»{
 	''');
 		writer.close();
 	}
-	protected def void generatePivotNamedEnvironmentClass(@NonNull String outputFolder, @NonNull String projectPrefix, 
+	protected def void generatePivotNamedEnvironmentClass(@NonNull String outputFolder, 
 		@NonNull String packageName, @NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 		
-		var String namedEnvItf = getSpecificNamedEnvironmentItf(projectPrefix)
-		var String namedEnvClass = getSpecificNamedEnvironmentClass(projectPrefix)
-		var String commonNamedEnvClass = getCommonNamedEnvironmentClass()
+		var String namedEnvItf = nProvider.getSpecificNamedEnvironmentItf()
+		var String namedEnvClass = nProvider.getSpecificNamedEnvironmentClass()
+		var String commonNamedEnvClass = nProvider.getCommonNamedEnvironmentClass()
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«namedEnvClass».java''');
 		writer.append('''
@@ -677,11 +681,11 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		
 
 
-	protected def void generatePivotContextItf(@NonNull String outputFolder, @NonNull String projectPrefix,
+	protected def void generatePivotContextItf(@NonNull String outputFolder,
 		@NonNull String packageName, @NonNull String baseElmntPckgName, @NonNull String baseElmntName) {
 		
-		var String commonContextItf = getCommonContextItf()
-		var String contextItf = getSpecificContextItf(projectPrefix)
+		var String commonContextItf = nProvider.getCommonContextItf()
+		var String contextItf = nProvider.getSpecificContextItf()
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«contextItf».java''')
 		writer.append('''
@@ -696,12 +700,12 @@ public interface «contextItf» extends «commonContextItf»<«baseElmntName»> 
 		writer.close();
 	}
 	
-	protected def void generatePivotContextClass(@NonNull String outputFolder, @NonNull String projectPrefix,
+	protected def void generatePivotContextClass(@NonNull String outputFolder,
 		@NonNull String packageName, @NonNull String baseElmntPckName, @NonNull String baseElmntName) {
 		
-		var String commonContextClass = getCommonContextClass()
-		var String contextClass = getSpecificContextClass(projectPrefix);
-		var String contextItf = getSpecificContextItf(projectPrefix)
+		var String commonContextClass = nProvider.getCommonContextClass()
+		var String contextClass = nProvider.getSpecificContextClass();
+		var String contextItf = nProvider.getSpecificContextItf()
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«contextClass».java''')
 		writer.append('''
@@ -728,11 +732,12 @@ public class «contextClass» extends «commonContextClass»<«baseElmntName»>
 		''');
 		writer.close();
 	}
-	protected def void generatePivotVisitorItf(@NonNull String outputFolder, @NonNull String projectPrefix, @NonNull String packageName, 
-		@NonNull String visitorPckName, @NonNull String visitorName,  @NonNull String baseElmntPckName,  @NonNull String baseElmntName
+	protected def void generatePivotVisitorItf(@NonNull String outputFolder, @NonNull String packageName, 
+		@NonNull String visitorPckName, @NonNull String visitorName,  
+		@NonNull String baseElmntPckName,  @NonNull String baseElmntName
 	) {
-		var visitorItf =  getSpecificVisitorItf(projectPrefix)
-		var environmentItf = getSpecificEnvironmentItf(projectPrefix)
+		var visitorItf =  nProvider.getSpecificVisitorItf()
+		var environmentItf = nProvider.getSpecificEnvironmentItf()
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«visitorItf».java''');
 		writer.append('''
@@ -747,13 +752,13 @@ public interface «visitorItf» extends «visitorName»<«environmentItf»> {
 		writer.close();
 	}
 	
-	protected def void generatePivotVisitorClass(@NonNull String outputFolder, @NonNull String projectPrefix, @NonNull String packageName,
+	protected def void generatePivotVisitorClass(@NonNull String outputFolder, @NonNull String packageName,
 		@NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElemntPckgName, @NonNull String baseElmntName
 	) {
-		var String visitorClass = getSpecificVisitorClass(projectPrefix)
-		var String visitorItf =  getSpecificVisitorItf(projectPrefix)
-		var String environmentItf =  getSpecificEnvironmentItf(projectPrefix)
-		var String commonContextItf = getCommonContextItf()
+		var String visitorClass = nProvider.getSpecificVisitorClass()
+		var String visitorItf =  nProvider.getSpecificVisitorItf()
+		var String environmentItf =  nProvider.getSpecificEnvironmentItf()
+		var String commonContextItf = nProvider.getCommonContextItf()
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«visitorClass».java''');
 		writer.append('''
@@ -832,12 +837,13 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	}
 
 
-	protected def void generatePivotNameResolverItf(@NonNull String outputFolder, @NonNull String projectPrefix, @NonNull String packageName,
-		@NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElemntPckgName, @NonNull String baseElmntName
+	protected def void generatePivotNameResolverItf(@NonNull String outputFolder, @NonNull String packageName,
+		@NonNull String visitorPckName, @NonNull String visitorName, 
+		@NonNull String baseElemntPckgName, @NonNull String baseElmntName
 	) {
-		var String resolverItf = getSpecificNameResolverItf(projectPrefix);
-		var String commonNamedResultItf = getCommonNamedResultItf();
-		var String commonUnnamedResultItf = getCommonUnnamedResultItf();
+		var String resolverItf = nProvider.getSpecificNameResolverItf();
+		var String commonNamedResultItf = nProvider.getCommonNamedResultItf();
+		var String commonUnnamedResultItf = nProvider.getCommonUnnamedResultItf();
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«resolverItf».java''');
 		writer.append('''
@@ -896,22 +902,23 @@ public interface «resolverItf» {
 		writer.close();
 	}
 	
-	protected def void generatePivotNameResolverClass(@NonNull String outputFolder, @NonNull String projectPrefix, @NonNull String packageName,
-		@NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElemntPckgName, @NonNull String baseElmntName
+	protected def void generatePivotNameResolverClass(@NonNull String outputFolder, @NonNull String packageName,
+		@NonNull String visitorPckName, @NonNull String visitorName, 
+		@NonNull String baseElemntPckgName, @NonNull String baseElmntName
 	) {
-		var String resolverItf = getSpecificNameResolverItf(projectPrefix);
-		var String resolverClass = getSpecificNameResolverClass(projectPrefix);
-		var String contextItf = getSpecificContextItf(projectPrefix);
-		var String contextClass = getSpecificContextClass(projectPrefix);
-		var String commonNamedResultItf = getCommonNamedResultItf();
-		var String commonUnnamedResultItf = getCommonUnnamedResultItf();
-		var String envItf = getSpecificEnvironmentItf(projectPrefix);
-		var String namedEnvItf = getSpecificNamedEnvironmentItf(projectPrefix);
-		var String namedEnvClass = getSpecificNamedEnvironmentClass(projectPrefix);
-		var String unnamedEnvItf = getSpecificUnnamedEnvironmentItf(projectPrefix);
-		var String unnamedEnvClass = getSpecificUnnamedEnvironmentClass(projectPrefix);
-		var String visitorItf = getSpecificVisitorItf(projectPrefix);
-		var String visitorClass = getSpecificVisitorClass(projectPrefix);
+		var String resolverItf = nProvider.getSpecificNameResolverItf();
+		var String resolverClass = nProvider.getSpecificNameResolverClass();
+		var String contextItf = nProvider.getSpecificContextItf();
+		var String contextClass = nProvider.getSpecificContextClass();
+		var String commonNamedResultItf = nProvider.getCommonNamedResultItf();
+		var String commonUnnamedResultItf = nProvider.getCommonUnnamedResultItf();
+		var String envItf = nProvider.getSpecificEnvironmentItf();
+		var String namedEnvItf = nProvider.getSpecificNamedEnvironmentItf();
+		var String namedEnvClass = nProvider.getSpecificNamedEnvironmentClass();
+		var String unnamedEnvItf = nProvider.getSpecificUnnamedEnvironmentItf();
+		var String unnamedEnvClass = nProvider.getSpecificUnnamedEnvironmentClass();
+		var String visitorItf = nProvider.getSpecificVisitorItf();
+		var String visitorClass = nProvider.getSpecificVisitorClass();
 		
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«resolverClass».java''');
@@ -1033,144 +1040,5 @@ public class «resolverClass» implements «resolverItf» {
 	
 	// Helper methods to obtain template strings
 	
-	def protected String getCommonContextItf() {
-		return '''«autoPrefix»ILookupContext'''
-	}
 	
-	def protected String getSpecificContextItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»LookupContext'''
-	}
-	
-	def protected String getCommonContextClass() {
-		return '''«autoPrefix»LookupContext'''
-	}	
-	
-	def protected String getSpecificContextClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»LookupContext'''
-	}
-	
-	// Result
-	def protected String getCommonResultItf() {
-		return '''«autoPrefix»ILookupResult'''
-	}
-	
-	def protected String getSpecificResultItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»LookupResult'''
-	}
-	
-	def protected String getCommonResultClass() {
-		return '''«autoPrefix»LookupResult'''
-	}
-	
-	def protected String getSpecificResultClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»LookupResult'''
-	}
-	
-	// Named Result
-	
-	def protected String getCommonNamedResultItf() {
-		return '''«autoPrefix»INamedLookupResult'''
-	}
-	
-	def protected String getSpecificNamedResultItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»NamedLookupResult'''
-	}
-	
-	def protected String getCommonNamedResultClass() {
-		return '''«autoPrefix»NamedLookupResult'''
-	}
-	
-	def protected String getSpecificNamedResultClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»NamedLookupResult'''
-		
-	}
-	
-	// Unnamed Result
-	def protected String getCommonUnnamedResultItf() {
-		return '''«autoPrefix»IUnnamedLookupResult'''
-	}
-	
-	def protected String getSpecificUnnamedResultItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»UnnamedLookupResult'''
-	}
-	
-	def protected String getCommonUnnamedResultClass() {
-		return '''«autoPrefix»UnnamedLookupResult'''
-	}
-	
-	def protected String getSpecificUnnamedResultClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»UnnamedLookupResult'''
-		
-	}
-	
-	// Environment
-	def protected String getCommonEnvironmentItf() {
-		return '''«autoPrefix»ILookupEnvironment'''
-	}
-	
-	def protected String getSpecificEnvironmentItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»LookupEnvironment'''
-	}
-	
-	def protected String getCommonEnvironmentClass() {
-		return '''«autoPrefix»LookupEnvironment'''
-	}
-	
-	def protected String getSpecificEnvironmentClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»LookupEnvironment'''
-	}
-	
-	// Named Environment
-	
-	def protected String getCommonNamedEnvironmentItf() {
-		return '''«autoPrefix»INamedLookupEnvironment'''
-	}
-	
-	def protected String getSpecificNamedEnvironmentItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»NamedLookupEnvironment'''
-	}
-	
-	def protected String getCommonNamedEnvironmentClass() {
-		return '''«autoPrefix»NamedLookupEnvironment'''
-	}
-	
-	def protected String getSpecificNamedEnvironmentClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»NamedLookupEnvironment'''
-		
-	}
-	
-	// Unnamed Environment
-	def protected String getCommonUnnamedEnvironmentItf() {
-		return '''«autoPrefix»IUnnamedLookupEnvironment'''
-	}
-	
-	def protected String getSpecificUnnamedEnvironmentItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»UnnamedLookupEnvironment'''
-	}
-	
-	def protected String getCommonUnnamedEnvironmentClass() {
-		return '''«autoPrefix»UnnamedLookupEnvironment'''
-	}
-	
-	def protected String getSpecificUnnamedEnvironmentClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»UnnamedLookupEnvironment'''
-		
-	}
-	// Visitor
-	def protected String getSpecificVisitorItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»LookupVisitor''' 
-	}
-	
-	def protected String getSpecificVisitorClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»LookupVisitor'''
-	}
-	
-	// Name Resolver
-	def protected String getSpecificNameResolverItf(String projectPrefix) {
-		return '''«autoPrefix»I«projectPrefix»NameResolver'''
-	}
-	
-	def protected String getSpecificNameResolverClass(String projectPrefix) {
-		return '''«autoPrefix»«projectPrefix»NameResolver'''
-	}
 }

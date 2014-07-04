@@ -35,42 +35,42 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
-	// Package
-	public void addOwnedType(@NonNull Package aPackage);
-	public void addNestedPackage(@NonNull Package aPackage);
-	
-	// Type
-	public void addOwnedOperation(@NonNull Type aType);
-	public void addOwnedAttribute(@NonNull Type aType);
-	
-	// Enumeration
-	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
-	
-	// Class
-	public void addOwnedBehavior(@NonNull Class aClass);
-	
-	// ExpressionInOCL
-	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
-	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
-	
-	// Operation
-	public void addOwnedParameter(@NonNull Operation aOperation);
-	
-	// Root
-	public void addNestedPackage(@NonNull Root aRoot);
-	public void addImports(@NonNull Root aRoot);
-	
-	// LetExp
-	public void addVariable(@NonNull LetExp aLetExp);
-	
-	// LoopExp
-	public void addIterator(@NonNull LoopExp aLoopExp);
-	
 	// IterateExp
 	public void addResult(@NonNull IterateExp aIterateExp);
 	
 	// Library
 	public void addOwnedPrecedence(@NonNull Library aLibrary);
+	
+	// Enumeration
+	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
+	
+	// Root
+	public void addNestedPackage(@NonNull Root aRoot);
+	public void addImports(@NonNull Root aRoot);
+	
+	// Package
+	public void addOwnedType(@NonNull Package aPackage);
+	public void addNestedPackage(@NonNull Package aPackage);
+	
+	// Operation
+	public void addOwnedParameter(@NonNull Operation aOperation);
+	
+	// ExpressionInOCL
+	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	
+	// Class
+	public void addOwnedBehavior(@NonNull Class aClass);
+	
+	// LetExp
+	public void addVariable(@NonNull LetExp aLetExp);
+	
+	// Type
+	public void addOwnedOperation(@NonNull Type aType);
+	public void addOwnedAttribute(@NonNull Type aType);
+	
+	// LoopExp
+	public void addIterator(@NonNull LoopExp aLoopExp);
 	
 	// TemplateableElement
 	// FIXME

@@ -38,9 +38,6 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupContext;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -56,20 +53,23 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 	@NonNull
 	protected final String packageName;
 	
+	@NonNull
+	protected final AutoNameResoCGNamesProvider nProvider; 
+	
 	public static void generate(
 			@NonNull String outputFolder, 
 			@NonNull String projectPrefix,
 			@NonNull GenPackage genPackage,
 			@NonNull String modelPckName,
-			@NonNull String packageName, 
+			@NonNull String nameResoPackName, 
 			@NonNull String visitorPckName,			
 			@NonNull String visitorName,
-			@NonNull Package nameResoPackage) {
+			@NonNull Package nameResoDescPackage) {
 		
-		MetaModelManager mManager = DomainUtil.nonNullState(PivotUtil.findMetaModelManager(nameResoPackage));
+		MetaModelManager mManager = DomainUtil.nonNullState(PivotUtil.findMetaModelManager(nameResoDescPackage));
 		AutoLookupFactory factory = new AutoLookupFactory();
-		AutoLookupCodeGenerator autoCodeGenerator = new AutoLookupCodeGenerator(mManager, factory, nameResoPackage, null, genPackage, // superGenPackage,
-				projectPrefix, visitorPckName, visitorName, null, null, null, outputFolder, packageName);
+		AutoLookupCodeGenerator autoCodeGenerator = new AutoLookupCodeGenerator(mManager, factory, nameResoDescPackage, null, genPackage, // superGenPackage,
+				projectPrefix, visitorPckName, visitorName, null, null, null, outputFolder, nameResoPackName);
 		autoCodeGenerator.saveSourceFile();
 		
 	}
@@ -87,12 +87,17 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 			superManualVisitorPackage, superVisitorClass);
 		this.outputFolder = outputFolder;
 		this.packageName = nameResoPckName;
+		this.nProvider = createNamesProviders(projectPrefix);
 	}
 
 	
 	@Override
 	public @NonNull AutoCGModelResourceFactory getCGResourceFactory() {
 		return AutoCGModelResourceFactory.INSTANCE;
+	}
+	
+	public @NonNull AutoNameResoCGNamesProvider getCGNamesProvider() {
+		return nProvider;
 	}
 	
 	public void saveSourceFile() {
@@ -120,7 +125,7 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 		Map<String, String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
 		return ImportUtils.resolveImports(generator.toString(), long2ShortImportNames);
 	}
-	
+		
 	protected @NonNull CGPackage createCGPackage() {
 		// FIXME clean code removing unnecessary extra variables
 		// String prefix = genPackage.getPrefix();
@@ -157,11 +162,11 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 			// String superClassName = "Abstract" + /*trimmed*/prefix + "CSVisitor";
 			String superClassName = "AbstractExtending" + visitorClass; // The default Abstract Visitor generated for the language
 			CGClass superClass = getExternalClass(visitorPackage, superClassName, false);
-			superClass.getTemplateParameters().add(getExternalClass(AutoIPivotLookupEnvironment.class));
-			superClass.getTemplateParameters().add(getExternalClass(AutoILookupContext.class, getExternalClass(Element.class)));
+			superClass.getTemplateParameters().add(getExternalClass(packageName, nProvider.getSpecificEnvironmentItf(), true));			
+			superClass.getTemplateParameters().add(getExternalClass(packageName, nProvider.getCommonContextItf(), true, getExternalClass(Element.class))); // FIXME ASBH parametrize Element
 			cgClass.getSuperTypes().add(superClass);
 			
-			CGClass superInterface = getExternalClass(AutoIPivotLookupVisitor.class);
+			CGClass superInterface = getExternalClass(packageName, nProvider.getSpecificVisitorItf(), true);
 			cgClass.getSuperTypes().add(superInterface);
 //		}
 		cgPackage.getClasses().add(cgClass);
@@ -175,12 +180,17 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 		return cgPackage;
 	}
 
+	@NonNull
+	protected AutoNameResoCGNamesProvider createNamesProviders(@NonNull String projectPrefix) {
+		return new AutoNameResoCGNamesProvider(projectPrefix);
+	}
+	
 	protected @NonNull String getAutoLookupVisitorClassName(@NonNull String prefix) {
-		return "Auto" +  prefix + "LookupVisitor";
+		return nProvider.getSpecificVisitorClass();
 	}
 	
 	protected @NonNull String getManualLookupVisitorClassName(@NonNull String prefix) {
-		return "New" + prefix + "LookupVisitor";  
+		return nProvider.getCustomSpecificVisitorClass();  
 	}
 		
 }
