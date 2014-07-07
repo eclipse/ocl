@@ -15,8 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoFieldingAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoReferencesVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.autogen.java.AutoGlobalContext;
@@ -41,18 +39,18 @@ public class AutoLookupFactory  implements IAutoCGComponentFactory {
 	
 	@NonNull
 	public AnalysisVisitor createAnalysisVisitor(@NonNull AutoAnalyzer analyzer) {
-		return new AnalysisVisitor(analyzer);
+		return new AutoLookupAnalysisVisitor(analyzer);
 	}
 
 	@NonNull
 	public BoxingAnalyzer createBoxingAnalyzer(@NonNull AutoAnalyzer analyzer) {
-		return new BoxingAnalyzer(analyzer);
+		return new AutoLookupBoxingAnalyzer(analyzer);
 	}
 
 	@NonNull
 	public CG2JavaPreVisitor createCG2JavaPreVisitor(
 			@NonNull AutoGlobalContext javaContext) {
-		return new CG2JavaPreVisitor(javaContext);
+		return new AutoLookupCG2JavaPreVisitor(javaContext);
 	}
 
 	@NonNull
@@ -66,19 +64,19 @@ public class AutoLookupFactory  implements IAutoCGComponentFactory {
 	@NonNull
 	public FieldingAnalyzer createFieldingAnalyzer(
 			@NonNull AutoAnalyzer analyzer) {
-		return new AutoFieldingAnalyzer(analyzer);
+		return new AutoLookupFieldingAnalyzer(analyzer);
 	}
 
 	@NonNull
 	public ReferencesVisitor createReferencesVisitor() {
-		return AutoReferencesVisitor.INSTANCE;
+		return AutoLookupReferencesVisitor.INSTANCE;
 	}
 	
 	@NonNull
 	public AutoCG2JavaVisitor createCG2JavaVisitor(
 			@NonNull AutoCodeGenerator codeGenerator,			
 			@Nullable List<CGValuedElement> sortedGlobals) {
-		return new AutoCG2JavaLookupVisitor((AutoLookupCodeGenerator)codeGenerator, sortedGlobals);
+		return new AutoLookupCG2JavaVisitor((AutoLookupCodeGenerator)codeGenerator, sortedGlobals);
 	}
 	
 	@NonNull

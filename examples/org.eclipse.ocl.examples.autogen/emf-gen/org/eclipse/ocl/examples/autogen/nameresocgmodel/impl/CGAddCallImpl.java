@@ -15,11 +15,13 @@
 package org.eclipse.ocl.examples.autogen.nameresocgmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
-
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.impl.CGOperationCallExpImpl;
+import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,6 +57,16 @@ public class CGAddCallImpl extends CGOperationCallExpImpl implements CGAddCall {
 	@Override
 	protected EClass eStaticClass() {
 		return NameResoCGModelPackage.Literals.CG_ADD_CALL;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+		return (R) ((NameResoCGModelVisitor<?>)visitor).visitCGAddCall(this);
 	}
 
 

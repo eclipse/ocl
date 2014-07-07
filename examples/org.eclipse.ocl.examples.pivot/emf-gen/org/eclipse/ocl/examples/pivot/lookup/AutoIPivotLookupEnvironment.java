@@ -35,11 +35,32 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
-	// IterateExp
-	public void addResult(@NonNull IterateExp aIterateExp);
+	// Type
+	public void addOwnedOperation(@NonNull Type aType);
+	public void addOwnedAttribute(@NonNull Type aType);
 	
 	// Library
 	public void addOwnedPrecedence(@NonNull Library aLibrary);
+	
+	// IterateExp
+	public void addResult(@NonNull IterateExp aIterateExp);
+	
+	// LoopExp
+	public void addIterator(@NonNull LoopExp aLoopExp);
+	
+	// Class
+	public void addOwnedBehavior(@NonNull Class aClass);
+	
+	// Operation
+	public void addOwnedParameter(@NonNull Operation aOperation);
+	
+	// Package
+	public void addOwnedType(@NonNull Package aPackage);
+	public void addNestedPackage(@NonNull Package aPackage);
+	
+	// ExpressionInOCL
+	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
 	
 	// Enumeration
 	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
@@ -48,40 +69,19 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	public void addNestedPackage(@NonNull Root aRoot);
 	public void addImports(@NonNull Root aRoot);
 	
-	// Package
-	public void addOwnedType(@NonNull Package aPackage);
-	public void addNestedPackage(@NonNull Package aPackage);
-	
-	// Operation
-	public void addOwnedParameter(@NonNull Operation aOperation);
-	
-	// ExpressionInOCL
-	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
-	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
-	
-	// Class
-	public void addOwnedBehavior(@NonNull Class aClass);
-	
 	// LetExp
 	public void addVariable(@NonNull LetExp aLetExp);
 	
-	// Type
-	public void addOwnedOperation(@NonNull Type aType);
-	public void addOwnedAttribute(@NonNull Type aType);
-	
-	// LoopExp
-	public void addIterator(@NonNull LoopExp aLoopExp);
-	
 	// TemplateableElement
-	// FIXME
+	// FIXME no auto-generated yet
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
 	
 	// Type
-	// FIXME
+	// FIXME no auto-generated yet
 	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	
 	// LoopExp
-	// FIXME
+	// FIXME no auto-generated yet
 	public void addIterator(@NonNull LoopExp  aLoopExp, int index);
 }

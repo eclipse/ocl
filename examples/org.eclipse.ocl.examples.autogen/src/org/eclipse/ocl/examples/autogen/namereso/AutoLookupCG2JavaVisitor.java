@@ -12,11 +12,16 @@ package org.eclipse.ocl.examples.autogen.namereso;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -25,10 +30,11 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 
-public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
+public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
+	implements NameResoCGModelVisitor<Boolean>{
 
 	protected final AutoNameResoCGNamesProvider nProvider;
-	public AutoCG2JavaLookupVisitor(@NonNull AutoLookupCodeGenerator codeGenerator,
+	public AutoLookupCG2JavaVisitor(@NonNull AutoLookupCodeGenerator codeGenerator,
 			@Nullable List<CGValuedElement> sortedGlobals) {
 		super(codeGenerator, sortedGlobals);
 		nProvider = codeGenerator.getCGNamesProvider(); 
@@ -117,7 +123,9 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.append(": ");
 		js.appendClassReference(DomainUtil.class);
 		js.append(".nonNullState((newContext.getTarget()).accept(\n"); 
-		js.append("new AutoPivotLookupVisitor(mmManager, result, newContext)));\n");
+		js.append("new ");
+		js.appendClassReference(nProvider.getSpecificVisitorClass());
+		js.append("(mmManager, result, newContext)));\n");
 		js.popIndentation();
 		js.popIndentation();
 		js.append("}\n");
@@ -186,9 +194,18 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.append("}\n");
 		
 	}	
-	@Override
-	public @NonNull Boolean visitCGEcoreOperation(@NonNull CGEcoreOperation object) {
-		String visitName = object.getName();
+
+	@Nullable
+	public Boolean visitCGAddCall(@NonNull CGAddCall object) {
+		
+		js.append("ADD CALL\n");
+				
+		return true;
+	}
+
+	@Nullable
+	public Boolean visitCGEnvVisitOp(@NonNull CGEnvVisitOp object) {
+		
 		Type csType = (Type) object.getAst();
 		TypeDescriptor typeDescriptor = context.getUnboxedDescriptor(csType.getTypeId());
 		
@@ -205,13 +222,46 @@ public class AutoCG2JavaLookupVisitor extends AutoCG2JavaVisitor {
 		js.append("self");
 		js.append(") {\n");
 		js.pushIndentation(null);
-		js.append("throw new UnsupportedOperationException(\"");
-		js.append(visitName);
-		js.append(" is not supported by \" + getClass().getName()");
-		js.append(");\n");
+		
+		safeVisit(object.getBody());
+		
+		switch (object.getEnvLookupPropagation()) {
+			case LOOKUP_IN_PARENT:
+				js.append("return lookupInParent();\n"); break;
+			case LOOKUP_IN_PARENT_IF_NOT_COMPLETE:
+				js.append("return lookupInParentIfNotComplete();\n"); break;
+			case LOOKUP_ONLY_LOCAL:
+				js.append("return lookupOnlyLocal();\n"); break;
+		}
+		
 		js.popIndentation();
 		js.append("}\n");
 		return true;
 	}
+	
+	@Nullable
+	public Boolean visitCGEnvVisitOpBody(@NonNull CGEnvVisitOpBody object) {
+		
+		js.appendClassReference(EReference.class);
+		js.append(" containmentReference = context.getToChildReference();\n");
+		
+		List<CGEnvVisitIfPart> ifParts = object.getEnvConfigParts();
+		if (ifParts.size() == 1) {
+			safeVisit(ifParts.get(0));
+		} else {
+			
+		}
+		return true;
+	}
+	
+	@Nullable
+	public Boolean visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {		
+		return safeVisit(object.getEnvExpression());
+	}
+
+	
+
+
+
 	
 }

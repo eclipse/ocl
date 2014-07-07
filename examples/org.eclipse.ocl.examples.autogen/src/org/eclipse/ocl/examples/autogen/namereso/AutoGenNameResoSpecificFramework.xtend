@@ -104,16 +104,16 @@ public interface «envItf» extends «commonEnvItf» {
 	«ENDFOR»
 	
 	// TemplateableElement
-	// FIXME
+	// FIXME no auto-generated yet
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
 	
 	// Type
-	// FIXME
+	// FIXME no auto-generated yet
 	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter);
 	
 	// LoopExp
-	// FIXME
+	// FIXME no auto-generated yet
 	public void addIterator(@NonNull LoopExp  aLoopExp, int index);
 }
 		''');

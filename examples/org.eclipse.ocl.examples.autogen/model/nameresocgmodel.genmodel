@@ -6,12 +6,20 @@
     modelName="NameResoCGmodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     suppressEMFTypes="true" testsDirectory="/org.eclipse.ocl.examples.autogen.tests/emf-gen"
     booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    language="" usedGenPackages="../../org.eclipse.ocl.examples.codegen/model/cgmodel.genmodel#//cgmodel"
+    usedGenPackages="../../org.eclipse.ocl.examples.codegen/model/cgmodel.genmodel#//cgmodel"
     importOrganizing="true">
+  
+  <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
+    <details key="Use Null Annotations" value="true"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString"/>
+  <genAnnotations source="http://www.eclipse.org/OCL/GenModel/Visitor">
+    <details key="Root Visitor Class" value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/>
+    <details key="Derived Visitor Class" value="org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor"/>
+  </genAnnotations>
   <foreignModel>nameresocgmodel.ecore</foreignModel>
   <genPackages prefix="NameResoCGModel" basePackage="org.eclipse.ocl.examples.autogen"
       disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.ocl.examples.autogen.nameresocgmodel"
       ecorePackage="nameresocgmodel.ecore#/">
-    <genClasses ecoreClass="nameresocgmodel.ecore#//CGAddCall"/>
   </genPackages>
 </genmodel:GenModel>

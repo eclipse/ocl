@@ -41,4 +41,16 @@ public abstract class AbstractNullNameResoCGModelVisitor<R, C>
 	public @Nullable R visitCGAddCall(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall object) {
 		return null;
 	}
+
+	public @Nullable R visitCGEnvVisitIfPart(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart object) {
+		return null;
+	}
+
+	public @Nullable R visitCGEnvVisitOp(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp object) {
+		return null;
+	}
+
+	public @Nullable R visitCGEnvVisitOpBody(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody object) {
+		return null;
+	}
 }

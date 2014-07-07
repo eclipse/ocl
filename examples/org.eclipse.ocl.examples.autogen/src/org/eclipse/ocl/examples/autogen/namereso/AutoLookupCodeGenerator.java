@@ -26,6 +26,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.autogen.java.IAutoCGComponentFactory;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.utilities.AutoCGModelResourceFactory;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -36,6 +39,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -172,10 +176,23 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 		cgPackage.getClasses().add(cgClass);
 		for (Type asType : asPackage.getOwnedType()) {
 		
-			CGOperation cgOperation = CGModelFactory.eINSTANCE.createCGEcoreOperation();
+			CGOperation cgOperation = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitOp();
 			cgOperation.setName("visit" + asType.getName());
 			cgOperation.setAst(asType);
 			cgClass.getOperations().add(cgOperation);
+			
+			CGEnvVisitOpBody cgOpBody = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitOpBody();			
+			cgOperation.setBody(cgOpBody);
+			
+			for (Operation asOperation : asType.getOwnedOperation()) {
+				if (NameResolutionUtil.isEnvOperation(asOperation)) {
+					CGEnvVisitIfPart cgEnvOpIfPart = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitIfPart();
+					cgEnvOpIfPart.setPropertyName(NameResolutionUtil.getEnvOpPropertyName(asOperation));					
+					cgEnvOpIfPart.setEnvExpression((CGValuedElement) asOperation.getBodyExpression().accept(as2cgVisitor));
+					
+					
+				}
+			}
 		}
 		return cgPackage;
 	}

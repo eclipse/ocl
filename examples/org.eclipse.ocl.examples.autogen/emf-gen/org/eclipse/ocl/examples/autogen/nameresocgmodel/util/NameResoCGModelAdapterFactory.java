@@ -16,20 +16,21 @@ package org.eclipse.ocl.examples.autogen.nameresocgmodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.*;
-
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 
 /**
@@ -100,6 +101,18 @@ public class NameResoCGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGAddCallAdapter();
 			}
 			@Override
+			public Adapter caseCGEnvVisitOp(CGEnvVisitOp object) {
+				return createCGEnvVisitOpAdapter();
+			}
+			@Override
+			public Adapter caseCGEnvVisitOpBody(CGEnvVisitOpBody object) {
+				return createCGEnvVisitOpBodyAdapter();
+			}
+			@Override
+			public Adapter caseCGEnvVisitIfPart(CGEnvVisitIfPart object) {
+				return createCGEnvVisitIfPartAdapter();
+			}
+			@Override
 			public Adapter caseCGElement(CGElement object) {
 				return createCGElementAdapter();
 			}
@@ -126,6 +139,14 @@ public class NameResoCGModelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCGOperationCallExp(CGOperationCallExp object) {
 				return createCGOperationCallExpAdapter();
+			}
+			@Override
+			public Adapter caseCGCallable(CGCallable object) {
+				return createCGCallableAdapter();
+			}
+			@Override
+			public Adapter caseCGOperation(CGOperation object) {
+				return createCGOperationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -158,6 +179,48 @@ public class NameResoCGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGAddCallAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp <em>CG Env Visit Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp
+	 * @generated
+	 */
+	public Adapter createCGEnvVisitOpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody <em>CG Env Visit Op Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody
+	 * @generated
+	 */
+	public Adapter createCGEnvVisitOpBodyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart <em>CG Env Visit If Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart
+	 * @generated
+	 */
+	public Adapter createCGEnvVisitIfPartAdapter() {
 		return null;
 	}
 
@@ -256,6 +319,34 @@ public class NameResoCGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGOperationCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCallable <em>CG Callable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGCallable
+	 * @generated
+	 */
+	public Adapter createCGCallableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperation <em>CG Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGOperation
+	 * @generated
+	 */
+	public Adapter createCGOperationAdapter() {
 		return null;
 	}
 

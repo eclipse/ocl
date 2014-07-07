@@ -9,6 +9,7 @@
 
 package org.eclipse.ocl.examples.pivot.lookup;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -22,9 +23,6 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.lookup.AutoILookupContext;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupEnvironment;
-import org.eclipse.ocl.examples.pivot.lookup.AutoIPivotLookupVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -87,52 +85,62 @@ public class AutoPivotLookupVisitor
     }
     
     @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitIterateExp(@NonNull IterateExp self) {
-        throw new UnsupportedOperationException("visitIterateExp is not supported by " + getClass().getName());
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitClass(@NonNull Class self) {
-        throw new UnsupportedOperationException("visitClass is not supported by " + getClass().getName());
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitIteratorExp(@NonNull IteratorExp self) {
-        throw new UnsupportedOperationException("visitIteratorExp is not supported by " + getClass().getName());
+    public @Nullable AutoIPivotLookupEnvironment visitLetExp(@NonNull LetExp self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitRoot(@NonNull Root self) {
-        throw new UnsupportedOperationException("visitRoot is not supported by " + getClass().getName());
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
     
     @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitLetExp(@NonNull LetExp self) {
-        throw new UnsupportedOperationException("visitLetExp is not supported by " + getClass().getName());
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitLibrary(@NonNull Library self) {
-        throw new UnsupportedOperationException("visitLibrary is not supported by " + getClass().getName());
+    public @Nullable AutoIPivotLookupEnvironment visitIteratorExp(@NonNull IteratorExp self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitOperation(@NonNull Operation self) {
-        throw new UnsupportedOperationException("visitOperation is not supported by " + getClass().getName());
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
     
     @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitExpressionInOCL(@NonNull ExpressionInOCL self) {
-        throw new UnsupportedOperationException("visitExpressionInOCL is not supported by " + getClass().getName());
+    public @Nullable AutoIPivotLookupEnvironment visitIterateExp(@NonNull IterateExp self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitLibrary(@NonNull Library self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitClass(@NonNull Class self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitEnumeration(@NonNull Enumeration self) {
-        throw new UnsupportedOperationException("visitEnumeration is not supported by " + getClass().getName());
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package self) {
-        throw new UnsupportedOperationException("visitPackage is not supported by " + getClass().getName());
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitExpressionInOCL(@NonNull ExpressionInOCL self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupOnlyLocal();
     }
 }

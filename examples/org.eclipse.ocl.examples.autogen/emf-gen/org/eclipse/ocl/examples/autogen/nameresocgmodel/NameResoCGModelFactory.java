@@ -50,6 +50,33 @@ public interface NameResoCGModelFactory extends EFactory {
 	CGAddCall createCGAddCall();
 
 	/**
+	 * Returns a new object of class '<em>CG Env Visit Op</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Env Visit Op</em>'.
+	 * @generated
+	 */
+	CGEnvVisitOp createCGEnvVisitOp();
+
+	/**
+	 * Returns a new object of class '<em>CG Env Visit Op Body</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Env Visit Op Body</em>'.
+	 * @generated
+	 */
+	CGEnvVisitOpBody createCGEnvVisitOpBody();
+
+	/**
+	 * Returns a new object of class '<em>CG Env Visit If Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Env Visit If Part</em>'.
+	 * @generated
+	 */
+	CGEnvVisitIfPart createCGEnvVisitIfPart();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

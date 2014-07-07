@@ -12,11 +12,12 @@ package org.eclipse.ocl.examples.autogen.autocgmodel.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.ocl.examples.autogen.autocgmodel.*;
-
+import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage;
+import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
+import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody;
+import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart;
+import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -25,7 +26,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 
 /**

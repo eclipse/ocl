@@ -27,4 +27,7 @@ import org.eclipse.jdt.annotation.Nullable;
 public interface NameResoCGModelVisitor<R> extends org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor<R>
 {
 	@Nullable R visitCGAddCall(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall object);
+	@Nullable R visitCGEnvVisitIfPart(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart object);
+	@Nullable R visitCGEnvVisitOp(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp object);
+	@Nullable R visitCGEnvVisitOpBody(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody object);
 }

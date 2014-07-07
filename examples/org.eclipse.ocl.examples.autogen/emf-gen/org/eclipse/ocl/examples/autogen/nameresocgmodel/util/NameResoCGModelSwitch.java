@@ -16,18 +16,20 @@ package org.eclipse.ocl.examples.autogen.nameresocgmodel.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.*;
-
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 
 /**
@@ -107,6 +109,41 @@ public class NameResoCGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NameResoCGModelPackage.CG_ENV_VISIT_OP: {
+				CGEnvVisitOp cgEnvVisitOp = (CGEnvVisitOp)theEObject;
+				T result = caseCGEnvVisitOp(cgEnvVisitOp);
+				if (result == null) result = caseCGOperation(cgEnvVisitOp);
+				if (result == null) result = caseCGCallable(cgEnvVisitOp);
+				if (result == null) result = caseCGValuedElement(cgEnvVisitOp);
+				if (result == null) result = caseCGTypedElement(cgEnvVisitOp);
+				if (result == null) result = caseCGNamedElement(cgEnvVisitOp);
+				if (result == null) result = caseCGElement(cgEnvVisitOp);
+				if (result == null) result = caseNameable(cgEnvVisitOp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NameResoCGModelPackage.CG_ENV_VISIT_OP_BODY: {
+				CGEnvVisitOpBody cgEnvVisitOpBody = (CGEnvVisitOpBody)theEObject;
+				T result = caseCGEnvVisitOpBody(cgEnvVisitOpBody);
+				if (result == null) result = caseCGValuedElement(cgEnvVisitOpBody);
+				if (result == null) result = caseCGTypedElement(cgEnvVisitOpBody);
+				if (result == null) result = caseCGNamedElement(cgEnvVisitOpBody);
+				if (result == null) result = caseCGElement(cgEnvVisitOpBody);
+				if (result == null) result = caseNameable(cgEnvVisitOpBody);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART: {
+				CGEnvVisitIfPart cgEnvVisitIfPart = (CGEnvVisitIfPart)theEObject;
+				T result = caseCGEnvVisitIfPart(cgEnvVisitIfPart);
+				if (result == null) result = caseCGValuedElement(cgEnvVisitIfPart);
+				if (result == null) result = caseCGTypedElement(cgEnvVisitIfPart);
+				if (result == null) result = caseCGNamedElement(cgEnvVisitIfPart);
+				if (result == null) result = caseCGElement(cgEnvVisitIfPart);
+				if (result == null) result = caseNameable(cgEnvVisitIfPart);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -123,6 +160,51 @@ public class NameResoCGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGAddCall(CGAddCall object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Env Visit Op</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Env Visit Op</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGEnvVisitOp(CGEnvVisitOp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Env Visit Op Body</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Env Visit Op Body</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGEnvVisitOpBody(CGEnvVisitOpBody object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Env Visit If Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Env Visit If Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGEnvVisitIfPart(CGEnvVisitIfPart object) {
 		return null;
 	}
 
@@ -228,6 +310,36 @@ public class NameResoCGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGOperationCallExp(CGOperationCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Callable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Callable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGCallable(CGCallable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGOperation(CGOperation object) {
 		return null;
 	}
 

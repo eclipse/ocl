@@ -90,10 +90,40 @@ public class NameResolutionUtil {
 		}
 	}
 
-	private static boolean isEnvOperation(Operation op) {
+	public static boolean isEnvOperation(Operation op) {
 		String opName = op.getName();
 		return opName != null && opName.contains("_env");
 	}
+	
+	public static boolean isAddOperation(Operation op) {
+		String opName = op.getName();
+		if (opName == null || !opName.startsWith("AddElement")) {
+			return false;
+		}
+		
+		// Improving the heuristic by ensuring that the operation is from the 
+		// Enviroment Class
+		Type owningType = op.getOwningType();
+		String typeName = owningType.getName();
+		
+		if (typeName == null || !opName.startsWith("Environment")) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@SuppressWarnings("null")
+	@NonNull
+	public static String getEnvOpPropertyName(Operation op) {
+		
+		String opName = op.getName();
+		int _envIndex = opName.indexOf("_env");
+		return _envIndex <= 0 ? "" : opName.substring(0, _envIndex);
+		
+	}
+	
+	
 	private static boolean isAddingElementOperationCallExp(OperationCallExp opCallExp) {
 		String opCallName = PivotUtil.getSafeName(opCallExp.getReferredOperation());
 		return opCallName.equals("addElement") || opCallName.equals("addElements");
