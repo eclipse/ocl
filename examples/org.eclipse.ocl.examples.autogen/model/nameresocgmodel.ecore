@@ -9,9 +9,7 @@
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore#/"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="CGAddCall" eSuperTypes="../../org.eclipse.ocl.examples.codegen/model/cgmodel.ecore#//CGOperationCallExp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CGEnvVisitOp" eSuperTypes="../../org.eclipse.ocl.examples.codegen/model/cgmodel.ecore#//CGOperation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="envLookupPropagation" eType="#//EnvLookupKind"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CGEnvVisitOp" eSuperTypes="../../org.eclipse.ocl.examples.codegen/model/cgmodel.ecore#//CGOperation"/>
   <eClassifiers xsi:type="ecore:EClass" name="CGEnvVisitOpBody" eSuperTypes="../../org.eclipse.ocl.examples.codegen/model/cgmodel.ecore#//CGValuedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="envConfigParts" upperBound="-1"
         eType="#//CGEnvVisitIfPart" containment="true"/>
@@ -21,10 +19,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="envExpression" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.codegen/model/cgmodel.ecore#//CGValuedElement"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="EnvLookupKind">
-    <eLiterals name="LookupOnlyLocal" literal="LookupOnlyLocal"/>
-    <eLiterals name="LookupInParentIfNotComplete" value="1" literal="LookupInParentIfNotComplete"/>
-    <eLiterals name="LookupInParent" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

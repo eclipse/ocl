@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.autogen.autocgmodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.ocl.examples.autogen.autocgmodel.*;
 import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody;

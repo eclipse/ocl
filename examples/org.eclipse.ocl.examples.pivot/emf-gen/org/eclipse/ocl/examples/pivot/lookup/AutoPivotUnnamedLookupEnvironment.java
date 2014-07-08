@@ -1,10 +1,8 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +24,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -43,108 +40,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class AutoPivotUnnamedLookupEnvironment extends AutoUnnamedLookupEnvironment
 	implements AutoIPivotUnnamedLookupEnvironment{
-	
-	
-	private static final class ImplicitDisambiguator implements Comparator<Object>
-	{
-		public int compare(Object match1, Object match2) {
-			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
-			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
-			if (!match1IsImplicit) {
-				return match2IsImplicit ? 1 : 0;				// match2 inferior
-			}
-			else {
-				return match2IsImplicit ? 0 : -1;				// match1 inferior
-			}
-		}
-	}
-
-	private static final class OperationDisambiguator implements Comparator<Operation>
-	{
-		@SuppressWarnings("null")
-		public int compare(Operation match1, Operation match2) {
-			if (isRedefinitionOf(match1, match2)) {
-				return 1;				// match2 inferior			
-			}
-			if (isRedefinitionOf(match2, match1)) {
-				return -1;				// match1 inferior			
-			}
-			return 0;
-		}
-
-		protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
-			List<Operation> redefinedOperations = operation1.getRedefinedOperation();
-			for (Operation redefinedOperation : redefinedOperations) {
-				if (redefinedOperation != null) {
-					if (redefinedOperation == operation2) {
-						return true;
-					}
-					if (isRedefinitionOf(redefinedOperation, operation2)) {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-	}
-
-	private static final class PropertyDisambiguator implements Comparator<Property>
-	{
-		@SuppressWarnings("null")
-		public int compare(Property match1, Property match2) {
-			if (isRedefinitionOf(match1, match2)) {
-				return 1;				// match2 inferior			
-			}
-			if (isRedefinitionOf(match2, match1)) {
-				return -1;				// match1 inferior			
-			}
-			return 0;
-		}
-
-		protected boolean isRedefinitionOf(@NonNull Property property1, @NonNull Property property2) {
-			List<Property> redefinedProperties = property1.getRedefinedProperty();
-			for (Property redefinedProperty : redefinedProperties) {
-				if (redefinedProperty != null) {
-					if (redefinedProperty == property2) {
-						return true;
-					}
-					if (isRedefinitionOf(redefinedProperty, property2)) {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-	}
-	
-	private static @NonNull LinkedHashMap<Class<?>, List<Comparator<Object>>> disambiguatorMap =
-			new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
-
-	static {
-		addDisambiguator(Object.class, new ImplicitDisambiguator());
-		addDisambiguator(Operation.class, new OperationDisambiguator());
-		addDisambiguator(Property.class, new PropertyDisambiguator());
-	}
-	
-	public static synchronized <T> void addDisambiguator(@NonNull Class<T> targetClass, @NonNull Comparator<T> disambiguator) {
-		List<Comparator<Object>> disambiguators = disambiguatorMap.get(targetClass);
-		if (disambiguators == null) {
-			disambiguators = new ArrayList<Comparator<Object>>();
-			disambiguatorMap.put(targetClass, disambiguators);
-		}
-		@SuppressWarnings("unchecked")
-		Comparator<Object> castDisambiguator = (Comparator<Object>) disambiguator;
-		disambiguators.add(castDisambiguator);
-	}
-
-	@SuppressWarnings("null")
-	public static @NonNull Iterable<Class<?>> getDisambiguatorKeys() {
-		return disambiguatorMap.keySet();
-	}
-
-	public static @Nullable List<Comparator<Object>> getDisambiguators(@NonNull Class<?> key) {
-		return disambiguatorMap.get(key);
-	}
 	
 	
 	private final @NonNull MetaModelManager metaModelManager;

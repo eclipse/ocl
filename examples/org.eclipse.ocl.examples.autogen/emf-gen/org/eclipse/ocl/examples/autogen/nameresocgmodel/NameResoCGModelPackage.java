@@ -316,22 +316,13 @@ public interface NameResoCGModelPackage extends EPackage {
 	int CG_ENV_VISIT_OP__CONTAINING_CLASS = CGModelPackage.CG_OPERATION__CONTAINING_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Env Lookup Propagation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_ENV_VISIT_OP__ENV_LOOKUP_PROPAGATION = CGModelPackage.CG_OPERATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>CG Env Visit Op</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ENV_VISIT_OP_FEATURE_COUNT = CGModelPackage.CG_OPERATION_FEATURE_COUNT + 1;
+	int CG_ENV_VISIT_OP_FEATURE_COUNT = CGModelPackage.CG_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.CGEnvVisitOpBodyImpl <em>CG Env Visit Op Body</em>}' class.
@@ -508,17 +499,6 @@ public interface NameResoCGModelPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind <em>Env Lookup Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind
-	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.NameResoCGModelPackageImpl#getEnvLookupKind()
-	 * @generated
-	 */
-	int ENV_LOOKUP_KIND = 4;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall <em>CG Add Call</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -537,17 +517,6 @@ public interface NameResoCGModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCGEnvVisitOp();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp#getEnvLookupPropagation <em>Env Lookup Propagation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Env Lookup Propagation</em>'.
-	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp#getEnvLookupPropagation()
-	 * @see #getCGEnvVisitOp()
-	 * @generated
-	 */
-	EAttribute getCGEnvVisitOp_EnvLookupPropagation();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody <em>CG Env Visit Op Body</em>}'.
@@ -603,16 +572,6 @@ public interface NameResoCGModelPackage extends EPackage {
 	EReference getCGEnvVisitIfPart_EnvExpression();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind <em>Env Lookup Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Env Lookup Kind</em>'.
-	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind
-	 * @generated
-	 */
-	EEnum getEnvLookupKind();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -653,14 +612,6 @@ public interface NameResoCGModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CG_ENV_VISIT_OP = eINSTANCE.getCGEnvVisitOp();
-
-		/**
-		 * The meta object literal for the '<em><b>Env Lookup Propagation</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CG_ENV_VISIT_OP__ENV_LOOKUP_PROPAGATION = eINSTANCE.getCGEnvVisitOp_EnvLookupPropagation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.CGEnvVisitOpBodyImpl <em>CG Env Visit Op Body</em>}' class.
@@ -705,16 +656,6 @@ public interface NameResoCGModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CG_ENV_VISIT_IF_PART__ENV_EXPRESSION = eINSTANCE.getCGEnvVisitIfPart_EnvExpression();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind <em>Env Lookup Kind</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind
-		 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.NameResoCGModelPackageImpl#getEnvLookupKind()
-		 * @generated
-		 */
-		EEnum ENV_LOOKUP_KIND = eINSTANCE.getEnvLookupKind();
 
 	}
 

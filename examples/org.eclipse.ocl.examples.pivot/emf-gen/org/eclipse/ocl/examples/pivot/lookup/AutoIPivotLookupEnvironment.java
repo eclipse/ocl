@@ -35,42 +35,42 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
-	// Type
-	public void addOwnedOperation(@NonNull Type aType);
-	public void addOwnedAttribute(@NonNull Type aType);
-	
-	// Library
-	public void addOwnedPrecedence(@NonNull Library aLibrary);
-	
-	// IterateExp
-	public void addResult(@NonNull IterateExp aIterateExp);
-	
-	// LoopExp
-	public void addIterator(@NonNull LoopExp aLoopExp);
-	
-	// Class
-	public void addOwnedBehavior(@NonNull Class aClass);
-	
-	// Operation
-	public void addOwnedParameter(@NonNull Operation aOperation);
+	// Enumeration
+	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
 	
 	// Package
 	public void addOwnedType(@NonNull Package aPackage);
 	public void addNestedPackage(@NonNull Package aPackage);
 	
-	// ExpressionInOCL
-	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
-	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	// Operation
+	public void addOwnedParameter(@NonNull Operation aOperation);
 	
-	// Enumeration
-	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
+	// LoopExp
+	public void addIterator(@NonNull LoopExp aLoopExp);
+	
+	// Library
+	public void addOwnedPrecedence(@NonNull Library aLibrary);
+	
+	// Class
+	public void addOwnedBehavior(@NonNull Class aClass);
 	
 	// Root
 	public void addNestedPackage(@NonNull Root aRoot);
 	public void addImports(@NonNull Root aRoot);
 	
+	// IterateExp
+	public void addResult(@NonNull IterateExp aIterateExp);
+	
+	// ExpressionInOCL
+	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	
 	// LetExp
 	public void addVariable(@NonNull LetExp aLetExp);
+	
+	// Type
+	public void addOwnedOperation(@NonNull Type aType);
+	public void addOwnedAttribute(@NonNull Type aType);
 	
 	// TemplateableElement
 	// FIXME no auto-generated yet

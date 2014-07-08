@@ -253,25 +253,23 @@ public abstract class AutoLookupEnvironment implements AutoILookupEnvironment {
 	protected @NonNull EClassifier lookupType;	
 
 
-	private AutoILookupResult result;
+	private final @NonNull AutoILookupStrategy strategy;
+	private final @NonNull AutoILookupResult result;
+	
 	@SuppressWarnings("null")
-	public AutoLookupEnvironment(@NonNull EStructuralFeature reference) {
+	public AutoLookupEnvironment(@NonNull EStructuralFeature reference, 
+			@NonNull AutoILookupStrategy strategy,
+			@NonNull AutoILookupResult result) {
 		this.lookupRef = reference;
 		this.lookupType = reference.getEType();
+		this.strategy = strategy;
+		this.result = result;
 	}
-
 	
-	@SuppressWarnings("null")
 	@NonNull
 	public AutoILookupResult getResult() {
-		if (result == null) {
-			result = createResult();
-		}
 		return result;
 	}
-	
-	@NonNull
-	abstract protected AutoILookupResult createResult();
 	
 	/**
 	 * TODO another class
@@ -316,10 +314,7 @@ public abstract class AutoLookupEnvironment implements AutoILookupEnvironment {
 	}
 
 	public boolean isComplete() {
-		if (getResult().getSize() == 0) {
-			return false; // Not thing found is not a final result
-		}
-		return true;
+		return strategy.shouldPropagateToParent(result);
 	}
 
 	@NonNull

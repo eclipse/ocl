@@ -189,8 +189,7 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 					CGEnvVisitIfPart cgEnvOpIfPart = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitIfPart();
 					cgEnvOpIfPart.setPropertyName(NameResolutionUtil.getEnvOpPropertyName(asOperation));					
 					cgEnvOpIfPart.setEnvExpression((CGValuedElement) asOperation.getBodyExpression().accept(as2cgVisitor));
-					
-					
+					// cgOpBody.getEnvConfigParts().add(cgEnvOpIfPart);
 				}
 			}
 		}

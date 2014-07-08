@@ -8,13 +8,7 @@ public class AutoUnnamedLookupEnvironment extends AutoLookupEnvironment
 	implements AutoIUnnamedLookupEnvironment{
 
 	public AutoUnnamedLookupEnvironment(@NonNull EStructuralFeature reference) {
-		super(reference);
-	}
-	
-	@Override
-	@NonNull
-	protected AutoIUnnamedLookupResult createResult() {
-		return new AutoUnnamedLookupResult();
+		super(reference, AutoILookupStrategy.LOOKUP_ALL, new AutoUnnamedLookupResult());
 	}
 	
 	@Override

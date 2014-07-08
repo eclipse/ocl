@@ -15,7 +15,6 @@
 package org.eclipse.ocl.examples.autogen.nameresocgmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -24,7 +23,6 @@ import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.EnvLookupKind;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 
@@ -93,36 +91,6 @@ public class NameResoCGModelFactoryImpl extends EFactoryImpl implements NameReso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case NameResoCGModelPackage.ENV_LOOKUP_KIND:
-				return createEnvLookupKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case NameResoCGModelPackage.ENV_LOOKUP_KIND:
-				return convertEnvLookupKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CGAddCall createCGAddCall() {
 		CGAddCallImpl cgAddCall = new CGAddCallImpl();
 		return cgAddCall;
@@ -156,26 +124,6 @@ public class NameResoCGModelFactoryImpl extends EFactoryImpl implements NameReso
 	public CGEnvVisitIfPart createCGEnvVisitIfPart() {
 		CGEnvVisitIfPartImpl cgEnvVisitIfPart = new CGEnvVisitIfPartImpl();
 		return cgEnvVisitIfPart;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EnvLookupKind createEnvLookupKindFromString(EDataType eDataType, String initialValue) {
-		EnvLookupKind result = EnvLookupKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertEnvLookupKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

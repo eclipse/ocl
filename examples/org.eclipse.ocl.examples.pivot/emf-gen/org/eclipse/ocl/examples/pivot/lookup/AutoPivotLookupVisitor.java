@@ -54,93 +54,74 @@ public class AutoPivotLookupVisitor
     protected AutoIPivotLookupEnvironment lookupFromNewElement(Element element) {
         return DomainUtil.nonNullState(element.accept(this));
     }
-    
-    // Lookup propagation protocols
-    
     /**
-    	* Used when ONLY looking up in local
-     * @return the accumulated lookup result
-     */
-    @NonNull
-    protected AutoIPivotLookupEnvironment lookupOnlyLocal() {
-        return result;
-    }
-    /**
-    	* Used when looking up in local AND in parent environments if not found
-     * in local -> outer scope/environment elements are occluded in nested
-     * contexts
-     * @return the accumulated lookup result
+    	* If the environment is complete returns the current configured environment
+     * otherwise, go on gathering more results from parent's context
+     *
+     * @return the configured lookup environment
      */
     @NonNull
     protected AutoIPivotLookupEnvironment lookupInParentIfNotComplete() {
         return result.isComplete() ? result : lookupInNewContext(context.getParent());
     }
-    /**
-    	* Used when looking up in local AND in parent environments
-     * @return the accumulated lookup result
-     */
-    @NonNull
-    protected AutoIPivotLookupEnvironment lookupInParent() {
-        return lookupInNewContext(context.getParent());
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitLetExp(@NonNull LetExp self) {
-        EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitRoot(@NonNull Root self) {
-        EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
-    }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitIteratorExp(@NonNull IteratorExp self) {
         EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitOperation(@NonNull Operation self) {
-        EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
+        return lookupInParentIfNotComplete();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitIterateExp(@NonNull IterateExp self) {
         EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
+        return lookupInParentIfNotComplete();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitLibrary(@NonNull Library self) {
         EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitClass(@NonNull Class self) {
-        EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
-    }
-    
-    @Override 
-    public @Nullable AutoIPivotLookupEnvironment visitEnumeration(@NonNull Enumeration self) {
-        EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
+        return lookupInParentIfNotComplete();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package self) {
         EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
+        return lookupInParentIfNotComplete();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitEnumeration(@NonNull Enumeration self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupInParentIfNotComplete();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitRoot(@NonNull Root self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupInParentIfNotComplete();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitOperation(@NonNull Operation self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupInParentIfNotComplete();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitClass(@NonNull Class self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupInParentIfNotComplete();
+    }
+    
+    @Override 
+    public @Nullable AutoIPivotLookupEnvironment visitLetExp(@NonNull LetExp self) {
+        EReference containmentReference = context.getToChildReference();
+        return lookupInParentIfNotComplete();
     }
     
     @Override 
     public @Nullable AutoIPivotLookupEnvironment visitExpressionInOCL(@NonNull ExpressionInOCL self) {
         EReference containmentReference = context.getToChildReference();
-        return lookupOnlyLocal();
+        return lookupInParentIfNotComplete();
     }
 }

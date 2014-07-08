@@ -2,6 +2,7 @@ package org.eclipse.ocl.examples.pivot.lookup;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 
 public class AutoNamedLookupEnvironment extends  AutoLookupEnvironment
@@ -10,14 +11,8 @@ public class AutoNamedLookupEnvironment extends  AutoLookupEnvironment
 	@NonNull protected String name;
 	
 	public AutoNamedLookupEnvironment(@NonNull EStructuralFeature reference, @NonNull String name) {
-		super(reference);
+		super(reference, AutoILookupStrategy.LOOKUP_IN_PARENT_IF_NOT_FOUND, new AutoNamedLookupResult(name));
 		this.name = name;
-	}
-	
-	@Override
-	protected @NonNull
-	AutoINamedLookupResult createResult() {
-		return new AutoNamedLookupResult(name);
 	}
 	
 	@Override
@@ -25,7 +20,8 @@ public class AutoNamedLookupEnvironment extends  AutoLookupEnvironment
 	AutoINamedLookupResult getResult() {
 		return (AutoINamedLookupResult)super.getResult();
 	}
-	protected void addElements(Iterable<? extends Object> elements) {
+	
+	protected void addElements(@Nullable Iterable<? extends Object> elements) {
 		if (elements != null) {
 			for (Object element : elements) {
 				if (name.equals(getName(element))) {

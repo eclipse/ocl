@@ -144,28 +144,11 @@ public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
 		js.popIndentation();
 		js.append("}\n");
 
-		js.append("\n// Lookup propagation protocols\n\n");
-		
 		js.append("/**\n"
-			+ "	* Used when ONLY looking up in local\n"
-			+ " * @return the accumulated lookup result\n"
-			+ " */\n");
-		
-		js.appendIsRequired(true);
-		js.append("\n");
-		js.append("protected ");
-		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
-		js.append(" lookupOnlyLocal() {\n");
-		js.pushIndentation(null);
-		js.append("return result;\n");
-		js.popIndentation();
-		js.append("}\n");
-		
-		js.append("/**\n"
-				+ "	* Used when looking up in local AND in parent environments if not found\n"
-				+ " * in local -> outer scope/environment elements are occluded in nested\n"
-				+ " * contexts\n"
-				+ " * @return the accumulated lookup result\n"
+				+ "	* If the environment is complete returns the current configured environment\n"
+				+ " * otherwise, go on gathering more results from parent's context\n"
+				+ " *\n"
+				+ " * @return the configured lookup environment\n"
 				+ " */\n");
 			
 		js.appendIsRequired(true);
@@ -176,23 +159,7 @@ public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
 		js.pushIndentation(null);
 		js.append("return result.isComplete() ? result : lookupInNewContext(context.getParent());\n");
 		js.popIndentation();
-		js.append("}\n");
-
-		js.append("/**\n"
-				+ "	* Used when looking up in local AND in parent environments\n"
-				+ " * @return the accumulated lookup result\n"
-				+ " */\n");
-			
-		js.appendIsRequired(true);
-		js.append("\n");
-		js.append("protected ");
-		js.appendClassReference(nProvider.getSpecificEnvironmentItf());
-		js.append(" lookupInParent() {\n");
-		js.pushIndentation(null);
-		js.append("return lookupInNewContext(context.getParent());\n");
-		js.popIndentation();
-		js.append("}\n");
-		
+		js.append("}\n");		
 	}	
 
 	@Nullable
@@ -225,14 +192,7 @@ public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
 		
 		safeVisit(object.getBody());
 		
-		switch (object.getEnvLookupPropagation()) {
-			case LOOKUP_IN_PARENT:
-				js.append("return lookupInParent();\n"); break;
-			case LOOKUP_IN_PARENT_IF_NOT_COMPLETE:
-				js.append("return lookupInParentIfNotComplete();\n"); break;
-			case LOOKUP_ONLY_LOCAL:
-				js.append("return lookupOnlyLocal();\n"); break;
-		}
+		js.append("return lookupInParentIfNotComplete();\n");
 		
 		js.popIndentation();
 		js.append("}\n");
@@ -249,7 +209,7 @@ public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
 		if (ifParts.size() == 1) {
 			safeVisit(ifParts.get(0));
 		} else {
-			
+						
 		}
 		return true;
 	}

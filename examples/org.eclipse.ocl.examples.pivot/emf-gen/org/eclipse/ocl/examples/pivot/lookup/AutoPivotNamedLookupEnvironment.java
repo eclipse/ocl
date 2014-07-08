@@ -504,7 +504,7 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 					i++;
 				}				
 			}
-			AutoINamedLookupResult newResult = createResult();
+			AutoINamedLookupResult newResult = new AutoNamedLookupResult(name); // FIXME asbh worth to use factory method ?
 			for (int i=0; i < values.size(); i++) {
 				@SuppressWarnings("null") 
 				@NonNull Object value = values.get(i);
