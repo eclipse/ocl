@@ -11,7 +11,9 @@
 package org.eclipse.ocl.examples.autogen.namereso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,25 +26,62 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 
 public class NameResolutionUtil {
 	
-	public static Map<Type, List<Property>> computeType2EnvAddingFeatures(@NonNull Package nameResoPackage) {
+	static public class AddingCallExp {
 		
-		Map<Type, List<Property>> result = new HashMap<Type, List<Property>>();
+		private Type type;
+		private int number;
+		
+		public AddingCallExp(Type addingExpType, int number){
+			this.type = addingExpType;
+			this.number = number;
+			
+		}
+
+		public Type getType() {
+			return type;
+		}
+
+		public int getNumber() {
+			return number;
+		}
+	}
+	public static Map<Type, List<AddingCallExp>> computeType2EnvAddingExps(@NonNull Package nameResoPackage) {
+		
+		
+		Map<Type, List<AddingCallExp>> result = new LinkedHashMap<Type, List<AddingCallExp>>();
+		for (Type type : nameResoPackage.getOwnedType()) {
+			for (Operation op : type.getOwnedOperation()) {
+				@SuppressWarnings("null")
+				List<AddingCallExp> addingExpTypes = computeEnvOperation2EnvAddingExpTypes(op);
+				result.put(type, addingExpTypes);
+			}
+		}
+		return result;
+	}
+	
+	public static List<AddingCallExp> computeEnvOperation2EnvAddingExpTypes(@NonNull Operation envOp) {
+		return isEnvOperation(envOp) ? getEnvOpAddingExpTypes(envOp) : Collections.<AddingCallExp>emptyList();
+	}
+	
+	
+	public static Map<Type, List<Operation>> computeType2EnvOperations(@NonNull Package nameResoPackage) {
+		
+		Map<Type, List<Operation>> result = new LinkedHashMap<Type, List<Operation>>();
 		for (Type type : nameResoPackage.getOwnedType()) {
 			for (Operation op : type.getOwnedOperation()) {
 				if (isEnvOperation(op)) {
-					OpaqueExpression opaqueExp = op.getBodyExpression();
-					if (opaqueExp != null) {
-						ExpressionInOCL exp = PivotUtil.getExpressionInOCL(op, opaqueExp);
-						updateMapWithAddElementProperties(result, exp);
+					List<Operation> envOps = result.get(type);					
+					if (envOps == null) {
+						envOps = new ArrayList<Operation>();
+						result.put(type, envOps);
 					}
+					envOps.add(op);
 				}
 			}
 		}
@@ -51,43 +90,41 @@ public class NameResolutionUtil {
 	
 	
 	/**
-	 * Updates the map with the properties involved in the addElement operation call expression contained by
+	 * returns the list of types of the expressions involved in the addElement operation call expression contained by
 	 * the given ExpressionInOCL.
 	 * 
-	 * Although it's not checked, the provided {@link ExpressionInOCL} should be the body of an _env() operation
-	 * involved in a name resolution description
+	 * Although it's not checked, the provided {@link Operation} should be an _env() operation
+	 * involved in a name resolution description.
+	 * 
+	 * If the type of two different "adding" ocl expressions appears twice, such a type would be added twice
 	 *  
 	 * @param map the map to update
 	 * @param exp the expressionInOCL  
 	 */
-	private static void updateMapWithAddElementProperties(Map<Type, List<Property>> map, ExpressionInOCL exp) {
-
-		TreeIterator<EObject> contents =  exp.eAllContents();
-		while (contents.hasNext()) {
-			EObject element = contents.next();
-			if (element instanceof OperationCallExp){
-				OperationCallExp opCall = (OperationCallExp) element;
-				if (isAddingElementOperationCallExp(opCall)) {
-					for (OCLExpression argument : opCall.getArgument()) {
-						// We are interested in the last property call exp of a potentially complex navigation FIXME
-						// TODO what if we have a final oclAsType() conversion ?
-						// TODO what todo with the ScopeFilters
-						if (argument instanceof PropertyCallExp) {
-							Property referredProp = ((PropertyCallExp) argument).getReferredProperty();
-							Type propOwningType = referredProp.getOwningType();
-							List<Property> addElementProp = map.get(propOwningType);
-							if (addElementProp == null) {
-								addElementProp = new ArrayList<Property>();
-								map.put(propOwningType, addElementProp);
-							}
-							if (!addElementProp.contains(referredProp)) {
-								addElementProp.add(referredProp);
+	private static List<AddingCallExp> getEnvOpAddingExpTypes(Operation envOp) {
+		
+		List<AddingCallExp> addingExpTypes = new ArrayList<AddingCallExp>();		
+		OpaqueExpression opaqueExp = envOp.getBodyExpression();
+		if (opaqueExp != null) {			
+			ExpressionInOCL exp = PivotUtil.getExpressionInOCL(envOp, opaqueExp);
+			if (exp != null) {
+				TreeIterator<EObject> contents =  exp.eAllContents();
+				int addingCallExpNumber = 0;
+				while (contents.hasNext()) {
+					EObject element = contents.next();
+					if (element instanceof OperationCallExp){
+						OperationCallExp opCall = (OperationCallExp) element;
+						if (isAddingElementOperationCallExp(opCall)) {
+							for (OCLExpression argument : opCall.getArgument()) { // FIXME Should only have one. Check if many ?
+								// note that the same type could be correctly added many times.
+								addingExpTypes.add(new AddingCallExp(argument.getType(), addingCallExpNumber++)); 
 							}
 						}
 					}
-				}
+				}	
 			}
 		}
+		return addingExpTypes;		
 	}
 
 	public static boolean isEnvOperation(Operation op) {
@@ -97,7 +134,7 @@ public class NameResolutionUtil {
 	
 	public static boolean isAddOperation(Operation op) {
 		String opName = op.getName();
-		if (opName == null || !opName.startsWith("AddElement")) {
+		if (opName == null || !opName.startsWith("addElement")) {
 			return false;
 		}
 		
@@ -106,7 +143,7 @@ public class NameResolutionUtil {
 		Type owningType = op.getOwningType();
 		String typeName = owningType.getName();
 		
-		if (typeName == null || !opName.startsWith("Environment")) {
+		if (!"Environment".equals(typeName)) {
 			return false;
 		}
 		
@@ -123,9 +160,28 @@ public class NameResolutionUtil {
 		
 	}
 	
+	/**
+	 * Iterates the content tree of the given {@link OCLExpression} and returns
+	 * an iterable of all {@link OperationCallExp} corresponding to the addElement/s
+	 * operation
+	 * @param oclExp
+	 * @return
+	 */
+	public static Iterable<OperationCallExp> getAddElementCallExps(OCLExpression oclExp) {
+		ArrayList<OperationCallExp> result = new ArrayList<OperationCallExp>();
+		for (EObject child : oclExp.eContents()) {
+			if (child instanceof OperationCallExp) {
+				OperationCallExp opCall = (OperationCallExp) child;
+				if (isAddingElementOperationCallExp(opCall)) {
+					result.add(opCall);
+				}
+			}
+		}
+		return result;
+	}
 	
 	private static boolean isAddingElementOperationCallExp(OperationCallExp opCallExp) {
-		String opCallName = PivotUtil.getSafeName(opCallExp.getReferredOperation());
-		return opCallName.equals("addElement") || opCallName.equals("addElements");
+		Operation op = opCallExp.getReferredOperation();
+		return op == null ? false : isAddOperation(op);		
 	}
 }

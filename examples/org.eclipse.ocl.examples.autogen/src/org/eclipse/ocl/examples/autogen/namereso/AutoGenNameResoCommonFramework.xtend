@@ -223,6 +223,7 @@ public interface AutoILookupEnvironment {
 	
 	@NonNull
 	AutoILookupResult getResult();
+	
 }
 		''');
 	

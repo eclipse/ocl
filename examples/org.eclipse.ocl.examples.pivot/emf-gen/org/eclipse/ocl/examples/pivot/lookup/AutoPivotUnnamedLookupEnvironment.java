@@ -14,12 +14,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -269,5 +272,123 @@ public class AutoPivotUnnamedLookupEnvironment extends AutoUnnamedLookupEnvironm
 			resolvers.addAll(matchers);
 		}
 		super.addElement(elementName, element);
+	}
+
+	public void addExpressionInOCL0_VariableElement(
+			@NonNull ExpressionInOCL object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addExpressionInOCL1_VariableElement(
+			@NonNull ExpressionInOCL object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addPackage0_TypeElements(@NonNull Package object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addPackage1_PackageElements(@NonNull Package object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addLibrary0_PrecedenceElements(@NonNull Library object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addLibrary1_TypeElements(@NonNull Library object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addLibrary2_PackageElements(@NonNull Library object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addOperation0_ParameterElements(@NonNull Operation object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addRoot0_PackageElements(@NonNull Root object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addRoot1_ImportElements(@NonNull Root object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addEnumeration0_BehaviorElements(@NonNull Enumeration object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addEnumeration1_OperationElements(@NonNull Enumeration object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addEnumeration2_PropertyElements(@NonNull Enumeration object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addEnumeration3_EnumerationLiteralElements(
+			@NonNull Enumeration object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addLetExp0_VariableElement(@NonNull LetExp object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addClass0_BehaviorElements(@NonNull Class object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addClass1_OperationElements(@NonNull Class object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addClass2_PropertyElements(@NonNull Class object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addIterateExp0_VariableElement(@NonNull IterateExp object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addIterateExp1_VariableElements(@NonNull IterateExp object) {
+		// TODO Auto-generated method stub
+		
 	}
 }

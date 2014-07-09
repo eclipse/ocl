@@ -192,7 +192,7 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCGEnvVisitIfPart_EnvExpression() {
+	public EReference getCGEnvVisitIfPart_EnvExpressions() {
 		return (EReference)cgEnvVisitIfPartEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -233,7 +233,7 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 
 		cgEnvVisitIfPartEClass = createEClass(CG_ENV_VISIT_IF_PART);
 		createEAttribute(cgEnvVisitIfPartEClass, CG_ENV_VISIT_IF_PART__PROPERTY_NAME);
-		createEReference(cgEnvVisitIfPartEClass, CG_ENV_VISIT_IF_PART__ENV_EXPRESSION);
+		createEReference(cgEnvVisitIfPartEClass, CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS);
 	}
 
 	/**
@@ -282,7 +282,7 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 
 		initEClass(cgEnvVisitIfPartEClass, CGEnvVisitIfPart.class, "CGEnvVisitIfPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCGEnvVisitIfPart_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, CGEnvVisitIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCGEnvVisitIfPart_EnvExpression(), theCGModelPackage.getCGValuedElement(), null, "envExpression", null, 1, 1, CGEnvVisitIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGEnvVisitIfPart_EnvExpressions(), this.getCGAddCall(), null, "envExpressions", null, 1, -1, CGEnvVisitIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

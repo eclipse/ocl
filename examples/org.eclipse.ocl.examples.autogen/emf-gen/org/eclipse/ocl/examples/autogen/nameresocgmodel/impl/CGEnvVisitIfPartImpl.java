@@ -14,13 +14,19 @@
  */
 package org.eclipse.ocl.examples.autogen.nameresocgmodel.impl;
 
+import java.util.Collection;
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
@@ -36,7 +42,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.CGEnvVisitIfPartImpl#getPropertyName <em>Property Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.CGEnvVisitIfPartImpl#getEnvExpression <em>Env Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.CGEnvVisitIfPartImpl#getEnvExpressions <em>Env Expressions</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,14 +77,14 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 	protected String propertyName = PROPERTY_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEnvExpression() <em>Env Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getEnvExpressions() <em>Env Expressions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEnvExpression()
+	 * @see #getEnvExpressions()
 	 * @generated
 	 * @ordered
 	 */
-	protected CGValuedElement envExpression;
+	protected EList<CGAddCall> envExpressions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,42 +131,11 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CGValuedElement getEnvExpression() {
-		return envExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEnvExpression(CGValuedElement newEnvExpression, NotificationChain msgs) {
-		CGValuedElement oldEnvExpression = envExpression;
-		envExpression = newEnvExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION, oldEnvExpression, newEnvExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public List<CGAddCall> getEnvExpressions() {
+		if (envExpressions == null) {
+			envExpressions = new EObjectContainmentEList<CGAddCall>(CGAddCall.class, this, NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnvExpression(CGValuedElement newEnvExpression) {
-		if (newEnvExpression != envExpression) {
-			NotificationChain msgs = null;
-			if (envExpression != null)
-				msgs = ((InternalEObject)envExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION, null, msgs);
-			if (newEnvExpression != null)
-				msgs = ((InternalEObject)newEnvExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION, null, msgs);
-			msgs = basicSetEnvExpression(newEnvExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION, newEnvExpression, newEnvExpression));
+		return envExpressions;
 	}
 
 	/**
@@ -171,8 +146,8 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION:
-				return basicSetEnvExpression(null, msgs);
+			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS:
+				return ((InternalEList<?>)getEnvExpressions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -187,8 +162,8 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 		switch (featureID) {
 			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__PROPERTY_NAME:
 				return getPropertyName();
-			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION:
-				return getEnvExpression();
+			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS:
+				return getEnvExpressions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -198,14 +173,16 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__PROPERTY_NAME:
 				setPropertyName((String)newValue);
 				return;
-			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION:
-				setEnvExpression((CGValuedElement)newValue);
+			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS:
+				getEnvExpressions().clear();
+				getEnvExpressions().addAll((Collection<? extends CGAddCall>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -222,8 +199,8 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__PROPERTY_NAME:
 				setPropertyName(PROPERTY_NAME_EDEFAULT);
 				return;
-			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION:
-				setEnvExpression((CGValuedElement)null);
+			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS:
+				getEnvExpressions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -239,8 +216,8 @@ public class CGEnvVisitIfPartImpl extends CGValuedElementImpl implements CGEnvVi
 		switch (featureID) {
 			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__PROPERTY_NAME:
 				return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
-			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSION:
-				return envExpression != null;
+			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS:
+				return envExpressions != null && !envExpressions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

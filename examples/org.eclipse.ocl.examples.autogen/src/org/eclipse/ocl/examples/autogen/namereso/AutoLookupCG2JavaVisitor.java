@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.autogen.namereso;
 
 import java.util.List;
 
+import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -164,10 +165,9 @@ public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
 
 	@Nullable
 	public Boolean visitCGAddCall(@NonNull CGAddCall object) {
-		
-		js.append("ADD CALL\n");
-				
-		return true;
+			
+		// addElement OpCall only has one argument which needs OCL2JAVA generation
+		return safeVisit(object.getArguments().get(0)); 
 	}
 
 	@Nullable
@@ -202,26 +202,27 @@ public class AutoLookupCG2JavaVisitor extends AutoCG2JavaVisitor
 	@Nullable
 	public Boolean visitCGEnvVisitOpBody(@NonNull CGEnvVisitOpBody object) {
 		
-		js.appendClassReference(EReference.class);
-		js.append(" containmentReference = context.getToChildReference();\n");
-		
 		List<CGEnvVisitIfPart> ifParts = object.getEnvConfigParts();
 		if (ifParts.size() == 1) {
 			safeVisit(ifParts.get(0));
 		} else {
-						
+			js.appendClassReference(EReference.class);
+			js.append(" containmentReference = context.getToChildReference();\n");						
 		}
 		return true;
 	}
 	
 	@Nullable
-	public Boolean visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {		
-		return safeVisit(object.getEnvExpression());
+	public Boolean visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {
+		for (CGAddCall addCall : object.getEnvExpressions()) {
+			if (safeVisit(addCall) == Boolean.TRUE) {
+				js.append("result.add");
+				js.append(CodeGenUtil.capName(object.getPropertyName()));
+				js.append("(");
+				js.append(addCall.getArguments().get(0).getValueName());
+				js.append(")\n");
+			}
+		}	
+		return true;
 	}
-
-	
-
-
-
-	
 }

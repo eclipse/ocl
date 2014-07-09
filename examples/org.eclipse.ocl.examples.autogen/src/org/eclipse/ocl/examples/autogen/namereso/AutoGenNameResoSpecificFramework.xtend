@@ -14,10 +14,13 @@ import org.eclipse.ocl.examples.autogen.utilities.MergeWriter
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.pivot.Package;
 import java.util.Map
-import org.eclipse.ocl.examples.pivot.Property
 import org.eclipse.ocl.examples.pivot.Type
 import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+import org.eclipse.ocl.examples.pivot.CollectionType
+import org.eclipse.ocl.examples.pivot.Operation
+import java.util.HashSet
+import org.eclipse.ocl.examples.autogen.namereso.NameResolutionUtil.AddingCallExp
 
 class AutoGenNameResoSpecificFramework {
 	
@@ -41,7 +44,8 @@ class AutoGenNameResoSpecificFramework {
 		// Generation from Complete OCL file
 		generator.generatePivotEnvironmentItf(outputFolder, packageName, baseElmntName, nameResoPackage);
 		generator.generatePivotNamedEnvironmentClass(outputFolder, packageName,  baseElmntName, nameResoPackage);
-		AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
+		generator.generatePivotVisitorClass(outputFolder, packageName, modelPckName, visitorPckName, visitorName, baseElmntPckName, baseElmntName, nameResoPackage)
+		// AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
 	}
 	
 	
@@ -55,7 +59,7 @@ class AutoGenNameResoSpecificFramework {
 				
 		var String commonEnvItf = nProvider.getCommonEnvironmentItf()
 		var String envItf = nProvider.getSpecificEnvironmentItf()
-		var Map<Type, List<Property>> type2properties = NameResolutionUtil.computeType2EnvAddingFeatures(nameResoPackage);
+		var Map<Type, List<AddingCallExp>> type2expTypes = NameResolutionUtil.computeType2EnvAddingExps(nameResoPackage);
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«envItf».java''')
 		writer.append('''
@@ -65,21 +69,21 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
@@ -95,23 +99,22 @@ public interface «envItf» extends «commonEnvItf» {
 	// END OF TEMPORAL STUFF
 	
 	// Generated from NameResolution description
-	«FOR Type type : type2properties.keySet»
+	«FOR type : type2expTypes.keySet»
 	
 	// «type.name»
-	«FOR Property prop : type2properties.get(type)»
-	public void add«prop.name.toFirstUpper»(@NonNull «type.name» a«type.name»);
+	
+	«FOR addingExptype : type2expTypes.get(type)»
+	«val expType = addingExptype.type»	
+	«val isMany = expType instanceof CollectionType»
+	«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
+	public void add«type.name»«addingExptype.number»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object);
 	«ENDFOR»
 	«ENDFOR»
 	
 	// TemplateableElement
 	// FIXME no auto-generated yet
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
-	
-	// Type
-	// FIXME no auto-generated yet
-	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter);
-	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter);
-	
+
 	// LoopExp
 	// FIXME no auto-generated yet
 	public void addIterator(@NonNull LoopExp  aLoopExp, int index);
@@ -183,10 +186,12 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -366,25 +371,53 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		return PivotUtil.conformsTo(lookupType, eClass) || PivotUtil.conformsTo(eClass, lookupType);
 	}
 	
-	public void addOwnedParameter(@NonNull Operation object) {
+	public void addOperation0_ParameterElements(@NonNull Operation object) {
+		addOwnedParameter(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private  void addOwnedParameter(@NonNull Operation object) {
 		if (accepts(PivotPackage.Literals.PARAMETER)) {
 			addElements(object.getOwnedParameter());
 		}
 	}
-	
+			
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement object) {
 		if (accepts(PivotPackage.Literals.TYPE)) {
 			addElements(PivotUtil.getTypeTemplateParameterables(object));
 		}
 	}
+
+	public void addEnumeration3_EnumerationLiteralElements(
+			@NonNull Enumeration object) {
+		addOwnedLiteral(object);
+	}
 	
-	public void addOwnedLiteral(@NonNull Enumeration object) {
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedLiteral(@NonNull Enumeration object) {
 		if (accepts(PivotPackage.Literals.ENUMERATION_LITERAL)) {
 			addElements(object.getOwnedLiteral());
 		}
 	}
 	
-	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
+	public void addClass1_OperationElements(
+			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+		addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object) {
+		Type instanceType = object.getInstanceType();
+		if (instanceType != null) {
+			addOwnedOperation(instanceType, null);
+		}
+	}
+	
+	public void addEnumeration1_OperationElements(@NonNull Enumeration object) {
+		addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.ITERATION)		// If ITERATION is acceptable then so too is OPERATION
 				&& (getType() != PivotPackage.Literals.NAMESPACE)) {	// Don't really want operations when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
@@ -395,7 +428,24 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		}
 	}
 	
-	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
+	public void addClass2_PropertyElements(
+			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+		addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object) {
+		Type instanceType = object.getInstanceType();
+		if (instanceType != null) {
+			addOwnedProperty(object, null);
+		}
+	}
+	
+	public void addEnumeration2_PropertyElements(@NonNull Enumeration object) {
+		addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (getType() != PivotPackage.Literals.NAMESPACE)) { // Don't really want properties when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
@@ -405,7 +455,17 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		}
 	}
 	
-	public void addOwnedBehavior(@NonNull org.eclipse.ocl.examples.pivot.Class aClass) {
+	public void addClass0_BehaviorElements(
+			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+		addOwnedBehavior(object);
+	}
+		
+	public void addEnumeration0_BehaviorElements(@NonNull Enumeration object) {
+		addOwnedBehavior(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedBehavior(@NonNull org.eclipse.ocl.examples.pivot.Class aClass) {
 		if (accepts(PivotPackage.Literals.STATE)) {
 			assert metaModelManager.isTypeServeable(aClass);
 			TypeServer typeServer = metaModelManager.getTypeServer(aClass);
@@ -413,9 +473,13 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 			//: typeServer.getAllStates());
 		}
 	}
-	
 
-	public void addNestedPackage(@NonNull Package pkge) {
+	public void addPackage1_PackageElements(@NonNull Package object) {
+		addNestedPackage(object);
+	}
+
+	// FIXME remove when Auto-generation is finished
+	private void addNestedPackage(@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			PackageServer parentPackageServer = metaModelManager.getPackageServer(pkge);
 			PackageServer packageServer = parentPackageServer.getMemberPackage(name);
@@ -432,7 +496,12 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		}
 	}
 	
-	public void addOwnedType(@NonNull Package pkge) {
+	public void addPackage0_TypeElements(@NonNull Package object) {
+		addOwnedType(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedType(@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.CLASS)) {
 			PackageServer packageServer = metaModelManager.getPackageServer(pkge);
 			Type type = packageServer.getMemberType(name);
@@ -449,17 +518,28 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		}
 	}
 	
+	public void addRoot0_PackageElements(@NonNull Root object) {
+		addNestedPackage(object);
+		
+	}
 	
-	public void addNestedPackage(@NonNull Root root) {
+	// FIXME remove when Auto-generation is finished
+	private void addNestedPackage(@NonNull Root root) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			addElements(root.getNestedPackage());
+	
 		}
 	}
 	
-	public void addRootPackages() {
+	public void addRoot1_ImportElements(@NonNull Root object) {
+		addRootPackages();
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addRootPackages() {
 		PackageManager packageManager = metaModelManager.getPackageManager();
 		addNamedElement(packageManager.getMemberPackage(name));
-		addNamedElement(packageManager.getPackageByURI(name));			
+		addNamedElement(packageManager.getPackageByURI(name));
 //		else {			
 //			for (RootPackageServer rootPackageServer : packageManager.getMemberPackages()) {
 //				addNamedElement(rootPackageServer);
@@ -473,13 +553,39 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 //		}
 	}
 	
-	public void addOwnedPrecedence(@NonNull Library library) {
+	public void addLibrary0_PrecedenceElements(@NonNull Library object) {
+		addOwnedPrecedence(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedPrecedence(@NonNull Library library) {
 		if (accepts(PivotPackage.Literals.PRECEDENCE)) {
 			addElements(library.getOwnedPrecedence());
 		}
 	}
 	
-	public void addIterator(@NonNull LoopExp  aLoopExp) {
+	public void addLibrary1_TypeElements(@NonNull Library object) {
+		addOwnedType(object);
+	}
+	
+	public void addLibrary2_PackageElements(@NonNull Library object) {
+		addNestedPackage(object);
+	}
+	
+	public void addIterateExp0_VariableElements(@NonNull IterateExp object) {
+		addIterator(object);
+	}
+	
+	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object) {
+		addIterator(object);		
+	}
+	
+	public void addIterateExp2_VariableElements(@NonNull IterateExp object) {
+		addIterator(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addIterator(@NonNull LoopExp  aLoopExp) {
 		addElements(aLoopExp.getIterator());
 	}
 	
@@ -487,32 +593,42 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		addNamedElement(aLoopExp.getIterator().get(index));
 	}
 	
-	public void addResult(@NonNull IterateExp iterateExp) {
-		addNamedElement(iterateExp.getResult());
+	public void addIterateExp1_VariableElement(@NonNull IterateExp object) {
+		addResult(object);
 	}
 	
-	public void addVariable(@NonNull LetExp  letExp) {
+	// FIXME remove when Auto-generation is finished
+	private void addResult(@NonNull IterateExp iterateExp) {
+		addNamedElement(iterateExp.getResult());
+	}
+		
+	public void addLetExp0_VariableElement(@NonNull LetExp object) {
+		addVariable(object);		
+	}
+	
+	private void addVariable(@NonNull LetExp  letExp) {
 		addNamedElement(letExp.getVariable());
 	}
 	
-	public void addContextVariable(@NonNull ExpressionInOCL expressionInOCL) {
+	public void addExpressionInOCL0_VariableElement(
+			@NonNull ExpressionInOCL object) {
+		addContextVariable(object);		
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addContextVariable(@NonNull ExpressionInOCL expressionInOCL) {
 		addNamedElement(expressionInOCL.getContextVariable());
 	}
+
+	public void addExpressionInOCL1_VariableElement(
+			@NonNull ExpressionInOCL object) {
+		addResultVariable(object);
+		
+	}
 	
-	public void addResultVariable(@NonNull ExpressionInOCL expressionInOCL) {
+	// FIXME remove when Auto-generation is finished
+	private void addResultVariable(@NonNull ExpressionInOCL expressionInOCL) {
 		addNamedElement(expressionInOCL.getResultVariable());
-	}
-	
-	public void addImports(@NonNull Root aRoot) {
-		addRootPackages();
-	}
-
-	public void addOwnedOperation(@NonNull Type aType) {
-		// FIXME Pending on filter design
-	}
-
-	public void addOwnedAttribute(@NonNull Type aType) {
-		// FIXME Pending on filter design
 	}
 	
 	public void addFilter(@NonNull ScopeFilter filter) {
@@ -752,22 +868,30 @@ public interface «visitorItf» extends «visitorName»<«environmentItf»> {
 		writer.close();
 	}
 	
-	protected def void generatePivotVisitorClass(@NonNull String outputFolder, @NonNull String packageName,
-		@NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElemntPckgName, @NonNull String baseElmntName
-	) {
+	protected def void generatePivotVisitorClass(@NonNull String outputFolder, 
+		@NonNull String packageName, @NonNull String modelPckName,		
+		@NonNull String visitorPckName, @NonNull String visitorName, 
+		@NonNull String baseElemntPckgName, @NonNull String baseElmntName,
+		@NonNull Package nameResoPackage ) {
+			
 		var String visitorClass = nProvider.getSpecificVisitorClass()
 		var String visitorItf =  nProvider.getSpecificVisitorItf()
 		var String environmentItf =  nProvider.getSpecificEnvironmentItf()
 		var String commonContextItf = nProvider.getCommonContextItf()
+		var Map<Type,List<Operation>> type2envOperations = NameResolutionUtil.computeType2EnvOperations(nameResoPackage)
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«visitorClass».java''');
 		writer.append('''
 package «packageName»;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import «baseElemntPckgName».«baseElmntName»;
+«FOR type : type2envOperations.keySet»
+import «modelPckName».«type.name»;
+«ENDFOR»
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -803,14 +927,6 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	
 	// Lookup propagation protocols 
 	
-	/**
-	 * Used when ONLY looking up in local 
-	 * @return the accumulated lookup result
-	 */
-	@NonNull
-	protected «environmentItf» lookupOnlyLocal() {
-		return result;
-	}
 	
 	/**
 	 * Used when looking up in local AND in parent environments if not found 
@@ -823,14 +939,30 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 		return result.isComplete() ? result : lookupInNewContext(context.getParent());
 	}
 	
-	/**
-	 * Used when looking up in local AND in parent environments
-	 * @return the accumulated lookup result
-	 */
-	@NonNull
-	protected «environmentItf» lookupInParent() {
-		return lookupInNewContext(context.getParent());
+	// Generated from NameResolution description
+	«FOR type : type2envOperations.keySet»	
+	«val envOps = type2envOperations.get(type)»
+	«val nEnvOps = envOps.size()»
+	
+	
+	@Override
+	public @Nullable
+	«environmentItf» visit«type.name»(@NonNull «type.name» object) {
+		«IF nEnvOps == 1»
+			«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOps.get(0)) »
+				«val expType = addingExpType.type»
+				«val isMany = expType instanceof CollectionType»
+				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
+				result.add«type.name»«addingExpType.number»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(object);
+			«ENDFOR»
+		«ELSE»
+			EReference containmentReference = context.getToChildReference();
+			// TODO
+		«ENDIF»
+		return lookupInParentIfNotComplete();
 	}
+		
+	«ENDFOR»
 }
 		''');
 		writer.close();
@@ -1032,13 +1164,5 @@ public class «resolverClass» implements «resolverItf» {
 }
 		''');
 		writer.close();
-	}
-	
-		
-	// Helper methods to work with the CompleteOCL-based name resolution package
-	
-	
-	// Helper methods to obtain template strings
-	
-	
+	}	
 }

@@ -480,13 +480,13 @@ public interface NameResoCGModelPackage extends EPackage {
 	int CG_ENV_VISIT_IF_PART__PROPERTY_NAME = CGModelPackage.CG_VALUED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Env Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Env Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ENV_VISIT_IF_PART__ENV_EXPRESSION = CGModelPackage.CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
+	int CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS = CGModelPackage.CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>CG Env Visit If Part</em>' class.
@@ -561,15 +561,15 @@ public interface NameResoCGModelPackage extends EPackage {
 	EAttribute getCGEnvVisitIfPart_PropertyName();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart#getEnvExpression <em>Env Expression</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart#getEnvExpressions <em>Env Expressions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Env Expression</em>'.
-	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart#getEnvExpression()
+	 * @return the meta object for the containment reference list '<em>Env Expressions</em>'.
+	 * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart#getEnvExpressions()
 	 * @see #getCGEnvVisitIfPart()
 	 * @generated
 	 */
-	EReference getCGEnvVisitIfPart_EnvExpression();
+	EReference getCGEnvVisitIfPart_EnvExpressions();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -650,12 +650,12 @@ public interface NameResoCGModelPackage extends EPackage {
 		EAttribute CG_ENV_VISIT_IF_PART__PROPERTY_NAME = eINSTANCE.getCGEnvVisitIfPart_PropertyName();
 
 		/**
-		 * The meta object literal for the '<em><b>Env Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Env Expressions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_ENV_VISIT_IF_PART__ENV_EXPRESSION = eINSTANCE.getCGEnvVisitIfPart_EnvExpression();
+		EReference CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS = eINSTANCE.getCGEnvVisitIfPart_EnvExpressions();
 
 	}
 

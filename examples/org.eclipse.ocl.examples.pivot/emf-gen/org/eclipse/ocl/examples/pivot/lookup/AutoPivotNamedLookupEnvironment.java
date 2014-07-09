@@ -23,10 +23,12 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -206,25 +208,53 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		return PivotUtil.conformsTo(lookupType, eClass) || PivotUtil.conformsTo(eClass, lookupType);
 	}
 	
-	public void addOwnedParameter(@NonNull Operation object) {
+	public void addOperation0_ParameterElements(@NonNull Operation object) {
+		addOwnedParameter(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private  void addOwnedParameter(@NonNull Operation object) {
 		if (accepts(PivotPackage.Literals.PARAMETER)) {
 			addElements(object.getOwnedParameter());
 		}
 	}
-	
+			
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement object) {
 		if (accepts(PivotPackage.Literals.TYPE)) {
 			addElements(PivotUtil.getTypeTemplateParameterables(object));
 		}
 	}
+
+	public void addEnumeration3_EnumerationLiteralElements(
+			@NonNull Enumeration object) {
+		addOwnedLiteral(object);
+	}
 	
-	public void addOwnedLiteral(@NonNull Enumeration object) {
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedLiteral(@NonNull Enumeration object) {
 		if (accepts(PivotPackage.Literals.ENUMERATION_LITERAL)) {
 			addElements(object.getOwnedLiteral());
 		}
 	}
 	
-	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
+	public void addClass1_OperationElements(
+			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+		addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object) {
+		Type instanceType = object.getInstanceType();
+		if (instanceType != null) {
+			addOwnedOperation(instanceType, null);
+		}
+	}
+	
+	public void addEnumeration1_OperationElements(@NonNull Enumeration object) {
+		addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.ITERATION)		// If ITERATION is acceptable then so too is OPERATION
 				&& (getType() != PivotPackage.Literals.NAMESPACE)) {	// Don't really want operations when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
@@ -235,7 +265,24 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		}
 	}
 	
-	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
+	public void addClass2_PropertyElements(
+			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+		addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object) {
+		Type instanceType = object.getInstanceType();
+		if (instanceType != null) {
+			addOwnedProperty(object, null);
+		}
+	}
+	
+	public void addEnumeration2_PropertyElements(@NonNull Enumeration object) {
+		addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (getType() != PivotPackage.Literals.NAMESPACE)) { // Don't really want properties when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);
@@ -245,7 +292,17 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		}
 	}
 	
-	public void addOwnedBehavior(@NonNull org.eclipse.ocl.examples.pivot.Class aClass) {
+	public void addClass0_BehaviorElements(
+			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+		addOwnedBehavior(object);
+	}
+		
+	public void addEnumeration0_BehaviorElements(@NonNull Enumeration object) {
+		addOwnedBehavior(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedBehavior(@NonNull org.eclipse.ocl.examples.pivot.Class aClass) {
 		if (accepts(PivotPackage.Literals.STATE)) {
 			assert metaModelManager.isTypeServeable(aClass);
 			TypeServer typeServer = metaModelManager.getTypeServer(aClass);
@@ -253,9 +310,13 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 			//: typeServer.getAllStates());
 		}
 	}
-	
 
-	public void addNestedPackage(@NonNull Package pkge) {
+	public void addPackage1_PackageElements(@NonNull Package object) {
+		addNestedPackage(object);
+	}
+
+	// FIXME remove when Auto-generation is finished
+	private void addNestedPackage(@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			PackageServer parentPackageServer = metaModelManager.getPackageServer(pkge);
 			PackageServer packageServer = parentPackageServer.getMemberPackage(name);
@@ -272,7 +333,12 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		}
 	}
 	
-	public void addOwnedType(@NonNull Package pkge) {
+	public void addPackage0_TypeElements(@NonNull Package object) {
+		addOwnedType(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedType(@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.CLASS)) {
 			PackageServer packageServer = metaModelManager.getPackageServer(pkge);
 			Type type = packageServer.getMemberType(name);
@@ -289,17 +355,28 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		}
 	}
 	
+	public void addRoot0_PackageElements(@NonNull Root object) {
+		addNestedPackage(object);
+		
+	}
 	
-	public void addNestedPackage(@NonNull Root root) {
+	// FIXME remove when Auto-generation is finished
+	private void addNestedPackage(@NonNull Root root) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			addElements(root.getNestedPackage());
+	
 		}
 	}
 	
-	public void addRootPackages() {
+	public void addRoot1_ImportElements(@NonNull Root object) {
+		addRootPackages();
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addRootPackages() {
 		PackageManager packageManager = metaModelManager.getPackageManager();
 		addNamedElement(packageManager.getMemberPackage(name));
-		addNamedElement(packageManager.getPackageByURI(name));			
+		addNamedElement(packageManager.getPackageByURI(name));
 //		else {			
 //			for (RootPackageServer rootPackageServer : packageManager.getMemberPackages()) {
 //				addNamedElement(rootPackageServer);
@@ -313,13 +390,35 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 //		}
 	}
 	
-	public void addOwnedPrecedence(@NonNull Library library) {
+	public void addLibrary0_PrecedenceElements(@NonNull Library object) {
+		addOwnedPrecedence(object);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addOwnedPrecedence(@NonNull Library library) {
 		if (accepts(PivotPackage.Literals.PRECEDENCE)) {
 			addElements(library.getOwnedPrecedence());
 		}
 	}
 	
-	public void addIterator(@NonNull LoopExp  aLoopExp) {
+	public void addLibrary1_TypeElements(@NonNull Library object) {
+		addOwnedType(object);
+	}
+	
+	public void addLibrary2_PackageElements(@NonNull Library object) {
+		addNestedPackage(object);
+	}
+	
+	public void addIterateExp1_VariableElements(@NonNull IterateExp object) {
+		addIterator(object);
+	}
+	
+	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object) {
+		addIterator(object);		
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addIterator(@NonNull LoopExp  aLoopExp) {
 		addElements(aLoopExp.getIterator());
 	}
 	
@@ -327,32 +426,42 @@ public class AutoPivotNamedLookupEnvironment extends AutoNamedLookupEnvironment
 		addNamedElement(aLoopExp.getIterator().get(index));
 	}
 	
-	public void addResult(@NonNull IterateExp iterateExp) {
-		addNamedElement(iterateExp.getResult());
+	public void addIterateExp0_VariableElement(@NonNull IterateExp object) {
+		addResult(object);
 	}
 	
-	public void addVariable(@NonNull LetExp  letExp) {
+	// FIXME remove when Auto-generation is finished
+	private void addResult(@NonNull IterateExp iterateExp) {
+		addNamedElement(iterateExp.getResult());
+	}
+		
+	public void addLetExp0_VariableElement(@NonNull LetExp object) {
+		addVariable(object);		
+	}
+	
+	private void addVariable(@NonNull LetExp  letExp) {
 		addNamedElement(letExp.getVariable());
 	}
 	
-	public void addContextVariable(@NonNull ExpressionInOCL expressionInOCL) {
+	public void addExpressionInOCL0_VariableElement(
+			@NonNull ExpressionInOCL object) {
+		addContextVariable(object);		
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addContextVariable(@NonNull ExpressionInOCL expressionInOCL) {
 		addNamedElement(expressionInOCL.getContextVariable());
 	}
+
+	public void addExpressionInOCL1_VariableElement(
+			@NonNull ExpressionInOCL object) {
+		addResultVariable(object);
+		
+	}
 	
-	public void addResultVariable(@NonNull ExpressionInOCL expressionInOCL) {
+	// FIXME remove when Auto-generation is finished
+	private void addResultVariable(@NonNull ExpressionInOCL expressionInOCL) {
 		addNamedElement(expressionInOCL.getResultVariable());
-	}
-	
-	public void addImports(@NonNull Root aRoot) {
-		addRootPackages();
-	}
-
-	public void addOwnedOperation(@NonNull Type aType) {
-		// FIXME Pending on filter design
-	}
-
-	public void addOwnedAttribute(@NonNull Type aType) {
-		// FIXME Pending on filter design
 	}
 	
 	public void addFilter(@NonNull ScopeFilter filter) {

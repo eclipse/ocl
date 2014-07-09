@@ -4,21 +4,21 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 
@@ -35,52 +35,69 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
-	// Enumeration
-	public void addOwnedLiteral(@NonNull Enumeration aEnumeration);
-	
 	// Package
-	public void addOwnedType(@NonNull Package aPackage);
-	public void addNestedPackage(@NonNull Package aPackage);
 	
-	// Operation
-	public void addOwnedParameter(@NonNull Operation aOperation);
-	
-	// LoopExp
-	public void addIterator(@NonNull LoopExp aLoopExp);
-	
-	// Library
-	public void addOwnedPrecedence(@NonNull Library aLibrary);
-	
-	// Class
-	public void addOwnedBehavior(@NonNull Class aClass);
-	
-	// Root
-	public void addNestedPackage(@NonNull Root aRoot);
-	public void addImports(@NonNull Root aRoot);
-	
-	// IterateExp
-	public void addResult(@NonNull IterateExp aIterateExp);
+	public void addPackage0_TypeElements(@NonNull Package object);
+	public void addPackage1_PackageElements(@NonNull Package object);
 	
 	// ExpressionInOCL
-	public void addResultVariable(@NonNull ExpressionInOCL aExpressionInOCL);
-	public void addContextVariable(@NonNull ExpressionInOCL aExpressionInOCL);
+	
+	public void addExpressionInOCL0_VariableElement(@NonNull ExpressionInOCL object);
+	public void addExpressionInOCL1_VariableElement(@NonNull ExpressionInOCL object);
+	
+	// Operation
+	
+	public void addOperation0_ParameterElements(@NonNull Operation object);
+	
+	// Library
+	
+	public void addLibrary0_PrecedenceElements(@NonNull Library object);
+	public void addLibrary1_TypeElements(@NonNull Library object);
+	public void addLibrary2_PackageElements(@NonNull Library object);
+	
+	// Class
+	
+	public void addClass0_BehaviorElements(@NonNull Class object);
+	public void addClass1_OperationElements(@NonNull Class object);
+	public void addClass2_PropertyElements(@NonNull Class object);
 	
 	// LetExp
-	public void addVariable(@NonNull LetExp aLetExp);
 	
-	// Type
-	public void addOwnedOperation(@NonNull Type aType);
-	public void addOwnedAttribute(@NonNull Type aType);
+	public void addLetExp0_VariableElement(@NonNull LetExp object);
+	
+	// IteratorExp
+	
+	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object);
+	
+	// Metaclass
+	
+	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object);
+	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object);
+	
+	// Root
+	
+	public void addRoot0_PackageElements(@NonNull Root object);
+	public void addRoot1_ImportElements(@NonNull Root object);
+	
+	// DataType
+	
+	
+	// Enumeration
+	
+	public void addEnumeration0_BehaviorElements(@NonNull Enumeration object);
+	public void addEnumeration1_OperationElements(@NonNull Enumeration object);
+	public void addEnumeration2_PropertyElements(@NonNull Enumeration object);
+	public void addEnumeration3_EnumerationLiteralElements(@NonNull Enumeration object);
+	
+	// IterateExp
+	
+	public void addIterateExp0_VariableElement(@NonNull IterateExp object);
+	public void addIterateExp1_VariableElements(@NonNull IterateExp object);
 	
 	// TemplateableElement
 	// FIXME no auto-generated yet
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
-	
-	// Type
-	// FIXME no auto-generated yet
-	public void addOwnedOperation(@NonNull Type type, @Nullable FeatureFilter featureFilter);
-	public void addOwnedProperty(@NonNull Type type, @Nullable FeatureFilter featureFilter);
-	
+
 	// LoopExp
 	// FIXME no auto-generated yet
 	public void addIterator(@NonNull LoopExp  aLoopExp, int index);

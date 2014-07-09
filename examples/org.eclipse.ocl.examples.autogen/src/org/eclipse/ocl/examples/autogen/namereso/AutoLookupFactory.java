@@ -58,7 +58,7 @@ public class AutoLookupFactory  implements IAutoCGComponentFactory {
 			@NonNull AutoAnalyzer analyzer,
 			@NonNull AutoGlobalContext globalContext,
 			@NonNull GlobalPlace globalPlace) {
-		return new DependencyVisitor(analyzer, globalPlace);
+		return new AutoLookupDependencyVisitor(analyzer, globalContext, globalPlace);
 	}
 
 	@NonNull
