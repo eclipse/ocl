@@ -66,8 +66,9 @@ def : in_env(env : env::Environment) : env::Environment =
 		.addElement(self.variable)
 
 context IterateExp
-def : iterator_env(env : env::Environment) : env::Environment =
-	env
+def : iterator_env(env : env::Environment, index : Integer) : env::Environment =
+	env.nestedEnv()
+		.addElements(self.iterator->select(x| self.iterator->indexOf(x) < index))
 def : result_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator)

@@ -180,12 +180,9 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
 			OCLExpression source = object.getSource();
 			lookupFromNewElement(source.getType());
-			//env.addIterator(object);
-			
+						
 			int childIndex = object.getIterator().indexOf(context.getChild());
-			for (int i = 0; i < childIndex; i++) {
-				env.addIterator(object, i);
-			}
+			env.addIterator(object, childIndex);
 		}
 		return lookupInParentIfNotComplete();
 	}

@@ -425,7 +425,11 @@ public class «namedEnvClass» extends «superNamedEnvClass» {
 	}
 	
 	public void addIterator(@NonNull LoopExp  aLoopExp, int index) {
-		addNamedElement(aLoopExp.getIterator().get(index));
+		
+		// self.iterator->select(x| self.iterator->indexOf(x) < index)		
+		for (int i = 0; i <= index -1; i++) { 
+			addNamedElement(aLoopExp.getIterator().get(i));
+		}
 	}
 	
 	public void addIterateExp1_VariableElement(@NonNull IterateExp object) {
