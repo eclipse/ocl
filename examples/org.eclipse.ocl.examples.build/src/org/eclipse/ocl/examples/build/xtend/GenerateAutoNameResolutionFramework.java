@@ -118,6 +118,4 @@ public class GenerateAutoNameResolutionFramework extends GenerateVisitorsWorkflo
 	protected String getOutputPackageName() {		
 		return nameResoPackageName;
 	}
-	
-	
 }

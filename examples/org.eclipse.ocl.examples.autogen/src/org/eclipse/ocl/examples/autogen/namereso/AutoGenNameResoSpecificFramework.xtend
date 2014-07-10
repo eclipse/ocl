@@ -10,20 +10,22 @@
  */
 package org.eclipse.ocl.examples.autogen.namereso
 
-import org.eclipse.ocl.examples.autogen.utilities.MergeWriter
-import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.examples.pivot.Package;
-import java.util.Map
-import org.eclipse.ocl.examples.pivot.Type
 import java.util.List
+import java.util.Map
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+import org.eclipse.jdt.annotation.NonNull
+import org.eclipse.ocl.examples.autogen.utilities.MergeWriter
 import org.eclipse.ocl.examples.pivot.CollectionType
 import org.eclipse.ocl.examples.pivot.Operation
-import org.eclipse.ocl.examples.autogen.namereso.NameResolutionUtil.AddingCallExp
+import org.eclipse.ocl.examples.pivot.Package
+import org.eclipse.ocl.examples.pivot.Type
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil
 
 class AutoGenNameResoSpecificFramework {
 	
 	private final AutoNameResoCGNamesProvider nProvider;
+	private final NameResoGenModelHelper helper;
 		
 	/**
 	 * Parameters:
@@ -32,7 +34,8 @@ class AutoGenNameResoSpecificFramework {
 		@NonNull String packageName, @NonNull String visitorPckName, @NonNull String visitorName, @NonNull String baseElmntPckName, 
 		@NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 
-		var AutoGenNameResoSpecificFramework generator = new AutoGenNameResoSpecificFramework(projectPrefix);
+		var MetaModelManager mm = PivotUtil.getMetaModelManager(nameResoPackage.eResource);		
+		var AutoGenNameResoSpecificFramework generator = new AutoGenNameResoSpecificFramework(projectPrefix, mm);		
 		generator.generatePivotNamedEnvironmentItf(outputFolder, packageName,  baseElmntName);
 		generator.generateAbstractPivotNamedEnvironmentClass(outputFolder, packageName);	
 		generator.generatePivotContextItf(outputFolder, packageName, baseElmntPckName, baseElmntName);
@@ -49,8 +52,9 @@ class AutoGenNameResoSpecificFramework {
 	}
 	
 	
-	new(@NonNull String projectPrefix) {
+	new(@NonNull String projectPrefix, @NonNull MetaModelManager mManager) {
 		nProvider = new AutoNameResoCGNamesProvider(projectPrefix);
+		helper = new NameResoGenModelHelper(mManager);
 	}
 	
 	protected def void generatePivotEnvironmentItf(@NonNull String outputFolder,
@@ -59,7 +63,7 @@ class AutoGenNameResoSpecificFramework {
 				
 		var String commonEnvItf = nProvider.getCommonEnvironmentItf()
 		var String envItf = nProvider.getSpecificEnvironmentItf()
-		var Map<Type, List<AddingCallExp>> type2expTypes = NameResolutionUtil.computeType2EnvAddingExps(nameResoPackage);
+		var Map<Type, List<NameResolutionUtil.AddingCallArgExpType>> type2expTypes = NameResolutionUtil.computeType2EnvAddingExps(nameResoPackage);
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«envItf».java''')
 		writer.append('''
@@ -104,10 +108,10 @@ public interface «envItf» extends «commonEnvItf» {
 	// «type.name»
 	
 	«FOR addingExptype : type2expTypes.get(type)»
-	«val expType = addingExptype.type»	
+	«val expType = addingExptype.getType»	
 	«val isMany = expType instanceof CollectionType»
 	«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-	public void add«type.name»«addingExptype.number»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object);
+	public void add«type.name»«addingExptype.getNumber»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object);
 	«ENDFOR»
 	«ENDFOR»
 	
@@ -162,15 +166,6 @@ public interface «namedEnvItf» extends «envItf»{
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«namedEnvClass».java''');
 		writer.append('''
 package «packageName»;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -408,11 +403,15 @@ public class «namedEnvClass» extends «superNamedEnvClass» {
 		addOwnedType(object);
 	}
 	
-	public void addLibrary2_PackageElements(@NonNull Library object) {
+		public void addLibrary2_PackageElements(@NonNull Library object) {
 		addNestedPackage(object);
 	}
+		
+	public void addIterateExp0_VariableElements(@NonNull IterateExp object) {
+		addIterator(object);
+	}
 	
-	public void addIterateExp1_VariableElements(@NonNull IterateExp object) {
+	public void addIterateExp2_VariableElements(@NonNull IterateExp object) {
 		addIterator(object);
 	}
 	
@@ -429,7 +428,7 @@ public class «namedEnvClass» extends «superNamedEnvClass» {
 		addNamedElement(aLoopExp.getIterator().get(index));
 	}
 	
-	public void addIterateExp0_VariableElement(@NonNull IterateExp object) {
+	public void addIterateExp1_VariableElement(@NonNull IterateExp object) {
 		addResult(object);
 	}
 	
@@ -913,7 +912,7 @@ public interface «visitorItf» extends «visitorName»<«environmentItf»> {
 		var String visitorItf =  nProvider.getSpecificVisitorItf()
 		var String environmentItf =  nProvider.getSpecificEnvironmentItf()
 		var String commonContextItf = nProvider.getCommonContextItf()
-		var Map<Type,List<Operation>> type2envOperations = NameResolutionUtil.computeType2EnvOperations(nameResoPackage)
+		var Map<Type,List<Operation>> type2envOperations = NameResolutionUtil.computeType2EnvOperations(nameResoPackage);		
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«visitorClass».java''');
 		writer.append('''
@@ -960,9 +959,6 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 		return DomainUtil.nonNullState(element.accept(this));
 	}
 	
-	// Lookup propagation protocols 
-	
-	
 	/**
 	 * Used when looking up in local AND in parent environments if not found 
 	 * in local -> outer scope/environment elements are occluded in nested 
@@ -977,26 +973,36 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	// Generated from NameResolution description
 	«FOR type : type2envOperations.keySet»	
 	«val envOps = type2envOperations.get(type)»
-	«val nEnvOps = envOps.size()»
-	
 	
 	@Override
-	public @Nullable
+	public @NonNull
 	«environmentItf» visit«type.name»(@NonNull «type.name» object) {
-		«IF nEnvOps == 1»
+		«IF !NameResolutionUtil.isChildrenBasedEnvOperations(envOps)»
 			«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOps.get(0)) »
-				«val expType = addingExpType.type»
+				«val expType = addingExpType.getType»
 				«val isMany = expType instanceof CollectionType»
 				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-				env.add«type.name»«addingExpType.number»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(object);
+				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object);
 			«ENDFOR»
 		«ELSE»
 			EReference containmentReference = context.getToChildReference();
-			// TODO
+			«FOR envOp : envOps»
+			«val isFirst = envOps.indexOf(envOp)==0»
+			«val propName = NameResolutionUtil.getEnvOpPropertyName(envOp)»
+			«IF !isFirst»else «ENDIF» «IF NameResolutionUtil.isChildBasedEnvOperation(envOp)»
+			if (containmentReference == «helper.getChildQualifiedFeatureAccessor(type, propName)»)«ENDIF»
+			{
+				«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOp) »				
+				«val expType = addingExpType.getType»
+				«val isMany = expType instanceof CollectionType»
+				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
+				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object);
+				«ENDFOR»
+			}
+			«ENDFOR»
 		«ENDIF»
 		return lookupInParentIfNotComplete();
 	}
-		
 	«ENDFOR»
 }
 		''');

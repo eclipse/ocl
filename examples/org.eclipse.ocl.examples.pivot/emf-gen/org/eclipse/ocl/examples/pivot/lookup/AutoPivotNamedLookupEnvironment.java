@@ -236,11 +236,15 @@ public class AutoPivotNamedLookupEnvironment extends AutoAbstractPivotNamedLooku
 		addOwnedType(object);
 	}
 	
-	public void addLibrary2_PackageElements(@NonNull Library object) {
+		public void addLibrary2_PackageElements(@NonNull Library object) {
 		addNestedPackage(object);
 	}
+		
+	public void addIterateExp0_VariableElements(@NonNull IterateExp object) {
+		addIterator(object);
+	}
 	
-	public void addIterateExp1_VariableElements(@NonNull IterateExp object) {
+	public void addIterateExp2_VariableElements(@NonNull IterateExp object) {
 		addIterator(object);
 	}
 	
@@ -257,7 +261,7 @@ public class AutoPivotNamedLookupEnvironment extends AutoAbstractPivotNamedLooku
 		addNamedElement(aLoopExp.getIterator().get(index));
 	}
 	
-	public void addIterateExp0_VariableElement(@NonNull IterateExp object) {
+	public void addIterateExp1_VariableElement(@NonNull IterateExp object) {
 		addResult(object);
 	}
 	

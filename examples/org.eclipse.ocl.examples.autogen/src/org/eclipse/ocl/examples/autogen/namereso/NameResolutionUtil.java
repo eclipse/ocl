@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.autogen.namereso;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,12 +31,20 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class NameResolutionUtil {
 	
-	static public class AddingCallExp {
+	/**
+	 * Class used to compute the name of the API methods to add element to the environments
+	 * 
+	 * It will comprise the type of the argument of an adding operation (see {@link NameResolutionUtil#isAddOperation(Operation)}) 
+	 * call expression and a number associated with the number the adding call expression
+	 * present in any _env operation of the the corresponding context type
+	 * 
+	 */
+	static public class AddingCallArgExpType {
 		
 		private Type type;
 		private int number;
 		
-		public AddingCallExp(Type addingExpType, int number){
+		public AddingCallArgExpType(Type addingExpType, int number){
 			this.type = addingExpType;
 			this.number = number;
 			
@@ -51,25 +58,37 @@ public class NameResolutionUtil {
 			return number;
 		}
 	}
-	public static Map<Type, List<AddingCallExp>> computeType2EnvAddingExps(@NonNull Package nameResoPackage) {
+	
+	/**
+	 * 
+	 * @param nameResoPackage the name resolution description {@link Package} 
+	 * @return map associating context types and the contained {@link AddingCallArgExpType}s
+	 */
+	public static Map<Type, List<AddingCallArgExpType>> computeType2EnvAddingExps(@NonNull Package nameResoPackage) {
 		
 		
-		Map<Type, List<AddingCallExp>> result = new LinkedHashMap<Type, List<AddingCallExp>>();
+		Map<Type, List<AddingCallArgExpType>> result = new LinkedHashMap<Type, List<AddingCallArgExpType>>();
 		for (Type type : nameResoPackage.getOwnedType()) {
-			for (Operation op : type.getOwnedOperation()) {
-				@SuppressWarnings("null")
-				List<AddingCallExp> addingExpTypes = computeEnvOperation2EnvAddingExpTypes(op);
-				result.put(type, addingExpTypes);
-			}
+			List<AddingCallArgExpType> addingExpTypes = getEnvOpAddingExpTypes(type, type.getOwnedOperation());
+			result.put(type, addingExpTypes);
 		}
 		return result;
 	}
 	
-	public static List<AddingCallExp> computeEnvOperation2EnvAddingExpTypes(@NonNull Operation envOp) {
-		return isEnvOperation(envOp) ? getEnvOpAddingExpTypes(envOp) : Collections.<AddingCallExp>emptyList();
+	/**
+	 * @param envOp An _env operation . It's checked that the provided operation is really an _env operation {@link NameResolutionUtil#isEnvOperation(Operation)} 
+	 * @return the {@link AddingCallArgExpType} contained by the provided _env operation
+	 */
+	public static List<AddingCallArgExpType> computeEnvOperation2EnvAddingExpTypes(@NonNull Operation envOp) {
+		return isEnvOperation(envOp) ? getEnvOpAddingExpTypes(envOp.getOwningType(), Collections.singletonList(envOp)) 
+			: Collections.<AddingCallArgExpType>emptyList();
 	}
 	
 	
+	/**
+	 * @param nameResoPackage
+	 * @return map associating context types and the contained _env operations
+	 */
 	public static Map<Type, List<Operation>> computeType2EnvOperations(@NonNull Package nameResoPackage) {
 		
 		Map<Type, List<Operation>> result = new LinkedHashMap<Type, List<Operation>>();
@@ -91,47 +110,82 @@ public class NameResolutionUtil {
 	
 	/**
 	 * returns the list of types of the expressions involved in the addElement operation call expression contained by
-	 * the given ExpressionInOCL.
+	 * any of the given environment ops.
 	 * 
 	 * Although it's not checked, the provided {@link Operation} should be an _env() operation
 	 * involved in a name resolution description.
 	 * 
+	 * The context is needed because all the operations need to be traversed to use the proper number
+	 * for the {@link AddingCallArgExpType} to create
+	 * 
 	 * If the type of two different "adding" ocl expressions appears twice, such a type would be added twice
 	 *  
-	 * @param map the map to update
-	 * @param exp the expressionInOCL  
+	 * @param context the context in which adding call expressions will be added
+	 * @param envOps a list of operations for which 
 	 */
-	private static List<AddingCallExp> getEnvOpAddingExpTypes(Operation envOp) {
+	private static List<AddingCallArgExpType> getEnvOpAddingExpTypes(Type context, List<Operation> envOps) {
 		
-		List<AddingCallExp> addingExpTypes = new ArrayList<AddingCallExp>();		
-		OpaqueExpression opaqueExp = envOp.getBodyExpression();
-		if (opaqueExp != null) {			
-			ExpressionInOCL exp = PivotUtil.getExpressionInOCL(envOp, opaqueExp);
-			if (exp != null) {
-				TreeIterator<EObject> contents =  exp.eAllContents();
-				int addingCallExpNumber = 0;
-				while (contents.hasNext()) {
-					EObject element = contents.next();
-					if (element instanceof OperationCallExp){
-						OperationCallExp opCall = (OperationCallExp) element;
-						if (isAddingElementOperationCallExp(opCall)) {
-							for (OCLExpression argument : opCall.getArgument()) { // FIXME Should only have one. Check if many ?
-								// note that the same type could be correctly added many times.
-								addingExpTypes.add(new AddingCallExp(argument.getType(), addingCallExpNumber++)); 
+		
+		List<AddingCallArgExpType> addingExpTypes = new ArrayList<AddingCallArgExpType>();
+		int addingCallExpNumber = 0;
+		for (Operation envOp : context.getOwnedOperation()) {
+			OpaqueExpression opaqueExp = envOp.getBodyExpression();
+			if (opaqueExp != null) {			
+				ExpressionInOCL exp = PivotUtil.getExpressionInOCL(envOp, opaqueExp);
+				if (exp != null) {
+					TreeIterator<EObject> contents =  exp.eAllContents();
+					while (contents.hasNext()) {
+						EObject element = contents.next();
+						if (element instanceof OperationCallExp){
+							OperationCallExp opCall = (OperationCallExp) element;
+							if (isAddingElementOperationCallExp(opCall)) {								
+								if (envOps.contains(envOp)) { // If the envOp if our interest
+									for (OCLExpression argument : opCall.getArgument()) { // FIXME Should only have one. Check if many ?
+										// note that the same type could be correctly added many times.
+										addingExpTypes.add(new AddingCallArgExpType(argument.getType(),addingCallExpNumber)); 
+									}
+								}
+								addingCallExpNumber++;
 							}
 						}
-					}
-				}	
+					}	
+				}
 			}
 		}
+		
+				
+		
 		return addingExpTypes;		
 	}
 
+	/**
+	 * To check if an operation correspond to environment operation (aka _env), that is,
+	 * with a description to describe how the owning context element
+	 * configures the enviroment for name resolution. 
+	 * 
+	 * Heuristic to determine if the provided operation is an _env one: 
+	 * <ol> 
+	 * <li> the name of the provided operation contains the string _env
+	 * </ol>
+	 * 
+	 * @param op any {@link Operation}
+	 * @return true if the provided operation is an _env one
+	 */
 	public static boolean isEnvOperation(Operation op) {
 		String opName = op.getName();
 		return opName != null && opName.contains("_env");
 	}
 	
+
+	/**
+	 * Heuristic to determine if the provided operation is an environment adding operation: 
+	 * <ol> 
+	 * <li> the name of the provided operation startis with the string addElement </li>
+	 * <li> It's contained by a Class whose name is "Environment" </li>
+	 * </ol>
+	 * @param op
+	 * @return
+	 */
 	public static boolean isAddOperation(Operation op) {
 		String opName = op.getName();
 		if (opName == null || !opName.startsWith("addElement")) {
@@ -183,5 +237,45 @@ public class NameResolutionUtil {
 	private static boolean isAddingElementOperationCallExp(OperationCallExp opCallExp) {
 		Operation op = opCallExp.getReferredOperation();
 		return op == null ? false : isAddOperation(op);		
+	}
+	
+	/**
+	 * In a name resolution description, the context type may contain different
+	 * _env operations. If the  _env operation name is prefixed with a name (e.g xxxx_env),
+	 * it means that the context type will configure the enviroment when a lookup propagation
+	 * comes from a children element contained via a xxxx containment reference of the context
+	 * element which is configuring the environment.
+	 * 
+	 * This function will check if any of the provided operations follow this xxxx_env pattern
+	 * 
+	 */
+	public static boolean isChildrenBasedEnvOperations(@NonNull List<Operation> operations) {
+		for (Operation operation : operations) {
+			if (operation != null) {
+				if (isChildBasedEnvOperation(operation)) {
+					return true;
+				}	
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * In a name resolution description, the context type may contain different
+	 * _env operations. If the  _env operation name is prefixed with a name (e.g xxxx_env),
+	 * it means that the context type will configure the enviroment when a lookup propagation
+	 * comes from a children element contained via a xxxx containment reference of the context
+	 * element which is configuring the environment.
+	 * 
+	 * This function will check that the provided operation follows this xxxx_env pattern 
+     *
+	 */
+	public static boolean isChildBasedEnvOperation(@NonNull Operation operation) {
+		String opName = operation.getName();
+		if (opName == null) {
+			return false;
+		}
+		int _envIndex = opName.indexOf("_env");
+		return _envIndex > 0;
 	}
 }

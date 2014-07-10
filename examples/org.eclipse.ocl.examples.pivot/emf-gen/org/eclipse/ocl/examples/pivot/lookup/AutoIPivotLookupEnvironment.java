@@ -35,43 +35,34 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
+	// LetExp
+	
+	public void addLetExp0_VariableElement(@NonNull LetExp object);
+	
 	// Library
 	
 	public void addLibrary0_PrecedenceElements(@NonNull Library object);
 	public void addLibrary1_TypeElements(@NonNull Library object);
 	public void addLibrary2_PackageElements(@NonNull Library object);
 	
-	// Metaclass
+	// Package
 	
-	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object);
-	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object);
+	public void addPackage0_TypeElements(@NonNull Package object);
+	public void addPackage1_PackageElements(@NonNull Package object);
 	
 	// Root
 	
 	public void addRoot0_PackageElements(@NonNull Root object);
 	public void addRoot1_ImportElements(@NonNull Root object);
 	
-	// DataType
+	// Metaclass
 	
+	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object);
+	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object);
 	
 	// Operation
 	
 	public void addOperation0_ParameterElements(@NonNull Operation object);
-	
-	// Class
-	
-	public void addClass0_BehaviorElements(@NonNull Class object);
-	public void addClass1_OperationElements(@NonNull Class object);
-	public void addClass2_PropertyElements(@NonNull Class object);
-	
-	// LetExp
-	
-	public void addLetExp0_VariableElement(@NonNull LetExp object);
-	
-	// ExpressionInOCL
-	
-	public void addExpressionInOCL0_VariableElement(@NonNull ExpressionInOCL object);
-	public void addExpressionInOCL1_VariableElement(@NonNull ExpressionInOCL object);
 	
 	// Enumeration
 	
@@ -80,10 +71,14 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	public void addEnumeration2_PropertyElements(@NonNull Enumeration object);
 	public void addEnumeration3_EnumerationLiteralElements(@NonNull Enumeration object);
 	
-	// Package
+	// DataType
 	
-	public void addPackage0_TypeElements(@NonNull Package object);
-	public void addPackage1_PackageElements(@NonNull Package object);
+	
+	// Class
+	
+	public void addClass0_BehaviorElements(@NonNull Class object);
+	public void addClass1_OperationElements(@NonNull Class object);
+	public void addClass2_PropertyElements(@NonNull Class object);
 	
 	// IteratorExp
 	
@@ -91,8 +86,14 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// IterateExp
 	
-	public void addIterateExp0_VariableElement(@NonNull IterateExp object);
-	public void addIterateExp1_VariableElements(@NonNull IterateExp object);
+	public void addIterateExp0_VariableElements(@NonNull IterateExp object);
+	public void addIterateExp1_VariableElement(@NonNull IterateExp object);
+	public void addIterateExp2_VariableElements(@NonNull IterateExp object);
+	
+	// ExpressionInOCL
+	
+	public void addExpressionInOCL0_VariableElement(@NonNull ExpressionInOCL object);
+	public void addExpressionInOCL1_VariableElement(@NonNull ExpressionInOCL object);
 	
 	// TemplateableElement
 	// FIXME no auto-generated yet

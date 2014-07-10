@@ -382,12 +382,17 @@ public class AutoPivotUnnamedLookupEnvironment extends AutoUnnamedLookupEnvironm
 		
 	}
 
-	public void addIterateExp0_VariableElement(@NonNull IterateExp object) {
+	public void addIterateExp0_VariableElements(@NonNull IterateExp object) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void addIterateExp1_VariableElements(@NonNull IterateExp object) {
+	public void addIterateExp1_VariableElement(@NonNull IterateExp object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addIterateExp2_VariableElements(@NonNull IterateExp object) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -84,7 +84,7 @@ def : body_env(env : env::Environment) : env::Environment =
 		.addElements(self.iterator)
 
 context ExpressionInOCL
-def : iterator_env(env : env::Environment) : env::Environment =
+def : bodyExpression_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()
 		.addElement(self.contextVariable)
 		.addElement(self.resultVariable)
