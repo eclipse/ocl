@@ -395,7 +395,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 * with child accessed as this.child.
 	 */
 	protected @NonNull Operation createVisitOperationDeclaration(@NonNull Map<Element, Element> reDefinitions, @NonNull Operation envOperation, @NonNull Property asChildProperty) {
-		ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression().getExpressionInOCL());
+		ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression());
 		//
 		Type asType = DomainUtil.nonNullState(envOperation.getOwningType());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
@@ -558,7 +558,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, Operation> envOperation2asOperation) {
 		for (@SuppressWarnings("null")@NonNull Operation envOperation : envOperation2asOperation.keySet()) {
 			@SuppressWarnings("null")@NonNull Operation asOperation = envOperation2asOperation.get(envOperation);
-			ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression().getExpressionInOCL());
+			ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression());
 			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getContextVariable());
 			OCLExpression asExpression = RereferencingCopier.copy(DomainUtil.nonNullState(envExpressionInOCL.getBodyExpression()), reDefinitions);
 			ExpressionInOCL asExpressionInOCL = PivotUtil.createExpressionInOCL(null, asExpression, asElement);

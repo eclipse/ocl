@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend;
 
-import com.google.common.base.Objects;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -23,31 +21,25 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -60,10 +52,8 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.xtext.util.Strings;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
 @SuppressWarnings("all")
 public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowComponent
@@ -734,7 +724,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return Strings.convertToJavaString(aComment.getBody().trim());
 	}
 
-	protected String javaString(OpaqueExpression anExpression) {
+	protected String javaString(ExpressionInOCL anExpression) {
 		return Strings.convertToJavaString(anExpression.getBody().get(0).trim());
 	}
 

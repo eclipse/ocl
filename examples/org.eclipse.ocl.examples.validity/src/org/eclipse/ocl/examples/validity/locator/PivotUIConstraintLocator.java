@@ -28,15 +28,21 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.osgi.util.NLS;
@@ -112,6 +118,11 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 
     public static @NonNull PivotUIConstraintLocator INSTANCE = new PivotUIConstraintLocator();
 
+	public static @NonNull IStatus createStatus(Throwable e, String messageTemplate, Object... bindings) {
+		String message = DomainUtil.bind(messageTemplate, bindings);
+		return new Status(IStatus.ERROR, OCLValidityPlugin.PLUGIN_ID, 0, message, e);
+	}
+
 	@Override
 	public boolean debug(@NonNull ResultConstrainingNode resultConstrainingNode, final @NonNull ValidityView validityView, @NonNull IProgressMonitor monitor) throws CoreException {
 		ValidatableNode validatableNode = resultConstrainingNode.getResultValidatableNode().getParent();
@@ -128,13 +139,20 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			asConstraint = (Constraint)constrainingObject;
 		}
 		if (asConstraint == null) {
-			throw new IllegalStateException("no Pivot Constraint");
-//			return false;
+			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			throw new CoreException(status);
 		}
-		ExpressionInOCL specification = asConstraint.getSpecification().getExpressionInOCL();
+		ExpressionInOCL specification = asConstraint.getSpecification();
 		if (specification == null) {
-			throw new IllegalStateException("no Pivot specification");
-//			return false;
+			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			throw new CoreException(status);
+		}
+		ExpressionInOCL query;
+		try {
+			query = metaModelManager.getQueryOrThrow(specification);
+		} catch (ParserException e) {
+			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			throw new CoreException(status);
 		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();
 		if (parent == null) {
@@ -146,7 +164,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		if (shell == null) {
 			return false;
 		}
-		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, specification);
+		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, query);
 		runnable.run(monitor);
 		return runnable.getLaunch() != null;
 	}

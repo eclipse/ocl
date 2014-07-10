@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.domain.messages.StatusCodes;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
  * Exception indicating a failure to parse or validate OCL constraints.
@@ -36,9 +37,10 @@ public class ParserException extends Exception {
 	 * @param msg the exception message
 	 */
 	public ParserException(String msg) {
-		super(msg);
-		
-		diagnostic = createDiagnostic(msg);
+		this(null, msg);
+	}
+	public ParserException(String messageTemplate, Object... bindings) {
+		this(null, DomainUtil.bind(messageTemplate, bindings));
 	}
 
     /**
@@ -48,10 +50,13 @@ public class ParserException extends Exception {
      * @param msg my user-friendly message
      * @param cause the cause of the parse failure
      */
-	public ParserException(String msg, Throwable cause) {
+	public ParserException(Throwable cause, String msg) {
 		super(msg, cause);
 		
 		diagnostic = createDiagnostic(msg);
+	}
+	public ParserException(Throwable cause, String messageTemplate, Object... bindings) {
+		this(cause, DomainUtil.bind(messageTemplate, bindings));
 	}
 	
 	/**

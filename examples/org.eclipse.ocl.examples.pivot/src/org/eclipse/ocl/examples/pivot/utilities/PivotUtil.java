@@ -72,7 +72,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
@@ -1097,7 +1096,7 @@ public class PivotUtil extends DomainUtil
 		return PivotUtil.getBehavioralType(DomainUtil.nonNullState(element.getType()));
 	}
 
-	public static String getBody(OpaqueExpression specification) {
+	public static String getBody(@NonNull ExpressionInOCL specification) {
 		List<String> bodies = specification.getBody();
 		List<String> languages = specification.getLanguage();
 		if ((bodies == null) || (languages == null)) {
@@ -1237,75 +1236,6 @@ public class PivotUtil extends DomainUtil
 			}
 		}
 		return new EcoreExecutorManager(eObject, PivotTables.LIBRARY);
-	}
-
-	/**
-	 * Return an OCL AST from a ValueSpecification in the context of a NamedElement. If it is necessary
-	 * to parse OCL concrete syntax and errors result an ExpressionInOCL is returned with a null
-	 * contextVariable, a null bodyExpression, and a StringLiteral messageExpression
-	 * containing the error messages.
-	 * 
-	 * @deprecated Omit contextElement argument
-	 */
-	@Deprecated
-	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull OpaqueExpression specification) {
-		return getExpressionInOCL(specification);
-	}
-	@Deprecated // Supply a clear MetaModelManager
-	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull OpaqueExpression specification) {
-		if (specification instanceof ExpressionInOCL) {
-			return (ExpressionInOCL) specification;
-		}
-		String expression = PivotUtil.getBody(specification);
-		return expression != null ? getExpressionInOCL(specification, expression) : null;
-	}
-	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull OpaqueExpression specification) {
-		if (specification instanceof ExpressionInOCL) {
-			return (ExpressionInOCL) specification;
-		}
-		String expression = PivotUtil.getBody(specification);
-		return expression != null ? getExpressionInOCL(metaModelManager, specification, expression) : null;
-	}
-
-	/**
-	 * Return an OCL AST from a string in the context of a NamedElement. If it is necessary
-	 * to parse OCL concrete syntax and errors result, an ExpressionInOCL is returned with a null
-	 * contextVariable, a null bodyExpression, and a StringLiteral bodyExpression
-	 * containing the error messages.
-	 */
-	@Deprecated // Supply a clear MetaModelManager
-	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) {
-			Resource resource = contextElement.eResource();
-			MetaModelManager metaModelManager;
-			ResourceSet resourceSet = resource.getResourceSet();
-			if (resourceSet != null) {
-				metaModelManager = MetaModelManager.getAdapter(resourceSet);
-			}
-			else {
-				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(resource, null);
-				metaModelManager = adapter.getMetaModelManager();
-			}
-			return getExpressionInOCL(metaModelManager, contextElement,expression);
-	}
-
-	public static ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull NamedElement contextElement, @NonNull String expression) {
-		ParserContext parserContext = metaModelManager.getParserContext(contextElement);
-		if (parserContext == null) {
-			logger.error("Unknown context type for " + contextElement.eClass().getName());
-			return null;
-		}
-		ExpressionInOCL expressionInOCL = null;
-		try {				
-			expressionInOCL = parserContext.parse(contextElement, expression);
-		} catch (ParserException e) {
-			String message = e.getMessage();
-			if (message == null) {
-				message = "";
-			}
-			logger.error(message);
-			return createExpressionInOCLError(message);
-		}
-		return expressionInOCL;
 	}
 
 	public static @NonNull Type getOwningType(@NonNull Feature feature) {
@@ -1552,6 +1482,28 @@ public class PivotUtil extends DomainUtil
 		return operation;
 	}
 
+	public static String getSpecificationRole(@NonNull ExpressionInOCL specification) {
+		EReference eContainmentFeature = specification.eContainmentFeature();
+		if (eContainmentFeature == PivotPackage.Literals.NAMESPACE__OWNED_RULE) {
+			return PivotConstants.OWNED_RULE_ROLE;
+		}
+		else if (eContainmentFeature == PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION) {
+			return PivotConstants.DEFAULT_EXPRESSION_ROLE;
+		}
+		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
+			return PivotConstants.BODY_EXPRESSION_ROLE;
+		}
+		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+			return PivotConstants.PRECONDITION_ROLE;
+		}
+		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+			return PivotConstants.POSTCONDITION_ROLE;
+		}
+		else {
+			return PivotConstants.UNKNOWN_ROLE;
+		}
+	}
+
 	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
@@ -1685,31 +1637,6 @@ public class PivotUtil extends DomainUtil
 		@SuppressWarnings("unchecked")
 		T castUnspecializedElement = (T) unspecializedElement;
 		return castUnspecializedElement;
-	}
-
-	/**
-	 * Return an OCL AST from a string in the context of a NamedElement. If it is necessary
-	 * to parse OCL concrete syntax and errors result, a ParserException is thrown.
-	 */
-	public static @NonNull ExpressionInOCL getValidExpressionInOCL(@NonNull NamedElement contextElement, @NonNull String expression) throws ParserException {
-			Resource resource = contextElement.eResource();
-			if (resource == null) {
-				throw new ParserException("No containing resource for " + contextElement);
-			}
-			ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
-			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-			ParserContext parserContext = metaModelManager.getParserContext(contextElement);
-			if (parserContext == null) {
-				throw new ParserException("Unknown context type for " + contextElement.eClass().getName());
-			}
-//			Namespace contextElement2 = PivotUtil.getContainingNamespace(contextElement);
-//			if (contextElement == null) {
-//				throw new ParserException("No containing namespace for " + contextElement);
-//			}
-			Type classContext = parserContext.getClassContext();
-//			assert classContext == contextElement2;
-			ExpressionInOCL expressionInOCL = parserContext.parse(classContext, expression);
-			return expressionInOCL;
 	}
 
 	/**
@@ -1880,7 +1807,7 @@ public class PivotUtil extends DomainUtil
 	 * Define oclExpression as the bodyExpression of an expressionInOCL, and if non-null
 	 * also define stringExpression as the OCL-languaged body.
 	 */
-	public static void setBody(@NonNull OpaqueExpression opaqueExpression, @Nullable String stringExpression) {
+	public static void setBody(@NonNull ExpressionInOCL opaqueExpression, @Nullable String stringExpression) {
 		opaqueExpression.getBody().clear();
 		opaqueExpression.getLanguage().clear();
 		if (stringExpression != null) {

@@ -66,6 +66,7 @@ public interface Visitor<R>
 	@Nullable R visitDynamicElement(@NonNull org.eclipse.ocl.examples.pivot.DynamicElement object);
 	@Nullable R visitDynamicProperty(@NonNull org.eclipse.ocl.examples.pivot.DynamicProperty object);
 	@Nullable R visitDynamicType(@NonNull org.eclipse.ocl.examples.pivot.DynamicType object);
+	@Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.DynamicValueSpecification object);
 	@Nullable R visitElement(@NonNull org.eclipse.ocl.examples.pivot.Element object);
 	@Nullable R visitElementExtension(@NonNull org.eclipse.ocl.examples.pivot.ElementExtension object);
 	@Nullable R visitEnumLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.EnumLiteralExp object);
@@ -77,6 +78,7 @@ public interface Visitor<R>
 	@Nullable R visitFinalState(@NonNull org.eclipse.ocl.examples.pivot.FinalState object);
 	@Nullable R visitIfExp(@NonNull org.eclipse.ocl.examples.pivot.IfExp object);
 	@Nullable R visitImport(@NonNull org.eclipse.ocl.examples.pivot.Import object);
+	@Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.examples.pivot.InstanceSpecification object);
 	@Nullable R visitIntegerLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.IntegerLiteralExp object);
 	@Nullable R visitInvalidLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.InvalidLiteralExp object);
 	@Nullable R visitInvalidType(@NonNull org.eclipse.ocl.examples.pivot.InvalidType object);
@@ -97,7 +99,6 @@ public interface Visitor<R>
 	@Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NullLiteralExp object);
 	@Nullable R visitNumericLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.NumericLiteralExp object);
 	@Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object);
-	@Nullable R visitOpaqueExpression(@NonNull org.eclipse.ocl.examples.pivot.OpaqueExpression object);
 	@Nullable R visitOperation(@NonNull org.eclipse.ocl.examples.pivot.Operation object);
 	@Nullable R visitOperationCallExp(@NonNull org.eclipse.ocl.examples.pivot.OperationCallExp object);
 	@Nullable R visitOperationTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.OperationTemplateParameter object);
@@ -123,6 +124,7 @@ public interface Visitor<R>
 	@Nullable R visitSequenceType(@NonNull org.eclipse.ocl.examples.pivot.SequenceType object);
 	@Nullable R visitSetType(@NonNull org.eclipse.ocl.examples.pivot.SetType object);
 	@Nullable R visitSignal(@NonNull org.eclipse.ocl.examples.pivot.Signal object);
+	@Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object);
 	@Nullable R visitState(@NonNull org.eclipse.ocl.examples.pivot.State object);
 	@Nullable R visitStateExp(@NonNull org.eclipse.ocl.examples.pivot.StateExp object);
 	@Nullable R visitStateMachine(@NonNull org.eclipse.ocl.examples.pivot.StateMachine object);

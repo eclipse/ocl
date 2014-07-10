@@ -39,10 +39,13 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicType;
+import org.eclipse.ocl.examples.pivot.DynamicValueSpecification;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.FinalState;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -55,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
 import org.eclipse.ocl.examples.pivot.Region;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateMachine;
 import org.eclipse.ocl.examples.pivot.Stereotype;
@@ -69,8 +73,6 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2PivotDeclarationSwitch;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.uml2.common.util.UML2Util;
-import org.eclipse.uml2.uml.Extension;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -243,7 +245,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	@Override
-	public Object caseExtension(Extension umlExtension) {
+	public Object caseExtension(org.eclipse.uml2.uml.Extension umlExtension) {
 		assert umlExtension != null;
 /* Redundant while NsURI set at start of convert
 		org.eclipse.uml2.uml.Class metaclass = umlExtension.getMetaclass();
@@ -257,32 +259,30 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			}
 		} */
 		TypeExtension asTypeExtension = converter.refreshElement(TypeExtension.class, PivotPackage.Literals.TYPE_EXTENSION, umlExtension);
-		if (asTypeExtension != null) {
-			copyModelElement(asTypeExtension, umlExtension);
-//			converter.queueReference(umlProfileApplication);
-//			converter.addProfileApplication(umlProfileApplication);
-			boolean isRequired = false;
-			for (org.eclipse.uml2.uml.Property umlProperty : umlExtension.getOwnedEnds()) {
-				@SuppressWarnings("unused")Object eObject = doSwitch(umlProperty);
-				int lower = umlProperty.getLower();
-				if (lower == 1) {
-					isRequired = false;
-				}
+		converter.copyModelElement(asTypeExtension, umlExtension);
+//		converter.queueReference(umlProfileApplication);
+//		converter.addProfileApplication(umlProfileApplication);
+		boolean isRequired = false;
+		for (org.eclipse.uml2.uml.Property umlProperty : umlExtension.getOwnedEnds()) {
+			@SuppressWarnings("unused")Object eObject = doSwitch(umlProperty);
+			int lower = umlProperty.getLower();
+			if (lower == 1) {
+				isRequired = false;
 			}
-			asTypeExtension.setIsRequired(isRequired);
-			org.eclipse.uml2.uml.Class umlMetaclass = umlExtension.getMetaclass();
-			if (umlMetaclass != null) {
-				Package umlMetapackage = umlMetaclass.getPackage();
-				if (umlMetapackage != null) {
-					String nsURI = umlMetapackage.getURI();
-					if (nsURI != null) {
-						metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, DomainConstants.UML_METAMODEL_NAME);
-					}
-					converter.addImportedPackage(umlMetapackage);
-				}
-			}
-			converter.queueReference(umlExtension);		// stereotype, type, opposites
 		}
+		asTypeExtension.setIsRequired(isRequired);
+		org.eclipse.uml2.uml.Class umlMetaclass = umlExtension.getMetaclass();
+		if (umlMetaclass != null) {
+			org.eclipse.uml2.uml.Package umlMetapackage = umlMetaclass.getPackage();
+			if (umlMetapackage != null) {
+				String nsURI = umlMetapackage.getURI();
+				if (nsURI != null) {
+					metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, DomainConstants.UML_METAMODEL_NAME);
+				}
+				converter.addImportedPackage(umlMetapackage);
+			}
+		}
+		converter.queueReference(umlExtension);		// stereotype, type, opposites
 		return this;
 	}
 
@@ -304,6 +304,15 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	@Override
+	public InstanceSpecification caseInstanceSpecification(org.eclipse.uml2.uml.InstanceSpecification umlInstanceSpecification) {
+		assert umlInstanceSpecification != null;
+		InstanceSpecification pivotElement = converter.refreshNamedElement(InstanceSpecification.class, PivotPackage.Literals.INSTANCE_SPECIFICATION, umlInstanceSpecification);
+		doSwitchAll(pivotElement.getSlots(), umlInstanceSpecification.getSlots(), null);
+//		converter.queueReference(umlInstanceSpecification);		// classifiers
+		return pivotElement;
+	}
+
+	@Override
 	public org.eclipse.ocl.examples.pivot.Class caseInterface(org.eclipse.uml2.uml.Interface umlInterface) {
 		assert umlInterface != null;
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, umlInterface);
@@ -313,10 +322,16 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	@Override
-	public Object caseOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression umlObject) {
-		assert umlObject != null;
-		converter.queueUse(umlObject);
-		return null;
+	public Object caseOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression umlExpression) {
+		assert umlExpression != null;
+		if (umlExpression.eContainer() instanceof org.eclipse.uml2.uml.Constraint) {
+			converter.queueUse(umlExpression);
+			return this;
+		}
+		else {
+			ExpressionInOCL pivotElement = converter.refreshOpaqueExpression(umlExpression);
+			return pivotElement;
+		}
 	}
 
 	@Override
@@ -460,10 +475,8 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Object caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication umlProfileApplication) {
 		assert umlProfileApplication != null;
 		ProfileApplication pivotElement = converter.refreshElement(ProfileApplication.class, PivotPackage.Literals.PROFILE_APPLICATION, umlProfileApplication);
-		if (pivotElement != null) {
-			copyModelElement(pivotElement, umlProfileApplication);
-			converter.queueReference(umlProfileApplication);		// Resolve Profile reference
-		}
+		converter.copyModelElement(pivotElement, umlProfileApplication);
+		converter.queueReference(umlProfileApplication);		// Resolve Profile reference
 		return pivotElement;
 	}
 
@@ -508,6 +521,16 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	@Override
+	public Slot caseSlot(org.eclipse.uml2.uml.Slot umlSlot) {
+		assert umlSlot != null;
+		Slot pivotElement = converter.refreshElement(Slot.class, PivotPackage.Literals.SLOT, umlSlot);
+		doSwitchAll(pivotElement.getValues(), umlSlot.getValues(), null);
+		converter.setOriginalMapping(pivotElement, umlSlot);
+		converter.queueReference(umlSlot);		// definingFeature
+		return pivotElement;
+	}
+
+	@Override
 	public State caseState(org.eclipse.uml2.uml.State umlState) {
 		assert umlState != null;
 		State pivotElement = converter.refreshNamedElement(State.class, PivotPackage.Literals.STATE, umlState);
@@ -538,6 +561,14 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		assert umlTransition != null;
 		Transition pivotElement = converter.refreshNamedElement(Transition.class, PivotPackage.Literals.TRANSITION, umlTransition);
 		copyNamespace(pivotElement, umlTransition);
+		return pivotElement;
+	}
+
+	@Override
+	public DynamicValueSpecification caseValueSpecification(org.eclipse.uml2.uml.ValueSpecification umlValueSpecification) {
+		assert umlValueSpecification != null;
+		DynamicValueSpecification pivotElement = converter.refreshElement(DynamicValueSpecification.class, PivotPackage.Literals.DYNAMIC_VALUE_SPECIFICATION, umlValueSpecification);
+		converter.setOriginalMapping(pivotElement, umlValueSpecification);
 		return pivotElement;
 	}
 
@@ -640,14 +671,8 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			}
 		} */
 
-	protected void copyModelElement(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
-		converter.setOriginalMapping(pivotElement, umlElement);
-	}
-
 	protected void copyNamedElement(@NonNull NamedElement pivotElement, @NonNull org.eclipse.uml2.uml.NamedElement umlNamedElement) {
-		copyModelElement(pivotElement, umlNamedElement);
-		String name = umlNamedElement.getName();
-		pivotElement.setName(name);
+		converter.copyNamedElement(pivotElement, umlNamedElement);
 		copyAnnotatedElement(pivotElement, umlNamedElement, null);
 		copyComments(pivotElement, umlNamedElement);
 	}
@@ -724,6 +749,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		}
 		pivotElement.setNsURI(nsURI != null ? nsURI.toString() : null);
 		@Nullable List<org.eclipse.uml2.uml.Element> umlOtherElements = null;
+		@Nullable List<org.eclipse.uml2.uml.InstanceSpecification> umlInstanceSpecifications = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlNestedPackages = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlImportedPackages = null;
 		@Nullable List<org.eclipse.uml2.uml.ProfileApplication> umlProfileApplications = null;
@@ -748,6 +774,12 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				}
 				umlAssociations.add((org.eclipse.uml2.uml.Association)ownedElement);
 			}
+			else if (ownedElement instanceof org.eclipse.uml2.uml.InstanceSpecification) {
+				if (umlInstanceSpecifications == null) {
+					umlInstanceSpecifications = new ArrayList<org.eclipse.uml2.uml.InstanceSpecification>();
+				}
+				umlInstanceSpecifications.add((org.eclipse.uml2.uml.InstanceSpecification)ownedElement);
+			}
 			else if (ownedElement instanceof org.eclipse.uml2.uml.Type) {
 				if (umlTypes == null) {
 					umlTypes = new ArrayList<org.eclipse.uml2.uml.Type>();
@@ -769,6 +801,12 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				}
 				umlOtherElements.add(ownedElement);
 			}
+		}
+		if (umlInstanceSpecifications != null) {
+			doSwitchAll(pivotElement.getOwnedInstances(), umlInstanceSpecifications, null);
+		}
+		else {
+			pivotElement.getOwnedInstances().clear();
 		}
 		if (umlNestedPackages != null) {
 			doSwitchAll(pivotElement.getNestedPackage(), umlNestedPackages, null);
@@ -881,10 +919,14 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			converter.error("Unsupported " + umlObject.eClass().getName() + " for UML2PivotDeclarationSwitch");
 			return null;
 		}
+		converter.setOriginalMapping(pivotElement, umlObject);
 		doSwitchAll(pivotElement.getOwnedAnnotation(), ((org.eclipse.uml2.uml.Element)umlObject).getOwnedElements(), null);
 		EClass umlMetaClass = umlObject.eClass();
 		Type metaType = metaModelManager.getPivotOfEcore(Type.class, umlMetaClass);
 		pivotElement.setMetaType(metaType);
+		if (umlObject instanceof org.eclipse.uml2.uml.Slot) {
+			converter.queueUse(umlObject);
+		}
 		return pivotElement;
 	}
 

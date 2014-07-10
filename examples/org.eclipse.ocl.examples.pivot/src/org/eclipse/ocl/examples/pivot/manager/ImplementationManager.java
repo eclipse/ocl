@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Stereotype;
@@ -94,10 +93,10 @@ public class ImplementationManager
 	}
 
 	protected @NonNull LibraryOperation getOperationImplementation(@NonNull Operation operation) {
-		LibraryFeature implementation = operation.getImplementation();
+		LibraryFeature implementation = metaModelManager.getImplementation(operation);
 		String implementationClassName = operation.getImplementationClass();
 		if (implementationClassName != null) {
-			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
+			if (!implementation.getClass().getName().equals(implementationClassName)) {
 				try {
 					implementation = loadImplementation(operation);
 					if (implementation instanceof LibraryOperation) {
@@ -109,9 +108,9 @@ public class ImplementationManager
 				return UnsupportedOperation.INSTANCE;
 			}
 		}
-		OpaqueExpression specification = metaModelManager.getBodyExpression(operation);
-		if (specification instanceof ExpressionInOCL) {
-			return new ConstrainedOperation((ExpressionInOCL) specification);
+		ExpressionInOCL specification = metaModelManager.getBodyExpression(operation);
+		if (specification != null) {
+			return new ConstrainedOperation(specification);
 		}
 		return UnsupportedOperation.INSTANCE;
 	}
@@ -139,7 +138,7 @@ public class ImplementationManager
 //		if (property.getOwningType() instanceof Stereotype) {
 //			return new BaseProperty(property);
 //		}
-		OpaqueExpression specification = metaModelManager.getDefaultExpression(property);
+		ExpressionInOCL specification = metaModelManager.getDefaultExpression(property);
 		if (property.isDerived() && (specification != null)) {
 			return new ConstrainedProperty(property);
 		}

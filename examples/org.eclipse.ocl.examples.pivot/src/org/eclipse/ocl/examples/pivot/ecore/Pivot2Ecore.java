@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -176,7 +176,7 @@ public class Pivot2Ecore extends AbstractConversion
 				secondParameter.getEAnnotations().add(eAnnotation);
 			}
 		}
-		OpaqueExpression specification = pivotConstraint.getSpecification();
+		ExpressionInOCL specification = pivotConstraint.getSpecification();
 		if (specification != null) {
 			String body = PivotUtil.getBody(specification);
 			if (body != null) {

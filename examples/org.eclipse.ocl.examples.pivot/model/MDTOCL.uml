@@ -33,13 +33,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_1A9YEMo_Ed-ZL8lMORCEkg" name="NamedElement" isAbstract="true"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_dkSmoDxsEeCYibdAWnk0AQ" name="MDT_OCL_Cache">
-      <packagedElement xmi:type="uml:Class" xmi:id="_ila-MDxsEeCYibdAWnk0AQ" name="ExpressionInOCL"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_ow1gcD2REeC9A8BnhOyXOw" name="OCLExpression" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_iYCCcDxsEeCYibdAWnk0AQ" name="OpaqueExpression">
-        <ownedAttribute xmi:id="_a7GKgH7YEeOu79LxSz8Ylw" name="expressionInOCL" type="_ila-MDxsEeCYibdAWnk0AQ" aggregation="composite" isDerived="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gIW5kH7YEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_DXxi0D2SEeC9A8BnhOyXOw" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_z_998HSdEeC3-tVPqYIPdQ" name="TemplateableElement" isAbstract="true">
         <ownedAttribute xmi:id="_5M7LAHSdEeC3-tVPqYIPdQ" name="unspecializedElement" type="_z_998HSdEeC3-tVPqYIPdQ">
@@ -72,9 +66,14 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6N8X7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgyqMARUEeSiuvNrq-crrw" name="DynamicValueSpecification">
+        <generalization xmi:id="_OgyqMQRUEeSiuvNrq-crrw" general="_VoU6cLtdEeGaF-l-UpovSA"/>
+        <generalization xmi:id="_A11EIARWEeSiuvNrq-crrw" general="_9c2WIARVEeSiuvNrq-crrw"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_VoU6cLtdEeGaF-l-UpovSA" name="Element" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_nISxQLtdEeGaF-l-UpovSA" name="Property"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_J_a9oLtdEeGaF-l-UpovSA" name="Type" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_9c2WIARVEeSiuvNrq-crrw" name="ValueSpecification" isAbstract="true"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_F95X8BNKEeCpr6XKiuQP7w" name="MDT_OCL_Ecore">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_rfGIcBNKEeCpr6XKiuQP7w" name="Boolean"/>
@@ -180,6 +179,101 @@
         <ownedAttribute xmi:id="_teCpMDAZEeCQxbz5jr7q5g" name="lowerBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
         <ownedAttribute xmi:id="_2kURMDAZEeCQxbz5jr7q5g" name="upperBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
       </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_9SPjQARCEeSiuvNrq-crrw" name="MDT_OCL_Instances">
+      <packagedElement xmi:type="uml:Class" xmi:id="_oDwW0ARDEeSiuvNrq-crrw" name="Element" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BqkUwARLEeSiuvNrq-crrw" name="ExpressionInOCL"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MJ2QsARDEeSiuvNrq-crrw" name="InstanceSpecification">
+        <ownedComment xmi:id="_MJ2QsQRDEeSiuvNrq-crrw" annotatedElement="_MJ2QsARDEeSiuvNrq-crrw">
+          <body>An instance specification is a model element that represents an instance in a modeled system.</body>
+        </ownedComment>
+        <generalization xmi:id="_MJ2QtgRDEeSiuvNrq-crrw" general="_QSHGkARDEeSiuvNrq-crrw"/>
+        <ownedAttribute xmi:id="_kLYS4ARKEeSiuvNrq-crrw" name="package" type="_YzOH0ARKEeSiuvNrq-crrw" association="_usYzgARKEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_kLYS4QRKEeSiuvNrq-crrw" annotatedElement="_kLYS4ARKEeSiuvNrq-crrw">
+            <body>The instance specification that owns this slot.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MJ2QtwRDEeSiuvNrq-crrw" name="slots" type="_MJ2QwgRDEeSiuvNrq-crrw" aggregation="composite" association="_MJ2Q0gRDEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_MJ2QuARDEeSiuvNrq-crrw" annotatedElement="_MJ2QtwRDEeSiuvNrq-crrw">
+            <body>A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2QuQRDEeSiuvNrq-crrw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2QugRDEeSiuvNrq-crrw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MJ2QuwRDEeSiuvNrq-crrw" name="type" type="_W-ISoARDEeSiuvNrq-crrw" association="_MJ2Q0wRDEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_MJ2QvARDEeSiuvNrq-crrw" annotatedElement="_MJ2QuwRDEeSiuvNrq-crrw">
+            <body>The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2QvQRDEeSiuvNrq-crrw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2QvgRDEeSiuvNrq-crrw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MJ2QvwRDEeSiuvNrq-crrw" name="specification" type="_BqkUwARLEeSiuvNrq-crrw" aggregation="composite" association="_MJ2Q2gRDEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_MJ2QwARDEeSiuvNrq-crrw" annotatedElement="_MJ2QvwRDEeSiuvNrq-crrw">
+            <body>A specification of how to compute, derive, or construct the instance.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2QwQRDEeSiuvNrq-crrw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QSHGkARDEeSiuvNrq-crrw" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_YzOH0ARKEeSiuvNrq-crrw" name="Package">
+        <ownedAttribute xmi:id="_dtrPoARKEeSiuvNrq-crrw" name="ownedInstances" type="_MJ2QsARDEeSiuvNrq-crrw" aggregation="composite" association="_usYzgARKEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_dtrPoQRKEeSiuvNrq-crrw" annotatedElement="_dtrPoARKEeSiuvNrq-crrw">
+            <body>The instance specification that owns this slot.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KRJ6oARMEeSiuvNrq-crrw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K7U5AARMEeSiuvNrq-crrw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_yiip4ARDEeSiuvNrq-crrw" name="Property"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MJ2QwgRDEeSiuvNrq-crrw" name="Slot">
+        <ownedComment xmi:id="_MJ2QwwRDEeSiuvNrq-crrw" annotatedElement="_MJ2QwgRDEeSiuvNrq-crrw">
+          <body>A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature.</body>
+        </ownedComment>
+        <generalization xmi:id="_MJ2QxARDEeSiuvNrq-crrw" general="_oDwW0ARDEeSiuvNrq-crrw"/>
+        <ownedAttribute xmi:id="_MJ2QxQRDEeSiuvNrq-crrw" name="owningInstance" type="_MJ2QsARDEeSiuvNrq-crrw" association="_MJ2Q0gRDEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_MJ2QxgRDEeSiuvNrq-crrw" annotatedElement="_MJ2QxQRDEeSiuvNrq-crrw">
+            <body>The instance specification that owns this slot.</body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MJ2QxwRDEeSiuvNrq-crrw" name="values" type="_e4bPsARDEeSiuvNrq-crrw" isOrdered="true" aggregation="composite" association="_MJ2Q1wRDEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_MJ2QyARDEeSiuvNrq-crrw" annotatedElement="_MJ2QxwRDEeSiuvNrq-crrw">
+            <body>The value or values corresponding to the defining feature for the owning instance specification.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2QyQRDEeSiuvNrq-crrw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2QygRDEeSiuvNrq-crrw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MJ2QywRDEeSiuvNrq-crrw" name="definingProperty" type="_yiip4ARDEeSiuvNrq-crrw" association="_MJ2Q4QRDEeSiuvNrq-crrw">
+          <ownedComment xmi:id="_MJ2QzARDEeSiuvNrq-crrw" annotatedElement="_MJ2QywRDEeSiuvNrq-crrw">
+            <body>The structural feature that specifies the values that may be held by the slot.</body>
+          </ownedComment>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_W-ISoARDEeSiuvNrq-crrw" name="Type" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_e4bPsARDEeSiuvNrq-crrw" name="ValueSpecification" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MJ2Q0gRDEeSiuvNrq-crrw" name="A_slot_owningInstance" memberEnd="_MJ2QtwRDEeSiuvNrq-crrw _MJ2QxQRDEeSiuvNrq-crrw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MJ2Q0wRDEeSiuvNrq-crrw" name="A_type_instanceSpecification" memberEnd="_MJ2QuwRDEeSiuvNrq-crrw _MJ2Q1ARDEeSiuvNrq-crrw">
+        <ownedEnd xmi:id="_MJ2Q1ARDEeSiuvNrq-crrw" name="instanceSpecification" type="_MJ2QsARDEeSiuvNrq-crrw" association="_MJ2Q0wRDEeSiuvNrq-crrw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2Q1QRDEeSiuvNrq-crrw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2Q1gRDEeSiuvNrq-crrw" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MJ2Q1wRDEeSiuvNrq-crrw" name="A_value_owningSlot" memberEnd="_MJ2QxwRDEeSiuvNrq-crrw _MJ2Q2ARDEeSiuvNrq-crrw">
+        <ownedEnd xmi:id="_MJ2Q2ARDEeSiuvNrq-crrw" name="owningSlot" type="_MJ2QwgRDEeSiuvNrq-crrw" association="_MJ2Q1wRDEeSiuvNrq-crrw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2Q2QRDEeSiuvNrq-crrw"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MJ2Q2gRDEeSiuvNrq-crrw" name="A_specification_owningInstanceSpec" memberEnd="_MJ2QvwRDEeSiuvNrq-crrw _MJ2Q2wRDEeSiuvNrq-crrw">
+        <ownedEnd xmi:id="_MJ2Q2wRDEeSiuvNrq-crrw" name="owningInstanceSpec" type="_MJ2QsARDEeSiuvNrq-crrw" association="_MJ2Q2gRDEeSiuvNrq-crrw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2Q3ARDEeSiuvNrq-crrw"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MJ2Q4QRDEeSiuvNrq-crrw" name="A_definingProperty_slot" memberEnd="_MJ2QywRDEeSiuvNrq-crrw _MJ2Q4gRDEeSiuvNrq-crrw">
+        <ownedEnd xmi:id="_MJ2Q4gRDEeSiuvNrq-crrw" name="slot" type="_MJ2QwgRDEeSiuvNrq-crrw" association="_MJ2Q4QRDEeSiuvNrq-crrw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2Q4wRDEeSiuvNrq-crrw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2Q5ARDEeSiuvNrq-crrw" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_usYzgARKEeSiuvNrq-crrw" name="A_package_ownedInstance" memberEnd="_kLYS4ARKEeSiuvNrq-crrw _dtrPoARKEeSiuvNrq-crrw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_t35skMlAEd-bx742yyafXQ" name="MDT_OCL_Precedences">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_2eERIMlAEd-bx742yyafXQ" name="AssociativityKind">
@@ -432,6 +526,6 @@
   <Ecore:EDataType xmi:id="_lgTD4Ob7EeGuHKPT-USe0w" instanceClassName="int"/>
   <Ecore:EClass xmi:id="_MJHVIPtzEeGgYeRoQSJFAw"/>
   <Ecore:EClass xmi:id="_VF5C4PtzEeGgYeRoQSJFAw" base_Interface="_RhE4UPtzEeGgYeRoQSJFAw"/>
-  <Ecore:EReference xmi:id="_mVct8H7YEeOu79LxSz8Ylw" isTransient="true" base_Property="_a7GKgH7YEeOu79LxSz8Ylw" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_mVct8H7YEeOu79LxSz8Ylw" isTransient="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_cDP_kH8_EeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isUnsettable="true" isResolveProxies="false"/>
 </xmi:XMI>

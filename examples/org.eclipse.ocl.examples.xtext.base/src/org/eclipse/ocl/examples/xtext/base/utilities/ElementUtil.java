@@ -31,14 +31,20 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.RootCSAttribution;
@@ -219,6 +225,38 @@ public class ElementUtil
 			return text;
 		}
 		return "null";
+	}
+
+	/**
+	 * Extract the first embedded ExpressionInOCL.
+	 * @throws ParserException 
+	 */
+	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetaModelManager metaModelManager, BaseCSResource csResource) throws ParserException {
+		CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
+		if (cs2asAdapter != null) {
+			ASResource asResource = cs2asAdapter.getASResource(csResource);
+			for (EObject eRoot: asResource.getContents()) {
+				if (eRoot instanceof Root) {
+					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
+						for (Type asType: asPackage.getOwnedType()) {
+							for (Constraint asConstraint : asType.getOwnedInvariant()) {
+								ExpressionInOCL specification = asConstraint.getSpecification();
+								if (specification != null) {
+									return metaModelManager.getQueryOrThrow(specification);
+								}
+							}
+							for (Operation asOperation : asType.getOwnedOperation()) {
+								ExpressionInOCL specification = asOperation.getBodyExpression();
+								if (specification != null) {
+									return metaModelManager.getQueryOrThrow(specification);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	public static @Nullable TemplateParameter getFormalTemplateParameter(@NonNull TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {

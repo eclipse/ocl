@@ -461,7 +461,7 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_States() throws Exception {
 		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put("cs2asErrors", 
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "substring", "OclInvalid", "1, 1"));
+			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "substring", "1, 1"));
 		doSerialize("States", "States", options, true, true);
 	}	
 

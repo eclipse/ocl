@@ -239,9 +239,7 @@ public abstract class LoopExpImpl
 	public boolean validateSourceIsCollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv SourceIsCollection: source.type.oclIsKindOf (CollectionType)
-		 * 
-		 * 
+		 * inv SourceIsCollection: source.type.oclIsKindOf(CollectionType)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -278,9 +276,9 @@ public abstract class LoopExpImpl
 	public boolean validateNoInitializers(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv NoInitializers: self.iterator->forAll(initExpression->isEmpty())
 		 * 
-		 * 
+		 * inv NoInitializers:
+		 *   self.iterator->forAll(initExpression->isEmpty())
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

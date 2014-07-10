@@ -13,6 +13,9 @@ package org.eclipse.ocl.examples.domain.types;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 
 public abstract class AbstractFragment implements DomainFragment
 {
@@ -22,6 +25,64 @@ public abstract class AbstractFragment implements DomainFragment
 	public AbstractFragment(@NonNull DomainInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
 		this.derivedInheritance = derivedInheritance;
 		this.baseInheritance = baseInheritance;
+	}
+	
+	/**
+	 * Return the actualOperation that has the same signature as apparentOperation.
+	 */
+	public @NonNull DomainOperation getActualOperation(@NonNull DomainOperation apparentOperation) {
+		DomainOperation localOperation = getLocalOperation(apparentOperation);
+		if (localOperation == null) {
+			if (derivedInheritance == baseInheritance) {
+				localOperation = apparentOperation;
+			}
+		}
+		if (localOperation == null) {				// Non-trivial, search up the inheritance tree for an inherited operation
+			DomainOperation bestOverload = null;
+			DomainInheritance bestInheritance = null;
+			int bestDepth = -1;
+			int minDepth = baseInheritance.getDepth();
+			for (int depth = derivedInheritance.getDepth()-1; depth >= minDepth; depth--) {
+				Iterable<DomainFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
+				for (DomainFragment derivedSuperFragment : derivedSuperFragments) {
+					DomainInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
+					DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
+					if (superFragment != null) {
+						DomainOperation overload = superFragment.getLocalOperation(apparentOperation);
+						if (overload != null) {
+							if (bestInheritance == null) {				// First candidate
+								bestDepth = depth;
+								bestInheritance = superInheritance;
+								bestOverload = overload;
+							}
+							else if (depth == bestDepth) {				// Sibling candidate 
+								bestOverload = null;
+								depth = -1;
+								break;
+							}
+							else if (!bestInheritance.isSubInheritanceOf(superInheritance)) {	// Non-occluded child candidate
+								bestOverload = null;
+								depth = -1;
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (bestOverload != null) {
+				localOperation = bestOverload;
+			}
+			else {
+				throw new InvalidValueException(EvaluatorMessages.AmbiguousOperation, apparentOperation, derivedInheritance);
+			}
+		}
+//		if (localOperation == null) {
+//			localOperation = INVALID;
+//		}
+//		if (localOperation == null) {
+//			localOperation = apparentOperation;
+//		}
+		return localOperation;
 	}
 
 	public final @NonNull DomainFragment getBaseFragment() {

@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractMetaclass;
@@ -201,6 +202,10 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			return null;
 		}
 		return weakReference.get();
+	}
+
+	public @NonNull DomainOperation getOclInvalidOperation() {
+		throw new UnsupportedOperationException();
 	}
 
 	public synchronized @Nullable EcoreExecutorPackage getPackage(@NonNull EPackage ePackage) {

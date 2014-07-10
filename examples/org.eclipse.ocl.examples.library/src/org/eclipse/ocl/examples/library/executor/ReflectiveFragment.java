@@ -30,13 +30,14 @@ import org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation;
 public abstract class ReflectiveFragment extends AbstractFragment
 {
 	protected Map<DomainOperation, LibraryFeature> operationMap = null;
+	protected Map<DomainOperation, DomainOperation> apparentOperation2actualOperation = null;
 	protected Map<DomainProperty, LibraryFeature> propertyMap = null;
 
 	public ReflectiveFragment(@NonNull DomainInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 	}
 
-	public @NonNull LibraryFeature getImplementation(@NonNull DomainOperation baseOperation) {
+	public @NonNull LibraryFeature getImplementation(@NonNull DomainOperation apparentOperation) {
 		if (operationMap == null) {
 			synchronized (this) {
 				if (operationMap == null) {
@@ -44,19 +45,19 @@ public abstract class ReflectiveFragment extends AbstractFragment
 				}
 			}
 		}
-		LibraryFeature libraryFeature = operationMap.get(baseOperation);
+		LibraryFeature libraryFeature = operationMap.get(apparentOperation);
 		if (libraryFeature != null) {
 			return libraryFeature;
 		}
 		synchronized (operationMap) {
-			libraryFeature = operationMap.get(baseOperation);
+			libraryFeature = operationMap.get(apparentOperation);
 			if (libraryFeature != null) {
 				return libraryFeature;
 			}
-			DomainOperation localOperation = getLocalOperation(baseOperation);
+			DomainOperation localOperation = getLocalOperation(apparentOperation);
 			if (localOperation == null) {
 				if (derivedInheritance == baseInheritance) {
-					localOperation = baseOperation;
+					localOperation = apparentOperation;
 				}
 			}
 			if (localOperation != null) {				// Trivial case, there is a local operation
@@ -73,7 +74,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 						DomainInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
 						DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
 						if (superFragment != null) {
-							DomainOperation overload = superFragment.getLocalOperation(baseOperation);
+							DomainOperation overload = superFragment.getLocalOperation(apparentOperation);
 							if (overload != null) {
 								if (bestInheritance == null) {				// First candidate
 									bestDepth = depth;
@@ -104,7 +105,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 			if (libraryFeature == null) {
 				libraryFeature = OclAnyUnsupportedOperation.INSTANCE;
 			}
-			operationMap.put(baseOperation, libraryFeature);
+			operationMap.put(apparentOperation, libraryFeature);
 			return libraryFeature;
 		}
 	}

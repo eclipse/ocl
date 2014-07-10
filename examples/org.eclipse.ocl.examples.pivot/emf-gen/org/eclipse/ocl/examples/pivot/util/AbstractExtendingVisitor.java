@@ -142,6 +142,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitType(object);
 	}
 
+	public @Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.DynamicValueSpecification object) {
+		return visitValueSpecification(object);
+	}
+
 	public @Nullable R visitElement(@NonNull org.eclipse.ocl.examples.pivot.Element object) {
 		return visiting(object);
 	}
@@ -163,7 +167,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitExpressionInOCL(@NonNull org.eclipse.ocl.examples.pivot.ExpressionInOCL object) {
-		return visitOpaqueExpression(object);
+		return visitValueSpecification(object);
 	}
 
 	public @Nullable R visitFeature(@NonNull org.eclipse.ocl.examples.pivot.Feature object) {
@@ -183,6 +187,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitImport(@NonNull org.eclipse.ocl.examples.pivot.Import object) {
+		return visitNamedElement(object);
+	}
+
+	public @Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.examples.pivot.InstanceSpecification object) {
 		return visitNamedElement(object);
 	}
 
@@ -264,10 +272,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object) {
 		return visitTypedElement(object);
-	}
-
-	public @Nullable R visitOpaqueExpression(@NonNull org.eclipse.ocl.examples.pivot.OpaqueExpression object) {
-		return visitValueSpecification(object);
 	}
 
 	public @Nullable R visitOperation(@NonNull org.eclipse.ocl.examples.pivot.Operation object) {
@@ -368,6 +372,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitSignal(@NonNull org.eclipse.ocl.examples.pivot.Signal object) {
 		return visitNamedElement(object);
+	}
+
+	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object) {
+		return visitElement(object);
 	}
 
 	public @Nullable R visitState(@NonNull org.eclipse.ocl.examples.pivot.State object) {

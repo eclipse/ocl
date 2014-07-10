@@ -43,10 +43,10 @@ import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -75,6 +75,9 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		if (javaClass == Constraint.class) {
 			javaClass = DomainConstraint.class;
 		}
+		else if (javaClass == ExpressionInOCL.class) {
+			javaClass = DomainExpression.class;
+		}
 		else if (javaClass == NamedElement.class) {
 			javaClass = DomainNamedElement.class;
 		}
@@ -82,9 +85,6 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			javaClass = DomainNamespace.class;
 		}
 		else if (javaClass == OCLExpression.class) {
-			javaClass = DomainExpression.class;
-		}
-		else if (javaClass == OpaqueExpression.class) {
 			javaClass = DomainExpression.class;
 		}
 		else if (javaClass == Operation.class) {

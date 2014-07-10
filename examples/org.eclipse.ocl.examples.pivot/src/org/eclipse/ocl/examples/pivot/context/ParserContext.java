@@ -15,6 +15,7 @@ import java.io.IOException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -61,6 +62,11 @@ public interface ParserContext // extends Adapter
 	@NonNull MetaModelManager getMetaModelManager();
 
 	/**
+	 * Optional pre-existing AS root element to be updated by the parse.
+	 */
+	@Nullable Element getRootElement();
+
+	/**
 	 * Callback to initialize the ExpressionInOCL with the derived context such as
 	 * a contextvariable for the self type, parameter and result variables.
 	 */
@@ -78,4 +84,6 @@ public interface ParserContext // extends Adapter
 	 * @throws ParserException if parsing fails
 	 */
 	@NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException;
+	
+	void setRootElement(@Nullable Element rootElement);
 }

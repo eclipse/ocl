@@ -50,8 +50,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -59,10 +57,9 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.osgi.util.NLS;
@@ -177,41 +174,6 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 			return null;
 		}
 
-		/**
-		 * Extract the embedded ExpressionInOCL.
-		 */
-		protected @Nullable ExpressionInOCL loadExpression(IProgressMonitor monitor, BaseCSResource csResource) {
-			CS2PivotResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
-			if (cs2asAdapter != null) {
-				ASResource asResource = cs2asAdapter.getASResource(csResource);
-				for (EObject eRoot: asResource.getContents()) {
-					if (eRoot instanceof Root) {
-						for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
-							for (Type asType: asPackage.getOwnedType()) {
-								for (Constraint asConstraint : asType.getOwnedInvariant()) {
-									OpaqueExpression specification = asConstraint.getSpecification();
-									if (specification != null) {
-										ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
-										if (expressionInOCL != null) 
-											return expressionInOCL;
-									}
-								}
-								for (Operation asOperation : asType.getOwnedOperation()) {
-									OpaqueExpression bodyExpression = asOperation.getBodyExpression();
-									if (bodyExpression != null) {
-										ExpressionInOCL expressionInOCL = bodyExpression.getExpressionInOCL();
-										if (expressionInOCL != null) 
-											return expressionInOCL;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			return null;
-		}
-
 		protected void openError(final String message) {
 			shell.getDisplay().asyncExec(new Runnable()
 			{
@@ -264,15 +226,21 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 					openError(message);
 					return;
 				}
-				ExpressionInOCL expressionInOCL = loadExpression(monitor, csResource);
-				if (expressionInOCL == null) {
+				ExpressionInOCL query;
+				try {
+					query = ElementUtil.getFirstQuery(metaModelManager, csResource);
+				} catch (ParserException e) {
+					openError(debug_FailLoad, e);
+					return;
+				}
+				if (query == null) {
 					openError(debug_FailLoad);
 					return;
 				}
 				monitor.worked(1);
 				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
 				try {
-					launch = launchDebugger(monitor, contextObject, expressionInOCL);
+					launch = launchDebugger(monitor, contextObject, query);
 				} catch (CoreException e) {
 					openError(ConsoleMessages.Debug_FailLaunch, e);
 				}
@@ -313,7 +281,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		
 //		URI constraintURI = EcoreUtil.getURI(constraint);
 //        Path path = new Path(constraintURI.toPlatformString(true));
-		OpaqueExpression specification = constraint.getSpecification();
+		ExpressionInOCL specification = constraint.getSpecification();
 		String expression = specification != null ? PrettyPrinter.print(specification) : "";
 		
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

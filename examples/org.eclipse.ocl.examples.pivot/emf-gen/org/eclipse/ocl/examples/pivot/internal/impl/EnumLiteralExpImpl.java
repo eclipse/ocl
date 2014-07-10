@@ -137,8 +137,6 @@ public class EnumLiteralExpImpl
 	{
 		/**
 		 * inv TypeIsEnumerationType: self.type = referredEnumLiteral.enumeration
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {

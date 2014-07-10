@@ -284,6 +284,15 @@ public interface PivotFactory
 	DynamicType createDynamicType();
 
 	/**
+	 * Returns a new object of class '<em>Dynamic Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dynamic Value Specification</em>'.
+	 * @generated
+	 */
+	DynamicValueSpecification createDynamicValueSpecification();
+
+	/**
 	 * Returns a new object of class '<em>Element Extension</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -428,15 +437,6 @@ public interface PivotFactory
 	Enumeration createEnumeration();
 
 	/**
-	 * Returns a new object of class '<em>Opaque Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Opaque Expression</em>'.
-	 * @generated
-	 */
-	OpaqueExpression createOpaqueExpression();
-
-	/**
 	 * Returns a new object of class '<em>Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -462,6 +462,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	Import createImport();
+
+	/**
+	 * Returns a new object of class '<em>Instance Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Specification</em>'.
+	 * @generated
+	 */
+	InstanceSpecification createInstanceSpecification();
 
 	/**
 	 * Returns a new object of class '<em>Integer Literal Exp</em>'.
@@ -570,6 +579,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	Signal createSignal();
+
+	/**
+	 * Returns a new object of class '<em>Slot</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Slot</em>'.
+	 * @generated
+	 */
+	Slot createSlot();
 
 	/**
 	 * Returns a new object of class '<em>Message Type</em>'.

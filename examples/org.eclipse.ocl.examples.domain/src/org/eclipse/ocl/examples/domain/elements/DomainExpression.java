@@ -12,5 +12,7 @@ package org.eclipse.ocl.examples.domain.elements;
 
 public interface DomainExpression extends DomainTypedElement
 {
+	@Deprecated // obsolete support
+	DomainExpression getBodyExpression();
 //	@Nullable DomainType getType();
 }

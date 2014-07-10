@@ -55,7 +55,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 	public static @NonNull List<Diagnostic> assertUMLOCLValidationDiagnostics(@Nullable OCL ocl, @NonNull String prefix, @NonNull Resource resource, String... messages) {
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
 		if (ocl != null) {
-			validationContext.put(OCL.class,  ocl);
+			UMLOCLEValidator.setOCL(validationContext, ocl);
 		}
 		List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
 		for (EObject eObject : resource.getContents()) {

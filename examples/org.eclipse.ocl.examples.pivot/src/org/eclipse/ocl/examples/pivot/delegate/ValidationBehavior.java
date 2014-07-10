@@ -20,12 +20,14 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.osgi.util.NLS;
 
 /**
  */
@@ -44,8 +46,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 				return constraint;
 			}
 		}
-		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-		throw new OCLDelegateException(new SemanticException(message));
+		throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
 	}
 
 	public @Nullable ValidationDelegate.Factory getDefaultFactory() {
@@ -93,6 +94,24 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 
 	public @NonNull String getName() {
 		return NAME;
+	}
+
+	/**
+	 * Return the operation body associated with operation, if necessary using
+	 * <code>ocl</code> to create the relevant parsing environment for a textual
+	 * definition.
+	 * @throws OCLDelegateException 
+	 */
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws OCLDelegateException {
+		ExpressionInOCL specification = constraint.getSpecification();
+		if (specification == null) {
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint, PivotConstants.OWNED_RULE_ROLE));
+		}
+		try {
+			return metaModelManager.getQueryOrThrow(specification);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e);
+		}
 	}
 
 	public @NonNull Class<ValidationDelegate.Factory.Registry> getRegistryClass() {

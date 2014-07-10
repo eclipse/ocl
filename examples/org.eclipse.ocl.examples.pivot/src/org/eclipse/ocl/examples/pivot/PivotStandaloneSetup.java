@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.uml.UMLASResourceFactory;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtensionLabelGenerator;
 import org.eclipse.ocl.examples.pivot.uml.UMLExplicitNavigator;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
+import org.eclipse.ocl.examples.pivot.utilities.ExpressionInOCLLabelGenerator;
 import org.eclipse.ocl.examples.pivot.utilities.RootLabelGenerator;
 import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
@@ -85,6 +86,7 @@ public class PivotStandaloneSetup //implements ISetup
 		//
 		// Pivot
 		//
+		ExpressionInOCLLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		RootLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 		//
 		// UML

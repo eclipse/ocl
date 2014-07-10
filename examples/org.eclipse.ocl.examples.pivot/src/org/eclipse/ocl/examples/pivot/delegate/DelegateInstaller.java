@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -216,7 +215,7 @@ public class DelegateInstaller
 	}
 	
 	public @Nullable EAnnotation createConstraintDelegate(@NonNull EModelElement eModelElement, @NonNull Constraint pivotConstraint, @Nullable URI ecoreURI) {
-		OpaqueExpression specification = pivotConstraint.getSpecification();
+		ExpressionInOCL specification = pivotConstraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}
@@ -230,7 +229,7 @@ public class DelegateInstaller
 		return oclAnnotation;
 	}
 
-	protected @Nullable String createExpression(@NonNull OpaqueExpression bodyExpression, @Nullable URI ecoreURI) {
+	protected @Nullable String createExpression(@NonNull ExpressionInOCL bodyExpression, @Nullable URI ecoreURI) {
 		String exprString = PivotUtil.getBody(bodyExpression);
 		if ((exprString == null) && (bodyExpression instanceof ExpressionInOCL)) {
 			OCLExpression bodyExpression2 = ((ExpressionInOCL)bodyExpression).getBodyExpression();
@@ -248,7 +247,7 @@ public class DelegateInstaller
 		return PrettyPrinter.print(bodyExpression, options);
 	}
 	
-	public @Nullable EAnnotation createOperationDelegate(@NonNull EOperation eOperation, @NonNull OpaqueExpression bodyExpression, @Nullable URI ecoreURI) {
+	public @Nullable EAnnotation createOperationDelegate(@NonNull EOperation eOperation, @NonNull ExpressionInOCL bodyExpression, @Nullable URI ecoreURI) {
 		String exprString = createExpression(bodyExpression, ecoreURI);
 		if (exprString == null) {
 			return null;
@@ -261,7 +260,7 @@ public class DelegateInstaller
 		return oclAnnotation;
 	}
 	
-	public @Nullable EAnnotation createPropertyDelegate(@NonNull EStructuralFeature eStructuralFeature, @NonNull OpaqueExpression defaultExpression, @Nullable URI ecoreURI) {
+	public @Nullable EAnnotation createPropertyDelegate(@NonNull EStructuralFeature eStructuralFeature, @NonNull ExpressionInOCL defaultExpression, @Nullable URI ecoreURI) {
 		String exprString = createExpression(defaultExpression, ecoreURI);
 		if (exprString == null) {
 			return null;

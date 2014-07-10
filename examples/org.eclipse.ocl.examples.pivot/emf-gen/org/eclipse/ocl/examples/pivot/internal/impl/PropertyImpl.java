@@ -57,7 +57,7 @@ import org.eclipse.ocl.examples.pivot.AssociationClass;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
@@ -157,7 +157,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected OpaqueExpression defaultExpression;
+	protected ExpressionInOCL defaultExpression;
 
 	/**
 	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
@@ -756,7 +756,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpression getDefaultExpression()
+	public ExpressionInOCL getDefaultExpression()
 	{
 		return defaultExpression;
 	}
@@ -766,9 +766,9 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefaultExpression(OpaqueExpression newDefaultExpression, NotificationChain msgs)
+	public NotificationChain basicSetDefaultExpression(ExpressionInOCL newDefaultExpression, NotificationChain msgs)
 	{
-		OpaqueExpression oldDefaultExpression = defaultExpression;
+		ExpressionInOCL oldDefaultExpression = defaultExpression;
 		defaultExpression = newDefaultExpression;
 		if (eNotificationRequired())
 		{
@@ -783,7 +783,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultExpression(OpaqueExpression newDefaultExpression)
+	public void setDefaultExpression(ExpressionInOCL newDefaultExpression)
 	{
 		if (newDefaultExpression != defaultExpression)
 		{
@@ -1199,9 +1199,8 @@ public class PropertyImpl
 	{
 		/**
 		 * 
-		 * inv CompatibleDefaultExpression: defaultExpression <> null and defaultExpression.oclIsKindOf(ExpressionInOCL) implies CompatibleBody(defaultExpression)
-		 * 
-		 * 
+		 * inv CompatibleDefaultExpression: defaultExpression <> null and defaultExpression.bodyExpression <> null implies
+		 *   CompatibleBody(defaultExpression)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -1216,13 +1215,14 @@ public class PropertyImpl
 		        catch (Exception e) {
 		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		        }
-		        final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
-		            final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ DomainExpression defaultExpression_0 = this.getDefaultExpression();
-		            final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, defaultExpression_0, TYP_pivot_c_c_ExpressionInOCL_0).booleanValue();
+		            if (defaultExpression_0 == null) {
+		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::bodyExpression\'");
+		            }
+		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression = defaultExpression_0.getBodyExpression();
+		            final /*@Thrown*/ boolean b = bodyExpression != null;
 		            CAUGHT_b = b;
 		        }
 		        catch (Exception e) {
@@ -1591,7 +1591,7 @@ public class PropertyImpl
 				setDefault((String)newValue);
 				return;
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				setDefaultExpression((OpaqueExpression)newValue);
+				setDefaultExpression((ExpressionInOCL)newValue);
 				return;
 			case PivotPackage.PROPERTY__IMPLICIT:
 				setImplicit((Boolean)newValue);
@@ -1694,7 +1694,7 @@ public class PropertyImpl
 				setDefault(DEFAULT_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				setDefaultExpression((OpaqueExpression)null);
+				setDefaultExpression((ExpressionInOCL)null);
 				return;
 			case PivotPackage.PROPERTY__IMPLICIT:
 				setImplicit(IMPLICIT_EDEFAULT);

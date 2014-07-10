@@ -367,7 +367,7 @@
         <details key="body" value="constraint"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="#//OpaqueExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="#//ExpressionInOCL"
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A condition that must be true when evaluated in order for the constraint to be satisfied."/>
@@ -413,6 +413,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedProperty" ordered="false"
         upperBound="-1" eType="#//DynamicProperty" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynamicValueSpecification" eSuperTypes="#//ValueSpecification"/>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//Visitable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An element is a constituent of a model."/>
@@ -492,11 +493,26 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Integer"
         defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" eSuperTypes="#//OpaqueExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" lowerBound="1"
-        eType="#//OCLExpression" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" eSuperTypes="#//ValueSpecification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" unique="false" upperBound="-1"
+        eType="#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The text of the expression, possibly in multiple languages."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//OCLExpression"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextVariable" eType="#//Variable"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" upperBound="-1"
+        eType="#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultVariable" eType="#//Variable"
@@ -539,6 +555,41 @@
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="importedNamespace" lowerBound="1"
         eType="#//Namespace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceSpecification" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An instance specification is a model element that represents an instance in a modeled system."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
+        eType="#//Package" eOpposite="#//Package/ownedInstances">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The instance specification that owns this slot."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slots" ordered="false"
+        upperBound="-1" eType="#//Slot" containment="true" eOpposite="#//Slot/owningInstance">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="#//ExpressionInOCL"
+        containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="owningInstanceSpec"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A specification of how to compute, derive, or construct the instance."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" upperBound="-1"
+        eType="#//Type">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="instanceSpecification"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eOperations name="TypeIsInteger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1111,32 +1162,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true" eSuperTypes="#//TypedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" unique="false" upperBound="-1"
-        eType="#//String">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The text of the expression, possibly in multiple languages."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expressionInOCL" eType="#//ExpressionInOCL"
-        transient="true" derived="true" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" upperBound="-1"
-        eType="#//String">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//Namespace #//TemplateableElement #//ParameterableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
     <eOperations name="CompatibleReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="bodyExpression &lt;> null and bodyExpression.oclIsKindOf(ExpressionInOCL) implies CompatibleBody(bodyExpression)&#xA;"/>
+        <details key="body" value="bodyExpression &lt;> null and bodyExpression.bodyExpression &lt;> null implies CompatibleBody(bodyExpression)&#xA;"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -1182,7 +1214,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//OpaqueExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//ExpressionInOCL"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class"
         changeable="false" volatile="true" transient="true">
@@ -1281,6 +1313,12 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInstances" ordered="false"
+        upperBound="-1" eType="#//InstanceSpecification" containment="true" eOpposite="#//InstanceSpecification/package">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The instance specification that owns this slot."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
         upperBound="-1" eType="#//Type" containment="true" eOpposite="#//Type/package">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1370,7 +1408,7 @@
     </eAnnotations>
     <eOperations name="CompatibleDefaultExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="defaultExpression &lt;> null and defaultExpression.oclIsKindOf(ExpressionInOCL) implies CompatibleBody(defaultExpression)&#xA;&#xA;"/>
+        <details key="body" value="defaultExpression &lt;> null and defaultExpression.bodyExpression &lt;> null implies CompatibleBody(defaultExpression)&#xA;&#xA;"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -1399,7 +1437,7 @@
         <details key="documentation" value="A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//OpaqueExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//ExpressionInOCL"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" eType="#//Boolean"
         defaultValueLiteral="false"/>
@@ -1580,6 +1618,35 @@
   <eClassifiers xsi:type="ecore:EClass" name="SequenceType" eSuperTypes="#//CollectionType"/>
   <eClassifiers xsi:type="ecore:EClass" name="SetType" eSuperTypes="#//CollectionType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Signal" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Slot" eSuperTypes="#//Element">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definingProperty" lowerBound="1"
+        eType="#//Property">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="slot"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The structural feature that specifies the values that may be held by the slot."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningInstance" lowerBound="1"
+        eType="#//InstanceSpecification" eOpposite="#//InstanceSpecification/slots">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The instance specification that owns this slot."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="owningSlot"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The value or values corresponding to the defining feature for the owning instance specification."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//Vertex #//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A state models a situation during which some (usually implicit) invariant condition holds."/>

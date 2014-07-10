@@ -369,7 +369,7 @@
             value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TConstraint.Pspecification" name="specification"
-          type="Ppivot.TOpaqueExpression" aggregation="composite">
+          type="Ppivot.TExpressionInOCL" aggregation="composite">
         <ownedComment xmi:id="Ppivot.TConstraint.Pspecification.oC0" annotatedElement="Ppivot.TConstraint.Pspecification">
           <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
         </ownedComment>
@@ -466,6 +466,11 @@
             value="*"/>
       </ownedAttribute>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDynamicValueSpecification"
+        name="DynamicValueSpecification">
+      <generalization xmi:id="Ppivot.TDynamicValueSpecification.g0" general="Ppivot.TElement"/>
+      <generalization xmi:id="Ppivot.TDynamicValueSpecification.g1" general="Ppivot.TValueSpecification"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TElement" name="Element"
         isAbstract="true">
       <ownedComment xmi:id="Ppivot.TElement.oC0" annotatedElement="Ppivot.TElement">
@@ -554,9 +559,32 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TExpressionInOCL" name="ExpressionInOCL">
-      <generalization xmi:id="Ppivot.TExpressionInOCL.g0" general="Ppivot.TOpaqueExpression"/>
+      <ownedComment xmi:id="Ppivot.TExpressionInOCL.oC0" annotatedElement="Ppivot.TExpressionInOCL">
+        <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
+      </ownedComment>
+      <generalization xmi:id="Ppivot.TExpressionInOCL.g0" general="Ppivot.TValueSpecification"/>
+      <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.Pbody" name="body" type="Ppivot.TString"
+          isOrdered="true" isUnique="false" aggregation="composite">
+        <ownedComment xmi:id="Ppivot.TExpressionInOCL.Pbody.oC0" annotatedElement="Ppivot.TExpressionInOCL.Pbody">
+          <body>The text of the expression, possibly in multiple languages.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.Pbody.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TExpressionInOCL.Pbody.uV"
+            value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.Planguage" name="language" type="Ppivot.TString"
+          isOrdered="true" aggregation="composite">
+        <ownedComment xmi:id="Ppivot.TExpressionInOCL.Planguage.oC0" annotatedElement="Ppivot.TExpressionInOCL.Planguage">
+          <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.Planguage.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TExpressionInOCL.Planguage.uV"
+            value="*"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.PbodyExpression" name="bodyExpression"
-          type="Ppivot.TOCLExpression" aggregation="composite"/>
+          type="Ppivot.TOCLExpression" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.PbodyExpression.lV"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.PcontextVariable" name="contextVariable"
           type="Ppivot.TVariable" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.PcontextVariable.lV"/>
@@ -613,6 +641,43 @@
       <generalization xmi:id="Ppivot.TImport.g0" general="Ppivot.TNamedElement"/>
       <ownedAttribute xmi:id="Ppivot.TImport.PimportedNamespace" name="importedNamespace"
           type="Ppivot.TNamespace"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TInstanceSpecification" name="InstanceSpecification">
+      <ownedComment xmi:id="Ppivot.TInstanceSpecification.oC0" annotatedElement="Ppivot.TInstanceSpecification">
+        <body>An instance specification is a model element that represents an instance in a modeled system.</body>
+      </ownedComment>
+      <generalization xmi:id="Ppivot.TInstanceSpecification.g0" general="Ppivot.TNamedElement"/>
+      <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Ppackage" name="package"
+          type="Ppivot.TPackage" association="Ppivot.A_package_ownedInstance">
+        <ownedComment xmi:id="Ppivot.TInstanceSpecification.Ppackage.oC0" annotatedElement="Ppivot.TInstanceSpecification.Ppackage">
+          <body>The instance specification that owns this slot.</body>
+        </ownedComment>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Pslots" name="slots" type="Ppivot.TSlot"
+          aggregation="composite" association="Ppivot.A_slot_owningInstance">
+        <ownedComment xmi:id="Ppivot.TInstanceSpecification.Pslots.oC0" annotatedElement="Ppivot.TInstanceSpecification.Pslots">
+          <body>A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TInstanceSpecification.Pslots.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TInstanceSpecification.Pslots.uV"
+            value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Ptype" name="type" type="Ppivot.TType"
+          association="Ppivot.A_type_instanceSpecification">
+        <ownedComment xmi:id="Ppivot.TInstanceSpecification.Ptype.oC0" annotatedElement="Ppivot.TInstanceSpecification.Ptype">
+          <body>The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TInstanceSpecification.Ptype.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TInstanceSpecification.Ptype.uV"
+            value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Pspecification" name="specification"
+          type="Ppivot.TExpressionInOCL" aggregation="composite" association="Ppivot.A_specification_owningInstanceSpec">
+        <ownedComment xmi:id="Ppivot.TInstanceSpecification.Pspecification.oC0" annotatedElement="Ppivot.TInstanceSpecification.Pspecification">
+          <body>A specification of how to compute, derive, or construct the instance.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TInstanceSpecification.Pspecification.lV"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TIntegerLiteralExp" name="IntegerLiteralExp">
       <generalization xmi:id="Ppivot.TIntegerLiteralExp.g0" general="Ppivot.TNumericLiteralExp"/>
@@ -796,34 +861,6 @@
         isAbstract="true">
       <generalization xmi:id="Ppivot.TOCLExpression.g0" general="Ppivot.TTypedElement"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOpaqueExpression" name="OpaqueExpression">
-      <ownedComment xmi:id="Ppivot.TOpaqueExpression.oC0" annotatedElement="Ppivot.TOpaqueExpression">
-        <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
-      </ownedComment>
-      <generalization xmi:id="Ppivot.TOpaqueExpression.g0" general="Ppivot.TValueSpecification"/>
-      <ownedAttribute xmi:id="Ppivot.TOpaqueExpression.Pbody" name="body" type="Ppivot.TString"
-          isOrdered="true" isUnique="false" aggregation="composite">
-        <ownedComment xmi:id="Ppivot.TOpaqueExpression.Pbody.oC0" annotatedElement="Ppivot.TOpaqueExpression.Pbody">
-          <body>The text of the expression, possibly in multiple languages.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOpaqueExpression.Pbody.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOpaqueExpression.Pbody.uV"
-            value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOpaqueExpression.Planguage" name="language"
-          type="Ppivot.TString" isOrdered="true" aggregation="composite">
-        <ownedComment xmi:id="Ppivot.TOpaqueExpression.Planguage.oC0" annotatedElement="Ppivot.TOpaqueExpression.Planguage">
-          <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOpaqueExpression.Planguage.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOpaqueExpression.Planguage.uV"
-            value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOpaqueExpression.PexpressionInOCL" name="expressionInOCL"
-          type="Ppivot.TExpressionInOCL" aggregation="composite" isDerived="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOpaqueExpression.PexpressionInOCL.lV"/>
-      </ownedAttribute>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOperation" name="Operation">
       <ownedComment xmi:id="Ppivot.TOperation.oC0" annotatedElement="Ppivot.TOperation">
         <body>An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.</body>
@@ -886,7 +923,7 @@
             value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TOperation.PbodyExpression" name="bodyExpression"
-          type="Ppivot.TOpaqueExpression" aggregation="composite">
+          type="Ppivot.TExpressionInOCL" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PbodyExpression.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TOperation.PisInvalidating" name="isInvalidating"
@@ -989,6 +1026,15 @@
           type="Ppivot.TProfileApplication" aggregation="composite" association="Ppivot.A_applyingPackage_profileApplication">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PprofileApplication.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPackage.PprofileApplication.uV"
+            value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TPackage.PownedInstances" name="ownedInstances"
+          type="Ppivot.TInstanceSpecification" aggregation="composite" association="Ppivot.A_package_ownedInstance">
+        <ownedComment xmi:id="Ppivot.TPackage.PownedInstances.oC0" annotatedElement="Ppivot.TPackage.PownedInstances">
+          <body>The instance specification that owns this slot.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PownedInstances.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPackage.PownedInstances.uV"
             value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TPackage.PnsPrefix" name="nsPrefix" type="Ppivot.TString">
@@ -1178,7 +1224,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.Pclass.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultExpression" name="defaultExpression"
-          type="Ppivot.TOpaqueExpression" aggregation="composite">
+          type="Ppivot.TExpressionInOCL" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultExpression.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.PisID" name="isID" type="Ppivot.TBoolean">
@@ -1344,6 +1390,33 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSignal" name="Signal">
       <generalization xmi:id="Ppivot.TSignal.g0" general="Ppivot.TNamedElement"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSlot" name="Slot">
+      <ownedComment xmi:id="Ppivot.TSlot.oC0" annotatedElement="Ppivot.TSlot">
+        <body>A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature.</body>
+      </ownedComment>
+      <generalization xmi:id="Ppivot.TSlot.g0" general="Ppivot.TElement"/>
+      <ownedAttribute xmi:id="Ppivot.TSlot.PowningInstance" name="owningInstance"
+          type="Ppivot.TInstanceSpecification" association="Ppivot.A_slot_owningInstance">
+        <ownedComment xmi:id="Ppivot.TSlot.PowningInstance.oC0" annotatedElement="Ppivot.TSlot.PowningInstance">
+          <body>The instance specification that owns this slot.</body>
+        </ownedComment>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TSlot.Pvalues" name="values" type="Ppivot.TValueSpecification"
+          isOrdered="true" aggregation="composite" association="Ppivot.A_value_owningSlot">
+        <ownedComment xmi:id="Ppivot.TSlot.Pvalues.oC0" annotatedElement="Ppivot.TSlot.Pvalues">
+          <body>The value or values corresponding to the defining feature for the owning instance specification.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TSlot.Pvalues.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TSlot.Pvalues.uV"
+            value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TSlot.PdefiningProperty" name="definingProperty"
+          type="Ppivot.TProperty" association="Ppivot.A_definingProperty_slot">
+        <ownedComment xmi:id="Ppivot.TSlot.PdefiningProperty.oC0" annotatedElement="Ppivot.TSlot.PdefiningProperty">
+          <body>The structural feature that specifies the values that may be held by the slot.</body>
+        </ownedComment>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TState" name="State">
       <ownedComment xmi:id="Ppivot.TState.oC0" annotatedElement="Ppivot.TState">
@@ -2171,6 +2244,15 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_deferrableTrigger_state"
         name="A_deferrableTrigger_state" memberEnd="Ppivot.TState.PdeferrableTrigger Ppivot.TTrigger.Pstate"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_definingProperty_slot"
+        name="A_definingProperty_slot" memberEnd="Ppivot.TSlot.PdefiningProperty Ppivot.A_definingProperty_slot.Pslot">
+      <ownedEnd xmi:id="Ppivot.A_definingProperty_slot.Pslot" name="slot" type="Ppivot.TSlot"
+          association="Ppivot.A_definingProperty_slot">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_definingProperty_slot.Pslot.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_definingProperty_slot.Pslot.uV"
+            value="*"/>
+      </ownedEnd>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_effect_transition"
         name="A_effect_transition" memberEnd="Ppivot.TTransition.Peffect Ppivot.TBehavior.Ptransition"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_extendedBys_type"
@@ -2257,6 +2339,8 @@
         name="A_ownedType_package" memberEnd="Ppivot.TPackage.PownedType Ppivot.TType.Ppackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningState_stateInvariant"
         name="A_owningState_stateInvariant" memberEnd="Ppivot.TConstraint.PowningState Ppivot.TState.PstateInvariant"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_package_ownedInstance"
+        name="A_package_ownedInstance" memberEnd="Ppivot.TInstanceSpecification.Ppackage Ppivot.TPackage.PownedInstances"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameterSubstitution_templateBinding"
         name="A_parameterSubstitution_templateBinding" memberEnd="Ppivot.TTemplateBinding.PparameterSubstitution Ppivot.TTemplateParameterSubstitution.PtemplateBinding"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameteredElement_templateParameter"
@@ -2301,6 +2385,15 @@
             value="*"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_slot_owningInstance"
+        name="A_slot_owningInstance" memberEnd="Ppivot.TInstanceSpecification.Pslots Ppivot.TSlot.PowningInstance"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_specification_owningInstanceSpec"
+        name="A_specification_owningInstanceSpec" memberEnd="Ppivot.TInstanceSpecification.Pspecification Ppivot.A_specification_owningInstanceSpec.PowningInstanceSpec">
+      <ownedEnd xmi:id="Ppivot.A_specification_owningInstanceSpec.PowningInstanceSpec"
+          name="owningInstanceSpec" type="Ppivot.TInstanceSpecification" association="Ppivot.A_specification_owningInstanceSpec">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_specification_owningInstanceSpec.PowningInstanceSpec.lV"/>
+      </ownedEnd>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_submachineState_submachine"
         name="A_submachineState_submachine" memberEnd="Ppivot.TStateMachine.PsubmachineState Ppivot.TState.Psubmachine"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_superClass_class"
@@ -2316,6 +2409,15 @@
         name="A_templateBinding_boundElement" memberEnd="Ppivot.TTemplateableElement.PtemplateBinding Ppivot.TTemplateBinding.PboundElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_transition_trigger"
         name="A_transition_trigger" memberEnd="Ppivot.TTrigger.Ptransition Ppivot.TTransition.Ptrigger"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_instanceSpecification"
+        name="A_type_instanceSpecification" memberEnd="Ppivot.TInstanceSpecification.Ptype Ppivot.A_type_instanceSpecification.PinstanceSpecification">
+      <ownedEnd xmi:id="Ppivot.A_type_instanceSpecification.PinstanceSpecification"
+          name="instanceSpecification" type="Ppivot.TInstanceSpecification" association="Ppivot.A_type_instanceSpecification">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_type_instanceSpecification.PinstanceSpecification.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_type_instanceSpecification.PinstanceSpecification.uV"
+            value="*"/>
+      </ownedEnd>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_templateParameter_parameteredElement"
         name="A_type_templateParameter_parameteredElement" memberEnd="Ppivot.TType.PtemplateParameter Ppivot.TTypeTemplateParameter.PparameteredElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_typedElement"
@@ -2325,6 +2427,13 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_type_typedElement.PtypedElement.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_type_typedElement.PtypedElement.uV"
             value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_value_owningSlot"
+        name="A_value_owningSlot" memberEnd="Ppivot.TSlot.Pvalues Ppivot.A_value_owningSlot.PowningSlot">
+      <ownedEnd xmi:id="Ppivot.A_value_owningSlot.PowningSlot" name="owningSlot" type="Ppivot.TSlot"
+          association="Ppivot.A_value_owningSlot">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_value_owningSlot.PowningSlot.lV"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="Ppivot.TMorePivotable" name="MorePivotable"
@@ -2370,8 +2479,6 @@
       base_Property="Ppivot.TState.PisSimple"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TProperty.Pclass" isTransient="true" isVolatile="true"
       base_Property="Ppivot.TProperty.Pclass" isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="PA.Ppivot.TOpaqueExpression.PexpressionInOCL" isTransient="true"
-      base_Property="Ppivot.TOpaqueExpression.PexpressionInOCL" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TTemplateableElement.PunspecializedElement"
       isTransient="true" base_Property="Ppivot.TTemplateableElement.PunspecializedElement"
       isResolveProxies="false"/>

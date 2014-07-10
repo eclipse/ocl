@@ -443,8 +443,6 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	{
 		/**
 		 * inv TypeIsResultType: type = result.type
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
@@ -480,9 +478,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	public boolean validateBodyTypeConformsToResultType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv BodyTypeConformsToResultType: _'body'.type.conformsTo(result.type)
-		 * 
-		 * 
+		 * inv BodyTypeConformsToResultType: body.type.conformsTo(result.type)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_conformsTo;
@@ -522,9 +518,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	public boolean validateOneInitializer(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
+		 * 
 		 * inv OneInitializer: self.result.initExpression->size() = 1
-		 * 
-		 * 
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_eq;

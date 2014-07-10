@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -130,12 +129,6 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			context.appendParent(context.getScope(), object, "::");
 		}
 		context.appendName(object, context.getReservedNames());
-		return null;
-	}
-
-	@Override
-	public Object visitOpaqueExpression(@NonNull OpaqueExpression object) {
-		context.append(PivotUtil.getBody(object));
 		return null;
 	}
 

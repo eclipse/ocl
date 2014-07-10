@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
@@ -173,13 +172,14 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 			if (contextElement == null) {
 				return ctx.createFailureStatus(target);
 			}
-			OpaqueExpression specification = constraint.getSpecification();
+			ExpressionInOCL specification = constraint.getSpecification();
 			if (specification == null) {
 				return ctx.createFailureStatus(target);
 			}
-			query = query2 = specification.getExpressionInOCL();
-			if (query2 == null) {
-				return ctx.createFailureStatus(target);
+			try {
+				query = query2 = metaModelManager.getQueryOrThrow(specification);
+			} catch (ParserException e) {
+				return ctx.createFailureStatus(e.getLocalizedMessage());
 			}
 		}
 		Object result = ocl.evaluate(target, query2);

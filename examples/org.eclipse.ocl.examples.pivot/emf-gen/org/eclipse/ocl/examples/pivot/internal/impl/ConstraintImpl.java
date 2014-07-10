@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Transition;
@@ -110,7 +110,7 @@ public class ConstraintImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected OpaqueExpression specification;
+	protected ExpressionInOCL specification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,7 +150,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpression getSpecification() {
+	public ExpressionInOCL getSpecification() {
 		return specification;
 	}
 
@@ -159,9 +159,9 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(OpaqueExpression newSpecification, NotificationChain msgs)
+	public NotificationChain basicSetSpecification(ExpressionInOCL newSpecification, NotificationChain msgs)
 	{
-		OpaqueExpression oldSpecification = specification;
+		ExpressionInOCL oldSpecification = specification;
 		specification = newSpecification;
 		if (eNotificationRequired())
 		{
@@ -176,7 +176,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(OpaqueExpression newSpecification)
+	public void setSpecification(ExpressionInOCL newSpecification)
 	{
 		if (newSpecification != specification)
 		{
@@ -191,6 +191,7 @@ public class ConstraintImpl
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__SPECIFICATION, newSpecification, newSpecification));
 	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,7 +329,7 @@ public class ConstraintImpl
 	public boolean validateUniqueName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniqueName: true 
+		 * inv UniqueName: true
 		 */
 		return true;
 	}
@@ -482,7 +483,7 @@ public class ConstraintImpl
 				getRedefinedConstraint().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
-				setSpecification((OpaqueExpression)newValue);
+				setSpecification((ExpressionInOCL)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				setTransition((Transition)newValue);
@@ -528,7 +529,7 @@ public class ConstraintImpl
 				getRedefinedConstraint().clear();
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
-				setSpecification((OpaqueExpression)null);
+				setSpecification((ExpressionInOCL)null);
 				return;
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				setTransition((Transition)null);

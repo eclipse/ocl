@@ -192,7 +192,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 				throw new ParserException("Failed to create pivot Constraint");
 			}
 			final Constraint finalConstraint = asConstraint;
-			ExpressionInOCL query = getQuery(asConstraint);
+			ExpressionInOCL query = getQuery(metaModelManager, asConstraint);
 			EvaluationVisitor evaluationVisitor = createEvaluationVisitor(metaModelManager, query, constrainedObject, monitor);
 			ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metaModelManager, query, constrainedObject)
 			{

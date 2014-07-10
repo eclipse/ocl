@@ -33,6 +33,7 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
@@ -109,6 +110,22 @@ public interface Package
 	 * @generated
 	 */
 	void setNsURI(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Instances</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.InstanceSpecification}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getPackage <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The instance specification that owns this slot.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Instances</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedInstances()
+	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification#getPackage
+	 * @generated
+	 */
+	List<InstanceSpecification> getOwnedInstances();
 
 	/**
 	 * Returns the value of the '<em><b>Imported Package</b></em>' reference list.

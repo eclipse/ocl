@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
+import org.eclipse.ocl.examples.pivot.DynamicValueSpecification;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
@@ -51,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.FinalState;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.Import;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -71,7 +73,6 @@ import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
@@ -98,6 +99,7 @@ import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StateMachine;
@@ -322,6 +324,11 @@ public class PivotAdapterFactory
 				return createDynamicTypeAdapter();
 			}
 			@Override
+			public Adapter caseDynamicValueSpecification(DynamicValueSpecification object)
+			{
+				return createDynamicValueSpecificationAdapter();
+			}
+			@Override
 			public Adapter caseElement(Element object)
 			{
 				return createElementAdapter();
@@ -375,6 +382,11 @@ public class PivotAdapterFactory
 			public Adapter caseImport(Import object)
 			{
 				return createImportAdapter();
+			}
+			@Override
+			public Adapter caseInstanceSpecification(InstanceSpecification object)
+			{
+				return createInstanceSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseIntegerLiteralExp(IntegerLiteralExp object)
@@ -485,11 +497,6 @@ public class PivotAdapterFactory
 			public Adapter caseOCLExpression(OCLExpression object)
 			{
 				return createOCLExpressionAdapter();
-			}
-			@Override
-			public Adapter caseOpaqueExpression(OpaqueExpression object)
-			{
-				return createOpaqueExpressionAdapter();
 			}
 			@Override
 			public Adapter caseOperation(Operation object)
@@ -625,6 +632,11 @@ public class PivotAdapterFactory
 			public Adapter caseSignal(Signal object)
 			{
 				return createSignalAdapter();
+			}
+			@Override
+			public Adapter caseSlot(Slot object)
+			{
+				return createSlotAdapter();
 			}
 			@Override
 			public Adapter caseState(State object)
@@ -1109,20 +1121,6 @@ public class PivotAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression <em>Opaque Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression
-	 * @generated
-	 */
-	public Adapter createOpaqueExpressionAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1161,6 +1159,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createImportAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification <em>Instance Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification
+	 * @generated
+	 */
+	public Adapter createInstanceSpecificationAdapter()
 	{
 		return null;
 	}
@@ -1378,6 +1391,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createSignalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.Slot <em>Slot</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.Slot
+	 * @generated
+	 */
+	public Adapter createSlotAdapter()
+	{
 		return null;
 	}
 
@@ -2423,6 +2451,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createDynamicTypeAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.DynamicValueSpecification <em>Dynamic Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.DynamicValueSpecification
+	 * @generated
+	 */
+	public Adapter createDynamicValueSpecificationAdapter()
 	{
 		return null;
 	}

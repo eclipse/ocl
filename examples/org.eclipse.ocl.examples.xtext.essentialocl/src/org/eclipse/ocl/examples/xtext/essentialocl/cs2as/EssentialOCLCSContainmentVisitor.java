@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -175,7 +174,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getSpecification();
 		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getMessageSpecification();
 		if (csMessageSpecification == null) {
-			OpaqueExpression asSpecification = PivotUtil.getPivot(OpaqueExpression.class, csStatusSpecification);
+			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
 			asConstraint.setSpecification(asSpecification);
 		}
 		else {
@@ -184,7 +183,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, metaModelManager.getBooleanType());
 			TupleType tupleType = metaModelManager.getTupleManager().getTupleType("Tuple", tupleParts);
 			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedAttribute(), PivotConstants.STATUS_PART_NAME);
-			OpaqueExpression asSpecification = asConstraint.getSpecification();
+			ExpressionInOCL asSpecification = asConstraint.getSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;
 			if (asSpecification instanceof ExpressionInOCL) {
@@ -285,12 +284,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				return null;
 			}
 		}
-		if (csElement.getOwnedExpression() != null) {
-			context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
-		}
-		else {
-			context.refreshModelElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, csElement);
-		}
+		context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
 		return null;
 	}
 

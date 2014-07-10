@@ -20,11 +20,12 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -60,7 +61,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			if (extensionProperty == null) {
 				boolean gotIt = false;
 				String defaultValue = null;
-				OpaqueExpression defaultExpression = null;
+				ExpressionInOCL defaultExpression = null;
 				if (elementExtension.isApplied()) {
 					EObject umlStereotypeApplication = elementExtension.getETarget();
 					if (umlStereotypeApplication != null) {
@@ -110,19 +111,22 @@ public class StereotypeProperty extends ConstrainedProperty
 //				return super.evaluate(evaluator, returnTypeId, sourceValue);
 //			}
 			String defaultValueLiteral = extensionProperty.getDefault();
-			OpaqueExpression defaultExpression = extensionProperty.getDefaultExpression();
+			ExpressionInOCL defaultExpression = extensionProperty.getDefaultExpression();
 			if (defaultValueLiteral != null) {
 				boxedValue = idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
 			}
 			else if (defaultExpression != null) {
 				String body = PivotUtil.getBody(defaultExpression);
 				if (body != null) {
-					ExpressionInOCL expr =	PivotUtil.getExpressionInOCL((MetaModelManager) evaluator.getStandardLibrary(), elementExtension, body);
-					if (expr != null) {
+					try {
+						MetaModelManager metaModelManager = (MetaModelManager) evaluator.getStandardLibrary();
+						ExpressionInOCL expr = metaModelManager.getQueryOrThrow(defaultExpression);
 						OCLExpression bodyExpression = expr.getBodyExpression();
 						if (bodyExpression != null) {
 							boxedValue = evaluator.evaluate(bodyExpression);		// FIXME errors
 						}
+					} catch (ParserException e) {
+						throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);
 					}
 				}
 			}

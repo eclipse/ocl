@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -193,8 +193,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 			for (@SuppressWarnings("null")@NonNull Property mergeProperty : new ArrayList<Property>(mergeProperties)) {
 				Property primaryProperty = metaModelManager.getPrimaryElement(mergeProperty);
 				if (primaryProperty != mergeProperty) {			// If merge needed
-					OpaqueExpression pivotDefaultExpression = mergeProperty.getDefaultExpression();
-					OpaqueExpression primaryDefaultExpression = primaryProperty.getDefaultExpression();
+					ExpressionInOCL pivotDefaultExpression = mergeProperty.getDefaultExpression();
+					ExpressionInOCL primaryDefaultExpression = primaryProperty.getDefaultExpression();
 					if ((primaryDefaultExpression == null) && (pivotDefaultExpression != null)) {
 						primaryProperty.setDefaultExpression(pivotDefaultExpression);
 					}
@@ -211,8 +211,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 			for (@SuppressWarnings("null")@NonNull Operation mergeOperation : new ArrayList<Operation>(mergeOperations)) {
 				Operation primaryOperation = metaModelManager.getPrimaryElement(mergeOperation);
 				if (primaryOperation != mergeOperation) {		// If merge needed
-					OpaqueExpression pivotBodyExpression = mergeOperation.getBodyExpression();
-					OpaqueExpression primaryBodyExpression = primaryOperation.getBodyExpression();
+					ExpressionInOCL pivotBodyExpression = mergeOperation.getBodyExpression();
+					ExpressionInOCL primaryBodyExpression = primaryOperation.getBodyExpression();
 					if ((primaryBodyExpression == null) && (pivotBodyExpression != null)) {
 						primaryOperation.setBodyExpression(pivotBodyExpression);
 					}

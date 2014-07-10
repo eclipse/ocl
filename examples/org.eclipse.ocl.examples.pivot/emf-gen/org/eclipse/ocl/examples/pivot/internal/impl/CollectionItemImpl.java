@@ -144,8 +144,6 @@ public class CollectionItemImpl
 	{
 		/**
 		 * inv TypeIsItemType: type = item.type
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {

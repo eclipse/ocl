@@ -367,6 +367,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
+	public @Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.DynamicValueSpecification object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitDynamicValueSpecification(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
 	public @Nullable R visitElement(@NonNull org.eclipse.ocl.examples.pivot.Element object) {
 		P prologue = preVisit(object);
 		try {
@@ -481,6 +492,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitImport(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.examples.pivot.InstanceSpecification object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitInstanceSpecification(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {
@@ -701,17 +723,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOCLExpression(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
-	public @Nullable R visitOpaqueExpression(@NonNull org.eclipse.ocl.examples.pivot.OpaqueExpression object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitOpaqueExpression(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {
@@ -987,6 +998,17 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSignal(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitSlot(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

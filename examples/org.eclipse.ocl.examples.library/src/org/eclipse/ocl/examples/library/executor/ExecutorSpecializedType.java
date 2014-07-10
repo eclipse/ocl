@@ -44,7 +44,11 @@ public class ExecutorSpecializedType extends AbstractType implements ExecutorTyp
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 

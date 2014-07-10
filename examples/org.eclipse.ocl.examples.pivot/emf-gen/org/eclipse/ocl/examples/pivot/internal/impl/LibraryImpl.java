@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -120,6 +121,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__NESTING_PACKAGE:
 				return basicSetNestingPackage(null, msgs);
+			case PivotPackage.LIBRARY__OWNED_INSTANCES:
+				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
@@ -168,6 +171,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getNsPrefix();
 			case PivotPackage.LIBRARY__NS_URI:
 				return getNsURI();
+			case PivotPackage.LIBRARY__OWNED_INSTANCES:
+				return getOwnedInstances();
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return getOwnedType();
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
@@ -238,6 +243,10 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__NS_URI:
 				setNsURI((String)newValue);
 				return;
+			case PivotPackage.LIBRARY__OWNED_INSTANCES:
+				getOwnedInstances().clear();
+				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
+				return;
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends Type>)newValue);
@@ -306,6 +315,9 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__NS_URI:
 				setNsURI(NS_URI_EDEFAULT);
 				return;
+			case PivotPackage.LIBRARY__OWNED_INSTANCES:
+				getOwnedInstances().clear();
+				return;
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
@@ -357,6 +369,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
 			case PivotPackage.LIBRARY__NS_URI:
 				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
+			case PivotPackage.LIBRARY__OWNED_INSTANCES:
+				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:

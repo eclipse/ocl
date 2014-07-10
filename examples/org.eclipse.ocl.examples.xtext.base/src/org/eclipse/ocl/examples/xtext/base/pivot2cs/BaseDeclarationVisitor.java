@@ -22,10 +22,10 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -138,7 +138,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitConstraint(@NonNull Constraint object) {
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
-		OpaqueExpression specification = object.getSpecification();
+		ExpressionInOCL specification = object.getSpecification();
 		csElement.setSpecification(specification != null ? context.visitDeclaration(SpecificationCS.class, specification) : null);
 		return csElement;
 	}
@@ -180,20 +180,20 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
+	public ElementCS visitExpressionInOCL(@NonNull ExpressionInOCL object) {
+		SpecificationCS csElement = context.refreshElement(SpecificationCS.class, BaseCSPackage.Literals.SPECIFICATION_CS, object);
+		String body = PivotUtil.getBody(object);
+		csElement.setExprString(body);
+		return csElement;
+	}
+
+	@Override
 	public ElementCS visitImport(@NonNull Import object) {
 		Namespace importedNamespace = object.getImportedNamespace();
 		if (importedNamespace != null) {
 			context.importNamespace(importedNamespace, object.getName());
 		}
 		return null;
-	}
-
-	@Override
-	public ElementCS visitOpaqueExpression(@NonNull OpaqueExpression object) {
-		SpecificationCS csElement = context.refreshElement(SpecificationCS.class, BaseCSPackage.Literals.SPECIFICATION_CS, object);
-		String body = PivotUtil.getBody(object);
-		csElement.setExprString(body);
-		return csElement;
 	}
 
 	@Override
@@ -205,7 +205,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedException(), null));
 		//
 		context.refreshList(csElement.getOwnedPrecondition(), context.visitDeclarations(ConstraintCS.class, object.getPrecondition(), null));
-		List<OpaqueExpression> bodyExpressions = object.getBodyExpression() != null ? Collections.singletonList(object.getBodyExpression()) : Collections.<OpaqueExpression>emptyList();
+		List<ExpressionInOCL> bodyExpressions = object.getBodyExpression() != null ? Collections.singletonList(object.getBodyExpression()) : Collections.<ExpressionInOCL>emptyList();
 		context.refreshList(csElement.getOwnedBodyExpression(), context.visitDeclarations(SpecificationCS.class, bodyExpressions, null));
 		context.refreshList(csElement.getOwnedPostcondition(), context.visitDeclarations(ConstraintCS.class, object.getPostcondition(), null));
 		return csElement;
@@ -255,7 +255,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			context.refreshList(csReference.getKeys(), object.getKeys());
 			csElement = csReference;
 		}
-		List<OpaqueExpression> defaultExpressions = object.getDefaultExpression() != null ? Collections.singletonList(object.getDefaultExpression()) : Collections.<OpaqueExpression>emptyList();
+		List<ExpressionInOCL> defaultExpressions = object.getDefaultExpression() != null ? Collections.singletonList(object.getDefaultExpression()) : Collections.<ExpressionInOCL>emptyList();
 		context.refreshList(csElement.getOwnedDefaultExpression(), context.visitDeclarations(SpecificationCS.class, defaultExpressions, null));
 		return csElement;
 	}

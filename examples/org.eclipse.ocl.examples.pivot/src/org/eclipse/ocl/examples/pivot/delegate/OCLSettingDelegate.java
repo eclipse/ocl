@@ -35,7 +35,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
 	protected final OCLDelegateDomain delegateDomain;
 	private Property property;
-	private ExpressionInOCL specification;
+	private ExpressionInOCL query;
 
 	/**
 	 * Initializes me with my structural feature.
@@ -54,13 +54,13 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			OCL ocl = delegateDomain.getOCL();
 			MetaModelManager metaModelManager = ocl.getEnvironment().getMetaModelManager();
 			IdResolver idResolver = metaModelManager.getIdResolver();
-			ExpressionInOCL specification2 = specification;
-			if (specification2 == null) {
+			ExpressionInOCL query2 = query;
+			if (query2 == null) {
 				Property property2 = getProperty();
-				specification2 = specification = SettingBehavior.INSTANCE.getExpressionInOCL(metaModelManager, property2);
+				query2 = query = SettingBehavior.INSTANCE.getQueryOrThrow(metaModelManager, property2);
 				SettingBehavior.INSTANCE.validate(property2);
 			}
-			Query query = ocl.createQuery(specification2);
+			Query query = ocl.createQuery(query2);
 			Object result = query.evaluate(owner);
 //			if (result == null) {
 //				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);

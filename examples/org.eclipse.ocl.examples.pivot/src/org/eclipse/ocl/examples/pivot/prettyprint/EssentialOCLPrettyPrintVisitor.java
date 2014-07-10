@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
@@ -207,7 +206,19 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 
 	@Override
 	public Object visitExpressionInOCL(@NonNull ExpressionInOCL object) {
-		safeVisit(object.getBodyExpression());
+		OCLExpression bodyExpression = object.getBodyExpression();
+		if (bodyExpression != null) {
+			safeVisit(bodyExpression);
+		}
+		else {
+			String body = PivotUtil.getBody(object);
+			if (body != null) {
+				context.append(body);
+			}
+			else {
+				context.append("null -- not specified");
+			}
+		}
 		return null;
 	}
 
@@ -401,18 +412,6 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		context.append("<");
 		context.append(object.eClass().getName());
 		context.append(">");
-		return null;
-	}
-
-	@Override
-	public Object visitOpaqueExpression(@NonNull OpaqueExpression object) {
-		String body = PivotUtil.getBody(object);
-		if (body != null) {
-			context.append(body);
-		}
-		else {
-			context.append("null -- not specified");
-		}
 		return null;
 	}
 

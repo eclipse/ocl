@@ -244,11 +244,11 @@ public interface Property
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default Expression</em>' containment reference.
-	 * @see #setDefaultExpression(OpaqueExpression)
+	 * @see #setDefaultExpression(ExpressionInOCL)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_DefaultExpression()
 	 * @generated
 	 */
-	OpaqueExpression getDefaultExpression();
+	ExpressionInOCL getDefaultExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getDefaultExpression <em>Default Expression</em>}' containment reference.
@@ -258,7 +258,7 @@ public interface Property
 	 * @see #getDefaultExpression()
 	 * @generated
 	 */
-	void setDefaultExpression(OpaqueExpression value);
+	void setDefaultExpression(ExpressionInOCL value);
 
 	/**
 	 * Returns the value of the '<em><b>Is ID</b></em>' attribute.

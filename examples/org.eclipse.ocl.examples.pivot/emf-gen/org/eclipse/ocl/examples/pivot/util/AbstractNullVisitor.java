@@ -138,6 +138,10 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.DynamicValueSpecification object) {
+		return null;
+	}
+
 	public @Nullable R visitElement(@NonNull org.eclipse.ocl.examples.pivot.Element object) {
 		return null;
 	}
@@ -179,6 +183,10 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitImport(@NonNull org.eclipse.ocl.examples.pivot.Import object) {
+		return null;
+	}
+
+	public @Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.examples.pivot.InstanceSpecification object) {
 		return null;
 	}
 
@@ -259,10 +267,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object) {
-		return null;
-	}
-
-	public @Nullable R visitOpaqueExpression(@NonNull org.eclipse.ocl.examples.pivot.OpaqueExpression object) {
 		return null;
 	}
 
@@ -363,6 +367,10 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitSignal(@NonNull org.eclipse.ocl.examples.pivot.Signal object) {
+		return null;
+	}
+
+	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object) {
 		return null;
 	}
 

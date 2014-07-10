@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.compatibility.EMF_2_9;
@@ -60,7 +62,6 @@ import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.library.LibraryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryProperty;
 import org.eclipse.ocl.examples.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -77,6 +78,7 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
@@ -90,7 +92,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
@@ -107,6 +108,7 @@ import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.SelfType;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
@@ -128,6 +130,8 @@ import org.eclipse.ocl.examples.pivot.context.PropertyContext;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
+import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
+import org.eclipse.ocl.examples.pivot.library.EInvokeOperation;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OCLMetaModel;
@@ -1410,11 +1414,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getCollectionType(getBagType(), elementType, lower, upper);
 	}
 
-	public @Nullable OpaqueExpression getBodyExpression(@NonNull Operation operation) {
-		OpaqueExpression bodyExpression = null;
+	public @Nullable ExpressionInOCL getBodyExpression(@NonNull Operation operation) {
+		ExpressionInOCL bodyExpression = null;
 		for (DomainOperation domainOperation : getAllOperations(operation)) {
 			if (domainOperation instanceof Operation) {
-				OpaqueExpression anExpression = ((Operation)domainOperation).getBodyExpression();
+				ExpressionInOCL anExpression = ((Operation)domainOperation).getBodyExpression();
 				if (anExpression != null) {
 					if (bodyExpression != null) {
 						throw new IllegalStateException("Multiple bodies for " + operation);
@@ -1540,11 +1544,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return defaultStandardLibraryURI;
 	}
 
-	public @Nullable OpaqueExpression getDefaultExpression(@NonNull Property property) {
-		OpaqueExpression defaultExpression = null;
+	public @Nullable ExpressionInOCL getDefaultExpression(@NonNull Property property) {
+		ExpressionInOCL defaultExpression = null;
 		for (DomainProperty domainProperty : getAllProperties(property)) {
 			if (domainProperty instanceof Property) {
-				OpaqueExpression anExpression = ((Property)domainProperty).getDefaultExpression();
+				ExpressionInOCL anExpression = ((Property)domainProperty).getDefaultExpression();
 				if (anExpression != null) {
 					if (defaultExpression != null) {
 						throw new IllegalStateException("Multiple derivations for " + property);
@@ -1664,11 +1668,53 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return implementation;
 	}
 	
-	public @NonNull LibraryOperation getImplementation(@NonNull Operation operation) {
-		LibraryOperation implementation = (LibraryOperation) operation.getImplementation();
+	public @NonNull LibraryFeature getImplementation(@NonNull Operation operation) {
+		LibraryFeature implementation = operation.getImplementation();
 		if (implementation == null) {
-			ImplementationManager implementationManager = getImplementationManager();
-			implementation = implementationManager.getOperationImplementation(operation);
+			for (Operation redefinedOperation : operation.getRedefinedOperation()) {
+				implementation = redefinedOperation.getImplementation();
+				if (implementation != null) {
+					break;
+				}
+			}
+			if (implementation == null) {
+				ExpressionInOCL specification = operation.getBodyExpression();
+				if (specification != null) {
+					Type owningType = operation.getOwningType();
+					if (owningType != null) {
+						try {
+							ExpressionInOCL query = getQueryOrThrow(specification);
+							implementation = new ConstrainedOperation(query);
+						} catch (ParserException e) {
+							// TODO Auto-generated catch block
+//							e.printStackTrace();
+							implementation = UnsupportedOperation.INSTANCE;
+						}
+					}
+				}
+			}
+			if (implementation == null) {
+				EObject eTarget = operation.getETarget();
+				if (eTarget != null) {
+					EOperation eOperation = null;
+					if (eTarget instanceof EOperation) {
+						eOperation = (EOperation) eTarget;
+					}
+					else {
+						Resource resource = operation.eResource();
+						if (resource instanceof ASResource) {
+							ASResource asResource = (ASResource)resource;
+							eOperation = asResource.getASResourceFactory().getEOperation(asResource, eTarget);
+						}
+					}
+					if ((eOperation != null) && (eOperation.getEType() != null)) {
+						implementation = new EInvokeOperation(eOperation);
+					}
+				}
+			}
+			if (implementation == null) {
+				implementation = UnsupportedOperation.INSTANCE;
+			}
 			operation.setImplementation(implementation);
 		}
 		return implementation;
@@ -2063,7 +2109,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 */
 	public @Nullable ParserContext getParserContext(@NonNull Element element, Object... todoParameters) {
 		Element pivotElement = element;
-		if (element instanceof OpaqueExpression) {
+		if (element instanceof ExpressionInOCL) {
 			EObject pivotContainer = pivotElement.eContainer();
 			if (pivotContainer instanceof Operation) {							// Operation.bodyExpression
 				Operation pivotOperation = (Operation) pivotContainer;
@@ -2091,6 +2137,52 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					return new ClassContext(this, null, pivotType);
 				}
 			}
+			if (pivotContainer instanceof Slot) {
+				Property asDefiningFeature = ((Slot)pivotContainer).getDefiningProperty();
+				if (asDefiningFeature != null) {
+					Type pivotType = asDefiningFeature.getOwningType();
+					if (pivotType != null) {				
+						return new ClassContext(this, null, pivotType);
+					}
+				}
+				EObject pivotContainerContainer = pivotContainer.eContainer();
+/*				if (pivotContainerContainer instanceof Ins) {				
+					Operation pivotOperation = (Operation) pivotContainerContainer;
+					String resultName = null;
+					if (pivotOperation.getPostcondition().contains(pivotContainer)) {
+						Type resultType = pivotOperation.getType();
+						if ((resultType != null) && !(resultType instanceof VoidType)) {
+							resultName = Environment.RESULT_VARIABLE_NAME;
+						}
+					}
+					return new OperationContext(this, null, pivotOperation, resultName);
+				}
+				if (pivotContainerContainer instanceof Type) {				
+					Type pivotType = (Type) pivotContainerContainer;
+					return new ClassContext(this, null, pivotType);
+				}
+				Property pivotProperty = (Property) pivotContainer;
+				String body = UML2Pivot.getBody((OpaqueExpression)valueSpecification);		// FIXME cache
+				if (body == null) {
+					throw new InvalidValueException("Null body for " + valueSpecification);
+				}
+				EObject umlSlot = valueSpecification.eContainer();
+				if (!(umlSlot instanceof org.eclipse.uml2.uml.Slot)) {
+					throw new InvalidValueException("Non-Slot context for " + valueSpecification);
+				}
+				org.eclipse.uml2.uml.StructuralFeature definingFeature = ((org.eclipse.uml2.uml.Slot)umlSlot).getDefiningFeature();
+				if (definingFeature == null) {
+					throw new InvalidValueException("Null defining feature for " + valueSpecification);
+				}
+				org.eclipse.uml2.uml.Element umlOwner = definingFeature.getOwner();
+				if (umlOwner == null) {
+					throw new InvalidValueException("Null UML context for " + valueSpecification);
+				}
+				Type contextElement = metaModelManager.getPivotOf(Type.class, umlOwner);
+				ParserContext parserContext = new ClassContext(metaModelManager, null, contextElement);
+				ExpressionInOCL specification = parserContext.parse(contextElement, body);
+				return new PropertyContext(this, null, pivotProperty); */
+			}
 		}
 		//
 		//	The JUnit tests are satisfied by the new code above. The following provides legacy support, perhaps satisfying unusual invocations
@@ -2109,7 +2201,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				return new OperationContext(this, null, pivotOperation, resultName);
 			}
 		}
-		else if (pivotElement instanceof OpaqueExpression) {
+		else if (pivotElement instanceof ExpressionInOCL) {
 			EObject pivotContainer = pivotElement.eContainer();
 			if (pivotContainer instanceof Operation) {
 				Operation pivotOperation = (Operation) pivotContainer;
@@ -2400,20 +2492,45 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	/**
-	 * Lookup a primary type.
-	 *
-	public @Nullable Type getPrimaryType(@NonNull PackageServer parentPackage, @NonNull String typeName) {
-		PackageServer packageServer = packageManager.getPackageServer(parentPackage);
-		return packageServer.getMemberType(typeName);
-//		PackageTracker packageTracker = packageManager.getPackageTracker(parentPackage);
-//		if (packageTracker != null) {
-//			return packageTracker.getPackageServer().getMemberType(typeName);
-//		}
-//		else {
-//			return PivotUtil.getNamedElement(getLocalClasses(parentPackage), typeName);
-//			return PivotUtil.getNamedElement(parentPackage.getOwnedType(), typeName);
-//		}
-	} */
+	 * Return the compiled query for a specification resolving a String body into a non-null boduExpression.
+	 * Returns a body-less ExpressionInOCL embedding any error if an error arises.
+	 */
+	public @NonNull ExpressionInOCL getQueryOrError(@NonNull ExpressionInOCL specification) {
+		try {
+			return getQueryOrThrow(specification);
+		} catch (ParserException e) {
+			String message = e.getMessage();
+			if (message == null) {
+				message = "";
+			}
+			logger.error(message);
+			return PivotUtil.createExpressionInOCLError(message);
+		}
+	}
+
+	/**
+	 * Return the compiled query for a specification resolving a String body into a non-null bodyExpression.
+	 * Throws a ParserException if conversion fails.
+	 */
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull ExpressionInOCL specification) throws ParserException {
+		EObject contextElement = DomainUtil.nonNullState(specification.eContainer());
+		return getQueryOrThrow(contextElement, specification);
+	}
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull EObject contextElement, @NonNull ExpressionInOCL specification) throws ParserException {
+		if (specification.getBodyExpression() != null) {
+			return specification;
+		}
+		String expression = PivotUtil.getBody(specification);
+		if (expression == null) {
+			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
+		}
+		ParserContext parserContext = getParserContext(specification);
+		if (parserContext == null) {
+			throw new ParserException(OCLMessages.UnknownContextType_ERROR_, EcoreUtils.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
+		}
+		parserContext.setRootElement(specification);
+		return parserContext.parse(contextElement, expression);
+	}
 
 	public @NonNull ASResource getResource(@NonNull URI uri, @Nullable String contentType) {
 		Object asResourceFactory = asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(contentType);

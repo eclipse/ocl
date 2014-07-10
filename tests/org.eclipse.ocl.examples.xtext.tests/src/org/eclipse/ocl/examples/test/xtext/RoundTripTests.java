@@ -34,8 +34,8 @@ import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -171,20 +171,20 @@ public class RoundTripTests extends XtextTestCase
 		}
 	}
 	
-	public void doRoundTripFromEcore(String stem) throws IOException, InterruptedException {
+	public void doRoundTripFromEcore(String stem) throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore(stem, stem, null);
 	}
-	public void doRoundTripFromEcore(String stem, String reference, Map<String,Object> saveOptions) throws IOException, InterruptedException {
+	public void doRoundTripFromEcore(String stem, String reference, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
 		String inputName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		String referenceName = reference + ".ecore";
 		URI referenceURI = getProjectFileURI(referenceName);
 		doRoundTripFromEcore(new MetaModelManager(), inputURI, referenceURI, saveOptions);
 	}
-	public void doRoundTripFromEcore(URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException {
+	public void doRoundTripFromEcore(URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore(new MetaModelManager(), inputURI, referenceURI, saveOptions);
 	}
-	protected void doRoundTripFromEcore(@NonNull MetaModelManager metaModelManager, URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException {
+	protected void doRoundTripFromEcore(@NonNull MetaModelManager metaModelManager, URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
 		String stem = inputURI.trimFileExtension().lastSegment();
 		String pivotName = stem + ".ecore.oclas";
 		String outputName = stem + ".regenerated.ecore";
@@ -206,9 +206,12 @@ public class RoundTripTests extends XtextTestCase
 //			int i = 0;
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
-				if (eObject instanceof OpaqueExpression) {
+				if (eObject instanceof ExpressionInOCL) {
 //					System.out.println(++i + ": " + eObject);
-					((OpaqueExpression) eObject).getExpressionInOCL();
+					ExpressionInOCL specification = (ExpressionInOCL) eObject;
+					if ((specification.getBodyExpression() != null) || (specification.getBody().size() > 0)) {
+						metaModelManager.getQueryOrThrow(specification);
+					}
 					tit.prune();
 				}
 			}
@@ -502,23 +505,23 @@ public class RoundTripTests extends XtextTestCase
 		metaModelManager.dispose();
 	}
 
-	public void testCompanyRoundTrip() throws IOException, InterruptedException {
+	public void testCompanyRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("Company", "Company.reference", null);
 	}
 
-	public void testEcoreRoundTrip() throws IOException, InterruptedException {
+	public void testEcoreRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("Ecore");
 	}
 
-	public void testEmptyRoundTrip() throws IOException, InterruptedException {
+	public void testEmptyRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("Empty");
 	}
 
-	public void testImportsRoundTrip() throws IOException, InterruptedException {
+	public void testImportsRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("Imports");
 	}
 
-	public void testKeysRoundTrip() throws IOException, InterruptedException {
+	public void testKeysRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("Keys");
 	}
 
@@ -542,7 +545,7 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromCompleteOCL(uml_2_5);
 	}
 
-	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException {
+	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException, ParserException {
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 //		String stem = uri.trimFileExtension().lastSegment();
 		MetaModelManager metaModelManager = new MetaModelManager();
@@ -552,7 +555,7 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore(metaModelManager, uri, uri, null); //null);				// FIXME Compare is not quite right
 	}
 
-	public void testPivotRoundTrip() throws IOException, InterruptedException {
+	public void testPivotRoundTrip() throws IOException, InterruptedException, ParserException {
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", true);
 		doRoundTripFromEcore(uri, uri, null);
 	}
@@ -563,21 +566,21 @@ public class RoundTripTests extends XtextTestCase
 //		doRoundTripFromEcore(uri, "EssentialOCLCST");
 //	}
 
-	public void testOCLstdlibRoundTrip() throws IOException, InterruptedException {
+	public void testOCLstdlibRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("OCLstdlib");
 	}
 
-	public void testOCLRoundTrip() throws IOException, InterruptedException {
+	public void testOCLRoundTrip() throws IOException, InterruptedException, ParserException {
 		Map<String,Object> options = new HashMap<String, Object>();
 		options.put(Pivot2Ecore.OPTION_ADD_INVARIANT_COMMENTS, true);
 		doRoundTripFromEcore("OCL", "OCL", options); // "OCL.reference"); 
 	}
 
-	public void testOCLCSTRoundTrip() throws IOException, InterruptedException {
+	public void testOCLCSTRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("OCLCST");
 	}
 
-	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException {
+	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("OCLEcore");
 	}
 
@@ -586,7 +589,7 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore("QVT");
 	} */
 
-	public void testUML25RoundTrip() throws IOException, InterruptedException {
+	public void testUML25RoundTrip() throws IOException, InterruptedException, ParserException {
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.ecore", true);
 		Map<String,Object> options = new HashMap<String, Object>();
@@ -612,7 +615,7 @@ public class RoundTripTests extends XtextTestCase
 		metaModelManager.dispose();
 	}
 
-	public void testTypes_ecore() throws IOException, InterruptedException {
+	public void testTypes_ecore() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("Types");
 	}
 
@@ -624,11 +627,11 @@ public class RoundTripTests extends XtextTestCase
 		metaModelManager.dispose();
 	}
 
-	public void testXMLNamespaceRoundTrip() throws IOException, InterruptedException {
+	public void testXMLNamespaceRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("XMLNamespace");
 	}	
 
-	public void testXMLTypeRoundTrip() throws IOException, InterruptedException {
+	public void testXMLTypeRoundTrip() throws IOException, InterruptedException, ParserException {
 		doRoundTripFromEcore("XMLType");
 	}
 

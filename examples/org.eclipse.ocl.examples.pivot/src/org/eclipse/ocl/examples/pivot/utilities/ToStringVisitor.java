@@ -58,12 +58,10 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
@@ -89,6 +87,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -650,7 +649,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			return safeVisit(bodyExpression);
 		}
 		else {
-			return PivotUtil.getBody(expression);
+			append(PivotUtil.getBody(expression));
+			return null;
 		}
 	}
 
@@ -882,15 +882,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitNullLiteralExp(@NonNull NullLiteralExp il) {
 		append("null");
-		return null;
-	}
-
-	@Override
-	public String visitOpaqueExpression(@NonNull OpaqueExpression object) {
-		String body = PivotUtil.getBody(object);
-		if (body != null) {
-			append(body);
-		}
 		return null;
 	}
 

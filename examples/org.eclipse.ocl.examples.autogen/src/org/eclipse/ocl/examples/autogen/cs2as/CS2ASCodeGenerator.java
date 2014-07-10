@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -170,8 +169,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			boolean hasCS2ASmappingOperation = false;
 			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperation(), "ast");			
 			if (astOperation != null) {
-				OpaqueExpression bodyExpression = DomainUtil.nonNullState(astOperation.getBodyExpression());
-				ExpressionInOCL expressionInOCL = DomainUtil.nonNullState(bodyExpression.getExpressionInOCL());
+				ExpressionInOCL expressionInOCL = DomainUtil.nonNullState(astOperation.getBodyExpression());
 				OCLExpression oclExpression = expressionInOCL.getBodyExpression();
 				if (oclExpression instanceof ConstructorExp) {
 					hasCS2ASmappingOperation = true;

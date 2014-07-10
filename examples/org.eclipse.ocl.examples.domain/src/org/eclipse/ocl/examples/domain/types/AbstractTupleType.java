@@ -63,9 +63,13 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 		}
 		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
 	}
+	
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		return standardLibrary.getOclTupleType().lookupActualOperation(standardLibrary, apparentOperation);
+	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
-		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, staticOperation);
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, apparentOperation);
 	}
 
 	@Override

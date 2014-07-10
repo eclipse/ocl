@@ -297,9 +297,8 @@ public class MessageExpImpl
 	public boolean validateOneCallOrOneSend(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
+		 * 
 		 * inv OneCallOrOneSend: calledOperation->size() + sentSignal->size() = 1
-		 * 
-		 * 
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
@@ -336,9 +335,9 @@ public class MessageExpImpl
 	public boolean validateTargetIsNotACollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TargetIsNotACollection: not target.type.oclIsKindOf (CollectionType)
 		 * 
-		 * 
+		 * inv TargetIsNotACollection:
+		 *   not target.type.oclIsKindOf(CollectionType)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

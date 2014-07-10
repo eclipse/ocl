@@ -31,11 +31,10 @@ import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -59,7 +58,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		public Boolean evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
 			if (!isBooleanConstraint()) {
-				String objectLabel = DomainUtil.getLabel(expression.getType());
+				String objectLabel = DomainUtil.getLabel(query.getType());
 //				String constraintTypeName = getConstraintTypeName(query);
 				String checkMessage = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
 				throw new OCLDelegateException(new EvaluationException(checkMessage));
@@ -127,9 +126,9 @@ public class OCLValidationDelegate implements ValidationDelegate
 //		return constraintEvaluator.evaluate(evaluationVisitor);
 //	}
 
-	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
+/*	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
 		ExpressionInOCL query = null;
-		OpaqueExpression valueSpecification = constraint.getSpecification();
+		ExpressionInOCL valueSpecification = constraint.getSpecification();
 		if (valueSpecification instanceof ExpressionInOCL) {
 			query = (ExpressionInOCL) valueSpecification;
 		}
@@ -145,7 +144,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return query;
-	}
+	} */
 
 	@Override
 	public String toString() {
@@ -164,13 +163,13 @@ public class OCLValidationDelegate implements ValidationDelegate
 		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(invariant));
 		if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
-			ExpressionInOCL query = InvocationBehavior.INSTANCE.getExpressionInOCL(metaModelManager, operation);
+			ExpressionInOCL query = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation);
 			InvocationBehavior.INSTANCE.validate(operation);
 			return validateExpressionInOCL(eClass, eObject, null, context, invariant.getName(), null, 0, query);
 		}
 		else if (namedElement instanceof Constraint) {
 			Constraint constraint = (Constraint)namedElement;
-			ExpressionInOCL query = getExpressionInOCL(metaModelManager, constraint);
+			ExpressionInOCL query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 			ValidationBehavior.INSTANCE.validate(constraint);
 			return validateExpressionInOCL(eClass, eObject, null, context,
 				invariant.getName(), null, 0, query);
@@ -189,13 +188,13 @@ public class OCLValidationDelegate implements ValidationDelegate
 		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(invariant));
 		if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
-			ExpressionInOCL query = InvocationBehavior.INSTANCE.getExpressionInOCL(metaModelManager, operation);
+			ExpressionInOCL query = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation);
 			InvocationBehavior.INSTANCE.validate(operation);
 			return validateExpressionInOCL(eClass, eObject, null, context, invariant.getName(), null, 0, query);
 		}
 		else if (namedElement instanceof Constraint) {
 			Constraint constraint = (Constraint)namedElement;
-			ExpressionInOCL query = getExpressionInOCL(metaModelManager, constraint);
+			ExpressionInOCL query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 			ValidationBehavior.INSTANCE.validate(constraint);
 			return validateExpressionInOCL(eClass, eObject, diagnostics, context,
 				invariant.getName(), source, code, query);
@@ -281,21 +280,14 @@ public class OCLValidationDelegate implements ValidationDelegate
 		Type type = delegateDomain.getPivot(Type.class, eClassifier);
 		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
 		if (constraint == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(new SemanticException(message));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
 		}
 		ExpressionInOCL query = null;
-		OpaqueExpression valueSpecification = constraint.getSpecification();
-		if (valueSpecification instanceof ExpressionInOCL) {
-			query = (ExpressionInOCL) valueSpecification;
-		}
-		else if (type != null) {
-			ClassContext classContext = new ClassContext(metaModelManager, null, type);
-			query = ValidationBehavior.INSTANCE.getExpressionInOCL(classContext, constraint);
+		if (type != null) {
+			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(new SemanticException(message));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
 		}
 		return validateExpressionInOCL(eClassifier, value, diagnostics, context,
 			constraintName, source, code, query);

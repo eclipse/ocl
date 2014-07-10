@@ -21,7 +21,8 @@ public class EvaluatorMessages
 	static {
 		NLS.initializeMessages(EvaluatorMessages.class.getName(), EvaluatorMessages.class);
 	}
-
+	
+	public static String AmbiguousOperation;
 	public static String ConvertibleValueRequired;
 	public static String EObjectRequired;
 	public static String EmptyCollection;

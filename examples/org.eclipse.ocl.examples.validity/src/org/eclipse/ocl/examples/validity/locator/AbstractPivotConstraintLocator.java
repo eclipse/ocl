@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstrai
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -84,13 +83,9 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 		return evaluationVisitor;
 	}
 
-	protected @NonNull ExpressionInOCL getQuery(@NonNull Constraint constraint) throws ParserException {
-		OpaqueExpression specification = constraint.getSpecification();
+	protected @NonNull ExpressionInOCL getQuery(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws ParserException {
+		ExpressionInOCL specification = constraint.getSpecification();
 		assert specification != null;
-		ExpressionInOCL query = specification.getExpressionInOCL();
-		if (query == null) {
-			throw new ParserException("Missing constraint");
-		}
-		return query;
+		return metaModelManager.getQueryOrThrow(specification);
 	}
 }

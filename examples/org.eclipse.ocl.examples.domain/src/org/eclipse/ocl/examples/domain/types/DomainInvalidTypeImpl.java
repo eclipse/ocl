@@ -50,7 +50,11 @@ public class DomainInvalidTypeImpl extends AbstractType implements DomainInvalid
 		return true;
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		return standardLibrary.getOclInvalidOperation();
+	}
+
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		return UnsupportedOperation.INSTANCE;
 	}
 }

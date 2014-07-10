@@ -47,27 +47,27 @@ public abstract class ConstraintEvaluator<T>
 	 * unless that is a status TuplePart PropertyCallExp in which case it is the source of the TuplePart PropertyCallExp enabling the
 	 * evaluation to compute the enriched Tuple of invariant results.
 	 */
-	private static OCLExpression getConstraintExpression(@NonNull ExpressionInOCL constraintSpecification) {
-		OCLExpression body = constraintSpecification.getBodyExpression();
+	private static @NonNull OCLExpression getConstraintExpression(@NonNull ExpressionInOCL query) {
+		OCLExpression body = query.getBodyExpression();
 		if (body instanceof PropertyCallExp) {
 			PropertyCallExp propertyCallExp = (PropertyCallExp)body;
 			Property referredProperty = propertyCallExp.getReferredProperty();
 			if ((referredProperty != null) && (referredProperty.getOwningType() instanceof TupleType) && PivotConstants.STATUS_PART_NAME.equals(referredProperty.getName())) {
-				return propertyCallExp.getSource();
+				body = propertyCallExp.getSource();
 			}
 		}
-		return body;
+		return DomainUtil.nonNullState(body);
 	}
 
-	protected final @NonNull ExpressionInOCL expression;
-	private OCLExpression body;
+	protected final @NonNull ExpressionInOCL query;
+	private final @NonNull OCLExpression body;
 	
 	/**
 	 * Construct an helper for the evaluation of an expression
 	 */
-	public ConstraintEvaluator(@NonNull ExpressionInOCL expression) {
-		this.expression = expression;
-		body = getConstraintExpression(expression);
+	public ConstraintEvaluator(@NonNull ExpressionInOCL query) {
+		this.query = query;
+		body = getConstraintExpression(query);
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public abstract class ConstraintEvaluator<T>
 	 * invoking one of handleSuccessResult, handleFailureResult, handleInvalidResult or handleExceptionResult to provide the return value.
 	 */
 	public T evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
-		if ((expression.getContextVariable() == null) && (body instanceof StringLiteralExp)) {
+		if ((query.getContextVariable() == null) && (body instanceof StringLiteralExp)) {
 			@SuppressWarnings("null")@NonNull String stringSymbol = ((StringLiteralExp)body).getStringSymbol();
 			return handleInvalidExpression(stringSymbol);
 		}
@@ -96,7 +96,7 @@ public abstract class ConstraintEvaluator<T>
 	}
 
 	protected String getConstraintName() {
-		Constraint constraint = PivotUtil.getContainingConstraint(expression);
+		Constraint constraint = PivotUtil.getContainingConstraint(query);
 		if (constraint != null) {
 			return constraint.getName();
 		}
@@ -182,7 +182,7 @@ public abstract class ConstraintEvaluator<T>
 	}
 
 	protected String getConstraintTypeName() {
-		Type type = PivotUtil.getContainingType(expression);
+		Type type = PivotUtil.getContainingType(query);
 		if (type != null) {
 			return type.getName();
 		}
@@ -223,7 +223,7 @@ public abstract class ConstraintEvaluator<T>
 	 * Return true if the constraint has a Boolean result type.
 	 */
 	protected boolean isBooleanConstraint() {
-		TypeId typeId = expression.getTypeId();
+		TypeId typeId = query.getTypeId();
 		return typeId == TypeId.BOOLEAN;
 	}
 }

@@ -56,6 +56,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -146,16 +147,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	public @Nullable Object evaluate(@NonNull DomainExpression body) {
-		Object value = ((OCLExpression) body).accept(undecoratedVisitor);
+		Object value = ((Element) body).accept(undecoratedVisitor);
 		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
 		return value;
 	}
 
-	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
-		Object value = expressionInOCL.accept(undecoratedVisitor);
-		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
-		return value;
-	}
+//	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
+//		Object value = expressionInOCL.accept(undecoratedVisitor);
+//		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
+//		return value;
+//	}
 
 	protected Object evaluatePropertyCallExp(@NonNull NavigationCallExp propertyCallExp, @NonNull Property referredProperty) {
 		OCLExpression source = propertyCallExp.getSource();
@@ -661,14 +662,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			throw new EvaluationHaltedException("Canceled");
 		}
 		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
-		Operation staticOperation = operationCallExp.getReferredOperation();
-		assert staticOperation != null;
+		Operation apparentOperation = operationCallExp.getReferredOperation();
+		assert apparentOperation != null;
 		//
 		//	Resolve source value
 		//
  		Object sourceValue;
 		OCLExpression source = operationCallExp.getSource();
-		boolean isValidating = staticOperation.isValidating();
+		boolean isValidating = apparentOperation.isValidating();
 		if (isValidating) {
 			try {
 				sourceValue = source.accept(undecoratedVisitor);
@@ -687,8 +688,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//	Resolve source dispatch type
 		//
  		PivotIdResolver idResolver = metaModelManager.getIdResolver();
-		DomainType dynamicSourceType = idResolver.getStaticTypeOf(sourceValue);
-		List<Parameter> ownedParameters = staticOperation.getOwnedParameter();
+		DomainType actualSourceType = idResolver.getStaticTypeOf(sourceValue);
+		List<Parameter> ownedParameters = apparentOperation.getOwnedParameter();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
 			//
 			//	Resolve and dispatch OclSelf operation
@@ -696,10 +697,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			List<OCLExpression> arguments = operationCallExp.getArgument();
 			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
 			if (onlyArgument != null) {
-				DomainType argType = idResolver.getStaticTypeOf(onlyArgument);
-				dynamicSourceType = dynamicSourceType.getCommonType(idResolver, argType);
+				DomainType actualArgType = idResolver.getStaticTypeOf(onlyArgument);
+				actualSourceType = actualSourceType.getCommonType(idResolver, actualArgType);
 			}
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+			Operation actualOperation = (Operation) actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.evaluate(evaluator, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
@@ -709,14 +711,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			} catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
-				throw new InvalidValueException(e, "Failed to evaluate '" + staticOperation + "'", sourceValue, operationCallExp);
+				throw new InvalidValueException(e, "Failed to evaluate '" + apparentOperation + "'", sourceValue, operationCallExp);
 			}
 	 	}
 		else {
 			//
 			//	Resolve and dispatch regular operation
 			//
-			LibraryOperation implementation = (LibraryOperation) dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+			DomainOperation actualOperation = actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
+			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation((Operation)actualOperation);
 			try {
 				Object result = implementation.dispatch(evaluator, operationCallExp, sourceValue);
 				assert !(result instanceof NullValue);
@@ -726,7 +729,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			} catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
-				throw new InvalidValueException(e, "Failed to evaluate '" + staticOperation + "'", sourceValue, operationCallExp);
+				throw new InvalidValueException(e, "Failed to evaluate '" + apparentOperation + "'", sourceValue, operationCallExp);
 			}
 		}
 	}

@@ -128,8 +128,6 @@ public class IntegerLiteralExpImpl
 	{
 		/**
 		 * inv TypeIsInteger: self.type = Integer
-		 * 
-		 * 
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

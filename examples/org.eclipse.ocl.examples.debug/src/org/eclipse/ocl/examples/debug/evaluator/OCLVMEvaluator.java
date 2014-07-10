@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -40,27 +40,23 @@ public class OCLVMEvaluator implements IVMEvaluator
         return eObject;
 	}
     
-    public static @NonNull ExpressionInOCL loadExpression(@NonNull MetaModelManager metaModelManager, @NonNull URI constraintURI, boolean keepDebug) throws IOException {
+    public static @NonNull ExpressionInOCL loadExpression(@NonNull MetaModelManager metaModelManager, @NonNull URI constraintURI, boolean keepDebug) throws IOException, ParserException {
         EObject eObject = metaModelManager.getASResourceSet().getEObject(constraintURI, true);
-        return loadExpression(eObject, constraintURI);
+        return loadExpression(metaModelManager, eObject, constraintURI);
 	}
 
-	public static @NonNull ExpressionInOCL loadExpression(EObject eObject, URI constraintURI)
-			throws IOException {
+	public static @NonNull ExpressionInOCL loadExpression(@NonNull MetaModelManager metaModelManager, EObject eObject, URI constraintURI) throws IOException, ParserException {
 		if (eObject == null) {
             throw new IOException("Nothing loadable as '" + constraintURI + "'");
         }
         if (!(eObject instanceof Constraint)) {
             throw new IOException("Constraint rather than " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
         }
-    	OpaqueExpression specification = ((Constraint)eObject).getSpecification();
-    	if (specification != null) {
-    		ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
-        	if (expressionInOCL != null) {
-        		return expressionInOCL;
-        	}
+    	ExpressionInOCL specification = ((Constraint)eObject).getSpecification();
+    	if (specification == null) {
+            throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
     	}
-        throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
+		return metaModelManager.getQueryOrThrow(specification);
 	}
     
 	protected final @NonNull MetaModelManager metaModelManager;
@@ -71,12 +67,12 @@ public class OCLVMEvaluator implements IVMEvaluator
 	private @Nullable EObject context;
 	private boolean suspendOnStartup = false;
 
-    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @Nullable URI contextURI) throws IOException {
+    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @Nullable URI contextURI) throws IOException, ParserException {
     	this(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()), contextURI != null ? loadContext(envFactory.getMetaModelManager(), contextURI) : null);
     }
 
-    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull Constraint constraint, @NonNull EObject context) throws IOException {
-    	this(envFactory, loadExpression(constraint, EcoreUtil.getURI(constraint)), context);
+    public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull Constraint constraint, @NonNull EObject context) throws IOException, ParserException {
+    	this(envFactory, loadExpression(envFactory.getMetaModelManager(), constraint, EcoreUtil.getURI(constraint)), context);
     }
     
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull ExpressionInOCL expressionInOCL, @Nullable EObject context) throws IOException {

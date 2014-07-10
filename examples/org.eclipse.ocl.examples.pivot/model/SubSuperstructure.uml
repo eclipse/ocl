@@ -12,7 +12,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-own_elements">
               <body>Parameters must own the elements they parameter or those elements must be owned by the element being templated.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_specification">
               <language>OCL</language>
               <body>template.oclContents()->includesAll(parameter.parameteredElement->asSet() - parameter.ownedParameteredElement->asSet())</body>
             </specification>
@@ -38,7 +38,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible">
               <body>The default must be compatible with the formal template parameter.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible-_specification">
               <language>OCL</language>
               <body>default->notEmpty() implies default.isCompatibleWith(parameteredElement)</body>
             </specification>
@@ -81,7 +81,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal">
               <body>Each parameter substitution must refer to a formal template parameter of the target template signature.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_specification">
               <language>OCL</language>
               <body>parameterSubstitution->forAll(b | signature.parameter->includes(b.formal))</body>
             </specification>
@@ -90,7 +90,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution">
               <body>A binding contains at most one parameter substitution for each formal template parameter of the target template signature.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_specification">
               <language>OCL</language>
               <body>signature.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() &lt;= 1)</body>
             </specification>
@@ -122,7 +122,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible">
               <body>The actual parameter must be compatible with the formal template parameter, e.g. the actual parameter for a class template parameter must be a class.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-must_be_compatible-_specification">
               <language>OCL</language>
               <body>actual->forAll(a | a.isCompatibleWith(formal.parameteredElement))</body>
             </specification>
@@ -173,7 +173,7 @@
               <body>The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.</body>
             </ownedComment>
             <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-parameterableElements-spec-_specification">
                 <language>OCL</language>
                 <body>allOwnedElements()->select(oclIsKindOf(ParameterableElement))</body>
               </specification>
@@ -188,7 +188,7 @@
               <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
             </ownedComment>
             <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate-spec-_specification">
                 <language>OCL</language>
                 <body>ownedTemplateSignature->notEmpty()</body>
               </specification>
@@ -220,7 +220,7 @@
               <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
             </ownedComment>
             <ownedRule xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec-_specification">
                 <language>OCL</language>
                 <body>templateParameter->notEmpty()</body>
               </specification>
@@ -289,7 +289,7 @@
               <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
             </ownedComment>
             <ownedRule xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec-_specification">
                 <language>OCL</language>
                 <body>oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())</body>
               </specification>
@@ -307,7 +307,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier">
               <body>If &quot;allowSubstitutable&quot; is true, then there must be a constrainingType.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-has_constraining_classifier-_specification">
               <language>OCL</language>
               <body>allowSubstitutable implies constrainingType->notEmpty()</body>
             </specification>
@@ -397,7 +397,7 @@
             <ownedComment xmi:id="_JhArs65oEd-xTJkHwX_SlQ" annotatedElement="_JhArsq5oEd-xTJkHwX_SlQ">
               <body>A constraint cannot be applied to itself.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_JhArtK5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_JhArtK5oEd-xTJkHwX_SlQ">
               <language>OCL</language>
               <body>not constrainedElement->includes(self)</body>
             </specification>
@@ -406,7 +406,7 @@
             <ownedComment xmi:id="_JhArtq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArta5oEd-xTJkHwX_SlQ">
               <body>The value specification for a constraint must evaluate to a Boolean value.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_JhArt65oEd-xTJkHwX_SlQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_JhArt65oEd-xTJkHwX_SlQ">
               <language>OCL</language>
               <body>self.specification.booleanValue().oclIsKindOf(Boolean)</body>
             </specification>
@@ -442,7 +442,7 @@
               <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>
             </ownedComment>
             <ownedRule xmi:id="_N9Kt9q5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9Kt9K5oEd-xTJkHwX_SlQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_N9Kt965oEd-xTJkHwX_SlQ">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="_N9Kt965oEd-xTJkHwX_SlQ">
                 <language>OCL</language>
                 <body>false</body>
               </specification>
@@ -456,7 +456,7 @@
               <body>The query integerValue() gives a single Integer value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="_N9Kt-65oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9Kt-a5oEd-xTJkHwX_SlQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_N9Kt_K5oEd-xTJkHwX_SlQ">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="_N9Kt_K5oEd-xTJkHwX_SlQ">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -470,7 +470,7 @@
               <body>The query booleanValue() gives a single Boolean value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="_N9KuAK5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9Kt_q5oEd-xTJkHwX_SlQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_N9KuAa5oEd-xTJkHwX_SlQ">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="_N9KuAa5oEd-xTJkHwX_SlQ">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -484,7 +484,7 @@
               <body>The query stringValue() gives a single String value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="_N9KuBa5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9KuA65oEd-xTJkHwX_SlQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_N9KuBq5oEd-xTJkHwX_SlQ">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="_N9KuBq5oEd-xTJkHwX_SlQ">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -498,7 +498,7 @@
               <body>The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="_N9KuCq5oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9KuCK5oEd-xTJkHwX_SlQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_N9KuC65oEd-xTJkHwX_SlQ">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="_N9KuC65oEd-xTJkHwX_SlQ">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -512,7 +512,7 @@
               <body>The query isNull() returns true when it can be computed that the value is null.</body>
             </ownedComment>
             <ownedRule xmi:id="_N9KuD65oEd-xTJkHwX_SlQ" name="spec" constrainedElement="_N9KuDa5oEd-xTJkHwX_SlQ">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="_N9KuEK5oEd-xTJkHwX_SlQ">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="_N9KuEK5oEd-xTJkHwX_SlQ">
                 <language>OCL</language>
                 <body>false</body>
               </specification>
@@ -522,7 +522,7 @@
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_SzzFsK5oEd-xTJkHwX_SlQ" name="OpaqueExpression">
+        <packagedElement xmi:type="uml:Class" xmi:id="_SzzFsK5oEd-xTJkHwX_SlQ" name="ExpressionInOCL">
           <ownedComment xmi:id="_SzzFsa5oEd-xTJkHwX_SlQ" annotatedElement="_SzzFsK5oEd-xTJkHwX_SlQ">
             <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
           </ownedComment>
@@ -530,7 +530,7 @@
             <ownedComment xmi:id="_SzzFs65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFsq5oEd-xTJkHwX_SlQ">
               <body>If the language attribute is not empty, then the size of the body and language arrays must be the same.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_SzzFtK5oEd-xTJkHwX_SlQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_SzzFtK5oEd-xTJkHwX_SlQ">
               <language>OCL</language>
               <body>language->notEmpty() implies (body->size() = language->size())</body>
             </specification>
@@ -602,7 +602,7 @@
             <ownedComment xmi:id="_Et-4kUefEeKdl-y5nJoJpQ" annotatedElement="_Et-4kEefEeKdl-y5nJoJpQ">
               <body>The entry Pseudostates must be Pseudostates with kind entryPoint.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4kkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4kkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>entry->notEmpty() implies entry->forAll(e | e.kind = #entryPoint)</body>
             </specification>
@@ -611,7 +611,7 @@
             <ownedComment xmi:id="_Et-4lEefEeKdl-y5nJoJpQ" annotatedElement="_Et-4k0efEeKdl-y5nJoJpQ">
               <body>The exit Pseudostates must be Pseudostates with kind exitPoint.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4lUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4lUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>exit->notEmpty() implies exit->forAll(e | e.kind = #exitPoint)</body>
             </specification>
@@ -654,7 +654,7 @@
             <ownedComment xmi:id="_Et-RnEefEeKdl-y5nJoJpQ" annotatedElement="_Et-Rm0efEeKdl-y5nJoJpQ">
               <body>A final state cannot have any outgoing transitions.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RnUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RnUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.outgoing->size() = 0</body>
             </specification>
@@ -663,7 +663,7 @@
             <ownedComment xmi:id="_Et-Rn0efEeKdl-y5nJoJpQ" annotatedElement="_Et-RnkefEeKdl-y5nJoJpQ">
               <body>A final state cannot have regions.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4gEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4gEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.region->size() = 0</body>
             </specification>
@@ -672,7 +672,7 @@
             <ownedComment xmi:id="_Et-4gkefEeKdl-y5nJoJpQ" annotatedElement="_Et-4gUefEeKdl-y5nJoJpQ">
               <body>A final state cannot reference a submachine.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4g0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4g0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.submachine->isEmpty()</body>
             </specification>
@@ -681,7 +681,7 @@
             <ownedComment xmi:id="_Et-4hUefEeKdl-y5nJoJpQ" annotatedElement="_Et-4hEefEeKdl-y5nJoJpQ">
               <body>A final state has no entry behavior.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4hkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4hkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.entry->isEmpty()</body>
             </specification>
@@ -690,7 +690,7 @@
             <ownedComment xmi:id="_Et-4iEefEeKdl-y5nJoJpQ" annotatedElement="_Et-4h0efEeKdl-y5nJoJpQ">
               <body>A final state has no exit behavior.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4iUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4iUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.exit->isEmpty()</body>
             </specification>
@@ -699,7 +699,7 @@
             <ownedComment xmi:id="_Et-4i0efEeKdl-y5nJoJpQ" annotatedElement="_Et-4ikefEeKdl-y5nJoJpQ">
               <body>A final state has no state (doActivity) behavior.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4jEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4jEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.doActivity->isEmpty()</body>
             </specification>
@@ -716,7 +716,7 @@
             <ownedComment xmi:id="_Et-Rc0efEeKdl-y5nJoJpQ" annotatedElement="_Et-RckefEeKdl-y5nJoJpQ">
               <body>An initial vertex can have at most one outgoing transition.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RdEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RdEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #initial) implies (self.outgoing->size &lt;= 1)</body>
             </specification>
@@ -725,7 +725,7 @@
             <ownedComment xmi:id="_Et-RdkefEeKdl-y5nJoJpQ" annotatedElement="_Et-RdUefEeKdl-y5nJoJpQ">
               <body>History vertices can have at most one outgoing transition.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-Rd0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-Rd0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>((self.kind = #deepHistory) or (self.kind = #shallowHistory)) implies
 (self.outgoing->size &lt;= 1)
@@ -736,7 +736,7 @@
             <ownedComment xmi:id="_Et-ReUefEeKdl-y5nJoJpQ" annotatedElement="_Et-ReEefEeKdl-y5nJoJpQ">
               <body>In a complete statemachine, a join vertex must have at least two incoming transitions and exactly one outgoing transition.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RekefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RekefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #join) implies
 ((self.outgoing->size = 1) and (self.incoming->size >= 2))
@@ -747,7 +747,7 @@
             <ownedComment xmi:id="_Et-RfEefEeKdl-y5nJoJpQ" annotatedElement="_Et-Re0efEeKdl-y5nJoJpQ">
               <body>All transitions incoming a join vertex must originate in different regions of an orthogonal state.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RfUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RfUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #join) implies
   self.incoming->forAll (t1, t2 | t1&lt;>t2 implies
@@ -758,7 +758,7 @@
             <ownedComment xmi:id="_Et-Rf0efEeKdl-y5nJoJpQ" annotatedElement="_Et-RfkefEeKdl-y5nJoJpQ">
               <body>In a complete statemachine, a fork vertex must have at least two outgoing transitions and exactly one incoming transition.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RgEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RgEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #fork) implies
 ((self.incoming->size = 1) and (self.outgoing->size >= 2))
@@ -769,7 +769,7 @@
             <ownedComment xmi:id="_Et-RgkefEeKdl-y5nJoJpQ" annotatedElement="_Et-RgUefEeKdl-y5nJoJpQ">
               <body>All transitions outgoing a fork vertex must target states in different regions of an orthogonal state.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-Rg0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-Rg0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #fork) implies
   self.outgoing->forAll (t1, t2 | t1&lt;>t2 implies
@@ -780,7 +780,7 @@
             <ownedComment xmi:id="_Et-RhUefEeKdl-y5nJoJpQ" annotatedElement="_Et-RhEefEeKdl-y5nJoJpQ">
               <body>In a complete statemachine, a junction vertex must have at least one incoming and one outgoing transition.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RhkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RhkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #junction) implies
 ((self.incoming->size >= 1) and (self.outgoing->size >= 1))
@@ -791,7 +791,7 @@
             <ownedComment xmi:id="_Et-RiEefEeKdl-y5nJoJpQ" annotatedElement="_Et-Rh0efEeKdl-y5nJoJpQ">
               <body>In a complete statemachine, a choice vertex must have at least one incoming and one outgoing transition.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RiUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RiUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #choice) implies
 ((self.incoming->size >= 1) and (self.outgoing->size >= 1))
@@ -802,7 +802,7 @@
             <ownedComment xmi:id="_Et-Ri0efEeKdl-y5nJoJpQ" annotatedElement="_Et-RikefEeKdl-y5nJoJpQ">
               <body>The outgoing transition from and initial vertex may have a behavior, but not a trigger or a guard.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-RjEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-RjEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(self.kind = #initial) implies (self.outgoing.guard->isEmpty()&#xD;
   and self.outgoing.trigger->isEmpty())</body>
@@ -892,7 +892,7 @@
             <ownedComment xmi:id="_Et-4pkefEeKdl-y5nJoJpQ" annotatedElement="_Et-4pUefEeKdl-y5nJoJpQ">
               <body>A region can have at most one initial vertex</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4p0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4p0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.subvertex->select (v | v.oclIsKindOf(Pseudostate))->
 select(p : Pseudostate | p.kind = #initial)->size() &lt;= 1
@@ -903,7 +903,7 @@ select(p : Pseudostate | p.kind = #initial)->size() &lt;= 1
             <ownedComment xmi:id="_Et-4qUefEeKdl-y5nJoJpQ" annotatedElement="_Et-4qEefEeKdl-y5nJoJpQ">
               <body>A region can have at most one deep history vertex</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4qkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4qkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.subvertex->select (v | v.oclIsKindOf(Pseudostate))->
 select(p : Pseudostate | p.kind = #deepHistory)->size() &lt;= 1
@@ -914,7 +914,7 @@ select(p : Pseudostate | p.kind = #deepHistory)->size() &lt;= 1
             <ownedComment xmi:id="_Et-4rEefEeKdl-y5nJoJpQ" annotatedElement="_Et-4q0efEeKdl-y5nJoJpQ">
               <body>A region can have at most one shallow history vertex</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4rUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4rUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.subvertex->select(v | v.oclIsKindOf(Pseudostate))->
 select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
@@ -925,7 +925,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_Et-4r0efEeKdl-y5nJoJpQ" annotatedElement="_Et-4rkefEeKdl-y5nJoJpQ">
               <body>If a Region is owned by a StateMachine, then it cannot also be owned by a State and vice versa.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et-4sEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et-4sEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(stateMachine->notEmpty() implies state->isEmpty()) and (state->notEmpty() implies stateMachine->isEmpty())</body>
             </specification>
@@ -972,7 +972,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_vAUZk0ebEeKdl-y5nJoJpQ" annotatedElement="_vAUZkkebEeKdl-y5nJoJpQ">
               <body>The classifier context of a state machine cannot be an interface.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_vAUZlEebEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_vAUZlEebEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>context->notEmpty() implies not context.oclIsKindOf(Interface)</body>
             </specification>
@@ -981,7 +981,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_vAUZlkebEeKdl-y5nJoJpQ" annotatedElement="_vAUZlUebEeKdl-y5nJoJpQ">
               <body>The context classifier of the method state machine of a behavioral feature must be the classifier that owns the behavioral feature.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_vAUZl0ebEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_vAUZl0ebEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>specification->notEmpty() implies (context->notEmpty() and specification->featuringClassifier->exists (c | c = context))</body>
             </specification>
@@ -990,7 +990,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_vAUZmUebEeKdl-y5nJoJpQ" annotatedElement="_vAUZmEebEeKdl-y5nJoJpQ">
               <body>The connection points of a state machine are pseudostates of kind entry point or exit point.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_vAUZmkebEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_vAUZmkebEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>conectionPoint->forAll (c | c.kind = #entryPoint or c.kind = #exitPoint)</body>
             </specification>
@@ -999,7 +999,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_vAUZnEebEeKdl-y5nJoJpQ" annotatedElement="_vAUZm0ebEeKdl-y5nJoJpQ">
               <body>A state machine as the method for a behavioral feature cannot have entry/exit connection points.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_vAUZnUebEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_vAUZnUebEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>specification->notEmpty() implies connectionPoint->isEmpty()</body>
             </specification>
@@ -1041,7 +1041,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_DKDno0efEeKdl-y5nJoJpQ" annotatedElement="_DKDnokefEeKdl-y5nJoJpQ">
               <body>Only submachine states can have connection point references.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_DKDnpEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_DKDnpEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>isSubmachineState implies connection->notEmpty ( )</body>
             </specification>
@@ -1050,7 +1050,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             <ownedComment xmi:id="_DKDnpkefEeKdl-y5nJoJpQ" annotatedElement="_DKDnpUefEeKdl-y5nJoJpQ">
               <body>The connection point references used as destinations/sources of transitions associated with a submachine state must be defined as entry/exit points in the submachine state machine.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_DKDnp0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_DKDnp0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.isSubmachineState implies (self.connection->forAll (cp |&#xD;
 cp.entry->forAll (p | p.statemachine = self.submachine) and&#xD;
@@ -1061,7 +1061,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_DKDnqUefEeKdl-y5nJoJpQ" annotatedElement="_DKDnqEefEeKdl-y5nJoJpQ">
               <body>A state is not allowed to have both a submachine and regions.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_DKDnqkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_DKDnqkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>isComposite implies not isSubmachineState</body>
             </specification>
@@ -1070,7 +1070,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_DKDnrEefEeKdl-y5nJoJpQ" annotatedElement="_DKDnq0efEeKdl-y5nJoJpQ">
               <body>Only composite states can have entry or exit pseudostates defined.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_DKDnrUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_DKDnrUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>connectionPoint->notEmpty() implies isComoposite</body>
             </specification>
@@ -1079,7 +1079,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_DKDnr0efEeKdl-y5nJoJpQ" annotatedElement="_DKDnrkefEeKdl-y5nJoJpQ">
               <body>Only entry or exit pseudostates can serve as connection points.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_DKDnsEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_DKDnsEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>connectionPoint->forAll(cp|cp.kind = #entry or cp.kind = #exit)</body>
             </specification>
@@ -1186,7 +1186,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_Et9DU0efEeKdl-y5nJoJpQ" annotatedElement="_Et9DUkefEeKdl-y5nJoJpQ">
               <body>A fork segment must not have guards or triggers.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DVEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DVEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(source.oclIsKindOf(Pseudostate) and source.kind = #fork) implies (guard->isEmpty() and trigger->isEmpty())</body>
             </specification>
@@ -1195,7 +1195,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_Et9DVkefEeKdl-y5nJoJpQ" annotatedElement="_Et9DVUefEeKdl-y5nJoJpQ">
               <body>A join segment must not have guards or triggers.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DV0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DV0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(target.oclIsKindOf(Pseudostate) and target.kind = #join) implies (guard->isEmpty() and trigger->isEmpty())</body>
             </specification>
@@ -1204,7 +1204,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_Et9DWUefEeKdl-y5nJoJpQ" annotatedElement="_Et9DWEefEeKdl-y5nJoJpQ">
               <body>A fork segment must always target a state.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DWkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DWkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(source.oclIsKindOf(Pseudostate) and source.kind = #fork) implies (target.oclIsKindOf(State))</body>
             </specification>
@@ -1213,7 +1213,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_Et9DXEefEeKdl-y5nJoJpQ" annotatedElement="_Et9DW0efEeKdl-y5nJoJpQ">
               <body>A join segment must always originate from a state.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DXUefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DXUefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>(target.oclIsKindOf(Pseudostate) and target.kind = #join) implies (source.oclIsKindOf(State))</body>
             </specification>
@@ -1222,7 +1222,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_Et9DX0efEeKdl-y5nJoJpQ" annotatedElement="_Et9DXkefEeKdl-y5nJoJpQ">
               <body>Transitions outgoing pseudostates may not have a trigger.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DYEefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DYEefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>source.oclIsKindOf(Pseudostate) and (source.kind &lt;> #initial)) implies trigger->isEmpty()</body>
             </specification>
@@ -1231,7 +1231,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_Et9DYkefEeKdl-y5nJoJpQ" annotatedElement="_Et9DYUefEeKdl-y5nJoJpQ">
               <body>An initial transition at the topmost level (region of a statemachine) either has no trigger or it has a trigger with the stereotype &lt;&lt;create>>.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DY0efEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DY0efEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>self.source.oclIsKindOf(Pseudostate) implies
 (self.source.oclAsType(Pseudostate).kind = #initial) implies
@@ -1246,7 +1246,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
               <body>In case of more than one trigger, the signatures of these must be compatible in case the parameters of the signal are assigned to local variables/attributes.&#xD;
 </body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_Et9DZkefEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_Et9DZkefEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>true</body>
             </specification>
@@ -1301,7 +1301,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_9FEtw0ebEeKdl-y5nJoJpQ" annotatedElement="_9FEtwkebEeKdl-y5nJoJpQ">
               <body>The source state of a transition with transition kind local must be a composite state.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_9FEtxEebEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_9FEtxEebEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>kind=#local implies owner.source.isComposite</body>
             </specification>
@@ -1310,7 +1310,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_9FEtxkebEeKdl-y5nJoJpQ" annotatedElement="_9FEtxUebEeKdl-y5nJoJpQ">
               <body>The source state of a transition with transition kind external must be a composite state.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="_9FEtx0ebEeKdl-y5nJoJpQ">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_9FEtx0ebEeKdl-y5nJoJpQ">
               <language>OCL</language>
               <body>kind=#external implies owner.source.isComposite</body>
             </specification>

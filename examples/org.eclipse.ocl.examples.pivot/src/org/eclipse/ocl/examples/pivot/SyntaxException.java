@@ -31,7 +31,7 @@ public class SyntaxException
      * @param msg the exception message
      */
 	public SyntaxException(String msg) {
-		super(msg);
+		super(null, msg);
 	}
 	
     /**
@@ -42,7 +42,7 @@ public class SyntaxException
      * @param cause the cause of the parse failure
      */
 	public SyntaxException(String msg, Throwable cause) {
-		super(msg, cause);
+		super(cause, msg);
 	}
 	
 	/**

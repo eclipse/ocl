@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
@@ -110,6 +111,17 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 		return this;
 	}
 
+/*	@Override
+	public Object caseInstanceSpecification(org.eclipse.uml2.uml.InstanceSpecification umlInstanceSpecification) {
+		assert umlInstanceSpecification != null;
+		InstanceSpecification asInstanceSpecification = converter.getCreated(InstanceSpecification.class, umlInstanceSpecification);
+//		InstanceSpecification pivotElement = converter.refreshNamedElement(InstanceSpecification.class, PivotPackage.Literals.INSTANCE_SPECIFICATION, umlInstanceSpecification);
+//		doSwitchAll(pivotElement.getSlots(), umlInstanceSpecification.getSlots(), null);
+//		copyState(pivotElement, umlInstanceSpecification);
+//		converter.queueReference(umlInstanceSpecification);		// classifiers
+		return this;
+	} */
+
 	@Override
 	public Object caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication umlProfileApplication) {
 		assert umlProfileApplication != null;
@@ -168,6 +180,18 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 			}
 		}
 		return asProperty;
+	}
+
+	@Override
+	public Object caseSlot(org.eclipse.uml2.uml.Slot umlSlot) {
+		assert umlSlot != null;
+		Slot asSlot = converter.getCreated(Slot.class, umlSlot);
+		if (asSlot != null) {
+			org.eclipse.uml2.uml.StructuralFeature umlDefiningFeature = umlSlot.getDefiningFeature();
+			Property asProperty = umlDefiningFeature != null ? converter.getCreated(Property.class, umlDefiningFeature) : null;
+			asSlot.setDefiningProperty(asProperty);
+		}
+		return this;
 	}
 
 	@Override

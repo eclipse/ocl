@@ -162,7 +162,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				if (diagnostics == null) {
 					return false;
 				}
-				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, LibraryConstants.COMPARE_TO, String.valueOf(comparableType));
+				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(comparableType), LibraryConstants.COMPARE_TO);
 			}
 			else {
 				LibraryFeature implementation = type.lookupImplementation(metaModelManager, staticOperation);
@@ -170,7 +170,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 					if (diagnostics == null) {
 						return false;
 					}
-					diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, LibraryConstants.COMPARE_TO, String.valueOf(type));
+					diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(type), LibraryConstants.COMPARE_TO);
 				}
 			}
 		} catch (Exception e) {
@@ -195,8 +195,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv AnyHasOneIterator: name = 'any' implies iterator->size() = 1
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -305,9 +303,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv AnyTypeIsSourceElementType: name = 'any' implies type = source.type.oclAsType(CollectionType).elementType
-		 * 
-		 * 
+		 * inv AnyTypeIsSourceElementType: name = 'any' implies type =
+		 *   source.type.oclAsType(CollectionType).elementType
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -425,9 +422,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateAnyBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv AnyBodyTypeIsBoolean: name = 'any' implies _'body'.type = 'Boolean'
-		 * 
-		 * 
+		 * inv AnyBodyTypeIsBoolean: name = 'any' implies body.type = 'Boolean'
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -536,8 +531,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv ClosureHasOneIterator: name = 'closure' implies iterator->size() = 1
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -647,13 +640,12 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv ClosureTypeIsUniqueCollection: name = 'closure' implies
-		 * if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then
-		 * type.oclIsKindOf(OrderedSetType)
-		 * else
-		 * type.oclIsKindOf(SetType)
-		 * endif
-		 * 
-		 * 
+		 *   if
+		 *     source.type.oclIsKindOf(SequenceType) or
+		 *     source.type.oclIsKindOf(OrderedSetType)
+		 *   then type.oclIsKindOf(OrderedSetType)
+		 *   else type.oclIsKindOf(SetType)
+		 *   endif
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -853,13 +845,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv ClosureSourceElementTypeIsBodyElementType: name = 'closure' implies
-		 * source.type.oclAsType(CollectionType).elementType =
-		 * if _'body'.type.oclIsKindOf(CollectionType)
-		 * then _'body'.type.oclAsType(CollectionType).elementType
-		 * else _'body'.type
-		 * endif
-		 * 
-		 * 
+		 *   source.type.oclAsType(CollectionType).elementType =
+		 *   if body.type.oclIsKindOf(CollectionType)
+		 *   then body.type.oclAsType(CollectionType).elementType
+		 *   else body.type
+		 *   endif
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_9;
 		try {
@@ -996,10 +986,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv ClosureElementTypeIsSourceElementType: name = 'closure' implies
-		 * type.oclAsType(CollectionType).elementType
-		 * = source.type.oclAsType(CollectionType).elementType
-		 * 
-		 * 
+		 *   type.oclAsType(CollectionType).elementType =
+		 *   source.type.oclAsType(CollectionType).elementType
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -1123,8 +1111,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv CollectHasOneIterator: name = 'collect' implies iterator->size() = 1
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -1234,13 +1220,12 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv CollectTypeIsUnordered: name = 'collect' implies
-		 * if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then
-		 * type.oclIsKindOf(SequenceType)
-		 * else
-		 * type.oclIsKindOf(BagType)
-		 * endif
-		 * 
-		 * 
+		 *   if
+		 *     source.type.oclIsKindOf(SequenceType) or
+		 *     source.type.oclIsKindOf(OrderedSetType)
+		 *   then type.oclIsKindOf(SequenceType)
+		 *   else type.oclIsKindOf(BagType)
+		 *   endif
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -1440,10 +1425,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv CollectElementTypeIsSourceElementType: name = 'collect' implies
-		 * type.oclAsType(CollectionType).elementType =
-		 * _'body'.type.oclAsType(CollectionType).elementType
-		 * 
-		 * 
+		 *   type.oclAsType(CollectionType).elementType =
+		 *   body.type.oclAsType(CollectionType).elementType
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -1567,9 +1550,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectNestedHasOneIterator: name = 'collectNested' implies iterator->size() = 1
-		 * 
-		 * 
+		 * inv CollectNestedHasOneIterator: name = 'collectNested' implies
+		 *   iterator->size() = 1
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -1677,10 +1659,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateCollectNestedTypeIsBag(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * 
-		 * inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagType)
-		 * 
-		 * 
+		 * inv CollectNestedTypeIsBag: name = 'collectNested' implies
+		 *   type.oclIsKindOf(BagType)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -1788,9 +1768,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = _'body'.type
-		 * 
-		 * 
+		 * inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = body.type
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -1901,8 +1879,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv ExistsTypeIsBoolean: name = 'exists' implies type = Boolean
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2010,9 +1986,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateExistsBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ExistsBodyTypeIsBoolean: name = 'exists' implies _'body'.type = Boolean
-		 * 
-		 * 
+		 * inv ExistsBodyTypeIsBoolean: name = 'exists' implies body.type = Boolean
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2125,8 +2099,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv ForAllTypeIsBoolean: name = 'forAll' implies type = Boolean
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2234,9 +2206,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateForAllBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ForAllBodyTypeIsBoolean: name = 'forAll' implies _'body'.type = Boolean
-		 * 
-		 * 
+		 * inv ForAllBodyTypeIsBoolean: name = 'forAll' implies body.type = Boolean
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2349,8 +2319,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv IsUniqueHasOneIterator: name = 'isUnique' implies iterator->size() = 1
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2459,8 +2427,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv IsUniqueTypeIsBoolean: name = 'isUnique' implies type = Boolean
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2569,8 +2535,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv OneHasOneIterator: name = 'one' implies iterator->size() = 1
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2679,8 +2643,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv OneTypeIsBoolean: name = 'one' implies type = Boolean
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2788,9 +2750,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateOneBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv OneBodyTypeIsBoolean: name = 'one' implies _'body'.type = Boolean
-		 * 
-		 * 
+		 * inv OneBodyTypeIsBoolean: name = 'one' implies body.type = Boolean
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -2903,9 +2863,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv RejectOrSelectHasOneIterator: name = 'reject' or name = 'select' implies iterator->size() = 1
-		 * 
-		 * 
+		 * inv RejectOrSelectHasOneIterator: name = 'reject' or name = 'select' implies
+		 *   iterator->size() = 1
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -3085,8 +3044,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv RejectOrSelectTypeIsSourceType: name = 'reject' or name = 'select' implies type = source.type
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -3268,8 +3225,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv RejectOrSelectTypeIsBoolean: name = 'reject' or name = 'select' implies type = Boolean
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -3448,8 +3403,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * inv SortedByHasOneIterator: name = 'sortedBy' implies iterator->size() = 1
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -3559,13 +3512,12 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv SortedByIsOrderedIfSourceIsOrdered: name = 'sortedBy' implies
-		 * if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(BagType) then
-		 * type.oclIsKindOf(SequenceType)
-		 * else
-		 * type.oclIsKindOf(OrderedSetType)
-		 * endif
-		 * 
-		 * 
+		 *   if
+		 *     source.type.oclIsKindOf(SequenceType) or
+		 *     source.type.oclIsKindOf(BagType)
+		 *   then type.oclIsKindOf(SequenceType)
+		 *   else type.oclIsKindOf(OrderedSetType)
+		 *   endif
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -3765,10 +3717,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		/**
 		 * 
 		 * inv SortedByElementTypeIsSourceElementType: name = 'sortedBy' implies
-		 * type.oclAsType(CollectionType).elementType =
-		 * _'body'.type.oclAsType(CollectionType).elementType
-		 * 
-		 * 
+		 *   type.oclAsType(CollectionType).elementType =
+		 *   body.type.oclAsType(CollectionType).elementType
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -3892,9 +3842,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv IteratorTypeIsSourceElementType: self.iterator->forAll(source.type.oclAsType (CollectionType).elementType.conformsTo(type))
-		 * 
-		 * 
+		 * inv IteratorTypeIsSourceElementType:
+		 *   self.iterator->forAll(
+		 *     source.type.oclAsType(CollectionType)
+		 *     .elementType.conformsTo(type))
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

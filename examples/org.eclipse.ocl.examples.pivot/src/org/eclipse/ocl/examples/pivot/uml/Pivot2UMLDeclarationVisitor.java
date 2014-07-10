@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -206,7 +206,7 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.Constraint visitConstraint(@NonNull Constraint pivotConstraint) {
-		OpaqueExpression specification = pivotConstraint.getSpecification();
+		ExpressionInOCL specification = pivotConstraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}

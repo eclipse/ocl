@@ -159,6 +159,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitDynamicType(object);
 	}
 
+	public @Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.examples.pivot.DynamicValueSpecification object) {
+		return delegate.visitDynamicValueSpecification(object);
+	}
+
 	public @Nullable R visitElement(@NonNull org.eclipse.ocl.examples.pivot.Element object) {
 		return delegate.visitElement(object);
 	}
@@ -201,6 +205,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitImport(@NonNull org.eclipse.ocl.examples.pivot.Import object) {
 		return delegate.visitImport(object);
+	}
+
+	public @Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.examples.pivot.InstanceSpecification object) {
+		return delegate.visitInstanceSpecification(object);
 	}
 
 	public @Nullable R visitIntegerLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.IntegerLiteralExp object) {
@@ -281,10 +289,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object) {
 		return delegate.visitOCLExpression(object);
-	}
-
-	public @Nullable R visitOpaqueExpression(@NonNull org.eclipse.ocl.examples.pivot.OpaqueExpression object) {
-		return delegate.visitOpaqueExpression(object);
 	}
 
 	public @Nullable R visitOperation(@NonNull org.eclipse.ocl.examples.pivot.Operation object) {
@@ -385,6 +389,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitSignal(@NonNull org.eclipse.ocl.examples.pivot.Signal object) {
 		return delegate.visitSignal(object);
+	}
+
+	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object) {
+		return delegate.visitSlot(object);
 	}
 
 	public @Nullable R visitState(@NonNull org.eclipse.ocl.examples.pivot.State object) {

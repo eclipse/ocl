@@ -18,21 +18,21 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 
 /** 
  * An EObjectProperty provides the standard LibraryProperty to implement a
  * PropertyCallExp. When constructed with a null specification, the call just accesses
  * the property field in a source object. When constructed with a non-null specification,
- * the specification defines the access algorithm, which if provided as an OpaqueExpression
+ * the specification defines the access algorithm, which if provided as an ExpressionInOCL
  * is lazily compiled from OCL source text.
  */
 public class EObjectProperty extends AbstractProperty
 {
 	protected final @NonNull EStructuralFeature eFeature;
-	protected @Nullable OpaqueExpression specification;
+	protected @Nullable ExpressionInOCL specification;
 
-	public EObjectProperty(@NonNull EStructuralFeature eFeature, @Nullable OpaqueExpression specification) {
+	public EObjectProperty(@NonNull EStructuralFeature eFeature, @Nullable ExpressionInOCL specification) {
 		this.eFeature = eFeature;
 		this.specification = specification;
 	}

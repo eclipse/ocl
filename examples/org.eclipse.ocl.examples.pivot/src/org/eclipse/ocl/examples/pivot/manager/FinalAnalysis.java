@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Type;
 
 public class FinalAnalysis
@@ -55,13 +56,13 @@ public class FinalAnalysis
 			for (DomainOperation domainOperation : ((AbstractInheritance)domainInheritance).getMemberOperations()) {	// FIXME cast
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
-				LibraryFeature domainImplementation = domainOperation.getImplementation();
+				LibraryFeature domainImplementation = metaModelManager.getImplementation((Operation)domainOperation);
 				Set<DomainOperation> overrides = null;
 				for (DomainInheritance subInheritance : subInheritances) {
 					if (subInheritance != domainInheritance) {
 						for (DomainOperation subOperation : ((AbstractInheritance)subInheritance).getMemberOperations()) {	// FIXME cast
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
-								LibraryFeature subImplementation = subOperation.getImplementation();
+								LibraryFeature subImplementation = metaModelManager.getImplementation((Operation)subOperation);
 								if (domainImplementation != subImplementation) {
 									if (overrides == null) {
 										overrides = new HashSet<DomainOperation>();

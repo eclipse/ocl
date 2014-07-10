@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -100,7 +99,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 					}
 				}
 				else {
-					@SuppressWarnings("null")@NonNull OpaqueExpression asSpecification = asConstraint.getSpecification();
+					@SuppressWarnings("null")@NonNull ExpressionInOCL asSpecification = asConstraint.getSpecification();
 					PivotUtil.setBody(asSpecification, csStatusSpecification.getExprString());					
 				}
 			}

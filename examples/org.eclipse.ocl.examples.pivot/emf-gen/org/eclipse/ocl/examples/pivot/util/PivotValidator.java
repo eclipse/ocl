@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
+import org.eclipse.ocl.examples.pivot.DynamicValueSpecification;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
@@ -57,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.FinalState;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.Import;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -77,7 +79,6 @@ import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
@@ -105,6 +106,7 @@ import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StateMachine;
@@ -755,6 +757,8 @@ public class PivotValidator
 				return validateDynamicProperty((DynamicProperty)value, diagnostics, context);
 			case PivotPackage.DYNAMIC_TYPE:
 				return validateDynamicType((DynamicType)value, diagnostics, context);
+			case PivotPackage.DYNAMIC_VALUE_SPECIFICATION:
+				return validateDynamicValueSpecification((DynamicValueSpecification)value, diagnostics, context);
 			case PivotPackage.ELEMENT:
 				return validateElement((Element)value, diagnostics, context);
 			case PivotPackage.ELEMENT_EXTENSION:
@@ -777,6 +781,8 @@ public class PivotValidator
 				return validateIfExp((IfExp)value, diagnostics, context);
 			case PivotPackage.IMPORT:
 				return validateImport((Import)value, diagnostics, context);
+			case PivotPackage.INSTANCE_SPECIFICATION:
+				return validateInstanceSpecification((InstanceSpecification)value, diagnostics, context);
 			case PivotPackage.INTEGER_LITERAL_EXP:
 				return validateIntegerLiteralExp((IntegerLiteralExp)value, diagnostics, context);
 			case PivotPackage.INVALID_LITERAL_EXP:
@@ -821,8 +827,6 @@ public class PivotValidator
 				return validateNumericLiteralExp((NumericLiteralExp)value, diagnostics, context);
 			case PivotPackage.OCL_EXPRESSION:
 				return validateOCLExpression((OCLExpression)value, diagnostics, context);
-			case PivotPackage.OPAQUE_EXPRESSION:
-				return validateOpaqueExpression((OpaqueExpression)value, diagnostics, context);
 			case PivotPackage.OPERATION:
 				return validateOperation((Operation)value, diagnostics, context);
 			case PivotPackage.OPERATION_CALL_EXP:
@@ -877,6 +881,8 @@ public class PivotValidator
 				return validateSetType((SetType)value, diagnostics, context);
 			case PivotPackage.SIGNAL:
 				return validateSignal((Signal)value, diagnostics, context);
+			case PivotPackage.SLOT:
+				return validateSlot((Slot)value, diagnostics, context);
 			case PivotPackage.STATE:
 				return validateState((State)value, diagnostics, context);
 			case PivotPackage.STATE_EXP:
@@ -1720,6 +1726,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateDynamicValueSpecification(DynamicValueSpecification dynamicValueSpecification, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)dynamicValueSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateBooleanLiteralExp(
 			BooleanLiteralExp booleanLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
@@ -1987,16 +2003,6 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOpaqueExpression(OpaqueExpression opaqueExpression,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)opaqueExpression, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateVariable(Variable variable,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment((EObject)variable, diagnostics, context)) return false;
@@ -2073,6 +2079,16 @@ public class PivotValidator
 	public boolean validateImport(Import import_, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)import_, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInstanceSpecification(InstanceSpecification instanceSpecification, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)instanceSpecification, diagnostics, context);
 	}
 
 	/**
@@ -2847,6 +2863,16 @@ public class PivotValidator
 	public boolean validateSignal(Signal signal, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)signal, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSlot(Slot slot, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)slot, diagnostics, context);
 	}
 
 	/**

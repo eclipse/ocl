@@ -19,6 +19,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -40,8 +42,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOCLImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOCLImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOCLImpl#getContextVariable <em>Context Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOCLImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOCLImpl#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOCLImpl#getResultVariable <em>Result Variable</em>}</li>
  * </ul>
@@ -50,8 +54,18 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public class ExpressionInOCLImpl
-		extends OpaqueExpressionImpl
+		extends ValueSpecificationImpl
 		implements ExpressionInOCL {
+
+	/**
+	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBody()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> body;
 
 	/**
 	 * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.
@@ -72,6 +86,16 @@ public class ExpressionInOCLImpl
 	 * @ordered
 	 */
 	protected Variable contextVariable;
+
+	/**
+	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLanguage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> language;
 
 	/**
 	 * The cached value of the '{@link #getParameterVariable() <em>Parameter Variable</em>}' containment reference list.
@@ -110,6 +134,20 @@ public class ExpressionInOCLImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.EXPRESSION_IN_OCL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<String> getBody()
+	{
+		if (body == null)
+		{
+			body = new EDataTypeEList<String>(String.class, this, PivotPackage.EXPRESSION_IN_OCL__BODY);
+		}
+		return body;
 	}
 
 	/**
@@ -202,6 +240,20 @@ public class ExpressionInOCLImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, newContextVariable, newContextVariable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<String> getLanguage()
+	{
+		if (language == null)
+		{
+			language = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.EXPRESSION_IN_OCL__LANGUAGE);
+		}
+		return language;
 	}
 
 	/**
@@ -328,14 +380,12 @@ public class ExpressionInOCLImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				return getBody();
-			case PivotPackage.EXPRESSION_IN_OCL__EXPRESSION_IN_OCL:
-				return getExpressionInOCL();
-			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				return getLanguage();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
 				return getContextVariable();
+			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
+				return getLanguage();
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 				return getParameterVariable();
 			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
@@ -388,18 +438,15 @@ public class ExpressionInOCLImpl
 				getBody().clear();
 				getBody().addAll((Collection<? extends String>)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__EXPRESSION_IN_OCL:
-				setExpressionInOCL((ExpressionInOCL)newValue);
-				return;
-			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				getLanguage().clear();
-				getLanguage().addAll((Collection<? extends String>)newValue);
-				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				setBodyExpression((OCLExpression)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
 				setContextVariable((Variable)newValue);
+				return;
+			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
+				getLanguage().clear();
+				getLanguage().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 				getParameterVariable().clear();
@@ -451,17 +498,14 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				getBody().clear();
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__EXPRESSION_IN_OCL:
-				setExpressionInOCL((ExpressionInOCL)null);
-				return;
-			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				getLanguage().clear();
-				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				setBodyExpression((OCLExpression)null);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
 				setContextVariable((Variable)null);
+				return;
+			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
+				getLanguage().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 				getParameterVariable().clear();
@@ -502,14 +546,12 @@ public class ExpressionInOCLImpl
 				return templateParameter != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				return body != null && !body.isEmpty();
-			case PivotPackage.EXPRESSION_IN_OCL__EXPRESSION_IN_OCL:
-				return expressionInOCL != null;
-			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				return language != null && !language.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
 				return contextVariable != null;
+			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
+				return language != null && !language.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 				return parameterVariable != null && !parameterVariable.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
@@ -518,14 +560,18 @@ public class ExpressionInOCLImpl
 		return eDynamicIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitExpressionInOCL(this);
 	}
-
-	@Override
-	public @NonNull ExpressionInOCL getExpressionInOCL() {
-		return this;
-	}
-
 } //ExpressionInOCLImpl

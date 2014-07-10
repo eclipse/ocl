@@ -93,7 +93,7 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testTupleType_Conformance() {
-		assertSemanticErrorQuery("let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", OCLMessages.UnresolvedProperty_ERROR_, "a", "OclAny");
+		assertSemanticErrorQuery("let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", OCLMessages.UnresolvedProperty_ERROR_, "OclAny", "a");
 		assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(a:UnlimitedNatural)).a");
 // BUG 440453		assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(b:UnlimitedNatural)).b");
 //
@@ -133,8 +133,8 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 3, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
 		assertQueryEquals(null, "3", "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.a");
 		assertQueryEquals(null, 3.1, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a");
-		assertSemanticErrorQuery("Tuple{}.a", "missing EOF at ''{''");
-		assertSemanticErrorQuery("Tuple{a = 3, b = '4'}.c", OCLMessages.UnresolvedProperty_ERROR_, "c", "Tuple(a:UnlimitedNatural,b:String)");
+		assertSemanticErrorQuery("Tuple{}.a", "no viable alternative at ''{''");
+		assertSemanticErrorQuery("Tuple{a = 3, b = '4'}.c", OCLMessages.UnresolvedProperty_ERROR_, "Tuple(a:UnlimitedNatural,b:String)", "c");
 // FIXME Duplicate parts warning		assertQueryEquals(null, 3, "Tuple{a = 1, a = 1}.a");
 	}
 }

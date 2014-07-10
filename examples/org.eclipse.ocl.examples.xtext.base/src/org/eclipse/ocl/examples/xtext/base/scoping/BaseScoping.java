@@ -82,7 +82,7 @@ public class BaseScoping
 		@Override
 		public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
 			@SuppressWarnings("null") @NonNull String messageTemplate = OCLMessages.UnresolvedType_ERROR_;
-			return CS2Pivot.getMessageBinder().bind(context, messageTemplate, linkText);
+			return CS2Pivot.getMessageBinder().bind(context, messageTemplate, "", linkText);
 		}
 	}
 }

@@ -329,7 +329,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 
 	@Override
 	public @Nullable Iteration2Java getIterationHelper(@NonNull Iteration asIteration) {
-		LibraryIteration libraryIteration = (LibraryIteration) asIteration.getImplementation();
+		LibraryIteration libraryIteration = (LibraryIteration) metaModelManager.getImplementation(asIteration);
 		if (asIteration.getOwnedIterator().size() != 1) {
 			return null;
 		}

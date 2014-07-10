@@ -237,6 +237,10 @@ public class UMLOCLEValidator implements EValidator
 			}
 		}
 	}
+
+	public static void setOCL(@NonNull Map<Object, Object> context, @NonNull OCL ocl) {
+		context.put(WeakOCLReference.class, new WeakOCLReference(ocl));
+	}
 	
 	protected final boolean mayUseNewLines;
 
@@ -298,21 +302,24 @@ public class UMLOCLEValidator implements EValidator
 								gatherTypes(allClassifiers, allConstraints, stereotype);
 								for (DomainConstraint constraint : allConstraints) {
 									DomainExpression specification = constraint.getSpecification();
-									if (specification instanceof org.eclipse.ocl.examples.pivot.OpaqueExpression) {
-										ExpressionInOCL asExpression = ((org.eclipse.ocl.examples.pivot.OpaqueExpression)specification).getExpressionInOCL();						
-										if (asExpression != null) {
-											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, asExpression);
+									if (specification instanceof org.eclipse.ocl.examples.pivot.ExpressionInOCL) {
+										try {
+											ExpressionInOCL query = metaModelManager.getQueryOrThrow((org.eclipse.ocl.examples.pivot.ExpressionInOCL)specification);
+											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, query);
 											ConstraintEvaluator<Boolean> constraintEvaluator;
 											if (diagnostics != null) {
-												constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asExpression, umlStereotypeApplication, diagnostics, eObject, mayUseNewLines);
+												constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(query, umlStereotypeApplication, diagnostics, eObject, mayUseNewLines);
 											}
 											else {
-												constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asExpression);
+												constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(query);
 											}
 											if (!constraintEvaluator.evaluate(evaluationVisitor) && (diagnostics == null)) {
 												allOk = false;
 											}
-										}
+										} catch (ParserException e) {
+											// TODO Auto-generated catch block
+//											e.printStackTrace();
+										}						
 									}
 								}
 							}
@@ -475,11 +482,11 @@ public class UMLOCLEValidator implements EValidator
 	 */
 	protected boolean validateSyntax(final @Nullable EObject instance, @NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
 		OCL ocl = getOCL(context);
-		ExpressionInOCL asExpression = null;
+		ExpressionInOCL asQuery = null;
 		try {
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			org.eclipse.ocl.examples.pivot.OpaqueExpression asElement = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.OpaqueExpression.class, opaqueElement);
-			if (asElement == null) {
+			org.eclipse.ocl.examples.pivot.ExpressionInOCL asSpecification = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.ExpressionInOCL.class, opaqueElement);
+			if (asSpecification == null) {
 				if (diagnostics != null) {
 					String objectLabel = DomainUtil.getLabel(opaqueElement);
 					String message = DomainUtil.bind("No pivot for {0}", objectLabel);
@@ -491,7 +498,7 @@ public class UMLOCLEValidator implements EValidator
 				}
 				return false;
 			}
-			asExpression = asElement.getValidExpressionInOCL();
+			asQuery = metaModelManager.getQueryOrThrow(asSpecification);
 		} catch (ParserException e) {
 			if (diagnostics != null) {
 				String objectLabel = DomainUtil.getLabel(opaqueElement);
@@ -505,13 +512,13 @@ public class UMLOCLEValidator implements EValidator
 			return false;
 		}
 		if (instance != null) {
-			EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(instance, asExpression);
+			EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(instance, asQuery);
 			ConstraintEvaluator<Boolean> constraintEvaluator;
 			if (diagnostics != null) {
-				constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asExpression, instance, diagnostics, instance, mayUseNewLines);
+				constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asQuery, instance, diagnostics, instance, mayUseNewLines);
 			}
 			else {
-				constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asExpression);
+				constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asQuery);
 			}
 			return constraintEvaluator.evaluate(evaluationVisitor);
 		}

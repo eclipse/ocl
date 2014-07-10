@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -68,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.types.TypesPackage;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
@@ -114,6 +116,25 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		}
 		adapter = new Outer(resource, metaModelManager);
 		return adapter;
+	}
+
+	public static @Nullable String getBody(@NonNull OpaqueExpression opaqueExpression) {
+		List<String> bodies = opaqueExpression.getBodies();
+		List<String> languages = opaqueExpression.getLanguages();
+		int bodiesSize = bodies.size();
+		int languagesSize = languages.size();
+		int i = 0;
+		for ( ; i < languagesSize; i++) {
+			if (PivotConstants.OCL_LANGUAGE.equals(languages.get(i))) {
+				break;
+			}
+		}
+		if (i < bodiesSize) {
+			return bodies.get(i);
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**
@@ -588,7 +609,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 //						errors = new ArrayList<Resource.Diagnostic>();
 //					}
 //					errors.add(new XMIException("Failed to load '" + pivotURI + "' : " + e.getMessage()));
-					throw new ParserException("Failed to load '" + pivotURI + "' : " + e.getMessage(), e);
+					throw new ParserException(e, "Failed to load '" + pivotURI + "' : " + e.getMessage());
 				}
 				if (errors != null) {
 					asResource.getErrors().addAll(errors);
@@ -838,6 +859,18 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 	public abstract void addTypeExtension(@NonNull TypeExtension asTypeExtension);
 
+	public void copyModelElement(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+		setOriginalMapping(pivotElement, umlElement);
+	}
+
+	public void copyNamedElement(@NonNull NamedElement pivotElement, @NonNull org.eclipse.uml2.uml.NamedElement umlNamedElement) {
+		copyModelElement(pivotElement, umlNamedElement);
+		String name = umlNamedElement.getName();
+		pivotElement.setName(name);
+//		copyAnnotatedElement(pivotElement, umlNamedElement, null);
+//		copyComments(pivotElement, umlNamedElement);
+	}
+
 	protected @NonNull URI createPivotURI() {
 		URI uri = umlResource.getURI();
 		if (uri == null) {
@@ -956,7 +989,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		pivotAnnotation.getOwnedDetail().add(pivotDetail);
 	} */
 
-	protected <T extends Element> T refreshElement(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull EObject umlElement) {
+	protected @NonNull <T extends Element> T refreshElement(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull EObject umlElement) {
 		assert pivotEClass != null;
 		EFactory eFactoryInstance = pivotEClass.getEPackage().getEFactoryInstance();
 		EObject pivotElement = eFactoryInstance.create(pivotEClass);
@@ -980,6 +1013,40 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		T castElement = (T) pivotElement;
 		castElement.setName(umlNamedElement.getName());
 		return castElement;
+	}
+
+	public ExpressionInOCL refreshOpaqueExpression(@NonNull org.eclipse.uml2.uml.OpaqueExpression umlExpression) {
+		ExpressionInOCL pivotElement = refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlExpression);
+		pivotElement.getBody().clear();
+		pivotElement.getLanguage().clear();
+		List<String> umlBodies = umlExpression.getBodies();
+		List<String> umlLanguages = umlExpression.getLanguages();
+		for (int i = 0; i < umlBodies.size(); i++) {
+			String asLanguage = PivotConstants.OCL_LANGUAGE;
+			if (i < umlLanguages.size()) {		// languages are optional, with defaults implementation defined ==> OCL
+				String umlLanguage = umlLanguages.get(i);
+				if ((umlLanguage != null) && (umlLanguage.length() > 0)) {
+					asLanguage = umlLanguage;
+				}
+			}
+			pivotElement.getLanguage().add(asLanguage);
+			String umlBody = umlBodies.get(i);
+			if ((umlBody != null) && asLanguage.equals(PivotConstants.OCL_LANGUAGE)) {
+				EObject eContainer = umlExpression.eContainer();
+				if (eContainer instanceof org.eclipse.uml2.uml.Constraint) {
+					EObject eContainerContainer = eContainer.eContainer();
+					if (eContainerContainer instanceof org.eclipse.uml2.uml.Operation) {
+						org.eclipse.uml2.uml.Operation umlOperation = (org.eclipse.uml2.uml.Operation)eContainerContainer;
+						if (umlOperation.getBodyCondition() == eContainer) {
+							umlBody = PivotUtil.getBodyExpression(umlBody);
+						}
+					}
+				}
+			}
+			pivotElement.getBody().add(umlBody);
+		}
+		copyNamedElement(pivotElement, umlExpression);
+		return pivotElement;
 	}
 
 	/**

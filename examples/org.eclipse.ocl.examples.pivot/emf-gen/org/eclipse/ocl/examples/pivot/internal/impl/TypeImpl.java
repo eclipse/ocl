@@ -1242,9 +1242,14 @@ public class TypeImpl
 		return false;
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		DomainInheritance inheritance = getInheritance(standardLibrary);
-		return inheritance.lookupImplementation(standardLibrary, staticOperation);
+		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
+	}
+
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		DomainInheritance inheritance = getInheritance(standardLibrary);
+		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
@@ -1274,8 +1279,6 @@ public class TypeImpl
 	{
 		/**
 		 * inv UniqueInvariantName: ownedInvariant->isUnique(name)
-		 * 
-		 * 
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

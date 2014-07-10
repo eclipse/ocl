@@ -32,13 +32,7 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EvaluationException;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.context.ClassContext;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -121,8 +115,8 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		return null;
 	}
 
-	protected ExpressionInOCL getExpressionInOCL(@NonNull ClassContext parserContext, @NonNull Constraint constraint) {
-		OpaqueExpression valueSpecification = constraint.getSpecification();
+/*	protected ExpressionInOCL getExpressionInOCL(@NonNull ClassContext parserContext, @NonNull Constraint constraint) {
+		ExpressionInOCL valueSpecification = constraint.getSpecification();
 		if (valueSpecification instanceof ExpressionInOCL) {
 			return (ExpressionInOCL) valueSpecification;
 		}
@@ -139,22 +133,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			}
 		}
 		return null;
-	}
-
-	protected ExpressionInOCL getExpressionInOCL(@NonNull ClassContext parserContext, @NonNull OpaqueExpression specification) {
-		if (specification instanceof ExpressionInOCL) {
-			return (ExpressionInOCL) specification;
-		}
-		try {
-			String expression = PivotUtil.getBody(specification);
-			if (expression != null) {
-				return parserContext.parse(specification.eContainer(), expression);
-			}
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e);
-		}
-		return null;
-	}
+	} */
 
 	private boolean hasDelegateAnnotation(@NonNull E eObject, @NonNull EPackage ePackage, @NonNull String uri) {
 		if (eObject.getEAnnotation(uri) != null) {

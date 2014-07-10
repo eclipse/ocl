@@ -43,17 +43,17 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
 		assertQueryResults(null, "Set{}", "ocl::Package.allInstances()");
 		assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
-		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Metaclass(Integer)");
-		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Metaclass(String)");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Metaclass(Set(Integer))");
-		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Metaclass(Tuple(a:Integer))");
-		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Metaclass(OclAny)");
-		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "UnlimitedNatural");
-//		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Boolean");
+		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Integer)", "allInstances");
+		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(String)", "allInstances");
+		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Set(Integer))", "allInstances");
+		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(Tuple(a:Integer))", "allInstances");
+		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Metaclass(OclAny)", "allInstances");
+		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "allInstances");
+//		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Boolean", "allInstances");
 		assertQueryInvalid(null, "true.allInstances()");
 //		assertQueryResults(null, "Set{true,false}", "true.allInstances()");
-		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set(UnlimitedNatural)");
-		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer)");
+		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Set(UnlimitedNatural)", "allInstances");
+		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "Tuple(a:Integer)", "allInstances");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
 	}
 	
@@ -77,13 +77,13 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the oclContainer() operator.
 	 */
 	public void test_oclContainer() {
-		assertSemanticErrorQuery("invalid.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "OclInvalid");
+		assertSemanticErrorQuery("invalid.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "OclInvalid", "oclContainer");
 		assertQueryInvalid(pkg2, "let s : OclElement = invalid in s.oclContainer()");
-		assertSemanticErrorQuery("null.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "OclVoid");
+		assertSemanticErrorQuery("null.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "OclVoid", "oclContainer");
 		assertQueryInvalid(pkg2, "let s : OclElement = null in s.oclContainer()");
 		assertQueryResults(root, "null", "oclContainer()");
 		assertQueryEquals(pkg2, pkg1, "oclContainer()");
-		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural");
+		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "oclContainer");
 	}
 	
 	/**
@@ -92,13 +92,13 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	public void test_oclContents() {
     	@SuppressWarnings("null") @NonNull Type packageType = metaModelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
-		assertSemanticErrorQuery("invalid.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "OclInvalid");
+		assertSemanticErrorQuery("invalid.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "OclInvalid", "oclContents");
 		assertQueryInvalid(pkg2, "let s : OclElement = invalid in s.oclContents()");
-		assertSemanticErrorQuery("null.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "OclVoid");
+		assertSemanticErrorQuery("null.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "OclVoid", "oclContents");
 		assertQueryInvalid(pkg2, "let s : OclElement = null in s.oclContents()");
 		assertQueryEquals(pkg1, idResolver.createSetOfEach(typeId, bob, pkg2, pkg3), "oclContents()");
 		assertQueryEquals(pkg2, idResolver.createSetOfEach(typeId, jim), "oclContents()");
 		assertQueryEquals(george, idResolver.createSetOfEach(typeId), "oclContents()");
-		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural");
+		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "UnlimitedNatural", "oclContents");
 	}
 }

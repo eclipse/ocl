@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
  * Exception indicating a semantic error in parsing or validating OCL
@@ -19,9 +19,8 @@ import org.eclipse.emf.common.util.Diagnostic;
  * 
  * @author Christian Vogt (cvogt)
  */
-public class SemanticException
-	extends ParserException {
-
+public class SemanticException extends ParserException
+{
 	private static final long serialVersionUID = -7995837682564930748L;
 
     /**
@@ -33,24 +32,7 @@ public class SemanticException
 	public SemanticException(String msg) {
 		super(msg);
 	}
-	
-    /**
-     * Initializes me with a message and an exception that caused the parse
-     * failure.
-     * 
-     * @param msg my user-friendly message
-     * @param cause the cause of the parse failure
-     */
-	public SemanticException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-	
-	/**
-	 * Initializes me with a diagnostic obtained from a problem handler.
-	 * 
-	 * @param problem the diagnostic
-	 */
-	public SemanticException(Diagnostic problem) {
-		super(problem);
+	public SemanticException(String messageTemplate, Object... bindings) {
+		super(null, DomainUtil.bind(messageTemplate, bindings));
 	}
 }

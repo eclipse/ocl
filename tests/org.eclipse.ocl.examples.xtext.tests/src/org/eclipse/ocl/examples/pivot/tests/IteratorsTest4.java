@@ -354,7 +354,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownAttribute",
-        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set(Package)");
+        	OCLMessages.UnresolvedProperty_ERROR_, "Set(Package)", "unknownAttribute");
    }
 
     /**
@@ -365,7 +365,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set(Package)", "self");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", "self");
    }
 
     /**
@@ -864,35 +864,35 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "exists", "Sequence(String)", "e1, e2, e3| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "exists", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "forAll", "Sequence(String)", "e1, e2, e3| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "forAll", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "collect", "Sequence(String)", "e1, e2| Tuple{a : String = e1, b : String = e2}");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "collect", "e1, e2| Tuple{a : String = e1, b : String = e2}");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "any", "Sequence(String)", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "any", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "one", "Sequence(String)", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "one", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "select", "Sequence(String)", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "select", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "reject", "Sequence(String)", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "reject", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "isUnique", "Sequence(String)", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Sequence(String)", "isUnique", "e1, e2| e1 = e2");
     }
 
 	/**
@@ -903,7 +903,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	Type context = metaModelManager.getPivotType("Package");
     	Type type = metaModelManager.getPivotType("Type");
      	assertValidationErrorQuery("ownedType->sortedBy(e | e)",
-        	OCLMessages.UnresolvedOperation_ERROR_, LibraryConstants.COMPARE_TO, type + "");
+        	OCLMessages.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        
     	assertQuery(context, "ownedType->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);

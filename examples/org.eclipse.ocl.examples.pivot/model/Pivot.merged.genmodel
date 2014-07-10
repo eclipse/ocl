@@ -306,6 +306,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/profileApplication"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedInstances"/>
+      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Package/nsPrefix"/>
       </genFeatures>
@@ -350,15 +353,24 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//OpaqueExpression"/>
+      <ecoreClass href="Pivot.ecore#//ExpressionInOCL"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//OpaqueExpression/body"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//ExpressionInOCL/body"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//OpaqueExpression/language"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//ExpressionInOCL/language"/>
       </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//OpaqueExpression/expressionInOCL"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/bodyExpression"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/contextVariable"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/resultVariable"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/parameterVariable"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
@@ -389,21 +401,6 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypedElement/isRequired"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//ExpressionInOCL"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/bodyExpression"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/contextVariable"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/resultVariable"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ExpressionInOCL/parameterVariable"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
@@ -746,6 +743,33 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//InstanceSpecification"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//InstanceSpecification/slots"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//InstanceSpecification/type"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//InstanceSpecification/specification"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//InstanceSpecification/package"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//Slot"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Slot/values"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Slot/definingProperty"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Slot/owningInstance"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//TypeTemplateParameter"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypeTemplateParameter/allowSubstitutable"/>
@@ -927,6 +951,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//DynamicProperty/default"/>
       </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//DynamicValueSpecification"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//EnumLiteralExp"/>

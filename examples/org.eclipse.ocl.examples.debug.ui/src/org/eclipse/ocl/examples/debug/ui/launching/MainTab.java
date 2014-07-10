@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -306,14 +306,15 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 				oclPath.setText(oclNonASURI.toString());
 				EObject eObject = getMetaModelManager().getASResourceSet().getEObject(constraintURI, true);
 				if (eObject instanceof Constraint) {
-					OpaqueExpression specification = ((Constraint) eObject).getSpecification();
-					ExpressionInOCL expressionInOCL = specification.getExpressionInOCL();
-					if (expressionInOCL != null) {
-						String displayString = getDisplayString(expressionInOCL);
-						int index = expressionCombo.indexOf(displayString);
-						expressionCombo.select(index);
+					ExpressionInOCL specification = ((Constraint) eObject).getSpecification();
+					if (specification != null) {
+						try {
+							ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);
+							String displayString = getDisplayString(query);
+							int index = expressionCombo.indexOf(displayString);
+							expressionCombo.select(index);
+						} catch (ParserException e) {}
 					}
-
 				}
 			}
 			else {

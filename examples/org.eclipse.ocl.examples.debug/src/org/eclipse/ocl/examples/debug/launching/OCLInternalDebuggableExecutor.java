@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.launching.InternalDebuggableExecutor;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.ParserException;
 
 /**
  * Internal transformation executor
@@ -32,7 +33,7 @@ public class OCLInternalDebuggableExecutor extends InternalDebuggableExecutor
 		this.evaluationContext = evaluationContext;
 	}
 
-	protected @NonNull OCLVMEvaluator createEvaluator() throws IOException {
+	protected @NonNull OCLVMEvaluator createEvaluator() throws IOException, ParserException {
 		ExpressionInOCL expressionObject = evaluationContext.getExpressionObject();
 		if (expressionObject != null) {
 			return new OCLVMEvaluator((OCLVMEnvironmentFactory) envFactory, expressionObject, evaluationContext.getContextObject());

@@ -279,21 +279,37 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public boolean isUnique() {
 		return (flags & UNIQUE) != 0;
 	}
-
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		getDepth();
-		DomainInheritance staticInheritance = staticOperation.getInheritance(standardLibrary);
-		int staticDepth = DomainUtil.nonNullModel(staticInheritance).getDepth();
-		if (staticDepth+1 < getIndexes()) {				// null and invalid may fail here
-			int iMax = getIndex(staticDepth+1);
-			for (int i = getIndex(staticDepth); i < iMax; i++) {
+		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
+		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
+		if (apparentDepth+1 < getIndexes()) {				// null and invalid may fail here
+			int iMax = getIndex(apparentDepth+1);
+			for (int i = getIndex(apparentDepth); i < iMax; i++) {
 				DomainFragment fragment = getFragment(i);
-				if (fragment.getBaseInheritance() == staticInheritance) {
-					return fragment.getImplementation(staticOperation);
+				if (fragment.getBaseInheritance() == apparentInheritance) {
+					DomainOperation actualOperation = fragment.getActualOperation(apparentOperation);
+					return actualOperation;
 				}
 			}
 		}
-		LibraryFeature implementation = staticOperation.getImplementation();	// invoke static op for null and invalid
+		return apparentOperation;	// invoke apparent op for null and invalid
+	}
+
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		getDepth();
+		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
+		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
+		if (apparentDepth+1 < getIndexes()) {				// null and invalid may fail here
+			int iMax = getIndex(apparentDepth+1);
+			for (int i = getIndex(apparentDepth); i < iMax; i++) {
+				DomainFragment fragment = getFragment(i);
+				if (fragment.getBaseInheritance() == apparentInheritance) {
+					return fragment.getImplementation(apparentOperation);
+				}
+			}
+		}
+		LibraryFeature implementation = apparentOperation.getImplementation();	// invoke apparent op for null and invalid
 		if (implementation == null) {
 			implementation = UnsupportedOperation.INSTANCE;
 		}

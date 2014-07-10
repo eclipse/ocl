@@ -44,7 +44,8 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 {
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull URI uri;
-	
+	protected @Nullable Element rootElement = null;
+
 	protected AbstractParserContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri) {
 		this.metaModelManager = metaModelManager;
 		if (uri != null) {
@@ -104,6 +105,10 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		return metaModelManager;
 	}
 
+	public @Nullable Element getRootElement() {
+		return rootElement;
+	}
+
 	public void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression) {
 		List<String> language = expression.getLanguage();
 		language.clear();
@@ -137,5 +142,9 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 				AbstractMetaModelManagerResourceAdapter.disposeAll(resource);
 			}
 		}
+	}
+	
+	public void setRootElement(@Nullable Element rootElement) {
+		this.rootElement = rootElement;
 	}
 }

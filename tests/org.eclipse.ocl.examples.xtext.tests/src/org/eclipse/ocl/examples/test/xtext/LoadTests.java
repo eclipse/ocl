@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -457,7 +456,7 @@ public class LoadTests extends XtextTestCase
 		specification = ocl.getSpecification(constraint);
 		constraint.setSpecification(specification);
 		if (specification != null) {
-			OpaqueExpression specification2 = constraint.getSpecification();
+			ExpressionInOCL specification2 = constraint.getSpecification();
 			List<String> bodies = specification2.getBody();
 			if ((bodies != null) && (bodies.size() > 0)) {
 				List<String> languages = specification2.getLanguage();

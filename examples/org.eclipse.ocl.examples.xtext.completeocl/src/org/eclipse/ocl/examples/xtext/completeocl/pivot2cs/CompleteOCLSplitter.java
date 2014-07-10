@@ -28,9 +28,9 @@ import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -49,22 +49,22 @@ public class CompleteOCLSplitter
 {
 	public static @Nullable ASResource separate(@NonNull MetaModelManager metaModelManager, @NonNull Resource resource) {
 		List<Constraint> allConstraints = new ArrayList<Constraint>();
-		List<OpaqueExpression> allOpaqueExpressions = new ArrayList<OpaqueExpression>();
+		List<ExpressionInOCL> allExpressionInOCLs = new ArrayList<ExpressionInOCL>();
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof Constraint) {
 				allConstraints.add((Constraint) eObject);
 			}
 			else if (eObject instanceof Operation) {
-				OpaqueExpression bodyExpression = ((Operation)eObject).getBodyExpression();
+				ExpressionInOCL bodyExpression = ((Operation)eObject).getBodyExpression();
 				if (bodyExpression != null) {
-					allOpaqueExpressions.add(bodyExpression);
+					allExpressionInOCLs.add(bodyExpression);
 				}
 			}
 			else if (eObject instanceof Property) {
-				OpaqueExpression bodyExpression = ((Property)eObject).getDefaultExpression();
+				ExpressionInOCL bodyExpression = ((Property)eObject).getDefaultExpression();
 				if (bodyExpression != null) {
-					allOpaqueExpressions.add(bodyExpression);
+					allExpressionInOCLs.add(bodyExpression);
 				}
 			}
 			else if (eObject instanceof Annotation) {
@@ -83,7 +83,7 @@ public class CompleteOCLSplitter
 			for (Constraint constraint : allConstraints) {
 				separator.doSwitch(constraint);
 			}
-			for (OpaqueExpression opaqueExpression : allOpaqueExpressions) {
+			for (ExpressionInOCL opaqueExpression : allExpressionInOCLs) {
 				separator.doSwitch(opaqueExpression);
 			}
 			metaModelManager.installResource(oclResource);
@@ -119,7 +119,7 @@ public class CompleteOCLSplitter
 		}
 
 		@Override
-		public EObject caseOpaqueExpression(OpaqueExpression object) {
+		public EObject caseExpressionInOCL(ExpressionInOCL object) {
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
 			if (separateParent instanceof Operation) {

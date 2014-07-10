@@ -46,8 +46,10 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
@@ -55,7 +57,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.ConstraintEvaluator;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * EcoreOCLEValidator provides the validation support for Ecore elements that exploit OCL.
@@ -549,7 +550,11 @@ public class EcoreOCLEValidator implements EValidator
 		try {
 			NamedElement asNamedElement = metaModelManager.getPivotOf(NamedElement.class, eNamedElement);
 			if (asNamedElement != null) {
-				ExpressionInOCL expressionInOCL = PivotUtil.getValidExpressionInOCL(asNamedElement, expression);
+				ParserContext parserContext = metaModelManager.getParserContext(asNamedElement);
+				if (parserContext == null) {
+					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, EcoreUtils.qualifiedNameFor(asNamedElement), PivotConstants.OWNED_RULE_ROLE);
+				}
+				ExpressionInOCL expressionInOCL = parserContext.parse(asNamedElement, expression);
 				Type asExpressionType = expressionInOCL.getType();
 				Type asType;
 				if (requiredType != null) {
@@ -592,4 +597,29 @@ public class EcoreOCLEValidator implements EValidator
 		}
 		return true;
 	}
+
+	/**
+	 * Return an OCL AST from a string in the context of a NamedElement. If it is necessary
+	 * to parse OCL concrete syntax and errors result, a ParserException is thrown.
+	 *
+	public static @NonNull ExpressionInOCL getValidExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull NamedElement contextElement, @NonNull String expression) throws ParserException {
+//			Resource resource = contextElement.eResource();
+//			if (resource == null) {
+//				throw new ParserException("No containing resource for " + contextElement);
+//			}
+//			ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
+//			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+			ParserContext parserContext = metaModelManager.getParserContext(contextElement);
+			if (parserContext == null) {
+				throw new ParserException(OCLMessages.UnknownContextType_ERROR_, EcoreUtils.qualifiedNameFor(contextElement), PivotConstants.UNKNOWN_ROLE/*getSpecificationRole(specification)* /);
+			}
+//			Namespace contextElement2 = PivotUtil.getContainingNamespace(contextElement);
+//			if (contextElement == null) {
+//				throw new ParserException("No containing namespace for " + contextElement);
+//			}
+			Type classContext = parserContext.getClassContext();
+//			assert classContext == contextElement2;
+			ExpressionInOCL expressionInOCL = parserContext.parse(classContext, expression);
+			return expressionInOCL;
+	} */
 }

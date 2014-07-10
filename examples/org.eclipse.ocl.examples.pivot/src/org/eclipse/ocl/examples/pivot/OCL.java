@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.QueryImpl;
 
 /**
@@ -195,8 +194,8 @@ public class OCL {
 	 * @see #evaluate(Object, ExpressionInOCL)
 	 */
 	public boolean check(Object context, @NonNull Constraint constraint) {
-		OpaqueExpression specification =  constraint.getSpecification();
-		return (specification instanceof ExpressionInOCL) && check(context, (ExpressionInOCL)specification);
+		ExpressionInOCL specification =  constraint.getSpecification();
+		return (specification != null) && check(context, specification);
 	}
 
 	/**
@@ -323,8 +322,9 @@ public class OCL {
 	 * 
 	 * @see #createQuery(ExpressionInOCL)
 	 */
-	public @NonNull Query createQuery(@NonNull ExpressionInOCL specification) {
-		return new QueryImpl(this, specification);
+	public @NonNull Query createQuery(@NonNull ExpressionInOCL query) {
+		DomainUtil.nonNullState(query.getBodyExpression());
+		return new QueryImpl(this, query);
 	}
 
 	/**
@@ -341,17 +341,14 @@ public class OCL {
 	 *            the OCL constraint
 	 * 
 	 * @return the new query object
+	 * @throws ParserException 
 	 * 
 	 * @see #createQuery(ExpressionInOCL)
 	 */
-	public Query createQuery(@NonNull Constraint constraint) {
-		OpaqueExpression specification = constraint.getSpecification();
-		if (specification instanceof ExpressionInOCL) {
-			return new QueryImpl(this, (ExpressionInOCL) specification);
-		}
-		else {
-			return null;
-		}
+	public Query createQuery(@NonNull Constraint constraint) throws ParserException {
+		ExpressionInOCL specification = DomainUtil.nonNullState(constraint.getSpecification());
+		ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);
+		return new QueryImpl(this, query);
 	}
 
 	/**
@@ -510,27 +507,32 @@ public class OCL {
 	 * that may be encountered.
 	 */
 	public @Nullable ExpressionInOCL getSpecification(@NonNull Constraint constraint) throws ParserException {
-		OpaqueExpression specification = constraint.getSpecification();
-		ExpressionInOCL expressionInOCL = null;
-		if (specification instanceof ExpressionInOCL) {
-			expressionInOCL = (ExpressionInOCL)specification;
+		ExpressionInOCL specification = constraint.getSpecification();
+		if (specification == null) {
+			return null;
 		}
-		else if (specification != null){
+		else if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {
+			return null;
+		}
+		else {
+			return getMetaModelManager().getQueryOrThrow(specification);
+		}
+/*		ExpressionInOCL expressionInOCL = null;
+		if (specification != null) {
 			String expression = PivotUtil.getBody(specification);
 		    if (expression != null) {
 		    	NamedElement contextElement = constraint.getContext();
 				if (contextElement != null) {
 					OCLHelper helper = createOCLHelper(contextElement);
 					if (contextElement instanceof Operation) {
-						expressionInOCL = helper
-							.createBodyCondition(expression);
+						expressionInOCL = helper.createBodyCondition(expression);
 					} else {
 						expressionInOCL = helper.createQuery(expression);
 					}
 				}
 		    }
 		}
-		return expressionInOCL;
+		return expressionInOCL; */
 	}
 
 	/**

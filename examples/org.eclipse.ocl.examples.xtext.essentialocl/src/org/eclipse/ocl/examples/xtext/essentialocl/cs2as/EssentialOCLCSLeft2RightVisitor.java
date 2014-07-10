@@ -975,10 +975,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 			String boundMessage;
 			if (s.length() > 0) {
-				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, csOperator, sourceType, s.toString());
+				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator, s.toString());
 			}
 			else {
-				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, csOperator, sourceType);
+				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator);
 			}
 //			context.addBadExpressionError(csOperator, boundMessage);
 			context.addDiagnostic(csOperator, boundMessage);

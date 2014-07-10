@@ -17,13 +17,20 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Expression In Ocl</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainExpression
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOCL#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOCL#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOCL#getContextVariable <em>Context Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOCL#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOCL#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOCL#getResultVariable <em>Result Variable</em>}</li>
  * </ul>
@@ -33,7 +40,21 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface ExpressionInOCL
-		extends OpaqueExpression {
+		extends ValueSpecification, org.eclipse.ocl.examples.domain.elements.DomainExpression {
+
+	/**
+	 * Returns the value of the '<em><b>Body</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The text of the expression, possibly in multiple languages.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Body</em>' attribute list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOCL_Body()
+	 * @generated
+	 */
+	List<String> getBody();
 
 	/**
 	 * Returns the value of the '<em><b>Body Expression</b></em>' containment reference.
@@ -84,6 +105,20 @@ public interface ExpressionInOCL
 	 * @generated
 	 */
 	void setContextVariable(Variable value);
+
+	/**
+	 * Returns the value of the '<em><b>Language</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Language</em>' attribute list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOCL_Language()
+	 * @generated
+	 */
+	List<String> getLanguage();
 
 	/**
 	 * Returns the value of the '<em><b>Result Variable</b></em>' containment reference.

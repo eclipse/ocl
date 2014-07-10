@@ -93,7 +93,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 4/2+5*3, "4/2 + let a : Integer = 5 in a * 3");
 		assertQueryEquals(null, 4/2+3*5*7, "4/2 + (let a : Integer = 5 in 3 * (let b : Integer = 7 in a * b))");
 		assertSemanticErrorQuery("4/2 + (let a : Integer = 5 in 3) * (let b : Integer = 7 in a * b)",
-			OCLMessages.UnresolvedProperty_ERROR_, "a", "");
+			OCLMessages.UnresolvedProperty_ERROR_, "", "a");
 		assertQueryEquals(null, 4/2+3*5*7, "4/2 + let a : Integer = 5 in 3 * let b : Integer = 7 in a * b");
 		assertQueryEquals(null, (64.0 / 16) / (8 / 4), "(64 / 16) / (let b : Integer = 0 in 8 / (let c : Integer = 0 in 4 ))");
 		assertQueryEquals(null, (64.0 / 16) / (8 / 4), "64 / 16 / let b : Integer = 0 in 8 / let c : Integer = 0 in 4");

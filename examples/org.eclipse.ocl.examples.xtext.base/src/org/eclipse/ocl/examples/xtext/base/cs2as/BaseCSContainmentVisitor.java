@@ -27,9 +27,9 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -285,7 +285,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	public Continuation<?> visitConstraintCS(@NonNull ConstraintCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CONSTRAINT;
 		Constraint pivotElement = refreshNamedElement(Constraint.class, eClass, csElement);
-		pivotElement.setSpecification(PivotUtil.getPivot(OpaqueExpression.class, csElement.getSpecification()));
+		pivotElement.setSpecification(PivotUtil.getPivot(ExpressionInOCL.class, csElement.getSpecification()));
 		return null;
 	}
 
@@ -396,7 +396,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		context.refreshPivotList(Constraint.class, pivotElement.getPostcondition(), csElement.getOwnedPostcondition());
 		List<SpecificationCS> csBodyExpressions = csElement.getOwnedBodyExpression();
 		SpecificationCS csBodyExpression = csBodyExpressions.size() > 0 ? csBodyExpressions.get(0) : null;
-		pivotElement.setBodyExpression(PivotUtil.getPivot(OpaqueExpression.class, csBodyExpression));
+		pivotElement.setBodyExpression(PivotUtil.getPivot(ExpressionInOCL.class, csBodyExpression));
 		return null;
 	}
 
@@ -454,8 +454,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	@Override
 	public Continuation<?> visitSpecificationCS(@NonNull SpecificationCS csElement) {
-		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.OPAQUE_EXPRESSION;
-		OpaqueExpression pivotElement = context.refreshModelElement(OpaqueExpression.class, eClass, csElement);
+		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.EXPRESSION_IN_OCL;
+		ExpressionInOCL pivotElement = context.refreshModelElement(ExpressionInOCL.class, eClass, csElement);
 		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 		pivotElement.getBody().add(csElement.getExprString());
 		return null;
@@ -483,7 +483,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		}
 		List<SpecificationCS> csDefaultExpressions = csElement.getOwnedDefaultExpression();
 		SpecificationCS csDefaultExpression = csDefaultExpressions.size() > 0 ? csDefaultExpressions.get(0) : null;
-		pivotElement.setDefaultExpression(PivotUtil.getPivot(OpaqueExpression.class, csDefaultExpression));
+		pivotElement.setDefaultExpression(PivotUtil.getPivot(ExpressionInOCL.class, csDefaultExpression));
 		return null;
 	}
 

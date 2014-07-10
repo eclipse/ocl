@@ -138,6 +138,8 @@ public interface DomainStandardLibrary
      * @return the <tt>OclElement</tt> type (an instance of Class)
      */
 	@NonNull DomainType getOclElementType();
+
+	@NonNull DomainOperation getOclInvalidOperation();
 	
     /**
      * Obtains the single instance of the InvalidType metatype, named

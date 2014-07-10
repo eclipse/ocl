@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
@@ -67,7 +66,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		else if (csParent instanceof ConstraintCS) {
 			Constraint asConstraint = PivotUtil.getPivot(Constraint.class, (ConstraintCS)csParent);
 			if (asConstraint != null) {
-				OpaqueExpression asContext = asConstraint.getSpecification();
+				ExpressionInOCL asContext = asConstraint.getSpecification();
 				if (asContext instanceof ExpressionInOCL) {
 					Variable asVariable = ((ExpressionInOCL)asContext).getContextVariable();
 					if (asVariable != null) {

@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
+import org.eclipse.ocl.examples.pivot.DynamicValueSpecification;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Enumeration;
@@ -53,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.FinalState;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.Import;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -66,7 +68,6 @@ import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
@@ -91,6 +92,7 @@ import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StateMachine;
@@ -193,6 +195,7 @@ public class PivotFactoryImpl
 			case PivotPackage.DYNAMIC_ELEMENT: return (EObject)createDynamicElement();
 			case PivotPackage.DYNAMIC_PROPERTY: return (EObject)createDynamicProperty();
 			case PivotPackage.DYNAMIC_TYPE: return (EObject)createDynamicType();
+			case PivotPackage.DYNAMIC_VALUE_SPECIFICATION: return (EObject)createDynamicValueSpecification();
 			case PivotPackage.ELEMENT_EXTENSION: return (EObject)createElementExtension();
 			case PivotPackage.ENUM_LITERAL_EXP: return (EObject)createEnumLiteralExp();
 			case PivotPackage.ENUMERATION: return (EObject)createEnumeration();
@@ -201,6 +204,7 @@ public class PivotFactoryImpl
 			case PivotPackage.FINAL_STATE: return (EObject)createFinalState();
 			case PivotPackage.IF_EXP: return (EObject)createIfExp();
 			case PivotPackage.IMPORT: return (EObject)createImport();
+			case PivotPackage.INSTANCE_SPECIFICATION: return (EObject)createInstanceSpecification();
 			case PivotPackage.INTEGER_LITERAL_EXP: return (EObject)createIntegerLiteralExp();
 			case PivotPackage.INVALID_LITERAL_EXP: return (EObject)createInvalidLiteralExp();
 			case PivotPackage.INVALID_TYPE: return (EObject)createInvalidType();
@@ -214,7 +218,6 @@ public class PivotFactoryImpl
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
 			case PivotPackage.METACLASS: return (EObject)createMetaclass();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
-			case PivotPackage.OPAQUE_EXPRESSION: return (EObject)createOpaqueExpression();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return (EObject)createOperationCallExp();
 			case PivotPackage.OPERATION_TEMPLATE_PARAMETER: return (EObject)createOperationTemplateParameter();
@@ -237,6 +240,7 @@ public class PivotFactoryImpl
 			case PivotPackage.SEQUENCE_TYPE: return (EObject)createSequenceType();
 			case PivotPackage.SET_TYPE: return (EObject)createSetType();
 			case PivotPackage.SIGNAL: return (EObject)createSignal();
+			case PivotPackage.SLOT: return (EObject)createSlot();
 			case PivotPackage.STATE: return (EObject)createState();
 			case PivotPackage.STATE_EXP: return (EObject)createStateExp();
 			case PivotPackage.STATE_MACHINE: return (EObject)createStateMachine();
@@ -639,6 +643,17 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DynamicValueSpecification createDynamicValueSpecification()
+	{
+		DynamicValueSpecificationImpl dynamicValueSpecification = new DynamicValueSpecificationImpl();
+		return dynamicValueSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ElementExtension createElementExtension()
 	{
 		ElementExtensionImpl elementExtension = new ElementExtensionImpl();
@@ -802,16 +817,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpression createOpaqueExpression() {
-		OpaqueExpressionImpl opaqueExpression = new OpaqueExpressionImpl();
-		return opaqueExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Variable createVariable() {
 		VariableImpl variable = new VariableImpl();
 		return variable;
@@ -836,6 +841,17 @@ public class PivotFactoryImpl
 	{
 		ImportImpl import_ = new ImportImpl();
 		return import_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstanceSpecification createInstanceSpecification()
+	{
+		InstanceSpecificationImpl instanceSpecification = new InstanceSpecificationImpl();
+		return instanceSpecification;
 	}
 
 	/**
@@ -961,6 +977,17 @@ public class PivotFactoryImpl
 	public Signal createSignal() {
 		SignalImpl signal = new SignalImpl();
 		return signal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Slot createSlot()
+	{
+		SlotImpl slot = new SlotImpl();
+		return slot;
 	}
 
 	/**

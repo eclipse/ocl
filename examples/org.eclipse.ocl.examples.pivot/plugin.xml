@@ -155,6 +155,10 @@
       	class="org.eclipse.ocl.examples.pivot.uml.SlotLabelGenerator"/>
       <generator for="org.eclipse.ocl.examples.pivot.uml.UMLElementExtension"
       	class="org.eclipse.ocl.examples.pivot.uml.UMLElementExtensionLabelGenerator"/>
+      <generator for="org.eclipse.ocl.examples.pivot.ExpressionInOCL"
+      	class="org.eclipse.ocl.examples.pivot.utilities.ExpressionInOCLLabelGenerator"/>
+      <generator for="org.eclipse.ocl.examples.pivot.Root"
+      	class="org.eclipse.ocl.examples.pivot.utilities.RootLabelGenerator"/>
    </extension>
 
 </plugin>

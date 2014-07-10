@@ -192,8 +192,6 @@ public class CollectionLiteralExpImpl
 	{
 		/**
 		 * inv CollectionKindIsConcrete: kind <> CollectionKind::Collection
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_ne;
 		try {
@@ -224,8 +222,8 @@ public class CollectionLiteralExpImpl
 	public boolean validateSetKindIsSet(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv SetKindIsSet: kind = CollectionKind::Set implies type.oclIsKindOf (SetType)
-		 * 
+		 * inv SetKindIsSet: kind = CollectionKind::Set implies
+		 *   type.oclIsKindOf(SetType)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -334,8 +332,8 @@ public class CollectionLiteralExpImpl
 	{
 		/**
 		 * 
-		 * inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies type.oclIsKindOf (OrderedSetType)
-		 * 
+		 * inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies
+		 *   type.oclIsKindOf(OrderedSetType)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -443,9 +441,8 @@ public class CollectionLiteralExpImpl
 	public boolean validateSequenceKindIsSequence(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * 
-		 * inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies type.oclIsKindOf (SequenceType)
-		 * 
+		 * inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies
+		 *   type.oclIsKindOf(SequenceType)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
@@ -553,8 +550,8 @@ public class CollectionLiteralExpImpl
 	public boolean validateBagKindIsBag(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv BagKindIsBag: kind = CollectionKind::Bag implies type.oclIsKindOf (BagType)
-		 * 
+		 * inv BagKindIsBag: kind = CollectionKind::Bag implies
+		 *   type.oclIsKindOf(BagType)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {

@@ -57,8 +57,8 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -554,9 +554,11 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (eAnnotation != null) {
 			value = eAnnotation.getDetails().get("body");
 		}
-		OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOCL
-		specification.getBody().add(value);
-		specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
+		ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
+		if (value != null) {
+			specification.getBody().add(value);
+			specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
+		}
 		constraint.setSpecification(specification);
 		String commentBody = EcoreUtil.getAnnotation(eOperation, PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE, PivotConstants.DOCUMENTATION_ANNOTATION_KEY);
 		if (commentBody != null) {
@@ -634,7 +636,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					converter.error("Unsupported operation constraint " + key);
 					continue;
 				}
-				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOCL
+				ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
 				specification.getBody().add(value);
 				specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 //				constraint.setExprString(entry.getValue());
@@ -776,7 +778,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			}				
 			if (bestEntry != null) {
 				String value = bestEntry.getValue();
-				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOCL
+				ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
 				specification.getBody().add(value);
 				specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 //					constraint.setExprString(entry.getValue());
@@ -894,7 +896,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				String messageAnnotationDetailSuffix = PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
 				if (!invariantName.endsWith(messageAnnotationDetailSuffix)) {
 					Constraint invariant = null;
-					OpaqueExpression specification = null;
+					ExpressionInOCL specification = null;
 					if (oldInvariantMap != null) {
 						invariant = oldInvariantMap.get(invariantName);
 					}
@@ -905,12 +907,12 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					else {
 						specification = invariant.getSpecification();
 					}
-					OpaqueExpression expression;
+					ExpressionInOCL expression;
 					if (specification != null) {
 						expression = specification;
 					}
 					else {
-						expression = PivotFactory.eINSTANCE.createOpaqueExpression();
+						expression = PivotFactory.eINSTANCE.createExpressionInOCL();
 						invariant.setSpecification(expression);
 					}
 					String value = entry.getValue();
@@ -955,7 +957,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 							invariant = PivotFactory.eINSTANCE.createConstraint();
 							invariant.setName(invariantName);
 						}
-						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
+						ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
 						invariant.setSpecification(specification);
 						if (newInvariants == null) {
 							newInvariants = new ArrayList<Constraint>();

@@ -118,10 +118,15 @@ public class JavaType extends AbstractType
 		return this == thatType;
 	}
 
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		DomainInheritance inheritance = getInheritance(standardLibrary);
+		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
+	}
+
 	@NonNull
-	public LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
+	public LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
 		DomainInheritance inheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
-		return inheritance.lookupImplementation(standardLibrary, staticOperation);
+		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 
 	@Override

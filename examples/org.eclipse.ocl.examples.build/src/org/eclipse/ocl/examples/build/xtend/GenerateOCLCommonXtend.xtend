@@ -326,7 +326,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 							operation.setIsValidating(true);
 						«ENDIF»
 						«IF operation.bodyExpression != null»
-							operation.setBodyExpression(createOpaqueExpression(«operation.type.getSymbolName()», "«operation.bodyExpression.javaString()»"));
+							operation.setBodyExpression(createExpressionInOCL(«operation.type.getSymbolName()», "«operation.bodyExpression.javaString()»"));
 						«ENDIF»
 						«IF operation.ownedParameter.size() > 0»
 							ownedParameters = operation.getOwnedParameter();

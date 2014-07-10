@@ -126,7 +126,7 @@ public class EssentialOCLScoping
 				messageTemplate = "Unresolved ModelElement ''{0}''";
 			}
 			else {
-				messageTemplate = "Unresolved ''{1}'' ''{0}''";
+				messageTemplate = "Unresolved ''{0}'' ''{1}''";
 			}
 			assert messageTemplate != null;
 			TypedElement source = null;
@@ -181,10 +181,10 @@ public class EssentialOCLScoping
 			MessageBinder messageBinder = CS2Pivot.getMessageBinder();
 			String messageText;
 			if (argumentText == null) {
-				messageText = messageBinder.bind(csContext, messageTemplate, linkText, typeText);
+				messageText = messageBinder.bind(csContext, messageTemplate, typeText, linkText);
 			}
 			else {
-				messageText = messageBinder.bind(csContext, messageTemplate, linkText, typeText, argumentText);
+				messageText = messageBinder.bind(csContext, messageTemplate, typeText, linkText, argumentText);
 			}
 			return messageText;
 		}

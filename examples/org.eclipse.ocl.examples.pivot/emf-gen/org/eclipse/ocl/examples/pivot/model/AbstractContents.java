@@ -15,8 +15,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -36,8 +36,8 @@ public class AbstractContents extends PivotUtil
 		return pivotLibrary;
 	}
 	
-	protected @NonNull OpaqueExpression createOpaqueExpression(@NonNull Type type, @NonNull String exprString) {
-		OpaqueExpression pivotExpression = PivotFactory.eINSTANCE.createOpaqueExpression();
+	protected @NonNull ExpressionInOCL createExpressionInOCL(@NonNull Type type, @NonNull String exprString) {
+		ExpressionInOCL pivotExpression = PivotFactory.eINSTANCE.createExpressionInOCL();
 		pivotExpression.setType(type);
 		pivotExpression.getBody().add(exprString);
 		pivotExpression.getLanguage().add(PivotConstants.OCL_LANGUAGE);

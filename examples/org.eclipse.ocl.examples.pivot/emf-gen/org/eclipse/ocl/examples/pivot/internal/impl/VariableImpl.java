@@ -221,9 +221,8 @@ public class VariableImpl
 	{
 		/**
 		 * 
-		 * inv CompatibleInitialiserType: initExpression <> null implies initExpression.type.conformsTo(type)
-		 * 
-		 * 
+		 * inv CompatibleInitialiserType: initExpression <> null implies
+		 *   initExpression.type.conformsTo(type)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {

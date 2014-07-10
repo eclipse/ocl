@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
 import org.eclipse.ocl.examples.pivot.DynamicType;
+import org.eclipse.ocl.examples.pivot.DynamicValueSpecification;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
@@ -50,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.FinalState;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.Import;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -70,7 +72,6 @@ import org.eclipse.ocl.examples.pivot.NavigationCallExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
@@ -97,6 +98,7 @@ import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StateMachine;
@@ -542,6 +544,20 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PivotPackage.DYNAMIC_VALUE_SPECIFICATION:
+			{
+				DynamicValueSpecification dynamicValueSpecification = (DynamicValueSpecification)theEObject;
+				T1 result = caseDynamicValueSpecification(dynamicValueSpecification);
+				if (result == null) result = caseValueSpecification(dynamicValueSpecification);
+				if (result == null) result = caseTypedElement(dynamicValueSpecification);
+				if (result == null) result = caseParameterableElement(dynamicValueSpecification);
+				if (result == null) result = caseNamedElement(dynamicValueSpecification);
+				if (result == null) result = caseElement(dynamicValueSpecification);
+				if (result == null) result = caseNameable(dynamicValueSpecification);
+				if (result == null) result = caseVisitable(dynamicValueSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PivotPackage.ELEMENT:
 			{
 				Element element = (Element)theEObject;
@@ -610,7 +626,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				ExpressionInOCL expressionInOCL = (ExpressionInOCL)theEObject;
 				T1 result = caseExpressionInOCL(expressionInOCL);
-				if (result == null) result = caseOpaqueExpression(expressionInOCL);
 				if (result == null) result = caseValueSpecification(expressionInOCL);
 				if (result == null) result = caseTypedElement(expressionInOCL);
 				if (result == null) result = caseParameterableElement(expressionInOCL);
@@ -683,6 +698,17 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(import_);
 				if (result == null) result = caseNameable(import_);
 				if (result == null) result = caseVisitable(import_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.INSTANCE_SPECIFICATION:
+			{
+				InstanceSpecification instanceSpecification = (InstanceSpecification)theEObject;
+				T1 result = caseInstanceSpecification(instanceSpecification);
+				if (result == null) result = caseNamedElement(instanceSpecification);
+				if (result == null) result = caseElement(instanceSpecification);
+				if (result == null) result = caseNameable(instanceSpecification);
+				if (result == null) result = caseVisitable(instanceSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -985,20 +1011,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(oclExpression);
 				if (result == null) result = caseNameable(oclExpression);
 				if (result == null) result = caseVisitable(oclExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.OPAQUE_EXPRESSION:
-			{
-				OpaqueExpression opaqueExpression = (OpaqueExpression)theEObject;
-				T1 result = caseOpaqueExpression(opaqueExpression);
-				if (result == null) result = caseValueSpecification(opaqueExpression);
-				if (result == null) result = caseTypedElement(opaqueExpression);
-				if (result == null) result = caseParameterableElement(opaqueExpression);
-				if (result == null) result = caseNamedElement(opaqueExpression);
-				if (result == null) result = caseElement(opaqueExpression);
-				if (result == null) result = caseNameable(opaqueExpression);
-				if (result == null) result = caseVisitable(opaqueExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1359,6 +1371,15 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(signal);
 				if (result == null) result = caseNameable(signal);
 				if (result == null) result = caseVisitable(signal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.SLOT:
+			{
+				Slot slot = (Slot)theEObject;
+				T1 result = caseSlot(slot);
+				if (result == null) result = caseElement(slot);
+				if (result == null) result = caseVisitable(slot);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2092,21 +2113,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Opaque Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Opaque Expression</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseOpaqueExpression(OpaqueExpression object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2148,6 +2154,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseImport(Import object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseInstanceSpecification(InstanceSpecification object)
 	{
 		return null;
 	}
@@ -2380,6 +2402,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseSignal(Signal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Slot</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Slot</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseSlot(Slot object)
+	{
 		return null;
 	}
 
@@ -3500,6 +3538,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseDynamicType(DynamicType object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Value Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseDynamicValueSpecification(DynamicValueSpecification object)
 	{
 		return null;
 	}

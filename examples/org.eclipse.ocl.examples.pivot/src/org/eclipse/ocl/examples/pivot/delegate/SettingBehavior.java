@@ -19,10 +19,9 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SemanticException;
-import org.eclipse.ocl.examples.pivot.context.PropertyContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
@@ -53,21 +52,17 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * create the relevant parsing environment for a textual definition..
 	 * @throws OCLDelegateException 
 	 */
-	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Property property) throws OCLDelegateException {
-		OpaqueExpression specification = property.getDefaultExpression();
-		if (specification instanceof ExpressionInOCL) {
-			return (ExpressionInOCL) specification;
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Property property) throws OCLDelegateException {
+		ExpressionInOCL specification = property.getDefaultExpression();
+		if (specification == null) {
+			String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
+			throw new OCLDelegateException(new SemanticException(message));
 		}
-		PropertyContext propertyContext = new PropertyContext(metaModelManager, null, property);
-		if (specification != null) {
-			ExpressionInOCL expressionInOCL = getExpressionInOCL(propertyContext, specification);
-			if (expressionInOCL != null) {
-				property.setDefaultExpression(expressionInOCL);
-				return expressionInOCL;
-			}
+		try {
+			return metaModelManager.getQueryOrThrow(specification);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e);
 		}
-		String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
-		throw new OCLDelegateException(new SemanticException(message));
 	}
 
 	@Override

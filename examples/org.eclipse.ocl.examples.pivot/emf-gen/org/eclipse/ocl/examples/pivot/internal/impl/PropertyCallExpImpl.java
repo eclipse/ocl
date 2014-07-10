@@ -453,8 +453,8 @@ public class PropertyCallExpImpl
 	{
 		/**
 		 * 
-		 * inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies source.type.conformsTo(getSpecializedReferredPropertyOwningType())
-		 * 
+		 * inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies
+		 *   source.type.conformsTo(getSpecializedReferredPropertyOwningType())
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_10;
 		try {
@@ -587,8 +587,6 @@ public class PropertyCallExpImpl
 	{
 		/**
 		 * inv CompatibleResultType: type = getSpecializedReferredPropertyType()
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {

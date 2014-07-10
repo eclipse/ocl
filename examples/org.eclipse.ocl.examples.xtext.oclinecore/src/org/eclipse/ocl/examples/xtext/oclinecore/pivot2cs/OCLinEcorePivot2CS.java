@@ -46,7 +46,6 @@ public class OCLinEcorePivot2CS extends EssentialOCLPivot2CS
 			return new EClass[] {
 				PivotPackage.Literals.ANNOTATION,
 				PivotPackage.Literals.CONSTRAINT,
-				PivotPackage.Literals.OPAQUE_EXPRESSION,
 				PivotPackage.Literals.EXPRESSION_IN_OCL
 			};
 		}

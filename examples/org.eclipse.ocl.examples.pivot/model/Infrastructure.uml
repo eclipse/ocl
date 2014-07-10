@@ -13,7 +13,7 @@
             <ownedComment xmi:id="Core-Abstractions-Ownerships-Element-not_own_self-_ownedComment.0" annotatedElement="Core-Abstractions-Ownerships-Element-not_own_self">
               <body>An element may not directly or indirectly own itself.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Ownerships-Element-not_own_self-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Ownerships-Element-not_own_self-_specification">
               <language>OCL</language>
               <body>not self.allOwnedElements()->includes(self)</body>
             </specification>
@@ -22,7 +22,7 @@
             <ownedComment xmi:id="Core-Abstractions-Ownerships-Element-has_owner-_ownedComment.0" annotatedElement="Core-Abstractions-Ownerships-Element-has_owner">
               <body>Elements that must be owned must have an owner.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Ownerships-Element-has_owner-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Ownerships-Element-has_owner-_specification">
               <language>OCL</language>
               <body>self.mustBeOwned() implies owner->notEmpty()</body>
             </specification>
@@ -52,7 +52,7 @@
               <body>The query allOwnedElements() gives all of the direct and indirect owned elements of an element.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Ownerships-Element-allOwnedElements-spec" name="spec" constrainedElement="Core-Abstractions-Ownerships-Element-allOwnedElements">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Ownerships-Element-allOwnedElements-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Ownerships-Element-allOwnedElements-spec-_specification">
                 <language>OCL</language>
                 <body>ownedElement->union(ownedElement->collect(e | e.allOwnedElements()))</body>
               </specification>
@@ -67,7 +67,7 @@
               <body>The query mustBeOwned() indicates whether elements of this type must have an owner. Subclasses of Element that do not require an owner must override this operation.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Ownerships-Element-mustBeOwned-spec" name="spec" constrainedElement="Core-Abstractions-Ownerships-Element-mustBeOwned">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Ownerships-Element-mustBeOwned-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Ownerships-Element-mustBeOwned-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -92,7 +92,7 @@
             <ownedComment xmi:id="Core-Abstractions-Namespaces-NamedElement-has_no_qualified_name-_ownedComment.0" annotatedElement="Core-Abstractions-Namespaces-NamedElement-has_no_qualified_name">
               <body>If there is no name, or one of the containing namespaces has no name, there is no qualified name.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_no_qualified_name-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_no_qualified_name-_specification">
               <language>OCL</language>
               <body>(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty())&#xD;
   implies self.qualifiedName->isEmpty()</body>
@@ -102,7 +102,7 @@
             <ownedComment xmi:id="Core-Abstractions-Namespaces-NamedElement-has_qualified_name-_ownedComment.0" annotatedElement="Core-Abstractions-Namespaces-NamedElement-has_qualified_name">
               <body>When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_qualified_name-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_qualified_name-_specification">
               <language>OCL</language>
               <body>(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) implies
   self.qualifiedName = self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))</body>
@@ -132,7 +132,7 @@
               <body>The query allNamespaces() gives the sequence of namespaces in which the NamedElement is nested, working outwards.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Namespaces-NamedElement-allNamespaces-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-allNamespaces">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-allNamespaces-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-NamedElement-allNamespaces-spec-_specification">
                 <language>OCL</language>
                 <body>if self.namespace->isEmpty()
 then Sequence{}
@@ -150,7 +150,7 @@ endif</body>
               <body>The query isDistinguishableFrom() determines whether two NamedElements may logically co-exist within a Namespace. By default, two named elements are distinguishable if (a) they have unrelated types or (b) they have related types but different names.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom-spec-_specification">
                 <language>OCL</language>
                 <body>if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType)
 then ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()
@@ -167,7 +167,7 @@ endif</body>
               <body>The query separator() gives the string that is used to separate names when constructing a qualified name.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Namespaces-NamedElement-separator-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-separator">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-separator-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-NamedElement-separator-spec-_specification">
                 <language>OCL</language>
                 <body>'::'</body>
               </specification>
@@ -179,7 +179,7 @@ endif</body>
               <body>When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1 Core-Abstractions-Namespaces-NamedElement-qualifiedName">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1-spec-_specification">
                 <language>OCL</language>
                 <body>if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()
 then 
@@ -200,7 +200,7 @@ endif</body>
             <ownedComment xmi:id="Core-Abstractions-Namespaces-Namespace-members_distinguishable-_ownedComment.0" annotatedElement="Core-Abstractions-Namespaces-Namespace-members_distinguishable">
               <body>All the members of a Namespace are distinguishable within it.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-Namespace-members_distinguishable-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-Namespace-members_distinguishable-_specification">
               <language>OCL</language>
               <body>membersAreDistinguishable()</body>
             </specification>
@@ -225,7 +225,7 @@ endif</body>
               <body>The query getNamesOfMember() gives a set of all of the names that a member would have in a Namespace. In general a member can have multiple names in a Namespace if it is imported more than once with different aliases. Those semantics are specified by overriding the getNamesOfMember operation. The specification here simply returns a set containing a single name, or the empty set if no name.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Namespaces-Namespace-getNamesOfMember-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-Namespace-getNamesOfMember">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-Namespace-getNamesOfMember-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-Namespace-getNamesOfMember-spec-_specification">
                 <language>OCL</language>
                 <body>if member->includes(element) then Set{}->including(element.name) else Set{} endif</body>
               </specification>
@@ -241,7 +241,7 @@ endif</body>
               <body>The Boolean query membersAreDistinguishable() determines whether all of the namespaces members are distinguishable within it.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable-spec-_specification">
                 <language>OCL</language>
                 <body>self.member->forAll( memb |
 self.member->excluding(memb)->forAll(other |
@@ -279,7 +279,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query allFeatures() gives all of the features in the namespace of the classifier. In general, through mechanisms such as inheritance, this will be a larger set than feature.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Classifiers-Classifier-allFeatures-spec" name="spec" constrainedElement="Core-Abstractions-Classifiers-Classifier-allFeatures">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Classifiers-Classifier-allFeatures-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Classifiers-Classifier-allFeatures-spec-_specification">
                 <language>OCL</language>
                 <body>member->select(oclIsKindOf(Feature))</body>
               </specification>
@@ -307,20 +307,20 @@ memb.isDistinguishableFrom(other, self)))</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="Core-Abstractions-Expressions" name="Expressions">
         <packageImport xmi:id="Core-Abstractions-Expressions-_packageImport.0" importedPackage="Core-Abstractions-Ownerships"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="Core-Abstractions-Expressions-OpaqueExpression" name="OpaqueExpression">
-          <ownedComment xmi:id="Core-Abstractions-Expressions-OpaqueExpression-_ownedComment.0" annotatedElement="Core-Abstractions-Expressions-OpaqueExpression">
+        <packagedElement xmi:type="uml:Class" xmi:id="Core-Abstractions-Expressions-ExpressionInOCL" name="ExpressionInOCL">
+          <ownedComment xmi:id="Core-Abstractions-Expressions-ExpressionInOCL-_ownedComment.0" annotatedElement="Core-Abstractions-Expressions-ExpressionInOCL">
             <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
           </ownedComment>
           <generalization xmi:id="_XpKnFH7VEeOu79LxSz8Ylw" general="Core-Abstractions-Expressions-ValueSpecification"/>
-          <ownedAttribute xmi:id="Core-Abstractions-Expressions-OpaqueExpression-body" name="body" type="Core-PrimitiveTypes-String" isOrdered="true" isUnique="false" aggregation="composite">
-            <ownedComment xmi:id="Core-Abstractions-Expressions-OpaqueExpression-body-_ownedComment.0" annotatedElement="Core-Abstractions-Expressions-OpaqueExpression-body">
+          <ownedAttribute xmi:id="Core-Abstractions-Expressions-ExpressionInOCL-body" name="body" type="Core-PrimitiveTypes-String" isOrdered="true" isUnique="false" aggregation="composite">
+            <ownedComment xmi:id="Core-Abstractions-Expressions-ExpressionInOCL-body-_ownedComment.0" annotatedElement="Core-Abstractions-Expressions-ExpressionInOCL-body">
               <body>The text of the expression, possibly in multiple languages.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xn-URH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xn-URX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="Core-Abstractions-Expressions-OpaqueExpression-language" name="language" type="Core-PrimitiveTypes-String" isOrdered="true" aggregation="composite">
-            <ownedComment xmi:id="Core-Abstractions-Expressions-OpaqueExpression-language-_ownedComment.0" annotatedElement="Core-Abstractions-Expressions-OpaqueExpression-language">
+          <ownedAttribute xmi:id="Core-Abstractions-Expressions-ExpressionInOCL-language" name="language" type="Core-PrimitiveTypes-String" isOrdered="true" aggregation="composite">
+            <ownedComment xmi:id="Core-Abstractions-Expressions-ExpressionInOCL-language-_ownedComment.0" annotatedElement="Core-Abstractions-Expressions-ExpressionInOCL-language">
               <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xn-URn7VEeOu79LxSz8Ylw"/>
@@ -337,7 +337,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Expressions-ValueSpecification-isComputable-spec" name="spec" constrainedElement="Core-Abstractions-Expressions-ValueSpecification-isComputable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Expressions-ValueSpecification-isComputable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Expressions-ValueSpecification-isComputable-spec-_specification">
                 <language>OCL</language>
                 <body>false</body>
               </specification>
@@ -349,7 +349,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query integerValue() gives a single Integer value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Expressions-ValueSpecification-integerValue-spec" name="spec" constrainedElement="Core-Abstractions-Expressions-ValueSpecification-integerValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Expressions-ValueSpecification-integerValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Expressions-ValueSpecification-integerValue-spec-_specification">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -361,7 +361,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query booleanValue() gives a single Boolean value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Expressions-ValueSpecification-booleanValue-spec" name="spec" constrainedElement="Core-Abstractions-Expressions-ValueSpecification-booleanValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Expressions-ValueSpecification-booleanValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Expressions-ValueSpecification-booleanValue-spec-_specification">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -373,7 +373,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query stringValue() gives a single String value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Expressions-ValueSpecification-stringValue-spec" name="spec" constrainedElement="Core-Abstractions-Expressions-ValueSpecification-stringValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Expressions-ValueSpecification-stringValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Expressions-ValueSpecification-stringValue-spec-_specification">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -385,7 +385,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Expressions-ValueSpecification-unlimitedValue-spec" name="spec" constrainedElement="Core-Abstractions-Expressions-ValueSpecification-unlimitedValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Expressions-ValueSpecification-unlimitedValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Expressions-ValueSpecification-unlimitedValue-spec-_specification">
                 <language>OCL</language>
                 <body>Set{}</body>
               </specification>
@@ -397,7 +397,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query isNull() returns true when it can be computed that the value is null.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Expressions-ValueSpecification-isNull-spec" name="spec" constrainedElement="Core-Abstractions-Expressions-ValueSpecification-isNull">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Expressions-ValueSpecification-isNull-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Expressions-ValueSpecification-isNull-spec-_specification">
                 <language>OCL</language>
                 <body>false</body>
               </specification>
@@ -469,7 +469,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The derived lower attribute must equal the lowerBound.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lower.1-spec" name="spec" constrainedElement="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lower.1 Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lower">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lower.1-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lower.1-spec-_specification">
                 <language>OCL</language>
                 <body>lowerBound()</body>
               </specification>
@@ -481,7 +481,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The derived upper attribute must equal the upperBound.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upper.1-spec" name="spec" constrainedElement="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upper.1 Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upper">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upper.1-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upper.1-spec-_specification">
                 <language>OCL</language>
                 <body>upperBound()</body>
               </specification>
@@ -493,7 +493,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query lowerBound() returns the lower bound of the multiplicity as an integer.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lowerBound-spec" name="spec" constrainedElement="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lowerBound">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lowerBound-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-lowerBound-spec-_specification">
                 <language>OCL</language>
                 <body>if lowerValue->isEmpty() then 1 else lowerValue.integerValue() endif</body>
               </specification>
@@ -505,7 +505,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query upperBound() returns the upper bound of the multiplicity as an unlimited natural.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upperBound-spec" name="spec" constrainedElement="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upperBound">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upperBound-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-MultiplicityExpressions-MultiplicityElement-upperBound-spec-_specification">
                 <language>OCL</language>
                 <body>if upperValue->isEmpty() then 1 else upperValue.unlimitedValue() endif</body>
               </specification>
@@ -545,7 +545,7 @@ memb.isDistinguishableFrom(other, self)))</body>
               <body>The query isDistinguishableFrom() determines whether two BehavioralFeatures may coexist in the same Namespace. It specifies that they have to have different signatures.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom-spec-_specification">
                 <language>OCL</language>
                 <body>if n.oclIsKindOf(BehavioralFeature)
 then
@@ -586,7 +586,7 @@ endif</body>
             <ownedComment xmi:id="Core-Abstractions-Instances-InstanceSpecification-slots_are_defined-_ownedComment.0" annotatedElement="Core-Abstractions-Instances-InstanceSpecification-slots_are_defined">
               <body>The defining feature of each slot is a structural feature (directly or inherited) of a classifier of the instance specification.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Instances-InstanceSpecification-slots_are_defined-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Instances-InstanceSpecification-slots_are_defined-_specification">
               <language>OCL</language>
               <body>slot->forAll(s |
 classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
@@ -598,7 +598,7 @@ classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
             <ownedComment xmi:id="Core-Abstractions-Instances-InstanceSpecification-no_duplicate_slots-_ownedComment.0" annotatedElement="Core-Abstractions-Instances-InstanceSpecification-no_duplicate_slots">
               <body>One structural feature (including the same feature inherited from multiple classifiers) is the defining feature of at most one slot in an instance specification.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Instances-InstanceSpecification-no_duplicate_slots-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Instances-InstanceSpecification-no_duplicate_slots-_specification">
               <language>OCL</language>
               <body>classifier->forAll(c |
 (c.allFeatures()->forAll(f | slot->select(s | s.definingFeature = f)->size() &lt;= 1)
@@ -702,7 +702,7 @@ classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
             <ownedComment xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_context_valid-_ownedComment.0" annotatedElement="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_context_valid">
               <body>At least one of the redefinition contexts of the redefining element must be a specialization of at least one of the redefinition contexts for each redefined element.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_context_valid-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_context_valid-_specification">
               <language>OCL</language>
               <body>self.redefinedElement->forAll(e | self.isRedefinitionContextValid(e))</body>
             </specification>
@@ -711,7 +711,7 @@ classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
             <ownedComment xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_consistent-_ownedComment.0" annotatedElement="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_consistent">
               <body>A redefining element must be consistent with each redefined element.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_consistent-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-redefinition_consistent-_specification">
               <language>OCL</language>
               <body>self.redefinedElement->forAll(re | re.isConsistentWith(self))</body>
             </specification>
@@ -736,13 +736,13 @@ classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
               <body>The query isConsistentWith() specifies, for any two RedefinableElements in a context in which redefinition is possible, whether redefinition would be logically consistent. By default, this is false; this operation must be overridden for subclasses of RedefinableElement to define the consistency conditions.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith-_ownedRule.0" constrainedElement="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith-_ownedRule.0-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith-_ownedRule.0-_specification">
                 <language>OCL</language>
                 <body>redefinee.isRedefinitionContextValid(self)</body>
               </specification>
             </ownedRule>
             <ownedRule xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith-spec" name="spec" constrainedElement="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isConsistentWith-spec-_specification">
                 <language>OCL</language>
                 <body>false</body>
               </specification>
@@ -755,7 +755,7 @@ classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
               <body>The query isRedefinitionContextValid() specifies whether the redefinition contexts of this RedefinableElement are properly related to the redefinition contexts of the specified RedefinableElement to allow this element to redefine the other. By default at least one of the redefinition contexts of this element must be a specialization of at least one of the redefinition contexts of the specified element.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isRedefinitionContextValid-spec" name="spec" constrainedElement="Core-Abstractions-Redefinitions-RedefinableElement-isRedefinitionContextValid">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isRedefinitionContextValid-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Redefinitions-RedefinableElement-isRedefinitionContextValid-spec-_specification">
                 <language>OCL</language>
                 <body>redefinitionContext->exists(c | c.allParents()->includes (redefined.redefinitionContext)))</body>
               </specification>
@@ -822,7 +822,7 @@ other classifiers.</body>
               <body>The general classifiers are the classifiers referenced by the generalization relationships.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Generalizations-Classifier-general.1-spec" name="spec" constrainedElement="Core-Abstractions-Generalizations-Classifier-general.1 Core-Abstractions-Generalizations-Classifier-general">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Generalizations-Classifier-general.1-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Generalizations-Classifier-general.1-spec-_specification">
                 <language>OCL</language>
                 <body>self.parents()</body>
               </specification>
@@ -837,7 +837,7 @@ other classifiers.</body>
               <body>The query parents() gives all of the immediate ancestors of a generalized Classifier.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Generalizations-Classifier-parents-spec" name="spec" constrainedElement="Core-Abstractions-Generalizations-Classifier-parents">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Generalizations-Classifier-parents-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Generalizations-Classifier-parents-spec-_specification">
                 <language>OCL</language>
                 <body>generalization.general</body>
               </specification>
@@ -852,7 +852,7 @@ other classifiers.</body>
               <body>The query conformsTo() gives true for a classifier that defines a type that conforms to another. This is used, for example, in the specification of signature conformance for operations.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Generalizations-Classifier-conformsTo-spec" name="spec" constrainedElement="Core-Abstractions-Generalizations-Classifier-conformsTo">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Generalizations-Classifier-conformsTo-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Generalizations-Classifier-conformsTo-spec-_specification">
                 <language>OCL</language>
                 <body>(self=other) or (self.allParents()->includes(other))</body>
               </specification>
@@ -991,7 +991,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Constraints-Constraint-not_apply_to_self-_ownedComment.0" annotatedElement="Core-Abstractions-Constraints-Constraint-not_apply_to_self">
               <body>A constraint cannot be applied to itself.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Constraints-Constraint-not_apply_to_self-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Constraints-Constraint-not_apply_to_self-_specification">
               <language>OCL</language>
               <body>not constrainedElement->includes(self)</body>
             </specification>
@@ -1000,7 +1000,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Constraints-Constraint-value_specification_boolean-_ownedComment.0" annotatedElement="Core-Abstractions-Constraints-Constraint-value_specification_boolean">
               <body>The value specification for a constraint must evaluate to a Boolean value.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Constraints-Constraint-value_specification_boolean-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Constraints-Constraint-value_specification_boolean-_specification">
               <language>OCL</language>
               <body>self.specification.booleanValue().oclIsKindOf(Boolean)</body>
             </specification>
@@ -1094,7 +1094,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Visibilities-NamedElement-visibility_needs_ownership-_ownedComment.0" annotatedElement="Core-Abstractions-Visibilities-NamedElement-visibility_needs_ownership">
               <body>If a NamedElement is not owned by a Namespace, it does not have a visibility.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Visibilities-NamedElement-visibility_needs_ownership-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Visibilities-NamedElement-visibility_needs_ownership-_specification">
               <language>OCL</language>
               <body>namespace->isEmpty() implies visibility->isEmpty()</body>
             </specification>
@@ -1115,7 +1115,7 @@ other classifiers.</body>
               <body>The query bestVisibility() examines a set of VisibilityKinds, and returns public as the preferred visibility.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Visibilities-VisibilityKind-bestVisibility-spec" name="spec" constrainedElement="Core-Abstractions-Visibilities-VisibilityKind-bestVisibility">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Visibilities-VisibilityKind-bestVisibility-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Visibilities-VisibilityKind-bestVisibility-spec-_specification">
                 <language>OCL</language>
                 <body>if vis->includes(#public) then #public else #private endif</body>
               </specification>
@@ -1158,7 +1158,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Super-Classifier-no_cycles_in_generalization-_ownedComment.0" annotatedElement="Core-Abstractions-Super-Classifier-no_cycles_in_generalization">
               <body>Generalization hierarchies must be directed and acyclical. A classifier can not be both a transitively general and transitively specific classifier of the same classifier.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-no_cycles_in_generalization-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-no_cycles_in_generalization-_specification">
               <language>OCL</language>
               <body>not self.allParents()->includes(self)</body>
             </specification>
@@ -1167,7 +1167,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Super-Classifier-specialize_type-_ownedComment.0" annotatedElement="Core-Abstractions-Super-Classifier-specialize_type">
               <body>A classifier may only specialize classifiers of a valid type.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-specialize_type-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-specialize_type-_specification">
               <language>OCL</language>
               <body>self.parents()->forAll(c | self.maySpecializeType(c))</body>
             </specification>
@@ -1198,7 +1198,7 @@ other classifiers.</body>
               <body>The inheritedMember association is derived by inheriting the inheritable members of the parents.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-inheritedMember.1-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-inheritedMember.1 Core-Abstractions-Super-Classifier-inheritedMember">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-inheritedMember.1-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-inheritedMember.1-spec-_specification">
                 <language>OCL</language>
                 <body>self.inherit(self.parents()->collect(p | p.inheritableMembers(self))</body>
               </specification>
@@ -1213,7 +1213,7 @@ other classifiers.</body>
               <body>The query parents() gives all of the immediate ancestors of a generalized Classifier.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-parents-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-parents">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-parents-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-parents-spec-_specification">
                 <language>OCL</language>
                 <body>general</body>
               </specification>
@@ -1228,7 +1228,7 @@ other classifiers.</body>
               <body>The query allParents() gives all of the direct and indirect ancestors of a generalized Classifier.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-allParents-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-allParents">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-allParents-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-allParents-spec-_specification">
                 <language>OCL</language>
                 <body>self.parents()->union(self.parents()->collect(p | p.allParents())</body>
               </specification>
@@ -1243,13 +1243,13 @@ other classifiers.</body>
               <body>The query inheritableMembers() gives all of the members of a classifier that may be inherited in one of its descendants, subject to whatever visibility restrictions apply.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-inheritableMembers-_ownedRule.0" constrainedElement="Core-Abstractions-Super-Classifier-inheritableMembers">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-inheritableMembers-_ownedRule.0-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-inheritableMembers-_ownedRule.0-_specification">
                 <language>OCL</language>
                 <body>c.allParents()->includes(self)</body>
               </specification>
             </ownedRule>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-inheritableMembers-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-inheritableMembers">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-inheritableMembers-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-inheritableMembers-spec-_specification">
                 <language>OCL</language>
                 <body>member->select(m | c.hasVisibilityOf(m))</body>
               </specification>
@@ -1265,13 +1265,13 @@ other classifiers.</body>
               <body>The query hasVisibilityOf() determines whether a named element is visible in the classifier. By default all are visible. It is only called when the argument is something owned by a parent.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-hasVisibilityOf-_ownedRule.0" constrainedElement="Core-Abstractions-Super-Classifier-hasVisibilityOf">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-hasVisibilityOf-_ownedRule.0-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-hasVisibilityOf-_ownedRule.0-_specification">
                 <language>OCL</language>
                 <body>self.allParents()->collect(c | c.member)->includes(n)</body>
               </specification>
             </ownedRule>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-hasVisibilityOf-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-hasVisibilityOf">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-hasVisibilityOf-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-hasVisibilityOf-spec-_specification">
                 <language>OCL</language>
                 <body>if (self.inheritedMember->includes (n)) then (n.visibility &lt;> #private) else true</body>
               </specification>
@@ -1284,7 +1284,7 @@ other classifiers.</body>
               <body>The query inherit() defines how to inherit a set of elements. Here the operation is defined to inherit them all. It is intended to be redefined in circumstances where inheritance is affected by redefinition.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-inherit-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-inherit">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-inherit-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-inherit-spec-_specification">
                 <language>OCL</language>
                 <body>inhs</body>
               </specification>
@@ -1303,7 +1303,7 @@ other classifiers.</body>
               <body>The query maySpecializeType() determines whether this classifier may have a generalization relationship to classifiers of the specified type. By default a classifier may specialize classifiers of the same or a more general type. It is intended to be redefined by classifiers that have different specialization constraints.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Super-Classifier-maySpecializeType-spec" name="spec" constrainedElement="Core-Abstractions-Super-Classifier-maySpecializeType">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Super-Classifier-maySpecializeType-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Super-Classifier-maySpecializeType-spec-_specification">
                 <language>OCL</language>
                 <body>self.oclIsKindOf(c.oclType)</body>
               </specification>
@@ -1343,7 +1343,7 @@ other classifiers.</body>
               <body>The query isComputable() is redefined to be true.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralBoolean-isComputable-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralBoolean-isComputable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralBoolean-isComputable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralBoolean-isComputable-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -1355,7 +1355,7 @@ other classifiers.</body>
               <body>The query booleanValue() gives the value.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralBoolean-booleanValue-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralBoolean-booleanValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralBoolean-booleanValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralBoolean-booleanValue-spec-_specification">
                 <language>OCL</language>
                 <body>value</body>
               </specification>
@@ -1379,7 +1379,7 @@ other classifiers.</body>
               <body>The query isComputable() is redefined to be true.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralString-isComputable-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralString-isComputable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralString-isComputable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralString-isComputable-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -1391,7 +1391,7 @@ other classifiers.</body>
               <body>The query stringValue() gives the value.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralString-stringValue-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralString-stringValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralString-stringValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralString-stringValue-spec-_specification">
                 <language>OCL</language>
                 <body>value</body>
               </specification>
@@ -1415,7 +1415,7 @@ other classifiers.</body>
               <body>The query isComputable() is redefined to be true.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralNull-isComputable-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralNull-isComputable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralNull-isComputable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralNull-isComputable-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -1427,7 +1427,7 @@ other classifiers.</body>
               <body>The query isNull() returns true.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralNull-isNull-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralNull-isNull">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralNull-isNull-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralNull-isNull-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -1451,7 +1451,7 @@ other classifiers.</body>
               <body>The query isComputable() is redefined to be true.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralInteger-isComputable-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralInteger-isComputable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralInteger-isComputable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralInteger-isComputable-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -1463,7 +1463,7 @@ other classifiers.</body>
               <body>The query integerValue() gives the value.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralInteger-integerValue-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralInteger-integerValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralInteger-integerValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralInteger-integerValue-spec-_specification">
                 <language>OCL</language>
                 <body>value</body>
               </specification>
@@ -1487,7 +1487,7 @@ other classifiers.</body>
               <body>The query isComputable() is redefined to be true.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralUnlimitedNatural-isComputable-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralUnlimitedNatural-isComputable">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralUnlimitedNatural-isComputable-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralUnlimitedNatural-isComputable-spec-_specification">
                 <language>OCL</language>
                 <body>true</body>
               </specification>
@@ -1499,7 +1499,7 @@ other classifiers.</body>
               <body>The query unlimitedValue() gives the value.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Literals-LiteralUnlimitedNatural-unlimitedValue-spec" name="spec" constrainedElement="Core-Abstractions-Literals-LiteralUnlimitedNatural-unlimitedValue">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Literals-LiteralUnlimitedNatural-unlimitedValue-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Literals-LiteralUnlimitedNatural-unlimitedValue-spec-_specification">
                 <language>OCL</language>
                 <body>value</body>
               </specification>
@@ -1518,7 +1518,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-lower_ge_0-_ownedComment.0" annotatedElement="Core-Abstractions-Multiplicities-MultiplicityElement-lower_ge_0">
               <body>The lower bound must be a non-negative integer literal.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-lower_ge_0-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-lower_ge_0-_specification">
               <language>OCL</language>
               <body>lowerBound()->notEmpty() implies lowerBound() >= 0</body>
             </specification>
@@ -1527,7 +1527,7 @@ other classifiers.</body>
             <ownedComment xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-upper_ge_lower-_ownedComment.0" annotatedElement="Core-Abstractions-Multiplicities-MultiplicityElement-upper_ge_lower">
               <body>The upper bound must be greater than or equal to the lower bound.</body>
             </ownedComment>
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-upper_ge_lower-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-upper_ge_lower-_specification">
               <language>OCL</language>
               <body>(upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()</body>
             </specification>
@@ -1564,7 +1564,7 @@ other classifiers.</body>
               <body>The query lowerBound() returns the lower bound of the multiplicity as an integer.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-lowerBound-spec" name="spec" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-lowerBound">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-lowerBound-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-lowerBound-spec-_specification">
                 <language>OCL</language>
                 <body>if lower->notEmpty() then lower else 1 endif</body>
               </specification>
@@ -1576,7 +1576,7 @@ other classifiers.</body>
               <body>The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-upperBound-spec" name="spec" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-upperBound">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-upperBound-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-upperBound-spec-_specification">
                 <language>OCL</language>
                 <body>if upper->notEmpty() then upper else 1 endif</body>
               </specification>
@@ -1588,13 +1588,13 @@ other classifiers.</body>
               <body>The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued-_ownedRule.0" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued-_ownedRule.0-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued-_ownedRule.0-_specification">
                 <language>OCL</language>
                 <body>upperBound()->notEmpty()</body>
               </specification>
             </ownedRule>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued-spec" name="spec" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-isMultivalued-spec-_specification">
                 <language>OCL</language>
                 <body>upperBound() > 1</body>
               </specification>
@@ -1606,7 +1606,7 @@ other classifiers.</body>
               <body>The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-_ownedRule.0" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-_ownedRule.0-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-_ownedRule.0-_specification">
                 <language>OCL</language>
                 <body>upperBound()->notEmpty() and lowerBound()->notEmpty()
 includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
@@ -1614,7 +1614,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
               </specification>
             </ownedRule>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-spec" name="spec" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-spec-_specification">
                 <language>OCL</language>
                 <body>(lowerBound() &lt;= C) and (upperBound() >= C)</body>
               </specification>
@@ -1627,13 +1627,13 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
               <body>The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity-_ownedRule.0" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity-_ownedRule.0-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity-_ownedRule.0-_specification">
                 <language>OCL</language>
                 <body>self.upperBound()->notEmpty() and self.lowerBound()->notEmpty() and M.upperBound()->notEmpty() and M.lowerBound()->notEmpty()</body>
               </specification>
             </ownedRule>
             <ownedRule xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity-spec" name="spec" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesMultiplicity-spec-_specification">
                 <language>OCL</language>
                 <body>(self.lowerBound() &lt;= M.lowerBound()) and (self.upperBound() >= M.upperBound())</body>
               </specification>
@@ -1662,7 +1662,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
               <body>The query conformsTo() gives true for a type that conforms to another. By default, two types do not conform to each other. This query is intended to be redefined for specific conformance situations.</body>
             </ownedComment>
             <ownedRule xmi:id="Core-Abstractions-TypedElements-Type-conformsTo-spec" name="spec" constrainedElement="Core-Abstractions-TypedElements-Type-conformsTo">
-              <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Abstractions-TypedElements-Type-conformsTo-spec-_specification">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Abstractions-TypedElements-Type-conformsTo-spec-_specification">
                 <language>OCL</language>
                 <body>false</body>
               </specification>
@@ -2015,7 +2015,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <ownedComment xmi:id="Core-Constructs-Classifier-no_cycles_in_generalization-_ownedComment.0" annotatedElement="Core-Constructs-Classifier-no_cycles_in_generalization">
             <body>Generalization hierarchies must be directed and acyclical. A classifier can not be both a transitively general and transitively specific classifier of the same classifier.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-no_cycles_in_generalization-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-no_cycles_in_generalization-_specification">
             <language>OCL</language>
             <body>not self.allParents()->includes(self)</body>
           </specification>
@@ -2024,7 +2024,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <ownedComment xmi:id="Core-Constructs-Classifier-specialize_type-_ownedComment.0" annotatedElement="Core-Constructs-Classifier-specialize_type">
             <body>A classifier may only specialize classifiers of a valid type.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-specialize_type-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-specialize_type-_specification">
             <language>OCL</language>
             <body>self.parents()->forAll(c | self.maySpecializeType(c))</body>
           </specification>
@@ -2070,7 +2070,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query conformsTo() gives true for a classifier that defines a type that conforms to another. This is used, for example, in the specification of signature conformance for operations.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-conformsTo-spec" name="spec" constrainedElement="Core-Constructs-Classifier-conformsTo">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-conformsTo-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-conformsTo-spec-_specification">
               <language>OCL</language>
               <body>(self=other) or (self.allParents()->includes(other))</body>
             </specification>
@@ -2083,7 +2083,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query allFeatures() gives all of the features in the namespace of the classifier. In general, through mechanisms such as inheritance, this will be a larger set than feature.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-allFeatures-spec" name="spec" constrainedElement="Core-Constructs-Classifier-allFeatures">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-allFeatures-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-allFeatures-spec-_specification">
               <language>OCL</language>
               <body>member->select(oclIsKindOf(Feature))</body>
             </specification>
@@ -2098,7 +2098,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The general classifiers are the classifiers referenced by the generalization relationships.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-general.1-spec" name="spec" constrainedElement="Core-Constructs-Classifier-general.1 Core-Constructs-Classifier-general">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-general.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-general.1-spec-_specification">
               <language>OCL</language>
               <body>self.parents()</body>
             </specification>
@@ -2113,7 +2113,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query parents() gives all of the immediate ancestors of a generalized Classifier.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-parents-spec" name="spec" constrainedElement="Core-Constructs-Classifier-parents">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-parents-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-parents-spec-_specification">
               <language>OCL</language>
               <body>generalization.general</body>
             </specification>
@@ -2128,7 +2128,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The inheritedMember association is derived by inheriting the inheritable members of the parents.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-inheritedMember.1-spec" name="spec" constrainedElement="Core-Constructs-Classifier-inheritedMember.1 Core-Constructs-Classifier-inheritedMember">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-inheritedMember.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-inheritedMember.1-spec-_specification">
               <language>OCL</language>
               <body>self.inherit(self.parents()->collect(p | p.inheritableMembers(self))</body>
             </specification>
@@ -2143,7 +2143,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query allParents() gives all of the direct and indirect ancestors of a generalized Classifier.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-allParents-spec" name="spec" constrainedElement="Core-Constructs-Classifier-allParents">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-allParents-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-allParents-spec-_specification">
               <language>OCL</language>
               <body>self.parents()->union(self.parents()->collect(p | p.allParents())</body>
             </specification>
@@ -2158,13 +2158,13 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query inheritableMembers() gives all of the members of a classifier that may be inherited in one of its descendants, subject to whatever visibility restrictions apply.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-inheritableMembers-_ownedRule.0" constrainedElement="Core-Constructs-Classifier-inheritableMembers">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-inheritableMembers-_ownedRule.0-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-inheritableMembers-_ownedRule.0-_specification">
               <language>OCL</language>
               <body>c.allParents()->includes(self)</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:id="Core-Constructs-Classifier-inheritableMembers-spec" name="spec" constrainedElement="Core-Constructs-Classifier-inheritableMembers">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-inheritableMembers-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-inheritableMembers-spec-_specification">
               <language>OCL</language>
               <body>member->select(m | c.hasVisibilityOf(m))</body>
             </specification>
@@ -2180,13 +2180,13 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query hasVisibilityOf() determines whether a named element is visible in the classifier. By default all are visible. It is only called when the argument is something owned by a parent.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-hasVisibilityOf-_ownedRule.0" constrainedElement="Core-Constructs-Classifier-hasVisibilityOf">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-hasVisibilityOf-_ownedRule.0-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-hasVisibilityOf-_ownedRule.0-_specification">
               <language>OCL</language>
               <body>self.allParents()->collect(c | c.member)->includes(n)</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:id="Core-Constructs-Classifier-hasVisibilityOf-spec" name="spec" constrainedElement="Core-Constructs-Classifier-hasVisibilityOf">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-hasVisibilityOf-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-hasVisibilityOf-spec-_specification">
               <language>OCL</language>
               <body>if (self.inheritedMember->includes(n)) then (n.visibility &lt;> #private) else true</body>
             </specification>
@@ -2199,7 +2199,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The inherit operation is overridden to exclude redefined properties.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-inherit-spec" name="spec" constrainedElement="Core-Constructs-Classifier-inherit">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-inherit-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-inherit-spec-_specification">
               <language>OCL</language>
               <body>inhs</body>
             </specification>
@@ -2218,7 +2218,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query maySpecializeType() determines whether this classifier may have a generalization relationship to classifiers of the specified type. By default a classifier may specialize classifiers of the same or a more general type. It is intended to be redefined by classifiers that have different specialization constraints.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Classifier-maySpecializeType-spec" name="spec" constrainedElement="Core-Constructs-Classifier-maySpecializeType">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Classifier-maySpecializeType-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Classifier-maySpecializeType-spec-_specification">
               <language>OCL</language>
               <body>self.oclIsKindOf(c.oclType)</body>
             </specification>
@@ -2253,7 +2253,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <ownedComment xmi:id="Core-Constructs-Element-not_own_self-_ownedComment.0" annotatedElement="Core-Constructs-Element-not_own_self">
             <body>An element may not directly or indirectly own itself.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Element-not_own_self-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Element-not_own_self-_specification">
             <language>OCL</language>
             <body>not self.allOwnedElements()->includes(self)</body>
           </specification>
@@ -2262,7 +2262,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <ownedComment xmi:id="Core-Constructs-Element-has_owner-_ownedComment.0" annotatedElement="Core-Constructs-Element-has_owner">
             <body>Elements that must be owned must have an owner.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Element-has_owner-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Element-has_owner-_specification">
             <language>OCL</language>
             <body>self.mustBeOwned() implies owner->notEmpty()</body>
           </specification>
@@ -2292,7 +2292,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query allOwnedElements() gives all of the direct and indirect owned elements of an element.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Element-allOwnedElements-spec" name="spec" constrainedElement="Core-Constructs-Element-allOwnedElements">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Element-allOwnedElements-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Element-allOwnedElements-spec-_specification">
               <language>OCL</language>
               <body>ownedElement->union(ownedElement->collect(e | e.allOwnedElements()))</body>
             </specification>
@@ -2307,7 +2307,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query mustBeOwned() indicates whether elements of this type must have an owner. Subclasses of Element that do not require an owner must override this operation.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Element-mustBeOwned-spec" name="spec" constrainedElement="Core-Constructs-Element-mustBeOwned">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Element-mustBeOwned-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Element-mustBeOwned-spec-_specification">
               <language>OCL</language>
               <body>true</body>
             </specification>
@@ -2336,7 +2336,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <ownedComment xmi:id="Core-Constructs-Namespace-members_distinguishable-_ownedComment.0" annotatedElement="Core-Constructs-Namespace-members_distinguishable">
             <body>All the members of a Namespace are distinguishable within it.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Namespace-members_distinguishable-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Namespace-members_distinguishable-_specification">
             <language>OCL</language>
             <body>membersAreDistinguishable()</body>
           </specification>
@@ -2386,7 +2386,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The importedMember property is derived from the ElementImports and the PackageImports. References the PackageableElements that are members of this Namespace as a result of either PackageImports or ElementImports.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Namespace-importedMember.1-spec" name="spec" constrainedElement="Core-Constructs-Namespace-importedMember.1 Core-Constructs-Namespace-importedMember">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Namespace-importedMember.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Namespace-importedMember.1-spec-_specification">
               <language>OCL</language>
               <body>self.importMembers(self.elementImport.importedElement.asSet()->union(self.packageImport.importedPackage->collect(p | p.visibleMembers())))</body>
             </specification>
@@ -2401,7 +2401,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
             <body>The query getNamesOfMember() takes importing into account. It gives back the set of names that an element would have in an importing namespace, either because it is owned, or if not owned then imported individually, or if not individually then from a package.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Namespace-getNamesOfMember-spec" name="spec" constrainedElement="Core-Constructs-Namespace-getNamesOfMember">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Namespace-getNamesOfMember-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Namespace-getNamesOfMember-spec-_specification">
               <language>OCL</language>
               <body>if self.ownedMember->includes(element)
 then Set{}->include(element.name)
@@ -2424,7 +2424,7 @@ endif</body>
             <body>The query importMembers() defines which of a set of PackageableElements are actually imported into the namespace. This excludes hidden ones, i.e., those which have names that conflict with names of owned members, and also excludes elements which would have the same name when imported.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Namespace-importMembers-spec" name="spec" constrainedElement="Core-Constructs-Namespace-importMembers">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Namespace-importMembers-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Namespace-importMembers-spec-_specification">
               <language>OCL</language>
               <body>self.excludeCollisions(imps)->select(imp | self.ownedMember->forAll(mem | mem.imp.isDistinguishableFrom(mem, self)))</body>
             </specification>
@@ -2443,7 +2443,7 @@ endif</body>
             <body>The query excludeCollisions() excludes from a set of PackageableElements any that would not be distinguishable from each other in this namespace.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Namespace-excludeCollisions-spec" name="spec" constrainedElement="Core-Constructs-Namespace-excludeCollisions">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Namespace-excludeCollisions-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Namespace-excludeCollisions-spec-_specification">
               <language>OCL</language>
               <body>imps->reject(imp1 | imps.exists(imp2 | not imp1.isDistinguishableFrom(imp2, self)))</body>
             </specification>
@@ -2462,7 +2462,7 @@ endif</body>
             <body>The Boolean query membersAreDistinguishable() determines whether all of the namespace's members are distinguishable within it.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Namespace-membersAreDistinguishable-spec" name="spec" constrainedElement="Core-Constructs-Namespace-membersAreDistinguishable">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Namespace-membersAreDistinguishable-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Namespace-membersAreDistinguishable-spec-_specification">
               <language>OCL</language>
               <body>self.member->forAll( memb |
 	self.member->excluding(memb)->forAll(other |
@@ -2486,7 +2486,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-RedefinableElement-redefinition_context_valid-_ownedComment.0" annotatedElement="Core-Constructs-RedefinableElement-redefinition_context_valid">
             <body>At least one of the redefinition contexts of the redefining element must be a specialization of at least one of the redefinition contexts for each redefined element.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-RedefinableElement-redefinition_context_valid-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-RedefinableElement-redefinition_context_valid-_specification">
             <language>OCL</language>
             <body>self.redefinedElement->forAll(e | self.isRedefinitionContextValid(e))</body>
           </specification>
@@ -2495,7 +2495,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-RedefinableElement-redefinition_consistent-_ownedComment.0" annotatedElement="Core-Constructs-RedefinableElement-redefinition_consistent">
             <body>A redefining element must be consistent with each redefined element.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-RedefinableElement-redefinition_consistent-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-RedefinableElement-redefinition_consistent-_specification">
             <language>OCL</language>
             <body>self.redefinedElement->forAll(re | re.isConsistentWith(self))</body>
           </specification>
@@ -2504,7 +2504,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-RedefinableElement-non_leaf_redefinition-_ownedComment.0" annotatedElement="Core-Constructs-RedefinableElement-non_leaf_redefinition">
             <body>A redefinable element can only redefine non-leaf redefinable elements</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-RedefinableElement-non_leaf_redefinition-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-RedefinableElement-non_leaf_redefinition-_specification">
             <language>OCL</language>
             <body>self.redefinedElement->forAll(not isLeaf)</body>
           </specification>
@@ -2535,13 +2535,13 @@ endif</body>
             <body>The query isConsistentWith() specifies, for any two RedefinableElements in a context in which redefinition is possible, whether redefinition would be logically consistent. By default, this is false; this operation must be overridden for subclasses of RedefinableElement to define the consistency conditions.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-RedefinableElement-isConsistentWith-spec" name="spec" constrainedElement="Core-Constructs-RedefinableElement-isConsistentWith">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-RedefinableElement-isConsistentWith-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-RedefinableElement-isConsistentWith-spec-_specification">
               <language>OCL</language>
               <body>false</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:id="Core-Constructs-RedefinableElement-isConsistentWith-_ownedRule.1" constrainedElement="Core-Constructs-RedefinableElement-isConsistentWith">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-RedefinableElement-isConsistentWith-_ownedRule.1-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-RedefinableElement-isConsistentWith-_ownedRule.1-_specification">
               <language>OCL</language>
               <body>redefinee.isRedefinitionContextValid(self)</body>
             </specification>
@@ -2554,7 +2554,7 @@ endif</body>
             <body>The query isRedefinitionContextValid() specifies whether the redefinition contexts of this RedefinableElement are properly related to the redefinition contexts of the specified RedefinableElement to allow this element to redefine the other. By default at least one of the redefinition contexts of this element must be a specialization of at least one of the redefinition contexts of the specified element.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-RedefinableElement-isRedefinitionContextValid-spec" name="spec" constrainedElement="Core-Constructs-RedefinableElement-isRedefinitionContextValid">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-RedefinableElement-isRedefinitionContextValid-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-RedefinableElement-isRedefinitionContextValid-spec-_specification">
               <language>OCL</language>
               <body>self.redefinitionContext->exists(c | redefined.redefinitionContext->exists(r | c.allParents()->includes(r)))</body>
             </specification>
@@ -2605,7 +2605,7 @@ endif</body>
             <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ValueSpecification-isComputable-spec" name="spec" constrainedElement="Core-Constructs-ValueSpecification-isComputable">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ValueSpecification-isComputable-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ValueSpecification-isComputable-spec-_specification">
               <language>OCL</language>
               <body>false</body>
             </specification>
@@ -2617,7 +2617,7 @@ endif</body>
             <body>The query integerValue() gives a single Integer value when one can be computed.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ValueSpecification-integerValue-spec" name="spec" constrainedElement="Core-Constructs-ValueSpecification-integerValue">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ValueSpecification-integerValue-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ValueSpecification-integerValue-spec-_specification">
               <language>OCL</language>
               <body>Set{}</body>
             </specification>
@@ -2629,7 +2629,7 @@ endif</body>
             <body>The query booleanValue() gives a single Boolean value when one can be computed.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ValueSpecification-booleanValue-spec" name="spec" constrainedElement="Core-Constructs-ValueSpecification-booleanValue">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ValueSpecification-booleanValue-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ValueSpecification-booleanValue-spec-_specification">
               <language>OCL</language>
               <body>Set{}</body>
             </specification>
@@ -2641,7 +2641,7 @@ endif</body>
             <body>The query stringValue() gives a single String value when one can be computed.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ValueSpecification-stringValue-spec" name="spec" constrainedElement="Core-Constructs-ValueSpecification-stringValue">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ValueSpecification-stringValue-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ValueSpecification-stringValue-spec-_specification">
               <language>OCL</language>
               <body>Set{}</body>
             </specification>
@@ -2653,7 +2653,7 @@ endif</body>
             <body>The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ValueSpecification-unlimitedValue-spec" name="spec" constrainedElement="Core-Constructs-ValueSpecification-unlimitedValue">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ValueSpecification-unlimitedValue-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ValueSpecification-unlimitedValue-spec-_specification">
               <language>OCL</language>
               <body>Set{}</body>
             </specification>
@@ -2665,7 +2665,7 @@ endif</body>
             <body>The query isNull() returns true when it can be computed that the value is null.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ValueSpecification-isNull-spec" name="spec" constrainedElement="Core-Constructs-ValueSpecification-isNull">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ValueSpecification-isNull-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ValueSpecification-isNull-spec-_specification">
               <language>OCL</language>
               <body>false</body>
             </specification>
@@ -2681,7 +2681,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Association-association_ends-_ownedComment.0" annotatedElement="Core-Constructs-Association-association_ends">
             <body>Association ends of associations with more than two ends must be owned by the association.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Association-association_ends-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Association-association_ends-_specification">
             <language>OCL</language>
             <body>if memberEnd->size() > 2 then ownedEnd->includesAll(memberEnd)</body>
           </specification>
@@ -2690,7 +2690,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Association-binary_associations-_ownedComment.0" annotatedElement="Core-Constructs-Association-binary_associations">
             <body>Only binary associations can be aggregations.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Association-binary_associations-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Association-binary_associations-_specification">
             <language>OCL</language>
             <body>self.memberEnd->exists(isComposite) implies self.memberEnd->size() = 2</body>
           </specification>
@@ -2699,7 +2699,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Association-specialized_end_number-_ownedComment.0" annotatedElement="Core-Constructs-Association-specialized_end_number">
             <body>An association specializing another association has the same number of ends as the other association.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Association-specialized_end_number-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Association-specialized_end_number-_specification">
             <language>OCL</language>
             <body>parents()->select(oclIsKindOf(Association)).oclAsType(Association)->forAll(p | p.memberEnd->size() = self.memberEnd->size())</body>
           </specification>
@@ -2708,7 +2708,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Association-specialized_end_types-_ownedComment.0" annotatedElement="Core-Constructs-Association-specialized_end_types">
             <body>When an association specializes another association, every end of the specific association corresponds to an end of the general association, and the specific end reaches the same type or a subtype of the more general end.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Association-specialized_end_types-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Association-specialized_end_types-_specification">
             <language>OCL</language>
             <body>Sequence{1..self.memberEnd->size()}->&#xD;
 	forAll(i | self.general->select(oclIsKindOf(Association)).oclAsType(Association)->&#xD;
@@ -2755,7 +2755,7 @@ endif</body>
             <body>endType is derived from the types of the member ends.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Association-endType.1-spec" name="spec" constrainedElement="Core-Constructs-Association-endType.1 Core-Constructs-Association-endType">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Association-endType.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Association-endType.1-spec-_specification">
               <language>OCL</language>
               <body>self.memberEnd->collect(e | e.type)</body>
             </specification>
@@ -2803,7 +2803,7 @@ endif</body>
             <body>The inherit operation is overridden to exclude redefined properties.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Class-inherit-spec" name="spec" constrainedElement="Core-Constructs-Class-inherit">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Class-inherit-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Class-inherit-spec-_specification">
               <language>OCL</language>
               <body>inhs->excluding(inh | ownedMember->select(oclIsKindOf(RedefinableElement))->select(redefinedElement->includes(inh)))</body>
             </specification>
@@ -2826,7 +2826,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-multiplicity_of_composite-_ownedComment.0" annotatedElement="Core-Constructs-Property-multiplicity_of_composite">
             <body>A multiplicity of a composite aggregation must not have an upper bound greater than 1.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-multiplicity_of_composite-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-multiplicity_of_composite-_specification">
             <language>OCL</language>
             <body>isComposite implies (upperBound()->isEmpty() or upperBound() &lt;= 1)</body>
           </specification>
@@ -2835,7 +2835,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-subsetting_context_conforms-_ownedComment.0" annotatedElement="Core-Constructs-Property-subsetting_context_conforms">
             <body>Subsetting may only occur when the context of the subsetting property conforms to the context of the subsetted property.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-subsetting_context_conforms-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-subsetting_context_conforms-_specification">
             <language>OCL</language>
             <body>self.subsettedProperty->notEmpty() implies
   (self.subsettingContext()->notEmpty() and self.subsettingContext()->forAll (sc |
@@ -2847,7 +2847,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-redefined_property_inherited-_ownedComment.0" annotatedElement="Core-Constructs-Property-redefined_property_inherited">
             <body>A redefined property must be inherited from a more general classifier containing the redefining property.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-redefined_property_inherited-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-redefined_property_inherited-_specification">
             <language>OCL</language>
             <body>if (redefinedProperty->notEmpty()) then
   (redefinitionContext->notEmpty() and
@@ -2860,7 +2860,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-subsetting_rules-_ownedComment.0" annotatedElement="Core-Constructs-Property-subsetting_rules">
             <body>A subsetting property may strengthen the type of the subsetted property, and its upper bound may be less.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-subsetting_rules-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-subsetting_rules-_specification">
             <language>OCL</language>
             <body>self.subsettedProperty->forAll(sp |
   self.type.conformsTo(sp.type) and
@@ -2872,7 +2872,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-navigable_readonly-_ownedComment.0" annotatedElement="Core-Constructs-Property-navigable_readonly">
             <body>Only a navigable property can be marked as readOnly.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-navigable_readonly-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-navigable_readonly-_specification">
             <language>OCL</language>
             <body>isReadOnly implies isNavigable()</body>
           </specification>
@@ -2881,7 +2881,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-derived_union_is_derived-_ownedComment.0" annotatedElement="Core-Constructs-Property-derived_union_is_derived">
             <body>A derived union is derived.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-derived_union_is_derived-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-derived_union_is_derived-_specification">
             <language>OCL</language>
             <body>isDerivedUnion implies isDerived</body>
           </specification>
@@ -2890,7 +2890,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Property-subsetted_property_names-_ownedComment.0" annotatedElement="Core-Constructs-Property-subsetted_property_names">
             <body>A property may not subset a property with the same name.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-subsetted_property_names-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-subsetted_property_names-_specification">
             <language>OCL</language>
             <body>true</body>
           </specification>
@@ -2975,7 +2975,7 @@ endif</body>
             <body>If this property is owned by a class, associated with a binary association, and the other end of the association is also owned by a class, then opposite gives the other end.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Property-opposite.1-spec" name="spec" constrainedElement="Core-Constructs-Property-opposite.1 Core-Constructs-Property-opposite">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-opposite.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-opposite.1-spec-_specification">
               <language>OCL</language>
               <body>if owningAssociation->isEmpty() and association.memberEnd->size() = 2
   then
@@ -2992,13 +2992,13 @@ endif</body>
             <body>The query isConsistentWith() specifies, for any two Properties in a context in which redefinition is possible, whether redefinition would be logically consistent. A redefining property is consistent with a redefined property if the type of the redefining property conforms to the type of the redefined property, the multiplicity of the redefining property (if specified) is contained in the multiplicity of the redefined property, and the redefining property is derived if the redefined property is derived.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Property-isConsistentWith-_ownedRule.0" constrainedElement="Core-Constructs-Property-isConsistentWith">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-isConsistentWith-_ownedRule.0-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-isConsistentWith-_ownedRule.0-_specification">
               <language>OCL</language>
               <body>redefinee.isRedefinitionContextValid(self)</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:id="Core-Constructs-Property-isConsistentWith-spec" name="spec" constrainedElement="Core-Constructs-Property-isConsistentWith">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-isConsistentWith-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-isConsistentWith-spec-_specification">
               <language>OCL</language>
               <body>redefinee.oclIsKindOf(Property) and 
   let prop : Property = redefinee.oclAsType(Property) in 
@@ -3017,7 +3017,7 @@ endif</body>
             <body>The query subsettingContext() gives the context for subsetting a property. It consists, in the case of an attribute, of the corresponding classifier, and in the case of an association end, all of the classifiers at the other ends.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Property-subsettingContext-spec" name="spec" constrainedElement="Core-Constructs-Property-subsettingContext">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-subsettingContext-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-subsettingContext-spec-_specification">
               <language>OCL</language>
               <body>if association->notEmpty()
 then association.endType-type 
@@ -3035,7 +3035,7 @@ endif</body>
             <body>The query isNavigable() indicates whether it is possible to navigate across the property.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Property-isNavigable-spec" name="spec" constrainedElement="Core-Constructs-Property-isNavigable">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-isNavigable-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-isNavigable-spec-_specification">
               <language>OCL</language>
               <body>not classifier->isEmpty() or
 association.owningAssociation.navigableOwnedEnd->includes(self)</body>
@@ -3048,7 +3048,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>The query isAttribute() is true if the Property is defined as an attribute of some classifier.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Property-isAttribute-spec" name="spec" constrainedElement="Core-Constructs-Property-isAttribute">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Property-isAttribute-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Property-isAttribute-spec-_specification">
               <language>OCL</language>
               <body>Classifier->allInstances->exists(c | c.attribute->includes(p))</body>
             </specification>
@@ -3081,7 +3081,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>The inherit operation is overridden to exclude redefined properties.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-DataType-inherit-spec" name="spec" constrainedElement="Core-Constructs-DataType-inherit">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-DataType-inherit-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-DataType-inherit-spec-_specification">
               <language>OCL</language>
               <body>inhs->excluding(inh | ownedMember->select(oclIsKindOf(RedefinableElement))->select(redefinedElement->includes(inh)))</body>
             </specification>
@@ -3135,7 +3135,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
           <ownedComment xmi:id="Core-Constructs-Constraint-not_apply_to_self-_ownedComment.0" annotatedElement="Core-Constructs-Constraint-not_apply_to_self">
             <body>A constraint cannot be applied to itself.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Constraint-not_apply_to_self-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Constraint-not_apply_to_self-_specification">
             <language>OCL</language>
             <body>not constrainedElement->includes(self)</body>
           </specification>
@@ -3144,7 +3144,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
           <ownedComment xmi:id="Core-Constructs-Constraint-value_specification_boolean-_ownedComment.0" annotatedElement="Core-Constructs-Constraint-value_specification_boolean">
             <body>The value specification for a constraint must evaluate to a Boolean value.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Constraint-value_specification_boolean-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Constraint-value_specification_boolean-_specification">
             <language>OCL</language>
             <body>self.specification.booleanValue().oclIsKindOf(Boolean)</body>
           </specification>
@@ -3166,29 +3166,29 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XokKY37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="Core-Constructs-OpaqueExpression" name="OpaqueExpression">
-        <ownedComment xmi:id="Core-Constructs-OpaqueExpression-_ownedComment.0" annotatedElement="Core-Constructs-OpaqueExpression">
+      <packagedElement xmi:type="uml:Class" xmi:id="Core-Constructs-ExpressionInOCL" name="ExpressionInOCL">
+        <ownedComment xmi:id="Core-Constructs-ExpressionInOCL-_ownedComment.0" annotatedElement="Core-Constructs-ExpressionInOCL">
           <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
         </ownedComment>
-        <ownedRule xmi:id="Core-Constructs-OpaqueExpression-language_body_size" name="language_body_size" constrainedElement="Core-Constructs-OpaqueExpression">
-          <ownedComment xmi:id="Core-Constructs-OpaqueExpression-language_body_size-_ownedComment.0" annotatedElement="Core-Constructs-OpaqueExpression-language_body_size">
+        <ownedRule xmi:id="Core-Constructs-ExpressionInOCL-language_body_size" name="language_body_size" constrainedElement="Core-Constructs-ExpressionInOCL">
+          <ownedComment xmi:id="Core-Constructs-ExpressionInOCL-language_body_size-_ownedComment.0" annotatedElement="Core-Constructs-ExpressionInOCL-language_body_size">
             <body>If the language attribute is not empty, then the size of the body and language arrays must be the same.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-OpaqueExpression-language_body_size-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ExpressionInOCL-language_body_size-_specification">
             <language>OCL</language>
             <body>language->notEmpty() implies (body->size() = language->size())</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="_XpTxBX7VEeOu79LxSz8Ylw" general="Core-Constructs-ValueSpecification"/>
-        <ownedAttribute xmi:id="Core-Constructs-OpaqueExpression-body" name="body" type="Core-PrimitiveTypes-String" isOrdered="true" isUnique="false" aggregation="composite">
-          <ownedComment xmi:id="Core-Constructs-OpaqueExpression-body-_ownedComment.0" annotatedElement="Core-Constructs-OpaqueExpression-body">
+        <ownedAttribute xmi:id="Core-Constructs-ExpressionInOCL-body" name="body" type="Core-PrimitiveTypes-String" isOrdered="true" isUnique="false" aggregation="composite">
+          <ownedComment xmi:id="Core-Constructs-ExpressionInOCL-body-_ownedComment.0" annotatedElement="Core-Constructs-ExpressionInOCL-body">
             <body>The text of the expression, possibly in multiple languages.</body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XokKZH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XokKZX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Constructs-OpaqueExpression-language" name="language" type="Core-PrimitiveTypes-String" isOrdered="true" aggregation="composite">
-          <ownedComment xmi:id="Core-Constructs-OpaqueExpression-language-_ownedComment.0" annotatedElement="Core-Constructs-OpaqueExpression-language">
+        <ownedAttribute xmi:id="Core-Constructs-ExpressionInOCL-language" name="language" type="Core-PrimitiveTypes-String" isOrdered="true" aggregation="composite">
+          <ownedComment xmi:id="Core-Constructs-ExpressionInOCL-language-_ownedComment.0" annotatedElement="Core-Constructs-ExpressionInOCL-language">
             <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XokKZn7VEeOu79LxSz8Ylw"/>
@@ -3203,7 +3203,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
           <ownedComment xmi:id="Core-Constructs-Operation-only_body_for_query-_ownedComment.0" annotatedElement="Core-Constructs-Operation-only_body_for_query">
             <body>A bodyCondition can only be specified for a query operation.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-only_body_for_query-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-only_body_for_query-_specification">
             <language>OCL</language>
             <body>bodyCondition->notEmpty() implies isQuery</body>
           </specification>
@@ -3212,7 +3212,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
           <ownedComment xmi:id="Core-Constructs-Operation-at_most_one_return-_ownedComment.0" annotatedElement="Core-Constructs-Operation-at_most_one_return">
             <body>An operation can have at most one return parameter; i.e., an owned parameter with the direction set to 'return'</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-at_most_one_return-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-at_most_one_return-_specification">
             <language>OCL</language>
             <body>self.ownedParameter->select(par | par.direction = #return)->size() &lt;= 1</body>
           </specification>
@@ -3305,7 +3305,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>If this operation has a return parameter, isOrdered equals the value of isOrdered for that parameter. Otherwise isOrdered is false.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Operation-isOrdered.1-spec" name="spec" constrainedElement="Core-Constructs-Operation-isOrdered.1 Core-Constructs-Operation-isOrdered">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-isOrdered.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-isOrdered.1-spec-_specification">
               <language>OCL</language>
               <body>if returnResult->size() = 1 then returnResult->any().isOrdered else false endif</body>
             </specification>
@@ -3317,7 +3317,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>If this operation has a return parameter, isUnique equals the value of isUnique for that parameter. Otherwise isUnique is true.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Operation-isUnique.1-spec" name="spec" constrainedElement="Core-Constructs-Operation-isUnique.1 Core-Constructs-Operation-isUnique">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-isUnique.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-isUnique.1-spec-_specification">
               <language>OCL</language>
               <body>if returnResult->size() = 1 then returnResult->any().isUnique else true endif</body>
             </specification>
@@ -3329,7 +3329,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>If this operation has a return parameter, lower equals the value of lower for that parameter. Otherwise lower is not defined.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Operation-lower.1-spec" name="spec" constrainedElement="Core-Constructs-Operation-lower.1 Core-Constructs-Operation-lower">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-lower.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-lower.1-spec-_specification">
               <language>OCL</language>
               <body>if returnResult->size() = 1 then returnResult->any().lower else Set{} endif</body>
             </specification>
@@ -3341,7 +3341,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>If this operation has a return parameter, upper equals the value of upper for that parameter. Otherwise upper is not defined.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Operation-upper.1-spec" name="spec" constrainedElement="Core-Constructs-Operation-upper.1 Core-Constructs-Operation-upper">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-upper.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-upper.1-spec-_specification">
               <language>OCL</language>
               <body>if returnResult->size() = 1 then returnResult->any().upper else Set{} endif</body>
             </specification>
@@ -3353,7 +3353,7 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>If this operation has a return parameter, type equals the value of type for that parameter. Otherwise type is not defined.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Operation-type.1-spec" name="spec" constrainedElement="Core-Constructs-Operation-type.1 Core-Constructs-Operation-type">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-type.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-type.1-spec-_specification">
               <language>OCL</language>
               <body>if returnResult->size() = 1 then returnResult->any().type else Set{} endif</body>
             </specification>
@@ -3365,13 +3365,13 @@ association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             <body>The query isConsistentWith() specifies, for any two Operations in a context in which redefinition is possible, whether redefinition would be consistent in the sense of maintaining type covariance. Other senses of consistency may be required, for example to determine consistency in the sense of contravariance. Users may define alternative queries under names different from 'isConsistentWith()', as for example, users may define a query named 'isContravariantWith()'.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Operation-isConsistentWith-_ownedRule.0" constrainedElement="Core-Constructs-Operation-isConsistentWith">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-isConsistentWith-_ownedRule.0-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-isConsistentWith-_ownedRule.0-_specification">
               <language>OCL</language>
               <body>redefinee.isRedefinitionContextValid(self)</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:id="Core-Constructs-Operation-isConsistentWith-spec" name="spec" constrainedElement="Core-Constructs-Operation-isConsistentWith">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-isConsistentWith-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-isConsistentWith-spec-_specification">
               <language>OCL</language>
               <body>(redefinee.oclIsKindOf(Operation) and&#xD;
 let op: Operation = redefinee.oclAsType(Operation) in&#xD;
@@ -3385,7 +3385,7 @@ forAll(i | op.ownedParameter[i].type.conformsTo(self.ownedParameter[i].type))&#x
         </ownedOperation>
         <ownedOperation xmi:id="Core-Constructs-Operation-returnResult" name="returnResult" bodyCondition="Core-Constructs-Operation-returnResult-spec" isQuery="true">
           <ownedRule xmi:id="Core-Constructs-Operation-returnResult-spec" name="spec" constrainedElement="Core-Constructs-Operation-returnResult">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Operation-returnResult-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Operation-returnResult-spec-_specification">
               <language>OCL</language>
               <body>ownedParameter->select (par | par.direction = #return)</body>
             </specification>
@@ -3445,7 +3445,7 @@ forAll(i | op.ownedParameter[i].type.conformsTo(self.ownedParameter[i].type))&#x
             <body>The query isDistinguishableFrom() determines whether two BehavioralFeatures may coexist in the same Namespace. It specifies that they have to have different signatures.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-BehavioralFeature-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Constructs-BehavioralFeature-isDistinguishableFrom">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-BehavioralFeature-isDistinguishableFrom-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-BehavioralFeature-isDistinguishableFrom-spec-_specification">
               <language>OCL</language>
               <body>if n.oclIsKindOf(BehavioralFeature)
 then
@@ -3470,7 +3470,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-ElementImport-visibility_public_or_private-_ownedComment.0" annotatedElement="Core-Constructs-ElementImport-visibility_public_or_private">
             <body>The visibility of an ElementImport is either public or private.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ElementImport-visibility_public_or_private-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ElementImport-visibility_public_or_private-_specification">
             <language>OCL</language>
             <body>self.visibility = #public or self.visibility = #private</body>
           </specification>
@@ -3479,7 +3479,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-ElementImport-imported_element_is_public-_ownedComment.0" annotatedElement="Core-Constructs-ElementImport-imported_element_is_public">
             <body>An importedElement has either public visibility or no visibility at all.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ElementImport-imported_element_is_public-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ElementImport-imported_element_is_public-_specification">
             <language>OCL</language>
             <body>self.importedElement.visibility.notEmpty() implies self.importedElement.visibility = #public</body>
           </specification>
@@ -3512,7 +3512,7 @@ endif</body>
             <body>The query getName() returns the name under which the imported PackageableElement will be known in the importing namespace.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-ElementImport-getName-spec" name="spec" constrainedElement="Core-Constructs-ElementImport-getName">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-ElementImport-getName-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-ElementImport-getName-spec-_specification">
               <language>OCL</language>
               <body>if self.alias->notEmpty() then 
   self.alias
@@ -3532,7 +3532,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-Package-elements_public_or_private-_ownedComment.0" annotatedElement="Core-Constructs-Package-elements_public_or_private">
             <body>If an element that is owned by a package has visibility, it is public or private.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Package-elements_public_or_private-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Package-elements_public_or_private-_specification">
             <language>OCL</language>
             <body>self.ownedElements->forAll(e | e.visibility->notEmpty() implies e.visbility = #public or e.visibility = #private)</body>
           </specification>
@@ -3578,7 +3578,7 @@ endif</body>
             <body>The query mustBeOwned() indicates whether elements of this type must have an owner.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Package-mustBeOwned-spec" name="spec" constrainedElement="Core-Constructs-Package-mustBeOwned">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Package-mustBeOwned-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Package-mustBeOwned-spec-_specification">
               <language>OCL</language>
               <body>false</body>
             </specification>
@@ -3590,7 +3590,7 @@ endif</body>
             <body>The query visibleMembers() defines which members of a Package can be accessed outside it.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Package-visibleMembers-spec" name="spec" constrainedElement="Core-Constructs-Package-visibleMembers">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Package-visibleMembers-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Package-visibleMembers-spec-_specification">
               <language>OCL</language>
               <body>member->select( m | self.makesVisible(m))</body>
             </specification>
@@ -3605,13 +3605,13 @@ endif</body>
             <body>The query makesVisible() defines whether a Package makes an element visible outside itself. Elements with no visibility and elements with public visibility are made visible.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Package-makesVisible-_ownedRule.0" constrainedElement="Core-Constructs-Package-makesVisible">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Package-makesVisible-_ownedRule.0-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Package-makesVisible-_ownedRule.0-_specification">
               <language>OCL</language>
               <body>self.member->includes(el)</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:id="Core-Constructs-Package-makesVisible-spec" name="spec" constrainedElement="Core-Constructs-Package-makesVisible">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Package-makesVisible-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Package-makesVisible-spec-_specification">
               <language>OCL</language>
               <body>(ownedMember->includes(el)) or
    (elementImport->
@@ -3635,7 +3635,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-PackageImport-public_or_private-_ownedComment.0" annotatedElement="Core-Constructs-PackageImport-public_or_private">
             <body>The visibility of a PackageImport is either public or private.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-PackageImport-public_or_private-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-PackageImport-public_or_private-_specification">
             <language>OCL</language>
             <body>self.visibility = #public or self.visibility = #private</body>
           </specification>
@@ -3691,7 +3691,7 @@ endif</body>
             <body>The query conformsTo() gives true for a type that conforms to another. By default, two types do not conform to each other. This query is intended to be redefined for specific conformance situations.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-Type-conformsTo-spec" name="spec" constrainedElement="Core-Constructs-Type-conformsTo">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-Type-conformsTo-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-Type-conformsTo-spec-_specification">
               <language>OCL</language>
               <body>false</body>
             </specification>
@@ -3708,7 +3708,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-NamedElement-has_no_qualified_name-_ownedComment.0" annotatedElement="Core-Constructs-NamedElement-has_no_qualified_name">
             <body>If there is no name, or one of the containing namespaces has no name, there is no qualified name.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-has_no_qualified_name-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-has_no_qualified_name-_specification">
             <language>OCL</language>
             <body>(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty())&#xD;
   implies self.qualifiedName->isEmpty()</body>
@@ -3718,7 +3718,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-NamedElement-has_qualified_name-_ownedComment.0" annotatedElement="Core-Constructs-NamedElement-has_qualified_name">
             <body>When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-has_qualified_name-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-has_qualified_name-_specification">
             <language>OCL</language>
             <body>(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) implies
   self.qualifiedName = self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))</body>
@@ -3728,7 +3728,7 @@ endif</body>
           <ownedComment xmi:id="Core-Constructs-NamedElement-visibility_needs_ownership-_ownedComment.0" annotatedElement="Core-Constructs-NamedElement-visibility_needs_ownership">
             <body>If a NamedElement is not owned by a Namespace, it does not have a visibility.</body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-visibility_needs_ownership-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-visibility_needs_ownership-_specification">
             <language>OCL</language>
             <body>namespace->isEmpty() implies visibility->isEmpty()</body>
           </specification>
@@ -3763,7 +3763,7 @@ endif</body>
             <body>The query allNamespaces() gives the sequence of namespaces in which the NamedElement is nested, working outwards.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-NamedElement-allNamespaces-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-allNamespaces">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-allNamespaces-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-allNamespaces-spec-_specification">
               <language>OCL</language>
               <body>if self.namespace->isEmpty()
 then Sequence{}
@@ -3781,7 +3781,7 @@ endif</body>
             <body>The query isDistinguishableFrom() determines whether two NamedElements may logically co-exist within a Namespace. By default, two named elements are distinguishable if (a) they have unrelated types or (b) they have related types but different names.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-NamedElement-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-isDistinguishableFrom">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-isDistinguishableFrom-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-isDistinguishableFrom-spec-_specification">
               <language>OCL</language>
               <body>if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType)
 then ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()
@@ -3798,7 +3798,7 @@ endif</body>
             <body>The query separator() gives the string that is used to separate names when constructing a qualified name.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-NamedElement-separator-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-separator">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-separator-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-separator-spec-_specification">
               <language>OCL</language>
               <body>'::'</body>
             </specification>
@@ -3810,7 +3810,7 @@ endif</body>
             <body>When there is a name, and all of the containing namespaces have a name, the qualified name is constructed from the names of the containing namespaces.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-NamedElement-qualifiedName.1-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-qualifiedName.1">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-qualifiedName.1-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-NamedElement-qualifiedName.1-spec-_specification">
               <language>OCL</language>
               <body>if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()
 then 
@@ -3889,7 +3889,7 @@ endif</body>
             <body>The query bestVisibility() examines a set of VisibilityKinds, and returns public as the preferred visibility.</body>
           </ownedComment>
           <ownedRule xmi:id="Core-Constructs-VisibilityKind-bestVisibility-spec" name="spec" constrainedElement="Core-Constructs-VisibilityKind-bestVisibility">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="Core-Constructs-VisibilityKind-bestVisibility-spec-_specification">
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="Core-Constructs-VisibilityKind-bestVisibility-spec-_specification">
               <language>OCL</language>
               <body>if vis->includes(#public) then #public else #private endif</body>
             </specification>
@@ -4144,7 +4144,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-Stereotype-name_not_clash-_ownedComment.0" annotatedElement="Profiles-Stereotype-name_not_clash">
           <body>Stereotype names should not clash with keyword names for the extended model element.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Stereotype-name_not_clash-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Stereotype-name_not_clash-_specification">
           <language>OCL</language>
           <body>true</body>
         </specification>
@@ -4153,7 +4153,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-Stereotype-generalize-_ownedComment.0" annotatedElement="Profiles-Stereotype-generalize">
           <body>A Stereotype may only generalize or specialize another Stereotype.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Stereotype-generalize-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Stereotype-generalize-_specification">
           <language>OCL</language>
           <body>generalization.general->forAll(e |e.oclIsKindOf(Stereotype)) and generalization.specific->forAll(e | e.oclIsKindOf(Stereotype)) </body>
         </specification>
@@ -4176,7 +4176,7 @@ endif</body>
           <body>The query containingProfile returns the closest profile directly or indirectly containing this stereotype.</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Stereotype-containingProfile-spec" name="spec" constrainedElement="Profiles-Stereotype-containingProfile">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Stereotype-containingProfile-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Stereotype-containingProfile-spec-_specification">
             <language>OCL</language>
             <body>self.namespace.oclAsType(Package).containingProfile()</body>
           </specification>
@@ -4188,7 +4188,7 @@ endif</body>
           <body>A stereotype must be contained, directly or indirectly, in a profile.</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Stereotype-profile.1-spec" name="spec" constrainedElement="Profiles-Stereotype-profile.1">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Stereotype-profile.1-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Stereotype-profile.1-spec-_specification">
             <language>OCL</language>
             <body>self.containingProfile()</body>
           </specification>
@@ -4204,7 +4204,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-Profile-metaclass_reference_not_specialized-_ownedComment.0" annotatedElement="Profiles-Profile-metaclass_reference_not_specialized">
           <body>An element imported as a metaclassReference is not specialized or generalized in a Profile.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Profile-metaclass_reference_not_specialized-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Profile-metaclass_reference_not_specialized-_specification">
           <language>OCL</language>
           <body>self.metaclassReference.importedElement->&#xD;
 	select(c | c.oclIsKindOf(Classifier) and&#xD;
@@ -4215,7 +4215,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-Profile-references_same_metamodel-_ownedComment.0" annotatedElement="Profiles-Profile-references_same_metamodel">
           <body>All elements imported either as metaclassReferences or through metamodelReferences are members of the same base reference metamodel.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Profile-references_same_metamodel-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Profile-references_same_metamodel-_specification">
           <language>OCL</language>
           <body>self.metamodelReference.importedPackage.elementImport.importedElement.allOwningPackages()->&#xD;
   union(self.metaclassReference.importedElement.allOwningPackages() )->notEmpty()</body>
@@ -4261,7 +4261,7 @@ endif</body>
           <body>The query allApplicableStereotypes() returns all the directly or indirectly owned stereotypes, including stereotypes contained in sub-profiles.</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Package-allApplicableStereotypes-spec" name="spec" constrainedElement="Profiles-Package-allApplicableStereotypes">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Package-allApplicableStereotypes-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Package-allApplicableStereotypes-spec-_specification">
             <language>OCL</language>
             <body>&#xD;
 self.ownedStereotype->union(self.ownedMember->&#xD;
@@ -4278,7 +4278,7 @@ self.ownedStereotype->union(self.ownedMember->&#xD;
           <body>The query containingProfile() returns the closest profile directly or indirectly containing this package (or this package itself, if it is a profile).</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Package-containingProfile-spec" name="spec" constrainedElement="Profiles-Package-containingProfile">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Package-containingProfile-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Package-containingProfile-spec-_specification">
             <language>OCL</language>
             <body>result =&#xD;
 if self.oclIsKindOf(Profile) then &#xD;
@@ -4336,7 +4336,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-Extension-non_owned_end-_ownedComment.0" annotatedElement="Profiles-Extension-non_owned_end">
           <body>The non-owned end of an Extension is typed by a Class.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Extension-non_owned_end-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Extension-non_owned_end-_specification">
           <language>OCL</language>
           <body>metaclassEnd()->notEmpty() and metaclass()->oclIsKindOf(Class)</body>
         </specification>
@@ -4345,7 +4345,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-Extension-is_binary-_ownedComment.0" annotatedElement="Profiles-Extension-is_binary">
           <body>An Extension is binary, i.e., it has only two memberEnds.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Extension-is_binary-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Extension-is_binary-_specification">
           <language>OCL</language>
           <body>memberEnd->size() = 2</body>
         </specification>
@@ -4372,7 +4372,7 @@ endif</body>
           <body>The query metaclassEnd() returns the Property that is typed by a metaclass (as opposed to a stereotype).</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Extension-metaclassEnd-spec" name="spec" constrainedElement="Profiles-Extension-metaclassEnd">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Extension-metaclassEnd-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Extension-metaclassEnd-spec-_specification">
             <language>OCL</language>
             <body>memberEnd->reject(ownedEnd)</body>
           </specification>
@@ -4384,7 +4384,7 @@ endif</body>
           <body>The query metaclass() returns the metaclass that is being extended (as opposed to the extending stereotype).</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Extension-metaclass.1-spec" name="spec" constrainedElement="Profiles-Extension-metaclass.1">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Extension-metaclass.1-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Extension-metaclass.1-spec-_specification">
             <language>OCL</language>
             <body>metaclassEnd().type</body>
           </specification>
@@ -4396,7 +4396,7 @@ endif</body>
           <body>The query isRequired() is true if the owned end has a multiplicity with the lower bound of 1.</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-Extension-isRequired.1-spec" name="spec" constrainedElement="Profiles-Extension-isRequired.1">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-Extension-isRequired.1-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-Extension-isRequired.1-spec-_specification">
             <language>OCL</language>
             <body>(ownedEnd->lowerBound() = 1)</body>
           </specification>
@@ -4412,7 +4412,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-ExtensionEnd-multiplicity-_ownedComment.0" annotatedElement="Profiles-ExtensionEnd-multiplicity">
           <body>The multiplicity of ExtensionEnd is 0..1 or 1.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-ExtensionEnd-multiplicity-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-ExtensionEnd-multiplicity-_specification">
           <language>OCL</language>
           <body>(self->lowerBound() = 0 or self->lowerBound() = 1) and self->upperBound() = 1</body>
         </specification>
@@ -4421,7 +4421,7 @@ endif</body>
         <ownedComment xmi:id="Profiles-ExtensionEnd-aggregation-_ownedComment.0" annotatedElement="Profiles-ExtensionEnd-aggregation">
           <body>The aggregation of an ExtensionEnd is composite.</body>
         </ownedComment>
-        <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-ExtensionEnd-aggregation-_specification">
+        <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-ExtensionEnd-aggregation-_specification">
           <language>OCL</language>
           <body>self.aggregation = #composite</body>
         </specification>
@@ -4445,7 +4445,7 @@ endif</body>
 lower bound, which normally, for MultiplicityElements, evaluates to 1 if empty.</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-ExtensionEnd-lowerBound-spec" name="spec" constrainedElement="Profiles-ExtensionEnd-lowerBound">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-ExtensionEnd-lowerBound-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-ExtensionEnd-lowerBound-spec-_specification">
             <language>OCL</language>
             <body>lowerBound = if lowerValue->isEmpty() then 0 else lowerValue->IntegerValue() endif</body>
           </specification>
@@ -4485,7 +4485,7 @@ In addition the prefix 'MIME: ' is also reserved. This option can be used as an 
           <body>The query allOwningPackages() returns all the directly or indirectly owning packages.</body>
         </ownedComment>
         <ownedRule xmi:id="Profiles-NamedElement-allOwningPackages-spec" name="spec" constrainedElement="Profiles-NamedElement-allOwningPackages">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Profiles-NamedElement-allOwningPackages-spec-_specification">
+          <specification xmi:type="uml:ExpressionInOCL" xmi:id="Profiles-NamedElement-allOwningPackages-spec-_specification">
             <language>OCL</language>
             <body>self.namespace->select(p | p.oclIsKindOf(Package))->union(p.allOwningPackages())</body>
           </specification>

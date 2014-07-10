@@ -445,17 +445,24 @@ public class OperationCallExpImpl
 	{
 		/**
 		 * 
-		 * inv ArgumentTypeIsConformant: 
-		 * 	let operation : Operation = self.referredOperation in
-		 * 	let parameters : OrderedSet(Parameter) = operation.ownedParameter in
-		 * 	let selfType : Type = operation.owningType in
-		 * 	Sequence{1..argument->size()}->forAll (i | 
-		 * 		let argument : OCLExpression = argument->at(i) in
-		 * 		let parameter : Parameter = parameters->at(i) in
-		 * 		let parameterType : Type = parameter.type in
-		 * 		argument.type.conformsTo(parameterType.specializeIn(self, selfType)))
-		 * 
-		 * 
+		 * inv ArgumentTypeIsConformant:
+		 *   let operation : Operation = self.referredOperation
+		 *   in
+		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameter
+		 *     in
+		 *       let selfType : Type = operation.owningType
+		 *       in
+		 *         Sequence{1..argument->size()
+		 *         }
+		 *         ->forAll(i |
+		 *           let argument : OCLExpression = argument->at(i)
+		 *           in
+		 *             let parameter : Parameter = parameters->at(i)
+		 *             in
+		 *               let parameterType : Type = parameter.type
+		 *               in
+		 *                 argument.type.conformsTo(
+		 *                   parameterType.specializeIn(self, selfType)))
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_forAll;
 		try {
@@ -559,8 +566,6 @@ public class OperationCallExpImpl
 	{
 		/**
 		 * inv ArgumentCount: argument->size() = referredOperation.ownedParameter->size()
-		 * 
-		 * 
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

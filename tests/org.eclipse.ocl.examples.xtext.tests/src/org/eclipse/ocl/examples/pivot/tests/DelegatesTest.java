@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -101,7 +102,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectVal
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
-
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -548,7 +548,7 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
 		executeWithException2(delegate, acme, null, getErrorsInMessage("company", "Company", badName) +
-			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, badName, ""));
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "", badName));
 		//
 		//	Definition of undeclared variable
 		//
@@ -626,7 +626,7 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
 		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
-			DomainUtil.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
+			DomainUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, property, PivotConstants.DEFAULT_EXPRESSION_ROLE));
 	}
 
 	public void test_attributeEvaluatingToInvalid() {
@@ -663,7 +663,7 @@ public class DelegatesTest extends PivotTestSuite
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToLexicalError", "gh##jk") +
 			DomainUtil.bind("1: no viable alternative at ''{0}''", "#") + "\n" +
-			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "gh", ""));
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "", "gh"));
 	}
 
 	public void test_attributeParsingToSemanticError() {
@@ -671,7 +671,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
 			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToSemanticError", "'5' and 6") +
-			DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "and", "String", "UnlimitedNatural"));
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "String", "and", "UnlimitedNatural"));
 	}
 
 	public void test_attributeParsingToSyntacticError() {
@@ -871,7 +871,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
+			DomainUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
 	}
 
 	public void test_operationDefinedWithoutBodyBody() throws InvocationTargetException {
@@ -880,7 +880,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
+			DomainUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
 	}
 
 	public void test_operationEvaluatingToInvalid() throws InvocationTargetException {
@@ -933,7 +933,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToSemanticError", "self->at(1)") + DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set(modelWithErrors::BadClass)", "1"));
+			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToSemanticError", "self->at(1)") + DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "Set(modelWithErrors::BadClass)", "at", "1"));
 	}
 
 	public void test_operationParsingToSyntacticError() throws InvocationTargetException {
@@ -955,7 +955,7 @@ public class DelegatesTest extends PivotTestSuite
 		Operation o = oce.getReferredOperation();
 		try {
 			@SuppressWarnings({"unused", "null"})
-			ExpressionInOCL body = InvocationBehavior.INSTANCE.getExpressionInOCL(metaModelManager, o);
+			ExpressionInOCL body = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, o);
 			fail("Expected to catch OCLDelegateException");
 		}
 		catch (OCLDelegateException e) {		
@@ -963,7 +963,7 @@ public class DelegatesTest extends PivotTestSuite
 		// and again, now reading from cache
 		try {
 			@SuppressWarnings({"unused", "null"})
-			ExpressionInOCL bodyStillNull = InvocationBehavior.INSTANCE.getExpressionInOCL(metaModelManager, o);
+			ExpressionInOCL bodyStillNull = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, o);
 			fail("Expected to catch OCLDelegateException");
 		}
 		catch (OCLDelegateException e) {		
@@ -1133,7 +1133,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
 		validateWithDelegationSeverity("parsingToSemanticError", Diagnostic.ERROR, badClassInstance, "not '5'",
-			SemanticException.class, "1: " + OCLMessages.UnresolvedOperation_ERROR_, "not", "String");
+			SemanticException.class, "1: " + OCLMessages.UnresolvedOperation_ERROR_, "String", "not");
 	}
 	
 	public void test_validationParsingToSyntacticError() {

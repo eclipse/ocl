@@ -35,16 +35,21 @@ public interface DomainFragment
 	@NonNull DomainInheritance getDerivedInheritance();
 	
 	/**
-	 * Return the implementation of the operation within this fragment that has the same signature as staticOperation.
+	 * Return the actualOperation that has the same signature as apparentOperation.
+	 */
+	@NonNull DomainOperation getActualOperation(@NonNull DomainOperation apparentOperation);
+	
+	/**
+	 * Return the implementation of the actualOperation within this fragment that has the same signature as apparentOperation.
 	 * If there is no local overload, returns an inherited operation if unambiguous or OclAnyUnsupportedOperation.AMBIGUOUS
 	 * if ambiguous.
 	 */
-	@NonNull LibraryFeature getImplementation(@NonNull DomainOperation staticOperation);
+	@NonNull LibraryFeature getImplementation(@NonNull DomainOperation apparentOperation);
 	
 	/**
-	 * Return the operation within this fragment that has the same signature as staticOperation. Returns null if none.
+	 * Return the operation within this fragment that has the same signature as apparentOperation. Returns null if none.
 	 */
-	@Nullable DomainOperation getLocalOperation(@NonNull DomainOperation staticOperation);
+	@Nullable DomainOperation getLocalOperation(@NonNull DomainOperation apparentOperation);
 	
 	/**
 	 * Return the operations within this fragment in operation index order.

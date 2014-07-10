@@ -261,9 +261,8 @@ public class IfExpImpl
 	public boolean validateConditionTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
+		 * 
 		 * inv ConditionTypeIsBoolean: self.condition.type = Boolean
-		 * 
-		 * 
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();

@@ -68,7 +68,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiD37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiEH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_5v66gLGAEeKHeOerXjTPgw" name="bodyExpression" type="_KRLP8LM6EeKdoIiyQwkfFA" aggregation="composite">
+        <ownedAttribute xmi:id="_5v66gLGAEeKHeOerXjTPgw" name="bodyExpression" type="_NdU7cLGQEeKHeOerXjTPgw" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiEX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
@@ -79,12 +79,11 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_3AeT4LGPEeKHeOerXjTPgw" name="Property">
-        <ownedAttribute xmi:id="_9mPuALGPEeKHeOerXjTPgw" name="defaultExpression" type="_KRLP8LM6EeKdoIiyQwkfFA" aggregation="composite">
+        <ownedAttribute xmi:id="_9mPuALGPEeKHeOerXjTPgw" name="defaultExpression" type="_NdU7cLGQEeKHeOerXjTPgw" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_NdU7cLGQEeKHeOerXjTPgw" name="ExpressionInOCL"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_KRLP8LM6EeKdoIiyQwkfFA" name="OpaqueExpression"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_IPg0EIgHEd-aGOJuUCcZBA" name="OCL_Expressions">
       <packageImport xmi:id="_hOWSkIqsEd-VzsYvPRGeYg">
@@ -256,7 +255,9 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_IPg0eogHEd-aGOJuUCcZBA" name="ExpressionInOCL">
         <generalization xmi:id="_XpnTKH7VEeOu79LxSz8Ylw" general="_IPg0hIgHEd-aGOJuUCcZBA"/>
-        <ownedAttribute xmi:id="_IPg0fIgHEd-aGOJuUCcZBA" name="bodyExpression" type="_IPg0HogHEd-aGOJuUCcZBA" aggregation="composite"/>
+        <ownedAttribute xmi:id="_IPg0fIgHEd-aGOJuUCcZBA" name="bodyExpression" type="_IPg0HogHEd-aGOJuUCcZBA" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_99uscAIiEeSCI8ZVm5C6gQ"/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="_IPg0fYgHEd-aGOJuUCcZBA" name="contextVariable" type="_IPg0MIgHEd-aGOJuUCcZBA" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiK37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
@@ -268,7 +269,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiLn7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_IPg0hIgHEd-aGOJuUCcZBA" name="OpaqueExpression"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IPg0hIgHEd-aGOJuUCcZBA" name="ValueSpecification"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_IPg0hYgHEd-aGOJuUCcZBA" name="InvalidLiteralExp">
         <generalization xmi:id="_XpnTKX7VEeOu79LxSz8Ylw" general="_IPg0WogHEd-aGOJuUCcZBA"/>
       </packagedElement>

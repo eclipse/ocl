@@ -111,7 +111,8 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
 	 * by the given Standard Library.
 	 */
-	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation);
+	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
+	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
 
 	/*@NonNull*/ DomainType specializeIn(@NonNull DomainCallExp expr, /*@NonNull*/ DomainType selfType);
 

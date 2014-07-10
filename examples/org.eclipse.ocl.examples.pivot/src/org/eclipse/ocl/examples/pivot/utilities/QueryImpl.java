@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
@@ -56,18 +57,18 @@ public class QueryImpl implements Query, ProblemAware
 {
 	private final OCL ocl;
 	private final Environment environment;
-	private final ExpressionInOCL specification;
+	private final ExpressionInOCL query;
 	private final OCLExpression expression;
 	private DomainModelManager modelManager = null;
 	private EvaluationEnvironment evalEnv;
 	private Diagnostic evalProblems;
 	private BasicDiagnostic batchEvalProblems;
 	
-	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL specification) {		
+	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL query) {		
 		this.ocl = ocl;
 		this.environment = ocl.getEnvironment();
-		this.specification = specification;
-		this.expression = specification.getBodyExpression();
+		this.query = query;
+		this.expression = query.getBodyExpression();
 		this.modelManager = ocl.getModelManager();
 	}
 
@@ -165,8 +166,9 @@ public class QueryImpl implements Query, ProblemAware
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		Variable contextVariable = DomainUtil.nonNullState(specification.getContextVariable());
-		myEnv.add(contextVariable, myEnv.getMetaModelManager().getIdResolver().boxedValueOf(obj));
+		MetaModelManager metaModelManager = myEnv.getMetaModelManager();
+		Variable contextVariable = DomainUtil.nonNullState(query.getContextVariable());
+		myEnv.add(contextVariable, metaModelManager.getIdResolver().boxedValueOf(obj));
 //		Variable resultVariable = specification.getResultVariable();
 //		if (resultVariable != null) {
 //			myEnv.add(resultVariable, null);
@@ -174,8 +176,7 @@ public class QueryImpl implements Query, ProblemAware
 		
 		@SuppressWarnings("null")
 		@NonNull Environment nonNullEnvironment = environment;
-		EvaluationVisitor ev =
-				nonNullEnvironment.getFactory().createEvaluationVisitor(
+		EvaluationVisitor ev = nonNullEnvironment.getFactory().createEvaluationVisitor(
 					nonNullEnvironment, myEnv, getModelManager());
 		
 		Object result;
@@ -237,7 +238,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (modelManager == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
 			
-			Object context = myEnv.getValueOf(specification.getContextVariable());
+			Object context = myEnv.getValueOf(query.getContextVariable());
 			
 			modelManager = myEnv.createModelManager(context);
 		}

@@ -297,7 +297,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 			}
 			ResourceSet resourceSet = contextObject.eResource().getResourceSet();
 			if (resourceSet != null) {
-				ExpressionInOCL query = getQuery(pivotConstraint);
+				ExpressionInOCL query = getQuery(metaModelManager, pivotConstraint);
 				EvaluationVisitor evaluationVisitor = createEvaluationVisitor(metaModelManager, query, contextObject, monitor);
 				ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metaModelManager, query, contextObject)
 				{

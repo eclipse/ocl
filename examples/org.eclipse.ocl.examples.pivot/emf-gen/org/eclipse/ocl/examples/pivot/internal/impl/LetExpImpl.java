@@ -202,8 +202,6 @@ public class LetExpImpl
 	{
 		/**
 		 * inv TypeIsInType: type = _'in'.type
-		 * 
-		 * 
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {

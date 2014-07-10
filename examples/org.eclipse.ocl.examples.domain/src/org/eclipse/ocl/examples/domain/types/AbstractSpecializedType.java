@@ -39,7 +39,11 @@ public abstract class AbstractSpecializedType extends AbstractType
 		return containerType.isUnique();
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation staticOperation) {
-		return containerType.lookupImplementation(standardLibrary, staticOperation);
+	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		return containerType.lookupActualOperation(standardLibrary, apparentOperation);
+	}
+
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+		return containerType.lookupImplementation(standardLibrary, apparentOperation);
 	}
 }

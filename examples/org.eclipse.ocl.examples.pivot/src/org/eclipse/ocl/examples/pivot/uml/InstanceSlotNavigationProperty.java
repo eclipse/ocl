@@ -22,6 +22,9 @@ import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralBoolean;
@@ -30,6 +33,7 @@ import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -65,7 +69,23 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 					}
 					else if (size >= 1) {
 						ValueSpecification valueSpecification = values.get(0);
-						return valueOf(valueSpecification);
+						if (valueSpecification instanceof OpaqueExpression) {
+							try {
+								MetaModelManager metaModelManager = (MetaModelManager)evaluator.getStandardLibrary();
+								ExpressionInOCL specification = metaModelManager.getPivotOf(ExpressionInOCL.class, valueSpecification);
+								if (specification == null) {
+									throw new InvalidValueException("Missing spec for " + specification);
+								}
+								ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
+								Object umlValue = evaluator.evaluate(query);
+								return metaModelManager.getIdResolver().boxedValueOf(umlValue);
+							} catch (ParserException e) {
+								throw new InvalidValueException(e, "Parse fail for " + valueSpecification);
+							}
+						}
+						else {
+							return valueOf(valueSpecification);
+						}
 					}
 					else {
 						throw new InvalidValueException("no ValueSpecification in Slot");

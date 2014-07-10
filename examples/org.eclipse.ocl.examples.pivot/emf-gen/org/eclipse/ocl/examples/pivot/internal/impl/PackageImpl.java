@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsURI <em>Ns URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
@@ -159,6 +161,16 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected String nsURI = NS_URI_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedInstances() <em>Owned Instances</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInstances()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InstanceSpecification> ownedInstances;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference list.
@@ -473,6 +485,8 @@ public class PackageImpl
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetNestingPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedInstances()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
@@ -507,6 +521,8 @@ public class PackageImpl
 				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
 				return basicSetNestingPackage(null, msgs);
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
@@ -568,6 +584,8 @@ public class PackageImpl
 				return getNsPrefix();
 			case PivotPackage.PACKAGE__NS_URI:
 				return getNsURI();
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return getOwnedInstances();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return getOwnedType();
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
@@ -635,6 +653,10 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NS_URI:
 				setNsURI((String)newValue);
 				return;
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				getOwnedInstances().clear();
+				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
+				return;
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends Type>)newValue);
@@ -698,6 +720,9 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NS_URI:
 				setNsURI(NS_URI_EDEFAULT);
 				return;
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				getOwnedInstances().clear();
+				return;
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
@@ -745,6 +770,8 @@ public class PackageImpl
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
 			case PivotPackage.PACKAGE__NS_URI:
 				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
@@ -860,6 +887,20 @@ public class PackageImpl
 		if ((packageId == null) && (newNsURI != null)) {
 			setPackageId(IdManager.getPackageId(this));
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<InstanceSpecification> getOwnedInstances()
+	{
+		if (ownedInstances == null)
+		{
+			ownedInstances = new EObjectContainmentWithInverseEList<InstanceSpecification>(InstanceSpecification.class, this, PivotPackage.PACKAGE__OWNED_INSTANCES, PivotPackage.INSTANCE_SPECIFICATION__PACKAGE);
+		}
+		return ownedInstances;
 	}
 
 	public @Nullable EPackage getEPackage() {

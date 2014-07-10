@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -102,6 +103,10 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
+	}
+
+	public @NonNull DomainOperation getOclInvalidOperation() {
+		throw new UnsupportedOperationException();
 	}
 
 	public DomainType getOclType(@NonNull String typeName) {

@@ -17,7 +17,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.examples.xtext.base.basecs.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
@@ -66,7 +69,14 @@ public class CS2PivotLinker extends LazyLinker
 				BaseCSResource csResource = (BaseCSResource) eResource;
 				try {
 					CS2PivotResourceAdapter resourceAdapter = csResource.getCS2ASAdapter(null);
-					resourceAdapter.refreshPivotMappings(diagnosticsConsumer);		// FIXME redundant
+					ParserContext parserContext = csResource.getParserContext();
+					if (parserContext != null) {
+						Element rootElement = parserContext.getRootElement();
+						if (rootElement != null) {
+							resourceAdapter.getConverter().installPivotDefinition((ModelElementCS) model, rootElement);
+						}
+					}
+					resourceAdapter.refreshPivotMappings(diagnosticsConsumer);
 /*					Resource asResource = resourceAdapter.getPivotResource(csResource);
 					ResourceSet resourceSet = csResource.getResourceSet();
 					if (resourceSet instanceof ResourceSetImpl) {

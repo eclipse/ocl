@@ -163,6 +163,13 @@ public interface PivotConstants extends DomainConstants
 	static final @NonNull String MESSAGE_PART_NAME = "message";
 	static final @NonNull String SEVERITY_PART_NAME = "severity";
 	static final @NonNull String STATUS_PART_NAME = "status";
+
+	static final @NonNull String BODY_EXPRESSION_ROLE = "body";
+	static final @NonNull String DEFAULT_EXPRESSION_ROLE = "initializer";
+	static final @NonNull String OWNED_RULE_ROLE = "constraint";
+	static final @NonNull String POSTCONDITION_ROLE = "postcondition";
+	static final @NonNull String PRECONDITION_ROLE = "precondition";
+	static final @NonNull String UNKNOWN_ROLE = "<<unknown>>";
 	
 	public static @NonNull Map<EStructuralFeature,String> roleNames = new HashMap<EStructuralFeature,String>();
 }

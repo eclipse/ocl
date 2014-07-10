@@ -1082,7 +1082,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in b->intersection(Bag{4})");
 
 		assertSemanticErrorQuery("let s : Set(Integer) = invalid in Set{4}->intersection(s)",
-			OCLMessages.UnresolvedOperationCall_ERROR_, "intersection", "Set(UnlimitedNatural)", "Set(Integer)");
+			OCLMessages.UnresolvedOperationCall_ERROR_, "Set(UnlimitedNatural)", "intersection", "Set(Integer)");
 		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Set{4}->intersection(s)");
 		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Bag{4}->intersection(s)");
 		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Set{4}->intersection(b)");
@@ -1520,7 +1520,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionReverse() {
-		assertSemanticErrorQuery("Bag{1,3,null,2}->reverse()", OCLMessages.UnresolvedOperation_ERROR_, "reverse", "Bag(UnlimitedNatural)");
+		assertSemanticErrorQuery("Bag{1,3,null,2}->reverse()", OCLMessages.UnresolvedOperation_ERROR_, "Bag(UnlimitedNatural)", "reverse");
 		assertQueryResults(null, "OrderedSet{}", "OrderedSet{}->reverse()");
 		assertQueryResults(null, "OrderedSet{null}", "OrderedSet{null}->reverse()");
 		assertQueryResults(null, "OrderedSet{2,1}", "OrderedSet{1,2}->reverse()");
@@ -1530,7 +1530,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		assertQueryResults(null, "Sequence{2,null,3,1}", "Sequence{1,3,null,2}->reverse()");
 		assertQueryResults(null, "Sequence{21,20,19,18,17,16,15,14,13,24,23,22,4,15,14,12,11,10,9,null,8,7,6,5,4,3,4,3,2,1}", "Sequence{1..4,3..8,null,9..12,14..15,4,22..24,13..21}->reverse()");
 		assertQueryResults(null, "Sequence{Set{1..3},Sequence{1..3},OrderedSet{1,3},Bag{1,1,1}}", "Sequence{Bag{1,1,1},OrderedSet{1,3},Sequence{1..3},Set{1..3}}->reverse()");
-		assertSemanticErrorQuery("Set{}->reverse()", OCLMessages.UnresolvedOperation_ERROR_, "reverse", "Set(<unspecified:4>)");
+		assertSemanticErrorQuery("Set{}->reverse()", OCLMessages.UnresolvedOperation_ERROR_, "Set(<unspecified:4>)", "reverse");
 	}
 
 	@Test public void testCollectionSelectByKind() {

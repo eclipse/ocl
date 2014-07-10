@@ -186,11 +186,11 @@ public interface Operation
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Body Expression</em>' containment reference.
-	 * @see #setBodyExpression(OpaqueExpression)
+	 * @see #setBodyExpression(ExpressionInOCL)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_BodyExpression()
 	 * @generated
 	 */
-	OpaqueExpression getBodyExpression();
+	ExpressionInOCL getBodyExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getBodyExpression <em>Body Expression</em>}' containment reference.
@@ -200,7 +200,7 @@ public interface Operation
 	 * @see #getBodyExpression()
 	 * @generated
 	 */
-	void setBodyExpression(OpaqueExpression value);
+	void setBodyExpression(ExpressionInOCL value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Invalidating</b></em>' attribute.
@@ -294,5 +294,4 @@ public interface Operation
 	 * @generated
 	 */
 	boolean validateUniquePostconditionName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
 } // Operation

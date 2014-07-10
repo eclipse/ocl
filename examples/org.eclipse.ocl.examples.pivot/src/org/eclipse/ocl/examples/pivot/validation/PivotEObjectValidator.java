@@ -40,8 +40,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -144,22 +143,28 @@ public class PivotEObjectValidator implements EValidator
 		 * Returns null for no problem or a warning/error severity diagnostic for a problem.
 		 */
 		public @Nullable Diagnostic validate(final @NonNull Constraint constraint, final @Nullable Object object, final @Nullable Map<Object, Object> context) {
-			OpaqueExpression specification = constraint.getSpecification();
+			ExpressionInOCL specification = constraint.getSpecification();
 			if (specification == null) {
 				return null;
 			}
-			ExpressionInOCL query = specification.getExpressionInOCL();
-			if (query == null) {
+			if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {	// May be null for declations of hand coded Java
 				return null;
+			}
+			ExpressionInOCL query;
+			try {
+				query = metaModelManager.getQueryOrThrow(specification);
+			} catch (ParserException e) {
+				String message = e.getLocalizedMessage();
+				return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 			}
 			Variable contextVariable = query.getContextVariable();
 			if (contextVariable == null) {
 				return null;
 			}
-			OCLExpression bodyExpression = query.getBodyExpression();
-			if (bodyExpression == null) {	// May be null for declations of hand coded Java
-				return null;
-			}
+//			OCLExpression bodyExpression = query.getBodyExpression();
+//			if (bodyExpression == null) {	// May be null for declations of hand coded Java
+//				return null;
+//			}
 			DomainModelManager oldModelManager = null;
 			if (context != null) {
 				oldModelManager = (DomainModelManager) context.get(DomainModelManager.class);

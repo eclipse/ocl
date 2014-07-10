@@ -38,6 +38,9 @@ public class OCLMessages
     public static String EnvRegistry_missingNsURI_ERROR_;
     public static String EnvRegistry_unknownElement_ERROR_;
 
+	public static String InvalidSpecificationBody_ERROR_;
+	public static String MissingSpecification_ERROR_;
+	public static String MissingSpecificationBody_ERROR_;
     
 	public static String BindingExist_ERROR_;
 	public static String UnknownOperation_ERROR_;
@@ -261,6 +264,7 @@ public class OCLMessages
 	public static String MissingLibraryType_ERROR_;
 	public static String MissingLibraryURI_ERROR_;
 	public static String RedundantIterator_WARNING_;
+	public static String UnknownContextType_ERROR_;
 	public static String UnresolvedImport_ERROR_;
 	public static String UnresolvedInclude_ERROR_;
 	public static String UnresolvedLibrary_ERROR_;

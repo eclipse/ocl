@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -132,7 +131,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
 		if (csElement != null) {
 			Namespace namespace = PivotUtil.getNamespace(object);
-			OpaqueExpression specification = object.getSpecification();
+			ExpressionInOCL specification = object.getSpecification();
 			if ((specification != null) && (namespace != null)) {
 				specification.accept(this);					// Deep search for references
 				ExpSpecificationCS csSpec = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
@@ -283,7 +282,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 
 	protected <T extends ConstraintCS> void refreshPropertyConstraints(@NonNull Class<T> csConstraintClass, @NonNull List<? super T> csPropertyConstraints, Property object) {
 		T csConstraint = null;
-		OpaqueExpression defaultExpression = object.getDefaultExpression();
+		ExpressionInOCL defaultExpression = object.getDefaultExpression();
 		if (defaultExpression != null) {
 			csConstraint = context.visitDeclaration(csConstraintClass, defaultExpression);
 		}

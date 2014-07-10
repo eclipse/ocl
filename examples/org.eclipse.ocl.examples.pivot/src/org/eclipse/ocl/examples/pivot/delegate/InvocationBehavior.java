@@ -17,15 +17,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.SemanticException;
-import org.eclipse.ocl.examples.pivot.context.OperationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.osgi.util.NLS;
 
 /**
  */
@@ -52,29 +52,6 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		return DomainUtil.nonNullEMF(eOperation.getEContainingClass().getEPackage());
 	}
 
-	/**
-	 * Return the operation body associated with operation, if necessary using
-	 * <code>ocl</code> to create the relevant parsing environment for a textual
-	 * definition.
-	 * @throws OCLDelegateException 
-	 */
-	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Operation operation) throws OCLDelegateException {
-		OpaqueExpression specification = operation.getBodyExpression();
-		if (specification instanceof ExpressionInOCL) {
-			return (ExpressionInOCL) specification;
-		}
-		if (specification != null) {
-			OperationContext operationContext = new OperationContext(metaModelManager, null, operation, null);
-			ExpressionInOCL expressionInOCL = getExpressionInOCL(operationContext, specification);
-			if (expressionInOCL != null) {
-				operation.setBodyExpression(expressionInOCL);
-				return expressionInOCL;
-			}
-		}
-		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
-		throw new OCLDelegateException(new SemanticException(message));
-	}
-
 	@Override
 	public @Nullable InvocationDelegate.Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EOperation eOperation) {
 		InvocationDelegate.Factory.Registry registry = DelegateResourceSetAdapter.getRegistry(
@@ -88,6 +65,24 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	
 	public @NonNull String getName() {
 		return NAME;
+	}
+
+	/**
+	 * Return the operation body associated with operation, if necessary using
+	 * <code>ocl</code> to create the relevant parsing environment for a textual
+	 * definition.
+	 * @throws OCLDelegateException 
+	 */
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Operation operation) throws OCLDelegateException {
+		ExpressionInOCL specification = operation.getBodyExpression();
+		if (specification == null) {
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
+		}
+		try {
+			return metaModelManager.getQueryOrThrow(specification);
+		} catch (ParserException e) {
+			throw new OCLDelegateException(e);
+		}
 	}
 
 	public @NonNull Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
