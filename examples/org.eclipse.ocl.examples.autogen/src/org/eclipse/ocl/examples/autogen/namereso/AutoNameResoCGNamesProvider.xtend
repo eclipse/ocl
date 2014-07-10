@@ -142,6 +142,11 @@ class AutoNameResoCGNamesProvider {
 		
 	}
 	
+	@NonNull
+	def public String getSpecificAbstractNamedEnvironmentClass() {
+		return '''«autoPrefix»Abstract«projectPrefix»NamedLookupEnvironment'''
+	}
+	
 	// Unnamed Environment
 	@NonNull
 	def public String getCommonUnnamedEnvironmentItf() {

@@ -19,7 +19,6 @@ import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.ocl.examples.pivot.CollectionType
 import org.eclipse.ocl.examples.pivot.Operation
-import java.util.HashSet
 import org.eclipse.ocl.examples.autogen.namereso.NameResolutionUtil.AddingCallExp
 
 class AutoGenNameResoSpecificFramework {
@@ -34,7 +33,8 @@ class AutoGenNameResoSpecificFramework {
 		@NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 
 		var AutoGenNameResoSpecificFramework generator = new AutoGenNameResoSpecificFramework(projectPrefix);
-		generator.generatePivotNamedEnvironmentItf(outputFolder, packageName,  baseElmntName);				
+		generator.generatePivotNamedEnvironmentItf(outputFolder, packageName,  baseElmntName);
+		generator.generateAbstractPivotNamedEnvironmentClass(outputFolder, packageName);	
 		generator.generatePivotContextItf(outputFolder, packageName, baseElmntPckName, baseElmntName);
 		generator.generatePivotContextClass(outputFolder, packageName, baseElmntPckName, baseElmntName);
 		generator.generatePivotVisitorItf(outputFolder,  packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
@@ -152,13 +152,13 @@ public interface «namedEnvItf» extends «envItf»{
 	''');
 		writer.close();
 	}
+	
 	protected def void generatePivotNamedEnvironmentClass(@NonNull String outputFolder, 
 		@NonNull String packageName, @NonNull String baseElmntName, @NonNull Package nameResoPackage) {
 		
-		var String namedEnvItf = nProvider.getSpecificNamedEnvironmentItf()
 		var String namedEnvClass = nProvider.getSpecificNamedEnvironmentClass()
-		var String commonNamedEnvClass = nProvider.getCommonNamedEnvironmentClass()
-		
+		var String superNamedEnvClass = nProvider.getSpecificAbstractNamedEnvironmentClass();
+				
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«namedEnvClass».java''');
 		writer.append('''
 package «packageName»;
@@ -172,195 +172,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PackageManager;
 import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
-
-public class «namedEnvClass» extends «commonNamedEnvClass»
-	implements «namedEnvItf»{
-	
-	public static abstract class Disambiguator<T> implements Comparator<T>
-	{
-	    public int compare(T o1, T o2) {
-		    throw new UnsupportedOperationException();
-	    }
-	    
-	    public abstract int compare(@NonNull MetaModelManager metaModelManager, @NonNull T o1, @NonNull T o2);
-	}
-	
-	private static final class ImplicitDisambiguator extends Disambiguator<Object>
-	{
-		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @NonNull Object match2) {
-			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
-			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
-			if (!match1IsImplicit) {
-				return match2IsImplicit ? 1 : 0;				// match2 inferior			
-			}
-			else {
-				return match2IsImplicit ? 0 : -1;				// match1 inferior			
-			}
-		}
-	}
-	
-	private static final class MetamodelMergeDisambiguator extends Disambiguator<Feature>
-	{
-		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Feature match1, @NonNull Feature match2) {
-			org.eclipse.ocl.examples.pivot.Package p1 = PivotUtil.getContainingPackage(match1);
-			org.eclipse.ocl.examples.pivot.Package p2 = PivotUtil.getContainingPackage(match2);
-			if (p1 == null) {
-				return 0;
-			}
-			if (p2 == null) {
-				return 0;
-			}
-			PackageManager packageManager = metaModelManager.getPackageManager();
-			PackageServer s1 = packageManager.getPackageServer(p1);
-			PackageServer s2 = packageManager.getPackageServer(p2);
-			if (s1 != s2) {
-				return 0;
-			}
-			int i1 = s1.getIndex(p1);
-			int i2 = s2.getIndex(p2);
-			return i2 - i1;
-		}
-	}
-
-	private static final class OperationDisambiguator extends Disambiguator<Operation>
-	{
-		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Operation match1, @NonNull Operation match2) {
-			if (isRedefinitionOf(match1, match2)) {
-				return 1;				// match2 inferior			
-			}
-			if (isRedefinitionOf(match2, match1)) {
-				return -1;				// match1 inferior			
-			}
-			return 0;
-		}
-
-		protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
-			List<Operation> redefinedOperations = operation1.getRedefinedOperation();
-			for (Operation redefinedOperation : redefinedOperations) {
-				if (redefinedOperation != null) {
-					if (redefinedOperation == operation2) {
-						return true;
-					}
-					if (isRedefinitionOf(redefinedOperation, operation2)) {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-	}
-
-	private static final class PropertyDisambiguator extends Disambiguator<Property>
-	{
-		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Property match1, @NonNull Property match2) {
-			if (isRedefinitionOf(match1, match2)) {
-				return 1;				// match2 inferior			
-			}
-			if (isRedefinitionOf(match2, match1)) {
-				return -1;				// match1 inferior			
-			}
-			return 0;
-		}
-
-		protected boolean isRedefinitionOf(@NonNull Property property1, @NonNull Property property2) {
-			List<Property> redefinedProperties = property1.getRedefinedProperty();
-			for (Property redefinedProperty : redefinedProperties) {
-				if (redefinedProperty != null) {
-					if (redefinedProperty == property2) {
-						return true;
-					}
-					if (isRedefinitionOf(redefinedProperty, property2)) {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-	}
-			
-	private static @NonNull LinkedHashMap<Class<?>, List<Comparator<Object>>> disambiguatorMap =	// FIXME narrow API to Disambiguator
-		new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
-
-	static {
-		addDisambiguator(Object.class, new ImplicitDisambiguator());
-		addDisambiguator(Feature.class, new MetamodelMergeDisambiguator());
-		addDisambiguator(Operation.class, new OperationDisambiguator());
-		addDisambiguator(Property.class, new PropertyDisambiguator());
-	}
-	
-	public static synchronized <T> void addDisambiguator(@NonNull Class<T> targetClass, @NonNull Comparator<T> disambiguator) {
-		List<Comparator<Object>> disambiguators = disambiguatorMap.get(targetClass);
-		if (disambiguators == null) {
-			disambiguators = new ArrayList<Comparator<Object>>();
-			disambiguatorMap.put(targetClass, disambiguators);
-		}
-		@SuppressWarnings("unchecked")
-		Comparator<Object> castDisambiguator = (Comparator<Object>) disambiguator;
-		disambiguators.add(castDisambiguator);
-	}
-
-	@SuppressWarnings("null")
-	public static @NonNull Iterable<Class<?>> getDisambiguatorKeys() {
-		return disambiguatorMap.keySet();
-	}
-
-	public static @Nullable List<Comparator<Object>> getDisambiguators(@NonNull Class<?> key) {
-		return disambiguatorMap.get(key);
-	}
-	
-	
-	private final @NonNull MetaModelManager metaModelManager;
-
-	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
-	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
-	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
-
-	
+public class «namedEnvClass» extends «superNamedEnvClass» {
 	public «namedEnvClass»(@NonNull MetaModelManager metaModelManager,
 			@NonNull EStructuralFeature reference, @NonNull String name) {
-		super(reference, name);
-		this.metaModelManager = metaModelManager;
+		super(metaModelManager, reference, name);
 	}
 
 	protected boolean accepts(/*@NonNull*/ EClass eClass) {
@@ -572,16 +412,12 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		addNestedPackage(object);
 	}
 	
-	public void addIterateExp0_VariableElements(@NonNull IterateExp object) {
+	public void addIterateExp1_VariableElements(@NonNull IterateExp object) {
 		addIterator(object);
 	}
 	
 	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object) {
 		addIterator(object);		
-	}
-	
-	public void addIterateExp2_VariableElements(@NonNull IterateExp object) {
-		addIterator(object);
 	}
 	
 	// FIXME remove when Auto-generation is finished
@@ -593,7 +429,7 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		addNamedElement(aLoopExp.getIterator().get(index));
 	}
 	
-	public void addIterateExp1_VariableElement(@NonNull IterateExp object) {
+	public void addIterateExp0_VariableElement(@NonNull IterateExp object) {
 		addResult(object);
 	}
 	
@@ -629,6 +465,206 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 	// FIXME remove when Auto-generation is finished
 	private void addResultVariable(@NonNull ExpressionInOCL expressionInOCL) {
 		addNamedElement(expressionInOCL.getResultVariable());
+	}
+}
+		''');
+		writer.close();
+	}
+		
+	protected def void generateAbstractPivotNamedEnvironmentClass(@NonNull String outputFolder, 
+		@NonNull String packageName) {
+				
+		var String namedEnvItf = nProvider.getSpecificNamedEnvironmentItf()
+		var String commonNamedEnvClass = nProvider.getCommonNamedEnvironmentClass();
+		var String abstractNamedEnvClass = nProvider.getSpecificAbstractNamedEnvironmentClass();
+
+		var MergeWriter writer = new MergeWriter(outputFolder + '''«commonNamedEnvClass».java''')
+		writer.append('''
+package «packageName»;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.PackageManager;
+import org.eclipse.ocl.examples.pivot.manager.PackageServer;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+
+
+public abstract class «abstractNamedEnvClass» extends «commonNamedEnvClass» 
+	implements «namedEnvItf» {
+
+	public static abstract class Disambiguator<T> implements Comparator<T>
+	{
+	    public int compare(T o1, T o2) {
+		    throw new UnsupportedOperationException();
+	    }
+	    
+	    public abstract int compare(@NonNull MetaModelManager metaModelManager, @NonNull T o1, @NonNull T o2);
+	}
+	
+	private static final class ImplicitDisambiguator extends Disambiguator<Object>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @NonNull Object match2) {
+			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
+			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
+			if (!match1IsImplicit) {
+				return match2IsImplicit ? 1 : 0;				// match2 inferior			
+			}
+			else {
+				return match2IsImplicit ? 0 : -1;				// match1 inferior			
+			}
+		}
+	}
+	
+	private static final class MetamodelMergeDisambiguator extends Disambiguator<Feature>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Feature match1, @NonNull Feature match2) {
+			org.eclipse.ocl.examples.pivot.Package p1 = PivotUtil.getContainingPackage(match1);
+			org.eclipse.ocl.examples.pivot.Package p2 = PivotUtil.getContainingPackage(match2);
+			if (p1 == null) {
+				return 0;
+			}
+			if (p2 == null) {
+				return 0;
+			}
+			PackageManager packageManager = metaModelManager.getPackageManager();
+			PackageServer s1 = packageManager.getPackageServer(p1);
+			PackageServer s2 = packageManager.getPackageServer(p2);
+			if (s1 != s2) {
+				return 0;
+			}
+			int i1 = s1.getIndex(p1);
+			int i2 = s2.getIndex(p2);
+			return i2 - i1;
+		}
+	}
+
+	private static final class OperationDisambiguator extends Disambiguator<Operation>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Operation match1, @NonNull Operation match2) {
+			if (isRedefinitionOf(match1, match2)) {
+				return 1;				// match2 inferior			
+			}
+			if (isRedefinitionOf(match2, match1)) {
+				return -1;				// match1 inferior			
+			}
+			return 0;
+		}
+
+		protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
+			List<Operation> redefinedOperations = operation1.getRedefinedOperation();
+			for (Operation redefinedOperation : redefinedOperations) {
+				if (redefinedOperation != null) {
+					if (redefinedOperation == operation2) {
+						return true;
+					}
+					if (isRedefinitionOf(redefinedOperation, operation2)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+	}
+
+	private static final class PropertyDisambiguator extends Disambiguator<Property>
+	{
+		@Override
+		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Property match1, @NonNull Property match2) {
+			if (isRedefinitionOf(match1, match2)) {
+				return 1;				// match2 inferior			
+			}
+			if (isRedefinitionOf(match2, match1)) {
+				return -1;				// match1 inferior			
+			}
+			return 0;
+		}
+
+		protected boolean isRedefinitionOf(@NonNull Property property1, @NonNull Property property2) {
+			List<Property> redefinedProperties = property1.getRedefinedProperty();
+			for (Property redefinedProperty : redefinedProperties) {
+				if (redefinedProperty != null) {
+					if (redefinedProperty == property2) {
+						return true;
+					}
+					if (isRedefinitionOf(redefinedProperty, property2)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+	}
+			
+	private static @NonNull LinkedHashMap<Class<?>, List<Comparator<Object>>> disambiguatorMap =	// FIXME narrow API to Disambiguator
+		new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
+
+	static {
+		addDisambiguator(Object.class, new ImplicitDisambiguator());
+		addDisambiguator(Feature.class, new MetamodelMergeDisambiguator());
+		addDisambiguator(Operation.class, new OperationDisambiguator());
+		addDisambiguator(Property.class, new PropertyDisambiguator());
+	}
+	
+	public static synchronized <T> void addDisambiguator(@NonNull Class<T> targetClass, @NonNull Comparator<T> disambiguator) {
+		List<Comparator<Object>> disambiguators = disambiguatorMap.get(targetClass);
+		if (disambiguators == null) {
+			disambiguators = new ArrayList<Comparator<Object>>();
+			disambiguatorMap.put(targetClass, disambiguators);
+		}
+		@SuppressWarnings("unchecked")
+		Comparator<Object> castDisambiguator = (Comparator<Object>) disambiguator;
+		disambiguators.add(castDisambiguator);
+	}
+
+	@SuppressWarnings("null")
+	public static @NonNull Iterable<Class<?>> getDisambiguatorKeys() {
+		return disambiguatorMap.keySet();
+	}
+
+	public static @Nullable List<Comparator<Object>> getDisambiguators(@NonNull Class<?> key) {
+		return disambiguatorMap.get(key);
+	}
+	
+	
+	protected final @NonNull MetaModelManager metaModelManager;
+
+	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
+	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
+
+	
+	public «abstractNamedEnvClass»(@NonNull MetaModelManager metaModelManager,
+			@NonNull EStructuralFeature reference, @NonNull String name) {
+		super(reference, name);
+		this.metaModelManager = metaModelManager;
 	}
 	
 	public void addFilter(@NonNull ScopeFilter filter) {
@@ -790,13 +826,12 @@ public class «namedEnvClass» extends «commonNamedEnvClass»
 		}
 		return result;
 	}
-}
-		''');
-		writer.close();
-	}
+
+}		
 		
+		''');
 
-
+}
 	protected def void generatePivotContextItf(@NonNull String outputFolder,
 		@NonNull String packageName, @NonNull String baseElmntPckgName, @NonNull String baseElmntName) {
 		
@@ -901,12 +936,12 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	implements «visitorItf» {
 		 
 	@NonNull final protected MetaModelManager mmManager;
-	@NonNull final protected «environmentItf» result;
+	@NonNull final protected «environmentItf» env;
 	
-	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull «environmentItf» result, @NonNull «commonContextItf»<«baseElmntName»> context) {
+	public AutoPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull «environmentItf» env, @NonNull «commonContextItf»<«baseElmntName»> context) {
 		super(context);
 		this.mmManager = mmManager;
-		this.result = result;
+		this.env = env;
 	}
 
 	@NonNull
@@ -916,9 +951,9 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	
 	@NonNull
 	protected final «environmentItf» lookupInNewContext(@Nullable «commonContextItf»<«baseElmntName»> newContext) {
-		return newContext == null ? result // If we have reached the top element
+		return newContext == null ? env // If we have reached the top element
 			: DomainUtil.nonNullState((newContext.getTarget()).accept( 
-				new «visitorClass»(mmManager, result, newContext))); 
+				new «visitorClass»(mmManager, env, newContext))); 
 	}
 	@NonNull
 	protected «environmentItf» lookupFromNewElement(Element element) {
@@ -932,11 +967,11 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	 * Used when looking up in local AND in parent environments if not found 
 	 * in local -> outer scope/environment elements are occluded in nested 
 	 * contexts
-	 * @return the accumulated lookup result
+	 * @return the accumulated lookup env
 	 */
 	@NonNull
 	protected «environmentItf» lookupInParentIfNotComplete() {
-		return result.isComplete() ? result : lookupInNewContext(context.getParent());
+		return env.isComplete() ? env : lookupInNewContext(context.getParent());
 	}
 	
 	// Generated from NameResolution description
@@ -953,7 +988,7 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 				«val expType = addingExpType.type»
 				«val isMany = expType instanceof CollectionType»
 				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-				result.add«type.name»«addingExpType.number»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(object);
+				env.add«type.name»«addingExpType.number»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(object);
 			«ENDFOR»
 		«ELSE»
 			EReference containmentReference = context.getToChildReference();

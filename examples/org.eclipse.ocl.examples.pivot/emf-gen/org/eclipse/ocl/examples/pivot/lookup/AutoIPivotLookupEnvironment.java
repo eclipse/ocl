@@ -35,39 +35,11 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
-	// Package
-	
-	public void addPackage0_TypeElements(@NonNull Package object);
-	public void addPackage1_PackageElements(@NonNull Package object);
-	
-	// ExpressionInOCL
-	
-	public void addExpressionInOCL0_VariableElement(@NonNull ExpressionInOCL object);
-	public void addExpressionInOCL1_VariableElement(@NonNull ExpressionInOCL object);
-	
-	// Operation
-	
-	public void addOperation0_ParameterElements(@NonNull Operation object);
-	
 	// Library
 	
 	public void addLibrary0_PrecedenceElements(@NonNull Library object);
 	public void addLibrary1_TypeElements(@NonNull Library object);
 	public void addLibrary2_PackageElements(@NonNull Library object);
-	
-	// Class
-	
-	public void addClass0_BehaviorElements(@NonNull Class object);
-	public void addClass1_OperationElements(@NonNull Class object);
-	public void addClass2_PropertyElements(@NonNull Class object);
-	
-	// LetExp
-	
-	public void addLetExp0_VariableElement(@NonNull LetExp object);
-	
-	// IteratorExp
-	
-	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object);
 	
 	// Metaclass
 	
@@ -82,12 +54,40 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	// DataType
 	
 	
+	// Operation
+	
+	public void addOperation0_ParameterElements(@NonNull Operation object);
+	
+	// Class
+	
+	public void addClass0_BehaviorElements(@NonNull Class object);
+	public void addClass1_OperationElements(@NonNull Class object);
+	public void addClass2_PropertyElements(@NonNull Class object);
+	
+	// LetExp
+	
+	public void addLetExp0_VariableElement(@NonNull LetExp object);
+	
+	// ExpressionInOCL
+	
+	public void addExpressionInOCL0_VariableElement(@NonNull ExpressionInOCL object);
+	public void addExpressionInOCL1_VariableElement(@NonNull ExpressionInOCL object);
+	
 	// Enumeration
 	
 	public void addEnumeration0_BehaviorElements(@NonNull Enumeration object);
 	public void addEnumeration1_OperationElements(@NonNull Enumeration object);
 	public void addEnumeration2_PropertyElements(@NonNull Enumeration object);
 	public void addEnumeration3_EnumerationLiteralElements(@NonNull Enumeration object);
+	
+	// Package
+	
+	public void addPackage0_TypeElements(@NonNull Package object);
+	public void addPackage1_PackageElements(@NonNull Package object);
+	
+	// IteratorExp
+	
+	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object);
 	
 	// IterateExp
 	
