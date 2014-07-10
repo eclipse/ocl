@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -74,7 +75,8 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 
 public class Pivot2CSConversion extends AbstractConversion implements PivotConstants
 {	
@@ -330,7 +332,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	 * For example if there is also an A::B::C::X::D::E, the scope is shortened to A::B so
 	 * that the result is C::D::E.
 	 */
-	public void refreshPathName(@NonNull PathNameCS csPathName, @NonNull Element element, @Nullable Namespace scope) {
+	public void refreshPathName(@NonNull PathNameCS csPathName, @NonNull Element element, @Nullable Namespace scope) {//, @Nullable Resource csResource) {
 		Namespace safeScope = scope;
 		Element primaryElement = metaModelManager.getPrimaryElement(element);
 		if ((safeScope != null) && (primaryElement instanceof Type)) {
@@ -354,7 +356,36 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				}
 			}
 		}
-		ElementUtil.setPathName(csPathName, primaryElement, safeScope);
+		List<PathElementCS> csPath = csPathName.getPath();
+		csPath.clear();		// FIXME re-use
+		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
+		csPath.add(csSimpleRef);
+		csSimpleRef.setElement(primaryElement);
+		Resource csResource = csPathName.eResource();
+		if (csResource == null) {
+			for (Resource resource : converter.getCSResources())  {		// FIXME Find a way to avoid losing the csResource
+				if (resource instanceof BaseCSResource) {
+					csResource = resource;
+					break;
+				}
+			}
+		}
+		if (!(csResource instanceof BaseCSResource2) || (((BaseCSResource2)csResource).isPathable(primaryElement) == null)) {
+			return;
+		}
+		for (EObject eContainer = primaryElement.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {
+			if (eContainer instanceof Root) {
+				return;				// Skip root package
+			}
+			for (EObject aScope = safeScope; aScope != null; aScope = aScope.eContainer()) {
+				if (aScope == eContainer) { 		// If element ancestor is scope or an ancestor
+					return;							// no need for further qualification
+				}
+			}
+			csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
+			csPath.add(0, csSimpleRef);
+			csSimpleRef.setElement((Element) eContainer);
+		}
 	}
 
 	public void refreshQualifiers(List<String> qualifiers, String string, boolean polarity) {

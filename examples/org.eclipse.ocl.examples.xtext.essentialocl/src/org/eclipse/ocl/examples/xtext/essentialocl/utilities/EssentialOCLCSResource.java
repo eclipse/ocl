@@ -26,7 +26,12 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -42,6 +47,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
@@ -61,7 +67,7 @@ import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.Triple;
 
-public class EssentialOCLCSResource extends LazyLinkingResource implements BaseCSResource
+public class EssentialOCLCSResource extends LazyLinkingResource implements BaseCSResource2
 {	
 	private static final String NO_VIABLE_ALTERNATIVE_AT_INPUT_EOF = "no viable alternative at input '<EOF>'";
 	private static final String NO_VIABLE_ALTERNATIVE_FOLLOWING = "no viable alternative following input ";
@@ -305,6 +311,28 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	 * to be created satisfactorily.
 	 */
 	protected void initializeResourceFactory(@NonNull Resource.Factory.Registry resourceFactoryRegistry) {}
+
+	/**
+	 * @since 3.5
+	 */
+	public @Nullable NamedElement isPathable(@NonNull EObject element) {
+		if (element instanceof Feature) {
+			return (Feature)element;
+		}
+		else if (element instanceof Type) {
+			return (Type)element;
+		}
+		else if (element instanceof Namespace) {
+			return (Namespace)element;
+		}
+		else if (element instanceof EnumerationLiteral) {
+			return (EnumerationLiteral)element;
+		}
+		// ?? Constraint, Signal, ...
+		else {
+			return null;
+		}
+	}
 
 	@Override
 	public void reparse(String newContent) throws IOException {

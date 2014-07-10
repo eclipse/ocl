@@ -418,6 +418,8 @@ public class ElementUtil
 
 	/**
 	 * Return true if element is able to be accessed by a qualified path OCLinEcore. Other elements must use a quoted URI.
+	 * 
+	 * @deprecated use BaseCSResource.isPathable(Element) which is extensible.
 	 */
 	@Deprecated  // find an extensible solution
 	public static NamedElement isPathable(@NonNull EObject element) {
@@ -478,6 +480,8 @@ public class ElementUtil
 	 * <br>
 	 * For example if there is also an A::B::C::X::D::E, the caller must shorten the scope
 	 * reference to A::B to avoid the ambiguity.
+	 * 
+	 * @Depreacted. Functionality moved to sole caller in Pivot2CSConversion.refreshPathName()
 	 */
 	public static void setPathName(@NonNull PathNameCS csPathName, @NonNull Element element, Namespace scope) {
 		List<PathElementCS> csPath = csPathName.getPath();
@@ -485,7 +489,14 @@ public class ElementUtil
 		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
 		csPath.add(csSimpleRef);
 		csSimpleRef.setElement(element);
-		if (isPathable(element) == null) {
+		Resource csResource = csPathName.eResource();
+//		if (csResource == null) {
+//			getCsElement(element)
+//		}
+		boolean b1 = !(csResource instanceof BaseCSResource2) || (((BaseCSResource2)csResource).isPathable(element) == null);
+		boolean b2 = isPathable(element) == null;
+		assert b1 == b2;
+		if (b2) {
 			return;
 		}
 		for (EObject eContainer = element.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {

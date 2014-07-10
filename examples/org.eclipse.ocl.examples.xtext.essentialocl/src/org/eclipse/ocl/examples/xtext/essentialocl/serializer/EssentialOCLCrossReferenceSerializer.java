@@ -25,8 +25,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementWithURICS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
-import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedPath;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -162,12 +161,13 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			int index = pathName.getPath().indexOf(pathElement);
 			Element element = pathElement.getElement();
 			if (element != null) {
-				NamedElement namedElement = ElementUtil.isPathable(element);
+				Resource csResource = pathElement.eResource();
+				assert csResource != null;
+				NamedElement namedElement = csResource instanceof BaseCSResource2 ? ((BaseCSResource2)csResource).isPathable(element) : null;
 				if (namedElement != null) {
 					String name = namedElement.getName();
 					if ((index == 0) && (namedElement instanceof org.eclipse.ocl.examples.pivot.Package)) {
 						EObject root = EcoreUtil.getRootContainer(semanticObject);
-						Resource csResource = root.eResource();
 						Resource asResource = null;
 						if (root instanceof RootPackageCS) {
 							EObject root2 = ((RootPackageCS)root).getPivot();
@@ -175,12 +175,10 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 						}
 						Resource elementResource = namedElement.eResource();
 						if ((elementResource != csResource) && (elementResource != asResource)) {
-							AliasAnalysis adapter = csResource != null ? AliasAnalysis.getAdapter(csResource) : null;
-							if (adapter != null) {
-								String alias = adapter.getAlias(namedElement, null);
-								if (alias != null) {
-									name = alias;
-								}
+							AliasAnalysis adapter = AliasAnalysis.getAdapter(csResource);
+							String alias = adapter.getAlias(namedElement, null);
+							if (alias != null) {
+								name = alias;
 							}	
 						}
 					}
@@ -216,15 +214,8 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			Iterable<IEObjectDescription> elements = scope.getElements(target);
 			for (IEObjectDescription desc : elements) {
 				foundOne = true;
-				QualifiedName name = desc.getName();
-				List<String> segments;
-				if (name instanceof QualifiedPath) {
-					segments = ((QualifiedPath)name).getSegments(semanticObject);
-				}
-				else {
-					segments = name.getSegments();
-				}
-				String converted = helper.convert(segments, ruleName);
+				String unconverted = desc.getName().getLastSegment();
+				String converted = helper.convert(unconverted, ruleName);
 				if (converted != null) {
 					return converted;
 				}

@@ -71,7 +71,7 @@ public interface BaseCSResource extends BaseResource
 	 * Return the name of the editor for use in diagnostics.
 	 */
 	@NonNull String getEditorName();
-	
+
 	/**
 	 * Return a uri against the URI of this CS resource.
 	 */
