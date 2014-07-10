@@ -182,7 +182,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 			lookupFromNewElement(source.getType());
 						
 			int childIndex = object.getIterator().indexOf(context.getChild());
-			env.addIterator(object, childIndex);
+			env.addIterateExp3_VariableElements(object, childIndex);
 		}
 		return lookupInParentIfNotComplete();
 	}
@@ -200,12 +200,9 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
 			OCLExpression source = object.getSource();
 			lookupFromNewElement(source.getType());
-			//env.addIterator(object);
 			
 			int childIndex = object.getIterator().indexOf(context.getChild());
-			for (int i = 0; i < childIndex; i++) {
-				env.addIterator(object, i);
-			}
+			env.addIteratorExp1_VariableElements(object, childIndex);
 		}
 		return lookupInParentIfNotComplete();
 	}

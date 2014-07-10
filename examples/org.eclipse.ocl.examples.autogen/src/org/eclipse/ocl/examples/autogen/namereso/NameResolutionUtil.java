@@ -38,16 +38,21 @@ public class NameResolutionUtil {
 	 * call expression and a number associated with the number the adding call expression
 	 * present in any _env operation of the the corresponding context type
 	 * 
+	 * The third constructor argument hasChildren indicates enacts the index based children environment configuration
+	 * whose description will take into account the position of the child when making named elements available
+	 * in the environment at that point.   
+	 * 
 	 */
 	static public class AddingCallArgExpType {
 		
 		private Type type;
 		private int number;
+		private boolean hasChildIndex;
 		
-		public AddingCallArgExpType(Type addingExpType, int number){
+		public AddingCallArgExpType(Type addingExpType, int number, boolean hasChildIndex){
 			this.type = addingExpType;
 			this.number = number;
-			
+			this.hasChildIndex = hasChildIndex;
 		}
 
 		public Type getType() {
@@ -56,6 +61,10 @@ public class NameResolutionUtil {
 
 		public int getNumber() {
 			return number;
+		}
+
+		public boolean isHasChildIndex() {
+			return hasChildIndex;
 		}
 	}
 	
@@ -133,6 +142,7 @@ public class NameResolutionUtil {
 			if (opaqueExp != null) {			
 				ExpressionInOCL exp = PivotUtil.getExpressionInOCL(envOp, opaqueExp);
 				if (exp != null) {
+					boolean opHasChildIndexArg = envOp.getOwnedParameter().size() == 2; // TODO check other cases ?
 					TreeIterator<EObject> contents =  exp.eAllContents();
 					while (contents.hasNext()) {
 						EObject element = contents.next();
@@ -142,7 +152,7 @@ public class NameResolutionUtil {
 								if (envOps.contains(envOp)) { // If the envOp if our interest
 									for (OCLExpression argument : opCall.getArgument()) { // FIXME Should only have one. Check if many ?
 										// note that the same type could be correctly added many times.
-										addingExpTypes.add(new AddingCallArgExpType(argument.getType(),addingCallExpNumber)); 
+										addingExpTypes.add(new AddingCallArgExpType(argument.getType(),addingCallExpNumber, opHasChildIndexArg)); 
 									}
 								}
 								addingCallExpNumber++;

@@ -4,19 +4,19 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -35,34 +35,30 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	
 	// Generated from NameResolution description
 	
-	// LetExp
+	// Root
 	
-	public void addLetExp0_VariableElement(@NonNull LetExp object);
+	public void addRoot0_PackageElements(@NonNull Root object);
+	public void addRoot1_ImportElements(@NonNull Root object);
 	
-	// Library
+	// Class
 	
-	public void addLibrary0_PrecedenceElements(@NonNull Library object);
-	public void addLibrary1_TypeElements(@NonNull Library object);
-	public void addLibrary2_PackageElements(@NonNull Library object);
+	public void addClass0_BehaviorElements(@NonNull Class object);
+	public void addClass1_OperationElements(@NonNull Class object);
+	public void addClass2_PropertyElements(@NonNull Class object);
+	
+	// Operation
+	
+	public void addOperation0_ParameterElements(@NonNull Operation object);
 	
 	// Package
 	
 	public void addPackage0_TypeElements(@NonNull Package object);
 	public void addPackage1_PackageElements(@NonNull Package object);
 	
-	// Root
+	// IteratorExp
 	
-	public void addRoot0_PackageElements(@NonNull Root object);
-	public void addRoot1_ImportElements(@NonNull Root object);
-	
-	// Metaclass
-	
-	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object);
-	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object);
-	
-	// Operation
-	
-	public void addOperation0_ParameterElements(@NonNull Operation object);
+	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object);
+	public void addIteratorExp1_VariableElements(@NonNull IteratorExp object, int childIndex);
 	
 	// Enumeration
 	
@@ -71,35 +67,38 @@ public interface AutoIPivotLookupEnvironment extends AutoILookupEnvironment {
 	public void addEnumeration2_PropertyElements(@NonNull Enumeration object);
 	public void addEnumeration3_EnumerationLiteralElements(@NonNull Enumeration object);
 	
+	// LetExp
+	
+	public void addLetExp0_VariableElement(@NonNull LetExp object);
+	
+	// Metaclass
+	
+	public void addMetaclass0_NamedElementElements(@NonNull Metaclass object);
+	public void addMetaclass1_NamedElementElements(@NonNull Metaclass object);
+	
+	// Library
+	
+	public void addLibrary0_PrecedenceElements(@NonNull Library object);
+	public void addLibrary1_TypeElements(@NonNull Library object);
+	public void addLibrary2_PackageElements(@NonNull Library object);
+	
 	// DataType
 	
-	
-	// Class
-	
-	public void addClass0_BehaviorElements(@NonNull Class object);
-	public void addClass1_OperationElements(@NonNull Class object);
-	public void addClass2_PropertyElements(@NonNull Class object);
-	
-	// IteratorExp
-	
-	public void addIteratorExp0_VariableElements(@NonNull IteratorExp object);
-	
-	// IterateExp
-	
-	public void addIterateExp0_VariableElements(@NonNull IterateExp object);
-	public void addIterateExp1_VariableElement(@NonNull IterateExp object);
-	public void addIterateExp2_VariableElements(@NonNull IterateExp object);
 	
 	// ExpressionInOCL
 	
 	public void addExpressionInOCL0_VariableElement(@NonNull ExpressionInOCL object);
 	public void addExpressionInOCL1_VariableElement(@NonNull ExpressionInOCL object);
 	
+	// IterateExp
+	
+	public void addIterateExp0_VariableElements(@NonNull IterateExp object);
+	public void addIterateExp1_VariableElement(@NonNull IterateExp object);
+	public void addIterateExp2_VariableElements(@NonNull IterateExp object);
+	public void addIterateExp3_VariableElements(@NonNull IterateExp object, int childIndex);
+	
 	// TemplateableElement
 	// FIXME no auto-generated yet
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
-
-	// LoopExp
-	// FIXME no auto-generated yet
-	public void addIterator(@NonNull LoopExp  aLoopExp, int index);
+	
 }

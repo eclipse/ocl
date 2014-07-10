@@ -5,18 +5,18 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.Metaclass;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -65,34 +65,6 @@ public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotL
 	
 	@Override
 	public @NonNull
-	AutoIPivotLookupEnvironment visitLetExp(@NonNull LetExp object) {
-		EReference containmentReference = context.getToChildReference();
-		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LET_EXP__IN)
-		{
-			env.addLetExp0_VariableElement(object);
-		}
-		return lookupInParentIfNotComplete();
-	}
-	
-	@Override
-	public @NonNull
-	AutoIPivotLookupEnvironment visitLibrary(@NonNull Library object) {
-		env.addLibrary0_PrecedenceElements(object);
-		env.addLibrary1_TypeElements(object);
-		env.addLibrary2_PackageElements(object);
-		return lookupInParentIfNotComplete();
-	}
-	
-	@Override
-	public @NonNull
-	AutoIPivotLookupEnvironment visitPackage(@NonNull Package object) {
-		env.addPackage0_TypeElements(object);
-		env.addPackage1_PackageElements(object);
-		return lookupInParentIfNotComplete();
-	}
-	
-	@Override
-	public @NonNull
 	AutoIPivotLookupEnvironment visitRoot(@NonNull Root object) {
 		env.addRoot0_PackageElements(object);
 		env.addRoot1_ImportElements(object);
@@ -101,9 +73,10 @@ public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotL
 	
 	@Override
 	public @NonNull
-	AutoIPivotLookupEnvironment visitMetaclass(@NonNull Metaclass object) {
-		env.addMetaclass0_NamedElementElements(object);
-		env.addMetaclass1_NamedElementElements(object);
+	AutoIPivotLookupEnvironment visitClass(@NonNull Class object) {
+		env.addClass0_BehaviorElements(object);
+		env.addClass1_OperationElements(object);
+		env.addClass2_PropertyElements(object);
 		return lookupInParentIfNotComplete();
 	}
 	
@@ -123,11 +96,64 @@ public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotL
 	
 	@Override
 	public @NonNull
+	AutoIPivotLookupEnvironment visitPackage(@NonNull Package object) {
+		env.addPackage0_TypeElements(object);
+		env.addPackage1_PackageElements(object);
+		return lookupInParentIfNotComplete();
+	}
+	
+	@Override
+	public @NonNull
+	AutoIPivotLookupEnvironment visitIteratorExp(@NonNull IteratorExp object) {
+		EReference containmentReference = context.getToChildReference();
+		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LOOP_EXP__BODY)
+		{
+			env.addIteratorExp0_VariableElements(object);
+		}
+		else  
+		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LOOP_EXP__ITERATOR)
+		{
+			int childIndex = object.getIterator().indexOf(context.getChild()); 
+			env.addIteratorExp1_VariableElements(object, childIndex);
+		}
+		return lookupInParentIfNotComplete();
+	}
+	
+	@Override
+	public @NonNull
 	AutoIPivotLookupEnvironment visitEnumeration(@NonNull Enumeration object) {
 		env.addEnumeration0_BehaviorElements(object);
 		env.addEnumeration1_OperationElements(object);
 		env.addEnumeration2_PropertyElements(object);
 		env.addEnumeration3_EnumerationLiteralElements(object);
+		return lookupInParentIfNotComplete();
+	}
+	
+	@Override
+	public @NonNull
+	AutoIPivotLookupEnvironment visitLetExp(@NonNull LetExp object) {
+		EReference containmentReference = context.getToChildReference();
+		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LET_EXP__IN)
+		{
+			env.addLetExp0_VariableElement(object);
+		}
+		return lookupInParentIfNotComplete();
+	}
+	
+	@Override
+	public @NonNull
+	AutoIPivotLookupEnvironment visitMetaclass(@NonNull Metaclass object) {
+		env.addMetaclass0_NamedElementElements(object);
+		env.addMetaclass1_NamedElementElements(object);
+		return lookupInParentIfNotComplete();
+	}
+	
+	@Override
+	public @NonNull
+	AutoIPivotLookupEnvironment visitLibrary(@NonNull Library object) {
+		env.addLibrary0_PrecedenceElements(object);
+		env.addLibrary1_TypeElements(object);
+		env.addLibrary2_PackageElements(object);
 		return lookupInParentIfNotComplete();
 	}
 	
@@ -139,24 +165,12 @@ public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotL
 	
 	@Override
 	public @NonNull
-	AutoIPivotLookupEnvironment visitClass(@NonNull Class object) {
-		env.addClass0_BehaviorElements(object);
-		env.addClass1_OperationElements(object);
-		env.addClass2_PropertyElements(object);
-		return lookupInParentIfNotComplete();
-	}
-	
-	@Override
-	public @NonNull
-	AutoIPivotLookupEnvironment visitIteratorExp(@NonNull IteratorExp object) {
+	AutoIPivotLookupEnvironment visitExpressionInOCL(@NonNull ExpressionInOCL object) {
 		EReference containmentReference = context.getToChildReference();
-		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LOOP_EXP__ITERATOR)
+		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION)
 		{
-		}
-		else  
-		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LOOP_EXP__BODY)
-		{
-			env.addIteratorExp0_VariableElements(object);
+			env.addExpressionInOCL0_VariableElement(object);
+			env.addExpressionInOCL1_VariableElement(object);
 		}
 		return lookupInParentIfNotComplete();
 	}
@@ -165,10 +179,6 @@ public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotL
 	public @NonNull
 	AutoIPivotLookupEnvironment visitIterateExp(@NonNull IterateExp object) {
 		EReference containmentReference = context.getToChildReference();
-		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LOOP_EXP__ITERATOR)
-		{
-		}
-		else  
 		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.ITERATE_EXP__RESULT)
 		{
 			env.addIterateExp0_VariableElements(object);
@@ -179,17 +189,11 @@ public class AutoPivotLookupVisitor extends AbstractExtendingVisitor<AutoIPivotL
 			env.addIterateExp1_VariableElement(object);
 			env.addIterateExp2_VariableElements(object);
 		}
-		return lookupInParentIfNotComplete();
-	}
-	
-	@Override
-	public @NonNull
-	AutoIPivotLookupEnvironment visitExpressionInOCL(@NonNull ExpressionInOCL object) {
-		EReference containmentReference = context.getToChildReference();
-		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION)
+		else  
+		if (containmentReference == org.eclipse.ocl.examples.pivot.PivotPackage.Literals.LOOP_EXP__ITERATOR)
 		{
-			env.addExpressionInOCL0_VariableElement(object);
-			env.addExpressionInOCL1_VariableElement(object);
+			int childIndex = object.getIterator().indexOf(context.getChild()); 
+			env.addIterateExp3_VariableElements(object, childIndex);
 		}
 		return lookupInParentIfNotComplete();
 	}

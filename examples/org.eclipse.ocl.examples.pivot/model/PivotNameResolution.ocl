@@ -66,9 +66,6 @@ def : in_env(env : env::Environment) : env::Environment =
 		.addElement(self.variable)
 
 context IterateExp
-def : iterator_env(env : env::Environment, index : Integer) : env::Environment =
-	env.nestedEnv()
-		.addElements(self.iterator->select(x| self.iterator->indexOf(x) < index))
 def : result_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator)
@@ -76,13 +73,17 @@ def : body_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()		
 		.addElements(self.iterator)
 		.addElement(self.result)
+def : iterator_env(env : env::Environment, childIndex : Integer) : env::Environment =
+	env.nestedEnv()
+		.addElements(self.iterator->select(x| self.iterator->indexOf(x) < childIndex))		
 
 context IteratorExp
-def : iterator_env(env : env::Environment) : env::Environment =
-	env
 def : body_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator)
+def : iterator_env(env : env::Environment, childIndex : Integer) : env::Environment =
+	env.nestedEnv()
+		.addElements(self.iterator->select(x| self.iterator->indexOf(x) < childIndex))
 
 context ExpressionInOCL
 def : bodyExpression_env(env : env::Environment) : env::Environment =

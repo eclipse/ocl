@@ -24,4 +24,14 @@ public class NameResoGenModelHelper extends AbstractGenModelHelper {
 		}
 		return propertyName + " not found for type " + type.getName();
 	}
+	
+	public String getFeatureAccessor(@NonNull  Type type, @NonNull String propertyName) {
+
+		for (DomainProperty prop : metaModelManager.getAllProperties(type, null, propertyName)) {
+			if (prop instanceof Property) {
+				return getGenFeature((Property) prop).getGetAccessor();// We get the first one	
+			}
+		}
+		return propertyName + " not found for type " + type.getName();
+	}
 }

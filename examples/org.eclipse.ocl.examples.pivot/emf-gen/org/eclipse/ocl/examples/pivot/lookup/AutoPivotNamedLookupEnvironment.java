@@ -257,7 +257,18 @@ public class AutoPivotNamedLookupEnvironment extends AutoAbstractPivotNamedLooku
 		addElements(aLoopExp.getIterator());
 	}
 	
-	public void addIterator(@NonNull LoopExp  aLoopExp, int index) {
+	public void addIterateExp3_VariableElements(@NonNull IterateExp object,
+			int childIndex) {
+		addIterator(object, childIndex);
+	}
+	
+	public void addIteratorExp1_VariableElements(@NonNull IteratorExp object,
+			int childIndex) {		
+		addIterator(object, childIndex);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addIterator(@NonNull LoopExp  aLoopExp, int index) {
 		
 		// self.iterator->select(x| self.iterator->indexOf(x) < index)		
 		for (int i = 0; i <= index -1; i++) { 

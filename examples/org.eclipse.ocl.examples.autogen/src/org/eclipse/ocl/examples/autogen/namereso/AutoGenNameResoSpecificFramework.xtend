@@ -45,7 +45,7 @@ class AutoGenNameResoSpecificFramework {
 		generator.generatePivotNameResolverClass(outputFolder, packageName, visitorPckName, visitorName, baseElmntPckName, baseElmntName);
 		
 		// Generation from Complete OCL file
-		generator.generatePivotEnvironmentItf(outputFolder, packageName, baseElmntName, nameResoPackage);
+		generator.generatePivotEnvironmentItf(outputFolder, packageName, modelPckName, nameResoPackage);
 		generator.generatePivotNamedEnvironmentClass(outputFolder, packageName,  baseElmntName, nameResoPackage);
 		generator.generatePivotVisitorClass(outputFolder, packageName, modelPckName, visitorPckName, visitorName, baseElmntPckName, baseElmntName, nameResoPackage)
 		// AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
@@ -58,7 +58,7 @@ class AutoGenNameResoSpecificFramework {
 	}
 	
 	protected def void generatePivotEnvironmentItf(@NonNull String outputFolder,
-		@NonNull String packageName, @NonNull String baseElmntName, 
+		@NonNull String packageName, @NonNull String modelPckName, 
 		@NonNull Package nameResoPackage) {
 				
 		var String commonEnvItf = nProvider.getCommonEnvironmentItf()
@@ -73,19 +73,10 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Package;
+«FOR type : type2expTypes.keySet»
+import «modelPckName».«type.name»;
+«ENDFOR»
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -111,17 +102,14 @@ public interface «envItf» extends «commonEnvItf» {
 	«val expType = addingExptype.getType»	
 	«val isMany = expType instanceof CollectionType»
 	«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-	public void add«type.name»«addingExptype.getNumber»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object);
+	public void add«type.name»«addingExptype.getNumber»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object«IF(addingExptype.hasChildIndex)», int childIndex«ENDIF»);
 	«ENDFOR»
 	«ENDFOR»
 	
 	// TemplateableElement
 	// FIXME no auto-generated yet
 	public void addTypeTemplateParameterables(@NonNull TemplateableElement tmpltblElement);
-
-	// LoopExp
-	// FIXME no auto-generated yet
-	public void addIterator(@NonNull LoopExp  aLoopExp, int index);
+	
 }
 		''');
 		writer.close();
@@ -424,7 +412,18 @@ public class «namedEnvClass» extends «superNamedEnvClass» {
 		addElements(aLoopExp.getIterator());
 	}
 	
-	public void addIterator(@NonNull LoopExp  aLoopExp, int index) {
+	public void addIterateExp3_VariableElements(@NonNull IterateExp object,
+			int childIndex) {
+		addIterator(object, childIndex);
+	}
+	
+	public void addIteratorExp1_VariableElements(@NonNull IteratorExp object,
+			int childIndex) {
+		addIterator(object, childIndex);
+	}
+	
+	// FIXME remove when Auto-generation is finished
+	private void addIterator(@NonNull LoopExp  aLoopExp, int index) {
 		
 		// self.iterator->select(x| self.iterator->indexOf(x) < index)		
 		for (int i = 0; i <= index -1; i++) { 
@@ -1000,7 +999,9 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 				«val expType = addingExpType.getType»
 				«val isMany = expType instanceof CollectionType»
 				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object);
+				«val useIndex = addingExpType.hasChildIndex»
+				«IF useIndex»int childIndex = object.«helper.getFeatureAccessor(type, propName)»().indexOf(context.getChild()); «ENDIF»
+				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object«IF useIndex», childIndex«ENDIF»);
 				«ENDFOR»
 			}
 			«ENDFOR»
