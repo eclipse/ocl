@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -43,8 +42,8 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		else {
 			env.addOperation0_ParameterElements(object);
 		}
-		
-		return lookupInParentIfNotComplete();
+		env.addTypeTemplateParameterables(object);
+		return lookupInParentIfEnvNoComplete();
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		env.addClass1_OperationElements(object);
 		env.addClass2_PropertyElements(object);
 		env.addClass0_BehaviorElements(object);
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	}
 	
 	@Override
@@ -87,7 +86,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 				assert(env != null);
 				return env;
 			} else {
-				return lookupInParentIfNotComplete();
+				return lookupInParentIfEnvNoComplete();
 			}
 		}
 	};
@@ -100,7 +99,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		env.addEnumeration1_OperationElements(object);
 		env.addEnumeration0_BehaviorElements(object);
 		env.addTypeTemplateParameterables(object);
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	}
 	
 	@Override
@@ -112,7 +111,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 			env.addPackage0_TypeElements(aPackage);
 			env.addPackage1_PackageElements(aPackage);
 		}
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	}
 
 	private void gatherAllPackages(@NonNull MetaModelManager metaModelManager, @NonNull Set<org.eclipse.ocl.examples.pivot.Package> allPackages,
@@ -128,15 +127,6 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 			}
 		}
 	}
-
-	@Override
-	public @NonNull
-	AutoIPivotLookupEnvironment visitRoot(@NonNull Root object) {
-		env.addRoot0_PackageElements(object);
-		env.addRoot1_ImportElements(object);
-		return lookupInParentIfNotComplete();
-		
-	};
 	
 	@Override
 	public @NonNull
@@ -157,7 +147,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 	AutoIPivotLookupEnvironment visitMetaclass(@NonNull Metaclass object) {
 		env.addMetaclass0_NamedElementElements(object);
 		env.addMetaclass1_NamedElementElements(object);		
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	}
 	
 	@Override
@@ -184,7 +174,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 			int childIndex = object.getIterator().indexOf(context.getChild());
 			env.addIterateExp3_VariableElements(object, childIndex);
 		}
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	}
 
 	@Override
@@ -204,7 +194,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 			int childIndex = object.getIterator().indexOf(context.getChild());
 			env.addIteratorExp1_VariableElements(object, childIndex);
 		}
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	}
 	
 //  This is not used by test cases
@@ -215,7 +205,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
 //			env.addVariable(object);
 //		}
-//		return lookupInParentIfNotComplete();
+//		return lookupInParentIfEnvNoComplete();
 //	}
 	
 	@Override
@@ -227,6 +217,6 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		}
 		env.addExpressionInOCL0_VariableElement(object);
 		env.addExpressionInOCL1_VariableElement(object);
-		return lookupInParentIfNotComplete();
+		return lookupInParentIfEnvNoComplete();
 	};
 }

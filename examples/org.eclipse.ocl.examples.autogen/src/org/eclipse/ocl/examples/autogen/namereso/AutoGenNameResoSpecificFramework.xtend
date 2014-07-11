@@ -948,7 +948,7 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 
 	@NonNull
 	public «environmentItf» visiting(@NonNull Visitable visitable) {
-		return lookupInParentIfNotComplete();
+		return lookupInParent();
 	}
 	
 	@NonNull
@@ -963,14 +963,32 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	}
 	
 	/**
-	 * Used when looking up in local AND in parent environments if not found 
-	 * in local -> outer scope/environment elements are occluded in nested 
+	 * Will carry on the lookup through parent elements if the accumulated lookup
+	 * environment is not complete (i.e a result has been found)
+	 * 
+	 * This propagation protocol is used when outer scope/environment elements 
+	 * are occluded by nested environments (i.e when a fresh nestedEnvironment() has
+	 * been configured for the element which has been configured)
+	 *
+	 * @return the accumulated lookup env
+	 */
+	@NonNull
+	protected «environmentItf» lookupInParentIfEnvNoComplete() {
+		return env.isComplete() ? env : lookupInNewContext(context.getParent());
+	}
+	
+	/**
+	 * Will carry on the look up thrugh parent elements. 
+	 *
+	 * By the fault the propagation will occur towards parent elements so that
+	 * all ambiguous (duplicated) named elements are detected.
+	 *
 	 * contexts
 	 * @return the accumulated lookup env
 	 */
 	@NonNull
-	protected «environmentItf» lookupInParentIfNotComplete() {
-		return env.isComplete() ? env : lookupInNewContext(context.getParent());
+	protected «environmentItf» lookupInParent() {
+		return lookupInNewContext(context.getParent());
 	}
 	
 	// Generated from NameResolution description
@@ -981,21 +999,30 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	public @NonNull
 	«environmentItf» visit«type.name»(@NonNull «type.name» object) {
 		«IF !NameResolutionUtil.isChildrenBasedEnvOperations(envOps)»
-			«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOps.get(0)) »
+			«val envOp = envOps.get(0) /*FIXME one envOp is assumed*/»
+			«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOp) »
 				«val expType = addingExpType.getType»
 				«val isMany = expType instanceof CollectionType»
 				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object);
+				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object);				
 			«ENDFOR»
+			«IF NameResolutionUtil.hasNestedEnvCall(envOp)»
+			return lookupInParentIfEnvNoComplete();
+			«ELSE»
+			return lookupInParent();
+			«ENDIF»
 		«ELSE»
 			EReference containmentReference = context.getToChildReference();
+			«var genericEnvOpHasNestedEnvCall = false /*To control last return printing simple lookupInParent*/»
 			«FOR envOp : envOps»
 			«val isFirst = envOps.indexOf(envOp)==0»
 			«val propName = NameResolutionUtil.getEnvOpPropertyName(envOp)»
-			«IF !isFirst»else «ENDIF» «IF NameResolutionUtil.isChildBasedEnvOperation(envOp)»
-			if (containmentReference == «helper.getChildQualifiedFeatureAccessor(type, propName)»)«ENDIF»
+			«IF !isFirst»else«ENDIF»
+			«IF NameResolutionUtil.isChildBasedEnvOperation(envOp)»
+			if (containmentReference == «helper.getChildQualifiedFeatureAccessor(type, propName)»)
+			«ENDIF»
 			{
-				«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOp) »				
+				«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOp) »
 				«val expType = addingExpType.getType»
 				«val isMany = expType instanceof CollectionType»
 				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
@@ -1003,10 +1030,16 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 				«IF useIndex»int childIndex = object.«helper.getFeatureAccessor(type, propName)»().indexOf(context.getChild()); «ENDIF»
 				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object«IF useIndex», childIndex«ENDIF»);
 				«ENDFOR»
+				«IF NameResolutionUtil.hasNestedEnvCall(envOp)»				
+				return lookupInParentIfEnvNoComplete();
+				«IF NameResolutionUtil.isGenericEnvOperation(envOp)»«{genericEnvOpHasNestedEnvCall = true ''}»«ENDIF»
+				«ENDIF»
 			}
 			«ENDFOR»
+			«IF !genericEnvOpHasNestedEnvCall»
+			return lookupInParent();
+			«ENDIF»
 		«ENDIF»
-		return lookupInParentIfNotComplete();
 	}
 	«ENDFOR»
 }

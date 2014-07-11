@@ -263,7 +263,7 @@ public class AutoPivotNamedLookupEnvironment extends AutoAbstractPivotNamedLooku
 	}
 	
 	public void addIteratorExp1_VariableElements(@NonNull IteratorExp object,
-			int childIndex) {		
+			int childIndex) {
 		addIterator(object, childIndex);
 	}
 	

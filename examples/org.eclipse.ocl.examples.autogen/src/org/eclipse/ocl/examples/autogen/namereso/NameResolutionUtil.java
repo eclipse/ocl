@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -118,7 +119,7 @@ public class NameResolutionUtil {
 	
 	
 	/**
-	 * returns the list of types of the expressions involved in the addElement operation call expression contained by
+	 * Returns the list of types of the expressions involved in the addElement operation call expression contained by
 	 * any of the given environment ops.
 	 * 
 	 * Although it's not checked, the provided {@link Operation} should be an _env() operation
@@ -173,7 +174,7 @@ public class NameResolutionUtil {
 	 * with a description to describe how the owning context element
 	 * configures the enviroment for name resolution. 
 	 * 
-	 * Heuristic to determine if the provided operation is an _env one: 
+	 * Logic to determine if the provided operation is an _env one: 
 	 * <ol> 
 	 * <li> the name of the provided operation contains the string _env
 	 * </ol>
@@ -188,7 +189,7 @@ public class NameResolutionUtil {
 	
 
 	/**
-	 * Heuristic to determine if the provided operation is an environment adding operation: 
+	 * Logic to determine if the provided operation is an environment adding operation: 
 	 * <ol> 
 	 * <li> the name of the provided operation startis with the string addElement </li>
 	 * <li> It's contained by a Class whose name is "Environment" </li>
@@ -202,8 +203,8 @@ public class NameResolutionUtil {
 			return false;
 		}
 		
-		// Improving the heuristic by ensuring that the operation is from the 
-		// Enviroment Class
+		// Improving the Logic by ensuring that the operation is from an 
+		// Enviroment Class (TB Improved)
 		Type owningType = op.getOwningType();
 		String typeName = owningType.getName();
 		
@@ -223,6 +224,28 @@ public class NameResolutionUtil {
 		return _envIndex <= 0 ? "" : opName.substring(0, _envIndex);
 		
 	}
+		
+	public static boolean hasNestedEnvCall(Operation op) {
+	
+		if (isEnvOperation(op)) {
+			OpaqueExpression opaqueExp = op.getBodyExpression();
+			if (opaqueExp != null) {			
+				ExpressionInOCL exp = PivotUtil.getExpressionInOCL(op, opaqueExp);
+				if (exp != null) {
+					TreeIterator<EObject> it = EcoreUtil.getAllContents(exp, true); 
+					while (it.hasNext()) {
+						EObject child = it.next();
+						if (child instanceof OperationCallExp) {
+							if (isNestedEnvOperationCallExp((OperationCallExp) child)) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 	
 	/**
 	 * Iterates the content tree of the given {@link OCLExpression} and returns
@@ -233,7 +256,9 @@ public class NameResolutionUtil {
 	 */
 	public static Iterable<OperationCallExp> getAddElementCallExps(OCLExpression oclExp) {
 		ArrayList<OperationCallExp> result = new ArrayList<OperationCallExp>();
-		for (EObject child : oclExp.eContents()) {
+		TreeIterator<EObject> it = EcoreUtil.getAllContents(oclExp, true); 
+		while (it.hasNext()) {
+			EObject child = it.next();
 			if (child instanceof OperationCallExp) {
 				OperationCallExp opCall = (OperationCallExp) child;
 				if (isAddingElementOperationCallExp(opCall)) {
@@ -247,6 +272,39 @@ public class NameResolutionUtil {
 	private static boolean isAddingElementOperationCallExp(OperationCallExp opCallExp) {
 		Operation op = opCallExp.getReferredOperation();
 		return op == null ? false : isAddOperation(op);		
+	}
+	
+	private static boolean isNestedEnvOperationCallExp(OperationCallExp opCallExp) {
+		Operation op = opCallExp.getReferredOperation();
+		return op == null ? false : isNestedEnvOperation(op);		
+	}
+	
+	/**
+	 * Logic to determine if the provided operation is an environment adding operation: 
+	 * <ol> 
+	 * <li> the name of the provided operation is "nestedEnv" </li>
+	 * <li> It's contained by a Class whose name is "Environment" </li>
+	 * </ol>
+	 * @param op
+	 * @return
+	 */
+	private static boolean isNestedEnvOperation(Operation op) {
+		
+		String opName = op.getName();
+		if (!"nestedEnv".equals(opName)){
+			return false;
+		}
+		
+		// Improving the Logic by ensuring that the operation is from an 
+		// Enviroment Class (TB Improved)
+		Type owningType = op.getOwningType();
+		String typeName = owningType.getName();
+		
+		if (!"Environment".equals(typeName)) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -270,6 +328,17 @@ public class NameResolutionUtil {
 		return false;
 	}
 	
+//	public static boolean hasGenericEnvOperations(@NonNull List<Operation> operations) {
+//		for (Operation operation : operations) {
+//			if (operation != null) {
+//				if (isGenericEnvOperation(operation)) {
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
+	
 	/**
 	 * In a name resolution description, the context type may contain different
 	 * _env operations. If the  _env operation name is prefixed with a name (e.g xxxx_env),
@@ -287,5 +356,15 @@ public class NameResolutionUtil {
 		}
 		int _envIndex = opName.indexOf("_env");
 		return _envIndex > 0;
+	}
+	
+	
+	public static boolean isGenericEnvOperation(@NonNull Operation operation) {
+		String opName = operation.getName();
+		if (opName == null) {
+			return false;
+		}
+		int _envIndex = opName.indexOf("_env");
+		return _envIndex == 0;
 	}
 }

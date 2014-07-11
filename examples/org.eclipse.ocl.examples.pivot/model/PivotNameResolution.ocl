@@ -11,13 +11,13 @@ def : _env(env : env::Environment) : env::Environment =
 
 context Package
 def : _env(env : env::Environment) : env::Environment =
-	env
+	env.nestedEnv()
 		.addElements(self.nestedPackage)
 		.addElements(self.ownedType)
 
 context Library
 def : _env(env : env::Environment) : env::Environment =
-	env
+	env.nestedEnv()
 		.addElements(self.nestedPackage)
 		.addElements(self.ownedType)
 		.addElements(self.ownedPrecedence)
@@ -25,16 +25,17 @@ def : _env(env : env::Environment) : env::Environment =
 context DataType
 def : _env(env : env::Environment) : env::Environment =
 	-- FIXME need to translate NewPivotLookupVisitor.visitDatatype
-	env
-		--.addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement.oclAsType(NamedElement))
+	env.nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		
 context Class
 def : _env(env : env::Environment) : env::Environment =
-	env
+	env.nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(self.ownedAttribute->select(not isStatic))
 		.addElements(self.ownedOperation->select(not isStatic))
 		.addElements(self.ownedBehavior)
-		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement.oclAsType(NamedElement))
+		
 
 context Metaclass
 def : _env(env : env::Environment) : env::Environment =
@@ -44,21 +45,23 @@ def : _env(env : env::Environment) : env::Environment =
 	
 context Enumeration
 def : _env(env : env::Environment) : env::Environment =
-	env
+	env.nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(self.ownedLiteral)
 		.addElements(self.ownedAttribute->select(not isStatic))
 		.addElements(self.ownedOperation->select(not isStatic))
 		.addElements(self.ownedBehavior)
+		
 
 context Operation
 def : ownedParameter_env(env : env::Environment) : env::Environment =
-	env
-		--.addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement.oclAsType(NamedElement))
+	env.nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 def : _env(env : env::Environment) : env::Environment =
-	env
+	env.nestedEnv()
 		.addElements(self.ownedParameter)
-		--.addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement.oclAsType(NamedElement))
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context LetExp
 def : in_env(env : env::Environment) : env::Environment =
@@ -69,10 +72,12 @@ context IterateExp
 def : result_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator)
+		
 def : body_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()		
 		.addElements(self.iterator)
 		.addElement(self.result)
+		
 def : iterator_env(env : env::Environment, childIndex : Integer) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator->select(x| self.iterator->indexOf(x) < childIndex))		
@@ -81,6 +86,7 @@ context IteratorExp
 def : body_env(env : env::Environment) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator)
+		
 def : iterator_env(env : env::Environment, childIndex : Integer) : env::Environment =
 	env.nestedEnv()
 		.addElements(self.iterator->select(x| self.iterator->indexOf(x) < childIndex))
