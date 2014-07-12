@@ -28,10 +28,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.context.ParserContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -327,6 +330,12 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 		else if (element instanceof EnumerationLiteral) {
 			return (EnumerationLiteral)element;
+		}
+		else if ((element instanceof Variable) && (element.eContainer() instanceof LoopExp)) {
+			return (Variable)element;
+		}
+		else if ((element instanceof Variable) && (element.eContainer() instanceof LetExp)) {
+			return (Variable)element;
 		}
 		// ?? Constraint, Signal, ...
 		else {

@@ -342,8 +342,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		}
 		else {
 			EObject container = object.eContainer();
-			if (!(container instanceof Root) && (container instanceof NamedElement) &&
-					(!(container.eContainer() instanceof Root) || !PivotConstants.OCL_NAME.equals(((NamedElement)container).getName()))) {
+			if ((container != null) && (!(container instanceof Root) && (container instanceof NamedElement) &&
+				(!(container.eContainer() instanceof Root) || !PivotConstants.OCL_NAME.equals(((NamedElement)container).getName())))) {
 				appendQualifiedName((NamedElement) container);
 				append("::"); //$NON-NLS-1$
 			}

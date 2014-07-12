@@ -71,7 +71,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if (type == null) {
 			return null;
 		}
-		TypedRefCS typeRef = context.visitReference(TypedRefCS.class, type);
+		TypedRefCS typeRef = context.visitReference(TypedRefCS.class, type, null);
 //		int upper = object.getUpper().intValue();
 //		if (upper == 1) {
 			return typeRef;

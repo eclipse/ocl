@@ -14,13 +14,15 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 
 public class BasePivot2CS extends Pivot2CS
 {	
-	private static final class Factory implements Pivot2CS.Factory
+	private static final class Factory implements Pivot2CS.Factory2
 	{
 		private static @NonNull Pivot2CS.Factory INSTANCE = new Factory();
 
@@ -29,6 +31,10 @@ public class BasePivot2CS extends Pivot2CS
 		}
 
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter) {
+			return new BaseReferenceVisitor(converter);
+		}
+
+		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope) {
 			return new BaseReferenceVisitor(converter);
 		}
 

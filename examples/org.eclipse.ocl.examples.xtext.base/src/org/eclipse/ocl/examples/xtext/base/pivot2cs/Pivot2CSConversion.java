@@ -75,6 +75,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory2;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 
@@ -229,19 +230,44 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return declarationVisitor;
 	}
 
+	@Deprecated
 	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass) {
-		BaseReferenceVisitor referenceVisitor = referenceVisitorMap.get(eClass);
-		if ((referenceVisitor == null) && !referenceVisitorMap.containsKey(eClass)) {
+		return getReferenceVisitor(eClass, null);
+	}
+	/**
+	 * @since 3.5
+	 */
+	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass, @Nullable Namespace scope) {
+		if (scope == null) {
+			BaseReferenceVisitor referenceVisitor = referenceVisitorMap.get(eClass);
+			if ((referenceVisitor == null) && !referenceVisitorMap.containsKey(eClass)) {
+				Factory factory = converter.getFactory(eClass);
+				if (factory instanceof Factory2) {
+					referenceVisitor = ((Factory2)factory).createReferenceVisitor(this, null);
+				}
+				else if (factory != null) {
+					referenceVisitor = factory.createReferenceVisitor(this);
+				}
+				else {
+					referenceVisitor = defaultReferenceVisitor;
+				}
+				referenceVisitorMap.put(eClass, referenceVisitor);
+			}
+			return referenceVisitor;
+		}
+		else {
 			Factory factory = converter.getFactory(eClass);
-			if (factory != null) {
-				referenceVisitor = factory.createReferenceVisitor(this);
+			if (factory instanceof Factory2) {
+				return ((Factory2)factory).createReferenceVisitor(this, scope);
+			}
+			else if (factory != null) {
+				return factory.createReferenceVisitor(this);
 			}
 			else {
-				referenceVisitor = defaultReferenceVisitor;
+				return defaultReferenceVisitor;
 			}
-			referenceVisitorMap.put(eClass, referenceVisitor);
+			
 		}
-		return referenceVisitor;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Class getScope() {
@@ -378,7 +404,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				return;				// Skip root package
 			}
 			for (EObject aScope = safeScope; aScope != null; aScope = aScope.eContainer()) {
-				if (aScope == eContainer) { 		// If element ancestor is scope or an ancestor
+				if (metaModelManager.getPrimaryElement(aScope) == metaModelManager.getPrimaryElement(eContainer)) { 		// If element ancestor is scope or an ancestor
 					return;							// no need for further qualification
 				}
 			}
@@ -460,7 +486,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 		if (type != null) {
 			PivotUtil.debugWellContainedness(type);
-			TypedRefCS typeRef = visitReference(TypedRefCS.class, type);
+			TypedRefCS typeRef = visitReference(TypedRefCS.class, type, null);
 			csElement.setOwnedType(typeRef);
 		}
 		else {
@@ -609,9 +635,16 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElements;
 	}
 
+	@Deprecated
 	public @Nullable <T extends ElementCS> T visitReference(@NonNull Class<T> csClass, @NonNull EObject eObject) {
+		return visitReference(csClass, eObject, null);
+	}
+	/**
+	 * @since 3.5
+	 */
+	public @Nullable <T extends ElementCS> T visitReference(@NonNull Class<T> csClass, @NonNull EObject eObject, @Nullable Namespace scope) {
 		@SuppressWarnings("null") @NonNull EClass eClass = eObject.eClass();
-		BaseReferenceVisitor referenceVisitor = getReferenceVisitor(eClass);
+		BaseReferenceVisitor referenceVisitor = getReferenceVisitor(eClass, scope);
 		if ((referenceVisitor == null) || !(eObject instanceof Visitable)) {
 			logger.warn("Unsupported reference " + eObject.eClass().getName());
 			return null;
@@ -634,7 +667,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		List<T> csElements = new ArrayList<T>();
 		for (V eObject : eObjects) {
 			if ((eObject != null) && ((predicate == null) || predicate.filter(eObject))) {
-				T csElement = visitReference(csClass, eObject);
+				T csElement = visitReference(csClass, eObject, null);
 				if (csElement != null) {
 					csElements.add(csElement);
 				}

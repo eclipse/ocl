@@ -15,6 +15,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
@@ -28,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS
 
 public class OCLinEcorePivot2CS extends EssentialOCLPivot2CS
 {	
-	private static final class Factory implements Pivot2CS.Factory
+	private static final class Factory implements Pivot2CS.Factory2
 	{
 		private static @NonNull Pivot2CS.Factory INSTANCE = new Factory();
 
@@ -37,6 +39,10 @@ public class OCLinEcorePivot2CS extends EssentialOCLPivot2CS
 		}
 
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter) {
+			return new BaseReferenceVisitor(converter);
+		}
+
+		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope) {
 			return new BaseReferenceVisitor(converter);
 		}
 

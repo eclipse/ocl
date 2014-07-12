@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
@@ -34,12 +35,19 @@ public class Pivot2CS extends AbstractConversion
 {	
 	public static interface Factory {
 		@NonNull BaseDeclarationVisitor createDeclarationVisitor(@NonNull Pivot2CSConversion converter);
+		@Deprecated /* add scope argument in Factory2 */
 		@NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter);
 
 		/**
 		 * Return a list of classes for which this Pivot2CS overrides a base Pivot2CS.
 		 */
 		@NonNull EClass[] getEClasses();
+	}
+	/**
+	 * @since 3.5
+	 */
+	public static interface Factory2 extends Factory {
+		@NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope);
 	}
 	
 	private @NonNull Map<EClass, Factory> factoryMap = new HashMap<EClass, Factory>();

@@ -1160,8 +1160,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			externalResourceSet2.setResourceFactoryRegistry(null);
 			externalResourceSet2.setURIConverter(null);
 			externalResourceSet2.setURIResourceMap(null);
-			for (Resource resource : externalResourceSet2.getResources()) {
-				resource.unload();
+			List<Resource> resources = externalResourceSet2.getResources();
+			for (int i = resources.size(); --i >= 0; ) {
+				resources.get(i).unload();
 			}
 			externalResourceSet = null;
 		}

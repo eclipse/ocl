@@ -12,10 +12,15 @@ package org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
 import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
@@ -31,9 +36,34 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.TypeNameExpCS;
 public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 {
 	public static final Logger logger = Logger.getLogger(BaseReferenceVisitor.class);
+	
+	/**
+	 * @since 3.5
+	 */
+	protected final @Nullable Namespace scope;
 
+	@Deprecated
 	public EssentialOCLReferenceVisitor(@NonNull Pivot2CSConversion context) {
+		this(context, null);
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	public EssentialOCLReferenceVisitor(@NonNull Pivot2CSConversion context, @Nullable Namespace scope) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
+		this.scope = scope;
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	@Override
+	public ElementCS visitAnyType(@NonNull AnyType object) {
+		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
+		csRef.setPivot(object);	
+		csRef.setName(object.getName());
+		return csRef;
 	}
 
 	@Override
@@ -41,6 +71,9 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return visitType(object);
 	}
 
+	/**
+	 * @since 3.5
+	 */
 	@Override
 	public ElementCS visitCollectionType(@NonNull CollectionType object) {
 		CollectionTypeCS csRef = EssentialOCLCSFactory.eINSTANCE.createCollectionTypeCS();
@@ -54,6 +87,17 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 				context.importNamespace(typePackage, null);
 			}
 		}
+		return csRef;
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	@Override
+	public ElementCS visitInvalidType(@NonNull InvalidType object) {
+		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
+		csRef.setPivot(object);	
+		csRef.setName(object.getName());
 		return csRef;
 	}
 
@@ -73,6 +117,9 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return csRef;
 	}
 
+	/**
+	 * @since 3.5
+	 */
 	@Override
 	public ElementCS visitType(@NonNull Type object) {
 		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
@@ -84,11 +131,22 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 			assert csPathName != null;
 			csRef.setPathName(csPathName);
 		}
-		context.refreshPathName(csPathName, object, null);
+		context.refreshPathName(csPathName, object, scope);
 		org.eclipse.ocl.examples.pivot.Package typePackage = object.getPackage();
 		if (typePackage != null) {
 			context.importNamespace(typePackage, null);
 		}
+		return csRef;
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	@Override
+	public ElementCS visitVoidType(@NonNull VoidType object) {
+		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
+		csRef.setPivot(object);	
+		csRef.setName(object.getName());
 		return csRef;
 	}
 }

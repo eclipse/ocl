@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -25,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -46,11 +48,11 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 /**
  * The AS2XMIidVisitor generates an xmi:id for an AS element. Using one of three policies.
  * <p>
- * null - no xmi:id generated
+ * null - no xmi:id generated - saves space
  * <p>
- * false - xmi:id generated/reuses UUID
+ * false - xmi:id generated/reuses UUID - UUID only used internally so no need for predicatability
  * <p>
- * true - xmi:id generated/reuses friendly name
+ * true - xmi:id generated/reuses friendly name - ID may be independently generated - must be predictable
  * <p>
  * Simple elements such as Package/Type/Property get a dot-separated hierarchical name.
  * <p>
@@ -128,6 +130,18 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			}
 		}
 	}
+	
+	/**
+	 * @since 3.5
+	 */
+	protected void appendNameOf(@NonNull Object element) {
+		if (element instanceof Nameable) {
+			s.append(((Nameable)element).getName());
+		}
+		else {
+			s.append(System.identityHashCode(element));
+		}
+	}
 
 	protected void appendOperation(Operation object) {
 		appendParent(object);
@@ -139,7 +153,14 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		}
 	}
 
+	@Deprecated
 	protected void appendParent(@Nullable NamedElement element) {
+		appendParent((EObject)element);
+	}
+	/**
+	 * @since 3.5
+	 */
+	protected void appendParent(@Nullable EObject element) {
 		if (toString().length() >= OVERFLOW_LIMIT) {
 			s.append(OVERFLOW_MARKER);
 		}
@@ -151,21 +172,24 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			EObject eContainer = element.eContainer();
 			if (eContainer instanceof Root) {
 			}
-			else if (eContainer instanceof NamedElement) {
-				NamedElement parent = (NamedElement) eContainer;
-				appendParent(parent);
-				appendName(parent.getName());
+			else if (eContainer != null) {
+				if (!(eContainer instanceof ParameterableElement) || (((ParameterableElement)eContainer).getOwningTemplateParameter() == null)) {
+					appendParent(eContainer);
+				}
+				appendNameOf(eContainer);
 				s.append(SCOPE_SEPARATOR);
 			}
 		}
 	}
-	
+
 	protected void appendType(@Nullable Type type) {
 		if (type == null) {
 			s.append(NULL_MARKER);	
 		}
 		else {
-			appendParent(type);
+			if (type.getOwningTemplateParameter() == null) {
+				appendParent(type);
+			}
 			appendName(type.getName());
 		}
 	}
@@ -412,7 +436,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitVariableDeclaration(@NonNull VariableDeclaration object) {
-		return false;
+		return null;
 	}
 
 	public @Nullable Boolean visiting(@NonNull Visitable visitable) {
