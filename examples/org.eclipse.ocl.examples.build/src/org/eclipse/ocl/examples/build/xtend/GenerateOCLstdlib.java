@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -80,10 +81,26 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 		String rootPath = StandaloneSetup.getPlatformRootPath();
 		File folder = new File(rootPath + javaFolder + "/" + javaPackageName.replace(".", "/"));
 		try {
+			String asFileName = "/" + projectName + "/" + modelFile.replace("model", "model-gen").replace("oclstdlib", "oclas");
+			URI asURI = URI.createPlatformResourceURI(asFileName, true);
+			//
+			//	Load the old AS file to recover the old xmi:id values.
+			//
+			log.info("Loading old '" + asURI + "'");
+			ResourceSet resourceSet = getResourceSet();
+			Map<String, String> moniker2idMap = null;
+			try {
+				Resource oldAsResource = resourceSet.getResource(asURI, true);
+				moniker2idMap = ASSaver.createMoniker2idMap(oldAsResource);
+				oldAsResource.unload();
+			}
+			catch (Exception e) {}
 			sourceFile = "/" + projectName + "/" + modelFile;
 			URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
+			//
+			//	Load the source file to create a new library
+			//
 			log.info("Loading OCL library '" + fileURI);
-			ResourceSet resourceSet = getResourceSet();
 			BaseCSResource xtextResource = (BaseCSResource)resourceSet.getResource(fileURI, true);
 			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
 			if (message != null) {
@@ -97,17 +114,16 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			EObject pivotModel = DomainUtil.nonNullState(asResource.getContents().get(0));
 			ASSaver saver = new ASSaver(asResource);
 			saver.localizeSpecializations();
+			ASSaver.applyMoniker2idMap(asResource, moniker2idMap);
 			String fileName = folder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");
 			String metaModel = generateMetamodel((Root)pivotModel);
 			MergeWriter fw = new MergeWriter(fileName);
 			fw.append(metaModel);
 			fw.close();
-			String saveFile = "/" + projectName + "/" + modelFile.replace("model", "model-gen").replace("oclstdlib", "oclas");
-			URI saveURI = URI.createPlatformResourceURI(saveFile, true);
-			log.info("Loading '" + saveURI + "'");
-			log.info("Saving '" + saveURI + "'");
-			asResource.setURI(saveURI);
+			
+			log.info("Saving '" + asURI + "'");
+			asResource.setURI(asURI);
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);

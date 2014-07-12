@@ -21,7 +21,10 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -40,6 +43,55 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
  */
 public class ASSaver
 {
+	public static void applyMoniker2idMap(@Nullable Resource resource, @Nullable Map<String, String> moniker2idMap) {
+		if ((resource instanceof XMLResource) && (moniker2idMap != null)) {
+			XMLResource xmlResource = (XMLResource)resource;
+			Map<String, Element> moniker2element = new HashMap<String, Element>();
+			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+				EObject eObject = tit.next();
+				if (eObject instanceof Element) {
+					String moniker = AS2Moniker.toString((Element)eObject);
+					Element oldElement = moniker2element.put(moniker, (Element)eObject);
+					assert oldElement == null;
+					String id = moniker2idMap.get(moniker);
+					if (id != null) {
+						xmlResource.setID(eObject, id);
+					}
+				}
+			}
+			List<String> allMonikers = new ArrayList<String>(moniker2idMap.keySet());
+			Collections.sort(allMonikers);
+			int i = 0;
+			for (String key : allMonikers) {
+				System.out.println("" + i++ + " " + key + " => " + moniker2idMap.get(key) + " => " + moniker2element.get(key));
+			}
+		}
+	}
+
+	public static @Nullable Map<String, String> createMoniker2idMap(@Nullable Resource resource) {
+		Map<String, String> moniker2idMap = null;
+		if (resource instanceof XMLResourceImpl) {
+			moniker2idMap = new HashMap<String, String>();
+			Map<EObject, String> eObjectToIDMap = ((XMLResourceImpl)resource).getEObjectToIDMap();
+			for (EObject eObject : eObjectToIDMap.keySet()) {
+				if (eObject instanceof Element) {
+					String id = eObjectToIDMap.get(eObject);
+					if (id != null) {
+						String moniker = AS2Moniker.toString((Element)eObject);
+						moniker2idMap.put(moniker,  id);
+					}
+				}
+			}
+			List<String> allMonikers = new ArrayList<String>(moniker2idMap.keySet());
+			Collections.sort(allMonikers);
+			int i = 0;
+			for (String key : allMonikers) {
+				System.out.println("" + i++ + " " + key + " => " + moniker2idMap.get(key));
+			}
+		}
+		return moniker2idMap;
+	}
+	
 	protected final @NonNull Resource resource;
 	
 	public ASSaver(@NonNull Resource resource) {

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
@@ -157,6 +158,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	protected void appendParent(@Nullable NamedElement element) {
 		appendParent((EObject)element);
 	}
+
 	/**
 	 * @since 3.5
 	 */
@@ -203,7 +205,8 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			return s.toString();
 		}
 		else {
-			return context.getID(element, internalUUIDs);
+			String moniker = AS2Moniker.toString(element);
+			return EcoreUtil.generateUUID() + "--" + moniker;
 		}
 	}	
 

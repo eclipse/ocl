@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -190,6 +191,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 				context.append(TEMPLATE_PARAMETER_PREFIX);
 			}
 			context.appendName(object);
+			context.append(TEMPLATE_PARAMETER_PREFIX);
 		}
 		else if (!object.getTemplateBinding().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
@@ -232,6 +234,13 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	@Override
 	public Object visitCollectionLiteralPart(@NonNull CollectionLiteralPart object) {
 		context.appendParent(object, MONIKER_PART_SEPARATOR);
+		context.appendIndex(object);
+		return true;
+	}
+
+	@Override
+	public Object visitComment(@NonNull Comment object) {
+		context.appendParent(object, MONIKER_COMMENT_SEPARATOR);
 		context.appendIndex(object);
 		return true;
 	}
