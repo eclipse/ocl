@@ -11,15 +11,12 @@
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -28,17 +25,14 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
-import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
 import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
@@ -54,50 +48,6 @@ public class OCLinEcoreDocument extends BaseDocument
 	@Inject
 	public OCLinEcoreDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
 		super(tokenSource, composer);
-	}
-
-	protected void checkForErrors(Resource resource) throws CoreException {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() > 0) {
-			StringBuilder s = new StringBuilder();
-			for (Resource.Diagnostic diagnostic : errors) {
-				s.append("\n");
-				if (diagnostic instanceof XtextSyntaxDiagnostic) {
-					s.append("Syntax error: ");
-					String location = diagnostic.getLocation();
-					if (location != null) {
-						s.append(location);
-						s.append(":");
-					}
-					s.append(diagnostic.getLine());
-					s.append(" ");
-					s.append(diagnostic.getMessage());
-				}
-				else {
-					s.append(diagnostic.toString());
-				}
-			}
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
-		}
-	}
-
-	protected @Nullable XMLResource getPivotResouce() throws CoreException {
-		return readOnly(new IUnitOfWork<XMLResource, XtextResource>()
-			{
-				public XMLResource exec(@Nullable XtextResource resource) throws Exception {
-					if (!(resource instanceof BaseCSResource)) {
-						return null;
-					}
-					BaseCSResource csResource = (BaseCSResource)resource;
-					CS2PivotResourceAdapter adapter = csResource.findCS2ASAdapter();
-					if (adapter == null) {
-						return null;
-					}
-					ASResource asResource = adapter.getASResource(csResource);
-					checkForErrors(asResource);
-					return asResource;
-				}
-			});
 	}
 
 	/**
@@ -129,16 +79,6 @@ public class OCLinEcoreDocument extends BaseDocument
 					return null;
 				}
 			});
-	}
-
-	/**
-	 * Write the XMI representation of the Pivot to be saved.
-	 */
-	public void saveAsPivot(@NonNull StringWriter writer) throws CoreException, IOException {
-		XMLResource asResource = getPivotResouce();
-		if (asResource != null) {
-			asResource.save(writer, null);
-		}
 	}
 
 	/**
