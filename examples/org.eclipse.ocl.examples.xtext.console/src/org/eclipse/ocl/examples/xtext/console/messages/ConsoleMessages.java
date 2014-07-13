@@ -16,6 +16,7 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * An accessor class for externalized strings.
+ * @since 3.5
  */
 public class ConsoleMessages
 {
