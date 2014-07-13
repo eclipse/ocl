@@ -250,9 +250,12 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			}
 		}
 
+		/**
+		 * @since 3.4
+		 */
 		public @Nullable EPackage basicGetEPackage() {
 			IResourceLoadStatus resourceLoadStatus = packageLoadStatus.getResourceLoadStatus();
-			IResourceLoadStrategy resourceLoadStrategy = resourceLoadStatus.getResourceLoadStrategy();
+			IResourceLoadStrategy2 resourceLoadStrategy = (IResourceLoadStrategy2) resourceLoadStatus.getResourceLoadStrategy();
 			if (PROJECT_MAP_GET.isActive()) {
 				PROJECT_MAP_GET.println("BasicGet " + getURI() + " with " + resourceLoadStrategy + " in " + DomainUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
 			}
@@ -487,11 +490,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		void addedGeneratedPackage(@NonNull IPackageLoadStatus packageLoadStatus, @NonNull EPackage ePackage);
 
 		/**
-		 * Return the EPackage in response to an EPackage.Registry access through an EPackageDescriptor, null if not loaded.
-		 */
-		@Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus);
-
-		/**
 		 * Configure the resourceLoadStatus to udse this strategy and a conflictHandler.
 		 */
 		void configure(@NonNull IResourceLoadStatus resourceLoadStatus, @Nullable IConflictHandler conflictHandler);
@@ -522,8 +520,18 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		 */
 		void useGeneratedResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource);
 	}
+	/**
+	 * @since 3.4
+	 */
+	public static interface IResourceLoadStrategy2 extends IResourceLoadStrategy
+	{
+		/**
+		 * Return the EPackage in response to an EPackage.Registry access through an EPackageDescriptor, null if not loaded.
+		 */
+		@Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus);
+	}
 
-	protected static abstract class AbstractResourceLoadStrategy implements IResourceLoadStrategy
+	protected static abstract class AbstractResourceLoadStrategy implements IResourceLoadStrategy2
 	{			
 		public void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {
 			throw new UnsupportedOperationException();
@@ -533,6 +541,9 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @since 3.4
+		 */
 		public @Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
 			return null;
 		}
@@ -792,7 +803,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	 */
 	public static final class LoadFirstStrategy extends AbstractResourceLoadStrategy
 	{
-		public static final @NonNull IResourceLoadStrategy INSTANCE = new LoadFirstStrategy();
+		public static final @NonNull IResourceLoadStrategy2 INSTANCE = new LoadFirstStrategy();
 		
 		@Override
 		public void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {
@@ -1062,7 +1073,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		/**
 		 * The strategy to be used to resolve further URI to EPackage mappings.
 		 */
-		protected @NonNull IResourceLoadStrategy resourceLoadStrategy = LoadFirstStrategy.INSTANCE;
+		protected @NonNull IResourceLoadStrategy2 resourceLoadStrategy = LoadFirstStrategy.INSTANCE;
 
 		/**
 		 * Target of unload watching Adapter.
@@ -1154,7 +1165,10 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return nsURI2packageLoadStatus.get(packageDescriptor.getNsURI());
 		}
 
-		public @NonNull IResourceLoadStrategy getResourceLoadStrategy() {
+		/**
+		 * @since 3.4
+		 */
+		public @NonNull IResourceLoadStrategy2 getResourceLoadStrategy() {
 			return resourceLoadStrategy;
 		}
 
@@ -1341,7 +1355,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		public void setResourceLoadStrategy(@NonNull IResourceLoadStrategy resourceLoadStrategy) {
-			this.resourceLoadStrategy = resourceLoadStrategy;
+			this.resourceLoadStrategy = (IResourceLoadStrategy2) resourceLoadStrategy;
 			if (PROJECT_MAP_CONFIGURE.isActive()) {
 				PROJECT_MAP_CONFIGURE.println(this.toString());
 			}

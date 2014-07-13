@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * </p>
  *
  * @generated
+ * @since 3.4
  */
 @SuppressWarnings("cast")
 public class PackageImpl
@@ -332,6 +333,7 @@ public class PackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * @since 3.4
 	 */
 	public void setNsURIGen(String newNsURI) {
 		String oldNsURI = nsURI;
@@ -851,6 +853,9 @@ public class PackageImpl
 
 	private PackageId packageId = null;
 
+	/**
+	 * @since 3.4
+	 */
 	public @Nullable PackageId basicGetPackageId() {
 		return packageId;
 	}
@@ -867,6 +872,9 @@ public class PackageImpl
 		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
 	}
 	
+	/**
+	 * @since 3.4
+	 */
 	public @NonNull PackageId getPackageId() {
 		PackageId packageId2 = packageId;
 		if (packageId2 == null) {
@@ -882,6 +890,9 @@ public class PackageImpl
 		return packageId2;
 	}
 	
+	/**
+	 * @since 3.4
+	 */
 	public void setPackageId(@NonNull PackageId packageId) {
 		assert this.packageId == null;
 		this.packageId = packageId;
@@ -889,10 +900,16 @@ public class PackageImpl
 
 	private boolean ignoreInvariants = false;		// FIXME Model this (used to suppress bad OMG UML 2.5 invariants)
 	
+	/**
+	 * @since 3.4
+	 */
 	public void setIgnoreInvariants(boolean ignoreInvariants) {
 		this.ignoreInvariants = ignoreInvariants;
 	}
 	
+	/**
+	 * @since 3.4
+	 */
 	public boolean isIgnoreInvariants() {
 		return ignoreInvariants;
 	}

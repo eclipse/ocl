@@ -56,6 +56,9 @@ public abstract class CompleteOCLLoader
 		this.mmPackages = new HashSet<EPackage>();
 	}
 	
+	/**
+	 * @since 3.4
+	 */
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}

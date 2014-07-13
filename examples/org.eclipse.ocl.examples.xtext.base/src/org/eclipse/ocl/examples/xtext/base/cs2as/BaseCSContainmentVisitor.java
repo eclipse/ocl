@@ -96,6 +96,9 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		metaModelManager = context.getMetaModelManager();
 	}
 
+	/**
+	 * @since 3.4
+	 */
 	protected PackageId getPackageId(@NonNull PackageCS csElement) {
 		return null;
 	}

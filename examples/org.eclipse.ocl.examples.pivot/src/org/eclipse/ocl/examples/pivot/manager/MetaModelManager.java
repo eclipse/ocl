@@ -552,6 +552,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	/**
 	 * Add all resources in ResourceSet to the externalResourceSet.
+	 * @since 3.4
 	 */
 	public void addExternalResources(@NonNull ResourceSet resourceSet) {
 		ResourceSet externalResourceSet = getExternalResourceSet();
@@ -1060,6 +1061,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return createPackage(pivotClass, pivotEClass, name, nsURI, null);
 	}
 
+	/**
+	 * @since 3.4
+	 */
 	public @NonNull <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(@NonNull Class<T> pivotClass,
 			@NonNull EClass pivotEClass, @NonNull String name, @Nullable String nsURI, @Nullable PackageId packageId) {
 		@SuppressWarnings("unchecked")
@@ -1845,6 +1849,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return metaclass;
 	}
 
+	/**
+	 * @since 3.4
+	 */
 	public @NonNull PackageId getMetapackageId(@NonNull DomainPackage dPackage) {
 		if (dPackage instanceof PivotObjectImpl) {
 			EObject eTarget = ((PivotObjectImpl)dPackage).getETarget();

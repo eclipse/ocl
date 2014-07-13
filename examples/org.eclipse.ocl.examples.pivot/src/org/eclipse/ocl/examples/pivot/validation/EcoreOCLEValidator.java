@@ -67,6 +67,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  *	Diagnostician diagnostician = new Diagnostician(registry);
  *	Diagnostic diagnostic = dignostician.validate(eObject, validationContext);
  * </pre>
+ * @since 3.4
  */
 public class EcoreOCLEValidator implements EValidator
 {
