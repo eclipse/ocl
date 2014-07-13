@@ -18,8 +18,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  *
  *
  * @see org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage#getRootPackageCS()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TestConstraint'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL TestConstraint='true'"
+ * @model
  * @generated
  */
 public interface RootPackageCS extends PackageOwnerCS, RootCS

@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
 
-@SuppressWarnings("restriction")
 public class PivotUIConstraintLocator extends PivotConstraintLocator implements ConstraintUILocator
 {
     /**

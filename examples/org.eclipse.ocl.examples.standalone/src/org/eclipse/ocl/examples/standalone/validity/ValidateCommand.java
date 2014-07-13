@@ -596,6 +596,7 @@ public class ValidateCommand extends StandaloneCommand
 	 * @param outputPath
 	 *            the exported file path.
 	 */
+	@SuppressWarnings("deprecation")
 	private void exportValidationResults(@NonNull RootNode rootNode, @Nullable File outputFile, @NonNull Map<CommandToken, List<String>> token2strings) {
 		final IValidityExporter selectedExporter = exporterToken.getExporter(token2strings);
 		if (selectedExporter != null && rootNode != null) {

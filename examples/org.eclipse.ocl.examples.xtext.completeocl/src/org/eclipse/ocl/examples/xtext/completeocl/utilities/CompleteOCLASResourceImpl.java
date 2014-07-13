@@ -59,6 +59,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 //		try {
 			adapter = csResource.getCS2ASAdapter(metaModelManager);
 			ASResource asResource = adapter.getASResource(csResource);
+			@SuppressWarnings("unused")
 			List<EObject> pivotContents = asResource.getContents();
 //			return asResource;
 //		}

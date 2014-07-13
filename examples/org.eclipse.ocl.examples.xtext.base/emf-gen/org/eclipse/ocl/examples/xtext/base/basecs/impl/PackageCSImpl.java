@@ -264,6 +264,7 @@ public class PackageCSImpl extends PackageOwnerCSImpl implements PackageCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
 	{
 		return super.toString();

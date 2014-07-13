@@ -672,48 +672,8 @@ public class BaseCSValidator extends EObjectValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(rootPackageCS, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(rootPackageCS, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRootPackageCS_TestConstraint(rootPackageCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRootCS_TestConstraint(rootPackageCS, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the TestConstraint constraint of '<em>Root Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ROOT_PACKAGE_CS__TEST_CONSTRAINT__EEXPRESSION = "true"; //$NON-NLS-1$
-
-	/**
-	 * Validates the TestConstraint constraint of '<em>Root Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRootPackageCS_TestConstraint(RootPackageCS rootPackageCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		// TODO override the constraint, if desired
-		// -> uncomment the scaffolding
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-						 new Object[] { "TestConstraint", getObjectLabel(rootPackageCS, context) }, //$NON-NLS-1$
-						 new Object[] { rootPackageCS },
-						 context));
-			}
-			return false;
-		}
-		return validateRootCS_TestConstraint(rootPackageCS, diagnostics, context);
 	}
 
 	/**
@@ -926,6 +886,15 @@ public class BaseCSValidator extends EObjectValidator
 			Map<Object, Object> context) {
 		// don't check, we have our own implementation, which creates nicer messages
 		return true;
+	}
+	
+	@Deprecated
+	protected static final String ROOT_PACKAGE_CS__TEST_CONSTRAINT__EEXPRESSION = "true"; //$NON-NLS-1$
+	
+	@Deprecated
+	public boolean validateRootPackageCS_TestConstraint(RootPackageCS rootPackageCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return false;
 	}
 
 } //BaseCSValidator

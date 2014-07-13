@@ -299,6 +299,7 @@ public class PivotTests extends XtextTestCase
 //		xtextResource.save(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 //		assertNoResourceErrors("Save failed", xtextResource.getErrors());
+		@SuppressWarnings("unused")
 		ASResource asResource = (ASResource) pivotRoot.eResource();
 //		CS2PivotAliasCreator.createPackageAliases(asResource);
 //		Resource asResource = resourceSet.createResource(outputURI);

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
@@ -519,7 +520,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		org.eclipse.emf.ecore.EcorePackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 		PivotPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -2165,7 +2166,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		// Obtain other dependent packages
 		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
-		org.eclipse.emf.ecore.EcorePackage theEcorePackage = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -2523,13 +2524,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		   new String[] 
 		   {
 			 "constraints", "TestConstraint" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (rootPackageCSEClass, 
-		   source, 
-		   new String[] 
-		   {
-			 "constraints", "TestConstraint" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 
@@ -2586,13 +2580,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		   });	
 		addAnnotation
 		  (rootCSEClass, 
-		   source, 
-		   new String[] 
-		   {
-			 "TestConstraint", "true" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (rootPackageCSEClass, 
 		   source, 
 		   new String[] 
 		   {

@@ -277,10 +277,6 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 //				return getHoverInfo(object, region, null);
 				return getHoverInfo(object, viewer, region, null);
 			}
-
-			public IInformationControlCreator getInformationPresenterControlCreator() {
-				return MarkupHoverProvider.this.getInformationPresenterControlCreator();
-			}
 		};
 	}
 

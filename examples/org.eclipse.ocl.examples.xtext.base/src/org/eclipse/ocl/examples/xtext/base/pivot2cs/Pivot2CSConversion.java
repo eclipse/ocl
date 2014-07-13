@@ -237,6 +237,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	/**
 	 * @since 3.5
 	 */
+	@SuppressWarnings("deprecation")
 	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass, @Nullable Namespace scope) {
 		if (scope == null) {
 			BaseReferenceVisitor referenceVisitor = referenceVisitorMap.get(eClass);

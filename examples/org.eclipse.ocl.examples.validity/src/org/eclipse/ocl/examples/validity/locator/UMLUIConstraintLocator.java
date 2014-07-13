@@ -215,6 +215,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		protected void openError(final String message) {
 			shell.getDisplay().asyncExec(new Runnable()
 			{
+				@Override
 				public void run() {
 					MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, message);
 				}
@@ -224,6 +225,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		protected void openError(final String message, final @NonNull Exception e) {
 			shell.getDisplay().asyncExec(new Runnable()
 			{
+				@Override
 				public void run() {
 					IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
 					ErrorDialog.openError(shell, ConsoleMessages.Debug_Starter, message, status);
@@ -231,6 +233,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 			});
 		}
 
+		@Override
 		public void run(IProgressMonitor monitor) {
 			monitor.beginTask(NLS.bind(ConsoleMessages.Debug_Starter, expression), 3);
 			try {
