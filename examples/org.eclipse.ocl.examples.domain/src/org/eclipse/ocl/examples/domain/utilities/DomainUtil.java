@@ -86,6 +86,7 @@ public class DomainUtil
 
 	/**
 	 * Return the DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE for ePackage or null if none.
+	 * @since 3.5
 	 */
 	public static @Nullable EAnnotation basicGetMetamodelAnnotation(@NonNull EPackage ePackage) {
 		EAnnotation asMetamodelAnnotation = ePackage.getEAnnotation(DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE);
@@ -416,6 +417,7 @@ public class DomainUtil
 
 	/**
 	 * Return the DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE for ePackage, creating it if needed.
+	 * @since 3.5
 	 */
 	public static @NonNull EAnnotation getMetamodelAnnotation(@NonNull EPackage ePackage) {
 		EAnnotation eAnnotation = ePackage.getEAnnotation(DomainConstants.AS_METAMODEL_ANNOTATION_SOURCE);

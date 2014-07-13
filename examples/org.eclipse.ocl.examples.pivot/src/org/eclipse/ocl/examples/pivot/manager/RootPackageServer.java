@@ -29,6 +29,9 @@ public class RootPackageServer extends PackageServer
 		this(packageManager, name, nsPrefix, nsURI, packageId, IdManager.METAMODEL);
 	}
 
+	/**
+	 * @since 3.5
+	 */
 	public RootPackageServer(@NonNull PackageManager packageManager, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {
 		super(packageManager, name, nsPrefix, nsURI, packageId);
 		this.metapackageId = metapackageId;
@@ -55,6 +58,9 @@ public class RootPackageServer extends PackageServer
 		packageManager.disposedRootPackageServer(this);
 	}
 	
+	/**
+	 * @since 3.5
+	 */
 	public @NonNull PackageId getMetapackageId() {
 		return metapackageId;
 	}

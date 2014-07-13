@@ -77,6 +77,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  */
 public class EnvironmentView
 {
+	/**
+	 * @since 3.5
+	 */
 	public static abstract class Disambiguator<T> implements Comparator<T>
 	{
 	    public int compare(T o1, T o2) {

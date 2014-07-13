@@ -770,6 +770,9 @@ public class PivotUtil extends DomainUtil
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull NamedElement contextElement, @NonNull OpaqueExpression specification) {
 		return getExpressionInOCL(specification);
 	}
+	/**
+	 * @since 3.5
+	 */
 	@Deprecated // Supply a clear MetaModelManager
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull OpaqueExpression specification) {
 		if (specification instanceof ExpressionInOCL) {
@@ -778,6 +781,9 @@ public class PivotUtil extends DomainUtil
 		String expression = PivotUtil.getBody(specification);
 		return expression != null ? getExpressionInOCL(specification, expression) : null;
 	}
+	/**
+	 * @since 3.5
+	 */
 	public static @Nullable ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull OpaqueExpression specification) {
 		if (specification instanceof ExpressionInOCL) {
 			return (ExpressionInOCL) specification;
@@ -807,6 +813,9 @@ public class PivotUtil extends DomainUtil
 			return getExpressionInOCL(metaModelManager, contextElement,expression);
 	}
 
+	/**
+	 * @since 3.5
+	 */
 	public static ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull NamedElement contextElement, @NonNull String expression) {
 		ParserContext parserContext = metaModelManager.getParserContext(contextElement);
 		if (parserContext == null) {

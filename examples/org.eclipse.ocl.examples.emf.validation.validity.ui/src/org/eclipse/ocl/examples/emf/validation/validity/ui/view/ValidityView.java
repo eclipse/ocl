@@ -566,6 +566,7 @@ public class ValidityView extends ViewPart implements ISelectionListener
 
 	/**
 	 * Return the most recent selection as IResource, if it can be converted possibly by resolving the Resource of an EObject. 
+	 * @since 1.1
 	 */
 	public @Nullable IResource getSelectedResource() {
 		Object selection = null;

@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
  */
 public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.Internal
 {
-	public static @Nullable UMLElementExtension getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable Object /*UMLElementExtension*/ getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EObject eTarget = staticType.getETarget();
 		if (eTarget instanceof org.eclipse.uml2.uml.Stereotype) {
 			org.eclipse.uml2.uml.Stereotype umlDynamicStereotype = null;

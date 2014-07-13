@@ -21,6 +21,9 @@ import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 
+/**
+ * @since 1.1
+ */
 public class ValidityUtils
 {
 	/**

@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * </p>
  *
  * @generated
+ * @since 3.5
  */
 public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 {

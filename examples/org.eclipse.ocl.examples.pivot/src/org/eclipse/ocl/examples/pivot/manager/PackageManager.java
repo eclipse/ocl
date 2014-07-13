@@ -546,6 +546,9 @@ public class PackageManager implements PackageServerParent
 		return packageServer != null ? packageServer.getPivotPackage() : null;
 	}
 
+	/**
+	 * @since 3.5
+	 */
 	public @Nullable String getSharedURI(@Nullable String nsURI) {
 		String sharedURI = synonymURI2sharedURI.get(nsURI);
 		if (sharedURI != null) {
