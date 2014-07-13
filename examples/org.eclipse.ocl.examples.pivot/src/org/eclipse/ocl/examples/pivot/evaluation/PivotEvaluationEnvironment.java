@@ -373,8 +373,6 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     
     /**
      * Ecore implementation of the enumeration literal value.
-     * 
-     * @since 1.2
      *
     public Enumerator getValue(EnumerationLiteral enumerationLiteral) {
     	return enumerationLiteral.getInstance();

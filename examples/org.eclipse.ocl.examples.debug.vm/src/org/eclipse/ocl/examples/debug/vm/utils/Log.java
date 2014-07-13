@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.debug.vm.utils;
  * which is intended the main client to this interface.
  * 
  * @author dvorak
- * @since 2.0
  */
 public interface Log {
 	/**

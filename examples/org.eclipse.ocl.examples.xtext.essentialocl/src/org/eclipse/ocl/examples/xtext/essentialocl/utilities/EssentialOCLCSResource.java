@@ -315,9 +315,6 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	 */
 	protected void initializeResourceFactory(@NonNull Resource.Factory.Registry resourceFactoryRegistry) {}
 
-	/**
-	 * @since 3.5
-	 */
 	public @Nullable NamedElement isPathable(@NonNull EObject element) {
 		if (element instanceof Feature) {
 			return (Feature)element;

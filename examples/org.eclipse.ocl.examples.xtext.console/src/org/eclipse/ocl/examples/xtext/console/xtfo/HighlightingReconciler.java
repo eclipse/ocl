@@ -61,14 +61,10 @@ public class HighlightingReconciler implements ITextInputListener, IXtextModelLi
 
 	/**
 	 * Reconcile operation lock.
-	 * 
-	 * @since 3.2
 	 */
 	private final Object fReconcileLock = new Object();
 	/**
 	 * <code>true</code> if any thread is executing <code>reconcile</code>, <code>false</code> otherwise.
-	 * 
-	 * @since 3.2
 	 */
 	private boolean reconciling = false;
 

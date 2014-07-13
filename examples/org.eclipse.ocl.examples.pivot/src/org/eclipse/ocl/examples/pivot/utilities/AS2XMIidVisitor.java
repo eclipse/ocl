@@ -131,9 +131,6 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		}
 	}
 	
-	/**
-	 * @since 3.5
-	 */
 	protected void appendNameOf(@NonNull Object element) {
 		if (element instanceof Nameable) {
 			s.append(((Nameable)element).getName());
@@ -157,9 +154,6 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	protected void appendParent(@Nullable NamedElement element) {
 		appendParent((EObject)element);
 	}
-	/**
-	 * @since 3.5
-	 */
 	protected void appendParent(@Nullable EObject element) {
 		if (toString().length() >= OVERFLOW_LIMIT) {
 			s.append(OVERFLOW_MARKER);

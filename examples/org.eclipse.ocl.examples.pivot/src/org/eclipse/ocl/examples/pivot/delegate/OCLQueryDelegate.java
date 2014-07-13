@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * An implementation of a query delegate for OCL expressions.
  * 
  * @see OCLQueryDelegateFactory
- * @since 3.1
  */
 public class OCLQueryDelegate implements QueryDelegate
 {

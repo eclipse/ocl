@@ -30,7 +30,6 @@ import org.eclipse.ui.ide.IDE;
 
 /**
  * Wizard allowing the user to create a new OCL rule file.
- * @since 1.2
  */
 public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 {

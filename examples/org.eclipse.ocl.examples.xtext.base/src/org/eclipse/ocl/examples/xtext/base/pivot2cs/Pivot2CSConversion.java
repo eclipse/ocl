@@ -234,9 +234,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass) {
 		return getReferenceVisitor(eClass, null);
 	}
-	/**
-	 * @since 3.5
-	 */
 	@SuppressWarnings("deprecation")
 	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass, @Nullable Namespace scope) {
 		if (scope == null) {
@@ -640,9 +637,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	public @Nullable <T extends ElementCS> T visitReference(@NonNull Class<T> csClass, @NonNull EObject eObject) {
 		return visitReference(csClass, eObject, null);
 	}
-	/**
-	 * @since 3.5
-	 */
 	public @Nullable <T extends ElementCS> T visitReference(@NonNull Class<T> csClass, @NonNull EObject eObject, @Nullable Namespace scope) {
 		@SuppressWarnings("null") @NonNull EClass eClass = eObject.eClass();
 		BaseReferenceVisitor referenceVisitor = getReferenceVisitor(eClass, scope);

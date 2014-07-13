@@ -630,9 +630,6 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new IllegalStateException("No " + operationId); //$NON-NLS-1$
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull DomainPackage getPackage(@NonNull PackageId packageId) {
 		DomainElement element = packageId.accept(this);
 		if (element instanceof DomainPackage) {

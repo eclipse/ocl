@@ -36,7 +36,6 @@ public abstract class VMLineBreakpoint extends LineBreakpoint {
 	
 	/**
 	 * Family for breakpoint validation job (@see OCLToggleBreakpointAdapter::toggleLineBreakpoints())
-	 * @since 1.3
 	 */
 	public static final Object OCL_BREAKPOINT_JOBFAMILY = new Object();
 

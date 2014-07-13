@@ -139,8 +139,6 @@ public class DelegateEPackageAdapter extends AdapterImpl
 
 	/**
 	 * Return the DelegateDomain for this package and for delegateURI, creating one if it does not already exist. 
-	 *
-	 * @since 3.2
 	 */
 	public @NonNull DelegateDomain loadDelegateDomain(@NonNull String delegateURI) {
 		if (delegateDomainMap == null) {

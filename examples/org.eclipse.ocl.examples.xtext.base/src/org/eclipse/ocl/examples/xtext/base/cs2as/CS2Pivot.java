@@ -276,27 +276,18 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public static void refreshContext(@NonNull PathNameCS pathNameCS, ElementCS csContext) {
 		if (pathNameCS.getContext() != csContext) {
 			pathNameCS.setContext(csContext);
 		}
 	}
 	
-	/**
-	 * @since 3.5
-	 */
 	public static void refreshElementType(PathElementCS pathElementCS, EClassifier elementType) {
 		if ((pathElementCS != null)  && (pathElementCS.getElementType() != elementType)) {
 			pathElementCS.setElementType(elementType);
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public static void refreshScopeFilter(@NonNull PathNameCS pathNameCS, ScopeFilter scopeFilter) {
 		if (pathNameCS.getScopeFilter() != scopeFilter) {
 			pathNameCS.setScopeFilter(scopeFilter);

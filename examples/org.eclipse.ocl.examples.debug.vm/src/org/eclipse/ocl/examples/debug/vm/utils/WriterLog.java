@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
  * A basic logger backed-up with {@link Writer}. 
  * 
  * @author dvorak
- * @since 2.0
  * 
  * @noextend This class is not intended to be subclassed by clients.
  */
@@ -60,7 +59,6 @@ public class WriterLog implements Log {
 	 *            behavior is dependent on the writer implementation used
 	 * @throws IllegalArgumentException
 	 *             if the passed <code>writer</code> is <code>null</code>
-	 * @since 3.0
 	 */
 	public WriterLog(@NonNull VMDebugCore debugCore, @NonNull Writer writer, boolean flush) {
 		this.debugCore = debugCore;

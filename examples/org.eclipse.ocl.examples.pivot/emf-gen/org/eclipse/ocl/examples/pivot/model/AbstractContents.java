@@ -32,9 +32,6 @@ public class AbstractContents extends PivotUtil
 		return createLibrary(name, nsPrefix, nsURI, null);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @NonNull Library createLibrary(@NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
 		Library pivotLibrary = PivotFactory.eINSTANCE.createLibrary();
 		pivotLibrary.setName(name);

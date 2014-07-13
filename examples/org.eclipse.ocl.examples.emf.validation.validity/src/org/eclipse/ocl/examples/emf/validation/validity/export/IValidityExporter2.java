@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
  * <p>
  * Clients may also extends AbstractExport instead.
  * </p>
- * @since 1.1
  */
 public interface IValidityExporter2 extends IValidityExporter
 {

@@ -42,9 +42,6 @@ public final class RunValidityAction extends Action
 		this(validityView, null);
 	}
 	
-	/**
-	 * @since 1.1
-	 */
 	public RunValidityAction(@NonNull ValidityView validityView, @Nullable ISelectionProvider selectionProvider) {
 		super(ValidityUIMessages.ValidityView_Action_RunValidity_Title);
 		this.validityView = validityView;

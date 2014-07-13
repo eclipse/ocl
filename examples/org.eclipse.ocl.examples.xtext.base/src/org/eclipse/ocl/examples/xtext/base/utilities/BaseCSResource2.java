@@ -17,7 +17,6 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 
 /**
  * BaseResource defines the Xtext-dependent extended interface for a Concrete Syntax resource.
- * @since 3.5
  */
 public interface BaseCSResource2 extends BaseCSResource
 {

@@ -62,9 +62,7 @@ public abstract class AbstractExporter implements IValidityExporter2
 	 */
 	@Deprecated
 	protected abstract void createContents(@NonNull Appendable s, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
-	/**
-	 * @since 1.1
-	 */
+
 	protected /*abstract*/ void createContents(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		createContents(s, null, rootNode,exportedFileName);
 	}
@@ -80,9 +78,6 @@ public abstract class AbstractExporter implements IValidityExporter2
 		export(s, rootNode, exportedFileName);
 	}
 
-	/**
-	 * @since 1.1
-	 */
 	public @NonNull String export(@NonNull RootNode rootNode, @Nullable String exportedFileName) {
 		StringBuilder s = new StringBuilder();
 		try {
@@ -92,9 +87,6 @@ public abstract class AbstractExporter implements IValidityExporter2
 		return string;
 	}
 
-	/**
-	 * @since 1.1
-	 */
 	public void export(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		populateMaps(rootNode);
 		createContents(s, rootNode, exportedFileName);

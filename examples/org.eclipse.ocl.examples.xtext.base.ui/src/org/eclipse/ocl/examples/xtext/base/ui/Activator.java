@@ -22,9 +22,6 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-/**
- * @since 1.2
- */
 public class Activator extends AbstractUIPlugin implements BundleActivator {
 
 	// The plug-in ID

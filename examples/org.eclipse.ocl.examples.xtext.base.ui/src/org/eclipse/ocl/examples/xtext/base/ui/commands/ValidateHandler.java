@@ -47,8 +47,6 @@ public final class ValidateHandler implements IHandler2
 
 	/**
 	 * Track this base class enabled state.
-	 * 
-	 * @since 3.4
 	 */
 	private boolean baseEnabled = true;
 
@@ -97,8 +95,6 @@ public final class ValidateHandler implements IHandler2
 	/**
 	 * When a listener is attached to this handler, then this registers a
 	 * listener with the underlying action.
-	 * 
-	 * @since 3.1
 	 */
 	private final void attachListener() {
 		if (propertyChangeListener == null) {
@@ -213,7 +209,6 @@ public final class ValidateHandler implements IHandler2
 	 * Returns the action associated with this handler
 	 * 
 	 * @return the action associated with this handler (not null)
-	 * @since 3.1
 	 */
 	public final IAction getAction() {
 		return action;
@@ -304,7 +299,6 @@ public final class ValidateHandler implements IHandler2
 	 * 
 	 * @param state
 	 *            the enabled state
-	 * @since 3.4
 	 */
 	protected void setBaseEnabled(boolean state) {
 		if (baseEnabled == state) {
@@ -322,7 +316,6 @@ public final class ValidateHandler implements IHandler2
 	 * 
 	 * @param evaluationContext
 	 *            the application context. May be <code>null</code>
-	 * @since 3.4
 	 * @see #setBaseEnabled(boolean)
 	 */
 	public void setEnabled(Object evaluationContext) {

@@ -109,7 +109,6 @@ public class ResourceAndContainerGroup implements Listener {
 	 * The resource extension for the resource name field.
 	 * 
 	 * @see ResourceAndContainerGroup#setResourceExtension(String)
-	 * @since 3.3
 	 */
 	private String resourceExtension;
 
@@ -258,7 +257,6 @@ public class ResourceAndContainerGroup implements Listener {
 	 * @see ResourceAndContainerGroup#setResourceExtension(String)
 	 * 
 	 * @return The resource name
-	 * @since 3.3
 	 */
 	public String getResource() {
 		String resource = resourceNameField.getText();
@@ -276,7 +274,6 @@ public class ResourceAndContainerGroup implements Listener {
 	 * @see ResourceAndContainerGroup#setResourceExtension(String)
 	 * @return <code>true</code> if the preconditions are met; otherwise,
 	 *         <code>false</code>.
-	 * @since 3.3
 	 */
 	private boolean useResourceExtension() {
 		String resource = resourceNameField.getText();
@@ -294,7 +291,6 @@ public class ResourceAndContainerGroup implements Listener {
 	 * focus (if the preconditions are met).
 	 * 
 	 * @see ResourceAndContainerGroup#setResourceExtension(String)
-	 * @since 3.3
 	 */
 	private void handleResourceNameFocusLostEvent() {
 		if (useResourceExtension()) {
@@ -379,7 +375,6 @@ public class ResourceAndContainerGroup implements Listener {
 	 * @param value
 	 *            The resource extension without the '.' prefix (e.g. 'java',
 	 *            'xml')
-	 * @since 3.3
 	 */
 	public void setResourceExtension(String value) {
 		resourceExtension = value;
@@ -513,7 +508,6 @@ public class ResourceAndContainerGroup implements Listener {
 	 * 
 	 * @return The allow existing resources flag.
 	 * @see ResourceAndContainerGroup#setAllowExistingResources(boolean)
-	 * @since 3.4
 	 */
 	public boolean getAllowExistingResources() {
 		return allowExistingResources;

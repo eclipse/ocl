@@ -77,7 +77,6 @@ public class UML2PivotUtil
 
 	/**
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
-	 * @since 3.5
 	 */
 	public static @Nullable DomainType getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EClass umlEClass = umlElement.eClass();

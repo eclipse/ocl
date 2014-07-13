@@ -15,9 +15,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
 
-/**
- * @since 3.5
- */
 public class EssentialOCLUiPluginHelper extends EMFPlugin.InternalHelper
 {
 	public static final EssentialOCLUiPluginHelper INSTANCE = new EssentialOCLUiPluginHelper(EssentialOCLActivator.getInstance()); 

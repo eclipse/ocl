@@ -23,7 +23,6 @@ public final class VMStackTraceElement implements IVMStackTraceElement  {
      * point.
      * @throws NullPointerException if <tt>fModuleName</tt> or
      *         <tt>fOperationName</tt> is null
-     * @since 1.5
      */
     public VMStackTraceElement(String moduleName, String operationName, String unitQName, int lineNumber) {
         if (moduleName == null) {

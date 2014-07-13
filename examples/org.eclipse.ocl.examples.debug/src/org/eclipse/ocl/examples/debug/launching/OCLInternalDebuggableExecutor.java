@@ -22,8 +22,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 
 /**
  * Internal transformation executor
- * 
- * @since 3.0
  */
 public class OCLInternalDebuggableExecutor extends InternalDebuggableExecutor
 {

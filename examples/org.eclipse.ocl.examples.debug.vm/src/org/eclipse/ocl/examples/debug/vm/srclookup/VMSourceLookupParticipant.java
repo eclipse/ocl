@@ -20,9 +20,6 @@ import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.core.VMStackFrame;
 
 
-/**
- * @since 1.3
- */
 public class VMSourceLookupParticipant extends AbstractSourceLookupParticipant
 {
 	protected final @NonNull VMDebugCore debugCore;

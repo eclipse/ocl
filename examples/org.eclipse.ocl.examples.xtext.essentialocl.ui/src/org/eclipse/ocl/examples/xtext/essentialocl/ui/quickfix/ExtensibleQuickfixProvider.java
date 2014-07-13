@@ -245,30 +245,18 @@ public class ExtensibleQuickfixProvider extends AbstractDeclarativeQuickfixProvi
 		return Diagnostic.LINKING_DIAGNOSTIC.equals(issueCode) || super.hasResolutionFor(issueCode);
 	}
 
-	/**
-	 * @since 2.0
-	 */
 	protected IssueModificationContext.Factory getModificationContextFactory() {
 		return modificationContextFactory;
 	}
 
-	/**
-	 * @since 2.0
-	 */
 	protected IScopeProvider getScopeProvider() {
 		return scopeProvider;
 	}
 
-	/**
-	 * @since 2.0
-	 */
 	protected IQualifiedNameConverter getQualifiedNameConverter() {
 		return qualifiedNameConverter;
 	}
 
-	/**
-	 * @since 2.0
-	 */
 	protected ISimilarityMatcher getSimilarityMatcher() {
 		return similarityMatcher;
 	}

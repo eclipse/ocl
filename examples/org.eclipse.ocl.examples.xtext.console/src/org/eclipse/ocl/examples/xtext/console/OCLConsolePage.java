@@ -477,9 +477,6 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public void cancelValidation() {
 		BaseDocument editorDocument = getEditorDocument();
 		Job validationJob = editorDocument.getValidationJob();

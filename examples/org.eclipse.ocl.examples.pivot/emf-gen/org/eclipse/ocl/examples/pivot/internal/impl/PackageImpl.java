@@ -851,9 +851,6 @@ public class PackageImpl
 
 	private PackageId packageId = null;
 
-	/**
-	 * @since 3.5
-	 */
 	public @Nullable PackageId basicGetPackageId() {
 		return packageId;
 	}
@@ -870,9 +867,6 @@ public class PackageImpl
 		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
 	}
 	
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull PackageId getPackageId() {
 		PackageId packageId2 = packageId;
 		if (packageId2 == null) {
@@ -888,9 +882,6 @@ public class PackageImpl
 		return packageId2;
 	}
 	
-	/**
-	 * @since 3.5
-	 */
 	public void setPackageId(@NonNull PackageId packageId) {
 		assert this.packageId == null;
 		this.packageId = packageId;
@@ -898,16 +889,10 @@ public class PackageImpl
 
 	private boolean ignoreInvariants = false;		// FIXME Model this (used to suppress bad OMG UML 2.5 invariants)
 	
-	/**
-	 * @since 3.5
-	 */
 	public void setIgnoreInvariants(boolean ignoreInvariants) {
 		this.ignoreInvariants = ignoreInvariants;
 	}
 	
-	/**
-	 * @since 3.5
-	 */
 	public boolean isIgnoreInvariants() {
 		return ignoreInvariants;
 	}

@@ -30,8 +30,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 
 /**
  * An implementation of a setting delegate that computes OCL derived features.
- * 
- * @since 3.0
  */
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {

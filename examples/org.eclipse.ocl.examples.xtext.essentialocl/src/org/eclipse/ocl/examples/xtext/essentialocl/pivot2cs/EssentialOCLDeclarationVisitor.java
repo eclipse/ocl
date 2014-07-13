@@ -154,9 +154,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected ExpCS createExpCS(OCLExpression oclExpression) {
 		ExpCS csExp = context.visitDeclaration(ExpCS.class, oclExpression);
 		if (csExp instanceof BinaryOperatorCS) {
@@ -169,9 +166,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @NonNull NameExpCS createNameExpCS(NamedElement asNamedElement) {
 		NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
 		PathNameCS csPathName = createPathNameCS(asNamedElement);
@@ -179,9 +173,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNameExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @NonNull NavigatingArgCS createNavigatingArgCS(@Nullable String prefix, /*@NonNull*/ OCLExpression csExp) {
 		NavigatingArgCS csNavigatingArg = EssentialOCLCSFactory.eINSTANCE.createNavigatingArgCS();
 		csNavigatingArg.setPrefix(prefix);
@@ -189,9 +180,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNavigatingArg;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected NavigatingArgCS createNavigatingArgCS(@Nullable String prefix, /*@NonNull*/ NamedElement asNamedElement, @Nullable TypedElement asTypedElement, @Nullable OCLExpression csInit) {
 		NavigatingArgCS csNavigatingArg = EssentialOCLCSFactory.eINSTANCE.createNavigatingArgCS();
 		csNavigatingArg.setPrefix(prefix);
@@ -205,9 +193,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNavigatingArg;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @NonNull ExpCS createNavigationOperatorCS(@Nullable OCLExpression asSource, @NonNull ExpCS csArgument, boolean isConverted) {
 		if (asSource == null) {
 			return csArgument;
@@ -223,9 +208,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @NonNull PathNameCS createPathNameCS(NamedElement asNamedElement) {
 		PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 		PathElementCS csPathElement = BaseCSFactory.eINSTANCE.createPathElementCS();
@@ -234,16 +216,10 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csPathName;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @Nullable TypedRefCS createTypeRefCS(@Nullable Type asType) {
 		return asType != null ? context.visitReference(TypedRefCS.class, asType, null) : null;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @Nullable TypedRefCS createTypeRefCS(Type asType, @Nullable Namespace scope) {
 		return asType != null ? context.visitReference(TypedRefCS.class, asType, scope) : null;
 	}
@@ -317,9 +293,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csElement;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitBooleanLiteralExp(@NonNull BooleanLiteralExp asBooleanLiteralExp) {
 		BooleanLiteralExpCS csBooleanLiteralExp = EssentialOCLCSFactory.eINSTANCE.createBooleanLiteralExpCS();
@@ -353,9 +326,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csCollectionLiteralExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitCollectionLiteralPart(@NonNull CollectionLiteralPart asCollectionLiteralPart) {
 		throw new UnsupportedOperationException();
@@ -401,9 +371,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csConstructorPart;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitEnumLiteralExp(@NonNull EnumLiteralExp asEnumLiteralExp) {
 		return createNameExpCS(asEnumLiteralExp.getReferredEnumLiteral());
@@ -430,9 +397,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csIfExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitIntegerLiteralExp(@NonNull IntegerLiteralExp asIntegerLiteralExp) {
 		NumberLiteralExpCS csNumberLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNumberLiteralExpCS();
@@ -441,9 +405,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNumberLiteralExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitInvalidLiteralExp(@NonNull InvalidLiteralExp asInvalidLiteralExp) {
 		InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
@@ -513,17 +474,11 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csLetExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitMessageExp(@NonNull MessageExp object) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitNullLiteralExp(@NonNull NullLiteralExp asNullLiteralExp) {
 		NullLiteralExpCS csNullLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNullLiteralExpCS();
@@ -590,18 +545,12 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp asOppositePropertyCallExp) {
 		NameExpCS csNameExp = createNameExpCS(asOppositePropertyCallExp.getReferredProperty().getOpposite());
 		return createNavigationOperatorCS(asOppositePropertyCallExp.getSource(), csNameExp, false);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitPropertyCallExp(@NonNull PropertyCallExp asPropertyCallExp) {
 		OCLExpression asSource = asPropertyCallExp.getSource();
@@ -615,9 +564,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return createNavigationOperatorCS(asSource, csNameExp, false);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitRealLiteralExp(@NonNull RealLiteralExp asRealLiteralExp) {
 		NumberLiteralExpCS csNumberLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNumberLiteralExpCS();
@@ -626,17 +572,11 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNumberLiteralExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitStateExp(@NonNull StateExp asStateExp) {
 		return createNameExpCS(asStateExp.getReferredState());
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitStringLiteralExp(@NonNull StringLiteralExp asStringLiteralExp) {
 		StringLiteralExpCS csStringLiteralExp = EssentialOCLCSFactory.eINSTANCE.createStringLiteralExpCS();
@@ -678,9 +618,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNameExp;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitUnlimitedNaturalLiteralExp(@NonNull UnlimitedNaturalLiteralExp asUnlimitedNaturalLiteralExp) {
 		NumberLiteralExpCS csNumberLiteralExp = EssentialOCLCSFactory.eINSTANCE.createNumberLiteralExpCS();
@@ -694,9 +631,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public @Nullable ElementCS visitVariableExp(@NonNull VariableExp asVariableExp) {
 		return createNameExpCS(asVariableExp.getReferredVariable());

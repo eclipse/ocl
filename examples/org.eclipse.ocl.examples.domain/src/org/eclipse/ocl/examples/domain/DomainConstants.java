@@ -12,9 +12,6 @@ package org.eclipse.ocl.examples.domain;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-/**
- * @since 3.5
- */
 public interface DomainConstants
 {
 	/**

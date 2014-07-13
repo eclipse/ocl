@@ -250,9 +250,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			}
 		}
 
-		/**
-		 * @since 3.5
-		 */
 		public @Nullable EPackage basicGetEPackage() {
 			IResourceLoadStatus resourceLoadStatus = packageLoadStatus.getResourceLoadStatus();
 			IResourceLoadStrategy2 resourceLoadStrategy = (IResourceLoadStrategy2) resourceLoadStatus.getResourceLoadStrategy();
@@ -520,9 +517,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		 */
 		void useGeneratedResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource);
 	}
-	/**
-	 * @since 3.5
-	 */
 	public static interface IResourceLoadStrategy2 extends IResourceLoadStrategy
 	{
 		/**
@@ -541,9 +535,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			throw new UnsupportedOperationException();
 		}
 
-		/**
-		 * @since 3.5
-		 */
 		public @Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus) {
 			return null;
 		}
@@ -1165,9 +1156,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return nsURI2packageLoadStatus.get(packageDescriptor.getNsURI());
 		}
 
-		/**
-		 * @since 3.5
-		 */
 		public @NonNull IResourceLoadStrategy2 getResourceLoadStrategy() {
 			return resourceLoadStrategy;
 		}

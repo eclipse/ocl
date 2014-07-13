@@ -213,9 +213,6 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		return null;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public int getIndex(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
 		PackageTracker packageTracker = getPackageTracker(asPackage);
 		assert packageTracker != null;
@@ -330,9 +327,6 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		return representativePackage2;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull RootPackageServer getRootPackageServer() {
 		for (PackageServer packageServer = this; packageServer != null; packageServer = (PackageServer)packageServer.getParentPackageServer()) {
 			if (packageServer instanceof RootPackageServer) {

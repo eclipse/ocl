@@ -68,7 +68,6 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
 /**
  * QVTimperativeDocumentProvider orchestrates the load and saving of optional XMI content
  * externally while maintaining the serialised human friendly form internally. 
- * @since 3.5
  */
 public abstract class BaseDocumentProvider extends XtextDocumentProvider implements MetaModelManagerListener
 {

@@ -43,9 +43,6 @@ public class Pivot2CS extends AbstractConversion
 		 */
 		@NonNull EClass[] getEClasses();
 	}
-	/**
-	 * @since 3.5
-	 */
 	public static interface Factory2 extends Factory {
 		@NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope);
 	}

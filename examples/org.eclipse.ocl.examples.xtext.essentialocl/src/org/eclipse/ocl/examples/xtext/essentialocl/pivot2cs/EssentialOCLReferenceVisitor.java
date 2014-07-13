@@ -37,9 +37,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 {
 	public static final Logger logger = Logger.getLogger(BaseReferenceVisitor.class);
 	
-	/**
-	 * @since 3.5
-	 */
 	protected final @Nullable Namespace scope;
 
 	@Deprecated
@@ -47,17 +44,11 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		this(context, null);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public EssentialOCLReferenceVisitor(@NonNull Pivot2CSConversion context, @Nullable Namespace scope) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 		this.scope = scope;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public ElementCS visitAnyType(@NonNull AnyType object) {
 		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
@@ -71,9 +62,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return visitType(object);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public ElementCS visitCollectionType(@NonNull CollectionType object) {
 		CollectionTypeCS csRef = EssentialOCLCSFactory.eINSTANCE.createCollectionTypeCS();
@@ -90,9 +78,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return csRef;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public ElementCS visitInvalidType(@NonNull InvalidType object) {
 		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
@@ -117,9 +102,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return csRef;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public ElementCS visitType(@NonNull Type object) {
 		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
@@ -139,9 +121,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return csRef;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	@Override
 	public ElementCS visitVoidType(@NonNull VoidType object) {
 		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();

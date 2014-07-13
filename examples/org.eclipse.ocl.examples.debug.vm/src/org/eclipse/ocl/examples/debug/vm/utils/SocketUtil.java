@@ -32,7 +32,6 @@ public class SocketUtil
 	 * Returns a free port number on localhost, or -1 if unable to find a free port.
 	 * 
 	 * @return a free port number on localhost, or -1 if unable to find a free port
-	 * @since 3.0
 	 */
 	public static int findFreePort() {
 		ServerSocket socket= null;

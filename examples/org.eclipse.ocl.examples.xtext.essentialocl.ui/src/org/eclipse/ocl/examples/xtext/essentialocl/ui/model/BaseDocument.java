@@ -59,9 +59,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	private @Nullable EObject context;
     private @Nullable Map<String, EClassifier> parameters;
 
-	/**
-	 * @since 3.5
-	 */
 	protected void checkForErrors(Resource resource) throws CoreException {
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
@@ -134,9 +131,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		return parameters;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	protected @Nullable XMLResource getPivotResouce() throws CoreException {
 		return readOnly(new IUnitOfWork<XMLResource, XtextResource>()
 			{
@@ -234,7 +228,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	/**
 	 * Write the XMI representation of the Pivot to be saved.
-	 * @since 3.5
 	 */
 	public void saveAsPivot(@NonNull StringWriter writer) throws CoreException, IOException {
 		XMLResource asResource = getPivotResouce();

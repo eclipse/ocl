@@ -67,9 +67,6 @@ public final class IdManager
 	@Deprecated // or rather make this private
 	public static @NonNull IdManager INSTANCE = PRIVATE_INSTANCE;
 
-	/**
-	 * @since 3.5
-	 */
 	public static final @NonNull RootPackageId METAMODEL = new RootPackageIdImpl(PRIVATE_INSTANCE, DomainConstants.METAMODEL_NAME);
 
 	/**

@@ -40,8 +40,6 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * Internal transformation executor
- * 
- * @since 3.0
  */
 public abstract class InternalDebuggableExecutor
 {

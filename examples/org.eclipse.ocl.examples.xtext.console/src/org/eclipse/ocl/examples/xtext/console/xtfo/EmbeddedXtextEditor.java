@@ -302,7 +302,6 @@ public class EmbeddedXtextEditor {
 	 *
 	 * @param ruler the composite ruler that the column will be added
 	 * @return an annotation ruler column
-	 * @since 3.2
 	 */
 	protected IVerticalRulerColumn createAnnotationRulerColumn(CompositeRuler ruler) {
 		return new AnnotationRulerColumn(VERTICAL_RULER_WIDTH, getAnnotationAccess());
