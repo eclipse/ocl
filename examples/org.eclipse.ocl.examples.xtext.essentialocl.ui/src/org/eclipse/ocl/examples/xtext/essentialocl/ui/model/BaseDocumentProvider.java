@@ -169,6 +169,8 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 	}
 
 	protected abstract String getCScontentType();
+
+	protected abstract @NonNull String getFileExtension();
 	
 	@SuppressWarnings("null")
 	protected @NonNull MetaModelManager getMetaModelManager() {
@@ -350,7 +352,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 //				
 				ResourceSetImpl csResourceSet = (ResourceSetImpl)resourceSet;
 				csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-				URI textURI = xmiResource.getURI().appendFileExtension("qvti");
+				URI textURI = xmiResource.getURI().appendFileExtension(getFileExtension());
 				BaseResource csResource = (BaseResource) resourceSet.getResource(textURI, false);
 				if (csResource == null) {
 					csResource = (BaseResource) resourceSet.createResource(textURI, getCScontentType());
