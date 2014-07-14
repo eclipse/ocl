@@ -17,12 +17,14 @@
  *******************************************************************************/
 package	org.eclipse.ocl.examples.pivot.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -217,6 +219,32 @@ public class OCLstdlib extends ASResourceImpl
 			new AS2XMIid().assignIds(this, null);
 		}
 		return super.getEObject(uriFragment);
+	}
+
+	/**
+	 * Overridden to trivialise loading of the static shared instance.
+	 */
+	@Override
+	public void load(Map<?, ?> options) throws IOException {
+		if (this != INSTANCE) {
+			super.load(options);
+		}
+		else {
+			setLoaded(true);
+		}
+	}
+
+	/**
+	 * Overridden to inhibit unloading of the static shared instance.
+	 */
+	@Override
+	protected Notification setLoaded(boolean isLoaded) {
+		if (isLoaded || (this != INSTANCE)) {
+			return super.setLoaded(isLoaded);
+		}
+		else {
+			return null;
+		}
 	}
 
 	protected static class Contents extends AbstractContents
