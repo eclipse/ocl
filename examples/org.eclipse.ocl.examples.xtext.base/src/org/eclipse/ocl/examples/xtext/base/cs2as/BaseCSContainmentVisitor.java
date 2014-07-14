@@ -153,7 +153,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	protected <T extends org.eclipse.ocl.examples.pivot.Package> T refreshPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull PackageCS csElement) {
 		assert pivotEClass != null;
-		Object pivotObject = csElement.getPivot();
+		Object pivotObject = context.getConverter().getPivotElement(csElement);
 		if (pivotObject == null) {
 			pivotObject = context.getOldPackageByQualifiedName(csElement);
 		}
@@ -212,7 +212,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		if (csResource == null) {
 			throw new IllegalStateException("Null resource for root package");
 		}
-		Object pivotObject = csElement.getPivot();
+		Object pivotObject = context.getConverter().getPivotElement(csElement);
+//		Object pivotObject = csElement.getPivot();
 		if (pivotObject == null) {
 			Resource asResource = context.getConverter().getPivotResource((BaseCSResource) csResource);
 			if (asResource != null) {
