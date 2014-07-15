@@ -60,10 +60,6 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 		return visitTypedRefCS(object);
 	}
 
-	public @Nullable R visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS object) {
-		return visitExpCS(object);
-	}
-
 	public @Nullable R visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS object) {
 		return visitModelElementCS(object);
 	}

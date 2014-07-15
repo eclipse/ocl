@@ -77,7 +77,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getExpCS()
 	 * @generated
 	 */
-	int EXP_CS = 9;
+	int EXP_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
@@ -97,7 +97,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLiteralExpCS()
 	 * @generated
 	 */
-	int LITERAL_EXP_CS = 16;
+	int LITERAL_EXP_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
@@ -127,7 +127,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 25;
+	int PRIMITIVE_LITERAL_EXP_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -137,7 +137,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 30;
+	int TUPLE_LITERAL_EXP_CS = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -147,7 +147,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 29;
+	int STRING_LITERAL_EXP_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -167,7 +167,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getInvalidLiteralExpCS()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP_CS = 13;
+	int INVALID_LITERAL_EXP_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
@@ -177,7 +177,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 21;
+	int NULL_LITERAL_EXP_CS = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -187,7 +187,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIfExpCS()
 	 * @generated
 	 */
-	int IF_EXP_CS = 11;
+	int IF_EXP_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
@@ -197,7 +197,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLetExpCS()
 	 * @generated
 	 */
-	int LET_EXP_CS = 14;
+	int LET_EXP_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.InfixExpCSImpl <em>Infix Exp CS</em>}' class.
@@ -207,7 +207,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getInfixExpCS()
 	 * @generated
 	 */
-	int INFIX_EXP_CS = 12;
+	int INFIX_EXP_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NameExpCSImpl <em>Name Exp CS</em>}' class.
@@ -217,7 +217,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNameExpCS()
 	 * @generated
 	 */
-	int NAME_EXP_CS = 17;
+	int NAME_EXP_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.TypeNameExpCSImpl <em>Type Name Exp CS</em>}' class.
@@ -227,7 +227,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 33;
+	int TYPE_NAME_EXP_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -237,7 +237,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigatingArgCS()
 	 * @generated
 	 */
-	int NAVIGATING_ARG_CS = 18;
+	int NAVIGATING_ARG_CS = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NestedExpCSImpl <em>Nested Exp CS</em>}' class.
@@ -247,7 +247,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 20;
+	int NESTED_EXP_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -257,7 +257,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 22;
+	int NUMBER_LITERAL_EXP_CS = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.OperatorCSImpl <em>Operator CS</em>}' class.
@@ -267,7 +267,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorCS()
 	 * @generated
 	 */
-	int OPERATOR_CS = 23;
+	int OPERATOR_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.BinaryOperatorCSImpl <em>Binary Operator CS</em>}' class.
@@ -982,115 +982,6 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_TYPE_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorExpCS()
-	 * @generated
-	 */
-	int CONSTRUCTOR_EXP_CS = 5;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__LOGICAL_PARENT = EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_ANNOTATION = EXP_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__CSI = EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PARENT = EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__HAS_ERROR = EXP_CS__HAS_ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PATH_NAME = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_PARTS = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__VALUE = EXP_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Constructor Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ContextCSImpl <em>Context CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1098,7 +989,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getContextCS()
 	 * @generated
 	 */
-	int CONTEXT_CS = 7;
+	int CONTEXT_CS = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ExpSpecificationCSImpl <em>Exp Specification CS</em>}' class.
@@ -1108,7 +999,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getExpSpecificationCS()
 	 * @generated
 	 */
-	int EXP_SPECIFICATION_CS = 10;
+	int EXP_SPECIFICATION_CS = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.VariableCSImpl <em>Variable CS</em>}' class.
@@ -1118,7 +1009,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 36;
+	int VARIABLE_CS = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -1128,7 +1019,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLetVariableCS()
 	 * @generated
 	 */
-	int LET_VARIABLE_CS = 15;
+	int LET_VARIABLE_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.
@@ -1138,7 +1029,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorPartCS()
 	 * @generated
 	 */
-	int CONSTRUCTOR_PART_CS = 6;
+	int CONSTRUCTOR_PART_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1319,7 +1210,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getCurlyBracketedClauseCS()
 	 * @generated
 	 */
-	int CURLY_BRACKETED_CLAUSE_CS = 8;
+	int CURLY_BRACKETED_CLAUSE_CS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2220,7 +2111,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationOperatorCS()
 	 * @generated
 	 */
-	int NAVIGATION_OPERATOR_CS = 19;
+	int NAVIGATION_OPERATOR_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2563,7 +2454,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 24;
+	int PREFIX_EXP_CS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2663,7 +2554,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
 	 * @generated
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS = 26;
+	int ROUND_BRACKETED_CLAUSE_CS = 25;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2709,7 +2600,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 27;
+	int SELF_EXP_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2800,7 +2691,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSquareBracketedClauseCS()
 	 * @generated
 	 */
-	int SQUARE_BRACKETED_CLAUSE_CS = 28;
+	int SQUARE_BRACKETED_CLAUSE_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3008,7 +2899,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 31;
+	int TUPLE_LITERAL_PART_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3099,7 +2990,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 32;
+	int TYPE_LITERAL_EXP_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3244,7 +3135,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnaryOperatorCS()
 	 * @generated
 	 */
-	int UNARY_OPERATOR_CS = 34;
+	int UNARY_OPERATOR_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3344,7 +3235,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 35;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3426,7 +3317,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 37;
+	int NAVIGATION_ROLE = 36;
 
 	/**
 	 * The meta object id for the '<em>Big Number</em>' data type.
@@ -3436,7 +3327,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getBigNumber()
 	 * @generated
 	 */
-	int BIG_NUMBER = 38;
+	int BIG_NUMBER = 37;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS <em>Binary Operator CS</em>}'.
@@ -3522,49 +3413,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getCollectionTypeCS_OwnedType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS <em>Constructor Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constructor Exp CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS
-	 * @generated
-	 */
-	EClass getConstructorExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getPathName <em>Path Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getPathName()
-	 * @see #getConstructorExpCS()
-	 * @generated
-	 */
-	EReference getConstructorExpCS_PathName();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getOwnedParts <em>Owned Parts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Parts</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getOwnedParts()
-	 * @see #getConstructorExpCS()
-	 * @generated
-	 */
-	EReference getConstructorExpCS_OwnedParts();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS#getValue()
-	 * @see #getConstructorExpCS()
-	 * @generated
-	 */
-	EAttribute getConstructorExpCS_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS <em>Constructor Part CS</em>}'.
@@ -4559,40 +4407,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference COLLECTION_TYPE_CS__OWNED_TYPE = eINSTANCE.getCollectionTypeCS_OwnedType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorExpCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorExpCS()
-		 * @generated
-		 */
-		EClass CONSTRUCTOR_EXP_CS = eINSTANCE.getConstructorExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_EXP_CS__PATH_NAME = eINSTANCE.getConstructorExpCS_PathName();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Parts</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_EXP_CS__OWNED_PARTS = eINSTANCE.getConstructorExpCS_OwnedParts();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTRUCTOR_EXP_CS__VALUE = eINSTANCE.getConstructorExpCS_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.

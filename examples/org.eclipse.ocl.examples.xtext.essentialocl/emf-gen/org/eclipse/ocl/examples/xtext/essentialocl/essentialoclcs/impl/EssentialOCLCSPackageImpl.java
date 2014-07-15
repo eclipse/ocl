@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
@@ -90,13 +89,6 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass collectionTypeCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constructorExpCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -477,46 +469,6 @@ public class EssentialOCLCSPackageImpl
 	 */
 	public EReference getCollectionTypeCS_OwnedType() {
 		return (EReference)collectionTypeCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConstructorExpCS()
-	{
-		return constructorExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstructorExpCS_PathName()
-	{
-		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstructorExpCS_OwnedParts()
-	{
-		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConstructorExpCS_Value()
-	{
-		return (EAttribute)constructorExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1348,11 +1300,6 @@ public class EssentialOCLCSPackageImpl
 		createEAttribute(collectionTypeCSEClass, COLLECTION_TYPE_CS__NAME);
 		createEReference(collectionTypeCSEClass, COLLECTION_TYPE_CS__OWNED_TYPE);
 
-		constructorExpCSEClass = createEClass(CONSTRUCTOR_EXP_CS);
-		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__PATH_NAME);
-		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__OWNED_PARTS);
-		createEAttribute(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__VALUE);
-
 		constructorPartCSEClass = createEClass(CONSTRUCTOR_PART_CS);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__CURLY_BRACKET_CLAUSE);
 		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__PROPERTY);
@@ -1507,7 +1454,6 @@ public class EssentialOCLCSPackageImpl
 		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		collectionTypeCSEClass.getESuperTypes().add(theBaseCSPackage.getTypedRefCS());
 		collectionTypeCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
-		constructorExpCSEClass.getESuperTypes().add(this.getExpCS());
 		constructorPartCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
 		constructorPartCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		contextCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
@@ -1562,11 +1508,6 @@ public class EssentialOCLCSPackageImpl
 		initEClass(collectionTypeCSEClass, CollectionTypeCS.class, "CollectionTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCollectionTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionTypeCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(constructorExpCSEClass, ConstructorExpCS.class, "ConstructorExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getConstructorExpCS_PathName(), theBaseCSPackage.getPathNameCS(), null, "pathName", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstructorExpCS_OwnedParts(), this.getConstructorPartCS(), null, "ownedParts", null, 0, -1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getConstructorExpCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constructorPartCSEClass, ConstructorPartCS.class, "ConstructorPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConstructorPartCS_CurlyBracketClause(), this.getCurlyBracketedClauseCS(), this.getCurlyBracketedClauseCS_OwnedParts(), "curlyBracketClause", null, 0, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

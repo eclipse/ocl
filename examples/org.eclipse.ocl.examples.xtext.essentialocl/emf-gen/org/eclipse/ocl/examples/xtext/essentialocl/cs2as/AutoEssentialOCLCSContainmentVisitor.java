@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteral
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CurlyBracketedClauseCS;
@@ -93,10 +92,6 @@ public class AutoEssentialOCLCSContainmentVisitor
     
     public @Nullable Continuation<?> visitCollectionTypeCS(@NonNull CollectionTypeCS self) {
         throw new UnsupportedOperationException("visitCollectionTypeCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitConstructorExpCS(@NonNull ConstructorExpCS self) {
-        throw new UnsupportedOperationException("visitConstructorExpCS is not supported by " + getClass().getName());
     }
     
     public @Nullable Continuation<?> visitConstructorPartCS(@NonNull ConstructorPartCS self) {

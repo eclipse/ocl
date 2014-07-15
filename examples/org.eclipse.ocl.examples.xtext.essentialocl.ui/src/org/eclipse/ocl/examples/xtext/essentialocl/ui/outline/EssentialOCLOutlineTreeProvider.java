@@ -16,7 +16,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.NavigationOperatorCS;
@@ -113,9 +112,9 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 	// createChildren(parentNode, templateSignature);
 	// }
 
-	protected boolean _isLeaf(ConstructorExpCS csExp) {
-		return false;
-	}
+//	protected boolean _isLeaf(ConstructorExpCS csExp) {
+//		return false;
+//	}
 	
 	protected boolean _isLeaf(ImportCS csExp) {
 		return true;

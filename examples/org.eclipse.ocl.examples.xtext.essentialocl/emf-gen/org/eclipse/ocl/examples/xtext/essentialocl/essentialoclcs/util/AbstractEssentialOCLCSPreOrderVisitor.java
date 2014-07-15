@@ -63,10 +63,6 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 		return visitTypedRefCS(csElement);
 	}
 
-	public @Nullable Continuation<?> visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS csElement) {
-		return visitExpCS(csElement);
-	}
-
 	public @Nullable Continuation<?> visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS csElement) {
 		return visitModelElementCS(csElement);
 	}

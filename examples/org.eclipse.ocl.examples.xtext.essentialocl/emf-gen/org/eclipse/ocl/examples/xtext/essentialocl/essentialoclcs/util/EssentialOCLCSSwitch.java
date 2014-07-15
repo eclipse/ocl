@@ -161,19 +161,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS:
-			{
-				ConstructorExpCS constructorExpCS = (ConstructorExpCS)theEObject;
-				T result = caseConstructorExpCS(constructorExpCS);
-				if (result == null) result = caseExpCS(constructorExpCS);
-				if (result == null) result = caseModelElementCS(constructorExpCS);
-				if (result == null) result = casePivotableElementCS(constructorExpCS);
-				if (result == null) result = caseElementCS(constructorExpCS);
-				if (result == null) result = casePivotable(constructorExpCS);
-				if (result == null) result = caseVisitableCS(constructorExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS:
 			{
 				ConstructorPartCS constructorPartCS = (ConstructorPartCS)theEObject;
@@ -673,22 +660,6 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseCollectionTypeCS(CollectionTypeCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstructorExpCS(ConstructorExpCS object)
-	{
 		return null;
 	}
 

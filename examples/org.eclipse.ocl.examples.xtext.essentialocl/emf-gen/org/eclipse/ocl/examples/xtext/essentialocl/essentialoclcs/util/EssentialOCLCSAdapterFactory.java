@@ -116,11 +116,6 @@ public class EssentialOCLCSAdapterFactory
 				return createCollectionTypeCSAdapter();
 			}
 			@Override
-			public Adapter caseConstructorExpCS(ConstructorExpCS object)
-			{
-				return createConstructorExpCSAdapter();
-			}
-			@Override
 			public Adapter caseConstructorPartCS(ConstructorPartCS object)
 			{
 				return createConstructorPartCSAdapter();
@@ -427,21 +422,6 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCollectionTypeCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS <em>Constructor Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS
-	 * @generated
-	 */
-	public Adapter createConstructorExpCSAdapter()
-	{
 		return null;
 	}
 

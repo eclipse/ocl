@@ -63,10 +63,6 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 		return visitTypedRefCS(csElement);
 	}
 
-	public @Nullable Element visitConstructorExpCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorExpCS csElement) {
-		return visitExpCS(csElement);
-	}
-
 	public @Nullable Element visitConstructorPartCS(@NonNull org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.ConstructorPartCS csElement) {
 		return visitModelElementCS(csElement);
 	}

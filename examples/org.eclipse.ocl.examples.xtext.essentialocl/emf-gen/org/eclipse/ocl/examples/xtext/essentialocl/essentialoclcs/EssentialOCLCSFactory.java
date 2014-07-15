@@ -59,15 +59,6 @@ public interface EssentialOCLCSFactory
 	CollectionTypeCS createCollectionTypeCS();
 
 	/**
-	 * Returns a new object of class '<em>Constructor Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constructor Exp CS</em>'.
-	 * @generated
-	 */
-	ConstructorExpCS createConstructorExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Constructor Part CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

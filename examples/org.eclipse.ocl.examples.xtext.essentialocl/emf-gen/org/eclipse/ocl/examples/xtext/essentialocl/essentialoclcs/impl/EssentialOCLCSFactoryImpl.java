@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialoclcs.CollectionLiteralExpCS;
@@ -112,7 +111,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS: return createConstructorExpCS();
 			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS: return createConstructorPartCS();
 			case EssentialOCLCSPackage.CONTEXT_CS: return createContextCS();
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS: return createCurlyBracketedClauseCS();
@@ -212,17 +210,6 @@ public class EssentialOCLCSFactoryImpl
 	public CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstructorExpCS createConstructorExpCS()
-	{
-		ConstructorExpCSImpl constructorExpCS = new ConstructorExpCSImpl();
-		return constructorExpCS;
 	}
 
 	/**
