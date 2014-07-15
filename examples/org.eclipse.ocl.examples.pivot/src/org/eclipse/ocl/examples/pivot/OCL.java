@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelperImpl;
@@ -145,8 +144,6 @@ public class OCL {
 	private final @NonNull EnvironmentFactory environmentFactory;
 
 	private final @NonNull Environment rootEnvironment;
-
-	private /*@LazyNonNull*/ EvaluationEnvironment evalEnv;
 
 	private @Nullable DomainModelManager modelManager;
 
@@ -450,25 +447,6 @@ public class OCL {
 
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {
 		return environmentFactory;
-	}
-
-	/**
-	 * Obtains the OCL evaluation environment. Clients may manipulate this
-	 * environment to support custom requirements, such as binding the values of
-	 * "global" variables.
-	 * 
-	 * @return the evaluation environment
-	 * 
-	 * @see #getEnvironment()
-	 * @deprecated no longer called
-	 */
-	@Deprecated
-	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
-		EvaluationEnvironment evalEnv2 = evalEnv;
-		if (evalEnv2 == null) {
-			evalEnv2 = evalEnv = environmentFactory.createEvaluationEnvironment();
-		}
-		return evalEnv2;
 	}
 	
 	/**

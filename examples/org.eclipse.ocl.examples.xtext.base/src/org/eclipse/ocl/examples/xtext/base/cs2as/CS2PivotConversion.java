@@ -750,11 +750,6 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		}
 	}
 
-	/** @deprecated cast first argument to BaseCSResource */
-	@Deprecated
-	public void installRootElement(@NonNull Resource csResource, @NonNull Element pivotElement) {
-		installRootElement((BaseCSResource)csResource, pivotElement);
-	}
 	public void installRootElement(@NonNull BaseCSResource csResource, @NonNull Element pivotElement) {
 		Resource asResource = converter.getPivotResource(csResource);
 		if (asResource != null) {

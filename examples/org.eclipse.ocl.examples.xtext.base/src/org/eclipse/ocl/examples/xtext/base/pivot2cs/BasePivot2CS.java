@@ -22,16 +22,12 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 
 public class BasePivot2CS extends Pivot2CS
 {	
-	private static final class Factory implements Pivot2CS.Factory2
+	private static final class Factory implements Pivot2CS.Factory
 	{
 		private static @NonNull Pivot2CS.Factory INSTANCE = new Factory();
 
 		public @NonNull BaseDeclarationVisitor createDeclarationVisitor(@NonNull Pivot2CSConversion converter) {
 			return new BaseDeclarationVisitor(converter);
-		}
-
-		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter) {
-			return new BaseReferenceVisitor(converter);
 		}
 
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope) {

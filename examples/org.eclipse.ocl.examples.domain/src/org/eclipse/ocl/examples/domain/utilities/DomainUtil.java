@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.elements.Labelable;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.domain.values.Unlimited;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
 
 public class DomainUtil
@@ -556,16 +555,6 @@ public class DomainUtil
 			? otherObject == null
 			: object.equals(otherObject);
 	}
-
-	/**
-	 * This dummy function may be invoked from auto-generated code that does not throw
-	 * an exception to avoid a compilation error.
-	 * 
-	 * @throws InvalidValueException
-	 * @deprecated
-	 */
-	@Deprecated
-	public static void suppressThrowWarnings()  {}
 
 	/**
 	 * Copied from {@link java.util.Properties}

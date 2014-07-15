@@ -64,8 +64,6 @@ public final class IdManager
 	 * for construction so ElementId uniqueness is guaranteed.
 	 */
 	private static @NonNull IdManager PRIVATE_INSTANCE = new IdManager();
-	@Deprecated // or rather make this private
-	public static @NonNull IdManager INSTANCE = PRIVATE_INSTANCE;
 
 	public static final @NonNull RootPackageId METAMODEL = new RootPackageIdImpl(PRIVATE_INSTANCE, DomainConstants.METAMODEL_NAME);
 
@@ -291,10 +289,6 @@ public final class IdManager
 	/**
 	 * Return the URIed package typeId.
 	 */
-	@Deprecated
-    public static @NonNull NsURIPackageId getNsURIPackageId(@NonNull String nsURI, @Nullable EPackage ePackage) {
-    	return getNsURIPackageId(nsURI, null, ePackage);
-    }
     public static @NonNull NsURIPackageId getNsURIPackageId(@NonNull String nsURI, @Nullable String nsPrefix, @Nullable EPackage ePackage) {
 		WeakReference<NsURIPackageId> ref = nsURIs.get(nsURI);
 		if (ref != null) {

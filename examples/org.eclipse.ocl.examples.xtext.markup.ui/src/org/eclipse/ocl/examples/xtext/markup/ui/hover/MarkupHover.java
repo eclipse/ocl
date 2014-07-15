@@ -58,13 +58,6 @@ public class MarkupHover extends AbstractEObjectHover
 		this.lastCreatorProvider = creatorProvider;
 		return lastCreatorProvider.getInfo();
 	}
-
-	@Override
-	@Deprecated
-	public String getHoverInfo(ITextViewer textViewer, IRegion hoverRegion) {
-		final Object hoverInfo2 = getHoverInfo2(textViewer, hoverRegion);
-		return hoverInfo2!=null ? hoverInfo2.toString() : null;
-	}
 	
 	@Override
 	protected Pair<EObject, IRegion> getXtextElementAt(XtextResource resource, int offset) {

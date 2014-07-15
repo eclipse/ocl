@@ -1118,11 +1118,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return resourceSet;
 	}
 
-	@Deprecated // Since Luna M3
-	protected @NonNull Root createRoot(@NonNull String name) {
-		return createRoot();
-	}
-
 	protected @NonNull Root createRoot() {
 		Root aRoot = metaModelManager.createRoot(null);
 		return aRoot;
@@ -1203,16 +1198,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 			metaModelManager.getASResourceSet().getResources().remove(query.eResource());
 		}
     }
-	
-/*	@Deprecated
-	protected Object evaluate(ExpressionInOCL expr) {
-		try {
-			return evaluate(expr, null);
-		} catch (Exception e) {
-			fail("Evaluation failed: " + e.getLocalizedMessage());
-			return null;
-		}
-	} */
     
 	protected @Nullable Object evaluate(@NonNull ExpressionInOCL expr, @Nullable Object self) throws Exception {
 		Object result = null;

@@ -13,7 +13,6 @@ Export-Package: org.eclipse.ocl.examples.library,
  org.eclipse.ocl.examples.library.ecore,
  org.eclipse.ocl.examples.library.enumeration,
  org.eclipse.ocl.examples.library.executor,
- org.eclipse.ocl.examples.library.integer,
  org.eclipse.ocl.examples.library.iterator,
  org.eclipse.ocl.examples.library.logical,
  org.eclipse.ocl.examples.library.numeric,
@@ -22,7 +21,6 @@ Export-Package: org.eclipse.ocl.examples.library,
  org.eclipse.ocl.examples.library.oclstdlib,
  org.eclipse.ocl.examples.library.oclstdlib.util,
  org.eclipse.ocl.examples.library.oclvoid,
- org.eclipse.ocl.examples.library.real,
  org.eclipse.ocl.examples.library.string
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

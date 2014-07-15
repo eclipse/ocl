@@ -65,7 +65,7 @@ public class TextExporter extends AbstractExporter
 	 * @throws IOException 
 	 */
 	@Override
-	public void createContents(@NonNull Appendable text, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+	public void createContents(@NonNull Appendable text, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		text.append("==== GENERAL INFORMATION ====\n");
 		if (exportedFileName != null) {
 			text.append("Output file name: " + exportedFileName + "\n");

@@ -427,29 +427,6 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		return typeDescriptor;
 	}
 
-	@Deprecated // Use getBoxed/UnboxedDescriptor
-	@Override
-	public @NonNull TypeDescriptor getTypeDescriptor(@NonNull ElementId elementId, boolean isBoxed) {
-		TypeDescriptor typeDescriptor = getBoxedDescriptor(elementId);
-		if (!isBoxed) {
-			typeDescriptor = typeDescriptor.getUnboxedDescriptor();
-		}
-		return typeDescriptor;
-	}
-
-	@Deprecated // Use getBoxed/UnboxedDescriptor and then getPrimitive()
-	@Override
-	public @NonNull TypeDescriptor getTypeDescriptor(@NonNull ElementId elementId, boolean isBoxed, boolean maybePrimitive) {
-		TypeDescriptor typeDescriptor = getBoxedDescriptor(elementId);
-		if (!isBoxed) {
-			typeDescriptor = typeDescriptor.getUnboxedDescriptor();
-		}
-		if (maybePrimitive) {
-			typeDescriptor = typeDescriptor.getPrimitiveDescriptor();
-		}
-		return typeDescriptor;
-	}
-
 	@Override
 	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId) {
 		BoxedDescriptor boxedDescriptor = getBoxedDescriptor(elementId);

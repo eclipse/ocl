@@ -94,9 +94,6 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	protected Operation util_processBag;
 	protected Operation util_processSequence;
 
-	@Deprecated
-	public PivotFruitTestSuite() {}
-
 	public PivotFruitTestSuite(boolean useCodeGen) {
 		super(useCodeGen);
 	}

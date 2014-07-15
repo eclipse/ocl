@@ -15,7 +15,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -77,21 +76,6 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 		return typeIdParameter;
 	}
 
-	@Deprecated
-	public @NonNull CGValuedElement getEvaluatorParameter(@NonNull CGValuedElement cgValuedElement) {
-//		return getOwned(cgValuedElement, JavaConstants.EVALUATOR_NAME);
-		for (CGElement cgElement = cgValuedElement; cgElement != null; cgElement = cgElement.getParent()) {
-			if (cgElement instanceof CGOperation) {
-				for (CGParameter cgParameter : ((CGOperation)cgElement).getParameters()) {
-					if (JavaConstants.EVALUATOR_NAME.equals(cgParameter.getName())) {
-						return cgParameter;
-					}
-				}
-			}
-		}
-		throw new IllegalStateException("No '" + JavaConstants.EVALUATOR_NAME + "' in " + cgValuedElement);
-	}
-
 	public @NonNull JavaGlobalContext<? extends CG> getGlobalContext() {
 		return globalContext;
 	}
@@ -129,21 +113,6 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 
 	public @NonNull CGValuedElement getStandardLibraryVariable(@NonNull CGValuedElement cgValuedElement) {
 		return getOwned(cgValuedElement, JavaConstants.STANDARD_LIBRARY_NAME);
-	}
-
-	@Deprecated
-	public @NonNull CGParameter getTypeIdParameter(@NonNull CGValuedElement cgValuedElement) {
-//		return (CGParameter) getOwned(cgValuedElement, JavaConstants.TYPE_ID_NAME);
-		for (CGElement cgElement = cgValuedElement; cgElement != null; cgElement = cgElement.getParent()) {
-			if (cgElement instanceof CGOperation) {
-				for (CGParameter cgParameter : ((CGOperation)cgElement).getParameters()) {
-					if (JavaConstants.TYPE_ID_NAME.equals(cgParameter.getName())) {
-						return cgParameter;
-					}
-				}
-			}
-		}
-		throw new IllegalStateException("No '" + JavaConstants.TYPE_ID_NAME + "' in " + cgValuedElement);
 	}
 
 	public @NonNull String getValueName(@NonNull CGValuedElement cgElement) {

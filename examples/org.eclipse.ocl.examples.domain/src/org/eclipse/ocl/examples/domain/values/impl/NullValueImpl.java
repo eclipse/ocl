@@ -51,11 +51,6 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 	public NullValueImpl() {
 		super(null, null);
 	}
-
-	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
-	public List<Object> asEcoreObject() {
-		return null;
-	}
 	
 	public List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
 		return null;

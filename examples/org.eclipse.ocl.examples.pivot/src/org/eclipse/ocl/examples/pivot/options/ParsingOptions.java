@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.pivot.BasicEnvironment;
 import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * Options applicable to {@link Environment}s to
@@ -27,60 +26,9 @@ import org.eclipse.ocl.examples.pivot.Type;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public class ParsingOptions {
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    public static final @NonNull Option<Boolean> DEFINITION_CONSTRAINS_FEATURE =
-        new BasicOption<Boolean>("definition.constraints.feature", false); //$NON-NLS-1$
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    public static final @NonNull Option<Boolean> USE_COMPARE_TO_OPERATION =
-        new BasicOption<Boolean>("use.compare.to.operation", false); //$NON-NLS-1$
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    public static final @NonNull Option<Boolean> WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE =
-        new BasicOption<Boolean>("warn.of.xor.or.and.precedence.change", false); //$NON-NLS-1$
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    public static final @NonNull Option<?> IMPLICIT_ROOT_CLASS =
-        new BasicOption<Object>("implict.root.class", null); //$NON-NLS-1$
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    public static final @NonNull Option<Boolean> USE_BACKSLASH_ESCAPE_PROCESSING =
-        new BasicOption<Boolean>("use.backslash.escape.processing", true); //$NON-NLS-1$
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static @NonNull Option<Type> implicitRootClass(@NonNull Environment env) {
-        return (Option<Type>) IMPLICIT_ROOT_CLASS;
-    }
-
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    public static final @NonNull Option<Boolean> SUPPORT_STATIC_FEATURES =
-        new BasicOption<Boolean>("support.static.features", true); //$NON-NLS-1$
-
-    /**
+public class ParsingOptions
+{
+   /**
      * Not instantiable by clients.
      */
     private ParsingOptions() {

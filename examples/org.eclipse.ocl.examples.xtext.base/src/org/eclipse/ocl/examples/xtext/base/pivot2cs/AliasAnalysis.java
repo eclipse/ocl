@@ -239,13 +239,6 @@ public class AliasAnalysis extends AdapterImpl
 	}
 
 	/**
-	 * Return the alias for eObject, or null if there is none.
-	 */
-	@Deprecated
-	public @Nullable String getAlias(@NonNull EObject eObject) {
-		return getAlias(eObject, null);
-	}
-	/**
 	 * Return the alias for eObject, using a non-null hint as a stem for auto-generation, or null if there is none.
 	 */
 	public @Nullable String getAlias(@NonNull EObject eObject, @Nullable String hint) {

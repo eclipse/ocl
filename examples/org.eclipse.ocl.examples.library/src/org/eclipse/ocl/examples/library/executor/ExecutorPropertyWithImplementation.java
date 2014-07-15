@@ -23,7 +23,6 @@ public class ExecutorPropertyWithImplementation extends ExecutorProperty
 		this.implementation = implementation;
 	}
 
-	@Override
 	public @NonNull LibraryProperty getImplementation() {
 		return implementation;
 	}

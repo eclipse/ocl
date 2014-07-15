@@ -77,11 +77,6 @@ public abstract class ValueImpl extends ValuesUtil implements Value
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Double", getTypeName());
 	}
 	
-	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
-	public @Nullable Object asEcoreObject() {
-		return asObject();
-	}
-	
 	public @Nullable Object asEcoreObject(@NonNull IdResolver idResolver) {
 		return asObject();
 	}

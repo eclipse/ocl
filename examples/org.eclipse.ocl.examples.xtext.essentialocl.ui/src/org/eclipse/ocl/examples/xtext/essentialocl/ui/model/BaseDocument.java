@@ -159,73 +159,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			});
 	}
 
-/*	@Override
-	public <T> T readOnly(IUnitOfWork<T, XtextResource> work) {
-		if (myStateAccess.isWriteLocked()) {
-//			CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".readOnly skip " + work.getClass().getName(), false, 0);
-			Class<?> workClass = work.getClass();
-			String workClassName = workClass.getName();
-			if (workClassName.startsWith("org.eclipse.xtext.ui.editor.hover.AbstractEObjectHover")) {
-				return null;
-			}
-			if (workClassName.startsWith("org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode")) {
-				return null;
-			}
-			if (workClassName.startsWith("org.eclipse.xtext.ui.editor.folding.DefaultFoldingRegionProvider")) {
-				throw new OperationCanceledException();
-			}
-			if (workClassName.equals("org.eclipse.xtext.ui.editor.contentassist.CompletionProposalComputer")) {
-				throw new OperationCanceledException();
-			}
-			if (workClassName.startsWith("org.eclipse.xtext.ui.editor.validation.ValidationJob")) {
-				throw new OperationCanceledException();
-			}
-			return null;
-		}
-//		CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".readOnly start " + work.getClass().getName(), false, +1);
-		try {
-  			System.out.println(Thread.currentThread().getName() + " readOnly "  + work.getClass().getName() + " start for " + PivotUtil.debugSimpleName(lastInput));
-			return super.readOnly(work);
-		}
-		finally {
-			System.out.println(Thread.currentThread().getName() + " readOnly "  + work.getClass().getName() + " end for " + PivotUtil.debugSimpleName(lastInput));
-//			CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".readOnly end " + work.getClass().getName(), false, -1);
-		} 
-	} */
-
-/*	@Override
-	public <T> T modify(IUnitOfWork<T, XtextResource> work) {
-		CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".modify start " + work.getClass().getName(), false, +1);
-		try {
-			return super.modify(work);
-		}
-		finally {
-			CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".modify end " + work.getClass().getName(), false, -1);
-		}
-	} */
-
-/*	@Override
-	public <T> T internalModify(IUnitOfWork<T, XtextResource> work) {
-		if (myStateAccess.isWriteLocked()) {
-			CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".internalModify skip " + work.getClass().getName(), false, 0);
-			Class<?> workClass = work.getClass();
-			String workClassName = workClass.getName();
-			if (workClassName.equals("org.eclipse.xtext.ui.editor.reconciler.XtextReconcilerUnitOfWork")) {
-//				throw new OperationCanceledException();
-			}
-//			return null;
-		}
-		CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".internalModify start " + work.getClass().getName(), false, +1);
-		try {
-			System.out.println(Thread.currentThread().getName() + " internalModify "  + work.getClass().getName() + " start for " + PivotUtil.debugSimpleName(lastInput));
-			return super.internalModify(work);
-		}
-		finally {
-			System.out.println(Thread.currentThread().getName() + " internalModify "  + work.getClass().getName() + " end for " + PivotUtil.debugSimpleName(lastInput));
-//			CS2Pivot.printDiagnostic(getClass().getSimpleName() + ".internalModify end " + work.getClass().getName(), false, -1);
-		}
-	} */
-
 	/**
 	 * Write the XMI representation of the Pivot to be saved.
 	 */
@@ -241,25 +174,18 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		{
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 				if (resource instanceof EssentialOCLCSResource) {
-					return setContext((EssentialOCLCSResource) resource, ecoreContext, ecoreParameters);
+					EssentialOCLCSResource csResource = (EssentialOCLCSResource)resource;
+					CS2PivotResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
+					MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
+					csResource.setParserContext(new EInvocationContext(metaModelManager, resource.getURI(), ecoreContext, ecoreParameters));
 				}
-				else {
-					return null;
-				}
+				return null;
 			}
 		});
 
         this.context = ecoreContext;
         this.parameters = ecoreParameters;
     }
-
-	@Deprecated
-	public @Nullable Object setContext(@NonNull EssentialOCLCSResource resource, @Nullable EClassifier ecoreContext, @Nullable Map<String, EClassifier> ecoreParameters) {
-		CS2PivotResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
-		MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
-		resource.setParserContext(new EInvocationContext(metaModelManager, resource.getURI(), ecoreContext, ecoreParameters));
-		return null;
-	}
 
 	public @Nullable Object setContext(@NonNull EssentialOCLCSResource resource, @Nullable EObject eObject) {
 		CS2PivotResourceAdapter csAdapter = resource.getCS2ASAdapter(null);

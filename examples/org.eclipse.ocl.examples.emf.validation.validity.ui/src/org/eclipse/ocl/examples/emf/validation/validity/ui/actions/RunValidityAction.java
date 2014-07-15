@@ -37,11 +37,6 @@ public final class RunValidityAction extends Action
 	protected final @NonNull ValidityView validityView;
 	protected final @Nullable ISelectionProvider selectionProvider;
 	
-	@Deprecated // use extra null argument
-	public RunValidityAction(@NonNull ValidityView validityView) {
-		this(validityView, null);
-	}
-	
 	public RunValidityAction(@NonNull ValidityView validityView, @Nullable ISelectionProvider selectionProvider) {
 		super(ValidityUIMessages.ValidityView_Action_RunValidity_Title);
 		this.validityView = validityView;

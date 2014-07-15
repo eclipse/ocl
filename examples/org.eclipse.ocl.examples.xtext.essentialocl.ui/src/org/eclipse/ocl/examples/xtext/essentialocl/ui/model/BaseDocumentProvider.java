@@ -180,10 +180,6 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 		return metaModelManager;
 	}
 
-//	@Deprecated
-//	public ResourceSet getResourceSet() {
-//		return ((QVTimperativeResourceForEditorInputFactory) getResourceForEditorInputFactory()).getResourceSet();
-//	}
 	@Override
 	protected void handleElementContentChanged(IFileEditorInput fileEditorInput) {
 		FileInfo info= (FileInfo) getElementInfo(fileEditorInput);

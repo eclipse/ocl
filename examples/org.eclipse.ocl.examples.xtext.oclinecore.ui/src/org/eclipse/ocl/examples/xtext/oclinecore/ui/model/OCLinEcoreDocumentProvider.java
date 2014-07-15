@@ -194,10 +194,6 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 		return metaModelManager;
 	}
 
-//	@Deprecated
-//	public ResourceSet getResourceSet() {
-//		return ((OCLinEcoreResourceForEditorInputFactory) getResourceForEditorInputFactory()).getResourceSet();
-//	}
 	@Override
 	protected void handleElementContentChanged(IFileEditorInput fileEditorInput) {
 		FileInfo info= (FileInfo) getElementInfo(fileEditorInput);

@@ -645,11 +645,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		pivotElement.setPackage(getOrphanage());
 	}
 
-	@Deprecated // Since Luna M3
-	public void assignLibraryIds(@NonNull AS2XMIid as2xmIid) {
-		assignLibraryIds(as2xmIid, null);
-	}
-
 	/**
 	 * Assign xmi:id values to referenceable elements in the libraries.
 	 */
@@ -1108,12 +1103,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return Orphanage.getOrphanage(asResourceSet);
 	}
 
-	@Deprecated
-	public @NonNull <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(@NonNull Class<T> pivotClass,
-			@NonNull EClass pivotEClass, @NonNull String name, @Nullable String nsURI) {
-		return createPackage(pivotClass, pivotEClass, name, nsURI, null);
-	}
-
 	public @NonNull <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(@NonNull Class<T> pivotClass,
 			@NonNull EClass pivotEClass, @NonNull String name, @Nullable String nsURI, @Nullable PackageId packageId) {
 		@SuppressWarnings("unchecked")
@@ -1139,11 +1128,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return precedenceManager;
 	}
 
-	@Deprecated // since Kepler M7 use getResource
-	public @NonNull ASResource createResource(@NonNull URI uri, @Nullable String contentType) {
-		return getResource(uri, contentType);
-	}
-
 	/**
 	 * @since 3.5
 	 */
@@ -1157,16 +1141,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public @NonNull Root createRoot(String externalURI) {
 		return createRoot(Root.class, PivotPackage.Literals.ROOT, externalURI);
-	}
-
-	@Deprecated // Since Luna M3
-	public @NonNull Root createRoot(String name, String externalURI) {
-		return createRoot(Root.class, PivotPackage.Literals.ROOT, externalURI);
-	}
-
-	@Deprecated // Since Luna M3
-	public @NonNull <T extends Root> T createRoot(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String name, String externalURI) {
-		return createRoot(pivotClass, pivotEClass, externalURI);
 	}
 
 	public @NonNull <T extends Root> T createRoot(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String externalURI) {
@@ -2458,18 +2432,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			throw new IllegalStateException("Non ASResource created for content type '" + contentType + "'");
 		}
 		return (ASResource)asResource;
-	}
-	
-	/**
-	 * Return the URI to be used for a concrete syntax resource for an expression associated
-	 * with a uniqueContext. If uniqueContext is an Element the moniker is used as
-	 * part of the URI, otherwise a unique value is created and cached for reuse.
-	 * 
-	 * @deprecated URIs are auto-generated
-	 */
-	@Deprecated
-	public URI getResourceIdentifier(Object uniqueContext, String subContext) {
-		return URI.createURI(EcoreUtil.generateUUID() + ".essentialocl");
 	}
 
 	@Override

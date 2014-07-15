@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -43,8 +42,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.scoping.Attribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.attributes.RootCSAttribution;
@@ -86,27 +83,6 @@ public class ElementUtil
 	};
 
 	private static String[][] delegationModes = null;
-
-	// FIXME Pivot2AS Eliminate
-	@SuppressWarnings("unchecked")
-	public static @NonNull Map<? extends BaseCSResource, ? extends ASResource> apiConvert(@NonNull Map<? extends Resource, ? extends ASResource> cs2asResourceMap) {
-		return (Map<? extends BaseCSResource, ? extends ASResource>)cs2asResourceMap;
-	}
-	
-	@Deprecated
-	public static @Nullable MetaModelManager findMetaModelManager(@NonNull EObject eObject) {
-		return PivotUtil.findMetaModelManager(eObject);
-	}
-
-	@Deprecated
-	public static @Nullable MetaModelManager findMetaModelManager(@NonNull Resource resource) {
-		return PivotUtil.findMetaModelManager(resource);
-	}
-
-	@Deprecated
-	public static MetaModelManager findMetaModelManager(@NonNull ResourceSet resourceSet) {
-		return PivotUtil.findMetaModelManager(resourceSet);
-	}
 
 	public static @Nullable String getCollectionTypeName(@NonNull TypedElementCS csTypedElement) {
 		TypedRefCS csTypeRef = csTypedElement.getOwnedType();

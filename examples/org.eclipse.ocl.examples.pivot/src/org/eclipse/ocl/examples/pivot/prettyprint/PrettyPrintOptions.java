@@ -245,7 +245,4 @@ public abstract class PrettyPrintOptions
 	public void setLinelength(int linelength) {
 		getGlobalOptions().setLinelength(linelength);
 	}
-
-	@Deprecated
-	public void setUseParentheses(boolean useParentheses) {}
 }

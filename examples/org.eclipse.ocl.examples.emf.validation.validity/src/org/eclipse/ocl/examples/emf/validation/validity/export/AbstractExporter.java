@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 /**
  * Exports ocl validation results.
  */
-public abstract class AbstractExporter implements IValidityExporter2
+public abstract class AbstractExporter implements IValidityExporter
 {
 	protected final @NonNull List<LeafConstrainingNode> validationErrors = new ArrayList<LeafConstrainingNode>();
 	protected final @NonNull List<LeafConstrainingNode> validationFailures = new ArrayList<LeafConstrainingNode>();
@@ -60,23 +59,7 @@ public abstract class AbstractExporter implements IValidityExporter2
 	 * 
 	 * @throws IOException 
 	 */
-	@Deprecated
-	protected abstract void createContents(@NonNull Appendable s, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
-
-	protected /*abstract*/ void createContents(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
-		createContents(s, null, rootNode,exportedFileName);
-	}
-	
-
-	@Deprecated
-	public @NonNull String export(@Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) {
-		return export(rootNode, exportedFileName);
-	}
-
-	@Deprecated
-	public void export(@NonNull Appendable s, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
-		export(s, rootNode, exportedFileName);
-	}
+	protected abstract void createContents(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
 
 	public @NonNull String export(@NonNull RootNode rootNode, @Nullable String exportedFileName) {
 		StringBuilder s = new StringBuilder();

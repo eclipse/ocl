@@ -150,10 +150,6 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		}
 	}
 
-	@Deprecated
-	protected void appendParent(@Nullable NamedElement element) {
-		appendParent((EObject)element);
-	}
 	protected void appendParent(@Nullable EObject element) {
 		if (toString().length() >= OVERFLOW_LIMIT) {
 			s.append(OVERFLOW_MARKER);

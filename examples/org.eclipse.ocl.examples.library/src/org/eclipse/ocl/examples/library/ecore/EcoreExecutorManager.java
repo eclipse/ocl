@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.library.ecore;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -65,11 +64,6 @@ public class EcoreExecutorManager extends ExecutorManager
 	public EcoreExecutorManager(@Nullable Object contextObject, @NonNull ExecutorStandardLibrary standardLibrary) {
 		super(standardLibrary);
 		this.contextObject = contextObject;
-	}
-
-	@Deprecated
-	public EcoreExecutorManager(@Nullable Object contextObject, @Nullable Map<Object, Object> contextMap, @NonNull ExecutorStandardLibrary standardLibrary) {
-		this(contextObject, standardLibrary);
 	}
 
 	protected @NonNull IdResolver createIdResolver() {

@@ -30,11 +30,6 @@ public abstract class PivotSimpleTestSuite extends PivotTestSuite
 	org.eclipse.ocl.examples.pivot.Package bob;
 	org.eclipse.ocl.examples.pivot.Package george;
 
-	@Deprecated
-	protected PivotSimpleTestSuite() {
-		super(false);
-	}
-
 	protected PivotSimpleTestSuite(boolean useCodeGen) {
 		super(useCodeGen);
 	}

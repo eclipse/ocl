@@ -144,10 +144,6 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	/**
 	 * Insert a CGGuardExp around cgChild.
 	 */
-	@Deprecated
-	protected @Nullable CGValuedElement rewriteAsGuarded(@Nullable CGValuedElement cgChild) {
-		return rewriteAsGuarded(cgChild, "source");
-	}
 	protected @Nullable CGValuedElement rewriteAsGuarded(@Nullable CGValuedElement cgChild, @NonNull String message) {
 		if ((cgChild == null) || cgChild.isNonNull() /*|| (cgParent instanceof CGGuardExp)*/) {
 			return cgChild;

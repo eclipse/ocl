@@ -83,7 +83,7 @@ public class ExportValidationResultsFileWizard extends Wizard implements INewWiz
 		}
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) {
-				String initialContents = exporter.export(null, rootNode, exportedFile.getName());
+				String initialContents = exporter.export(rootNode, exportedFile.getName());
 				byte[] byteArrayInputStream = initialContents.getBytes(Charset.forName("UTF-8"));
 				try {
 					if (exportedFile.isAbsolute()) {

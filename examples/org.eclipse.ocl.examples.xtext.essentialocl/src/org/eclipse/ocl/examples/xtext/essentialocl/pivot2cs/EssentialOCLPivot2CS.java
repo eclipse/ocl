@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -23,20 +22,16 @@ import org.eclipse.ocl.examples.xtext.base.pivot2cs.BasePivot2CS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 
 public class EssentialOCLPivot2CS extends BasePivot2CS
 {	
-	private static final class Factory implements Pivot2CS.Factory2
+	private static final class Factory implements Pivot2CS.Factory
 	{
 		private static @NonNull Pivot2CS.Factory INSTANCE = new Factory();
 
 		public @NonNull EssentialOCLDeclarationVisitor createDeclarationVisitor(@NonNull Pivot2CSConversion converter) {
 			return new EssentialOCLDeclarationVisitor(converter);
-		}
-
-		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter) {
-			return new BaseReferenceVisitor(converter);
 		}
 
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope) {
@@ -48,8 +43,8 @@ public class EssentialOCLPivot2CS extends BasePivot2CS
 		}
 	}
 		
-	public EssentialOCLPivot2CS(@NonNull Map<? extends /*BaseCS*/Resource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
-		super(ElementUtil.apiConvert(cs2asResourceMap), metaModelManager);
+	public EssentialOCLPivot2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
+		super(cs2asResourceMap, metaModelManager);
 		addFactory(Factory.INSTANCE);
 	}
 }

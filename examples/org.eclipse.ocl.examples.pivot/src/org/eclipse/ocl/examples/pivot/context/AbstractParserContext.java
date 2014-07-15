@@ -110,11 +110,6 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		language.add(PivotConstants.OCL_LANGUAGE);
 	}
 
-	@Deprecated
-	public @NonNull ExpressionInOCL parse(@NonNull String expression) throws ParserException {
-		return parse(null, expression);
-	}
-
 	public @NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException {
 		BaseResource resource = null;
 		try {

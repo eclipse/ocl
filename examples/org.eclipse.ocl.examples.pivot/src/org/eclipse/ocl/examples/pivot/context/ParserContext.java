@@ -67,15 +67,6 @@ public interface ParserContext // extends Adapter
 	void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression);
 	
 	/**
-	 * Create an Abstract Syntax ExpressionInOCL containing the parsed expression.
-	 * 
-	 * @throws ParserException if parsing fails
-	 * @deprecated specify owner/owningList for use in diagnostics
-	 */
-	@Deprecated
-	@NonNull ExpressionInOCL parse(@NonNull String expression) throws ParserException;
-	
-	/**
 	 * Create an Abstract Syntax ExpressionInOCL containing the parsed expression on behalf of a potential owner.
 	 * <p>
 	 * This an invariant/precondition may specify its constraint as the owner

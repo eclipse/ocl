@@ -39,11 +39,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 	
 	protected final @Nullable Namespace scope;
 
-	@Deprecated
-	public EssentialOCLReferenceVisitor(@NonNull Pivot2CSConversion context) {
-		this(context, null);
-	}
-
 	public EssentialOCLReferenceVisitor(@NonNull Pivot2CSConversion context, @Nullable Namespace scope) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 		this.scope = scope;

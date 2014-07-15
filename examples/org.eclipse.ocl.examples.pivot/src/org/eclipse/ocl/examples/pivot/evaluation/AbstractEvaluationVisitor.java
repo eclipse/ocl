@@ -205,22 +205,6 @@ public abstract class AbstractEvaluationVisitor
 	protected final @NonNull EvaluationVisitor getUndecoratedVisitor() {
         return undecoratedVisitor;
     }
-    
-    /**
-     * Obtains the visitor on which I perform nested
-     * {@link Visitable#accept(Visitor)} calls.  This
-     * handles the case in which I am decorated by another visitor that must
-     * intercept every <tt>visitXxx()</tt> method.  If I internally just
-     * recursively visit myself, then this decorator is cut out of the picture.
-     * 
-     * @return my delegate visitor, which may be my own self or some other
-     * 
-     * @deprecated use {@link #getUndecoratedVisitor}
-     */
-	@Deprecated
-    protected final EvaluationVisitor getVisitor() {
-        return undecoratedVisitor;
-    }
 
 	public boolean isCanceled() {
 		return (monitor != null) && monitor.isCanceled();
@@ -255,21 +239,6 @@ public abstract class AbstractEvaluationVisitor
 	public void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor) {
         this.undecoratedVisitor = evaluationVisitor;
 	}
-    
-    /**
-     * Sets the visitor on which I perform nested
-     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.
-     * 
-     * @param visitor my delegate visitor
-     * 
-     * @see #getVisitor()
-     * 
-     * @deprecated use {@link #setUndecoratedVisitor}
-     */
-	@Deprecated
-    void setVisitor(@NonNull EvaluationVisitor visitor) {
-		setUndecoratedVisitor(visitor);
-    }
 	
 	@Override
     public String toString() {

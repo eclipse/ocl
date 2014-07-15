@@ -39,8 +39,6 @@ public interface CollectionValue extends Value, Iterable<Object>
 	/**
 	 * @generated NOT
 	 */
-	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
-	List<Object> asEcoreObject();
 	@Nullable List<?> asEcoreObject(@NonNull IdResolver idResolver);
 
 	/**

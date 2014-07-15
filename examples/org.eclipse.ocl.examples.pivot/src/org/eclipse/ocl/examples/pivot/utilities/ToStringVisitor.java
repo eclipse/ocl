@@ -113,8 +113,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	private static final Logger logger = Logger.getLogger(ToStringVisitor.class);
 
 	public static interface Factory {
-		@Deprecated // since 16-July-2013 use createToStringVisitor(new StringBuilder())
-		@NonNull ToStringVisitor createToStringVisitor();
 		@NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s);
 		@NonNull EPackage getEPackage();
 	}
@@ -123,17 +121,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	
 	public static synchronized void addFactory(@NonNull Factory factory) {
 		factoryMap.put(factory.getEPackage(), factory);
-	}
-
-	@Deprecated // since 13-July-2013 (use toString)
-	public static @Nullable ToStringVisitor create(@NonNull EObject eObject) {
-		Factory factory = getFactory(eObject);
-		if (factory != null) {
-			return factory.createToStringVisitor(new StringBuilder());
-		}
-		else {
-			return null;
-		}
 	}
 
 	public static @Nullable Factory getFactory(@NonNull EObject eObject) {
@@ -169,11 +156,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			ToStringVisitor.addFactory(this);
 //			FACTORY.getClass();				// This is redundant for this class but needed by derived classes
 		}
-		
-		@Deprecated
-		public @NonNull ToStringVisitor createToStringVisitor() {
-			return createToStringVisitor(new StringBuilder());
-		}
 
 		public @NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s) {
 			return new ToStringVisitor(s);
@@ -196,15 +178,11 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	 */
 	protected static @NonNull String NULL_PLACEHOLDER = "\"<null>\""; //$NON-NLS-1$
 
-	@Deprecated // Since 16-Jul-2013 use "context"
-	protected final @NonNull StringBuilder result;
-
 	/**
 	 * Initializes me.
 	 */
 	public ToStringVisitor(@NonNull StringBuilder s) {
         super(s);
-        result = s;
 	}
 
 	/*

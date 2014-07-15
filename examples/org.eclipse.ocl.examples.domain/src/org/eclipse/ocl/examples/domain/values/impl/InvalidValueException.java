@@ -93,11 +93,6 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		throw new InvalidValueException(this, "asDouble");
 	}
 	
-	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
-	public @NonNull List<Object> asEcoreObject() {
-		throw new InvalidValueException(this, "asEcoreObject");
-	}
-	
 	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
 		throw new InvalidValueException(this, "asEcoreObject");
 	}

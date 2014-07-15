@@ -387,61 +387,6 @@ public class DelegateInstaller
 		}
 		return hasDelegates;
 	}
-	
-	@Deprecated // Since Kepler use createConstraint/OperationDelegate
-	public boolean installDelegate(@NonNull EModelElement eModelElement, @NonNull Constraint pivotConstraint, @Nullable URI ecoreURI) {
-		OpaqueExpression specification = pivotConstraint.getSpecification();
-		if (specification == null) {
-			return false;
-		}
-		String exprString = PivotUtil.getBody(specification);
-		Namespace namespace = PivotUtil.getNamespace(specification);
-		PrettyPrintOptions.Global options = PrettyPrinter.createOptions(namespace);
-		options.setBaseURI(ecoreURI);
-		if ((exprString == null) && (specification instanceof ExpressionInOCL)) {
-			exprString = PrettyPrinter.print(DomainUtil.nonNullModel(((ExpressionInOCL)specification).getBodyExpression()), options);
-		}
-		if (exprString == null) {
-			return false;
-		}
-		EAnnotation oclAnnotation = removeDelegateAnnotations(eModelElement, exportDelegateURI);
-		if (oclAnnotation == null) {
-			oclAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			oclAnnotation.setSource(exportDelegateURI);
-			eModelElement.getEAnnotations().add(oclAnnotation);
-		}
-//		String stereotype = pivotConstraint.getStereotype();
-		String name = pivotConstraint.getName();
-		EStructuralFeature eContainingFeature = pivotConstraint.eContainingFeature();
-		if (eContainingFeature == PivotPackage.Literals.TYPE__OWNED_INVARIANT) {
-			if (eModelElement instanceof EOperation) {
-				oclAnnotation.getDetails().put("body", exprString);
-			}
-			else {
-				oclAnnotation.getDetails().put(name, exprString);
-			}
-		}
-		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION) {
-			oclAnnotation.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, exprString);
-		}
-//		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__DERIVATION_EXPRESSION) {
-//			oclAnnotation.getDetails().put(SettingBehavior.INITIAL_CONSTRAINT_KEY, exprString);
-//		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
-			String key = name != null ? "body_" + name : InvocationBehavior.BODY_CONSTRAINT_KEY;
-			oclAnnotation.getDetails().put(key, exprString);
-		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
-			oclAnnotation.getDetails().put("pre_" + name, exprString);
-		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
-			oclAnnotation.getDetails().put("post_" + name, exprString);
-		}
-		else {
-//			error("Unsupported " + pivotConstraint);
-		}
-		return true;
-	}
 
 	public void installDelegate(@NonNull EOperation eOperation) {
 		List<EAnnotation> eAnnotations = eOperation.getEAnnotations();
@@ -499,18 +444,6 @@ public class DelegateInstaller
 			details.put(SettingBehavior.NAME, exportDelegateURI);
 		}
 		details.put(ValidationBehavior.NAME, exportDelegateURI);
-	}
-	
-	@Deprecated // Since Kepler use createOperationDelegate
-	public boolean installOperationDelegate(@NonNull EOperation eOperation, @NonNull OpaqueExpression bodyExpression, @Nullable URI ecoreURI) {
-		EAnnotation oclAnnotation = createOperationDelegate(eOperation, bodyExpression, ecoreURI);
-		return oclAnnotation != null;
-	}
-	
-	@Deprecated // Since Kepler use createPropertyDelegate
-	public boolean installPropertyDelegate(@NonNull EStructuralFeature eStructuralFeature, @NonNull OpaqueExpression defaultExpression, @Nullable URI ecoreURI) {
-		EAnnotation oclAnnotation = createPropertyDelegate(eStructuralFeature, defaultExpression, ecoreURI);
-		return oclAnnotation != null;
 	}
 
 	/**

@@ -72,10 +72,7 @@ public interface Value
 	 * Objects for other things
 	 * 
 	 * @generated NOT
-	 * @deprecated Use IdResolver.unboxedValueOf.
 	 */
-	@Deprecated  // Since 12-July-2013; because in general we need an IdResolver argument.
-	Object asEcoreObject();
 	Object asEcoreObject(@NonNull IdResolver idResolver);
 
 	/**

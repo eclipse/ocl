@@ -16,7 +16,6 @@ import java.util.NoSuchElementException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
@@ -76,11 +75,6 @@ public abstract class NumberValueImpl extends Number implements Value
 
 	public @NonNull Double asDouble() {
 		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Double", getTypeName());
-	}
-	
-	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
-	public @Nullable Object asEcoreObject() {
-		return asObject();
 	}
 
 	public DomainElement asElement() {

@@ -35,16 +35,12 @@ public class Pivot2CS extends AbstractConversion
 {	
 	public static interface Factory {
 		@NonNull BaseDeclarationVisitor createDeclarationVisitor(@NonNull Pivot2CSConversion converter);
-		@Deprecated /* add scope argument in Factory2 */
-		@NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter);
+		@NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope);
 
 		/**
 		 * Return a list of classes for which this Pivot2CS overrides a base Pivot2CS.
 		 */
 		@NonNull EClass[] getEClasses();
-	}
-	public static interface Factory2 extends Factory {
-		@NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull Pivot2CSConversion converter, @Nullable Namespace scope);
 	}
 	
 	private @NonNull Map<EClass, Factory> factoryMap = new HashMap<EClass, Factory>();

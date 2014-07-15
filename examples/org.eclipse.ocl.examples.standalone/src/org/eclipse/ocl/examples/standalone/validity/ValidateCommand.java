@@ -604,7 +604,7 @@ public class ValidateCommand extends StandaloneCommand
 			Appendable s = null;
 			try {
 				s = outputFile != null ? new FileWriter(outputFile) : System.out;
-				selectedExporter.export(s, null, rootNode, outputFile != null ? outputFile.toString() : null);
+				selectedExporter.export(s, rootNode, outputFile != null ? outputFile.toString() : null);
 			} catch (IOException e) {
 				logger.error(StandaloneMessages.OCLValidatorApplication_ExportProblem, e);
 			} finally {

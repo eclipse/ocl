@@ -55,9 +55,8 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		sc.close();
 	}
 
-	@SuppressWarnings("deprecation")
 	protected @NonNull String doTest() throws IOException {
-		String exported = exporter.export(null, rootNode, exportedFileName);
+		String exported = exporter.export(rootNode, exportedFileName);
 		FileWriter writer = new FileWriter(exportedFileName);
 		writer.append(exported);
 		writer.close();

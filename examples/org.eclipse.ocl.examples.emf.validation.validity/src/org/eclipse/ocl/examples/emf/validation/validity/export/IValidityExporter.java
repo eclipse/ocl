@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.emf.validation.validity.export;
 
 import java.io.IOException;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
@@ -28,32 +27,26 @@ public interface IValidityExporter extends IValidityExporterDescriptor
 	/**
 	 * Export the validity results and return String containing the results.
 	 * 
-	 * @param validatedResource
-	 *            The resource to validate
 	 * @param rootNode
 	 *            The Root Node to export
 	 * @param fileName
 	 * 			The target file name or null if not known and not to be reported
 	 * @throws IOException 
 	 */
-	@Deprecated
-	@NonNull String export(@Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String fileName);
+	@NonNull String export(@NonNull RootNode rootNode, @Nullable String fileName);
 
 	/**
 	 * Export the validity results to an Appendable.
 	 * 
 	 * @param s
 	 *            The appendable
-	 * @param validatedResource
-	 *            The resource to validate
 	 * @param rootNode
 	 *            The Root Node to export
 	 * @param exportedFileName
 	 * 			The target file name or null if not known and not to be reported
 	 * @throws IOException 
 	 */
-	@Deprecated
-	void export(@NonNull Appendable s, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
+	void export(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException;
 
 	@Nullable String getPreferredExtension();
 }

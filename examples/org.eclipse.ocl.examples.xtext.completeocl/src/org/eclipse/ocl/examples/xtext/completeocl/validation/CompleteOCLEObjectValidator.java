@@ -55,14 +55,6 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	private Ecore2Pivot ecore2Pivot = null;
 	
 	/**
-	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
-	 */
-	@Deprecated
-	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI) {
-		this(ePackage, oclURI, null);
-	}
-	
-	/**
 	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage
 	 * for the meta-models managed by metaModelManager.
 	 */

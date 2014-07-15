@@ -887,14 +887,4 @@ public class BaseCSValidator extends EObjectValidator
 		// don't check, we have our own implementation, which creates nicer messages
 		return true;
 	}
-	
-	@Deprecated
-	protected static final String ROOT_PACKAGE_CS__TEST_CONSTRAINT__EEXPRESSION = "true"; //$NON-NLS-1$
-	
-	@Deprecated
-	public boolean validateRootPackageCS_TestConstraint(RootPackageCS rootPackageCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return false;
-	}
-
 } //BaseCSValidator

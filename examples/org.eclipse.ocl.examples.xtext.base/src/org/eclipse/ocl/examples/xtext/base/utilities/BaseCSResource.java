@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.xtext.base.utilities;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -31,13 +30,13 @@ public interface BaseCSResource extends BaseResource
 	 * Create the CS2AS converter for the cs2asResourceMap conversions using metaModelManager.
 	 */
 	// FIXME Pivot2AS Narrow to BaseCSResource
-	@NonNull CS2Pivot createCS2Pivot(@NonNull Map<? extends /*BaseCS*/Resource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+	@NonNull CS2Pivot createCS2Pivot(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
 
 	/**
 	 * Create the AS2CS converter for the cs2asResourceMap conversions using metaModelManager.
 	 */
 	// FIXME Pivot2AS Narrow to BaseCSResource
-	@NonNull Pivot2CS createPivot2CS(@NonNull Map<? extends /*BaseCS*/Resource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+	@NonNull Pivot2CS createPivot2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
 
 	/**
 	 * Return a MetaModelManager for use with this CS resource, unless one can be located

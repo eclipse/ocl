@@ -136,10 +136,6 @@ public class Pivot2Ecore extends AbstractConversion
 		}
 	}
 
-	@Deprecated
-	public static @NonNull EOperation createConstraintEOperation(Constraint pivotConstraint, String operationName) {
-		return createConstraintEOperation(pivotConstraint, operationName, null);
-	}
 	public static @NonNull EOperation createConstraintEOperation(Constraint pivotConstraint, String operationName, @Nullable Map<String, Object> options) {
 		if (options == null) {
 			options = new HashMap<String, Object>();

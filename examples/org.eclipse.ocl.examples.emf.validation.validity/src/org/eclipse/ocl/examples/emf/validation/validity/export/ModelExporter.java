@@ -37,7 +37,7 @@ public class ModelExporter extends AbstractExporter
 	 * @throws IOException 
 	 */
 	@Override
-	public void createContents(@NonNull Appendable text, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+	public void createContents(@NonNull Appendable text, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		Resource resource = new XMIResourceImpl();
 		resource.getContents().add(rootNode);

@@ -17,6 +17,7 @@ import java.util.WeakHashMap;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.pivot.Type;
 
@@ -32,7 +33,7 @@ public class OrphanPackageServer extends RootPackageServer
 	private @NonNull Map<DomainType, WeakReference<OrphanTypeServer>> servers = new WeakHashMap<DomainType, WeakReference<OrphanTypeServer>>();	
 	
 	public OrphanPackageServer(@NonNull PackageManager packageManager, @NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
-		super(packageManager, name, nsPrefix, nsURI, packageId);
+		super(packageManager, name, nsPrefix, nsURI, packageId, IdManager.METAMODEL);
 	}
 
 	@Override

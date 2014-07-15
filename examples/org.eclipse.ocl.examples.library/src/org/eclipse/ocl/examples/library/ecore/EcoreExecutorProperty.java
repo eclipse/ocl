@@ -42,7 +42,6 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 		return eFeature;
 	}
 
-	@Override
 	public @NonNull LibraryProperty getImplementation() {
 		return this;
 	}

@@ -42,7 +42,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
@@ -235,16 +234,6 @@ public class PivotUtil extends DomainUtil
 			return false;
 		}
 		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
-	}
-
-	@Deprecated
-	public static@NonNull  String convertFromOCLString(@NonNull String javaString) {
-		return DomainUtil.convertFromOCLString(javaString);
-	}
-
-	@Deprecated
-	public static String convertToOCLString(String theString) {
-		return DomainUtil.convertToOCLString(theString);
 	}
 	
 	/**
@@ -1319,11 +1308,6 @@ public class PivotUtil extends DomainUtil
 		return expressionInOCL;
 	}
 
-	@Deprecated
-	public static <T extends DomainNamedElement> T getNamedElement(Iterable<T> elements, String name) {
-		return DomainUtil.getNamedElement(elements, name);
-	}
-
 	public static @NonNull Type getOwningType(@NonNull Feature feature) {
 		Type owner = null;
 		if (feature instanceof Property) {
@@ -1362,11 +1346,6 @@ public class PivotUtil extends DomainUtil
 			}
 		}
 		return element;
-	}
-
-	@Deprecated		// messages now encoded with Tuple
-	public static @Nullable String getMessage(@NonNull OpaqueExpression specification) {
-		return null;
 	}
 
 	public static @NonNull MetaModelManager getMetaModelManager(@NonNull Resource resource) {
@@ -1418,11 +1397,6 @@ public class PivotUtil extends DomainUtil
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		return castElement;
-	}
-
-	@Deprecated	// Use getNonASURI
-	public static @NonNull URI getNonPivotURI(@NonNull URI uri) {
-		return getNonASURI(uri);
 	}
 
 	/**
@@ -1547,11 +1521,6 @@ public class PivotUtil extends DomainUtil
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		return castElement;
-	}
-
-	@Deprecated	// Use getASURI
-	public static @NonNull URI getPivotURI(@NonNull URI uri) {
-		return getASURI(uri);
 	}
 
 	public static Feature getReferredFeature(CallExp callExp) {
@@ -1779,11 +1748,6 @@ public class PivotUtil extends DomainUtil
 			return type.getTemplateBinding().isEmpty();			
 		}
 	}
-
-	@Deprecated	// Use isASURI
-	public static boolean isPivotURI(@NonNull URI uri) {
-		return isASURI(uri);
-	}
 	
 	public static boolean isValidIdentifier(@Nullable String value) {
 		if (value == null) {
@@ -1926,21 +1890,6 @@ public class PivotUtil extends DomainUtil
 	}
 
 	/**
-	 * Define oclExpression as the bodyExpression of an expressionInOCL, and if non-null
-	 * also define stringExpression as the OCL-languaged body.
-	 */
-	@Deprecated // Rich invariants now represented by Tuples
-	public static void setMessage(@NonNull ExpressionInOCL expressionInOCL, @Nullable OCLExpression oclExpression, @Nullable String stringExpression) {
-//		expressionInOCL.getBody().clear();
-//		expressionInOCL.getLanguage().clear();
-//		if (stringExpression != null) {
-//			expressionInOCL.getBody().add(stringExpression);
-//			expressionInOCL.getLanguage().add(PivotConstants.OCL_LANGUAGE);
-//		}
-//		expressionInOCL.setMessageExpression(oclExpression);
-	}
-
-	/**
 	 * Configure resource to support parsing in the context of an eObject. Throws a ParserException
 	 * if a pivot element cannot be identified for eObject.eClass(). Return false if a pivot element
 	 * can be identified, but it is not one that supports constraint parsing.
@@ -1975,13 +1924,5 @@ public class PivotUtil extends DomainUtil
 			resource.setParserContext(parserContext);
 			return true;
 		}
-	}
-
-	/**
-	 * Copied from {@link java.util.Properties}
-	 */
-	@Deprecated
-	public static char toHex(int nibble) {
-		return DomainUtil.toHex(nibble);
 	}
 }

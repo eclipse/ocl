@@ -77,7 +77,7 @@ public class HTMLExporter extends AbstractExporter
 	 * @throws IOException 
 	 */
 	@Override
-	public void createContents(@NonNull Appendable html, @Nullable Resource unused, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
+	public void createContents(@NonNull Appendable html, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {
 		html.append("<html>\n");
 		html.append("\t<head></head>\n");
 		html.append("\t<body>\n");

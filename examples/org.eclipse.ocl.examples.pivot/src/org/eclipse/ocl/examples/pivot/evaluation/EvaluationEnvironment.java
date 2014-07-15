@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -102,12 +101,6 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      * Clears the environment of variables.
      */
     void clear();
-    
-    /**
-     * @deprecated This Classic OCL API is not used by the Pivot.
-     */
-    @Deprecated
-    boolean overrides(@NonNull Operation operation, int opcode);
    
     /**
      * Invokes the specified operation on the given source element, according
@@ -204,15 +197,6 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      *     type; <code>false</code>, otherwise
      */
 //    boolean isTypeOf(Object object, Type classifier);
-    
-    /**
-     * Queries the type of the specified object.
-     * 
-     * @param object an object
-     * @return its type
-     */
-    @Deprecated
-    Type getType(Object object);
 
     @NonNull MetaModelManager getMetaModelManager();
 }

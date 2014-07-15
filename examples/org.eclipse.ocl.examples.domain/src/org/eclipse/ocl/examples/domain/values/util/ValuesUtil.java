@@ -514,19 +514,6 @@ public abstract class ValuesUtil
 		return new TupleValueImpl(typeId, values);
 	}
 
-	@Deprecated
-	public static @NonNull TupleValue createTupleValue(@NonNull TupleTypeId typeId, @NonNull Object... values) {
-		return createTupleOfEach(typeId, values);
-	}
-	
-	@Deprecated // obsolete
-	public static @NonNull DomainType createTypeValue(@Nullable DomainType type) {
-		if (type == null) {
-			throw new InvalidValueException("null type");
-		}
-		return type;
-	}
-
 	public static Object getEcoreNumber(@NonNull Number number, Class<?> instanceClass) {
 		if ((instanceClass == Double.class) || (instanceClass == double.class)) {
 			return number.doubleValue();

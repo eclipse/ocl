@@ -120,11 +120,6 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		}
 	} */
 	
-	@Deprecated
-	public void init(@NonNull ExecutorType[] types) {
-		init((ExecutorStandardLibrary)null, types);
-	}
-	
 //	public ExecutorType lookupType(int classIndex) {
 //		return types[classIndex];
 //	}

@@ -75,7 +75,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory2;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 
@@ -230,21 +229,13 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return declarationVisitor;
 	}
 
-	@Deprecated
-	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass) {
-		return getReferenceVisitor(eClass, null);
-	}
-	@SuppressWarnings("deprecation")
 	public @Nullable BaseReferenceVisitor getReferenceVisitor(@NonNull EClass eClass, @Nullable Namespace scope) {
 		if (scope == null) {
 			BaseReferenceVisitor referenceVisitor = referenceVisitorMap.get(eClass);
 			if ((referenceVisitor == null) && !referenceVisitorMap.containsKey(eClass)) {
 				Factory factory = converter.getFactory(eClass);
-				if (factory instanceof Factory2) {
-					referenceVisitor = ((Factory2)factory).createReferenceVisitor(this, null);
-				}
-				else if (factory != null) {
-					referenceVisitor = factory.createReferenceVisitor(this);
+				if (factory != null) {
+					referenceVisitor = factory.createReferenceVisitor(this, null);
 				}
 				else {
 					referenceVisitor = defaultReferenceVisitor;
@@ -255,11 +246,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 		else {
 			Factory factory = converter.getFactory(eClass);
-			if (factory instanceof Factory2) {
-				return ((Factory2)factory).createReferenceVisitor(this, scope);
-			}
-			else if (factory != null) {
-				return factory.createReferenceVisitor(this);
+			if (factory != null) {
+				return factory.createReferenceVisitor(this, scope);
 			}
 			else {
 				return defaultReferenceVisitor;
@@ -633,10 +621,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElements;
 	}
 
-	@Deprecated
-	public @Nullable <T extends ElementCS> T visitReference(@NonNull Class<T> csClass, @NonNull EObject eObject) {
-		return visitReference(csClass, eObject, null);
-	}
 	public @Nullable <T extends ElementCS> T visitReference(@NonNull Class<T> csClass, @NonNull EObject eObject, @Nullable Namespace scope) {
 		@SuppressWarnings("null") @NonNull EClass eClass = eObject.eClass();
 		BaseReferenceVisitor referenceVisitor = getReferenceVisitor(eClass, scope);

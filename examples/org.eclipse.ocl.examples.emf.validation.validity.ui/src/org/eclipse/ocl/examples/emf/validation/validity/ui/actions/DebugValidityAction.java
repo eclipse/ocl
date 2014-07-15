@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.emf.validation.validity.ui.actions;
 
 import java.net.URL;
-import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
@@ -51,22 +50,6 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 		setToolTipText(ValidityUIMessages.ValidityView_Action_DebugValidity_ToolTipText);
 		URL image = (URL) ValidityUIPlugin.INSTANCE.getImage(ValidityUIMessages.ValidityView_Action_DebugValidity_ImageLocation);
 		setImageDescriptor(ImageDescriptor.createFromURL(image));
-	}
-
-	/**
-	 * Return all enabled result constraining nodes at and below constrainingNode.
-	 */
-	@Deprecated
-	protected @NonNull List<ResultConstrainingNode> getEnabledResultConstrainingNodes(@NonNull ConstrainingNode constrainingNode) {
-		return ValidityUtils.getEnabledResultConstrainingNodes(constrainingNode);
-	}
-
-	/**
-	 * Return all enabled result validatable nodes at and below validatableNode.
-	 */
-	@Deprecated
-	protected @NonNull List<ResultValidatableNode> getEnabledResultValidatableNodes(@NonNull ValidatableNode validatableNode) {
-		return ValidityUtils.getEnabledResultValidatableNodes(validatableNode);
 	}
 
 	@Override
@@ -133,10 +116,10 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 		if (selection instanceof StructuredSelection) {
 			Object selectedObject = ((StructuredSelection) selection).getFirstElement();
 			if (selectedObject instanceof ConstrainingNode) {
-				setEnabled(getEnabledResultConstrainingNodes((ConstrainingNode)selectedObject).size() == 1);
+				setEnabled(ValidityUtils.getEnabledResultConstrainingNodes((ConstrainingNode)selectedObject).size() == 1);
 			}
 			else if (selectedObject instanceof ValidatableNode) {
-				setEnabled(getEnabledResultValidatableNodes((ValidatableNode)selectedObject).size() == 1);
+				setEnabled(ValidityUtils.getEnabledResultValidatableNodes((ValidatableNode)selectedObject).size() == 1);
 			}
 			else {
 				setEnabled(false);

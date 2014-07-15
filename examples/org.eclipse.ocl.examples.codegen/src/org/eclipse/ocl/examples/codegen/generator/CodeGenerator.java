@@ -54,10 +54,6 @@ public interface CodeGenerator
 	@NonNull CodeGenOptions getOptions();
 	@NonNull ReferencesVisitor createReferencesVisitor();
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement);
-	@Deprecated // Use getBoxed/UnboxedDescriptor
-	@NonNull TypeDescriptor getTypeDescriptor(@NonNull ElementId elementId, boolean isBoxed);
-	@Deprecated // Use getBoxed/UnboxedDescriptor and then getPrimitive()
-	@NonNull TypeDescriptor getTypeDescriptor(@NonNull ElementId elementId, boolean isBoxed, boolean maybePrimitive);
 	@NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId);
 	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull Type staticType);
 

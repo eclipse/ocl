@@ -277,11 +277,6 @@ public class IDEValidityManager extends ValidityManager
 		}
 	}
 
-	@Deprecated
-	public void runValidation(@NonNull ValidityView validityView) {
-		runValidation(validityView, null);
-	}
-
 	public void runValidation(@NonNull ValidityView validityView, @Nullable Set<ResultConstrainingNode> selectedNodes) {
 		Job validationJob = new ValidityViewJob(validityView, selectedNodes);
 		synchronized (validityJobs) {

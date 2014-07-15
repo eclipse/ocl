@@ -17,21 +17,14 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class AbstractContents extends PivotUtil
 {
-	@Deprecated
-	protected @NonNull Library createLibrary(@NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
-		return createLibrary(name, nsPrefix, nsURI, null);
-	}
-
 	protected @NonNull Library createLibrary(@NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
 		Library pivotLibrary = PivotFactory.eINSTANCE.createLibrary();
 		pivotLibrary.setName(name);
@@ -49,16 +42,6 @@ public class AbstractContents extends PivotUtil
 		pivotExpression.getBody().add(exprString);
 		pivotExpression.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 		return pivotExpression;
-	}
-
-	@Deprecated
-	protected @NonNull Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
-		return createPackage(name, nsPrefix, nsURI, null);
-	}
-
-	@Deprecated // since Luna M3
-	protected @NonNull Root createRoot(@NonNull String name, @NonNull String externalURI) {
-		return createRoot(externalURI);
 	}
 
 	protected void installComment(Element element, @NonNull String body) {

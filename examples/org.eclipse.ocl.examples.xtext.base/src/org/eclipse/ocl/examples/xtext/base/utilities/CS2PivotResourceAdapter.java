@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -30,16 +29,6 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
  */
 public class CS2PivotResourceAdapter extends AbstractMetaModelManagerResourceAdapter<BaseCSResource>
 {
-	@Deprecated  // Use BaseCSResource.findCS2ASAdapter
-	public static @Nullable CS2PivotResourceAdapter findAdapter(@NonNull BaseCSResource csResource) {
-		return csResource.findCS2ASAdapter();
-	}
-	
-	@Deprecated  // Use BaseCSResource.getCS2ASAdapter
-	public static @NonNull CS2PivotResourceAdapter getAdapter(@NonNull BaseCSResource csResource, @Nullable MetaModelManager metaModelManager) {
-		return csResource.getCS2ASAdapter(metaModelManager);
-	}
-	
 	private final @NonNull CS2Pivot converter;
 	
 	public CS2PivotResourceAdapter(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {

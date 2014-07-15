@@ -223,22 +223,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	public @NonNull CollectionValue asCollectionValue() {
 		return this;
 	}
-	
-	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
-	@Override
-	public @NonNull List<Object> asEcoreObject() {				// FIXME this doesn't work for Enum Literals
-		Object[] unboxedValues = new Object[elements.size()];
-		int i= 0;
-		for (Object element : elements) {
-			if (element instanceof Value)
-				unboxedValues[i++] = ((Value)element).asEcoreObject();
-			else {
-				unboxedValues[i++] = element;
-			}
-		}
-		return new EcoreEList.UnmodifiableEList<Object>(null, null, i, unboxedValues);
-	}
-	
+		
 	@Override
 	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
 		Object[] unboxedValues = new Object[elements.size()];
