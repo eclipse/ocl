@@ -12,7 +12,10 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -41,6 +44,24 @@ public abstract class CGElementImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	protected CGElementImpl() {
 		super();
+	}
+
+	@Override
+	protected void eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID) {
+		if (newContainer != null) {
+			EObject oldContainer = eContainer();
+			assert ((oldContainer == null) || (newContainer == oldContainer) || (oldContainer.eResource() == null));
+		}		
+		super.eBasicSetContainer(newContainer, newContainerFeatureID);
+	}
+
+	@Override
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs) {
+		if (newContainer != null) {
+			EObject oldContainer = eContainer();
+			assert ((oldContainer == null) || (newContainer == oldContainer) || (oldContainer.eResource() == null));
+		}		
+		return super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
 	}
 
 	/**

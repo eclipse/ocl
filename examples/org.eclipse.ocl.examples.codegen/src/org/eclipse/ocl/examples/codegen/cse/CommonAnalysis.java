@@ -13,16 +13,20 @@ package org.eclipse.ocl.examples.codegen.cse;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class CommonAnalysis extends AbstractAnalysis
 {
@@ -134,6 +138,18 @@ public class CommonAnalysis extends AbstractAnalysis
 				}
 			}
 			rewriteAsLet(controlElement, cgVariable);
+			if (cgCSE.eResource() == null) {
+				PivotUtil.resetContainer(cgCSE);
+			}
+			else if (cgCSE instanceof CGExecutorType) {
+				PivotUtil.resetContainer(cgCSE);			// FIXME Bug 439603 is this reparenting valid?
+			}
+			else {
+				PivotUtil.resetContainer(cgCSE);			// FIXME Bug 439603 is this reparenting valid?
+//				CGConstantExp cgConstExp = CGModelFactory.eINSTANCE.createCGConstantExp();
+//				cgConstExp.setReferredConstant(cgCSE);
+//				cgCSE = cgConstExp;
+			}
 			cgVariable.setInit(cgCSE);						// After all rewrites complete
 		}
 	}
