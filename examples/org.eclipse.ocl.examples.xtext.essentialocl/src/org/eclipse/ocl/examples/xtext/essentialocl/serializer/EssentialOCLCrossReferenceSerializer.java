@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathElementWithURICS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -163,7 +163,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			if (element != null) {
 				Resource csResource = pathElement.eResource();
 				assert csResource != null;
-				NamedElement namedElement = csResource instanceof BaseCSResource2 ? ((BaseCSResource2)csResource).isPathable(element) : null;
+				NamedElement namedElement = csResource instanceof BaseCSResource ? ((BaseCSResource)csResource).isPathable(element) : null;
 				if (namedElement != null) {
 					String name = namedElement.getName();
 					if ((index == 0) && (namedElement instanceof org.eclipse.ocl.examples.pivot.Package)) {

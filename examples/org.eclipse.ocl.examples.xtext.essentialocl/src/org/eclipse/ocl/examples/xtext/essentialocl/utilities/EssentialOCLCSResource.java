@@ -50,7 +50,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2as.EssentialOCLCS2Pivot;
@@ -70,7 +69,7 @@ import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.Triple;
 
-public class EssentialOCLCSResource extends LazyLinkingResource implements BaseCSResource2
+public class EssentialOCLCSResource extends LazyLinkingResource implements BaseCSResource
 {	
 	protected static class RenamedDiagnostic extends AbstractDiagnostic
 	{

@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -64,12 +65,18 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 
 public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, Pivot2CSConversion>
 {
 	public BaseDeclarationVisitor(@NonNull Pivot2CSConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 	}
+
+	/**
+	 * After the visit to all elements, perform any post-processing such as installing imports.
+	 */
+	public void postProcess(@NonNull BaseCSResource csResource, @NonNull Map<Namespace, List<String>> importedNamespaces) {}
 
 	@Override
 	public ElementCS visitAnnotation(@NonNull org.eclipse.ocl.examples.pivot.Annotation object) {

@@ -11,9 +11,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.xtext.base.basecs.DetailCS;
@@ -21,6 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLDeclarationVisitor;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinecorecs.OCLinEcoreConstraintCS;
@@ -31,6 +37,14 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 {
 	public OCLinEcoreDeclarationVisitor(@NonNull Pivot2CSConversion context) {
 		super(context);
+	}
+
+	@Override
+	public void postProcess(@NonNull BaseCSResource csResource, @NonNull Map<Namespace, List<String>> importedNamespaces) {
+		EObject eObject = csResource.getContents().get(0);
+		if (eObject instanceof TopLevelCS) {
+			context.createImports((TopLevelCS) eObject, importedNamespaces);
+		}
 	}
 
 	@Override

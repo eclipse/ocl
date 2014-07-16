@@ -74,8 +74,8 @@ public class Pivot2CS extends AbstractConversion
 		return new BaseReferenceVisitor(conversion);
 	}
 
-	public @NonNull Collection<? extends Resource> getCSResources() {
-		@SuppressWarnings("null") @NonNull Set<? extends Resource> keySet = cs2asResourceMap.keySet();
+	public @NonNull Collection<? extends BaseCSResource> getCSResources() {
+		@SuppressWarnings("null") @NonNull Set<? extends BaseCSResource> keySet = cs2asResourceMap.keySet();
 		return keySet;
 	}
 
@@ -94,8 +94,11 @@ public class Pivot2CS extends AbstractConversion
 	
 	public void update() {
 		Pivot2CSConversion conversion = new Pivot2CSConversion(this);
-		Collection<? extends Resource> csResources = getCSResources();
-		conversion.update(csResources);
+		for (BaseCSResource csResource : getCSResources()) {
+			if (csResource != null) {
+				conversion.update(csResource);
+			}
+		}
 		CSI2PivotMapping cs2PivotMapping = CSI2PivotMapping.getAdapter(metaModelManager);
 		cs2PivotMapping.add(cs2asResourceMap);
 		cs2PivotMapping.update(/*csResources*/);

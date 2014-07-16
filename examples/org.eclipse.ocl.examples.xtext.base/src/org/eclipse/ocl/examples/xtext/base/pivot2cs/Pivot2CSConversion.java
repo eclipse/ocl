@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -76,7 +75,6 @@ import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource2;
 
 public class Pivot2CSConversion extends AbstractConversion implements PivotConstants
 {	
@@ -91,6 +89,11 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	private final @NonNull Map<EClass, BaseDeclarationVisitor> declarationVisitorMap = new HashMap<EClass, BaseDeclarationVisitor>();
 	private final @NonNull Map<EClass, BaseReferenceVisitor> referenceVisitorMap = new HashMap<EClass, BaseReferenceVisitor>();
 	private Map<Namespace, List<String>> importedNamespaces = null;
+
+	/**
+	 * The CS Resource currently being converted.
+	 */
+	private @Nullable BaseCSResource csResource = null;;
 	
 	public Pivot2CSConversion(@NonNull Pivot2CS converter) {
 		super(converter.getMetaModelManager());
@@ -108,7 +111,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 	}
 
-	protected void createImports(@NonNull Resource csResource, @NonNull Map<Namespace, List<String>> importedNamespaces) {
+	public void createImports(@NonNull RootCS documentCS, @NonNull Map<Namespace, List<String>> importedNamespaces) {
+		BaseCSResource csResource = (BaseCSResource) DomainUtil.nonNullState(documentCS.eResource());
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
 		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(csResource);
 		if (metaModelManager == null) {
@@ -116,7 +120,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 		AliasAnalysis aliasAnalysis = null;
 		URI csURI = csResource.getURI();
-		RootCS documentCS = (RootCS) csResource.getContents().get(0);
 		List<ImportCS> imports = new ArrayList<ImportCS>();
 		for (Namespace importedNamespace : importedNamespaces.keySet()) {
 			if (importedNamespace != null) {
@@ -212,6 +215,14 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			}
 		});
 		documentCS.getOwnedImport().addAll(imports);
+	}
+
+	public @Nullable BaseCSResource getCSResource() {
+		return csResource;
+	}
+
+	public @NonNull Pivot2CS getConverter() {
+		return converter;
 	}
 
 	public @Nullable BaseDeclarationVisitor getDeclarationVisitor(@NonNull EClass eClass) {
@@ -373,16 +384,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
 		csPath.add(csSimpleRef);
 		csSimpleRef.setElement(primaryElement);
-		Resource csResource = csPathName.eResource();
-		if (csResource == null) {
-			for (Resource resource : converter.getCSResources())  {		// FIXME Find a way to avoid losing the csResource
-				if (resource instanceof BaseCSResource) {
-					csResource = resource;
-					break;
-				}
-			}
-		}
-		if (!(csResource instanceof BaseCSResource2) || (((BaseCSResource2)csResource).isPathable(primaryElement) == null)) {
+		BaseCSResource csResource2 = this.csResource;
+		if ((csResource2 == null) || (csResource2.isPathable(primaryElement) == null)) {
 			return;
 		}
 		for (EObject eContainer = primaryElement.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {
@@ -553,30 +556,22 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	 * Sequence the update passes to make the pivot match the CS.
 	 * @param csResources 
 	 */
-	public void update(@NonNull Collection<? extends Resource> csResources) {
-		Map<Resource, Map<Namespace, List<String>>> imports = new HashMap<Resource, Map<Namespace, List<String>>>();
+	public void update(@NonNull BaseCSResource csResource) {
+		this.csResource = csResource;
+//		Map<Resource, Map<Namespace, List<String>>> imports = new HashMap<Resource, Map<Namespace, List<String>>>();
 		//
 		//	Perform the pre-order traversal to create the CS for each declaration. A
 		//	separate reference pass is not needed since references are to the pivot model.
 		//
-		for (Resource csResource : csResources) {
-			if (csResource != null) {
-				importedNamespaces = new HashMap<Namespace, List<String>>();
-				Resource asResource = converter.getPivotResource(csResource);
-				if (asResource != null) {
-					List<PackageCS> list = visitDeclarations(PackageCS.class, asResource.getContents(), null);
-					refreshList(csResource.getContents(), list);
-					imports.put(csResource, importedNamespaces);
-				}
+		importedNamespaces = new HashMap<Namespace, List<String>>();
+		Resource asResource = converter.getPivotResource(csResource);
+		if (asResource != null) {
+			List<PackageCS> list = visitDeclarations(PackageCS.class, asResource.getContents(), null);
+			refreshList(csResource.getContents(), list);
+			if (importedNamespaces != null) {
+				defaultDeclarationVisitor.postProcess(csResource, importedNamespaces);
 			}
-		}
-		for (Resource csResource : csResources) {
-			if (csResource != null) {
-				Map<Namespace, List<String>> importedNamespaces = imports.get(csResource);
-				if (importedNamespaces != null) {
-					createImports(csResource, importedNamespaces);
-				}
-			}
+//			imports.put(csResource, importedNamespaces);
 		}
 	}
 

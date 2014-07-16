@@ -32,9 +32,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -392,31 +389,6 @@ public class ElementUtil
 		return getQualifier(qualifiers, "ordered", "!ordered", false);
 	}
 
-	/**
-	 * Return true if element is able to be accessed by a qualified path OCLinEcore. Other elements must use a quoted URI.
-	 * 
-	 * @deprecated use BaseCSResource.isPathable(Element) which is extensible.
-	 */
-	@Deprecated  // find an extensible solution
-	public static NamedElement isPathable(@NonNull EObject element) {
-		if (element instanceof Feature) {
-			return (Feature)element;
-		}
-		else if (element instanceof Type) {
-			return (Type)element;
-		}
-		else if (element instanceof Namespace) {
-			return (Namespace)element;
-		}
-		else if (element instanceof EnumerationLiteral) {
-			return (EnumerationLiteral)element;
-		}
-		// ?? Constraint, Signal, ...
-		else {
-			return null;
-		}
-	}
-
 	public static boolean isUnique(@NonNull TypedElementCS csTypedElement) {
 		List<String> qualifiers = csTypedElement.getQualifier();
 		assert qualifiers != null;
@@ -469,10 +441,7 @@ public class ElementUtil
 //		if (csResource == null) {
 //			getCsElement(element)
 //		}
-		boolean b1 = !(csResource instanceof BaseCSResource2) || (((BaseCSResource2)csResource).isPathable(element) == null);
-		boolean b2 = isPathable(element) == null;
-		assert b1 == b2;
-		if (b2) {
+		if (!(csResource instanceof BaseCSResource) || (((BaseCSResource)csResource).isPathable(element) == null)) {
 			return;
 		}
 		for (EObject eContainer = element.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {

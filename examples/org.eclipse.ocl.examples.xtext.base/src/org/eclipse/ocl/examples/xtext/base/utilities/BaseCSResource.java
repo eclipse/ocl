@@ -13,8 +13,10 @@ package org.eclipse.ocl.examples.xtext.base.utilities;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
@@ -70,6 +72,11 @@ public interface BaseCSResource extends BaseResource
 	 * Return the name of the editor for use in diagnostics.
 	 */
 	@NonNull String getEditorName();
+
+	/**
+	 * Return a non-null NamedElement if element is able to be accessed by a qualified path; Other elements must use a quoted URI.
+	 */
+	@Nullable NamedElement isPathable(@NonNull EObject element);
 
 	/**
 	 * Return a uri against the URI of this CS resource.

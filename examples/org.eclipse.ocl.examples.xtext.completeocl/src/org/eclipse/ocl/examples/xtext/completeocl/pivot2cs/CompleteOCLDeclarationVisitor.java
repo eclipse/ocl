@@ -14,7 +14,9 @@ package org.eclipse.ocl.examples.xtext.completeocl.pivot2cs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
@@ -45,6 +47,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeoclcs.CompleteOCLDocumentCS;
@@ -98,6 +101,14 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		while ((nestingPackage = aPackage.getNestingPackage()) != null) {
 			aPackage = nestingPackage;
 			context.importNamespace(aPackage, null);
+		}
+	}
+
+	@Override
+	public void postProcess(@NonNull BaseCSResource csResource, @NonNull Map<Namespace, List<String>> importedNamespaces) {
+		EObject eObject = csResource.getContents().get(0);
+		if (eObject instanceof CompleteOCLDocumentCS) {
+			context.createImports((CompleteOCLDocumentCS) eObject, importedNamespaces);
 		}
 	}
 
