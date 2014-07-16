@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.Package
 import org.eclipse.ocl.examples.pivot.Type
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil
+import java.util.Map.Entry
 
 class AutoGenNameResoSpecificFramework {
 	
@@ -94,12 +95,13 @@ public interface «envItf» extends «commonEnvItf» {
 	// END OF TEMPORAL STUFF
 	
 	// Generated from NameResolution description
-	«FOR type : type2expTypes.keySet»
+	«FOR entry : type2expTypes.entrySet»
+	«val type = entry.key»
 	
 	// «type.name»
 	
-	«FOR addingExptype : type2expTypes.get(type)»
-	«val expType = addingExptype.getType»	
+	«FOR addingExptype : entry.value»
+	«val expType = addingExptype.getType»
 	«val isMany = expType instanceof CollectionType»
 	«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
 	public void add«type.name»«addingExptype.getNumber»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object«IF(addingExptype.isHasChildIndex)», int childIndex«ENDIF»);
@@ -992,8 +994,9 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	}
 	
 	// Generated from NameResolution description
-	«FOR type : type2envOperations.keySet»	
-	«val envOps = type2envOperations.get(type)»
+	«FOR entry : type2envOperations.entrySet»
+	«val type = entry.key»
+	«val envOps = entry.value»
 	
 	@Override
 	public @NonNull
