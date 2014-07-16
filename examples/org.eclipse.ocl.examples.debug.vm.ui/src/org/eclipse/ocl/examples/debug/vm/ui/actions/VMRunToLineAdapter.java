@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.actions;
+package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -26,12 +26,11 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ocl.examples.debug.core.OCLLineBreakpoint;
-import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
-import org.eclipse.ocl.examples.debug.ui.messages.DebugUIMessages;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugElement;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
+import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -39,29 +38,25 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
 
 
-public class OCLRunToLineAdapter implements IRunToLineTarget {
-	
-	public OCLRunToLineAdapter() {
-		super();
-	}
-	
+public abstract class VMRunToLineAdapter implements IRunToLineTarget
+{
 	public void runToLine(IWorkbenchPart part, ISelection selection, ISuspendResume target) throws CoreException {
 		IEditorPart editorPart = (IEditorPart)part;
 		IEditorInput input = editorPart.getEditorInput();
 		if(input == null) {
-			throw new CoreException(OCLDebugUIPlugin.createErrorStatus(DebugUIMessages.OCLRunToLineAdapter_NoInput));
+			throw new CoreException(DebugVMUIPlugin.createErrorStatus(DebugVMUIMessages.RunToLineAdapter_NoInput));
 		}
 		
 		ITextEditor textEditor = (ITextEditor)editorPart;
 		IDocumentProvider provider = textEditor.getDocumentProvider();
 		IDocument document = provider.getDocument(input);
 		if(document == null) {
-			throw new CoreException(OCLDebugUIPlugin.createErrorStatus(DebugUIMessages.OCLRunToLineAdapter_NoDocument));
+			throw new CoreException(DebugVMUIPlugin.createErrorStatus(DebugVMUIMessages.RunToLineAdapter_NoDocument));
 		}
 		
 		IFile file = (IFile)input.getAdapter(IFile.class);
 		if (file == null) {
-			throw new CoreException(OCLDebugUIPlugin.createErrorStatus(DebugUIMessages.OCLRunToLineAdapter_NoFile)); 
+			throw new CoreException(DebugVMUIPlugin.createErrorStatus(DebugVMUIMessages.RunToLineAdapter_NoFile)); 
 		}
 		
 		ITextSelection textSelection = (ITextSelection) selection;
@@ -70,12 +65,12 @@ public class OCLRunToLineAdapter implements IRunToLineTarget {
 		URI resourceURI = VMDebugCore.getResourceURI(file);
 		VMLineBreakpoint vmBreakpoint = OCLLineBreakpoint.createRunToLineBreakpoint(resourceURI, lineNumber);
 
-		String invalidLocationMessage = DebugUIMessages.OCLRunToLineAdapter_invalidLocation;
-		IStatus verifyStatus = new BreakpointLocationVerifier((CompleteOCLEditor) textEditor, vmBreakpoint,
+		String invalidLocationMessage = DebugVMUIMessages.RunToLineAdapter_invalidLocation;
+		IStatus verifyStatus = new BreakpointLocationVerifier(textEditor, vmBreakpoint,
 				invalidLocationMessage).run();
 		if(!verifyStatus.isOK()) {
 			new ErrorDialog(part.getSite().getShell(), null,
-					DebugUIMessages.OCLRunToLineAdapter_runFailed, verifyStatus, IStatus.CANCEL).open();
+					DebugVMUIMessages.RunToLineAdapter_runFailed, verifyStatus, IStatus.CANCEL).open();
 			return;
 		}
 
@@ -90,6 +85,6 @@ public class OCLRunToLineAdapter implements IRunToLineTarget {
 	}
 
 	public boolean canRunToLine(IWorkbenchPart part, ISelection selection, ISuspendResume target) {
-		return (target instanceof VMDebugElement) && (part instanceof CompleteOCLEditor);
+		return (target instanceof VMDebugElement);
 	}
 }

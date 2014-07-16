@@ -9,10 +9,17 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.pages;
+package org.eclipse.ocl.examples.debug.ui.actions;
 
-import org.eclipse.ocl.examples.debug.vm.ui.pages.VMLineBreakpointPage;
+import org.eclipse.debug.core.model.ISuspendResume;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ocl.examples.debug.vm.ui.actions.VMRunToLineAdapter;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreEditor;
+import org.eclipse.ui.IWorkbenchPart;
 
-public abstract class OCLLineBreakpointPage extends VMLineBreakpointPage
+public class OCLinEcoreRunToLineAdapter extends VMRunToLineAdapter
 {
+	public boolean canRunToLine(IWorkbenchPart part, ISelection selection, ISuspendResume target) {
+		return (part instanceof OCLinEcoreEditor) && super.canRunToLine(part, selection, target);
+	}
 }

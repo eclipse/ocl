@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.actions;
+package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import java.util.List;
 
@@ -28,23 +28,16 @@ import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ocl.examples.debug.core.OCLDebugCore;
 import org.eclipse.ocl.examples.debug.core.OCLLineBreakpoint;
-import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
-import org.eclipse.ocl.examples.debug.ui.messages.DebugUIMessages;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
+import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.texteditor.ITextEditor;
 
-public class OCLToggleBreakpointAdapter implements IToggleBreakpointsTarget {
-	
-	public OCLToggleBreakpointAdapter() {
-		super();
-	}
-
+public abstract class VMToggleBreakpointAdapter implements IToggleBreakpointsTarget
+{
 	public void toggleLineBreakpoints(final IWorkbenchPart part, ISelection selection) throws CoreException {
-		if (!(part instanceof CompleteOCLEditor)) {
-			return;
-		}
-		final CompleteOCLEditor oclEditor = (CompleteOCLEditor)part;
+		final ITextEditor oclEditor = (ITextEditor)part;
 		IFile unitFile = (IFile) oclEditor.getEditorInput().getAdapter(IResource.class);		
 		ITextSelection textSelection = (ITextSelection) selection;
 		int lineNumber = textSelection.getStartLine() + 1;
@@ -60,7 +53,7 @@ public class OCLToggleBreakpointAdapter implements IToggleBreakpointsTarget {
 					// a breakpoint already exists at this line =>toggle again means remove
 					DebugPlugin.getDefault().getBreakpointManager().removeBreakpoint(next, true);
 				} catch (CoreException e) {
-					OCLDebugUIPlugin.log(e.getStatus());
+					DebugVMUIPlugin.log(e.getStatus());
 				}
 				next.delete();
 				return;
@@ -71,11 +64,11 @@ public class OCLToggleBreakpointAdapter implements IToggleBreakpointsTarget {
 		final VMLineBreakpoint lineBreakpoint = new OCLLineBreakpoint(sourceURI, lineNumber);
 		lineBreakpoint.register(true);
         
-        Job job = new Job(DebugUIMessages.OCLToggleBreakpointAdapter_VerifyBreakpointJob) {
+        Job job = new Job(DebugVMUIMessages.ToggleBreakpointAdapter_VerifyBreakpointJob) {
             @Override
 			protected IStatus run(IProgressMonitor monitor) {
 				return new BreakpointLocationVerifier(oclEditor, lineBreakpoint,
-						DebugUIMessages.OCLToggleBreakpointAdapter_CannotSetBreakpoint).run();
+						DebugVMUIMessages.ToggleBreakpointAdapter_CannotSetBreakpoint).run();
             }
             
             @Override
@@ -88,10 +81,6 @@ public class OCLToggleBreakpointAdapter implements IToggleBreakpointsTarget {
         job.setSystem(true);
         job.schedule();        
 	} 
-
-	public boolean canToggleLineBreakpoints(IWorkbenchPart part, ISelection selection) {
-		return part instanceof CompleteOCLEditor;
-	}
 		
 	public void toggleMethodBreakpoints(IWorkbenchPart part, ISelection selection) throws CoreException {
 	}

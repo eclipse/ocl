@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.actions;
+package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.ocl.examples.debug.launching.OCLDebuggableRunnerFactory;
-import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
+import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -33,11 +33,11 @@ import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.IEditorStatusLine;
+import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
@@ -74,10 +74,10 @@ class BreakpointLocationVerifier {
 //	private static final int GET_AST_TIMEOUT = 10 * 1000;
 	
 	private final ILineBreakpoint fBreakpoint;
-	private final CompleteOCLEditor fEditor;
+	private final ITextEditor fEditor;
 	private final String fInvalidLocationMessage;
 	
-	BreakpointLocationVerifier(CompleteOCLEditor editor, ILineBreakpoint breakpoint, String invalidLocationMessage) {
+	BreakpointLocationVerifier(ITextEditor editor, ILineBreakpoint breakpoint, String invalidLocationMessage) {
 		if(editor == null || breakpoint == null || invalidLocationMessage == null) {
 			throw new IllegalArgumentException();
 		}
@@ -94,7 +94,7 @@ class BreakpointLocationVerifier {
 				try {
 					DebugPlugin.getDefault().getBreakpointManager().removeBreakpoint(fBreakpoint, true);
 				} catch (CoreException e) {
-					OCLDebugUIPlugin.log(e.getStatus());
+					DebugVMUIPlugin.log(e.getStatus());
 				}
 			}
 		}
@@ -140,7 +140,7 @@ class BreakpointLocationVerifier {
 		});
         CompiledUnit compilationUnit = root != null ? new CompiledUnit(root) : null;
         if(compilationUnit == null) {
-        	return OCLDebugUIPlugin.createErrorStatus("Failed to obtain AST"); //$NON-NLS-1$
+        	return DebugVMUIPlugin.createErrorStatus("Failed to obtain AST"); //$NON-NLS-1$
         }
 
 		List<Element> elements = OCLDebuggableRunnerFactory.validBreakpointLocator
@@ -158,13 +158,13 @@ class BreakpointLocationVerifier {
 	 * @param message the message to display
 	 */
 	protected void report(final String message) {
-		OCLDebugUIPlugin.getStandardDisplay().asyncExec(new Runnable() {
+		DebugVMUIPlugin.getStandardDisplay().asyncExec(new Runnable() {
 			public void run() {
 				IEditorStatusLine statusLine = (IEditorStatusLine) fEditor.getAdapter(IEditorStatusLine.class);
 				if (statusLine != null) {
 					statusLine.setMessage(true, message, null);
 				}
-				if (message != null && OCLDebugUIPlugin.getActiveWorkbenchShell() != null) {
+				if (message != null && DebugVMUIPlugin.getActiveWorkbenchShell() != null) {
 					Display.getCurrent().beep();
 				}
 			}
@@ -172,6 +172,6 @@ class BreakpointLocationVerifier {
 	}
 	
 	private IStatus canceled() {
-		return OCLDebugUIPlugin.createStatus(IStatus.CANCEL, fInvalidLocationMessage);
+		return DebugVMUIPlugin.createStatus(IStatus.CANCEL, fInvalidLocationMessage);
 	}
 }

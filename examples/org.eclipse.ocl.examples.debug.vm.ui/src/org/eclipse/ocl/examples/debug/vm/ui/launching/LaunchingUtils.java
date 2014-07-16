@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.launching;
+package org.eclipse.ocl.examples.debug.vm.ui.launching;
 
 import java.io.File;
 import java.util.ArrayList;

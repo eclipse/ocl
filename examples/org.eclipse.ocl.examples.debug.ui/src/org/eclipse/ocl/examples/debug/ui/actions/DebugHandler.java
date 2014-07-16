@@ -45,10 +45,7 @@ import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
- * A LoadCompleteOCLResourceHandler supports the OCL->Load Document command.
- * 
- * It provides a pop-up dialog with DND capability for a Complete OCL document to be installed in the
- * ResourceSet associated with the invoking selection.
+ * A DebugHandler supports the OCL->Debug command.
  */
 public class DebugHandler extends AbstractHandler
 {

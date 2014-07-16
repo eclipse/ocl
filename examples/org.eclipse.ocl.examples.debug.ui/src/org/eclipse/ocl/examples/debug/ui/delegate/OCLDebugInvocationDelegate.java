@@ -1,0 +1,71 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.examples.debug.ui.delegate;
+
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.Query;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegate;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+
+/**
+ * An implementation of an operation-invocation delegate for OCL body expressions.
+ */
+public class OCLDebugInvocationDelegate extends OCLInvocationDelegate
+{
+	public OCLDebugInvocationDelegate(@NonNull OCLDelegateDomain delegateDomain, @NonNull EOperation operation) {
+		super(delegateDomain, operation);
+	}
+
+	protected @Nullable Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query, InternalEObject target, EList<?> arguments) {
+		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		IdResolver idResolver = metaModelManager.getIdResolver();
+		Query query2 = ocl.createQuery(query);
+		EvaluationEnvironment env = query2.getEvaluationEnvironment();
+		Object object = target;
+		Object value = idResolver.boxedValueOf(target);
+		env.add(DomainUtil.nonNullModel(query.getContextVariable()), value);
+		List<Variable> parms = query.getParameterVariable();
+		if (!parms.isEmpty()) {
+			// bind arguments to parameter names
+			for (int i = 0; i < parms.size(); i++) {
+				object = arguments.get(i);
+				value = idResolver.boxedValueOf(object);
+				env.add(DomainUtil.nonNullModel(parms.get(i)), value);
+			}
+		}
+		Object result = query2.evaluate(target);
+//			if (result == null) {
+//				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
+//				throw new InvocationTargetException(new OCLDelegateException(message));
+//			}
+		Object unboxedValue = idResolver.unboxedValueOf(result);
+		if (unboxedValue instanceof Number) {
+			return ValuesUtil.getEcoreNumber((Number)unboxedValue, eOperation.getEType().getInstanceClass());
+		}
+		else {
+			return unboxedValue;
+		}
+	}
+}

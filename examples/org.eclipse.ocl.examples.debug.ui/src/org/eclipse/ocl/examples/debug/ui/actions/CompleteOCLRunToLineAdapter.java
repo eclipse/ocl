@@ -11,19 +11,15 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.ui.actions;
 
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.text.source.IVerticalRulerInfo;
-import org.eclipse.ui.texteditor.AbstractRulerActionDelegate;
-import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.debug.core.model.ISuspendResume;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ocl.examples.debug.vm.ui.actions.VMRunToLineAdapter;
+import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ui.IWorkbenchPart;
 
-public class OCLBreakpointPropertiesRulerActionDelegate  extends AbstractRulerActionDelegate {
-
-    /**
-     * @see AbstractRulerActionDelegate#createAction(ITextEditor, IVerticalRulerInfo)
-     */
-    protected IAction createAction(ITextEditor editor, IVerticalRulerInfo rulerInfo) {
-    	
-    	
-        return new OCLBreakpointPropertiesRulerAction(editor, rulerInfo);
-    }
+public class CompleteOCLRunToLineAdapter extends VMRunToLineAdapter
+{
+	public boolean canRunToLine(IWorkbenchPart part, ISelection selection, ISuspendResume target) {
+		return (part instanceof CompleteOCLEditor) && super.canRunToLine(part, selection, target);
+	}
 }

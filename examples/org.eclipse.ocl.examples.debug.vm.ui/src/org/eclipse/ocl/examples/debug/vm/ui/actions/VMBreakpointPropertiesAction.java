@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.actions;
+package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -18,8 +18,8 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.IShellProvider;
-import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
+import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
@@ -30,7 +30,7 @@ import org.eclipse.ui.dialogs.PropertyDialogAction;
  * Presents the standard properties dialog to configure the attributes of an OCL
  * Breakpoint.
  */
-public class OCLBreakpointPropertiesAction implements IObjectActionDelegate {
+public class VMBreakpointPropertiesAction implements IObjectActionDelegate {
 
 	private IWorkbenchPart fPart;
 	private VMLineBreakpoint fBreakpoint;
@@ -46,7 +46,7 @@ public class OCLBreakpointPropertiesAction implements IObjectActionDelegate {
 			} else {
 				provider = new IShellProvider() {
 					public Shell getShell() {
-						return OCLDebugUIPlugin.getActiveWorkbenchShell();
+						return DebugVMUIPlugin.getActiveWorkbenchShell();
 					}
 				};
 			}

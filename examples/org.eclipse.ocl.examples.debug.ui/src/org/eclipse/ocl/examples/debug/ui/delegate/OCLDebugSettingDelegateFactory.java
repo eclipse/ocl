@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.delegate;
+package org.eclipse.ocl.examples.debug.ui.delegate;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -22,10 +22,10 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 /**
  * Factory for OCL derived-attribute setting delegates.
  */
-public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
+public class OCLDebugSettingDelegateFactory extends AbstractOCLDelegateFactory
 		implements EStructuralFeature.Internal.SettingDelegate.Factory
 {
-	public OCLSettingDelegateFactory(@NonNull String delegateURI) {
+	public OCLDebugSettingDelegateFactory(@NonNull String delegateURI) {
 		super(delegateURI);
 	}
 
@@ -38,7 +38,7 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		if (delegateDomain == null) {
 			return null;
 		}
-		return new OCLSettingDelegate(delegateDomain, structuralFeature);
+		return new OCLDebugSettingDelegate(delegateDomain, structuralFeature);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	 * can be located at the EStructuralFeature.Internal.SettingDelegate.Factory.Registry
 	 * by the DelegateResourceSetAdapter.
 	 */
-	public static class Global extends OCLSettingDelegateFactory
+	public static class Global extends OCLDebugSettingDelegateFactory
 	{
 		public Global() {
 			super(OCLDelegateDomain.OCL_DELEGATE_URI_DEBUG);

@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.delegate;
+package org.eclipse.ocl.examples.debug.ui.delegate;
 
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -22,10 +22,10 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 /**
  * Factory for OCL operation-invocation delegates.
  */
-public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
+public class OCLDebugInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		implements EOperation.Internal.InvocationDelegate.Factory
 {
-	public OCLInvocationDelegateFactory(@NonNull String delegateURI) {
+	public OCLDebugInvocationDelegateFactory(@NonNull String delegateURI) {
 		super(delegateURI);
 	}
 
@@ -35,7 +35,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		}
 		EPackage ePackage = DomainUtil.nonNullEMF(operation.getEContainingClass().getEPackage());
 		OCLDelegateDomain delegateDomain = getDelegateDomain(ePackage);
-		return delegateDomain != null ? new OCLInvocationDelegate(delegateDomain, operation) : null;
+		return delegateDomain != null ? new OCLDebugInvocationDelegate(delegateDomain, operation) : null;
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	 * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
 	 * by the DelegateResourceSetAdapter.
 	 */
-	public static class Global extends OCLInvocationDelegateFactory
+	public static class Global extends OCLDebugInvocationDelegateFactory
 	{
 		public Global() {
 			super(OCLDelegateDomain.OCL_DELEGATE_URI_DEBUG);

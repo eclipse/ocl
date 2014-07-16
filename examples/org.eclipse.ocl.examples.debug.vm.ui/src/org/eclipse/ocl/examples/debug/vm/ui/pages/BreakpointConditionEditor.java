@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.pages;
+package org.eclipse.ocl.examples.debug.vm.ui.pages;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -22,9 +22,9 @@ import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.TextViewerUndoManager;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
-import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
-import org.eclipse.ocl.examples.debug.ui.messages.DebugUIMessages;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
+import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
+import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
@@ -40,7 +40,7 @@ public class BreakpointConditionEditor {
     private ProjectionViewer fViewer;       
     private String fOldValue;
     private String fErrorMessage;
-    private OCLLineBreakpointPage fPage;
+    private VMLineBreakpointPage fPage;
     private VMLineBreakpoint fBreakpoint;
     private IHandlerService fHandlerService;
     private IHandler fHandler;
@@ -52,13 +52,13 @@ public class BreakpointConditionEditor {
      * @param parent the parent to add this widget to
      * @param page the page that is associated with this widget
      */
-    public BreakpointConditionEditor(Composite parent, OCLLineBreakpointPage page) {
+    public BreakpointConditionEditor(Composite parent, VMLineBreakpointPage page) {
         fPage = page;
         fBreakpoint = (VMLineBreakpoint) fPage.getBreakpoint();
         String condition = new String();
         try {
             condition = fBreakpoint.getCondition();
-            fErrorMessage  = DebugUIMessages.BreakpointConditionEditor_EnterCondition; 
+            fErrorMessage  = DebugVMUIMessages.BreakpointConditionEditor_EnterCondition; 
             fOldValue = ""; //$NON-NLS-1$
             
             fViewer = new ProjectionViewer(parent, null, null, true, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.LEFT_TO_RIGHT);
@@ -94,7 +94,7 @@ public class BreakpointConditionEditor {
             fHandlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
         } 
         catch (CoreException exception) {
-            OCLDebugUIPlugin.log(exception);
+            DebugVMUIPlugin.log(exception);
         }
     }
 

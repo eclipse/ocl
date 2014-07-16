@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui;
+package org.eclipse.ocl.examples.debug.vm.ui;
 
 import java.net.URL;
 import java.util.Collections;
@@ -20,9 +20,12 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ocl.examples.debug.vm.ui.actions.DebugVMImages;
+import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -33,22 +36,22 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class OCLDebugUIPlugin extends AbstractUIPlugin {
+public class DebugVMUIPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.debug.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.debug.vm.ui"; //$NON-NLS-1$
 
 	// The shared instance
-	private static OCLDebugUIPlugin plugin;
+	private static DebugVMUIPlugin plugin;
 
-	private static final Logger logger = Logger.getLogger(OCLDebugUIPlugin.class);
+	private static final Logger logger = Logger.getLogger(DebugVMUIPlugin.class);
 
 	protected ImageRegistry imageDescriptorRegistry;
 	
 	/**
 	 * The constructor
 	 */
-	public OCLDebugUIPlugin() {
+	public DebugVMUIPlugin() {
 	}
 
 	/*
@@ -78,7 +81,7 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static OCLDebugUIPlugin getDefault() {
+	public static DebugVMUIPlugin getDefault() {
 		return plugin;
 	}
 
@@ -191,7 +194,7 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 	}
 
     public static void log(IStatus status) {
-    	OCLDebugUIPlugin debugPlugin = getDefault();
+    	DebugVMUIPlugin debugPlugin = getDefault();
 		if(debugPlugin != null) {
 			debugPlugin.getLog().log(status);
     	}
@@ -237,6 +240,39 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 
 	public static IStatus createErrorStatus(String message) {
 		return createStatus(IStatus.ERROR, message);
+	}
+
+	public static void statusDialog(IStatus status) {
+		switch (status.getSeverity()) {
+		case IStatus.ERROR:
+			statusDialog(DebugVMUIMessages.StatusDialog_Error, status);
+			break;
+		case IStatus.WARNING:
+			statusDialog(DebugVMUIMessages.StatusDialog_Warning, status);
+			break;
+		case IStatus.INFO:
+			statusDialog(DebugVMUIMessages.StatusDialog_Information,
+					status);
+			break;
+		}
+	}
+
+	public static void statusDialog(String title, IStatus status) {
+		Shell shell = getActiveWorkbenchShell();
+		if (shell != null) {
+			switch (status.getSeverity()) {
+			case IStatus.ERROR:
+				ErrorDialog.openError(shell, title, null, status);
+				break;
+			case IStatus.WARNING:
+				MessageDialog.openWarning(shell, title, status.getMessage());
+				break;
+			case IStatus.INFO:
+				MessageDialog
+						.openInformation(shell, title, status.getMessage());
+				break;
+			}
+		}
 	}
 	
 	@Override

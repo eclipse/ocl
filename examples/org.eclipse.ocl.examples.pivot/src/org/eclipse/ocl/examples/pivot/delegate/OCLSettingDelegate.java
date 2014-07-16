@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -33,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
  */
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
-	protected final OCLDelegateDomain delegateDomain;
+	protected final @NonNull OCLDelegateDomain delegateDomain;
 	private Property property;
 	private ExpressionInOCL query;
 
@@ -46,6 +47,11 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	public OCLSettingDelegate(@NonNull OCLDelegateDomain delegateDomain, @NonNull EStructuralFeature structuralFeature) {
 		super(structuralFeature);
 		this.delegateDomain = delegateDomain;
+	}
+
+	protected @Nullable Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query, @Nullable Object target) {
+		Query query2 = ocl.createQuery(query);
+		return query2.evaluate(target);
 	}
 
 	@Override

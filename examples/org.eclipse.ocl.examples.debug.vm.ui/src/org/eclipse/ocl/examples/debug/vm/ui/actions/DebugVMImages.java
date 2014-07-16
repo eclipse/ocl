@@ -9,16 +9,16 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.actions;
+package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
+import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
 import org.eclipse.swt.graphics.Image;
 
-public class OCLDebugImages
+public class DebugVMImages
 {
-	private static final Logger logger = Logger.getLogger(OCLDebugImages.class);
+	private static final Logger logger = Logger.getLogger(DebugVMImages.class);
 
 	public static final String CONDITIONAL_BPNT_ENABLED = "conditionalBreakpointEnabled"; //$NON-NLS-1$
 
@@ -41,10 +41,9 @@ public class OCLDebugImages
 	public static final String COLLECTION_ELEMENT = "collectionElement"; //$NON-NLS-1$
 	public static final String EXPRESSION_IN_OCL = "ExpressionInOCL"; //$NON-NLS-1$
 	
-	private static ImageRegistry fgImageRegistry = OCLDebugUIPlugin
-			.getDefault().getImageRegistry();
+	private static ImageRegistry fgImageRegistry = DebugVMUIPlugin.getDefault().getImageRegistry();
 
-	private OCLDebugImages() {
+	protected DebugVMImages() {
 		super();
 	}
 

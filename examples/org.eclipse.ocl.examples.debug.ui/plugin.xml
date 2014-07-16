@@ -3,8 +3,13 @@
 <plugin>
              
     <extension point="org.eclipse.core.runtime.adapters">
-        <factory class="org.eclipse.ocl.examples.debug.ui.actions.RetargettableActionAdapterFactory"
+        <factory class="org.eclipse.ocl.examples.debug.ui.actions.CompleteOCLRetargettableActionAdapterFactory"
             adaptableType="org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor">
+            	<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+            	<adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
+        </factory>    
+        <factory class="org.eclipse.ocl.examples.debug.ui.actions.OCLinEcoreRetargettableActionAdapterFactory"
+            adaptableType="org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreEditor">
             	<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
             	<adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
         </factory>    
@@ -81,11 +86,38 @@
       </objectContribution>
 		
     </extension>
+
+  <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.ui.delegate.OCLDebugValidationDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.setting_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.ui.delegate.OCLDebugSettingDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.ui.delegate.OCLDebugInvocationDelegateFactory$Global" />
+  </extension>
+ 
+  <extension point = "org.eclipse.emf.ecore.query_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Debug"
+       class = "org.eclipse.ocl.examples.debug.ui.delegate.OCLDebugQueryDelegateFactory$Global" />
+  </extension>
     
    <extension point="org.eclipse.ui.editorActions">
-      <editorContribution id="org.eclipse.debug.ui.OCLBreakpointRulerActions"
+      <editorContribution id="org.eclipse.debug.ui.CompleteOCLBreakpointRulerActions"
             targetID="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL">
-		<action id="org.eclipse.ocl.examples.debug.ui.actions.RulerToggleBreakpointAction"
+		<action id="org.eclipse.ocl.examples.debug.ui.actions.CompleteOCLRulerToggleBreakpointAction"
+			label="%AddBreakpoint.label"
+			class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+			actionID="RulerDoubleClick"/>
+      </editorContribution>
+      <editorContribution id="org.eclipse.debug.ui.OCLinEcoreBreakpointRulerActions"
+            targetID="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore">
+		<action id="org.eclipse.ocl.examples.debug.ui.actions.OCLinEcoreRulerToggleBreakpointAction"
 			label="%AddBreakpoint.label"
 			class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
 			actionID="RulerDoubleClick"/>

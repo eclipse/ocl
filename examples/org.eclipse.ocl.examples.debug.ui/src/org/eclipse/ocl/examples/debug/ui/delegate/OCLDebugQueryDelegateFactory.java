@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.delegate;
+package org.eclipse.ocl.examples.debug.ui.delegate;
 
 import java.util.Map;
 
@@ -42,9 +42,9 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
  * 		map-of-name-to-object);     // the external variable bindings
  * </pre>
  */
-public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
+public class OCLDebugQueryDelegateFactory extends AbstractOCLDelegateFactory
 		implements QueryDelegate.Factory {
-	public OCLQueryDelegateFactory(@NonNull String delegateURI) {
+	public OCLDebugQueryDelegateFactory(@NonNull String delegateURI) {
 		super(delegateURI);
 	}
 
@@ -56,7 +56,7 @@ public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 		if (delegateDomain == null) {
 			return null;
 		}
-		return new OCLQueryDelegate(delegateDomain, context, parameters, expression);
+		return new OCLDebugQueryDelegate(delegateDomain, context, parameters, expression);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 	 * can be located at the QueryDelegate.Factory.Registry
 	 * by the DelegateResourceSetAdapter.
 	 */
-	public static class Global extends OCLQueryDelegateFactory
+	public static class Global extends OCLDebugQueryDelegateFactory
 	{
 		public Global() {
 			super(OCLDelegateDomain.OCL_DELEGATE_URI_DEBUG);

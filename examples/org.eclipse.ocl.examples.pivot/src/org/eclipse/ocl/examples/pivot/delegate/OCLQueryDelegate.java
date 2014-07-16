@@ -74,6 +74,10 @@ public class OCLQueryDelegate implements QueryDelegate
 		this.expression = expression;
 	}
 
+	protected@Nullable Object evaluate(@NonNull Query query, @Nullable Object target) {
+		return query.evaluate(target);
+	}
+
 	/**
 	 * Executes the query for the specified <tt>target</tt> object. The result
 	 * is the OCL evaluation result which may be a Number, String, Collection or
@@ -135,7 +139,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				}
 				env.add(parameterVariable, value);
 			}
-			Object result = query.evaluate(target);
+			Object result = evaluate(query, target);
 //			if (result.isInvalid()) {
 //				String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
 //				throw new OCLDelegateException(message);

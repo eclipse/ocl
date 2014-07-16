@@ -14,33 +14,33 @@ package org.eclipse.ocl.examples.debug.ui.actions;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.debug.ui.actions.IRunToLineTarget;
 import org.eclipse.debug.ui.actions.IToggleBreakpointsTarget;
-import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLEditor;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreEditor;
 
 /**
  * Creates adapters for retargettable actions in debug platform.
  * Contributed via <code>org.eclipse.core.runtime.adapters</code> 
  * extension point. 
  */
-public class RetargettableActionAdapterFactory implements IAdapterFactory
+public class OCLinEcoreRetargettableActionAdapterFactory implements IAdapterFactory
 {	
-	public RetargettableActionAdapterFactory() {
+	public OCLinEcoreRetargettableActionAdapterFactory() {
 		super();
 	}
 	
 	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
-		if (!(adaptableObject instanceof CompleteOCLEditor)) {
+		if (!(adaptableObject instanceof OCLinEcoreEditor)) {
 			return null;
         }
         if (IRunToLineTarget.class == adapterType) {
-			return new OCLRunToLineAdapter();
+			return new OCLinEcoreRunToLineAdapter();
         } else if (IToggleBreakpointsTarget.class == adapterType) {
-			return new OCLToggleBreakpointAdapter();
+			return new OCLinEcoreToggleBreakpointAdapter();
         } 
 		return null;
 	}
 
 	@SuppressWarnings("rawtypes")
 	public Class[] getAdapterList() {
-		return new Class[] { OCLToggleBreakpointAdapter.class, OCLRunToLineAdapter.class };
+		return new Class[] { OCLinEcoreToggleBreakpointAdapter.class, OCLinEcoreRunToLineAdapter.class };
 	}
 }

@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.ui.actions;
+package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.ui.actions.RulerBreakpointAction;
@@ -18,20 +18,20 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.ocl.examples.debug.ui.messages.DebugUIMessages;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
+import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.IUpdate;
 
 
-public class OCLBreakpointPropertiesRulerAction extends RulerBreakpointAction implements IUpdate {
+public class VMBreakpointPropertiesRulerAction extends RulerBreakpointAction implements IUpdate {
     
     private IBreakpoint fBreakpoint;
 
-    public OCLBreakpointPropertiesRulerAction(ITextEditor editor, IVerticalRulerInfo info) {
+    public VMBreakpointPropertiesRulerAction(ITextEditor editor, IVerticalRulerInfo info) {
         super(editor, info); 
-        setText(DebugUIMessages.OCLBreakpointProperties_RulerActionLabel);
+        setText(DebugVMUIMessages.BreakpointProperties_RulerActionLabel);
     }
 
     public void run() {

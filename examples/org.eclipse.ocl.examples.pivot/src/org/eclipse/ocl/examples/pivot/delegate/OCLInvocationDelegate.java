@@ -64,7 +64,6 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		try {
 			OCL ocl = delegateDomain.getOCL();
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			IdResolver idResolver = metaModelManager.getIdResolver();
 			ExpressionInOCL query2 = query;
 			if (query2 == null) {
 				Operation operation2 = operation;
@@ -83,36 +82,42 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 					throw new OCLDelegateException(new SemanticException("Unsupported InvocationDelegate for a " + namedElement.eClass().getName())) ;
 				}
 			}
-			Query query = ocl.createQuery( query2);
-			EvaluationEnvironment env = query.getEvaluationEnvironment();
-			Object object = target;
-			Object value = idResolver.boxedValueOf(target);
-			env.add(DomainUtil.nonNullModel( query2.getContextVariable()), value);
-			List<Variable> parms =  query2.getParameterVariable();
-			if (!parms.isEmpty()) {
-				// bind arguments to parameter names
-				for (int i = 0; i < parms.size(); i++) {
-					object = arguments.get(i);
-					value = idResolver.boxedValueOf(object);
-					env.add(DomainUtil.nonNullModel(parms.get(i)), value);
-				}
-			}
-			Object result = query.evaluate(target);
-//			if (result == null) {
-//				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
-//				throw new InvocationTargetException(new OCLDelegateException(message));
-//			}
-			Object unboxedValue = idResolver.unboxedValueOf(result);
-			if (unboxedValue instanceof Number) {
-				return ValuesUtil.getEcoreNumber((Number)unboxedValue, eOperation.getEType().getInstanceClass());
-			}
-			else {
-				return unboxedValue;
-			}
+			return evaluate(ocl, query2, target, arguments);
 		}
 		catch (DomainException e) {
 			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
 			throw new OCLDelegateException(new EvaluationException(message, e));
+		}
+	}
+
+	protected Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query2, InternalEObject target, List<?> arguments) {
+		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		IdResolver idResolver = metaModelManager.getIdResolver();
+		Query query = ocl.createQuery(query2);
+		EvaluationEnvironment env = query.getEvaluationEnvironment();
+		Object object = target;
+		Object value = idResolver.boxedValueOf(target);
+		env.add(DomainUtil.nonNullModel( query2.getContextVariable()), value);
+		List<Variable> parms =  query2.getParameterVariable();
+		if (!parms.isEmpty()) {
+			// bind arguments to parameter names
+			for (int i = 0; i < parms.size(); i++) {
+				object = arguments.get(i);
+				value = idResolver.boxedValueOf(object);
+				env.add(DomainUtil.nonNullModel(parms.get(i)), value);
+			}
+		}
+		Object result = query.evaluate(target);
+//			if (result == null) {
+//				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
+//				throw new InvocationTargetException(new OCLDelegateException(message));
+//			}
+		Object unboxedValue = idResolver.unboxedValueOf(result);
+		if (unboxedValue instanceof Number) {
+			return ValuesUtil.getEcoreNumber((Number)unboxedValue, eOperation.getEType().getInstanceClass());
+		}
+		else {
+			return unboxedValue;
 		}
 	}
 

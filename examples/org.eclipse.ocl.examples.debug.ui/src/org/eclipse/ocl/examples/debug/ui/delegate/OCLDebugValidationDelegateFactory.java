@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.delegate;
+package org.eclipse.ocl.examples.debug.ui.delegate;
 
 import java.util.Map;
 
@@ -32,10 +32,10 @@ import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 /**
  * Factory for OCL derived-classifier validation delegates.
  */
-public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
+public class OCLDebugValidationDelegateFactory extends AbstractOCLDelegateFactory
 		implements ValidationDelegate.Factory, ValidationDelegate
 {
-	public OCLValidationDelegateFactory(@NonNull String delegateURI) {
+	public OCLDebugValidationDelegateFactory(@NonNull String delegateURI) {
 		super(delegateURI);
 	}
 
@@ -45,7 +45,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		if (delegateDomain == null) {
 			return null;
 		}
-		return new OCLValidationDelegate(delegateDomain, classifier);
+		return new OCLDebugValidationDelegate(delegateDomain, classifier);
 	}
 
 	protected @Nullable ValidationDelegate getValidationDelegate(@NonNull EClassifier eClassifier) {
@@ -125,7 +125,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	 * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
 	 * by the DelegateResourceSetAdapter.
 	 */
-	public static class Global extends OCLValidationDelegateFactory
+	public static class Global extends OCLDebugValidationDelegateFactory
 	{
 		public static final @NonNull Global INSTANCE = new Global();
 		
