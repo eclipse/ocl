@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 
 public class NameResolutionUtil {
@@ -44,20 +43,26 @@ public class NameResolutionUtil {
 	 * in the environment at that point.   
 	 * 
 	 */
-	static public class AddingCallArgExpType {
+	static public class AddingCallArgExp {
 		
-		private Type type;
+		private OCLExpression addingExp;
 		private int number;
 		private boolean hasChildIndex;
 		
-		public AddingCallArgExpType(Type addingExpType, int number, boolean hasChildIndex){
-			this.type = addingExpType;
+		
+		public AddingCallArgExp(OCLExpression addingExp, int number, boolean hasChildIndex){
+			this.addingExp = addingExp;
 			this.number = number;
 			this.hasChildIndex = hasChildIndex;
+			
 		}
 
+		public OCLExpression getAddingCallExp(){
+			return addingExp;
+		}
+		
 		public Type getType() {
-			return type;
+			return addingExp.getType();
 		}
 
 		public int getNumber() {
@@ -72,14 +77,14 @@ public class NameResolutionUtil {
 	/**
 	 * 
 	 * @param nameResoPackage the name resolution description {@link Package} 
-	 * @return map associating context types and the contained {@link AddingCallArgExpType}s
+	 * @return map associating context types and the contained {@link AddingCallArgExp}s
 	 */
-	public static Map<Type, List<AddingCallArgExpType>> computeType2EnvAddingExps(@NonNull Package nameResoPackage) {
+	public static Map<Type, List<AddingCallArgExp>> computeType2EnvAddingExps(@NonNull Package nameResoPackage) {
 		
 		
-		Map<Type, List<AddingCallArgExpType>> result = new LinkedHashMap<Type, List<AddingCallArgExpType>>();
+		Map<Type, List<AddingCallArgExp>> result = new LinkedHashMap<Type, List<AddingCallArgExp>>();
 		for (Type type : nameResoPackage.getOwnedType()) {
-			List<AddingCallArgExpType> addingExpTypes = getEnvOpAddingExpTypes(type, type.getOwnedOperation());
+			List<AddingCallArgExp> addingExpTypes = getEnvOpAddingExpTypes(type, type.getOwnedOperation());
 			result.put(type, addingExpTypes);
 		}
 		return result;
@@ -87,11 +92,11 @@ public class NameResolutionUtil {
 	
 	/**
 	 * @param envOp An _env operation . It's checked that the provided operation is really an _env operation {@link NameResolutionUtil#isEnvOperation(Operation)} 
-	 * @return the {@link AddingCallArgExpType} contained by the provided _env operation
+	 * @return the {@link AddingCallArgExp} contained by the provided _env operation
 	 */
-	public static List<AddingCallArgExpType> computeEnvOperation2EnvAddingExpTypes(@NonNull Operation envOp) {
+	public static List<AddingCallArgExp> computeEnvOperation2EnvAddingExp(@NonNull Operation envOp) {
 		return isEnvOperation(envOp) ? getEnvOpAddingExpTypes(envOp.getOwningType(), Collections.singletonList(envOp)) 
-			: Collections.<AddingCallArgExpType>emptyList();
+			: Collections.<AddingCallArgExp>emptyList();
 	}
 	
 	
@@ -126,22 +131,22 @@ public class NameResolutionUtil {
 	 * involved in a name resolution description.
 	 * 
 	 * The context is needed because all the operations need to be traversed to use the proper number
-	 * for the {@link AddingCallArgExpType} to create
+	 * for the {@link AddingCallArgExp} to create
 	 * 
 	 * If the type of two different "adding" ocl expressions appears twice, such a type would be added twice
 	 *  
 	 * @param context the context in which adding call expressions will be added
 	 * @param envOps a list of operations for which 
 	 */
-	private static List<AddingCallArgExpType> getEnvOpAddingExpTypes(Type context, List<Operation> envOps) {
+	private static List<AddingCallArgExp> getEnvOpAddingExpTypes(Type context, List<Operation> envOps) {
 		
 		
-		List<AddingCallArgExpType> addingExpTypes = new ArrayList<AddingCallArgExpType>();
+		List<AddingCallArgExp> addingExpTypes = new ArrayList<AddingCallArgExp>();
 		int addingCallExpNumber = 0;
 		for (Operation envOp : context.getOwnedOperation()) {
 			OpaqueExpression opaqueExp = envOp.getBodyExpression();
 			if (opaqueExp != null) {			
-				ExpressionInOCL exp = PivotUtil.getExpressionInOCL(envOp, opaqueExp);
+				ExpressionInOCL exp = opaqueExp.getExpressionInOCL();
 				if (exp != null) {
 					boolean opHasChildIndexArg = envOp.getOwnedParameter().size() == 2; // TODO check other cases ?
 					TreeIterator<EObject> contents =  exp.eAllContents();
@@ -153,7 +158,7 @@ public class NameResolutionUtil {
 								if (envOps.contains(envOp)) { // If the envOp if our interest
 									for (OCLExpression argument : opCall.getArgument()) { // FIXME Should only have one. Check if many ?
 										// note that the same type could be correctly added many times.
-										addingExpTypes.add(new AddingCallArgExpType(argument.getType(),addingCallExpNumber, opHasChildIndexArg)); 
+										addingExpTypes.add(new AddingCallArgExp(argument,addingCallExpNumber, opHasChildIndexArg)); 
 									}
 								}
 								addingCallExpNumber++;
@@ -230,7 +235,7 @@ public class NameResolutionUtil {
 		if (isEnvOperation(op)) {
 			OpaqueExpression opaqueExp = op.getBodyExpression();
 			if (opaqueExp != null) {			
-				ExpressionInOCL exp = PivotUtil.getExpressionInOCL(op, opaqueExp);
+				ExpressionInOCL exp = opaqueExp.getExpressionInOCL();
 				if (exp != null) {
 					TreeIterator<EObject> it = EcoreUtil.getAllContents(exp, true); 
 					while (it.hasNext()) {

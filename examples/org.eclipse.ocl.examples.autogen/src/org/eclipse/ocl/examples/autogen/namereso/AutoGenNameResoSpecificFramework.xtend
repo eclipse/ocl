@@ -48,7 +48,7 @@ class AutoGenNameResoSpecificFramework {
 		generator.generatePivotEnvironmentItf(outputFolder, packageName, modelPckName, nameResoPackage);
 		generator.generatePivotNamedEnvironmentClass(outputFolder, packageName,  baseElmntName, nameResoPackage);
 		generator.generatePivotVisitorClass(outputFolder, packageName, modelPckName, visitorPckName, visitorName, baseElmntPckName, baseElmntName, nameResoPackage)
-		// AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
+		AutoLookupCodeGenerator.generate(outputFolder, projectPrefix, genPackage, modelPckName, packageName, visitorPckName, visitorName, nameResoPackage);
 	}
 	
 	
@@ -63,7 +63,7 @@ class AutoGenNameResoSpecificFramework {
 				
 		var String commonEnvItf = nProvider.getCommonEnvironmentItf()
 		var String envItf = nProvider.getSpecificEnvironmentItf()
-		var Map<Type, List<NameResolutionUtil.AddingCallArgExpType>> type2expTypes = NameResolutionUtil.computeType2EnvAddingExps(nameResoPackage);
+		var Map<Type, List<NameResolutionUtil.AddingCallArgExp>> type2expTypes = NameResolutionUtil.computeType2EnvAddingExps(nameResoPackage);
 		
 		var MergeWriter writer = new MergeWriter(outputFolder + '''«envItf».java''')
 		writer.append('''
@@ -102,7 +102,7 @@ public interface «envItf» extends «commonEnvItf» {
 	«val expType = addingExptype.getType»	
 	«val isMany = expType instanceof CollectionType»
 	«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-	public void add«type.name»«addingExptype.getNumber»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object«IF(addingExptype.hasChildIndex)», int childIndex«ENDIF»);
+	public void add«type.name»«addingExptype.getNumber»_«expTypeName.toFirstUpper»Element«if (isMany) "s"»(@NonNull «type.name» object«IF(addingExptype.isHasChildIndex)», int childIndex«ENDIF»);
 	«ENDFOR»
 	«ENDFOR»
 	
@@ -1000,7 +1000,7 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 	«environmentItf» visit«type.name»(@NonNull «type.name» object) {
 		«IF !NameResolutionUtil.isChildrenBasedEnvOperations(envOps)»
 			«val envOp = envOps.get(0) /*FIXME one envOp is assumed*/»
-			«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOp) »
+			«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExp(envOp) »
 				«val expType = addingExpType.getType»
 				«val isMany = expType instanceof CollectionType»
 				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
@@ -1022,13 +1022,10 @@ public class «visitorClass» extends AbstractExtendingVisitor<«environmentItf�
 			if (containmentReference == «helper.getChildQualifiedFeatureAccessor(type, propName)»)
 			«ENDIF»
 			{
-				«FOR addingExpType : NameResolutionUtil.computeEnvOperation2EnvAddingExpTypes(envOp) »
-				«val expType = addingExpType.getType»
-				«val isMany = expType instanceof CollectionType»
-				«val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name»
-				«val useIndex = addingExpType.hasChildIndex»
+				«FOR addingExp : NameResolutionUtil.computeEnvOperation2EnvAddingExp(envOp) »
+				«val useIndex = addingExp.isHasChildIndex»
 				«IF useIndex»int childIndex = object.«helper.getFeatureAccessor(type, propName)»().indexOf(context.getChild()); «ENDIF»
-				env.add«type.name»«addingExpType.getNumber»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»(object«IF useIndex», childIndex«ENDIF»);
+				env.«nProvider.getAddMethodName(type, addingExp)»(object«IF useIndex», childIndex«ENDIF»);
 				«ENDFOR»
 				«IF NameResolutionUtil.hasNestedEnvCall(envOp)»				
 				return lookupInParentIfEnvNoComplete();

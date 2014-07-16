@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -26,27 +27,22 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.autogen.java.IAutoCGComponentFactory;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.namereso.NameResolutionUtil.AddingCallArgExp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelFactory;
-import org.eclipse.ocl.examples.autogen.utilities.AutoCGModelResourceFactory;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -63,7 +59,7 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 	protected final String packageName;
 	
 	@NonNull
-	protected final AutoNameResoCGNamesProvider nProvider; 
+	protected final AutoNameResoCGNamesProvider nProvider;
 	
 	public static void generate(
 			@NonNull String outputFolder, 
@@ -101,8 +97,8 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 
 	
 	@Override
-	public @NonNull AutoCGModelResourceFactory getCGResourceFactory() {
-		return AutoCGModelResourceFactory.INSTANCE;
+	public @NonNull AutoLookupResourceFactory getCGResourceFactory() {
+		return AutoLookupResourceFactory.INSTANCE;
 	}
 	
 	public @NonNull AutoNameResoCGNamesProvider getCGNamesProvider() {
@@ -112,7 +108,7 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 	public void saveSourceFile() {
 		// String utilDir = genModel.getModelDirectory() + "/" + genPackage.getBasePackage().replace('.', '/') +"/util/" + genPackage.getPrefix() + "AutoContainmentVisitor.java";
 		
-		URI uri = URI.createFileURI(outputFolder + "/" + getAutoLookupVisitorClassName(projectPrefix) + ".java");
+		URI uri = URI.createFileURI(outputFolder + "/" + getAutoLookupNamedEnvironmentClassName(projectPrefix) + ".java");
 		String javaCodeSource = generateClassFile();
 		try {
 			OutputStream outputStream = URIConverter.INSTANCE.createOutputStream(uri);
@@ -145,7 +141,7 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 		//String packageName = getCS2ASVisitorPackageName(projectName); 
 		
 		//String className = prefix + "AutoContainmentVisitor";
-		String className = getAutoLookupVisitorClassName(prefix);
+		String className = getAutoLookupNamedEnvironmentClassName(prefix);
 		AS2CGVisitor as2cgVisitor = createAS2CGVisitor();
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		cgPackage.setName(packageName);
@@ -169,48 +165,43 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 //		}
 //		else {
 			// String superClassName = "Abstract" + /*trimmed*/prefix + "CSVisitor";
-			String superClassName = "AbstractExtending" + visitorClass; // The default Abstract Visitor generated for the language
-			CGClass superClass = getExternalClass(visitorPackage, superClassName, false);
-			superClass.getTemplateParameters().add(getExternalClass(packageName, nProvider.getSpecificEnvironmentItf(), true));			
-			superClass.getTemplateParameters().add(getExternalClass(packageName, nProvider.getCommonContextItf(), true, getExternalClass(Element.class))); // FIXME ASBH parametrize Element
+
+			CGClass superClass = getExternalClass(packageName, nProvider.getSpecificAbstractNamedEnvironmentClass(), false);				
 			cgClass.getSuperTypes().add(superClass);
 			
-			CGClass superInterface = getExternalClass(packageName, nProvider.getSpecificVisitorItf(), true);
-			cgClass.getSuperTypes().add(superInterface);
 //		}
 		cgPackage.getClasses().add(cgClass);
-		for (Type asType : asPackage.getOwnedType()) {
-		
-			CGOperation cgOperation = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitOp();
-			cgOperation.setName("visit" + asType.getName());
-			cgOperation.setAst(asType);
-			cgClass.getOperations().add(cgOperation);
-			
-			CGEnvVisitOpBody cgOpBody = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitOpBody();
-			cgOpBody.setAst(asType);
-			cgOperation.setBody(cgOpBody);
-			
-			
-			for (Operation asOperation : asType.getOwnedOperation()) {
-				if (NameResolutionUtil.isEnvOperation(asOperation)) {
-					CGEnvVisitIfPart cgEnvOpIfPart = NameResoCGModelFactory.eINSTANCE.createCGEnvVisitIfPart();
-					String propName = NameResolutionUtil.getEnvOpPropertyName(asOperation);
-					cgEnvOpIfPart.setAst(asOperation);
-					cgEnvOpIfPart.setPropertyName(propName);	
-					cgOpBody.getEnvConfigParts().add(cgEnvOpIfPart);
-					
-					OpaqueExpression body = asOperation.getBodyExpression();
-					if (body instanceof ExpressionInOCL) {
-						OCLExpression bodyExp = ((ExpressionInOCL)body).getBodyExpression();
-						for (OperationCallExp addOpCall : NameResolutionUtil.getAddElementCallExps(bodyExp)) {
-							CGAddCall addCall = NameResoCGModelFactory.eINSTANCE.createCGAddCall();
-							addCall.setAst(addOpCall);
-							addCall.setReferredOperation(addOpCall.getReferredOperation());
-							addCall.getArguments().add((CGValuedElement)addOpCall.getArgument().get(0).accept(as2cgVisitor)); // Should always have one
-							cgEnvOpIfPart.getEnvExpressions().add(addCall);
-						}
-					}
+		Map<Type, List<AddingCallArgExp>> type2AddingCallExps = NameResolutionUtil.computeType2EnvAddingExps(asPackage);
+		for (Entry<Type, List<AddingCallArgExp>> entry : type2AddingCallExps.entrySet()) {
+			Type asType = entry.getKey();
+			for (AddingCallArgExp addingExp : entry.getValue()) {
+				CGOperation cgOperation = NameResoCGModelFactory.eINSTANCE.createCGAddOp();
+				cgOperation.setName(nProvider.getAddMethodName(asType, addingExp));
+				cgOperation.setAst(addingExp.getAddingCallExp());
+				cgOperation.setTypeId(getAnalyzer().getTypeId(TypeId.OCL_VOID));
+				cgClass.getOperations().add(cgOperation);				
+								
+				ExpressionInOCL expInOCL = PivotUtil.getContainingExpressionInOCL(addingExp.getAddingCallExp());
+				if (expInOCL != null) {
+					Variable selfVar = DomainUtil.nonNullState(expInOCL.getContextVariable());
+					CGParameter cgParameter = CGModelFactory.eINSTANCE.createCGParameter();
+					getAnalyzer().setNames(cgParameter, selfVar);
+					cgParameter.setAst(selfVar);
+					cgParameter.setTypeId(getAnalyzer().getTypeId(selfVar.getTypeId()));
+					cgOperation.getParameters().add(cgParameter);				
 				}
+								
+			
+				
+				if (addingExp.isHasChildIndex()) {
+					CGParameter cgParameter = CGModelFactory.eINSTANCE.createCGParameter();
+					cgParameter.setName("childIndex");
+					cgParameter.setValueName("childIndex");
+					cgParameter.setNonNull();
+					cgParameter.setTypeId(getAnalyzer().getTypeId(metaModelManager.getIntegerType().getTypeId()));
+					cgOperation.getParameters().add(cgParameter);
+				}
+				cgOperation.setBody((CGValuedElement) addingExp.getAddingCallExp().accept(as2cgVisitor));
 			}
 		}
 		return cgPackage;
@@ -221,12 +212,8 @@ public class AutoLookupCodeGenerator extends AutoCodeGenerator {
 		return new AutoNameResoCGNamesProvider(projectPrefix);
 	}
 	
-	protected @NonNull String getAutoLookupVisitorClassName(@NonNull String prefix) {
-		return nProvider.getSpecificVisitorClass();
-	}
-	
-	protected @NonNull String getManualLookupVisitorClassName(@NonNull String prefix) {
-		return nProvider.getCustomSpecificVisitorClass();  
+	protected @NonNull String getAutoLookupNamedEnvironmentClassName(@NonNull String prefix) {
+		return nProvider.getSpecificNamedEnvironmentClass();
 	}
 		
 }

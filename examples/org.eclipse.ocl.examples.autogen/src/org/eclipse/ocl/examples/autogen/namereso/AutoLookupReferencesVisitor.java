@@ -14,10 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
 
@@ -35,22 +32,7 @@ public class AutoLookupReferencesVisitor extends ReferencesVisitor implements Na
 	}
 
 	@Nullable
-	public List<Object> visitCGAddCall(@NonNull CGAddCall object) {
-		return visitCGOperationCallExp(object);
-	}
-
-	@Nullable
-	public List<Object> visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {
-		return visitCGValuedElement(object);
-	}
-
-	@Nullable
-	public List<Object> visitCGEnvVisitOp(@NonNull CGEnvVisitOp object) {
+	public List<Object> visitCGAddOp(@NonNull CGAddOp object) {
 		return visitCGOperation(object);
-	}
-
-	@Nullable
-	public List<Object> visitCGEnvVisitOpBody(@NonNull CGEnvVisitOpBody object) {
-		return visitCGValuedElement(object);
 	}
 }

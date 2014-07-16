@@ -17,7 +17,7 @@ package org.eclipse.ocl.examples.autogen.nameresocgmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.impl.CGOperationImpl;
@@ -25,14 +25,14 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>CG Env Visit Op</b></em>'.
+ * An implementation of the model object '<em><b>CG Add Op</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class CGEnvVisitOpImpl extends CGOperationImpl implements CGEnvVisitOp {
+public class CGAddOpImpl extends CGOperationImpl implements CGAddOp {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,7 +45,7 @@ public class CGEnvVisitOpImpl extends CGOperationImpl implements CGEnvVisitOp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGEnvVisitOpImpl() {
+	protected CGAddOpImpl() {
 		super();
 	}
 
@@ -56,7 +56,7 @@ public class CGEnvVisitOpImpl extends CGOperationImpl implements CGEnvVisitOp {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NameResoCGModelPackage.Literals.CG_ENV_VISIT_OP;
+		return NameResoCGModelPackage.Literals.CG_ADD_OP;
 	}
 
 	/**
@@ -66,8 +66,13 @@ public class CGEnvVisitOpImpl extends CGOperationImpl implements CGEnvVisitOp {
 	@SuppressWarnings("unchecked")
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
-		return (R) ((NameResoCGModelVisitor<?>)visitor).visitCGEnvVisitOp(this);
+		return (R) ((NameResoCGModelVisitor<?>)visitor).visitCGAddOp(this);
+	}
+	
+	@Override
+	public boolean isBoxed() {
+		// FIXME ADOLFOSBH ??????????
+		return true;
 	}
 
-
-} //CGEnvVisitOpImpl
+} //CGAddOpImpl

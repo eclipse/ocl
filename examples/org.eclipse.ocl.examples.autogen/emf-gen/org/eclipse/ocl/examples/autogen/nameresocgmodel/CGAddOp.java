@@ -18,15 +18,15 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>CG Env Visit Op</b></em>'.
+ * A representation of the model object '<em><b>CG Add Op</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage#getCGEnvVisitOp()
+ * @see org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage#getCGAddOp()
  * @model
  * @generated
  */
-public interface CGEnvVisitOp extends CGOperation {
+public interface CGAddOp extends CGOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,4 +34,4 @@ public interface CGEnvVisitOp extends CGOperation {
 	 */
 	String copyright = "<copyright>\r\n\r\nCopyright (c) 2014 Willink Transformations, University of York and others.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n\t Adolfo Sanchez-Barbudo Herrera (Univerisity of York) - Initial API and implementation\r\n\r\n</copyright>";
 
-} // CGEnvVisitOp
+} // CGAddOp

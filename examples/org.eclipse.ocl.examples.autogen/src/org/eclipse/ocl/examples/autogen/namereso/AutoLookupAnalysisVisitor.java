@@ -2,10 +2,7 @@ package org.eclipse.ocl.examples.autogen.namereso;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
@@ -19,23 +16,7 @@ public class AutoLookupAnalysisVisitor extends AnalysisVisitor
 	}
 
 	@Nullable
-	public Object visitCGAddCall(@NonNull CGAddCall object) {
-		return visitCGOperationCallExp(object);
-	}
-
-	@Nullable
-	public Object visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {
-		return visitCGValuedElement(object);
-	}
-
-	@Nullable
-	public Object visitCGEnvVisitOp(@NonNull CGEnvVisitOp object) {
+	public Object visitCGAddOp(@NonNull CGAddOp object) {
 		return visitCGOperation(object);
 	}
-
-	@Nullable
-	public Object visitCGEnvVisitOpBody(@NonNull CGEnvVisitOpBody object) {
-		return visitCGValuedElement(object);
-	}
-
 }

@@ -42,19 +42,7 @@ public abstract class AbstractNonNullExtendingNameResoCGModelVisitor<R, C>
 		super(context);
 	}	
 
-	public @NonNull R visitCGAddCall(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall object) {
-		return visitCGOperationCallExp(object);
-	}
-
-	public @NonNull R visitCGEnvVisitIfPart(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart object) {
-		return visitCGValuedElement(object);
-	}
-
-	public @NonNull R visitCGEnvVisitOp(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp object) {
+	public @NonNull R visitCGAddOp(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp object) {
 		return visitCGOperation(object);
-	}
-
-	public @NonNull R visitCGEnvVisitOpBody(@NonNull org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody object) {
-		return visitCGValuedElement(object);
 	}
 }

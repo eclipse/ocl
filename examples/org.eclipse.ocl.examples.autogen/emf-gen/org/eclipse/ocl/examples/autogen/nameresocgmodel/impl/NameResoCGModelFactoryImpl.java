@@ -19,10 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 
@@ -77,10 +74,7 @@ public class NameResoCGModelFactoryImpl extends EFactoryImpl implements NameReso
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case NameResoCGModelPackage.CG_ADD_CALL: return createCGAddCall();
-			case NameResoCGModelPackage.CG_ENV_VISIT_OP: return createCGEnvVisitOp();
-			case NameResoCGModelPackage.CG_ENV_VISIT_OP_BODY: return createCGEnvVisitOpBody();
-			case NameResoCGModelPackage.CG_ENV_VISIT_IF_PART: return createCGEnvVisitIfPart();
+			case NameResoCGModelPackage.CG_ADD_OP: return createCGAddOp();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,39 +85,9 @@ public class NameResoCGModelFactoryImpl extends EFactoryImpl implements NameReso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CGAddCall createCGAddCall() {
-		CGAddCallImpl cgAddCall = new CGAddCallImpl();
-		return cgAddCall;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CGEnvVisitOp createCGEnvVisitOp() {
-		CGEnvVisitOpImpl cgEnvVisitOp = new CGEnvVisitOpImpl();
-		return cgEnvVisitOp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CGEnvVisitOpBody createCGEnvVisitOpBody() {
-		CGEnvVisitOpBodyImpl cgEnvVisitOpBody = new CGEnvVisitOpBodyImpl();
-		return cgEnvVisitOpBody;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CGEnvVisitIfPart createCGEnvVisitIfPart() {
-		CGEnvVisitIfPartImpl cgEnvVisitIfPart = new CGEnvVisitIfPartImpl();
-		return cgEnvVisitIfPart;
+	public CGAddOp createCGAddOp() {
+		CGAddOpImpl cgAddOp = new CGAddOpImpl();
+		return cgAddOp;
 	}
 
 	/**

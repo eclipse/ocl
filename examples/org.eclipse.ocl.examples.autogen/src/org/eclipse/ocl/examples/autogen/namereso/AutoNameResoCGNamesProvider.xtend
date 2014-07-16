@@ -1,6 +1,9 @@
 package org.eclipse.ocl.examples.autogen.namereso
 
 import org.eclipse.jdt.annotation.NonNull
+import org.eclipse.ocl.examples.autogen.namereso.NameResolutionUtil.AddingCallArgExp
+import org.eclipse.ocl.examples.pivot.CollectionType
+import org.eclipse.ocl.examples.pivot.Type
 
 class AutoNameResoCGNamesProvider {
 	
@@ -195,4 +198,17 @@ class AutoNameResoCGNamesProvider {
 	def public String getSpecificNameResolverClass() {
 		return '''«autoPrefix»«projectPrefix»NameResolver'''
 	}	
+	
+	// Some more useful methods
+	
+	def public String getAddMethodName(Type type, AddingCallArgExp addingCallArgExp) {
+		val typeName = type.name
+		val expType = addingCallArgExp.getType
+		val isMany = expType instanceof CollectionType
+		val expTypeName = if (expType instanceof CollectionType) expType.elementType.name else expType.name
+		val addingCallPos = addingCallArgExp.number
+		return '''add«typeName»«addingCallPos»_«expTypeName.toFirstUpper»Element«if(isMany)"s"»'''
+	}
+	
+	
 }

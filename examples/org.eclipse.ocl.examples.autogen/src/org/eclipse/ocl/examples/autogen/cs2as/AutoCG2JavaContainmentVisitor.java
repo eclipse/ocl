@@ -85,25 +85,24 @@ public class AutoCG2JavaContainmentVisitor extends AutoCG2JavaVisitor
 	}
 
 	@Override
-	protected void doVisiting(@NonNull CGClass cgClass) {
-		js.append("public ");
-		js.appendIsRequired(false);
-		js.append(" ");
-		js.appendClassReference(Continuation.class);
-		js.append(" visiting(");
-		js.appendIsRequired(true);
-		js.append(" ");
-		js.appendClassReference(VisitableCS.class);
-		js.append(" visitable) {\n");
-		js.pushIndentation(null);
-		js.append("throw new UnsupportedOperationException();\n");
-		js.popIndentation();
-		js.append("}\n");
-	}
-
-	@Override
 	protected void doAdditionalClassMethods(@NonNull CGClass cgClass) {
-		// No addtional methods
+		List<CGClass> cgSuperTypes = cgClass.getSuperTypes();
+		if (cgSuperTypes.size() <= 1) {
+			js.append("\n");
+			js.append("public ");
+			js.appendIsRequired(false);
+			js.append(" ");
+			js.appendClassReference(Continuation.class);
+			js.append(" visiting(");
+			js.appendIsRequired(true);
+			js.append(" ");
+			js.appendClassReference(VisitableCS.class);
+			js.append(" visitable) {\n");
+			js.pushIndentation(null);
+			js.append("throw new UnsupportedOperationException();\n");
+			js.popIndentation();
+			js.append("}\n");
+		}
 	}
 	
 	public @NonNull Boolean visitCGASTCallExp(@NonNull CGASTCallExp object) {

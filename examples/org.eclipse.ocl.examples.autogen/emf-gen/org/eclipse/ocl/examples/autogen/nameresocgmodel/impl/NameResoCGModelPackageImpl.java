@@ -14,15 +14,10 @@
  */
 package org.eclipse.ocl.examples.autogen.nameresocgmodel.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.NameResoCGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
@@ -46,28 +41,7 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cgAddCallEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cgEnvVisitOpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cgEnvVisitOpBodyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cgEnvVisitIfPartEClass = null;
+	private EClass cgAddOpEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -138,62 +112,8 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCGAddCall() {
-		return cgAddCallEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCGEnvVisitOp() {
-		return cgEnvVisitOpEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCGEnvVisitOpBody() {
-		return cgEnvVisitOpBodyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCGEnvVisitOpBody_EnvConfigParts() {
-		return (EReference)cgEnvVisitOpBodyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCGEnvVisitIfPart() {
-		return cgEnvVisitIfPartEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCGEnvVisitIfPart_PropertyName() {
-		return (EAttribute)cgEnvVisitIfPartEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCGEnvVisitIfPart_EnvExpressions() {
-		return (EReference)cgEnvVisitIfPartEClass.getEStructuralFeatures().get(1);
+	public EClass getCGAddOp() {
+		return cgAddOpEClass;
 	}
 
 	/**
@@ -224,16 +144,7 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 		isCreated = true;
 
 		// Create classes and their features
-		cgAddCallEClass = createEClass(CG_ADD_CALL);
-
-		cgEnvVisitOpEClass = createEClass(CG_ENV_VISIT_OP);
-
-		cgEnvVisitOpBodyEClass = createEClass(CG_ENV_VISIT_OP_BODY);
-		createEReference(cgEnvVisitOpBodyEClass, CG_ENV_VISIT_OP_BODY__ENV_CONFIG_PARTS);
-
-		cgEnvVisitIfPartEClass = createEClass(CG_ENV_VISIT_IF_PART);
-		createEAttribute(cgEnvVisitIfPartEClass, CG_ENV_VISIT_IF_PART__PROPERTY_NAME);
-		createEReference(cgEnvVisitIfPartEClass, CG_ENV_VISIT_IF_PART__ENV_EXPRESSIONS);
+		cgAddOpEClass = createEClass(CG_ADD_OP);
 	}
 
 	/**
@@ -267,22 +178,10 @@ public class NameResoCGModelPackageImpl extends EPackageImpl implements NameReso
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		cgAddCallEClass.getESuperTypes().add(theCGModelPackage.getCGOperationCallExp());
-		cgEnvVisitOpEClass.getESuperTypes().add(theCGModelPackage.getCGOperation());
-		cgEnvVisitOpBodyEClass.getESuperTypes().add(theCGModelPackage.getCGValuedElement());
-		cgEnvVisitIfPartEClass.getESuperTypes().add(theCGModelPackage.getCGValuedElement());
+		cgAddOpEClass.getESuperTypes().add(theCGModelPackage.getCGOperation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(cgAddCallEClass, CGAddCall.class, "CGAddCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(cgEnvVisitOpEClass, CGEnvVisitOp.class, "CGEnvVisitOp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(cgEnvVisitOpBodyEClass, CGEnvVisitOpBody.class, "CGEnvVisitOpBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCGEnvVisitOpBody_EnvConfigParts(), this.getCGEnvVisitIfPart(), null, "envConfigParts", null, 0, -1, CGEnvVisitOpBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(cgEnvVisitIfPartEClass, CGEnvVisitIfPart.class, "CGEnvVisitIfPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCGEnvVisitIfPart_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, CGEnvVisitIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCGEnvVisitIfPart_EnvExpressions(), this.getCGAddCall(), null, "envExpressions", null, 1, -1, CGEnvVisitIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(cgAddOpEClass, CGAddOp.class, "CGAddOp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

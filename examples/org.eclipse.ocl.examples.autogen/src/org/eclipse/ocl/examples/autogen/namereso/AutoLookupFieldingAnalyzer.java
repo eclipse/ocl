@@ -15,10 +15,7 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddCall;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitIfPart;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOp;
-import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGEnvVisitOpBody;
+import org.eclipse.ocl.examples.autogen.nameresocgmodel.CGAddOp;
 import org.eclipse.ocl.examples.autogen.nameresocgmodel.util.NameResoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
@@ -33,24 +30,10 @@ public class AutoLookupFieldingAnalyzer extends FieldingAnalyzer
 
 
 		@Nullable
-		public Set<CGVariable> visitCGAddCall(@NonNull CGAddCall object) {
-			return visitCGOperationCallExp(object);
-		}
-
-		@Nullable
-		public Set<CGVariable> visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {
-			return visitCGValuedElement(object);
-		}
-
-		@Nullable
-		public Set<CGVariable> visitCGEnvVisitOp(@NonNull CGEnvVisitOp object) {
+		public Set<CGVariable> visitCGAddOp(@NonNull CGAddOp object) {
 			return visitCGOperation(object);
 		}
 
-		@Nullable
-		public Set<CGVariable> visitCGEnvVisitOpBody(@NonNull CGEnvVisitOpBody object) {
-			return visitCGValuedElement(object);
-		}
 	}
 	
 	public static class AutoRewriteVisitor extends RewriteVisitor implements NameResoCGModelVisitor<Boolean>
@@ -60,24 +43,10 @@ public class AutoLookupFieldingAnalyzer extends FieldingAnalyzer
 		}
 
 		@Nullable
-		public Boolean visitCGAddCall(@NonNull CGAddCall object) {
-			return visitCGOperationCallExp(object);
-		}
-
-		@Nullable
-		public Boolean visitCGEnvVisitIfPart(@NonNull CGEnvVisitIfPart object) {
-			return visitCGValuedElement(object);
-		}
-
-		@Nullable
-		public Boolean visitCGEnvVisitOp(@NonNull CGEnvVisitOp object) {
+		public Boolean visitCGAddOp(@NonNull CGAddOp object) {
 			return visitCGOperation(object);
 		}
 
-		@Nullable
-		public Boolean visitCGEnvVisitOpBody(@NonNull CGEnvVisitOpBody object) {
-			return visitCGValuedElement(object);
-		}
 	}
 	
 	public AutoLookupFieldingAnalyzer(@NonNull AutoAnalyzer analyzer) {

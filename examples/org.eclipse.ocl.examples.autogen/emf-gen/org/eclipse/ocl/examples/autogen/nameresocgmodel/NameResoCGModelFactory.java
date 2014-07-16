@@ -41,40 +41,13 @@ public interface NameResoCGModelFactory extends EFactory {
 	NameResoCGModelFactory eINSTANCE = org.eclipse.ocl.examples.autogen.nameresocgmodel.impl.NameResoCGModelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>CG Add Call</em>'.
+	 * Returns a new object of class '<em>CG Add Op</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Add Call</em>'.
+	 * @return a new object of class '<em>CG Add Op</em>'.
 	 * @generated
 	 */
-	CGAddCall createCGAddCall();
-
-	/**
-	 * Returns a new object of class '<em>CG Env Visit Op</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Env Visit Op</em>'.
-	 * @generated
-	 */
-	CGEnvVisitOp createCGEnvVisitOp();
-
-	/**
-	 * Returns a new object of class '<em>CG Env Visit Op Body</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Env Visit Op Body</em>'.
-	 * @generated
-	 */
-	CGEnvVisitOpBody createCGEnvVisitOpBody();
-
-	/**
-	 * Returns a new object of class '<em>CG Env Visit If Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Env Visit If Part</em>'.
-	 * @generated
-	 */
-	CGEnvVisitIfPart createCGEnvVisitIfPart();
+	CGAddOp createCGAddOp();
 
 	/**
 	 * Returns the package supported by this factory.

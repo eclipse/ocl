@@ -61,11 +61,7 @@ public abstract class AutoCG2JavaVisitor extends CG2JavaVisitor
 		
 		js.append("\n");
 		doConstructor(cgClass);
-		if (cgSuperTypes.size() <= 1) {
-			js.append("\n");
-			doVisiting(cgClass);
-		}
-		
+				
 		js.append("\n");
 		doAdditionalClassMethods(cgClass);
 		
@@ -111,8 +107,6 @@ public abstract class AutoCG2JavaVisitor extends CG2JavaVisitor
 	abstract protected void doClassFields(@NonNull CGClass cgClass);
 	
 	abstract protected void doConstructor(@NonNull CGClass cgClass);
-	
-	abstract protected void doVisiting(@NonNull CGClass cgClass);
 	
 	abstract protected void doAdditionalClassMethods(@NonNull CGClass cgClass);
 }
