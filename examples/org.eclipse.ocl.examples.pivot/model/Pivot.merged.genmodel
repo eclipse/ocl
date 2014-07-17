@@ -306,9 +306,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/profileApplication"/>
       </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedInstances"/>
-      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Package/nsPrefix"/>
       </genFeatures>
@@ -317,6 +314,9 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/importedPackage"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedInstances"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedType"/>
@@ -351,6 +351,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Constraint/redefinedConstraint"/>
       </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false">
+      <ecoreClass href="Pivot.ecore#//PackageableElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//ExpressionInOCL"/>
@@ -1137,9 +1140,6 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//OrderedSetType"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false">
-      <ecoreClass href="Pivot.ecore#//PackageableElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//PrimitiveType"/>

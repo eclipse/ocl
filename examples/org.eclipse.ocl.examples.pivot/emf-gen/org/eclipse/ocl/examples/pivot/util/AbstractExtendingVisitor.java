@@ -107,7 +107,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitConstraint(@NonNull org.eclipse.ocl.examples.pivot.Constraint object) {
-		return visitNamedElement(object);
+		return visitPackageableElement(object);
 	}
 
 	public @Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.examples.pivot.ConstructorExp object) {
@@ -299,7 +299,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitPackageableElement(@NonNull org.eclipse.ocl.examples.pivot.PackageableElement object) {
-		return visitParameterableElement(object);
+		return visitNamedElement(object);
 	}
 
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {

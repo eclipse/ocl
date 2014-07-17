@@ -814,6 +814,8 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Constraint__NamedElement = new ExecutorFragment(Types._Constraint, PivotTables.Types._NamedElement);
 		private static final @NonNull ExecutorFragment _Constraint__OclAny = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Constraint__OclElement = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _Constraint__PackageableElement = new ExecutorFragment(Types._Constraint, PivotTables.Types._PackageableElement);
+		private static final @NonNull ExecutorFragment _Constraint__ParameterableElement = new ExecutorFragment(Types._Constraint, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _Constraint__Visitable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _ConstructorExp__ConstructorExp = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._ConstructorExp);
@@ -1351,6 +1353,8 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Package__Visitable = new ExecutorFragment(Types._Package, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _PackageableElement__Element = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Element);
+		private static final @NonNull ExecutorFragment _PackageableElement__Nameable = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Nameable);
+		private static final @NonNull ExecutorFragment _PackageableElement__NamedElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._NamedElement);
 		private static final @NonNull ExecutorFragment _PackageableElement__OclAny = new ExecutorFragment(Types._PackageableElement, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _PackageableElement__OclElement = new ExecutorFragment(Types._PackageableElement, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _PackageableElement__PackageableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._PackageableElement);
@@ -2769,9 +2773,11 @@ public class PivotTables
 			Fragments._Constraint__Visitable /* 2 */,
 			Fragments._Constraint__Element /* 3 */,
 			Fragments._Constraint__NamedElement /* 4 */,
-			Fragments._Constraint__Constraint /* 5 */
+			Fragments._Constraint__ParameterableElement /* 4 */,
+			Fragments._Constraint__PackageableElement /* 5 */,
+			Fragments._Constraint__Constraint /* 6 */
 		};
-		private static final @NonNull int[] __Constraint = { 1,1,2,1,1,1 };
+		private static final @NonNull int[] __Constraint = { 1,1,2,1,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ConstructorExp =
 		{
@@ -3515,12 +3521,14 @@ public class PivotTables
 		{
 			Fragments._PackageableElement__OclAny /* 0 */,
 			Fragments._PackageableElement__OclElement /* 1 */,
+			Fragments._PackageableElement__Nameable /* 2 */,
 			Fragments._PackageableElement__Visitable /* 2 */,
 			Fragments._PackageableElement__Element /* 3 */,
+			Fragments._PackageableElement__NamedElement /* 4 */,
 			Fragments._PackageableElement__ParameterableElement /* 4 */,
 			Fragments._PackageableElement__PackageableElement /* 5 */
 		};
-		private static final @NonNull int[] __PackageableElement = { 1,1,1,1,1,1 };
+		private static final @NonNull int[] __PackageableElement = { 1,1,2,1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _Parameter =
 		{
@@ -5207,6 +5215,11 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _Constraint__PackageableElement = {};
+		private static final @NonNull ExecutorOperation[] _Constraint__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
 		};
 		private static final @NonNull ExecutorOperation[] _Constraint__Visitable = {};
 
@@ -7006,6 +7019,8 @@ public class PivotTables
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
 		};
+		private static final @NonNull ExecutorOperation[] _PackageableElement__Nameable = {};
+		private static final @NonNull ExecutorOperation[] _PackageableElement__NamedElement = {};
 		private static final @NonNull ExecutorOperation[] _PackageableElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
@@ -9245,6 +9260,8 @@ public class PivotTables
 			Fragments._Constraint__NamedElement.initOperations(_Constraint__NamedElement);
 			Fragments._Constraint__OclAny.initOperations(_Constraint__OclAny);
 			Fragments._Constraint__OclElement.initOperations(_Constraint__OclElement);
+			Fragments._Constraint__PackageableElement.initOperations(_Constraint__PackageableElement);
+			Fragments._Constraint__ParameterableElement.initOperations(_Constraint__ParameterableElement);
 			Fragments._Constraint__Visitable.initOperations(_Constraint__Visitable);
 
 			Fragments._ConstructorExp__ConstructorExp.initOperations(_ConstructorExp__ConstructorExp);
@@ -9782,6 +9799,8 @@ public class PivotTables
 			Fragments._Package__Visitable.initOperations(_Package__Visitable);
 
 			Fragments._PackageableElement__Element.initOperations(_PackageableElement__Element);
+			Fragments._PackageableElement__Nameable.initOperations(_PackageableElement__Nameable);
+			Fragments._PackageableElement__NamedElement.initOperations(_PackageableElement__NamedElement);
 			Fragments._PackageableElement__OclAny.initOperations(_PackageableElement__OclAny);
 			Fragments._PackageableElement__OclElement.initOperations(_PackageableElement__OclElement);
 			Fragments._PackageableElement__PackageableElement.initOperations(_PackageableElement__PackageableElement);
@@ -11066,8 +11085,10 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Constraint__owningState,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._Constraint__redefinedConstraint,
 			PivotTables.Properties._Constraint__specification,
+			PivotTables.Properties._ParameterableElement__templateParameter,
 			PivotTables.Properties._Constraint__transition,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
@@ -11078,7 +11099,11 @@ public class PivotTables
 			PivotTables.Properties._Constraint__Operation__precondition,
 			PivotTables.Properties._Constraint__Type__ownedInvariant,
 			PivotTables.Properties._Element__comment__annotatedElement,
-			PivotTables.Properties._Constraint__constraint__redefinedConstraint
+			PivotTables.Properties._Constraint__constraint__redefinedConstraint,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
+			PivotTables.Properties._ParameterableElement__templateParameter__default,
+			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
+			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
 		};
 
 		private static final @NonNull ExecutorProperty[] _ConstructorExp = {
@@ -12669,6 +12694,8 @@ public class PivotTables
 
 		private static final @NonNull ExecutorProperty[] _PackageableElement = {
 			PivotTables.Properties._Element__extension,
+			PivotTables.Properties._NamedElement__isStatic,
+			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,

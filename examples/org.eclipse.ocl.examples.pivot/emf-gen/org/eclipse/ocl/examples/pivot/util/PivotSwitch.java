@@ -433,7 +433,9 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				Constraint constraint = (Constraint)theEObject;
 				T1 result = caseConstraint(constraint);
+				if (result == null) result = casePackageableElement(constraint);
 				if (result == null) result = caseNamedElement(constraint);
+				if (result == null) result = caseParameterableElement(constraint);
 				if (result == null) result = caseElement(constraint);
 				if (result == null) result = caseNameable(constraint);
 				if (result == null) result = caseVisitable(constraint);
@@ -1108,8 +1110,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				PackageableElement packageableElement = (PackageableElement)theEObject;
 				T1 result = casePackageableElement(packageableElement);
+				if (result == null) result = caseNamedElement(packageableElement);
 				if (result == null) result = caseParameterableElement(packageableElement);
 				if (result == null) result = caseElement(packageableElement);
+				if (result == null) result = caseNameable(packageableElement);
 				if (result == null) result = caseVisitable(packageableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

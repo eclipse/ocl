@@ -6204,7 +6204,7 @@ public class PivotPackageImpl
 		collectionTypeEClass.getESuperTypes().add(this.getDataType());
 		commentEClass.getESuperTypes().add(this.getElement());
 		connectionPointReferenceEClass.getESuperTypes().add(this.getVertex());
-		constraintEClass.getESuperTypes().add(this.getNamedElement());
+		constraintEClass.getESuperTypes().add(this.getPackageableElement());
 		constructorExpEClass.getESuperTypes().add(this.getOCLExpression());
 		constructorPartEClass.getESuperTypes().add(this.getTypedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
@@ -6262,6 +6262,7 @@ public class PivotPackageImpl
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
 		packageEClass.getESuperTypes().add(this.getNamespace());
 		packageEClass.getESuperTypes().add(this.getTemplateableElement());
+		packageableElementEClass.getESuperTypes().add(this.getNamedElement());
 		packageableElementEClass.getESuperTypes().add(this.getParameterableElement());
 		parameterEClass.getESuperTypes().add(this.getTypedMultiplicityElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());

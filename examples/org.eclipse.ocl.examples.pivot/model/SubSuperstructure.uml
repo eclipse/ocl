@@ -4,30 +4,121 @@
     <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs" name="AuxiliaryConstructs">
       <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs-Templates" name="Templates">
         <packagedElement xmi:type="uml:Class" xmi:id="_nFdeAJwSEd-STLWP-FLKew" name="Element" isAbstract="true"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature" name="TemplateSignature">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature">
-            <body>A template signature bundles the set of formal template parameters for a templated element.</body>
+        <packagedElement xmi:type="uml:Class" xmi:id="_iWKggA3IEeSm6471J7pVhQ" name="NamedElement" isAbstract="true"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement" name="ParameterableElement" isAbstract="true">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement">
+            <body>A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.</body>
           </ownedComment>
-          <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements" name="own_elements" constrainedElement="AuxiliaryConstructs-Templates-TemplateSignature">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-own_elements">
-              <body>Parameters must own the elements they parameter or those elements must be owned by the element being templated.</body>
+          <generalization xmi:id="_XnqLNX7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_parameteredElement_templateParameter">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter">
+              <body>The template parameter that exposes this element as a formal parameter.</body>
             </ownedComment>
-            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_specification">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfTn7VEeOu79LxSz8Ylw"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter" name="owningTemplateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" subsettedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_ownedParameteredElement_owningTemplateParameter">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter">
+              <body>The formal template parameter that owns this element.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfT37VEeOu79LxSz8Ylw"/>
+          </ownedAttribute>
+          <ownedOperation xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter" name="isTemplateParameter" bodyCondition="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" isQuery="true">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
+              <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
+            </ownedComment>
+            <ownedRule xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec-_specification">
+                <language>OCL</language>
+                <body>templateParameter->notEmpty()</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedParameter.0" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Property" name="Property">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Property-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property">
+            <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
+          </ownedComment>
+          <generalization xmi:id="_XnqLNn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Operation" name="Operation">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Operation-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation">
+            <body>Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
+          </ownedComment>
+          <generalization xmi:id="_XnqLOH7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
+          <generalization xmi:id="_XnqLOX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-OperationTemplateParameter" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation-templateParameter">
+              <body>The template parameter that exposes this element as a formal parameter.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfUH7VEeOu79LxSz8Ylw"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter" name="OperationTemplateParameter">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter">
+            <body>An operation template parameter exposes an operation as a formal parameter for a template.</body>
+          </ownedComment>
+          <generalization xmi:id="_XnqLOn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateParameter"/>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-Operation" redefinedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement">
+              <body>The operation for this template parameter.</body>
+            </ownedComment>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Package" name="Package">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Package-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Package">
+            <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
+          </ownedComment>
+          <generalization xmi:id="_XnqLP37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-PackageableElement" name="PackageableElement" isAbstract="true">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-PackageableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-PackageableElement">
+            <body>Packageable elements are able to serve as a template parameter.</body>
+          </ownedComment>
+          <generalization xmi:id="_XnqLO37VEeOu79LxSz8Ylw" general="_iWKggA3IEeSm6471J7pVhQ"/>
+          <generalization xmi:id="_x5lyIA3IEeSm6471J7pVhQ" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding" name="TemplateBinding">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding">
+            <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>
+          </ownedComment>
+          <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal" name="parameter_substitution_formal" constrainedElement="AuxiliaryConstructs-Templates-TemplateBinding">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal">
+              <body>Each parameter substitution must refer to a formal template parameter of the target template signature.</body>
+            </ownedComment>
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_specification">
               <language>OCL</language>
-              <body>template.oclContents()->includesAll(parameter.parameteredElement->asSet() - parameter.ownedParameteredElement->asSet())</body>
+              <body>parameterSubstitution->forAll(b | signature.parameter->includes(b.formal))</body>
             </specification>
           </ownedRule>
-          <generalization xmi:id="_XnqLMH7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter">
-              <body>The formal template parameters that are owned by this template signature.</body>
+          <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution" name="one_parameter_substitution" constrainedElement="AuxiliaryConstructs-Templates-TemplateBinding">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution">
+              <body>A binding contains at most one parameter substitution for each formal template parameter of the target template signature.</body>
             </ownedComment>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfQn7VEeOu79LxSz8Ylw" value="*"/>
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_specification">
+              <language>OCL</language>
+              <body>signature.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() &lt;= 1)</body>
+            </specification>
+          </ownedRule>
+          <generalization xmi:id="_XnqLMn7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement" name="boundElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-boundElement">
+              <body>The element that is bound by this binding.</body>
+            </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="template" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-template">
-              <body>The element that owns this template signature.</body>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-signature">
+              <body>The template signature for the template that is the target of the binding.</body>
             </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="parameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" aggregation="composite" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution">
+              <body>The parameter substitutions owned by this template binding.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfRn7VEeOu79LxSz8Ylw"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfR37VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter" name="TemplateParameter">
@@ -73,47 +164,6 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfRX7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding" name="TemplateBinding">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding">
-            <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>
-          </ownedComment>
-          <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal" name="parameter_substitution_formal" constrainedElement="AuxiliaryConstructs-Templates-TemplateBinding">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal">
-              <body>Each parameter substitution must refer to a formal template parameter of the target template signature.</body>
-            </ownedComment>
-            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameter_substitution_formal-_specification">
-              <language>OCL</language>
-              <body>parameterSubstitution->forAll(b | signature.parameter->includes(b.formal))</body>
-            </specification>
-          </ownedRule>
-          <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution" name="one_parameter_substitution" constrainedElement="AuxiliaryConstructs-Templates-TemplateBinding">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution">
-              <body>A binding contains at most one parameter substitution for each formal template parameter of the target template signature.</body>
-            </ownedComment>
-            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-one_parameter_substitution-_specification">
-              <language>OCL</language>
-              <body>signature.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() &lt;= 1)</body>
-            </specification>
-          </ownedRule>
-          <generalization xmi:id="_XnqLMn7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement" name="boundElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-boundElement">
-              <body>The element that is bound by this binding.</body>
-            </ownedComment>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-signature">
-              <body>The template signature for the template that is the target of the binding.</body>
-            </ownedComment>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="parameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" aggregation="composite" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution">
-              <body>The parameter substitutions owned by this template binding.</body>
-            </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfRn7VEeOu79LxSz8Ylw"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfR37VEeOu79LxSz8Ylw" value="*"/>
-          </ownedAttribute>
-        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" name="TemplateParameterSubstitution">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution">
             <body>A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.</body>
@@ -148,6 +198,32 @@
               <body>The actual parameter that is owned by this substitution.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfSH7VEeOu79LxSz8Ylw"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature" name="TemplateSignature">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature">
+            <body>A template signature bundles the set of formal template parameters for a templated element.</body>
+          </ownedComment>
+          <ownedRule xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements" name="own_elements" constrainedElement="AuxiliaryConstructs-Templates-TemplateSignature">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-own_elements">
+              <body>Parameters must own the elements they parameter or those elements must be owned by the element being templated.</body>
+            </ownedComment>
+            <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_specification">
+              <language>OCL</language>
+              <body>template.oclContents()->includesAll(parameter.parameteredElement->asSet() - parameter.ownedParameteredElement->asSet())</body>
+            </specification>
+          </ownedRule>
+          <generalization xmi:id="_XnqLMH7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter">
+              <body>The formal template parameters that are owned by this template signature.</body>
+            </ownedComment>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfQn7VEeOu79LxSz8Ylw" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="template" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-template">
+              <body>The element that owns this template signature.</body>
+            </ownedComment>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateableElement" name="TemplateableElement" isAbstract="true">
@@ -197,80 +273,6 @@
               <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
             </ownedParameter>
           </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement" name="ParameterableElement" isAbstract="true">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement">
-            <body>A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLNX7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_parameteredElement_templateParameter">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter">
-              <body>The template parameter that exposes this element as a formal parameter.</body>
-            </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfTn7VEeOu79LxSz8Ylw"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter" name="owningTemplateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" subsettedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_ownedParameteredElement_owningTemplateParameter">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-owningTemplateParameter">
-              <body>The formal template parameter that owns this element.</body>
-            </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfT37VEeOu79LxSz8Ylw"/>
-          </ownedAttribute>
-          <ownedOperation xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter" name="isTemplateParameter" bodyCondition="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" isQuery="true">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
-              <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
-            </ownedComment>
-            <ownedRule xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
-              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec-_specification">
-                <language>OCL</language>
-                <body>templateParameter->notEmpty()</body>
-              </specification>
-            </ownedRule>
-            <ownedParameter xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedParameter.0" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
-            </ownedParameter>
-          </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Property" name="Property">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Property-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property">
-            <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLNn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ValueSpecification" name="ValueSpecification" isAbstract="true">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-ValueSpecification-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ValueSpecification">
-            <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLN37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Operation" name="Operation">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Operation-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation">
-            <body>Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLOH7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-          <generalization xmi:id="_XnqLOX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-OperationTemplateParameter" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation-templateParameter">
-              <body>The template parameter that exposes this element as a formal parameter.</body>
-            </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfUH7VEeOu79LxSz8Ylw"/>
-          </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter" name="OperationTemplateParameter">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter">
-            <body>An operation template parameter exposes an operation as a formal parameter for a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLOn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateParameter"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-Operation" redefinedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement">
-              <body>The operation for this template parameter.</body>
-            </ownedComment>
-          </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-PackageableElement" name="PackageableElement" isAbstract="true">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-PackageableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-PackageableElement">
-            <body>Packageable elements are able to serve as a template parameter.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLO37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Classifier" name="Type" isAbstract="true">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-Classifier-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier">
@@ -333,11 +335,11 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfVH7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Package" name="Package">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Package-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Package">
-            <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
+        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ValueSpecification" name="ValueSpecification" isAbstract="true">
+          <ownedComment xmi:id="AuxiliaryConstructs-Templates-ValueSpecification-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ValueSpecification">
+            <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
           </ownedComment>
-          <generalization xmi:id="_XnqLP37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
+          <generalization xmi:id="_XnqLN37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedParameter_signature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_templateBinding_boundElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
@@ -411,7 +413,7 @@
               <body>self.specification.booleanValue().oclIsKindOf(Boolean)</body>
             </specification>
           </ownedRule>
-          <generalization xmi:id="_XnqLQH7VEeOu79LxSz8Ylw" general="_MUAiUK5pEd-xTJkHwX_SlQ"/>
+          <generalization xmi:id="_XnqLQH7VEeOu79LxSz8Ylw" general="_q7-KoA3GEeSm6471J7pVhQ"/>
           <ownedAttribute xmi:id="_JhArua5oEd-xTJkHwX_SlQ" name="constrainedElement" isOrdered="true">
             <ownedComment xmi:id="_JhAruq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArua5oEd-xTJkHwX_SlQ">
               <body>The ordered set of Elements referenced by this Constraint.</body>
@@ -560,6 +562,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQVn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_q7-KoA3GEeSm6471J7pVhQ" name="PackageableElement" isAbstract="true"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
         <packagedElement xmi:type="uml:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class">
@@ -1385,7 +1388,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
         <packagedElement xmi:type="uml:Association" xmi:id="_xUTmocVBEeOUxMGVZGOl2Q" name="A_guard_transition" memberEnd="_Et9DfEefEeKdl-y5nJoJpQ _uREfIMVBEeOUxMGVZGOl2Q"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_9FFU00ebEeKdl-y5nJoJpQ" name="A_incoming_target" memberEnd="_Et9qa0efEeKdl-y5nJoJpQ _Et9DdEefEeKdl-y5nJoJpQ"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0kebEeKdl-y5nJoJpQ" name="A_outgoing_source" memberEnd="_Et9qZ0efEeKdl-y5nJoJpQ _Et9DcEefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_xUTmoMVBEeOUxMGVZGOl2Q" name="A_owningState_stateInvariant" memberEnd="_ox-ZMMVBEeOUxMGVZGOl2Q _DKDn1EefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_xUTmoMVBEeOUxMGVZGOl2Q" name="A_owningState_stateInvariant" memberEnd="_DKDn1EefEeKdl-y5nJoJpQ _ox-ZMMVBEeOUxMGVZGOl2Q"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_wImzEMVCEeOUxMGVZGOl2Q" name="A_region_state" memberEnd="_DKDnzEefEeKdl-y5nJoJpQ _Et_fnkefEeKdl-y5nJoJpQ"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_-hK0EMVCEeOUxMGVZGOl2Q" name="A_region_stateMachiine" memberEnd="_vAUZn0ebEeKdl-y5nJoJpQ _Et_fmkefEeKdl-y5nJoJpQ"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_9FFU1EebEeKdl-y5nJoJpQ" name="A_submachineState_submachine" memberEnd="_vAUZq0ebEeKdl-y5nJoJpQ _DKDnwEefEeKdl-y5nJoJpQ"/>

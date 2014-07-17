@@ -236,7 +236,7 @@
       <ownedComment body="A connection point reference represents a usage (as part of a submachine state) of an entry/exit point defined in the statemachine reference by the submachine state."/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.Constraint" name="Constraint"
-        superClass="#T.pivot.NamedElement">
+        superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.Constraint.constrainedElement" name="constrainedElement"
           opposite="#p.pivot.Element.Constraint" type="#//@nestedPackage.1/@ownedType.116">
         <ownedComment body="The ordered set of Elements referenced by this Constraint."/>
@@ -1225,7 +1225,7 @@ endif
       <ownedComment body="A package is a container for types and other packages.&#xA;Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter."/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.PackageableElement" isAbstract="true"
-        name="PackageableElement" superClass="#T.pivot.ParameterableElement">
+        name="PackageableElement" superClass="#T.pivot.NamedElement #T.pivot.ParameterableElement">
       <ownedComment body="Packageable elements are able to serve as a template parameter."/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.Parameter" name="Parameter"

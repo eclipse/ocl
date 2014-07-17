@@ -549,7 +549,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Vertex);
 			ownedTypes.add(type = _Constraint);
 			superClasses = type.getSuperClass();
-			superClasses.add(_NamedElement);
+			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _ConstructorExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OCLExpression);
@@ -715,6 +715,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_TemplateableElement);
 			ownedTypes.add(type = _PackageableElement);
 			superClasses = type.getSuperClass();
+			superClasses.add(_NamedElement);
 			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClass();

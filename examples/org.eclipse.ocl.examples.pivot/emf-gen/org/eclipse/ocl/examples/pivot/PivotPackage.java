@@ -5759,13 +5759,143 @@ public interface PivotPackage
 	int CONNECTION_POINT_REFERENCE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl <em>Dynamic Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDynamicBehavior()
+	 * @generated
+	 */
+	int DYNAMIC_BEHAVIOR = 22;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicValueSpecificationImpl <em>Dynamic Value Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.DynamicValueSpecificationImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDynamicValueSpecification()
+	 * @generated
+	 */
+	int DYNAMIC_VALUE_SPECIFICATION = 26;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl <em>Element Extension</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getElementExtension()
+	 * @generated
+	 */
+	int ELEMENT_EXTENSION = 28;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ProfileImpl <em>Profile</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ProfileImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfile()
+	 * @generated
+	 */
+	int PROFILE = 74;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PseudostateImpl <em>Pseudostate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PseudostateImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostate()
+	 * @generated
+	 */
+	int PSEUDOSTATE = 78;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.ReferringElement <em>Referring Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.ReferringElement
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReferringElement()
+	 * @generated
+	 */
+	int REFERRING_ELEMENT = 80;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RegionImpl <em>Region</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.RegionImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRegion()
+	 * @generated
+	 */
+	int REGION = 81;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl <em>Root</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.RootImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRoot()
+	 * @generated
+	 */
+	int ROOT = 82;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl <em>Self Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSelfType()
+	 * @generated
+	 */
+	int SELF_TYPE = 83;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FinalStateImpl <em>Final State</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.FinalStateImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFinalState()
+	 * @generated
+	 */
+	int FINAL_STATE = 35;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ImportImpl <em>Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ImportImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getImport()
+	 * @generated
+	 */
+	int IMPORT = 37;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl <em>Instance Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInstanceSpecification()
+	 * @generated
+	 */
+	int INSTANCE_SPECIFICATION = 38;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.OppositePropertyCallExpImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOppositePropertyCallExp()
+	 * @generated
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP = 64;
+
+	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__EXTENSION = NAMED_ELEMENT__EXTENSION;
+	int PACKAGEABLE_ELEMENT__EXTENSION = NAMED_ELEMENT__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -5774,7 +5904,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+	int PACKAGEABLE_ELEMENT__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -5783,7 +5913,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+	int PACKAGEABLE_ELEMENT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -5792,7 +5922,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+	int PACKAGEABLE_ELEMENT__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5801,79 +5931,34 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__NAME = NAMED_ELEMENT__NAME;
+	int PACKAGEABLE_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Constrained Element</b></em>' reference list.
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__CONSTRAINED_ELEMENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__CONTEXT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Callable</b></em>' attribute.
+	 * The number of structural features of the '<em>Packageable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__IS_CALLABLE = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owning State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__OWNING_STATE = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Redefined Constraint</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__REDEFINED_CONSTRAINT = NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__SPECIFICATION = NAMED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Transition</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__TRANSITION = NAMED_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The number of structural features of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -5882,7 +5967,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+	int PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -5891,7 +5976,205 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
+	int PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Packageable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__EXTENSION = PACKAGEABLE_ELEMENT__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__OWNED_ANNOTATION = PACKAGEABLE_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__IS_STATIC = PACKAGEABLE_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__NAME = PACKAGEABLE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__OWNING_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Constrained Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CONSTRAINED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CONTEXT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Callable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__IS_CALLABLE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owning State</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__OWNING_STATE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Constraint</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__REDEFINED_CONSTRAINT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Transition</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__TRANSITION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT___ALL_OWNED_ELEMENTS = PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT___GET_VALUE__TYPE_STRING = PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Name</em>' operation.
@@ -5900,7 +6183,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Constraint</em>' class.
@@ -5909,7 +6192,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int CONSTRAINT_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -6234,16 +6517,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DETAIL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl <em>Dynamic Behavior</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDynamicBehavior()
-	 * @generated
-	 */
-	int DYNAMIC_BEHAVIOR = 22;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -6982,26 +7255,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicValueSpecificationImpl <em>Dynamic Value Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.DynamicValueSpecificationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDynamicValueSpecification()
-	 * @generated
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION = 26;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl <em>Element Extension</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ElementExtensionImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getElementExtension()
-	 * @generated
-	 */
-	int ELEMENT_EXTENSION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -8696,66 +8949,6 @@ public interface PivotPackage
 	int FEATURE_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ProfileImpl <em>Profile</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ProfileImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfile()
-	 * @generated
-	 */
-	int PROFILE = 74;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PseudostateImpl <em>Pseudostate</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PseudostateImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostate()
-	 * @generated
-	 */
-	int PSEUDOSTATE = 78;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.ReferringElement <em>Referring Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.ReferringElement
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReferringElement()
-	 * @generated
-	 */
-	int REFERRING_ELEMENT = 80;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RegionImpl <em>Region</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.RegionImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRegion()
-	 * @generated
-	 */
-	int REGION = 81;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl <em>Root</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.RootImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRoot()
-	 * @generated
-	 */
-	int ROOT = 82;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl <em>Self Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSelfType()
-	 * @generated
-	 */
-	int SELF_TYPE = 83;
-
-	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8997,16 +9190,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FinalStateImpl <em>Final State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.FinalStateImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFinalState()
-	 * @generated
-	 */
-	int FINAL_STATE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -9387,16 +9570,6 @@ public interface PivotPackage
 	int IF_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ImportImpl <em>Import</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ImportImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getImport()
-	 * @generated
-	 */
-	int IMPORT = 37;
-
-	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9485,16 +9658,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int IMPORT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl <em>Instance Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInstanceSpecification()
-	 * @generated
-	 */
-	int INSTANCE_SPECIFICATION = 38;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -14006,16 +14169,6 @@ public interface PivotPackage
 	int OPERATION_TEMPLATE_PARAMETER_OPERATION_COUNT = TEMPLATE_PARAMETER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.OppositePropertyCallExpImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOppositePropertyCallExp()
-	 * @generated
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP = 64;
-
-	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14517,204 +14670,6 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETERABLE_ELEMENT__EXTENSION = ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__OWNED_ANNOTATION = ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Parameterable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER = ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Parameterable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__EXTENSION = PARAMETERABLE_ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__OWNED_ANNOTATION = PARAMETERABLE_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__OWNED_COMMENT = PARAMETERABLE_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER = PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER;
-
-	/**
-	 * The number of structural features of the '<em>Packageable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS = PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING = PARAMETERABLE_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER = PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The number of operations of the '<em>Packageable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = PARAMETERABLE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int PARAMETER__EXTENSION = TYPED_MULTIPLICITY_ELEMENT__EXTENSION;
 
 	/**
@@ -14833,6 +14788,105 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PARAMETER_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT__EXTENSION = ELEMENT__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT__OWNED_ANNOTATION = ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Parameterable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER = ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Parameterable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Pivotable</em>' class.

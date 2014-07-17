@@ -42,7 +42,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface Constraint
-		extends NamedElement, org.eclipse.ocl.examples.domain.elements.DomainConstraint {
+		extends PackageableElement, org.eclipse.ocl.examples.domain.elements.DomainConstraint {
 
 	/**
 	 * Returns the value of the '<em><b>Constrained Element</b></em>' reference list.
