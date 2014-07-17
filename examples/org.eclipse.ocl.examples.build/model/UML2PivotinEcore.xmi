@@ -67,6 +67,8 @@
     <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Types"/>
     <oldPackages
+        href="../model-gen/OCL.uml#OCL-OCL_UML"/>
+    <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Variables"/>
     <oldPackages
         href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Annotations"/>

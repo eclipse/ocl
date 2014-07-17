@@ -24,6 +24,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -74,16 +76,28 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 				listOfLists.add(ePackage.getESubpackages());
 				listOfLists.add(ePackage.getEClassifiers());
 			}
+			else if (eObject instanceof EEnum) {
+				EEnum eEnum = (EEnum) eObject;
+				listOfLists.add(eEnum.getELiterals());
+			}
+			else if (eObject instanceof EEnumLiteral) {
+				EEnumLiteral eEnumLiteral = (EEnumLiteral) eObject;
+				eEnumLiteral.setValue(0);
+			}
 			else if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
+				listOfLists.add(eClass.getESuperTypes());
 				listOfLists.add(eClass.getEStructuralFeatures());
 				listOfLists.add(eClass.getEOperations());
 			}
 			else if (eObject instanceof EOperation) {
 				EOperation eOperation = (EOperation) eObject;
-				if (EcoreUtil.isInvariant(eOperation) && eOperation.getName().startsWith("validate")) {
-					eOperation.setName(eOperation.getName().substring(8));
-				}
+//				if (EcoreUtil.isInvariant(eOperation) && eOperation.getName().startsWith("validate")) {
+//					eOperation.setName(eOperation.getName().substring(8));
+//				}
+//				if (EcoreUtil.isInvariant(eOperation)) {
+					removals.add(eOperation);
+//				}
 			}
 			else if (eObject instanceof EReference) {
 				EReference eReference = (EReference) eObject;
@@ -96,6 +110,10 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 					removals.add(eAnnotation);
 				}
 				eAnnotation = eModelElement.getEAnnotation("http://www.eclipse.org/emf/2002/Ecore");
+				if (eAnnotation != null) {
+					removals.add(eAnnotation);
+				}
+				eAnnotation = eModelElement.getEAnnotation("http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName");
 				if (eAnnotation != null) {
 					removals.add(eAnnotation);
 				}

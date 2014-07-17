@@ -100,7 +100,10 @@ abstract mapping UML::Type::createAbstractType(createType : UML2Ecore::CreateTyp
 --	log('  createAbstractType', self.name);
 	result.name := createType.newName;
 	result.map installComments(createType.oldTypes.ownedComment->asSet());
-	createType.oldTypes->forEach(t) { umlType2eClassifier->put(t, result); };
+	createType.oldTypes->forEach(t) {
+--	    log('  <= ', t);
+		umlType2eClassifier->put(t, result);
+	};
 	eClassifier2createType->put(result, createType);
 }
 mapping UML::Class::createClass(createType : UML2Ecore::CreateType) : Ecore::EClass
@@ -146,14 +149,14 @@ mapping UML2EcoreMapping::CreateOperation::createOperation(type : Ecore::EClassi
 	oldOperations->forEach(p) { umlOperation2eOperation->put(p, result); };
 	eOperation2createOperation->put(result, self);
 	var oldOperation : Operation := oldOperations->any(true);
---	log('  createReference', self.newName);
+--	log('  createOperation', self.newName);
 	result.name := self.newName;
 	result.map installComments(oldOperations.ownedComment->asSet());
 	result.lowerBound := oldOperation.lower;
 	result.upperBound := oldOperation.upper;
 	result.unique := oldOperation.isUnique;
 	result._'ordered' := if (0 <= oldOperation.upper) and (oldOperation.upper <= 1) then true else oldOperation.isOrdered endif;
---	log('    createStructuralFeature', Sequence{oldType, newType});
+--	log('    createOperation', Sequence{oldType, newType});
 	result.eType := newType;
 --	log('  defaultValues', defaultValues->iterate(l; acc : String = ':' | acc + ' ' + l.toString()));
 }
@@ -291,7 +294,7 @@ property eReference2createProperty : Dict(Ecore::EReference, UML2Ecore::CreatePr
  */
 mapping inout Ecore::EClass::resolveEClass()
 {
---	log('resolveElement', self.name);
+--	log('resolveEClass', self.name);
 	var createType : UML2Ecore::CreateType := eClassifier2createType->get(self);
 	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
 --	log('  allOldTypes', allOldTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + name));
@@ -333,6 +336,10 @@ mapping inout Ecore::EClass::resolveEClass()
 		var newType : Ecore::EClassifier := umlType2eClassifier->get(oldType);
 		if (newType <> null) then {
 			self.eStructuralFeatures += pc.map createProperty(self, pc.oldProperties, newType);
+		} else {
+        	log('resolveEClass', self.name);
+			log('    oldProperty', oldProperty);
+			log('    oldType', oldType);
 		} endif;
 	};
 	
@@ -362,7 +369,7 @@ mapping inout Ecore::EClass::resolveEClass()
 
 mapping inout Ecore::EReference::resolveEReference()
 {
---	log('resolveElement', self.name);
+--	log('resolveElement', self.eContainingClass.name + "::" + self.name);
 	var createProperty : UML2EcoreMapping::CreateProperty := eReference2createProperty->get(self);
 	var oldProperties : Set(UML::Property) := createProperty.oldProperties;
 --	log('  oldProperties', oldProperties->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
