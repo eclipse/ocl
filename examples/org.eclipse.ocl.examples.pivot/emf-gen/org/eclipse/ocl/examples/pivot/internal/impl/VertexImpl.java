@@ -293,14 +293,6 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 			case PivotPackage.VERTEX__CONTAINER:
 				setContainer((Region)newValue);
 				return;
-			case PivotPackage.VERTEX__INCOMING:
-				getIncoming().clear();
-				getIncoming().addAll((Collection<? extends Transition>)newValue);
-				return;
-			case PivotPackage.VERTEX__OUTGOING:
-				getOutgoing().clear();
-				getOutgoing().addAll((Collection<? extends Transition>)newValue);
-				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -332,12 +324,6 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 				return;
 			case PivotPackage.VERTEX__CONTAINER:
 				setContainer((Region)null);
-				return;
-			case PivotPackage.VERTEX__INCOMING:
-				getIncoming().clear();
-				return;
-			case PivotPackage.VERTEX__OUTGOING:
-				getOutgoing().clear();
 				return;
 		}
 		eDynamicUnset(featureID);

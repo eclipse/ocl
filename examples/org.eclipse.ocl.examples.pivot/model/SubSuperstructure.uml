@@ -1354,14 +1354,14 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQd37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9qZ0efEeKdl-y5nJoJpQ" name="outgoing" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_9FFU0kebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9qZ0efEeKdl-y5nJoJpQ" name="outgoing" type="_Et9DUEefEeKdl-y5nJoJpQ" isReadOnly="true" association="_9FFU0kebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9qaEefEeKdl-y5nJoJpQ" annotatedElement="_Et9qZ0efEeKdl-y5nJoJpQ">
               <body>Specifies the transitions departing from this vertex.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQeH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQeX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9qa0efEeKdl-y5nJoJpQ" name="incoming" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_9FFU00ebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9qa0efEeKdl-y5nJoJpQ" name="incoming" type="_Et9DUEefEeKdl-y5nJoJpQ" isReadOnly="true" association="_9FFU00ebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9qbEefEeKdl-y5nJoJpQ" annotatedElement="_Et9qa0efEeKdl-y5nJoJpQ">
               <body>Specifies the transitions entering this vertex.</body>
             </ownedComment>

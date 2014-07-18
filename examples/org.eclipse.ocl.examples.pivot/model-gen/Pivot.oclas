@@ -2116,12 +2116,12 @@ let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) 
           opposite="#p.pivot.Region.subvertex" type="#T.pivot.Region">
         <ownedComment body="The region that contains this vertex."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.Vertex.incoming" name="incoming" opposite="#p.pivot.Transition.target"
-          type="#//@nestedPackage.1/@ownedType.154">
+      <ownedAttribute xmi:id="p.pivot.Vertex.incoming" isReadOnly="true" name="incoming"
+          opposite="#p.pivot.Transition.target" type="#//@nestedPackage.1/@ownedType.154">
         <ownedComment body="Specifies the transitions entering this vertex."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.Vertex.outgoing" name="outgoing" opposite="#p.pivot.Transition.source"
-          type="#//@nestedPackage.1/@ownedType.154">
+      <ownedAttribute xmi:id="p.pivot.Vertex.outgoing" isReadOnly="true" name="outgoing"
+          opposite="#p.pivot.Transition.source" type="#//@nestedPackage.1/@ownedType.154">
         <ownedComment body="Specifies the transitions departing from this vertex."/>
       </ownedAttribute>
       <ownedComment body="A vertex is an abstraction of a node in a state machine graph. In general, it can be the source or destination of any number of transitions."/>

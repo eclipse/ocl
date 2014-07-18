@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.State;
-import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -310,14 +309,6 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 			case PivotPackage.CONNECTION_POINT_REFERENCE__CONTAINER:
 				setContainer((Region)newValue);
 				return;
-			case PivotPackage.CONNECTION_POINT_REFERENCE__INCOMING:
-				getIncoming().clear();
-				getIncoming().addAll((Collection<? extends Transition>)newValue);
-				return;
-			case PivotPackage.CONNECTION_POINT_REFERENCE__OUTGOING:
-				getOutgoing().clear();
-				getOutgoing().addAll((Collection<? extends Transition>)newValue);
-				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__ENTRY:
 				getEntry().clear();
 				getEntry().addAll((Collection<? extends Pseudostate>)newValue);
@@ -360,12 +351,6 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__CONTAINER:
 				setContainer((Region)null);
-				return;
-			case PivotPackage.CONNECTION_POINT_REFERENCE__INCOMING:
-				getIncoming().clear();
-				return;
-			case PivotPackage.CONNECTION_POINT_REFERENCE__OUTGOING:
-				getOutgoing().clear();
 				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__ENTRY:
 				getEntry().clear();

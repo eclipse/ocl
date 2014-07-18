@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.PseudostateKind;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateMachine;
-import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -385,14 +384,6 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 			case PivotPackage.PSEUDOSTATE__CONTAINER:
 				setContainer((Region)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__INCOMING:
-				getIncoming().clear();
-				getIncoming().addAll((Collection<? extends Transition>)newValue);
-				return;
-			case PivotPackage.PSEUDOSTATE__OUTGOING:
-				getOutgoing().clear();
-				getOutgoing().addAll((Collection<? extends Transition>)newValue);
-				return;
 			case PivotPackage.PSEUDOSTATE__KIND:
 				setKind((PseudostateKind)newValue);
 				return;
@@ -433,12 +424,6 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 				return;
 			case PivotPackage.PSEUDOSTATE__CONTAINER:
 				setContainer((Region)null);
-				return;
-			case PivotPackage.PSEUDOSTATE__INCOMING:
-				getIncoming().clear();
-				return;
-			case PivotPackage.PSEUDOSTATE__OUTGOING:
-				getOutgoing().clear();
 				return;
 			case PivotPackage.PSEUDOSTATE__KIND:
 				setKind(KIND_EDEFAULT);

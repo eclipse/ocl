@@ -3871,9 +3871,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Region_subvertex);
 			ownedProperties.add(property = pr_Vertex_incoming);
+			property.setIsReadOnly(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Transition_target);
 			ownedProperties.add(property = pr_Vertex_outgoing);
+			property.setIsReadOnly(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Transition_source);
 		}

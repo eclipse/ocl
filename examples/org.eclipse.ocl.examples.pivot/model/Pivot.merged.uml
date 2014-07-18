@@ -1759,14 +1759,14 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TVertex.Pcontainer.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TVertex.Poutgoing" name="outgoing" type="Ppivot.TTransition" association="Ppivot.A_outgoing_source">
+      <ownedAttribute xmi:id="Ppivot.TVertex.Poutgoing" name="outgoing" type="Ppivot.TTransition" isReadOnly="true" association="Ppivot.A_outgoing_source">
         <ownedComment xmi:id="Ppivot.TVertex.Poutgoing.oC0" annotatedElement="Ppivot.TVertex.Poutgoing">
           <body>Specifies the transitions departing from this vertex.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TVertex.Poutgoing.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TVertex.Poutgoing.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TVertex.Pincoming" name="incoming" type="Ppivot.TTransition" association="Ppivot.A_incoming_target">
+      <ownedAttribute xmi:id="Ppivot.TVertex.Pincoming" name="incoming" type="Ppivot.TTransition" isReadOnly="true" association="Ppivot.A_incoming_target">
         <ownedComment xmi:id="Ppivot.TVertex.Pincoming.oC0" annotatedElement="Ppivot.TVertex.Pincoming">
           <body>Specifies the transitions entering this vertex.</body>
         </ownedComment>

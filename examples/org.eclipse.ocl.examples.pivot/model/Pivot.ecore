@@ -1983,12 +1983,14 @@
         <details key="documentation" value="The region that contains this vertex."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" ordered="false" upperBound="-1" eType="#//Transition" eOpposite="#//Transition/target">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" ordered="false" upperBound="-1" eType="#//Transition" changeable="false"
+        eOpposite="#//Transition/target">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies the transitions entering this vertex."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" ordered="false" upperBound="-1" eType="#//Transition" eOpposite="#//Transition/source">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" ordered="false" upperBound="-1" eType="#//Transition" changeable="false"
+        eOpposite="#//Transition/source">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies the transitions departing from this vertex."/>
       </eAnnotations>
