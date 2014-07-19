@@ -63,10 +63,10 @@ EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAc
 		assertExpressionResults("Sequence{}", "Sequence{null}->selectByKind(OclInvalid)");
 		assertExpressionResults("Set{}", "Set{null}->selectByKind(OclInvalid)");
 		//
-		assertExpressionResults("Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
-		assertExpressionResults("OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
-		assertExpressionResults("Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
-		assertExpressionResults("Set{4}", "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertExpressionResults("Bag{4, 4}", "let test : Bag(UnlimitedNatural) = Bag{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural) in test");
+		assertExpressionResults("OrderedSet{4}", "let test : OrderedSet(UnlimitedNatural) = OrderedSet{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural) in test");
+		assertExpressionResults("Sequence{4, 4}", "let test : Sequence(UnlimitedNatural) = Sequence{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural) in test");
+		assertExpressionResults("Set{4}", "let test : Set(UnlimitedNatural) = Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural) in test");
 		//
 		assertExpressionResults("Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(String).toUpperCase()");
 		assertResult(9.0, "Set{4, 4, 5.0, 'test'}->selectByKind(Real)->sum()");
@@ -103,10 +103,10 @@ EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAc
 		assertExpressionResults("Sequence{}", "Sequence{null}->selectByType(OclInvalid)");
 		assertExpressionResults("Set{}", "Set{null}->selectByType(OclInvalid)");
 		//
-		assertExpressionResults("Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
-		assertExpressionResults("OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
-		assertExpressionResults("Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
-		assertExpressionResults("Set{4}", "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertExpressionResults("Bag{4, 4}", "let test : Bag(UnlimitedNatural) = Bag{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural) in test");
+		assertExpressionResults("OrderedSet{4}", "let test : OrderedSet(UnlimitedNatural) = OrderedSet{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural) in test");
+		assertExpressionResults("Sequence{4, 4}", "let test : Sequence(UnlimitedNatural) = Sequence{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural) in test");
+		assertExpressionResults("Set{4}", "let test : Set(UnlimitedNatural) = Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural) in test");
 		//
 		assertExpressionResults("Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByType(String).toUpperCase()");
 		assertResult(5.0, "Set{4, 4, 5.0, 'test'}->selectByType(Real)->sum()");

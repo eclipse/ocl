@@ -883,6 +883,16 @@ public final class OCLStandardLibraryUtil {
 			case SELECT :
 			case REJECT :
 				return sourceType;
+			case SELECT_BY_KIND :
+			case SELECT_BY_TYPE :
+				TypedElement<C> arg = args.get(0);
+				if (arg instanceof TypeExp<?>) {
+					TypeExp<C> typeExp = (TypeExp<C>) arg;
+					argType = typeExp.getReferredType();
+				} else {
+					argType = arg.getType();
+				}
+				return getBagType(env, env.getOCLFactory(), argType);
 			case SORTED_BY :
 				return getSequenceType(env, oclFactory, elemType);
 			case COLLECT_NESTED :
@@ -986,6 +996,16 @@ public final class OCLStandardLibraryUtil {
 			case SELECT :
 			case REJECT :
 				return sourceType;
+			case SELECT_BY_KIND :
+			case SELECT_BY_TYPE :
+				TypedElement<C> arg = args.get(0);
+				if (arg instanceof TypeExp<?>) {
+					TypeExp<C> typeExp = (TypeExp<C>) arg;
+					argType = typeExp.getReferredType();
+				} else {
+					argType = arg.getType();
+				}
+				return getSetType(env, env.getOCLFactory(), argType);
 			case SORTED_BY :
 				return getOrderedSetType(env, oclFactory, elemType);
 			case COLLECT_NESTED :
@@ -1049,6 +1069,16 @@ public final class OCLStandardLibraryUtil {
 
 			case SUB_ORDERED_SET :
 				return sourceType;
+			case SELECT_BY_KIND :
+			case SELECT_BY_TYPE :
+				TypedElement<C> arg = args.get(0);
+				if (arg instanceof TypeExp<?>) {
+					TypeExp<C> typeExp = (TypeExp<C>) arg;
+					argType = typeExp.getReferredType();
+				} else {
+					argType = arg.getType();
+				}
+				return getOrderedSetType(env, env.getOCLFactory(), argType);
 
 			case AT :
 			case FIRST :
@@ -1139,6 +1169,16 @@ public final class OCLStandardLibraryUtil {
 				return getOrderedSetType(env, oclFactory, elemType);
 			case SELECT :
 			case REJECT :
+			case SELECT_BY_KIND :
+			case SELECT_BY_TYPE :
+				TypedElement<C> arg = args.get(0);
+				if (arg instanceof TypeExp<?>) {
+					TypeExp<C> typeExp = (TypeExp<C>) arg;
+					argType = typeExp.getReferredType();
+				} else {
+					argType = arg.getType();
+				}
+				return getSequenceType(env, env.getOCLFactory(), argType);
 			case SORTED_BY :
 				return sourceType;
 			case COLLECT_NESTED :
