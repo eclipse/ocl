@@ -103,47 +103,32 @@ public class TupleTypeManager
 		if (iSize != rightProperties.size()) {
 			return null;
 		}
-//		boolean isLeft = true;
-//		boolean isRight = true;
-//		List<TypedElement> commonProperties = new ArrayList<TypedElement>(leftProperties.size());
 		List<TuplePartId> commonPartIds = new ArrayList<TuplePartId>(iSize);
 		for (int i = 0; i < iSize; i++) {
-			@SuppressWarnings("null") @NonNull Property leftProperty = leftProperties.get(i);
-			String name = DomainUtil.getSafeName(leftProperty);
+			Property leftProperty = leftProperties.get(i);
+			if (leftProperty == null) {
+				return null;				// Never happens
+			}
+			String name = leftProperty.getName();
+			if (name == null) {
+				return null;				// Never happens
+			}
 			Property rightProperty = DomainUtil.getNamedElement(rightProperties, name);
-			Type leftPropertyType = DomainUtil.nonNullModel(leftProperty.getType());
-			Type rightPropertyType = DomainUtil.nonNullModel(rightProperty.getType());
-//			TypedElement commonProperty = null;
+			if (rightProperty == null) {
+				return null;				// Happens for inconsistent tuples
+			}
+			Type leftPropertyType = leftProperty.getType();
+			if (leftPropertyType == null) {
+				return null;				// Never happens
+			}
+			Type rightPropertyType = rightProperty.getType();
+			if (rightPropertyType == null) {
+				return null;				// Never happens
+			}
 			Type commonType = metaModelManager.getCommonType(leftPropertyType, rightPropertyType, bindings);
 			TuplePartId commonPartId = IdManager.getTuplePartId(i, name, commonType.getTypeId());
 			commonPartIds.add(commonPartId);
-//			if (commonType != leftPropertyType) {
-//				isLeft = false;
-//			}
-//			else {
-//				commonProperty = leftProperty;
-//			}
-//			if (commonType != rightPropertyType) {
-//				isRight = false;
-//			}
-//			else {
-//				commonProperty = rightProperty;
-//			}
-//			if (commonProperty == null) {
-//				TuplePartId commonPartId = IdManager.getTuplePartId(leftProperty.getName(), commonType.getTypeId());
-//				commonProperty = new TuplePart(commonPartId);
-//			}
-//			commonProperties.add(commonProperty);
 		}
-//		if (isLeft) {
-//			return leftType;
-//		}
-//		else if (isRight) {
-//			return rightType;
-//		}
-//		else {
-//			return getTupleType(DomainUtil.nonNullModel(leftType.getName()), commonProperties, bindings);
-//		}
 		TupleTypeId commonTupleTypeId = IdManager.getTupleTypeId(TypeId.TUPLE_NAME, commonPartIds);
 		return getTupleType(metaModelManager.getIdResolver(), commonTupleTypeId);
 	}
