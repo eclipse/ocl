@@ -39,13 +39,6 @@ import com.google.inject.Inject;
 
 public class BaseDocument extends XtextDocument implements ConsoleContext
 {
-	public class BaseDocumentLocker extends XtextDocumentLocker
-	{
-		public boolean isWriteLocked() {
-			throw new UnsupportedOperationException(); // Old code not possible on Xtext 2.7
-		}
-	}
-
 	@Inject
 	public BaseDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
 		super(tokenSource, composer);
