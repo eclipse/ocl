@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.analyzer;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -161,6 +164,16 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	protected final @NonNull CodeGenerator codeGenerator;
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull GenModelHelper genModelHelper;
+
+	private static final class CGTuplePartNameComparator implements Comparator<CGTuplePart>
+	{
+		public static final @NonNull CGTuplePartNameComparator INSTANCE = new CGTuplePartNameComparator();
+
+		@Override
+		public int compare(CGTuplePart o1, CGTuplePart o2) {
+			return DomainUtil.safeCompareTo(o1.getName(), o2.getName());
+		}
+	}
 
 	protected static class Variables
 	{
@@ -1085,10 +1098,12 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @Nullable CGTupleExp visitTupleLiteralExp(@NonNull TupleLiteralExp element) {
 		CGTupleExp cgTupleExp = CGModelFactory.eINSTANCE.createCGTupleExp();
 		setAst(cgTupleExp, element);
-		List<CGTuplePart> cgParts = cgTupleExp.getParts();
+		List<CGTuplePart> cgParts = new ArrayList<CGTuplePart>();
 		for (TupleLiteralPart asPart : element.getPart()) {
 			cgParts.add((CGTuplePart) asPart.accept(this));
 		}
+		Collections.sort(cgParts, CGTuplePartNameComparator.INSTANCE);
+		cgTupleExp.getParts().addAll(cgParts);
 		context.getTypeId(element.getTypeId());
 		return cgTupleExp;
 	}
