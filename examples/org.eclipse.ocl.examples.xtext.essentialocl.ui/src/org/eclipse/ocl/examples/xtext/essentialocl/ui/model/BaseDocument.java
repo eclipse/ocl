@@ -42,7 +42,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	public class BaseDocumentLocker extends XtextDocumentLocker
 	{
 		public boolean isWriteLocked() {
-			return rwLock.isWriteLocked();
+			throw new UnsupportedOperationException(); // Old code not possible on Xtext 2.7
 		}
 	}
 
@@ -53,13 +53,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	private @Nullable EObject context;
     private @Nullable Map<String, EClassifier> parameters;
-	private @Nullable BaseDocumentLocker myStateAccess;
-
-	@Override
-	protected XtextDocumentLocker createDocumentLocker() {
-		myStateAccess = new BaseDocumentLocker();
-		return myStateAccess;
-	}
 
 	@Override
 	public void disposeInput() {
