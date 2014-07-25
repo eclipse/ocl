@@ -165,6 +165,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull GenModelHelper genModelHelper;
 
+	/**
+	 * @since 1.3
+	 */
 	public static final class CGTuplePartNameComparator implements Comparator<CGTuplePart>
 	{
 		public static final @NonNull CGTuplePartNameComparator INSTANCE = new CGTuplePartNameComparator();
