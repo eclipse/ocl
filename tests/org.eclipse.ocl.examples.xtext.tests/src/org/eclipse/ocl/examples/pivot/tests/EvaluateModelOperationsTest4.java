@@ -451,7 +451,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		assertQueryTrue(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
 		assertQueryTrue(null, "let x : Type[*] = Bag{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
 		assertValidationErrorQuery2(null, "let x : Type[*] = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)",
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType", "x : Bag(Type) = Set {Integer, Real}");
+			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType", "x : Bag(Type) = Set{Integer, Real}");
 		assertQueryTrue(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type[*] | x->size() > 0)");
 		assertValidationErrorQuery2(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type | x->size() > 0)",
 			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Type[?] | x.oclAsSet()->size().>(0))");
