@@ -502,19 +502,19 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		// based on the collection kind.
 		switch (cl.getKind()) {
 			case SET :
-				append("Set {");//$NON-NLS-1$
+				append("Set{");//$NON-NLS-1$
 				break;
 			case ORDERED_SET :
-				append("OrderedSet {");//$NON-NLS-1$
+				append("OrderedSet{");//$NON-NLS-1$
 				break;
 			case BAG :
-				append("Bag {");//$NON-NLS-1$
+				append("Bag{");//$NON-NLS-1$
 				break;
 			case SEQUENCE :
-				append("Sequence {");//$NON-NLS-1$
+				append("Sequence{");//$NON-NLS-1$
 				break;
 			default :
-				append("Collection {");//$NON-NLS-1$
+				append("Collection{");//$NON-NLS-1$
 				break;
 		}
         boolean isFirst = true;
