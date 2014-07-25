@@ -51,13 +51,6 @@ import com.google.inject.Inject;
 
 public class BaseDocument extends XtextDocument implements ConsoleContext
 {
-	public class BaseDocumentLocker extends XtextDocumentLocker
-	{
-		public boolean isWriteLocked() {
-			return rwLock.isWriteLocked();
-		}
-	}
-
 	@Inject
 	public BaseDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
 		super(tokenSource, composer);
@@ -65,7 +58,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	private @Nullable EObject context;
     private @Nullable Map<String, EClassifier> parameters;
-	private @Nullable BaseDocumentLocker myStateAccess;
 
 	/**
 	 * @since 3.5
@@ -93,12 +85,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			}
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 		}
-	}
-
-	@Override
-	protected XtextDocumentLocker createDocumentLocker() {
-		myStateAccess = new BaseDocumentLocker();
-		return myStateAccess;
 	}
 
 	@Override
