@@ -558,12 +558,18 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
         CGValuedElement source = pc.getSource();
 		safeVisit(source);
 		PropertyCallExp propertyCallExp = (PropertyCallExp) pc.getAst();
-		Property property = propertyCallExp.getReferredProperty();
-        Type sourceType = source != null ? propertyCallExp.getSource().getType() : null;
-		result.append(sourceType instanceof CollectionType
-				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
-				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-		appendName(property);
+		if (propertyCallExp != null) {
+			Property property = propertyCallExp.getReferredProperty();
+	        Type sourceType = source != null ? propertyCallExp.getSource().getType() : null;
+			result.append(sourceType instanceof CollectionType
+					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			appendName(property);
+		}
+		else {
+			append("\"<.>\"");
+			appendName((CGNamedElement)null);
+		}
 /*		appendAtPre(pc);
         List<CGValuedElement> qualifiers = pc.getQualifier();
 		if (!qualifiers.isEmpty()) {
