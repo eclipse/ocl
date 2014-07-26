@@ -119,12 +119,14 @@ import org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.xtext.util.Strings;
 
 /**
@@ -1636,6 +1638,15 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 //				CGParameter typeIdParameter = localContext2.getTypeIdParameter(cgOperation);
 				List<CGParameter> cgParameters = cgOperation.getParameters();
 				CGValuedElement body = getExpression(cgOperation.getBody());
+				//
+				Element ast = cgOperation.getAst();
+				if (ast instanceof Operation) {
+					OpaqueExpression opaqueExpression = ((Operation)ast).getBodyExpression();
+					if (ast instanceof Operation) {
+						String title = PrettyPrinter.printName(ast);
+						js.appendCommentWithOCL(title+"\n", opaqueExpression.getExpressionInOCL());
+					}
+				}
 				//
 				js.append("@Override\n");
 				js.append("public ");
