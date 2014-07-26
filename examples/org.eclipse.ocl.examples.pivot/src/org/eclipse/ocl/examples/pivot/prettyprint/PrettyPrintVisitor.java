@@ -95,6 +95,17 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 	}
 
 	@Override
+	public Object visitExpressionInOCL(@NonNull org.eclipse.ocl.examples.pivot.ExpressionInOCL object) {
+		if (PivotUtil.getBody(object) != null) {
+			return super.visitExpressionInOCL(object);
+		}
+		else {
+			context.appendElement(object.getBodyExpression());
+			return null;
+		}
+	}
+
+	@Override
 	public Object visitLambdaType(@NonNull LambdaType object) {
 //		appendParent(object.eContainer(), object, "::");
 		context.appendName(object, context.getRestrictedNames());
