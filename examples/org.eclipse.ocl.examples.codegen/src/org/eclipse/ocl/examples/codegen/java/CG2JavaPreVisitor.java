@@ -128,6 +128,17 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 		}
 	}
 
+	protected void createOperationParameters(@NonNull CGOperation cgOperation) {
+		CGParameter typeIdParameter = localContext.createTypeIdParameter();
+		if (typeIdParameter != null) {
+			cgOperation.getParameters().add(0, typeIdParameter);
+		}
+		CGParameter evaluatorParameter = localContext.createEvaluatorParameter();
+		if (evaluatorParameter != null) {
+			cgOperation.getParameters().add(0, evaluatorParameter);
+		}
+	}
+
 	protected void doTypedElement(@NonNull CGTypedElement cgTypedElement) {
 		CGTypeId cgTypeId = cgTypedElement.getTypeId();
 		if (cgTypeId != null) {
@@ -480,14 +491,7 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 	public @Nullable Object visitCGOperation(@NonNull CGOperation cgOperation) {
 		localContext = context.getLocalContext(cgOperation);
 		try {
-			CGParameter typeIdParameter = localContext.createTypeIdParameter();
-			if (typeIdParameter != null) {
-				cgOperation.getParameters().add(0, typeIdParameter);
-			}
-			CGParameter evaluatorParameter = localContext.createEvaluatorParameter();
-			if (evaluatorParameter != null) {
-				cgOperation.getParameters().add(0, evaluatorParameter);
-			}
+			createOperationParameters(cgOperation);
 //			CGTypeId type = idResolverVariable.getTypeId();
 //			type.accept(this);
 //			return evaluatorParameter;
