@@ -48,6 +48,8 @@ public interface DomainInheritance extends DomainType
 	int getIndex(int fragmentNumber);
 	int getIndexes();
 	@Nullable DomainOperation getMemberOperation(@NonNull OperationId id);
+// FIXME	@NonNull Iterable<String> getMemberOperationNames();
+// FIXME	@NonNull Iterable<DomainOperation> getMemberOperations();
 	@Nullable DomainProperty getMemberProperty(@NonNull String name);
 
 	@NonNull DomainFragment getSelfFragment();

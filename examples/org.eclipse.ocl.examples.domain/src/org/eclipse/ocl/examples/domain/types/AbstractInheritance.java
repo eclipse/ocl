@@ -211,6 +211,20 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public final String getName() {
 		return name;
 	}
+	
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull Iterable<String> getMemberOperationNames() {
+		throw new UnsupportedOperationException();					// FIXME
+	}
+	
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull Iterable<DomainOperation> getMemberOperations() {
+		throw new UnsupportedOperationException();					// FIXME
+	}
 
 	public @NonNull DomainType getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;

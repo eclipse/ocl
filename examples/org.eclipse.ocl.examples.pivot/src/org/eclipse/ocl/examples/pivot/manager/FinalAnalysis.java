@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 import org.eclipse.ocl.examples.pivot.Type;
 
 public class FinalAnalysis
@@ -51,14 +52,14 @@ public class FinalAnalysis
 		}
 		for (DomainInheritance domainInheritance : type2subTypes.keySet()) {
 			Set<DomainInheritance> subInheritances = type2subTypes.get(domainInheritance);
-			for (DomainOperation domainOperation : domainInheritance.getLocalOperations()) {
+			for (DomainOperation domainOperation : ((AbstractInheritance)domainInheritance).getMemberOperations()) {	// FIXME cast
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
 				LibraryFeature domainImplementation = domainOperation.getImplementation();
 				Set<DomainOperation> overrides = null;
 				for (DomainInheritance subInheritance : subInheritances) {
 					if (subInheritance != domainInheritance) {
-						for (DomainOperation subOperation : subInheritance.getLocalOperations()) {
+						for (DomainOperation subOperation : ((AbstractInheritance)subInheritance).getMemberOperations()) {	// FIXME cast
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
 								LibraryFeature subImplementation = subOperation.getImplementation();
 								if (domainImplementation != subImplementation) {

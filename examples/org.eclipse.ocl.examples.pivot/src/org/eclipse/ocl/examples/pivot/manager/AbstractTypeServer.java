@@ -76,6 +76,17 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	public static final @NonNull TracingOption ADD_EXTENSION_PROPERTY = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/addExtensionProperty");
 	public static final @NonNull TracingOption INIT_MEMBER_OPERATIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/initMemberOperations");
 	public static final @NonNull TracingOption INIT_MEMBER_PROPERTIES = new TracingOption(PivotPlugin.PLUGIN_ID, "typeServer/initMemberProperties");
+	
+	/**
+	 * @since 3.5
+	 */
+	public static Function<Map<ParametersId, List<DomainOperation>>, Collection<List<DomainOperation>>> mergeFunction = 
+			new Function<Map<ParametersId, List<DomainOperation>>, Collection<List<DomainOperation>>>() {
+
+		public Collection<List<DomainOperation>> apply(Map<ParametersId, List<DomainOperation>> input) {
+			return input.values();
+		}
+	};
 
 	public static final class BestOperation implements Function<List<DomainOperation>, DomainOperation> {
 
@@ -758,7 +769,21 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		List<DomainOperation> partials = overloads.get(parametersId);
 		return (partials == null) || partials.isEmpty() ? null : partials.get(0);
 	}
+	
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull Iterable<String> getMemberOperationNames() {
+		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
+		if (name2operations2 == null) {
+			name2operations2 = initMemberOperations();
+		}
+		return name2operations2.keySet();
+	}
 
+	/**
+	 * @since 3.5
+	 */
 	public @Nullable Iterable<DomainOperation> getMemberOperations(@NonNull DomainOperation pivotOperation) {
 		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
 		if (name2operations2 == null) {
@@ -771,6 +796,19 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}
 		ParametersId parametersId = pivotOperation.getParametersId();
 		return overloads.get(parametersId);
+	}
+	
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull Iterable<DomainOperation> getMemberOperations() {
+		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
+		if (name2operations2 == null) {
+			name2operations2 = initMemberOperations();
+		}
+		Iterable<Collection<List<DomainOperation>>> transformed = Iterables.transform(name2operations2.values(), mergeFunction);
+		Iterable<DomainOperation> concat = Iterables.concat(Iterables.concat(transformed));
+		return concat;
 	}
 
 	public @Nullable Iterable<DomainProperty> getMemberProperties(@NonNull DomainProperty pivotProperty) {
