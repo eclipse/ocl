@@ -37,13 +37,7 @@ public interface GenModelHelper
 	@Nullable String getEcoreInterfaceClassName(@NonNull EClass eClass);
 	@NonNull Class<?> getEcoreInterfaceClassifier(@NonNull EClassifier eClassifier) throws GenModelException;
 	@Nullable String getEcoreInterfaceClassifierName(@NonNull EClassifier eClassifier);
-	/**
-	 * @since 1.2
-	 */
 	@Nullable String getEcoreInterfaceName(@NonNull Type type);
-	/**
-	 * @since 1.2
-	 */
 	@Nullable String getEcoreClassName(@NonNull Type type);
 //	@Nullable GenClass getGenClass(@NonNull Type type);
 	@Nullable GenClassifier getGenClassifier(@NonNull Type type);
@@ -61,17 +55,8 @@ public interface GenModelHelper
 	@NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException;
 	@NonNull String getPropertyResultType(@NonNull Property property) throws GenModelException;
 	@Nullable String getQualifiedFactoryInterfaceName(@NonNull EPackage ePackage);
-	/**
-	 * @since 1.2
-	 */	
 	@Nullable String getQualifiedFactoryInterfaceName(@NonNull Type type);
-	/**
-	 * @since 1.2
-	 */	
 	@Nullable String getQualifiedFactoryInstanceAccessor(@NonNull EPackage ePackage);
-	/**
-	 * @since 1.2
-	 */	
 	@Nullable String getQualifiedFactoryInstanceAccessor(@NonNull Type type);
 	@Nullable String getQualifiedPackageInterfaceName(@NonNull EPackage ePackage);
 //	@Nullable String getQualifiedLiteraleName(@NonNull EPackage ePackage);

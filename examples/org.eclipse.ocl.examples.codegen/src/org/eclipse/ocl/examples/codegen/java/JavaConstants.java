@@ -19,6 +19,9 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.pivot.library.UnboxedCompositionProperty;
+import org.eclipse.ocl.examples.pivot.library.UnboxedExplicitNavigationProperty;
+import org.eclipse.ocl.examples.pivot.library.UnboxedOppositeNavigationProperty;
 
 public class JavaConstants
 {

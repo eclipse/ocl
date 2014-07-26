@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink(CEA LIST) - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.codegen.java;
+package org.eclipse.ocl.examples.pivot.library;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,9 @@ import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
+/**
+ * @since 3.5
+ */
 public class UnboxedOppositeNavigationProperty extends AbstractProperty
 {
 	protected @NonNull PropertyId oppositePropertyId;
@@ -37,7 +40,6 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 		this.oppositePropertyId = oppositePropertyId;
 	}
 	
-	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
 		DomainProperty oppositeProperty = idResolver.getProperty(oppositePropertyId);		

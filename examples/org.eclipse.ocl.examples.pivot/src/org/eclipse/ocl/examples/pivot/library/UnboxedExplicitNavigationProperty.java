@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.codegen.java;
+package org.eclipse.ocl.examples.pivot.library;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -22,6 +22,9 @@ import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 
+/**
+ * @since 3.5
+ */
 public class UnboxedExplicitNavigationProperty extends AbstractProperty
 {
 	protected @NonNull PropertyId propertyId;
@@ -33,7 +36,6 @@ public class UnboxedExplicitNavigationProperty extends AbstractProperty
 		// FIXME static attempt at eFeature
 	}
 	
-	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		assert sourceValue != null;
 		EObject eObject = (EObject)sourceValue; 

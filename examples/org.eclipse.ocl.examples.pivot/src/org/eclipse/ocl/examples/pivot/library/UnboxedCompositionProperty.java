@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.codegen.java;
+package org.eclipse.ocl.examples.pivot.library;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -18,6 +18,9 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 
+/**
+ * @since 3.5
+ */
 public class UnboxedCompositionProperty extends AbstractProperty
 {
 	protected @NonNull String containmentFeatureName;
@@ -26,7 +29,6 @@ public class UnboxedCompositionProperty extends AbstractProperty
 		this.containmentFeatureName = containmentFeatureName;
 	}
 	
-	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		assert sourceValue != null;
 		EObject eObject = (EObject)sourceValue; 
