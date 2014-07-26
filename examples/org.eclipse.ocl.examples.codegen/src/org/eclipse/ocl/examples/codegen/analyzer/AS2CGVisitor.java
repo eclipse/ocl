@@ -258,6 +258,15 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return cgParameter;
 	} */
 
+	public CGVariableExp createCGVariable(@NonNull VariableExp asVariableExp, @Nullable VariableDeclaration referredVariable) {
+		CGVariableExp cgVariableExp = CGModelFactory.eINSTANCE.createCGVariableExp();
+		setAst(cgVariableExp, asVariableExp);
+		if (referredVariable != null) {
+			cgVariableExp.setReferredVariable(getVariable(referredVariable));
+		}
+		return cgVariableExp;
+	}
+
 	public @NonNull CGVariable createCGVariable(@NonNull Variable asVariable) {
 		CGVariable cgVariable = variablesStack.getVariable(asVariable);
 		if (cgVariable == null) {
@@ -338,6 +347,20 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	public @NonNull CGParameter getSelfParameter(@NonNull Variable aParameter) {
 		return getParameter(aParameter);
+/*		CGParameter cgParameter = variablesStack.getParameter(aParameter);
+		if (cgParameter == null) {
+			cgParameter = CGModelFactory.eINSTANCE.createCGParameter();
+			cgParameter.setName(aParameter.getName());
+			cgParameter.setValueName(aParameter.getName());
+			setAst(cgParameter, aParameter);
+			cgParameter.setTypeId(context.getTypeId(aParameter.getTypeId()));
+			addParameter(aParameter, cgParameter);
+			cgParameter.setRequired(aParameter.isRequired());
+			if (aParameter.isRequired()) {
+				cgParameter.setNonNull();
+			}
+		}
+		return cgParameter; */
 	}
 
 	public @NonNull CGVariable getVariable(@NonNull VariableDeclaration asVariable) {
@@ -837,8 +860,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					CGParameter cgParameter = getSelfParameter(contextVariable);
 					cgOperation.getParameters().add(cgParameter);
 				}
+//				LocalContext localContext = codeGenerator.getGlobalContext().getLocalContext(cgOperation);
+//				assert localContext != null;
 				for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expressionInOCL.getParameterVariable()) {
-					CGParameter cgParameter = getParameter(parameterVariable);
+					CGParameter cgParameter = /*getSelParameter*/getParameter(parameterVariable);
+//					localContext.getNameManagerContext().getUniqueName(null, cgParameter.getName());
 					cgOperation.getParameters().add(cgParameter);
 				}
 				cgOperation.setBody(doVisit(CGValuedElement.class, expressionInOCL.getBodyExpression()));
@@ -854,6 +880,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		boolean isRequired = asOperation.isRequired();
 		CGValuedElement cgSource = pSource != null ? doVisit(CGValuedElement.class, pSource) : null;
 		LibraryOperation libraryOperation = metaModelManager.getImplementation(asOperation);
+		CGOperationCallExp cgOperationCallExp = null;
 		if (libraryOperation instanceof OclAnyOclIsInvalidOperation) {
 			CGIsInvalidExp cgIsInvalidExp = CGModelFactory.eINSTANCE.createCGIsInvalidExp();
 			cgIsInvalidExp.setSource(cgSource);
@@ -862,7 +889,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgIsInvalidExp.setValidating(true);
 			return cgIsInvalidExp;
 		}
-		if (libraryOperation instanceof OclAnyOclIsUndefinedOperation) {
+		else if (libraryOperation instanceof OclAnyOclIsUndefinedOperation) {
 			CGIsUndefinedExp cgIsUndefinedExp = CGModelFactory.eINSTANCE.createCGIsUndefinedExp();
 			cgIsUndefinedExp.setSource(cgSource);
 			setAst(cgIsUndefinedExp, element);
@@ -870,7 +897,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgIsUndefinedExp.setValidating(true);
 			return cgIsUndefinedExp;
 		}
-		if (libraryOperation instanceof OclAnyEqualOperation) {
+		else if (libraryOperation instanceof OclAnyEqualOperation) {
 			OCLExpression pArgument = element.getArgument().get(0);
 			CGValuedElement cgArgument = pArgument != null ? doVisit(CGValuedElement.class, pArgument) : null;
 			CGIsEqualExp cgIsEqualExp = CGModelFactory.eINSTANCE.createCGIsEqualExp();
@@ -882,39 +909,27 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgIsEqualExp.setValidating(true);
 			return cgIsEqualExp;
 		}
-		if ((libraryOperation instanceof ConstrainedOperation) && (pSource != null)) {
-			DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
-			if (finalOperation != null) {
-				OpaqueExpression bodyExpression = asOperation.getBodyExpression();
-				if (bodyExpression != null) {
-					CGValuedElement cgOperationCallExp = inlineOperationCall(element, bodyExpression);
-					if (cgOperationCallExp != null) {
-						return cgOperationCallExp;
+		else if (libraryOperation instanceof ConstrainedOperation) {
+			if (pSource != null) {
+				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
+				if (finalOperation != null) {
+					OpaqueExpression opaqueExpression = asOperation.getBodyExpression();
+					if (opaqueExpression != null) {
+						ExpressionInOCL expressionInOCL = opaqueExpression.getExpressionInOCL();
+						if (expressionInOCL != null) {
+							OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+							if (bodyExpression != null) {
+								CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, opaqueExpression);
+								if (cgOperationCallExp2 != null) {
+									return cgOperationCallExp2;
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-/*		OpaqueExpression bodyExpression = asOperation.getBodyExpression();
-		if (bodyExpression != null) {
-			CGValuedElement cgOperationCallExp = inlineOperationCall(element, bodyExpression);
-			if (cgOperationCallExp != null) {
-				return cgOperationCallExp;
-			}
-		} */
-		CGOperationCallExp cgOperationCallExp = null;
-		if (/*(libraryOperation != null) &&*/ !(libraryOperation instanceof EObjectOperation) && !(libraryOperation instanceof EInvokeOperation)) {
-			OpaqueExpression bodyExpression = asOperation.getBodyExpression();
-			if (bodyExpression != null) {
-				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
-				if (cgOperationCallExp2 != null) {
-					return cgOperationCallExp2;
-				}
-			}
-			CGLibraryOperationCallExp cgLibraryOperationCallExp = CGModelFactory.eINSTANCE.createCGLibraryOperationCallExp();
-			cgLibraryOperationCallExp.setLibraryOperation(libraryOperation);
-			cgOperationCallExp = cgLibraryOperationCallExp;
-		}
-		else {		// FIXME proper alternatives
+		else if ((libraryOperation instanceof EObjectOperation) || (libraryOperation instanceof EInvokeOperation)) {
 			EOperation eOperation = (EOperation) asOperation.getETarget();
 			if (eOperation != null) {
 				try {
@@ -928,6 +943,24 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					cgOperationCallExp = cgEcoreOperationCallExp;
 				} catch (GenModelException e) {}
 			}
+		}
+		else {
+			OpaqueExpression opaqueExpression = asOperation.getBodyExpression();
+			if (opaqueExpression != null) {
+				ExpressionInOCL expressionInOCL = opaqueExpression.getExpressionInOCL();
+				if (expressionInOCL != null) {
+					OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+					if (bodyExpression != null) {
+						CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, opaqueExpression);
+						if (cgOperationCallExp2 != null) {
+							return cgOperationCallExp2;
+						}
+					}
+				}
+			}
+			CGLibraryOperationCallExp cgLibraryOperationCallExp = CGModelFactory.eINSTANCE.createCGLibraryOperationCallExp();
+			cgLibraryOperationCallExp.setLibraryOperation(libraryOperation);
+			cgOperationCallExp = cgLibraryOperationCallExp;
 		}
 		if (cgOperationCallExp == null) {
 			CGExecutorOperationCallExp cgExecutorOperationCallExp = CGModelFactory.eINSTANCE.createCGExecutorOperationCallExp();
@@ -1165,11 +1198,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	@Override
 	public @Nullable CGValuedElement visitVariableExp(@NonNull VariableExp asVariableExp) {
 		VariableDeclaration referredVariable = asVariableExp.getReferredVariable();
-		CGVariableExp cgVariableExp = CGModelFactory.eINSTANCE.createCGVariableExp();
-		setAst(cgVariableExp, asVariableExp);
-		if (referredVariable != null) {
-			cgVariableExp.setReferredVariable(getVariable(referredVariable));
-		}
+		CGVariableExp cgVariableExp = createCGVariable(asVariableExp, referredVariable);
 		return cgVariableExp;
 	}
 
