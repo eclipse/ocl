@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.pivot;
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDynamicBehavior()
  * @generated
- * @since 3.5
  */
 public interface DynamicBehavior extends Behavior, DynamicType
 {

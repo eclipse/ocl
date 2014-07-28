@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -233,6 +234,18 @@ public class PivotUtil extends DomainUtil
 		expressionInOCL.setBodyExpression(stringLiteral);
 		expressionInOCL.setType(stringLiteral.getType());
 		return expressionInOCL;
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	public static @NonNull LetExp createLetExp(@NonNull Variable asVariable, @NonNull OCLExpression asIn) {
+		LetExp asLetExp = PivotFactory.eINSTANCE.createLetExp();
+		asLetExp.setIn(asIn);
+		asLetExp.setType(asIn.getType());
+		asLetExp.setIsRequired(asIn.isRequired());
+		asLetExp.setVariable(asVariable);
+		return asLetExp;
 	}
 
 	public static @NonNull String createTupleValuedConstraint(@NonNull String statusText, @Nullable Integer severity, @Nullable String messageText) {

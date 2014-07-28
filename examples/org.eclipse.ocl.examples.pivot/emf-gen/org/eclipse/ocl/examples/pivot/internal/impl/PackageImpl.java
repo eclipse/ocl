@@ -64,7 +64,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * </p>
  *
  * @generated
- * @since 3.5
  */
 @SuppressWarnings("cast")
 public class PackageImpl
@@ -333,7 +332,6 @@ public class PackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.5
 	 */
 	public void setNsURIGen(String newNsURI) {
 		String oldNsURI = nsURI;

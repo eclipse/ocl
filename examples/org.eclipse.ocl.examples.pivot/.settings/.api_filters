@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl.examples.pivot" version="2">
+    <resource path="emf-gen/org/eclipse/ocl/examples/pivot/DynamicBehavior.java" type="org.eclipse.ocl.examples.pivot.DynamicBehavior">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.examples.pivot.DynamicBehavior"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/examples/pivot/PivotFactory.java" type="org.eclipse.ocl.examples.pivot.PivotFactory">
         <filter id="403804204">
             <message_arguments>
@@ -12,9 +19,6 @@
                 <message_argument value="createDynamicBehavior()"/>
             </message_arguments>
         </filter>
-    </resource>
-    <resource path="emf-gen/org/eclipse/ocl/examples/pivot/PivotPackage.java">
-        <filter id="0"/>
     </resource>
     <resource path="emf-gen/org/eclipse/ocl/examples/pivot/PivotPackage.java" type="org.eclipse.ocl.examples.pivot.PivotPackage">
         <filter id="388194388">
@@ -1232,6 +1236,20 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/pivot/internal/impl/DynamicBehaviorImpl.java" type="org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/pivot/internal/impl/PackageImpl.java" type="org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="setNsURIGen(String)"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/examples/pivot/internal/impl/PivotFactoryImpl.java" type="org.eclipse.ocl.examples.pivot.internal.impl.PivotFactoryImpl">
         <filter id="1143996420">
             <message_arguments>
@@ -1250,6 +1268,13 @@
         <filter id="1143996420">
             <message_arguments>
                 <message_argument value="_DynamicBehavior"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/pivot/util/AbstractDelegatingVisitor.java" type="org.eclipse.ocl.examples.pivot.util.AbstractDelegatingVisitor">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="visitDynamicBehavior(DynamicBehavior)"/>
             </message_arguments>
         </filter>
     </resource>

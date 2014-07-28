@@ -14,14 +14,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
@@ -72,7 +75,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGReal;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGString;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGThrowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePartCallExp;
@@ -124,6 +126,7 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -151,6 +154,7 @@ import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.StaticProperty;
 import org.eclipse.ocl.examples.pivot.library.StereotypeProperty;
 import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
+import org.eclipse.ocl.examples.pivot.manager.FinalAnalysis;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -234,8 +238,6 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 */
 	private @NonNull Variables variablesStack = new Variables(null);
 
-	private @NonNull Map<OpaqueExpression, ExpressionInOCL> inlinePrototypes = new HashMap<OpaqueExpression, ExpressionInOCL>();
-	
 	public AS2CGVisitor(@NonNull CodeGenAnalyzer analyzer) {
 		super(analyzer);
 		codeGenerator = context.getCodeGenerator();
@@ -258,6 +260,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return cgParameter;
 	} */
 
+	/**
+	 * @since 1.3
+	 */
 	public CGVariableExp createCGVariable(@NonNull VariableExp asVariableExp, @Nullable VariableDeclaration referredVariable) {
 		CGVariableExp cgVariableExp = CGModelFactory.eINSTANCE.createCGVariableExp();
 		setAst(cgVariableExp, asVariableExp);
@@ -286,6 +291,19 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		CGVariable cgVariable = createCGVariable(contextVariable);
 		cgVariable.setInit((CGValuedElement) source.accept(this));
 		return cgVariable;
+	}
+
+	/**
+	 * Wrap asIn in a LetExp in which a clone of asInit is assigned to asVariable.
+	 * @since 1.3
+	 */
+	protected @NonNull OCLExpression createLetExp(@Nullable Variable asVariable, @Nullable OCLExpression asInit, @NonNull OCLExpression asIn) {
+		if ((asVariable == null) || (asInit == null)) {
+			return asIn;
+		}
+		OCLExpression asInitClone = EcoreUtil.copy(asInit);
+		asVariable.setInitExpression(asInitClone);
+		return PivotUtil.createLetExp(asVariable, asIn);
 	}
 
 	public @NonNull <T extends CGElement> T doVisit(@NonNull Class<T> requiredClass, @Nullable Element pElement) {
@@ -345,22 +363,61 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return cgParameter;
 	}
 
-	public @NonNull CGParameter getSelfParameter(@NonNull Variable aParameter) {
-		return getParameter(aParameter);
-/*		CGParameter cgParameter = variablesStack.getParameter(aParameter);
-		if (cgParameter == null) {
-			cgParameter = CGModelFactory.eINSTANCE.createCGParameter();
-			cgParameter.setName(aParameter.getName());
-			cgParameter.setValueName(aParameter.getName());
-			setAst(cgParameter, aParameter);
-			cgParameter.setTypeId(context.getTypeId(aParameter.getTypeId()));
-			addParameter(aParameter, cgParameter);
-			cgParameter.setRequired(aParameter.isRequired());
-			if (aParameter.isRequired()) {
-				cgParameter.setNonNull();
+	/**
+	 * Return all final operations directly referenced by opaqueExpression, or null if none.
+	 * @since 1.3
+	 */
+	protected @Nullable Set<Operation> getReferencedOperations(@NonNull OpaqueExpression opaqueExpression) {
+		ExpressionInOCL prototype = null;
+		try {
+			prototype = PivotUtil.getExpressionInOCL(metaModelManager, opaqueExpression);
+		}
+		catch (Exception e) {
+			// FIXME log error
+			e.printStackTrace();
+		}
+		if (prototype == null) {
+			return null;
+		}
+		Set<Operation> referencedOperations = null;
+		for (EObject crossReference : EcoreUtil.ExternalCrossReferencer.find(prototype).keySet()) {
+			if (crossReference instanceof Operation) {
+				Operation operation = (Operation) crossReference;
+				if (referencedOperations == null) {
+					referencedOperations = new HashSet<Operation>();
+				}
+				referencedOperations.add(operation);
 			}
 		}
-		return cgParameter; */
+		return referencedOperations;
+	}
+
+	public @NonNull CGParameter getSelfParameter(@NonNull Variable aParameter) {
+		return getParameter(aParameter);
+	}
+
+	/**
+	 * Return all final operations transitively referenced by opaqueExpression, or null if none.
+	 * @since 1.3
+	 */
+	protected void getTransitivelyReferencedFinalOperations(@NonNull Set<Operation> alreadyReferencedOperations, @NonNull OpaqueExpression opaqueExpression) {
+		Set<Operation> newlyReferencedOperations = getReferencedOperations(opaqueExpression);
+		if (newlyReferencedOperations != null) {
+			FinalAnalysis finalAnalysis = null;
+			for (Operation newlyReferencedOperation : newlyReferencedOperations) {
+				if ((newlyReferencedOperation != null) && alreadyReferencedOperations.add(newlyReferencedOperation)) {
+					if (finalAnalysis == null) {
+						finalAnalysis = metaModelManager.getPackageManager().getFinalAnalysis();
+					}
+					if (finalAnalysis.isFinal(newlyReferencedOperation)) {
+						OpaqueExpression anotherOpaqueExpression = newlyReferencedOperation.getBodyExpression();
+						if (anotherOpaqueExpression != null) {
+							getTransitivelyReferencedFinalOperations(alreadyReferencedOperations, anotherOpaqueExpression);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public @NonNull CGVariable getVariable(@NonNull VariableDeclaration asVariable) {
@@ -378,82 +435,45 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	}
 
 	protected @Nullable CGValuedElement inlineOperationCall(@NonNull OperationCallExp callExp, @NonNull OpaqueExpression bodyExpression) {
-		ExpressionInOCL prototype = inlinePrototypes.get(bodyExpression);
-		if (prototype == null) {
-			try {
-				prototype = PivotUtil.getExpressionInOCL(metaModelManager, bodyExpression);
-			}
-			catch (Exception e) {
-				// FIXME log error
-				e.printStackTrace();
-			}
-			if (prototype == null) {
-				return null;
-			}
-			inlinePrototypes.put(bodyExpression, prototype);
-		}
-		variablesStack = new Variables(variablesStack);
+		ExpressionInOCL prototype = null;
 		try {
-			Variable contextVariable = DomainUtil.nonNullModel(prototype.getContextVariable());
-			CGVariable cgContextVariable = getLocalVariable(contextVariable);
-			OCLExpression source = callExp.getSource();
-			CGValuedElement cgSource = doVisit(CGValuedElement.class, source);
-			cgContextVariable.setInit(cgSource);
-			cgSource.setName(cgContextVariable.getName());
-//			cgSource.setValueName(cgContextVariable.getName());
-			List<OCLExpression> arguments = callExp.getArgument();
-			List<Variable> parameterVariables = prototype.getParameterVariable();
-			int iMax = Math.min(arguments.size(), parameterVariables.size());
-			for (int i = 0; i < iMax; i++) {
-				OCLExpression argument = arguments.get(i);
-				CGValuedElement cgArgument = doVisit(CGValuedElement.class, argument);
-				@SuppressWarnings("null")@NonNull Variable parameterVariable = parameterVariables.get(i);
-				CGVariable cgParameterVariable = getLocalVariable(parameterVariable);
-				cgParameterVariable.setInit(cgArgument);
-				cgArgument.setName(cgParameterVariable.getName());
-			}
-			//
-			@NonNull CGLetExp cgOuterLetExp = CGModelFactory.eINSTANCE.createCGLetExp();
-			cgOuterLetExp.setInit(cgContextVariable);
-			cgOuterLetExp.setAst(callExp);
-			CGLetExp cgInnerLetExp = cgOuterLetExp;
-			for (int i = iMax-1; i >= 0; i--) {
-				@SuppressWarnings("null")@NonNull Variable parameterVariable = parameterVariables.get(i);
-				CGVariable cgParameterVariable = getVariable(parameterVariable);
-				@NonNull CGLetExp cgLetExp = CGModelFactory.eINSTANCE.createCGLetExp();
-				cgLetExp.setInit(cgParameterVariable);
-				cgLetExp.setAst(callExp);
-				cgInnerLetExp.setIn(cgLetExp);
-				cgInnerLetExp = cgLetExp;
-			}
-			CGValuedElement cgResult = doVisit(CGValuedElement.class, prototype.getBodyExpression());
-			boolean isValidating = callExp.getReferredOperation().isValidating();
-			if (!isValidating) {
-				for (int i = iMax-1; i >= 0; i--) {
-					@SuppressWarnings("null")@NonNull Variable parameterVariable = parameterVariables.get(i);
-					CGVariable cgParameterVariable = getVariable(parameterVariable);
-					CGValuedElement cgArgument = cgParameterVariable.getInit();
-					if (!cgArgument.isNonInvalid()) {
-						@NonNull CGThrowExp cgThrowExp = CGModelFactory.eINSTANCE.createCGThrowExp();
-						cgThrowExp.setTypeId(cgResult.getTypeId());
-						cgThrowExp.setAst(cgResult.getAst());
-						cgThrowExp.setSource(cgArgument);
-						cgResult = cgThrowExp;
+			prototype = PivotUtil.getExpressionInOCL(metaModelManager, bodyExpression);
+		}
+		catch (Exception e) {
+			// FIXME log error
+			e.printStackTrace();
+		}
+		if (prototype == null) {
+			return null;
+		}
+		Set<Operation> referencedOperations = new HashSet<Operation>();
+		getTransitivelyReferencedFinalOperations(referencedOperations, bodyExpression);
+		if (referencedOperations.contains(callExp.getReferredOperation())) {
+			return null;	// Avoid an infinite inlining recursion.
+		}
+		ExpressionInOCL asClone = EcoreUtil.copy(prototype);
+		OCLExpression asExpression = DomainUtil.nonNullState(asClone.getBodyExpression());
+		List<OCLExpression> asArguments = callExp.getArgument();
+		int argumentsSize = asArguments.size();
+		if (argumentsSize > 0) {
+			List<Parameter> asParameters = callExp.getReferredOperation().getOwnedParameter();
+			List<Variable> asParameterVariables = asClone.getParameterVariable();
+			List<Variable> asVariables = new ArrayList<Variable>(asParameterVariables);
+			asParameterVariables.clear();				// Defeat child-stealing detector
+			for (Variable asVariable : asVariables) {
+				Parameter asParameter = asVariable.getRepresentedParameter();
+				if (asParameter != null) {
+					int index = asParameters.indexOf(asParameter);
+					if ((0 <= index) && (index < argumentsSize)) {
+						asExpression = createLetExp(asVariable, asArguments.get(index), asExpression);
 					}
 				}
 			}
-			cgInnerLetExp.setIn(cgResult);
-			for (CGValuedElement cgLetExp = cgOuterLetExp; cgLetExp != cgResult; cgLetExp = ((CGLetExp) cgLetExp).getIn()) {
-				cgLetExp.setTypeId(cgResult.getTypeId());
-			}
-			return cgOuterLetExp;
 		}
-		finally {
-			Variables outerVariables = variablesStack.outerVariables;
-			if (outerVariables != null) {
-				variablesStack = outerVariables;
-			}
-		}
+		Variable asVariable = asClone.getContextVariable();
+		asClone.setContextVariable(null);				// Defeat child-stealing detector
+		asExpression = createLetExp(asVariable, callExp.getSource(), asExpression);
+		return doVisit(CGValuedElement.class, asExpression);
 	}
 
 	protected boolean isEcoreProperty(@NonNull LibraryProperty libraryProperty) {
@@ -492,6 +512,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return cgLiteralExp;
 	}
 
+	/**
+	 * @since 1.3
+	 */
 	@Override
 	public @Nullable CGClass visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class element) {
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
