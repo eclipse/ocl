@@ -1786,7 +1786,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_Boolean_toString);
 			ownedOperations.add(operation = op_Boolean_xor);
 			operation.setIsRequired(false);
-			operation.setBodyExpression(createOpaqueExpression(_Boolean, "if self = null then null\n\t\t      else if b = null then null\n\t\t      else self <> b\n\t\t      endif endif"));
+			operation.setBodyExpression(createOpaqueExpression(_Boolean, "if self.oclIsInvalid() then self\n\t\t      else if b.oclIsInvalid() then b\n\t\t      else if self = null then null\n\t\t      else if b = null then null\n\t\t      else self <> b\n\t\t      endif endif endif endif"));
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations = _Integer.getOwnedOperation();

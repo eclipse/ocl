@@ -266,10 +266,12 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	**/
 	operation xor(b : Boolean[?]) : Boolean[?] precedence=XOR => 'org.eclipse.ocl.examples.library.logical.BooleanXorOperation'
 	{
-		body: if self = null then null
+		body: if self.oclIsInvalid() then self
+		      else if b.oclIsInvalid() then b
+		      else if self = null then null
 		      else if b = null then null
 		      else self <> b
-		      endif endif;
+		      endif endif endif endif;
 	}
 }
 

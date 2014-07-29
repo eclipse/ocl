@@ -421,34 +421,56 @@
       <ownedOperation xmi:id="o.ocl.Boolean.xor..ocl.Boolean" implementationClass="org.eclipse.ocl.examples.library.logical.BooleanXorOperation"
           isRequired="false" name="xor" precedence="#Z.XOR" type="#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" isRequired="false" type="#Boolean">
-          <body>if self = null then null
+          <body>if self.oclIsInvalid() then self
+		      else if b.oclIsInvalid() then b
+		      else if self = null then null
 		      else if b = null then null
 		      else self &lt;> b
-		      endif endif</body>
+		      endif endif endif endif</body>
           <bodyExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
-            <condition xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
+            <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                 type="#Boolean">
-              <argument xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
               <source xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@contextVariable"
                   type="#Boolean"/>
             </condition>
             <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
-              <condition xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
+              <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                   type="#Boolean">
-                <argument xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
                 <source xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@parameterVariable.0"
                     type="#Boolean"/>
               </condition>
-              <elseExpression xsi:type="pivot:OperationCallExp" name="&lt;>" referredOperation="#o.ocl.Boolean.%60%%62%..ocl.OclSelf"
-                  type="#Boolean">
-                <argument xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@parameterVariable.0"
-                    type="#Boolean"/>
-                <source xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@contextVariable"
-                    type="#Boolean"/>
+              <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
+                <condition xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
+                    type="#Boolean">
+                  <argument xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
+                  <source xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@contextVariable"
+                      type="#Boolean"/>
+                </condition>
+                <elseExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
+                  <condition xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
+                      type="#Boolean">
+                    <argument xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
+                    <source xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@parameterVariable.0"
+                        type="#Boolean"/>
+                  </condition>
+                  <elseExpression xsi:type="pivot:OperationCallExp" name="&lt;>" referredOperation="#o.ocl.Boolean.%60%%62%..ocl.OclSelf"
+                      type="#Boolean">
+                    <argument xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@parameterVariable.0"
+                        type="#Boolean"/>
+                    <source xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@contextVariable"
+                        type="#Boolean"/>
+                  </elseExpression>
+                  <thenExpression xsi:type="pivot:NullLiteralExp" isRequired="false"
+                      type="#T.ocl.OclVoid"/>
+                </elseExpression>
+                <thenExpression xsi:type="pivot:NullLiteralExp" isRequired="false"
+                    type="#T.ocl.OclVoid"/>
               </elseExpression>
-              <thenExpression xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
+              <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@parameterVariable.0"
+                  type="#Boolean"/>
             </elseExpression>
-            <thenExpression xsi:type="pivot:NullLiteralExp" isRequired="false" type="#T.ocl.OclVoid"/>
+            <thenExpression xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.0/@ownedOperation.8/@bodyExpression/@contextVariable"
+                type="#Boolean"/>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
           <language>OCL</language>
