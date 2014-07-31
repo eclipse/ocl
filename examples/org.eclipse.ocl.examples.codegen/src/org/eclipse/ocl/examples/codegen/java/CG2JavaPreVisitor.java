@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeExp;
@@ -125,17 +124,6 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 			else if (typeId instanceof NestedTypeId) {
 				addOwnedTypeId(cgConstantExp, ((NestedTypeId)typeId).getParent());			
 			}
-		}
-	}
-
-	protected void createOperationParameters(@NonNull CGOperation cgOperation) {
-		CGParameter typeIdParameter = localContext.createTypeIdParameter();
-		if (typeIdParameter != null) {
-			cgOperation.getParameters().add(0, typeIdParameter);
-		}
-		CGParameter evaluatorParameter = localContext.createEvaluatorParameter();
-		if (evaluatorParameter != null) {
-			cgOperation.getParameters().add(0, evaluatorParameter);
 		}
 	}
 
@@ -491,10 +479,6 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 	public @Nullable Object visitCGOperation(@NonNull CGOperation cgOperation) {
 		localContext = context.getLocalContext(cgOperation);
 		try {
-			createOperationParameters(cgOperation);
-//			CGTypeId type = idResolverVariable.getTypeId();
-//			type.accept(this);
-//			return evaluatorParameter;
 			return super.visitCGOperation(cgOperation);
 		}
 		finally {

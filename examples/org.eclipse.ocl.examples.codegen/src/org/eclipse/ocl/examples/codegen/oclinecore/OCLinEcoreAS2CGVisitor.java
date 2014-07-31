@@ -43,9 +43,11 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 	}
 
 	@Override
-	public @NonNull CGParameter getSelfParameter(@NonNull Variable aParameter) {
-		CGParameter selfParameter = super.getSelfParameter(aParameter);
-		selfParameter.setValueName("this");
-		return selfParameter;
+	public @NonNull CGParameter getParameter(@NonNull Variable aParameter) {
+		CGParameter cgParameter = super.getParameter(aParameter);
+		if ("self".equals(aParameter.getName())) {
+			cgParameter.setValueName("this");
+		}
+		return cgParameter;
 	}
 }

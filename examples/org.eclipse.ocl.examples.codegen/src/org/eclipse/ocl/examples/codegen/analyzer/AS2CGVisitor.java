@@ -306,6 +306,18 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return PivotUtil.createLetExp(asVariable, asIn);
 	}
 
+	protected void createParameters(@NonNull CGOperation cgOperation, @NonNull ExpressionInOCL expressionInOCL) {
+		Variable contextVariable = expressionInOCL.getContextVariable();
+		if (contextVariable != null) {
+			CGParameter cgParameter = getParameter(contextVariable);
+			cgOperation.getParameters().add(cgParameter);
+		}
+		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expressionInOCL.getParameterVariable()) {
+			CGParameter cgParameter = getParameter(parameterVariable);
+			cgOperation.getParameters().add(cgParameter);
+		}
+	}
+
 	public @NonNull <T extends CGElement> T doVisit(@NonNull Class<T> requiredClass, @Nullable Element pElement) {
 		if (pElement == null) {
 			throw new NullPointerException("null source for mapping to " + requiredClass.getName());
@@ -353,7 +365,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgParameter = CGModelFactory.eINSTANCE.createCGParameter();
 			context.setNames(cgParameter, aParameter);
 			setAst(cgParameter, aParameter);
-			cgParameter.setTypeId(context.getTypeId(TypeId.OCL_VOID));			// FIXME Java-specific
+			cgParameter.setTypeId(context.getTypeId(aParameter.getTypeId()));
 			addParameter(aParameter, cgParameter);
 			cgParameter.setRequired(aParameter.isRequired());
 			if (aParameter.isRequired()) {
@@ -392,6 +404,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return referencedOperations;
 	}
 
+	@Deprecated
 	public @NonNull CGParameter getSelfParameter(@NonNull Variable aParameter) {
 		return getParameter(aParameter);
 	}
@@ -426,6 +439,10 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgVariable = CGModelFactory.eINSTANCE.createCGFinalVariable();
 			setAst(cgVariable, asVariable);
 			variablesStack.putVariable(asVariable, cgVariable);
+			if (asVariable.isRequired()) {
+				cgVariable.setNonInvalid();
+				cgVariable.setNonNull();
+			}
 		}
 		return cgVariable;
 	}
@@ -575,7 +592,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			if (expressionInOCL != null) {
 				Variable contextVariable = expressionInOCL.getContextVariable();
 				if (contextVariable != null) {
-					CGParameter cgParameter = getSelfParameter(contextVariable);
+					CGParameter cgParameter = getParameter(contextVariable);
 					cgConstraint.getParameters().add(cgParameter);
 				}
 				for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expressionInOCL.getParameterVariable()) {
@@ -878,18 +895,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		if (specification != null) {
 			ExpressionInOCL expressionInOCL = PivotUtil.getExpressionInOCL(metaModelManager, specification);
 			if (expressionInOCL != null) {
-				Variable contextVariable = expressionInOCL.getContextVariable();
-				if (contextVariable != null) {
-					CGParameter cgParameter = getSelfParameter(contextVariable);
-					cgOperation.getParameters().add(cgParameter);
-				}
-//				LocalContext localContext = codeGenerator.getGlobalContext().getLocalContext(cgOperation);
-//				assert localContext != null;
-				for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expressionInOCL.getParameterVariable()) {
-					CGParameter cgParameter = /*getSelParameter*/getParameter(parameterVariable);
-//					localContext.getNameManagerContext().getUniqueName(null, cgParameter.getName());
-					cgOperation.getParameters().add(cgParameter);
-				}
+				createParameters(cgOperation, expressionInOCL);
 				cgOperation.setBody(doVisit(CGValuedElement.class, expressionInOCL.getBodyExpression()));
 			}
 		}
@@ -1071,7 +1077,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			if (expressionInOCL != null) {
 				Variable contextVariable = expressionInOCL.getContextVariable();
 				if (contextVariable != null) {
-					getSelfParameter(contextVariable);
+					getParameter(contextVariable);
 				}
 				cgProperty.setBody(doVisit(CGValuedElement.class, expressionInOCL.getBodyExpression()));
 			}
