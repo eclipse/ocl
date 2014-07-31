@@ -1,0 +1,562 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.examples.autogen.lookup;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.autogen.analyzer.AutoCG2StringVisitor;
+import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaPreVisitor;
+import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
+import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
+import org.eclipse.ocl.examples.codegen.java.JavaConstants;
+import org.eclipse.ocl.examples.codegen.library.NativeProperty;
+import org.eclipse.ocl.examples.codegen.library.NativeStaticOperation;
+import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
+import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.ids.ParametersId;
+import org.eclipse.ocl.examples.domain.ids.RootPackageId;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.Root;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.lookup.Environment;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.Orphanage;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
+
+/**
+ * LookupCodeGenerator supports generation of the content of a JavaClassFile for the Lookup visitor.
+ */
+public class LookupCodeGenerator extends AutoCodeGenerator
+{	
+	public static void generate(@NonNull GenPackage genPackage,
+			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
+			@NonNull String projectName,	// there is no point of providing a different to compute it here. To improve the framework, make use of the
+			@NonNull String visitorPackage,	// genModel base logic in the whole framework simplyfying the number of parameters to deal with. Then, these parameters may be removed
+			@NonNull String visitorClass,
+			@Nullable String superProjectPrefix,
+			@Nullable String superProjectName,
+			@Nullable String superVisitorClass) {
+		EPackage ePackage = genPackage.getEcorePackage();
+		assert ePackage != null;
+//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
+//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
+//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
+//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
+	
+		AutoCG2StringVisitor.FACTORY.getClass();
+		
+		
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(ePackage.eResource()));
+		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
+		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI("model/PivotNameResolution.ocl").resolve(projectResourceURI);
+		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(null, metaModelManager));
+//		Resource resource = metaModelManager.getResource(nameResoURI, CompleteOCL);
+		Resource resource = DomainUtil.nonNullState(ocl.parse(nameResoURI));
+//		Root root = (Root) resource.getContents().get(0);
+//		return root.getNestedPackage().get(0);
+//	}
+		
+		
+		for (EObject root : resource.getContents()) {
+			if (root instanceof Root) {
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)root).getNestedPackage()) {
+					GenPackage superGenPackage = null;
+					org.eclipse.ocl.examples.pivot.Package asSuperPackage = null;
+					if (superProjectPrefix != null) {
+						for (GenPackage gPackage : genPackage.getGenModel().getAllUsedGenPackagesWithClassifiers()) {
+							String name = gPackage.getPrefix();
+							if (name.startsWith(superProjectPrefix)) {
+								superGenPackage = gPackage;
+								EPackage eSuperPackage = gPackage.getEcorePackage();
+								asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, eSuperPackage);
+								break;
+							}
+						}
+						if (superGenPackage == null) {
+							throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+						}
+					}
+					AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(metaModelManager, asPackage, asSuperPackage, genPackage, // superGenPackage,
+							projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
+					autoCodeGenerator.saveSourceFile();
+				}
+			}
+		}
+	}
+	
+	protected final @NonNull String packageName;
+	protected final @NonNull String className;
+	protected final @NonNull LookupClassContext classContext;
+	protected final @NonNull AS2CGVisitor as2cgVisitor;
+	//
+	//	Expected AS elements
+	//
+	protected final @NonNull Operation asElementParentEnvOperation;
+	protected final @NonNull Operation asEnvironmentHasFinalResultOperation;
+	protected final @NonNull Operation asEnvironmentNestedEnvOperation;
+	protected final @NonNull Operation asElementEnvOperation;
+	//
+	//	New AS elements
+	//
+	protected final @NonNull org.eclipse.ocl.examples.pivot.Class asVisitorClass;
+	protected final @NonNull Variable asThisVariable;
+	protected final @NonNull Variable asContextVariable;
+	protected final @NonNull Property asChildProperty;
+	protected final @NonNull Property asEvaluatorProperty;
+	protected final @NonNull Property asIdResolverProperty;
+	protected final @NonNull Operation asVisitorEnvOperation;
+	protected final @NonNull Operation asVisitorParentEnvOperation;
+	//
+	//	Important CG elements
+	//
+	private @Nullable CGProperty cgEvaluatorVariable = null;
+	private @Nullable CGProperty cgIdResolverVariable = null;
+	private @Nullable CGProperty cgChildVariable = null;
+
+	protected LookupCodeGenerator(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.examples.pivot.Package asPackage,
+			@Nullable org.eclipse.ocl.examples.pivot.Package asSuperPackage, @NonNull GenPackage genPackage,
+			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass,
+			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass) {
+		super(metaModelManager, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
+			visitorPackage, visitorClass, superProjectPrefix, superManualVisitorPackage, superVisitorClass);
+		this.packageName = getVisitorPackageName(projectName); 
+		this.className = getAutoVisitorClassName(projectPrefix);
+		this.classContext = new LookupClassContext(this, asPackage);
+		this.as2cgVisitor = createAS2CGVisitor();
+		//
+		//	Find expected AS elements
+		//
+		ParametersId emptyParametersId = IdManager.getParametersId();
+		Type asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedType(), PivotPackage.Literals.ELEMENT.getName()));
+		TypeServer asElementTypeServer = metaModelManager.getTypeServer(asElementType);
+		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
+		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(envOperationId));
+		OperationId parentEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);
+		this.asElementParentEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(parentEnvOperationId));
+		Type asEnvironmentType = DomainUtil.nonNullState(asElementParentEnvOperation.getType());
+		TypeServer asEnvironmentTypeServer = metaModelManager.getTypeServer(asEnvironmentType);
+		OperationId nestedEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.NESTED_ENV_NAME, emptyParametersId);
+		this.asEnvironmentNestedEnvOperation = DomainUtil.nonNullState((Operation)asEnvironmentTypeServer.getMemberOperation(nestedEnvOperationId));
+		OperationId hasFinalResultOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.HAS_FINAL_RESULT_NAME, emptyParametersId);
+		this.asEnvironmentHasFinalResultOperation = DomainUtil.nonNullState((Operation)asEnvironmentTypeServer.getMemberOperation(hasFinalResultOperationId));
+		//
+		//	Create new AS elements
+		//
+		this.asVisitorClass = createASVisitorClass(packageName, className);
+		this.asThisVariable = PivotUtil.createVariable("this", asVisitorClass, true, null);
+		this.asContextVariable = PivotUtil.createVariable(LookupClassContext.CONTEXT_NAME, asEnvironmentType, true, null);
+		//
+		//	Create new AS Visitor helper properties
+		//
+		this.asChildProperty = createNativeProperty(LookupClassContext.CHILD_NAME, asElementType, false);
+		this.asEvaluatorProperty = createNativeProperty(JavaConstants.EVALUATOR_NAME, DomainEvaluator.class, true);
+		this.asIdResolverProperty = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
+		List<Property> asVisitorProperties = asVisitorClass.getOwnedAttribute();
+		asVisitorProperties.add(asChildProperty);
+		asVisitorProperties.add(asEvaluatorProperty);
+		asVisitorProperties.add(asIdResolverProperty);
+		//
+		//	Create new AS Visitor helper operations
+		//
+		this.asVisitorEnvOperation = PivotUtil.createOperation(LookupClassContext.ENV_NAME, asEnvironmentType, null, null);
+		asVisitorEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
+		asVisitorEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.CHILD_NAME, asElementType, false));
+		this.asVisitorParentEnvOperation = PivotUtil.createOperation(LookupClassContext.PARENT_ENV_NAME, asEnvironmentType, null, null);
+		asVisitorParentEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
+		asVisitorParentEnvOperation.setImplementation(NativeStaticOperation.INSTANCE);
+		asVisitorParentEnvOperation.setIsRequired(false);
+		List<Operation> asVisitorOperations = asVisitorClass.getOwnedOperation();
+		asVisitorOperations.add(asVisitorEnvOperation);
+		asVisitorOperations.add(asVisitorParentEnvOperation);
+	}
+
+	/**
+	 * Convert the asOperations to cgOperations of cgClass.
+	 */
+	protected void convertOperations(@NonNull CGClass cgClass, @NonNull Collection<Operation> asOperations) {
+		List<Operation> sortedOperations = new ArrayList<Operation>(asOperations);
+		Collections.sort(sortedOperations, DomainUtil.NAMEABLE_COMPARATOR);
+		for (Operation asOperation : sortedOperations) {
+			CGOperation cgOperation = as2cgVisitor.doVisit(CGOperation.class, asOperation);
+			cgClass.getOperations().add(cgOperation);					
+		}
+	}
+
+	/**
+	 * Convert the asProperties to cgProperties of cgClass.
+	 */
+	protected void convertProperties(@NonNull CGClass cgClass, @NonNull List<Property> asProperties) {
+		for (Property asProperty : asProperties) {
+			CGProperty cgProperty = as2cgVisitor.doVisit(CGProperty.class, asProperty);
+			cgClass.getProperties().add(cgProperty);	
+			if (asProperty == asEvaluatorProperty) {
+				cgEvaluatorVariable = cgProperty;
+			}
+			else if (asProperty == asIdResolverProperty) {
+				cgIdResolverVariable = cgProperty;
+			}
+			else if (asProperty == asChildProperty) {
+				cgChildVariable = cgProperty;
+			}
+		}
+	}
+
+	/**
+	 * Convert the construction context to supertypes/interfaces of cgClass.
+	 */
+	protected void convertSuperTypes(@NonNull CGClass cgClass) {
+		// GenPackage superGenPackage2 = superGenPackage;
+		String superProjectPrefix2 = superProjectPrefix;
+		if (superProjectPrefix2 != null) {
+			// String superPackageName = super
+			String superPackageName = getVisitorPackageName(DomainUtil.nonNullState(superManualVisitorPackage));
+			// String superClassName = superGenPackage2.getPrefix() + "AutoContainmentVisitor";
+			String superClassName = getManualVisitorClassName(superProjectPrefix2);
+			// String superInterfaceName = /*trimmed*/prefix + "Visitor";
+			String superInterfaceName = visitorClass;
+			
+			CGClass superClass = getExternalClass(superPackageName, superClassName, false);
+			cgClass.getSuperTypes().add(superClass);
+			CGClass superInterface = getExternalClass(visitorPackage, superInterfaceName, true);
+			superInterface.getTemplateParameters().add(getExternalClass(Environment.class));
+			cgClass.getSuperTypes().add(superInterface);
+		}
+		else {
+			// String superClassName = "Abstract" + /*trimmed*/prefix + "CSVisitor";
+//			String superClassName = "AbstractExtending" + visitorClass; // The default Abstract Visitor generated for the language
+			String superClassName = "AbstractExtendingVisitor"; // The default Abstract Visitor generated for the language
+			CGClass superClass = getExternalClass(visitorPackage, superClassName, false);
+			superClass.getTemplateParameters().add(getExternalClass(Object.class));
+			superClass.getTemplateParameters().add(getExternalClass(Environment.class));
+			cgClass.getSuperTypes().add(superClass);
+		}
+	}
+
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class createASVisitorClass(@NonNull String packageName, @NonNull String className) {
+		org.eclipse.ocl.examples.pivot.Class asVisitorClass = PivotUtil.createClass(className);
+		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
+		org.eclipse.ocl.examples.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
+		asVisitorPackage.getOwnedType().add(asVisitorClass);
+		Root asVisitorRoot = PivotUtil.createRoot(nsURI + ".java");
+		asVisitorRoot.getNestedPackage().add(asVisitorPackage);
+		metaModelManager.installRoot(asVisitorRoot);
+		return asVisitorClass;
+	}
+
+	@Override
+	protected @NonNull LookupCG2JavaVisitor createCG2JavaVisitor(@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals) {
+		return new LookupCG2JavaVisitor(this, cgPackage, sortedGlobals);
+	}
+
+	@Override
+	public @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor() {
+		return new AutoCG2JavaPreVisitor(classContext);
+	}
+
+	/**
+	 * Synthesize an AS package by simple AS2AS conversions and convert the AS package to a CG package for onward code generation. 
+	 */
+	@Override
+	protected @NonNull CGPackage createCGPackage() {
+		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
+		cgPackage.setName(packageName);
+		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
+		cgClass.setName(className);
+		convertSuperTypes(cgClass);
+		cgPackage.getClasses().add(cgClass);
+		convertProperties(cgClass, asVisitorClass.getOwnedAttribute());
+		Map<Element,Element> reDefinitions = new HashMap<Element,Element>();
+		Map<Operation, Operation> envOperation2asOperation = createVisitOperationDeclarations(reDefinitions);
+		rewriteVisitOperationBodies(reDefinitions, envOperation2asOperation);
+		Collection<Operation> asOperations = envOperation2asOperation.values();
+		if (asOperations != null) {
+			rewriteOperationCalls(asOperations);
+			convertOperations(cgClass, asOperations);
+		}
+		Resource dummyResource = EssentialOCLASResourceFactory.INSTANCE.createResource(URI.createURI("dummy.essentialocl"));
+		dummyResource.getContents().addAll(asOperations);		// PrettyPrinter needs containment
+		return cgPackage;
+	}
+
+	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Type asElementType, boolean isReadOnly) {
+		Property asChildProperty = PivotUtil.createProperty(name, asElementType);
+		asChildProperty.setImplementation(NativeProperty.INSTANCE);
+		asChildProperty.setIsReadOnly(isReadOnly);
+		asChildProperty.setIsRequired(isReadOnly);
+		return asChildProperty;
+	}
+
+	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Class<?> javaClass, boolean isReadOnly) {
+		Package javaPackage = javaClass.getPackage();
+		@SuppressWarnings("null")@NonNull String packageName = javaPackage.getName();
+		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
+		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
+		Orphanage orphanage = metaModelManager.getOrphanage();
+		org.eclipse.ocl.examples.pivot.Package asPackage = DomainUtil.getNamedElement(orphanage.getNestedPackage(), packageName);
+		if (asPackage == null) {
+			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
+			orphanage.getNestedPackage().add(asPackage);
+		}
+		Type asType = DomainUtil.getNamedElement(asPackage.getOwnedType(), className);
+		if (asType == null) {
+			asType = PivotUtil.createClass(className);
+			asPackage.getOwnedType().add(asType);
+		}
+		Property asChildProperty = PivotUtil.createProperty(name, asType);
+		asChildProperty.setImplementation(NativeProperty.INSTANCE);
+		asChildProperty.setIsRequired(isReadOnly);
+		asChildProperty.setIsReadOnly(isReadOnly);
+		return asChildProperty;
+	}
+
+	protected @NonNull VariableExp createThisVariableExp() {
+		return PivotUtil.createVariableExp(asThisVariable);
+	}
+
+	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) {
+		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
+		for (@SuppressWarnings("null")@NonNull Type asType : asPackage.getOwnedType()) {
+			for (Operation envOperation : asType.getOwnedOperation()) {
+				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
+					List<Parameter> asParameters = envOperation.getOwnedParameter();
+					if (asParameters.size() == 1) {
+						Operation asOperation = createVisitOperationDeclaration(reDefinitions, envOperation, asChildProperty);
+						envOperation2asOperation.put(envOperation, asOperation);
+						reDefinitions.put(envOperation, asOperation);
+					}
+				}
+			}
+		}
+		return envOperation2asOperation;
+	}
+
+	/**
+	 * Convert  'Element'::_env(child : Element) : Environment 
+	 * to AutoPivotLookupVisitor::visit'Element'(parent : 'Element') : Environment
+	 * 
+	 * with child accessed as this.child.
+	 */
+	protected @NonNull Operation createVisitOperationDeclaration(@NonNull Map<Element, Element> reDefinitions, @NonNull Operation envOperation, @NonNull Property asChildProperty) {
+		ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression().getExpressionInOCL());
+		//
+		Type asType = DomainUtil.nonNullState(envOperation.getOwningType());
+		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
+		reDefinitions.put(envExpressionInOCL.getContextVariable(), asElement);
+		//
+		VariableExp asChildSource = createThisVariableExp();
+		PropertyCallExp asChildAccess = PivotUtil.createPropertyCallExp(asChildSource, asChildProperty);
+		Variable asChild = PivotUtil.createVariable(LookupClassContext.CHILD_NAME, asChildAccess);
+		reDefinitions.put(envExpressionInOCL.getParameterVariable().get(0), asChild);
+		//
+		String visitorName = "visit" + asType.getName();
+		Operation asOperation = PivotFactory.eINSTANCE.createOperation();
+		asOperation.setName(visitorName);
+		asOperation.setImplementation(NativeVisitorOperation.INSTANCE);
+		reDefinitions.put(envOperation, asOperation);
+		return asOperation;
+	}
+	
+	@Override
+	protected @NonNull String getAutoVisitorClassName(@NonNull String prefix) {
+		return "Auto" +  prefix + "LookupVisitor";
+	}
+
+	public @NonNull CGValuedElement getChildVariable() {
+		return DomainUtil.nonNullState(cgChildVariable);
+	}
+
+	public @NonNull CGValuedElement getEvaluatorVariable() {
+		return DomainUtil.nonNullState(cgEvaluatorVariable);
+	}
+
+	@Override
+	public @NonNull LookupClassContext getGlobalContext() {
+		return classContext;
+	}
+
+	public @NonNull CGValuedElement getIdResolverVariable() {
+		return DomainUtil.nonNullState(cgIdResolverVariable);
+	}
+	
+	@Override
+	protected @NonNull String getManualVisitorClassName(@NonNull String prefix) {
+		return "New" + prefix + "LookupVisitor";  
+	}
+
+	@Override
+	public @NonNull Class<?> getVisitableClass() {
+		return Visitable.class;
+	}
+	
+	@Override
+	protected @NonNull String getVisitorPackageName(@NonNull String visitorsPackageName) {
+		return visitorsPackageName + ".lookup";
+	}
+
+	/**
+	 * Replace selected OperationCallExps by alternative implementations.
+	 */
+	protected void rewriteOperationCalls(@NonNull Collection<? extends EObject> allContents) {
+		for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> entry : EcoreUtil.CrossReferencer.find(allContents).entrySet()) {
+			EObject crossReference = entry.getKey();
+			if (crossReference instanceof Operation) {
+				Operation asOperation = (Operation) metaModelManager.getPrimaryOperation((Operation)crossReference);
+				if (asOperation == asElementEnvOperation) {
+					for (EStructuralFeature.Setting setting : entry.getValue()) {
+						EObject eObject = setting.getEObject();
+						if (eObject instanceof OperationCallExp) {
+							rewriteEnvOperationCall((OperationCallExp)eObject);
+						}
+					}
+				}
+				else if (asOperation == asEnvironmentNestedEnvOperation) {
+					for (EStructuralFeature.Setting setting : entry.getValue()) {
+						EObject eObject = setting.getEObject();
+						if (eObject instanceof OperationCallExp) {
+							rewriteNestedEnvOperationCall((OperationCallExp)eObject);
+						}
+					}
+				}
+				else if (asOperation == asElementParentEnvOperation) {
+					for (EStructuralFeature.Setting setting : entry.getValue()) {
+						EObject eObject = setting.getEObject();
+						if (eObject instanceof OperationCallExp) {
+							rewriteParentEnvOperationCall((OperationCallExp)eObject);
+						}
+					}
+				}
+			}
+			
+		}
+	}
+	
+	/**
+	 * Convert source.env(child) to this.env(source, child)
+	 */
+	protected void rewriteEnvOperationCall(@NonNull OperationCallExp asOperationCallExp) {
+		OCLExpression asSource = asOperationCallExp.getSource();
+		asOperationCallExp.setSource(createThisVariableExp());
+		asOperationCallExp.getArgument().add(0, asSource);
+		asOperationCallExp.setReferredOperation(asVisitorEnvOperation);
+	}
+	
+	/**
+	 * Convert "source.nestedEnv().r.e.s.i.d.u.e" to
+	 * "let innerEnv = this.context.r.e.s.i.d.u.e in if innerEnv.hasFinalResult() then innerEnv else source endif"
+	 *  where r.e.s.i.d.u.e does not include any nestedEnv() call.
+	 *  
+	 *  "source.nestedEnv()" to "source"
+	 */
+	protected void rewriteNestedEnvOperationCall(@NonNull OperationCallExp asOperationCallExp) {
+		CallExp asOuterCallExp = asOperationCallExp;
+		for (EObject eContainer; (asOuterCallExp.eContainmentFeature() == PivotPackage.Literals.CALL_EXP__SOURCE) && ((eContainer = asOuterCallExp.eContainer()) != null); asOuterCallExp = (CallExp)eContainer) {
+			if (eContainer instanceof OperationCallExp) {
+				OperationCallExp asParentOperationCallExp = (OperationCallExp)eContainer;
+				Operation asReferredOperation = asParentOperationCallExp.getReferredOperation();
+				if (asReferredOperation == asEnvironmentNestedEnvOperation) {
+					break;
+				}
+			}
+		}
+		EObject eContainer = asOuterCallExp.eContainer();
+		EReference eContainingFeature = asOuterCallExp.eContainmentFeature();		// This is not isMany()
+		eContainer.eSet(eContainingFeature, null);									// asOuterCallExp becomes an orphan
+		OCLExpression asSource = DomainUtil.nonNullState(asOperationCallExp.getSource());
+		if (asOuterCallExp != asOperationCallExp) {
+			CallExp asInnerCallExp = (CallExp)asOperationCallExp.eContainer();
+			VariableExp asContextExp = PivotUtil.createVariableExp(asContextVariable);
+			asInnerCallExp.setSource(asContextExp);										// asOperationCallExp becomes an orphan
+			Variable asInnerEnv = PivotUtil.createVariable("inner", asOuterCallExp);
+			VariableExp asInnerEnvExp1 = PivotUtil.createVariableExp(asInnerEnv);
+			VariableExp asInnerEnvExp2 = PivotUtil.createVariableExp(asInnerEnv);
+			OperationCallExp asCondition = PivotUtil.createOperationCallExp(asInnerEnvExp1, asEnvironmentHasFinalResultOperation);
+			IfExp asIfExp = metaModelManager.createIfExp(asCondition, asInnerEnvExp2, asSource);
+			LetExp asLetExp = PivotUtil.createLetExp(asInnerEnv, asIfExp);
+			eContainer.eSet(eContainingFeature, asLetExp);
+		}
+		else {
+			eContainer.eSet(eContainingFeature, asSource);
+		}
+	}
+	
+	/**
+	 * Convert source.parentEnv() to this.parentEnv(source)
+	 */
+	protected void rewriteParentEnvOperationCall(@NonNull OperationCallExp asOperationCallExp) {
+		OCLExpression asSource = asOperationCallExp.getSource();
+		asOperationCallExp.setSource(createThisVariableExp());
+		asOperationCallExp.getArgument().add(asSource);
+		asOperationCallExp.setReferredOperation(asVisitorParentEnvOperation);
+	}
+
+	/**
+	 * Copy all the visitXXX operation bodies from the _emv bodies replacing references to redefined parameters.
+	 */
+	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, Operation> envOperation2asOperation) {
+		for (@SuppressWarnings("null")@NonNull Operation envOperation : envOperation2asOperation.keySet()) {
+			@SuppressWarnings("null")@NonNull Operation asOperation = envOperation2asOperation.get(envOperation);
+			ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression().getExpressionInOCL());
+			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getContextVariable());
+			OCLExpression asExpression = RereferencingCopier.copy(DomainUtil.nonNullState(envExpressionInOCL.getBodyExpression()), reDefinitions);
+			ExpressionInOCL asExpressionInOCL = PivotUtil.createExpressionInOCL(null, asExpression, asElement);
+			PivotUtil.initOperation(asOperation, asExpressionInOCL);
+			asOperation.setIsRequired(false);
+		}
+	}
+}

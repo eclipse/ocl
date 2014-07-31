@@ -1,0 +1,106 @@
+import 'Environment.ecore'
+import 'Pivot.ecore'
+
+package pivot
+
+context Element
+def: parentEnv() : env::Environment =
+	let parent = oclContainer() in if parent.oclIsKindOf(Element) then parent.oclAsType(Element)._env(self) else null endif
+		
+context Class
+def : _env(child : Element) : env::Environment =
+	parentEnv().nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
+		.addElements(self.ownedAttribute->select(not isStatic))
+		.addElements(self.ownedOperation->select(not isStatic))
+		.addElements(self.ownedBehavior)
+
+context DataType
+def : _env(child : Element) : env::Environment =
+	-- FIXME need to translate NewPivotLookupVisitor.visitDatatype
+	parentEnv().nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
+
+context Element
+def: _env(child : Element) : env::Environment =
+	parentEnv()
+	
+context Enumeration
+def : _env(child : Element) : env::Environment =
+	parentEnv().nestedEnv()
+		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
+		.addElements(self.ownedLiteral)
+		.addElements(self.ownedAttribute->select(not isStatic))
+		.addElements(self.ownedOperation->select(not isStatic))
+		.addElements(self.ownedBehavior)
+		
+
+
+context ExpressionInOCL
+def : _env(child : Element) : env::Environment =
+	parentEnv().nestedEnv()
+		.addElement(self.contextVariable)
+		.addElements(self.parameterVariable)
+		.addElement(self.resultVariable)
+
+context IterateExp
+def : _env(child : Element) : env::Environment =
+	if child = result
+	    then parentEnv().nestedEnv().addElements(self.iterator)
+	    else let index = iterator->indexOf(child) in
+		    if index > 1 
+		        then parentEnv().nestedEnv().addElements(self.iterator->subOrderedSet(1, index-1))
+		        else parentEnv().nestedEnv().addElements(self.iterator).addElement(result)
+		    endif
+	endif
+
+context IteratorExp
+def : _env(child : Element) : env::Environment =
+	let index = iterator->indexOf(child) in
+	if index > 1 
+        then parentEnv().nestedEnv().addElements(self.iterator->subOrderedSet(1, index-1))
+        else parentEnv().nestedEnv().addElements(self.iterator)
+    endif
+
+context LetExp
+def : _env(child : Element) : env::Environment =
+	if child = _'in'
+		then parentEnv().nestedEnv().addElement(self.variable)
+		else parentEnv()
+	endif
+
+context Library
+def : _env(child : Element) : env::Environment =
+	parentEnv().nestedEnv()
+		.addElements(self.nestedPackage)
+		.addElements(self.ownedType)
+		.addElements(self.ownedPrecedence)
+
+context Metaclass
+def : _env(child : Element) : env::Environment = null
+--	parentEnv().nestedEnv()
+--		.addElements(env.elements) -- add instance type properties FIXME Dummy valid expression. I can't access to instanceType
+
+context Operation
+def : _env(child : Element) : env::Environment =
+	if ownedParameter->includes(child)
+		then parentEnv().nestedEnv()
+		 	-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
+		else parentEnv().nestedEnv()
+			.addElements(self.ownedParameter)
+			-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
+	endif
+
+context Package
+def : _env(child : Element) : env::Environment =
+	parentEnv().nestedEnv()
+		.addElements(self.nestedPackage)
+		.addElements(self.ownedType)
+
+context Root
+def : _env(child : Element) : env::Environment =
+	parentEnv()
+		.addElements(self.imports)
+		.addElements(self.nestedPackage)
+
+endpackage

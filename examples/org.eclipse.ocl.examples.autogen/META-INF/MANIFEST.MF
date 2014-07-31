@@ -18,5 +18,6 @@ Export-Package: org.eclipse.ocl.examples.autogen,
  org.eclipse.ocl.examples.autogen.autocgmodel.util,
  org.eclipse.ocl.examples.autogen.cs2as,
  org.eclipse.ocl.examples.autogen.java,
+ org.eclipse.ocl.examples.autogen.lookup,
  org.eclipse.ocl.examples.autogen.utilities
 Import-Package: org.apache.log4j

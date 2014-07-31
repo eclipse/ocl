@@ -27,6 +27,7 @@ Export-Package: org.eclipse.ocl.examples.codegen,
  org.eclipse.ocl.examples.codegen.java,
  org.eclipse.ocl.examples.codegen.java.iteration,
  org.eclipse.ocl.examples.codegen.java.types,
+ org.eclipse.ocl.examples.codegen.library,
  org.eclipse.ocl.examples.codegen.oclinecore,
  org.eclipse.ocl.examples.codegen.oclinjunit,
  org.eclipse.ocl.examples.codegen.utilities

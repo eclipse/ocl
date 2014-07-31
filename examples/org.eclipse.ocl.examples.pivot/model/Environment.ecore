@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="env" nsURI="http://www.example.org/examples/env.ecore" nsPrefix="env">
+  <eClassifiers xsi:type="ecore:EClass" name="Environment" instanceClassName="org.eclipse.ocl.examples.pivot.lookup.Environment">
+    <eOperations name="addElement" lowerBound="1" eType="#//Environment">
+      <eParameters name="element" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
+    </eOperations>
+    <eOperations name="addElement" lowerBound="1" eType="#//Environment">
+      <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//String"/>
+      <eParameters name="element" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
+    </eOperations>
+    <eOperations name="addElements" lowerBound="1" eType="#//Environment">
+      <eParameters name="elements" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//Collection">
+          <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="addElementsOf" lowerBound="1" eType="#//Environment">
+      <eParameters name="elements" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
+    </eOperations>
+    <eOperations name="hasFinalResult" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="nestedEnv" lowerBound="1" eType="#//Environment"/>
+  </eClassifiers>
+</ecore:EPackage>
