@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNavigationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
@@ -379,6 +380,20 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		int iMax = cgArguments.size();
 		for (int i = 0; i < iMax; i++) {			// Avoid CME from rewrite
 			rewriteAsBoxed(cgArguments.get(i));
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitCGNativeOperationCallExp(@NonNull CGNativeOperationCallExp cgElement) {
+		super.visitCGNativeOperationCallExp(cgElement);
+		CGValuedElement cgSource = cgElement.getSource();
+		rewriteAsGuarded(cgSource, "source for '" + cgElement.getReferredOperation() + "'");
+		rewriteAsUnboxed(cgSource);
+		List<CGValuedElement> cgArguments = cgElement.getArguments();
+		int iMax = cgArguments.size();
+		for (int i = 0; i < iMax; i++) {			// Avoid CME from rewrite
+			rewriteAsUnboxed(cgArguments.get(i));
 		}
 		return null;
 	}

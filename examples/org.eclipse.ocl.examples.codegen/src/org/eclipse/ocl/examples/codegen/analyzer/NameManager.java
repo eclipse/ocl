@@ -46,10 +46,12 @@ import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 import org.eclipse.ocl.examples.domain.ids.LambdaTypeId;
 import org.eclipse.ocl.examples.domain.ids.MetaclassId;
 import org.eclipse.ocl.examples.domain.ids.NestedPackageId;
+import org.eclipse.ocl.examples.domain.ids.NestedTypeId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.OclInvalidTypeId;
 import org.eclipse.ocl.examples.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.examples.domain.ids.PropertyId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
@@ -526,7 +528,7 @@ public class NameManager
 				for (String nameHint : nameHints) {
 					if (nameHint != null)  {
 						String validHint = getValidJavaIdentifier(nameHint, false, anObject);
-						if (!reservedJavaNames.contains(validHint)) {
+						if (!reservedJavaNames.contains(validHint) || ((anObject instanceof CGValuedElement) && isNative((CGValuedElement)anObject))) {
 							if (anObject != null) {
 								Object oldElement = name2object.get(validHint);
 								if (oldElement == anObject) {
@@ -567,7 +569,7 @@ public class NameManager
 				}
 			}
 		}
-		
+
 		private void install(@NonNull String name, @Nullable Object anObject) {
 //FIXME			assert !frozen;
 			assert !(anObject instanceof RealValue) || (anObject instanceof InvalidValue);
@@ -575,6 +577,17 @@ public class NameManager
 			if (anObject != null) {
 				object2name.put(anObject, name);
 			}
+		}
+		
+		private boolean isNative(@NonNull CGValuedElement cgElement) {
+			TypeId asTypeId = cgElement.getASTypeId();
+			if (asTypeId instanceof NestedTypeId) {
+				PackageId packageId = ((NestedTypeId)asTypeId).getParent();
+				if ((packageId instanceof RootPackageId) && ((RootPackageId)packageId).getName().contains("://")) {	// e.g. java://
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		/**

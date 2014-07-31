@@ -66,6 +66,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOppositePropertyCallExp;
@@ -88,9 +92,13 @@ import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.GenModelException;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.IterationHelper;
+import org.eclipse.ocl.examples.codegen.library.NativeProperty;
+import org.eclipse.ocl.examples.codegen.library.NativeStaticOperation;
+import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryIteration;
 import org.eclipse.ocl.examples.domain.library.LibraryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryProperty;
@@ -878,7 +886,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @Nullable CGOperation visitOperation(@NonNull Operation element) {
 		CGOperation cgOperation = null;
 		LibraryOperation libraryOperation = metaModelManager.getImplementation(element);
-		if (libraryOperation instanceof EObjectOperation) {
+		if ((libraryOperation instanceof NativeStaticOperation) || (libraryOperation instanceof NativeVisitorOperation)) {
+			CGNativeOperation cgNativeOperation = CGModelFactory.eINSTANCE.createCGNativeOperation();
+			cgOperation = cgNativeOperation;
+		}
+		else if (libraryOperation instanceof EObjectOperation) {
 			EOperation eOperation = (EOperation) element.getETarget();
 			if (eOperation != null) {
 				CGEcoreOperation cgEcoreOperation = CGModelFactory.eINSTANCE.createCGEcoreOperation();
@@ -938,6 +950,64 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgIsEqualExp.setValidating(true);
 			return cgIsEqualExp;
 		}
+		else if (libraryOperation instanceof NativeStaticOperation) {
+//			if (pSource != null) {
+//				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
+//				if (finalOperation != null) {
+					OpaqueExpression opaqueExpression = asOperation.getBodyExpression();
+					if (opaqueExpression != null) {
+						ExpressionInOCL expressionInOCL = opaqueExpression.getExpressionInOCL();
+						if (expressionInOCL != null) {
+							OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+							if (bodyExpression != null) {
+								CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, opaqueExpression);
+								if (cgOperationCallExp2 != null) {
+									return cgOperationCallExp2;
+								}
+							}
+						}
+					}
+//				}
+				CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();
+				cgNativeOperationCallExp.setSource(cgSource);
+				for (OCLExpression pArgument : element.getArgument()) {
+					CGValuedElement cgArgument = doVisit(CGValuedElement.class, pArgument);
+					cgNativeOperationCallExp.getArguments().add(cgArgument);
+				}
+				setAst(cgNativeOperationCallExp, element);
+				cgNativeOperationCallExp.setReferredOperation(asOperation);
+				return cgNativeOperationCallExp;
+//			}
+		}
+		else if (libraryOperation instanceof NativeVisitorOperation) {
+//			if (pSource != null) {
+//				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
+//				if (finalOperation != null) {
+					OpaqueExpression opaqueExpression = asOperation.getBodyExpression();
+					if (opaqueExpression != null) {
+						ExpressionInOCL expressionInOCL = opaqueExpression.getExpressionInOCL();
+						if (expressionInOCL != null) {
+							OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+							if (bodyExpression != null) {
+								CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, opaqueExpression);
+								if (cgOperationCallExp2 != null) {
+									return cgOperationCallExp2;
+								}
+							}
+						}
+					}
+//				}
+				CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();
+				cgNativeOperationCallExp.setSource(cgSource);
+				for (OCLExpression pArgument : element.getArgument()) {
+					CGValuedElement cgArgument = doVisit(CGValuedElement.class, pArgument);
+					cgNativeOperationCallExp.getArguments().add(cgArgument);
+				}
+				setAst(cgNativeOperationCallExp, element);
+				cgNativeOperationCallExp.setReferredOperation(asOperation);
+				return cgNativeOperationCallExp;
+//			}
+		}
 		else if (libraryOperation instanceof ConstrainedOperation) {
 			if (pSource != null) {
 				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
@@ -970,7 +1040,21 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 						isRequired = ecoreIsRequired;
 					}
 					cgOperationCallExp = cgEcoreOperationCallExp;
-				} catch (GenModelException e) {}
+				} catch (GenModelException e) {
+					Type asType = asOperation.getOwningType();
+					String className = asType.getInstanceClassName();
+					if (className != null) {
+						CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();
+						cgNativeOperationCallExp.setSource(cgSource);
+						for (OCLExpression pArgument : element.getArgument()) {
+							CGValuedElement cgArgument = doVisit(CGValuedElement.class, pArgument);
+							cgNativeOperationCallExp.getArguments().add(cgArgument);
+						}
+						setAst(cgNativeOperationCallExp, element);
+						cgNativeOperationCallExp.setReferredOperation(asOperation);
+						return cgNativeOperationCallExp;
+					}
+				}
 			}
 		}
 		else {
@@ -1068,7 +1152,22 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @Nullable CGProperty visitProperty(@NonNull Property element) {
-		CGProperty cgProperty = CGModelFactory.eINSTANCE.createCGProperty();
+		CGProperty cgProperty = null;
+		LibraryFeature propertyImplementation = element.getImplementation();
+		if (propertyImplementation instanceof NativeProperty) {
+			CGNativeProperty cgNativeProperty = CGModelFactory.eINSTANCE.createCGNativeProperty();
+			cgNativeProperty = CGModelFactory.eINSTANCE.createCGNativeProperty();
+			if (!element.isReadOnly()) {
+				cgNativeProperty.setSettable();
+			}
+			else {
+				cgNativeProperty.setNonNull();
+			}
+			cgProperty = cgNativeProperty;
+		}
+		else {
+			cgProperty = CGModelFactory.eINSTANCE.createCGProperty();
+		}
 		setAst(cgProperty, element);
 		cgProperty.setRequired(element.isRequired());
 		OpaqueExpression specification = element.getDefaultExpression();
@@ -1091,7 +1190,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		boolean isRequired = asProperty.isRequired();
 		LibraryProperty libraryProperty = metaModelManager.getImplementation(null, asProperty);
 		CGPropertyCallExp cgPropertyCallExp = null;
-		if (isEcoreProperty(libraryProperty)) {
+		if (libraryProperty instanceof NativeProperty) {
+			CGNativePropertyCallExp cgNativePropertyCallExp = CGModelFactory.eINSTANCE.createCGNativePropertyCallExp();
+			cgPropertyCallExp = cgNativePropertyCallExp;
+		}
+		else if (isEcoreProperty(libraryProperty)) {
 			EStructuralFeature eStructuralFeature = (EStructuralFeature) asProperty.getETarget();
 			if (eStructuralFeature != null) {
 				try {

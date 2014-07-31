@@ -67,6 +67,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterateCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
@@ -90,6 +94,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
+import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -168,6 +173,12 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	protected void addImport(@NonNull String className) {
 		globalContext.addImport(className);
+	}
+
+	protected void appendAtOverride(@NonNull CGOperation cgOperation) {
+		if (!(cgOperation instanceof CGNativeOperation) || (((Operation)cgOperation.getAst()).getImplementation() instanceof NativeVisitorOperation)) {
+			js.append("@Override\n");
+		}
 	}
 
 	protected void appendGlobalPrefix() {}
@@ -1683,6 +1694,78 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	}
 
 	@Override
+	public @NonNull Boolean visitCGNativeOperationCallExp(@NonNull CGNativeOperationCallExp cgOperationCallExp) {
+		Operation pOperation = cgOperationCallExp.getReferredOperation();
+		CGValuedElement source = getExpression(cgOperationCallExp.getSource());
+		List<CGValuedElement> cgArguments = cgOperationCallExp.getArguments();
+		List<Parameter> pParameters = pOperation.getOwnedParameter();
+		//
+		if (!js.appendLocalStatements(source)) {
+			return false;
+		}
+		for (@SuppressWarnings("null")@NonNull CGValuedElement cgArgument : cgArguments) {
+			CGValuedElement argument = getExpression(cgArgument);
+			if (!js.appendLocalStatements(argument)) {
+				return false;
+			}
+		}
+		//
+		js.appendDeclaration(cgOperationCallExp);
+		js.append(" = ");
+//		js.appendClassCast(cgOperationCallExp);
+		js.appendValueName(source);
+		js.append(".");
+		js.append(cgOperationCallExp.getReferredOperation().getName());
+		js.append("(");
+		int iMax = Math.min(pParameters.size(), cgArguments.size());
+		for (int i = 0; i < iMax; i++) {
+			if (i > 0) {
+				js.append(", ");
+			}
+			CGValuedElement cgArgument = cgArguments.get(i);
+			Parameter pParameter = pParameters.get(i);
+			CGTypeId cgTypeId = analyzer.getTypeId(pParameter.getTypeId());
+			TypeDescriptor parameterTypeDescriptor = context.getUnboxedDescriptor(DomainUtil.nonNullState(cgTypeId.getElementId()));
+			CGValuedElement argument = getExpression(cgArgument);
+			js.appendReferenceTo(parameterTypeDescriptor, argument);
+		}
+		js.append(");\n");
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGNativeProperty(@NonNull CGNativeProperty cgNativeProperty) {
+		localContext = globalContext.getLocalContext(cgNativeProperty);
+		try {
+			js.append("protected ");
+			js.appendDeclaration(cgNativeProperty);
+			js.append(";\n");
+			return true;
+		}
+		finally {
+			localContext = null;
+		}
+	}
+
+	@Override
+	public @NonNull Boolean visitCGNativePropertyCallExp(@NonNull CGNativePropertyCallExp cgPropertyCallExp) {
+		CGValuedElement source = getExpression(cgPropertyCallExp.getSource());
+		//
+		if (!js.appendLocalStatements(source)) {
+			return false;
+		}
+		//
+		js.appendDeclaration(cgPropertyCallExp);
+		js.append(" = ");
+		js.appendClassCast(cgPropertyCallExp);
+		js.appendValueName(source);
+		js.append(".");
+		js.append(cgPropertyCallExp.getReferredProperty().getName());
+		js.append(";\n");
+		return true;
+	}
+
+	@Override
 	public @NonNull Boolean visitCGNull(@NonNull CGNull object) {
 		js.append("null");
 		return true;
@@ -1708,7 +1791,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 					}
 				}
 				//
-				js.append("@Override\n");
+				appendAtOverride(cgOperation);
 				js.append("public ");
 				if (cgOperation.isNull()) {
 					js.append("/*@Null*/");
