@@ -12,8 +12,7 @@ package org.eclipse.ocl.examples.build.xtend;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
-import org.eclipse.ocl.examples.build.xtend.GenerateCSVisitors;
+import org.eclipse.ocl.examples.autogen.cs2as.CS2ASCodeGenerator;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
@@ -30,10 +29,10 @@ public class GenerateAutoCS2ASVisitors extends GenerateCSVisitors
 	@Override
 	public void generateVisitors(@NonNull GenPackage genPackage) {
 		if (isDerived()) {
-			AutoCodeGenerator.generate(genPackage, projectPrefix, projectName, visitorPackageName, visitorClassName,
+			CS2ASCodeGenerator.generate(genPackage, projectPrefix, projectName, visitorPackageName, visitorClassName,
 				superProjectPrefix, superProjectName, superVisitorClassName);
 		} else {
-			AutoCodeGenerator.generate(genPackage, projectPrefix, projectName, visitorPackageName, visitorClassName,
+			CS2ASCodeGenerator.generate(genPackage, projectPrefix, projectName, visitorPackageName, visitorClassName,
 				null, null, null);
 		}
 	}

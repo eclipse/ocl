@@ -92,6 +92,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		generator.generate(uri2body, constantsTexts);
 	}
 
+	protected final @NonNull OCLinEcoreGlobalContext globalContext;
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 	protected final @NonNull GenPackage genPackage;
 	
@@ -102,6 +103,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		getOptions().setUseNullAnnotations(OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel));
 		this.cgAnalyzer = new CodeGenAnalyzer(this);
 		this.genPackage = genPackage;
+		this.globalContext = new OCLinEcoreGlobalContext(this, genPackage);
 	}
 
 	@Override
@@ -114,16 +116,11 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		return new EcoreFieldingAnalyzer(cgAnalyzer);
 	}
 
-	@Override
-	protected @NonNull OCLinEcoreGlobalContext createGlobalContext() {
-		return new OCLinEcoreGlobalContext(this, genPackage);
-	}
-
 	protected void generate(@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
 		EPackage ecorePackage = genPackage.getEcorePackage();
 		org.eclipse.ocl.examples.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ecorePackage);
 		assert asPackage != null;
-		AS2CGVisitor pivot2CGVisitor = new OCLinEcoreAS2CGVisitor(cgAnalyzer, (OCLinEcoreGlobalContext) getGlobalContext());
+		AS2CGVisitor pivot2CGVisitor = new OCLinEcoreAS2CGVisitor(cgAnalyzer, globalContext);
 		CGPackage cgPackage = (CGPackage) DomainUtil.nonNullState(asPackage.accept(pivot2CGVisitor));
 		optimize(cgPackage);
 		OCLinEcoreCG2JavaVisitor cg2java = new OCLinEcoreCG2JavaVisitor(this, genPackage, cgPackage);
@@ -139,5 +136,10 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	@Override
 	public @NonNull CodeGenAnalyzer getAnalyzer() {
 		return cgAnalyzer;
+	}
+
+	@Override
+	public @NonNull OCLinEcoreGlobalContext getGlobalContext() {
+		return globalContext;
 	}
 }

@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.autogen.analyzer;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 
 public class AutoAnalyzer extends CodeGenAnalyzer
 {
-	public AutoAnalyzer(@NonNull AutoCodeGenerator codeGenerator) {
+	public AutoAnalyzer(@NonNull CodeGenerator codeGenerator) {
 		super(codeGenerator);
 	}
 }

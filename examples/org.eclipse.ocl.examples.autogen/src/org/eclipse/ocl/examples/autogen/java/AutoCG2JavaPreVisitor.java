@@ -19,10 +19,11 @@ import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 import org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
+import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 
 public class AutoCG2JavaPreVisitor extends CG2JavaPreVisitor implements AutoCGModelVisitor<Object>
 {
-	public AutoCG2JavaPreVisitor(@NonNull AutoGlobalContext<?> javaContext) {
+	public AutoCG2JavaPreVisitor(@NonNull JavaGlobalContext<?> javaContext) {
 		super(javaContext);
 	}
 

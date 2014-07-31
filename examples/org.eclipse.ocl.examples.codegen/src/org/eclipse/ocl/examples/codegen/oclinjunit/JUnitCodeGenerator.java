@@ -25,6 +25,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
+import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -44,6 +46,7 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 		return expressionInOCL2Class.generate(query, packageName, className);
 	}
 	
+	protected final @NonNull JavaGlobalContext<JUnitCodeGenerator> globalContext = new JavaGlobalContext<JUnitCodeGenerator>(this);
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 
 	protected JUnitCodeGenerator(@NonNull MetaModelManager metaModelManager, boolean useNullAnnotations) {
@@ -65,10 +68,21 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 		if (contextVariable != null) {
 			contextVariable.setIsRequired(false); // May be null for test
 		}
-		AS2CGVisitor pivot2CGVisitor = new AS2CGVisitor(cgAnalyzer);
+		AS2CGVisitor pivot2CGVisitor = new JUnitAS2CGVisitor(cgAnalyzer);
 		CGValuedElement cgBody = (CGValuedElement) DomainUtil.nonNullState(expInOcl.accept(pivot2CGVisitor));
 		CGOperation cgOperation = CGModelFactory.eINSTANCE.createCGLibraryOperation();
 		List<CGParameter> cgParameters = cgOperation.getParameters();
+		JavaLocalContext<?> localContext = globalContext.getLocalContext(cgOperation);
+		if (localContext != null) {
+			CGParameter evaluatorParameter = localContext.createEvaluatorParameter();
+			if (evaluatorParameter != null) {
+				cgParameters.add(evaluatorParameter);
+			}
+			CGParameter typeIdParameter = localContext.createTypeIdParameter();
+			if (typeIdParameter != null) {
+				cgParameters.add(typeIdParameter);
+			}
+		}
 		if (contextVariable != null) {
 			CGParameter cgContext = pivot2CGVisitor.getParameter(contextVariable);
 			cgParameters.add(cgContext);
@@ -80,7 +94,7 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 		cgOperation.setAst(expInOcl);
 		TypeId asTypeId = expInOcl.getTypeId();
 		cgOperation.setTypeId(cgAnalyzer.getTypeId(asTypeId));
-		cgOperation.setName(getGlobalContext().getEvaluateName());
+		cgOperation.setName(globalContext.getEvaluateName());
 		cgOperation.setBody(cgBody);
 		cgClass.getOperations().add(cgOperation);
 		return cgPackage;
@@ -100,5 +114,10 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 	@Override
 	public @NonNull CodeGenAnalyzer getAnalyzer() {
 		return cgAnalyzer;
+	}
+
+	@Override
+	public @NonNull JavaGlobalContext<JUnitCodeGenerator> getGlobalContext() {
+		return globalContext;
 	}
 }

@@ -17,13 +17,13 @@ import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 import org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor;
-import org.eclipse.ocl.examples.autogen.java.AutoGlobalContext;
 import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 import org.eclipse.ocl.examples.codegen.java.JavaDependencyVisitor;
+import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 
 public class AutoDependencyVisitor extends JavaDependencyVisitor implements AutoCGModelVisitor<Object>
 {	
-	public AutoDependencyVisitor(@NonNull AutoAnalyzer analyzer, @NonNull AutoGlobalContext<?> globalContext, @NonNull GlobalPlace globalPlace) {
+	public AutoDependencyVisitor(@NonNull AutoAnalyzer analyzer, @NonNull JavaGlobalContext<?> globalContext, @NonNull GlobalPlace globalPlace) {
 		super(analyzer, globalContext, globalPlace);
 	}
 

@@ -384,6 +384,24 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		return new Id2JavaExpressionVisitor(javaStream);
 	}
 
+	protected void doClassFields(@NonNull CGClass cgClass) {
+		if (cgClass.getProperties().size() > 0) {
+			for (CGProperty cgProperty : cgClass.getProperties()) {
+				cgProperty.accept(this);
+			}
+			js.append("\n");
+		}
+	}
+
+	protected void doClassMethods(@NonNull CGClass cgClass) {
+		for (CGOperation cgOperation : cgClass.getOperations()) {
+			js.append("\n");
+			cgOperation.accept(this);
+		}
+	}
+
+	protected void doClassStatics(@NonNull CGClass cgClass) {}
+
 	public void generateGlobals(@NonNull Iterable<? extends CGValuedElement> sortedElements) {
 		for (CGValuedElement cgElement : sortedElements) {
 			cgElement.accept(this);
@@ -730,6 +748,48 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				js.popIndentation();
 			js.append("}\n");
 		}
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGClass(@NonNull CGClass cgClass) {		
+		String className = cgClass.getName();
+		js.append("public class " + className);
+		List<CGClass> cgSuperTypes = cgClass.getSuperTypes();
+		boolean isFirst = true;
+		for (CGClass cgSuperType : cgSuperTypes) {
+			if (!cgSuperType.isInterface()) {
+				if (isFirst) {
+					js.append("\n\textends ");
+				}
+				else {
+					js.append(", ");
+				}
+				js.appendClassReference(cgSuperType);
+				isFirst = false;
+			}
+		}
+		isFirst = true;
+		for (CGClass cgSuperType : cgSuperTypes) {
+			if (cgSuperType.isInterface()) {
+				if (isFirst) {
+					js.append("\n\timplements ");
+				}
+				else {
+					js.append(", ");
+				}
+				js.appendClassReference(cgSuperType);
+				isFirst = false;
+			}
+		}
+		js.append("\n");
+		js.append("{\n");
+		js.pushIndentation(null);
+	    	doClassStatics(cgClass);	// Blank lines after
+		    doClassFields(cgClass);		// Blank lines after
+		    doClassMethods(cgClass);	// Blank lines between but not before
+		js.popIndentation();
+		js.append("}\n");
 		return true;
 	}
 

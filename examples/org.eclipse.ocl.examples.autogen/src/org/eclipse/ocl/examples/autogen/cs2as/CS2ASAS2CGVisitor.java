@@ -8,12 +8,12 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.analyzer;
+package org.eclipse.ocl.examples.autogen.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
 import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
-import org.eclipse.ocl.examples.autogen.java.AutoGlobalContext;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -21,15 +21,10 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 
-public final class AutoAS2CGVisitor extends AS2CGVisitor
+public class CS2ASAS2CGVisitor extends AS2CGVisitor
 {
-	protected final @NonNull AutoAnalyzer analyzer;
-	protected final @NonNull AutoGlobalContext<?> globalContext;
-	
-	public AutoAS2CGVisitor(@NonNull AutoAnalyzer analyzer, @NonNull AutoGlobalContext<?> globalContext) {
+	public CS2ASAS2CGVisitor(@NonNull AutoAnalyzer analyzer) {
 		super(analyzer);
-		this.analyzer = analyzer;
-		this.globalContext = globalContext;
 	}
 
 	@Override

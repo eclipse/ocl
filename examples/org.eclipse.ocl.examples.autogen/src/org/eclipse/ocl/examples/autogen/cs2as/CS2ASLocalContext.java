@@ -8,26 +8,25 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.java;
+package org.eclipse.ocl.examples.autogen.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 
 /**
  * A AutoLocalContext maintains the Java-specific local context for generation of Auto code.
  */
-public class AutoLocalContext<CG extends JavaCodeGenerator> extends JavaLocalContext<CG>
+public class CS2ASLocalContext extends JavaLocalContext<CS2ASCodeGenerator>
 {
-	public AutoLocalContext(@NonNull AutoGlobalContext<CG> globalContext, @NonNull CGElement cgScope) {
+	public CS2ASLocalContext(@NonNull CS2ASGlobalContext globalContext, @NonNull CGElement cgScope) {
 		super(globalContext, cgScope);
 	}
 
 	@Override
-	public @NonNull AutoGlobalContext<? extends CG> getGlobalContext() {
-		return (AutoGlobalContext<? extends CG>) globalContext;
+	public @NonNull CS2ASGlobalContext getGlobalContext() {
+		return (CS2ASGlobalContext) globalContext;
 	}
 
 	@Override

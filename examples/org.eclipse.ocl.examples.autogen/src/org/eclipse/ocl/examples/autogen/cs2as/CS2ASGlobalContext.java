@@ -8,26 +8,24 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.java;
+package org.eclipse.ocl.examples.autogen.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
-import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 
 /**
  * A AutoGlobalContext maintains the Java-specific global context for generation of Auto code.
  */
-public class AutoGlobalContext<CG extends JavaCodeGenerator> extends JavaGlobalContext<CG>
+public class CS2ASGlobalContext extends JavaGlobalContext<CS2ASCodeGenerator>
 {
 	private /*@LazyNonNull*/ CGLocalVariable idResolver = null;
 	
-	public AutoGlobalContext(@NonNull CG codeGenerator) {
+	public CS2ASGlobalContext(@NonNull CS2ASCodeGenerator codeGenerator) {
 		super(codeGenerator);
 		nameManager.reserveName(JavaConstants.EVALUATOR_NAME, null);
 		nameManager.reserveName("context", null);
@@ -37,8 +35,8 @@ public class AutoGlobalContext<CG extends JavaCodeGenerator> extends JavaGlobalC
 	}
 	
 	@Override
-	protected @NonNull JavaLocalContext<? extends CG> createNestedContext(@NonNull CGElement cgScope) {
-		return new AutoLocalContext<CG>(this, cgScope);
+	protected @NonNull CS2ASLocalContext createNestedContext(@NonNull CGElement cgScope) {
+		return new CS2ASLocalContext(this, cgScope);
 	}
 
 	public @NonNull CGValuedElement getIdResolverVariable(@NonNull CGValuedElement cgValuedElement) {
