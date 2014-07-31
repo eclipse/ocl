@@ -22,14 +22,20 @@ import org.eclipse.ocl.examples.domain.ids.ElementId;
 public class EObjectDescriptor extends SimpleValueDescriptor implements SimpleDescriptor
 {
 	protected final @NonNull EClassifier eClassifier;
+	protected final @NonNull Class<?> originalJavaClass;
 	
 	public EObjectDescriptor(@NonNull ElementId elementId, @NonNull EClassifier eClassifier, @NonNull Class<?> javaClass) {
 		super(elementId, reClass(javaClass));
 		this.eClassifier = eClassifier;
+		this.originalJavaClass = javaClass;
 	}
 
 	@Override
 	public @NonNull EClassifier getEClassifier() {
 		return eClassifier;
+	}
+
+	public @NonNull Class<?> getOriginalJavaClass() {
+		return originalJavaClass;
 	}
 }

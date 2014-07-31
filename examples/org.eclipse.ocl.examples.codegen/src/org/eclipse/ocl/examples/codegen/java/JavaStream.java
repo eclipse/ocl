@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenOptions;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
+import org.eclipse.ocl.examples.codegen.java.types.EObjectDescriptor;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
@@ -285,7 +287,13 @@ public class JavaStream
 		}
 		else {
 			TypeDescriptor typeDescriptor = codeGenerator.getTypeDescriptor(cgValue);
-			typeDescriptor.append(this);
+			if ((cgValue instanceof CGParameter) && (cgValue.eContainer() instanceof CGOperation) && (typeDescriptor instanceof EObjectDescriptor)) {		// FIXME eliminate reclassing
+				Class<?> originalJavaClass = ((EObjectDescriptor)typeDescriptor).getOriginalJavaClass();
+				appendClassReference(originalJavaClass);
+			}
+			else {
+				typeDescriptor.append(this);
+			}
 		}
 	}
 
