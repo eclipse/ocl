@@ -13,20 +13,21 @@ package org.eclipse.ocl.examples.autogen.java;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 
 /**
  * A AutoLocalContext maintains the Java-specific local context for generation of Auto code.
  */
-public class AutoLocalContext extends JavaLocalContext
+public class AutoLocalContext<CG extends JavaCodeGenerator> extends JavaLocalContext<CG>
 {
-	public AutoLocalContext(@NonNull AutoGlobalContext globalContext, @NonNull CGElement cgScope) {
+	public AutoLocalContext(@NonNull AutoGlobalContext<CG> globalContext, @NonNull CGElement cgScope) {
 		super(globalContext, cgScope);
 	}
 
 	@Override
-	public @NonNull AutoGlobalContext getGlobalContext() {
-		return (AutoGlobalContext) globalContext;
+	public @NonNull AutoGlobalContext<? extends CG> getGlobalContext() {
+		return (AutoGlobalContext<? extends CG>) globalContext;
 	}
 
 	@Override

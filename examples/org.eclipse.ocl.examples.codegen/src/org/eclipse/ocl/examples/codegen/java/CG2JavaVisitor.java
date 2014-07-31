@@ -139,9 +139,9 @@ import org.eclipse.xtext.util.Strings;
  * Visits return true if the generated flow of control flows out of the gebnerated code,
  * false if an uncondituionl exception is thrown.
  */
-public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boolean, JavaCodeGenerator>
+public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends AbstractExtendingCGModelVisitor<Boolean, CG>
 {
-	protected final @NonNull JavaGlobalContext globalContext;
+	protected final @NonNull JavaGlobalContext<?> globalContext;
 	protected final @NonNull GenModelHelper genModelHelper;
 	protected final @NonNull CodeGenAnalyzer analyzer;
 	protected final @NonNull Id2JavaInterfaceVisitor id2JavaInterfaceVisitor;
@@ -150,14 +150,14 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 	/**
 	 * The local Java context for the current operation.
 	 */
-	protected JavaLocalContext localContext;
+	protected JavaLocalContext<?> localContext;
 	
 	/**
 	 * Scoping prefix for "this"
 	 */
 	private @Nullable String localPrefix = null;
 	
-	public CG2JavaVisitor(@NonNull JavaCodeGenerator codeGenerator) {
+	public CG2JavaVisitor(@NonNull CG codeGenerator) {
 		super(codeGenerator);
 		this.globalContext = codeGenerator.getGlobalContext();
 		this.genModelHelper = context.getGenModelHelper();
@@ -308,7 +308,7 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 			js.append(") {\n");
 			js.pushIndentation(null);
 				String savedLocalPrefix = localPrefix;
-				JavaLocalContext savedLocalContext = localContext;
+				JavaLocalContext<?> savedLocalContext = localContext;
 				try {
 					CGClass cgClass = CGUtils.getContainingClass(cgIterationCallExp);
 					Element ast = cgClass != null ? cgClass.getAst() : null;
@@ -398,7 +398,7 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 		return analyzer;
 	}
 
-	public @NonNull JavaCodeGenerator getCodeGenerator() {
+	public @NonNull CG getCodeGenerator() {
 		return context;
 	}
 
@@ -605,7 +605,7 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 	public @NonNull Boolean visitCGBoxExp(@NonNull CGBoxExp cgBoxExp) {
 		CGValuedElement unboxedValue = getExpression(cgBoxExp.getSource());
 		TypeDescriptor unboxedTypeDescriptor = context.getTypeDescriptor(unboxedValue);
-		JavaLocalContext localContext2 = localContext;
+		JavaLocalContext<?>localContext2 = localContext;
 		assert localContext2 != null;
 //
 		if (!js.appendLocalStatements(unboxedValue)) {
@@ -1630,7 +1630,7 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 
 	@Override
 	public @NonNull Boolean visitCGOperation(@NonNull CGOperation cgOperation) {
-		JavaLocalContext localContext2 = globalContext.getLocalContext(cgOperation);
+		JavaLocalContext<?> localContext2 = globalContext.getLocalContext(cgOperation);
 		if (localContext2 != null) {
 			localContext = localContext2;
 			try {
@@ -1872,7 +1872,7 @@ public abstract class CG2JavaVisitor extends AbstractExtendingCGModelVisitor<Boo
 	public @NonNull Boolean visitCGUnboxExp(@NonNull CGUnboxExp cgUnboxExp) {
 		CGValuedElement boxedValue = getExpression(cgUnboxExp.getSource());
 		TypeDescriptor boxedTypeDescriptor = context.getTypeDescriptor(boxedValue);
-		JavaLocalContext localContext2 = localContext;
+		JavaLocalContext<?> localContext2 = localContext;
 		assert localContext2 != null;
 		//
 		if (!js.appendLocalStatements(boxedValue)) {

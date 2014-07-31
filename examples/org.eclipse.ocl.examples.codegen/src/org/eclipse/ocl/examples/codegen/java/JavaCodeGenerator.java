@@ -184,7 +184,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	private /*@LazyNonNull*/ Id2EClassVisitor id2EClassVisitor = null;
 //	protected final @NonNull Id2JavaInterfaceVisitor id2JavaInterfaceVisitor;
 	private /*@LazyNonNull*/ Id2BoxedDescriptorVisitor id2BoxedDescriptorVisitor = null;
-	private /*@LazyNonNull*/ JavaGlobalContext globalContext = null;
+	private /*@LazyNonNull*/ JavaGlobalContext<?> globalContext = null;
 	private /*@LazyNonNull*/ GlobalPlace globalPlace = null;
 	private @NonNull Map<ElementId, BoxedDescriptor> boxedDescriptors = new HashMap<ElementId, BoxedDescriptor>();
 	private /*@LazyNonNull*/ Object annotationReader = null;
@@ -223,8 +223,8 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		return new AbstractGenModelHelper(metaModelManager);
 	}
 
-	protected @NonNull JavaGlobalContext createGlobalContext() {
-		return new JavaGlobalContext(this);
+	protected @NonNull JavaGlobalContext<?> createGlobalContext() {
+		return new JavaGlobalContext<JavaCodeGenerator>(this);
 	}
 
 	protected @NonNull Id2EClassVisitor createId2EClassVisitor() {
@@ -268,8 +268,8 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	}
 	
 	@Override
-	public @NonNull JavaGlobalContext getGlobalContext() {
-		JavaGlobalContext globalContext2 = globalContext;
+	public @NonNull JavaGlobalContext<?> getGlobalContext() {
+		JavaGlobalContext<?> globalContext2 = globalContext;
 		if (globalContext2 == null) {
 			globalContext = globalContext2 = createGlobalContext();
 		}

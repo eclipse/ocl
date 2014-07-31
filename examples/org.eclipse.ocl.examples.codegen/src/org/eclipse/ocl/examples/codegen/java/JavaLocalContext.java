@@ -27,14 +27,14 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 /**
  * A JavaLocalContext maintains the Java-specific context for generation of coide from a CGOperation.
  */
-public class JavaLocalContext extends AbstractJavaContext implements LocalContext
+public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJavaContext<CG> implements LocalContext
 {
-	protected final @NonNull JavaGlobalContext globalContext;
-	protected final @Nullable JavaLocalContext parentContext;
+	protected final @NonNull JavaGlobalContext<? extends CG> globalContext;
+	protected final @Nullable JavaLocalContext<? extends CG> parentContext;
 	protected @NonNull CGElement cgScope;
 	protected @NonNull NameManager.Context nameManagerContext;
 
-	public JavaLocalContext(@NonNull JavaGlobalContext globalContext, @NonNull CGElement cgScope) {
+	public JavaLocalContext(@NonNull JavaGlobalContext<? extends CG> globalContext, @NonNull CGElement cgScope) {
 		super(globalContext.getCodeGenerator());
 		this.globalContext = globalContext;
 		this.parentContext = null;
@@ -92,7 +92,7 @@ public class JavaLocalContext extends AbstractJavaContext implements LocalContex
 		throw new IllegalStateException("No '" + JavaConstants.EVALUATOR_NAME + "' in " + cgValuedElement);
 	}
 
-	public @NonNull JavaGlobalContext getGlobalContext() {
+	public @NonNull JavaGlobalContext<? extends CG> getGlobalContext() {
 		return globalContext;
 	}
 
@@ -105,7 +105,7 @@ public class JavaLocalContext extends AbstractJavaContext implements LocalContex
 		return nameManagerContext;
 	}
 
-	public @NonNull JavaLocalContext getOuterContext() {
+	public @NonNull JavaLocalContext<? extends CG> getOuterContext() {
 		return parentContext != null ? parentContext.getOuterContext() : this;
 	}
 

@@ -13,17 +13,16 @@ package org.eclipse.ocl.examples.codegen.oclinecore;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
-import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 
 /**
  * A JavaGlobalContext maintains the Java-specific global context for generation of code.
  */
-public class OCLinEcoreGlobalContext extends JavaGlobalContext
+public class OCLinEcoreGlobalContext extends JavaGlobalContext<OCLinEcoreCodeGenerator>
 {
 	protected final @NonNull GenPackage genPackage;
 	
-	public OCLinEcoreGlobalContext(@NonNull JavaCodeGenerator codeGenerator, @NonNull GenPackage genPackage) {
+	public OCLinEcoreGlobalContext(@NonNull OCLinEcoreCodeGenerator codeGenerator, @NonNull GenPackage genPackage) {
 		super(codeGenerator);
 		this.genPackage = genPackage;
 	}

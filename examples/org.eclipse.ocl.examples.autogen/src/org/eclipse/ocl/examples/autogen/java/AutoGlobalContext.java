@@ -23,11 +23,11 @@ import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 /**
  * A AutoGlobalContext maintains the Java-specific global context for generation of Auto code.
  */
-public class AutoGlobalContext extends JavaGlobalContext
+public class AutoGlobalContext<CG extends JavaCodeGenerator> extends JavaGlobalContext<CG>
 {
 	private /*@LazyNonNull*/ CGLocalVariable idResolver = null;
 	
-	public AutoGlobalContext(@NonNull JavaCodeGenerator codeGenerator) {
+	public AutoGlobalContext(@NonNull CG codeGenerator) {
 		super(codeGenerator);
 		nameManager.reserveName(JavaConstants.EVALUATOR_NAME, null);
 		nameManager.reserveName("context", null);
@@ -37,8 +37,8 @@ public class AutoGlobalContext extends JavaGlobalContext
 	}
 	
 	@Override
-	protected @NonNull JavaLocalContext createNestedContext(@NonNull CGElement cgScope) {
-		return new AutoLocalContext(this, cgScope);
+	protected @NonNull JavaLocalContext<? extends CG> createNestedContext(@NonNull CGElement cgScope) {
+		return new AutoLocalContext<CG>(this, cgScope);
 	}
 
 	public @NonNull CGValuedElement getIdResolverVariable(@NonNull CGValuedElement cgValuedElement) {

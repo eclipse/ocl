@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 
 public class AutoCG2JavaPreVisitor extends CG2JavaPreVisitor implements AutoCGModelVisitor<Object>
 {
-	public AutoCG2JavaPreVisitor(@NonNull AutoGlobalContext javaContext) {
+	public AutoCG2JavaPreVisitor(@NonNull AutoGlobalContext<?> javaContext) {
 		super(javaContext);
 	}
 

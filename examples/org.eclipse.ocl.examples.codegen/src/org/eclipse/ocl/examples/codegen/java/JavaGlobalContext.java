@@ -30,11 +30,11 @@ import org.eclipse.ocl.examples.domain.ids.IdVisitor;
 /**
  * A JavaGlobalContext maintains the Java-specific global context for generation of code.
  */
-public class JavaGlobalContext extends AbstractJavaContext implements GlobalContext
+public class JavaGlobalContext<CG extends JavaCodeGenerator> extends AbstractJavaContext<CG> implements GlobalContext
 {
 	protected final @NonNull NameManager nameManager;
 	
-	private @NonNull Map<CGElement, JavaLocalContext> localContexts = new HashMap<CGElement, JavaLocalContext>();
+	private @NonNull Map<CGElement, JavaLocalContext<? extends CG>> localContexts = new HashMap<CGElement, JavaLocalContext<? extends CG>>();
 	private @NonNull Set<CGValuedElement> globals = new HashSet<CGValuedElement>();
 	private @NonNull Set<String> imports = new HashSet<String>();
 	
@@ -43,7 +43,7 @@ public class JavaGlobalContext extends AbstractJavaContext implements GlobalCont
 	protected final @NonNull String instanceName;
 	protected final @NonNull String selfName;
 
-	public JavaGlobalContext(@NonNull JavaCodeGenerator codeGenerator) {
+	public JavaGlobalContext(@NonNull CG codeGenerator) {
 		super(codeGenerator);
 		this.nameManager = codeGenerator.getNameManager();
 		this.eName = nameManager.reserveName(JavaConstants.E_NAME, null);
@@ -60,8 +60,8 @@ public class JavaGlobalContext extends AbstractJavaContext implements GlobalCont
 		imports.add(className);
 	}
 
-	protected @NonNull JavaLocalContext createNestedContext(@NonNull CGElement cgScope) {
-		return new JavaLocalContext(this, cgScope);
+	protected @NonNull JavaLocalContext<? extends CG> createNestedContext(@NonNull CGElement cgScope) {
+		return new JavaLocalContext<CG>(this, cgScope);
 	}
 
 	public @Nullable EClass getEClass(@NonNull ElementId elementId) {
@@ -90,8 +90,8 @@ public class JavaGlobalContext extends AbstractJavaContext implements GlobalCont
 	}
 
 	@Override
-	public @Nullable JavaLocalContext getLocalContext(@NonNull CGElement cgElement) {
-		JavaLocalContext localContext = localContexts.get(cgElement);
+	public @Nullable JavaLocalContext<? extends CG> getLocalContext(@NonNull CGElement cgElement) {
+		JavaLocalContext<? extends CG> localContext = localContexts.get(cgElement);
 		if (localContext == null) {
 			CGElement cgScope = cgElement;
 			CGIterationCallExp cgIterationScope = null;
@@ -134,7 +134,7 @@ public class JavaGlobalContext extends AbstractJavaContext implements GlobalCont
 	}
 
 	public @NonNull String getValueName(@NonNull CGValuedElement cgValuedElement) {
-		JavaLocalContext localContext = getLocalContext(cgValuedElement);
+		JavaLocalContext<? extends CG> localContext = getLocalContext(cgValuedElement);
 		if ((localContext != null) && !cgValuedElement.isGlobal()) {
 			return localContext.getValueName(cgValuedElement);
 		}

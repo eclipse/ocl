@@ -290,8 +290,8 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 	}
 
 	@Override
-	protected @NonNull AutoGlobalContext createGlobalContext() {
-		return new AutoGlobalContext(this);
+	protected @NonNull AutoGlobalContext<? extends AutoCodeGenerator> createGlobalContext() {
+		return new AutoGlobalContext<AutoCodeGenerator>(this);
 	}
 
 	@Override
@@ -308,7 +308,7 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 		CGPackage cgPackage = createCGPackage();
 		optimize(cgPackage);
 		List<CGValuedElement> sortedGlobals = prepareGlobals();
-		AutoCG2JavaVisitor generator = new AutoCG2JavaVisitor(this, cgPackage, sortedGlobals);
+		AutoCG2JavaVisitor<AutoCodeGenerator> generator = new AutoCG2JavaVisitor<AutoCodeGenerator>(this, cgPackage, sortedGlobals);
 		generator.safeVisit(cgPackage);
 		Set<String> allImports = generator.getAllImports();
 		Map<String, String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
@@ -352,8 +352,8 @@ public class AutoCodeGenerator extends JavaCodeGenerator
 	}
 
 	@Override
-	public @NonNull AutoGlobalContext getGlobalContext() {
-		return (AutoGlobalContext) super.getGlobalContext();
+	public @NonNull AutoGlobalContext<?> getGlobalContext() {
+		return (AutoGlobalContext<?>) super.getGlobalContext();
 	}
 
 	@Override

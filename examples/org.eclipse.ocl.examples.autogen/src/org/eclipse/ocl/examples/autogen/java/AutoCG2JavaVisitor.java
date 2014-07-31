@@ -45,13 +45,13 @@ import org.eclipse.ocl.examples.xtext.base.cs2as.Continuation;
 /**
  * A AutoCG2JavaVisitor supports generation of Java code from an optimized Auto CG transformation tree.
  */
-public class AutoCG2JavaVisitor extends CG2JavaVisitor implements AutoCGModelVisitor<Boolean>
+public class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends CG2JavaVisitor<CG> implements AutoCGModelVisitor<Boolean>
 {
 	protected final @NonNull AutoAnalyzer analyzer;
 	protected final @NonNull CGPackage cgPackage;
 	protected final @Nullable List<CGValuedElement> sortedGlobals;
 	
-	public AutoCG2JavaVisitor(@NonNull AutoCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
+	public AutoCG2JavaVisitor(@NonNull CG codeGenerator, @NonNull CGPackage cgPackage,
 			@Nullable List<CGValuedElement> sortedGlobals) {
 		super(codeGenerator);
 		this.analyzer = codeGenerator.getAnalyzer();
@@ -293,7 +293,7 @@ public class AutoCG2JavaVisitor extends CG2JavaVisitor implements AutoCGModelVis
 	}
 
 	public @NonNull Boolean visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
-		JavaLocalContext localContext2 = globalContext.getLocalContext(object);
+		JavaLocalContext<?> localContext2 = globalContext.getLocalContext(object);
 		if (localContext2 != null) {
 			localContext = localContext2;
 			try {

@@ -34,7 +34,7 @@ public interface TypeDescriptor
 	 */
 	void append(@NonNull JavaStream js);
 
-	@NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext localContext,
+	@NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext,
 			@NonNull CGBoxExp cgBoxExp, @NonNull CGValuedElement unboxedValue);
 
 	/**
@@ -59,7 +59,7 @@ public interface TypeDescriptor
 	 */
 	void appendEqualsValue(@NonNull JavaStream js, @NonNull CGValuedElement thisValue, @NonNull CGValuedElement thatValue, boolean notEquals);
 
-	@NonNull Boolean appendUnboxStatements(@NonNull JavaStream js, @NonNull JavaLocalContext localContext,
+	@NonNull Boolean appendUnboxStatements(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext,
 			@NonNull CGUnboxExp cgUnboxExp, @NonNull CGValuedElement boxedValue);
 
 	/**

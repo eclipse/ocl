@@ -16,12 +16,12 @@ import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 /**
  * A JavaLocalContext maintains the Java-specific context for generation of coide from a CGOperation.
  */
-public abstract class AbstractJavaContext
+public abstract class AbstractJavaContext<CG extends JavaCodeGenerator>
 {
-	protected @NonNull JavaCodeGenerator codeGenerator;
+	protected @NonNull CG codeGenerator;
 	protected @NonNull CodeGenAnalyzer analyzer;
 
-	protected AbstractJavaContext(@NonNull JavaCodeGenerator codeGenerator) {
+	protected AbstractJavaContext(@NonNull CG codeGenerator) {
 		this.codeGenerator = codeGenerator;
 		this.analyzer = codeGenerator.getAnalyzer();
 	}
@@ -30,7 +30,7 @@ public abstract class AbstractJavaContext
 		return analyzer;
 	}
 
-	public @NonNull JavaCodeGenerator getCodeGenerator() {
+	public @NonNull CG getCodeGenerator() {
 		return codeGenerator;
 	}
 }

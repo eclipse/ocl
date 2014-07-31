@@ -20,21 +20,20 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
-import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
- * A JavaLocalContext maintains the Java-specific context for generation of coide from a CGOperation.
+ * A JavaLocalContext maintains the Java-specific context for generation of code from a CGOperation.
  */
-public class OCLinEcoreLocalContext extends JavaLocalContext
+public class OCLinEcoreLocalContext extends JavaLocalContext<OCLinEcoreCodeGenerator>
 {
 	protected final @Nullable String contextName;
 	protected final @Nullable String diagnosticsName;
 	protected final @Nullable String messageName;
 	protected final @Nullable String severityName;
 
-	public OCLinEcoreLocalContext(@NonNull JavaGlobalContext globalContext, @NonNull CGElement cgScope) {
+	public OCLinEcoreLocalContext(@NonNull OCLinEcoreGlobalContext globalContext, @NonNull CGElement cgScope) {
 		super(globalContext, cgScope);
 		if (cgScope instanceof CGConstraint) {
 			this.contextName = nameManagerContext.getSymbolName(null, "context");

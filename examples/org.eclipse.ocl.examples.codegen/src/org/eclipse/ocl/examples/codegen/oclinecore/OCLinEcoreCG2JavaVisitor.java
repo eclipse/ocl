@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
-import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
@@ -48,14 +47,14 @@ import org.eclipse.osgi.util.NLS;
  * An OCLinEcoreCG2JavaVisitor supports generation of the OCL embedded in an Ecore model
  * into the Java bodies of the code producxed by GenModel.
  */
-public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor
+public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGenerator>
 {
 	protected final @NonNull GenPackage genPackage;
 	protected final @NonNull CGPackage cgPackage;
 	protected ExpressionInOCL expInOcl;
 	protected Feature feature;
 	
-	public OCLinEcoreCG2JavaVisitor(@NonNull JavaCodeGenerator codeGenerator,
+	public OCLinEcoreCG2JavaVisitor(@NonNull OCLinEcoreCodeGenerator codeGenerator,
 			@NonNull GenPackage genPackage, @NonNull CGPackage cgPackage) {
 		super(codeGenerator);
 		this.genPackage = genPackage;

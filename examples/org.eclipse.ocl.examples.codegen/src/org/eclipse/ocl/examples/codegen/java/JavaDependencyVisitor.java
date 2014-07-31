@@ -23,10 +23,10 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 
 public class JavaDependencyVisitor extends DependencyVisitor
 {	
-	protected final @NonNull JavaGlobalContext globalContext;
-	protected final JavaLocalContext localContext;
+	protected final @NonNull JavaGlobalContext<?> globalContext;
+	protected final JavaLocalContext<?> localContext;
 
-	public JavaDependencyVisitor(@NonNull CodeGenAnalyzer analyzer, @NonNull JavaGlobalContext globalContext, @NonNull GlobalPlace globalPlace) {
+	public JavaDependencyVisitor(@NonNull CodeGenAnalyzer analyzer, @NonNull JavaGlobalContext<?> globalContext, @NonNull GlobalPlace globalPlace) {
         super(analyzer, globalPlace);
         this.globalContext = globalContext;
         this.localContext = null;

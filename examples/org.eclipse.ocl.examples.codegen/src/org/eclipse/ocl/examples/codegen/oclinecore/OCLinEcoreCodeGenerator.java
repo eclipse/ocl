@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
-import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -116,7 +115,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	}
 
 	@Override
-	protected @NonNull JavaGlobalContext createGlobalContext() {
+	protected @NonNull OCLinEcoreGlobalContext createGlobalContext() {
 		return new OCLinEcoreGlobalContext(this, genPackage);
 	}
 

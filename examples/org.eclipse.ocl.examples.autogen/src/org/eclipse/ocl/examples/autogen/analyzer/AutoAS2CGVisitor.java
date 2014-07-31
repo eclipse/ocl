@@ -24,9 +24,9 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 public final class AutoAS2CGVisitor extends AS2CGVisitor
 {
 	protected final @NonNull AutoAnalyzer analyzer;
-	protected final @NonNull AutoGlobalContext globalContext;
+	protected final @NonNull AutoGlobalContext<?> globalContext;
 	
-	public AutoAS2CGVisitor(@NonNull AutoAnalyzer analyzer, @NonNull AutoGlobalContext globalContext) {
+	public AutoAS2CGVisitor(@NonNull AutoAnalyzer analyzer, @NonNull AutoGlobalContext<?> globalContext) {
 		super(analyzer);
 		this.analyzer = analyzer;
 		this.globalContext = globalContext;

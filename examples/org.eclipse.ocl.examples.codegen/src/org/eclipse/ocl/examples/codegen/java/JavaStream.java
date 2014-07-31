@@ -99,7 +99,7 @@ public class JavaStream
 	}
 	
 	protected @NonNull JavaCodeGenerator codeGenerator;
-	protected @NonNull CG2JavaVisitor cg2java;
+	protected @NonNull CG2JavaVisitor<?> cg2java;
 	protected @NonNull CodeGenAnalyzer analyzer;
 	protected final @NonNull Id2JavaExpressionVisitor id2JavaExpressionVisitor;
 	protected final boolean useNullAnnotations;
@@ -109,7 +109,7 @@ public class JavaStream
 	private @NonNull Stack<String> indentationStack = new Stack<String>();
 	private @NonNull String defaultIndentationString = "    ";
 	
-	public JavaStream(@NonNull JavaCodeGenerator codeGenerator, @NonNull CG2JavaVisitor cg2java) {
+	public JavaStream(@NonNull JavaCodeGenerator codeGenerator, @NonNull CG2JavaVisitor<?> cg2java) {
 		this.codeGenerator = codeGenerator;
 		this.cg2java = cg2java;
 		this.analyzer = codeGenerator.getAnalyzer();
