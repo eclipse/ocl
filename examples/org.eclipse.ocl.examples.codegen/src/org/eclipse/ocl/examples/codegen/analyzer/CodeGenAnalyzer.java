@@ -197,13 +197,13 @@ public class CodeGenAnalyzer
 		cgType.getDependsOn().add(cgTypeId);
 		return cgType;
 	}
-
-	public @NonNull CodeGenerator getCodeGenerator() {
-		return codeGenerator;
-	}
 	
 	public @NonNull CGBoolean getBoolean(boolean aBoolean) {
 		return aBoolean ? cgTrue : cgFalse;
+	}
+
+	public @NonNull CodeGenerator getCodeGenerator() {
+		return codeGenerator;
 	}
 
 	public @NonNull CGElementId getElementId(@NonNull ElementId elementId) {
@@ -224,7 +224,7 @@ public class CodeGenAnalyzer
 		if (cgExpression == null) {
 			CGConstantExp cgLiteralExp = CGModelFactory.eINSTANCE.createCGConstantExp();
 //			cgLiteralExp.setAst(element);
-			cgLiteralExp.setReferredConstant(cgInvalid);
+			cgLiteralExp.setReferredConstant(getInvalid());
 			cgLiteralExp.setTypeId(getTypeId(TypeId.OCL_INVALID));
 			cgExpression = cgLiteralExp;
 		};
