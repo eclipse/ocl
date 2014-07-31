@@ -1264,6 +1264,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/pivot/lookup/AutoPivotLookupVisitor.java" type="org.eclipse.ocl.examples.pivot.lookup.AutoPivotLookupVisitor">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.examples.pivot.lookup.AutoPivotLookupVisitor"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/examples/pivot/model/OCLMetaModel.java" type="org.eclipse.ocl.examples.pivot.model.OCLMetaModel$Contents">
         <filter id="1143996420">
             <message_arguments>

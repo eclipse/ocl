@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.DelegatedSinglePackageResource;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -77,6 +78,8 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -85,6 +88,8 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -99,10 +104,12 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Stereotype;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -111,6 +118,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.context.ClassContext;
@@ -1030,12 +1038,48 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return true;
 	}
 
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull BooleanLiteralExp createBooleanLiteralExp(boolean booleanSymbol) {
+		BooleanLiteralExp asBoolean = PivotFactory.eINSTANCE.createBooleanLiteralExp();
+		asBoolean.setBooleanSymbol(booleanSymbol);
+		asBoolean.setType(getBooleanType());
+		asBoolean.setIsRequired(true);
+		return asBoolean;
+	}
+
 	protected @NonNull PivotIdResolver createIdResolver() {
 		return new PivotIdResolver(this);
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull IfExp createIfExp(@NonNull OperationCallExp asCondition, @NonNull OCLExpression asThen, @NonNull OCLExpression asElse) {
+		Type commonType = getCommonType(DomainUtil.nonNullState(asThen.getType()), DomainUtil.nonNullState(asElse.getType()), null);
+		IfExp asIf = PivotFactory.eINSTANCE.createIfExp();
+		asIf.setCondition(asCondition);
+		asIf.setThenExpression(asThen);
+		asIf.setElseExpression(asElse);
+		asIf.setType(commonType);
+		asIf.setIsRequired(true);
+		return asIf;
 	}
 	
 	protected @NonNull ImplementationManager createImplementationManager() {
 		return new ImplementationManager(this);
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull IntegerLiteralExp createIntegerLiteralExp(@NonNull Number integerSymbol) {
+		IntegerLiteralExp asInteger = PivotFactory.eINSTANCE.createIntegerLiteralExp();
+		asInteger.setIntegerSymbol(integerSymbol);
+		asInteger.setType(getIntegerType());
+		asInteger.setIsRequired(true);
+		return asInteger;
 	}
 
 	public @NonNull InvalidLiteralExp createInvalidExpression(/*Object object, String boundMessage, Throwable e*/) {
@@ -1049,6 +1093,16 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	protected @NonNull LambdaTypeManager createLambdaManager() {
 		return new LambdaTypeManager(this);
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull NullLiteralExp createNullLiteralExp() {
+		NullLiteralExp asNull = PivotFactory.eINSTANCE.createNullLiteralExp();
+		asNull.setType(getOclVoidType());
+		asNull.setIsRequired(false);
+		return asNull;
 	}
 
 	protected @NonNull Orphanage createOrphanage() {
@@ -1094,6 +1148,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getResource(uri, contentType);
 	}
 
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull RealLiteralExp createRealLiteralExp(@NonNull Number realSymbol) {
+		RealLiteralExp asReal = PivotFactory.eINSTANCE.createRealLiteralExp();
+		asReal.setRealSymbol(realSymbol);
+		asReal.setType(getRealType());
+		asReal.setIsRequired(true);
+		return asReal;
+	}
+
 	public @NonNull Root createRoot(String externalURI) {
 		return createRoot(Root.class, PivotPackage.Literals.ROOT, externalURI);
 	}
@@ -1115,9 +1180,31 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		pivotRoot.setExternalURI(externalURI);
 		return pivotRoot;
 	}
+
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull StringLiteralExp createStringLiteralExp(@NonNull String stringSymbol) {
+		StringLiteralExp asString = PivotFactory.eINSTANCE.createStringLiteralExp();
+		asString.setStringSymbol(stringSymbol);
+		asString.setType(getStringType());
+		asString.setIsRequired(true);
+		return asString;
+	}
 	
 	protected @NonNull TupleTypeManager createTupleManager() {
 		return new TupleTypeManager(this);
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	public @NonNull UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp(@NonNull Number unlimitedNaturalSymbol) {
+		UnlimitedNaturalLiteralExp asUnlimitedNatural = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
+		asUnlimitedNatural.setUnlimitedNaturalSymbol(unlimitedNaturalSymbol);
+		asUnlimitedNatural.setType(getUnlimitedNaturalType());
+		asUnlimitedNatural.setIsRequired(true);
+		return asUnlimitedNatural;
 	}
 
 	public @NonNull UnspecifiedType createUnspecifiedType() {
