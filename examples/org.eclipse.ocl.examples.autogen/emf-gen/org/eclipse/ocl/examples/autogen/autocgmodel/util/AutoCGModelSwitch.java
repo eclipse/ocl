@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.autogen.autocgmodel.*;
 
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
@@ -101,6 +102,7 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 				CGContainmentVisit cgContainmentVisit = (CGContainmentVisit)theEObject;
 				T result = caseCGContainmentVisit(cgContainmentVisit);
 				if (result == null) result = caseCGOperation(cgContainmentVisit);
+				if (result == null) result = caseCGCallable(cgContainmentVisit);
 				if (result == null) result = caseCGValuedElement(cgContainmentVisit);
 				if (result == null) result = caseCGTypedElement(cgContainmentVisit);
 				if (result == null) result = caseCGNamedElement(cgContainmentVisit);
@@ -297,6 +299,21 @@ public class AutoCGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGOperationCallExp(CGOperationCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Callable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Callable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGCallable(CGCallable object) {
 		return null;
 	}
 

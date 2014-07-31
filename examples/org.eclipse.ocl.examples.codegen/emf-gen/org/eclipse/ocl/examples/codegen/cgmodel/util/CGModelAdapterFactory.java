@@ -293,6 +293,22 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGNamedElementAdapter();
 			}
 			@Override
+			public Adapter caseCGNativeOperation(CGNativeOperation object) {
+				return createCGNativeOperationAdapter();
+			}
+			@Override
+			public Adapter caseCGNativeOperationCallExp(CGNativeOperationCallExp object) {
+				return createCGNativeOperationCallExpAdapter();
+			}
+			@Override
+			public Adapter caseCGNativeProperty(CGNativeProperty object) {
+				return createCGNativePropertyAdapter();
+			}
+			@Override
+			public Adapter caseCGNativePropertyCallExp(CGNativePropertyCallExp object) {
+				return createCGNativePropertyCallExpAdapter();
+			}
+			@Override
 			public Adapter caseCGNavigationCallExp(CGNavigationCallExp object) {
 				return createCGNavigationCallExpAdapter();
 			}
@@ -1177,6 +1193,62 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation <em>CG Native Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation
+	 * @generated
+	 */
+	public Adapter createCGNativeOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp <em>CG Native Operation Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp
+	 * @generated
+	 */
+	public Adapter createCGNativeOperationCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty <em>CG Native Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty
+	 * @generated
+	 */
+	public Adapter createCGNativePropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp <em>CG Native Property Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp
+	 * @generated
+	 */
+	public Adapter createCGNativePropertyCallExpAdapter() {
 		return null;
 	}
 

@@ -326,6 +326,26 @@ public abstract class AbstractNonNullExtendingCGModelVisitor<R, C>
 	}
 
 	@Override
+	public @NonNull R visitCGNativeOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation object) {
+		return visitCGOperation(object);
+	}
+
+	@Override
+	public @NonNull R visitCGNativeOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp object) {
+		return visitCGOperationCallExp(object);
+	}
+
+	@Override
+	public @NonNull R visitCGNativeProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty object) {
+		return visitCGProperty(object);
+	}
+
+	@Override
+	public @NonNull R visitCGNativePropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp object) {
+		return visitCGPropertyCallExp(object);
+	}
+
+	@Override
 	public @NonNull R visitCGNavigationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNavigationCallExp object) {
 		return visitCGCallExp(object);
 	}

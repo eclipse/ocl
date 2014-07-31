@@ -1,56 +1,71 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   E.D.Willink(CEA LIST) - Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
+import java.lang.reflect.Field;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
+
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>CG Executor Operation</b></em>'.
+ * An implementation of the model object '<em><b>CG Field Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorOperationImpl#getUnderlyingOperationId <em>Underlying Operation Id</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNativePropertyCallExpImpl#getField <em>Field</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGExecutorOperation {
+public class CGNativePropertyCallExpImpl extends CGPropertyCallExpImpl implements CGNativePropertyCallExp {
 	/**
-	 * The cached value of the '{@link #getUnderlyingOperationId() <em>Underlying Operation Id</em>}' reference.
+	 * The default value of the '{@link #getField() <em>Field</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUnderlyingOperationId()
+	 * @see #getField()
 	 * @generated
 	 * @ordered
 	 */
-	protected CGElementId underlyingOperationId;
+	protected static final Field FIELD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getField() <em>Field</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getField()
+	 * @generated
+	 * @ordered
+	 */
+	protected Field field = FIELD_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGExecutorOperationImpl() {
+	protected CGNativePropertyCallExpImpl() {
 		super();
 	}
 
@@ -61,7 +76,7 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CGModelPackage.Literals.CG_EXECUTOR_OPERATION;
+		return CGModelPackage.Literals.CG_NATIVE_PROPERTY_CALL_EXP;
 	}
 
 	/**
@@ -70,8 +85,8 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 * @generated
 	 */
 	@Override
-	public CGElementId getUnderlyingOperationId() {
-		return underlyingOperationId;
+	public Field getField() {
+		return field;
 	}
 
 	/**
@@ -80,11 +95,21 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 * @generated
 	 */
 	@Override
-	public void setUnderlyingOperationId(CGElementId newUnderlyingOperationId) {
-		CGElementId oldUnderlyingOperationId = underlyingOperationId;
-		underlyingOperationId = newUnderlyingOperationId;
+	public void setField(Field newField) {
+		Field oldField = field;
+		field = newField;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_EXECUTOR_OPERATION__UNDERLYING_OPERATION_ID, oldUnderlyingOperationId, underlyingOperationId));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP__FIELD, oldField, field));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 	/**
@@ -95,8 +120,8 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CGModelPackage.CG_EXECUTOR_OPERATION__UNDERLYING_OPERATION_ID:
-				return getUnderlyingOperationId();
+			case CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP__FIELD:
+				return getField();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,8 +134,8 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CGModelPackage.CG_EXECUTOR_OPERATION__UNDERLYING_OPERATION_ID:
-				setUnderlyingOperationId((CGElementId)newValue);
+			case CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP__FIELD:
+				setField((Field)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,8 +149,8 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_EXECUTOR_OPERATION__UNDERLYING_OPERATION_ID:
-				setUnderlyingOperationId((CGElementId)null);
+			case CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP__FIELD:
+				setField(FIELD_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -139,8 +164,8 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_EXECUTOR_OPERATION__UNDERLYING_OPERATION_ID:
-				return underlyingOperationId != null;
+			case CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP__FIELD:
+				return FIELD_EDEFAULT == null ? field != null : !FIELD_EDEFAULT.equals(field);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -151,7 +176,7 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 */
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
-		return visitor.visitCGExecutorOperation(this);
+		return visitor.visitCGNativePropertyCallExp(this);
 	}
 
 	/**
@@ -168,53 +193,8 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 * @generated
 	 */
 	@Override
-	public boolean isConstant() {
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@Override
-	public boolean isContext() {
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@Override
-	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@Override
-	public boolean isGlobal() {
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@Override
 	public boolean isUnboxed() {
 		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @generated
-	 */
-	@Override
-	public boolean isUncommonable() {
-		return false;
-	}
-
-} //CGExecutorOperationImpl
+} //CGFieldPropertyCallExpImpl

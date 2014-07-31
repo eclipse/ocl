@@ -155,7 +155,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Ecore Opposite Property Call Exp</em>'.
 	 * @generated
 	 */
-	CGEcoreOppositePropertyCallExp createCGEcoreOppositePropertyCallExp();
+	@NonNull CGEcoreOppositePropertyCallExp createCGEcoreOppositePropertyCallExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Ecore Property Call Exp</em>'.
@@ -236,7 +236,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Executor Opposite Property Call Exp</em>'.
 	 * @generated
 	 */
-	CGExecutorOppositePropertyCallExp createCGExecutorOppositePropertyCallExp();
+	@NonNull CGExecutorOppositePropertyCallExp createCGExecutorOppositePropertyCallExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Executor Property Call Exp</em>'.
@@ -281,7 +281,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Is Equal Exp</em>'.
 	 * @generated
 	 */
-	CGIsEqualExp createCGIsEqualExp();
+	@NonNull CGIsEqualExp createCGIsEqualExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Is Invalid Exp</em>'.
@@ -380,7 +380,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Ecore Operation</em>'.
 	 * @generated
 	 */
-	CGEcoreOperation createCGEcoreOperation();
+	@NonNull CGEcoreOperation createCGEcoreOperation();
 
 	/**
 	 * Returns a new object of class '<em>CG Let Exp</em>'.
@@ -435,6 +435,42 @@ public interface CGModelFactory extends EFactory {
 	 * @generated
 	 */
 	@NonNull CGModel createCGModel();
+
+	/**
+	 * Returns a new object of class '<em>CG Native Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Native Operation</em>'.
+	 * @generated
+	 */
+	@NonNull CGNativeOperation createCGNativeOperation();
+
+	/**
+	 * Returns a new object of class '<em>CG Native Operation Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Native Operation Call Exp</em>'.
+	 * @generated
+	 */
+	@NonNull CGNativeOperationCallExp createCGNativeOperationCallExp();
+
+	/**
+	 * Returns a new object of class '<em>CG Native Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Native Property</em>'.
+	 * @generated
+	 */
+	@NonNull CGNativeProperty createCGNativeProperty();
+
+	/**
+	 * Returns a new object of class '<em>CG Native Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Native Property Call Exp</em>'.
+	 * @generated
+	 */
+	@NonNull CGNativePropertyCallExp createCGNativePropertyCallExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Null</em>'.

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.autogen.autocgmodel.*;
 
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
@@ -128,6 +129,10 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCGOperationCallExp(CGOperationCallExp object) {
 				return createCGOperationCallExpAdapter();
+			}
+			@Override
+			public Adapter caseCGCallable(CGCallable object) {
+				return createCGCallableAdapter();
 			}
 			@Override
 			public Adapter caseCGOperation(CGOperation object) {
@@ -304,6 +309,20 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGOperationCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCallable <em>CG Callable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGCallable
+	 * @generated
+	 */
+	public Adapter createCGCallableAdapter() {
 		return null;
 	}
 

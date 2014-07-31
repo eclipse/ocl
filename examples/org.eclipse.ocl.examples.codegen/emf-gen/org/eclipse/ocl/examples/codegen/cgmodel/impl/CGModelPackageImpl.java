@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -72,6 +75,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNavigationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNumber;
@@ -503,6 +510,34 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass cgNativeOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgNativeOperationCallExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgNativePropertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgNativePropertyCallExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass cgNavigationCallExpEClass = null;
 
 	/**
@@ -727,6 +762,13 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType fieldEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType libraryIterationEDataType = null;
 
 	/**
@@ -742,6 +784,13 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	private EDataType libraryPropertyEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType methodEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1999,6 +2048,66 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getCGNativeOperation() {
+		return cgNativeOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCGNativeOperationCallExp() {
+		return cgNativeOperationCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCGNativeOperationCallExp_Method() {
+		return (EAttribute)cgNativeOperationCallExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCGNativeProperty() {
+		return cgNativePropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCGNativePropertyCallExp() {
+		return cgNativePropertyCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCGNativePropertyCallExp_Field() {
+		return (EAttribute)cgNativePropertyCallExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCGNavigationCallExp() {
 		return cgNavigationCallExpEClass;
 	}
@@ -2589,6 +2698,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
+	public EDataType getField() {
+		return fieldEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EDataType getLibraryIteration() {
 		return libraryIterationEDataType;
 	}
@@ -2611,6 +2730,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	@Override
 	public EDataType getLibraryProperty() {
 		return libraryPropertyEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EDataType getMethod() {
+		return methodEDataType;
 	}
 
 	/**
@@ -2880,6 +3009,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		createEAttribute(cgNamedElementEClass, CG_NAMED_ELEMENT__AST);
 		createEAttribute(cgNamedElementEClass, CG_NAMED_ELEMENT__NAME);
 
+		cgNativeOperationEClass = createEClass(CG_NATIVE_OPERATION);
+
+		cgNativeOperationCallExpEClass = createEClass(CG_NATIVE_OPERATION_CALL_EXP);
+		createEAttribute(cgNativeOperationCallExpEClass, CG_NATIVE_OPERATION_CALL_EXP__METHOD);
+
+		cgNativePropertyEClass = createEClass(CG_NATIVE_PROPERTY);
+
+		cgNativePropertyCallExpEClass = createEClass(CG_NATIVE_PROPERTY_CALL_EXP);
+		createEAttribute(cgNativePropertyCallExpEClass, CG_NATIVE_PROPERTY_CALL_EXP__FIELD);
+
 		cgNavigationCallExpEClass = createEClass(CG_NAVIGATION_CALL_EXP);
 		createEAttribute(cgNavigationCallExpEClass, CG_NAVIGATION_CALL_EXP__REFERRED_PROPERTY);
 
@@ -2968,9 +3107,11 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		elementIdEDataType = createEDataType(ELEMENT_ID);
 		enumerationLiteralIdEDataType = createEDataType(ENUMERATION_LITERAL_ID);
 		iterationEDataType = createEDataType(ITERATION);
+		fieldEDataType = createEDataType(FIELD);
 		libraryIterationEDataType = createEDataType(LIBRARY_ITERATION);
 		libraryOperationEDataType = createEDataType(LIBRARY_OPERATION);
 		libraryPropertyEDataType = createEDataType(LIBRARY_PROPERTY);
+		methodEDataType = createEDataType(METHOD);
 		numberEDataType = createEDataType(NUMBER);
 		objectEDataType = createEDataType(OBJECT);
 		operationEDataType = createEDataType(OPERATION);
@@ -3062,6 +3203,10 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		cgModelEClass.getESuperTypes().add(this.getCGNamedElement());
 		cgNamedElementEClass.getESuperTypes().add(this.getCGElement());
 		cgNamedElementEClass.getESuperTypes().add(this.getNameable());
+		cgNativeOperationEClass.getESuperTypes().add(this.getCGOperation());
+		cgNativeOperationCallExpEClass.getESuperTypes().add(this.getCGOperationCallExp());
+		cgNativePropertyEClass.getESuperTypes().add(this.getCGProperty());
+		cgNativePropertyCallExpEClass.getESuperTypes().add(this.getCGPropertyCallExp());
 		cgNavigationCallExpEClass.getESuperTypes().add(this.getCGCallExp());
 		cgNullEClass.getESuperTypes().add(this.getCGConstant());
 		cgNumberEClass.getESuperTypes().add(this.getCGConstant());
@@ -3259,6 +3404,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		initEAttribute(getCGNamedElement_Ast(), this.getElement(), "ast", null, 1, 1, CGNamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCGNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, CGNamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(cgNativeOperationEClass, CGNativeOperation.class, "CGNativeOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cgNativeOperationCallExpEClass, CGNativeOperationCallExp.class, "CGNativeOperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCGNativeOperationCallExp_Method(), this.getMethod(), "method", null, 1, 1, CGNativeOperationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cgNativePropertyEClass, CGNativeProperty.class, "CGNativeProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cgNativePropertyCallExpEClass, CGNativePropertyCallExp.class, "CGNativePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCGNativePropertyCallExp_Field(), this.getField(), "field", null, 1, 1, CGNativePropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(cgNavigationCallExpEClass, CGNavigationCallExp.class, "CGNavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCGNavigationCallExp_ReferredProperty(), this.getProperty(), "referredProperty", null, 1, 1, CGNavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -3347,9 +3502,11 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		initEDataType(elementIdEDataType, ElementId.class, "ElementId", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(enumerationLiteralIdEDataType, EnumerationLiteralId.class, "EnumerationLiteralId", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(iterationEDataType, Iteration.class, "Iteration", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(fieldEDataType, Field.class, "Field", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(libraryIterationEDataType, LibraryIteration.class, "LibraryIteration", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(libraryOperationEDataType, LibraryOperation.class, "LibraryOperation", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(libraryPropertyEDataType, LibraryProperty.class, "LibraryProperty", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(methodEDataType, Method.class, "Method", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(numberEDataType, Number.class, "Number", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(objectEDataType, Object.class, "Object", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(operationEDataType, Operation.class, "Operation", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -17,8 +20,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.codegen.cgmodel.*;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
@@ -34,6 +37,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
@@ -42,6 +46,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositeProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGFinalVariable;
@@ -63,6 +68,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
@@ -184,6 +193,10 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 			case CGModelPackage.CG_LIBRARY_PROPERTY_CALL_EXP: return createCGLibraryPropertyCallExp();
 			case CGModelPackage.CG_LOCAL_VARIABLE: return createCGLocalVariable();
 			case CGModelPackage.CG_MODEL: return createCGModel();
+			case CGModelPackage.CG_NATIVE_OPERATION: return createCGNativeOperation();
+			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP: return createCGNativeOperationCallExp();
+			case CGModelPackage.CG_NATIVE_PROPERTY: return createCGNativeProperty();
+			case CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP: return createCGNativePropertyCallExp();
 			case CGModelPackage.CG_NULL: return createCGNull();
 			case CGModelPackage.CG_PACKAGE: return createCGPackage();
 			case CGModelPackage.CG_PARAMETER: return createCGParameter();
@@ -223,12 +236,16 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 				return createEnumerationLiteralIdFromString(eDataType, initialValue);
 			case CGModelPackage.ITERATION:
 				return createIterationFromString(eDataType, initialValue);
+			case CGModelPackage.FIELD:
+				return createFieldFromString(eDataType, initialValue);
 			case CGModelPackage.LIBRARY_ITERATION:
 				return createLibraryIterationFromString(eDataType, initialValue);
 			case CGModelPackage.LIBRARY_OPERATION:
 				return createLibraryOperationFromString(eDataType, initialValue);
 			case CGModelPackage.LIBRARY_PROPERTY:
 				return createLibraryPropertyFromString(eDataType, initialValue);
+			case CGModelPackage.METHOD:
+				return createMethodFromString(eDataType, initialValue);
 			case CGModelPackage.NUMBER:
 				return createNumberFromString(eDataType, initialValue);
 			case CGModelPackage.OBJECT:
@@ -264,12 +281,16 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 				return convertEnumerationLiteralIdToString(eDataType, instanceValue);
 			case CGModelPackage.ITERATION:
 				return convertIterationToString(eDataType, instanceValue);
+			case CGModelPackage.FIELD:
+				return convertFieldToString(eDataType, instanceValue);
 			case CGModelPackage.LIBRARY_ITERATION:
 				return convertLibraryIterationToString(eDataType, instanceValue);
 			case CGModelPackage.LIBRARY_OPERATION:
 				return convertLibraryOperationToString(eDataType, instanceValue);
 			case CGModelPackage.LIBRARY_PROPERTY:
 				return convertLibraryPropertyToString(eDataType, instanceValue);
+			case CGModelPackage.METHOD:
+				return convertMethodToString(eDataType, instanceValue);
 			case CGModelPackage.NUMBER:
 				return convertNumberToString(eDataType, instanceValue);
 			case CGModelPackage.OBJECT:
@@ -460,7 +481,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGEcoreOperation createCGEcoreOperation() {
+	public @NonNull CGEcoreOperation createCGEcoreOperation() {
 		CGEcoreOperationImpl cgEcoreOperation = new CGEcoreOperationImpl();
 		return cgEcoreOperation;
 	}
@@ -482,7 +503,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGEcoreOppositePropertyCallExp createCGEcoreOppositePropertyCallExp() {
+	public @NonNull CGEcoreOppositePropertyCallExp createCGEcoreOppositePropertyCallExp() {
 		CGEcoreOppositePropertyCallExpImpl cgEcoreOppositePropertyCallExp = new CGEcoreOppositePropertyCallExpImpl();
 		return cgEcoreOppositePropertyCallExp;
 	}
@@ -581,7 +602,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGExecutorOppositePropertyCallExp createCGExecutorOppositePropertyCallExp() {
+	public @NonNull CGExecutorOppositePropertyCallExp createCGExecutorOppositePropertyCallExp() {
 		CGExecutorOppositePropertyCallExpImpl cgExecutorOppositePropertyCallExp = new CGExecutorOppositePropertyCallExpImpl();
 		return cgExecutorOppositePropertyCallExp;
 	}
@@ -669,7 +690,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGIsEqualExp createCGIsEqualExp() {
+	public @NonNull CGIsEqualExp createCGIsEqualExp() {
 		CGIsEqualExpImpl cgIsEqualExp = new CGIsEqualExpImpl();
 		return cgIsEqualExp;
 	}
@@ -793,6 +814,50 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	public @NonNull CGModel createCGModel() {
 		CGModelImpl cgModel = new CGModelImpl();
 		return cgModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull CGNativeOperation createCGNativeOperation() {
+		CGNativeOperationImpl cgNativeOperation = new CGNativeOperationImpl();
+		return cgNativeOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull CGNativeOperationCallExp createCGNativeOperationCallExp() {
+		CGNativeOperationCallExpImpl cgNativeOperationCallExp = new CGNativeOperationCallExpImpl();
+		return cgNativeOperationCallExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull CGNativeProperty createCGNativeProperty() {
+		CGNativePropertyImpl cgNativeProperty = new CGNativePropertyImpl();
+		return cgNativeProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull CGNativePropertyCallExp createCGNativePropertyCallExp() {
+		CGNativePropertyCallExpImpl cgNativePropertyCallExp = new CGNativePropertyCallExpImpl();
+		return cgNativePropertyCallExp;
 	}
 
 	/**
@@ -1070,6 +1135,24 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Field createFieldFromString(EDataType eDataType, String initialValue) {
+		return (Field)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFieldToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LibraryIteration createLibraryIterationFromString(EDataType eDataType, String initialValue) {
 		return (LibraryIteration)super.createFromString(eDataType, initialValue);
 	}
@@ -1116,6 +1199,24 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	public String convertLibraryPropertyToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Method createMethodFromString(EDataType eDataType, String initialValue) {
+		return (Method)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMethodToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

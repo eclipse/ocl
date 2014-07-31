@@ -717,6 +717,58 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CGModelPackage.CG_NATIVE_OPERATION: {
+				CGNativeOperation cgNativeOperation = (CGNativeOperation)theEObject;
+				T result = caseCGNativeOperation(cgNativeOperation);
+				if (result == null) result = caseCGOperation(cgNativeOperation);
+				if (result == null) result = caseCGCallable(cgNativeOperation);
+				if (result == null) result = caseCGValuedElement(cgNativeOperation);
+				if (result == null) result = caseCGTypedElement(cgNativeOperation);
+				if (result == null) result = caseCGNamedElement(cgNativeOperation);
+				if (result == null) result = caseCGElement(cgNativeOperation);
+				if (result == null) result = caseNameable(cgNativeOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP: {
+				CGNativeOperationCallExp cgNativeOperationCallExp = (CGNativeOperationCallExp)theEObject;
+				T result = caseCGNativeOperationCallExp(cgNativeOperationCallExp);
+				if (result == null) result = caseCGOperationCallExp(cgNativeOperationCallExp);
+				if (result == null) result = caseCGCallExp(cgNativeOperationCallExp);
+				if (result == null) result = caseCGValuedElement(cgNativeOperationCallExp);
+				if (result == null) result = caseCGTypedElement(cgNativeOperationCallExp);
+				if (result == null) result = caseCGNamedElement(cgNativeOperationCallExp);
+				if (result == null) result = caseCGElement(cgNativeOperationCallExp);
+				if (result == null) result = caseNameable(cgNativeOperationCallExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGModelPackage.CG_NATIVE_PROPERTY: {
+				CGNativeProperty cgNativeProperty = (CGNativeProperty)theEObject;
+				T result = caseCGNativeProperty(cgNativeProperty);
+				if (result == null) result = caseCGProperty(cgNativeProperty);
+				if (result == null) result = caseCGValuedElement(cgNativeProperty);
+				if (result == null) result = caseCGTypedElement(cgNativeProperty);
+				if (result == null) result = caseCGNamedElement(cgNativeProperty);
+				if (result == null) result = caseCGElement(cgNativeProperty);
+				if (result == null) result = caseNameable(cgNativeProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGModelPackage.CG_NATIVE_PROPERTY_CALL_EXP: {
+				CGNativePropertyCallExp cgNativePropertyCallExp = (CGNativePropertyCallExp)theEObject;
+				T result = caseCGNativePropertyCallExp(cgNativePropertyCallExp);
+				if (result == null) result = caseCGPropertyCallExp(cgNativePropertyCallExp);
+				if (result == null) result = caseCGNavigationCallExp(cgNativePropertyCallExp);
+				if (result == null) result = caseCGCallExp(cgNativePropertyCallExp);
+				if (result == null) result = caseCGValuedElement(cgNativePropertyCallExp);
+				if (result == null) result = caseCGTypedElement(cgNativePropertyCallExp);
+				if (result == null) result = caseCGNamedElement(cgNativePropertyCallExp);
+				if (result == null) result = caseCGElement(cgNativePropertyCallExp);
+				if (result == null) result = caseNameable(cgNativePropertyCallExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CGModelPackage.CG_NAVIGATION_CALL_EXP: {
 				CGNavigationCallExp cgNavigationCallExp = (CGNavigationCallExp)theEObject;
 				T result = caseCGNavigationCallExp(cgNavigationCallExp);
@@ -1851,6 +1903,66 @@ public class CGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGNamedElement(CGNamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Native Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Native Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGNativeOperation(CGNativeOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Native Operation Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Native Operation Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGNativeOperationCallExp(CGNativeOperationCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Native Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Native Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGNativeProperty(CGNativeProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Native Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Native Property Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGNativePropertyCallExp(CGNativePropertyCallExp object) {
 		return null;
 	}
 
