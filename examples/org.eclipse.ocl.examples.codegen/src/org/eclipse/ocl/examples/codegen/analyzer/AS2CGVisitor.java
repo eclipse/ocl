@@ -387,7 +387,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 * Return all final operations directly referenced by opaqueExpression, or null if none.
 	 * @since 1.3
 	 */
-	protected @Nullable Set<Operation> getReferencedOperations(@NonNull OpaqueExpression opaqueExpression) {
+	protected @Nullable Set<Operation> getReferencedFinalOperations(@NonNull FinalAnalysis finalAnalysis, @NonNull OpaqueExpression opaqueExpression) {
 		ExpressionInOCL prototype = null;
 		try {
 			prototype = PivotUtil.getExpressionInOCL(metaModelManager, opaqueExpression);
@@ -403,10 +403,12 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		for (EObject crossReference : EcoreUtil.ExternalCrossReferencer.find(prototype).keySet()) {
 			if (crossReference instanceof Operation) {
 				Operation operation = (Operation) crossReference;
-				if (referencedOperations == null) {
-					referencedOperations = new HashSet<Operation>();
+				if (finalAnalysis.isFinal(operation)) {
+					if (referencedOperations == null) {
+						referencedOperations = new HashSet<Operation>();
+					}
+					referencedOperations.add(operation);
 				}
-				referencedOperations.add(operation);
 			}
 		}
 		return referencedOperations;
@@ -421,20 +423,14 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 * Return all final operations transitively referenced by opaqueExpression, or null if none.
 	 * @since 1.3
 	 */
-	protected void getTransitivelyReferencedFinalOperations(@NonNull Set<Operation> alreadyReferencedOperations, @NonNull OpaqueExpression opaqueExpression) {
-		Set<Operation> newlyReferencedOperations = getReferencedOperations(opaqueExpression);
-		if (newlyReferencedOperations != null) {
-			FinalAnalysis finalAnalysis = null;
-			for (Operation newlyReferencedOperation : newlyReferencedOperations) {
-				if ((newlyReferencedOperation != null) && alreadyReferencedOperations.add(newlyReferencedOperation)) {
-					if (finalAnalysis == null) {
-						finalAnalysis = metaModelManager.getPackageManager().getFinalAnalysis();
-					}
-					if (finalAnalysis.isFinal(newlyReferencedOperation)) {
-						OpaqueExpression anotherOpaqueExpression = newlyReferencedOperation.getBodyExpression();
-						if (anotherOpaqueExpression != null) {
-							getTransitivelyReferencedFinalOperations(alreadyReferencedOperations, anotherOpaqueExpression);
-						}
+	protected void getTransitivelyReferencedFinalOperations(@NonNull Set<Operation> alreadyReferencedFinalOperations, @NonNull FinalAnalysis finalAnalysis, @NonNull OpaqueExpression opaqueExpression) {
+		Set<Operation> newlyReferencedFinalOperations = getReferencedFinalOperations(finalAnalysis, opaqueExpression);
+		if (newlyReferencedFinalOperations != null) {
+			for (@SuppressWarnings("null")@NonNull Operation newlyReferencedFinalOperation : newlyReferencedFinalOperations) {
+				if (alreadyReferencedFinalOperations.add(newlyReferencedFinalOperation)) {
+					OpaqueExpression anotherOpaqueExpression = newlyReferencedFinalOperation.getBodyExpression();
+					if (anotherOpaqueExpression != null) {
+						getTransitivelyReferencedFinalOperations(alreadyReferencedFinalOperations, finalAnalysis, anotherOpaqueExpression);
 					}
 				}
 			}
@@ -471,9 +467,10 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		if (prototype == null) {
 			return null;
 		}
-		Set<Operation> referencedOperations = new HashSet<Operation>();
-		getTransitivelyReferencedFinalOperations(referencedOperations, bodyExpression);
-		if (referencedOperations.contains(callExp.getReferredOperation())) {
+		FinalAnalysis finalAnalysis = metaModelManager.getPackageManager().getFinalAnalysis();
+		Set<Operation> referencedFinalOperations = new HashSet<Operation>();
+		getTransitivelyReferencedFinalOperations(referencedFinalOperations, finalAnalysis, bodyExpression);
+		if (referencedFinalOperations.contains(callExp.getReferredOperation())) {
 			return null;	// Avoid an infinite inlining recursion.
 		}
 		ExpressionInOCL asClone = EcoreUtil.copy(prototype);
