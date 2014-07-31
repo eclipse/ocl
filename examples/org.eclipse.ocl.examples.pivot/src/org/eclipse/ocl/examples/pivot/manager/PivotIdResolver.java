@@ -23,9 +23,11 @@ import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
+import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.DomainInvalidTypeImpl;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -86,6 +88,20 @@ public class PivotIdResolver extends AbstractIdResolver
 			}
 		}
 		return super.getDynamicTypeOf(value);
+	}
+
+	@Override
+	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+		String packageName = id.getName();
+		DomainPackage rootPackage = metaModelManager.getRootPackage(packageName);
+		if (rootPackage == null) {
+			Orphanage orphanage = metaModelManager.getOrphanage();
+			rootPackage = DomainUtil.getNamedElement(orphanage.getNestedPackage(), packageName);
+			if (rootPackage == null) {
+				throw new UnsupportedOperationException();
+			}
+		}
+		return rootPackage;
 	}
 
 	@Override

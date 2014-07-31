@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.domain.values.TupleValue;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
 
 /**
@@ -121,6 +122,10 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			}
 			catch (Exception e) {}
 		} */
+		org.eclipse.ocl.examples.pivot.Package asPackage = type.getPackage();
+		if ((asPackage != null) && (asPackage.eContainer() instanceof Orphanage)) {
+			return new SimpleDataTypeDescriptor(id, asPackage.getName() + "." + type.getName());
+		}
 		return new RootObjectDescriptor(id);
 	}
 	
