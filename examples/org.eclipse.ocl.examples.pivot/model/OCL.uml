@@ -400,7 +400,7 @@
         <ownedAttribute xmi:id="_pgRzMDaoEeCb2LlOxMIQ5w" name="resultType" type="_TQWD0A27EeSm6471J7pVhQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_HcoluIgHEd-aGOJuUCcZBA" name="MessageType">
-        <generalization xmi:id="_XpnTA37VEeOu79LxSz8Ylw" general="_TQWD0A27EeSm6471J7pVhQ"/>
+        <generalization xmi:id="_XpnTA37VEeOu79LxSz8Ylw" general="_Pbq4UA27EeSm6471J7pVhQ"/>
         <ownedAttribute xmi:id="_HcoluogHEd-aGOJuUCcZBA" name="referredSignal" type="_ASveEIq1Ed-VzsYvPRGeYg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>

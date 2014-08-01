@@ -6296,7 +6296,7 @@ public class PivotPackageImpl
 		literalExpEClass.getESuperTypes().add(this.getOCLExpression());
 		loopExpEClass.getESuperTypes().add(this.getCallExp());
 		messageExpEClass.getESuperTypes().add(this.getOCLExpression());
-		messageTypeEClass.getESuperTypes().add(this.getType());
+		messageTypeEClass.getESuperTypes().add(this.getClass_());
 		metaclassEClass.getESuperTypes().add(this.getClass_());
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		namedElementEClass.getESuperTypes().add(this.getNameable());

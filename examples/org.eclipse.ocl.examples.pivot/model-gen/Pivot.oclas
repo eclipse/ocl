@@ -696,7 +696,7 @@
       </ownedInvariant>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.MessageType" name="MessageType"
-        superClass="#T.pivot.Type">
+        superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.MessageType.referredOperation" isRequired="false"
           name="referredOperation" opposite="#p.pivot.Operation.MessageType" type="#T.pivot.Operation"/>
       <ownedAttribute xmi:id="p.pivot.MessageType.referredSignal" isRequired="false"

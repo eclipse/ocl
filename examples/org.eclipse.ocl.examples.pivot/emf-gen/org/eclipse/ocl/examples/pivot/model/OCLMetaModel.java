@@ -659,7 +659,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_OCLExpression);
 			ownedTypes.add(type = _MessageType);
 			superClasses = type.getSuperClass();
-			superClasses.add(_Type);
+			superClasses.add(_Class);
 			ownedTypes.add(type = _Metaclass);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Class);

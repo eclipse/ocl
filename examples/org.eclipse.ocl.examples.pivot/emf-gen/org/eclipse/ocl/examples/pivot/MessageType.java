@@ -28,7 +28,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface MessageType
-		extends Type {
+		extends org.eclipse.ocl.examples.pivot.Class {
 
 	/**
 	 * Returns the value of the '<em><b>Referred Signal</b></em>' reference.

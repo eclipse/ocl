@@ -1201,10 +1201,12 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _MessageExp__TypedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._TypedElement);
 		private static final @NonNull ExecutorFragment _MessageExp__Visitable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Visitable);
 
+		private static final @NonNull ExecutorFragment _MessageType__Class = new ExecutorFragment(Types._MessageType, PivotTables.Types._Class);
 		private static final @NonNull ExecutorFragment _MessageType__Element = new ExecutorFragment(Types._MessageType, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _MessageType__MessageType = new ExecutorFragment(Types._MessageType, PivotTables.Types._MessageType);
 		private static final @NonNull ExecutorFragment _MessageType__Nameable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Nameable);
 		private static final @NonNull ExecutorFragment _MessageType__NamedElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._NamedElement);
+		private static final @NonNull ExecutorFragment _MessageType__Namespace = new ExecutorFragment(Types._MessageType, PivotTables.Types._Namespace);
 		private static final @NonNull ExecutorFragment _MessageType__OclAny = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _MessageType__OclElement = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _MessageType__OclType = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclType);
@@ -3331,10 +3333,12 @@ public class PivotTables
 			Fragments._MessageType__NamedElement /* 4 */,
 			Fragments._MessageType__ParameterableElement /* 4 */,
 			Fragments._MessageType__TemplateableElement /* 4 */,
+			Fragments._MessageType__Namespace /* 5 */,
 			Fragments._MessageType__Type /* 5 */,
-			Fragments._MessageType__MessageType /* 6 */
+			Fragments._MessageType__Class /* 6 */,
+			Fragments._MessageType__MessageType /* 7 */
 		};
-		private static final @NonNull int[] __MessageType = { 1,1,3,1,3,1,1 };
+		private static final @NonNull int[] __MessageType = { 1,1,3,1,3,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Metaclass =
 		{
@@ -6537,12 +6541,14 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _MessageExp__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _MessageType__MessageType = {};
+		private static final @NonNull ExecutorOperation[] _MessageType__Class = {};
 		private static final @NonNull ExecutorOperation[] _MessageType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
 		};
 		private static final @NonNull ExecutorOperation[] _MessageType__Nameable = {};
 		private static final @NonNull ExecutorOperation[] _MessageType__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _MessageType__Namespace = {};
 		private static final @NonNull ExecutorOperation[] _MessageType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
@@ -9742,10 +9748,12 @@ public class PivotTables
 			Fragments._MessageExp__TypedElement.initOperations(_MessageExp__TypedElement);
 			Fragments._MessageExp__Visitable.initOperations(_MessageExp__Visitable);
 
+			Fragments._MessageType__Class.initOperations(_MessageType__Class);
 			Fragments._MessageType__Element.initOperations(_MessageType__Element);
 			Fragments._MessageType__MessageType.initOperations(_MessageType__MessageType);
 			Fragments._MessageType__Nameable.initOperations(_MessageType__Nameable);
 			Fragments._MessageType__NamedElement.initOperations(_MessageType__NamedElement);
+			Fragments._MessageType__Namespace.initOperations(_MessageType__Namespace);
 			Fragments._MessageType__OclAny.initOperations(_MessageType__OclAny);
 			Fragments._MessageType__OclElement.initOperations(_MessageType__OclElement);
 			Fragments._MessageType__OclType.initOperations(_MessageType__OclType);
@@ -12363,13 +12371,19 @@ public class PivotTables
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__isAbstract,
+			PivotTables.Properties._Class__isActive,
+			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__isStatic,
 			PivotTables.Properties._NamedElement__name,
+			PivotTables.Properties._Class__nestedType,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Type__ownedAttribute,
+			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Type__ownedInvariant,
 			PivotTables.Properties._Type__ownedOperation,
+			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._Type__package,
@@ -12381,11 +12395,14 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
+			PivotTables.Properties._Class__Class__nestedType,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
+			PivotTables.Properties._Namespace__Constraint__context,
 			PivotTables.Properties._Type__DataType__behavioralType,
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
+			PivotTables.Properties._Namespace__Import__importedNamespace,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,

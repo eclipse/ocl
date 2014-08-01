@@ -14023,7 +14023,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__COMMENT = TYPE__COMMENT;
+	int MESSAGE_TYPE__COMMENT = CLASS__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -14032,7 +14032,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__EXTENSION = TYPE__EXTENSION;
+	int MESSAGE_TYPE__EXTENSION = CLASS__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -14041,7 +14041,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_ANNOTATION = TYPE__OWNED_ANNOTATION;
+	int MESSAGE_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -14050,7 +14050,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_COMMENT = TYPE__OWNED_COMMENT;
+	int MESSAGE_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -14059,7 +14059,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__IS_STATIC = TYPE__IS_STATIC;
+	int MESSAGE_TYPE__IS_STATIC = CLASS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -14068,7 +14068,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__NAME = TYPE__NAME;
+	int MESSAGE_TYPE__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -14077,7 +14077,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE = TYPE__OWNED_TEMPLATE_SIGNATURE;
+	int MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -14086,7 +14086,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__TEMPLATE_BINDING = TYPE__TEMPLATE_BINDING;
+	int MESSAGE_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -14095,7 +14095,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__UNSPECIALIZED_ELEMENT = TYPE__UNSPECIALIZED_ELEMENT;
+	int MESSAGE_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -14104,7 +14104,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNING_TEMPLATE_PARAMETER = TYPE__OWNING_TEMPLATE_PARAMETER;
+	int MESSAGE_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -14113,7 +14113,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__TEMPLATE_PARAMETER = TYPE__TEMPLATE_PARAMETER;
+	int MESSAGE_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
@@ -14122,7 +14122,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__EXTENDED_BYS = TYPE__EXTENDED_BYS;
+	int MESSAGE_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -14131,7 +14131,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+	int MESSAGE_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -14140,7 +14140,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_ATTRIBUTE = TYPE__OWNED_ATTRIBUTE;
+	int MESSAGE_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
@@ -14149,7 +14149,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_INVARIANT = TYPE__OWNED_INVARIANT;
+	int MESSAGE_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -14158,7 +14158,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_OPERATION = TYPE__OWNED_OPERATION;
+	int MESSAGE_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -14167,7 +14167,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__PACKAGE = TYPE__PACKAGE;
+	int MESSAGE_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
@@ -14176,7 +14176,61 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__SUPER_CLASS = TYPE__SUPER_CLASS;
+	int MESSAGE_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__IS_ACTIVE = CLASS__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__NESTED_TYPE = CLASS__NESTED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
@@ -14185,7 +14239,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_OPERATION = TYPE_FEATURE_COUNT + 0;
+	int MESSAGE_TYPE__REFERRED_OPERATION = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
@@ -14194,7 +14248,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_SIGNAL = TYPE_FEATURE_COUNT + 1;
+	int MESSAGE_TYPE__REFERRED_SIGNAL = CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Message Type</em>' class.
@@ -14203,7 +14257,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+	int MESSAGE_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -14212,7 +14266,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
+	int MESSAGE_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -14221,7 +14275,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
+	int MESSAGE_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Template</em>' operation.
@@ -14230,7 +14284,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___IS_TEMPLATE = TYPE___IS_TEMPLATE;
+	int MESSAGE_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -14239,7 +14293,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___PARAMETERABLE_ELEMENTS = TYPE___PARAMETERABLE_ELEMENTS;
+	int MESSAGE_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -14248,7 +14302,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int MESSAGE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -14257,7 +14311,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+	int MESSAGE_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -14266,7 +14320,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+	int MESSAGE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -14275,7 +14329,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int MESSAGE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
 	 * The number of operations of the '<em>Message Type</em>' class.
@@ -14284,7 +14338,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
+	int MESSAGE_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.

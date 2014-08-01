@@ -400,7 +400,7 @@
         <ownedAttribute xmi:id="OCL-OCL_Types-LambdaType-resultType" name="resultType" type="OCL-OCL_UML-Type"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-MessageType" name="MessageType">
-        <generalization xmi:id="_XpnTA37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Type"/>
+        <generalization xmi:id="_XpnTA37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Class"/>
         <ownedAttribute xmi:id="OCL-OCL_Types-MessageType-referredSignal" name="referredSignal" type="OCL-OCL_Types-Signal">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>

@@ -664,7 +664,7 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMessageType" name="MessageType">
-      <generalization xmi:id="Ppivot.TMessageType.g0" general="Ppivot.TType"/>
+      <generalization xmi:id="Ppivot.TMessageType.g0" general="Ppivot.TClass"/>
       <ownedAttribute xmi:id="Ppivot.TMessageType.PreferredSignal" name="referredSignal" type="Ppivot.TSignal">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TMessageType.PreferredSignal.lV"/>
       </ownedAttribute>

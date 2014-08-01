@@ -1044,7 +1044,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sentSignal" eType="#//SendSignalAction" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1" eType="#//OCLExpression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MessageType" eSuperTypes="#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="MessageType" eSuperTypes="#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" eType="#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredSignal" eType="#//Signal"/>
   </eClassifiers>

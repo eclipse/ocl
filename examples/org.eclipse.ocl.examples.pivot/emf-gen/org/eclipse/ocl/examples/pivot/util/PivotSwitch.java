@@ -919,7 +919,9 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				MessageType messageType = (MessageType)theEObject;
 				T1 result = caseMessageType(messageType);
+				if (result == null) result = caseClass(messageType);
 				if (result == null) result = caseType(messageType);
+				if (result == null) result = caseNamespace(messageType);
 				if (result == null) result = caseNamedElement(messageType);
 				if (result == null) result = caseTemplateableElement(messageType);
 				if (result == null) result = caseParameterableElement(messageType);
