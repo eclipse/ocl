@@ -26,15 +26,12 @@ Class
     inherits TemplateableElement
     add isFinalSpecialization,class,classifierTemplateParameter,general,inheritedMember,instanceSpecification,nestedClassifier,nestingClass,part,redefinedClassifier,region,state,transition
     delete nestedType,ownedBehavior
-Comment
-    add owningElement
 Constraint
     add bodyContext,postContext,preContext
     adjust constrainedElement,context
     delete specification
 Element
-    add comment,constraint
-    adjust ownedComment
+    add constraint
 Enumeration
     add enumerationLiteral
 

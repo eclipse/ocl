@@ -593,7 +593,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_DataType);
 			ownedTypes.add(type = _EnumerationLiteral);
 			superClasses = type.getSuperClass();
-			superClasses.add(_NamedElement);
+			superClasses.add(_InstanceSpecification);
 			ownedTypes.add(type = _ExpressionInOCL);
 			superClasses = type.getSuperClass();
 			superClasses.add(_ValueSpecification);

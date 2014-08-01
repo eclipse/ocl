@@ -182,6 +182,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_9SPjQARCEeSiuvNrq-crrw" name="MDT_OCL_Instances">
       <packagedElement xmi:type="uml:Class" xmi:id="_oDwW0ARDEeSiuvNrq-crrw" name="Element" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_M1yqMBlLEeSM9LreJtBwBg" name="EnumerationLiteral">
+        <generalization xmi:id="_RTT-YBlLEeSM9LreJtBwBg" general="_MJ2QsARDEeSiuvNrq-crrw"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_BqkUwARLEeSiuvNrq-crrw" name="ExpressionInOCL"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_MJ2QsARDEeSiuvNrq-crrw" name="InstanceSpecification">
         <ownedComment xmi:id="_MJ2QsQRDEeSiuvNrq-crrw" annotatedElement="_MJ2QsARDEeSiuvNrq-crrw">

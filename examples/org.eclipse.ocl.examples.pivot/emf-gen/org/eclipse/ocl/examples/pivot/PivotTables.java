@@ -957,10 +957,13 @@ public class PivotTables
 
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__Element = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._EnumerationLiteral);
+		private static final @NonNull ExecutorFragment _EnumerationLiteral__InstanceSpecification = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._InstanceSpecification);
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__Nameable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Nameable);
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__NamedElement = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._NamedElement);
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__OclElement = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _EnumerationLiteral__PackageableElement = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._PackageableElement);
+		private static final @NonNull ExecutorFragment _EnumerationLiteral__ParameterableElement = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _EnumerationLiteral__Visitable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _ExpressionInOCL__Element = new ExecutorFragment(Types._ExpressionInOCL, PivotTables.Types._Element);
@@ -2978,9 +2981,12 @@ public class PivotTables
 			Fragments._EnumerationLiteral__Visitable /* 2 */,
 			Fragments._EnumerationLiteral__Element /* 3 */,
 			Fragments._EnumerationLiteral__NamedElement /* 4 */,
-			Fragments._EnumerationLiteral__EnumerationLiteral /* 5 */
+			Fragments._EnumerationLiteral__ParameterableElement /* 4 */,
+			Fragments._EnumerationLiteral__PackageableElement /* 5 */,
+			Fragments._EnumerationLiteral__InstanceSpecification /* 6 */,
+			Fragments._EnumerationLiteral__EnumerationLiteral /* 7 */
 		};
-		private static final @NonNull int[] __EnumerationLiteral = { 1,1,2,1,1,1 };
+		private static final @NonNull int[] __EnumerationLiteral = { 1,1,2,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ExpressionInOCL =
 		{
@@ -5717,6 +5723,7 @@ public class PivotTables
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
 		};
+		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__InstanceSpecification = {};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Nameable = {};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__NamedElement = {};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__OclAny = {
@@ -5739,6 +5746,11 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__PackageableElement = {};
+		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
 		};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Visitable = {};
 
@@ -9412,10 +9424,13 @@ public class PivotTables
 
 			Fragments._EnumerationLiteral__Element.initOperations(_EnumerationLiteral__Element);
 			Fragments._EnumerationLiteral__EnumerationLiteral.initOperations(_EnumerationLiteral__EnumerationLiteral);
+			Fragments._EnumerationLiteral__InstanceSpecification.initOperations(_EnumerationLiteral__InstanceSpecification);
 			Fragments._EnumerationLiteral__Nameable.initOperations(_EnumerationLiteral__Nameable);
 			Fragments._EnumerationLiteral__NamedElement.initOperations(_EnumerationLiteral__NamedElement);
 			Fragments._EnumerationLiteral__OclAny.initOperations(_EnumerationLiteral__OclAny);
 			Fragments._EnumerationLiteral__OclElement.initOperations(_EnumerationLiteral__OclElement);
+			Fragments._EnumerationLiteral__PackageableElement.initOperations(_EnumerationLiteral__PackageableElement);
+			Fragments._EnumerationLiteral__ParameterableElement.initOperations(_EnumerationLiteral__ParameterableElement);
 			Fragments._EnumerationLiteral__Visitable.initOperations(_EnumerationLiteral__Visitable);
 
 			Fragments._ExpressionInOCL__Element.initOperations(_ExpressionInOCL__Element);
@@ -11549,12 +11564,22 @@ public class PivotTables
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
+			PivotTables.Properties._InstanceSpecification__slots,
+			PivotTables.Properties._InstanceSpecification__specification,
+			PivotTables.Properties._ParameterableElement__templateParameter,
+			PivotTables.Properties._InstanceSpecification__type,
 			PivotTables.Properties._EnumerationLiteral__value,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._EnumerationLiteral__EnumLiteralExp__referredEnumLiteral
+			PivotTables.Properties._EnumerationLiteral__EnumLiteralExp__referredEnumLiteral,
+			PivotTables.Properties._InstanceSpecification__Package__ownedInstances,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
+			PivotTables.Properties._ParameterableElement__templateParameter__default,
+			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
+			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
 		};
 
 		private static final @NonNull ExecutorProperty[] _ExpressionInOCL = {

@@ -463,6 +463,7 @@
         <body>An enumeration literal is a value of an enumeration.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TEnumerationLiteral.g0" general="Ppivot.TNamedElement"/>
+      <generalization xmi:id="Ppivot.TEnumerationLiteral.g1" general="Ppivot.TInstanceSpecification"/>
       <ownedAttribute xmi:id="Ppivot.TEnumerationLiteral.Penumeration" name="enumeration" type="Ppivot.TEnumeration" association="Ppivot.A_ownedLiteral_enumeration">
         <ownedComment xmi:id="Ppivot.TEnumerationLiteral.Penumeration.oC0" annotatedElement="Ppivot.TEnumerationLiteral.Penumeration">
           <body>The Enumeration that this EnumerationLiteral is a member of.</body>

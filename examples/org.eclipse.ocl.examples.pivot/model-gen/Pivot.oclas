@@ -410,7 +410,7 @@ oclContents()
       <ownedComment body="An enumeration defines a set of literals that can be used as its values."/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.EnumerationLiteral" name="EnumerationLiteral"
-        superClass="#T.pivot.NamedElement">
+        superClass="#T.pivot.InstanceSpecification">
       <ownedAttribute xmi:id="p.pivot.EnumerationLiteral.enumeration" isRequired="false"
           name="enumeration" opposite="#p.pivot.Enumeration.ownedLiteral" type="#T.pivot.Enumeration">
         <ownedComment body="The Enumeration that this EnumerationLiteral is a member of."/>

@@ -6231,7 +6231,7 @@ public class PivotPackageImpl
 		elementExtensionEClass.getESuperTypes().add(this.getType());
 		enumLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		enumerationEClass.getESuperTypes().add(this.getDataType());
-		enumerationLiteralEClass.getESuperTypes().add(this.getNamedElement());
+		enumerationLiteralEClass.getESuperTypes().add(this.getInstanceSpecification());
 		expressionInOCLEClass.getESuperTypes().add(this.getValueSpecification());
 		featureEClass.getESuperTypes().add(this.getTypedMultiplicityElement());
 		featureCallExpEClass.getESuperTypes().add(this.getCallExp());

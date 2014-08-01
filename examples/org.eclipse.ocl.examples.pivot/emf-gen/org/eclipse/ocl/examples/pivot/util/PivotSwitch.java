@@ -617,7 +617,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				EnumerationLiteral enumerationLiteral = (EnumerationLiteral)theEObject;
 				T1 result = caseEnumerationLiteral(enumerationLiteral);
+				if (result == null) result = caseInstanceSpecification(enumerationLiteral);
+				if (result == null) result = casePackageableElement(enumerationLiteral);
 				if (result == null) result = caseNamedElement(enumerationLiteral);
+				if (result == null) result = caseParameterableElement(enumerationLiteral);
 				if (result == null) result = caseElement(enumerationLiteral);
 				if (result == null) result = caseNameable(enumerationLiteral);
 				if (result == null) result = caseVisitable(enumerationLiteral);
