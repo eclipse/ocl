@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUIL
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -266,7 +267,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			throw new IllegalStateException("no Pivot Constraint");
 //			return false;
 		}
-		ExpressionInOCL specification = asConstraint.getSpecification();
+		LanguageExpression specification = asConstraint.getSpecification();
 		String expression = specification != null ? PrettyPrinter.print(specification) : "";
 		
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

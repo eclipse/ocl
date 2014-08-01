@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -256,7 +257,7 @@ public abstract class AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitConstraint(@NonNull Constraint constraint) {
-		ExpressionInOCL specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getSpecification();
 		if (!(specification instanceof ExpressionInOCL)) {
 			return null;
 		}

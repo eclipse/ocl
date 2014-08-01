@@ -90,7 +90,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_NdU7cLGQEeKHeOerXjTPgw" name="ExpressionInOCL"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NdU7cLGQEeKHeOerXjTPgw" name="LanguageExpression" isAbstract="true"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_WLIXABlNEeSM9LreJtBwBg" name="A_postcondition_postContext" memberEnd="_4G5HMLGAEeKHeOerXjTPgw _MMlqQBlNEeSM9LreJtBwBg"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_d7EeMBlNEeSM9LreJtBwBg" name="A_precondition_preContext" memberEnd="_YvowcLGAEeKHeOerXjTPgw _MWIAwBlNEeSM9LreJtBwBg"/>
     </packagedElement>

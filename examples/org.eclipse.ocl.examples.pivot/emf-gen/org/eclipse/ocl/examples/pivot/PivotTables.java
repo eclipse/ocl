@@ -112,6 +112,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Iteration = PivotTables.PACKid_$metamodel$.getClassId("Iteration", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp = PivotTables.PACKid_$metamodel$.getClassId("IteratorExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LambdaType = PivotTables.PACKid_$metamodel$.getClassId("LambdaType", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LanguageExpression = PivotTables.PACKid_$metamodel$.getClassId("LanguageExpression", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp = PivotTables.PACKid_$metamodel$.getClassId("LetExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library = PivotTables.PACKid_$metamodel$.getClassId("Library", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LoopExp = PivotTables.PACKid_$metamodel$.getClassId("LoopExp", 0);
@@ -177,9 +178,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValuesUtil.integerValueOf("1");
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_0 = TypeId.METACLASS.getSpecializedId(TypeId.BOOLEAN);
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_5 = TypeId.METACLASS.getSpecializedId(TypeId.INTEGER);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_PRIMid_String = TypeId.ORDERED_SET.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_String = TypeId.SEQUENCE.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ String STR_Boolean = "Boolean";
     public static final @NonNull /*@NonInvalid*/ String STR_any = "any";
@@ -239,7 +238,8 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_3 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_SequenceType);
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_4 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_SetType);
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_6 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_CollectionType);
-    public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_7 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_Type);
+    public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_7 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_ExpressionInOCL);
+    public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_8 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_Type);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_CollectionLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_CollectionLiteralPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Constraint = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Constraint);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConstructorPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ConstructorPart);
@@ -351,6 +351,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _Iteration = new EcoreExecutorType(PivotPackage.Literals.ITERATION, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _IteratorExp = new EcoreExecutorType(PivotPackage.Literals.ITERATOR_EXP, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _LambdaType = new EcoreExecutorType(PivotPackage.Literals.LAMBDA_TYPE, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _LanguageExpression = new EcoreExecutorType(PivotPackage.Literals.LANGUAGE_EXPRESSION, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _LetExp = new EcoreExecutorType(PivotPackage.Literals.LET_EXP, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Library = new EcoreExecutorType(PivotPackage.Literals.LIBRARY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _LibraryFeature = new EcoreExecutorType("LibraryFeature", PACKAGE, 0);
@@ -482,6 +483,7 @@ public class PivotTables
 			_Iteration,
 			_IteratorExp,
 			_LambdaType,
+			_LanguageExpression,
 			_LetExp,
 			_Library,
 			_LibraryFeature,
@@ -968,6 +970,7 @@ public class PivotTables
 
 		private static final @NonNull ExecutorFragment _ExpressionInOCL__Element = new ExecutorFragment(Types._ExpressionInOCL, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _ExpressionInOCL__ExpressionInOCL = new ExecutorFragment(Types._ExpressionInOCL, PivotTables.Types._ExpressionInOCL);
+		private static final @NonNull ExecutorFragment _ExpressionInOCL__LanguageExpression = new ExecutorFragment(Types._ExpressionInOCL, PivotTables.Types._LanguageExpression);
 		private static final @NonNull ExecutorFragment _ExpressionInOCL__Nameable = new ExecutorFragment(Types._ExpressionInOCL, PivotTables.Types._Nameable);
 		private static final @NonNull ExecutorFragment _ExpressionInOCL__NamedElement = new ExecutorFragment(Types._ExpressionInOCL, PivotTables.Types._NamedElement);
 		private static final @NonNull ExecutorFragment _ExpressionInOCL__OclAny = new ExecutorFragment(Types._ExpressionInOCL, OCLstdlibTables.Types._OclAny);
@@ -1131,6 +1134,17 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _LambdaType__TemplateableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _LambdaType__Type = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _LambdaType__Visitable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Visitable);
+
+		private static final @NonNull ExecutorFragment _LanguageExpression__Element = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._Element);
+		private static final @NonNull ExecutorFragment _LanguageExpression__LanguageExpression = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._LanguageExpression);
+		private static final @NonNull ExecutorFragment _LanguageExpression__Nameable = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._Nameable);
+		private static final @NonNull ExecutorFragment _LanguageExpression__NamedElement = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._NamedElement);
+		private static final @NonNull ExecutorFragment _LanguageExpression__OclAny = new ExecutorFragment(Types._LanguageExpression, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _LanguageExpression__OclElement = new ExecutorFragment(Types._LanguageExpression, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _LanguageExpression__ParameterableElement = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._ParameterableElement);
+		private static final @NonNull ExecutorFragment _LanguageExpression__TypedElement = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._TypedElement);
+		private static final @NonNull ExecutorFragment _LanguageExpression__ValueSpecification = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._ValueSpecification);
+		private static final @NonNull ExecutorFragment _LanguageExpression__Visitable = new ExecutorFragment(Types._LanguageExpression, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _LetExp__Element = new ExecutorFragment(Types._LetExp, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _LetExp__LetExp = new ExecutorFragment(Types._LetExp, PivotTables.Types._LetExp);
@@ -2119,16 +2133,11 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _EnumerationLiteral__value = new EcoreExecutorProperty(PivotPackage.Literals.ENUMERATION_LITERAL__VALUE, Types._EnumerationLiteral, 1);
 		public static final @NonNull ExecutorProperty _EnumerationLiteral__EnumLiteralExp__referredEnumLiteral = new ExecutorPropertyWithImplementation("EnumLiteralExp", Types._EnumerationLiteral, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL));
 
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__body = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY, Types._ExpressionInOCL, 0);
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__bodyExpression = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, Types._ExpressionInOCL, 1);
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__contextVariable = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, Types._ExpressionInOCL, 2);
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__language = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__LANGUAGE, Types._ExpressionInOCL, 3);
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__parameterVariable = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE, Types._ExpressionInOCL, 4);
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__resultVariable = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE, Types._ExpressionInOCL, 5);
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__Constraint__specification = new ExecutorPropertyWithImplementation("Constraint", Types._ExpressionInOCL, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__Operation__bodyExpression = new ExecutorPropertyWithImplementation("Operation", Types._ExpressionInOCL, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION));
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__Property__defaultExpression = new ExecutorPropertyWithImplementation("Property", Types._ExpressionInOCL, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION));
-		public static final @NonNull ExecutorProperty _ExpressionInOCL__owningInstanceSpec__specification = new ExecutorPropertyWithImplementation("owningInstanceSpec", Types._ExpressionInOCL, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION));
+		public static final @NonNull ExecutorProperty _ExpressionInOCL__bodyExpression = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, Types._ExpressionInOCL, 0);
+		public static final @NonNull ExecutorProperty _ExpressionInOCL__contextVariable = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, Types._ExpressionInOCL, 1);
+		public static final @NonNull ExecutorProperty _ExpressionInOCL__parameterVariable = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE, Types._ExpressionInOCL, 2);
+		public static final @NonNull ExecutorProperty _ExpressionInOCL__resultVariable = new EcoreExecutorProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE, Types._ExpressionInOCL, 3);
+		public static final @NonNull ExecutorProperty _ExpressionInOCL__owningInstanceSpec__specification = new ExecutorPropertyWithImplementation("owningInstanceSpec", Types._ExpressionInOCL, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION));
 
 		public static final @NonNull ExecutorProperty _Feature__implementation = new EcoreExecutorProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION, Types._Feature, 0);
 		public static final @NonNull ExecutorProperty _Feature__implementationClass = new EcoreExecutorProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, Types._Feature, 1);
@@ -2158,6 +2167,12 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _LambdaType__contextType = new EcoreExecutorProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE, Types._LambdaType, 0);
 		public static final @NonNull ExecutorProperty _LambdaType__parameterType = new EcoreExecutorProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE, Types._LambdaType, 1);
 		public static final @NonNull ExecutorProperty _LambdaType__resultType = new EcoreExecutorProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE, Types._LambdaType, 2);
+
+		public static final @NonNull ExecutorProperty _LanguageExpression__body = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__BODY, Types._LanguageExpression, 0);
+		public static final @NonNull ExecutorProperty _LanguageExpression__language = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__LANGUAGE, Types._LanguageExpression, 1);
+		public static final @NonNull ExecutorProperty _LanguageExpression__Constraint__specification = new ExecutorPropertyWithImplementation("Constraint", Types._LanguageExpression, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
+		public static final @NonNull ExecutorProperty _LanguageExpression__Operation__bodyExpression = new ExecutorPropertyWithImplementation("Operation", Types._LanguageExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION));
+		public static final @NonNull ExecutorProperty _LanguageExpression__Property__defaultExpression = new ExecutorPropertyWithImplementation("Property", Types._LanguageExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION));
 
 		public static final @NonNull ExecutorProperty _LetExp__in = new EcoreExecutorProperty(PivotPackage.Literals.LET_EXP__IN, Types._LetExp, 0);
 		public static final @NonNull ExecutorProperty _LetExp__variable = new EcoreExecutorProperty(PivotPackage.Literals.LET_EXP__VARIABLE, Types._LetExp, 1);
@@ -2999,9 +3014,10 @@ public class PivotTables
 			Fragments._ExpressionInOCL__ParameterableElement /* 4 */,
 			Fragments._ExpressionInOCL__TypedElement /* 5 */,
 			Fragments._ExpressionInOCL__ValueSpecification /* 6 */,
-			Fragments._ExpressionInOCL__ExpressionInOCL /* 7 */
+			Fragments._ExpressionInOCL__LanguageExpression /* 7 */,
+			Fragments._ExpressionInOCL__ExpressionInOCL /* 8 */
 		};
-		private static final @NonNull int[] __ExpressionInOCL = { 1,1,2,1,2,1,1,1 };
+		private static final @NonNull int[] __ExpressionInOCL = { 1,1,2,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Feature =
 		{
@@ -3209,6 +3225,21 @@ public class PivotTables
 			Fragments._LambdaType__LambdaType /* 8 */
 		};
 		private static final @NonNull int[] __LambdaType = { 1,1,3,1,3,2,1,1,1 };
+
+		private static final @NonNull ExecutorFragment[] _LanguageExpression =
+		{
+			Fragments._LanguageExpression__OclAny /* 0 */,
+			Fragments._LanguageExpression__OclElement /* 1 */,
+			Fragments._LanguageExpression__Nameable /* 2 */,
+			Fragments._LanguageExpression__Visitable /* 2 */,
+			Fragments._LanguageExpression__Element /* 3 */,
+			Fragments._LanguageExpression__NamedElement /* 4 */,
+			Fragments._LanguageExpression__ParameterableElement /* 4 */,
+			Fragments._LanguageExpression__TypedElement /* 5 */,
+			Fragments._LanguageExpression__ValueSpecification /* 6 */,
+			Fragments._LanguageExpression__LanguageExpression /* 7 */
+		};
+		private static final @NonNull int[] __LanguageExpression = { 1,1,2,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LetExp =
 		{
@@ -4384,6 +4415,7 @@ public class PivotTables
 			Types._Iteration.initFragments(_Iteration, __Iteration);
 			Types._IteratorExp.initFragments(_IteratorExp, __IteratorExp);
 			Types._LambdaType.initFragments(_LambdaType, __LambdaType);
+			Types._LanguageExpression.initFragments(_LanguageExpression, __LanguageExpression);
 			Types._LetExp.initFragments(_LetExp, __LetExp);
 			Types._Library.initFragments(_Library, __Library);
 			Types._LibraryFeature.initFragments(_LibraryFeature, __LibraryFeature);
@@ -5759,6 +5791,7 @@ public class PivotTables
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
 		};
+		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__LanguageExpression = {};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__Nameable = {};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__NamedElement = {};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__OclAny = {
@@ -6276,6 +6309,49 @@ public class PivotTables
 			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _LambdaType__Visitable = {};
+
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__LanguageExpression = {};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__Element = {
+			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
+			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
+		};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__Nameable = {};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(Metaclass(TT)) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(T)(Metaclass(T)) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(Metaclass(T)) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+		};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__TypedElement = {};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__ValueSpecification = {
+			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
+			PivotTables.Operations._ValueSpecification__integerValue /* integerValue() */,
+			PivotTables.Operations._ValueSpecification__isComputable /* isComputable() */,
+			PivotTables.Operations._ValueSpecification__isNull /* isNull() */,
+			PivotTables.Operations._ValueSpecification__stringValue /* stringValue() */,
+			PivotTables.Operations._ValueSpecification__unlimitedValue /* unlimitedValue() */
+		};
+		private static final @NonNull ExecutorOperation[] _LanguageExpression__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _LetExp__LetExp = {};
 		private static final @NonNull ExecutorOperation[] _LetExp__Element = {
@@ -9435,6 +9511,7 @@ public class PivotTables
 
 			Fragments._ExpressionInOCL__Element.initOperations(_ExpressionInOCL__Element);
 			Fragments._ExpressionInOCL__ExpressionInOCL.initOperations(_ExpressionInOCL__ExpressionInOCL);
+			Fragments._ExpressionInOCL__LanguageExpression.initOperations(_ExpressionInOCL__LanguageExpression);
 			Fragments._ExpressionInOCL__Nameable.initOperations(_ExpressionInOCL__Nameable);
 			Fragments._ExpressionInOCL__NamedElement.initOperations(_ExpressionInOCL__NamedElement);
 			Fragments._ExpressionInOCL__OclAny.initOperations(_ExpressionInOCL__OclAny);
@@ -9598,6 +9675,17 @@ public class PivotTables
 			Fragments._LambdaType__TemplateableElement.initOperations(_LambdaType__TemplateableElement);
 			Fragments._LambdaType__Type.initOperations(_LambdaType__Type);
 			Fragments._LambdaType__Visitable.initOperations(_LambdaType__Visitable);
+
+			Fragments._LanguageExpression__Element.initOperations(_LanguageExpression__Element);
+			Fragments._LanguageExpression__LanguageExpression.initOperations(_LanguageExpression__LanguageExpression);
+			Fragments._LanguageExpression__Nameable.initOperations(_LanguageExpression__Nameable);
+			Fragments._LanguageExpression__NamedElement.initOperations(_LanguageExpression__NamedElement);
+			Fragments._LanguageExpression__OclAny.initOperations(_LanguageExpression__OclAny);
+			Fragments._LanguageExpression__OclElement.initOperations(_LanguageExpression__OclElement);
+			Fragments._LanguageExpression__ParameterableElement.initOperations(_LanguageExpression__ParameterableElement);
+			Fragments._LanguageExpression__TypedElement.initOperations(_LanguageExpression__TypedElement);
+			Fragments._LanguageExpression__ValueSpecification.initOperations(_LanguageExpression__ValueSpecification);
+			Fragments._LanguageExpression__Visitable.initOperations(_LanguageExpression__Visitable);
 
 			Fragments._LetExp__Element.initOperations(_LetExp__Element);
 			Fragments._LetExp__LetExp.initOperations(_LetExp__LetExp);
@@ -11583,14 +11671,14 @@ public class PivotTables
 		};
 
 		private static final @NonNull ExecutorProperty[] _ExpressionInOCL = {
-			PivotTables.Properties._ExpressionInOCL__body,
+			PivotTables.Properties._LanguageExpression__body,
 			PivotTables.Properties._ExpressionInOCL__bodyExpression,
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._ExpressionInOCL__contextVariable,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._TypedElement__isRequired,
 			PivotTables.Properties._NamedElement__isStatic,
-			PivotTables.Properties._ExpressionInOCL__language,
+			PivotTables.Properties._LanguageExpression__language,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
@@ -11602,10 +11690,10 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
-			PivotTables.Properties._ExpressionInOCL__Constraint__specification,
+			PivotTables.Properties._LanguageExpression__Constraint__specification,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._ExpressionInOCL__Operation__bodyExpression,
-			PivotTables.Properties._ExpressionInOCL__Property__defaultExpression,
+			PivotTables.Properties._LanguageExpression__Operation__bodyExpression,
+			PivotTables.Properties._LanguageExpression__Property__defaultExpression,
 			PivotTables.Properties._ExpressionInOCL__owningInstanceSpec__specification,
 			PivotTables.Properties._ValueSpecification__owningSlot__values,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
@@ -12070,6 +12158,33 @@ public class PivotTables
 			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typeTemplateParameter__constrainingType,
 			PivotTables.Properties._Type__typedElement__type
+		};
+
+		private static final @NonNull ExecutorProperty[] _LanguageExpression = {
+			PivotTables.Properties._LanguageExpression__body,
+			PivotTables.Properties._Element__comment,
+			PivotTables.Properties._Element__extension,
+			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._NamedElement__isStatic,
+			PivotTables.Properties._LanguageExpression__language,
+			PivotTables.Properties._NamedElement__name,
+			PivotTables.Properties._Element__ownedAnnotation,
+			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
+			PivotTables.Properties._ParameterableElement__templateParameter,
+			PivotTables.Properties._TypedElement__type,
+			PivotTables.Properties._Element__Annotation__ownedContent,
+			PivotTables.Properties._Element__Annotation__reference,
+			PivotTables.Properties._Element__Constraint__constrainedElement,
+			PivotTables.Properties._LanguageExpression__Constraint__specification,
+			PivotTables.Properties._Element__Element__ownedAnnotation,
+			PivotTables.Properties._LanguageExpression__Operation__bodyExpression,
+			PivotTables.Properties._LanguageExpression__Property__defaultExpression,
+			PivotTables.Properties._ValueSpecification__owningSlot__values,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
+			PivotTables.Properties._ParameterableElement__templateParameter__default,
+			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
+			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
 		};
 
 		private static final @NonNull ExecutorProperty[] _LetExp = {
@@ -14423,6 +14538,7 @@ public class PivotTables
 			Fragments._Iteration__Iteration.initProperties(_Iteration);
 			Fragments._IteratorExp__IteratorExp.initProperties(_IteratorExp);
 			Fragments._LambdaType__LambdaType.initProperties(_LambdaType);
+			Fragments._LanguageExpression__LanguageExpression.initProperties(_LanguageExpression);
 			Fragments._LetExp__LetExp.initProperties(_LetExp);
 			Fragments._Library__Library.initProperties(_Library);
 			Fragments._LibraryFeature__LibraryFeature.initProperties(_LibraryFeature);

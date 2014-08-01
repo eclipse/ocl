@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.context.EInvocationContext;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * An implementation of a query delegate for OCL expressions.
@@ -127,7 +126,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				String name = parameterVariable.getName();
 				Object object = nonNullArguments.get(name);
 				if ((object == null) && !nonNullArguments.containsKey(name)) {
-					String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(nonNullSpecification));
+					String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, nonNullSpecification.getBody());
 					throw new OCLDelegateException(new SemanticException(message));
 				}
 				Object value = idResolver.boxedValueOf(object);
@@ -165,7 +164,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			throw e;
 		}
 		catch (DomainException e) {
-			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));
+			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, specification.getBody());
 			throw new InvocationTargetException(new EvaluationException(message));
 		}
 		catch (WrappedException e) {
@@ -199,7 +198,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			return "<" + delegateDomain.getURI() + ":query> " + bodyExpression; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		else {
-			return "<" + delegateDomain.getURI() + ":query> " + PivotUtil.getBody(specification); //$NON-NLS-1$ //$NON-NLS-2$
+			return "<" + delegateDomain.getURI() + ":query> " + specification.getBody(); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 }

@@ -37,9 +37,11 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -124,7 +126,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 	}
 
 	@Override
-	protected @NonNull CGPackage createCGPackage() {
+	protected @NonNull CGPackage createCGPackage() throws ParserException {
 		// FIXME clean code removing unnecessary extra variables
 		// String prefix = genPackage.getPrefix();
 		// String trimmedPrefix = prefix.endsWith("CST") ? prefix.substring(0, prefix.length()-3) : "FIXME";
@@ -169,7 +171,8 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			boolean hasCS2ASmappingOperation = false;
 			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperation(), "ast");			
 			if (astOperation != null) {
-				ExpressionInOCL expressionInOCL = DomainUtil.nonNullState(astOperation.getBodyExpression());
+				LanguageExpression specification = DomainUtil.nonNullState(astOperation.getBodyExpression());
+				ExpressionInOCL expressionInOCL = metaModelManager.getQueryOrThrow(specification);
 				OCLExpression oclExpression = expressionInOCL.getBodyExpression();
 				if (oclExpression instanceof ConstructorExp) {
 					hasCS2ASmappingOperation = true;

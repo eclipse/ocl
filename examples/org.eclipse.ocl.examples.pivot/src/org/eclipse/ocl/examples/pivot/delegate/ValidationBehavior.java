@@ -21,6 +21,7 @@ import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.SemanticException;
@@ -103,7 +104,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	 * @throws OCLDelegateException 
 	 */
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws OCLDelegateException {
-		ExpressionInOCL specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getSpecification();
 		if (specification == null) {
 			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint, PivotConstants.OWNED_RULE_ROLE));
 		}

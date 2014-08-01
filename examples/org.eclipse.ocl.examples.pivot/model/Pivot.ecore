@@ -336,7 +336,7 @@
         <details key="body" value="constraint"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="#//ExpressionInOCL" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" eType="#//LanguageExpression" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A condition that must be true when evaluated in order for the constraint to be satisfied."/>
       </eAnnotations>
@@ -443,22 +443,12 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Integer" defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" eSuperTypes="#//ValueSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" eSuperTypes="#//LanguageExpression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" unique="false" upperBound="-1" eType="#//String">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The text of the expression, possibly in multiple languages."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//OCLExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextVariable" eType="#//Variable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" upperBound="-1" eType="#//String">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1" eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultVariable" eType="#//Variable" containment="true"/>
   </eClassifiers>
@@ -959,6 +949,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterType" unique="false" upperBound="-1" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultType" lowerBound="1" eType="#//Type"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LanguageExpression" abstract="true" eSuperTypes="#//ValueSpecification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The text of the expression, possibly in multiple languages."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1" eType="#//String" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExp" eSuperTypes="#//OCLExpression">
     <eOperations name="TypeIsInType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -1077,7 +1083,7 @@
     </eAnnotations>
     <eOperations name="CompatibleReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="bodyExpression &lt;> null and bodyExpression.bodyExpression &lt;> null implies CompatibleBody(bodyExpression)&#xA;"/>
+        <details key="body" value="bodyExpression &lt;> null and bodyExpression.oclAsType(ExpressionInOCL).bodyExpression &lt;> null implies CompatibleBody(bodyExpression)&#xA;"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -1123,7 +1129,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//ExpressionInOCL" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//LanguageExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class" changeable="false" volatile="true" transient="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The class that owns the operation."/>
@@ -1295,7 +1301,7 @@
     </eAnnotations>
     <eOperations name="CompatibleDefaultExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="defaultExpression &lt;> null and defaultExpression.bodyExpression &lt;> null implies CompatibleBody(defaultExpression)&#xA;&#xA;"/>
+        <details key="body" value="defaultExpression &lt;> null and defaultExpression.oclAsType(ExpressionInOCL).bodyExpression &lt;> null implies CompatibleBody(defaultExpression)&#xA;&#xA;"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -1323,7 +1329,7 @@
         <details key="documentation" value="A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//ExpressionInOCL" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//LanguageExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

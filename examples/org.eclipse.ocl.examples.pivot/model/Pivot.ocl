@@ -43,10 +43,10 @@ let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) 
 
 --inv CompatibleInitialiser: isDerived implies defaultExpression <> null
 
-inv CompatibleDefaultExpression: defaultExpression <> null and defaultExpression.bodyExpression <> null implies CompatibleBody(defaultExpression)
+inv CompatibleDefaultExpression: defaultExpression <> null and defaultExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies CompatibleBody(defaultExpression)
 
 context Operation
-inv CompatibleReturn: bodyExpression <> null and bodyExpression.bodyExpression <> null implies CompatibleBody(bodyExpression)
+inv CompatibleReturn: bodyExpression <> null and bodyExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies CompatibleBody(bodyExpression)
 inv LoadableImplementation:
 	true
 inv UniquePreconditionName: precondition->isUnique(name)

@@ -184,6 +184,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _Iteration = createClass(PivotPackage.Literals.ITERATION);
 		protected final @NonNull Class _IteratorExp = createClass(PivotPackage.Literals.ITERATOR_EXP);
 		protected final @NonNull Class _LambdaType = createClass(PivotPackage.Literals.LAMBDA_TYPE);
+		protected final @NonNull Class _LanguageExpression = createClass(PivotPackage.Literals.LANGUAGE_EXPRESSION);
 		protected final @NonNull Class _LetExp = createClass(PivotPackage.Literals.LET_EXP);
 		protected final @NonNull Class _Library = createClass(PivotPackage.Literals.LIBRARY);
 		protected final @NonNull DataType _LibraryFeature = createDataType(PivotPackage.Literals.LIBRARY_FEATURE);
@@ -397,7 +398,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _OrderedCollection_Parameter = createCollectionType("OrderedCollection"/*Parameter*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_Precedence = createCollectionType("OrderedCollection"/*Precedence*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_Property = createCollectionType("OrderedCollection"/*Property*/, "0", "*");
-		protected final @NonNull CollectionType _OrderedCollection_String = createCollectionType("OrderedCollection"/*String*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_TemplateParameter = createCollectionType("OrderedCollection"/*TemplateParameter*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_TupleLiteralPart = createCollectionType("OrderedCollection"/*TupleLiteralPart*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_Type = createCollectionType("OrderedCollection"/*Type*/, "0", "*");
@@ -415,13 +415,11 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull OrderedSetType _OrderedSet_Parameter = createOrderedSetType("OrderedSet"/*Parameter*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Precedence = createOrderedSetType("OrderedSet"/*Precedence*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Property = createOrderedSetType("OrderedSet"/*Property*/, "0", "*");
-		protected final @NonNull OrderedSetType _OrderedSet_String = createOrderedSetType("OrderedSet"/*String*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_TemplateParameter = createOrderedSetType("OrderedSet"/*TemplateParameter*/, "1", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_TupleLiteralPart = createOrderedSetType("OrderedSet"/*TupleLiteralPart*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Type = createOrderedSetType("OrderedSet"/*Type*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_ValueSpecification = createOrderedSetType("OrderedSet"/*ValueSpecification*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Variable = createOrderedSetType("OrderedSet"/*Variable*/, "0", "*");
-		protected final @NonNull SequenceType _Sequence_String = createSequenceType("Sequence"/*String*/, "0", "*");
 		protected final @NonNull SequenceType _Sequence_Type = createSequenceType("Sequence"/*Type*/, "0", "*");
 		protected final @NonNull SetType _Set_Behavior = createSetType("Set"/*Behavior*/, "0", "*");
 		protected final @NonNull SetType _Set_Class = createSetType("Set"/*Class*/, "0", "*");
@@ -596,7 +594,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_InstanceSpecification);
 			ownedTypes.add(type = _ExpressionInOCL);
 			superClasses = type.getSuperClass();
-			superClasses.add(_ValueSpecification);
+			superClasses.add(_LanguageExpression);
 			ownedTypes.add(type = _Feature);
 			superClasses = type.getSuperClass();
 			superClasses.add(_TypedMultiplicityElement);
@@ -638,6 +636,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _LambdaType);
 			superClasses = type.getSuperClass();
 			superClasses.add(_DataType);
+			ownedTypes.add(type = _LanguageExpression);
+			superClasses = type.getSuperClass();
+			superClasses.add(_ValueSpecification);
 			ownedTypes.add(type = _LetExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OCLExpression);
@@ -1474,11 +1475,6 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_Property);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Collection_Property);
-			orphanTypes.add(type = _OrderedCollection_String);
-			type.setUnspecializedElement(_OrderedCollection);
-			type.setElementType(_String);
-			superClasses = type.getSuperClass();
-			superClasses.add(_Collection_String);
 			orphanTypes.add(type = _OrderedCollection_TemplateParameter);
 			type.setUnspecializedElement(_OrderedCollection);
 			type.setElementType(_TemplateParameter);
@@ -1576,12 +1572,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClass();
 			superClasses.add(_OrderedCollection_Property);
 			superClasses.add(_UniqueCollection_Property);
-			orphanTypes.add(type = _OrderedSet_String);
-			type.setUnspecializedElement(_OrderedSet);
-			type.setElementType(_String);
-			superClasses = type.getSuperClass();
-			superClasses.add(_OrderedCollection_String);
-			superClasses.add(_UniqueCollection_String);
 			orphanTypes.add(type = _OrderedSet_TemplateParameter);
 			type.setUnspecializedElement(_OrderedSet);
 			type.setElementType(_TemplateParameter);
@@ -1612,11 +1602,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClass();
 			superClasses.add(_OrderedCollection_Variable);
 			superClasses.add(_UniqueCollection_Variable);
-			orphanTypes.add(type = _Sequence_String);
-			type.setUnspecializedElement(_Sequence);
-			type.setElementType(_String);
-			superClasses = type.getSuperClass();
-			superClasses.add(_OrderedCollection_String);
 			orphanTypes.add(type = _Sequence_Type);
 			type.setUnspecializedElement(_Sequence);
 			type.setElementType(_Type);
@@ -2094,7 +2079,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Constraint_postContext = createProperty(PivotPackage.Literals.CONSTRAINT__POST_CONTEXT, _Operation);
 		protected final @NonNull Property pr_Constraint_preContext = createProperty(PivotPackage.Literals.CONSTRAINT__PRE_CONTEXT, _Operation);
 		protected final @NonNull Property pr_Constraint_redefinedConstraint = createProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINT, _Set_Constraint);
-		protected final @NonNull Property pr_Constraint_specification = createProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, _ExpressionInOCL);
+		protected final @NonNull Property pr_Constraint_specification = createProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, _LanguageExpression);
 		protected final @NonNull Property pr_Constraint_transition = createProperty(PivotPackage.Literals.CONSTRAINT__TRANSITION, _Transition);
 		protected final @NonNull Property pr_Constraint_Namespace_ownedRule = createProperty("Namespace", _Namespace);
 		protected final @NonNull Property pr_Constraint_Type_ownedInvariant = createProperty("Type", _Type);
@@ -2130,15 +2115,10 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_EnumerationLiteral_enumeration = createProperty(PivotPackage.Literals.ENUMERATION_LITERAL__ENUMERATION, _Enumeration);
 		protected final @NonNull Property pr_EnumerationLiteral_value = createProperty(PivotPackage.Literals.ENUMERATION_LITERAL__VALUE, _Integer);
 		protected final @NonNull Property pr_EnumerationLiteral_EnumLiteralExp_referredEnumLiteral = createProperty("EnumLiteralExp", _Bag_EnumLiteralExp);
-		protected final @NonNull Property pr_ExpressionInOCL_body = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY, _Sequence_String);
 		protected final @NonNull Property pr_ExpressionInOCL_bodyExpression = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, _OCLExpression);
 		protected final @NonNull Property pr_ExpressionInOCL_contextVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, _Variable);
-		protected final @NonNull Property pr_ExpressionInOCL_language = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__LANGUAGE, _OrderedSet_String);
 		protected final @NonNull Property pr_ExpressionInOCL_parameterVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE, _OrderedSet_Variable);
 		protected final @NonNull Property pr_ExpressionInOCL_resultVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE, _Variable);
-		protected final @NonNull Property pr_ExpressionInOCL_Constraint_specification = createProperty("Constraint", _Constraint);
-		protected final @NonNull Property pr_ExpressionInOCL_Operation_bodyExpression = createProperty("Operation", _Operation);
-		protected final @NonNull Property pr_ExpressionInOCL_Property_defaultExpression = createProperty("Property", _Property);
 		protected final @NonNull Property pr_ExpressionInOCL_owningInstanceSpec_specification = createProperty("owningInstanceSpec", _InstanceSpecification);
 		protected final @NonNull Property pr_Feature_implementation = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION, _LibraryFeature);
 		protected final @NonNull Property pr_Feature_implementationClass = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, _String);
@@ -2160,6 +2140,11 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_LambdaType_contextType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE, _Type);
 		protected final @NonNull Property pr_LambdaType_parameterType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE, _Sequence_Type);
 		protected final @NonNull Property pr_LambdaType_resultType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE, _Type);
+		protected final @NonNull Property pr_LanguageExpression_body = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__BODY, _String);
+		protected final @NonNull Property pr_LanguageExpression_language = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__LANGUAGE, _String);
+		protected final @NonNull Property pr_LanguageExpression_Constraint_specification = createProperty("Constraint", _Constraint);
+		protected final @NonNull Property pr_LanguageExpression_Operation_bodyExpression = createProperty("Operation", _Operation);
+		protected final @NonNull Property pr_LanguageExpression_Property_defaultExpression = createProperty("Property", _Property);
 		protected final @NonNull Property pr_LetExp_in = createProperty(PivotPackage.Literals.LET_EXP__IN, _OCLExpression);
 		protected final @NonNull Property pr_LetExp_variable = createProperty(PivotPackage.Literals.LET_EXP__VARIABLE, _Variable);
 		protected final @NonNull Property pr_Library_ownedPrecedence = createProperty(PivotPackage.Literals.LIBRARY__OWNED_PRECEDENCE, _OrderedSet_Precedence);
@@ -2197,7 +2182,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_OCLExpression_OperationCallExp_argument = createProperty("OperationCallExp", _OperationCallExp);
 		protected final @NonNull Property pr_OCLExpression_TupleLiteralPart_initExpression = createProperty("TupleLiteralPart", _TupleLiteralPart);
 		protected final @NonNull Property pr_OCLExpression_Variable_initExpression = createProperty("Variable", _Variable);
-		protected final @NonNull Property pr_Operation_bodyExpression = createProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION, _ExpressionInOCL);
+		protected final @NonNull Property pr_Operation_bodyExpression = createProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION, _LanguageExpression);
 		protected final @NonNull Property pr_Operation_class = createProperty(PivotPackage.Literals.OPERATION__CLASS, _Class);
 		protected final @NonNull Property pr_Operation_isInvalidating = createProperty(PivotPackage.Literals.OPERATION__IS_INVALIDATING, _Boolean);
 		protected final @NonNull Property pr_Operation_isValidating = createProperty(PivotPackage.Literals.OPERATION__IS_VALIDATING, _Boolean);
@@ -2246,7 +2231,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Property_associationClass = createProperty(PivotPackage.Literals.PROPERTY__ASSOCIATION_CLASS, _AssociationClass);
 		protected final @NonNull Property pr_Property_class = createProperty(PivotPackage.Literals.PROPERTY__CLASS, _Class);
 		protected final @NonNull Property pr_Property_default = createProperty(PivotPackage.Literals.PROPERTY__DEFAULT, _String);
-		protected final @NonNull Property pr_Property_defaultExpression = createProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION, _ExpressionInOCL);
+		protected final @NonNull Property pr_Property_defaultExpression = createProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION, _LanguageExpression);
 		protected final @NonNull Property pr_Property_implicit = createProperty(PivotPackage.Literals.PROPERTY__IMPLICIT, _Boolean);
 		protected final @NonNull Property pr_Property_isComposite = createProperty(PivotPackage.Literals.PROPERTY__IS_COMPOSITE, _Boolean);
 		protected final @NonNull Property pr_Property_isDerived = createProperty(PivotPackage.Literals.PROPERTY__IS_DERIVED, _Boolean);
@@ -2589,7 +2574,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_Constraint_specification);
+			property.setOpposite(pr_LanguageExpression_Constraint_specification);
 			ownedProperties.add(property = pr_Constraint_transition);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -2734,8 +2719,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_EnumLiteralExp_referredEnumLiteral);
 			ownedProperties = _ExpressionInOCL.getOwnedAttribute();
-			ownedProperties.add(property = pr_ExpressionInOCL_body);
-			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_ExpressionInOCL_bodyExpression);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
@@ -2746,8 +2729,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_ExpressionInOCL_contextVariable);
-			ownedProperties.add(property = pr_ExpressionInOCL_language);
-			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_ExpressionInOCL_parameterVariable);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -2757,21 +2738,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_ExpressionInOCL_resultVariable);
-			ownedProperties.add(property = pr_ExpressionInOCL_Constraint_specification);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_specification);
-			ownedProperties.add(property = pr_ExpressionInOCL_Operation_bodyExpression);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_bodyExpression);
-			ownedProperties.add(property = pr_ExpressionInOCL_Property_defaultExpression);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Property_defaultExpression);
 			ownedProperties.add(property = pr_ExpressionInOCL_owningInstanceSpec_specification);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2860,6 +2826,31 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_LambdaType_resultType);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_LambdaType_resultType);
+			ownedProperties = _LanguageExpression.getOwnedAttribute();
+			ownedProperties.add(property = pr_LanguageExpression_body);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_LanguageExpression_language);
+			property.setIsDerived(true);
+			property.setIsReadOnly(true);
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			property.setIsVolatile(true);
+			ownedProperties.add(property = pr_LanguageExpression_Constraint_specification);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_specification);
+			ownedProperties.add(property = pr_LanguageExpression_Operation_bodyExpression);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_bodyExpression);
+			ownedProperties.add(property = pr_LanguageExpression_Property_defaultExpression);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_defaultExpression);
 			ownedProperties = _LetExp.getOwnedAttribute();
 			ownedProperties.add(property = pr_LetExp_in);
 			property.setIsComposite(true);
@@ -3036,7 +3027,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_Operation_bodyExpression);
+			property.setOpposite(pr_LanguageExpression_Operation_bodyExpression);
 			ownedProperties.add(property = pr_Operation_class);
 			property.setIsReadOnly(true);
 			property.setIsRequired(false);
@@ -3236,7 +3227,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_Property_defaultExpression);
+			property.setOpposite(pr_LanguageExpression_Property_defaultExpression);
 			ownedProperties.add(property = pr_Property_implicit);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -4071,8 +4062,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _Variable)));
 			_Collection_Vertex.getTemplateBinding().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Vertex)));
-			_OrderedCollection_String.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
-				createTemplateParameterSubstitution(_OrderedCollection_T, _String)));
 			_OrderedCollection_CollectionLiteralPart.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _CollectionLiteralPart)));
 			_OrderedCollection_Constraint.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
@@ -4107,8 +4096,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ValueSpecification)));
 			_OrderedCollection_Variable.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Variable)));
-			_OrderedSet_String.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
-				createTemplateParameterSubstitution(_OrderedSet_T, _String)));
 			_OrderedSet_CollectionLiteralPart.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _CollectionLiteralPart)));
 			_OrderedSet_Constraint.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
@@ -4143,8 +4130,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _ValueSpecification)));
 			_OrderedSet_Variable.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
-			_Sequence_String.getTemplateBinding().add(createTemplateBinding(_Sequence_,
-				createTemplateParameterSubstitution(_Sequence_T, _String)));
 			_Sequence_Type.getTemplateBinding().add(createTemplateBinding(_Sequence_,
 				createTemplateParameterSubstitution(_Sequence_T, _Type)));
 			_Set_String.getTemplateBinding().add(createTemplateBinding(_Set_,
@@ -4305,13 +4290,14 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_EnumerationLiteral, "An enumeration literal is a value of an enumeration.");
 			installComment(pr_EnumerationLiteral_enumeration, "The Enumeration that this EnumerationLiteral is a member of.");
 			installComment(_ExpressionInOCL, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
-			installComment(pr_ExpressionInOCL_body, "The text of the expression, possibly in multiple languages.");
-			installComment(pr_ExpressionInOCL_language, "Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");
 			installComment(_FinalState, "A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed.");
 			installComment(_InstanceSpecification, "An instance specification is a model element that represents an instance in a modeled system.");
 			installComment(pr_InstanceSpecification_slots, "A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.");
 			installComment(pr_InstanceSpecification_specification, "A specification of how to compute, derive, or construct the instance.");
 			installComment(pr_InstanceSpecification_type, "The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.");
+			installComment(_LanguageExpression, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
+			installComment(pr_LanguageExpression_body, "The text of the expression, possibly in multiple languages.");
+			installComment(pr_LanguageExpression_language, "Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");
 			installComment(_NamedElement, "A named element represents an element with a name.");
 			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Operation, "An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.\nOperation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");

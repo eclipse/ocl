@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -136,7 +137,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	}
 
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
-		ExpressionInOCL specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getSpecification();
 		if (specification == null) {
 			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint.getContext(), PivotConstants.BODY_EXPRESSION_ROLE));
 		}

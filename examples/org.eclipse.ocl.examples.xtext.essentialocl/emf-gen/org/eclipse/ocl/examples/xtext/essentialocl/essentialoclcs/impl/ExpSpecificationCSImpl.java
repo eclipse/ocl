@@ -203,4 +203,10 @@ public class ExpSpecificationCSImpl
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitExpSpecificationCS(this);
 	}
+
+	@Override
+	public void setExprString(String newExprString) {
+		assert newExprString != null;
+		super.setExprString(newExprString);
+	}
 } //ExpConstraintCSImpl

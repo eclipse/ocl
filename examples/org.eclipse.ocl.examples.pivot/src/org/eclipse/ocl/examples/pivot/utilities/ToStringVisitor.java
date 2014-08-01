@@ -649,7 +649,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			return safeVisit(bodyExpression);
 		}
 		else {
-			append(PivotUtil.getBody(expression));
+			append(expression.getBody());
 			return null;
 		}
 	}

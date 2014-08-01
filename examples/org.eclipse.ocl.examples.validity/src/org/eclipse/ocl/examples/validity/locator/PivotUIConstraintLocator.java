@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUIL
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -142,7 +143,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
 			throw new CoreException(status);
 		}
-		ExpressionInOCL specification = asConstraint.getSpecification();
+		LanguageExpression specification = asConstraint.getSpecification();
 		if (specification == null) {
 			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
 			throw new CoreException(status);

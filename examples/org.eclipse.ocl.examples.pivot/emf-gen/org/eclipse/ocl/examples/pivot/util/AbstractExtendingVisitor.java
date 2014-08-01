@@ -167,7 +167,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitExpressionInOCL(@NonNull org.eclipse.ocl.examples.pivot.ExpressionInOCL object) {
-		return visitValueSpecification(object);
+		return visitLanguageExpression(object);
 	}
 
 	public @Nullable R visitFeature(@NonNull org.eclipse.ocl.examples.pivot.Feature object) {
@@ -220,6 +220,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.examples.pivot.LambdaType object) {
 		return visitDataType(object);
+	}
+
+	public @Nullable R visitLanguageExpression(@NonNull org.eclipse.ocl.examples.pivot.LanguageExpression object) {
+		return visitValueSpecification(object);
 	}
 
 	public @Nullable R visitLetExp(@NonNull org.eclipse.ocl.examples.pivot.LetExp object) {

@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -52,7 +53,7 @@ public class OCLVMEvaluator implements IVMEvaluator
         if (!(eObject instanceof Constraint)) {
             throw new IOException("Constraint rather than " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
         }
-    	ExpressionInOCL specification = ((Constraint)eObject).getSpecification();
+        LanguageExpression specification = ((Constraint)eObject).getSpecification();
     	if (specification == null) {
             throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
     	}

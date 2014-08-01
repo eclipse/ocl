@@ -25,8 +25,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -35,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -87,7 +90,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		}
 	};
 
-	protected Set<CollectionType> getAllCollectionTypes(Root root) {
+	protected @NonNull Set<CollectionType> getAllCollectionTypes(@NonNull Root root) {
 		Set<CollectionType> allElements = new HashSet<CollectionType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -99,7 +102,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<Enumeration> getAllEnumerations(Root root) {
+	protected @NonNull Set<Enumeration> getAllEnumerations(@NonNull Root root) {
 		Set<Enumeration> allElements = new HashSet<Enumeration>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -111,7 +114,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<LambdaType> getAllLambdaTypes(Root root) {
+	protected @NonNull Set<LambdaType> getAllLambdaTypes(@NonNull Root root) {
 		Set<LambdaType> allElements = new HashSet<LambdaType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -123,7 +126,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<Metaclass<?>> getAllMetaclasses(Root root) {
+	protected @NonNull Set<Metaclass<?>> getAllMetaclasses(@NonNull Root root) {
 		Set<Metaclass<?>> allElements = new HashSet<Metaclass<?>>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -135,7 +138,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected List<org.eclipse.ocl.examples.pivot.Package> getAllPackages(Root root) {
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Package> getAllPackages(@NonNull Root root) {
 		Set<org.eclipse.ocl.examples.pivot.Package> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -149,7 +152,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected Set<Precedence> getAllPrecedences(Root root) {
+	protected @NonNull Set<Precedence> getAllPrecedences(@NonNull Root root) {
 		Set<Precedence> allElements = new HashSet<Precedence>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -161,7 +164,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<PrimitiveType> getAllPrimitiveTypes(Root root) {
+	protected @NonNull Set<PrimitiveType> getAllPrimitiveTypes(@NonNull Root root) {
 		Set<PrimitiveType> allElements = new HashSet<PrimitiveType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -173,7 +176,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected List<Property> getAllProperties(Root root) {
+	protected @NonNull List<Property> getAllProperties(@NonNull Root root) {
 		List<Property> allElements = new ArrayList<Property>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -186,7 +189,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<TemplateBinding> getAllTemplateBindings(Root root) {
+	protected @NonNull Set<TemplateBinding> getAllTemplateBindings(@NonNull Root root) {
 		Set<TemplateBinding> allElements = new HashSet<TemplateBinding>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -198,7 +201,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<TemplateSignature> getAllTemplateSignatures(Root root) {
+	protected @NonNull Set<TemplateSignature> getAllTemplateSignatures(@NonNull Root root) {
 		Set<TemplateSignature> allElements = new HashSet<TemplateSignature>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -210,7 +213,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<TupleType> getAllTupleTypes(Root root) {
+	protected @NonNull Set<TupleType> getAllTupleTypes(@NonNull Root root) {
 		Set<TupleType> allElements = new HashSet<TupleType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -222,7 +225,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected Set<Type> getAllTypes(Root root) {
+	protected @NonNull Set<Type> getAllTypes(@NonNull Root root) {
 		Set<Type> allElements = new HashSet<Type>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -234,7 +237,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected String getMoniker(Element elem) {
+	protected @NonNull String getMoniker(@NonNull Element elem) {
 		String moniker = element2moniker.get(elem);
 		if (moniker == null) {
 			moniker = AS2Moniker.toString(elem);
@@ -243,7 +246,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return moniker;
 	}
 
-	protected Collection<Type> getOclTypes(Root root) {
+	protected @NonNull Collection<Type> getOclTypes(@NonNull Root root) {
 		Set<Type> allElements = new HashSet<Type>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -258,20 +261,20 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Package getOrphanPackage(org.eclipse.ocl.examples.pivot.Package elem) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Package getOrphanPackage(@NonNull org.eclipse.ocl.examples.pivot.Package elem) {
 		return getOrphanPackage(getRootPackage(elem));
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Package getOrphanPackage(Root elem) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Package getOrphanPackage(@NonNull Root elem) {
 		for (org.eclipse.ocl.examples.pivot.Package pkg : getAllPackages(elem)) {
 			if ("$$".equals(pkg.getName())) {
 				return pkg;
 			}
 		}
-		return null;
+		throw new IllegalStateException("Missing orphan package");
 	}
 
-	protected @NonNull String getPartialName(Property property) {
+	protected @NonNull String getPartialName(@NonNull Property property) {
 		Type owningType = property.getOwningType();
 		if (owningType == null) {
 			return "null_" + javaName(property);
@@ -289,7 +292,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		}
 	}
 
-	protected String getPrefixedSymbolName(EObject elem, String prefix) {
+	protected String getPrefixedSymbolName(@NonNull EObject elem, @NonNull String prefix) {
 		return NameQueries.getPrefixedSymbolName(prefix, elem);
 	}
 
@@ -300,7 +303,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return resourceSet;
 	}
 
-	protected Root getRootPackage(org.eclipse.ocl.examples.pivot.Package elem) {
+	protected @NonNull Root getRootPackage(@Nullable org.eclipse.ocl.examples.pivot.Package elem) {
 		EObject eObject = elem;
 		while (eObject != null) {
 			if (eObject instanceof Root) {
@@ -308,10 +311,10 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 			eObject = eObject.eContainer();
 		}
-		return null;
+		throw new IllegalStateException("Missing Root");
 	}
 
-	protected String getSignature(NamedElement elem) {
+	protected String getSignature(@NonNull NamedElement elem) {
 		EObject parent = elem.eContainer();
 		if (parent != null) {
 			return getSignature((NamedElement)parent) + "::" + elem.getName();
@@ -320,7 +323,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		}
 	}
 
-	protected String getSignature(Operation elem) {
+	protected String getSignature(@NonNull Operation elem) {
 		EObject parent = elem.eContainer();
 		if (parent != null) {
 			return getSignature((NamedElement)parent) + "::" + elem.getName() + "()";
@@ -329,7 +332,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		}
 	}
 	
-	protected List<CollectionType> getSortedCollectionTypes(Root root) {
+	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Root root) {
 		Set<CollectionType> allElements = new HashSet<CollectionType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -341,7 +344,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return new ArrayList<CollectionType>(allElements);
 	}
 
-	protected List<Element> getSortedCommentedElements(Root root) {
+	protected @NonNull List<Element> getSortedCommentedElements(@NonNull Root root) {
 		Collection<Type> oclTypes = getOclTypes(root);
 		Set<Element> allElements = new HashSet<Element>();
 		TreeIterator<EObject> tit = root.eAllContents();
@@ -361,13 +364,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Comment> getSortedComments(Element element) {
+	protected @NonNull List<Comment> getSortedComments(@NonNull Element element) {
 		List<Comment> sortedElements = new ArrayList<Comment>(element.getOwnedComment());
 		Collections.sort(sortedElements, commentComparator);
 		return sortedElements;
 	}
 
-	protected List<Enumeration> getSortedEnumerations(Root root) {
+	protected @NonNull List<Enumeration> getSortedEnumerations(@NonNull Root root) {
 		Set<Enumeration> allElements = new HashSet<Enumeration>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -381,7 +384,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Iteration> getSortedIterations(Root root) {
+	protected @NonNull List<Iteration> getSortedIterations(@NonNull Root root) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -395,7 +398,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Iteration> getSortedIterations(Type type, List<Iteration> allIterations) {
+	protected @NonNull List<Iteration> getSortedIterations(@NonNull Type type, @NonNull List<Iteration> allIterations) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation operation : type.getOwnedOperation()) {
 			if (allIterations.contains(operation)) {
@@ -407,7 +410,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<LambdaType> getSortedLambdaTypes(Root root) {
+	protected @NonNull List<LambdaType> getSortedLambdaTypes(@NonNull Root root) {
 		Set<LambdaType> allElements = new HashSet<LambdaType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -421,7 +424,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Library> getSortedLibraries(Root root) {
+	protected @NonNull List<Library> getSortedLibraries(@NonNull Root root) {
 		Set<Library> allElements = new HashSet<Library>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -435,7 +438,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Metaclass<?>> getSortedMetaclasses(Root root) {
+	protected @NonNull List<Metaclass<?>> getSortedMetaclasses(@NonNull Root root) {
 		Set<Metaclass<?>> allElements = new HashSet<Metaclass<?>>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -449,13 +452,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Type> getSortedOclTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected @NonNull List<Type> getSortedOclTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
 		List<Type> sortedElements = new ArrayList<Type>(getOclTypes(getRootPackage(pkg)));
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}
 
-	protected List<Operation> getSortedOperations(Root root) {
+	protected @NonNull List<Operation> getSortedOperations(@NonNull Root root) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -470,7 +473,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Operation> getSortedOperations(Type type, List<Operation> allOperations) {
+	protected @NonNull List<Operation> getSortedOperations(@NonNull Type type, @NonNull List<Operation> allOperations) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation operation : type.getOwnedOperation()) {
 			if (allOperations.contains(operation)) {
@@ -482,7 +485,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Operation> getSortedOperationsWithPrecedence(Root root) {
+	protected @NonNull List<Operation> getSortedOperationsWithPrecedence(@NonNull Root root) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -501,7 +504,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Type> getSortedOwningTypes(List<? extends Operation> operations) {
+	protected @NonNull List<Type> getSortedOwningTypes(@NonNull List<? extends Operation> operations) {
 		Set<Type> allElements = new HashSet<Type>();
 		for (Operation operation : operations) {
 			if (operation.getOwningType() != null) {
@@ -513,7 +516,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Type> getSortedOwningTypes2(List<? extends Property> properties) {
+	protected @NonNull List<Type> getSortedOwningTypes2(@NonNull List<? extends Property> properties) {
 		Set<Type> allElements = new HashSet<Type>();
 		for (Property property : properties) {
 			if (property.getOwningType() != null) {
@@ -525,7 +528,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<org.eclipse.ocl.examples.pivot.Package> getSortedPackages(Root root) {
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Package> getSortedPackages(@NonNull Root root) {
 		Set<org.eclipse.ocl.examples.pivot.Package> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -539,13 +542,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<org.eclipse.ocl.examples.pivot.Package> getSortedPackages(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Package> getSortedPackages(@NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
 		List<org.eclipse.ocl.examples.pivot.Package> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Package>(pkg.getNestedPackage());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
 
-	protected List<Type> getSortedParameterTypes(Root root) {
+	protected @NonNull List<Type> getSortedParameterTypes(@NonNull Root root) {
 		Set<Type> allElements = new HashSet<Type>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -562,13 +565,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Precedence> getSortedPrecedences(Library library) {
+	protected @NonNull List<Precedence> getSortedPrecedences(@NonNull Library library) {
 		List<Precedence> sortedElements = new ArrayList<Precedence>(library.getOwnedPrecedence());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
 
-	protected List<PrimitiveType> getSortedPrimitiveTypes(Root root) {
+	protected @NonNull List<PrimitiveType> getSortedPrimitiveTypes(@NonNull Root root) {
 		Set<PrimitiveType> allElements = new HashSet<PrimitiveType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -582,7 +585,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Property> getSortedProperties(Root root) {
+	protected @NonNull List<Property> getSortedProperties(@NonNull Root root) {
 		List<Property> allElements = new ArrayList<Property>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -597,13 +600,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Property> getSortedProperties(Type type) {
+	protected @NonNull List<Property> getSortedProperties(@NonNull Type type) {
 		List<Property> sortedElements = new ArrayList<Property>(type.getOwnedAttribute());
 		Collections.sort(sortedElements, OCLinEcoreTablesUtils.propertyComparator);
 		return sortedElements;
 	}
 
-	protected List<Property> getSortedProperties(Type type, List<Property> allProperties) {
+	protected @NonNull List<Property> getSortedProperties(@NonNull Type type, @NonNull List<Property> allProperties) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property property : type.getOwnedAttribute()) {
 			if (allProperties.contains(property)) {
@@ -618,7 +621,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<TemplateParameter> getSortedTemplateParameters(Root root) {
+	protected @NonNull List<TemplateParameter> getSortedTemplateParameters(@NonNull Root root) {
 		Set<TemplateParameter> allElements = new HashSet<TemplateParameter>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -632,7 +635,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<TemplateSignature> getSortedTemplateSignatures(Root root) {
+	protected @NonNull List<TemplateSignature> getSortedTemplateSignatures(@NonNull Root root) {
 		Set<TemplateSignature> allElements = new HashSet<TemplateSignature>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -646,7 +649,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<TemplateableElement> getSortedTemplateableElements(Root root) {
+	protected List<TemplateableElement> getSortedTemplateableElements(@NonNull Root root) {
 		Set<TemplateableElement> allElements = new HashSet<TemplateableElement>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -661,13 +664,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Property> getSortedTupleParts(TupleType tupleType) {
+	protected @NonNull List<Property> getSortedTupleParts(@NonNull TupleType tupleType) {
 		List<Property> sortedElements = new ArrayList<Property>(tupleType.getOwnedAttribute());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
 
-	protected List<TupleType> getSortedTupleTypes(Root root) {
+	protected @NonNull List<TupleType> getSortedTupleTypes(@NonNull Root root) {
 		Set<TupleType> allElements = new HashSet<TupleType>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -681,7 +684,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<Type> getSuperclassesInPackage(Type type) {
+	protected @NonNull List<Type> getSuperclassesInPackage(@NonNull Type type) {
 		List<Type> allElements = new ArrayList<Type>();
 		for (Type superclass : type.getSuperClass()) {
 			if (getRootPackage(superclass.getPackage()) == getRootPackage(type.getPackage())) {
@@ -691,7 +694,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected List<TemplateParameterSubstitution> getTemplateParameterSubstitutions(TemplateableElement element) {
+	protected @NonNull List<TemplateParameterSubstitution> getTemplateParameterSubstitutions(@NonNull TemplateableElement element) {
 		List<TemplateParameterSubstitution> allElements = new ArrayList<TemplateParameterSubstitution>();
 		for (TemplateBinding templateBinding : element.getTemplateBinding()) {
 			allElements.addAll(templateBinding.getParameterSubstitution());
@@ -699,11 +702,11 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected String getSymbolName(EObject elem) {
+	protected String getSymbolName(@NonNull EObject elem) {
 		return NameQueries.getSymbolName(elem);
 	}
 
-	protected Boolean isEcoreConstraint(Operation operation) {
+	protected Boolean isEcoreConstraint(@NonNull Operation operation) {
 		for (Parameter p : operation.getOwnedParameter()) {
 			if (p.getName().equals("diagnostics") && p.getType().getName().equals("EDiagnosticChain")) {
 				return true;
@@ -712,20 +715,20 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return false;
 	}
 
-	protected String javaName(NamedElement element) {
+	protected @NonNull String javaName(@NonNull NamedElement element) {
 		return NameQueries.rawEncodeName(element.getName(), 0);
 	}
 
-	protected String javaName(Object element, String string) {
+	protected @NonNull String javaName(@Nullable Object element, @NonNull String string) {
 		return NameQueries.rawEncodeName(string, 0);
 	}
 
-	protected String javaString(Comment aComment) {
+	protected @NonNull String javaString(@NonNull Comment aComment) {
 		return Strings.convertToJavaString(aComment.getBody().trim());
 	}
 
-	protected String javaString(ExpressionInOCL anExpression) {
-		return Strings.convertToJavaString(anExpression.getBody().get(0).trim());
+	protected @NonNull String javaString(@NonNull LanguageExpression anExpression) {
+		return Strings.convertToJavaString(anExpression.getBody().trim());
 	}
 
 	protected abstract /*@NonNull*/ String partialName(EObject element);

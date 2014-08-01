@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.domain.values.Unlimited;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -456,19 +457,19 @@ public class LoadTests extends XtextTestCase
 		specification = ocl.getSpecification(constraint);
 		constraint.setSpecification(specification);
 		if (specification != null) {
-			ExpressionInOCL specification2 = constraint.getSpecification();
-			List<String> bodies = specification2.getBody();
-			if ((bodies != null) && (bodies.size() > 0)) {
-				List<String> languages = specification2.getLanguage();
-				if (languages == null) {
+			LanguageExpression specification2 = constraint.getSpecification();
+			String body = specification2.getBody();
+			if (body != null) {
+				String language = specification2.getLanguage();
+				if (language == null) {
 //					System.out.println("******** No languages");
 				}
-				else if (languages.size() == 0) {
+//				else if (languages.size() == 0) {
 //					System.out.println("******** Empty languages");
-				}
-				else if (!"OCL".equals(languages.get(0))) {
+//				}
+				else if (!PivotConstants.OCL_LANGUAGE.equals(language)) {
 //					System.out.println("******** Non-OCL \'" + languages.get(0) + "' languages");
-					languages.set(0, "OCL");
+//					languages.set(0, "OCL");
 				}
 			}
 /*			long endParseTime = System.currentTimeMillis();

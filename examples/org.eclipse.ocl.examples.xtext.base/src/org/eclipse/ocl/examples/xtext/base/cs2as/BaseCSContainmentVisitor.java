@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -456,8 +455,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	public Continuation<?> visitSpecificationCS(@NonNull SpecificationCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.EXPRESSION_IN_OCL;
 		ExpressionInOCL pivotElement = context.refreshModelElement(ExpressionInOCL.class, eClass, csElement);
-		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
-		pivotElement.getBody().add(csElement.getExprString());
+		pivotElement.setBody(csElement.getExprString());
 		return null;
 	}
 

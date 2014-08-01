@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -30,10 +31,10 @@ import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 public class NameQueries
 {
 	public static final Logger logger = Logger.getLogger(NameQueries.class);
-	public static MetaModelManager metaModelManager = null;
+	public static @Nullable MetaModelManager metaModelManager = null;
 
-	private static Map<String, Integer> counters = new HashMap<String, Integer>();
-	private static Map<Object, String> definedSymbols = new HashMap<Object, String>();
+	private static @NonNull Map<String, Integer> counters = new HashMap<String, Integer>();
+	private static @NonNull Map<Object, String> definedSymbols = new HashMap<Object, String>();
 
 /*	public static List<Integer> codePoints(String s) {
 		List<Integer> results = new ArrayList<Integer>();
@@ -57,10 +58,10 @@ public class NameQueries
 		return AbstractGenModelHelper.encodeName(element);
 	} */
 	
-	public static String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
+	public static @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 		Enumeration enumeration = enumerationLiteral.getEnumeration();
 		String nsURI = DomainUtil.nonNullModel(enumeration.getPackage().getNsURI());
-		GenPackage genPackage = metaModelManager.getGenPackage(nsURI);
+		GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(enumeration.getName())
 						+ ".getEEnumLiteral(" + enumeration.getName() + "." + CodeGenUtil.upperName(enumerationLiteral.getName()) + "_VALUE)";
@@ -68,12 +69,12 @@ public class NameQueries
 		return enumeration.getName() + "." + CodeGenUtil.upperName(enumerationLiteral.getName());
 	}
 	
-	public static String getEcoreLiteral(@NonNull Property property) {
+	public static @NonNull String getEcoreLiteral(@NonNull Property property) {
 		if (!property.isImplicit()) {
 			Type type = property.getOwningType();
 			if (type != null) {
 				String nsURI = DomainUtil.nonNullModel(type.getPackage().getNsURI());
-				GenPackage genPackage = metaModelManager.getGenPackage(nsURI);
+				GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 				if (genPackage != null) {
 					return /*genPackage.getInterfacePackageName() +*/genPackage
 						.getPackageInterfaceName()
@@ -87,10 +88,10 @@ public class NameQueries
 		return "\"" + property.getName() + "\"";
 	}
 	
-	public static String getEcoreLiteral(@NonNull Type type) {
+	public static @NonNull String getEcoreLiteral(@NonNull Type type) {
 		if (type.getOwningTemplateParameter() == null) {
 			String nsURI = DomainUtil.nonNullModel(type.getPackage().getNsURI());
-			GenPackage genPackage = metaModelManager.getGenPackage(nsURI);
+			GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 			if (genPackage != null) {
 				return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(type.getName());
 			}
@@ -110,14 +111,14 @@ public class NameQueries
 	 * @param eObject the object in question
 	 * @return the symbol name
 	 */
-	public static String getSymbolName(Object elem) {
+	public static String getSymbolName(@NonNull Object elem) {
 		return getPrefixedSymbolName("symbol_", elem);
 	}
 
-	public static String getPrefixedSymbolName(String prefix, Object elem) {
-		if (elem == null) {
-			logger.error("getPrefixedSymbolName for '" + prefix + "'and null");
-		}
+	public static @NonNull String getPrefixedSymbolName(@NonNull String prefix, @NonNull Object elem) {
+//		if (elem == null) {
+//			logger.error("getPrefixedSymbolName for '" + prefix + "'and null");
+//		}
 		if ((elem instanceof CollectionType) && (((CollectionType)elem).getUnspecializedElement() != null)) {
 		}
 		else if (elem instanceof Type) {
@@ -151,7 +152,7 @@ public class NameQueries
 		definedSymbols = new HashMap<Object, String>();
 	} */
 	
-	public static void setMetaModelManager(MetaModelManager metaModelManager) {
+	public static void setMetaModelManager(@Nullable MetaModelManager metaModelManager) {
 		NameQueries.metaModelManager = metaModelManager;
 	}
 }

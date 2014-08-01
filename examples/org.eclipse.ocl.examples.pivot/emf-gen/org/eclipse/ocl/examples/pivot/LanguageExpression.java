@@ -1,0 +1,74 @@
+/**
+ * Copyright (c) 2010,2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ */
+package org.eclipse.ocl.examples.pivot;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Language Expression</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainExpression
+ * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.
+ * <!-- end-model-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getLanguage <em>Language</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLanguageExpression()
+ * @generated
+ */
+public interface LanguageExpression extends ValueSpecification, org.eclipse.ocl.examples.domain.elements.DomainExpression
+{
+	/**
+	 * Returns the value of the '<em><b>Body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The text of the expression, possibly in multiple languages.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Body</em>' attribute.
+	 * @see #setBody(String)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLanguageExpression_Body()
+	 * @generated
+	 */
+	String getBody();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getBody <em>Body</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Body</em>' attribute.
+	 * @see #getBody()
+	 * @generated
+	 */
+	void setBody(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Language</em>' attribute.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLanguageExpression_Language()
+	 * @generated
+	 */
+	String getLanguage();
+
+} // LanguageExpression

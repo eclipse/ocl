@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.AbstractMetaModelManagerResourceAdapter;
@@ -110,9 +109,9 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 	}
 
 	public void initialize(@NonNull Base2PivotConversion conversion, @NonNull ExpressionInOCL expression) {
-		List<String> language = expression.getLanguage();
-		language.clear();
-		language.add(PivotConstants.OCL_LANGUAGE);
+//		List<String> language = expression.getLanguage();
+//		language.clear();
+//		language.add(PivotConstants.OCL_LANGUAGE);
 	}
 
 	public @NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException {
@@ -124,7 +123,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 			String parentName = eContainer instanceof Nameable ? ((Nameable)eContainer).getName() : "<unknown>";
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, parentName, childName, expression.trim()), resource);
 			ExpressionInOCL expressionInOCL = getExpression(resource);
-			PivotUtil.setBody(expressionInOCL, expression);
+			expressionInOCL.setBody(expression);
 			return expressionInOCL;
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);

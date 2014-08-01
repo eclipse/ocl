@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -313,7 +313,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
-				setBodyExpression((ExpressionInOCL)newValue);
+				setBodyExpression((LanguageExpression)newValue);
 				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
@@ -418,7 +418,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
-				setBodyExpression((ExpressionInOCL)null);
+				setBodyExpression((LanguageExpression)null);
 				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);

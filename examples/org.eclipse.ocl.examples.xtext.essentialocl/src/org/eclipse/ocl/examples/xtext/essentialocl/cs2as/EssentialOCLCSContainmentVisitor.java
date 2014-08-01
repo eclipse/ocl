@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -183,7 +184,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, metaModelManager.getBooleanType());
 			TupleType tupleType = metaModelManager.getTupleManager().getTupleType("Tuple", tupleParts);
 			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedAttribute(), PivotConstants.STATUS_PART_NAME);
-			ExpressionInOCL asSpecification = asConstraint.getSpecification();
+			LanguageExpression asSpecification = asConstraint.getSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;
 			if (asSpecification instanceof ExpressionInOCL) {

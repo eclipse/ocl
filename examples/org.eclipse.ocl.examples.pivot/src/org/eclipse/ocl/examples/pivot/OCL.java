@@ -194,8 +194,18 @@ public class OCL {
 	 * @see #evaluate(Object, ExpressionInOCL)
 	 */
 	public boolean check(Object context, @NonNull Constraint constraint) {
-		ExpressionInOCL specification =  constraint.getSpecification();
-		return (specification != null) && check(context, specification);
+		LanguageExpression specification =  constraint.getSpecification();
+		if (specification == null) {
+			return false;
+		}
+		ExpressionInOCL query;
+		try {
+			query = getMetaModelManager().getQueryOrThrow(specification);
+		} catch (ParserException e) {
+//			e.printStackTrace();
+			return false;
+		}
+		return check(context, query);
 	}
 
 	/**
@@ -346,7 +356,7 @@ public class OCL {
 	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public Query createQuery(@NonNull Constraint constraint) throws ParserException {
-		ExpressionInOCL specification = DomainUtil.nonNullState(constraint.getSpecification());
+		LanguageExpression specification = DomainUtil.nonNullState(constraint.getSpecification());
 		ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);
 		return new QueryImpl(this, query);
 	}
@@ -507,32 +517,17 @@ public class OCL {
 	 * that may be encountered.
 	 */
 	public @Nullable ExpressionInOCL getSpecification(@NonNull Constraint constraint) throws ParserException {
-		ExpressionInOCL specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}
-		else if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {
-			return null;
+		if (specification instanceof ExpressionInOCL) {
+			ExpressionInOCL query = (ExpressionInOCL)specification;
+			if ((query.getBodyExpression() != null) || (query.getBody() == null)) {
+				return query;
+			}
 		}
-		else {
-			return getMetaModelManager().getQueryOrThrow(specification);
-		}
-/*		ExpressionInOCL expressionInOCL = null;
-		if (specification != null) {
-			String expression = PivotUtil.getBody(specification);
-		    if (expression != null) {
-		    	NamedElement contextElement = constraint.getContext();
-				if (contextElement != null) {
-					OCLHelper helper = createOCLHelper(contextElement);
-					if (contextElement instanceof Operation) {
-						expressionInOCL = helper.createBodyCondition(expression);
-					} else {
-						expressionInOCL = helper.createQuery(expression);
-					}
-				}
-		    }
-		}
-		return expressionInOCL; */
+		return getMetaModelManager().getQueryOrThrow(specification);
 	}
 
 	/**

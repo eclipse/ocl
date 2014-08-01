@@ -34,11 +34,11 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -314,7 +314,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 			doSwitchAll(Constraint.class, pivotElement.getPrecondition(), preconditions);
 			doSwitchAll(Constraint.class, pivotElement.getPostcondition(), postconditions);
 			Constraint constraint = bodyCondition != null ? (Constraint) doSwitch(bodyCondition) : null;
-			ExpressionInOCL specification = null;
+			LanguageExpression specification = null;
 			if (constraint != null) {
 				specification = constraint.getSpecification();
 				constraint.setSpecification(null);			// Avoid a child-stealing detection
@@ -384,8 +384,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 									 && (constrainedElement.get(0) == umlOperation)
 									 && (constrainedElement.get(1) == umlProperty)) {
 										asExpression = PivotFactory.eINSTANCE.createExpressionInOCL();
-										asExpression.getLanguage().add(PivotConstants.OCL_LANGUAGE);
-										asExpression.getBody().add(propertyName + "()");
+										asExpression.setBody(propertyName + "()");
 										asExpression.setIsRequired(pivotElement.isRequired());
 										asExpression.setType(pivotElement.getType());
 									}
@@ -424,8 +423,8 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 
 	@Override
 	public Object caseSlot(org.eclipse.uml2.uml.Slot umlSlot) {
+		assert umlSlot != null;
 		Element asElement = converter.getCreated(Element.class, umlSlot);
-		// TODO Auto-generated method stub
 		return asElement;
 	}
 

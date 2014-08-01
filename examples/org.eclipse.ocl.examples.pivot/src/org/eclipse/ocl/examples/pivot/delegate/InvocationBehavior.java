@@ -20,6 +20,7 @@ import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -74,7 +75,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * @throws OCLDelegateException 
 	 */
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Operation operation) throws OCLDelegateException {
-		ExpressionInOCL specification = operation.getBodyExpression();
+		LanguageExpression specification = operation.getBodyExpression();
 		if (specification == null) {
 			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
 		}

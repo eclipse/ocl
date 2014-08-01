@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -43,7 +44,7 @@ public class ConstrainedProperty extends AbstractProperty
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		ExpressionInOCL expression2 = expression;
 		if (expression2 == null) {
-			ExpressionInOCL defaultSpecification = property.getDefaultExpression();
+			LanguageExpression defaultSpecification = property.getDefaultExpression();
 			if (defaultSpecification == null) {
 				throw new InvalidValueException("No defaultExpression for '{0}'", property);
 			}

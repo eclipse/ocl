@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -65,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSFactory;
 import org.eclipse.ocl.examples.xtext.base.basecs.BaseCSPackage;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
@@ -233,9 +233,9 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			csElement.setStereotype(UMLReflection.INVARIANT);
 		}
 		ExpSpecificationCS csStatus = null;
-		ExpressionInOCL specification = object.getSpecification();
-		if (specification != null) {
-			OCLExpression bodyExpression = specification.getBodyExpression();
+		LanguageExpression specification = object.getSpecification();
+		if (specification instanceof ExpressionInOCL) {
+			OCLExpression bodyExpression = ((ExpressionInOCL)specification).getBodyExpression();
 			if ((bodyExpression instanceof TupleLiteralExp) && (bodyExpression.getTypeId() == TUPLE_MESSAGE_STATUS)) {
 				TupleLiteralPart messagePart = DomainUtil.getNamedElement(((TupleLiteralExp)bodyExpression).getPart(), TUPLE_MESSAGE_STATUS_0.getName());
 				TupleLiteralPart statusPart = DomainUtil.getNamedElement(((TupleLiteralExp)bodyExpression).getPart(), TUPLE_MESSAGE_STATUS_1.getName());
@@ -251,46 +251,46 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
 				csStatus.setExprString(PrettyPrinter.print(bodyExpression));
 			}
-			else {
-				String body = PivotUtil.getBody(specification);
-				if (body != null) {
-					if (body.startsWith("Tuple")) {
-						String[] lines = body.split("\n");
-						int lastLineNumber = lines.length-1;
-						if ((lastLineNumber >= 3)
-						 && lines[0].replaceAll("\\s", "").equals("Tuple{")
-						 && lines[1].replaceAll("\\s", "").startsWith("message:String=")
-						 && lines[lastLineNumber].replaceAll("\\s", "").equals("}.status")) {
-							StringBuilder message = new StringBuilder();
-							message.append(lines[1].substring(lines[1].indexOf("=")+1, lines[1].length()).trim());
-							for (int i = 2; i < lastLineNumber; i++) {
-								if (!lines[i].replaceAll("\\s", "").startsWith("status:Boolean=")) {
-									message.append("\n" + lines[i]);
-								}
-								else {
-									ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
-									String messageString = message.toString();
-									int lastIndex = messageString.lastIndexOf(',');
-									if (lastIndex > 0) {
-										messageString = messageString.substring(0, lastIndex); 
-									}
-									csMessage.setExprString(messageString);
-									csElement.setMessageSpecification(csMessage);
-									StringBuilder status = new StringBuilder();			
-									status.append(lines[i].substring(lines[i].indexOf("=")+1, lines[i].length()).trim());
-									for (i++; i < lastLineNumber; i++) {
-										status.append("\n" + lines[i]);
-									}
-									csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
-									csStatus.setExprString(status.toString());
-								}					
+		}
+		if ((csStatus == null) && (specification != null)) {
+			String body = specification.getBody();
+			if (body != null) {
+				if (body.startsWith("Tuple")) {
+					String[] lines = body.split("\n");
+					int lastLineNumber = lines.length-1;
+					if ((lastLineNumber >= 3)
+					 && lines[0].replaceAll("\\s", "").equals("Tuple{")
+					 && lines[1].replaceAll("\\s", "").startsWith("message:String=")
+					 && lines[lastLineNumber].replaceAll("\\s", "").equals("}.status")) {
+						StringBuilder message = new StringBuilder();
+						message.append(lines[1].substring(lines[1].indexOf("=")+1, lines[1].length()).trim());
+						for (int i = 2; i < lastLineNumber; i++) {
+							if (!lines[i].replaceAll("\\s", "").startsWith("status:Boolean=")) {
+								message.append("\n" + lines[i]);
 							}
+							else {
+								ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+								String messageString = message.toString();
+								int lastIndex = messageString.lastIndexOf(',');
+								if (lastIndex > 0) {
+									messageString = messageString.substring(0, lastIndex); 
+								}
+								csMessage.setExprString(messageString);
+								csElement.setMessageSpecification(csMessage);
+								StringBuilder status = new StringBuilder();			
+								status.append(lines[i].substring(lines[i].indexOf("=")+1, lines[i].length()).trim());
+								for (i++; i < lastLineNumber; i++) {
+									status.append("\n" + lines[i]);
+								}
+								csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+								csStatus.setExprString(status.toString());
+							}					
 						}
 					}
-					if (csStatus == null) {
-						csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
-						csStatus.setExprString(body);
-					}
+				}
+				if (csStatus == null) {
+					csStatus = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+					csStatus.setExprString(body);
 				}
 			}
 		}
@@ -385,16 +385,20 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public ElementCS visitExpressionInOCL(@NonNull ExpressionInOCL object) {
-		ExpSpecificationCS csElement = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, object);
 		OCLExpression bodyExpression = object.getBodyExpression();
 		if (bodyExpression != null) {
+			ExpSpecificationCS csElement = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, object);
 			String body = PrettyPrinter.print(bodyExpression);
 			csElement.setExprString(body);
+			return csElement;
 		}
-		else {
-			csElement.setExprString(PivotUtil.getBody(object));
+		String body = object.getBody();
+		if (body != null) {
+			ExpSpecificationCS csElement = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, object);
+			csElement.setExprString(body);
+			return csElement;
 		}
-		return csElement;
+		return null;
 	}
 
 	@Override

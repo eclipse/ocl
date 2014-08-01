@@ -318,7 +318,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.PconstrainedElement.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TConstraint.PconstrainedElement.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TConstraint.Pspecification" name="specification" type="Ppivot.TExpressionInOCL" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TConstraint.Pspecification" name="specification" type="Ppivot.TLanguageExpression" aggregation="composite">
         <ownedComment xmi:id="Ppivot.TConstraint.Pspecification.oC0" annotatedElement="Ppivot.TConstraint.Pspecification">
           <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
         </ownedComment>
@@ -485,21 +485,8 @@
       <ownedComment xmi:id="Ppivot.TExpressionInOCL.oC0" annotatedElement="Ppivot.TExpressionInOCL">
         <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
       </ownedComment>
-      <generalization xmi:id="Ppivot.TExpressionInOCL.g0" general="Ppivot.TValueSpecification"/>
-      <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.Pbody" name="body" type="Ppivot.TString" isOrdered="true" isUnique="false" aggregation="composite">
-        <ownedComment xmi:id="Ppivot.TExpressionInOCL.Pbody.oC0" annotatedElement="Ppivot.TExpressionInOCL.Pbody">
-          <body>The text of the expression, possibly in multiple languages.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.Pbody.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TExpressionInOCL.Pbody.uV" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.Planguage" name="language" type="Ppivot.TString" isOrdered="true" aggregation="composite">
-        <ownedComment xmi:id="Ppivot.TExpressionInOCL.Planguage.oC0" annotatedElement="Ppivot.TExpressionInOCL.Planguage">
-          <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.Planguage.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TExpressionInOCL.Planguage.uV" value="*"/>
-      </ownedAttribute>
+      <generalization xmi:id="Ppivot.TExpressionInOCL.g0" general="Ppivot.TLanguageExpression"/>
+      <generalization xmi:id="Ppivot.TExpressionInOCL.g1" general="Ppivot.TValueSpecification"/>
       <ownedAttribute xmi:id="Ppivot.TExpressionInOCL.PbodyExpression" name="bodyExpression" type="Ppivot.TOCLExpression" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TExpressionInOCL.PbodyExpression.lV"/>
       </ownedAttribute>
@@ -617,6 +604,24 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TLambdaType.PparameterType.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TLambdaType.PresultType" name="resultType" type="Ppivot.TType"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLanguageExpression" name="LanguageExpression" isAbstract="true">
+      <ownedComment xmi:id="Ppivot.TLanguageExpression.oC0" annotatedElement="Ppivot.TLanguageExpression">
+        <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
+      </ownedComment>
+      <generalization xmi:id="Ppivot.TLanguageExpression.g0" general="Ppivot.TValueSpecification"/>
+      <ownedAttribute xmi:id="Ppivot.TLanguageExpression.Pbody" name="body" type="Ppivot.TString" isOrdered="true" isUnique="false" aggregation="composite">
+        <ownedComment xmi:id="Ppivot.TLanguageExpression.Pbody.oC0" annotatedElement="Ppivot.TLanguageExpression.Pbody">
+          <body>The text of the expression, possibly in multiple languages.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLanguageExpression.Pbody.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TLanguageExpression.Planguage" name="language" type="Ppivot.TString" isOrdered="true" isReadOnly="true"
+          aggregation="composite" isDerived="true">
+        <ownedComment xmi:id="Ppivot.TLanguageExpression.Planguage.oC0" annotatedElement="Ppivot.TLanguageExpression.Planguage">
+          <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
+        </ownedComment>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLetExp" name="LetExp">
       <generalization xmi:id="Ppivot.TLetExp.g0" general="Ppivot.TOCLExpression"/>
@@ -769,7 +774,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.Ppostcondition.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOperation.Ppostcondition.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.PbodyExpression" name="bodyExpression" type="Ppivot.TExpressionInOCL" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TOperation.PbodyExpression" name="bodyExpression" type="Ppivot.TLanguageExpression" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PbodyExpression.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TOperation.PisInvalidating" name="isInvalidating" type="Ppivot.TBoolean">
@@ -1016,7 +1021,7 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.Pclass.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultExpression" name="defaultExpression" type="Ppivot.TExpressionInOCL" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultExpression" name="defaultExpression" type="Ppivot.TLanguageExpression" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultExpression.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.PisID" name="isID" type="Ppivot.TBoolean">
@@ -2009,6 +2014,7 @@
   <Ecore:EPackage xmi:id="PA.Ppivot" base_Package="Ppivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TConstraint.Pcontext" isTransient="true" isVolatile="true" base_Property="Ppivot.TConstraint.Pcontext"
       isResolveProxies="false"/>
+  <Ecore:EAttribute xmi:id="PA.Ppivot.TLanguageExpression.Planguage" isTransient="true" isVolatile="true" base_Property="Ppivot.TLanguageExpression.Planguage"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisComposite" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisComposite"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisOrthogonal" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisOrthogonal"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSimple" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSimple"/>

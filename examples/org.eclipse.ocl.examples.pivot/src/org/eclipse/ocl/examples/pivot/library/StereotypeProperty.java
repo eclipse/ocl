@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -30,7 +31,6 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * An instance of StereotypeProperty supports evaluation of a property call that accesses a stereotype extension property.
@@ -61,7 +61,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			if (extensionProperty == null) {
 				boolean gotIt = false;
 				String defaultValue = null;
-				ExpressionInOCL defaultExpression = null;
+				LanguageExpression defaultExpression = null;
 				if (elementExtension.isApplied()) {
 					EObject umlStereotypeApplication = elementExtension.getETarget();
 					if (umlStereotypeApplication != null) {
@@ -111,12 +111,12 @@ public class StereotypeProperty extends ConstrainedProperty
 //				return super.evaluate(evaluator, returnTypeId, sourceValue);
 //			}
 			String defaultValueLiteral = extensionProperty.getDefault();
-			ExpressionInOCL defaultExpression = extensionProperty.getDefaultExpression();
+			LanguageExpression defaultExpression = extensionProperty.getDefaultExpression();
 			if (defaultValueLiteral != null) {
 				boxedValue = idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
 			}
 			else if (defaultExpression != null) {
-				String body = PivotUtil.getBody(defaultExpression);
+				String body = defaultExpression.getBody();
 				if (body != null) {
 					try {
 						MetaModelManager metaModelManager = (MetaModelManager) evaluator.getStandardLibrary();

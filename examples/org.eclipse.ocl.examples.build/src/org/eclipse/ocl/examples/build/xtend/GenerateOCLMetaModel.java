@@ -150,12 +150,13 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 	}
 
 	@Override
-	protected Set<PrimitiveType> getAllPrimitiveTypes(Root root) {
-		return Collections.emptySet();
+	protected @NonNull Set<PrimitiveType> getAllPrimitiveTypes(@NonNull Root root) {
+		@SuppressWarnings("null")@NonNull Set<PrimitiveType> emptySet = Collections.emptySet();
+		return emptySet;
 	}
 
 	@Override
-	protected Collection<Type> getOclTypes(Root root) {
+	protected @NonNull Collection<Type> getOclTypes(@NonNull Root root) {
 		Map<String, Type> allElements = new HashMap<String, Type>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -175,11 +176,12 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			allElements.remove("String");
 			allElements.remove("UnlimitedNatural");
 //		}
-		return allElements.values();
+			@SuppressWarnings("null")@NonNull Collection<Type> values = allElements.values();
+		return values;
 	}
 	
 	@Override
-	protected List<CollectionType> getSortedCollectionTypes(Root root) {
+	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Root root) {
 		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
 		Collections.sort(sortedElements, collectionTypeComparator);
 		return sortedElements;

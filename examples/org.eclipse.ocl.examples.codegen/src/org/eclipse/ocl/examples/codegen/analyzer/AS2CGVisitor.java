@@ -126,6 +126,7 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
@@ -387,7 +388,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 * Return all final operations directly referenced by opaqueExpression, or null if none.
 	 * @since 1.3
 	 */
-	protected @Nullable Set<Operation> getReferencedFinalOperations(@NonNull FinalAnalysis finalAnalysis, @NonNull ExpressionInOCL specification) {
+	protected @Nullable Set<Operation> getReferencedFinalOperations(@NonNull FinalAnalysis finalAnalysis, @NonNull LanguageExpression specification) {
 		ExpressionInOCL prototype = null;
 		try {
 			prototype = metaModelManager.getQueryOrThrow(specification);
@@ -423,12 +424,12 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 * Return all final operations transitively referenced by opaqueExpression, or null if none.
 	 * @since 1.3
 	 */
-	protected void getTransitivelyReferencedFinalOperations(@NonNull Set<Operation> alreadyReferencedFinalOperations, @NonNull FinalAnalysis finalAnalysis, @NonNull ExpressionInOCL expressionInOCL) {
+	protected void getTransitivelyReferencedFinalOperations(@NonNull Set<Operation> alreadyReferencedFinalOperations, @NonNull FinalAnalysis finalAnalysis, @NonNull LanguageExpression expressionInOCL) {
 		Set<Operation> newlyReferencedFinalOperations = getReferencedFinalOperations(finalAnalysis, expressionInOCL);
 		if (newlyReferencedFinalOperations != null) {
 			for (@SuppressWarnings("null")@NonNull Operation newlyReferencedFinalOperation : newlyReferencedFinalOperations) {
 				if (alreadyReferencedFinalOperations.add(newlyReferencedFinalOperation)) {
-					ExpressionInOCL anotherExpressionInOCL = newlyReferencedFinalOperation.getBodyExpression();
+					LanguageExpression anotherExpressionInOCL = newlyReferencedFinalOperation.getBodyExpression();
 					if (anotherExpressionInOCL != null) {
 						getTransitivelyReferencedFinalOperations(alreadyReferencedFinalOperations, finalAnalysis, anotherExpressionInOCL);
 					}
@@ -455,7 +456,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return variablesStack;
 	}
 
-	protected @Nullable CGValuedElement inlineOperationCall(@NonNull OperationCallExp callExp, @NonNull ExpressionInOCL specification) {
+	protected @Nullable CGValuedElement inlineOperationCall(@NonNull OperationCallExp callExp, @NonNull LanguageExpression specification) {
 		ExpressionInOCL prototype = null;
 		try {
 			prototype = metaModelManager.getQueryOrThrow(specification);
@@ -591,7 +592,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @Nullable CGConstraint visitConstraint(@NonNull Constraint element) {
 		CGConstraint cgConstraint = CGModelFactory.eINSTANCE.createCGConstraint();
 		setAst(cgConstraint, element);
-		ExpressionInOCL specification = element.getSpecification();
+		LanguageExpression specification = element.getSpecification();
 		if (specification != null) {
 			try {
 				ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
@@ -800,7 +801,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @NonNull CGIterationCallExp visitIteratorExp(@NonNull IteratorExp element) {
-		Iteration asIteration = element.getReferredIteration();
+		Iteration asIteration = DomainUtil.nonNullState(element.getReferredIteration());
 		CGValuedElement cgSource = doVisit(CGValuedElement.class, element.getSource());
 		LibraryIteration libraryIteration = (LibraryIteration) metaModelManager.getImplementation(asIteration);
 		IterationHelper iterationHelper = codeGenerator.getIterationHelper(asIteration);
@@ -911,7 +912,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		setAst(cgOperation, element);
 		cgOperation.setRequired(element.isRequired());
-		ExpressionInOCL specification = element.getBodyExpression();
+		LanguageExpression specification = element.getBodyExpression();
 		if (specification != null) {
 			try {
 				ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
@@ -962,7 +963,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			return cgIsEqualExp;
 		}
 		else if (libraryOperation instanceof NativeStaticOperation) {
-			ExpressionInOCL bodyExpression = asOperation.getBodyExpression();
+			LanguageExpression bodyExpression = asOperation.getBodyExpression();
 			if (bodyExpression != null) {
 				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
 				if (cgOperationCallExp2 != null) {
@@ -980,7 +981,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			return cgNativeOperationCallExp;
 		}
 		else if (libraryOperation instanceof NativeVisitorOperation) {
-			ExpressionInOCL bodyExpression = asOperation.getBodyExpression();
+			LanguageExpression bodyExpression = asOperation.getBodyExpression();
 			if (bodyExpression != null) {
 				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
 				if (cgOperationCallExp2 != null) {
@@ -1001,7 +1002,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			if (pSource != null) {
 				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
 				if (finalOperation != null) {
-					ExpressionInOCL bodyExpression = asOperation.getBodyExpression();
+					LanguageExpression bodyExpression = asOperation.getBodyExpression();
 					if (bodyExpression != null) {
 						CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
 						if (cgOperationCallExp2 != null) {
@@ -1041,7 +1042,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			}
 		}
 		else {
-			ExpressionInOCL bodyExpression = asOperation.getBodyExpression();
+			LanguageExpression bodyExpression = asOperation.getBodyExpression();
 			if (bodyExpression != null) {
 				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
 				if (cgOperationCallExp2 != null) {
@@ -1147,7 +1148,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		setAst(cgProperty, element);
 		cgProperty.setRequired(element.isRequired());
-		ExpressionInOCL specification = element.getDefaultExpression();
+		LanguageExpression specification = element.getDefaultExpression();
 		if (specification != null) {
 			try {
 				ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);

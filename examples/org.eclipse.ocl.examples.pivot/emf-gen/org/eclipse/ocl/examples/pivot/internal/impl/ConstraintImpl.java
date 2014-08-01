@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -115,7 +115,7 @@ public class ConstraintImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpressionInOCL specification;
+	protected LanguageExpression specification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,7 +155,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionInOCL getSpecification() {
+	public LanguageExpression getSpecification() {
 		return specification;
 	}
 
@@ -164,9 +164,9 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(ExpressionInOCL newSpecification, NotificationChain msgs)
+	public NotificationChain basicSetSpecification(LanguageExpression newSpecification, NotificationChain msgs)
 	{
-		ExpressionInOCL oldSpecification = specification;
+		LanguageExpression oldSpecification = specification;
 		specification = newSpecification;
 		if (eNotificationRequired())
 		{
@@ -181,7 +181,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(ExpressionInOCL newSpecification)
+	public void setSpecification(LanguageExpression newSpecification)
 	{
 		if (newSpecification != specification)
 		{
@@ -641,7 +641,7 @@ public class ConstraintImpl
 				getRedefinedConstraint().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
-				setSpecification((ExpressionInOCL)newValue);
+				setSpecification((LanguageExpression)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				setTransition((Transition)newValue);
@@ -702,7 +702,7 @@ public class ConstraintImpl
 				getRedefinedConstraint().clear();
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
-				setSpecification((ExpressionInOCL)null);
+				setSpecification((LanguageExpression)null);
 				return;
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				setTransition((Transition)null);

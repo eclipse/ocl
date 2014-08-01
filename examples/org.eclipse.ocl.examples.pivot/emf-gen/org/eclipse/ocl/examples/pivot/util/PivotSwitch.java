@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -631,6 +632,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				ExpressionInOCL expressionInOCL = (ExpressionInOCL)theEObject;
 				T1 result = caseExpressionInOCL(expressionInOCL);
+				if (result == null) result = caseLanguageExpression(expressionInOCL);
 				if (result == null) result = caseValueSpecification(expressionInOCL);
 				if (result == null) result = caseTypedElement(expressionInOCL);
 				if (result == null) result = caseParameterableElement(expressionInOCL);
@@ -829,6 +831,20 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(lambdaType);
 				if (result == null) result = caseNameable(lambdaType);
 				if (result == null) result = caseVisitable(lambdaType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.LANGUAGE_EXPRESSION:
+			{
+				LanguageExpression languageExpression = (LanguageExpression)theEObject;
+				T1 result = caseLanguageExpression(languageExpression);
+				if (result == null) result = caseValueSpecification(languageExpression);
+				if (result == null) result = caseTypedElement(languageExpression);
+				if (result == null) result = caseParameterableElement(languageExpression);
+				if (result == null) result = caseNamedElement(languageExpression);
+				if (result == null) result = caseElement(languageExpression);
+				if (result == null) result = caseNameable(languageExpression);
+				if (result == null) result = caseVisitable(languageExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2319,6 +2335,22 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseLambdaType(LambdaType object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Language Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Language Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseLanguageExpression(LanguageExpression object)
 	{
 		return null;
 	}

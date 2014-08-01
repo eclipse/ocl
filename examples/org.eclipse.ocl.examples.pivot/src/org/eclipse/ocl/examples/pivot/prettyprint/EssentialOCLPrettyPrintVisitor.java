@@ -211,7 +211,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			safeVisit(bodyExpression);
 		}
 		else {
-			String body = PivotUtil.getBody(object);
+			String body = object.getBody();
 			if (body != null) {
 				context.append(body);
 			}

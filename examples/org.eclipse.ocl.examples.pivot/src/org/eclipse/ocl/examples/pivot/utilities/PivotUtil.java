@@ -66,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
@@ -1096,19 +1097,9 @@ public class PivotUtil extends DomainUtil
 		return PivotUtil.getBehavioralType(DomainUtil.nonNullState(element.getType()));
 	}
 
-	public static String getBody(@NonNull ExpressionInOCL specification) {
-		List<String> bodies = specification.getBody();
-		List<String> languages = specification.getLanguage();
-		if ((bodies == null) || (languages == null)) {
-			return null;
-		}
-		int iMax = Math.min(bodies.size(), languages.size());
-		for (int i = 0; i < iMax; i++) {
-			if (PivotConstants.OCL_LANGUAGE.equalsIgnoreCase(languages.get(i))) {
-				return bodies.get(i);
-			}
-		}
-		return null;
+	@Deprecated
+	public static String getBody(@NonNull LanguageExpression specification) {
+		return specification.getBody();
 	}
 
 	/**
@@ -1482,7 +1473,7 @@ public class PivotUtil extends DomainUtil
 		return operation;
 	}
 
-	public static String getSpecificationRole(@NonNull ExpressionInOCL specification) {
+	public static String getSpecificationRole(@NonNull LanguageExpression specification) {
 		EReference eContainmentFeature = specification.eContainmentFeature();
 		if (eContainmentFeature == PivotPackage.Literals.NAMESPACE__OWNED_RULE) {
 			return PivotConstants.OWNED_RULE_ROLE;
@@ -1807,13 +1798,9 @@ public class PivotUtil extends DomainUtil
 	 * Define oclExpression as the bodyExpression of an expressionInOCL, and if non-null
 	 * also define stringExpression as the OCL-languaged body.
 	 */
+	@Deprecated
 	public static void setBody(@NonNull ExpressionInOCL opaqueExpression, @Nullable String stringExpression) {
-		opaqueExpression.getBody().clear();
-		opaqueExpression.getLanguage().clear();
-		if (stringExpression != null) {
-			opaqueExpression.getBody().add(stringExpression);
-			opaqueExpression.getLanguage().add(PivotConstants.OCL_LANGUAGE);
-		}
+		opaqueExpression.setBody(stringExpression);
 	}
 
 	/**

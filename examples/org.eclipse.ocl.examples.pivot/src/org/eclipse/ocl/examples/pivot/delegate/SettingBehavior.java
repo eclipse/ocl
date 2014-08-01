@@ -19,6 +19,7 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SemanticException;
@@ -53,7 +54,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * @throws OCLDelegateException 
 	 */
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Property property) throws OCLDelegateException {
-		ExpressionInOCL specification = property.getDefaultExpression();
+		LanguageExpression specification = property.getDefaultExpression();
 		if (specification == null) {
 			String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
 			throw new OCLDelegateException(new SemanticException(message));

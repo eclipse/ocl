@@ -68,11 +68,11 @@ public interface Constraint
 	 * A condition that must be true when evaluated in order for the constraint to be satisfied.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(ExpressionInOCL)
+	 * @see #setSpecification(LanguageExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Specification()
 	 * @generated
 	 */
-	ExpressionInOCL getSpecification();
+	LanguageExpression getSpecification();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}' containment reference.
@@ -82,7 +82,7 @@ public interface Constraint
 	 * @see #getSpecification()
 	 * @generated
 	 */
-	void setSpecification(ExpressionInOCL value);
+	void setSpecification(LanguageExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Transition</b></em>' container reference.

@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUIL
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -281,7 +282,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		
 //		URI constraintURI = EcoreUtil.getURI(constraint);
 //        Path path = new Path(constraintURI.toPlatformString(true));
-		ExpressionInOCL specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getSpecification();
 		String expression = specification != null ? PrettyPrinter.print(specification) : "";
 		
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

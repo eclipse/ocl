@@ -52,13 +52,14 @@ import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -170,7 +171,7 @@ public class OperationImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpressionInOCL bodyExpression;
+	protected LanguageExpression bodyExpression;
 
 	/**
 	 * The default value of the '{@link #isInvalidating() <em>Is Invalidating</em>}' attribute.
@@ -680,7 +681,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionInOCL getBodyExpression()
+	public LanguageExpression getBodyExpression()
 	{
 		return bodyExpression;
 	}
@@ -690,9 +691,9 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBodyExpression(ExpressionInOCL newBodyExpression, NotificationChain msgs)
+	public NotificationChain basicSetBodyExpression(LanguageExpression newBodyExpression, NotificationChain msgs)
 	{
-		ExpressionInOCL oldBodyExpression = bodyExpression;
+		LanguageExpression oldBodyExpression = bodyExpression;
 		bodyExpression = newBodyExpression;
 		if (eNotificationRequired())
 		{
@@ -707,7 +708,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBodyExpression(ExpressionInOCL newBodyExpression)
+	public void setBodyExpression(LanguageExpression newBodyExpression)
 	{
 		if (newBodyExpression != bodyExpression)
 		{
@@ -823,7 +824,8 @@ public class OperationImpl
 	{
 		/**
 		 * 
-		 * inv CompatibleReturn: bodyExpression <> null and bodyExpression.bodyExpression <> null implies
+		 * inv CompatibleReturn: bodyExpression <> null and
+		 *   bodyExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies
 		 *   CompatibleBody(bodyExpression)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
@@ -832,20 +834,24 @@ public class OperationImpl
 		    try {
 		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		        try {
-		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression = this.getBodyExpression();
+		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = this.getBodyExpression();
 		            final /*@Thrown*/ boolean self_71 = bodyExpression != null;
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
 		        }
+		        final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
-		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression_0 = this.getBodyExpression();
-		            if (bodyExpression_0 == null) {
+		            final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
+		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
+		            final @Nullable /*@Thrown*/ DomainExpression oclAsType = (DomainExpression)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
+		            if (oclAsType == null) {
 		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::bodyExpression\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression_1 = bodyExpression_0.getBodyExpression();
+		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression_1 = oclAsType.getBodyExpression();
 		            final /*@Thrown*/ boolean b = bodyExpression_1 != null;
 		            CAUGHT_b = b;
 		        }
@@ -922,7 +928,7 @@ public class OperationImpl
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainExpression bodyExpression_2 = this.getBodyExpression();
+		        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_2 = this.getBodyExpression();
 		        final /*@Thrown*/ boolean b_0 = ((TypedMultiplicityElement)this).CompatibleBody((ValueSpecification)bodyExpression_2);
 		        CAUGHT_b_0 = b_0;
 		    }
@@ -1389,7 +1395,7 @@ public class OperationImpl
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
-				setBodyExpression((ExpressionInOCL)newValue);
+				setBodyExpression((LanguageExpression)newValue);
 				return;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
@@ -1485,7 +1491,7 @@ public class OperationImpl
 				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
-				setBodyExpression((ExpressionInOCL)null);
+				setBodyExpression((LanguageExpression)null);
 				return;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);

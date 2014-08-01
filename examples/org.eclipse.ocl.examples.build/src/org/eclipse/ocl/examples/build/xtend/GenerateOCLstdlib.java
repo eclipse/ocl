@@ -69,7 +69,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	}
 	
 	@Override
-	protected List<CollectionType> getSortedCollectionTypes(Root root) {
+	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Root root) {
 		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;

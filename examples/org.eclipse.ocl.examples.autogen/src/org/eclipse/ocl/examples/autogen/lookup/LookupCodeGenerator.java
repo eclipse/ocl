@@ -54,12 +54,14 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -313,9 +315,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 
 	/**
 	 * Synthesize an AS package by simple AS2AS conversions and convert the AS package to a CG package for onward code generation. 
+	 * @throws ParserException 
 	 */
 	@Override
-	protected @NonNull CGPackage createCGPackage() {
+	protected @NonNull CGPackage createCGPackage() throws ParserException {
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		cgPackage.setName(packageName);
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
@@ -371,7 +374,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		return PivotUtil.createVariableExp(asThisVariable);
 	}
 
-	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) {
+	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
 		for (@SuppressWarnings("null")@NonNull Type asType : asPackage.getOwnedType()) {
 			for (Operation envOperation : asType.getOwnedOperation()) {
@@ -393,9 +396,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 * to AutoPivotLookupVisitor::visit'Element'(parent : 'Element') : Environment
 	 * 
 	 * with child accessed as this.child.
+	 * @throws ParserException 
 	 */
-	protected @NonNull Operation createVisitOperationDeclaration(@NonNull Map<Element, Element> reDefinitions, @NonNull Operation envOperation, @NonNull Property asChildProperty) {
-		ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression());
+	protected @NonNull Operation createVisitOperationDeclaration(@NonNull Map<Element, Element> reDefinitions, @NonNull Operation envOperation, @NonNull Property asChildProperty) throws ParserException {
+		LanguageExpression envSpecification = DomainUtil.nonNullState(envOperation.getBodyExpression());
+		ExpressionInOCL envExpressionInOCL = metaModelManager.getQueryOrThrow(envSpecification);
 		//
 		Type asType = DomainUtil.nonNullState(envOperation.getOwningType());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
@@ -555,10 +560,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	/**
 	 * Copy all the visitXXX operation bodies from the _env bodies replacing references to redefined parameters.
 	 */
-	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, Operation> envOperation2asOperation) {
+	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, Operation> envOperation2asOperation) throws ParserException {
 		for (@SuppressWarnings("null")@NonNull Operation envOperation : envOperation2asOperation.keySet()) {
 			@SuppressWarnings("null")@NonNull Operation asOperation = envOperation2asOperation.get(envOperation);
-			ExpressionInOCL envExpressionInOCL = DomainUtil.nonNullState(envOperation.getBodyExpression());
+			LanguageExpression envSpecification = DomainUtil.nonNullState(envOperation.getBodyExpression());
+			ExpressionInOCL envExpressionInOCL = metaModelManager.getQueryOrThrow(envSpecification);
 			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getContextVariable());
 			OCLExpression asExpression = RereferencingCopier.copy(DomainUtil.nonNullState(envExpressionInOCL.getBodyExpression()), reDefinitions);
 			ExpressionInOCL asExpressionInOCL = PivotUtil.createExpressionInOCL(null, asExpression, asElement);

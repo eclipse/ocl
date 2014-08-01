@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * The PivotPrettyPrintVisitor supports pretty printing of a Pivot model elements.
@@ -95,7 +94,7 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 
 	@Override
 	public Object visitExpressionInOCL(@NonNull org.eclipse.ocl.examples.pivot.ExpressionInOCL object) {
-		if (PivotUtil.getBody(object) != null) {
+		if (object.getBody() != null) {
 			return super.visitExpressionInOCL(object);
 		}
 		else {

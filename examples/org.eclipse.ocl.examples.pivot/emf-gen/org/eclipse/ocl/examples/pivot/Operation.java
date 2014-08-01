@@ -190,11 +190,11 @@ public interface Operation
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Body Expression</em>' containment reference.
-	 * @see #setBodyExpression(ExpressionInOCL)
+	 * @see #setBodyExpression(LanguageExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_BodyExpression()
 	 * @generated
 	 */
-	ExpressionInOCL getBodyExpression();
+	LanguageExpression getBodyExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getBodyExpression <em>Body Expression</em>}' containment reference.
@@ -204,7 +204,7 @@ public interface Operation
 	 * @see #getBodyExpression()
 	 * @generated
 	 */
-	void setBodyExpression(ExpressionInOCL value);
+	void setBodyExpression(LanguageExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Invalidating</b></em>' attribute.

@@ -17,7 +17,6 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl;
@@ -39,8 +38,7 @@ public class AbstractContents extends PivotUtil
 	protected @NonNull ExpressionInOCL createExpressionInOCL(@NonNull Type type, @NonNull String exprString) {
 		ExpressionInOCL pivotExpression = PivotFactory.eINSTANCE.createExpressionInOCL();
 		pivotExpression.setType(type);
-		pivotExpression.getBody().add(exprString);
-		pivotExpression.getLanguage().add(PivotConstants.OCL_LANGUAGE);
+		pivotExpression.setBody(exprString);
 		return pivotExpression;
 	}
 

@@ -1337,17 +1337,17 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	public Element visitContextCS(@NonNull ContextCS csContext) {
 		ExpressionInOCL pivotElement = PivotUtil.getPivot(ExpressionInOCL.class, csContext);
 		if (pivotElement != null) {
-			pivotElement.getLanguage().clear();
-			pivotElement.getBody().clear();
 			ExpCS csExpression = csContext.getOwnedExpression();
 			if (csExpression != null) {
-				pivotElement.getLanguage().add("OCL");
-				pivotElement.getBody().add(csExpression.toString());
+				pivotElement.setBody(csExpression.toString());
 				OCLExpression expression = context.visitLeft2Right(OCLExpression.class, csExpression);
 				if (expression != null) {
 					PivotUtil.setBody(pivotElement, expression, ElementUtil.getExpressionText(csExpression));
 					context.setType(pivotElement, expression.getType(), expression.isRequired());
 				}
+			}
+			else {
+				pivotElement.setBody(null);
 			}
 		}
 		return pivotElement;

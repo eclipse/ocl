@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -56,7 +56,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Pivot2Ecore extends AbstractConversion
 {
@@ -176,9 +175,9 @@ public class Pivot2Ecore extends AbstractConversion
 				secondParameter.getEAnnotations().add(eAnnotation);
 			}
 		}
-		ExpressionInOCL specification = pivotConstraint.getSpecification();
+		LanguageExpression specification = pivotConstraint.getSpecification();
 		if (specification != null) {
-			String body = PivotUtil.getBody(specification);
+			String body = specification.getBody();
 			if (body != null) {
 				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 				eAnnotation.setSource(getExportDelegateURI(options));

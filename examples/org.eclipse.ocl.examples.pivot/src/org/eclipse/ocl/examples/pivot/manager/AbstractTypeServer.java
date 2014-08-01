@@ -773,12 +773,14 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	/**
 	 * @since 3.5
 	 */
+	@Override
 	public @NonNull Iterable<String> getMemberOperationNames() {
 		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
 		if (name2operations2 == null) {
 			name2operations2 = initMemberOperations();
 		}
-		return name2operations2.keySet();
+		@SuppressWarnings("null")@NonNull Set<String> keySet = name2operations2.keySet();
+		return keySet;
 	}
 
 	/**
@@ -801,13 +803,14 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	/**
 	 * @since 3.5
 	 */
+	@Override
 	public @NonNull Iterable<DomainOperation> getMemberOperations() {
 		Map<String, Map<ParametersId, List<DomainOperation>>> name2operations2 = name2operations;
 		if (name2operations2 == null) {
 			name2operations2 = initMemberOperations();
 		}
 		Iterable<Collection<List<DomainOperation>>> transformed = Iterables.transform(name2operations2.values(), mergeFunction);
-		Iterable<DomainOperation> concat = Iterables.concat(Iterables.concat(transformed));
+		@SuppressWarnings("null")@NonNull Iterable<DomainOperation> concat = Iterables.concat(Iterables.concat(transformed));
 		return concat;
 	}
 

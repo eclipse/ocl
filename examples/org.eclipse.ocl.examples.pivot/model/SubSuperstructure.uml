@@ -422,7 +422,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQTH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQTX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="specification" type="_SzzFsK5oEd-xTJkHwX_SlQ" aggregation="composite">
+          <ownedAttribute xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="specification" type="_VcCqIBlSEeSM9LreJtBwBg" aggregation="composite">
             <ownedComment xmi:id="_JhArvq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArva5oEd-xTJkHwX_SlQ">
               <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
             </ownedComment>
@@ -528,32 +528,7 @@
           <ownedComment xmi:id="_SzzFsa5oEd-xTJkHwX_SlQ" annotatedElement="_SzzFsK5oEd-xTJkHwX_SlQ">
             <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
           </ownedComment>
-          <ownedRule xmi:id="_SzzFsq5oEd-xTJkHwX_SlQ" name="language_body_size" constrainedElement="_SzzFsK5oEd-xTJkHwX_SlQ">
-            <ownedComment xmi:id="_SzzFs65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFsq5oEd-xTJkHwX_SlQ">
-              <body>If the language attribute is not empty, then the size of the body and language arrays must be the same.</body>
-            </ownedComment>
-            <specification xmi:type="uml:ExpressionInOCL" xmi:id="_SzzFtK5oEd-xTJkHwX_SlQ">
-              <language>OCL</language>
-              <body>language->notEmpty() implies (body->size() = language->size())</body>
-            </specification>
-          </ownedRule>
-          <generalization xmi:id="_XnqLQX7VEeOu79LxSz8Ylw" general="_N9Kt8K5oEd-xTJkHwX_SlQ"/>
-          <ownedAttribute xmi:id="_SzzFtq5oEd-xTJkHwX_SlQ" name="body" isOrdered="true" isUnique="false" aggregation="composite">
-            <ownedComment xmi:id="_SzzFt65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFtq5oEd-xTJkHwX_SlQ">
-              <body>The text of the expression, possibly in multiple languages.</body>
-            </ownedComment>
-            <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-String"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQUX7VEeOu79LxSz8Ylw"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQUn7VEeOu79LxSz8Ylw" value="*"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="_SzzFuq5oEd-xTJkHwX_SlQ" name="language" isOrdered="true" aggregation="composite">
-            <ownedComment xmi:id="_SzzFu65oEd-xTJkHwX_SlQ" annotatedElement="_SzzFuq5oEd-xTJkHwX_SlQ">
-              <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
-            </ownedComment>
-            <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-String"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQU37VEeOu79LxSz8Ylw"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQVH7VEeOu79LxSz8Ylw" value="*"/>
-          </ownedAttribute>
+          <generalization xmi:id="_XnqLQX7VEeOu79LxSz8Ylw" general="_VcCqIBlSEeSM9LreJtBwBg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_MUAiUK5pEd-xTJkHwX_SlQ" name="NamedElement" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_ece4cLKGEeKjjeuHwYguuQ" name="Namespace" isAbstract="true">
@@ -563,6 +538,25 @@
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_q7-KoA3GEeSm6471J7pVhQ" name="PackageableElement" isAbstract="true"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_VcCqIBlSEeSM9LreJtBwBg" name="LanguageExpression" isAbstract="true">
+          <ownedComment xmi:id="_VcCqIRlSEeSM9LreJtBwBg" annotatedElement="_VcCqIBlSEeSM9LreJtBwBg">
+            <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
+          </ownedComment>
+          <generalization xmi:id="_VcCqJBlSEeSM9LreJtBwBg" general="_N9Kt8K5oEd-xTJkHwX_SlQ"/>
+          <ownedAttribute xmi:id="_VcCqJRlSEeSM9LreJtBwBg" name="body" isOrdered="true" isUnique="false" aggregation="composite">
+            <ownedComment xmi:id="_VcCqJhlSEeSM9LreJtBwBg" annotatedElement="_VcCqJRlSEeSM9LreJtBwBg">
+              <body>The text of the expression, possibly in multiple languages.</body>
+            </ownedComment>
+            <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-String"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pxigoBlzEeSM9LreJtBwBg"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_VcCqKRlSEeSM9LreJtBwBg" name="language" isOrdered="true" isReadOnly="true" aggregation="composite" isDerived="true">
+            <ownedComment xmi:id="_VcCqKhlSEeSM9LreJtBwBg" annotatedElement="_VcCqKRlSEeSM9LreJtBwBg">
+              <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
+            </ownedComment>
+            <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-String"/>
+          </ownedAttribute>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
         <packagedElement xmi:type="uml:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class">
@@ -1497,4 +1491,5 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
   <Ecore:EAttribute xmi:id="_asJIEH9SEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="_DKDntEefEeKdl-y5nJoJpQ"/>
   <Ecore:EAttribute xmi:id="_cPr-cH9SEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="_DKDnt0efEeKdl-y5nJoJpQ"/>
   <Ecore:EAttribute xmi:id="_ftlosH9SEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="_DKDnukefEeKdl-y5nJoJpQ"/>
+  <Ecore:EAttribute xmi:id="_1vi70BlUEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_VcCqKRlSEeSM9LreJtBwBg"/>
 </xmi:XMI>

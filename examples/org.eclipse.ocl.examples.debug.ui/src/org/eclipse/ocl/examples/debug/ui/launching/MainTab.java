@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.debug.vm.ui.launching.LaunchingUtils;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -307,7 +308,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 				oclPath.setText(oclNonASURI.toString());
 				EObject eObject = getMetaModelManager().getASResourceSet().getEObject(constraintURI, true);
 				if (eObject instanceof Constraint) {
-					ExpressionInOCL specification = ((Constraint) eObject).getSpecification();
+					LanguageExpression specification = ((Constraint) eObject).getSpecification();
 					if (specification != null) {
 						try {
 							ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);

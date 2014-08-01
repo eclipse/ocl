@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -240,13 +241,13 @@ public class ElementUtil
 					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
 						for (Type asType: asPackage.getOwnedType()) {
 							for (Constraint asConstraint : asType.getOwnedInvariant()) {
-								ExpressionInOCL specification = asConstraint.getSpecification();
+								LanguageExpression specification = asConstraint.getSpecification();
 								if (specification != null) {
 									return metaModelManager.getQueryOrThrow(specification);
 								}
 							}
 							for (Operation asOperation : asType.getOwnedOperation()) {
-								ExpressionInOCL specification = asOperation.getBodyExpression();
+								LanguageExpression specification = asOperation.getBodyExpression();
 								if (specification != null) {
 									return metaModelManager.getQueryOrThrow(specification);
 								}

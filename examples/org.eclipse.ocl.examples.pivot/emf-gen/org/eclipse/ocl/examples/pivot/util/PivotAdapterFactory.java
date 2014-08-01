@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -422,6 +423,11 @@ public class PivotAdapterFactory
 			public Adapter caseLambdaType(LambdaType object)
 			{
 				return createLambdaTypeAdapter();
+			}
+			@Override
+			public Adapter caseLanguageExpression(LanguageExpression object)
+			{
+				return createLanguageExpressionAdapter();
 			}
 			@Override
 			public Adapter caseLetExp(LetExp object)
@@ -1305,6 +1311,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLambdaTypeAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.LanguageExpression <em>Language Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.LanguageExpression
+	 * @generated
+	 */
+	public Adapter createLanguageExpressionAdapter()
 	{
 		return null;
 	}

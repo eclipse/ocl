@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
@@ -66,7 +67,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		else if (csParent instanceof ConstraintCS) {
 			Constraint asConstraint = PivotUtil.getPivot(Constraint.class, (ConstraintCS)csParent);
 			if (asConstraint != null) {
-				ExpressionInOCL asContext = asConstraint.getSpecification();
+				LanguageExpression asContext = asConstraint.getSpecification();
 				if (asContext instanceof ExpressionInOCL) {
 					Variable asVariable = ((ExpressionInOCL)asContext).getContextVariable();
 					if (asVariable != null) {

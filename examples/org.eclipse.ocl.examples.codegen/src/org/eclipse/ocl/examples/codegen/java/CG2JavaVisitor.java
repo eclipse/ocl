@@ -123,7 +123,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorDoubleIterationManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -1793,7 +1793,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				//
 				Element ast = cgOperation.getAst();
 				if (ast instanceof Operation) {
-					ExpressionInOCL expressionInOCL = ((Operation)ast).getBodyExpression();
+					LanguageExpression expressionInOCL = ((Operation)ast).getBodyExpression();
 					if (ast instanceof Operation) {
 						String title = PrettyPrinter.printName(ast);
 						js.appendCommentWithOCL(title+"\n", expressionInOCL);

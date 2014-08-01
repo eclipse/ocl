@@ -25,6 +25,7 @@ import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -172,7 +173,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 			if (contextElement == null) {
 				return ctx.createFailureStatus(target);
 			}
-			ExpressionInOCL specification = constraint.getSpecification();
+			LanguageExpression specification = constraint.getSpecification();
 			if (specification == null) {
 				return ctx.createFailureStatus(target);
 			}

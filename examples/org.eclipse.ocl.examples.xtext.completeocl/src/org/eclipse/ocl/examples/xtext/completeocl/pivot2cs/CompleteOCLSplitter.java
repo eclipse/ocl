@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -49,20 +50,20 @@ public class CompleteOCLSplitter
 {
 	public static @Nullable ASResource separate(@NonNull MetaModelManager metaModelManager, @NonNull Resource resource) {
 		List<Constraint> allConstraints = new ArrayList<Constraint>();
-		List<ExpressionInOCL> allExpressionInOCLs = new ArrayList<ExpressionInOCL>();
+		List<LanguageExpression> allExpressionInOCLs = new ArrayList<LanguageExpression>();
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof Constraint) {
 				allConstraints.add((Constraint) eObject);
 			}
 			else if (eObject instanceof Operation) {
-				ExpressionInOCL bodyExpression = ((Operation)eObject).getBodyExpression();
+				LanguageExpression bodyExpression = ((Operation)eObject).getBodyExpression();
 				if (bodyExpression != null) {
 					allExpressionInOCLs.add(bodyExpression);
 				}
 			}
 			else if (eObject instanceof Property) {
-				ExpressionInOCL bodyExpression = ((Property)eObject).getDefaultExpression();
+				LanguageExpression bodyExpression = ((Property)eObject).getDefaultExpression();
 				if (bodyExpression != null) {
 					allExpressionInOCLs.add(bodyExpression);
 				}
@@ -83,7 +84,7 @@ public class CompleteOCLSplitter
 			for (Constraint constraint : allConstraints) {
 				separator.doSwitch(constraint);
 			}
-			for (ExpressionInOCL opaqueExpression : allExpressionInOCLs) {
+			for (LanguageExpression opaqueExpression : allExpressionInOCLs) {
 				separator.doSwitch(opaqueExpression);
 			}
 			metaModelManager.installResource(oclResource);

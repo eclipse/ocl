@@ -1017,8 +1017,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 	public ExpressionInOCL refreshOpaqueExpression(@NonNull org.eclipse.uml2.uml.OpaqueExpression umlExpression) {
 		ExpressionInOCL pivotElement = refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlExpression);
-		pivotElement.getBody().clear();
-		pivotElement.getLanguage().clear();
+		pivotElement.setBody(null);
 		List<String> umlBodies = umlExpression.getBodies();
 		List<String> umlLanguages = umlExpression.getLanguages();
 		for (int i = 0; i < umlBodies.size(); i++) {
@@ -1029,7 +1028,6 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 					asLanguage = umlLanguage;
 				}
 			}
-			pivotElement.getLanguage().add(asLanguage);
 			String umlBody = umlBodies.get(i);
 			if ((umlBody != null) && asLanguage.equals(PivotConstants.OCL_LANGUAGE)) {
 				EObject eContainer = umlExpression.eContainer();
@@ -1043,7 +1041,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 					}
 				}
 			}
-			pivotElement.getBody().add(umlBody);
+			pivotElement.setBody(umlBody);
 		}
 		copyNamedElement(pivotElement, umlExpression);
 		return pivotElement;

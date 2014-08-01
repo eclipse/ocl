@@ -53,19 +53,8 @@
       <ownedOperation xmi:id="o.ocl.Boolean.and..ocl.Boolean" implementationClass="org.eclipse.ocl.examples.library.logical.BooleanAndOperation"
           isInvalidating="true" isRequired="false" isValidating="true" name="and"
           precedence="#Z.AND" type="#Boolean">
-        <bodyExpression isRequired="false" type="#Boolean">
-          <body>if self.oclIsInvalid() then
-		        if b.oclIsInvalid() then self
-		        else if b = false then false
-		        else self
-		        endif endif
-		      else if self = false then false
-		      else if b.oclIsInvalid() then b
-		      else if b = false then false
-		      else if self = null then null
-		      else if b = null then null
-		      else true
-		      endif endif endif endif endif endif</body>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="if self.oclIsInvalid() then&#xA;&#x9;&#x9;        if b.oclIsInvalid() then self&#xA;&#x9;&#x9;        else if b = false then false&#xA;&#x9;&#x9;        else self&#xA;&#x9;&#x9;        endif endif&#xA;&#x9;&#x9;      else if self = false then false&#xA;&#x9;&#x9;      else if b.oclIsInvalid() then b&#xA;&#x9;&#x9;      else if b = false then false&#xA;&#x9;&#x9;      else if self = null then null&#xA;&#x9;&#x9;      else if b = null then null&#xA;&#x9;&#x9;      else true&#xA;&#x9;&#x9;      endif endif endif endif endif endif"
+            isRequired="false" type="#Boolean">
           <bodyExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
             <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                 type="#Boolean">
@@ -151,7 +140,6 @@
             </thenExpression>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <language>OCL</language>
           <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.and..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
@@ -162,19 +150,8 @@
       <ownedOperation xmi:id="o.ocl.Boolean.implies..ocl.Boolean" implementationClass="org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation"
           isInvalidating="true" isRequired="false" isValidating="true" name="implies"
           precedence="#Z.IMPLIES" type="#Boolean">
-        <bodyExpression isRequired="false" type="#Boolean">
-          <body>if self.oclIsInvalid() then
-		        if b.oclIsInvalid() then self
-		        else if b = true then true
-		        else self
-		        endif endif
-		      else if self = false then true
-		      else if b.oclIsInvalid() then b
-		      else if b = true then true
-		      else if self = null then null
-		      else if b = null then b
-		      else false
-		      endif endif endif endif endif endif</body>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="if self.oclIsInvalid() then&#xA;&#x9;&#x9;        if b.oclIsInvalid() then self&#xA;&#x9;&#x9;        else if b = true then true&#xA;&#x9;&#x9;        else self&#xA;&#x9;&#x9;        endif endif&#xA;&#x9;&#x9;      else if self = false then true&#xA;&#x9;&#x9;      else if b.oclIsInvalid() then b&#xA;&#x9;&#x9;      else if b = true then true&#xA;&#x9;&#x9;      else if self = null then null&#xA;&#x9;&#x9;      else if b = null then b&#xA;&#x9;&#x9;      else false&#xA;&#x9;&#x9;      endif endif endif endif endif endif"
+            isRequired="false" type="#Boolean">
           <bodyExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
             <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                 type="#Boolean">
@@ -260,7 +237,6 @@
             </thenExpression>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <language>OCL</language>
           <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.implies..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
@@ -270,11 +246,8 @@
       </ownedOperation>
       <ownedOperation xmi:id="o.ocl.Boolean.not" implementationClass="org.eclipse.ocl.examples.library.logical.BooleanNotOperation"
           isRequired="false" name="not" precedence="#Z.UNARY" type="#Boolean">
-        <bodyExpression isRequired="false" type="#Boolean">
-          <body>if self.oclIsInvalid() then self
-		      else if self = null then null
-		      else self = false
-		      endif endif</body>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="if self.oclIsInvalid() then self&#xA;&#x9;&#x9;      else if self = null then null&#xA;&#x9;&#x9;      else self = false&#xA;&#x9;&#x9;      endif endif"
+            isRequired="false" type="#Boolean">
           <bodyExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
             <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                 type="#Boolean">
@@ -301,26 +274,14 @@
                 type="#Boolean"/>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <language>OCL</language>
         </bodyExpression>
         <ownedComment body="oclText[true] if oclText[self] is oclText[false].&#xA;oclText[false] if oclText[self] is oclText[true].&#xA;oclText[null] if oclText[self] is oclText[null].&#xA;Otherwise oclText[invalid].&#xA;"/>
       </ownedOperation>
       <ownedOperation xmi:id="o.ocl.Boolean.or..ocl.Boolean" implementationClass="org.eclipse.ocl.examples.library.logical.BooleanOrOperation"
           isInvalidating="true" isRequired="false" isValidating="true" name="or" precedence="#Z.OR"
           type="#Boolean">
-        <bodyExpression isRequired="false" type="#Boolean">
-          <body>if self.oclIsInvalid() then
-		        if b.oclIsInvalid() then self
-			    else if b = true then true
-		        else self
-		        endif endif
-		      else if self = true then true
-			  else if b.oclIsInvalid() then b
-			  else if b = true then true
-			  else if self = null then null
-			  else if b = null then null
-		      else false
-		      endif endif endif endif endif endif</body>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="if self.oclIsInvalid() then&#xA;&#x9;&#x9;        if b.oclIsInvalid() then self&#xA;&#x9;&#x9;&#x9;    else if b = true then true&#xA;&#x9;&#x9;        else self&#xA;&#x9;&#x9;        endif endif&#xA;&#x9;&#x9;      else if self = true then true&#xA;&#x9;&#x9;&#x9;  else if b.oclIsInvalid() then b&#xA;&#x9;&#x9;&#x9;  else if b = true then true&#xA;&#x9;&#x9;&#x9;  else if self = null then null&#xA;&#x9;&#x9;&#x9;  else if b = null then null&#xA;&#x9;&#x9;      else false&#xA;&#x9;&#x9;      endif endif endif endif endif endif"
+            isRequired="false" type="#Boolean">
           <bodyExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
             <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                 type="#Boolean">
@@ -406,7 +367,6 @@
             </thenExpression>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <language>OCL</language>
           <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.or..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
@@ -420,13 +380,8 @@
       </ownedOperation>
       <ownedOperation xmi:id="o.ocl.Boolean.xor..ocl.Boolean" implementationClass="org.eclipse.ocl.examples.library.logical.BooleanXorOperation"
           isRequired="false" name="xor" precedence="#Z.XOR" type="#Boolean">
-        <bodyExpression isRequired="false" type="#Boolean">
-          <body>if self.oclIsInvalid() then self
-		      else if b.oclIsInvalid() then b
-		      else if self = null then null
-		      else if b = null then null
-		      else self &lt;> b
-		      endif endif endif endif</body>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="if self.oclIsInvalid() then self&#xA;&#x9;&#x9;      else if b.oclIsInvalid() then b&#xA;&#x9;&#x9;      else if self = null then null&#xA;&#x9;&#x9;      else if b = null then null&#xA;&#x9;&#x9;      else self &lt;> b&#xA;&#x9;&#x9;      endif endif endif endif"
+            isRequired="false" type="#Boolean">
           <bodyExpression xsi:type="pivot:IfExp" isRequired="false" type="#Boolean">
             <condition xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsInvalid"
                 type="#Boolean">
@@ -473,7 +428,6 @@
                 type="#Boolean"/>
           </bodyExpression>
           <contextVariable name="self" type="#Boolean"/>
-          <language>OCL</language>
           <parameterVariable name="b" representedParameter="#p0o.ocl.Boolean.xor..ocl.Boolean"
               type="#Boolean"/>
         </bodyExpression>
@@ -1417,8 +1371,8 @@
         <ownedComment body="True if oclText[self] is the same object as object2. Infix operator.&#xA;"/>
         <ownedParameter xmi:id="p0o.ocl.OclAny.%61%..ocl.OclSelf" name="object2" type="#OclSelf"/>
         <postcondition>
-          <specification type="#Boolean">
-            <body>result = (self = object2)</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result = (self = object2)"
+              type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
                 type="#Boolean">
               <argument xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf"
@@ -1432,7 +1386,6 @@
                   type="#Boolean"/>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
-            <language>OCL</language>
             <parameterVariable name="object2" representedParameter="#p0o.ocl.OclAny.%61%..ocl.OclSelf"
                 type="#T.ocl.OclAny"/>
             <resultVariable name="result" type="#Boolean"/>
@@ -1445,8 +1398,8 @@
         <ownedParameter xmi:id="p0o.ocl.OclAny.%60%%62%..ocl.OclSelf" name="object2"
             type="#OclSelf"/>
         <postcondition>
-          <specification type="#Boolean">
-            <body>result = not (self = object2)</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result = not (self = object2)"
+              type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
                 type="#Boolean">
               <argument xsi:type="pivot:OperationCallExp" isRequired="false" name="not"
@@ -1463,7 +1416,6 @@
                   type="#Boolean"/>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
-            <language>OCL</language>
             <parameterVariable name="object2" representedParameter="#p0o.ocl.OclAny.%60%%62%..ocl.OclSelf"
                 type="#T.ocl.OclAny"/>
             <resultVariable name="result" type="#Boolean"/>
@@ -1487,8 +1439,7 @@
           </ownedParameter>
         </ownedTemplateSignature>
         <postcondition xmi:id="c+ocl.OclAny.oclAsType.IsSelf" name="IsSelf">
-          <specification type="#Boolean">
-            <body>result = self</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result = self" type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf"
                 type="#Boolean">
               <argument xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.11/@ownedOperation.3/@postcondition.0/@specification/@contextVariable"
@@ -1497,15 +1448,14 @@
                   type="#T.ocl.OclAny..oclAsTypeTT"/>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
-            <language>OCL</language>
             <parameterVariable name="type" representedParameter="#p0o.ocl.OclAny.oclAsType..$$.Metaclass"
                 type="#//@nestedPackage.1/@ownedType.88"/>
             <resultVariable name="result" type="#T.ocl.OclAny..oclAsTypeTT"/>
           </specification>
         </postcondition>
         <postcondition xmi:id="c+ocl.OclAny.oclAsType.IsType" name="IsType">
-          <specification type="#Boolean">
-            <body>result.oclIsKindOf(type)</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result.oclIsKindOf(type)"
+              type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsKindOf..$$.Metaclass"
                 type="#Boolean">
               <argument xsi:type="pivot:InvalidLiteralExp" type="#T.ocl.OclInvalid"/>
@@ -1513,7 +1463,6 @@
                   type="#T.ocl.OclAny..oclAsTypeTT"/>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
-            <language>OCL</language>
             <parameterVariable name="type" representedParameter="#p0o.ocl.OclAny.oclAsType..$$.Metaclass"
                 type="#//@nestedPackage.1/@ownedType.88"/>
             <resultVariable name="result" type="#T.ocl.OclAny..oclAsTypeTT"/>
@@ -1530,8 +1479,8 @@
           isValidating="true" name="oclIsInvalid" type="#Boolean">
         <ownedComment body="Evaluates to oclText[true] if the oclText[self] is equal to OclInvalid.&#xA;"/>
         <postcondition>
-          <specification type="#Boolean">
-            <body>result = self.oclIsTypeOf(OclInvalid)</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result = self.oclIsTypeOf(OclInvalid)"
+              type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Boolean.%61%..ocl.OclSelf"
                 type="#Boolean">
               <argument xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsTypeOf..$$.Metaclass"
@@ -1545,7 +1494,6 @@
                   type="#Boolean"/>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
-            <language>OCL</language>
             <resultVariable name="result" type="#Boolean"/>
           </specification>
         </postcondition>
@@ -1584,8 +1532,8 @@
           isValidating="true" name="oclIsUndefined" type="#Boolean">
         <ownedComment body="Evaluates to oclText[true] if the oclText[self] is equal to oclText[invalid] or equal to oclText[null].&#xA;"/>
         <postcondition>
-          <specification isRequired="false" type="#Boolean">
-            <body>result = self.oclIsTypeOf( OclVoid ) or self.oclIsTypeOf(OclInvalid)</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result = self.oclIsTypeOf( OclVoid ) or self.oclIsTypeOf(OclInvalid)"
+              isRequired="false" type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" isRequired="false" name="or"
                 referredOperation="#o.ocl.Boolean.or..ocl.Boolean" type="#Boolean">
               <argument xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.OclAny.oclIsTypeOf..$$.Metaclass"
@@ -1609,7 +1557,6 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#T.ocl.OclAny"/>
-            <language>OCL</language>
             <resultVariable name="result" type="#Boolean"/>
           </specification>
         </postcondition>
@@ -2101,8 +2048,8 @@
         <ownedParameter xmi:id="p0o.ocl.OrderedSet.prepend..T" isRequired="false"
             name="object" type="#T.ocl..OrderedSetT"/>
         <postcondition xmi:id="c+ocl.OrderedSet.prepend.IsSizePlusOne" name="IsSizePlusOne">
-          <specification type="#Boolean">
-            <body>result->size() = self->size() + 1</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result->size() = self->size() + 1"
+              type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.Real.%61%..ocl.OclSelf"
                 type="#Boolean">
               <argument xsi:type="pivot:OperationCallExp" name="+" referredOperation="#o.ocl.Integer.%43%..ocl.OclSelf"
@@ -2122,15 +2069,14 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#OrderedSet"/>
-            <language>OCL</language>
             <parameterVariable name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
                 type="#T.ocl..OrderedSetT"/>
             <resultVariable name="result" type="#OrderedSet"/>
           </specification>
         </postcondition>
         <postcondition xmi:id="c+ocl.OrderedSet.prepend.IsAtStart" name="IsAtStart">
-          <specification type="#Boolean">
-            <body>result->at(1) = object</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="result->at(1) = object"
+              type="#Boolean">
             <bodyExpression xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf"
                 type="#Boolean">
               <argument xsi:type="pivot:VariableExp" referredVariable="#//@nestedPackage.0/@ownedType.24/@ownedOperation.16/@postcondition.1/@specification/@parameterVariable.0"
@@ -2144,15 +2090,14 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#OrderedSet"/>
-            <language>OCL</language>
             <parameterVariable name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
                 type="#T.ocl..OrderedSetT"/>
             <resultVariable name="result" type="#OrderedSet"/>
           </specification>
         </postcondition>
         <postcondition xmi:id="c+ocl.OrderedSet.prepend.IsShiftedAlong" name="IsShiftedAlong">
-          <specification isRequired="false" type="#Boolean">
-            <body>Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1))</body>
+          <specification xsi:type="pivot:ExpressionInOCL" body="Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1))"
+              isRequired="false" type="#Boolean">
             <bodyExpression xsi:type="pivot:IteratorExp" isRequired="false" referredIteration="#i.ocl.Collection.forAll..T"
                 type="#Boolean">
               <body xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf"
@@ -2192,7 +2137,6 @@
               </source>
             </bodyExpression>
             <contextVariable name="self" type="#OrderedSet"/>
-            <language>OCL</language>
             <parameterVariable name="object" representedParameter="#p0o.ocl.OrderedSet.prepend..T"
                 type="#T.ocl..OrderedSetT"/>
             <resultVariable name="result" type="#OrderedSet"/>

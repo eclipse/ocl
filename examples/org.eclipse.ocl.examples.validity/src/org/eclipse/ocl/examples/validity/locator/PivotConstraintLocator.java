@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstrai
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
@@ -101,7 +101,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 		if (!(constrainingObject instanceof Constraint)) {
 			return null;
 		}
-		ExpressionInOCL specification = ((Constraint)constrainingObject).getSpecification();
+		LanguageExpression specification = ((Constraint)constrainingObject).getSpecification();
 		if (specification == null) {
 			return null;
 		}

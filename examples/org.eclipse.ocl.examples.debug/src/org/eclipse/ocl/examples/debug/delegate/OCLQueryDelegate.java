@@ -36,10 +36,10 @@ import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.context.EInvocationContext;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * An implementation of a query delegate for OCL expressions.
@@ -125,7 +125,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				String name = parameterVariable.getName();
 				Object object = nonNullArguments.get(name);
 				if ((object == null) && !nonNullArguments.containsKey(name)) {
-					String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(nonNullSpecification));
+					String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, nonNullSpecification.getBody());
 					throw new OCLDelegateException(new SemanticException(message));
 				}
 				Object value = idResolver.boxedValueOf(object);

@@ -239,6 +239,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitLambdaType(object);
 	}
 
+	public @Nullable R visitLanguageExpression(@NonNull org.eclipse.ocl.examples.pivot.LanguageExpression object) {
+		return delegate.visitLanguageExpression(object);
+	}
+
 	public @Nullable R visitLetExp(@NonNull org.eclipse.ocl.examples.pivot.LetExp object) {
 		return delegate.visitLetExp(object);
 	}

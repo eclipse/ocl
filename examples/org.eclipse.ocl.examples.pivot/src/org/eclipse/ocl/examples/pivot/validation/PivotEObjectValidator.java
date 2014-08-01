@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -143,13 +144,16 @@ public class PivotEObjectValidator implements EValidator
 		 * Returns null for no problem or a warning/error severity diagnostic for a problem.
 		 */
 		public @Nullable Diagnostic validate(final @NonNull Constraint constraint, final @Nullable Object object, final @Nullable Map<Object, Object> context) {
-			ExpressionInOCL specification = constraint.getSpecification();
+			LanguageExpression specification = constraint.getSpecification();
 			if (specification == null) {
 				return null;
 			}
-			if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {	// May be null for declations of hand coded Java
+			if (specification.getBody() == null) {	// May be null for declations of hand coded Java
 				return null;
 			}
+//			if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {	// May be null for declations of hand coded Java
+//				return null;
+//			}
 			ExpressionInOCL query;
 			try {
 				query = metaModelManager.getQueryOrThrow(specification);

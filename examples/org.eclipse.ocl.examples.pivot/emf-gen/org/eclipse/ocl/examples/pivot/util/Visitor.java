@@ -86,6 +86,7 @@ public interface Visitor<R>
 	@Nullable R visitIteration(@NonNull org.eclipse.ocl.examples.pivot.Iteration object);
 	@Nullable R visitIteratorExp(@NonNull org.eclipse.ocl.examples.pivot.IteratorExp object);
 	@Nullable R visitLambdaType(@NonNull org.eclipse.ocl.examples.pivot.LambdaType object);
+	@Nullable R visitLanguageExpression(@NonNull org.eclipse.ocl.examples.pivot.LanguageExpression object);
 	@Nullable R visitLetExp(@NonNull org.eclipse.ocl.examples.pivot.LetExp object);
 	@Nullable R visitLibrary(@NonNull org.eclipse.ocl.examples.pivot.Library object);
 	@Nullable R visitLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.LiteralExp object);

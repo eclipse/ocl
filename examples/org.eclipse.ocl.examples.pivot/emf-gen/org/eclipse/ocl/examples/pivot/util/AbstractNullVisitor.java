@@ -218,6 +218,10 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public @Nullable R visitLanguageExpression(@NonNull org.eclipse.ocl.examples.pivot.LanguageExpression object) {
+		return null;
+	}
+
 	public @Nullable R visitLetExp(@NonNull org.eclipse.ocl.examples.pivot.LetExp object) {
 		return null;
 	}

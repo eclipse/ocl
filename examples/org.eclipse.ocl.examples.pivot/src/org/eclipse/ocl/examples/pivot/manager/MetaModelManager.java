@@ -86,6 +86,7 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Metaclass;
@@ -1418,13 +1419,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		ExpressionInOCL bodyExpression = null;
 		for (DomainOperation domainOperation : getAllOperations(operation)) {
 			if (domainOperation instanceof Operation) {
-				ExpressionInOCL anExpression = ((Operation)domainOperation).getBodyExpression();
+				LanguageExpression anExpression = ((Operation)domainOperation).getBodyExpression();
 				if (anExpression != null) {
 					if (bodyExpression != null) {
 						throw new IllegalStateException("Multiple bodies for " + operation);
 					}
 					else {
-						bodyExpression = anExpression; //PivotUtil.getExpressionInOCL(operation, anExpression);
+						bodyExpression = getQueryOrError(anExpression);
 					}
 				}
 			}
@@ -1548,13 +1549,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		ExpressionInOCL defaultExpression = null;
 		for (DomainProperty domainProperty : getAllProperties(property)) {
 			if (domainProperty instanceof Property) {
-				ExpressionInOCL anExpression = ((Property)domainProperty).getDefaultExpression();
+				LanguageExpression anExpression = ((Property)domainProperty).getDefaultExpression();
 				if (anExpression != null) {
 					if (defaultExpression != null) {
 						throw new IllegalStateException("Multiple derivations for " + property);
 					}
 					else {
-						defaultExpression = anExpression; //PivotUtil.getExpressionInOCL(property, anExpression);
+						defaultExpression = getQueryOrError(anExpression);
 					}
 				}
 			}
@@ -1678,7 +1679,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				}
 			}
 			if (implementation == null) {
-				ExpressionInOCL specification = operation.getBodyExpression();
+				LanguageExpression specification = operation.getBodyExpression();
 				if (specification != null) {
 					Type owningType = operation.getOwningType();
 					if (owningType != null) {
@@ -2495,7 +2496,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Return the compiled query for a specification resolving a String body into a non-null boduExpression.
 	 * Returns a body-less ExpressionInOCL embedding any error if an error arises.
 	 */
-	public @NonNull ExpressionInOCL getQueryOrError(@NonNull ExpressionInOCL specification) {
+	public @NonNull ExpressionInOCL getQueryOrError(@NonNull LanguageExpression specification) {
 		try {
 			return getQueryOrThrow(specification);
 		} catch (ParserException e) {
@@ -2512,15 +2513,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Return the compiled query for a specification resolving a String body into a non-null bodyExpression.
 	 * Throws a ParserException if conversion fails.
 	 */
-	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull ExpressionInOCL specification) throws ParserException {
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull LanguageExpression specification) throws ParserException {
 		EObject contextElement = DomainUtil.nonNullState(specification.eContainer());
 		return getQueryOrThrow(contextElement, specification);
 	}
-	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull EObject contextElement, @NonNull ExpressionInOCL specification) throws ParserException {
-		if (specification.getBodyExpression() != null) {
-			return specification;
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
+		if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getBodyExpression() != null) {
+			return (ExpressionInOCL)specification;
 		}
-		String expression = PivotUtil.getBody(specification);
+		String expression = specification.getBody();
 		if (expression == null) {
 			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
 		}

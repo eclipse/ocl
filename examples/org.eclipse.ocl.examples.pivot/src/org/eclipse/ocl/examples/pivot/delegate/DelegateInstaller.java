@@ -38,6 +38,7 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -215,7 +216,7 @@ public class DelegateInstaller
 	}
 	
 	public @Nullable EAnnotation createConstraintDelegate(@NonNull EModelElement eModelElement, @NonNull Constraint pivotConstraint, @Nullable URI ecoreURI) {
-		ExpressionInOCL specification = pivotConstraint.getSpecification();
+		LanguageExpression specification = pivotConstraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}
@@ -229,10 +230,10 @@ public class DelegateInstaller
 		return oclAnnotation;
 	}
 
-	protected @Nullable String createExpression(@NonNull ExpressionInOCL bodyExpression, @Nullable URI ecoreURI) {
-		String exprString = PivotUtil.getBody(bodyExpression);
-		if ((exprString == null) && (bodyExpression instanceof ExpressionInOCL)) {
-			OCLExpression bodyExpression2 = ((ExpressionInOCL)bodyExpression).getBodyExpression();
+	protected @Nullable String createExpression(@NonNull LanguageExpression specification, @Nullable URI ecoreURI) {
+		String exprString = specification.getBody();
+		if ((exprString == null) && (specification instanceof ExpressionInOCL)) {
+			OCLExpression bodyExpression2 = ((ExpressionInOCL)specification).getBodyExpression();
 			if (bodyExpression2 != null) {
 				exprString = createExpression(bodyExpression2, ecoreURI);
 			}
@@ -247,7 +248,7 @@ public class DelegateInstaller
 		return PrettyPrinter.print(bodyExpression, options);
 	}
 	
-	public @Nullable EAnnotation createOperationDelegate(@NonNull EOperation eOperation, @NonNull ExpressionInOCL bodyExpression, @Nullable URI ecoreURI) {
+	public @Nullable EAnnotation createOperationDelegate(@NonNull EOperation eOperation, @NonNull LanguageExpression bodyExpression, @Nullable URI ecoreURI) {
 		String exprString = createExpression(bodyExpression, ecoreURI);
 		if (exprString == null) {
 			return null;
@@ -260,7 +261,7 @@ public class DelegateInstaller
 		return oclAnnotation;
 	}
 	
-	public @Nullable EAnnotation createPropertyDelegate(@NonNull EStructuralFeature eStructuralFeature, @NonNull ExpressionInOCL defaultExpression, @Nullable URI ecoreURI) {
+	public @Nullable EAnnotation createPropertyDelegate(@NonNull EStructuralFeature eStructuralFeature, @NonNull LanguageExpression defaultExpression, @Nullable URI ecoreURI) {
 		String exprString = createExpression(defaultExpression, ecoreURI);
 		if (exprString == null) {
 			return null;

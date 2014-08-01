@@ -66,6 +66,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -797,6 +798,8 @@ public class PivotValidator
 				return validateIteratorExp((IteratorExp)value, diagnostics, context);
 			case PivotPackage.LAMBDA_TYPE:
 				return validateLambdaType((LambdaType)value, diagnostics, context);
+			case PivotPackage.LANGUAGE_EXPRESSION:
+				return validateLanguageExpression((LanguageExpression)value, diagnostics, context);
 			case PivotPackage.LET_EXP:
 				return validateLetExp((LetExp)value, diagnostics, context);
 			case PivotPackage.LIBRARY:
@@ -2666,6 +2669,16 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)lambdaType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateType_validateUniqueInvariantName(lambdaType, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLanguageExpression(LanguageExpression languageExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)languageExpression, diagnostics, context);
 	}
 
 	/**

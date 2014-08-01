@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.ParameterableElement;
@@ -206,11 +205,11 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.Constraint visitConstraint(@NonNull Constraint pivotConstraint) {
-		ExpressionInOCL specification = pivotConstraint.getSpecification();
+		LanguageExpression specification = pivotConstraint.getSpecification();
 		if (specification == null) {
 			return null;
 		}
-		String exprString = PivotUtil.getBody(specification);
+		String exprString = specification.getBody();
 		if (exprString == null) {
 			return null;
 		}
