@@ -127,6 +127,8 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__COMMENT:
+				return getComment();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__EXTENSION:
 				return getExtension();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_ANNOTATION:
@@ -171,6 +173,10 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -228,6 +234,9 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__EXTENSION:
 				getExtension().clear();
 				return;
@@ -281,6 +290,8 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_ANNOTATION:

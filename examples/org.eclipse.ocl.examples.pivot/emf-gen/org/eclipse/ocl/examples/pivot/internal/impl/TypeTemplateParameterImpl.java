@@ -141,6 +141,8 @@ public class TypeTemplateParameterImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__COMMENT:
+				return getComment();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__EXTENSION:
 				return getExtension();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_ANNOTATION:
@@ -177,6 +179,10 @@ public class TypeTemplateParameterImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -224,6 +230,9 @@ public class TypeTemplateParameterImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__EXTENSION:
 				getExtension().clear();
 				return;
@@ -267,6 +276,8 @@ public class TypeTemplateParameterImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_ANNOTATION:

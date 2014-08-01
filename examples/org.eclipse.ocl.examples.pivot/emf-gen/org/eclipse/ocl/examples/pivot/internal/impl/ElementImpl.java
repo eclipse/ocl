@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -44,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl#getComment <em>Comment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl#getOwnedComment <em>Owned Comment</em>}</li>
@@ -57,6 +59,15 @@ public abstract class ElementImpl
 		extends PivotObjectImpl
 		implements Element {
 
+	/**
+	 * The cached value of the '{@link #getComment() <em>Comment</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComment()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Comment> comment;
 	/**
 	 * The cached value of the '{@link #getExtension() <em>Extension</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -108,12 +119,26 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public List<Comment> getComment()
+	{
+		if (comment == null)
+		{
+			comment = new EObjectWithInverseResolvingEList.ManyInverse<Comment>(Comment.class, this, PivotPackage.ELEMENT__COMMENT, PivotPackage.COMMENT__ANNOTATED_ELEMENT);
+		}
+		return comment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("null")
 	public @NonNull List<Comment> getOwnedComment()
 	{
 		if (ownedComment == null)
 		{
-			ownedComment = new EObjectContainmentEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT);
+			ownedComment = new EObjectContainmentWithInverseEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT, PivotPackage.COMMENT__OWNING_ELEMENT);
 		}
 		return ownedComment;
 	}
@@ -190,8 +215,12 @@ public abstract class ElementImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ELEMENT__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -206,6 +235,8 @@ public abstract class ElementImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
@@ -225,6 +256,8 @@ public abstract class ElementImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT__COMMENT:
+				return getComment();
 			case PivotPackage.ELEMENT__EXTENSION:
 				return getExtension();
 			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
@@ -245,6 +278,10 @@ public abstract class ElementImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.ELEMENT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -270,6 +307,9 @@ public abstract class ElementImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.ELEMENT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -292,6 +332,8 @@ public abstract class ElementImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.ELEMENT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.ELEMENT__OWNED_ANNOTATION:

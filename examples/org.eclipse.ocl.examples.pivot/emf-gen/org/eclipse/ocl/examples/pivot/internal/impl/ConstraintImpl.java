@@ -347,8 +347,12 @@ public class ConstraintImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRAINT__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -379,6 +383,8 @@ public class ConstraintImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRAINT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
@@ -428,6 +434,8 @@ public class ConstraintImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRAINT__COMMENT:
+				return getComment();
 			case PivotPackage.CONSTRAINT__EXTENSION:
 				return getExtension();
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
@@ -471,6 +479,10 @@ public class ConstraintImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRAINT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.CONSTRAINT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -528,6 +540,9 @@ public class ConstraintImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRAINT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.CONSTRAINT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -580,6 +595,8 @@ public class ConstraintImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRAINT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.CONSTRAINT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:

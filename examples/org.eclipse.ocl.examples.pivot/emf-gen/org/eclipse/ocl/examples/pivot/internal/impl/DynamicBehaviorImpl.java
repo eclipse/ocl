@@ -168,6 +168,8 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_BEHAVIOR__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_ANNOTATION:
@@ -216,6 +218,8 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_BEHAVIOR__COMMENT:
+				return getComment();
 			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENSION:
 				return getExtension();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_ANNOTATION:
@@ -285,6 +289,10 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_BEHAVIOR__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -390,6 +398,9 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_BEHAVIOR__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENSION:
 				getExtension().clear();
 				return;
@@ -482,6 +493,8 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_BEHAVIOR__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_ANNOTATION:

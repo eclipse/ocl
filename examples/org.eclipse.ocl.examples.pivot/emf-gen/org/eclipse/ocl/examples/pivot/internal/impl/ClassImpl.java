@@ -254,6 +254,8 @@ public class ClassImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CLASS__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_ANNOTATION:
@@ -345,6 +347,8 @@ public class ClassImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.CLASS__COMMENT:
+				return getComment();
 			case PivotPackage.CLASS__EXTENSION:
 				return getExtension();
 			case PivotPackage.CLASS__OWNED_ANNOTATION:
@@ -406,6 +410,10 @@ public class ClassImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.CLASS__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.CLASS__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -500,6 +508,9 @@ public class ClassImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.CLASS__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.CLASS__EXTENSION:
 				getExtension().clear();
 				return;
@@ -582,6 +593,8 @@ public class ClassImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.CLASS__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.CLASS__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.CLASS__OWNED_ANNOTATION:

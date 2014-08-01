@@ -111,6 +111,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__COMMENT:
+				return getComment();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENSION:
 				return getExtension();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_ANNOTATION:
@@ -142,6 +144,10 @@ public class UnlimitedNaturalLiteralExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -182,6 +188,9 @@ public class UnlimitedNaturalLiteralExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENSION:
 				getExtension().clear();
 				return;
@@ -219,6 +228,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__OWNED_ANNOTATION:

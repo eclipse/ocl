@@ -169,6 +169,8 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ROOT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ROOT__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ROOT__OWNED_ANNOTATION:
@@ -195,6 +197,8 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ROOT__COMMENT:
+				return getComment();
 			case PivotPackage.ROOT__EXTENSION:
 				return getExtension();
 			case PivotPackage.ROOT__OWNED_ANNOTATION:
@@ -228,6 +232,10 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ROOT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.ROOT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -275,6 +283,9 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ROOT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.ROOT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -316,6 +327,8 @@ public class RootImpl extends NamespaceImpl implements Root
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ROOT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.ROOT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.ROOT__OWNED_ANNOTATION:

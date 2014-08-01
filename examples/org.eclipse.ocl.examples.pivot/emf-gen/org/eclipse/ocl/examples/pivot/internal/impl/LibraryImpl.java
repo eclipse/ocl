@@ -105,6 +105,8 @@ public class LibraryImpl extends PackageImpl implements Library
 	{
 		switch (featureID)
 		{
+			case PivotPackage.LIBRARY__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_ANNOTATION:
@@ -143,6 +145,8 @@ public class LibraryImpl extends PackageImpl implements Library
 	{
 		switch (featureID)
 		{
+			case PivotPackage.LIBRARY__COMMENT:
+				return getComment();
 			case PivotPackage.LIBRARY__EXTENSION:
 				return getExtension();
 			case PivotPackage.LIBRARY__OWNED_ANNOTATION:
@@ -194,6 +198,10 @@ public class LibraryImpl extends PackageImpl implements Library
 	{
 		switch (featureID)
 		{
+			case PivotPackage.LIBRARY__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.LIBRARY__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -273,6 +281,9 @@ public class LibraryImpl extends PackageImpl implements Library
 	{
 		switch (featureID)
 		{
+			case PivotPackage.LIBRARY__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.LIBRARY__EXTENSION:
 				getExtension().clear();
 				return;
@@ -341,6 +352,8 @@ public class LibraryImpl extends PackageImpl implements Library
 	{
 		switch (featureID)
 		{
+			case PivotPackage.LIBRARY__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.LIBRARY__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_ANNOTATION:

@@ -108,8 +108,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STEREOTYPE__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -150,6 +154,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STEREOTYPE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
@@ -196,6 +202,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STEREOTYPE__COMMENT:
+				return getComment();
 			case PivotPackage.STEREOTYPE__EXTENSION:
 				return getExtension();
 			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
@@ -260,6 +268,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STEREOTYPE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.STEREOTYPE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -359,6 +371,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STEREOTYPE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.STEREOTYPE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -445,6 +460,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STEREOTYPE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.STEREOTYPE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:

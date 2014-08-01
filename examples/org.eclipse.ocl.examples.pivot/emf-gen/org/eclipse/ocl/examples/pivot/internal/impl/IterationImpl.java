@@ -135,6 +135,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ITERATION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_ANNOTATION:
@@ -179,6 +181,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ITERATION__COMMENT:
+				return getComment();
 			case PivotPackage.ITERATION__EXTENSION:
 				return getExtension();
 			case PivotPackage.ITERATION__OWNED_ANNOTATION:
@@ -254,6 +258,10 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ITERATION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.ITERATION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -361,6 +369,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ITERATION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.ITERATION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -456,6 +467,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ITERATION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.ITERATION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.ITERATION__OWNED_ANNOTATION:

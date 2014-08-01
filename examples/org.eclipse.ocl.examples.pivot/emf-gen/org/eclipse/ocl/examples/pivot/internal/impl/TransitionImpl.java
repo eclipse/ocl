@@ -258,8 +258,12 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TRANSITION__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TRANSITION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TRANSITION__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -543,6 +547,8 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TRANSITION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TRANSITION__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
@@ -593,6 +599,8 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TRANSITION__COMMENT:
+				return getComment();
 			case PivotPackage.TRANSITION__EXTENSION:
 				return getExtension();
 			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
@@ -636,6 +644,10 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TRANSITION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TRANSITION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -694,6 +706,9 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TRANSITION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TRANSITION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -747,6 +762,8 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TRANSITION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TRANSITION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TRANSITION__OWNED_ANNOTATION:

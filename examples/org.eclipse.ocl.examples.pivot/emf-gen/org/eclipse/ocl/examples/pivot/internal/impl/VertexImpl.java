@@ -175,8 +175,12 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
+			case PivotPackage.VERTEX__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.VERTEX__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.VERTEX__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -199,6 +203,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
+			case PivotPackage.VERTEX__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.VERTEX__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.VERTEX__OWNED_ANNOTATION:
@@ -241,6 +247,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
+			case PivotPackage.VERTEX__COMMENT:
+				return getComment();
 			case PivotPackage.VERTEX__EXTENSION:
 				return getExtension();
 			case PivotPackage.VERTEX__OWNED_ANNOTATION:
@@ -272,6 +280,10 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
+			case PivotPackage.VERTEX__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.VERTEX__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -307,6 +319,9 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
+			case PivotPackage.VERTEX__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.VERTEX__EXTENSION:
 				getExtension().clear();
 				return;
@@ -339,6 +354,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
+			case PivotPackage.VERTEX__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.VERTEX__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.VERTEX__OWNED_ANNOTATION:

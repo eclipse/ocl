@@ -121,6 +121,8 @@ public class SendSignalActionImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.SEND_SIGNAL_ACTION__COMMENT:
+				return getComment();
 			case PivotPackage.SEND_SIGNAL_ACTION__EXTENSION:
 				return getExtension();
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_ANNOTATION:
@@ -148,6 +150,10 @@ public class SendSignalActionImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.SEND_SIGNAL_ACTION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -182,6 +188,9 @@ public class SendSignalActionImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.SEND_SIGNAL_ACTION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -213,6 +222,8 @@ public class SendSignalActionImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.SEND_SIGNAL_ACTION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.SEND_SIGNAL_ACTION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_ANNOTATION:

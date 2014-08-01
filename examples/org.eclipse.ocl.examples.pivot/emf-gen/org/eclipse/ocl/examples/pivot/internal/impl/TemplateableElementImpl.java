@@ -213,8 +213,12 @@ public abstract class TemplateableElementImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATEABLE_ELEMENT__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -235,6 +239,8 @@ public abstract class TemplateableElementImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATEABLE_ELEMENT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_ANNOTATION:
@@ -258,6 +264,8 @@ public abstract class TemplateableElementImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATEABLE_ELEMENT__COMMENT:
+				return getComment();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__EXTENSION:
 				return getExtension();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_ANNOTATION:
@@ -284,6 +292,10 @@ public abstract class TemplateableElementImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATEABLE_ELEMENT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -319,6 +331,9 @@ public abstract class TemplateableElementImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATEABLE_ELEMENT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -350,6 +365,8 @@ public abstract class TemplateableElementImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATEABLE_ELEMENT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_ANNOTATION:

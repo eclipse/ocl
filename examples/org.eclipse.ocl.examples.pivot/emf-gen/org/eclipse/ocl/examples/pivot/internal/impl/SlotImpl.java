@@ -204,8 +204,12 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
+			case PivotPackage.SLOT__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.SLOT__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -224,6 +228,8 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
+			case PivotPackage.SLOT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.SLOT__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.SLOT__OWNED_ANNOTATION:
@@ -264,6 +270,8 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
+			case PivotPackage.SLOT__COMMENT:
+				return getComment();
 			case PivotPackage.SLOT__EXTENSION:
 				return getExtension();
 			case PivotPackage.SLOT__OWNED_ANNOTATION:
@@ -292,6 +300,10 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
+			case PivotPackage.SLOT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.SLOT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -328,6 +340,9 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
+			case PivotPackage.SLOT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.SLOT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -360,6 +375,8 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
+			case PivotPackage.SLOT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.SLOT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.SLOT__OWNED_ANNOTATION:

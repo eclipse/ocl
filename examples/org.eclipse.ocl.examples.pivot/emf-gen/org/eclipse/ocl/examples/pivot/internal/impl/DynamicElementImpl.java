@@ -125,6 +125,8 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
+				return getComment();
 			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
 				return getExtension();
 			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATION:
@@ -149,6 +151,10 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -178,6 +184,9 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -204,6 +213,8 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATION:

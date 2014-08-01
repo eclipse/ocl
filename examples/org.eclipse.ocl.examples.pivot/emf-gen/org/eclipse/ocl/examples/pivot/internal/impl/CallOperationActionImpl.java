@@ -121,6 +121,8 @@ public class CallOperationActionImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.CALL_OPERATION_ACTION__COMMENT:
+				return getComment();
 			case PivotPackage.CALL_OPERATION_ACTION__EXTENSION:
 				return getExtension();
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_ANNOTATION:
@@ -148,6 +150,10 @@ public class CallOperationActionImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.CALL_OPERATION_ACTION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.CALL_OPERATION_ACTION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -182,6 +188,9 @@ public class CallOperationActionImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.CALL_OPERATION_ACTION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.CALL_OPERATION_ACTION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -213,6 +222,8 @@ public class CallOperationActionImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.CALL_OPERATION_ACTION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.CALL_OPERATION_ACTION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.CALL_OPERATION_ACTION__OWNED_ANNOTATION:

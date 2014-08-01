@@ -2083,7 +2083,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_CollectionType_upper = createProperty(PivotPackage.Literals.COLLECTION_TYPE__UPPER, _UnlimitedNatural);
 		protected final @NonNull Property pr_Comment_annotatedElement = createProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENT, _Set_Element);
 		protected final @NonNull Property pr_Comment_body = createProperty(PivotPackage.Literals.COMMENT__BODY, _String);
-		protected final @NonNull Property pr_Comment_owningElement_ownedComment = createProperty("owningElement", _Element);
+		protected final @NonNull Property pr_Comment_owningElement = createProperty(PivotPackage.Literals.COMMENT__OWNING_ELEMENT, _Element);
 		protected final @NonNull Property pr_ConnectionPointReference_entry = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRY, _Set_Pseudostate);
 		protected final @NonNull Property pr_ConnectionPointReference_exit = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXIT, _Set_Pseudostate);
 		protected final @NonNull Property pr_ConnectionPointReference_state = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__STATE, _State);
@@ -2113,6 +2113,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_DynamicProperty_referredProperty = createProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__REFERRED_PROPERTY, _Property);
 		protected final @NonNull Property pr_DynamicProperty_DynamicType_ownedProperty = createProperty("DynamicType", _DynamicType);
 		protected final @NonNull Property pr_DynamicType_ownedProperty = createProperty(PivotPackage.Literals.DYNAMIC_TYPE__OWNED_PROPERTY, _Set_DynamicProperty);
+		protected final @NonNull Property pr_Element_comment = createProperty(PivotPackage.Literals.ELEMENT__COMMENT, _Set_Comment);
 		protected final @NonNull Property pr_Element_extension = createProperty(PivotPackage.Literals.ELEMENT__EXTENSION, _Set_ElementExtension);
 		protected final @NonNull Property pr_Element_ownedAnnotation = createProperty(PivotPackage.Literals.ELEMENT__OWNED_ANNOTATION, _OrderedSet_Element);
 		protected final @NonNull Property pr_Element_ownedComment = createProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENT, _Set_Comment);
@@ -2120,7 +2121,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Element_Annotation_reference = createProperty("Annotation", _Bag_Annotation);
 		protected final @NonNull Property pr_Element_Constraint_constrainedElement = createProperty("Constraint", _Bag_Constraint);
 		protected final @NonNull Property pr_Element_Element_ownedAnnotation = createProperty("Element", _Element);
-		protected final @NonNull Property pr_Element_comment_annotatedElement = createProperty("comment", _Comment);
 		protected final @NonNull Property pr_ElementExtension_base = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__BASE, _Element);
 		protected final @NonNull Property pr_ElementExtension_isApplied = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__IS_APPLIED, _Boolean);
 		protected final @NonNull Property pr_ElementExtension_isRequired = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__IS_REQUIRED, _Boolean);
@@ -2538,12 +2538,11 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties = _Comment.getOwnedAttribute();
 			ownedProperties.add(property = pr_Comment_annotatedElement);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_comment_annotatedElement);
+			property.setOpposite(pr_Element_comment);
 			ownedProperties.add(property = pr_Comment_body);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Comment_owningElement_ownedComment);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Comment_owningElement);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Element_ownedComment);
@@ -2670,6 +2669,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DynamicProperty_DynamicType_ownedProperty);
 			ownedProperties = _Element.getOwnedAttribute();
+			ownedProperties.add(property = pr_Element_comment);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Comment_annotatedElement);
 			ownedProperties.add(property = pr_Element_extension);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -2681,7 +2683,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Element_ownedComment);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Comment_owningElement_ownedComment);
+			property.setOpposite(pr_Comment_owningElement);
 			ownedProperties.add(property = pr_Element_Annotation_ownedContent);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2700,11 +2702,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Element_ownedAnnotation);
-			ownedProperties.add(property = pr_Element_comment_annotatedElement);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Comment_annotatedElement);
 			ownedProperties = _ElementExtension.getOwnedAttribute();
 			ownedProperties.add(property = pr_ElementExtension_base);
 			property.setIsResolveProxies(true);

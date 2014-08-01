@@ -182,6 +182,8 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DATA_TYPE__COMMENT:
+				return getComment();
 			case PivotPackage.DATA_TYPE__EXTENSION:
 				return getExtension();
 			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
@@ -249,6 +251,10 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DATA_TYPE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.DATA_TYPE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -350,6 +356,9 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DATA_TYPE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.DATA_TYPE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -439,6 +448,8 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DATA_TYPE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.DATA_TYPE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:

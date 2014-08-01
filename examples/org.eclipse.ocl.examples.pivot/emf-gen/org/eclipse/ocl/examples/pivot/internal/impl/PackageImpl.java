@@ -472,8 +472,12 @@ public class PackageImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -504,6 +508,8 @@ public class PackageImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_ANNOTATION:
@@ -555,6 +561,8 @@ public class PackageImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__COMMENT:
+				return getComment();
 			case PivotPackage.PACKAGE__EXTENSION:
 				return getExtension();
 			case PivotPackage.PACKAGE__OWNED_ANNOTATION:
@@ -603,6 +611,10 @@ public class PackageImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.PACKAGE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -677,6 +689,9 @@ public class PackageImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.PACKAGE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -741,6 +756,8 @@ public class PackageImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.PACKAGE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_ANNOTATION:

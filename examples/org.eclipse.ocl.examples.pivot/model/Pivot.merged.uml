@@ -276,6 +276,9 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TComment.PannotatedElement.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TComment.PannotatedElement.uV" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TComment.PowningElement" name="owningElement" type="Ppivot.TElement" association="Ppivot.A_ownedComment_owningElement">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TComment.PowningElement.lV"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TConnectionPointReference" name="ConnectionPointReference">
       <ownedComment xmi:id="Ppivot.TConnectionPointReference.oC0" annotatedElement="Ppivot.TConnectionPointReference">
@@ -409,6 +412,10 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TElement.PownedComment.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TElement.PownedComment.uV" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TElement.Pcomment" name="comment" type="Ppivot.TComment" association="Ppivot.A_annotatedElement_comment">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TElement.Pcomment.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TElement.Pcomment.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TElement.PownedAnnotation" name="ownedAnnotation" type="Ppivot.TElement" isOrdered="true" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TElement.PownedAnnotation.lV"/>
@@ -1786,12 +1793,7 @@
             value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_annotatedElement_comment" name="A_annotatedElement_comment" memberEnd="Ppivot.TComment.PannotatedElement Ppivot.A_annotatedElement_comment.Pcomment">
-      <ownedEnd xmi:id="Ppivot.A_annotatedElement_comment.Pcomment" name="comment" type="Ppivot.TComment" association="Ppivot.A_annotatedElement_comment">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_annotatedElement_comment.Pcomment.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_annotatedElement_comment.Pcomment.uV" value="*"/>
-      </ownedEnd>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_annotatedElement_comment" name="A_annotatedElement_comment" memberEnd="Ppivot.TComment.PannotatedElement Ppivot.TElement.Pcomment"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_appliedProfile_application" name="A_appliedProfile_application" memberEnd="Ppivot.TProfileApplication.PappliedProfile Ppivot.TProfile.Papplication"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_applyingPackage_profileApplication" name="A_applyingPackage_profileApplication"
         memberEnd="Ppivot.TProfileApplication.PapplyingPackage Ppivot.TPackage.PprofileApplication"/>
@@ -1884,11 +1886,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedAttribute_class" name="A_ownedAttribute_class" memberEnd="Ppivot.TClass.PownedAttribute Ppivot.TProperty.Pclass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedAttribute_owningType" name="A_ownedAttribute_owningType" memberEnd="Ppivot.TType.PownedAttribute Ppivot.TProperty.PowningType"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedComment_owningElement" name="A_ownedComment_owningElement" memberEnd="Ppivot.TElement.PownedComment Ppivot.A_ownedComment_owningElement.PowningElement">
-      <ownedEnd xmi:id="Ppivot.A_ownedComment_owningElement.PowningElement" name="owningElement" type="Ppivot.TElement" association="Ppivot.A_ownedComment_owningElement">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_ownedComment_owningElement.PowningElement.lV"/>
-      </ownedEnd>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedComment_owningElement" name="A_ownedComment_owningElement" memberEnd="Ppivot.TElement.PownedComment Ppivot.TComment.PowningElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedDefault_templateParameter" name="A_ownedDefault_templateParameter"
         memberEnd="Ppivot.TTemplateParameter.PownedDefault Ppivot.A_ownedDefault_templateParameter.PtemplateParameter">
       <ownedEnd xmi:id="Ppivot.A_ownedDefault_templateParameter.PtemplateParameter" name="templateParameter" type="Ppivot.TTemplateParameter"

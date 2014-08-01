@@ -248,8 +248,12 @@ public abstract class ParameterableElementImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PARAMETERABLE_ELEMENT__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -272,6 +276,8 @@ public abstract class ParameterableElementImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PARAMETERABLE_ELEMENT__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_ANNOTATION:
@@ -311,6 +317,8 @@ public abstract class ParameterableElementImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT__COMMENT:
+				return getComment();
 			case PivotPackage.PARAMETERABLE_ELEMENT__EXTENSION:
 				return getExtension();
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_ANNOTATION:
@@ -336,6 +344,10 @@ public abstract class ParameterableElementImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.PARAMETERABLE_ELEMENT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -367,6 +379,9 @@ public abstract class ParameterableElementImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.PARAMETERABLE_ELEMENT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -395,6 +410,8 @@ public abstract class ParameterableElementImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.PARAMETERABLE_ELEMENT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_ANNOTATION:

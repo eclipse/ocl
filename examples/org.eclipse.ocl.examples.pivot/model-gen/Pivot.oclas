@@ -25,11 +25,11 @@
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.Annotation" name="Annotation"
         superClass="#T.pivot.NamedElement">
       <ownedAttribute xmi:id="p.pivot.Annotation.ownedContent" isComposite="true"
-          name="ownedContent" opposite="#//@nestedPackage.0/@ownedType.34/@ownedAttribute.3"
+          name="ownedContent" opposite="#//@nestedPackage.0/@ownedType.34/@ownedAttribute.4"
           type="#//@nestedPackage.1/@ownedType.116"/>
       <ownedAttribute xmi:id="p.pivot.Annotation.ownedDetail" isComposite="true" name="ownedDetail"
           opposite="#p.pivot.Detail.Annotation" type="#//@nestedPackage.1/@ownedType.115"/>
-      <ownedAttribute xmi:id="p.pivot.Annotation.reference" name="reference" opposite="#//@nestedPackage.0/@ownedType.34/@ownedAttribute.4"
+      <ownedAttribute xmi:id="p.pivot.Annotation.reference" name="reference" opposite="#//@nestedPackage.0/@ownedType.34/@ownedAttribute.5"
           type="#//@nestedPackage.1/@ownedType.116"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.AnyType" name="AnyType" superClass="#T.pivot.Class"/>
@@ -215,8 +215,8 @@
           type="#String">
         <ownedComment body="Specifies a string that is the comment."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.Comment.owningElement" implicit="true" isRequired="false"
-          name="owningElement" opposite="#p.pivot.Element.ownedComment" type="#T.pivot.Element"/>
+      <ownedAttribute xmi:id="p.pivot.Comment.owningElement" isRequired="false" name="owningElement"
+          opposite="#p.pivot.Element.ownedComment" type="#T.pivot.Element"/>
       <ownedComment body="A comment is a textual annotation that can be attached to a set of elements."/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.ConnectionPointReference" name="ConnectionPointReference"
@@ -331,6 +331,8 @@
         superClass="#T.pivot.ValueSpecification"/>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.Element" isAbstract="true" name="Element"
         superClass="#T.pivot.Visitable">
+      <ownedAttribute xmi:id="p.pivot.Element.comment" name="comment" opposite="#p.pivot.Comment.annotatedElement"
+          type="#//@nestedPackage.1/@ownedType.134"/>
       <ownedAttribute xmi:id="p.pivot.Element.extension" isComposite="true" name="extension"
           opposite="#p.pivot.ElementExtension.base" type="#//@nestedPackage.1/@ownedType.138"/>
       <ownedAttribute xmi:id="p.pivot.Element.ownedAnnotation" isComposite="true"
@@ -347,8 +349,6 @@
           opposite="#p.pivot.Constraint.constrainedElement" type="#//@nestedPackage.1/@ownedType.4"/>
       <ownedAttribute xmi:id="p.pivot.Element.Element" implicit="true" isRequired="false"
           name="Element" opposite="#p.pivot.Element.ownedAnnotation" type="#T.pivot.Element"/>
-      <ownedAttribute xmi:id="p.pivot.Element.comment" implicit="true" isRequired="false"
-          name="comment" opposite="#p.pivot.Comment.annotatedElement" type="#T.pivot.Comment"/>
       <ownedComment body="An element is a constituent of a model."/>
       <ownedOperation xmi:id="o.pivot.Element.allOwnedElements" name="allOwnedElements"
           type="#//@nestedPackage.1/@ownedType.139">

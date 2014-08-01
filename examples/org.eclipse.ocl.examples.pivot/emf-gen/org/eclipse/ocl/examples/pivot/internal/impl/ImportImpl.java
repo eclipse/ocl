@@ -124,6 +124,8 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
+			case PivotPackage.IMPORT__COMMENT:
+				return getComment();
 			case PivotPackage.IMPORT__EXTENSION:
 				return getExtension();
 			case PivotPackage.IMPORT__OWNED_ANNOTATION:
@@ -152,6 +154,10 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
+			case PivotPackage.IMPORT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.IMPORT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -187,6 +193,9 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
+			case PivotPackage.IMPORT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.IMPORT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -219,6 +228,8 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
+			case PivotPackage.IMPORT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.IMPORT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.IMPORT__OWNED_ANNOTATION:

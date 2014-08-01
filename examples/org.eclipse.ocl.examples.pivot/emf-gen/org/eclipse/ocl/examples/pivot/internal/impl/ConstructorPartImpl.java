@@ -188,6 +188,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
@@ -210,6 +212,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
+				return getComment();
 			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
 				return getExtension();
 			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
@@ -245,6 +249,10 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -289,6 +297,9 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
 				getExtension().clear();
 				return;
@@ -330,6 +341,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:

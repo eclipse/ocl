@@ -653,8 +653,12 @@ public class TypeImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TYPE__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -693,6 +697,8 @@ public class TypeImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
@@ -748,6 +754,8 @@ public class TypeImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE__COMMENT:
+				return getComment();
 			case PivotPackage.TYPE__EXTENSION:
 				return getExtension();
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
@@ -797,6 +805,10 @@ public class TypeImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TYPE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -870,6 +882,9 @@ public class TypeImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TYPE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -934,6 +949,8 @@ public class TypeImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TYPE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TYPE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TYPE__OWNED_ANNOTATION:

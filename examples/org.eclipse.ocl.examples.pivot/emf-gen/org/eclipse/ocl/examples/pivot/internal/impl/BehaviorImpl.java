@@ -131,8 +131,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.BEHAVIOR__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.BEHAVIOR__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.BEHAVIOR__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -175,6 +179,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.BEHAVIOR__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_ANNOTATION:
@@ -241,6 +247,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.BEHAVIOR__COMMENT:
+				return getComment();
 			case PivotPackage.BEHAVIOR__EXTENSION:
 				return getExtension();
 			case PivotPackage.BEHAVIOR__OWNED_ANNOTATION:
@@ -305,6 +313,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.BEHAVIOR__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.BEHAVIOR__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -403,6 +415,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.BEHAVIOR__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.BEHAVIOR__EXTENSION:
 				getExtension().clear();
 				return;
@@ -489,6 +504,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 	{
 		switch (featureID)
 		{
+			case PivotPackage.BEHAVIOR__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.BEHAVIOR__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_ANNOTATION:

@@ -405,8 +405,12 @@ public class TemplateParameterImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATE_PARAMETER__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT:
 				if (ownedParameteredElement != null)
 					msgs = ((InternalEObject)ownedParameteredElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, null, msgs);
@@ -433,6 +437,8 @@ public class TemplateParameterImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATE_PARAMETER__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_ANNOTATION:
@@ -476,6 +482,8 @@ public class TemplateParameterImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATE_PARAMETER__COMMENT:
+				return getComment();
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENSION:
 				return getExtension();
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_ANNOTATION:
@@ -508,6 +516,10 @@ public class TemplateParameterImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATE_PARAMETER__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -548,6 +560,9 @@ public class TemplateParameterImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATE_PARAMETER__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENSION:
 				getExtension().clear();
 				return;
@@ -585,6 +600,8 @@ public class TemplateParameterImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TEMPLATE_PARAMETER__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_ANNOTATION:

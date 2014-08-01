@@ -245,8 +245,12 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	{
 		switch (featureID)
 		{
+			case PivotPackage.PROFILE_APPLICATION__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE_APPLICATION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PROFILE_APPLICATION__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE_APPLICATION__APPLIED_PROFILE:
 				if (appliedProfile != null)
 					msgs = ((InternalEObject)appliedProfile).eInverseRemove(this, PivotPackage.PROFILE__APPLICATION, Profile.class, msgs);
@@ -269,6 +273,8 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	{
 		switch (featureID)
 		{
+			case PivotPackage.PROFILE_APPLICATION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE_APPLICATION__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE_APPLICATION__OWNED_ANNOTATION:
@@ -309,6 +315,8 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	{
 		switch (featureID)
 		{
+			case PivotPackage.PROFILE_APPLICATION__COMMENT:
+				return getComment();
 			case PivotPackage.PROFILE_APPLICATION__EXTENSION:
 				return getExtension();
 			case PivotPackage.PROFILE_APPLICATION__OWNED_ANNOTATION:
@@ -337,6 +345,10 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	{
 		switch (featureID)
 		{
+			case PivotPackage.PROFILE_APPLICATION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.PROFILE_APPLICATION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -372,6 +384,9 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	{
 		switch (featureID)
 		{
+			case PivotPackage.PROFILE_APPLICATION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.PROFILE_APPLICATION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -404,6 +419,8 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	{
 		switch (featureID)
 		{
+			case PivotPackage.PROFILE_APPLICATION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.PROFILE_APPLICATION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.PROFILE_APPLICATION__OWNED_ANNOTATION:

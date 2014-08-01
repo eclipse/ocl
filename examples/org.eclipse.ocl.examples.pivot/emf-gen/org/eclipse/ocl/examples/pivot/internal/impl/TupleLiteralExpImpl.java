@@ -99,6 +99,8 @@ public class TupleLiteralExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.TUPLE_LITERAL_EXP__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_EXP__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
@@ -120,6 +122,8 @@ public class TupleLiteralExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.TUPLE_LITERAL_EXP__COMMENT:
+				return getComment();
 			case PivotPackage.TUPLE_LITERAL_EXP__EXTENSION:
 				return getExtension();
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
@@ -151,6 +155,10 @@ public class TupleLiteralExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.TUPLE_LITERAL_EXP__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -192,6 +200,9 @@ public class TupleLiteralExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TUPLE_LITERAL_EXP__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__EXTENSION:
 				getExtension().clear();
 				return;
@@ -229,6 +240,8 @@ public class TupleLiteralExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.TUPLE_LITERAL_EXP__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_EXP__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:

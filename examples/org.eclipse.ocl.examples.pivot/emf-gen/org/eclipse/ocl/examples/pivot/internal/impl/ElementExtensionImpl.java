@@ -270,8 +270,12 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT_EXTENSION__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -314,6 +318,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT_EXTENSION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ANNOTATION:
@@ -374,6 +380,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT_EXTENSION__COMMENT:
+				return getComment();
 			case PivotPackage.ELEMENT_EXTENSION__EXTENSION:
 				return getExtension();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ANNOTATION:
@@ -433,6 +441,10 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT_EXTENSION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -519,6 +531,9 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT_EXTENSION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -596,6 +611,8 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.ELEMENT_EXTENSION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ANNOTATION:

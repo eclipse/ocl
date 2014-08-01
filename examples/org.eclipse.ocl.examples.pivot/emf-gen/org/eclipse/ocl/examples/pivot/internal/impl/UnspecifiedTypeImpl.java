@@ -192,6 +192,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.UNSPECIFIED_TYPE__COMMENT:
+				return getComment();
 			case PivotPackage.UNSPECIFIED_TYPE__EXTENSION:
 				return getExtension();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ANNOTATION:
@@ -260,6 +262,10 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.UNSPECIFIED_TYPE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -361,6 +367,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.UNSPECIFIED_TYPE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -450,6 +459,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.UNSPECIFIED_TYPE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ANNOTATION:

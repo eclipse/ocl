@@ -99,6 +99,8 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.NAMESPACE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.NAMESPACE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
@@ -121,6 +123,8 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.NAMESPACE__COMMENT:
+				return getComment();
 			case PivotPackage.NAMESPACE__EXTENSION:
 				return getExtension();
 			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
@@ -148,6 +152,10 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.NAMESPACE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.NAMESPACE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -184,6 +192,9 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.NAMESPACE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.NAMESPACE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -216,6 +227,8 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.NAMESPACE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.NAMESPACE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:

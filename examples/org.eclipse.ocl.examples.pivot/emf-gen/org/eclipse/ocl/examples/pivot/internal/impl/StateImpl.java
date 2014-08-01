@@ -672,8 +672,12 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -712,6 +716,8 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__OWNED_ANNOTATION:
@@ -758,6 +764,8 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE__COMMENT:
+				return getComment();
 			case PivotPackage.STATE__EXTENSION:
 				return getExtension();
 			case PivotPackage.STATE__OWNED_ANNOTATION:
@@ -821,6 +829,10 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.STATE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -897,6 +909,9 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.STATE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -965,6 +980,8 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.STATE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.STATE__OWNED_ANNOTATION:

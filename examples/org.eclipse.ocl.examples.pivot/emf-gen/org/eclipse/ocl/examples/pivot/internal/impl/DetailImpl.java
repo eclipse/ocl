@@ -92,6 +92,8 @@ public class DetailImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.DETAIL__COMMENT:
+				return getComment();
 			case PivotPackage.DETAIL__EXTENSION:
 				return getExtension();
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
@@ -118,6 +120,10 @@ public class DetailImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.DETAIL__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.DETAIL__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -153,6 +159,9 @@ public class DetailImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.DETAIL__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.DETAIL__EXTENSION:
 				getExtension().clear();
 				return;
@@ -184,6 +193,8 @@ public class DetailImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.DETAIL__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.DETAIL__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:

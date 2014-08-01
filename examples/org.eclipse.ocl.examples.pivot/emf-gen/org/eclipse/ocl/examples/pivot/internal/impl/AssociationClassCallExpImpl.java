@@ -125,6 +125,8 @@ public class AssociationClassCallExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
+				return getComment();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
 				return getExtension();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATION:
@@ -168,6 +170,10 @@ public class AssociationClassCallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -224,6 +230,9 @@ public class AssociationClassCallExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
 				getExtension().clear();
 				return;
@@ -276,6 +285,8 @@ public class AssociationClassCallExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATION:

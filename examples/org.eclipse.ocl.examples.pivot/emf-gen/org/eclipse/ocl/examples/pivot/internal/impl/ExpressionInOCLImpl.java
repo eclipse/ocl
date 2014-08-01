@@ -327,6 +327,8 @@ public class ExpressionInOCLImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
@@ -358,6 +360,8 @@ public class ExpressionInOCLImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
+				return getComment();
 			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
 				return getExtension();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
@@ -404,6 +408,10 @@ public class ExpressionInOCLImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -468,6 +476,9 @@ public class ExpressionInOCLImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
 				getExtension().clear();
 				return;
@@ -526,6 +537,8 @@ public class ExpressionInOCLImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:

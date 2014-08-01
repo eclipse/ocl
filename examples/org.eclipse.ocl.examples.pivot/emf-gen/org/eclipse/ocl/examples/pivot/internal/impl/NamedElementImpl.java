@@ -150,6 +150,8 @@ public abstract class NamedElementImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.NAMED_ELEMENT__COMMENT:
+				return getComment();
 			case PivotPackage.NAMED_ELEMENT__EXTENSION:
 				return getExtension();
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:
@@ -174,6 +176,10 @@ public abstract class NamedElementImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.NAMED_ELEMENT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.NAMED_ELEMENT__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -205,6 +211,9 @@ public abstract class NamedElementImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.NAMED_ELEMENT__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.NAMED_ELEMENT__EXTENSION:
 				getExtension().clear();
 				return;
@@ -233,6 +242,8 @@ public abstract class NamedElementImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.NAMED_ELEMENT__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.NAMED_ELEMENT__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:

@@ -176,8 +176,12 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE_MACHINE__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -238,6 +242,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE_MACHINE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_ANNOTATION:
@@ -290,6 +296,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE_MACHINE__COMMENT:
+				return getComment();
 			case PivotPackage.STATE_MACHINE__EXTENSION:
 				return getExtension();
 			case PivotPackage.STATE_MACHINE__OWNED_ANNOTATION:
@@ -362,6 +370,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE_MACHINE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.STATE_MACHINE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -476,6 +488,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE_MACHINE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.STATE_MACHINE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -574,6 +589,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		switch (featureID)
 		{
+			case PivotPackage.STATE_MACHINE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.STATE_MACHINE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_ANNOTATION:

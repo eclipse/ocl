@@ -165,6 +165,8 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_TYPE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_ANNOTATION:
@@ -205,6 +207,8 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_TYPE__COMMENT:
+				return getComment();
 			case PivotPackage.DYNAMIC_TYPE__EXTENSION:
 				return getExtension();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_ANNOTATION:
@@ -260,6 +264,10 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_TYPE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.DYNAMIC_TYPE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -341,6 +349,9 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_TYPE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.DYNAMIC_TYPE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -412,6 +423,8 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 	{
 		switch (featureID)
 		{
+			case PivotPackage.DYNAMIC_TYPE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_ANNOTATION:

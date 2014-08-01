@@ -246,8 +246,12 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_EXTENSION__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE_EXTENSION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE_EXTENSION__STEREOTYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -270,6 +274,8 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_EXTENSION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE_EXTENSION__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATION:
@@ -310,6 +316,8 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_EXTENSION__COMMENT:
+				return getComment();
 			case PivotPackage.TYPE_EXTENSION__EXTENSION:
 				return getExtension();
 			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATION:
@@ -338,6 +346,10 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_EXTENSION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.TYPE_EXTENSION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -373,6 +385,9 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_EXTENSION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.TYPE_EXTENSION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -405,6 +420,8 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
+			case PivotPackage.TYPE_EXTENSION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.TYPE_EXTENSION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATION:

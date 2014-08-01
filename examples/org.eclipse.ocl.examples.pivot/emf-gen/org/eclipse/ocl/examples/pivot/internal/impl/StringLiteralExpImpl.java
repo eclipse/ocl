@@ -110,6 +110,8 @@ public class StringLiteralExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.STRING_LITERAL_EXP__COMMENT:
+				return getComment();
 			case PivotPackage.STRING_LITERAL_EXP__EXTENSION:
 				return getExtension();
 			case PivotPackage.STRING_LITERAL_EXP__OWNED_ANNOTATION:
@@ -141,6 +143,10 @@ public class StringLiteralExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.STRING_LITERAL_EXP__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.STRING_LITERAL_EXP__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -181,6 +187,9 @@ public class StringLiteralExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.STRING_LITERAL_EXP__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.STRING_LITERAL_EXP__EXTENSION:
 				getExtension().clear();
 				return;
@@ -218,6 +227,8 @@ public class StringLiteralExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.STRING_LITERAL_EXP__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.STRING_LITERAL_EXP__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.STRING_LITERAL_EXP__OWNED_ANNOTATION:

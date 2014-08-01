@@ -163,8 +163,12 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONNECTION_POINT_REFERENCE__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CONNECTION_POINT_REFERENCE__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CONNECTION_POINT_REFERENCE__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -191,6 +195,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONNECTION_POINT_REFERENCE__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONNECTION_POINT_REFERENCE__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_ANNOTATION:
@@ -251,6 +257,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONNECTION_POINT_REFERENCE__COMMENT:
+				return getComment();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__EXTENSION:
 				return getExtension();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_ANNOTATION:
@@ -288,6 +296,10 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONNECTION_POINT_REFERENCE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -334,6 +346,9 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONNECTION_POINT_REFERENCE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -375,6 +390,8 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	{
 		switch (featureID)
 		{
+			case PivotPackage.CONNECTION_POINT_REFERENCE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_ANNOTATION:

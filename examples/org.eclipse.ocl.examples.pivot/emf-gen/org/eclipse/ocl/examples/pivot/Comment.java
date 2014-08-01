@@ -26,6 +26,7 @@ import java.util.List;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Comment#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Comment#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,8 +61,36 @@ public interface Comment
 	void setBody(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Element#getOwnedComment <em>Owned Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Element</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Element</em>' container reference.
+	 * @see #setOwningElement(Element)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getComment_OwningElement()
+	 * @see org.eclipse.ocl.examples.pivot.Element#getOwnedComment
+	 * @generated
+	 */
+	Element getOwningElement();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Comment#getOwningElement <em>Owning Element</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Element</em>' container reference.
+	 * @see #getOwningElement()
+	 * @generated
+	 */
+	void setOwningElement(Element value);
+
+	/**
 	 * Returns the value of the '<em><b>Annotated Element</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Element#getComment <em>Comment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -69,6 +98,7 @@ public interface Comment
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getComment_AnnotatedElement()
+	 * @see org.eclipse.ocl.examples.pivot.Element#getComment
 	 * @generated
 	 */
 	List<Element> getAnnotatedElement();

@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Element#getComment <em>Comment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Element#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Element#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Element#getOwnedComment <em>Owned Comment</em>}</li>
@@ -44,8 +45,26 @@ public interface Element
 		extends PivotObject, Visitable, org.eclipse.ocl.examples.domain.elements.DomainElement {
 
 	/**
+	 * Returns the value of the '<em><b>Comment</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Comment}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElement <em>Annotated Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Comment</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Comment</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement_Comment()
+	 * @see org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElement
+	 * @generated
+	 */
+	List<Comment> getComment();
+
+	/**
 	 * Returns the value of the '<em><b>Owned Comment</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Comment}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Comment#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -53,6 +72,7 @@ public interface Element
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Comment</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement_OwnedComment()
+	 * @see org.eclipse.ocl.examples.pivot.Comment#getOwningElement
 	 * @generated
 	 */
 	@NonNull List<Comment> getOwnedComment();

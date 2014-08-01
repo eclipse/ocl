@@ -304,8 +304,12 @@ public abstract class ValueSpecificationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.VALUE_SPECIFICATION__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.VALUE_SPECIFICATION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VALUE_SPECIFICATION__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -328,6 +332,8 @@ public abstract class ValueSpecificationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.VALUE_SPECIFICATION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.VALUE_SPECIFICATION__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:
@@ -367,6 +373,8 @@ public abstract class ValueSpecificationImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.VALUE_SPECIFICATION__COMMENT:
+				return getComment();
 			case PivotPackage.VALUE_SPECIFICATION__EXTENSION:
 				return getExtension();
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:
@@ -401,6 +409,10 @@ public abstract class ValueSpecificationImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.VALUE_SPECIFICATION__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.VALUE_SPECIFICATION__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -444,6 +456,9 @@ public abstract class ValueSpecificationImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.VALUE_SPECIFICATION__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.VALUE_SPECIFICATION__EXTENSION:
 				getExtension().clear();
 				return;
@@ -484,6 +499,8 @@ public abstract class ValueSpecificationImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.VALUE_SPECIFICATION__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.VALUE_SPECIFICATION__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_ANNOTATION:

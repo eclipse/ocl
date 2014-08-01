@@ -107,8 +107,12 @@ public class AssociationClassImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -149,6 +153,8 @@ public class AssociationClassImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
 				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
@@ -194,6 +200,8 @@ public class AssociationClassImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
+				return getComment();
 			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
 				return getExtension();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
@@ -257,6 +265,10 @@ public class AssociationClassImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -355,6 +367,9 @@ public class AssociationClassImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
 				getExtension().clear();
 				return;
@@ -440,6 +455,8 @@ public class AssociationClassImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:

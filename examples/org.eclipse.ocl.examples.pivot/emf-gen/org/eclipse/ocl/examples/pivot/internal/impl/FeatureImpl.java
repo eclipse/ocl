@@ -155,6 +155,8 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.FEATURE__COMMENT:
+				return getComment();
 			case PivotPackage.FEATURE__EXTENSION:
 				return getExtension();
 			case PivotPackage.FEATURE__OWNED_ANNOTATION:
@@ -189,6 +191,10 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.FEATURE__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
 			case PivotPackage.FEATURE__EXTENSION:
 				getExtension().clear();
 				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
@@ -233,6 +239,9 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.FEATURE__COMMENT:
+				getComment().clear();
+				return;
 			case PivotPackage.FEATURE__EXTENSION:
 				getExtension().clear();
 				return;
@@ -274,6 +283,8 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
+			case PivotPackage.FEATURE__COMMENT:
+				return comment != null && !comment.isEmpty();
 			case PivotPackage.FEATURE__EXTENSION:
 				return extension != null && !extension.isEmpty();
 			case PivotPackage.FEATURE__OWNED_ANNOTATION:
