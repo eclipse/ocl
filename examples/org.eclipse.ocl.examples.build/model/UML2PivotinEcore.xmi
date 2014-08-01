@@ -170,6 +170,12 @@
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove the duplicate child ownership">
     <oldProperties href="../model-gen/UML.uml#Association-navigableOwnedEnd"/>
   </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
+    <oldProperties href="../model-gen/UML.uml#Association-endType.1"/>
+    <oldProperties href="../model-gen/UML.uml#Association-isDerived"/>
+    <oldProperties href="../model-gen/UML.uml#Association-memberEnd"/>
+    <oldProperties href="../model-gen/UML.uml#Association-ownedEnd"/>
+  </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove derived association/properties">
     <oldProperties href="../model-gen/UML.uml#A_classifier_enumerationLiteral-enumerationLiteral"/>
   </mappings>
