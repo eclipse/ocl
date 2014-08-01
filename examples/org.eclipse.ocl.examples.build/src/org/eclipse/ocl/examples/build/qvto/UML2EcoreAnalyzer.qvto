@@ -186,7 +186,7 @@ helper getAllTypes(names : Set(String)) : Set(UML::Type) {
 
 mapping UML2EcoreControl::CreateType::createRenameType() : UML2EcoreMapping::CreateType
 {
-	log('createRenameType', self.newName);
+--	log('createRenameType', self.newName);
 	var myTypes : Set(UML::Type) := getAllTypes(self.oldTypes->asSet()) - explicitDeleteTypes;
 --	log('  myTypes', myTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	result.newName := self.newName;
@@ -292,18 +292,18 @@ mapping String::createCreateProperty(wantedProperties : Set(UML::Property)) : UM
 --	log('  createPropertyMappings', createPropertyMappings->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
 --	log('    namedProperties', createPropertyMappings.oldProperties->flatten()->iterate(n; acc : String = '' | acc + ' ' + n.name));
 --	log('    oldProperties2', oldProperties2->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
-	log('  createCreateProperty', self);
+--	log('  createCreateProperty', self);
 	var sameNamedProperties : Set(UML::Property) := wantedProperties->select(name = self);
-	log('    sameNamedProperties', sameNamedProperties->display());
+--	log('    sameNamedProperties', sameNamedProperties->display());
 	var explicitCreateProperties : Set(UML2EcoreControl::CreateProperty) := explicitCreatePropertyMappings->select(oldProperties->intersection(sameNamedProperties)->notEmpty());
-	log('    explicitCreateProperties', explicitCreateProperties->display());
+--	log('    explicitCreateProperties', explicitCreateProperties->display());
 	assert fatal (explicitCreateProperties->size() <= 1) with log("Duplicate CreateProperty ", explicitCreateProperties->display());
 	result.newName := if explicitCreateProperties->notEmpty() then explicitCreateProperties->any(true).newName else self endif;
 	result.oldProperties := sameNamedProperties;
 	var oppositeProperties1 : Set(UML::Property) := sameNamedProperties.getOtherEnd()->excluding(null)->asSet();
-	log('    oppositeProperties1', oppositeProperties1->display());
+--	log('    oppositeProperties1', oppositeProperties1->display());
 	var oppositeProperties2 : Set(UML::Property) := oppositeProperties1 - explicitDeleteProperties;
-	log('    oppositeProperties2', oppositeProperties2->display());
+--	log('    oppositeProperties2', oppositeProperties2->display());
 	assert warning (oppositeProperties2->size() <= 1) with log("Duplicate Opposite Property " + oppositeProperties2->display());
 	result.opposite := oppositeProperties2->any(true); --(s - duplicateUnnavigableOpposites)->any(true);
 }

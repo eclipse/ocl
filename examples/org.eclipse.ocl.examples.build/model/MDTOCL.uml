@@ -241,7 +241,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Redefinitions" name="MDT_OCL_Redefinitions">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Redefinitions-Constraint" name="Constraint">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Constraint-redefinedConstraint" name="redefinedConstraint" type="MDTOCL-MDT_OCL_Redefinitions-Constraint" association="MDTOCL-MDT_OCL_Redefinitions-A_constraint_redefinedConstraint">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Constraint-redefinedConstraint" name="redefinedConstraint" type="MDTOCL-MDT_OCL_Redefinitions-Constraint">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OD37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OEH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -261,12 +261,6 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OFX7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OFn7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Redefinitions-A_constraint_redefinedConstraint" name="A_constraint_redefinedConstraint" memberEnd="MDTOCL-MDT_OCL_Redefinitions-A_constraint_redefinedConstraint-constraint MDTOCL-MDT_OCL_Redefinitions-Constraint-redefinedConstraint">
-        <ownedEnd xmi:id="MDTOCL-MDT_OCL_Redefinitions-A_constraint_redefinedConstraint-constraint" name="constraint" type="MDTOCL-MDT_OCL_Redefinitions-Constraint" association="MDTOCL-MDT_OCL_Redefinitions-A_constraint_redefinedConstraint">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sS3-0seLEeO6DbPutIdGpw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sS3-08eLEeO6DbPutIdGpw" value="*"/>
-        </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation" name="A_operation_redefinedOperation" memberEnd="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation-operation MDTOCL-MDT_OCL_Redefinitions-Operation-redefinedOperation">
         <ownedEnd xmi:id="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation-operation" name="operation" type="MDTOCL-MDT_OCL_Redefinitions-Operation" association="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation">

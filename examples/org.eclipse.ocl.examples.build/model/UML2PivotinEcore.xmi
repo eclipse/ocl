@@ -180,6 +180,12 @@
     <oldProperties href="../model-gen/UML.uml#Operation-bodyCondition"/>
     <oldProperties href="../model-gen/UML.uml#A_bodyCondition_bodyContext-bodyContext"/>
   </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove replaced definition">
+    <oldProperties href="../model-gen/UML.uml#Constraint-context"/>
+    <oldProperties href="../model-gen/UML.uml#Constraint-specification"/>
+    <oldProperties href="../model-gen/UML.uml#A_constrainedElement_constraint-constraint"/>
+    <oldProperties href="../model-gen/UML.uml#A_specification_owningConstraint-owningConstraint"/>
+  </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove derived association/properties">
     <oldProperties href="../model-gen/UML.uml#A_classifier_enumerationLiteral-enumerationLiteral"/>
   </mappings>

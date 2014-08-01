@@ -322,78 +322,78 @@ property eReference2createProperty : Dict(Ecore::EReference, UML2Ecore::CreatePr
  */
 mapping inout Ecore::EClass::resolveEClass()
 {
-	log('resolveEClass', self.name);
+--	log('resolveEClass', self.name);
 	var createType : UML2Ecore::CreateType := eClassifier2createType->get(self);
 	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
-	log('  allOldTypes', allOldTypes->display());
+--	log('  allOldTypes', allOldTypes->display());
 	var oldProperSuperClassClosure : Set(UML::Type) :=
 		getProperSuperTypes(allOldTypes);
-	log('  oldProperSuperClassClosure', oldProperSuperClassClosure.name->asSet()->display());
+--	log('  oldProperSuperClassClosure', oldProperSuperClassClosure.name->asSet()->display());
 	var newSuperClassClosure : Set(UML::Type) :=
 		oldProperSuperClassClosure->reject(deleteTypeNames->includes(name))-createType.oldTypes;
 	var newProperSuperClassClosure : Set(UML::Type) :=
 		getAllTypes(newSuperClassClosure);
-	log('  newProperSuperClassClosure', newProperSuperClassClosure->display());
+--	log('  newProperSuperClassClosure', newProperSuperClassClosure->display());
 	var newSuperSuperClassClosure2 : Set(UML::Type) :=
 		getProperSuperTypes(newProperSuperClassClosure);
-	log('  newSuperSuperClassClosure', newSuperSuperClassClosure2->display());
+--	log('  newSuperSuperClassClosure', newSuperSuperClassClosure2->display());
 	var requiredSuperClasses : Set(UML::Type) :=
 		newProperSuperClassClosure - newSuperSuperClassClosure2;
-	log('  requiredSuperClasses', requiredSuperClasses->display());
+--	log('  requiredSuperClasses', requiredSuperClasses->display());
 	self.eSuperTypes := requiredSuperClasses->collect(sc | umlType2eClass->get(sc))->asSet()->sortedBy(sc | if sc.oclIsKindOf(UML::Class) then sc.name else '_'+sc.name endif);
 	var oldInheritedClasses : Set(UML::Type) := createType.oldTypes->union(oldProperSuperClassClosure);
-	log('  oldInheritedClasses', oldInheritedClasses->display());
+--	log('  oldInheritedClasses', oldInheritedClasses->display());
 	var newInheritedClasses : Set(UML::Type) := requiredSuperClasses->union(getProperSuperTypes(requiredSuperClasses));
-	log('  newInheritedClasses', newInheritedClasses->display());
+--	log('  newInheritedClasses', newInheritedClasses->display());
 	var mergedClasses : Set(UML::Type) := oldInheritedClasses - newInheritedClasses;
-	log('  mergedClasses', mergedClasses->display());
+--	log('  mergedClasses', mergedClasses->display());
 	var mergedCreateTypes : Set(UML2EcoreMapping::CreateType) :=
 		mergedClasses->collect(t | umlType2createType->get(t))->excluding(null)->asSet();
-	log('  mergedCreateTypes', mergedCreateTypes->display());
+--	log('  mergedCreateTypes', mergedCreateTypes->display());
 	var mergedDeleteTypes : Set(UML2EcoreMapping::DeleteType) :=
 		mergedClasses->collect(t | umlType2deleteType->get(t))->excluding(null)->asSet();
-	log('  mergedDeleteTypes', mergedDeleteTypes->display());
+--	log('  mergedDeleteTypes', mergedDeleteTypes->display());
 	var inheritedCreateTypes : Set(UML2EcoreMapping::CreateType) :=
 		newProperSuperClassClosure->collect(t | umlType2createType->get(t))->excluding(null)->asSet();
-	log('  inheritedCreateTypes', inheritedCreateTypes->display());
+--	log('  inheritedCreateTypes', inheritedCreateTypes->display());
 	var inheritedDeleteTypes : Set(UML2EcoreMapping::DeleteType) :=
 		oldProperSuperClassClosure->collect(t | umlType2deleteType->get(t))->excluding(null)->asSet();
-	log('  inheritedDeleteTypes', inheritedDeleteTypes->display());
+--	log('  inheritedDeleteTypes', inheritedDeleteTypes->display());
 
 	var propertyCreates  : Set(UML2EcoreMapping::CreateProperty) :=
 		mergedCreateTypes.propertyMappings->selectByKind(UML2EcoreMapping::CreateProperty)->asSet();
-	log('  propertyCreates', propertyCreates->display());
+--	log('  propertyCreates', propertyCreates->display());
 	var inheritedPropertyCreates1  : Set(UML2EcoreMapping::CreateProperty) :=
 		inheritedCreateTypes.propertyMappings->selectByKind(UML2EcoreMapping::CreateProperty)->asSet();
 	var inheritedPropertyCreates2  : Set(UML2EcoreMapping::CreateProperty) :=
 		inheritedDeleteTypes.propertyMappings->selectByKind(UML2EcoreMapping::CreateProperty)->asSet();
 	var inheritedPropertyCreates  : Set(UML2EcoreMapping::CreateProperty) :=
 		inheritedPropertyCreates1->union(inheritedPropertyCreates2);
-	log('  inheritedPropertyCreates', inheritedPropertyCreates->display());
+--	log('  inheritedPropertyCreates', inheritedPropertyCreates->display());
 	var inheritedPropertyMerges  : Set(UML2EcoreMapping::CreateProperty) :=
 		mergedDeleteTypes.propertyMappings->selectByKind(UML2EcoreMapping::CreateProperty)->asSet();
-	log('  inheritedPropertyMerges', inheritedPropertyMerges->display());
+--	log('  inheritedPropertyMerges', inheritedPropertyMerges->display());
 	var inheritedPropertyDeletes  : Set(UML2EcoreMapping::DeleteProperty) :=
 		inheritedDeleteTypes.propertyMappings->selectByKind(UML2EcoreMapping::DeleteProperty)->asSet();
-	log('  inheritedPropertyDeletes', inheritedPropertyDeletes->display());
+--	log('  inheritedPropertyDeletes', inheritedPropertyDeletes->display());
 	var propertyCreateNames  : Set(String) := 
 		propertyCreates.newName->asSet();
-	log('  propertyCreateNames', propertyCreateNames->display());
+--	log('  propertyCreateNames', propertyCreateNames->display());
 	var inheritedPropertyCreateNames  : Set(String) := 
 		inheritedPropertyCreates.newName->asSet();
-	log('  inheritedPropertyCreateNames', inheritedPropertyCreateNames->display());
+--	log('  inheritedPropertyCreateNames', inheritedPropertyCreateNames->display());
 	var inheritedPropertyMergeNames  : Set(String) := 
 		inheritedPropertyMerges.newName->asSet();
-	log('  inheritedPropertyMergeNames', inheritedPropertyMergeNames->display());
+--	log('  inheritedPropertyMergeNames', inheritedPropertyMergeNames->display());
 	var localPropertyCreateNames  : Set(String) :=
 		propertyCreateNames->union(inheritedPropertyMergeNames) - inheritedPropertyCreateNames;
-	log('  localPropertyCreateNames', localPropertyCreateNames->display());
+--	log('  localPropertyCreateNames', localPropertyCreateNames->display());
 	var localPropertyCreates  : Set(UML2EcoreMapping::CreateProperty) := 
 		propertyCreates->union(inheritedPropertyMerges)->select(localPropertyCreateNames->includes(newName));
-	log('  localPropertyCreates', localPropertyCreates->display());
+--	log('  localPropertyCreates', localPropertyCreates->display());
 	localPropertyCreateNames->sortedBy(n | n)->forEach(createName) {
 		var thePropertyCreates  : Set(UML2EcoreMapping::CreateProperty) := localPropertyCreates->select(newName = createName);
-		log('  thePropertyCreates', thePropertyCreates->display());
+--		log('  thePropertyCreates', thePropertyCreates->display());
 		var pc  : UML2EcoreMapping::CreateProperty := thePropertyCreates->any(true);
 		var oldProperty : Property := pc.oldProperties->any(true);
 		var oldType : UML::Type := oldProperty.type;

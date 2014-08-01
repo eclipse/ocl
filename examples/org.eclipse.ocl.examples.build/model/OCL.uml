@@ -59,21 +59,30 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Constraints" name="OCL_Constraints">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Constraint" name="Constraint">
-        <ownedAttribute xmi:id="_QcxJMBlREeSM9LreJtBwBg" name="specification" type="OCL-OCL_Constraints-ExpressionInOCL" aggregation="composite">
+        <ownedAttribute xmi:id="_QcxJMBlREeSM9LreJtBwBg" name="specification" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QcxJMRlREeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-ExpressionInOCL" name="ExpressionInOCL">
+        <generalization xmi:id="_0Q_2MBmAEeSM9LreJtBwBg" general="_foQQkBmAEeSM9LreJtBwBg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_foQQkBmAEeSM9LreJtBwBg" name="LanguageExpression" isAbstract="true">
+        <generalization xmi:id="_4NlAgBmAEeSM9LreJtBwBg" general="_w5OpIBmAEeSM9LreJtBwBg"/>
+        <ownedAttribute xmi:id="_7Qoh0BmAEeSM9LreJtBwBg" name="language" type="_Ap5skBmBEeSM9LreJtBwBg" isReadOnly="true" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__EktgBmAEeSM9LreJtBwBg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_GchLcBmBEeSM9LreJtBwBg" name="body" type="_Ap5skBmBEeSM9LreJtBwBg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GchLcRmBEeSM9LreJtBwBg"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Operation" name="Operation">
-        <ownedAttribute xmi:id="OCL-OCL_Constraints-Operation-precondition" name="precondition" type="OCL-OCL_Constraints-Constraint" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiDX7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiDn7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Constraints-Operation-postcondition" name="postcondition" type="OCL-OCL_Constraints-Constraint" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiD37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiEH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Constraints-Operation-bodyExpression" name="bodyExpression" type="OCL-OCL_Constraints-ExpressionInOCL" aggregation="composite">
+        <ownedAttribute xmi:id="OCL-OCL_Constraints-Operation-bodyExpression" name="bodyExpression" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiEX7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Property" name="Property">
+        <ownedAttribute xmi:id="OCL-OCL_Constraints-Property-defaultExpression" name="defaultExpression" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Type" name="Type" isAbstract="true">
@@ -82,12 +91,8 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiE37VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Property" name="Property">
-        <ownedAttribute xmi:id="OCL-OCL_Constraints-Property-defaultExpression" name="defaultExpression" type="OCL-OCL_Constraints-ExpressionInOCL" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFH7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-ExpressionInOCL" name="ExpressionInOCL"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_w5OpIBmAEeSM9LreJtBwBg" name="ValueSpecification"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Ap5skBmBEeSM9LreJtBwBg" name="String"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Expressions" name="OCL_Expressions">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-BooleanLiteralExp" name="BooleanLiteralExp">
