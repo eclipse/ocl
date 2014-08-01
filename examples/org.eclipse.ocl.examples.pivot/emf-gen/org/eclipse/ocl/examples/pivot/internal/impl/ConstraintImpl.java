@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.State;
@@ -52,6 +53,8 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#isCallable <em>Is Callable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getPostContext <em>Post Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getPreContext <em>Pre Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getRedefinedConstraint <em>Redefined Constraint</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getTransition <em>Transition</em>}</li>
@@ -314,6 +317,96 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Operation getPostContext()
+	{
+		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__POST_CONTEXT) return null;
+		return (Operation)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPostContext(Operation newPostContext, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newPostContext, PivotPackage.CONSTRAINT__POST_CONTEXT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPostContext(Operation newPostContext)
+	{
+		if (newPostContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__POST_CONTEXT && newPostContext != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newPostContext))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newPostContext != null)
+				msgs = ((InternalEObject)newPostContext).eInverseAdd(this, PivotPackage.OPERATION__POSTCONDITION, Operation.class, msgs);
+			msgs = basicSetPostContext(newPostContext, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__POST_CONTEXT, newPostContext, newPostContext));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operation getPreContext()
+	{
+		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__PRE_CONTEXT) return null;
+		return (Operation)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPreContext(Operation newPreContext, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newPreContext, PivotPackage.CONSTRAINT__PRE_CONTEXT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPreContext(Operation newPreContext)
+	{
+		if (newPreContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__PRE_CONTEXT && newPreContext != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newPreContext))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newPreContext != null)
+				msgs = ((InternalEObject)newPreContext).eInverseAdd(this, PivotPackage.OPERATION__PRECONDITION, Operation.class, msgs);
+			msgs = basicSetPreContext(newPreContext, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__PRE_CONTEXT, newPreContext, newPreContext));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<Constraint> getRedefinedConstraint()
 	{
 		if (redefinedConstraint == null)
@@ -365,6 +458,14 @@ public class ConstraintImpl
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningState((State)otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetPostContext((Operation)otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetPreContext((Operation)otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -397,6 +498,10 @@ public class ConstraintImpl
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.CONSTRAINT__OWNING_STATE:
 				return basicSetOwningState(null, msgs);
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				return basicSetPostContext(null, msgs);
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				return basicSetPreContext(null, msgs);
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return basicSetSpecification(null, msgs);
 			case PivotPackage.CONSTRAINT__TRANSITION:
@@ -419,6 +524,10 @@ public class ConstraintImpl
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 			case PivotPackage.CONSTRAINT__OWNING_STATE:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__STATE_INVARIANT, State.class, msgs);
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.OPERATION__POSTCONDITION, Operation.class, msgs);
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.OPERATION__PRECONDITION, Operation.class, msgs);
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TRANSITION__GUARD, Transition.class, msgs);
 		}
@@ -459,6 +568,10 @@ public class ConstraintImpl
 				return isCallable();
 			case PivotPackage.CONSTRAINT__OWNING_STATE:
 				return getOwningState();
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				return getPostContext();
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				return getPreContext();
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				return getRedefinedConstraint();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
@@ -517,6 +630,12 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNING_STATE:
 				setOwningState((State)newValue);
 				return;
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				setPostContext((Operation)newValue);
+				return;
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				setPreContext((Operation)newValue);
+				return;
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				getRedefinedConstraint().clear();
 				getRedefinedConstraint().addAll((Collection<? extends Constraint>)newValue);
@@ -573,6 +692,12 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNING_STATE:
 				setOwningState((State)null);
 				return;
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				setPostContext((Operation)null);
+				return;
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				setPreContext((Operation)null);
+				return;
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				getRedefinedConstraint().clear();
 				return;
@@ -619,6 +744,10 @@ public class ConstraintImpl
 				return ((eFlags & IS_CALLABLE_EFLAG) != 0) != IS_CALLABLE_EDEFAULT;
 			case PivotPackage.CONSTRAINT__OWNING_STATE:
 				return getOwningState() != null;
+			case PivotPackage.CONSTRAINT__POST_CONTEXT:
+				return getPostContext() != null;
+			case PivotPackage.CONSTRAINT__PRE_CONTEXT:
+				return getPreContext() != null;
 			case PivotPackage.CONSTRAINT__REDEFINED_CONSTRAINT:
 				return redefinedConstraint != null && !redefinedConstraint.isEmpty();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:

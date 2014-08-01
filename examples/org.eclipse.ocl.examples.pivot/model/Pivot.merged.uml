@@ -333,6 +333,12 @@
       <ownedAttribute xmi:id="Ppivot.TConstraint.Ptransition" name="transition" type="Ppivot.TTransition" association="Ppivot.A_guard_transition">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.Ptransition.lV"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TConstraint.PpostContext" name="postContext" type="Ppivot.TOperation" association="Ppivot.A_postcondition_postContext">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.PpostContext.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TConstraint.PpreContext" name="preContext" type="Ppivot.TOperation" association="Ppivot.A_precondition_preContext">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.PpreContext.lV"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TConstraint.PisCallable" name="isCallable" type="Ppivot.TBoolean">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TConstraint.PisCallable.dlV" value="false"/>
       </ownedAttribute>
@@ -754,11 +760,12 @@
       <ownedAttribute xmi:id="Ppivot.TOperation.PowningType" name="owningType" type="Ppivot.TType" association="Ppivot.A_ownedOperation_owningType">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PowningType.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.Pprecondition" name="precondition" type="Ppivot.TConstraint" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TOperation.Pprecondition" name="precondition" type="Ppivot.TConstraint" aggregation="composite" association="Ppivot.A_precondition_preContext">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.Pprecondition.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOperation.Pprecondition.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.Ppostcondition" name="postcondition" type="Ppivot.TConstraint" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TOperation.Ppostcondition" name="postcondition" type="Ppivot.TConstraint" aggregation="composite"
+          association="Ppivot.A_postcondition_postContext">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.Ppostcondition.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOperation.Ppostcondition.uV" value="*"/>
       </ownedAttribute>
@@ -1911,6 +1918,8 @@
         memberEnd="Ppivot.TTemplateBinding.PparameterSubstitution Ppivot.TTemplateParameterSubstitution.PtemplateBinding"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameteredElement_templateParameter" name="A_parameteredElement_templateParameter"
         memberEnd="Ppivot.TTemplateParameter.PparameteredElement Ppivot.TParameterableElement.PtemplateParameter"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_postcondition_postContext" name="A_postcondition_postContext" memberEnd="Ppivot.TOperation.Ppostcondition Ppivot.TConstraint.PpostContext"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_precondition_preContext" name="A_precondition_preContext" memberEnd="Ppivot.TOperation.Pprecondition Ppivot.TConstraint.PpreContext"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_property_redefinedProperty" name="A_property_redefinedProperty" memberEnd="Ppivot.A_property_redefinedProperty.Pproperty Ppivot.TProperty.PredefinedProperty">
       <ownedEnd xmi:id="Ppivot.A_property_redefinedProperty.Pproperty" name="property" type="Ppivot.TProperty" association="Ppivot.A_property_redefinedProperty">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_property_redefinedProperty.Pproperty.lV"/>

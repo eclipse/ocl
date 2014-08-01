@@ -32,6 +32,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getPostContext <em>Post Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getPreContext <em>Pre Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getRedefinedConstraint <em>Redefined Constraint</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getTransition <em>Transition</em>}</li>
@@ -175,6 +177,60 @@ public interface Constraint
 	 * @generated
 	 */
 	void setOwningState(State value);
+
+	/**
+	 * Returns the value of the '<em><b>Post Context</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getPostcondition <em>Postcondition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Post Context</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Post Context</em>' container reference.
+	 * @see #setPostContext(Operation)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_PostContext()
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getPostcondition
+	 * @generated
+	 */
+	Operation getPostContext();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getPostContext <em>Post Context</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Post Context</em>' container reference.
+	 * @see #getPostContext()
+	 * @generated
+	 */
+	void setPostContext(Operation value);
+
+	/**
+	 * Returns the value of the '<em><b>Pre Context</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getPrecondition <em>Precondition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pre Context</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pre Context</em>' container reference.
+	 * @see #setPreContext(Operation)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_PreContext()
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getPrecondition
+	 * @generated
+	 */
+	Operation getPreContext();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getPreContext <em>Pre Context</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pre Context</em>' container reference.
+	 * @see #getPreContext()
+	 * @generated
+	 */
+	void setPreContext(Operation value);
 
 	/**
 	 * Returns the value of the '<em><b>Redefined Constraint</b></em>' reference list.

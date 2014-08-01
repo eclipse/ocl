@@ -17,8 +17,6 @@ OpaqueExpression extends (abstract)LanguageExpression extends ValueSpecification
 
 --------------------------------
 
-AssociationClass
-    delete isDerived,endType,memberEnd,ownedEnd
 Behavior
     delete isReentrant,ownedParameter,postcondition,precondition,redefinedBehavior
     add transition
@@ -32,8 +30,6 @@ Constraint
     delete specification
 Element
     add constraint
-Enumeration
-    add enumerationLiteral
 
 
     

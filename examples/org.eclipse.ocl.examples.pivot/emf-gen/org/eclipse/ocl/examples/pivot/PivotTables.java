@@ -2067,12 +2067,12 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Constraint__context = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__CONTEXT, Types._Constraint, 1);
 		public static final @NonNull ExecutorProperty _Constraint__isCallable = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__IS_CALLABLE, Types._Constraint, 2);
 		public static final @NonNull ExecutorProperty _Constraint__owningState = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__OWNING_STATE, Types._Constraint, 3);
-		public static final @NonNull ExecutorProperty _Constraint__redefinedConstraint = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINT, Types._Constraint, 4);
-		public static final @NonNull ExecutorProperty _Constraint__specification = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, Types._Constraint, 5);
-		public static final @NonNull ExecutorProperty _Constraint__transition = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__TRANSITION, Types._Constraint, 6);
-		public static final @NonNull ExecutorProperty _Constraint__Namespace__ownedRule = new ExecutorPropertyWithImplementation("Namespace", Types._Constraint, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE));
-		public static final @NonNull ExecutorProperty _Constraint__Operation__postcondition = new ExecutorPropertyWithImplementation("Operation", Types._Constraint, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__POSTCONDITION));
-		public static final @NonNull ExecutorProperty _Constraint__Operation__precondition = new ExecutorPropertyWithImplementation("Operation", Types._Constraint, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__PRECONDITION));
+		public static final @NonNull ExecutorProperty _Constraint__postContext = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__POST_CONTEXT, Types._Constraint, 4);
+		public static final @NonNull ExecutorProperty _Constraint__preContext = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__PRE_CONTEXT, Types._Constraint, 5);
+		public static final @NonNull ExecutorProperty _Constraint__redefinedConstraint = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINT, Types._Constraint, 6);
+		public static final @NonNull ExecutorProperty _Constraint__specification = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, Types._Constraint, 7);
+		public static final @NonNull ExecutorProperty _Constraint__transition = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__TRANSITION, Types._Constraint, 8);
+		public static final @NonNull ExecutorProperty _Constraint__Namespace__ownedRule = new ExecutorPropertyWithImplementation("Namespace", Types._Constraint, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE));
 		public static final @NonNull ExecutorProperty _Constraint__Type__ownedInvariant = new ExecutorPropertyWithImplementation("Type", Types._Constraint, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE__OWNED_INVARIANT));
 		public static final @NonNull ExecutorProperty _Constraint__constraint__redefinedConstraint = new ExecutorPropertyWithImplementation("constraint", Types._Constraint, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINT));
 
@@ -11113,6 +11113,8 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Constraint__owningState,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
+			PivotTables.Properties._Constraint__postContext,
+			PivotTables.Properties._Constraint__preContext,
 			PivotTables.Properties._Constraint__redefinedConstraint,
 			PivotTables.Properties._Constraint__specification,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11122,8 +11124,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
 			PivotTables.Properties._Constraint__Namespace__ownedRule,
-			PivotTables.Properties._Constraint__Operation__postcondition,
-			PivotTables.Properties._Constraint__Operation__precondition,
 			PivotTables.Properties._Constraint__Type__ownedInvariant,
 			PivotTables.Properties._Constraint__constraint__redefinedConstraint,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,

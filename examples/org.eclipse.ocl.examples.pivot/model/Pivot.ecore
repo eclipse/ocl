@@ -329,6 +329,8 @@
         derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningState" eType="#//State" eOpposite="#//State/stateInvariant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postContext" eType="#//Operation" eOpposite="#//Operation/postcondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preContext" eType="#//Operation" eOpposite="#//Operation/precondition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedConstraint" ordered="false" upperBound="-1" eType="#//Constraint">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="constraint"/>
@@ -1135,9 +1137,11 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//Type" eOpposite="#//Type/ownedOperation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="postcondition" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postcondition" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"
+        eOpposite="#//Constraint/postContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="#//Precedence"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="precondition" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="precondition" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"
+        eOpposite="#//Constraint/preContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="raisedException" ordered="false" upperBound="-1" eType="#//Type">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="operation"/>

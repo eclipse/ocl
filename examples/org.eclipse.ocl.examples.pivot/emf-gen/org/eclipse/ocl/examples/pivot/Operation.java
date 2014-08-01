@@ -150,6 +150,7 @@ public interface Operation
 	/**
 	 * Returns the value of the '<em><b>Precondition</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Constraint}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Constraint#getPreContext <em>Pre Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Precondition</em>' containment reference list isn't clear,
@@ -158,6 +159,7 @@ public interface Operation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Precondition</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_Precondition()
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getPreContext
 	 * @generated
 	 */
 	@NonNull List<Constraint> getPrecondition();
@@ -165,6 +167,7 @@ public interface Operation
 	/**
 	 * Returns the value of the '<em><b>Postcondition</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Constraint}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Constraint#getPostContext <em>Post Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Postcondition</em>' containment reference list isn't clear,
@@ -173,6 +176,7 @@ public interface Operation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Postcondition</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_Postcondition()
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getPostContext
 	 * @generated
 	 */
 	@NonNull List<Constraint> getPostcondition();

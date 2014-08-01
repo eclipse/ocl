@@ -6384,13 +6384,31 @@ public interface PivotPackage
 	int CONSTRAINT__OWNING_STATE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Post Context</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__POST_CONTEXT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Pre Context</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__PRE_CONTEXT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Redefined Constraint</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__REDEFINED_CONSTRAINT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+	int CONSTRAINT__REDEFINED_CONSTRAINT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
@@ -6399,7 +6417,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
+	int CONSTRAINT__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Transition</b></em>' container reference.
@@ -6408,7 +6426,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__TRANSITION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
+	int CONSTRAINT__TRANSITION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -6417,7 +6435,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
+	int CONSTRAINT_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -27404,6 +27422,28 @@ public interface PivotPackage
 	EReference getConstraint_OwningState();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Constraint#getPostContext <em>Post Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Post Context</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getPostContext()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_PostContext();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Constraint#getPreContext <em>Pre Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Pre Context</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getPreContext()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_PreContext();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Constraint#getRedefinedConstraint <em>Redefined Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -31419,6 +31459,22 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference CONSTRAINT__OWNING_STATE = eINSTANCE.getConstraint_OwningState();
+
+		/**
+		 * The meta object literal for the '<em><b>Post Context</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__POST_CONTEXT = eINSTANCE.getConstraint_PostContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Pre Context</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__PRE_CONTEXT = eINSTANCE.getConstraint_PreContext();
 
 		/**
 		 * The meta object literal for the '<em><b>Redefined Constraint</b></em>' reference list feature.

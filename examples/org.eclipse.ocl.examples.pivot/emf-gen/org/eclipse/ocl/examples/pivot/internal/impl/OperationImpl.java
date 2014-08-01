@@ -655,7 +655,7 @@ public class OperationImpl
 	{
 		if (precondition == null)
 		{
-			precondition = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__PRECONDITION);
+			precondition = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__PRECONDITION, PivotPackage.CONSTRAINT__PRE_CONTEXT);
 		}
 		return precondition;
 	}
@@ -670,7 +670,7 @@ public class OperationImpl
 	{
 		if (postcondition == null)
 		{
-			postcondition = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__POSTCONDITION);
+			postcondition = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__POSTCONDITION, PivotPackage.CONSTRAINT__POST_CONTEXT);
 		}
 		return postcondition;
 	}
@@ -1185,6 +1185,10 @@ public class OperationImpl
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningType((Type)otherEnd, msgs);
+			case PivotPackage.OPERATION__POSTCONDITION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPostcondition()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__PRECONDITION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPrecondition()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}

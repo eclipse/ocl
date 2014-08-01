@@ -1025,6 +1025,12 @@ other classifiers.</body>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XoRPRX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_memJABlOEeSM9LreJtBwBg" name="Element" isAbstract="true">
+          <ownedAttribute xmi:id="Core-Abstractions-Constraints-A_constrainedElement_constraint-constraint" name="constraint" type="Core-Abstractions-Constraints-Constraint" association="Core-Abstractions-Constraints-A_constrainedElement_constraint">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XoRPTn7VEeOu79LxSz8Ylw"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XoRPT37VEeOu79LxSz8Ylw" value="*"/>
+          </ownedAttribute>
+        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="Core-Abstractions-Constraints-Namespace" name="Namespace" isAbstract="true">
           <ownedComment xmi:id="Core-Abstractions-Constraints-Namespace-_ownedComment.0" annotatedElement="Core-Abstractions-Constraints-Namespace">
             <body>A namespace can own constraints. A constraint associated with a namespace may either apply to the namespace itself, or it may apply to elements in the namespace.</body>
@@ -1070,12 +1076,7 @@ other classifiers.</body>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XoRPTX7VEeOu79LxSz8Ylw"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Abstractions-Constraints-A_constrainedElement_constraint" name="A_constrainedElement_constraint" memberEnd="Core-Abstractions-Constraints-Constraint-constrainedElement Core-Abstractions-Constraints-A_constrainedElement_constraint-constraint">
-          <ownedEnd xmi:id="Core-Abstractions-Constraints-A_constrainedElement_constraint-constraint" name="constraint" type="Core-Abstractions-Constraints-Constraint" association="Core-Abstractions-Constraints-A_constrainedElement_constraint">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XoRPTn7VEeOu79LxSz8Ylw"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XoRPT37VEeOu79LxSz8Ylw" value="*"/>
-          </ownedEnd>
-        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Abstractions-Constraints-A_constrainedElement_constraint" name="A_constrainedElement_constraint" memberEnd="Core-Abstractions-Constraints-Constraint-constrainedElement Core-Abstractions-Constraints-A_constrainedElement_constraint-constraint"/>
         <packagedElement xmi:type="uml:Association" xmi:id="Core-Abstractions-Constraints-A_ownedMember_namespace" name="A_ownedMember_namespace" memberEnd="Core-Abstractions-Constraints-Namespace-ownedMember Core-Abstractions-Constraints-NamedElement-namespace"/>
         <packagedElement xmi:type="uml:Association" xmi:id="Core-Abstractions-Constraints-A_member_namespace" name="A_member_namespace" memberEnd="Core-Abstractions-Constraints-Namespace-member Core-Abstractions-Constraints-A_member_namespace-namespace">
           <ownedEnd xmi:id="Core-Abstractions-Constraints-A_member_namespace-namespace" name="namespace" type="Core-Abstractions-Constraints-Namespace" association="Core-Abstractions-Constraints-A_member_namespace">

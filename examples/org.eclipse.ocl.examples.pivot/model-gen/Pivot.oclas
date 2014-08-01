@@ -248,6 +248,10 @@
           type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.owningState" isRequired="false" name="owningState"
           opposite="#p.pivot.State.stateInvariant" type="#T.pivot.State"/>
+      <ownedAttribute xmi:id="p.pivot.Constraint.postContext" isRequired="false" name="postContext"
+          opposite="#p.pivot.Operation.postcondition" type="#T.pivot.Operation"/>
+      <ownedAttribute xmi:id="p.pivot.Constraint.preContext" isRequired="false" name="preContext"
+          opposite="#p.pivot.Operation.precondition" type="#T.pivot.Operation"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.redefinedConstraint" name="redefinedConstraint"
           opposite="#p.pivot.Constraint.constraint" type="#//@nestedPackage.1/@ownedType.136"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.specification" isComposite="true"
@@ -259,10 +263,6 @@
           opposite="#p.pivot.Transition.guard" type="#T.pivot.Transition"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.Namespace" implicit="true" isRequired="false"
           name="Namespace" opposite="#p.pivot.Namespace.ownedRule" type="#T.pivot.Namespace"/>
-      <ownedAttribute implicit="true" isRequired="false" name="Operation" opposite="#p.pivot.Operation.postcondition"
-          type="#T.pivot.Operation"/>
-      <ownedAttribute implicit="true" isRequired="false" name="Operation" opposite="#p.pivot.Operation.precondition"
-          type="#T.pivot.Operation"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.Type" implicit="true" isRequired="false"
           name="Type" opposite="#p.pivot.Type.ownedInvariant" type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.constraint" implicit="true" isRequired="false"
@@ -1087,12 +1087,11 @@ endif
       <ownedAttribute xmi:id="p.pivot.Operation.owningType" isRequired="false" name="owningType"
           opposite="#p.pivot.Type.ownedOperation" type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.Operation.postcondition" isComposite="true"
-          name="postcondition" opposite="#//@nestedPackage.0/@ownedType.24/@ownedAttribute.8"
-          type="#//@nestedPackage.1/@ownedType.136"/>
+          name="postcondition" opposite="#p.pivot.Constraint.postContext" type="#//@nestedPackage.1/@ownedType.136"/>
       <ownedAttribute xmi:id="p.pivot.Operation.precedence" isRequired="false" name="precedence"
           opposite="#p.pivot.Precedence.Operation" type="#T.pivot.Precedence"/>
       <ownedAttribute xmi:id="p.pivot.Operation.precondition" isComposite="true" name="precondition"
-          opposite="#//@nestedPackage.0/@ownedType.24/@ownedAttribute.9" type="#//@nestedPackage.1/@ownedType.136"/>
+          opposite="#p.pivot.Constraint.preContext" type="#//@nestedPackage.1/@ownedType.136"/>
       <ownedAttribute xmi:id="p.pivot.Operation.raisedException" name="raisedException"
           opposite="#p.pivot.Type.operation" type="#//@nestedPackage.1/@ownedType.157">
         <ownedComment body="The exceptions that are declared as possible during an invocation of the operation."/>

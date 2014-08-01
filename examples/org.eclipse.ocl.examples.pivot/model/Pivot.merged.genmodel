@@ -349,6 +349,12 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Constraint/transition"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Constraint/preContext"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Constraint/postContext"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Constraint/context"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
