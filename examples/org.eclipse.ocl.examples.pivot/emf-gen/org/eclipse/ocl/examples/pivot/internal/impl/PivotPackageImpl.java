@@ -6262,15 +6262,15 @@ public class PivotPackageImpl
 		constructorPartEClass.getESuperTypes().add(this.getTypedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
 		detailEClass.getESuperTypes().add(this.getNamedElement());
-		dynamicBehaviorEClass.getESuperTypes().add(this.getBehavior());
 		dynamicBehaviorEClass.getESuperTypes().add(this.getDynamicType());
+		dynamicBehaviorEClass.getESuperTypes().add(this.getBehavior());
 		dynamicElementEClass.getESuperTypes().add(this.getElement());
 		dynamicPropertyEClass.getESuperTypes().add(this.getElement());
-		dynamicTypeEClass.getESuperTypes().add(this.getType());
+		dynamicTypeEClass.getESuperTypes().add(this.getClass_());
 		dynamicTypeEClass.getESuperTypes().add(this.getDynamicElement());
 		dynamicValueSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
 		elementEClass.getESuperTypes().add(this.getVisitable());
-		elementExtensionEClass.getESuperTypes().add(this.getType());
+		elementExtensionEClass.getESuperTypes().add(this.getClass_());
 		enumLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		enumerationEClass.getESuperTypes().add(this.getDataType());
 		enumerationLiteralEClass.getESuperTypes().add(this.getInstanceSpecification());

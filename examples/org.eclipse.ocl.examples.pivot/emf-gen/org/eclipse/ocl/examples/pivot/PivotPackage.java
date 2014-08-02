@@ -6849,7 +6849,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__COMMENT = BEHAVIOR__COMMENT;
+	int DYNAMIC_TYPE__COMMENT = CLASS__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -6858,7 +6858,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__EXTENSION = BEHAVIOR__EXTENSION;
+	int DYNAMIC_TYPE__EXTENSION = CLASS__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -6867,7 +6867,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_ANNOTATION = BEHAVIOR__OWNED_ANNOTATION;
+	int DYNAMIC_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -6876,7 +6876,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_COMMENT = BEHAVIOR__OWNED_COMMENT;
+	int DYNAMIC_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -6885,7 +6885,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__IS_STATIC = BEHAVIOR__IS_STATIC;
+	int DYNAMIC_TYPE__IS_STATIC = CLASS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6894,7 +6894,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__NAME = BEHAVIOR__NAME;
+	int DYNAMIC_TYPE__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -6903,7 +6903,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE = BEHAVIOR__OWNED_TEMPLATE_SIGNATURE;
+	int DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -6912,7 +6912,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__TEMPLATE_BINDING = BEHAVIOR__TEMPLATE_BINDING;
+	int DYNAMIC_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -6921,7 +6921,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = BEHAVIOR__UNSPECIALIZED_ELEMENT;
+	int DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -6930,7 +6930,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER = BEHAVIOR__OWNING_TEMPLATE_PARAMETER;
+	int DYNAMIC_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -6939,7 +6939,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__TEMPLATE_PARAMETER = BEHAVIOR__TEMPLATE_PARAMETER;
+	int DYNAMIC_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
@@ -6948,7 +6948,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__EXTENDED_BYS = BEHAVIOR__EXTENDED_BYS;
+	int DYNAMIC_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -6957,7 +6957,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME = BEHAVIOR__INSTANCE_CLASS_NAME;
+	int DYNAMIC_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -6966,7 +6966,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_ATTRIBUTE = BEHAVIOR__OWNED_ATTRIBUTE;
+	int DYNAMIC_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
@@ -6975,7 +6975,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_INVARIANT = BEHAVIOR__OWNED_INVARIANT;
+	int DYNAMIC_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -6984,7 +6984,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_OPERATION = BEHAVIOR__OWNED_OPERATION;
+	int DYNAMIC_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -6993,7 +6993,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__PACKAGE = BEHAVIOR__PACKAGE;
+	int DYNAMIC_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
@@ -7002,7 +7002,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__SUPER_CLASS = BEHAVIOR__SUPER_CLASS;
+	int DYNAMIC_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -7011,7 +7011,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_RULE = BEHAVIOR__OWNED_RULE;
+	int DYNAMIC_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -7020,7 +7020,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__IS_ABSTRACT = BEHAVIOR__IS_ABSTRACT;
+	int DYNAMIC_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
@@ -7029,7 +7029,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__IS_ACTIVE = BEHAVIOR__IS_ACTIVE;
+	int DYNAMIC_TYPE__IS_ACTIVE = CLASS__IS_ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
@@ -7038,7 +7038,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__IS_INTERFACE = BEHAVIOR__IS_INTERFACE;
+	int DYNAMIC_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
 
 	/**
 	 * The feature id for the '<em><b>Nested Type</b></em>' containment reference list.
@@ -7047,7 +7047,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__NESTED_TYPE = BEHAVIOR__NESTED_TYPE;
+	int DYNAMIC_TYPE__NESTED_TYPE = CLASS__NESTED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
@@ -7056,16 +7056,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR = BEHAVIOR__OWNED_BEHAVIOR;
-
-	/**
-	 * The feature id for the '<em><b>Transition</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__TRANSITION = BEHAVIOR__TRANSITION;
+	int DYNAMIC_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
 	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
@@ -7074,7 +7065,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__META_TYPE = BEHAVIOR_FEATURE_COUNT + 0;
+	int DYNAMIC_TYPE__META_TYPE = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Property</b></em>' containment reference list.
@@ -7083,16 +7074,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_PROPERTY = BEHAVIOR_FEATURE_COUNT + 1;
+	int DYNAMIC_TYPE__OWNED_PROPERTY = CLASS_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Dynamic Behavior</em>' class.
+	 * The number of structural features of the '<em>Dynamic Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 2;
+	int DYNAMIC_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -7101,7 +7092,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___ALL_OWNED_ELEMENTS = BEHAVIOR___ALL_OWNED_ELEMENTS;
+	int DYNAMIC_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -7110,7 +7101,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___GET_VALUE__TYPE_STRING = BEHAVIOR___GET_VALUE__TYPE_STRING;
+	int DYNAMIC_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Template</em>' operation.
@@ -7119,7 +7110,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___IS_TEMPLATE = BEHAVIOR___IS_TEMPLATE;
+	int DYNAMIC_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -7128,7 +7119,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___PARAMETERABLE_ELEMENTS = BEHAVIOR___PARAMETERABLE_ELEMENTS;
+	int DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -7137,7 +7128,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -7146,7 +7137,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = BEHAVIOR___IS_TEMPLATE_PARAMETER;
+	int DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -7155,7 +7146,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+	int DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -7164,7 +7155,340 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE = BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+
+	/**
+	 * The number of operations of the '<em>Dynamic Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__COMMENT = DYNAMIC_TYPE__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__EXTENSION = DYNAMIC_TYPE__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_ANNOTATION = DYNAMIC_TYPE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_COMMENT = DYNAMIC_TYPE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_STATIC = DYNAMIC_TYPE__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__NAME = DYNAMIC_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE = DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__TEMPLATE_BINDING = DYNAMIC_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER = DYNAMIC_TYPE__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__TEMPLATE_PARAMETER = DYNAMIC_TYPE__TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__EXTENDED_BYS = DYNAMIC_TYPE__EXTENDED_BYS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME = DYNAMIC_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_ATTRIBUTE = DYNAMIC_TYPE__OWNED_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_INVARIANT = DYNAMIC_TYPE__OWNED_INVARIANT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_OPERATION = DYNAMIC_TYPE__OWNED_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__PACKAGE = DYNAMIC_TYPE__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__SUPER_CLASS = DYNAMIC_TYPE__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_RULE = DYNAMIC_TYPE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_ABSTRACT = DYNAMIC_TYPE__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_ACTIVE = DYNAMIC_TYPE__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_INTERFACE = DYNAMIC_TYPE__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__NESTED_TYPE = DYNAMIC_TYPE__NESTED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR = DYNAMIC_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__META_TYPE = DYNAMIC_TYPE__META_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_PROPERTY = DYNAMIC_TYPE__OWNED_PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Transition</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__TRANSITION = DYNAMIC_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Dynamic Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR_FEATURE_COUNT = DYNAMIC_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___ALL_OWNED_ELEMENTS = DYNAMIC_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___GET_VALUE__TYPE_STRING = DYNAMIC_TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___IS_TEMPLATE = DYNAMIC_TYPE___IS_TEMPLATE;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___PARAMETERABLE_ELEMENTS = DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Specialize In</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
 	 * The number of operations of the '<em>Dynamic Behavior</em>' class.
@@ -7173,7 +7497,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR_OPERATION_COUNT = BEHAVIOR_OPERATION_COUNT + 0;
+	int DYNAMIC_BEHAVIOR_OPERATION_COUNT = DYNAMIC_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -7345,276 +7669,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_PROPERTY_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__COMMENT = TYPE__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__EXTENSION = TYPE__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_ANNOTATION = TYPE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_COMMENT = TYPE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__IS_STATIC = TYPE__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__NAME = TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE = TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__TEMPLATE_BINDING = TYPE__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT = TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNING_TEMPLATE_PARAMETER = TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__TEMPLATE_PARAMETER = TYPE__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__EXTENDED_BYS = TYPE__EXTENDED_BYS;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_ATTRIBUTE = TYPE__OWNED_ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_INVARIANT = TYPE__OWNED_INVARIANT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_OPERATION = TYPE__OWNED_OPERATION;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__PACKAGE = TYPE__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__SUPER_CLASS = TYPE__SUPER_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__META_TYPE = TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_PROPERTY = TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Dynamic Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___IS_TEMPLATE = TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS = TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Specialize In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The number of operations of the '<em>Dynamic Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -8019,7 +8073,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__COMMENT = TYPE__COMMENT;
+	int ELEMENT_EXTENSION__COMMENT = CLASS__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -8028,7 +8082,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__EXTENSION = TYPE__EXTENSION;
+	int ELEMENT_EXTENSION__EXTENSION = CLASS__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -8037,7 +8091,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_ANNOTATION = TYPE__OWNED_ANNOTATION;
+	int ELEMENT_EXTENSION__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -8046,7 +8100,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_COMMENT = TYPE__OWNED_COMMENT;
+	int ELEMENT_EXTENSION__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -8055,7 +8109,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__IS_STATIC = TYPE__IS_STATIC;
+	int ELEMENT_EXTENSION__IS_STATIC = CLASS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8064,7 +8118,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__NAME = TYPE__NAME;
+	int ELEMENT_EXTENSION__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -8073,7 +8127,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE = TYPE__OWNED_TEMPLATE_SIGNATURE;
+	int ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -8082,7 +8136,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__TEMPLATE_BINDING = TYPE__TEMPLATE_BINDING;
+	int ELEMENT_EXTENSION__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -8091,7 +8145,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT = TYPE__UNSPECIALIZED_ELEMENT;
+	int ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -8100,7 +8154,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER = TYPE__OWNING_TEMPLATE_PARAMETER;
+	int ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -8109,7 +8163,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__TEMPLATE_PARAMETER = TYPE__TEMPLATE_PARAMETER;
+	int ELEMENT_EXTENSION__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
@@ -8118,7 +8172,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__EXTENDED_BYS = TYPE__EXTENDED_BYS;
+	int ELEMENT_EXTENSION__EXTENDED_BYS = CLASS__EXTENDED_BYS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -8127,7 +8181,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+	int ELEMENT_EXTENSION__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -8136,7 +8190,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_ATTRIBUTE = TYPE__OWNED_ATTRIBUTE;
+	int ELEMENT_EXTENSION__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
@@ -8145,7 +8199,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_INVARIANT = TYPE__OWNED_INVARIANT;
+	int ELEMENT_EXTENSION__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -8154,7 +8208,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_OPERATION = TYPE__OWNED_OPERATION;
+	int ELEMENT_EXTENSION__OWNED_OPERATION = CLASS__OWNED_OPERATION;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -8163,7 +8217,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__PACKAGE = TYPE__PACKAGE;
+	int ELEMENT_EXTENSION__PACKAGE = CLASS__PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
@@ -8172,7 +8226,61 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__SUPER_CLASS = TYPE__SUPER_CLASS;
+	int ELEMENT_EXTENSION__SUPER_CLASS = CLASS__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_RULE = CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__IS_ACTIVE = CLASS__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__IS_INTERFACE = CLASS__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__NESTED_TYPE = CLASS__NESTED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
 	 * The feature id for the '<em><b>Base</b></em>' container reference.
@@ -8181,7 +8289,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__BASE = TYPE_FEATURE_COUNT + 0;
+	int ELEMENT_EXTENSION__BASE = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Applied</b></em>' attribute.
@@ -8190,7 +8298,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__IS_APPLIED = TYPE_FEATURE_COUNT + 1;
+	int ELEMENT_EXTENSION__IS_APPLIED = CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -8199,7 +8307,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__IS_REQUIRED = TYPE_FEATURE_COUNT + 2;
+	int ELEMENT_EXTENSION__IS_REQUIRED = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' reference.
@@ -8208,7 +8316,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__STEREOTYPE = TYPE_FEATURE_COUNT + 3;
+	int ELEMENT_EXTENSION__STEREOTYPE = CLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Element Extension</em>' class.
@@ -8217,7 +8325,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION_FEATURE_COUNT = TYPE_FEATURE_COUNT + 4;
+	int ELEMENT_EXTENSION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -8226,7 +8334,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
+	int ELEMENT_EXTENSION___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -8235,7 +8343,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
+	int ELEMENT_EXTENSION___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Template</em>' operation.
@@ -8244,7 +8352,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___IS_TEMPLATE = TYPE___IS_TEMPLATE;
+	int ELEMENT_EXTENSION___IS_TEMPLATE = CLASS___IS_TEMPLATE;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -8253,7 +8361,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___PARAMETERABLE_ELEMENTS = TYPE___PARAMETERABLE_ELEMENTS;
+	int ELEMENT_EXTENSION___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -8262,7 +8370,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int ELEMENT_EXTENSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -8271,7 +8379,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+	int ELEMENT_EXTENSION___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -8280,7 +8388,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+	int ELEMENT_EXTENSION___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -8289,7 +8397,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int ELEMENT_EXTENSION___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
 	 * The number of operations of the '<em>Element Extension</em>' class.
@@ -8298,7 +8406,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
+	int ELEMENT_EXTENSION_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.

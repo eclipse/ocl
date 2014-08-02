@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -57,7 +58,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * @generated
  */
 @SuppressWarnings("cast")
-public class ElementExtensionImpl extends TypeImpl implements ElementExtension
+public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 {
 	/**
 	 * The default value of the '{@link #isApplied() <em>Is Applied</em>}' attribute.
@@ -76,7 +77,7 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_APPLIED_EFLAG = 1 << 9;
+	protected static final int IS_APPLIED_EFLAG = 1 << 12;
 	/**
 	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,7 +95,7 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_REQUIRED_EFLAG = 1 << 10;
+	protected static final int IS_REQUIRED_EFLAG = 1 << 13;
 	/**
 	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -344,6 +345,12 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				return basicSetPackage(null, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
+				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
+				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return basicSetBase(null, msgs);
 		}
@@ -417,6 +424,18 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return getPackage();
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
 				return getSuperClass();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				return getOwnedRule();
+			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
+				return isAbstract();
+			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:
+				return isActive();
+			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
+				return isInterface();
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
+				return getNestedType();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
+				return getOwnedBehavior();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase();
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
@@ -505,6 +524,27 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:
+				setIsActive((Boolean)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
+				getNestedType().clear();
+				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
+				getOwnedBehavior().clear();
+				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)newValue);
 				return;
@@ -585,6 +625,24 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				getOwnedRule().clear();
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:
+				setIsActive(IS_ACTIVE_EDEFAULT);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
+				getNestedType().clear();
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
+				getOwnedBehavior().clear();
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)null);
 				return;
@@ -647,6 +705,18 @@ public class ElementExtensionImpl extends TypeImpl implements ElementExtension
 				return getPackage() != null;
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
+				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
+			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:
+				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
+			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
+				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
+				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
+				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase() != null;
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:

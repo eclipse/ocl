@@ -398,7 +398,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDynamicType" name="DynamicType">
       <generalization xmi:id="Ppivot.TDynamicType.g0" general="Ppivot.TDynamicElement"/>
-      <generalization xmi:id="Ppivot.TDynamicType.g1" general="Ppivot.TType"/>
+      <generalization xmi:id="Ppivot.TDynamicType.g1" general="Ppivot.TClass"/>
       <ownedAttribute xmi:id="Ppivot.TDynamicType.PownedProperty" name="ownedProperty" type="Ppivot.TDynamicProperty" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TDynamicType.PownedProperty.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TDynamicType.PownedProperty.uV" value="*"/>
@@ -434,7 +434,7 @@
       <interfaceRealization xmi:id="Ppivot.TElement.interfaceRealization0" client="Ppivot.TElement" supplier="Ppivot.TVisitable" contract="Ppivot.TVisitable"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TElementExtension" name="ElementExtension">
-      <generalization xmi:id="Ppivot.TElementExtension.g0" general="Ppivot.TType"/>
+      <generalization xmi:id="Ppivot.TElementExtension.g0" general="Ppivot.TClass"/>
       <ownedAttribute xmi:id="Ppivot.TElementExtension.Pbase" name="base" type="Ppivot.TElement" association="Ppivot.A_base_extension"/>
       <ownedAttribute xmi:id="Ppivot.TElementExtension.Pstereotype" name="stereotype" type="Ppivot.TStereotype"/>
       <ownedAttribute xmi:id="Ppivot.TElementExtension.PisApplied" name="isApplied" type="Ppivot.TBoolean">

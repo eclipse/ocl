@@ -11,25 +11,21 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DynamicBehavior;
-import org.eclipse.ocl.examples.pivot.DynamicElement;
 import org.eclipse.ocl.examples.pivot.DynamicProperty;
-import org.eclipse.ocl.examples.pivot.DynamicType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -51,35 +47,14 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl#getMetaType <em>Meta Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl#getTransition <em>Transition</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
+public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehavior
 {
-	/**
-	 * The cached value of the '{@link #getMetaType() <em>Meta Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMetaType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type metaType;
-
-	/**
-	 * The cached value of the '{@link #getOwnedProperty() <em>Owned Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedProperty()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DynamicProperty> ownedProperty;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,19 +81,44 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getMetaType()
+	public Transition getTransition()
 	{
-		if (metaType != null && ((EObject)metaType).eIsProxy())
+		if (eContainerFeatureID() != PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION) return null;
+		return (Transition)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTransition(Transition newTransition, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newTransition, PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTransition(Transition newTransition)
+	{
+		if (newTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION && newTransition != null))
 		{
-			InternalEObject oldMetaType = (InternalEObject)metaType;
-			metaType = (Type)eResolveProxy(oldMetaType);
-			if (metaType != oldMetaType)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE, oldMetaType, metaType));
-			}
+			if (EcoreUtil.isAncestor(this, (EObject)newTransition))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newTransition != null)
+				msgs = ((InternalEObject)newTransition).eInverseAdd(this, PivotPackage.TRANSITION__EFFECT, Transition.class, msgs);
+			msgs = basicSetTransition(newTransition, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return metaType;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION, newTransition, newTransition));
 	}
 
 	/**
@@ -126,36 +126,48 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetMetaType()
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		return metaType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMetaType(Type newMetaType)
-	{
-		Type oldMetaType = metaType;
-		metaType = newMetaType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE, oldMetaType, metaType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<DynamicProperty> getOwnedProperty()
-	{
-		if (ownedProperty == null)
+		switch (featureID)
 		{
-			ownedProperty = new EObjectContainmentEList<DynamicProperty>(DynamicProperty.class, this, PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY);
+			case PivotPackage.DYNAMIC_BEHAVIOR__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENSION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
+				if (ownedTemplateSignature != null)
+					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE, null, msgs);
+				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_PARAMETER:
+				if (templateParameter != null)
+					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__EXTENDED_BYS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_ATTRIBUTE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_OPERATION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTransition((Transition)otherEnd, msgs);
 		}
-		return ownedProperty;
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -200,12 +212,32 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
-			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
-				return basicSetTransition(null, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY:
 				return ((InternalEList<?>)getOwnedProperty()).basicRemove(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				return basicSetTransition(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TRANSITION__EFFECT, Transition.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
 	/**
@@ -267,13 +299,13 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 				return getNestedType();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
-			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
-				return getTransition();
 			case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE:
 				if (resolve) return getMetaType();
 				return basicGetMetaType();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY:
 				return getOwnedProperty();
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				return getTransition();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -374,15 +406,15 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
-				setTransition((Transition)newValue);
-				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE:
 				setMetaType((Type)newValue);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				getOwnedProperty().addAll((Collection<? extends DynamicProperty>)newValue);
+				return;
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				setTransition((Transition)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -470,14 +502,14 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
-				setTransition((Transition)null);
-				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE:
 				setMetaType((Type)null);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY:
 				getOwnedProperty().clear();
+				return;
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				setTransition((Transition)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -541,12 +573,12 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
-			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
-				return getTransition() != null;
 			case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE:
 				return metaType != null;
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY:
 				return ownedProperty != null && !ownedProperty.isEmpty();
+			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
+				return getTransition() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -559,19 +591,11 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == DynamicElement.class)
+		if (baseClass == Behavior.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE: return PivotPackage.DYNAMIC_ELEMENT__META_TYPE;
-				default: return -1;
-			}
-		}
-		if (baseClass == DynamicType.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY: return PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTY;
+				case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION: return PivotPackage.BEHAVIOR__TRANSITION;
 				default: return -1;
 			}
 		}
@@ -586,19 +610,11 @@ public class DynamicBehaviorImpl extends BehaviorImpl implements DynamicBehavior
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == DynamicElement.class)
+		if (baseClass == Behavior.class)
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.DYNAMIC_ELEMENT__META_TYPE: return PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE;
-				default: return -1;
-			}
-		}
-		if (baseClass == DynamicType.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTY: return PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY;
+				case PivotPackage.BEHAVIOR__TRANSITION: return PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION;
 				default: return -1;
 			}
 		}

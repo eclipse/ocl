@@ -43,6 +43,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_B_MXsLtdEeGaF-l-UpovSA" name="MDT_OCL_Dynamics">
       <packagedElement xmi:type="uml:Class" xmi:id="_Lpug0PWKEeOa9vhgxFe-1w" name="Behavior" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MZ0HsBouEeSM9LreJtBwBg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_Py3gcPWKEeOa9vhgxFe-1w" name="DynamicBehavior">
         <generalization xmi:id="_Py3gcfWKEeOa9vhgxFe-1w" general="_HLQM4LtdEeGaF-l-UpovSA"/>
         <generalization xmi:id="_Py3gcvWKEeOa9vhgxFe-1w" general="_Lpug0PWKEeOa9vhgxFe-1w"/>
@@ -60,7 +61,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_HLQM4LtdEeGaF-l-UpovSA" name="DynamicType">
         <generalization xmi:id="_Xp6OH37VEeOu79LxSz8Ylw" general="_Iq84gLtyEeGaF-l-UpovSA"/>
-        <generalization xmi:id="_Xp6OIH7VEeOu79LxSz8Ylw" general="_J_a9oLtdEeGaF-l-UpovSA"/>
+        <generalization xmi:id="_Xp6OIH7VEeOu79LxSz8Ylw" general="_MZ0HsBouEeSM9LreJtBwBg"/>
         <ownedAttribute xmi:id="_tJnagLtdEeGaF-l-UpovSA" name="ownedProperty" type="_fGbMkLtdEeGaF-l-UpovSA" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N8H7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6N8X7VEeOu79LxSz8Ylw" value="*"/>
@@ -396,6 +397,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_Ojs8cLoxEeGoaKB2Aghcrw" name="MDT_OCL_Stereotypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_V3bxwLqAEeOj4te9p7yCCw" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_E-TYYBouEeSM9LreJtBwBg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_eVCuQLoxEeGoaKB2Aghcrw" name="Element" isAbstract="true">
         <ownedAttribute xmi:id="_eVCuQboxEeGoaKB2Aghcrw" name="extension" type="_h8QFgLoxEeGoaKB2Aghcrw" aggregation="composite" association="_OmXs4PEOEeGbmcl4mtVQXA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OF37VEeOu79LxSz8Ylw"/>
@@ -403,7 +405,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_h8QFgLoxEeGoaKB2Aghcrw" name="ElementExtension">
-        <generalization xmi:id="_Xp6OI37VEeOu79LxSz8Ylw" general="_wP0RwLoxEeGoaKB2Aghcrw"/>
+        <generalization xmi:id="_Xp6OI37VEeOu79LxSz8Ylw" general="_E-TYYBouEeSM9LreJtBwBg"/>
         <ownedAttribute xmi:id="_sckpoLoxEeGoaKB2Aghcrw" name="base" type="_eVCuQLoxEeGoaKB2Aghcrw" association="_OmXs4PEOEeGbmcl4mtVQXA"/>
         <ownedAttribute xmi:id="_F_eIgPEOEeGbmcl4mtVQXA" name="stereotype" type="_HL7moLqAEeOj4te9p7yCCw"/>
         <ownedAttribute xmi:id="_j3pkwMJCEeOQaItKldfYpg" name="isApplied" type="_V3bxwLqAEeOj4te9p7yCCw">

@@ -272,7 +272,7 @@
           name="Annotation" opposite="#p.pivot.Annotation.ownedDetail" type="#T.pivot.Annotation"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.DynamicBehavior" name="DynamicBehavior"
-        superClass="#T.pivot.Behavior #T.pivot.DynamicType"/>
+        superClass="#T.pivot.DynamicType #T.pivot.Behavior"/>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.DynamicElement" name="DynamicElement"
         superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.DynamicElement.metaType" name="metaType" opposite="#p.pivot.Type.DynamicElement"
@@ -289,7 +289,7 @@
           type="#T.pivot.DynamicType"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.DynamicType" name="DynamicType"
-        superClass="#T.pivot.Type #T.pivot.DynamicElement">
+        superClass="#T.pivot.Class #T.pivot.DynamicElement">
       <ownedAttribute xmi:id="p.pivot.DynamicType.ownedProperty" isComposite="true"
           name="ownedProperty" opposite="#p.pivot.DynamicProperty.DynamicType" type="#//@nestedPackage.1/@ownedType.134"/>
     </ownedType>
@@ -330,7 +330,7 @@
       </ownedOperation>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.ElementExtension" name="ElementExtension"
-        superClass="#T.pivot.Type">
+        superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.ElementExtension.base" name="base" opposite="#p.pivot.Element.extension"
           type="#T.pivot.Element"/>
       <ownedAttribute xmi:id="p.pivot.ElementExtension.isApplied" default="false"

@@ -27,7 +27,7 @@ import java.util.List;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDynamicType()
  * @generated
  */
-public interface DynamicType extends Type, DynamicElement
+public interface DynamicType extends org.eclipse.ocl.examples.pivot.Class, DynamicElement
 {
 	/**
 	 * Returns the value of the '<em><b>Owned Property</b></em>' containment reference list.

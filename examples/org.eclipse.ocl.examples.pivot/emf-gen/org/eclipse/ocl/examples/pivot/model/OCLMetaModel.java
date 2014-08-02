@@ -562,8 +562,8 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _DynamicBehavior);
 			superClasses = type.getSuperClass();
-			superClasses.add(_Behavior);
 			superClasses.add(_DynamicType);
+			superClasses.add(_Behavior);
 			ownedTypes.add(type = _DynamicElement);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Element);
@@ -572,7 +572,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Element);
 			ownedTypes.add(type = _DynamicType);
 			superClasses = type.getSuperClass();
-			superClasses.add(_Type);
+			superClasses.add(_Class);
 			superClasses.add(_DynamicElement);
 			ownedTypes.add(type = _DynamicValueSpecification);
 			superClasses = type.getSuperClass();
@@ -582,7 +582,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Visitable);
 			ownedTypes.add(type = _ElementExtension);
 			superClasses = type.getSuperClass();
-			superClasses.add(_Type);
+			superClasses.add(_Class);
 			ownedTypes.add(type = _EnumLiteralExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_LiteralExp);

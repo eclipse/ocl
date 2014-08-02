@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
@@ -55,7 +56,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-public class DynamicTypeImpl extends TypeImpl implements DynamicType
+public class DynamicTypeImpl extends ClassImpl implements DynamicType
 {
 	/**
 	 * The cached value of the '{@link #getMetaType() <em>Meta Type</em>}' reference.
@@ -191,6 +192,12 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
 				return basicSetPackage(null, msgs);
+			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_TYPE__NESTED_TYPE:
+				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
+				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTY:
 				return ((InternalEList<?>)getOwnedProperty()).basicRemove(otherEnd, msgs);
 		}
@@ -244,6 +251,18 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				return getPackage();
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
 				return getSuperClass();
+			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
+				return getOwnedRule();
+			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
+				return isAbstract();
+			case PivotPackage.DYNAMIC_TYPE__IS_ACTIVE:
+				return isActive();
+			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
+				return isInterface();
+			case PivotPackage.DYNAMIC_TYPE__NESTED_TYPE:
+				return getNestedType();
+			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
+				return getOwnedBehavior();
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				if (resolve) return getMetaType();
 				return basicGetMetaType();
@@ -328,6 +347,27 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
+			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__IS_ACTIVE:
+				setIsActive((Boolean)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__NESTED_TYPE:
+				getNestedType().clear();
+				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
+				getOwnedBehavior().clear();
+				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				setMetaType((Type)newValue);
 				return;
@@ -403,6 +443,24 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
+			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
+				getOwnedRule().clear();
+				return;
+			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__IS_ACTIVE:
+				setIsActive(IS_ACTIVE_EDEFAULT);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__NESTED_TYPE:
+				getNestedType().clear();
+				return;
+			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
+				getOwnedBehavior().clear();
+				return;
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				setMetaType((Type)null);
 				return;
@@ -459,6 +517,18 @@ public class DynamicTypeImpl extends TypeImpl implements DynamicType
 				return getPackage() != null;
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
+				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
+			case PivotPackage.DYNAMIC_TYPE__IS_ACTIVE:
+				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
+			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
+				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
+			case PivotPackage.DYNAMIC_TYPE__NESTED_TYPE:
+				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
+				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				return metaType != null;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTY:

@@ -499,8 +499,8 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				DynamicBehavior dynamicBehavior = (DynamicBehavior)theEObject;
 				T1 result = caseDynamicBehavior(dynamicBehavior);
-				if (result == null) result = caseBehavior(dynamicBehavior);
 				if (result == null) result = caseDynamicType(dynamicBehavior);
+				if (result == null) result = caseBehavior(dynamicBehavior);
 				if (result == null) result = caseClass(dynamicBehavior);
 				if (result == null) result = caseDynamicElement(dynamicBehavior);
 				if (result == null) result = caseType(dynamicBehavior);
@@ -536,8 +536,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				DynamicType dynamicType = (DynamicType)theEObject;
 				T1 result = caseDynamicType(dynamicType);
-				if (result == null) result = caseType(dynamicType);
+				if (result == null) result = caseClass(dynamicType);
 				if (result == null) result = caseDynamicElement(dynamicType);
+				if (result == null) result = caseType(dynamicType);
+				if (result == null) result = caseNamespace(dynamicType);
 				if (result == null) result = caseNamedElement(dynamicType);
 				if (result == null) result = caseTemplateableElement(dynamicType);
 				if (result == null) result = caseParameterableElement(dynamicType);
@@ -573,7 +575,9 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				ElementExtension elementExtension = (ElementExtension)theEObject;
 				T1 result = caseElementExtension(elementExtension);
+				if (result == null) result = caseClass(elementExtension);
 				if (result == null) result = caseType(elementExtension);
+				if (result == null) result = caseNamespace(elementExtension);
 				if (result == null) result = caseNamedElement(elementExtension);
 				if (result == null) result = caseTemplateableElement(elementExtension);
 				if (result == null) result = caseParameterableElement(elementExtension);

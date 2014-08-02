@@ -30,7 +30,7 @@ package org.eclipse.ocl.examples.pivot;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElementExtension()
  * @generated
  */
-public interface ElementExtension extends Type
+public interface ElementExtension extends org.eclipse.ocl.examples.pivot.Class
 {
 	/**
 	 * Returns the value of the '<em><b>Stereotype</b></em>' reference.
