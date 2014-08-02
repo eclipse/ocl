@@ -1628,12 +1628,19 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _SetType__Type = new ExecutorFragment(Types._SetType, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _SetType__Visitable = new ExecutorFragment(Types._SetType, PivotTables.Types._Visitable);
 
+		private static final @NonNull ExecutorFragment _Signal__Class = new ExecutorFragment(Types._Signal, PivotTables.Types._Class);
 		private static final @NonNull ExecutorFragment _Signal__Element = new ExecutorFragment(Types._Signal, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _Signal__Nameable = new ExecutorFragment(Types._Signal, PivotTables.Types._Nameable);
 		private static final @NonNull ExecutorFragment _Signal__NamedElement = new ExecutorFragment(Types._Signal, PivotTables.Types._NamedElement);
+		private static final @NonNull ExecutorFragment _Signal__Namespace = new ExecutorFragment(Types._Signal, PivotTables.Types._Namespace);
 		private static final @NonNull ExecutorFragment _Signal__OclAny = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Signal__OclElement = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _Signal__OclType = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclType);
+		private static final @NonNull ExecutorFragment _Signal__PackageableElement = new ExecutorFragment(Types._Signal, PivotTables.Types._PackageableElement);
+		private static final @NonNull ExecutorFragment _Signal__ParameterableElement = new ExecutorFragment(Types._Signal, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _Signal__Signal = new ExecutorFragment(Types._Signal, PivotTables.Types._Signal);
+		private static final @NonNull ExecutorFragment _Signal__TemplateableElement = new ExecutorFragment(Types._Signal, PivotTables.Types._TemplateableElement);
+		private static final @NonNull ExecutorFragment _Signal__Type = new ExecutorFragment(Types._Signal, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _Signal__Visitable = new ExecutorFragment(Types._Signal, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _Slot__Element = new ExecutorFragment(Types._Slot, PivotTables.Types._Element);
@@ -3951,12 +3958,19 @@ public class PivotTables
 			Fragments._Signal__OclAny /* 0 */,
 			Fragments._Signal__OclElement /* 1 */,
 			Fragments._Signal__Nameable /* 2 */,
+			Fragments._Signal__OclType /* 2 */,
 			Fragments._Signal__Visitable /* 2 */,
 			Fragments._Signal__Element /* 3 */,
 			Fragments._Signal__NamedElement /* 4 */,
-			Fragments._Signal__Signal /* 5 */
+			Fragments._Signal__ParameterableElement /* 4 */,
+			Fragments._Signal__TemplateableElement /* 4 */,
+			Fragments._Signal__Namespace /* 5 */,
+			Fragments._Signal__PackageableElement /* 5 */,
+			Fragments._Signal__Type /* 6 */,
+			Fragments._Signal__Class /* 7 */,
+			Fragments._Signal__Signal /* 8 */
 		};
-		private static final @NonNull int[] __Signal = { 1,1,2,1,1,1 };
+		private static final @NonNull int[] __Signal = { 1,1,3,1,3,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Slot =
 		{
@@ -8007,12 +8021,14 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _SetType__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _Signal__Signal = {};
+		private static final @NonNull ExecutorOperation[] _Signal__Class = {};
 		private static final @NonNull ExecutorOperation[] _Signal__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
 		};
 		private static final @NonNull ExecutorOperation[] _Signal__Nameable = {};
 		private static final @NonNull ExecutorOperation[] _Signal__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _Signal__Namespace = {};
 		private static final @NonNull ExecutorOperation[] _Signal__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
@@ -8033,6 +8049,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _Signal__OclType = {
+			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+		};
+		private static final @NonNull ExecutorOperation[] _Signal__PackageableElement = {};
+		private static final @NonNull ExecutorOperation[] _Signal__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+		};
+		private static final @NonNull ExecutorOperation[] _Signal__TemplateableElement = {
+			PivotTables.Operations._TemplateableElement__isTemplate /* isTemplate() */,
+			PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
+		};
+		private static final @NonNull ExecutorOperation[] _Signal__Type = {
+			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Signal__Visitable = {};
 
@@ -10309,12 +10340,19 @@ public class PivotTables
 			Fragments._SetType__Type.initOperations(_SetType__Type);
 			Fragments._SetType__Visitable.initOperations(_SetType__Visitable);
 
+			Fragments._Signal__Class.initOperations(_Signal__Class);
 			Fragments._Signal__Element.initOperations(_Signal__Element);
 			Fragments._Signal__Nameable.initOperations(_Signal__Nameable);
 			Fragments._Signal__NamedElement.initOperations(_Signal__NamedElement);
+			Fragments._Signal__Namespace.initOperations(_Signal__Namespace);
 			Fragments._Signal__OclAny.initOperations(_Signal__OclAny);
 			Fragments._Signal__OclElement.initOperations(_Signal__OclElement);
+			Fragments._Signal__OclType.initOperations(_Signal__OclType);
+			Fragments._Signal__PackageableElement.initOperations(_Signal__PackageableElement);
+			Fragments._Signal__ParameterableElement.initOperations(_Signal__ParameterableElement);
 			Fragments._Signal__Signal.initOperations(_Signal__Signal);
+			Fragments._Signal__TemplateableElement.initOperations(_Signal__TemplateableElement);
+			Fragments._Signal__Type.initOperations(_Signal__Type);
 			Fragments._Signal__Visitable.initOperations(_Signal__Visitable);
 
 			Fragments._Slot__Element.initOperations(_Slot__Element);
@@ -13760,17 +13798,59 @@ public class PivotTables
 
 		private static final @NonNull ExecutorProperty[] _Signal = {
 			PivotTables.Properties._Element__comment,
+			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
+			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__isAbstract,
+			PivotTables.Properties._Class__isActive,
+			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__isStatic,
 			PivotTables.Properties._NamedElement__name,
+			PivotTables.Properties._Class__nestedType,
 			PivotTables.Properties._Element__ownedAnnotation,
+			PivotTables.Properties._Class__ownedAttribute,
+			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._Type__ownedInvariant,
+			PivotTables.Properties._Class__ownedOperation,
+			PivotTables.Properties._Namespace__ownedRule,
+			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
+			PivotTables.Properties._Class__package,
+			PivotTables.Properties._Class__superClass,
+			PivotTables.Properties._TemplateableElement__templateBinding,
+			PivotTables.Properties._ParameterableElement__templateParameter,
+			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
+			PivotTables.Properties._Class__Class__nestedType,
+			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
+			PivotTables.Properties._Namespace__Constraint__context,
+			PivotTables.Properties._Type__DataType__behavioralType,
+			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
+			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Type__LambdaType__contextType,
+			PivotTables.Properties._Type__LambdaType__parameterType,
+			PivotTables.Properties._Type__LambdaType__resultType,
 			PivotTables.Properties._Signal__MessageType__referredSignal,
-			PivotTables.Properties._Signal__SendSignalAction__signal
+			PivotTables.Properties._Type__Metaclass__instanceType,
+			PivotTables.Properties._Class__Operation__owningType,
+			PivotTables.Properties._Class__Property__owningType,
+			PivotTables.Properties._Signal__SendSignalAction__signal,
+			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__UnspecifiedType__lowerBound,
+			PivotTables.Properties._Type__UnspecifiedType__upperBound,
+			PivotTables.Properties._Class__class__superClass,
+			PivotTables.Properties._Type__instanceSpecification__type,
+			PivotTables.Properties._Type__operation__raisedException,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
+			PivotTables.Properties._ParameterableElement__templateParameter__default,
+			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
+			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual,
+			PivotTables.Properties._Type__typeTemplateParameter__constrainingType,
+			PivotTables.Properties._Type__typedElement__type
 		};
 
 		private static final @NonNull ExecutorProperty[] _Slot = {

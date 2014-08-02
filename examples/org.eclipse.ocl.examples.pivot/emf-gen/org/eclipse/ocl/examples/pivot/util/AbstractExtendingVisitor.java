@@ -375,7 +375,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitSignal(@NonNull org.eclipse.ocl.examples.pivot.Signal object) {
-		return visitNamedElement(object);
+		return visitClass(object);
 	}
 
 	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.examples.pivot.Slot object) {

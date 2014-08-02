@@ -1198,7 +1198,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.SequenceType" name="SequenceType" superClass="#T.pivot.CollectionType"/>
     <ownedType xmi:id="T.pivot.SetType" name="SetType" superClass="#T.pivot.CollectionType"/>
-    <ownedType xmi:id="T.pivot.Signal" name="Signal" superClass="#T.pivot.NamedElement">
+    <ownedType xmi:id="T.pivot.Signal" name="Signal" superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.Signal.MessageType" implicit="true" name="MessageType"
           opposite="#p.pivot.MessageType.referredSignal" type="#//@nestedPackage.1/@ownedType.14"/>
       <ownedAttribute xmi:id="p.pivot.Signal.SendSignalAction" implicit="true" name="SendSignalAction"

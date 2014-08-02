@@ -411,7 +411,7 @@
         <generalization xmi:id="_Xpwc8n7VEeOu79LxSz8Ylw" general="_Hcolo4gHEd-aGOJuUCcZBA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_ASveEIq1Ed-VzsYvPRGeYg" name="Signal">
-        <generalization xmi:id="_XpnTBn7VEeOu79LxSz8Ylw" general="_Q23rAA27EeSm6471J7pVhQ"/>
+        <generalization xmi:id="_XpnTBn7VEeOu79LxSz8Ylw" general="_Pbq4UA27EeSm6471J7pVhQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_gA7RoIq2Ed-VzsYvPRGeYg" name="State">
         <generalization xmi:id="_XpnTB37VEeOu79LxSz8Ylw" general="_Q23rAA27EeSm6471J7pVhQ"/>

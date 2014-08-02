@@ -6341,7 +6341,7 @@ public class PivotPackageImpl
 		sendSignalActionEClass.getESuperTypes().add(this.getNamedElement());
 		sequenceTypeEClass.getESuperTypes().add(this.getCollectionType());
 		setTypeEClass.getESuperTypes().add(this.getCollectionType());
-		signalEClass.getESuperTypes().add(this.getNamedElement());
+		signalEClass.getESuperTypes().add(this.getClass_());
 		slotEClass.getESuperTypes().add(this.getElement());
 		stateEClass.getESuperTypes().add(this.getVertex());
 		stateEClass.getESuperTypes().add(this.getNamespace());

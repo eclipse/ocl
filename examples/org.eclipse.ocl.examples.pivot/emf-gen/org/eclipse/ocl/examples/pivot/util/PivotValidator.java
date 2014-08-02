@@ -2875,7 +2875,17 @@ public class PivotValidator
 	 */
 	public boolean validateSignal(Signal signal, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)signal, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)signal, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)signal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateType_validateUniqueInvariantName(signal, diagnostics, context);
+		return result;
 	}
 
 	/**

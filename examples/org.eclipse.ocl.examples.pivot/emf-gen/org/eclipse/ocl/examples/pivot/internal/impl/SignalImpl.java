@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public class SignalImpl
-		extends NamedElementImpl
+		extends ClassImpl
 		implements Signal {
 
 	/**

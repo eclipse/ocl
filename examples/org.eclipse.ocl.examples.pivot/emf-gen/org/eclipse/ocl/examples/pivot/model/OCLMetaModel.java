@@ -780,7 +780,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_CollectionType);
 			ownedTypes.add(type = _Signal);
 			superClasses = type.getSuperClass();
-			superClasses.add(_NamedElement);
+			superClasses.add(_Class);
 			ownedTypes.add(type = _Slot);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Element);

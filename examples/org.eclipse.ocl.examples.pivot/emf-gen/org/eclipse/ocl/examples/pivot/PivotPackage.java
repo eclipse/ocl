@@ -19145,7 +19145,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__COMMENT = NAMED_ELEMENT__COMMENT;
+	int SIGNAL__COMMENT = CLASS__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -19154,7 +19154,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__EXTENSION = NAMED_ELEMENT__EXTENSION;
+	int SIGNAL__EXTENSION = CLASS__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -19163,7 +19163,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+	int SIGNAL__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -19172,7 +19172,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+	int SIGNAL__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -19181,7 +19181,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+	int SIGNAL__IS_STATIC = CLASS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -19190,7 +19190,169 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__NAME = NAMED_ELEMENT__NAME;
+	int SIGNAL__NAME = CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__EXTENDED_BYS = CLASS__EXTENDED_BYS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_RULE = CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__IS_ACTIVE = CLASS__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__IS_INTERFACE = CLASS__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__NESTED_TYPE = CLASS__NESTED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__PACKAGE = CLASS__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Signal</em>' class.
@@ -19199,7 +19361,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SIGNAL_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -19208,7 +19370,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+	int SIGNAL___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -19217,7 +19379,61 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
+	int SIGNAL___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Specialize In</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___IS_TEMPLATE = CLASS___IS_TEMPLATE;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Signal</em>' class.
@@ -19226,7 +19442,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int SIGNAL_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.

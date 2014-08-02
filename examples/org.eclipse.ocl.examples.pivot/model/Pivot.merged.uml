@@ -1171,7 +1171,7 @@
       <generalization xmi:id="Ppivot.TSetType.g0" general="Ppivot.TCollectionType"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSignal" name="Signal">
-      <generalization xmi:id="Ppivot.TSignal.g0" general="Ppivot.TNamedElement"/>
+      <generalization xmi:id="Ppivot.TSignal.g0" general="Ppivot.TClass"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSlot" name="Slot">
       <ownedComment xmi:id="Ppivot.TSlot.oC0" annotatedElement="Ppivot.TSlot">

@@ -1427,7 +1427,13 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				Signal signal = (Signal)theEObject;
 				T1 result = caseSignal(signal);
+				if (result == null) result = caseClass(signal);
+				if (result == null) result = caseType(signal);
+				if (result == null) result = caseNamespace(signal);
+				if (result == null) result = caseTemplateableElement(signal);
+				if (result == null) result = casePackageableElement(signal);
 				if (result == null) result = caseNamedElement(signal);
+				if (result == null) result = caseParameterableElement(signal);
 				if (result == null) result = caseElement(signal);
 				if (result == null) result = caseNameable(signal);
 				if (result == null) result = caseVisitable(signal);
