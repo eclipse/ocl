@@ -860,7 +860,7 @@
           type="#T.pivot.Property"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.OrderedSetType" name="OrderedSetType" superClass="#T.pivot.CollectionType"/>
-    <ownedType xmi:id="T.pivot.Package" name="Package" superClass="#T.pivot.Namespace #T.pivot.TemplateableElement">
+    <ownedType xmi:id="T.pivot.Package" name="Package" superClass="#T.pivot.PackageableElement #T.pivot.Namespace #T.pivot.TemplateableElement">
       <ownedAttribute xmi:id="p.pivot.Package.importedPackage" name="importedPackage"
           opposite="#p.pivot.Package.Package" type="#//@nestedPackage.1/@ownedType.137"/>
       <ownedAttribute xmi:id="p.pivot.Package.nestedPackage" isComposite="true" name="nestedPackage"
@@ -1504,7 +1504,7 @@
           type="#T.pivot.TupleLiteralExp"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.TupleType" name="TupleType" superClass="#T.pivot.DataType"/>
-    <ownedType xmi:id="T.pivot.Type" name="Type" superClass="#T.pivot.NamedElement #T.pivot.ParameterableElement">
+    <ownedType xmi:id="T.pivot.Type" name="Type" superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.Type.extendedBys" name="extendedBys" opposite="#p.pivot.TypeExtension.type"
           type="#//@nestedPackage.1/@ownedType.151"/>
       <ownedAttribute xmi:id="p.pivot.Type.instanceClassName" isRequired="false" name="instanceClassName"
@@ -1615,7 +1615,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.UnspecifiedValueExp" name="UnspecifiedValueExp" superClass="#T.pivot.OCLExpression"/>
     <ownedType xmi:id="T.pivot.ValueSpecification" isAbstract="true" name="ValueSpecification"
-        superClass="#T.pivot.TypedElement #T.pivot.ParameterableElement">
+        superClass="#T.pivot.TypedElement #T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.ValueSpecification.owningSlot" implicit="true"
           isRequired="false" name="owningSlot" opposite="#p.pivot.Slot.values" type="#T.pivot.Slot"/>
       <ownedComment body="A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.&#xA;ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>

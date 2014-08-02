@@ -299,7 +299,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
-		return visitNamespace(object);
+		return visitPackageableElement(object);
 	}
 
 	public @Nullable R visitPackageableElement(@NonNull org.eclipse.ocl.examples.pivot.PackageableElement object) {
@@ -447,7 +447,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitType(@NonNull org.eclipse.ocl.examples.pivot.Type object) {
-		return visitNamedElement(object);
+		return visitPackageableElement(object);
 	}
 
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object) {

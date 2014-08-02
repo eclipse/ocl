@@ -6316,6 +6316,7 @@ public class PivotPackageImpl
 		operationTemplateParameterEClass.getESuperTypes().add(this.getTemplateParameter());
 		oppositePropertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
+		packageEClass.getESuperTypes().add(this.getPackageableElement());
 		packageEClass.getESuperTypes().add(this.getNamespace());
 		packageEClass.getESuperTypes().add(this.getTemplateableElement());
 		packageableElementEClass.getESuperTypes().add(this.getNamedElement());
@@ -6359,8 +6360,7 @@ public class PivotPackageImpl
 		tupleLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		tupleLiteralPartEClass.getESuperTypes().add(this.getVariableDeclaration());
 		tupleTypeEClass.getESuperTypes().add(this.getDataType());
-		typeEClass.getESuperTypes().add(this.getNamedElement());
-		typeEClass.getESuperTypes().add(this.getParameterableElement());
+		typeEClass.getESuperTypes().add(this.getPackageableElement());
 		typeExpEClass.getESuperTypes().add(this.getOCLExpression());
 		typeExpEClass.getESuperTypes().add(this.getReferringElement());
 		typeExtensionEClass.getESuperTypes().add(this.getElement());
@@ -6371,7 +6371,7 @@ public class PivotPackageImpl
 		unspecifiedTypeEClass.getESuperTypes().add(this.getClass_());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOCLExpression());
 		valueSpecificationEClass.getESuperTypes().add(this.getTypedElement());
-		valueSpecificationEClass.getESuperTypes().add(this.getParameterableElement());
+		valueSpecificationEClass.getESuperTypes().add(this.getPackageableElement());
 		variableEClass.getESuperTypes().add(this.getVariableDeclaration());
 		variableDeclarationEClass.getESuperTypes().add(this.getTypedElement());
 		variableExpEClass.getESuperTypes().add(this.getOCLExpression());

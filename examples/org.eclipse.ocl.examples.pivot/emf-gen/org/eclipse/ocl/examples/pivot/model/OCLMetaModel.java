@@ -711,6 +711,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_CollectionType);
 			ownedTypes.add(type = _Package);
 			superClasses = type.getSuperClass();
+			superClasses.add(_PackageableElement);
 			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
 			ownedTypes.add(type = _PackageableElement);
@@ -837,8 +838,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_DataType);
 			ownedTypes.add(type = _Type);
 			superClasses = type.getSuperClass();
-			superClasses.add(_NamedElement);
-			superClasses.add(_ParameterableElement);
+			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _TypeExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OCLExpression);
@@ -867,7 +867,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _ValueSpecification);
 			superClasses = type.getSuperClass();
 			superClasses.add(_TypedElement);
-			superClasses.add(_ParameterableElement);
+			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _Variable);
 			superClasses = type.getSuperClass();
 			superClasses.add(_VariableDeclaration);

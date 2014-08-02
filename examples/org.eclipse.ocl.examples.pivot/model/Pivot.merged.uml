@@ -745,8 +745,8 @@
       <generalization xmi:id="Ppivot.TOperation.g0" general="Ppivot.TTypedElement"/>
       <generalization xmi:id="Ppivot.TOperation.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TOperation.g2" general="Ppivot.TFeature"/>
-      <generalization xmi:id="Ppivot.TOperation.g3" general="Ppivot.TParameterableElement"/>
-      <generalization xmi:id="Ppivot.TOperation.g4" general="Ppivot.TTemplateableElement"/>
+      <generalization xmi:id="Ppivot.TOperation.g3" general="Ppivot.TTemplateableElement"/>
+      <generalization xmi:id="Ppivot.TOperation.g4" general="Ppivot.TParameterableElement"/>
       <ownedAttribute xmi:id="Ppivot.TOperation.PraisedException" name="raisedException" type="Ppivot.TType" association="Ppivot.A_raisedException_operation">
         <ownedComment xmi:id="Ppivot.TOperation.PraisedException.oC0" annotatedElement="Ppivot.TOperation.PraisedException">
           <body>The exceptions that are declared as possible during an invocation of the operation.</body>
@@ -847,6 +847,7 @@
       <generalization xmi:id="Ppivot.TPackage.g0" general="Ppivot.TNamedElement"/>
       <generalization xmi:id="Ppivot.TPackage.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TPackage.g2" general="Ppivot.TTemplateableElement"/>
+      <generalization xmi:id="Ppivot.TPackage.g3" general="Ppivot.TPackageableElement"/>
       <ownedAttribute xmi:id="Ppivot.TPackage.PnestedPackage" name="nestedPackage" type="Ppivot.TPackage" aggregation="composite" association="Ppivot.A_nestedPackage_nestingPackage">
         <ownedComment xmi:id="Ppivot.TPackage.PnestedPackage.oC0" annotatedElement="Ppivot.TPackage.PnestedPackage">
           <body>The set of contained packages.</body>
@@ -1582,7 +1583,7 @@
         <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TType.g0" general="Ppivot.TNamedElement"/>
-      <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TParameterableElement"/>
+      <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TPackageableElement"/>
       <ownedAttribute xmi:id="Ppivot.TType.PtemplateParameter" name="templateParameter" type="Ppivot.TTypeTemplateParameter" redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter"
           association="Ppivot.A_type_templateParameter_parameteredElement">
         <ownedComment xmi:id="Ppivot.TType.PtemplateParameter.oC0" annotatedElement="Ppivot.TType.PtemplateParameter">
@@ -1687,7 +1688,7 @@
         <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TValueSpecification.g0" general="Ppivot.TTypedElement"/>
-      <generalization xmi:id="Ppivot.TValueSpecification.g1" general="Ppivot.TParameterableElement"/>
+      <generalization xmi:id="Ppivot.TValueSpecification.g1" general="Ppivot.TPackageableElement"/>
       <ownedOperation xmi:id="Ppivot.TValueSpecification.OisComputable" name="isComputable" isQuery="true">
         <ownedComment xmi:id="Ppivot.TValueSpecification.OisComputable.oC0" annotatedElement="Ppivot.TValueSpecification.OisComputable">
           <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>

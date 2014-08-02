@@ -43,7 +43,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Package
-		extends Namespace, TemplateableElement, org.eclipse.ocl.examples.domain.elements.DomainPackage {
+		extends PackageableElement, Namespace, TemplateableElement, org.eclipse.ocl.examples.domain.elements.DomainPackage {
 
 	/**
 	 * Returns the value of the '<em><b>Nested Package</b></em>' containment reference list.

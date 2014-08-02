@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -111,6 +112,14 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
+				if (templateParameter != null)
+					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -151,6 +160,10 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
+				return basicSetOwningTemplateParameter(null, msgs);
+			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
+				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
@@ -195,6 +208,11 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return isStatic();
 			case PivotPackage.PROFILE__NAME:
 				return getName();
+			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
+				return getOwningTemplateParameter();
+			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
+				if (resolve) return getTemplateParameter();
+				return basicGetTemplateParameter();
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
@@ -257,6 +275,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__NAME:
 				setName((String)newValue);
+				return;
+			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.PROFILE__OWNED_RULE:
 				getOwnedRule().clear();
@@ -337,6 +361,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
+				return;
 			case PivotPackage.PROFILE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
@@ -402,6 +432,10 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROFILE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
+				return getOwningTemplateParameter() != null;
+			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
+				return templateParameter != null;
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:

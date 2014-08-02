@@ -40,7 +40,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Type
-		extends NamedElement, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainType {
+		extends PackageableElement, org.eclipse.ocl.examples.domain.elements.DomainType {
 
 	/**
 	 * Returns the value of the '<em><b>Extended Bys</b></em>' reference list.
