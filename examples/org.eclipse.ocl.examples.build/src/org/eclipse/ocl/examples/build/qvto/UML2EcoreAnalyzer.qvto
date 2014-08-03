@@ -128,7 +128,7 @@ mapping UML::Package::createDeletePackage() : UML2EcoreMapping::DeletePackage
 --	log('createDeletePackage', self.name);
 	result.oldName := self.name;
 	result.oldPackages := self->asSet();
-	var unwantedTypes : Set(UML::Type) := self.ownedType->reject(oclIsKindOf(UML::Association))->reject(allCreateTypeNames->includes(name));
+	var unwantedTypes : Set(UML::Type) := self.ownedType->reject(oclIsKindOf(UML::Association));-->reject(allCreateTypeNames->includes(name));
 	result.deleteTypes := unwantedTypes->map createDeleteType()->asSet()->sortedBy(oldName);	 
 }
 

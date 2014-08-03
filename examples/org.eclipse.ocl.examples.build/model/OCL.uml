@@ -28,34 +28,16 @@
         <generalization xmi:id="_XpnTEX7VEeOu79LxSz8Ylw" general="OCL-OCL_Classes-Class"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Operation" name="Operation">
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Operation-owningType" name="owningType" type="OCL-OCL_Classes-Type" association="OCL-OCL_Classes-A_ownedOperation_owningType">
+        <ownedAttribute xmi:id="OCL-OCL_Classes-Operation-owningType" name="owningType" type="OCL-OCL_Classes-Class">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Property" name="Property">
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Property-owningType" name="owningType" type="OCL-OCL_Classes-Type" association="OCL-OCL_Classes-A_ownedAttribute_owningType">
+        <ownedAttribute xmi:id="OCL-OCL_Classes-Property-owningType" name="owningType" type="OCL-OCL_Classes-Class">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Property-class" name="class" type="OCL-OCL_Classes-Class" isReadOnly="true" isDerived="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OyXSIH9cEeOrlIuDtf7a6A"/>
-        </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Type" name="Type" isAbstract="true">
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Type-ownedAttribute" name="ownedAttribute" type="OCL-OCL_Classes-Property" isOrdered="true" aggregation="composite" association="OCL-OCL_Classes-A_ownedAttribute_owningType">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiB37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiCH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Type-ownedOperation" name="ownedOperation" type="OCL-OCL_Classes-Operation" isOrdered="true" aggregation="composite" association="OCL-OCL_Classes-A_ownedOperation_owningType">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiCX7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiCn7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Type-superClass" name="superClass" type="OCL-OCL_Classes-Type" isOrdered="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiC37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiDH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="OCL-OCL_Classes-A_ownedAttribute_owningType" name="A_ownedAttribute_owningType" memberEnd="OCL-OCL_Classes-Type-ownedAttribute OCL-OCL_Classes-Property-owningType"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="OCL-OCL_Classes-A_ownedOperation_owningType" name="A_ownedOperation_owningType" memberEnd="OCL-OCL_Classes-Type-ownedOperation OCL-OCL_Classes-Operation-owningType"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Type" name="Type" isAbstract="true"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Constraints" name="OCL_Constraints">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Constraint" name="Constraint">
@@ -91,7 +73,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiE37VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_w5OpIBmAEeSM9LreJtBwBg" name="ValueSpecification"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_w5OpIBmAEeSM9LreJtBwBg" name="ValueSpecification" isAbstract="true"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Ap5skBmBEeSM9LreJtBwBg" name="String"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Expressions" name="OCL_Expressions">
@@ -491,5 +473,5 @@
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Package>
-  <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="OCL-OCL_Classes-Property-class" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
 </xmi:XMI>

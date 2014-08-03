@@ -17,6 +17,9 @@ OpaqueExpression extends (abstract)LanguageExpression extends ValueSpecification
 
 --------------------------------
 
+ValueSpecifcation any abstract => abstract
+Visitable => RedefineableSognature
+
 Behavior
     delete isReentrant,ownedParameter,postcondition,precondition,redefinedBehavior
     add transition

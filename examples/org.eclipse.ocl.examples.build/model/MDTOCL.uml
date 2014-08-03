@@ -43,6 +43,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Dynamics" name="MDT_OCL_Dynamics">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Dynamics-Behavior" name="Behavior" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2gYyIBqBEeSM9LreJtBwBg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Dynamics-DynamicBehavior" name="DynamicBehavior">
         <generalization xmi:id="_Py3gcfWKEeOa9vhgxFe-1w" general="MDTOCL-MDT_OCL_Dynamics-DynamicType"/>
         <generalization xmi:id="_Py3gcvWKEeOa9vhgxFe-1w" general="MDTOCL-MDT_OCL_Dynamics-Behavior"/>
@@ -60,7 +61,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Dynamics-DynamicType" name="DynamicType">
         <generalization xmi:id="_Xp6OH37VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Dynamics-DynamicElement"/>
-        <generalization xmi:id="_Xp6OIH7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Dynamics-Type"/>
+        <generalization xmi:id="_Xp6OIH7VEeOu79LxSz8Ylw" general="_2gYyIBqBEeSM9LreJtBwBg"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Dynamics-DynamicType-ownedProperty" name="ownedProperty" type="MDTOCL-MDT_OCL_Dynamics-DynamicProperty" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N8H7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6N8X7VEeOu79LxSz8Ylw" value="*"/>
@@ -297,6 +298,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Stereotypes" name="MDT_OCL_Stereotypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Boolean" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="__SVv8BqBEeSM9LreJtBwBg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Element" name="Element" isAbstract="true">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Element-extension" name="extension" type="MDTOCL-MDT_OCL_Stereotypes-ElementExtension" aggregation="composite" association="MDTOCL-MDT_OCL_Stereotypes-A_base_extension">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OF37VEeOu79LxSz8Ylw"/>
@@ -304,7 +306,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension" name="ElementExtension">
-        <generalization xmi:id="_Xp6OI37VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Stereotypes-Type"/>
+        <generalization xmi:id="_Xp6OI37VEeOu79LxSz8Ylw" general="__SVv8BqBEeSM9LreJtBwBg"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-base" name="base" type="MDTOCL-MDT_OCL_Stereotypes-Element" association="MDTOCL-MDT_OCL_Stereotypes-A_base_extension"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-stereotype" name="stereotype" type="MDTOCL-MDT_OCL_Stereotypes-Stereotype"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-isApplied" name="isApplied" type="MDTOCL-MDT_OCL_Stereotypes-Boolean">

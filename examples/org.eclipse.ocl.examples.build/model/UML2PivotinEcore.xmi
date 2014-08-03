@@ -71,6 +71,10 @@
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Association"/>
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#AssociationClass"/>
     </createTypes>
+    <createTypes newName="Variable">
+      <oldTypes xsi:type="uml:Class" href="../model-gen/OCL.uml#OCL-OCL_Expressions-Variable"/>
+      <oldTypes xsi:type="uml:Class" href="../model-gen/OCL.uml#OCL-OCL_Variables-Variable"/>
+    </createTypes>
     <!--createTypes newName="CallOperationAction">
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#CallOperationAction"/>
     </createTypes>
@@ -175,6 +179,22 @@
     <oldProperties href="../model-gen/UML.uml#Association-isDerived"/>
     <oldProperties href="../model-gen/UML.uml#Association-memberEnd"/>
     <oldProperties href="../model-gen/UML.uml#Association-ownedEnd"/>
+  </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
+    <oldProperties href="../model-gen/UML.uml#A_specification_owningInstanceSpec-owningInstanceSpec"/>
+    <oldProperties href="../model-gen/UML.uml#A_defaultValue_owningParameter-owningParameter"/>
+    <oldProperties href="../model-gen/UML.uml#A_defaultValue_owningProperty-owningProperty"/>
+    <oldProperties href="../model-gen/UML.uml#A_value_owningSlot-owningSlot"/>
+  </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
+    <oldProperties href="../model-gen/UML.uml#Type-package"/>
+    <oldProperties href="../model-gen/UML.uml#A_endType_association-association"/>
+    <oldProperties href="../model-gen/UML.uml#A_type_typedElement-typedElement"/>
+  </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
+    <oldProperties href="../model-gen/UML.uml#Transition-redefinedTransition"/>
+    <oldProperties href="../model-gen/UML.uml#Transition-redefinitionContext.1"/>
+    <oldProperties href="../model-gen/UML.uml#A_redefinedTransition_transition-transition"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove the refactored Operation Constraint">
     <oldProperties href="../model-gen/UML.uml#Operation-bodyCondition"/>

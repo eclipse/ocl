@@ -25,6 +25,7 @@ property copyPackages : Set(UML::Package) = allPackages - deletePackages - renam
 property allTypes : Set(UML::Type) = allPackages.ownedType->asSet();
 property allClasses : Set(UML::Class) = allPackages.ownedType->selectByKind(UML::Class)->asSet();
 
+property deletePackageTypes : Set(UML::Type) = deletePackages.ownedType->asSet();
 property deleteTypes : Set(UML::Type) = deleteTypeMappings.oldTypes->union(deleteTypeMappings.oldTypes)->asSet();
 property deleteTypeNames : Set(String) = deleteTypes.name->asSet();
 property deleteClasses : Set(UML::Class) = deleteTypeMappings.oldTypes->selectByKind(UML::Class)->asSet();
@@ -322,24 +323,24 @@ property eReference2createProperty : Dict(Ecore::EReference, UML2Ecore::CreatePr
  */
 mapping inout Ecore::EClass::resolveEClass()
 {
---	log('resolveEClass', self.name);
+	log('resolveEClass', self.name);
 	var createType : UML2Ecore::CreateType := eClassifier2createType->get(self);
 	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
---	log('  allOldTypes', allOldTypes->display());
+	log('  allOldTypes', allOldTypes->display());
 	var oldProperSuperClassClosure : Set(UML::Type) :=
 		getProperSuperTypes(allOldTypes);
---	log('  oldProperSuperClassClosure', oldProperSuperClassClosure.name->asSet()->display());
+	log('  oldProperSuperClassClosure', oldProperSuperClassClosure.name->asSet()->display());
 	var newSuperClassClosure : Set(UML::Type) :=
 		oldProperSuperClassClosure->reject(deleteTypeNames->includes(name))-createType.oldTypes;
 	var newProperSuperClassClosure : Set(UML::Type) :=
 		getAllTypes(newSuperClassClosure);
---	log('  newProperSuperClassClosure', newProperSuperClassClosure->display());
+	log('  newProperSuperClassClosure', newProperSuperClassClosure->display());
 	var newSuperSuperClassClosure2 : Set(UML::Type) :=
 		getProperSuperTypes(newProperSuperClassClosure);
---	log('  newSuperSuperClassClosure', newSuperSuperClassClosure2->display());
+	log('  newSuperSuperClassClosure', newSuperSuperClassClosure2->display());
 	var requiredSuperClasses : Set(UML::Type) :=
 		newProperSuperClassClosure - newSuperSuperClassClosure2;
---	log('  requiredSuperClasses', requiredSuperClasses->display());
+	log('  requiredSuperClasses', requiredSuperClasses->display());
 	self.eSuperTypes := requiredSuperClasses->collect(sc | umlType2eClass->get(sc))->asSet()->sortedBy(sc | if sc.oclIsKindOf(UML::Class) then sc.name else '_'+sc.name endif);
 	var oldInheritedClasses : Set(UML::Type) := createType.oldTypes->union(oldProperSuperClassClosure);
 --	log('  oldInheritedClasses', oldInheritedClasses->display());
@@ -453,7 +454,7 @@ helper getAllClasses(classes : Set(UML::Class)) : Set(UML::Class) {
 }
   
 helper getAllTypes(types : Set(UML::Type)) : Set(UML::Type) {
-	return getAllTypes(types.name->asSet());
+	return getAllTypes(types.name->asSet()) - deletePackageTypes;
 }
   
 helper getAllTypes(names : Set(String)) : Set(UML::Type) {
