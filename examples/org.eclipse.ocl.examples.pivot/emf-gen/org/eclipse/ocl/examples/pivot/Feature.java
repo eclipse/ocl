@@ -59,6 +59,7 @@ public interface Feature
 
 	/**
 	 * Returns the value of the '<em><b>Is Static</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Static</em>' attribute isn't clear,

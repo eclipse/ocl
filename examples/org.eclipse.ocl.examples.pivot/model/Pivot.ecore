@@ -478,7 +478,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="#//LibraryFeature" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>

@@ -518,7 +518,9 @@
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TFeature" name="Feature" isAbstract="true">
       <generalization xmi:id="Ppivot.TFeature.g0" general="Ppivot.TNamedElement"/>
       <generalization xmi:id="Ppivot.TFeature.g1" general="Ppivot.TTypedMultiplicityElement"/>
-      <ownedAttribute xmi:id="Ppivot.TFeature.PisStatic" name="isStatic" type="Ppivot.TBoolean"/>
+      <ownedAttribute xmi:id="Ppivot.TFeature.PisStatic" name="isStatic" type="Ppivot.TBoolean">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TFeature.PisStatic.dlV" value="false"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TFeature.PimplementationClass" name="implementationClass" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TFeature.PimplementationClass.lV"/>
       </ownedAttribute>

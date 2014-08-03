@@ -398,7 +398,8 @@
           name="implementation" type="#T.pivot.LibraryFeature"/>
       <ownedAttribute xmi:id="p.pivot.Feature.implementationClass" isRequired="false"
           name="implementationClass" type="#String"/>
-      <ownedAttribute xmi:id="p.pivot.Feature.isStatic" name="isStatic" type="#Boolean"/>
+      <ownedAttribute xmi:id="p.pivot.Feature.isStatic" default="false" name="isStatic"
+          type="#Boolean"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.FeatureCallExp" isAbstract="true" name="FeatureCallExp"
         superClass="#T.pivot.CallExp">
