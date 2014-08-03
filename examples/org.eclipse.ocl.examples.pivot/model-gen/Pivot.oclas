@@ -2436,7 +2436,7 @@
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.TemplateParameter"
-        lower="1" name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.104 #//@nestedPackage.1/@ownedType.184">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.104 #//@nestedPackage.1/@ownedType.184">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.TemplateParameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>

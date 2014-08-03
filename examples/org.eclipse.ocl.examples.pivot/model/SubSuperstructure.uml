@@ -236,6 +236,7 @@
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter">
               <body>The formal template parameters that are owned by this template signature.</body>
             </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QUaIYBsHEeSM9LreJtBwBg"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfQn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="template" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">

@@ -414,7 +414,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull OrderedSetType _OrderedSet_Parameter = createOrderedSetType("OrderedSet"/*Parameter*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Precedence = createOrderedSetType("OrderedSet"/*Precedence*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Property = createOrderedSetType("OrderedSet"/*Property*/, "0", "*");
-		protected final @NonNull OrderedSetType _OrderedSet_TemplateParameter = createOrderedSetType("OrderedSet"/*TemplateParameter*/, "1", "*");
+		protected final @NonNull OrderedSetType _OrderedSet_TemplateParameter = createOrderedSetType("OrderedSet"/*TemplateParameter*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_TupleLiteralPart = createOrderedSetType("OrderedSet"/*TupleLiteralPart*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_ValueSpecification = createOrderedSetType("OrderedSet"/*ValueSpecification*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Variable = createOrderedSetType("OrderedSet"/*Variable*/, "0", "*");

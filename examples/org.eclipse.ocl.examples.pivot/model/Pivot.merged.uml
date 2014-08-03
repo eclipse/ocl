@@ -1455,6 +1455,7 @@
         <ownedComment xmi:id="Ppivot.TTemplateSignature.PownedParameter.oC0" annotatedElement="Ppivot.TTemplateSignature.PownedParameter">
           <body>The formal template parameters that are owned by this template signature.</body>
         </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateSignature.PownedParameter.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateSignature.PownedParameter.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTemplateSignature.Ptemplate" name="template" type="Ppivot.TTemplateableElement" association="Ppivot.A_ownedTemplateSignature_template">
