@@ -193,9 +193,12 @@
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Instances" name="MDT_OCL_Instances">
       <packagedElement xmi:type="uml:Class" xmi:id="_vuQeUBtCEeSM9LreJtBwBg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification" name="InstanceSpecification">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-type" name="type" type="_vuQeUBtCEeSM9LreJtBwBg">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-classes" name="classes" type="_vuQeUBtCEeSM9LreJtBwBg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5nTnEBtCEeSM9LreJtBwBg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5JpasBtCEeSM9LreJtBwBg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ATYoEBtEEeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_3x36ABtDEeSM9LreJtBwBg" name="LanguageExpression" isAbstract="true"/>
@@ -212,9 +215,6 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_A8ymsBseEeSM9LreJtBwBg" name="Property"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_AsjLQBseEeSM9LreJtBwBg" name="Slot">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-Slot-definingProperty" name="definingProperty" type="_A8ymsBseEeSM9LreJtBwBg"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ATYoEBtEEeSM9LreJtBwBg"/>
-        </ownedAttribute>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Precedences" name="MDT_OCL_Precedences">

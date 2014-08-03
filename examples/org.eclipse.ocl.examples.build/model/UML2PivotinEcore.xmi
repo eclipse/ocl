@@ -339,9 +339,9 @@
     <oldProperties href="../model-gen/UML.uml#Slot-definingFeature"/>
     <oldProperties href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances-Slot-definingProperty"/>
   </mappings>
-  <mappings xsi:type="u2ec:CreateProperty" newName="type" comment="Rename InstanceSpecification::classifier to type">
+  <mappings xsi:type="u2ec:CreateProperty" newName="classes" comment="Rename InstanceSpecification::classifier to classes">
     <oldProperties href="../model-gen/UML.uml#InstanceSpecification-classifier"/>
-    <oldProperties href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances-InstanceSpecification-type"/>
+    <oldProperties href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances-InstanceSpecification-classes"/>
   </mappings>
   <mappings xsi:type="u2ec:CreateProperty" newName="slots" comment="Rename InstanceSpecification::slot to slots">
     <oldProperties href="../model-gen/UML.uml#InstanceSpecification-slot"/>
