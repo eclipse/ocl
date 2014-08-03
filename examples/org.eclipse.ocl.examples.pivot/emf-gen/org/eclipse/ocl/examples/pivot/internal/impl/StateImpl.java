@@ -170,15 +170,6 @@ public class StateImpl
 	 */
 	protected static final boolean IS_SUBMACHINE_STATE_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isSubmachineState() <em>Is Submachine State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSubmachineState()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int IS_SUBMACHINE_STATE_EFLAG = 1 << 8;
-	/**
 	 * The cached value of the '{@link #getRedefinedState() <em>Redefined State</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,19 +278,6 @@ public class StateImpl
 	public boolean isSubmachineState()
 	{
 		return eContainer() instanceof StateMachine;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsSubmachineState(boolean newIsSubmachineState)
-	{
-		boolean oldIsSubmachineState = (eFlags & IS_SUBMACHINE_STATE_EFLAG) != 0;
-		if (newIsSubmachineState) eFlags |= IS_SUBMACHINE_STATE_EFLAG; else eFlags &= ~IS_SUBMACHINE_STATE_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__IS_SUBMACHINE_STATE, oldIsSubmachineState, newIsSubmachineState));
 	}
 
 	/**
@@ -874,9 +852,6 @@ public class StateImpl
 			case PivotPackage.STATE__EXIT:
 				setExit((Behavior)newValue);
 				return;
-			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
-				setIsSubmachineState((Boolean)newValue);
-				return;
 			case PivotPackage.STATE__REDEFINED_STATE:
 				setRedefinedState((State)newValue);
 				return;
@@ -943,9 +918,6 @@ public class StateImpl
 			case PivotPackage.STATE__EXIT:
 				setExit((Behavior)null);
 				return;
-			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
-				setIsSubmachineState(IS_SUBMACHINE_STATE_EDEFAULT);
-				return;
 			case PivotPackage.STATE__REDEFINED_STATE:
 				setRedefinedState((State)null);
 				return;
@@ -1009,7 +981,7 @@ public class StateImpl
 			case PivotPackage.STATE__IS_SIMPLE:
 				return isSimple() != IS_SIMPLE_EDEFAULT;
 			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
-				return ((eFlags & IS_SUBMACHINE_STATE_EFLAG) != 0) != IS_SUBMACHINE_STATE_EDEFAULT;
+				return isSubmachineState() != IS_SUBMACHINE_STATE_EDEFAULT;
 			case PivotPackage.STATE__REDEFINED_STATE:
 				return redefinedState != null;
 			case PivotPackage.STATE__REGION:
@@ -1058,23 +1030,6 @@ public class StateImpl
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isSubmachineState: "); //$NON-NLS-1$
-		result.append((eFlags & IS_SUBMACHINE_STATE_EFLAG) != 0);
-		result.append(')');
-		return result.toString();
 	}
 
 	@Override

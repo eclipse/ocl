@@ -1262,7 +1262,8 @@
           isReadOnly="true" isTransient="true" isVolatile="true" name="isSimple" type="#Boolean">
         <ownedComment body="A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.State.isSubmachineState" default="false" name="isSubmachineState"
+      <ownedAttribute xmi:id="p.pivot.State.isSubmachineState" default="false" isDerived="true"
+          isReadOnly="true" isTransient="true" isVolatile="true" name="isSubmachineState"
           type="#Boolean">
         <ownedComment body="A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine)."/>
       </ownedAttribute>

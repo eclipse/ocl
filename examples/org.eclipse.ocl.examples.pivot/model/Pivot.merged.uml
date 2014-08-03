@@ -1221,7 +1221,7 @@
         </ownedComment>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TState.PisSimple.dlV" value="true"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TState.PisSubmachineState" name="isSubmachineState" type="Ppivot.TBoolean">
+      <ownedAttribute xmi:id="Ppivot.TState.PisSubmachineState" name="isSubmachineState" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true">
         <ownedComment xmi:id="Ppivot.TState.PisSubmachineState.oC0" annotatedElement="Ppivot.TState.PisSubmachineState">
           <body>A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).</body>
         </ownedComment>
@@ -2006,6 +2006,7 @@
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisComposite" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisComposite"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisOrthogonal" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisOrthogonal"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSimple" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSimple"/>
+  <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSubmachineState" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSubmachineState"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TOperation.PowningType" isTransient="true" isVolatile="true" base_Property="Ppivot.TOperation.PowningType"
       isResolveProxies="false"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TProperty.PowningType" isTransient="true" isVolatile="true" base_Property="Ppivot.TProperty.PowningType"

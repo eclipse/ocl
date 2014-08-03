@@ -99,21 +99,10 @@ public interface State
 	 * A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Submachine State</em>' attribute.
-	 * @see #setIsSubmachineState(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getState_IsSubmachineState()
 	 * @generated
 	 */
 	boolean isSubmachineState();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.State#isSubmachineState <em>Is Submachine State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Submachine State</em>' attribute.
-	 * @see #isSubmachineState()
-	 * @generated
-	 */
-	void setIsSubmachineState(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Submachine</b></em>' reference.

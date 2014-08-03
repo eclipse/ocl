@@ -3475,7 +3475,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsTransient(true);
 			property.setIsVolatile(true);
 			ownedProperties.add(property = pr_State_isSubmachineState);
+			property.setIsDerived(true);
+			property.setIsReadOnly(true);
 			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			property.setIsVolatile(true);
 			ownedProperties.add(property = pr_State_redefinedState);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);

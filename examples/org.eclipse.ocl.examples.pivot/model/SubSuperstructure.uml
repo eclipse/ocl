@@ -1105,7 +1105,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             </ownedComment>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnXQYn7VEeOu79LxSz8Ylw" value="true"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDnvUefEeKdl-y5nJoJpQ" name="isSubmachineState" type="_lg9w8EegEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_DKDnvUefEeKdl-y5nJoJpQ" name="isSubmachineState" type="_lg9w8EegEeKdl-y5nJoJpQ" isReadOnly="true" isDerived="true">
             <ownedComment xmi:id="_DKDnvkefEeKdl-y5nJoJpQ" annotatedElement="_DKDnvUefEeKdl-y5nJoJpQ">
               <body>A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).</body>
             </ownedComment>
@@ -1495,4 +1495,5 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
   <Ecore:EAttribute xmi:id="_cPr-cH9SEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="_DKDnt0efEeKdl-y5nJoJpQ"/>
   <Ecore:EAttribute xmi:id="_ftlosH9SEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="_DKDnukefEeKdl-y5nJoJpQ"/>
   <Ecore:EAttribute xmi:id="_1vi70BlUEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_VcCqKRlSEeSM9LreJtBwBg"/>
+  <Ecore:EAttribute xmi:id="_xCxxIBsJEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_DKDnvUefEeKdl-y5nJoJpQ"/>
 </xmi:XMI>
