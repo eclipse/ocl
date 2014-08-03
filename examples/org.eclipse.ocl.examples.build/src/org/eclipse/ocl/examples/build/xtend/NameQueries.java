@@ -60,7 +60,7 @@ public class NameQueries
 	
 	public static @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 		Enumeration enumeration = enumerationLiteral.getEnumeration();
-		String nsURI = DomainUtil.nonNullModel(enumeration.getPackage().getNsURI());
+		String nsURI = DomainUtil.nonNullModel(enumeration.getPackage().getURI());
 		GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(enumeration.getName())
@@ -73,7 +73,7 @@ public class NameQueries
 		if (!property.isImplicit()) {
 			org.eclipse.ocl.examples.pivot.Class type = property.getOwningType();
 			if (type != null) {
-				String nsURI = DomainUtil.nonNullModel(type.getPackage().getNsURI());
+				String nsURI = DomainUtil.nonNullModel(type.getPackage().getURI());
 				GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 				if (genPackage != null) {
 					return /*genPackage.getInterfacePackageName() +*/genPackage
@@ -90,7 +90,7 @@ public class NameQueries
 	
 	public static @NonNull String getEcoreLiteral(@NonNull Type type) {
 		if (type.getOwningTemplateParameter() == null) {
-			String nsURI = DomainUtil.nonNullModel(type.getPackage().getNsURI());
+			String nsURI = DomainUtil.nonNullModel(type.getPackage().getURI());
 			GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 			if (genPackage != null) {
 				return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(type.getName());

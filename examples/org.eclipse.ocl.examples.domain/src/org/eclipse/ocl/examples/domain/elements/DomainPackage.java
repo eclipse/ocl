@@ -23,7 +23,7 @@ public interface DomainPackage extends DomainNamespace
 	/*@NonNull*/ List<? extends DomainPackage>  getNestedPackage();
 	/*@Nullable*/ DomainPackage getNestingPackage();
 	/*@Nullable*/ String getNsPrefix();
-	/*@Nullable*/ String getNsURI();
+	/*@Nullable*/ String getURI();
 	/*@NonNull*/ List<? extends DomainType> getOwnedType();
 	@NonNull PackageId getPackageId();
 }

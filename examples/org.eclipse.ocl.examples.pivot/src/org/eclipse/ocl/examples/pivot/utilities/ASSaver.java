@@ -137,7 +137,7 @@ public class ASSaver
 			orphanage = orphanage2 = PivotFactory.eINSTANCE.createPackage();
 			orphanage2.setName(PivotConstants.ORPHANAGE_NAME);
 			orphanage2.setNsPrefix(PivotConstants.ORPHANAGE_PREFIX);
-			orphanage2.setNsURI(PivotConstants.ORPHANAGE_URI);
+			orphanage2.setURI(PivotConstants.ORPHANAGE_URI);
 			EList<EObject> contents = resource.getContents();
 			if ((contents.size() > 0) && (contents.get(0) instanceof Root)) {
 				((Root)contents.get(0)).getNestedPackage().add(orphanage2);

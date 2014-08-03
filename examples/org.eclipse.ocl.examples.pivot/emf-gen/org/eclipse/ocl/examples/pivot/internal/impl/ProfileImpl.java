@@ -221,6 +221,8 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return getTemplateBinding();
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.PROFILE__URI:
+				return getURI();
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:
 				return getImportedPackage();
 			case PivotPackage.PROFILE__NESTED_PACKAGE:
@@ -229,8 +231,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return getNestingPackage();
 			case PivotPackage.PROFILE__NS_PREFIX:
 				return getNsPrefix();
-			case PivotPackage.PROFILE__NS_URI:
-				return getNsURI();
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				return getOwnedInstances();
 			case PivotPackage.PROFILE__OWNED_TYPE:
@@ -296,6 +296,9 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
 				return;
+			case PivotPackage.PROFILE__URI:
+				setURI((String)newValue);
+				return;
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				getImportedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
@@ -309,9 +312,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__NS_PREFIX:
 				setNsPrefix((String)newValue);
-				return;
-			case PivotPackage.PROFILE__NS_URI:
-				setNsURI((String)newValue);
 				return;
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
@@ -379,6 +379,9 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
 				return;
+			case PivotPackage.PROFILE__URI:
+				setURI(URI_EDEFAULT);
+				return;
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				return;
@@ -390,9 +393,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
-				return;
-			case PivotPackage.PROFILE__NS_URI:
-				setNsURI(NS_URI_EDEFAULT);
 				return;
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
@@ -444,6 +444,8 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.PROFILE__URI:
+				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:
 				return importedPackage != null && !importedPackage.isEmpty();
 			case PivotPackage.PROFILE__NESTED_PACKAGE:
@@ -452,8 +454,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return getNestingPackage() != null;
 			case PivotPackage.PROFILE__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
-			case PivotPackage.PROFILE__NS_URI:
-				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.PROFILE__OWNED_TYPE:

@@ -3,7 +3,8 @@
     xmlns:pivot="http://www.eclipse.org/ocl/3.1.0/Pivot" xsi:schemaLocation="http://www.eclipse.org/ocl/3.1.0/Pivot java://org.eclipse.ocl.examples.pivot.PivotPackage"
     externalURI="platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.ecore"
     name="Pivot.ecore">
-  <nestedPackage xmi:id="P.pivot" name="pivot" nsPrefix="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot">
+  <nestedPackage xmi:id="P.pivot" URI="http://www.eclipse.org/ocl/3.1.0/Pivot" name="pivot"
+      nsPrefix="pivot">
     <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Boolean" instanceClassName="boolean"
         name="Boolean" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny">
       <ownedComment body="A Boolean type is used for logical expression, consisting of the predefined values true and false."/>
@@ -864,6 +865,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.OrderedSetType" name="OrderedSetType" superClass="#T.pivot.CollectionType"/>
     <ownedType xmi:id="T.pivot.Package" name="Package" superClass="#T.pivot.PackageableElement #T.pivot.Namespace #T.pivot.TemplateableElement">
+      <ownedAttribute xmi:id="p.pivot.Package.URI" isRequired="false" name="URI" type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Package.importedPackage" name="importedPackage"
           opposite="#p.pivot.Package.Package" type="#//@nestedPackage.1/@ownedType.137"/>
       <ownedAttribute xmi:id="p.pivot.Package.nestedPackage" isComposite="true" name="nestedPackage"
@@ -875,8 +877,6 @@
         <ownedComment body="The containing package."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Package.nsPrefix" isRequired="false" name="nsPrefix"
-          type="#String"/>
-      <ownedAttribute xmi:id="p.pivot.Package.nsURI" isRequired="false" name="nsURI"
           type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Package.ownedInstances" isComposite="true" name="ownedInstances"
           opposite="#p.pivot.InstanceSpecification.Package" type="#//@nestedPackage.1/@ownedType.135">
@@ -1710,7 +1710,8 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.VoidType" name="VoidType" superClass="#T.pivot.Class"/>
   </nestedPackage>
-  <nestedPackage xmi:id="P.$$" name="$$" nsPrefix="orphanage" nsURI="http://www.eclipse.org/ocl/3.1.0/orphanage">
+  <nestedPackage xmi:id="P.$$" URI="http://www.eclipse.org/ocl/3.1.0/orphanage" name="$$"
+      nsPrefix="orphanage">
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Annotation" name="Bag"
         superClass="#//@nestedPackage.1/@ownedType.34">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">

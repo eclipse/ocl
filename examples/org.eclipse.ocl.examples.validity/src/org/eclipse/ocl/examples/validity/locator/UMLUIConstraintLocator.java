@@ -107,7 +107,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 			if (contextPackage != null) {
 				Root containingRoot = PivotUtil.getContainingRoot(contextPackage);
 				if (containingRoot == null) {
-					externalURI = contextPackage.getNsURI();
+					externalURI = contextPackage.getURI();
 				}
 				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();

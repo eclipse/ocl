@@ -67,9 +67,9 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 	}
 
 	public void refreshNsURI(@NonNull org.eclipse.ocl.examples.pivot.Package pivotPackage, String newNsURI) {
-		String oldNsURI = pivotPackage.getNsURI();
+		String oldNsURI = pivotPackage.getURI();
 		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
-			pivotPackage.setNsURI(newNsURI);
+			pivotPackage.setURI(newNsURI);
 		}
 	}
 	

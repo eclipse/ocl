@@ -74,7 +74,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	private void addPackage(@NonNull DomainPackage userPackage) {
-		String nsURI = userPackage.getNsURI();
+		String nsURI = userPackage.getURI();
 		if (nsURI != null) {
 			nsURI2package.put(nsURI, userPackage);
 			EPackage ePackage = userPackage.getEPackage();

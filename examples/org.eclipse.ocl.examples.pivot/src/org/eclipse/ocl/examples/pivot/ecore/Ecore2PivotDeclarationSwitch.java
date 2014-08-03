@@ -415,7 +415,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 //			newName = "anon_" + Integer.toHexString(System.identityHashCode(eObject2));
 //			logger.error("Anonymous package named as '" + newName + "'");
 //		}
-		String oldNsURI = pivotElement.getNsURI();
+		String oldNsURI = pivotElement.getURI();
 		String newNsURI = eObject2.getNsURI();
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		boolean nsURIChange = (oldNsURI != newNsURI) || ((oldNsURI != null) && !oldNsURI.equals(newNsURI));
@@ -450,10 +450,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedNsURI));
 				}
 			}
-			pivotElement.setNsURI(eObject2.getNsURI());
+			pivotElement.setURI(eObject2.getNsURI());
 		}
 		else {
-			pivotElement.setNsURI(null);
+			pivotElement.setURI(null);
 		}
 		if (eObject2.eIsSet(EcorePackage.Literals.EPACKAGE__NS_PREFIX)) {
 			pivotElement.setNsPrefix(eObject2.getNsPrefix());

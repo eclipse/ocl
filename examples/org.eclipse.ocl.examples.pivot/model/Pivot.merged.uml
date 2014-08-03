@@ -876,8 +876,8 @@
       <ownedAttribute xmi:id="Ppivot.TPackage.PnsPrefix" name="nsPrefix" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PnsPrefix.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TPackage.PnsURI" name="nsURI" type="Ppivot.TString">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PnsURI.lV"/>
+      <ownedAttribute xmi:id="Ppivot.TPackage.PURI" name="URI" type="Ppivot.TString">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PURI.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TPackage.PimportedPackage" name="importedPackage" type="Ppivot.TPackage">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PimportedPackage.lV"/>

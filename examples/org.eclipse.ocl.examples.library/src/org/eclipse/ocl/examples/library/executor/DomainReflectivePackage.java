@@ -31,7 +31,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 	protected final @NonNull DomainPackage domainPackage;
 
 	public DomainReflectivePackage(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainPackage domainPackage) {
-		super(DomainUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getNsURI(), domainPackage.getPackageId());
+		super(DomainUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getURI(), domainPackage.getPackageId());
 		this.standardLibrary = standardLibrary;
 		this.domainPackage = domainPackage;
 	}

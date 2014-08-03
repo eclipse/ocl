@@ -451,7 +451,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 				}
 			}
 		}
-		String nsURI = asPackage.getNsURI();
+		String nsURI = asPackage.getURI();
 		if (nsURI == null) {
 			return null;
 		}

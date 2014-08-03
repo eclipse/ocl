@@ -33,8 +33,8 @@ public class RootPackageServer extends PackageServer
 		assert domainPackage != null;
 		DomainPackage parentPackage = domainPackage.getNestingPackage();
 		assert parentPackage == null;
-		String typeBasedNsURI = domainPackage.getNsURI();
-		String serverBasedNsURI = getNsURI();
+		String typeBasedNsURI = domainPackage.getURI();
+		String serverBasedNsURI = getURI();
 		if (typeBasedNsURI == null) {
 //			assert serverBasedNsURI == null;
 		}

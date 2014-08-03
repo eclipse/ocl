@@ -491,7 +491,7 @@ public class PivotUtil extends DomainUtil
 		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(ePackage.getName());
 		pivotPackage.setNsPrefix(nsPrefix);
-		pivotPackage.setNsURI(nsURI);
+		pivotPackage.setURI(nsURI);
 		((PivotObjectImpl)pivotPackage).setTarget(ePackage);
 		return pivotPackage;
 	}
@@ -506,7 +506,7 @@ public class PivotUtil extends DomainUtil
 		if (packageId != null) {
 			((PackageImpl)pivotPackage).setPackageId(packageId);  // FIXME Add to API
 		}
-		pivotPackage.setNsURI(nsURI);
+		pivotPackage.setURI(nsURI);
 		return pivotPackage;
 	}
 
@@ -1336,7 +1336,7 @@ public class PivotUtil extends DomainUtil
 	 */
 	public static String getNsURI(@NonNull DomainElement element) {
 		if (element instanceof DomainPackage) {
-			String nsURI = ((DomainPackage)element).getNsURI();
+			String nsURI = ((DomainPackage)element).getURI();
 			if (nsURI != null) {
 				return nsURI;
 			}
@@ -1354,7 +1354,7 @@ public class PivotUtil extends DomainUtil
 
 	private static void getNsURI(@NonNull StringBuilder s, @NonNull EObject element) {
 		if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
-			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getNsURI();
+			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getURI();
 			if (nsURI != null) {
 				s.append(nsURI);
 				return;
@@ -1376,7 +1376,7 @@ public class PivotUtil extends DomainUtil
 		}
 		EObject eContainer = element.eContainer();
 		if ((eContainer instanceof org.eclipse.ocl.examples.pivot.Package) || (eContainer instanceof Root)) {
-			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getNsURI();
+			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getURI();
 			if (nsURI != null) {
 				s.append(nsURI);
 				s.append("#/");

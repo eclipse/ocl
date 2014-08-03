@@ -354,7 +354,7 @@ public final class IdManager
      * Return the typeId for aPackage.
      */
 	public static @NonNull PackageId getPackageId(@NonNull DomainPackage aPackage) {
-		String nsURI = aPackage.getNsURI();
+		String nsURI = aPackage.getURI();
 		if (nsURI != null) {
 			return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage.getEPackage());
 		}

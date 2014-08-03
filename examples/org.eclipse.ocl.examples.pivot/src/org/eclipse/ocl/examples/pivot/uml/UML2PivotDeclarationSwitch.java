@@ -747,7 +747,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedURI));
 			}
 		}
-		pivotElement.setNsURI(nsURI != null ? nsURI.toString() : null);
+		pivotElement.setURI(nsURI != null ? nsURI.toString() : null);
 		@Nullable List<org.eclipse.uml2.uml.Element> umlOtherElements = null;
 		@Nullable List<org.eclipse.uml2.uml.InstanceSpecification> umlInstanceSpecifications = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlNestedPackages = null;
@@ -978,7 +978,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				else if ("org.omg.xmi.nsURI".equals(name) && (taggedObject instanceof org.eclipse.uml2.uml.Package)) {
 					org.eclipse.ocl.examples.pivot.Package asPackage = converter.getCreated(org.eclipse.ocl.examples.pivot.Package.class, taggedObject);
 					if (asPackage != null) {
-						asPackage.setNsURI(String.valueOf(value));
+						asPackage.setURI(String.valueOf(value));
 						gotIt = true;
 					}
 				}

@@ -164,7 +164,7 @@
         <ownedAttribute xmi:id="_AzTvUMpBEd-ZL8lMORCEkg" name="nsPrefix" type="_-0G3sMpAEd-ZL8lMORCEkg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OA37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_HIkBMMpBEd-ZL8lMORCEkg" name="nsURI" type="_-0G3sMpAEd-ZL8lMORCEkg">
+        <ownedAttribute xmi:id="_HIkBMMpBEd-ZL8lMORCEkg" name="URI" type="_-0G3sMpAEd-ZL8lMORCEkg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OBH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_swFbkLb8EeG1psGotoAUcw" name="importedPackage" type="_7uYc4MpAEd-ZL8lMORCEkg">

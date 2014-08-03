@@ -216,7 +216,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		PackageCS csPackage = context.refreshNamedElement(PackageCS.class, BaseCSPackage.Literals.PACKAGE_CS, object);
 		context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
 		csPackage.setNsPrefix(object.getNsPrefix());
-		csPackage.setNsURI(object.getNsURI());
+		csPackage.setNsURI(object.getURI());
 		context.refreshList(csPackage.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getNestedPackage(), null));
 		return csPackage;
 	}

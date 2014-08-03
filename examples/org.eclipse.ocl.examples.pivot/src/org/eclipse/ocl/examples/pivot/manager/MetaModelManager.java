@@ -1118,7 +1118,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (packageId != null) {
 			((PackageImpl)asPackage).setPackageId(packageId);
 		}
-		asPackage.setNsURI(nsURI);
+		asPackage.setURI(nsURI);
 		return asPackage;
 	}
 
@@ -2025,7 +2025,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			org.eclipse.ocl.examples.pivot.Package asPackage = asType.getPackage();
 			String name = DomainUtil.nonNullModel(asPackage.getName());
 			String nsPrefix = DomainUtil.nonNullModel(asPackage.getNsPrefix());
-			String nsURI = DomainUtil.nonNullModel(asPackage.getNsURI());
+			String nsURI = DomainUtil.nonNullModel(asPackage.getURI());
 			if (asPackage instanceof Library) {
 				String uriString = DomainUtil.nonNullModel(asResource.getURI().toString());
 				clonedResource = OCLstdlib.create(uriString, name, nsPrefix, nsURI);
@@ -2829,7 +2829,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		for (DomainPackage asPackage : pivotRoot.getNestedPackage()) {
 			if ((asPackage instanceof Library) && !asLibraries.contains(asPackage)) {
 				Library asLibrary = (Library)asPackage;
-				String uri = asLibrary.getNsURI();
+				String uri = asLibrary.getURI();
 				if (asLibraries.isEmpty()) {
 					if (uri == null) {
 						throw new IllegalLibraryException(OCLMessages.MissingLibraryURI_ERROR_);
@@ -3363,7 +3363,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void setASMetamodel(DomainPackage asPackage) {
 		asMetamodel = asPackage;
-		String uri = asMetamodel.getNsURI();
+		String uri = asMetamodel.getURI();
 		if (uri != null) {
 			packageManager.addPackageNsURISynonym(uri, DomainConstants.METAMODEL_NAME);
 		}
@@ -3390,7 +3390,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 //			setDefaultStandardLibraryURI(metaNsURI);
 			getASMetamodel();
 		}
-		else if (!metaNsURI.equals(asMetamodel.getNsURI())) {
+		else if (!metaNsURI.equals(asMetamodel.getURI())) {
 			packageManager.addPackageNsURISynonym(metaNsURI, DomainConstants.METAMODEL_NAME);
 //			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
 		}

@@ -58,11 +58,11 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestedPackage <em>Nested Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsURI <em>Ns URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getProfileApplication <em>Profile Application</em>}</li>
@@ -117,6 +117,26 @@ public class PackageImpl
 	protected TemplateableElement unspecializedElement;
 
 	/**
+	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getURI() <em>URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uri = URI_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getImportedPackage() <em>Imported Package</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,26 +175,6 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected String nsPrefix = NS_PREFIX_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNsURI()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NS_URI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNsURI()
-	 * @generated
-	 * @ordered
-	 */
-	protected String nsURI = NS_URI_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOwnedInstances() <em>Owned Instances</em>}' containment reference list.
@@ -365,8 +365,11 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getNsURI() {
-		return nsURI;
+	public void setURIGen(String newURI) {
+		String oldURI = uri;
+		uri = newURI;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__URI, oldURI, uri));
 	}
 
 	/**
@@ -374,11 +377,8 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNsURIGen(String newNsURI) {
-		String oldNsURI = nsURI;
-		nsURI = newNsURI;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__NS_URI, oldNsURI, nsURI));
+	public String getURI() {
+		return uri;
 	}
 
 	/**
@@ -628,6 +628,8 @@ public class PackageImpl
 				return getTemplateBinding();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.PACKAGE__URI:
+				return getURI();
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				return getImportedPackage();
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
@@ -636,8 +638,6 @@ public class PackageImpl
 				return getNestingPackage();
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return getNsPrefix();
-			case PivotPackage.PACKAGE__NS_URI:
-				return getNsURI();
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return getOwnedInstances();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
@@ -700,6 +700,9 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
 				return;
+			case PivotPackage.PACKAGE__URI:
+				setURI((String)newValue);
+				return;
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				getImportedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
@@ -713,9 +716,6 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				setNsPrefix((String)newValue);
-				return;
-			case PivotPackage.PACKAGE__NS_URI:
-				setNsURI((String)newValue);
 				return;
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
@@ -778,6 +778,9 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
 				return;
+			case PivotPackage.PACKAGE__URI:
+				setURI(URI_EDEFAULT);
+				return;
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				return;
@@ -789,9 +792,6 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
-				return;
-			case PivotPackage.PACKAGE__NS_URI:
-				setNsURI(NS_URI_EDEFAULT);
 				return;
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
@@ -839,6 +839,8 @@ public class PackageImpl
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.PACKAGE__URI:
+				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				return importedPackage != null && !importedPackage.isEmpty();
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
@@ -847,8 +849,6 @@ public class PackageImpl
 				return getNestingPackage() != null;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
-			case PivotPackage.PACKAGE__NS_URI:
-				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
@@ -988,9 +988,9 @@ public class PackageImpl
 		return packageId;
 	}
 
-	public void setNsURI(String newNsURI) {
-		setNsURIGen(newNsURI);
-		if ((packageId == null) && (newNsURI != null)) {
+	public void setURI(String newURI) {
+		setURIGen(newURI);
+		if ((packageId == null) && (newURI != null)) {
 			setPackageId(IdManager.getPackageId(this));
 		}
 	}

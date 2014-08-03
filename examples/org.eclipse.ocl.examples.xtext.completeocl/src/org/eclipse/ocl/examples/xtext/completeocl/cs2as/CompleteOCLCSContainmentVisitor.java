@@ -283,7 +283,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			if (packageImpl.basicGetPackageId() == null) {
 				packageImpl.setPackageId(modelPackage.getPackageId());
 			}
-			context.refreshNsURI(contextPackage, modelPackage.getNsURI());
+			context.refreshNsURI(contextPackage, modelPackage.getURI());
 			modelPackage2contextPackage.put(modelPackage, contextPackage);
 			org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelPackage.getNestingPackage();
 			if (parentModelPackage != null) {

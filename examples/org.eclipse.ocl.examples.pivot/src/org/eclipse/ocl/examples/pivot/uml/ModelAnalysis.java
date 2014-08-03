@@ -420,7 +420,7 @@ public class ModelAnalysis
 			@NonNull Map<Type, Set<TypeExtension>> metatype2typeExtensions) {
 		if (UML2Pivot.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();
-			s.append(EcoreUtils.qualifiedNameFor(asPackage) + " : " + asPackage.getNsURI());
+			s.append(EcoreUtils.qualifiedNameFor(asPackage) + " : " + asPackage.getURI());
 			List<Type> metatypes = new ArrayList<Type>(metatype2typeExtensions.keySet());
 			Collections.sort(metatypes, PivotUtil.NAMEABLE_COMPARATOR);
 			for (Type metatype : metatypes) {

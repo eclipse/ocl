@@ -51,7 +51,7 @@ public abstract class ExecutorPackage implements DomainPackage
 		return nsPrefix;
 	}
 
-	public final @Nullable String getNsURI() {
+	public final @Nullable String getURI() {
 		return nsURI;
 	}
 

@@ -174,6 +174,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getTemplateBinding();
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.LIBRARY__URI:
+				return getURI();
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				return getImportedPackage();
 			case PivotPackage.LIBRARY__NESTED_PACKAGE:
@@ -182,8 +184,6 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getNestingPackage();
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				return getNsPrefix();
-			case PivotPackage.LIBRARY__NS_URI:
-				return getNsURI();
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return getOwnedInstances();
 			case PivotPackage.LIBRARY__OWNED_TYPE:
@@ -249,6 +249,9 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
 				return;
+			case PivotPackage.LIBRARY__URI:
+				setURI((String)newValue);
+				return;
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				getImportedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
@@ -262,9 +265,6 @@ public class LibraryImpl extends PackageImpl implements Library
 				return;
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				setNsPrefix((String)newValue);
-				return;
-			case PivotPackage.LIBRARY__NS_URI:
-				setNsURI((String)newValue);
 				return;
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				getOwnedInstances().clear();
@@ -332,6 +332,9 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
 				return;
+			case PivotPackage.LIBRARY__URI:
+				setURI(URI_EDEFAULT);
+				return;
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				return;
@@ -343,9 +346,6 @@ public class LibraryImpl extends PackageImpl implements Library
 				return;
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
-				return;
-			case PivotPackage.LIBRARY__NS_URI:
-				setNsURI(NS_URI_EDEFAULT);
 				return;
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				getOwnedInstances().clear();
@@ -397,6 +397,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.LIBRARY__URI:
+				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				return importedPackage != null && !importedPackage.isEmpty();
 			case PivotPackage.LIBRARY__NESTED_PACKAGE:
@@ -405,8 +407,6 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getNestingPackage() != null;
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
-			case PivotPackage.LIBRARY__NS_URI:
-				return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_TYPE:

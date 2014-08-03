@@ -717,7 +717,7 @@ public class EnvironmentView
 				}
 			}
 			for (PackageServer packageServer : packageManager.getAllPackagesWithUris()) {
-				String nsURI = packageServer.getNsURI();
+				String nsURI = packageServer.getURI();
 				if (nsURI != null) {
 					addElement(nsURI, packageServer);
 				}

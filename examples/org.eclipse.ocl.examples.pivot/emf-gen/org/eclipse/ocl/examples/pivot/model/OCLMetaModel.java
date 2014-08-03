@@ -2195,11 +2195,11 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_OperationCallExp_argument = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, _OrderedSet_OCLExpression);
 		protected final @NonNull Property pr_OperationCallExp_referredOperation = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, _Operation);
 		protected final @NonNull Property pr_OppositePropertyCallExp_referredProperty = createProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY, _Property);
+		protected final @NonNull Property pr_Package_URI = createProperty(PivotPackage.Literals.PACKAGE__URI, _String);
 		protected final @NonNull Property pr_Package_importedPackage = createProperty(PivotPackage.Literals.PACKAGE__IMPORTED_PACKAGE, _Set_Package);
 		protected final @NonNull Property pr_Package_nestedPackage = createProperty(PivotPackage.Literals.PACKAGE__NESTED_PACKAGE, _Set_Package);
 		protected final @NonNull Property pr_Package_nestingPackage = createProperty(PivotPackage.Literals.PACKAGE__NESTING_PACKAGE, _Package);
 		protected final @NonNull Property pr_Package_nsPrefix = createProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX, _String);
-		protected final @NonNull Property pr_Package_nsURI = createProperty(PivotPackage.Literals.PACKAGE__NS_URI, _String);
 		protected final @NonNull Property pr_Package_ownedInstances = createProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES, _Set_InstanceSpecification);
 		protected final @NonNull Property pr_Package_ownedType = createProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE, _Set_Class);
 		protected final @NonNull Property pr_Package_profileApplication = createProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, _Set_ProfileApplication);
@@ -3119,6 +3119,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_OppositePropertyCallExp_referredProperty);
 			ownedProperties = _Package.getOwnedAttribute();
+			ownedProperties.add(property = pr_Package_URI);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Package_importedPackage);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_Package_importedPackage);
@@ -3131,9 +3134,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_nestedPackage);
 			ownedProperties.add(property = pr_Package_nsPrefix);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Package_nsURI);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Package_ownedInstances);

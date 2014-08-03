@@ -3,8 +3,8 @@
     xmlns:pivot="http://www.eclipse.org/ocl/3.1.0/Pivot" xsi:schemaLocation="http://www.eclipse.org/ocl/3.1.0/Pivot java://org.eclipse.ocl.examples.pivot.PivotPackage"
     externalURI="platform:/resource/org.eclipse.ocl.examples.library/model/OCL-2.5.oclstdlib"
     name="OCL-2.5.oclstdlib">
-  <nestedPackage xsi:type="pivot:Library" xmi:id="P.ocl" name="ocl" nsPrefix="ocl"
-      nsURI="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib">
+  <nestedPackage xsi:type="pivot:Library" xmi:id="P.ocl" URI="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"
+      name="ocl" nsPrefix="ocl">
     <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
       <ownedDetail name="PackageRole">
         <value>StandardLibrary</value>
@@ -2582,7 +2582,8 @@
       </ownedTemplateSignature>
     </ownedType>
   </nestedPackage>
-  <nestedPackage xmi:id="P.$$" name="$$" nsPrefix="orphanage" nsURI="http://www.eclipse.org/ocl/3.1.0/orphanage">
+  <nestedPackage xmi:id="P.$$" URI="http://www.eclipse.org/ocl/3.1.0/orphanage" name="$$"
+      nsPrefix="orphanage">
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"
         resultType="#Boolean" superClass="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"

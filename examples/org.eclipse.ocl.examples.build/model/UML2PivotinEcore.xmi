@@ -189,6 +189,7 @@
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Package features">
     <oldProperties href="../model-gen/UML.uml#Package-ownedStereotype.1"/>
+    <oldProperties href="../model-gen/UML.uml#Package-packagedElement"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot PackageableElement features">
     <oldProperties href="../model-gen/UML.uml#A_importedMember_namespace-namespace"/>

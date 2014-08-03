@@ -2300,11 +2300,11 @@ public class PivotTables
 
 		public static final @NonNull ExecutorProperty _OppositePropertyCallExp__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY, Types._OppositePropertyCallExp, 0);
 
-		public static final @NonNull ExecutorProperty _Package__importedPackage = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__IMPORTED_PACKAGE, Types._Package, 0);
-		public static final @NonNull ExecutorProperty _Package__nestedPackage = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NESTED_PACKAGE, Types._Package, 1);
-		public static final @NonNull ExecutorProperty _Package__nestingPackage = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NESTING_PACKAGE, Types._Package, 2);
-		public static final @NonNull ExecutorProperty _Package__nsPrefix = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX, Types._Package, 3);
-		public static final @NonNull ExecutorProperty _Package__nsURI = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NS_URI, Types._Package, 4);
+		public static final @NonNull ExecutorProperty _Package__URI = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__URI, Types._Package, 0);
+		public static final @NonNull ExecutorProperty _Package__importedPackage = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__IMPORTED_PACKAGE, Types._Package, 1);
+		public static final @NonNull ExecutorProperty _Package__nestedPackage = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NESTED_PACKAGE, Types._Package, 2);
+		public static final @NonNull ExecutorProperty _Package__nestingPackage = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NESTING_PACKAGE, Types._Package, 3);
+		public static final @NonNull ExecutorProperty _Package__nsPrefix = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX, Types._Package, 4);
 		public static final @NonNull ExecutorProperty _Package__ownedInstances = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES, Types._Package, 5);
 		public static final @NonNull ExecutorProperty _Package__ownedType = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE, Types._Package, 6);
 		public static final @NonNull ExecutorProperty _Package__profileApplication = new EcoreExecutorProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, Types._Package, 7);
@@ -12491,6 +12491,7 @@ public class PivotTables
 		};
 
 		private static final @NonNull ExecutorProperty[] _Library = {
+			PivotTables.Properties._Package__URI,
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Package__importedPackage,
@@ -12499,7 +12500,6 @@ public class PivotTables
 			PivotTables.Properties._Package__nestedPackage,
 			PivotTables.Properties._Package__nestingPackage,
 			PivotTables.Properties._Package__nsPrefix,
-			PivotTables.Properties._Package__nsURI,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Package__ownedInstances,
@@ -13111,6 +13111,7 @@ public class PivotTables
 		};
 
 		private static final @NonNull ExecutorProperty[] _Package = {
+			PivotTables.Properties._Package__URI,
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Package__importedPackage,
@@ -13119,7 +13120,6 @@ public class PivotTables
 			PivotTables.Properties._Package__nestedPackage,
 			PivotTables.Properties._Package__nestingPackage,
 			PivotTables.Properties._Package__nsPrefix,
-			PivotTables.Properties._Package__nsURI,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Package__ownedInstances,
@@ -13310,6 +13310,7 @@ public class PivotTables
 		};
 
 		private static final @NonNull ExecutorProperty[] _Profile = {
+			PivotTables.Properties._Package__URI,
 			PivotTables.Properties._Profile__application,
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Element__extension,
@@ -13319,7 +13320,6 @@ public class PivotTables
 			PivotTables.Properties._Package__nestedPackage,
 			PivotTables.Properties._Package__nestingPackage,
 			PivotTables.Properties._Package__nsPrefix,
-			PivotTables.Properties._Package__nsURI,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Package__ownedInstances,

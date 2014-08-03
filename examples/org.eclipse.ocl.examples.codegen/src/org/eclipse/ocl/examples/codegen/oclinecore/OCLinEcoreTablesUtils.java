@@ -789,7 +789,7 @@ public class OCLinEcoreTablesUtils
 			}
 			return metaModelGenPackage;
 		}
-		String nsURI = asPackage.getNsURI();
+		String nsURI = asPackage.getURI();
 		if (nsURI != null) {
 			GenPackage genPackage2 = metaModelManager.getGenPackage(nsURI);
 			if (genPackage2 != null) {
@@ -883,7 +883,7 @@ public class OCLinEcoreTablesUtils
 		if (asPackage == null) {
 			return null;
 		}
-		if (asPackage.getNsURI().equals(LibraryConstants.STDLIB_URI)) {				// If generating OCLstdlibTables ...
+		if (asPackage.getURI().equals(LibraryConstants.STDLIB_URI)) {				// If generating OCLstdlibTables ...
 			mergeLibrary(asPackage);			// FIXME: redundant once M2T scans all partial types
 		}
 		return asPackage;

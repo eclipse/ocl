@@ -31,7 +31,7 @@ public class AbstractContents extends PivotUtil
 		if (packageId != null) {
 			((LibraryImpl)pivotLibrary).setPackageId(packageId);  // FIXME Add to API
 		}
-		pivotLibrary.setNsURI(nsURI);
+		pivotLibrary.setURI(nsURI);
 		return pivotLibrary;
 	}
 	

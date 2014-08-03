@@ -73,7 +73,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull DomainPackage domainPackage) {
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(domainPackage.getName());
-		pivotPackage.setNsURI(domainPackage.getNsURI());
+		pivotPackage.setURI(domainPackage.getURI());
 		for (DomainType domainType : domainPackage.getOwnedType()) {
 			if (domainType != null) {
 				org.eclipse.ocl.examples.pivot.Class pivotType = createType(domainType);
@@ -134,7 +134,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		DomainPackage domainPackage = typeType.getPackage();
 		DomainPackage pivotPackage = packageMap.get(domainPackage);
 		if (pivotPackage == null) {
-			String nsURI = domainPackage.getNsURI();
+			String nsURI = domainPackage.getURI();
 			if (nsURI != null) {
 				pivotPackage = metaModelManager.getPrimaryPackage(nsURI);
 			}

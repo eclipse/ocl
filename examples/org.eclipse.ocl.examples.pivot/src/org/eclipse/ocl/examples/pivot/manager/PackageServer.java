@@ -109,8 +109,8 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 
 	protected void assertSamePackage(@Nullable DomainPackage domainPackage) {
 		assert domainPackage != null;
-		String typeBasedNsURI = domainPackage.getNsURI();
-		String serverBasedNsURI = getNsURI();
+		String typeBasedNsURI = domainPackage.getURI();
+		String serverBasedNsURI = getURI();
 		assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
 	}
 
@@ -152,7 +152,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		if (packageServers2 != null) {
 			packageServers2.remove(packageServer.getName());
 		}
-		packageManager.disposedPackageServer(packageServer.getNsURI());
+		packageManager.disposedPackageServer(packageServer.getURI());
 	}
 
 	void disposedPackageTracker(@NonNull PackageTracker packageTracker) {
@@ -239,7 +239,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		NestedPackageServer packageServer = packageServers2.get(name);
 		if (packageServer == null) {
 			String nsPrefix = pivotPackage.getNsPrefix();
-			String nsURI = pivotPackage.getNsURI();
+			String nsURI = pivotPackage.getURI();
 			packageServer = new NestedPackageServer(this, name, nsPrefix, nsURI, pivotPackage.getPackageId());
 			packageServers2.put(name, packageServer);
 			if (nsURI != null) {
@@ -432,6 +432,6 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 
 	@Override
 	public String toString() {
-		return getName() + " : " + getNsURI();
+		return getName() + " : " + getURI();
 	}
 }

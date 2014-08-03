@@ -184,7 +184,7 @@ public class CompleteOCLSplitter
 			if (separateObject == null) {
 				separateObject = (org.eclipse.ocl.examples.pivot.Package) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 				separateObject.setName(name);
-				separateObject.setNsURI(object.getNsURI());
+				separateObject.setURI(object.getURI());
 				separateObject.setNsPrefix(object.getNsPrefix());
 				separateSiblings.add(separateObject);
 			}

@@ -62,7 +62,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 
 	public synchronized void addPackage(@NonNull EcoreExecutorPackage execPackage, @Nullable EcoreExecutorPackage extendedPackage) {
 		@SuppressWarnings("unused")
-		WeakReference<EcoreExecutorPackage> oldExecPackage = ePackageMap.put(execPackage.getNsURI(), new WeakReference<EcoreExecutorPackage>(execPackage));
+		WeakReference<EcoreExecutorPackage> oldExecPackage = ePackageMap.put(execPackage.getURI(), new WeakReference<EcoreExecutorPackage>(execPackage));
 //		if ((oldExecPackage != null) && (oldExecPackage != execPackage)) {
 //			Iterable<ExecutorType> newTypes = execPackage.getOwnedType();
 //			for (DomainType oldType : oldExecPackage.getOwnedType()) {
@@ -117,7 +117,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		DomainPackage domainPackage = type.getPackage();
 		Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap2;
 		synchronized (this) {
-			String nsURI = domainPackage.getNsURI();
+			String nsURI = domainPackage.getURI();
 			EcoreExecutorPackage ecoreExecutorPackage = nsURI != null ? weakGet(ePackageMap, nsURI) : null;
 			if (ecoreExecutorPackage != null) {
 				DomainInheritance executorType = ecoreExecutorPackage.getType(type.getName());

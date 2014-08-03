@@ -60,7 +60,7 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 		else if (eObject instanceof PackageCS) {
 			Element pivot = ((PackageCS)eObject).getPivot();
 			if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
-				String uri = ((org.eclipse.ocl.examples.pivot.Package)pivot).getNsURI();
+				String uri = ((org.eclipse.ocl.examples.pivot.Package)pivot).getURI();
 				if (uri != null) {
 					return URI.createURI(uri);
 				}

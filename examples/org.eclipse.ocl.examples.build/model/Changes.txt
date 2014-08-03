@@ -18,7 +18,8 @@ OpaqueExpression extends (abstract)LanguageExpression extends ValueSpecification
 --------------------------------
 
 ValueSpecifcation any abstract => abstract
-Visitable => RedefineableSognature
+Visitable => RedefineableSignature
+Package::ownedType => most derived
 
 Behavior
     delete isReentrant,ownedParameter,postcondition,precondition,redefinedBehavior

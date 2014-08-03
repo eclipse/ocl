@@ -13450,13 +13450,22 @@ public interface PivotPackage
 	int PACKAGE__UNSPECIALIZED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__URI = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Imported Package</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__IMPORTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+	int PACKAGE__IMPORTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
@@ -13465,7 +13474,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NESTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
+	int PACKAGE__NESTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
@@ -13474,7 +13483,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NESTING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
+	int PACKAGE__NESTING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
@@ -13483,16 +13492,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NS_PREFIX = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NS_URI = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PACKAGE__NS_PREFIX = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
@@ -13702,6 +13702,15 @@ public interface PivotPackage
 	int LIBRARY__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__URI = PACKAGE__URI;
+
+	/**
 	 * The feature id for the '<em><b>Imported Package</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13736,15 +13745,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__NS_PREFIX = PACKAGE__NS_PREFIX;
-
-	/**
-	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__NS_URI = PACKAGE__NS_URI;
 
 	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
@@ -16627,6 +16627,15 @@ public interface PivotPackage
 	int PROFILE__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__URI = PACKAGE__URI;
+
+	/**
 	 * The feature id for the '<em><b>Imported Package</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16661,15 +16670,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__NS_PREFIX = PACKAGE__NS_PREFIX;
-
-	/**
-	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__NS_URI = PACKAGE__NS_URI;
 
 	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
@@ -27092,6 +27092,17 @@ public interface PivotPackage
 	EClass getPackage();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Package#getURI <em>URI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>URI</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Package#getURI()
+	 * @see #getPackage()
+	 * @generated
+	 */
+	EAttribute getPackage_URI();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackage <em>Nested Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27123,17 +27134,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getPackage_NsPrefix();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Package#getNsURI <em>Ns URI</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ns URI</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getNsURI()
-	 * @see #getPackage()
-	 * @generated
-	 */
-	EAttribute getPackage_NsURI();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}'.
@@ -31337,6 +31337,14 @@ public interface PivotPackage
 		EClass PACKAGE = eINSTANCE.getPackage();
 
 		/**
+		 * The meta object literal for the '<em><b>URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE__URI = eINSTANCE.getPackage_URI();
+
+		/**
 		 * The meta object literal for the '<em><b>Nested Package</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31359,14 +31367,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute PACKAGE__NS_PREFIX = eINSTANCE.getPackage_NsPrefix();
-
-		/**
-		 * The meta object literal for the '<em><b>Ns URI</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PACKAGE__NS_URI = eINSTANCE.getPackage_NsURI();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Instances</b></em>' containment reference list feature.

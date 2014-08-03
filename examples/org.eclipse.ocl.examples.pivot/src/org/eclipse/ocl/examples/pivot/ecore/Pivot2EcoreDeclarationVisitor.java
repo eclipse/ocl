@@ -548,8 +548,8 @@ public class Pivot2EcoreDeclarationVisitor
 		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_PREFIX)) {
 			ePackage.setNsPrefix(pivotPackage.getNsPrefix());
 		}
-		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_URI)) {
-			ePackage.setNsURI(pivotPackage.getNsURI());
+		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__URI)) {
+			ePackage.setNsURI(pivotPackage.getURI());
 		}
 		@SuppressWarnings("null")@NonNull List<EPackage> eSubpackages = ePackage.getESubpackages();
 		safeVisitAll(eSubpackages, pivotPackage.getNestedPackage());
@@ -678,7 +678,7 @@ public class Pivot2EcoreDeclarationVisitor
 						importAnnotation.getDetails().put(anImport.getName(), uri2.toString());
 					}
 					else if (importedNamespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						importAnnotation.getDetails().put(anImport.getName(), ((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getNsURI());
+						importAnnotation.getDetails().put(anImport.getName(), ((org.eclipse.ocl.examples.pivot.Package)importedNamespace).getURI());
 					}
 					else {
 						importAnnotation.getDetails().put(anImport.getName(), importedNamespace.toString());

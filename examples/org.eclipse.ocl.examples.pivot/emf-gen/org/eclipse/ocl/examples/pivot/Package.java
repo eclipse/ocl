@@ -28,11 +28,11 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackage <em>Nested Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsPrefix <em>Ns Prefix</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsURI <em>Ns URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getProfileApplication <em>Profile Application</em>}</li>
@@ -87,29 +87,29 @@ public interface Package
 	void setNsPrefix(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Ns URI</b></em>' attribute.
+	 * Returns the value of the '<em><b>URI</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ns URI</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ns URI</em>' attribute.
-	 * @see #setNsURI(String)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NsURI()
+	 * @return the value of the '<em>URI</em>' attribute.
+	 * @see #setURI(String)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_URI()
 	 * @generated
 	 */
-	String getNsURI();
+	String getURI();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Package#getNsURI <em>Ns URI</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Package#getURI <em>URI</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ns URI</em>' attribute.
-	 * @see #getNsURI()
+	 * @param value the new value of the '<em>URI</em>' attribute.
+	 * @see #getURI()
 	 * @generated
 	 */
-	void setNsURI(String value);
+	void setURI(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Instances</b></em>' containment reference list.

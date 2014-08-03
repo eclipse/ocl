@@ -164,12 +164,16 @@
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-nsPrefix" name="nsPrefix" type="MDTOCL-MDT_OCL_Framework-String">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OA37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-nsURI" name="nsURI" type="MDTOCL-MDT_OCL_Framework-String">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-nsURI" name="URI" type="MDTOCL-MDT_OCL_Framework-String">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OBH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-importedPackage" name="importedPackage" type="MDTOCL-MDT_OCL_Framework-Package">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OBX7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OBn7VEeOu79LxSz8Ylw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_tUCW4Br7EeSM9LreJtBwBg" name="ownedType" type="MDTOCL-MDT_OCL_Framework-Class" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tUCW4Rr7EeSM9LreJtBwBg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tUCW4hr7EeSM9LreJtBwBg" value="*"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="MDTOCL-MDT_OCL_Framework-Pivotable" name="Pivotable" isAbstract="true"/>

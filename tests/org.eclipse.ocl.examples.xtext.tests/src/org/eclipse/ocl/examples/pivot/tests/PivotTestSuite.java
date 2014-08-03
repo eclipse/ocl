@@ -1470,7 +1470,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 */
 	protected @NonNull org.eclipse.ocl.examples.pivot.Package registerPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pkg, @NonNull String nsPrefix, @NonNull String nsUri) {
 		pkg.setNsPrefix(nsPrefix);
-        pkg.setNsURI(nsUri);
+        pkg.setURI(nsUri);
 		Resource resource = new ResourceImpl(URI.createURI(nsUri));
         resource.getContents().add(pkg);
         resourceSet.getResources().add(resource);					// FIXME UML needs this

@@ -107,7 +107,7 @@ public class PackageManager implements PackageServerParent
 	void addPackage(@NonNull PackageServerParent parentPackageServer, @NonNull DomainPackage pivotPackage) {
 		PackageServer packageServer = null;
 		String name = pivotPackage.getName();
-		String nsURI = pivotPackage.getNsURI();
+		String nsURI = pivotPackage.getURI();
 		if (nsURI != null) {										// Explicit nsURI for explicit package (merge)
 			packageServer = uri2package.get(nsURI);
 		}
@@ -152,7 +152,7 @@ public class PackageManager implements PackageServerParent
 	}
 
 	void addPackageServer(@NonNull PackageServer packageServer) {
-		String nsURI = packageServer.getNsURI();
+		String nsURI = packageServer.getURI();
 		PackageServer oldPackageServer = uri2package.put(nsURI, packageServer);
 		if (packageServer instanceof RootPackageServer) {
 			String sharedNsURI = getSharedURI(nsURI);
@@ -171,7 +171,7 @@ public class PackageManager implements PackageServerParent
 	
 	public synchronized void addRoot(@NonNull Root pivotRoot) {
 		for (org.eclipse.ocl.examples.pivot.Package asPackage : pivotRoot.getNestedPackage()) {
-			String nsURI = asPackage.getNsURI();
+			String nsURI = asPackage.getURI();
 			String sharedURI = getSharedURI(nsURI);
 			if (sharedURI == nsURI) {
 				PackageId packageId = asPackage.getPackageId();
@@ -227,7 +227,7 @@ public class PackageManager implements PackageServerParent
 			nonNullName = "$anon_" + Integer.toHexString(System.identityHashCode(pivotPackage));
 		}
 		String nsPrefix = pivotPackage.getNsPrefix();
-		String nsURI = getSharedURI(pivotPackage.getNsURI());
+		String nsURI = getSharedURI(pivotPackage.getURI());
 		PackageId packageId = pivotPackage.getPackageId();
 		RootPackageServer rootPackageServer;
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
@@ -284,7 +284,7 @@ public class PackageManager implements PackageServerParent
 
 	public void disposedRootPackageServer(@NonNull RootPackageServer packageServer) {
 		packageServers.remove(packageServer.getName());
-		disposedPackageServer(packageServer.getNsURI());
+		disposedPackageServer(packageServer.getURI());
 	}
 
 	void disposedPackageServer(@Nullable String nsURI) {
@@ -353,7 +353,7 @@ public class PackageManager implements PackageServerParent
 		//
 		//	Try to find package by nsURI
 		//
-		String nsURI = pivotPackage.getNsURI();
+		String nsURI = pivotPackage.getURI();
 		if (nsURI != null) {
 			String sharedURI = getSharedURI(nsURI);
 			PackageServer packageServer = uri2package.get(sharedURI);
@@ -389,7 +389,7 @@ public class PackageManager implements PackageServerParent
 		//
 		RootPackageServer rootPackageServer = packageServers.get(name);
 		if (rootPackageServer != null) {
-			String nsURI2 = rootPackageServer.getNsURI();
+			String nsURI2 = rootPackageServer.getURI();
 			if ((nsURI == null) || (nsURI2 == null) || nsURI.equals(nsURI2)) {
 				return rootPackageServer;
 			}
@@ -425,7 +425,7 @@ public class PackageManager implements PackageServerParent
 			packageServer = (PackageServer)pivotPackage;
 		}
 		else {
-			String nsURI = pivotPackage.getNsURI();
+			String nsURI = pivotPackage.getURI();
 			if (nsURI != null) {
 				String sharedURI = getSharedURI(nsURI);
 				packageServer = uri2package.get(sharedURI);
@@ -460,7 +460,7 @@ public class PackageManager implements PackageServerParent
 				packageServer = nestingPackageServer.getMemberPackageServer(pivotPackage);
 			}
 			else {
-				String sharedURI = getSharedURI(pivotPackage.getNsURI());
+				String sharedURI = getSharedURI(pivotPackage.getURI());
 				packageServer = uri2package.get(sharedURI);
 				if (packageServer == null) {
 					packageServer = createRootPackageServer(pivotPackage);

@@ -193,9 +193,9 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 			pivotElement.setNsPrefix(newNsPrefix);
 		}
 		String newNsURI = csElement.getNsURI();
-		String oldNsURI = pivotElement.getNsURI();
+		String oldNsURI = pivotElement.getURI();
 		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
-			pivotElement.setNsURI(newNsURI);
+			pivotElement.setURI(newNsURI);
 		}
 		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackage(), csElement.getOwnedNestedPackage());
 		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getOwnedType(), csElement.getOwnedType());

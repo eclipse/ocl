@@ -416,7 +416,7 @@ public class Pivot2Ecore extends AbstractConversion
 	}
 
 	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage, boolean isGenerating) {
-		String nsUri = asPackage.getNsURI();
+		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
 			StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
 			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(nsUri);

@@ -398,7 +398,7 @@ public class Orphanage extends PackageImpl
 			return false;
 		}
 		else {
-			return PivotConstants.ORPHANAGE_URI.equals(asPackage.getNsURI());
+			return PivotConstants.ORPHANAGE_URI.equals(asPackage.getURI());
 		}
 	}
 	
@@ -406,7 +406,7 @@ public class Orphanage extends PackageImpl
 //		super(uri);
 //		setLoaded(true);
 		setName(name);
-		setNsURI(nsURI);
+		setURI(nsURI);
 	}
 
 	public void dispose() {

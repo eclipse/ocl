@@ -314,8 +314,8 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			appendName(name);
 			return true;
 		}
-		else if (object.getNsURI() != null) {
-			appendName(object.getNsURI());
+		else if (object.getURI() != null) {
+			appendName(object.getURI());
 			return true;
 		}
 		else {
