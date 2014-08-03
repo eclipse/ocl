@@ -1642,12 +1642,13 @@
           <body>The parameterable classifier for this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingType" name="constrainingType" type="Ppivot.TType" association="Ppivot.A_constrainingType_typeTemplateParameter">
-        <ownedComment xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingType.oC0" annotatedElement="Ppivot.TTypeTemplateParameter.PconstrainingType">
+      <ownedAttribute xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClassifier" name="constrainingClassifier" type="Ppivot.TClass"
+          association="Ppivot.A_constrainingType_typeTemplateParameter">
+        <ownedComment xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClassifier.oC0" annotatedElement="Ppivot.TTypeTemplateParameter.PconstrainingClassifier">
           <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingType.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingType.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClassifier.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClassifier.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypedElement" name="TypedElement" isAbstract="true">
@@ -1817,7 +1818,7 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connectionPoint_state" name="A_connectionPoint_state" memberEnd="Ppivot.TState.PconnectionPoint Ppivot.TPseudostate.Pstate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connection_state" name="A_connection_state" memberEnd="Ppivot.TState.Pconnection Ppivot.TConnectionPointReference.Pstate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_constrainingType_typeTemplateParameter" name="A_constrainingType_typeTemplateParameter"
-        memberEnd="Ppivot.TTypeTemplateParameter.PconstrainingType Ppivot.A_constrainingType_typeTemplateParameter.PtypeTemplateParameter">
+        memberEnd="Ppivot.TTypeTemplateParameter.PconstrainingClassifier Ppivot.A_constrainingType_typeTemplateParameter.PtypeTemplateParameter">
       <ownedEnd xmi:id="Ppivot.A_constrainingType_typeTemplateParameter.PtypeTemplateParameter" name="typeTemplateParameter" type="Ppivot.TTypeTemplateParameter"
           association="Ppivot.A_constrainingType_typeTemplateParameter">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_constrainingType_typeTemplateParameter.PtypeTemplateParameter.lV"/>

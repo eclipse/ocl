@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -386,7 +385,7 @@ public class Pivot2UMLDeclarationVisitor
 		umlTypeParameter.setOwnedParameteredElement((ParameterableElement) safeVisit(pivotTypeTemplateParameter.getOwnedParameteredElement()));
 //		umlTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
 		context.putCreated(pivotTypeTemplateParameter, umlTypeParameter);
-		if (!pivotTypeTemplateParameter.getConstrainingType().isEmpty()) {
+		if (!pivotTypeTemplateParameter.getConstrainingClassifier().isEmpty()) {
 			context.defer(pivotTypeTemplateParameter);
 		}
 		return umlTypeParameter;

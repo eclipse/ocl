@@ -22349,13 +22349,13 @@ public interface PivotPackage
 	int TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE = TEMPLATE_PARAMETER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Constraining Type</b></em>' reference list.
+	 * The feature id for the '<em><b>Constraining Classifier</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE = TEMPLATE_PARAMETER_FEATURE_COUNT + 1;
+	int TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER = TEMPLATE_PARAMETER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Type Template Parameter</em>' class.
@@ -27254,15 +27254,15 @@ public interface PivotPackage
 	EAttribute getTypeTemplateParameter_AllowSubstitutable();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingType <em>Constraining Type</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClassifier <em>Constraining Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraining Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingType()
+	 * @return the meta object for the reference list '<em>Constraining Classifier</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClassifier()
 	 * @see #getTypeTemplateParameter()
 	 * @generated
 	 */
-	EReference getTypeTemplateParameter_ConstrainingType();
+	EReference getTypeTemplateParameter_ConstrainingClassifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Property <em>Property</em>}'.
@@ -31463,12 +31463,12 @@ public interface PivotPackage
 		EAttribute TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE = eINSTANCE.getTypeTemplateParameter_AllowSubstitutable();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraining Type</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Constraining Classifier</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE = eINSTANCE.getTypeTemplateParameter_ConstrainingType();
+		EReference TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER = eINSTANCE.getTypeTemplateParameter_ConstrainingClassifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.

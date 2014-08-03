@@ -55,7 +55,7 @@ public class Pivot2EcoreTypeRefVisitor
 		this.metaModelManager = context.getMetaModelManager();
 	}
 
-	public EGenericType resolveEGenericType(Type type) {
+	public EGenericType resolveEGenericType(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		EObject eType = safeVisit(type);
 		if (eType instanceof EGenericType) {
 			return (EGenericType) eType;

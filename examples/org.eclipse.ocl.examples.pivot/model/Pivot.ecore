@@ -1896,7 +1896,7 @@
         <details key="documentation" value="Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingType" ordered="false" upperBound="-1" eType="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingClassifier" ordered="false" upperBound="-1" eType="#//Class">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="typeTemplateParameter"/>
       </eAnnotations>

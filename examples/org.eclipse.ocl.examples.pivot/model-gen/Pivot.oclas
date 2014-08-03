@@ -123,6 +123,9 @@
           opposite="#p.pivot.Property.owningType" type="#//@nestedPackage.1/@ownedType.22"/>
       <ownedAttribute xmi:id="p.pivot.Class.class" implicit="true" isRequired="false"
           name="class" opposite="#p.pivot.Class.superClass" type="#T.pivot.Class"/>
+      <ownedAttribute xmi:id="p.pivot.Class.typeTemplateParameter" implicit="true"
+          isRequired="false" name="typeTemplateParameter" opposite="#p.pivot.TypeTemplateParameter.constrainingClassifier"
+          type="#T.pivot.TypeTemplateParameter"/>
       <ownedComment body="A class is a type that has objects as its instances."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.CollectionItem" name="CollectionItem" superClass="#T.pivot.CollectionLiteralPart">
@@ -1536,9 +1539,6 @@
           type="#T.pivot.InstanceSpecification"/>
       <ownedAttribute xmi:id="p.pivot.Type.operation" implicit="true" isRequired="false"
           name="operation" opposite="#p.pivot.Operation.raisedException" type="#T.pivot.Operation"/>
-      <ownedAttribute xmi:id="p.pivot.Type.typeTemplateParameter" implicit="true"
-          isRequired="false" name="typeTemplateParameter" opposite="#p.pivot.TypeTemplateParameter.constrainingType"
-          type="#T.pivot.TypeTemplateParameter"/>
       <ownedAttribute xmi:id="p.pivot.Type.typedElement" implicit="true" isRequired="false"
           name="typedElement" opposite="#p.pivot.TypedElement.type" type="#T.pivot.TypedElement"/>
       <ownedComment body="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
@@ -1573,8 +1573,9 @@
           name="allowSubstitutable" type="#Boolean">
         <ownedComment body="Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.TypeTemplateParameter.constrainingType" name="constrainingType"
-          opposite="#p.pivot.Type.typeTemplateParameter" type="#//@nestedPackage.1/@ownedType.152">
+      <ownedAttribute xmi:id="p.pivot.TypeTemplateParameter.constrainingClassifier"
+          name="constrainingClassifier" opposite="#p.pivot.Class.typeTemplateParameter"
+          type="#//@nestedPackage.1/@ownedType.128">
         <ownedComment body="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </ownedAttribute>
       <ownedComment body="A type template parameter exposes a type as a formal template parameter."/>
