@@ -16916,7 +16916,7 @@ public interface PivotPackage
 	int PSEUDOSTATE__STATE = VERTEX_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>State Machine</b></em>' reference.
+	 * The feature id for the '<em><b>State Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -24803,10 +24803,10 @@ public interface PivotPackage
 	EAttribute getPseudostate_Kind();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine <em>State Machine</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>State Machine</em>'.
+	 * @return the meta object for the container reference '<em>State Machine</em>'.
 	 * @see org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine()
 	 * @see #getPseudostate()
 	 * @generated
@@ -29325,7 +29325,7 @@ public interface PivotPackage
 		EAttribute PSEUDOSTATE__KIND = eINSTANCE.getPseudostate_Kind();
 
 		/**
-		 * The meta object literal for the '<em><b>State Machine</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>State Machine</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -538,10 +538,10 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Pseudostate/kind"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Pseudostate/stateMachine"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Pseudostate/state"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Pseudostate/state"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Pseudostate/stateMachine"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

@@ -216,7 +216,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Package = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Package);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PropertyCallExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Pseudostate = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Pseudostate);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Region = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Region);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SendSignalAction = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_SendSignalAction);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_State = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_State);
@@ -2370,9 +2369,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Pseudostate__kind = new EcoreExecutorProperty(PivotPackage.Literals.PSEUDOSTATE__KIND, Types._Pseudostate, 0);
 		public static final @NonNull ExecutorProperty _Pseudostate__state = new EcoreExecutorProperty(PivotPackage.Literals.PSEUDOSTATE__STATE, Types._Pseudostate, 1);
 		public static final @NonNull ExecutorProperty _Pseudostate__stateMachine = new EcoreExecutorProperty(PivotPackage.Literals.PSEUDOSTATE__STATE_MACHINE, Types._Pseudostate, 2);
-		public static final @NonNull ExecutorProperty _Pseudostate__StateMachine__connectionPoint = new ExecutorPropertyWithImplementation("StateMachine", Types._Pseudostate, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.STATE_MACHINE__CONNECTION_POINT));
-		public static final @NonNull ExecutorProperty _Pseudostate__connectionPointReference__entry = new ExecutorPropertyWithImplementation("connectionPointReference", Types._Pseudostate, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRY));
-		public static final @NonNull ExecutorProperty _Pseudostate__connectionPointReference__exit = new ExecutorPropertyWithImplementation("connectionPointReference", Types._Pseudostate, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXIT));
+		public static final @NonNull ExecutorProperty _Pseudostate__connectionPointReference__entry = new ExecutorPropertyWithImplementation("connectionPointReference", Types._Pseudostate, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRY));
+		public static final @NonNull ExecutorProperty _Pseudostate__connectionPointReference__exit = new ExecutorPropertyWithImplementation("connectionPointReference", Types._Pseudostate, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXIT));
 
 		public static final @NonNull ExecutorProperty _RealLiteralExp__realSymbol = new EcoreExecutorProperty(PivotPackage.Literals.REAL_LITERAL_EXP__REAL_SYMBOL, Types._RealLiteralExp, 0);
 
@@ -2420,8 +2418,7 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _StateMachine__extendedStateMachine = new EcoreExecutorProperty(PivotPackage.Literals.STATE_MACHINE__EXTENDED_STATE_MACHINE, Types._StateMachine, 1);
 		public static final @NonNull ExecutorProperty _StateMachine__region = new EcoreExecutorProperty(PivotPackage.Literals.STATE_MACHINE__REGION, Types._StateMachine, 2);
 		public static final @NonNull ExecutorProperty _StateMachine__submachineState = new EcoreExecutorProperty(PivotPackage.Literals.STATE_MACHINE__SUBMACHINE_STATE, Types._StateMachine, 3);
-		public static final @NonNull ExecutorProperty _StateMachine__Pseudostate__stateMachine = new ExecutorPropertyWithImplementation("Pseudostate", Types._StateMachine, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PSEUDOSTATE__STATE_MACHINE));
-		public static final @NonNull ExecutorProperty _StateMachine__StateMachine__extendedStateMachine = new ExecutorPropertyWithImplementation("StateMachine", Types._StateMachine, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.STATE_MACHINE__EXTENDED_STATE_MACHINE));
+		public static final @NonNull ExecutorProperty _StateMachine__StateMachine__extendedStateMachine = new ExecutorPropertyWithImplementation("StateMachine", Types._StateMachine, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.STATE_MACHINE__EXTENDED_STATE_MACHINE));
 
 		public static final @NonNull ExecutorProperty _Stereotype__extensionOfs = new EcoreExecutorProperty(PivotPackage.Literals.STEREOTYPE__EXTENSION_OFS, Types._Stereotype, 0);
 		public static final @NonNull ExecutorProperty _Stereotype__ElementExtension__stereotype = new ExecutorPropertyWithImplementation("ElementExtension", Types._Stereotype, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ELEMENT_EXTENSION__STEREOTYPE));
@@ -13399,7 +13396,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._Pseudostate__StateMachine__connectionPoint,
 			PivotTables.Properties._Pseudostate__connectionPointReference__entry,
 			PivotTables.Properties._Pseudostate__connectionPointReference__exit
 		};
@@ -13902,7 +13898,6 @@ public class PivotTables
 			PivotTables.Properties._Type__Metaclass__instanceType,
 			PivotTables.Properties._Class__Operation__owningType,
 			PivotTables.Properties._Class__Property__owningType,
-			PivotTables.Properties._StateMachine__Pseudostate__stateMachine,
 			PivotTables.Properties._Behavior__State__doActivity,
 			PivotTables.Properties._Behavior__State__entry,
 			PivotTables.Properties._Behavior__State__exit,

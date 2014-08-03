@@ -26,16 +26,16 @@
     <ownedType xmi:id="T.pivot.Annotation" name="Annotation" superClass="#T.pivot.NamedElement">
       <ownedAttribute xmi:id="p.pivot.Annotation.ownedContent" isComposite="true"
           name="ownedContent" opposite="#//@nestedPackage.0/@ownedType.34/@ownedAttribute.4"
-          type="#//@nestedPackage.1/@ownedType.113"/>
+          type="#//@nestedPackage.1/@ownedType.112"/>
       <ownedAttribute xmi:id="p.pivot.Annotation.ownedDetail" isComposite="true" name="ownedDetail"
-          opposite="#p.pivot.Detail.Annotation" type="#//@nestedPackage.1/@ownedType.112"/>
+          opposite="#p.pivot.Detail.Annotation" type="#//@nestedPackage.1/@ownedType.111"/>
       <ownedAttribute xmi:id="p.pivot.Annotation.reference" name="reference" opposite="#//@nestedPackage.0/@ownedType.34/@ownedAttribute.5"
-          type="#//@nestedPackage.1/@ownedType.113"/>
+          type="#//@nestedPackage.1/@ownedType.112"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.AnyType" name="AnyType" superClass="#T.pivot.Class"/>
     <ownedType xmi:id="T.pivot.AssociationClass" name="AssociationClass" superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.AssociationClass.unownedAttribute" name="unownedAttribute"
-          opposite="#p.pivot.Property.associationClass" type="#//@nestedPackage.1/@ownedType.140"/>
+          opposite="#p.pivot.Property.associationClass" type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.AssociationClass.AssociationClassCallExp" implicit="true"
           name="AssociationClassCallExp" opposite="#p.pivot.AssociationClassCallExp.referredAssociationClass"
           type="#//@nestedPackage.1/@ownedType.1"/>
@@ -97,15 +97,15 @@
       <ownedAttribute xmi:id="p.pivot.Class.isInterface" default="false" name="isInterface"
           type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.Class.nestedType" isComposite="true" name="nestedType"
-          opposite="#p.pivot.Class.Class" type="#//@nestedPackage.1/@ownedType.128"/>
+          opposite="#p.pivot.Class.Class" type="#//@nestedPackage.1/@ownedType.127"/>
       <ownedAttribute xmi:id="p.pivot.Class.ownedAttribute" isComposite="true" name="ownedAttribute"
-          opposite="#p.pivot.Property.class" type="#//@nestedPackage.1/@ownedType.120">
+          opposite="#p.pivot.Property.class" type="#//@nestedPackage.1/@ownedType.119">
         <ownedComment body="The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Class.ownedBehavior" isComposite="true" name="ownedBehavior"
-          opposite="#p.pivot.Behavior.Class" type="#//@nestedPackage.1/@ownedType.127"/>
+          opposite="#p.pivot.Behavior.Class" type="#//@nestedPackage.1/@ownedType.126"/>
       <ownedAttribute xmi:id="p.pivot.Class.ownedOperation" isComposite="true" name="ownedOperation"
-          opposite="#p.pivot.Operation.class" type="#//@nestedPackage.1/@ownedType.117">
+          opposite="#p.pivot.Operation.class" type="#//@nestedPackage.1/@ownedType.116">
         <ownedComment body="The operations owned by a class. These do not include the inherited operations."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Class.package" isRequired="false" name="package"
@@ -113,7 +113,7 @@
         <ownedComment body="Specifies the owning package of this classifier, if any."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Class.superClass" name="superClass" opposite="#p.pivot.Class.class"
-          type="#//@nestedPackage.1/@ownedType.128">
+          type="#//@nestedPackage.1/@ownedType.127">
         <ownedComment body="The immediate superclasses of a class, from which the class inherits."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Class.Class" implicit="true" isRequired="false"
@@ -149,7 +149,7 @@
       <ownedAttribute xmi:id="p.pivot.CollectionLiteralExp.kind" name="kind" type="#T.pivot.CollectionKind"/>
       <ownedAttribute xmi:id="p.pivot.CollectionLiteralExp.part" isComposite="true"
           name="part" opposite="#p.pivot.CollectionLiteralPart.CollectionLiteralExp"
-          type="#//@nestedPackage.1/@ownedType.109"/>
+          type="#//@nestedPackage.1/@ownedType.108"/>
       <ownedInvariant xmi:id="cipivot.CollectionLiteralExp.BagKindIsBag" isCallable="true"
           name="BagKindIsBag">
         <specification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Bag implies type.oclIsKindOf (BagType)&#xA;"/>
@@ -193,7 +193,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Comment" name="Comment" superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.Comment.annotatedElement" name="annotatedElement"
-          opposite="#p.pivot.Element.comment" type="#//@nestedPackage.1/@ownedType.134">
+          opposite="#p.pivot.Element.comment" type="#//@nestedPackage.1/@ownedType.133">
         <ownedComment body="References the Element(s) being commented."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Comment.body" isRequired="false" name="body"
@@ -207,11 +207,11 @@
     <ownedType xmi:id="T.pivot.ConnectionPointReference" name="ConnectionPointReference"
         superClass="#T.pivot.Vertex">
       <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.entry" name="entry"
-          opposite="#//@nestedPackage.0/@ownedType.88/@ownedAttribute.4" type="#//@nestedPackage.1/@ownedType.141">
+          opposite="#//@nestedPackage.0/@ownedType.88/@ownedAttribute.3" type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The entryPoint kind pseudo states corresponding to this connection point."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.exit" name="exit" opposite="#//@nestedPackage.0/@ownedType.88/@ownedAttribute.5"
-          type="#//@nestedPackage.1/@ownedType.141">
+      <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.exit" name="exit" opposite="#//@nestedPackage.0/@ownedType.88/@ownedAttribute.4"
+          type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The exitPoints kind pseudo states corresponding to this connection point."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.ConnectionPointReference.state" isRequired="false"
@@ -222,7 +222,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Constraint" name="Constraint" superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.Constraint.constrainedElement" name="constrainedElement"
-          opposite="#p.pivot.Element.Constraint" type="#//@nestedPackage.1/@ownedType.113">
+          opposite="#p.pivot.Element.Constraint" type="#//@nestedPackage.1/@ownedType.112">
         <ownedComment body="The ordered set of Elements referenced by this Constraint."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Constraint.context" isDerived="true" isReadOnly="true"
@@ -237,7 +237,7 @@
       <ownedAttribute xmi:id="p.pivot.Constraint.preContext" isRequired="false" name="preContext"
           opposite="#p.pivot.Operation.precondition" type="#T.pivot.Operation"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.redefinedConstraint" name="redefinedConstraint"
-          opposite="#p.pivot.Constraint.constraint" type="#//@nestedPackage.1/@ownedType.131"/>
+          opposite="#p.pivot.Constraint.constraint" type="#//@nestedPackage.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.specification" isComposite="true"
           isRequired="false" name="specification" opposite="#p.pivot.LanguageExpression.Constraint"
           type="#T.pivot.LanguageExpression">
@@ -258,7 +258,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.ConstructorExp" name="ConstructorExp" superClass="#T.pivot.OCLExpression">
       <ownedAttribute xmi:id="p.pivot.ConstructorExp.part" isComposite="true" name="part"
-          opposite="#p.pivot.ConstructorPart.ConstructorExp" type="#//@nestedPackage.1/@ownedType.111"/>
+          opposite="#p.pivot.ConstructorPart.ConstructorExp" type="#//@nestedPackage.1/@ownedType.110"/>
       <ownedAttribute xmi:id="p.pivot.ConstructorExp.value" isRequired="false" name="value"
           type="#String"/>
     </ownedType>
@@ -280,7 +280,7 @@
       <ownedComment body="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.Detail" name="Detail" superClass="#T.pivot.NamedElement">
-      <ownedAttribute xmi:id="p.pivot.Detail.value" name="value" type="#//@nestedPackage.1/@ownedType.126"/>
+      <ownedAttribute xmi:id="p.pivot.Detail.value" name="value" type="#//@nestedPackage.1/@ownedType.125"/>
       <ownedAttribute xmi:id="p.pivot.Detail.Annotation" implicit="true" isRequired="false"
           name="Annotation" opposite="#p.pivot.Annotation.ownedDetail" type="#T.pivot.Annotation"/>
     </ownedType>
@@ -300,19 +300,19 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.DynamicType" name="DynamicType" superClass="#T.pivot.Class #T.pivot.DynamicElement">
       <ownedAttribute xmi:id="p.pivot.DynamicType.ownedProperty" isComposite="true"
-          name="ownedProperty" opposite="#p.pivot.DynamicProperty.DynamicType" type="#//@nestedPackage.1/@ownedType.132"/>
+          name="ownedProperty" opposite="#p.pivot.DynamicProperty.DynamicType" type="#//@nestedPackage.1/@ownedType.131"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.DynamicValueSpecification" name="DynamicValueSpecification"
         superClass="#T.pivot.ValueSpecification"/>
     <ownedType xmi:id="T.pivot.Element" isAbstract="true" name="Element" superClass="#T.pivot.Visitable">
       <ownedAttribute xmi:id="p.pivot.Element.comment" name="comment" opposite="#p.pivot.Comment.annotatedElement"
-          type="#//@nestedPackage.1/@ownedType.129"/>
+          type="#//@nestedPackage.1/@ownedType.128"/>
       <ownedAttribute xmi:id="p.pivot.Element.extension" isComposite="true" name="extension"
-          opposite="#p.pivot.ElementExtension.base" type="#//@nestedPackage.1/@ownedType.133"/>
+          opposite="#p.pivot.ElementExtension.base" type="#//@nestedPackage.1/@ownedType.132"/>
       <ownedAttribute xmi:id="p.pivot.Element.ownedAnnotation" isComposite="true"
-          name="ownedAnnotation" opposite="#p.pivot.Element.Element" type="#//@nestedPackage.1/@ownedType.113"/>
+          name="ownedAnnotation" opposite="#p.pivot.Element.Element" type="#//@nestedPackage.1/@ownedType.112"/>
       <ownedAttribute xmi:id="p.pivot.Element.ownedComment" isComposite="true" name="ownedComment"
-          opposite="#p.pivot.Comment.owningElement" type="#//@nestedPackage.1/@ownedType.129">
+          opposite="#p.pivot.Comment.owningElement" type="#//@nestedPackage.1/@ownedType.128">
         <ownedComment body="The Comments owned by this element."/>
       </ownedAttribute>
       <ownedAttribute implicit="true" isRequired="false" name="Annotation" opposite="#p.pivot.Annotation.ownedContent"
@@ -325,7 +325,7 @@
           name="Element" opposite="#p.pivot.Element.ownedAnnotation" type="#T.pivot.Element"/>
       <ownedComment body="An element is a constituent of a model."/>
       <ownedOperation xmi:id="o.pivot.Element.allOwnedElements" name="allOwnedElements"
-          type="#//@nestedPackage.1/@ownedType.134">
+          type="#//@nestedPackage.1/@ownedType.133">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;--self->closure(oclContents())&#xA;oclContents()&#xA;&#xA;"/>
       </ownedOperation>
       <ownedOperation xmi:id="o.pivot.Element.getValue..pivot.Type..pivot.String"
@@ -358,7 +358,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Enumeration" name="Enumeration" superClass="#T.pivot.DataType">
       <ownedAttribute xmi:id="p.pivot.Enumeration.ownedLiteral" isComposite="true"
-          name="ownedLiteral" opposite="#p.pivot.EnumerationLiteral.enumeration" type="#//@nestedPackage.1/@ownedType.114">
+          name="ownedLiteral" opposite="#p.pivot.EnumerationLiteral.enumeration" type="#//@nestedPackage.1/@ownedType.113">
         <ownedComment body="The ordered set of literals for this Enumeration."/>
       </ownedAttribute>
       <ownedComment body="An enumeration defines a set of literals that can be used as its values."/>
@@ -384,7 +384,7 @@
           type="#T.pivot.Variable"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.parameterVariable" isComposite="true"
           name="parameterVariable" opposite="#//@nestedPackage.0/@ownedType.128/@ownedAttribute.4"
-          type="#//@nestedPackage.1/@ownedType.124"/>
+          type="#//@nestedPackage.1/@ownedType.123"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.resultVariable" isComposite="true"
           isRequired="false" name="resultVariable" opposite="#//@nestedPackage.0/@ownedType.128/@ownedAttribute.5"
           type="#T.pivot.Variable"/>
@@ -429,7 +429,7 @@
     <ownedType xmi:id="T.pivot.InstanceSpecification" name="InstanceSpecification"
         superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.slots" isComposite="true"
-          name="slots" opposite="#p.pivot.Slot.owningInstance" type="#//@nestedPackage.1/@ownedType.144">
+          name="slots" opposite="#p.pivot.Slot.owningInstance" type="#//@nestedPackage.1/@ownedType.143">
         <ownedComment body="A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.specification" isComposite="true"
@@ -438,7 +438,7 @@
         <ownedComment body="A specification of how to compute, derive, or construct the instance."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.type" name="type" opposite="#p.pivot.Type.instanceSpecification"
-          type="#//@nestedPackage.1/@ownedType.152">
+          type="#//@nestedPackage.1/@ownedType.151">
         <ownedComment body="The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.Package" implicit="true"
@@ -475,10 +475,10 @@
     <ownedType xmi:id="T.pivot.Iteration" name="Iteration" superClass="#T.pivot.Operation">
       <ownedAttribute xmi:id="p.pivot.Iteration.ownedAccumulator" isComposite="true"
           name="ownedAccumulator" opposite="#//@nestedPackage.0/@ownedType.78/@ownedAttribute.1"
-          type="#//@nestedPackage.1/@ownedType.118"/>
+          type="#//@nestedPackage.1/@ownedType.117"/>
       <ownedAttribute xmi:id="p.pivot.Iteration.ownedIterator" isComposite="true"
           name="ownedIterator" opposite="#//@nestedPackage.0/@ownedType.78/@ownedAttribute.2"
-          type="#//@nestedPackage.1/@ownedType.118"/>
+          type="#//@nestedPackage.1/@ownedType.117"/>
       <ownedAttribute xmi:id="p.pivot.Iteration.LoopExp" implicit="true" name="LoopExp"
           opposite="#p.pivot.LoopExp.referredIteration" type="#//@nestedPackage.1/@ownedType.13"/>
     </ownedType>
@@ -612,7 +612,7 @@
       <ownedAttribute xmi:id="p.pivot.LambdaType.contextType" name="contextType" opposite="#//@nestedPackage.0/@ownedType.118/@ownedAttribute.6"
           type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.LambdaType.parameterType" name="parameterType"
-          opposite="#//@nestedPackage.0/@ownedType.118/@ownedAttribute.7" type="#//@nestedPackage.1/@ownedType.125"/>
+          opposite="#//@nestedPackage.0/@ownedType.118/@ownedAttribute.7" type="#//@nestedPackage.1/@ownedType.124"/>
       <ownedAttribute xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@nestedPackage.0/@ownedType.118/@ownedAttribute.8"
           type="#T.pivot.Type"/>
     </ownedType>
@@ -648,7 +648,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Library" name="Library" superClass="#T.pivot.Package">
       <ownedAttribute xmi:id="p.pivot.Library.ownedPrecedence" isComposite="true"
-          name="ownedPrecedence" opposite="#p.pivot.Precedence.Library" type="#//@nestedPackage.1/@ownedType.119"/>
+          name="ownedPrecedence" opposite="#p.pivot.Precedence.Library" type="#//@nestedPackage.1/@ownedType.118"/>
     </ownedType>
     <ownedType xsi:type="pivot:DataType" xmi:id="T.pivot.LibraryFeature" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature"
         name="LibraryFeature" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny"/>
@@ -657,7 +657,7 @@
       <ownedAttribute xmi:id="p.pivot.LoopExp.body" isComposite="true" name="body"
           opposite="#p.pivot.OCLExpression.LoopExp" type="#T.pivot.OCLExpression"/>
       <ownedAttribute xmi:id="p.pivot.LoopExp.iterator" isComposite="true" name="iterator"
-          opposite="#p.pivot.Variable.LoopExp" type="#//@nestedPackage.1/@ownedType.124"/>
+          opposite="#p.pivot.Variable.LoopExp" type="#//@nestedPackage.1/@ownedType.123"/>
       <ownedAttribute xmi:id="p.pivot.LoopExp.referredIteration" isRequired="false"
           name="referredIteration" opposite="#p.pivot.Iteration.LoopExp" type="#T.pivot.Iteration"/>
       <ownedInvariant xmi:id="cipivot.LoopExp.NoInitializers" isCallable="true" name="NoInitializers">
@@ -670,7 +670,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.MessageExp" name="MessageExp" superClass="#T.pivot.OCLExpression">
       <ownedAttribute xmi:id="p.pivot.MessageExp.argument" isComposite="true" name="argument"
-          opposite="#//@nestedPackage.0/@ownedType.69/@ownedAttribute.11" type="#//@nestedPackage.1/@ownedType.116"/>
+          opposite="#//@nestedPackage.0/@ownedType.69/@ownedAttribute.11" type="#//@nestedPackage.1/@ownedType.115"/>
       <ownedAttribute xmi:id="p.pivot.MessageExp.calledOperation" isComposite="true"
           isRequired="false" name="calledOperation" opposite="#p.pivot.CallOperationAction.MessageExp"
           type="#T.pivot.CallOperationAction"/>
@@ -718,7 +718,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Namespace" isAbstract="true" name="Namespace" superClass="#T.pivot.NamedElement">
       <ownedAttribute xmi:id="p.pivot.Namespace.ownedRule" isComposite="true" name="ownedRule"
-          opposite="#p.pivot.Constraint.Namespace" type="#//@nestedPackage.1/@ownedType.110"/>
+          opposite="#p.pivot.Constraint.Namespace" type="#//@nestedPackage.1/@ownedType.109"/>
       <ownedAttribute xmi:id="p.pivot.Namespace.Constraint" implicit="true" name="Constraint"
           opposite="#p.pivot.Constraint.context" type="#//@nestedPackage.1/@ownedType.4"/>
       <ownedAttribute xmi:id="p.pivot.Namespace.Import" implicit="true" name="Import"
@@ -729,7 +729,7 @@
       <ownedAttribute xmi:id="p.pivot.NavigationCallExp.navigationSource" isRequired="false"
           name="navigationSource" opposite="#p.pivot.Property.NavigationCallExp" type="#T.pivot.Property"/>
       <ownedAttribute xmi:id="p.pivot.NavigationCallExp.qualifier" name="qualifier"
-          opposite="#p.pivot.OCLExpression.NavigationCallExp" type="#//@nestedPackage.1/@ownedType.116"/>
+          opposite="#p.pivot.OCLExpression.NavigationCallExp" type="#//@nestedPackage.1/@ownedType.115"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.NullLiteralExp" name="NullLiteralExp" superClass="#T.pivot.PrimitiveLiteralExp"/>
     <ownedType xmi:id="T.pivot.NumericLiteralExp" isAbstract="true" name="NumericLiteralExp"
@@ -792,24 +792,24 @@
       <ownedAttribute xmi:id="p.pivot.Operation.isValidating" default="false" name="isValidating"
           type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.Operation.ownedParameter" isComposite="true"
-          name="ownedParameter" opposite="#p.pivot.Parameter.operation" type="#//@nestedPackage.1/@ownedType.118">
+          name="ownedParameter" opposite="#p.pivot.Parameter.operation" type="#//@nestedPackage.1/@ownedType.117">
         <ownedComment body="The parameters to the operation."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Operation.owningType" isDerived="true" isReadOnly="true"
           isRequired="false" isResolveProxies="false" isTransient="true" isVolatile="true"
           name="owningType" opposite="#p.pivot.Class.Operation" type="#T.pivot.Class"/>
       <ownedAttribute xmi:id="p.pivot.Operation.postcondition" isComposite="true"
-          name="postcondition" opposite="#p.pivot.Constraint.postContext" type="#//@nestedPackage.1/@ownedType.131"/>
+          name="postcondition" opposite="#p.pivot.Constraint.postContext" type="#//@nestedPackage.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Operation.precedence" isRequired="false" name="precedence"
           opposite="#p.pivot.Precedence.Operation" type="#T.pivot.Precedence"/>
       <ownedAttribute xmi:id="p.pivot.Operation.precondition" isComposite="true" name="precondition"
-          opposite="#p.pivot.Constraint.preContext" type="#//@nestedPackage.1/@ownedType.131"/>
+          opposite="#p.pivot.Constraint.preContext" type="#//@nestedPackage.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Operation.raisedException" name="raisedException"
-          opposite="#p.pivot.Type.operation" type="#//@nestedPackage.1/@ownedType.152">
+          opposite="#p.pivot.Type.operation" type="#//@nestedPackage.1/@ownedType.151">
         <ownedComment body="The exceptions that are declared as possible during an invocation of the operation."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Operation.redefinedOperation" name="redefinedOperation"
-          opposite="#p.pivot.Operation.operation" type="#//@nestedPackage.1/@ownedType.136"/>
+          opposite="#p.pivot.Operation.operation" type="#//@nestedPackage.1/@ownedType.135"/>
       <ownedAttribute xmi:id="p.pivot.Operation.CallOperationAction" implicit="true"
           name="CallOperationAction" opposite="#p.pivot.CallOperationAction.operation"
           type="#//@nestedPackage.1/@ownedType.2"/>
@@ -840,7 +840,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.OperationCallExp" name="OperationCallExp" superClass="#T.pivot.FeatureCallExp #T.pivot.ReferringElement">
       <ownedAttribute xmi:id="p.pivot.OperationCallExp.argument" isComposite="true"
-          name="argument" opposite="#p.pivot.OCLExpression.OperationCallExp" type="#//@nestedPackage.1/@ownedType.116"/>
+          name="argument" opposite="#p.pivot.OCLExpression.OperationCallExp" type="#//@nestedPackage.1/@ownedType.115"/>
       <ownedAttribute xmi:id="p.pivot.OperationCallExp.referredOperation" isRequired="false"
           name="referredOperation" opposite="#p.pivot.Operation.OperationCallExp"
           type="#T.pivot.Operation"/>
@@ -867,9 +867,9 @@
     <ownedType xmi:id="T.pivot.Package" name="Package" superClass="#T.pivot.PackageableElement #T.pivot.TemplateableElement #T.pivot.Namespace">
       <ownedAttribute xmi:id="p.pivot.Package.URI" isRequired="false" name="URI" type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Package.importedPackage" name="importedPackage"
-          opposite="#p.pivot.Package.Package" type="#//@nestedPackage.1/@ownedType.137"/>
+          opposite="#p.pivot.Package.Package" type="#//@nestedPackage.1/@ownedType.136"/>
       <ownedAttribute xmi:id="p.pivot.Package.nestedPackage" isComposite="true" name="nestedPackage"
-          opposite="#p.pivot.Package.nestingPackage" type="#//@nestedPackage.1/@ownedType.137">
+          opposite="#p.pivot.Package.nestingPackage" type="#//@nestedPackage.1/@ownedType.136">
         <ownedComment body="The set of contained packages."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Package.nestingPackage" isRequired="false" name="nestingPackage"
@@ -879,16 +879,16 @@
       <ownedAttribute xmi:id="p.pivot.Package.nsPrefix" isRequired="false" name="nsPrefix"
           type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Package.ownedInstances" isComposite="true" name="ownedInstances"
-          opposite="#p.pivot.InstanceSpecification.Package" type="#//@nestedPackage.1/@ownedType.135">
+          opposite="#p.pivot.InstanceSpecification.Package" type="#//@nestedPackage.1/@ownedType.134">
         <ownedComment body="The instance specification that owns this slot."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Package.ownedType" isComposite="true" name="ownedType"
-          opposite="#p.pivot.Class.package" type="#//@nestedPackage.1/@ownedType.128">
+          opposite="#p.pivot.Class.package" type="#//@nestedPackage.1/@ownedType.127">
         <ownedComment body="The set of contained types."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Package.profileApplication" isComposite="true"
           name="profileApplication" opposite="#p.pivot.ProfileApplication.applyingPackage"
-          type="#//@nestedPackage.1/@ownedType.139"/>
+          type="#//@nestedPackage.1/@ownedType.138"/>
       <ownedAttribute xmi:id="p.pivot.Package.Package" implicit="true" name="Package"
           opposite="#p.pivot.Package.importedPackage" type="#//@nestedPackage.1/@ownedType.20"/>
       <ownedAttribute xmi:id="p.pivot.Package.Root" implicit="true" isRequired="false"
@@ -909,7 +909,7 @@
       <ownedAttribute implicit="true" isRequired="false" name="Iteration" opposite="#p.pivot.Iteration.ownedIterator"
           type="#T.pivot.Iteration"/>
       <ownedAttribute xmi:id="p.pivot.Parameter.Variable" implicit="true" name="Variable"
-          opposite="#p.pivot.Variable.representedParameter" type="#//@nestedPackage.1/@ownedType.32"/>
+          opposite="#p.pivot.Variable.representedParameter" type="#//@nestedPackage.1/@ownedType.31"/>
       <ownedComment body="A parameter is a typed element that represents a parameter of an operation."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.ParameterableElement" isAbstract="true" name="ParameterableElement"
@@ -965,7 +965,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Profile" name="Profile" superClass="#T.pivot.Package">
       <ownedAttribute xmi:id="p.pivot.Profile.application" name="application" opposite="#p.pivot.ProfileApplication.appliedProfile"
-          type="#//@nestedPackage.1/@ownedType.139"/>
+          type="#//@nestedPackage.1/@ownedType.138"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.ProfileApplication" name="ProfileApplication" superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.ProfileApplication.appliedProfile" name="appliedProfile"
@@ -1014,7 +1014,7 @@
       <ownedAttribute xmi:id="p.pivot.Property.isVolatile" default="false" name="isVolatile"
           type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.23"
-          type="#//@nestedPackage.1/@ownedType.140"/>
+          type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite"
           opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.26" type="#T.pivot.Property">
         <ownedComment body="Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1."/>
@@ -1023,12 +1023,12 @@
           isRequired="false" isResolveProxies="false" isTransient="true" isVolatile="true"
           name="owningType" opposite="#p.pivot.Class.Property" type="#T.pivot.Class"/>
       <ownedAttribute xmi:id="p.pivot.Property.redefinedProperty" name="redefinedProperty"
-          opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.27" type="#//@nestedPackage.1/@ownedType.140"/>
+          opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.27" type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.Property.referredProperty" isRequired="false"
           name="referredProperty" opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.24"
           type="#T.pivot.Property"/>
       <ownedAttribute xmi:id="p.pivot.Property.subsettedProperty" name="subsettedProperty"
-          opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.28" type="#//@nestedPackage.1/@ownedType.140"/>
+          opposite="#//@nestedPackage.0/@ownedType.86/@ownedAttribute.28" type="#//@nestedPackage.1/@ownedType.139"/>
       <ownedAttribute xmi:id="p.pivot.Property.ConstructorPart" implicit="true" name="ConstructorPart"
           opposite="#p.pivot.ConstructorPart.referredProperty" type="#//@nestedPackage.1/@ownedType.5"/>
       <ownedAttribute xmi:id="p.pivot.Property.DynamicProperty" implicit="true" name="DynamicProperty"
@@ -1095,11 +1095,9 @@
         <ownedComment body="The State that owns this pseudostate and in which it appears."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Pseudostate.stateMachine" isRequired="false"
-          name="stateMachine" opposite="#p.pivot.StateMachine.Pseudostate" type="#T.pivot.StateMachine">
+          name="stateMachine" opposite="#p.pivot.StateMachine.connectionPoint" type="#T.pivot.StateMachine">
         <ownedComment body="The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.Pseudostate.StateMachine" implicit="true" isRequired="false"
-          name="StateMachine" opposite="#p.pivot.StateMachine.connectionPoint" type="#T.pivot.StateMachine"/>
       <ownedAttribute implicit="true" isRequired="false" name="connectionPointReference"
           opposite="#p.pivot.ConnectionPointReference.entry" type="#T.pivot.ConnectionPointReference"/>
       <ownedAttribute implicit="true" isRequired="false" name="connectionPointReference"
@@ -1163,24 +1161,24 @@
         <ownedComment body="The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Region.subvertex" isComposite="true" name="subvertex"
-          opposite="#p.pivot.Vertex.container" type="#//@nestedPackage.1/@ownedType.153">
+          opposite="#p.pivot.Vertex.container" type="#//@nestedPackage.1/@ownedType.152">
         <ownedComment body="The set of vertices that are owned by this region."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Region.transition" isComposite="true" name="transition"
-          opposite="#p.pivot.Transition.container" type="#//@nestedPackage.1/@ownedType.149">
+          opposite="#p.pivot.Transition.container" type="#//@nestedPackage.1/@ownedType.148">
         <ownedComment body="The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Region.Region" implicit="true" name="Region"
-          opposite="#p.pivot.Region.extendedRegion" type="#//@nestedPackage.1/@ownedType.24"/>
+          opposite="#p.pivot.Region.extendedRegion" type="#//@nestedPackage.1/@ownedType.23"/>
       <ownedComment body="A region is an orthogonal part of either a composite state or a state machine. It contains states and transitions."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.Root" name="Root" superClass="#T.pivot.Namespace">
       <ownedAttribute xmi:id="p.pivot.Root.externalURI" isRequired="false" name="externalURI"
           type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Root.imports" isComposite="true" name="imports"
-          opposite="#p.pivot.Import.Root" type="#//@nestedPackage.1/@ownedType.115"/>
+          opposite="#p.pivot.Import.Root" type="#//@nestedPackage.1/@ownedType.114"/>
       <ownedAttribute xmi:id="p.pivot.Root.nestedPackage" isComposite="true" name="nestedPackage"
-          opposite="#p.pivot.Package.Root" type="#//@nestedPackage.1/@ownedType.137"/>
+          opposite="#p.pivot.Package.Root" type="#//@nestedPackage.1/@ownedType.136"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.SelfType" name="SelfType" superClass="#T.pivot.Class">
       <ownedOperation xmi:id="o.pivot.SelfType.specializeIn..pivot.OCLExpression..pivot.Type"
@@ -1205,7 +1203,7 @@
       <ownedAttribute xmi:id="p.pivot.Signal.MessageType" implicit="true" name="MessageType"
           opposite="#p.pivot.MessageType.referredSignal" type="#//@nestedPackage.1/@ownedType.14"/>
       <ownedAttribute xmi:id="p.pivot.Signal.SendSignalAction" implicit="true" name="SendSignalAction"
-          opposite="#p.pivot.SendSignalAction.signal" type="#//@nestedPackage.1/@ownedType.25"/>
+          opposite="#p.pivot.SendSignalAction.signal" type="#//@nestedPackage.1/@ownedType.24"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.Slot" name="Slot" superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.Slot.definingProperty" name="definingProperty"
@@ -1217,22 +1215,22 @@
         <ownedComment body="The instance specification that owns this slot."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Slot.values" isComposite="true" name="values"
-          opposite="#p.pivot.ValueSpecification.owningSlot" type="#//@nestedPackage.1/@ownedType.123">
+          opposite="#p.pivot.ValueSpecification.owningSlot" type="#//@nestedPackage.1/@ownedType.122">
         <ownedComment body="The value or values corresponding to the defining feature for the owning instance specification."/>
       </ownedAttribute>
       <ownedComment body="A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.State" name="State" superClass="#T.pivot.Vertex #T.pivot.Namespace">
       <ownedAttribute xmi:id="p.pivot.State.connection" isComposite="true" name="connection"
-          opposite="#p.pivot.ConnectionPointReference.state" type="#//@nestedPackage.1/@ownedType.130">
+          opposite="#p.pivot.ConnectionPointReference.state" type="#//@nestedPackage.1/@ownedType.129">
         <ownedComment body="The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.connectionPoint" isComposite="true" name="connectionPoint"
-          opposite="#p.pivot.Pseudostate.state" type="#//@nestedPackage.1/@ownedType.141">
+          opposite="#p.pivot.Pseudostate.state" type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.deferrableTrigger" isComposite="true"
-          name="deferrableTrigger" opposite="#p.pivot.Trigger.state" type="#//@nestedPackage.1/@ownedType.150">
+          name="deferrableTrigger" opposite="#p.pivot.Trigger.state" type="#//@nestedPackage.1/@ownedType.149">
         <ownedComment body="A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.&#xA;"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.doActivity" isComposite="true" isRequired="false"
@@ -1273,7 +1271,7 @@
         <ownedComment body="The state of which this state is a redefinition."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.region" isComposite="true" name="region"
-          opposite="#p.pivot.Region.state" type="#//@nestedPackage.1/@ownedType.142">
+          opposite="#p.pivot.Region.state" type="#//@nestedPackage.1/@ownedType.141">
         <ownedComment body="The regions owned directly by the state."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.stateInvariant" isComposite="true" isRequired="false"
@@ -1285,9 +1283,9 @@
         <ownedComment body="The state machine that is to be inserted in place of the (submachine) state."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.State" implicit="true" name="State" opposite="#p.pivot.State.redefinedState"
-          type="#//@nestedPackage.1/@ownedType.28"/>
+          type="#//@nestedPackage.1/@ownedType.27"/>
       <ownedAttribute xmi:id="p.pivot.State.StateExp" implicit="true" name="StateExp"
-          opposite="#p.pivot.StateExp.referredState" type="#//@nestedPackage.1/@ownedType.26"/>
+          opposite="#p.pivot.StateExp.referredState" type="#//@nestedPackage.1/@ownedType.25"/>
       <ownedComment body="A state models a situation during which some (usually implicit) invariant condition holds."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.StateExp" name="StateExp" superClass="#T.pivot.OCLExpression">
@@ -1296,30 +1294,28 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.StateMachine" name="StateMachine" superClass="#T.pivot.Behavior">
       <ownedAttribute xmi:id="p.pivot.StateMachine.connectionPoint" isComposite="true"
-          name="connectionPoint" opposite="#p.pivot.Pseudostate.StateMachine" type="#//@nestedPackage.1/@ownedType.141">
+          name="connectionPoint" opposite="#p.pivot.Pseudostate.stateMachine" type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.StateMachine.extendedStateMachine" name="extendedStateMachine"
-          opposite="#p.pivot.StateMachine.StateMachine" type="#//@nestedPackage.1/@ownedType.145">
+          opposite="#p.pivot.StateMachine.StateMachine" type="#//@nestedPackage.1/@ownedType.144">
         <ownedComment body="The state machines of which this is an extension."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.StateMachine.region" isComposite="true" name="region"
-          opposite="#p.pivot.Region.stateMachine" type="#//@nestedPackage.1/@ownedType.143">
+          opposite="#p.pivot.Region.stateMachine" type="#//@nestedPackage.1/@ownedType.142">
         <ownedComment body="The regions owned directly by the state machine."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.StateMachine.submachineState" name="submachineState"
-          opposite="#p.pivot.State.submachine" type="#//@nestedPackage.1/@ownedType.146">
+          opposite="#p.pivot.State.submachine" type="#//@nestedPackage.1/@ownedType.145">
         <ownedComment body="References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.StateMachine.Pseudostate" implicit="true" name="Pseudostate"
-          opposite="#p.pivot.Pseudostate.stateMachine" type="#//@nestedPackage.1/@ownedType.23"/>
       <ownedAttribute xmi:id="p.pivot.StateMachine.StateMachine" implicit="true" name="StateMachine"
-          opposite="#p.pivot.StateMachine.extendedStateMachine" type="#//@nestedPackage.1/@ownedType.27"/>
+          opposite="#p.pivot.StateMachine.extendedStateMachine" type="#//@nestedPackage.1/@ownedType.26"/>
       <ownedComment body="State machines can be used to express the behavior of part of a system. Behavior is modeled as a traversal of a graph of state nodes interconnected by one or more joined transition arcs that are triggered by the dispatching of series of (event) occurrences. During this traversal, the state machine executes a series of activities associated with various elements of the state machine."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.Stereotype" name="Stereotype" superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.Stereotype.extensionOfs" isComposite="true"
-          name="extensionOfs" opposite="#p.pivot.TypeExtension.stereotype" type="#//@nestedPackage.1/@ownedType.151"/>
+          name="extensionOfs" opposite="#p.pivot.TypeExtension.stereotype" type="#//@nestedPackage.1/@ownedType.150"/>
       <ownedAttribute xmi:id="p.pivot.Stereotype.ElementExtension" implicit="true"
           name="ElementExtension" opposite="#p.pivot.ElementExtension.stereotype"
           type="#//@nestedPackage.1/@ownedType.9"/>
@@ -1335,7 +1331,7 @@
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TemplateBinding.parameterSubstitution" isComposite="true"
           name="parameterSubstitution" opposite="#p.pivot.TemplateParameterSubstitution.templateBinding"
-          type="#//@nestedPackage.1/@ownedType.148">
+          type="#//@nestedPackage.1/@ownedType.147">
         <ownedComment body="The parameter substitutions owned by this template binding."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TemplateBinding.signature" name="signature"
@@ -1405,7 +1401,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.TemplateSignature" name="TemplateSignature" superClass="#T.pivot.Element">
       <ownedAttribute xmi:id="p.pivot.TemplateSignature.ownedParameter" isComposite="true"
-          name="ownedParameter" opposite="#p.pivot.TemplateParameter.signature" type="#//@nestedPackage.1/@ownedType.121">
+          name="ownedParameter" opposite="#p.pivot.TemplateParameter.signature" type="#//@nestedPackage.1/@ownedType.120">
         <ownedComment body="The formal template parameters that are owned by this template signature."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TemplateSignature.template" name="template"
@@ -1426,7 +1422,7 @@
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TemplateableElement.templateBinding" isComposite="true"
           name="templateBinding" opposite="#p.pivot.TemplateBinding.boundElement"
-          type="#//@nestedPackage.1/@ownedType.147">
+          type="#//@nestedPackage.1/@ownedType.146">
         <ownedComment body="The optional bindings from this element to templates."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TemplateableElement.unspecializedElement" isRequired="false"
@@ -1438,7 +1434,7 @@
         <ownedComment body="The query isTemplate() returns whether this templateable element is actually a template."/>
       </ownedOperation>
       <ownedOperation xmi:id="o.pivot.TemplateableElement.parameterableElements" name="parameterableElements"
-          type="#//@nestedPackage.1/@ownedType.138">
+          type="#//@nestedPackage.1/@ownedType.137">
         <ownedComment body="The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements."/>
       </ownedOperation>
     </ownedType>
@@ -1470,7 +1466,7 @@
         <ownedComment body="Designates the target vertex that is reached when the transition is taken."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Transition.trigger" isComposite="true" name="trigger"
-          opposite="#p.pivot.Trigger.transition" type="#//@nestedPackage.1/@ownedType.150">
+          opposite="#p.pivot.Trigger.transition" type="#//@nestedPackage.1/@ownedType.149">
         <ownedComment body="Specifies the triggers that may fire the transition."/>
       </ownedAttribute>
       <ownedComment body="A transition is a directed relationship between a source vertex and a target vertex. It may be part of a compound transition, which takes the state machine from one state configuration to another, representing the complete response of the state machine to an occurrence of an event of a particular type."/>
@@ -1496,7 +1492,7 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.TupleLiteralExp" name="TupleLiteralExp" superClass="#T.pivot.LiteralExp">
       <ownedAttribute xmi:id="p.pivot.TupleLiteralExp.part" isComposite="true" name="part"
-          opposite="#p.pivot.TupleLiteralPart.TupleLiteralExp" type="#//@nestedPackage.1/@ownedType.122"/>
+          opposite="#p.pivot.TupleLiteralPart.TupleLiteralExp" type="#//@nestedPackage.1/@ownedType.121"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.TupleLiteralPart" name="TupleLiteralPart" superClass="#T.pivot.VariableDeclaration">
       <ownedAttribute xmi:id="p.pivot.TupleLiteralPart.initExpression" isComposite="true"
@@ -1509,11 +1505,11 @@
     <ownedType xmi:id="T.pivot.TupleType" name="TupleType" superClass="#T.pivot.DataType"/>
     <ownedType xmi:id="T.pivot.Type" name="Type" superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.Type.extendedBys" name="extendedBys" opposite="#p.pivot.TypeExtension.type"
-          type="#//@nestedPackage.1/@ownedType.151"/>
+          type="#//@nestedPackage.1/@ownedType.150"/>
       <ownedAttribute xmi:id="p.pivot.Type.instanceClassName" isRequired="false" name="instanceClassName"
           type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Type.ownedInvariant" isComposite="true" name="ownedInvariant"
-          opposite="#p.pivot.Constraint.Type" type="#//@nestedPackage.1/@ownedType.131"/>
+          opposite="#p.pivot.Constraint.Type" type="#//@nestedPackage.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Type.CollectionType" implicit="true" name="CollectionType"
           opposite="#p.pivot.CollectionType.elementType" type="#//@nestedPackage.1/@ownedType.3"/>
       <ownedAttribute xmi:id="p.pivot.Type.DataType" implicit="true" name="DataType"
@@ -1529,11 +1525,11 @@
       <ownedAttribute xmi:id="p.pivot.Type.Metaclass" implicit="true" name="Metaclass"
           opposite="#p.pivot.Metaclass.instanceType" type="#//@nestedPackage.1/@ownedType.15"/>
       <ownedAttribute xmi:id="p.pivot.Type.TypeExp" implicit="true" name="TypeExp"
-          opposite="#p.pivot.TypeExp.referredType" type="#//@nestedPackage.1/@ownedType.29"/>
+          opposite="#p.pivot.TypeExp.referredType" type="#//@nestedPackage.1/@ownedType.28"/>
       <ownedAttribute implicit="true" name="UnspecifiedType" opposite="#p.pivot.UnspecifiedType.lowerBound"
-          type="#//@nestedPackage.1/@ownedType.30"/>
+          type="#//@nestedPackage.1/@ownedType.29"/>
       <ownedAttribute implicit="true" name="UnspecifiedType" opposite="#p.pivot.UnspecifiedType.upperBound"
-          type="#//@nestedPackage.1/@ownedType.30"/>
+          type="#//@nestedPackage.1/@ownedType.29"/>
       <ownedAttribute xmi:id="p.pivot.Type.instanceSpecification" implicit="true"
           isRequired="false" name="instanceSpecification" opposite="#p.pivot.InstanceSpecification.type"
           type="#T.pivot.InstanceSpecification"/>
@@ -1575,7 +1571,7 @@
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.TypeTemplateParameter.constrainingClassifier"
           name="constrainingClassifier" opposite="#p.pivot.Class.typeTemplateParameter"
-          type="#//@nestedPackage.1/@ownedType.128">
+          type="#//@nestedPackage.1/@ownedType.127">
         <ownedComment body="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </ownedAttribute>
       <ownedComment body="A type template parameter exposes a type as a formal template parameter."/>
@@ -1672,7 +1668,7 @@
     <ownedType xmi:id="T.pivot.VariableDeclaration" isAbstract="true" name="VariableDeclaration"
         superClass="#T.pivot.TypedElement">
       <ownedAttribute xmi:id="p.pivot.VariableDeclaration.VariableExp" implicit="true"
-          name="VariableExp" opposite="#p.pivot.VariableExp.referredVariable" type="#//@nestedPackage.1/@ownedType.31"/>
+          name="VariableExp" opposite="#p.pivot.VariableExp.referredVariable" type="#//@nestedPackage.1/@ownedType.30"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.VariableExp" name="VariableExp" superClass="#T.pivot.OCLExpression #T.pivot.ReferringElement">
       <ownedAttribute xmi:id="p.pivot.VariableExp.implicit" default="false" isRequired="false"
@@ -1687,11 +1683,11 @@
         <ownedComment body="The region that contains this vertex."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Vertex.incoming" isReadOnly="true" name="incoming"
-          opposite="#p.pivot.Transition.target" type="#//@nestedPackage.1/@ownedType.149">
+          opposite="#p.pivot.Transition.target" type="#//@nestedPackage.1/@ownedType.148">
         <ownedComment body="Specifies the transitions entering this vertex."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Vertex.outgoing" isReadOnly="true" name="outgoing"
-          opposite="#p.pivot.Transition.source" type="#//@nestedPackage.1/@ownedType.149">
+          opposite="#p.pivot.Transition.source" type="#//@nestedPackage.1/@ownedType.148">
         <ownedComment body="Specifies the transitions departing from this vertex."/>
       </ownedAttribute>
       <ownedComment body="A vertex is an abstraction of a node in a state machine graph. In general, it can be the source or destination of any number of transitions."/>
@@ -1713,196 +1709,190 @@
   <nestedPackage xmi:id="P.$$" URI="http://www.eclipse.org/ocl/3.1.0/orphanage" name="$$"
       nsPrefix="orphanage">
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Annotation" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.34">
+        superClass="#//@nestedPackage.1/@ownedType.33">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Annotation" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.AssociationClassCallExp"
-        name="Bag" superClass="#//@nestedPackage.1/@ownedType.35">
+        name="Bag" superClass="#//@nestedPackage.1/@ownedType.34">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.AssociationClassCallExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.CallOperationAction"
-        name="Bag" superClass="#//@nestedPackage.1/@ownedType.37">
+        name="Bag" superClass="#//@nestedPackage.1/@ownedType.36">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.CallOperationAction" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.CollectionType" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.40">
+        superClass="#//@nestedPackage.1/@ownedType.39">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.CollectionType" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Constraint" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.43">
+        superClass="#//@nestedPackage.1/@ownedType.42">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Constraint" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.ConstructorPart" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.44">
+        superClass="#//@nestedPackage.1/@ownedType.43">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.ConstructorPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.DataType" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.45">
+        superClass="#//@nestedPackage.1/@ownedType.44">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.DataType" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.DynamicElement" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.47">
+        superClass="#//@nestedPackage.1/@ownedType.46">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.DynamicElement" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.DynamicProperty" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.48">
+        superClass="#//@nestedPackage.1/@ownedType.47">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.DynamicProperty" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.ElementExtension" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.49">
+        superClass="#//@nestedPackage.1/@ownedType.48">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.ElementExtension" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.EnumLiteralExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.51">
+        superClass="#//@nestedPackage.1/@ownedType.50">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.EnumLiteralExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Import" name="Bag" superClass="#//@nestedPackage.1/@ownedType.53">
+    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Import" name="Bag" superClass="#//@nestedPackage.1/@ownedType.52">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Import" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.LambdaType" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.55">
+        superClass="#//@nestedPackage.1/@ownedType.54">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.LambdaType" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.LoopExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.56">
+        superClass="#//@nestedPackage.1/@ownedType.55">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.LoopExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.MessageType" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.57">
+        superClass="#//@nestedPackage.1/@ownedType.56">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.MessageType" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Metaclass" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.58">
+        superClass="#//@nestedPackage.1/@ownedType.57">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Metaclass" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.NavigationCallExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.59">
+        superClass="#//@nestedPackage.1/@ownedType.58">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.NavigationCallExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.OperationCallExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.61">
+        superClass="#//@nestedPackage.1/@ownedType.60">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.OperationCallExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Operation" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.62">
+        superClass="#//@nestedPackage.1/@ownedType.61">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Operation" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.OppositePropertyCallExp"
-        name="Bag" superClass="#//@nestedPackage.1/@ownedType.63">
+        name="Bag" superClass="#//@nestedPackage.1/@ownedType.62">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.OppositePropertyCallExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Package" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.64">
+        superClass="#//@nestedPackage.1/@ownedType.63">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Package" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.PropertyCallExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.69">
+        superClass="#//@nestedPackage.1/@ownedType.68">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.PropertyCallExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Property" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.70">
+        superClass="#//@nestedPackage.1/@ownedType.69">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Property" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Pseudostate" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.71">
-      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
-        <parameterSubstitution actual="#T.pivot.Pseudostate" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
-      </templateBinding>
-    </ownedType>
-    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Region" name="Bag" superClass="#//@nestedPackage.1/@ownedType.72">
+    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Region" name="Bag" superClass="#//@nestedPackage.1/@ownedType.71">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Region" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.SendSignalAction" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.73">
+        superClass="#//@nestedPackage.1/@ownedType.72">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.SendSignalAction" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.StateExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.75">
+        superClass="#//@nestedPackage.1/@ownedType.74">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.StateExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.StateMachine" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.76">
+        superClass="#//@nestedPackage.1/@ownedType.75">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.StateMachine" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.State" name="Bag" superClass="#//@nestedPackage.1/@ownedType.77">
+    <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.State" name="Bag" superClass="#//@nestedPackage.1/@ownedType.76">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.State" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.TypeExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.84">
+        superClass="#//@nestedPackage.1/@ownedType.83">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.TypeExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.UnspecifiedType" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.87">
+        superClass="#//@nestedPackage.1/@ownedType.86">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.UnspecifiedType" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.VariableExp" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.89">
+        superClass="#//@nestedPackage.1/@ownedType.88">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.VariableExp" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.pivot.Variable" name="Bag"
-        superClass="#//@nestedPackage.1/@ownedType.90">
+        superClass="#//@nestedPackage.1/@ownedType.89">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Bag">
         <parameterSubstitution actual="#T.pivot.Variable" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..BagT"/>
       </templateBinding>
@@ -2262,601 +2252,601 @@
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.CollectionLiteralPart"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.39">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.38">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.CollectionLiteralPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Constraint" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.43">
+        superClass="#//@nestedPackage.1/@ownedType.42">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Constraint" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ConstructorPart"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.44">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.43">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.ConstructorPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Detail" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.46">
+        superClass="#//@nestedPackage.1/@ownedType.45">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Detail" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Element" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.50">
+        superClass="#//@nestedPackage.1/@ownedType.49">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Element" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.EnumerationLiteral"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.52">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.51">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.EnumerationLiteral" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Import" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.53">
+        superClass="#//@nestedPackage.1/@ownedType.52">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Import" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.OCLExpression"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.60">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.59">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.OCLExpression" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Operation" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.62">
+        superClass="#//@nestedPackage.1/@ownedType.61">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Operation" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Parameter" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.65">
+        superClass="#//@nestedPackage.1/@ownedType.64">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Parameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Precedence" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.67">
+        superClass="#//@nestedPackage.1/@ownedType.66">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Precedence" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Property" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.70">
+        superClass="#//@nestedPackage.1/@ownedType.69">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Property" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TemplateParameter"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.80">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.79">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.TemplateParameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TupleLiteralPart"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.83">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.82">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.TupleLiteralPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Type" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.86">
+        superClass="#//@nestedPackage.1/@ownedType.85">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Type" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ValueSpecification"
-        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.88">
+        name="OrderedCollection" superClass="#//@nestedPackage.1/@ownedType.87">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.ValueSpecification" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Variable" name="OrderedCollection"
-        superClass="#//@nestedPackage.1/@ownedType.90">
+        superClass="#//@nestedPackage.1/@ownedType.89">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedCollection">
         <parameterSubstitution actual="#T.pivot.Variable" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.CollectionLiteralPart"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.92 #//@nestedPackage.1/@ownedType.157">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.91 #//@nestedPackage.1/@ownedType.156">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.CollectionLiteralPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Constraint" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.93 #//@nestedPackage.1/@ownedType.160">
+        superClass="#//@nestedPackage.1/@ownedType.92 #//@nestedPackage.1/@ownedType.159">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Constraint" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.ConstructorPart"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.94 #//@nestedPackage.1/@ownedType.161">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.93 #//@nestedPackage.1/@ownedType.160">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.ConstructorPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Detail" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.95 #//@nestedPackage.1/@ownedType.162">
+        superClass="#//@nestedPackage.1/@ownedType.94 #//@nestedPackage.1/@ownedType.161">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Detail" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Element" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.96 #//@nestedPackage.1/@ownedType.165">
+        superClass="#//@nestedPackage.1/@ownedType.95 #//@nestedPackage.1/@ownedType.164">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Element" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.EnumerationLiteral"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.97 #//@nestedPackage.1/@ownedType.166">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.96 #//@nestedPackage.1/@ownedType.165">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.EnumerationLiteral" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Import" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.98 #//@nestedPackage.1/@ownedType.167">
+        superClass="#//@nestedPackage.1/@ownedType.97 #//@nestedPackage.1/@ownedType.166">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Import" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.OCLExpression"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.99 #//@nestedPackage.1/@ownedType.169">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.98 #//@nestedPackage.1/@ownedType.168">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.OCLExpression" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Operation" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.100 #//@nestedPackage.1/@ownedType.170">
+        superClass="#//@nestedPackage.1/@ownedType.99 #//@nestedPackage.1/@ownedType.169">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Operation" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Parameter" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.101 #//@nestedPackage.1/@ownedType.172">
+        superClass="#//@nestedPackage.1/@ownedType.100 #//@nestedPackage.1/@ownedType.171">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Parameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Precedence" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.102 #//@nestedPackage.1/@ownedType.174">
+        superClass="#//@nestedPackage.1/@ownedType.101 #//@nestedPackage.1/@ownedType.173">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Precedence" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Property" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.103 #//@nestedPackage.1/@ownedType.176">
+        superClass="#//@nestedPackage.1/@ownedType.102 #//@nestedPackage.1/@ownedType.175">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Property" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.TemplateParameter"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.104 #//@nestedPackage.1/@ownedType.184">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.103 #//@nestedPackage.1/@ownedType.183">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.TemplateParameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.TupleLiteralPart"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.105 #//@nestedPackage.1/@ownedType.187">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.104 #//@nestedPackage.1/@ownedType.186">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.TupleLiteralPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.ValueSpecification"
-        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.107 #//@nestedPackage.1/@ownedType.190">
+        name="OrderedSet" superClass="#//@nestedPackage.1/@ownedType.106 #//@nestedPackage.1/@ownedType.189">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.ValueSpecification" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.pivot.Variable" name="OrderedSet"
-        superClass="#//@nestedPackage.1/@ownedType.108 #//@nestedPackage.1/@ownedType.191">
+        superClass="#//@nestedPackage.1/@ownedType.107 #//@nestedPackage.1/@ownedType.190">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.OrderedSet">
         <parameterSubstitution actual="#T.pivot.Variable" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.pivot.Type" name="Sequence"
-        superClass="#//@nestedPackage.1/@ownedType.106">
+        superClass="#//@nestedPackage.1/@ownedType.105">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Sequence">
         <parameterSubstitution actual="#T.pivot.Type" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#String" lower="1" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.154">
+        superClass="#//@nestedPackage.1/@ownedType.153">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#String" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Behavior" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.155">
+        superClass="#//@nestedPackage.1/@ownedType.154">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Behavior" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Class" name="Set" superClass="#//@nestedPackage.1/@ownedType.156">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Class" name="Set" superClass="#//@nestedPackage.1/@ownedType.155">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Class" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Comment" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.158">
+        superClass="#//@nestedPackage.1/@ownedType.157">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Comment" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.ConnectionPointReference"
-        name="Set" superClass="#//@nestedPackage.1/@ownedType.159">
+        name="Set" superClass="#//@nestedPackage.1/@ownedType.158">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.ConnectionPointReference" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Constraint" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.160">
+        superClass="#//@nestedPackage.1/@ownedType.159">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Constraint" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.DynamicProperty" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.163">
+        superClass="#//@nestedPackage.1/@ownedType.162">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.DynamicProperty" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.ElementExtension" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.164">
+        superClass="#//@nestedPackage.1/@ownedType.163">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.ElementExtension" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Element" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.165">
+        superClass="#//@nestedPackage.1/@ownedType.164">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Element" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.InstanceSpecification"
-        name="Set" superClass="#//@nestedPackage.1/@ownedType.168">
+        name="Set" superClass="#//@nestedPackage.1/@ownedType.167">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.InstanceSpecification" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Operation" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.170">
+        superClass="#//@nestedPackage.1/@ownedType.169">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Operation" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Package" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.171">
+        superClass="#//@nestedPackage.1/@ownedType.170">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Package" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.ParameterableElement"
-        name="Set" superClass="#//@nestedPackage.1/@ownedType.173">
+        name="Set" superClass="#//@nestedPackage.1/@ownedType.172">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.ParameterableElement" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.ProfileApplication"
-        name="Set" superClass="#//@nestedPackage.1/@ownedType.175">
+        name="Set" superClass="#//@nestedPackage.1/@ownedType.174">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.ProfileApplication" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Property" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.176">
+        superClass="#//@nestedPackage.1/@ownedType.175">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Property" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Pseudostate" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.177">
+        superClass="#//@nestedPackage.1/@ownedType.176">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Pseudostate" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Region" name="Set" superClass="#//@nestedPackage.1/@ownedType.178">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Region" name="Set" superClass="#//@nestedPackage.1/@ownedType.177">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Region" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Region" lower="1" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.178">
+        superClass="#//@nestedPackage.1/@ownedType.177">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Region" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Slot" name="Set" superClass="#//@nestedPackage.1/@ownedType.179">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Slot" name="Set" superClass="#//@nestedPackage.1/@ownedType.178">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Slot" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.StateMachine" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.180">
+        superClass="#//@nestedPackage.1/@ownedType.179">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.StateMachine" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.State" name="Set" superClass="#//@nestedPackage.1/@ownedType.181">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.State" name="Set" superClass="#//@nestedPackage.1/@ownedType.180">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.State" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.TemplateBinding" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.182">
+        superClass="#//@nestedPackage.1/@ownedType.181">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.TemplateBinding" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.TemplateParameterSubstitution"
-        name="Set" superClass="#//@nestedPackage.1/@ownedType.183">
+        name="Set" superClass="#//@nestedPackage.1/@ownedType.182">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.TemplateParameterSubstitution" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Transition" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.185">
+        superClass="#//@nestedPackage.1/@ownedType.184">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Transition" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Trigger" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.186">
+        superClass="#//@nestedPackage.1/@ownedType.185">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Trigger" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.TypeExtension" name="Set"
-        superClass="#//@nestedPackage.1/@ownedType.188">
+        superClass="#//@nestedPackage.1/@ownedType.187">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.TypeExtension" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Type" name="Set" superClass="#//@nestedPackage.1/@ownedType.189">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Type" name="Set" superClass="#//@nestedPackage.1/@ownedType.188">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Type" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Vertex" name="Set" superClass="#//@nestedPackage.1/@ownedType.192">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.pivot.Vertex" name="Set" superClass="#//@nestedPackage.1/@ownedType.191">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.Set">
         <parameterSubstitution actual="#T.pivot.Vertex" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#String" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.33">
+        superClass="#//@nestedPackage.1/@ownedType.32">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#String" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Behavior" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.36">
+        superClass="#//@nestedPackage.1/@ownedType.35">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Behavior" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Class" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.38">
+        superClass="#//@nestedPackage.1/@ownedType.37">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Class" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.CollectionLiteralPart"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.39">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.38">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.CollectionLiteralPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Comment" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.41">
+        superClass="#//@nestedPackage.1/@ownedType.40">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Comment" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ConnectionPointReference"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.42">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.41">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.ConnectionPointReference" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Constraint" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.43">
+        superClass="#//@nestedPackage.1/@ownedType.42">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Constraint" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ConstructorPart"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.44">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.43">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.ConstructorPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Detail" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.46">
+        superClass="#//@nestedPackage.1/@ownedType.45">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Detail" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.DynamicProperty"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.48">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.47">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.DynamicProperty" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ElementExtension"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.49">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.48">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.ElementExtension" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Element" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.50">
+        superClass="#//@nestedPackage.1/@ownedType.49">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Element" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.EnumerationLiteral"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.52">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.51">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.EnumerationLiteral" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Import" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.53">
+        superClass="#//@nestedPackage.1/@ownedType.52">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Import" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.InstanceSpecification"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.54">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.53">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.InstanceSpecification" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.OCLExpression"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.60">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.59">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.OCLExpression" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Operation" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.62">
+        superClass="#//@nestedPackage.1/@ownedType.61">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Operation" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Package" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.64">
+        superClass="#//@nestedPackage.1/@ownedType.63">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Package" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Parameter" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.65">
+        superClass="#//@nestedPackage.1/@ownedType.64">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Parameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ParameterableElement"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.66">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.65">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.ParameterableElement" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Precedence" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.67">
+        superClass="#//@nestedPackage.1/@ownedType.66">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Precedence" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ProfileApplication"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.68">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.67">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.ProfileApplication" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Property" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.70">
+        superClass="#//@nestedPackage.1/@ownedType.69">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Property" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Pseudostate"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.71">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.70">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Pseudostate" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Region" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.72">
+        superClass="#//@nestedPackage.1/@ownedType.71">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Region" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Slot" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.74">
+        superClass="#//@nestedPackage.1/@ownedType.73">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Slot" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.StateMachine"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.76">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.75">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.StateMachine" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.State" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.77">
+        superClass="#//@nestedPackage.1/@ownedType.76">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.State" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TemplateBinding"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.78">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.77">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.TemplateBinding" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TemplateParameterSubstitution"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.79">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.78">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.TemplateParameterSubstitution" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TemplateParameter"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.80">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.79">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.TemplateParameter" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Transition" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.81">
+        superClass="#//@nestedPackage.1/@ownedType.80">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Transition" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Trigger" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.82">
+        superClass="#//@nestedPackage.1/@ownedType.81">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Trigger" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TupleLiteralPart"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.83">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.82">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.TupleLiteralPart" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.TypeExtension"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.85">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.84">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.TypeExtension" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Type" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.86">
+        superClass="#//@nestedPackage.1/@ownedType.85">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Type" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.ValueSpecification"
-        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.88">
+        name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.87">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.ValueSpecification" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Variable" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.90">
+        superClass="#//@nestedPackage.1/@ownedType.89">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Variable" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.pivot.Vertex" name="UniqueCollection"
-        superClass="#//@nestedPackage.1/@ownedType.91">
+        superClass="#//@nestedPackage.1/@ownedType.90">
       <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#s.UniqueCollection">
         <parameterSubstitution actual="#T.pivot.Vertex" formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#t.ocl..UniqueCollectionT"/>
       </templateBinding>

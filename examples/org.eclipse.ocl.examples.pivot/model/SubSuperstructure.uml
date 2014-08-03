@@ -816,7 +816,7 @@
             </ownedComment>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_XngaMH7VEeOu79LxSz8Ylw" value="initial"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et-RkUefEeKdl-y5nJoJpQ" name="stateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et-RkUefEeKdl-y5nJoJpQ" name="stateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_f_Y-EBsIEeSM9LreJtBwBg">
             <ownedComment xmi:id="_Et-RkkefEeKdl-y5nJoJpQ" annotatedElement="_Et-RkUefEeKdl-y5nJoJpQ">
               <body>The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.</body>
             </ownedComment>
@@ -1012,7 +1012,7 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             </ownedComment>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQWX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_vAUZo0ebEeKdl-y5nJoJpQ" name="connectionPoint" type="_Et-RcEefEeKdl-y5nJoJpQ" aggregation="composite">
+          <ownedAttribute xmi:id="_vAUZo0ebEeKdl-y5nJoJpQ" name="connectionPoint" type="_Et-RcEefEeKdl-y5nJoJpQ" aggregation="composite" association="_f_Y-EBsIEeSM9LreJtBwBg">
             <ownedComment xmi:id="_vAUZpEebEeKdl-y5nJoJpQ" annotatedElement="_vAUZo0ebEeKdl-y5nJoJpQ">
               <body>The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state.</body>
             </ownedComment>
@@ -1378,6 +1378,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
           </ownedEnd>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="_NtdYEMVDEeOUxMGVZGOl2Q" name="A_connectionPoint_state" memberEnd="_DKDn5EefEeKdl-y5nJoJpQ _Et-RlUefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_f_Y-EBsIEeSM9LreJtBwBg" name="A_connectionPoint_stateMachine" memberEnd="_vAUZo0ebEeKdl-y5nJoJpQ _Et-RkUefEeKdl-y5nJoJpQ"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_cqOSUMVDEeOUxMGVZGOl2Q" name="A_connection_state" memberEnd="_DKDnxEefEeKdl-y5nJoJpQ _Et-4m0efEeKdl-y5nJoJpQ"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0EebEeKdl-y5nJoJpQ" name="A_container_subvertex" memberEnd="_Et9qY0efEeKdl-y5nJoJpQ _Et_fkkefEeKdl-y5nJoJpQ"/>
         <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0UebEeKdl-y5nJoJpQ" name="A_container_transition" memberEnd="_Et9DbEefEeKdl-y5nJoJpQ _Et_flkefEeKdl-y5nJoJpQ"/>

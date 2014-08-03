@@ -63,24 +63,26 @@ public interface Pseudostate extends Vertex
 	void setKind(PseudostateKind value);
 
 	/**
-	 * Returns the value of the '<em><b>State Machine</b></em>' reference.
+	 * Returns the value of the '<em><b>State Machine</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.StateMachine#getConnectionPoint <em>Connection Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State Machine</em>' reference.
+	 * @return the value of the '<em>State Machine</em>' container reference.
 	 * @see #setStateMachine(StateMachine)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPseudostate_StateMachine()
+	 * @see org.eclipse.ocl.examples.pivot.StateMachine#getConnectionPoint
 	 * @generated
 	 */
 	StateMachine getStateMachine();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine <em>State Machine</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine <em>State Machine</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Machine</em>' reference.
+	 * @param value the new value of the '<em>State Machine</em>' container reference.
 	 * @see #getStateMachine()
 	 * @generated
 	 */

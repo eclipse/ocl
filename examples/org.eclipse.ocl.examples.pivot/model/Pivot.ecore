@@ -1448,7 +1448,7 @@
         <details key="documentation" value="The State that owns this pseudostate and in which it appears."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" eType="#//StateMachine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateMachine" eType="#//StateMachine" eOpposite="#//StateMachine/connectionPoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint."/>
       </eAnnotations>
@@ -1627,7 +1627,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="State machines can be used to express the behavior of part of a system. Behavior is modeled as a traversal of a graph of state nodes interconnected by one or more joined transition arcs that are triggered by the dispatching of series of (event) occurrences. During this traversal, the state machine executes a series of activities associated with various elements of the state machine."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoint" ordered="false" upperBound="-1" eType="#//Pseudostate" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoint" ordered="false" upperBound="-1" eType="#//Pseudostate" containment="true"
+        eOpposite="#//Pseudostate/stateMachine">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state."/>
       </eAnnotations>

@@ -316,7 +316,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull BagType _Bag_Package = createBagType("Bag"/*Package*/, "0", "*");
 		protected final @NonNull BagType _Bag_Property = createBagType("Bag"/*Property*/, "0", "*");
 		protected final @NonNull BagType _Bag_PropertyCallExp = createBagType("Bag"/*PropertyCallExp*/, "0", "*");
-		protected final @NonNull BagType _Bag_Pseudostate = createBagType("Bag"/*Pseudostate*/, "0", "*");
 		protected final @NonNull BagType _Bag_Region = createBagType("Bag"/*Region*/, "0", "*");
 		protected final @NonNull BagType _Bag_SendSignalAction = createBagType("Bag"/*SendSignalAction*/, "0", "*");
 		protected final @NonNull BagType _Bag_State = createBagType("Bag"/*State*/, "0", "*");
@@ -1063,11 +1062,6 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_PropertyCallExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Collection_PropertyCallExp);
-			orphanTypes.add(type = _Bag_Pseudostate);
-			type.setUnspecializedElement(_Bag);
-			type.setElementType(_Pseudostate);
-			superClasses = type.getSuperClass();
-			superClasses.add(_Collection_Pseudostate);
 			orphanTypes.add(type = _Bag_Region);
 			type.setUnspecializedElement(_Bag);
 			type.setElementType(_Region);
@@ -2257,7 +2251,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Pseudostate_kind = createProperty(PivotPackage.Literals.PSEUDOSTATE__KIND, _PseudostateKind);
 		protected final @NonNull Property pr_Pseudostate_state = createProperty(PivotPackage.Literals.PSEUDOSTATE__STATE, _State);
 		protected final @NonNull Property pr_Pseudostate_stateMachine = createProperty(PivotPackage.Literals.PSEUDOSTATE__STATE_MACHINE, _StateMachine);
-		protected final @NonNull Property pr_Pseudostate_StateMachine_connectionPoint = createProperty("StateMachine", _StateMachine);
 		protected final @NonNull Property pr_Pseudostate_connectionPointReference_entry = createProperty("connectionPointReference", _ConnectionPointReference);
 		protected final @NonNull Property pr_Pseudostate_connectionPointReference_exit = createProperty("connectionPointReference", _ConnectionPointReference);
 		protected final @NonNull Property pr_RealLiteralExp_realSymbol = createProperty(PivotPackage.Literals.REAL_LITERAL_EXP__REAL_SYMBOL, _Real);
@@ -2298,7 +2291,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_StateMachine_extendedStateMachine = createProperty(PivotPackage.Literals.STATE_MACHINE__EXTENDED_STATE_MACHINE, _Set_StateMachine);
 		protected final @NonNull Property pr_StateMachine_region = createProperty(PivotPackage.Literals.STATE_MACHINE__REGION, _Set_Region_1);
 		protected final @NonNull Property pr_StateMachine_submachineState = createProperty(PivotPackage.Literals.STATE_MACHINE__SUBMACHINE_STATE, _Set_State);
-		protected final @NonNull Property pr_StateMachine_Pseudostate_stateMachine = createProperty("Pseudostate", _Bag_Pseudostate);
 		protected final @NonNull Property pr_StateMachine_StateMachine_extendedStateMachine = createProperty("StateMachine", _Bag_StateMachine);
 		protected final @NonNull Property pr_Stereotype_extensionOfs = createProperty(PivotPackage.Literals.STEREOTYPE__EXTENSION_OFS, _Set_TypeExtension);
 		protected final @NonNull Property pr_Stereotype_ElementExtension_stereotype = createProperty("ElementExtension", _Bag_ElementExtension);
@@ -3356,11 +3348,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Pseudostate_stateMachine);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_StateMachine_Pseudostate_stateMachine);
-			ownedProperties.add(property = pr_Pseudostate_StateMachine_connectionPoint);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StateMachine_connectionPoint);
 			ownedProperties.add(property = pr_Pseudostate_connectionPointReference_entry);
 			property.setImplicit(true);
@@ -3523,7 +3510,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_StateMachine_connectionPoint);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Pseudostate_StateMachine_connectionPoint);
+			property.setOpposite(pr_Pseudostate_stateMachine);
 			ownedProperties.add(property = pr_StateMachine_extendedStateMachine);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StateMachine_StateMachine_extendedStateMachine);
@@ -3534,10 +3521,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_StateMachine_submachineState);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_State_submachine);
-			ownedProperties.add(property = pr_StateMachine_Pseudostate_stateMachine);
-			property.setImplicit(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Pseudostate_stateMachine);
 			ownedProperties.add(property = pr_StateMachine_StateMachine_extendedStateMachine);
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
@@ -3923,8 +3906,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _PropertyCallExp)));
 			_Bag_Property.getTemplateBinding().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Property)));
-			_Bag_Pseudostate.getTemplateBinding().add(createTemplateBinding(_Bag_,
-				createTemplateParameterSubstitution(_Bag_T, _Pseudostate)));
 			_Bag_Region.getTemplateBinding().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Region)));
 			_Bag_SendSignalAction.getTemplateBinding().add(createTemplateBinding(_Bag_,

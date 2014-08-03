@@ -262,6 +262,7 @@
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Stereotype features">
     <oldProperties href="../model-gen/UML.uml#Stereotype-profile.1"/>
+    <oldProperties href="../model-gen/UML.uml#A_ownedStereotype_owningPackage-owningPackage"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot TemplateSignature features">
     <oldProperties href="../model-gen/UML.uml#TemplateSignature-parameter"/>

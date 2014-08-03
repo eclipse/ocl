@@ -55,6 +55,7 @@ public interface StateMachine extends Behavior
 	/**
 	 * Returns the value of the '<em><b>Connection Point</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Pseudostate}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine <em>State Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -62,6 +63,7 @@ public interface StateMachine extends Behavior
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connection Point</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getStateMachine_ConnectionPoint()
+	 * @see org.eclipse.ocl.examples.pivot.Pseudostate#getStateMachine
 	 * @generated
 	 */
 	List<Pseudostate> getConnectionPoint();

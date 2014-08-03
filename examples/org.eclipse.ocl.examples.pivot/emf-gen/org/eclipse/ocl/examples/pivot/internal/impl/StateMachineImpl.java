@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -145,7 +144,7 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 	{
 		if (connectionPoint == null)
 		{
-			connectionPoint = new EObjectContainmentEList<Pseudostate>(Pseudostate.class, this, PivotPackage.STATE_MACHINE__CONNECTION_POINT);
+			connectionPoint = new EObjectContainmentWithInverseEList<Pseudostate>(Pseudostate.class, this, PivotPackage.STATE_MACHINE__CONNECTION_POINT, PivotPackage.PSEUDOSTATE__STATE_MACHINE);
 		}
 		return connectionPoint;
 	}
@@ -209,6 +208,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetTransition((Transition)otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectionPoint()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__REGION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRegion()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__SUBMACHINE_STATE:

@@ -1087,7 +1087,7 @@
         </ownedComment>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TPseudostate.Pkind.dlV" value="initial"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TPseudostate.PstateMachine" name="stateMachine" type="Ppivot.TStateMachine">
+      <ownedAttribute xmi:id="Ppivot.TPseudostate.PstateMachine" name="stateMachine" type="Ppivot.TStateMachine" association="Ppivot.A_connectionPoint_stateMachine">
         <ownedComment xmi:id="Ppivot.TPseudostate.PstateMachine.oC0" annotatedElement="Ppivot.TPseudostate.PstateMachine">
           <body>The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.</body>
         </ownedComment>
@@ -1315,7 +1315,8 @@
         </ownedComment>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TStateMachine.Pregion.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TStateMachine.PconnectionPoint" name="connectionPoint" type="Ppivot.TPseudostate" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TStateMachine.PconnectionPoint" name="connectionPoint" type="Ppivot.TPseudostate" aggregation="composite"
+          association="Ppivot.A_connectionPoint_stateMachine">
         <ownedComment xmi:id="Ppivot.TStateMachine.PconnectionPoint.oC0" annotatedElement="Ppivot.TStateMachine.PconnectionPoint">
           <body>The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state.</body>
         </ownedComment>
@@ -1816,6 +1817,7 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connectionPoint_state" name="A_connectionPoint_state" memberEnd="Ppivot.TState.PconnectionPoint Ppivot.TPseudostate.Pstate"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connectionPoint_stateMachine" name="A_connectionPoint_stateMachine" memberEnd="Ppivot.TStateMachine.PconnectionPoint Ppivot.TPseudostate.PstateMachine"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connection_state" name="A_connection_state" memberEnd="Ppivot.TState.Pconnection Ppivot.TConnectionPointReference.Pstate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_constrainingType_typeTemplateParameter" name="A_constrainingType_typeTemplateParameter"
         memberEnd="Ppivot.TTypeTemplateParameter.PconstrainingClassifier Ppivot.A_constrainingType_typeTemplateParameter.PtypeTemplateParameter">
