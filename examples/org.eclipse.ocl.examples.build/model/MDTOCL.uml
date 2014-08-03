@@ -251,28 +251,6 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OEH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Redefinitions-Operation" name="Operation">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Operation-redefinedOperation" name="redefinedOperation" type="MDTOCL-MDT_OCL_Redefinitions-Operation" association="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OEX7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OEn7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Redefinitions-Property" name="Property">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Property-redefinedProperty" name="redefinedProperty" type="MDTOCL-MDT_OCL_Redefinitions-Property">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OE37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OFH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Property-subsettedProperty" name="subsettedProperty" type="MDTOCL-MDT_OCL_Redefinitions-Property">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OFX7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OFn7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation" name="A_operation_redefinedOperation" memberEnd="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation-operation MDTOCL-MDT_OCL_Redefinitions-Operation-redefinedOperation">
-        <ownedEnd xmi:id="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation-operation" name="operation" type="MDTOCL-MDT_OCL_Redefinitions-Operation" association="MDTOCL-MDT_OCL_Redefinitions-A_operation_redefinedOperation">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bcnMUseLEeO6DbPutIdGpw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bcnMU8eLEeO6DbPutIdGpw" value="*"/>
-        </ownedEnd>
-      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Referring" name="MDT_OCL_Referring">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Referring-Element" name="Element" isAbstract="true"/>
