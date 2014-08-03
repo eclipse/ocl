@@ -135,8 +135,6 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 				return getOwnedAnnotation();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_STATIC:
-				return isStatic();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_REQUIRED:
@@ -188,9 +186,6 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -246,9 +241,6 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -298,8 +290,6 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_REQUIRED:

@@ -95,7 +95,7 @@ public class ConstraintImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_CALLABLE_EFLAG = 1 << 9;
+	protected static final int IS_CALLABLE_EFLAG = 1 << 8;
 
 	/**
 	 * The cached value of the '{@link #getRedefinedConstraint() <em>Redefined Constraint</em>}' reference list.
@@ -551,8 +551,6 @@ public class ConstraintImpl
 				return getOwnedAnnotation();
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.CONSTRAINT__IS_STATIC:
-				return isStatic();
 			case PivotPackage.CONSTRAINT__NAME:
 				return getName();
 			case PivotPackage.CONSTRAINT__OWNING_TEMPLATE_PARAMETER:
@@ -607,9 +605,6 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.CONSTRAINT__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__NAME:
 				setName((String)newValue);
@@ -671,9 +666,6 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.CONSTRAINT__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.CONSTRAINT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -728,8 +720,6 @@ public class ConstraintImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.CONSTRAINT__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.CONSTRAINT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CONSTRAINT__OWNING_TEMPLATE_PARAMETER:

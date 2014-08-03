@@ -39,6 +39,8 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
@@ -155,8 +157,6 @@ public class PropertyCallExpImpl
 				return getOwnedAnnotation();
 			case PivotPackage.PROPERTY_CALL_EXP__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PROPERTY_CALL_EXP__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PROPERTY_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.PROPERTY_CALL_EXP__IS_REQUIRED:
@@ -207,9 +207,6 @@ public class PropertyCallExpImpl
 			case PivotPackage.PROPERTY_CALL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.PROPERTY_CALL_EXP__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.PROPERTY_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -264,9 +261,6 @@ public class PropertyCallExpImpl
 			case PivotPackage.PROPERTY_CALL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PROPERTY_CALL_EXP__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PROPERTY_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -315,8 +309,6 @@ public class PropertyCallExpImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PROPERTY_CALL_EXP__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PROPERTY_CALL_EXP__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROPERTY_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROPERTY_CALL_EXP__IS_REQUIRED:
@@ -467,17 +459,17 @@ public class PropertyCallExpImpl
 		 * inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies
 		 *   source.type.conformsTo(getSpecializedReferredPropertyOwningType())
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_10;
+		@Nullable /*@Caught*/ Object CAUGHT_symbol_12;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_symbol_1;
+		    @Nullable /*@Caught*/ Object CAUGHT_symbol_2;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		        @Nullable /*@Caught*/ Object CAUGHT_self_71;
 		        try {
 		            final @Nullable /*@Thrown*/ DomainProperty referredProperty = this.getReferredProperty();
 		            if (referredProperty == null) {
-		                throw new InvalidValueException("Null source for \'pivot::NamedElement::isStatic\'");
+		                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
 		            }
-		            final /*@Thrown*/ boolean self_71 = referredProperty.isStatic();
+		            final @Nullable /*@Thrown*/ Boolean self_71 = ((Feature)referredProperty).isStatic();
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
@@ -487,18 +479,26 @@ public class PropertyCallExpImpl
 		            throw (InvalidValueException)CAUGHT_self_71;
 		        }
 		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_1;
+		        @Nullable /*@Thrown*/ Boolean symbol_2;
 		        if (symbol_0) {
-		            symbol_1 = (Boolean)CAUGHT_self_71;
+		            symbol_2 = (Boolean)CAUGHT_self_71;
 		        }
 		        else {
-		            final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		            symbol_1 = eq;
+		            final /*@Thrown*/ boolean eq = CAUGHT_self_71 == null;
+		            @Nullable /*@Thrown*/ Boolean symbol_1;
+		            if (eq) {
+		                symbol_1 = null;
+		            }
+		            else {
+		                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
+		                symbol_1 = (Boolean)eq_0;
+		            }
+		            symbol_2 = symbol_1;
 		        }
-		        CAUGHT_symbol_1 = symbol_1;
+		        CAUGHT_symbol_2 = symbol_2;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_1 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_symbol_2 = ValuesUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
@@ -515,74 +515,82 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_2 = CAUGHT_symbol_1 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_10;
-		    if (symbol_2) {
-		        final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_5;
-		        if (symbol_3) {
-		            if (CAUGHT_symbol_1 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_symbol_1;
+		    final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_symbol_2 instanceof InvalidValueException;
+		    @Nullable /*@Thrown*/ Boolean symbol_12;
+		    if (symbol_3) {
+		        final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
+		        @Nullable /*@Thrown*/ Boolean symbol_6;
+		        if (symbol_4) {
+		            if (CAUGHT_symbol_2 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_symbol_2;
 		            }
-		            symbol_5 = (Boolean)CAUGHT_symbol_1;
+		            symbol_6 = (Boolean)CAUGHT_symbol_2;
 		        }
 		        else {
-		            /*@Thrown*/ boolean symbol_4;
+		            @Nullable /*@Thrown*/ Boolean symbol_5;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_4 = ValuesUtil.TRUE_VALUE;
+		                symbol_5 = (Boolean)ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
-		                if (CAUGHT_symbol_1 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_symbol_1;
+		                if (CAUGHT_symbol_2 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_symbol_2;
 		                }
-		                symbol_4 = (Boolean)CAUGHT_symbol_1;
+		                symbol_5 = (Boolean)CAUGHT_symbol_2;
 		            }
-		            symbol_5 = symbol_4;
+		            symbol_6 = symbol_5;
 		        }
-		        symbol_10 = symbol_5;
+		        symbol_12 = symbol_6;
 		    }
 		    else {
-		        if (CAUGHT_symbol_1 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_symbol_1;
+		        if (CAUGHT_symbol_2 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_symbol_2;
 		        }
-		        final /*@Thrown*/ boolean eq_0 = CAUGHT_symbol_1 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_9;
-		        if (eq_0) {
-		            symbol_9 = ValuesUtil.TRUE_VALUE;
+		        final /*@Thrown*/ boolean eq_1 = CAUGHT_symbol_2 == Boolean.FALSE;
+		        @Nullable /*@Thrown*/ Boolean symbol_11;
+		        if (eq_1) {
+		            symbol_11 = (Boolean)ValuesUtil.TRUE_VALUE;
 		        }
 		        else {
-		            final /*@NonInvalid*/ boolean symbol_6 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_8;
-		            if (symbol_6) {
+		            final /*@NonInvalid*/ boolean symbol_7 = CAUGHT_b instanceof InvalidValueException;
+		            @Nullable /*@Thrown*/ Boolean symbol_10;
+		            if (symbol_7) {
 		                if (CAUGHT_b instanceof InvalidValueException) {
 		                    throw (InvalidValueException)CAUGHT_b;
 		                }
-		                symbol_8 = (Boolean)CAUGHT_b;
+		                symbol_10 = (Boolean)CAUGHT_b;
 		            }
 		            else {
-		                /*@NonInvalid*/ boolean symbol_7;
+		                @Nullable /*@NonInvalid*/ Boolean symbol_9;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_7 = ValuesUtil.TRUE_VALUE;
+		                    symbol_9 = (Boolean)ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_7 = ValuesUtil.FALSE_VALUE;
+		                    final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_2 == null;
+		                    @Nullable /*@NonInvalid*/ Boolean symbol_8;
+		                    if (eq_2) {
+		                        symbol_8 = null;
+		                    }
+		                    else {
+		                        symbol_8 = (Boolean)ValuesUtil.FALSE_VALUE;
+		                    }
+		                    symbol_9 = symbol_8;
 		                }
-		                symbol_8 = symbol_7;
+		                symbol_10 = symbol_9;
 		            }
-		            symbol_9 = symbol_8;
+		            symbol_11 = symbol_10;
 		        }
-		        symbol_10 = symbol_9;
+		        symbol_12 = symbol_11;
 		    }
-		    CAUGHT_symbol_10 = symbol_10;
+		    CAUGHT_symbol_12 = symbol_12;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_10 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_12 = ValuesUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_10 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_12 == ValuesUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
+		    int severity = CAUGHT_symbol_12 == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "NonStaticSourceTypeIsConformant", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__NON_STATIC_SOURCE_TYPE_IS_CONFORMANT, message, new Object [] { this }));
 		}

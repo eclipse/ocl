@@ -123,8 +123,6 @@ public class TemplateParameterTypeImpl
 				return getOwnedAnnotation();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				return getName();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
@@ -169,9 +167,6 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				setName((String)newValue);
@@ -221,9 +216,6 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -266,8 +258,6 @@ public class TemplateParameterTypeImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:

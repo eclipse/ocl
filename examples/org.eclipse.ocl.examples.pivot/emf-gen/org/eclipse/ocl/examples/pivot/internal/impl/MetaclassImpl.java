@@ -150,8 +150,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getOwnedAnnotation();
 			case PivotPackage.METACLASS__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.METACLASS__IS_STATIC:
-				return isStatic();
 			case PivotPackage.METACLASS__NAME:
 				return getName();
 			case PivotPackage.METACLASS__OWNING_TEMPLATE_PARAMETER:
@@ -165,14 +163,14 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getInstanceClassName();
 			case PivotPackage.METACLASS__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.METACLASS__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.METACLASS__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.METACLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.METACLASS__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.METACLASS__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.METACLASS__IS_ACTIVE:
@@ -225,9 +223,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.METACLASS__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.METACLASS__NAME:
 				setName((String)newValue);
 				return;
@@ -248,10 +243,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.METACLASS__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -261,6 +252,10 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return;
 			case PivotPackage.METACLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.METACLASS__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.METACLASS__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -323,9 +318,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.METACLASS__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.METACLASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -344,9 +336,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				return;
-			case PivotPackage.METACLASS__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -355,6 +344,9 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return;
 			case PivotPackage.METACLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.METACLASS__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.METACLASS__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -408,8 +400,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.METACLASS__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.METACLASS__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.METACLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.METACLASS__OWNING_TEMPLATE_PARAMETER:
@@ -422,14 +412,14 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.METACLASS__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.METACLASS__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.METACLASS__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.METACLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.METACLASS__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.METACLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.METACLASS__IS_ACTIVE:

@@ -212,8 +212,6 @@ public class CollectionItemImpl
 				return getOwnedAnnotation();
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.COLLECTION_ITEM__IS_STATIC:
-				return isStatic();
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_ITEM__IS_REQUIRED:
@@ -253,9 +251,6 @@ public class CollectionItemImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COLLECTION_ITEM__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				setName((String)newValue);
 				return;
@@ -293,9 +288,6 @@ public class CollectionItemImpl
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.COLLECTION_ITEM__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -329,8 +321,6 @@ public class CollectionItemImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.COLLECTION_ITEM__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_ITEM__IS_REQUIRED:

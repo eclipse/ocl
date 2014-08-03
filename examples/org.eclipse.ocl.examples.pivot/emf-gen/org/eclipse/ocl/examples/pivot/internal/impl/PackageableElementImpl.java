@@ -330,8 +330,6 @@ public abstract class PackageableElementImpl
 				return getOwnedAnnotation();
 			case PivotPackage.PACKAGEABLE_ELEMENT__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PACKAGEABLE_ELEMENT__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PACKAGEABLE_ELEMENT__NAME:
 				return getName();
 			case PivotPackage.PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
@@ -370,9 +368,6 @@ public abstract class PackageableElementImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PACKAGEABLE_ELEMENT__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.PACKAGEABLE_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
@@ -408,9 +403,6 @@ public abstract class PackageableElementImpl
 			case PivotPackage.PACKAGEABLE_ELEMENT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PACKAGEABLE_ELEMENT__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PACKAGEABLE_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -442,8 +434,6 @@ public abstract class PackageableElementImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PACKAGEABLE_ELEMENT__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PACKAGEABLE_ELEMENT__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PACKAGEABLE_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:

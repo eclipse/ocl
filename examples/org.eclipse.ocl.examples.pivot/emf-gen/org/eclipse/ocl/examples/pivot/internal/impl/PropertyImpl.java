@@ -1443,8 +1443,6 @@ public class PropertyImpl
 				return getOwnedAnnotation();
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PROPERTY__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PROPERTY__NAME:
 				return getName();
 			case PivotPackage.PROPERTY__IS_REQUIRED:
@@ -1456,6 +1454,8 @@ public class PropertyImpl
 				return getImplementation();
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
+			case PivotPackage.PROPERTY__IS_STATIC:
+				return isStatic();
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
@@ -1532,9 +1532,6 @@ public class PropertyImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PROPERTY__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.PROPERTY__NAME:
 				setName((String)newValue);
 				return;
@@ -1549,6 +1546,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				setImplementationClass((String)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
@@ -1638,9 +1638,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PROPERTY__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PROPERTY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -1655,6 +1652,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
@@ -1737,8 +1737,6 @@ public class PropertyImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PROPERTY__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROPERTY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROPERTY__IS_REQUIRED:
@@ -1749,6 +1747,8 @@ public class PropertyImpl
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
+			case PivotPackage.PROPERTY__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:

@@ -54,10 +54,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestedPackage <em>Nested Package</em>}</li>
@@ -76,16 +76,6 @@ public class PackageImpl
 		extends PackageableElementImpl
 		implements org.eclipse.ocl.examples.pivot.Package {
 		
-	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> ownedRule;
-
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -115,6 +105,16 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected TemplateableElement unspecializedElement;
+
+	/**
+	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRule()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> ownedRule;
 
 	/**
 	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute.
@@ -556,12 +556,12 @@ public class PackageImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
@@ -611,8 +611,6 @@ public class PackageImpl
 				return getOwnedAnnotation();
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PACKAGE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PACKAGE__NAME:
 				return getName();
 			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
@@ -620,14 +618,14 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.PACKAGE__URI:
 				return getURI();
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
@@ -674,9 +672,6 @@ public class PackageImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PACKAGE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.PACKAGE__NAME:
 				setName((String)newValue);
 				return;
@@ -685,10 +680,6 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -699,6 +690,10 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PACKAGE__URI:
 				setURI((String)newValue);
@@ -754,9 +749,6 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PACKAGE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PACKAGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -766,9 +758,6 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -777,6 +766,9 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.PACKAGE__URI:
 				setURI(URI_EDEFAULT);
@@ -823,22 +815,20 @@ public class PackageImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PACKAGE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PACKAGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PACKAGE__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
@@ -866,14 +856,6 @@ public class PackageImpl
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Namespace.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.PACKAGE__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (derivedFeatureID)
@@ -881,6 +863,14 @@ public class PackageImpl
 				case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
 				case PivotPackage.PACKAGE__TEMPLATE_BINDING: return PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING;
 				case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == Namespace.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case PivotPackage.PACKAGE__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
 				default: return -1;
 			}
 		}
@@ -894,14 +884,6 @@ public class PackageImpl
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Namespace.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.PACKAGE__OWNED_RULE;
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (baseFeatureID)
@@ -909,6 +891,14 @@ public class PackageImpl
 				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING: return PivotPackage.PACKAGE__TEMPLATE_BINDING;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == Namespace.class)
+		{
+			switch (baseFeatureID)
+			{
+				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.PACKAGE__OWNED_RULE;
 				default: return -1;
 			}
 		}
@@ -922,19 +912,19 @@ public class PackageImpl
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == Namespace.class)
-		{
-			switch (baseOperationID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (baseOperationID)
 			{
 				case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE: return PivotPackage.PACKAGE___IS_TEMPLATE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS: return PivotPackage.PACKAGE___PARAMETERABLE_ELEMENTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == Namespace.class)
+		{
+			switch (baseOperationID)
+			{
 				default: return -1;
 			}
 		}

@@ -60,7 +60,7 @@ public class PrecedenceImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ASSOCIATIVITY_EFLAG_OFFSET = 9;
+	protected static final int ASSOCIATIVITY_EFLAG_OFFSET = 8;
 
 	/**
 	 * The flags representing the default value of the '{@link #getAssociativity() <em>Associativity</em>}' attribute.
@@ -190,8 +190,6 @@ public class PrecedenceImpl
 				return getOwnedAnnotation();
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PRECEDENCE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PRECEDENCE__NAME:
 				return getName();
 			case PivotPackage.PRECEDENCE__ASSOCIATIVITY:
@@ -228,9 +226,6 @@ public class PrecedenceImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PRECEDENCE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.PRECEDENCE__NAME:
 				setName((String)newValue);
 				return;
@@ -265,9 +260,6 @@ public class PrecedenceImpl
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PRECEDENCE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PRECEDENCE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -298,8 +290,6 @@ public class PrecedenceImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PRECEDENCE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PRECEDENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PRECEDENCE__ASSOCIATIVITY:

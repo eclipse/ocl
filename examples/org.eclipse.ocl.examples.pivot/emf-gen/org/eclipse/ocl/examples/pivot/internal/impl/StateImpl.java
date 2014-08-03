@@ -177,7 +177,7 @@ public class StateImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_SUBMACHINE_STATE_EFLAG = 1 << 9;
+	protected static final int IS_SUBMACHINE_STATE_EFLAG = 1 << 8;
 	/**
 	 * The cached value of the '{@link #getRedefinedState() <em>Redefined State</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -772,8 +772,6 @@ public class StateImpl
 				return getOwnedAnnotation();
 			case PivotPackage.STATE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.STATE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.STATE__NAME:
 				return getName();
 			case PivotPackage.STATE__CONTAINER:
@@ -844,9 +842,6 @@ public class StateImpl
 			case PivotPackage.STATE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.STATE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.STATE__NAME:
 				setName((String)newValue);
@@ -921,9 +916,6 @@ public class StateImpl
 			case PivotPackage.STATE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.STATE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.STATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -988,8 +980,6 @@ public class StateImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.STATE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.STATE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.STATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.STATE__CONTAINER:

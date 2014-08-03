@@ -164,12 +164,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
-			case PivotPackage.PROFILE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROFILE__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__NESTED_PACKAGE:
 				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__NESTING_PACKAGE:
@@ -204,8 +204,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return getOwnedAnnotation();
 			case PivotPackage.PROFILE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PROFILE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PROFILE__NAME:
 				return getName();
 			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
@@ -213,14 +211,14 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
-			case PivotPackage.PROFILE__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.PROFILE__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.PROFILE__URI:
 				return getURI();
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:
@@ -270,9 +268,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PROFILE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.PROFILE__NAME:
 				setName((String)newValue);
 				return;
@@ -281,10 +276,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.PROFILE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -295,6 +286,10 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.PROFILE__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PROFILE__URI:
 				setURI((String)newValue);
@@ -355,9 +350,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PROFILE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PROFILE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -367,9 +359,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
-			case PivotPackage.PROFILE__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -378,6 +367,9 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.PROFILE__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.PROFILE__URI:
 				setURI(URI_EDEFAULT);
@@ -428,22 +420,20 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PROFILE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PROFILE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROFILE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROFILE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.PROFILE__TEMPLATE_PARAMETER:
 				return templateParameter != null;
-			case PivotPackage.PROFILE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.PROFILE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PROFILE__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PROFILE__IMPORTED_PACKAGE:

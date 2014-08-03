@@ -181,8 +181,6 @@ public class EnumLiteralExpImpl
 				return getOwnedAnnotation();
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.ENUM_LITERAL_EXP__IS_STATIC:
-				return isStatic();
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
@@ -223,9 +221,6 @@ public class EnumLiteralExpImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				setName((String)newValue);
 				return;
@@ -263,9 +258,6 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -299,8 +291,6 @@ public class EnumLiteralExpImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.ENUM_LITERAL_EXP__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:

@@ -196,12 +196,12 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_INVARIANT:
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
-			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_ATTRIBUTE:
@@ -258,8 +258,6 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return getOwnedAnnotation();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.DYNAMIC_BEHAVIOR__IS_STATIC:
-				return isStatic();
 			case PivotPackage.DYNAMIC_BEHAVIOR__NAME:
 				return getName();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER:
@@ -273,14 +271,14 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return getInstanceClassName();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ACTIVE:
@@ -337,9 +335,6 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__NAME:
 				setName((String)newValue);
 				return;
@@ -360,10 +355,6 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -373,6 +364,10 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -442,9 +437,6 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -463,9 +455,6 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -474,6 +463,9 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -533,8 +525,6 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.DYNAMIC_BEHAVIOR__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.DYNAMIC_BEHAVIOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER:
@@ -547,14 +537,14 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ACTIVE:

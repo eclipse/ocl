@@ -142,8 +142,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return getOwnedAnnotation();
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_STATIC:
-				return isStatic();
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				return getName();
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
@@ -191,9 +189,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				setName((String)newValue);
 				return;
@@ -238,9 +233,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -281,8 +273,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.LANGUAGE_EXPRESSION__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:

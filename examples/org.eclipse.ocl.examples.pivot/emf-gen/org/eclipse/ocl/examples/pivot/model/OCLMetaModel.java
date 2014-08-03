@@ -521,8 +521,8 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Class);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Type);
-			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
+			superClasses.add(_Namespace);
 			ownedTypes.add(type = _CollectionItem);
 			superClasses = type.getSuperClass();
 			superClasses.add(_CollectionLiteralPart);
@@ -693,8 +693,8 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Operation);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Feature);
-			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
+			superClasses.add(_Namespace);
 			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _OperationCallExp);
 			superClasses = type.getSuperClass();
@@ -712,8 +712,8 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Package);
 			superClasses = type.getSuperClass();
 			superClasses.add(_PackageableElement);
-			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
+			superClasses.add(_Namespace);
 			ownedTypes.add(type = _PackageableElement);
 			superClasses = type.getSuperClass();
 			superClasses.add(_NamedElement);
@@ -2117,6 +2117,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_ExpressionInOCL_owningInstanceSpec_specification = createProperty("owningInstanceSpec", _InstanceSpecification);
 		protected final @NonNull Property pr_Feature_implementation = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION, _LibraryFeature);
 		protected final @NonNull Property pr_Feature_implementationClass = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, _String);
+		protected final @NonNull Property pr_Feature_isStatic = createProperty(PivotPackage.Literals.FEATURE__IS_STATIC, _Boolean);
 		protected final @NonNull Property pr_FeatureCallExp_isPre = createProperty(PivotPackage.Literals.FEATURE_CALL_EXP__IS_PRE, _Boolean);
 		protected final @NonNull Property pr_IfExp_condition = createProperty(PivotPackage.Literals.IF_EXP__CONDITION, _OCLExpression);
 		protected final @NonNull Property pr_IfExp_elseExpression = createProperty(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION, _OCLExpression);
@@ -2153,7 +2154,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_MessageType_referredOperation = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION, _Operation);
 		protected final @NonNull Property pr_MessageType_referredSignal = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL, _Signal);
 		protected final @NonNull Property pr_Metaclass_instanceType = createProperty(PivotPackage.Literals.METACLASS__INSTANCE_TYPE, _Type);
-		protected final @NonNull Property pr_NamedElement_isStatic = createProperty(PivotPackage.Literals.NAMED_ELEMENT__IS_STATIC, _Boolean);
 		protected final @NonNull Property pr_NamedElement_name = createProperty(PivotPackage.Literals.NAMED_ELEMENT__NAME, _String);
 		protected final @NonNull Property pr_Namespace_ownedRule = createProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE, _OrderedSet_Constraint);
 		protected final @NonNull Property pr_Namespace_Constraint_context = createProperty("Constraint", _Bag_Constraint);
@@ -2773,6 +2773,8 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Feature_implementationClass);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Feature_isStatic);
+			property.setIsResolveProxies(true);
 			ownedProperties = _FeatureCallExp.getOwnedAttribute();
 			ownedProperties.add(property = pr_FeatureCallExp_isPre);
 			property.setIsResolveProxies(true);
@@ -2933,8 +2935,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_Metaclass_instanceType);
 			ownedProperties = _NamedElement.getOwnedAttribute();
-			ownedProperties.add(property = pr_NamedElement_isStatic);
-			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_NamedElement_name);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);

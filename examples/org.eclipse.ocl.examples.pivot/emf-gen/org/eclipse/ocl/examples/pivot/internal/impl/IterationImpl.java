@@ -143,12 +143,12 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
@@ -189,8 +189,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getOwnedAnnotation();
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.ITERATION__IS_STATIC:
-				return isStatic();
 			case PivotPackage.ITERATION__NAME:
 				return getName();
 			case PivotPackage.ITERATION__IS_REQUIRED:
@@ -202,14 +200,16 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getImplementation();
 			case PivotPackage.ITERATION__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return getOwnedRule();
+			case PivotPackage.ITERATION__IS_STATIC:
+				return isStatic();
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.ITERATION__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
@@ -273,9 +273,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ITERATION__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.ITERATION__NAME:
 				setName((String)newValue);
 				return;
@@ -291,9 +288,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IMPLEMENTATION_CLASS:
 				setImplementationClass((String)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.ITERATION__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -304,6 +300,10 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.ITERATION__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
@@ -380,9 +380,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.ITERATION__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.ITERATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -398,8 +395,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IMPLEMENTATION_CLASS:
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
 				return;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.ITERATION__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
@@ -409,6 +406,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.ITERATION__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
@@ -474,8 +474,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.ITERATION__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.ITERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ITERATION__IS_REQUIRED:
@@ -486,14 +484,16 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.ITERATION__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.ITERATION__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.ITERATION__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:

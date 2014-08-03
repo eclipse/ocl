@@ -133,8 +133,6 @@ public class AssociationClassCallExpImpl
 				return getOwnedAnnotation();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_STATIC:
-				return isStatic();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED:
@@ -185,9 +183,6 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -242,9 +237,6 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -293,8 +285,6 @@ public class AssociationClassCallExpImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED:

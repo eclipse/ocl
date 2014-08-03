@@ -76,7 +76,7 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int BOOLEAN_SYMBOL_EFLAG = 1 << 10;
+	protected static final int BOOLEAN_SYMBOL_EFLAG = 1 << 9;
 
 	/**
 	 * The flag representing whether the Boolean Symbol attribute has been set.
@@ -85,7 +85,7 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int BOOLEAN_SYMBOL_ESETFLAG = 1 << 11;
+	protected static final int BOOLEAN_SYMBOL_ESETFLAG = 1 << 10;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,8 +203,6 @@ public class BooleanLiteralExpImpl
 				return getOwnedAnnotation();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
-				return isStatic();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
@@ -244,9 +242,6 @@ public class BooleanLiteralExpImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__NAME:
 				setName((String)newValue);
 				return;
@@ -284,9 +279,6 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -320,8 +312,6 @@ public class BooleanLiteralExpImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:

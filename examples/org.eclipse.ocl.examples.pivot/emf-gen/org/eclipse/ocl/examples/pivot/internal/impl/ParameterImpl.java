@@ -192,8 +192,6 @@ public class ParameterImpl
 				return getOwnedAnnotation();
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.PARAMETER__IS_STATIC:
-				return isStatic();
 			case PivotPackage.PARAMETER__NAME:
 				return getName();
 			case PivotPackage.PARAMETER__IS_REQUIRED:
@@ -233,9 +231,6 @@ public class ParameterImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PARAMETER__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.PARAMETER__NAME:
 				setName((String)newValue);
 				return;
@@ -273,9 +268,6 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.PARAMETER__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.PARAMETER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -309,8 +301,6 @@ public class ParameterImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.PARAMETER__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PARAMETER__IS_REQUIRED:

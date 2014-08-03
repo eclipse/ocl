@@ -265,8 +265,6 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 				return getOwnedAnnotation();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.CONNECTION_POINT_REFERENCE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__NAME:
 				return getName();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__CONTAINER:
@@ -312,9 +310,6 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CONNECTION_POINT_REFERENCE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__NAME:
 				setName((String)newValue);
 				return;
@@ -358,9 +353,6 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.CONNECTION_POINT_REFERENCE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -398,8 +390,6 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.CONNECTION_POINT_REFERENCE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.CONNECTION_POINT_REFERENCE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.CONNECTION_POINT_REFERENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CONNECTION_POINT_REFERENCE__CONTAINER:

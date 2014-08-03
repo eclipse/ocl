@@ -88,7 +88,7 @@ public class CollectionLiteralExpImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int KIND_EFLAG_OFFSET = 10;
+	protected static final int KIND_EFLAG_OFFSET = 9;
 
 	/**
 	 * The flags representing the default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -692,8 +692,6 @@ public class CollectionLiteralExpImpl
 				return getOwnedAnnotation();
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
-				return isStatic();
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
@@ -734,9 +732,6 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				setName((String)newValue);
@@ -779,9 +774,6 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -818,8 +810,6 @@ public class CollectionLiteralExpImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:

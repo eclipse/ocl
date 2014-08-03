@@ -370,8 +370,6 @@ public class RegionImpl extends NamespaceImpl implements Region
 				return getOwnedAnnotation();
 			case PivotPackage.REGION__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.REGION__IS_STATIC:
-				return isStatic();
 			case PivotPackage.REGION__NAME:
 				return getName();
 			case PivotPackage.REGION__OWNED_RULE:
@@ -417,9 +415,6 @@ public class RegionImpl extends NamespaceImpl implements Region
 			case PivotPackage.REGION__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.REGION__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.REGION__NAME:
 				setName((String)newValue);
@@ -471,9 +466,6 @@ public class RegionImpl extends NamespaceImpl implements Region
 			case PivotPackage.REGION__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.REGION__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.REGION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -517,8 +509,6 @@ public class RegionImpl extends NamespaceImpl implements Region
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.REGION__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.REGION__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.REGION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.REGION__OWNED_RULE:

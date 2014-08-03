@@ -705,7 +705,6 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TNamedElement.Pname.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TNamedElement.PisStatic" name="isStatic" type="Ppivot.TBoolean"/>
       <interfaceRealization xmi:id="Ppivot.TNamedElement.interfaceRealization0" name="" client="Ppivot.TNamedElement" supplier="Ppivot.TNameable"
           contract="Ppivot.TNameable"/>
     </packagedElement>

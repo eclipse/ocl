@@ -257,12 +257,12 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANT:
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.STATE_MACHINE__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
@@ -303,8 +303,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getOwnedAnnotation();
 			case PivotPackage.STATE_MACHINE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.STATE_MACHINE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.STATE_MACHINE__NAME:
 				return getName();
 			case PivotPackage.STATE_MACHINE__OWNING_TEMPLATE_PARAMETER:
@@ -318,14 +316,14 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getInstanceClassName();
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.STATE_MACHINE__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.STATE_MACHINE__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.STATE_MACHINE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.STATE_MACHINE__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.STATE_MACHINE__IS_ACTIVE:
@@ -385,9 +383,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.STATE_MACHINE__NAME:
 				setName((String)newValue);
 				return;
@@ -408,10 +403,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -421,6 +412,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return;
 			case PivotPackage.STATE_MACHINE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.STATE_MACHINE__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -499,9 +494,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.STATE_MACHINE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.STATE_MACHINE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -520,9 +512,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				return;
-			case PivotPackage.STATE_MACHINE__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -531,6 +520,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return;
 			case PivotPackage.STATE_MACHINE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.STATE_MACHINE__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -596,8 +588,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.STATE_MACHINE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.STATE_MACHINE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.STATE_MACHINE__OWNING_TEMPLATE_PARAMETER:
@@ -610,14 +600,14 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.STATE_MACHINE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.STATE_MACHINE__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.STATE_MACHINE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.STATE_MACHINE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.STATE_MACHINE__IS_ACTIVE:

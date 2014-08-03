@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#getImplementationClass <em>Implementation Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#isStatic <em>Is Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,6 +80,25 @@ public abstract class FeatureImpl
 	 * @ordered
 	 */
 	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isStatic() <em>Is Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_STATIC_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isStatic() <em>Is Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_STATIC_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,6 +147,29 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isStatic()
+	{
+		return (eFlags & IS_STATIC_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsStatic(boolean newIsStatic)
+	{
+		boolean oldIsStatic = (eFlags & IS_STATIC_EFLAG) != 0;
+		if (newIsStatic) eFlags |= IS_STATIC_EFLAG; else eFlags &= ~IS_STATIC_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.FEATURE__IS_STATIC, oldIsStatic, newIsStatic));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LibraryFeature getImplementation()
 	{
 		return implementation;
@@ -163,8 +206,6 @@ public abstract class FeatureImpl
 				return getOwnedAnnotation();
 			case PivotPackage.FEATURE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.FEATURE__IS_STATIC:
-				return isStatic();
 			case PivotPackage.FEATURE__NAME:
 				return getName();
 			case PivotPackage.FEATURE__IS_REQUIRED:
@@ -176,6 +217,8 @@ public abstract class FeatureImpl
 				return getImplementation();
 			case PivotPackage.FEATURE__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
+			case PivotPackage.FEATURE__IS_STATIC:
+				return isStatic();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -207,9 +250,6 @@ public abstract class FeatureImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.FEATURE__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.FEATURE__NAME:
 				setName((String)newValue);
 				return;
@@ -224,6 +264,9 @@ public abstract class FeatureImpl
 				return;
 			case PivotPackage.FEATURE__IMPLEMENTATION_CLASS:
 				setImplementationClass((String)newValue);
+				return;
+			case PivotPackage.FEATURE__IS_STATIC:
+				setIsStatic((Boolean)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -251,9 +294,6 @@ public abstract class FeatureImpl
 			case PivotPackage.FEATURE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.FEATURE__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.FEATURE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -268,6 +308,9 @@ public abstract class FeatureImpl
 				return;
 			case PivotPackage.FEATURE__IMPLEMENTATION_CLASS:
 				setImplementationClass(IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
+			case PivotPackage.FEATURE__IS_STATIC:
+				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -291,8 +334,6 @@ public abstract class FeatureImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.FEATURE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.FEATURE__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.FEATURE__IS_REQUIRED:
@@ -303,6 +344,8 @@ public abstract class FeatureImpl
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.FEATURE__IMPLEMENTATION_CLASS:
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
+			case PivotPackage.FEATURE__IS_STATIC:
+				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 		}
 		return eDynamicIsSet(featureID);
 	}

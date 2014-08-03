@@ -1095,22 +1095,13 @@ public interface PivotPackage
 	int NAMED_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__IS_STATIC = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT__NAME = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
@@ -1119,7 +1110,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int NAMED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -1183,15 +1174,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANNOTATION__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1542,15 +1524,6 @@ public interface PivotPackage
 	int PACKAGEABLE_ELEMENT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1666,15 +1639,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__IS_STATIC = PACKAGEABLE_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1839,15 +1803,6 @@ public interface PivotPackage
 	int CLASS__OWNED_COMMENT = TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__IS_STATIC = TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1902,22 +1857,13 @@ public interface PivotPackage
 	int CLASS__OWNED_INVARIANT = TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_RULE = TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 1;
+	int CLASS__OWNED_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -1926,7 +1872,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__TEMPLATE_BINDING = TYPE_FEATURE_COUNT + 2;
+	int CLASS__TEMPLATE_BINDING = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -1935,7 +1881,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__UNSPECIALIZED_ELEMENT = TYPE_FEATURE_COUNT + 3;
+	int CLASS__UNSPECIALIZED_ELEMENT = TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_RULE = TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -2145,15 +2100,6 @@ public interface PivotPackage
 	int ANY_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2208,15 +2154,6 @@ public interface PivotPackage
 	int ANY_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2242,6 +2179,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -2451,15 +2397,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2514,15 +2451,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2548,6 +2476,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -2766,15 +2703,6 @@ public interface PivotPackage
 	int TYPED_ELEMENT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2874,15 +2802,6 @@ public interface PivotPackage
 	int OCL_EXPRESSION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2980,15 +2899,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3106,15 +3016,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__OWNED_COMMENT = CALL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP__IS_STATIC = CALL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3241,15 +3142,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__OWNED_COMMENT = FEATURE_CALL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP__IS_STATIC = FEATURE_CALL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3394,15 +3286,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__IS_STATIC = NAVIGATION_CALL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3558,15 +3441,6 @@ public interface PivotPackage
 	int DATA_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3621,15 +3495,6 @@ public interface PivotPackage
 	int DATA_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3655,6 +3520,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -3882,15 +3756,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE__OWNED_COMMENT = DATA_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__IS_STATIC = DATA_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3945,15 +3810,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3979,6 +3835,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -4233,15 +4098,6 @@ public interface PivotPackage
 	int BAG_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__IS_STATIC = COLLECTION_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4296,15 +4152,6 @@ public interface PivotPackage
 	int BAG_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4330,6 +4177,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -4584,15 +4440,6 @@ public interface PivotPackage
 	int BEHAVIOR__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4647,15 +4494,6 @@ public interface PivotPackage
 	int BEHAVIOR__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4681,6 +4519,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -4899,15 +4746,6 @@ public interface PivotPackage
 	int LITERAL_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5007,15 +4845,6 @@ public interface PivotPackage
 	int PRIMITIVE_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP__IS_STATIC = LITERAL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5113,15 +4942,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP__IS_STATIC = PRIMITIVE_LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5241,15 +5061,6 @@ public interface PivotPackage
 	int CALL_OPERATION_ACTION__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_OPERATION_ACTION__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5338,15 +5149,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_PART__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5446,15 +5248,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM__OWNED_COMMENT = COLLECTION_LITERAL_PART__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM__IS_STATIC = COLLECTION_LITERAL_PART__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5572,15 +5365,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP__IS_STATIC = LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5743,15 +5527,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_RANGE__OWNED_COMMENT = COLLECTION_LITERAL_PART__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE__IS_STATIC = COLLECTION_LITERAL_PART__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5970,15 +5745,6 @@ public interface PivotPackage
 	int VERTEX__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERTEX__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6085,15 +5851,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONNECTION_POINT_REFERENCE__OWNED_COMMENT = VERTEX__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_POINT_REFERENCE__IS_STATIC = VERTEX__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6229,15 +5986,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRAINT__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__IS_STATIC = PACKAGEABLE_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6447,15 +6195,6 @@ public interface PivotPackage
 	int CONSTRUCTOR_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6571,15 +6310,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_PART__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6699,15 +6429,6 @@ public interface PivotPackage
 	int DETAIL__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DETAIL__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6798,15 +6519,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6861,15 +6573,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6895,6 +6598,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -7122,15 +6834,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__OWNED_COMMENT = DYNAMIC_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__IS_STATIC = DYNAMIC_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7185,15 +6888,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__OWNED_INVARIANT = DYNAMIC_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_RULE = DYNAMIC_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7219,6 +6913,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_RULE = DYNAMIC_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -7626,15 +7329,6 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7822,15 +7516,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION__OWNED_COMMENT = VALUE_SPECIFICATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION__IS_STATIC = VALUE_SPECIFICATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8022,15 +7707,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8085,15 +7761,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8119,6 +7786,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -8364,15 +8040,6 @@ public interface PivotPackage
 	int ENUM_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP__IS_STATIC = LITERAL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8490,15 +8157,6 @@ public interface PivotPackage
 	int ENUMERATION__OWNED_COMMENT = DATA_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__IS_STATIC = DATA_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8553,15 +8211,6 @@ public interface PivotPackage
 	int ENUMERATION__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__OWNED_RULE = DATA_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8587,6 +8236,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -8823,15 +8481,6 @@ public interface PivotPackage
 	int INSTANCE_SPECIFICATION__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SPECIFICATION__IS_STATIC = PACKAGEABLE_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8974,15 +8623,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL__OWNED_COMMENT = INSTANCE_SPECIFICATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL__IS_STATIC = INSTANCE_SPECIFICATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9155,15 +8795,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LANGUAGE_EXPRESSION__OWNED_COMMENT = VALUE_SPECIFICATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION__IS_STATIC = VALUE_SPECIFICATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9371,15 +9002,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL__OWNED_COMMENT = LANGUAGE_EXPRESSION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__IS_STATIC = LANGUAGE_EXPRESSION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9625,15 +9247,6 @@ public interface PivotPackage
 	int TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9751,15 +9364,6 @@ public interface PivotPackage
 	int FEATURE__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9805,13 +9409,22 @@ public interface PivotPackage
 	int FEATURE__IMPLEMENTATION_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
+	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -9893,15 +9506,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE__OWNED_COMMENT = VERTEX__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__IS_STATIC = VERTEX__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10147,15 +9751,6 @@ public interface PivotPackage
 	int FINAL_STATE__OWNED_COMMENT = STATE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__IS_STATIC = STATE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10399,15 +9994,6 @@ public interface PivotPackage
 	int IF_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10543,15 +10129,6 @@ public interface PivotPackage
 	int IMPORT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10640,15 +10217,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NUMERIC_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP__IS_STATIC = PRIMITIVE_LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10748,15 +10316,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INTEGER_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP__IS_STATIC = NUMERIC_LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10876,15 +10435,6 @@ public interface PivotPackage
 	int INVALID_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__IS_STATIC = LITERAL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10984,15 +10534,6 @@ public interface PivotPackage
 	int INVALID_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11047,15 +10588,6 @@ public interface PivotPackage
 	int INVALID_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11081,6 +10613,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -11290,15 +10831,6 @@ public interface PivotPackage
 	int LOOP_EXP__OWNED_COMMENT = CALL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP__IS_STATIC = CALL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11459,15 +10991,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP__IS_STATIC = LOOP_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -11677,15 +11200,6 @@ public interface PivotPackage
 	int OPERATION__OWNED_COMMENT = FEATURE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_STATIC = FEATURE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11731,13 +11245,13 @@ public interface PivotPackage
 	int OPERATION__IMPLEMENTATION_CLASS = FEATURE__IMPLEMENTATION_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_RULE = FEATURE_FEATURE_COUNT + 0;
+	int OPERATION__IS_STATIC = FEATURE__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -11746,7 +11260,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 1;
+	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -11755,7 +11269,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 2;
+	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -11764,7 +11278,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__UNSPECIALIZED_ELEMENT = FEATURE_FEATURE_COUNT + 3;
+	int OPERATION__UNSPECIALIZED_ELEMENT = FEATURE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_RULE = FEATURE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -12046,15 +11569,6 @@ public interface PivotPackage
 	int ITERATION__OWNED_COMMENT = OPERATION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IS_STATIC = OPERATION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12100,13 +11614,13 @@ public interface PivotPackage
 	int ITERATION__IMPLEMENTATION_CLASS = OPERATION__IMPLEMENTATION_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
+	int ITERATION__IS_STATIC = OPERATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -12134,6 +11648,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__UNSPECIALIZED_ELEMENT = OPERATION__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -12431,15 +11954,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP__IS_STATIC = LOOP_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12892,15 +12406,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE__OWNED_COMMENT = DATA_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__IS_STATIC = DATA_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12955,15 +12460,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12989,6 +12485,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -13243,15 +12748,6 @@ public interface PivotPackage
 	int LET_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13378,15 +12874,6 @@ public interface PivotPackage
 	int PACKAGE__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__IS_STATIC = PACKAGEABLE_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13414,22 +12901,13 @@ public interface PivotPackage
 	int PACKAGE__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_RULE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -13438,7 +12916,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__TEMPLATE_BINDING = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+	int PACKAGE__TEMPLATE_BINDING = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -13447,7 +12925,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__UNSPECIALIZED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
+	int PACKAGE__UNSPECIALIZED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_RULE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -13630,15 +13117,6 @@ public interface PivotPackage
 	int LIBRARY__OWNED_COMMENT = PACKAGE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__IS_STATIC = PACKAGE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13666,15 +13144,6 @@ public interface PivotPackage
 	int LIBRARY__TEMPLATE_PARAMETER = PACKAGE__TEMPLATE_PARAMETER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13700,6 +13169,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -13891,15 +13369,6 @@ public interface PivotPackage
 	int MESSAGE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14053,15 +13522,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14116,15 +13576,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14150,6 +13601,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -14377,15 +13837,6 @@ public interface PivotPackage
 	int METACLASS__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14440,15 +13891,6 @@ public interface PivotPackage
 	int METACLASS__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14474,6 +13916,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -14728,15 +14179,6 @@ public interface PivotPackage
 	int NAMESPACE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14825,15 +14267,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__IS_STATIC = PRIMITIVE_LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -14933,15 +14366,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP__OWNED_COMMENT = FEATURE_CALL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP__IS_STATIC = FEATURE_CALL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -15349,15 +14773,6 @@ public interface PivotPackage
 	int OPPOSITE_PROPERTY_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__IS_STATIC = NAVIGATION_CALL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15511,15 +14926,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__IS_STATIC = COLLECTION_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15574,15 +14980,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15608,6 +15005,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -15862,15 +15268,6 @@ public interface PivotPackage
 	int PARAMETER__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16123,15 +15520,6 @@ public interface PivotPackage
 	int PRECEDENCE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRECEDENCE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16231,15 +15619,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__OWNED_COMMENT = DATA_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__IS_STATIC = DATA_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16294,15 +15673,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16328,6 +15698,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -16555,15 +15934,6 @@ public interface PivotPackage
 	int PROFILE__OWNED_COMMENT = PACKAGE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__IS_STATIC = PACKAGE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16591,15 +15961,6 @@ public interface PivotPackage
 	int PROFILE__TEMPLATE_PARAMETER = PACKAGE__TEMPLATE_PARAMETER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__OWNED_RULE = PACKAGE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16625,6 +15986,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -16925,15 +16295,6 @@ public interface PivotPackage
 	int PROPERTY__OWNED_COMMENT = FEATURE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_STATIC = FEATURE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16977,6 +16338,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY__IMPLEMENTATION_CLASS = FEATURE__IMPLEMENTATION_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_STATIC = FEATURE__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -17294,15 +16664,6 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP__IS_STATIC = NAVIGATION_CALL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17501,15 +16862,6 @@ public interface PivotPackage
 	int PSEUDOSTATE__OWNED_COMMENT = VERTEX__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PSEUDOSTATE__IS_STATIC = VERTEX__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17643,15 +16995,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP__IS_STATIC = NUMERIC_LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -17789,15 +17132,6 @@ public interface PivotPackage
 	int REGION__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGION__IS_STATIC = NAMESPACE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17933,15 +17267,6 @@ public interface PivotPackage
 	int ROOT__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT__IS_STATIC = NAMESPACE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18059,15 +17384,6 @@ public interface PivotPackage
 	int SELF_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18122,15 +17438,6 @@ public interface PivotPackage
 	int SELF_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18156,6 +17463,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -18374,15 +17690,6 @@ public interface PivotPackage
 	int SEND_SIGNAL_ACTION__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_SIGNAL_ACTION__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18473,15 +17780,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__IS_STATIC = COLLECTION_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18536,15 +17834,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18570,6 +17859,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -18824,15 +18122,6 @@ public interface PivotPackage
 	int SET_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__IS_STATIC = COLLECTION_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18887,15 +18176,6 @@ public interface PivotPackage
 	int SET_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18921,6 +18201,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -19175,15 +18464,6 @@ public interface PivotPackage
 	int SIGNAL__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19238,15 +18518,6 @@ public interface PivotPackage
 	int SIGNAL__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19272,6 +18543,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -19590,15 +18870,6 @@ public interface PivotPackage
 	int STATE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19717,15 +18988,6 @@ public interface PivotPackage
 	int STATE_MACHINE__OWNED_COMMENT = BEHAVIOR__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__IS_STATIC = BEHAVIOR__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19780,15 +19042,6 @@ public interface PivotPackage
 	int STATE_MACHINE__OWNED_INVARIANT = BEHAVIOR__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__OWNED_RULE = BEHAVIOR__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19814,6 +19067,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE__UNSPECIALIZED_ELEMENT = BEHAVIOR__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__OWNED_RULE = BEHAVIOR__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -20078,15 +19340,6 @@ public interface PivotPackage
 	int STEREOTYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20141,15 +19394,6 @@ public interface PivotPackage
 	int STEREOTYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20175,6 +19419,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -20391,15 +19644,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP__IS_STATIC = PRIMITIVE_LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -20715,15 +19959,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT = TYPE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__IS_STATIC = TYPE__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -21114,15 +20349,6 @@ public interface PivotPackage
 	int TRANSITION__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__IS_STATIC = NAMESPACE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21286,15 +20512,6 @@ public interface PivotPackage
 	int TRIGGER__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRIGGER__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21392,15 +20609,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP__IS_STATIC = LITERAL_EXP__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -21511,15 +20719,6 @@ public interface PivotPackage
 	int VARIABLE_DECLARATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21617,15 +20816,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART__OWNED_COMMENT = VARIABLE_DECLARATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART__IS_STATIC = VARIABLE_DECLARATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -21736,15 +20926,6 @@ public interface PivotPackage
 	int TUPLE_TYPE__OWNED_COMMENT = DATA_TYPE__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__IS_STATIC = DATA_TYPE__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21799,15 +20980,6 @@ public interface PivotPackage
 	int TUPLE_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21833,6 +21005,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -22058,15 +21239,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -22430,15 +21602,6 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__IS_STATIC = NUMERIC_LITERAL_EXP__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22557,15 +21720,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22620,15 +21774,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22654,6 +21799,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -22881,15 +22035,6 @@ public interface PivotPackage
 	int UNSPECIFIED_VALUE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22987,15 +22132,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE__OWNED_COMMENT = VARIABLE_DECLARATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__IS_STATIC = VARIABLE_DECLARATION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -23131,15 +22267,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__IS_STATIC = OCL_EXPRESSION__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -23296,15 +22423,6 @@ public interface PivotPackage
 	int VOID_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23359,15 +22477,6 @@ public interface PivotPackage
 	int VOID_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23393,6 +22502,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -23747,17 +22865,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.NamedElement#isStatic <em>Is Static</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Static</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.NamedElement#isStatic()
-	 * @see #getNamedElement()
-	 * @generated
-	 */
-	EAttribute getNamedElement_IsStatic();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Element <em>Element</em>}'.
@@ -24378,6 +23485,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getFeature_ImplementationClass();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Feature#isStatic <em>Is Static</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Static</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Feature#isStatic()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EAttribute getFeature_IsStatic();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Feature#getImplementation <em>Implementation</em>}'.
@@ -28615,14 +27733,6 @@ public interface PivotPackage
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NAMED_ELEMENT__IS_STATIC = eINSTANCE.getNamedElement_IsStatic();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29141,6 +28251,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute FEATURE__IMPLEMENTATION_CLASS = eINSTANCE.getFeature_ImplementationClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE__IS_STATIC = eINSTANCE.getFeature_IsStatic();
 
 		/**
 		 * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.

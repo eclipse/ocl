@@ -62,7 +62,7 @@ public abstract class TypedElementImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_REQUIRED_EFLAG = 1 << 9;
+	protected static final int IS_REQUIRED_EFLAG = 1 << 8;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -174,8 +174,6 @@ public abstract class TypedElementImpl
 				return getOwnedAnnotation();
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
-				return isStatic();
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return getName();
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
@@ -213,9 +211,6 @@ public abstract class TypedElementImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
@@ -250,9 +245,6 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -283,8 +275,6 @@ public abstract class TypedElementImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.TYPED_ELEMENT__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:

@@ -155,7 +155,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1" eType="#//Operation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//Namespace #//TemplateableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//TemplateableElement #//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A class is a type that has objects as its instances."/>
     </eAnnotations>
@@ -478,6 +478,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="#//LibraryFeature" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
@@ -1083,7 +1084,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A named element represents an element with a name."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The name of the NamedElement."/>
@@ -1100,7 +1100,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true" eSuperTypes="#//TypedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//Namespace #//TemplateableElement #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//TemplateableElement #//Namespace #//ParameterableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -1223,7 +1223,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType" eSuperTypes="#//CollectionType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//PackageableElement #//Namespace #//TemplateableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//PackageableElement #//TemplateableElement #//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A package is a container for types and other packages.&#xA;Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter."/>
     </eAnnotations>

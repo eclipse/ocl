@@ -114,7 +114,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		List<String> qualifiers = csElement.getQualifier();
 		pivotElement.setIsAbstract(qualifiers.contains("abstract"));
 		pivotElement.setIsInterface(qualifiers.contains("interface"));
-		pivotElement.setIsStatic(qualifiers.contains("static"));
+//		pivotElement.setIsStatic(qualifiers.contains("static"));
 		context.refreshPivotList(Property.class, pivotElement.getOwnedAttribute(), csElement.getOwnedProperty());
 		context.refreshPivotList(Operation.class, pivotElement.getOwnedOperation(), csElement.getOwnedOperation());
 		refreshClassifier(pivotElement, csElement);

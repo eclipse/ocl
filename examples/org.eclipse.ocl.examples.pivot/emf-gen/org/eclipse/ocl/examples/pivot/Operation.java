@@ -48,7 +48,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Operation
-		extends Feature, Namespace, TemplateableElement, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainOperation {
+		extends Feature, TemplateableElement, Namespace, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Raised Exception</b></em>' reference list.

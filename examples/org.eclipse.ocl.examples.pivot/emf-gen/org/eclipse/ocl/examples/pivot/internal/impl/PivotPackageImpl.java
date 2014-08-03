@@ -1229,15 +1229,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EAttribute getNamedElement_Name() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getNamedElement_IsStatic() {
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1801,6 +1792,16 @@ public class PivotPackageImpl
 	public EAttribute getFeature_ImplementationClass()
 	{
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFeature_IsStatic()
+	{
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5771,6 +5772,7 @@ public class PivotPackageImpl
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__IMPLEMENTATION);
 		createEAttribute(featureEClass, FEATURE__IMPLEMENTATION_CLASS);
+		createEAttribute(featureEClass, FEATURE__IS_STATIC);
 
 		featureCallExpEClass = createEClass(FEATURE_CALL_EXP);
 		createEAttribute(featureCallExpEClass, FEATURE_CALL_EXP__IS_PRE);
@@ -5888,7 +5890,6 @@ public class PivotPackageImpl
 		nameableEClass = createEClass(NAMEABLE);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
-		createEAttribute(namedElementEClass, NAMED_ELEMENT__IS_STATIC);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
 		namespaceEClass = createEClass(NAMESPACE);
@@ -6252,8 +6253,8 @@ public class PivotPackageImpl
 		callExpEClass.getESuperTypes().add(this.getOCLExpression());
 		callOperationActionEClass.getESuperTypes().add(this.getNamedElement());
 		classEClass.getESuperTypes().add(this.getType());
-		classEClass.getESuperTypes().add(this.getNamespace());
 		classEClass.getESuperTypes().add(this.getTemplateableElement());
+		classEClass.getESuperTypes().add(this.getNamespace());
 		collectionItemEClass.getESuperTypes().add(this.getCollectionLiteralPart());
 		collectionLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		collectionLiteralPartEClass.getESuperTypes().add(this.getTypedElement());
@@ -6310,8 +6311,8 @@ public class PivotPackageImpl
 		numericLiteralExpEClass.getESuperTypes().add(this.getPrimitiveLiteralExp());
 		oclExpressionEClass.getESuperTypes().add(this.getTypedElement());
 		operationEClass.getESuperTypes().add(this.getFeature());
-		operationEClass.getESuperTypes().add(this.getNamespace());
 		operationEClass.getESuperTypes().add(this.getTemplateableElement());
+		operationEClass.getESuperTypes().add(this.getNamespace());
 		operationEClass.getESuperTypes().add(this.getParameterableElement());
 		operationCallExpEClass.getESuperTypes().add(this.getFeatureCallExp());
 		operationCallExpEClass.getESuperTypes().add(this.getReferringElement());
@@ -6319,8 +6320,8 @@ public class PivotPackageImpl
 		oppositePropertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
 		packageEClass.getESuperTypes().add(this.getPackageableElement());
-		packageEClass.getESuperTypes().add(this.getNamespace());
 		packageEClass.getESuperTypes().add(this.getTemplateableElement());
+		packageEClass.getESuperTypes().add(this.getNamespace());
 		packageableElementEClass.getESuperTypes().add(this.getNamedElement());
 		packageableElementEClass.getESuperTypes().add(this.getParameterableElement());
 		parameterEClass.getESuperTypes().add(this.getTypedMultiplicityElement());
@@ -6607,6 +6608,7 @@ public class PivotPackageImpl
 		initEClass(featureEClass, Feature.class, "Feature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getFeature_Implementation(), this.getLibraryFeature(), "implementation", null, 0, 1, Feature.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getFeature_ImplementationClass(), this.getString(), "implementationClass", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFeature_IsStatic(), this.getBoolean(), "isStatic", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(featureCallExpEClass, FeatureCallExp.class, "FeatureCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getFeatureCallExp_IsPre(), this.getBoolean(), "isPre", "false", 1, 1, FeatureCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -7052,7 +7054,6 @@ public class PivotPackageImpl
 		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getNamedElement_IsStatic(), this.getBoolean(), "isStatic", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNamedElement_Name(), this.getString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(namespaceEClass, Namespace.class, "Namespace", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

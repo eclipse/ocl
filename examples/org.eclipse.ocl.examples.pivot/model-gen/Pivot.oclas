@@ -85,7 +85,7 @@
           isRequired="false" name="MessageExp" opposite="#p.pivot.MessageExp.calledOperation"
           type="#T.pivot.MessageExp"/>
     </ownedType>
-    <ownedType xmi:id="T.pivot.Class" name="Class" superClass="#T.pivot.Type #T.pivot.Namespace #T.pivot.TemplateableElement">
+    <ownedType xmi:id="T.pivot.Class" name="Class" superClass="#T.pivot.Type #T.pivot.TemplateableElement #T.pivot.Namespace">
       <ownedAttribute xmi:id="p.pivot.Class.isAbstract" default="false" name="isAbstract"
           type="#Boolean">
         <ownedComment body="True when a class is abstract."/>
@@ -398,6 +398,7 @@
           name="implementation" type="#T.pivot.LibraryFeature"/>
       <ownedAttribute xmi:id="p.pivot.Feature.implementationClass" isRequired="false"
           name="implementationClass" type="#String"/>
+      <ownedAttribute xmi:id="p.pivot.Feature.isStatic" name="isStatic" type="#Boolean"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.FeatureCallExp" isAbstract="true" name="FeatureCallExp"
         superClass="#T.pivot.CallExp">
@@ -709,7 +710,6 @@
         isAbstract="true" isInterface="true" name="Nameable" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclElement"/>
     <ownedType xmi:id="T.pivot.NamedElement" isAbstract="true" name="NamedElement"
         superClass="#T.pivot.Element #T.pivot.Nameable">
-      <ownedAttribute xmi:id="p.pivot.NamedElement.isStatic" name="isStatic" type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.NamedElement.name" isRequired="false" name="name"
           type="#String">
         <ownedComment body="The name of the NamedElement."/>
@@ -779,7 +779,7 @@
     </ownedType>
     <ownedType xsi:type="pivot:DataType" xmi:id="T.pivot.Object" instanceClassName="java.lang.Object"
         name="Object" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny"/>
-    <ownedType xmi:id="T.pivot.Operation" name="Operation" superClass="#T.pivot.Feature #T.pivot.Namespace #T.pivot.TemplateableElement #T.pivot.ParameterableElement">
+    <ownedType xmi:id="T.pivot.Operation" name="Operation" superClass="#T.pivot.Feature #T.pivot.TemplateableElement #T.pivot.Namespace #T.pivot.ParameterableElement">
       <ownedAttribute xmi:id="p.pivot.Operation.bodyExpression" isComposite="true"
           isRequired="false" name="bodyExpression" opposite="#p.pivot.LanguageExpression.Operation"
           type="#T.pivot.LanguageExpression"/>
@@ -864,7 +864,7 @@
           type="#T.pivot.Property"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.OrderedSetType" name="OrderedSetType" superClass="#T.pivot.CollectionType"/>
-    <ownedType xmi:id="T.pivot.Package" name="Package" superClass="#T.pivot.PackageableElement #T.pivot.Namespace #T.pivot.TemplateableElement">
+    <ownedType xmi:id="T.pivot.Package" name="Package" superClass="#T.pivot.PackageableElement #T.pivot.TemplateableElement #T.pivot.Namespace">
       <ownedAttribute xmi:id="p.pivot.Package.URI" isRequired="false" name="URI" type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Package.importedPackage" name="importedPackage"
           opposite="#p.pivot.Package.Package" type="#//@nestedPackage.1/@ownedType.137"/>

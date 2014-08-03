@@ -62,10 +62,10 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
@@ -83,16 +83,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class ClassImpl
 		extends TypeImpl
 		implements org.eclipse.ocl.examples.pivot.Class {
-
-	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> ownedRule;
 
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
@@ -125,6 +115,16 @@ public class ClassImpl
 	protected TemplateableElement unspecializedElement;
 
 	/**
+	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRule()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> ownedRule;
+
+	/**
 	 * The default value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,7 +142,7 @@ public class ClassImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_ABSTRACT_EFLAG = 1 << 9;
+	protected static final int IS_ABSTRACT_EFLAG = 1 << 8;
 
 	/**
 	 * The default value of the '{@link #isActive() <em>Is Active</em>}' attribute.
@@ -162,7 +162,7 @@ public class ClassImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_ACTIVE_EFLAG = 1 << 10;
+	protected static final int IS_ACTIVE_EFLAG = 1 << 9;
 
 	/**
 	 * The default value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
@@ -182,7 +182,7 @@ public class ClassImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_INTERFACE_EFLAG = 1 << 11;
+	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
 
 	/**
 	 * The cached value of the '{@link #getNestedType() <em>Nested Type</em>}' containment reference list.
@@ -535,12 +535,12 @@ public class ClassImpl
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_INVARIANT:
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
@@ -679,8 +679,6 @@ public class ClassImpl
 				return getOwnedAnnotation();
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.CLASS__IS_STATIC:
-				return isStatic();
 			case PivotPackage.CLASS__NAME:
 				return getName();
 			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
@@ -694,14 +692,14 @@ public class ClassImpl
 				return getInstanceClassName();
 			case PivotPackage.CLASS__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.CLASS__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.CLASS__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.CLASS__IS_ACTIVE:
@@ -750,9 +748,6 @@ public class ClassImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CLASS__IS_STATIC:
-				setIsStatic((Boolean)newValue);
-				return;
 			case PivotPackage.CLASS__NAME:
 				setName((String)newValue);
 				return;
@@ -773,10 +768,6 @@ public class ClassImpl
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -786,6 +777,10 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.CLASS__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -844,9 +839,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.CLASS__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case PivotPackage.CLASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -865,9 +857,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				return;
-			case PivotPackage.CLASS__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -876,6 +865,9 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.CLASS__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -925,8 +917,6 @@ public class ClassImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.CLASS__IS_STATIC:
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.CLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
@@ -939,14 +929,14 @@ public class ClassImpl
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.CLASS__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.CLASS__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.CLASS__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.CLASS__IS_ACTIVE:
@@ -977,14 +967,6 @@ public class ClassImpl
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Namespace.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.CLASS__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (derivedFeatureID)
@@ -992,6 +974,14 @@ public class ClassImpl
 				case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
 				case PivotPackage.CLASS__TEMPLATE_BINDING: return PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING;
 				case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == Namespace.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case PivotPackage.CLASS__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
 				default: return -1;
 			}
 		}
@@ -1006,14 +996,6 @@ public class ClassImpl
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Namespace.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.CLASS__OWNED_RULE;
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (baseFeatureID)
@@ -1021,6 +1003,14 @@ public class ClassImpl
 				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING: return PivotPackage.CLASS__TEMPLATE_BINDING;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.CLASS__UNSPECIALIZED_ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == Namespace.class)
+		{
+			switch (baseFeatureID)
+			{
+				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.CLASS__OWNED_RULE;
 				default: return -1;
 			}
 		}
@@ -1035,19 +1025,19 @@ public class ClassImpl
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
 	{
-		if (baseClass == Namespace.class)
-		{
-			switch (baseOperationID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (baseOperationID)
 			{
 				case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE: return PivotPackage.CLASS___IS_TEMPLATE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS: return PivotPackage.CLASS___PARAMETERABLE_ELEMENTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == Namespace.class)
+		{
+			switch (baseOperationID)
+			{
 				default: return -1;
 			}
 		}

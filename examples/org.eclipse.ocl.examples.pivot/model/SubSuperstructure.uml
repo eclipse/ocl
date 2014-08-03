@@ -1473,9 +1473,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
         <generalization xmi:id="_XnqLV37VEeOu79LxSz8Ylw" general="_coJOwPF-Ed-Ob5Xbijlg7g"/>
         <ownedAttribute xmi:id="_C_PXYPF9Ed-BXqn3guNB1A" name="isStatic" type="_KrFBsPF9Ed-BXqn3guNB1A"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_coJOwPF-Ed-Ob5Xbijlg7g" name="NamedElement" isAbstract="true">
-        <ownedAttribute xmi:id="_coJOwfF-Ed-Ob5Xbijlg7g" name="isStatic" type="_KrFBsPF9Ed-BXqn3guNB1A"/>
-      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_coJOwPF-Ed-Ob5Xbijlg7g" name="NamedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_4ji0kPF8Ed-BXqn3guNB1A" name="Operation">
         <generalization xmi:id="_XnqLWH7VEeOu79LxSz8Ylw" general="_0_eQ4PF8Ed-BXqn3guNB1A"/>
       </packagedElement>
