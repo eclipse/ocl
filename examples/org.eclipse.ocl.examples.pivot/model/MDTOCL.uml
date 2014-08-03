@@ -182,11 +182,12 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_9SPjQARCEeSiuvNrq-crrw" name="MDT_OCL_Instances">
+      <packagedElement xmi:type="uml:Class" xmi:id="_I7IPEBtGEeSM9LreJtBwBg" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_oDwW0ARDEeSiuvNrq-crrw" name="Element" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_M1yqMBlLEeSM9LreJtBwBg" name="EnumerationLiteral">
         <generalization xmi:id="_RTT-YBlLEeSM9LreJtBwBg" general="_MJ2QsARDEeSiuvNrq-crrw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_BqkUwARLEeSiuvNrq-crrw" name="ExpressionInOCL"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BqkUwARLEeSiuvNrq-crrw" name="LanguageExpression"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_MJ2QsARDEeSiuvNrq-crrw" name="InstanceSpecification">
         <ownedComment xmi:id="_MJ2QsQRDEeSiuvNrq-crrw" annotatedElement="_MJ2QsARDEeSiuvNrq-crrw">
           <body>An instance specification is a model element that represents an instance in a modeled system.</body>
@@ -199,7 +200,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2QuQRDEeSiuvNrq-crrw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2QugRDEeSiuvNrq-crrw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_MJ2QuwRDEeSiuvNrq-crrw" name="type" type="_W-ISoARDEeSiuvNrq-crrw" association="_MJ2Q0wRDEeSiuvNrq-crrw">
+        <ownedAttribute xmi:id="_MJ2QuwRDEeSiuvNrq-crrw" name="classes" type="_I7IPEBtGEeSM9LreJtBwBg" association="_MJ2Q0wRDEeSiuvNrq-crrw">
           <ownedComment xmi:id="_MJ2QvARDEeSiuvNrq-crrw" annotatedElement="_MJ2QuwRDEeSiuvNrq-crrw">
             <body>The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.</body>
           </ownedComment>

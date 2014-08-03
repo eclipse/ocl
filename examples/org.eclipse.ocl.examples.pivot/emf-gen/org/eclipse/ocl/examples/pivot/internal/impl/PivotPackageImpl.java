@@ -1942,7 +1942,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSpecification_Slots()
+	public EReference getInstanceSpecification_Classes()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1952,7 +1952,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSpecification_Specification()
+	public EReference getInstanceSpecification_Slots()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(1);
 	}
@@ -1962,7 +1962,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSpecification_Type()
+	public EReference getInstanceSpecification_Specification()
 	{
 		return (EReference)instanceSpecificationEClass.getEStructuralFeatures().get(2);
 	}
@@ -5789,9 +5789,9 @@ public class PivotPackageImpl
 		createEReference(importEClass, IMPORT__IMPORTED_NAMESPACE);
 
 		instanceSpecificationEClass = createEClass(INSTANCE_SPECIFICATION);
+		createEReference(instanceSpecificationEClass, INSTANCE_SPECIFICATION__CLASSES);
 		createEReference(instanceSpecificationEClass, INSTANCE_SPECIFICATION__SLOTS);
 		createEReference(instanceSpecificationEClass, INSTANCE_SPECIFICATION__SPECIFICATION);
-		createEReference(instanceSpecificationEClass, INSTANCE_SPECIFICATION__TYPE);
 
 		integerLiteralExpEClass = createEClass(INTEGER_LITERAL_EXP);
 		createEAttribute(integerLiteralExpEClass, INTEGER_LITERAL_EXP__INTEGER_SYMBOL);
@@ -6633,9 +6633,9 @@ public class PivotPackageImpl
 		initEReference(getImport_ImportedNamespace(), this.getNamespace(), null, "importedNamespace", null, 1, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(instanceSpecificationEClass, InstanceSpecification.class, "InstanceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getInstanceSpecification_Classes(), this.getClass_(), null, "classes", null, 0, -1, InstanceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getInstanceSpecification_Slots(), this.getSlot(), this.getSlot_OwningInstance(), "slots", null, 0, -1, InstanceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getInstanceSpecification_Specification(), this.getExpressionInOCL(), null, "specification", null, 0, 1, InstanceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getInstanceSpecification_Type(), this.getType(), null, "type", null, 0, -1, InstanceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getInstanceSpecification_Specification(), this.getLanguageExpression(), null, "specification", null, 0, 1, InstanceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(integerLiteralExpEClass, IntegerLiteralExp.class, "IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIntegerLiteralExp_IntegerSymbol(), this.getInteger(), "integerSymbol", null, 1, 1, IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7580,18 +7580,18 @@ public class PivotPackageImpl
 			 "body", "constraint" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
+		  (getInstanceSpecification_Classes(), 
+		   source, 
+		   new String[] 
+		   {
+			 "body", "instanceSpecification" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
 		  (getInstanceSpecification_Specification(), 
 		   source, 
 		   new String[] 
 		   {
 			 "body", "owningInstanceSpec" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getInstanceSpecification_Type(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "instanceSpecification" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getOperation_RaisedException(), 

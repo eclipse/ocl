@@ -31,12 +31,11 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -271,12 +270,12 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
+				return getClasses();
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				return getSlots();
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
 				return getSpecification();
-			case PivotPackage.ENUMERATION_LITERAL__TYPE:
-				return getType();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return getEnumeration();
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
@@ -320,16 +319,16 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
+				getClasses().clear();
+				getClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				getSlots().clear();
 				getSlots().addAll((Collection<? extends Slot>)newValue);
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				setSpecification((ExpressionInOCL)newValue);
-				return;
-			case PivotPackage.ENUMERATION_LITERAL__TYPE:
-				getType().clear();
-				getType().addAll((Collection<? extends Type>)newValue);
+				setSpecification((LanguageExpression)newValue);
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				setEnumeration((Enumeration)newValue);
@@ -371,14 +370,14 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
+				getClasses().clear();
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				getSlots().clear();
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				setSpecification((ExpressionInOCL)null);
-				return;
-			case PivotPackage.ENUMERATION_LITERAL__TYPE:
-				getType().clear();
+				setSpecification((LanguageExpression)null);
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				setEnumeration((Enumeration)null);
@@ -413,12 +412,12 @@ public class EnumerationLiteralImpl
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.ENUMERATION_LITERAL__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
+				return classes != null && !classes.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				return slots != null && !slots.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
 				return specification != null;
-			case PivotPackage.ENUMERATION_LITERAL__TYPE:
-				return type != null && !type.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return getEnumeration() != null;
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:

@@ -124,6 +124,9 @@
           opposite="#p.pivot.Property.owningType" type="#//@nestedPackage.1/@ownedType.22"/>
       <ownedAttribute xmi:id="p.pivot.Class.class" implicit="true" isRequired="false"
           name="class" opposite="#p.pivot.Class.superClass" type="#T.pivot.Class"/>
+      <ownedAttribute xmi:id="p.pivot.Class.instanceSpecification" implicit="true"
+          isRequired="false" name="instanceSpecification" opposite="#p.pivot.InstanceSpecification.classes"
+          type="#T.pivot.InstanceSpecification"/>
       <ownedAttribute xmi:id="p.pivot.Class.typeTemplateParameter" implicit="true"
           isRequired="false" name="typeTemplateParameter" opposite="#p.pivot.TypeTemplateParameter.constrainingClassifier"
           type="#T.pivot.TypeTemplateParameter"/>
@@ -388,9 +391,6 @@
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.resultVariable" isComposite="true"
           isRequired="false" name="resultVariable" opposite="#//@nestedPackage.0/@ownedType.128/@ownedAttribute.5"
           type="#T.pivot.Variable"/>
-      <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.owningInstanceSpec" implicit="true"
-          isRequired="false" name="owningInstanceSpec" opposite="#p.pivot.InstanceSpecification.specification"
-          type="#T.pivot.InstanceSpecification"/>
       <ownedComment body="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.Feature" isAbstract="true" name="Feature" superClass="#T.pivot.TypedMultiplicityElement">
@@ -429,18 +429,18 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.InstanceSpecification" name="InstanceSpecification"
         superClass="#T.pivot.PackageableElement">
+      <ownedAttribute xmi:id="p.pivot.InstanceSpecification.classes" name="classes"
+          opposite="#p.pivot.Class.instanceSpecification" type="#//@nestedPackage.1/@ownedType.127">
+        <ownedComment body="The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them."/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.slots" isComposite="true"
           name="slots" opposite="#p.pivot.Slot.owningInstance" type="#//@nestedPackage.1/@ownedType.143">
         <ownedComment body="A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.specification" isComposite="true"
-          isRequired="false" name="specification" opposite="#p.pivot.ExpressionInOCL.owningInstanceSpec"
-          type="#T.pivot.ExpressionInOCL">
+          isRequired="false" name="specification" opposite="#p.pivot.LanguageExpression.owningInstanceSpec"
+          type="#T.pivot.LanguageExpression">
         <ownedComment body="A specification of how to compute, derive, or construct the instance."/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.InstanceSpecification.type" name="type" opposite="#p.pivot.Type.instanceSpecification"
-          type="#//@nestedPackage.1/@ownedType.151">
-        <ownedComment body="The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.Package" implicit="true"
           isRequired="false" name="Package" opposite="#p.pivot.Package.ownedInstances"
@@ -636,6 +636,9 @@
       <ownedAttribute xmi:id="p.pivot.LanguageExpression.Property" implicit="true"
           isRequired="false" name="Property" opposite="#p.pivot.Property.defaultExpression"
           type="#T.pivot.Property"/>
+      <ownedAttribute xmi:id="p.pivot.LanguageExpression.owningInstanceSpec" implicit="true"
+          isRequired="false" name="owningInstanceSpec" opposite="#p.pivot.InstanceSpecification.specification"
+          type="#T.pivot.InstanceSpecification"/>
       <ownedComment body="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.LetExp" name="LetExp" superClass="#T.pivot.OCLExpression">
@@ -1532,9 +1535,6 @@
           type="#//@nestedPackage.1/@ownedType.29"/>
       <ownedAttribute implicit="true" name="UnspecifiedType" opposite="#p.pivot.UnspecifiedType.upperBound"
           type="#//@nestedPackage.1/@ownedType.29"/>
-      <ownedAttribute xmi:id="p.pivot.Type.instanceSpecification" implicit="true"
-          isRequired="false" name="instanceSpecification" opposite="#p.pivot.InstanceSpecification.type"
-          type="#T.pivot.InstanceSpecification"/>
       <ownedAttribute xmi:id="p.pivot.Type.operation" implicit="true" isRequired="false"
           name="operation" opposite="#p.pivot.Operation.raisedException" type="#T.pivot.Operation"/>
       <ownedAttribute xmi:id="p.pivot.Type.typedElement" implicit="true" isRequired="false"

@@ -24,9 +24,9 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getClasses <em>Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSlots <em>Slots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSpecification <em>Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,6 +35,20 @@ import java.util.List;
  */
 public interface InstanceSpecification extends PackageableElement
 {
+	/**
+	 * Returns the value of the '<em><b>Classes</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Classes</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification_Classes()
+	 * @generated
+	 */
+	List<org.eclipse.ocl.examples.pivot.Class> getClasses();
+
 	/**
 	 * Returns the value of the '<em><b>Slots</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Slot}.
@@ -59,11 +73,11 @@ public interface InstanceSpecification extends PackageableElement
 	 * A specification of how to compute, derive, or construct the instance.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(ExpressionInOCL)
+	 * @see #setSpecification(LanguageExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification_Specification()
 	 * @generated
 	 */
-	ExpressionInOCL getSpecification();
+	LanguageExpression getSpecification();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSpecification <em>Specification</em>}' containment reference.
@@ -73,20 +87,6 @@ public interface InstanceSpecification extends PackageableElement
 	 * @see #getSpecification()
 	 * @generated
 	 */
-	void setSpecification(ExpressionInOCL value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Type</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification_Type()
-	 * @generated
-	 */
-	List<Type> getType();
+	void setSpecification(LanguageExpression value);
 
 } // InstanceSpecification

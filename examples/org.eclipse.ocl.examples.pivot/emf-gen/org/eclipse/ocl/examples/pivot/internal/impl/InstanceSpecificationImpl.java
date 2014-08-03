@@ -25,12 +25,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
+import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Slot;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,9 +38,9 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getSlots <em>Slots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getSpecification <em>Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +48,16 @@ import org.eclipse.ocl.examples.pivot.Type;
  */
 public class InstanceSpecificationImpl extends PackageableElementImpl implements InstanceSpecification
 {
+	/**
+	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.eclipse.ocl.examples.pivot.Class> classes;
+
 	/**
 	 * The cached value of the '{@link #getSlots() <em>Slots</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -67,17 +76,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpressionInOCL specification;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Type> type;
+	protected LanguageExpression specification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,6 +104,20 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public List<org.eclipse.ocl.examples.pivot.Class> getClasses()
+	{
+		if (classes == null)
+		{
+			classes = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.INSTANCE_SPECIFICATION__CLASSES);
+		}
+		return classes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<Slot> getSlots()
 	{
 		if (slots == null)
@@ -119,7 +132,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionInOCL getSpecification()
+	public LanguageExpression getSpecification()
 	{
 		return specification;
 	}
@@ -129,9 +142,9 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecification(ExpressionInOCL newSpecification, NotificationChain msgs)
+	public NotificationChain basicSetSpecification(LanguageExpression newSpecification, NotificationChain msgs)
 	{
-		ExpressionInOCL oldSpecification = specification;
+		LanguageExpression oldSpecification = specification;
 		specification = newSpecification;
 		if (eNotificationRequired())
 		{
@@ -146,7 +159,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecification(ExpressionInOCL newSpecification)
+	public void setSpecification(LanguageExpression newSpecification)
 	{
 		if (newSpecification != specification)
 		{
@@ -160,20 +173,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION, newSpecification, newSpecification));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<Type> getType()
-	{
-		if (type == null)
-		{
-			type = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.INSTANCE_SPECIFICATION__TYPE);
-		}
-		return type;
 	}
 
 	/**
@@ -262,12 +261,12 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
+			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
+				return getClasses();
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				return getSlots();
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
 				return getSpecification();
-			case PivotPackage.INSTANCE_SPECIFICATION__TYPE:
-				return getType();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -308,16 +307,16 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
+			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
+				getClasses().clear();
+				getClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				getSlots().clear();
 				getSlots().addAll((Collection<? extends Slot>)newValue);
 				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
-				setSpecification((ExpressionInOCL)newValue);
-				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__TYPE:
-				getType().clear();
-				getType().addAll((Collection<? extends Type>)newValue);
+				setSpecification((LanguageExpression)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -354,14 +353,14 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
 				setTemplateParameter((TemplateParameter)null);
 				return;
+			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
+				getClasses().clear();
+				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				getSlots().clear();
 				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
-				setSpecification((ExpressionInOCL)null);
-				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__TYPE:
-				getType().clear();
+				setSpecification((LanguageExpression)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -391,12 +390,12 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
 				return templateParameter != null;
+			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
+				return classes != null && !classes.isEmpty();
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				return slots != null && !slots.isEmpty();
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
 				return specification != null;
-			case PivotPackage.INSTANCE_SPECIFICATION__TYPE:
-				return type != null && !type.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

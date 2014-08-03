@@ -2045,6 +2045,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Class_Operation_owningType = createProperty("Operation", _Bag_Operation);
 		protected final @NonNull Property pr_Class_Property_owningType = createProperty("Property", _Bag_Property);
 		protected final @NonNull Property pr_Class_class_superClass = createProperty("class", _Class);
+		protected final @NonNull Property pr_Class_instanceSpecification_classes = createProperty("instanceSpecification", _InstanceSpecification);
 		protected final @NonNull Property pr_Class_typeTemplateParameter_constrainingClassifier = createProperty("typeTemplateParameter", _TypeTemplateParameter);
 		protected final @NonNull Property pr_CollectionItem_item = createProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, _OCLExpression);
 		protected final @NonNull Property pr_CollectionLiteralExp_kind = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND, _CollectionKind);
@@ -2108,7 +2109,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_ExpressionInOCL_contextVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, _Variable);
 		protected final @NonNull Property pr_ExpressionInOCL_parameterVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE, _OrderedSet_Variable);
 		protected final @NonNull Property pr_ExpressionInOCL_resultVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE, _Variable);
-		protected final @NonNull Property pr_ExpressionInOCL_owningInstanceSpec_specification = createProperty("owningInstanceSpec", _InstanceSpecification);
 		protected final @NonNull Property pr_Feature_implementation = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION, _LibraryFeature);
 		protected final @NonNull Property pr_Feature_implementationClass = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, _String);
 		protected final @NonNull Property pr_Feature_isStatic = createProperty(PivotPackage.Literals.FEATURE__IS_STATIC, _Boolean);
@@ -2118,9 +2118,9 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_IfExp_thenExpression = createProperty(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION, _OCLExpression);
 		protected final @NonNull Property pr_Import_importedNamespace = createProperty(PivotPackage.Literals.IMPORT__IMPORTED_NAMESPACE, _Namespace);
 		protected final @NonNull Property pr_Import_Root_imports = createProperty("Root", _Root);
+		protected final @NonNull Property pr_InstanceSpecification_classes = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES, _Set_Class);
 		protected final @NonNull Property pr_InstanceSpecification_slots = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, _Set_Slot);
-		protected final @NonNull Property pr_InstanceSpecification_specification = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, _ExpressionInOCL);
-		protected final @NonNull Property pr_InstanceSpecification_type = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__TYPE, _Set_Type);
+		protected final @NonNull Property pr_InstanceSpecification_specification = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, _LanguageExpression);
 		protected final @NonNull Property pr_InstanceSpecification_Package_ownedInstances = createProperty("Package", _Package);
 		protected final @NonNull Property pr_IntegerLiteralExp_integerSymbol = createProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, _Integer);
 		protected final @NonNull Property pr_IterateExp_result = createProperty(PivotPackage.Literals.ITERATE_EXP__RESULT, _Variable);
@@ -2135,6 +2135,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_LanguageExpression_Constraint_specification = createProperty("Constraint", _Constraint);
 		protected final @NonNull Property pr_LanguageExpression_Operation_bodyExpression = createProperty("Operation", _Operation);
 		protected final @NonNull Property pr_LanguageExpression_Property_defaultExpression = createProperty("Property", _Property);
+		protected final @NonNull Property pr_LanguageExpression_owningInstanceSpec_specification = createProperty("owningInstanceSpec", _InstanceSpecification);
 		protected final @NonNull Property pr_LetExp_in = createProperty(PivotPackage.Literals.LET_EXP__IN, _OCLExpression);
 		protected final @NonNull Property pr_LetExp_variable = createProperty(PivotPackage.Literals.LET_EXP__VARIABLE, _Variable);
 		protected final @NonNull Property pr_Library_ownedPrecedence = createProperty(PivotPackage.Literals.LIBRARY__OWNED_PRECEDENCE, _OrderedSet_Precedence);
@@ -2340,7 +2341,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Type_TypeExp_referredType = createProperty("TypeExp", _Bag_TypeExp);
 		protected final @NonNull Property pr_Type_UnspecifiedType_lowerBound = createProperty("UnspecifiedType", _Bag_UnspecifiedType);
 		protected final @NonNull Property pr_Type_UnspecifiedType_upperBound = createProperty("UnspecifiedType", _Bag_UnspecifiedType);
-		protected final @NonNull Property pr_Type_instanceSpecification_type = createProperty("instanceSpecification", _InstanceSpecification);
 		protected final @NonNull Property pr_Type_operation_raisedException = createProperty("operation", _Operation);
 		protected final @NonNull Property pr_Type_typedElement_type = createProperty("typedElement", _TypedElement);
 		protected final @NonNull Property pr_TypeExp_referredType = createProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, _Type);
@@ -2494,6 +2494,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_superClass);
+			ownedProperties.add(property = pr_Class_instanceSpecification_classes);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_InstanceSpecification_classes);
 			ownedProperties.add(property = pr_Class_typeTemplateParameter_constrainingClassifier);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2752,11 +2757,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_ExpressionInOCL_resultVariable);
-			ownedProperties.add(property = pr_ExpressionInOCL_owningInstanceSpec_specification);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_InstanceSpecification_specification);
 			ownedProperties = _Feature.getOwnedAttribute();
 			ownedProperties.add(property = pr_Feature_implementation);
 			property.setIsRequired(false);
@@ -2793,6 +2793,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Root_imports);
 			ownedProperties = _InstanceSpecification.getOwnedAttribute();
+			ownedProperties.add(property = pr_InstanceSpecification_classes);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Class_instanceSpecification_classes);
 			ownedProperties.add(property = pr_InstanceSpecification_slots);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -2801,10 +2804,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_owningInstanceSpec_specification);
-			ownedProperties.add(property = pr_InstanceSpecification_type);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_instanceSpecification_type);
+			property.setOpposite(pr_LanguageExpression_owningInstanceSpec_specification);
 			ownedProperties.add(property = pr_InstanceSpecification_Package_ownedInstances);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2867,6 +2867,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_defaultExpression);
+			ownedProperties.add(property = pr_LanguageExpression_owningInstanceSpec_specification);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_InstanceSpecification_specification);
 			ownedProperties = _LetExp.getOwnedAttribute();
 			ownedProperties.add(property = pr_LetExp_in);
 			property.setIsComposite(true);
@@ -3725,11 +3730,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_UnspecifiedType_upperBound);
-			ownedProperties.add(property = pr_Type_instanceSpecification_type);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_InstanceSpecification_type);
 			ownedProperties.add(property = pr_Type_operation_raisedException);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -4278,9 +4278,9 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_ExpressionInOCL, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
 			installComment(_FinalState, "A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed.");
 			installComment(_InstanceSpecification, "An instance specification is a model element that represents an instance in a modeled system.");
+			installComment(pr_InstanceSpecification_classes, "The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.");
 			installComment(pr_InstanceSpecification_slots, "A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.");
 			installComment(pr_InstanceSpecification_specification, "A specification of how to compute, derive, or construct the instance.");
-			installComment(pr_InstanceSpecification_type, "The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.");
 			installComment(_LanguageExpression, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
 			installComment(pr_LanguageExpression_body, "The text of the expression, possibly in multiple languages.");
 			installComment(pr_LanguageExpression_language, "Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");

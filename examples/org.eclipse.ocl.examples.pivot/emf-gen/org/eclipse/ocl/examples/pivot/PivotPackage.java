@@ -8508,13 +8508,22 @@ public interface PivotPackage
 	int INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SPECIFICATION__CLASSES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Slots</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__SLOTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
+	int INSTANCE_SPECIFICATION__SLOTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
@@ -8523,16 +8532,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SPECIFICATION__TYPE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SPECIFICATION__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Instance Specification</em>' class.
@@ -8652,6 +8652,15 @@ public interface PivotPackage
 	int ENUMERATION_LITERAL__TEMPLATE_PARAMETER = INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL__CLASSES = INSTANCE_SPECIFICATION__CLASSES;
+
+	/**
 	 * The feature id for the '<em><b>Slots</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8668,15 +8677,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL__SPECIFICATION = INSTANCE_SPECIFICATION__SPECIFICATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL__TYPE = INSTANCE_SPECIFICATION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Enumeration</b></em>' container reference.
@@ -23646,6 +23646,17 @@ public interface PivotPackage
 	EClass getInstanceSpecification();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getClasses <em>Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Classes</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification#getClasses()
+	 * @see #getInstanceSpecification()
+	 * @generated
+	 */
+	EReference getInstanceSpecification_Classes();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSlots <em>Slots</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23666,17 +23677,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getInstanceSpecification_Specification();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification#getType()
-	 * @see #getInstanceSpecification()
-	 * @generated
-	 */
-	EReference getInstanceSpecification_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.IntegerLiteralExp <em>Integer Literal Exp</em>}'.
@@ -28381,6 +28381,14 @@ public interface PivotPackage
 		EClass INSTANCE_SPECIFICATION = eINSTANCE.getInstanceSpecification();
 
 		/**
+		 * The meta object literal for the '<em><b>Classes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_SPECIFICATION__CLASSES = eINSTANCE.getInstanceSpecification_Classes();
+
+		/**
 		 * The meta object literal for the '<em><b>Slots</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -28395,14 +28403,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference INSTANCE_SPECIFICATION__SPECIFICATION = eINSTANCE.getInstanceSpecification_Specification();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSTANCE_SPECIFICATION__TYPE = eINSTANCE.getInstanceSpecification_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
