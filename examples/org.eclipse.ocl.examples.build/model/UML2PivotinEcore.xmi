@@ -37,7 +37,9 @@
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Constraints"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Expressions"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Library"/>
+    <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Messages"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_PrimitiveTypes"/>
+    <oldPackages href="../model-gen/OCL.uml#OCL-OCL_States"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Types"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_UML"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Variables"/>

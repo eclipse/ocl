@@ -77,6 +77,12 @@
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Ap5skBmBEeSM9LreJtBwBg" name="String"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Expressions" name="OCL_Expressions">
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-AssociationClassCallExp" name="AssociationClassCallExp">
+        <generalization xmi:id="_XpnTLH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NavigationCallExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-AssociationClassCallExp-referredAssociationClass" name="referredAssociationClass" type="OCL-OCL_Associations-AssociationClass">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiNX7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-BooleanLiteralExp" name="BooleanLiteralExp">
         <generalization xmi:id="_XpnTEn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-BooleanLiteralExp-booleanSymbol" name="booleanSymbol" type="OCL-OCL_PrimitiveTypes-Boolean"/>
@@ -91,105 +97,16 @@
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpdiF37VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CollectionItem" name="CollectionItem">
+        <generalization xmi:id="_XpnTJH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CollectionLiteralPart"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-CollectionItem-item" name="item" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="OCL-OCL_Expressions-CollectionKind" name="CollectionKind">
         <ownedLiteral xmi:id="_IPg0GYgHEd-aGOJuUCcZBA" name="Collection"/>
         <ownedLiteral xmi:id="_IPg0GogHEd-aGOJuUCcZBA" name="Set"/>
         <ownedLiteral xmi:id="_IPg0G4gHEd-aGOJuUCcZBA" name="OrderedSet"/>
         <ownedLiteral xmi:id="_IPg0HIgHEd-aGOJuUCcZBA" name="Bag"/>
         <ownedLiteral xmi:id="_IPg0HYgHEd-aGOJuUCcZBA" name="Sequence"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-OCLExpression" name="OCLExpression" isAbstract="true">
-        <generalization xmi:id="_XpdiGH7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-UnlimitedNaturalLiteralExp" name="UnlimitedNaturalLiteralExp">
-        <generalization xmi:id="_XpnTFH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-UnlimitedNaturalLiteralExp-unlimitedNaturalSymbol" name="unlimitedNaturalSymbol" type="OCL-OCL_PrimitiveTypes-UnlimitedNatural"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-EnumLiteralExp" name="EnumLiteralExp">
-        <generalization xmi:id="_XpnTFX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-EnumLiteralExp-referredEnumLiteral" name="referredEnumLiteral" type="OCL-OCL_UML-EnumerationLiteral">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiGX7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IfExp" name="IfExp">
-        <generalization xmi:id="_XpnTFn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-condition" name="condition" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-thenExpression" name="thenExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-elseExpression" name="elseExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-LetExp" name="LetExp">
-        <generalization xmi:id="_XpnTF37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-LetExp-in" name="in" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-LetExp-variable" name="variable" type="OCL-OCL_Expressions-Variable" aggregation="composite"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-Variable" name="Variable">
-        <generalization xmi:id="_XpdiHH7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-Variable-initExpression" name="initExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiGn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-Variable-representedParameter" name="representedParameter" type="OCL-OCL_UML-Parameter">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiG37VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-PropertyCallExp" name="PropertyCallExp">
-        <generalization xmi:id="_XpnTGH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NavigationCallExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-PropertyCallExp-referredProperty" name="referredProperty" type="OCL-OCL_UML-Property">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiHX7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-VariableExp" name="VariableExp">
-        <generalization xmi:id="_XpnTGX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-VariableExp-referredVariable" name="referredVariable" type="OCL-OCL_Expressions-VariableDeclaration">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiHn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-TypeExp" name="TypeExp">
-        <generalization xmi:id="_XpnTGn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-TypeExp-referredType" name="referredType" type="OCL-OCL_UML-Type">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiH37VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-LoopExp" name="LoopExp" isAbstract="true">
-        <generalization xmi:id="_XpnTG37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CallExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-LoopExp-body" name="body" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-LoopExp-iterator" name="iterator" type="OCL-OCL_Expressions-Variable" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiIH7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiIX7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-LoopExp-referredIteration" name="referredIteration" type="OCL-OCL_Library-Iteration">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiIn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-StringLiteralExp" name="StringLiteralExp">
-        <generalization xmi:id="_XpnTHH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-StringLiteralExp-stringSymbol" name="stringSymbol" type="OCL-OCL_PrimitiveTypes-String"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IntegerLiteralExp" name="IntegerLiteralExp">
-        <generalization xmi:id="_XpnTHX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IntegerLiteralExp-integerSymbol" name="integerSymbol" type="OCL-OCL_PrimitiveTypes-Integer"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-OperationCallExp" name="OperationCallExp">
-        <generalization xmi:id="_XpnTHn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-FeatureCallExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-OperationCallExp-argument" name="argument" type="OCL-OCL_Expressions-OCLExpression" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiI37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiJH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-OperationCallExp-referredOperation" name="referredOperation" type="OCL-OCL_UML-Operation">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiJX7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-RealLiteralExp" name="RealLiteralExp">
-        <generalization xmi:id="_XpnTH37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-RealLiteralExp-realSymbol" name="realSymbol" type="OCL-OCL_PrimitiveTypes-Real"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-LiteralExp" name="LiteralExp" isAbstract="true">
-        <generalization xmi:id="_XpnTIH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-PrimitiveLiteralExp" name="PrimitiveLiteralExp" isAbstract="true">
-        <generalization xmi:id="_XpnTIX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-NumericLiteralExp" name="NumericLiteralExp" isAbstract="true">
-        <generalization xmi:id="_XpnTIn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CollectionLiteralExp" name="CollectionLiteralExp">
         <generalization xmi:id="_XpnTI37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
@@ -202,24 +119,31 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CollectionLiteralPart" name="CollectionLiteralPart" isAbstract="true">
         <generalization xmi:id="_XpdiKH7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CollectionItem" name="CollectionItem">
-        <generalization xmi:id="_XpnTJH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CollectionLiteralPart"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-CollectionItem-item" name="item" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CollectionRange" name="CollectionRange">
         <generalization xmi:id="_XpnTJX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CollectionLiteralPart"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-CollectionRange-first" name="first" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-CollectionRange-last" name="last" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-TupleLiteralExp" name="TupleLiteralExp">
-        <generalization xmi:id="_XpnTJn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-TupleLiteralExp-part" name="part" type="OCL-OCL_Expressions-TupleLiteralPart" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiKX7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiKn7VEeOu79LxSz8Ylw" value="*"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ConstructorExp" name="ConstructorExp">
+        <generalization xmi:id="_XpnTMn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorExp-part" name="part" type="OCL-OCL_Expressions-ConstructorPart" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiPH7VEeOu79LxSz8Ylw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiPX7VEeOu79LxSz8Ylw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorExp-value" name="value" type="OCL-OCL_PrimitiveTypes-String">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiPn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-NullLiteralExp" name="NullLiteralExp">
-        <generalization xmi:id="_XpnTJ37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ConstructorPart" name="ConstructorPart">
+        <generalization xmi:id="_XpdiP37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorPart-referredProperty" name="referredProperty" type="OCL-OCL_UML-Property"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorPart-initExpression" name="initExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-EnumLiteralExp" name="EnumLiteralExp">
+        <generalization xmi:id="_XpnTFX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-EnumLiteralExp-referredEnumLiteral" name="referredEnumLiteral" type="OCL-OCL_UML-EnumerationLiteral">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiGX7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ExpressionInOCL" name="ExpressionInOCL">
         <generalization xmi:id="_XpnTKH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-ValueSpecification"/>
@@ -237,20 +161,51 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiLn7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ValueSpecification" name="ValueSpecification"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-InvalidLiteralExp" name="InvalidLiteralExp">
-        <generalization xmi:id="_XpnTKX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-FeatureCallExp" name="FeatureCallExp" isAbstract="true">
         <generalization xmi:id="_XpnTKn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CallExp"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-FeatureCallExp-isPre" name="isPre" type="OCL-OCL_PrimitiveTypes-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpdiL37VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-TupleLiteralPart" name="TupleLiteralPart">
-        <generalization xmi:id="_XpdiMX7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-TupleLiteralPart-initExpression" name="initExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiMH7VEeOu79LxSz8Ylw"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IfExp" name="IfExp">
+        <generalization xmi:id="_XpnTFn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-condition" name="condition" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-thenExpression" name="thenExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-elseExpression" name="elseExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IntegerLiteralExp" name="IntegerLiteralExp">
+        <generalization xmi:id="_XpnTHX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-IntegerLiteralExp-integerSymbol" name="integerSymbol" type="OCL-OCL_PrimitiveTypes-Integer"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-InvalidLiteralExp" name="InvalidLiteralExp">
+        <generalization xmi:id="_XpnTKX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IterateExp" name="IterateExp">
+        <generalization xmi:id="_XpnTMH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LoopExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-IterateExp-result" name="result" type="OCL-OCL_Expressions-Variable" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiO37VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IteratorExp" name="IteratorExp">
+        <generalization xmi:id="_XpnTMX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LoopExp"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-LetExp" name="LetExp">
+        <generalization xmi:id="_XpnTF37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-LetExp-in" name="in" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-LetExp-variable" name="variable" type="OCL-OCL_Expressions-Variable" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-LiteralExp" name="LiteralExp" isAbstract="true">
+        <generalization xmi:id="_XpnTIH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-LoopExp" name="LoopExp" isAbstract="true">
+        <generalization xmi:id="_XpnTG37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CallExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-LoopExp-body" name="body" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-LoopExp-iterator" name="iterator" type="OCL-OCL_Expressions-Variable" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiIH7VEeOu79LxSz8Ylw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiIX7VEeOu79LxSz8Ylw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-LoopExp-referredIteration" name="referredIteration" type="OCL-OCL_Library-Iteration">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiIn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-NavigationCallExp" name="NavigationCallExp" isAbstract="true">
@@ -263,66 +218,85 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiNH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-AssociationClassCallExp" name="AssociationClassCallExp">
-        <generalization xmi:id="_XpnTLH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NavigationCallExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-AssociationClassCallExp-referredAssociationClass" name="referredAssociationClass" type="OCL-OCL_Associations-AssociationClass">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiNX7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-NumericLiteralExp" name="NumericLiteralExp" isAbstract="true">
+        <generalization xmi:id="_XpnTIn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-MessageExp" name="MessageExp">
-        <generalization xmi:id="_XpnTLX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-target" name="target" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-argument" name="argument" type="OCL-OCL_Expressions-OCLExpression" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiNn7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiN37VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-calledOperation" name="calledOperation" type="OCL-OCL_Expressions-CallOperationAction" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiOH7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-sentSignal" name="sentSignal" type="OCL-OCL_Expressions-SendSignalAction" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiOX7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-OCLExpression" name="OCLExpression" isAbstract="true">
+        <generalization xmi:id="_XpdiGH7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-UnspecifiedValueExp" name="UnspecifiedValueExp">
-        <generalization xmi:id="_XpnTLn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-StateExp" name="StateExp">
-        <generalization xmi:id="_XpnTL37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-StateExp-referredState" name="referredState" type="OCL-OCL_Types-State">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiOn7VEeOu79LxSz8Ylw"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-OperationCallExp" name="OperationCallExp">
+        <generalization xmi:id="_XpnTHn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-FeatureCallExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-OperationCallExp-argument" name="argument" type="OCL-OCL_Expressions-OCLExpression" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiI37VEeOu79LxSz8Ylw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiJH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CallOperationAction" name="CallOperationAction"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-SendSignalAction" name="SendSignalAction"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-VariableDeclaration" name="VariableDeclaration" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IterateExp" name="IterateExp">
-        <generalization xmi:id="_XpnTMH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LoopExp"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IterateExp-result" name="result" type="OCL-OCL_Expressions-Variable" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiO37VEeOu79LxSz8Ylw"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-OperationCallExp-referredOperation" name="referredOperation" type="OCL-OCL_UML-Operation">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiJX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IteratorExp" name="IteratorExp">
-        <generalization xmi:id="_XpnTMX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LoopExp"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ConstructorExp" name="ConstructorExp">
-        <generalization xmi:id="_XpnTMn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorExp-part" name="part" type="OCL-OCL_Expressions-ConstructorPart" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiPH7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiPX7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorExp-value" name="value" type="OCL-OCL_PrimitiveTypes-String">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiPn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ConstructorPart" name="ConstructorPart">
-        <generalization xmi:id="_XpdiP37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-TypedElement"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorPart-referredProperty" name="referredProperty" type="OCL-OCL_UML-Property"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-ConstructorPart-initExpression" name="initExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-OppositePropertyCallExp" name="OppositePropertyCallExp">
         <generalization xmi:id="_XpnTM37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NavigationCallExp"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-OppositePropertyCallExp-referredProperty" name="referredProperty" type="OCL-OCL_UML-Property">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiQH7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-PrimitiveLiteralExp" name="PrimitiveLiteralExp" isAbstract="true">
+        <generalization xmi:id="_XpnTIX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-PropertyCallExp" name="PropertyCallExp">
+        <generalization xmi:id="_XpnTGH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NavigationCallExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-PropertyCallExp-referredProperty" name="referredProperty" type="OCL-OCL_UML-Property">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiHX7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-RealLiteralExp" name="RealLiteralExp">
+        <generalization xmi:id="_XpnTH37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-RealLiteralExp-realSymbol" name="realSymbol" type="OCL-OCL_PrimitiveTypes-Real"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-StringLiteralExp" name="StringLiteralExp">
+        <generalization xmi:id="_XpnTHH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-StringLiteralExp-stringSymbol" name="stringSymbol" type="OCL-OCL_PrimitiveTypes-String"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-TupleLiteralExp" name="TupleLiteralExp">
+        <generalization xmi:id="_XpnTJn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-TupleLiteralExp-part" name="part" type="OCL-OCL_Expressions-TupleLiteralPart" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiKX7VEeOu79LxSz8Ylw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiKn7VEeOu79LxSz8Ylw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-TupleLiteralPart" name="TupleLiteralPart">
+        <generalization xmi:id="_XpdiMX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-VariableDeclaration"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-TupleLiteralPart-initExpression" name="initExpression" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiMH7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-TypeExp" name="TypeExp">
+        <generalization xmi:id="_XpnTGn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-TypeExp-referredType" name="referredType" type="OCL-OCL_UML-Type">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiH37VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-NullLiteralExp" name="NullLiteralExp">
+        <generalization xmi:id="_XpnTJ37VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-PrimitiveLiteralExp"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-UnlimitedNaturalLiteralExp" name="UnlimitedNaturalLiteralExp">
+        <generalization xmi:id="_XpnTFH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-UnlimitedNaturalLiteralExp-unlimitedNaturalSymbol" name="unlimitedNaturalSymbol" type="OCL-OCL_PrimitiveTypes-UnlimitedNatural"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-UnspecifiedValueExp" name="UnspecifiedValueExp">
+        <generalization xmi:id="_XpnTLn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ValueSpecification" name="ValueSpecification"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-Variable" name="Variable"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-VariableDeclaration" name="VariableDeclaration" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-VariableExp" name="VariableExp">
+        <generalization xmi:id="_XpnTGX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+        <ownedAttribute xmi:id="OCL-OCL_Variables-VariableExp-implicit" name="implicit" type="OCL-OCL_PrimitiveTypes-Boolean">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTDn7VEeOu79LxSz8Ylw"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpnTD37VEeOu79LxSz8Ylw" value="false"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-VariableExp-referredVariable" name="referredVariable" type="OCL-OCL_Expressions-VariableDeclaration">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiHn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
     </packagedElement>
@@ -345,12 +319,62 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Library-Operation" name="Operation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Library-Parameter" name="Parameter"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_LII0oBsDEeSM9LreJtBwBg" name="OCL_Messages">
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CallOperationAction" name="CallOperationAction">
+        <generalization xmi:id="_CfFesBsEEeSM9LreJtBwBg" general="_-5qQIBsDEeSM9LreJtBwBg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-MessageExp" name="MessageExp">
+        <generalization xmi:id="_XpnTLX7VEeOu79LxSz8Ylw" general="_USzX8BsEEeSM9LreJtBwBg"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-target" name="target" type="_USzX8BsEEeSM9LreJtBwBg" aggregation="composite"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-argument" name="argument" type="_USzX8BsEEeSM9LreJtBwBg" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiNn7VEeOu79LxSz8Ylw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiN37VEeOu79LxSz8Ylw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-calledOperation" name="calledOperation" type="OCL-OCL_Expressions-CallOperationAction" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiOH7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-MessageExp-sentSignal" name="sentSignal" type="OCL-OCL_Expressions-SendSignalAction" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiOX7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-MessageType" name="MessageType">
+        <generalization xmi:id="_XpnTA37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Class"/>
+        <ownedAttribute xmi:id="OCL-OCL_Types-MessageType-referredSignal" name="referredSignal" type="OCL-OCL_Types-Signal">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAX7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Types-MessageType-referredOperation" name="referredOperation" type="_MTk3kBsEEeSM9LreJtBwBg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAn7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_-5qQIBsDEeSM9LreJtBwBg" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_USzX8BsEEeSM9LreJtBwBg" name="OCLExpression" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MTk3kBsEEeSM9LreJtBwBg" name="Operation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-SendSignalAction" name="SendSignalAction">
+        <generalization xmi:id="_F4viIBsEEeSM9LreJtBwBg" general="_-5qQIBsDEeSM9LreJtBwBg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-Signal" name="Signal">
+        <generalization xmi:id="_XpnTBn7VEeOu79LxSz8Ylw" general="_-5qQIBsDEeSM9LreJtBwBg"/>
+      </packagedElement>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_PrimitiveTypes" name="OCL_PrimitiveTypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="OCL-OCL_PrimitiveTypes-Boolean" name="Boolean"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="OCL-OCL_PrimitiveTypes-Integer" name="Integer"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="OCL-OCL_PrimitiveTypes-Real" name="Real"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="OCL-OCL_PrimitiveTypes-String" name="String"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="OCL-OCL_PrimitiveTypes-UnlimitedNatural" name="UnlimitedNatural"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Uz7kgBsDEeSM9LreJtBwBg" name="OCL_States">
+      <packagedElement xmi:type="uml:Class" xmi:id="_j1cmcBsEEeSM9LreJtBwBg" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_kic2YBsEEeSM9LreJtBwBg" name="OCLExpression" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-StateExp" name="StateExp">
+        <generalization xmi:id="_XpnTL37VEeOu79LxSz8Ylw" general="_kic2YBsEEeSM9LreJtBwBg"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-StateExp-referredState" name="referredState" type="OCL-OCL_Types-State">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiOn7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-State" name="State">
+        <generalization xmi:id="_XpnTB37VEeOu79LxSz8Ylw" general="_j1cmcBsEEeSM9LreJtBwBg"/>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Types" name="OCL_Types">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-AnyType" name="AnyType">
@@ -381,15 +405,6 @@
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Types-LambdaType-resultType" name="resultType" type="OCL-OCL_UML-Type"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-MessageType" name="MessageType">
-        <generalization xmi:id="_XpnTA37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Class"/>
-        <ownedAttribute xmi:id="OCL-OCL_Types-MessageType-referredSignal" name="referredSignal" type="OCL-OCL_Types-Signal">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAX7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Types-MessageType-referredOperation" name="referredOperation" type="OCL-OCL_UML-Operation">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTAn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-Metaclass" name="Metaclass">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_5FSQEPBgEeKSb5VYoRDkkA" parameter="_7ECbwPBgEeKSb5VYoRDkkA">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_7ECbwPBgEeKSb5VYoRDkkA" parameteredElement="T">
@@ -411,12 +426,6 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-SetType" name="SetType">
         <generalization xmi:id="_Xpwc8n7VEeOu79LxSz8Ylw" general="OCL-OCL_Types-CollectionType"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-Signal" name="Signal">
-        <generalization xmi:id="_XpnTBn7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-NamedElement"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-State" name="State">
-        <generalization xmi:id="_XpnTB37VEeOu79LxSz8Ylw" general="OCL-OCL_UML-NamedElement"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-TemplateParameterType" name="TemplateParameterType">
         <generalization xmi:id="_XpnTCX7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Type"/>
         <ownedAttribute xmi:id="OCL-OCL_Types-TemplateParameterType-specification" name="specification" type="OCL-OCL_PrimitiveTypes-String">
@@ -431,28 +440,26 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Variables" name="OCL_Variables">
+      <packagedElement xmi:type="uml:Class" xmi:id="_BSdooBsGEeSM9LreJtBwBg" name="OCLExpression" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-Parameter" name="Parameter">
         <generalization xmi:id="_Xpwc837VEeOu79LxSz8Ylw" general="OCL-OCL_Variables-VariableDeclaration"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-TupleLiteralPart" name="TupleLiteralPart">
-        <generalization xmi:id="_Xpwc9H7VEeOu79LxSz8Ylw" general="OCL-OCL_Variables-VariableDeclaration"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-TypedElement" name="TypedElement" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-VariableDeclaration" name="VariableDeclaration" isAbstract="true">
-        <generalization xmi:id="_Xpwc9X7VEeOu79LxSz8Ylw" general="OCL-OCL_Variables-TypedElement"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-Variable" name="Variable">
         <generalization xmi:id="_Xpwc9n7VEeOu79LxSz8Ylw" general="OCL-OCL_Variables-VariableDeclaration"/>
         <ownedAttribute xmi:id="OCL-OCL_Variables-Variable-implicit" name="implicit" type="OCL-OCL_PrimitiveTypes-Boolean">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTDH7VEeOu79LxSz8Ylw"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpnTDX7VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-VariableExp" name="VariableExp">
-        <ownedAttribute xmi:id="OCL-OCL_Variables-VariableExp-implicit" name="implicit" type="OCL-OCL_PrimitiveTypes-Boolean">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTDn7VEeOu79LxSz8Ylw"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpnTD37VEeOu79LxSz8Ylw" value="false"/>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-Variable-initExpression" name="initExpression" type="_BSdooBsGEeSM9LreJtBwBg" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiGn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="OCL-OCL_Expressions-Variable-representedParameter" name="representedParameter" type="OCL-OCL_UML-Parameter">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiG37VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Variables-VariableDeclaration" name="VariableDeclaration" isAbstract="true">
+        <generalization xmi:id="_Xpwc9X7VEeOu79LxSz8Ylw" general="OCL-OCL_Variables-TypedElement"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_UML" name="OCL_UML">
