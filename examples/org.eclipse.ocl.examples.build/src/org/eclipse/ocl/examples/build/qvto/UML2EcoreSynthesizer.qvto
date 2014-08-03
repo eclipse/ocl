@@ -33,6 +33,8 @@ property deleteClasses : Set(UML::Class) = deleteTypeMappings.oldTypes->selectBy
 property umlType2createType : Dict(UML::Type, UML2Ecore::CreateType) = Dict{};
 property umlType2deleteType : Dict(UML::Type, UML2Ecore::DeleteType) = Dict{};
 
+property umlType2depth : Dict(UML::Type, Integer) = Dict{};
+
 helper Set(UML::NamedElement)::display() : String {
 	return self->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name);
 }
@@ -130,7 +132,7 @@ abstract mapping UML::Type::createAbstractType(createType : UML2Ecore::CreateTyp
 	result.name := createType.newName;
 	result.map installComments(createType.oldTypes.ownedComment->asSet());
 	createType.oldTypes->forEach(t) {
---	    log('  <= ', t);
+--	    log('  <= ', t.name);
 		umlType2eClassifier->put(t, result);
 	};
 	eClassifier2createType->put(result, createType);
@@ -140,7 +142,7 @@ inherits UML::Type::createAbstractType
 {
 --	log('  createClass', self.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
-	result._'abstract' := createType.oldTypes->select(oclIsKindOf(UML::Class))->forAll(oclAsType(UML::Class).isAbstract);
+	result._'abstract' := createType.oldTypes->select(oclIsKindOf(UML::Class))->exists(oclAsType(UML::Class).isAbstract);
 }
 mapping UML::Interface::createInterface(createType : UML2Ecore::CreateType) : Ecore::EClass
 inherits UML::Type::createAbstractType
@@ -222,11 +224,12 @@ helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : 
 	var defaultValues : Set(UML::ValueSpecification) := oldProperties.defaultValue->excluding(null)->asSet();
 	output.name := self.newName;
 	output.map installComments(oldProperties.ownedComment->asSet());
-	output.lowerBound := oldProperty.lower;
-	output.upperBound := oldProperty.upper;
-	output.unique := oldProperty.isUnique;
-	output._'ordered' := if (0 <= oldProperty.upper) and (oldProperty.upper <= 1) then true else oldProperty.isOrdered endif;
-	output.changeable := not oldProperty.isReadOnly;
+	output.lowerBound := oldProperties.lower->max();
+	output.upperBound := oldProperty->upper->min();
+	output.unique := oldProperty->exists(isUnique);
+	output._'ordered' := if (0 <= output.upperBound) and (output.upperBound <= 1) then true else oldProperty->exists(isOrdered) endif;
+	output.changeable := oldProperties->forAll(not isReadOnly);
+	output._derived := oldProperties->forAll(isDerived);
 --	output.unsettable := false; --oldProperty.lower < 1;
 --	output.unsettable := false; --(oldProperty.lower = 1) and (oldProperty.upper = 1) and defaultValues->isEmpty() and output.oclIsKindOf(EAttribute); -- BooleanLiteralExp.booleanSymbol
 --	log('    createStructuralFeature', Sequence{oldType, newType});
@@ -397,7 +400,7 @@ mapping inout Ecore::EClass::resolveEClass()
 --		log('  thePropertyCreates', thePropertyCreates->display());
 		var pc  : UML2EcoreMapping::CreateProperty := thePropertyCreates->any(true);
 		var oldProperty : Property := pc.oldProperties->any(true);
-		var oldType : UML::Type := oldProperty.type;
+		var oldType : UML::Type := selectType(pc.oldProperties.type->asSet());
 		var newType : Ecore::EClassifier := umlType2eClassifier->get(oldType);
 		if (newType <> null) then {
 			self.eStructuralFeatures += pc.map createProperty(self, pc.oldProperties, newType);
@@ -421,7 +424,7 @@ mapping inout Ecore::EClass::resolveEClass()
 --	log('  localOperationCreates', localOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
 	localOperationCreates->sortedBy(newName)->forEach(pc) {
 		var oldOperation : Operation := pc.oldOperations->any(true);
-		var oldType : UML::Type := oldOperation.type;
+		var oldType : UML::Type := selectType(pc.oldOperations.type->asSet());
 		var newType : Ecore::EClassifier := umlType2eClassifier->get(oldType);
 		if (newType <> null) then {
 			self.eOperations += pc.map createOperation(self, pc.oldOperations, newType);
@@ -475,4 +478,25 @@ helper getProperSuperTypes(types : Set(UML::Type)) : Set(UML::Type) {
 --	log('  superInterfaces', superInterfaces.name->asSet()->sortedBy(n | n)->iterate(n; acc : String = '' | acc + ' ' + n));
 	var names : Set(String) := properSuperClassClosure.name->union(superInterfaces.name)->asSet();
 	return getAllTypes(names);
+}
+
+helper selectType(types : Set(UML::Type)) : UML::Type {
+	var classes : Set(UML::Class) = types->selectByKind(UML::Class)->asSet();
+	if (classes->size() <= 1) return types->any(true);
+	var type : UML::Type = classes->sortedBy(t | depth(t))->last();
+--	if (types->size() > 1) {
+--		log('    ', types->display() + '  => ' + type->display());
+--	};
+	return type;
+}
+
+helper depth(type : UML::Class) : Integer {
+    var depth : Integer = umlType2depth->get(type);
+    if (depth <> null) return depth;
+	var allClasses : Set(UML::Class) = allTypes->select(name = type.name)->selectByKind(UML::Class)->asSet();
+	var allSuperClasses : Set(UML::Class) = allClasses.superClass->asSet();
+	depth := if allSuperClasses->notEmpty() then allSuperClasses->collect(t | depth(t))->max()+1 else 0 endif;
+--	log('    ', type->display() + '  => ' + depth.toString());
+	allClasses->forEach(t) { umlType2depth->put(t, depth); };
+	return depth;
 }

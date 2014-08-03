@@ -315,6 +315,13 @@ mapping UML::Property::createDeleteProperty() : UML2EcoreMapping::DeleteProperty
 	result.oldProperties := self->asSet();
 }
 
+mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapping::CreateProperty
+{
+---	log('createRenameProperty', self.name);
+	result.newName := self.newName;
+	result.oldProperties := self.oldProperties;
+}
+
 /**
  * Select the properties for the merge of types and return as a set of CreateProperty for keeps and DeleteProperty for removes.
  */
@@ -328,15 +335,18 @@ query selectProperties(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::Pr
 	var wantedProperties : Set(UML::Property) = properties - unwantedProperties - deletedProperties;
 
 	var renameProperties : Set(UML2EcoreControl::CreateProperty) := explicitCreatePropertyMappings->select(oldProperties->intersection(wantedProperties)->notEmpty());
-	var oldPropertyNames : Set(String) := renameProperties.oldProperties.name->asSet();
+	var renamedProperties : Set(UML::Property) := renameProperties.oldProperties->asSet();
+	var oldPropertyNames : Set(String) := renamedProperties.name->asSet();
 	var newPropertyNames : Set(String) := renameProperties.newName->asSet();
 
-	var wantedPropertyNames : Set(String) = (wantedProperties.name->asSet() - oldPropertyNames)->union(newPropertyNames);
+	var wantedPropertyNames : Set(String) = (wantedProperties.name->asSet() - oldPropertyNames); -- ->union(newPropertyNames);
 	
 	
 	
 	var creates : Sequence(UML2EcoreMapping::PropertyMapping) = wantedPropertyNames->map createCreateProperty(wantedProperties)->asSequence()->sortedBy(newName);
+	var renames : Sequence(UML2EcoreMapping::CreateProperty) = renameProperties->map createRenameProperty()->asSequence()->sortedBy(newName);
 	var deletes : Sequence(UML2EcoreMapping::PropertyMapping) = unwantedProperties->map createDeleteProperty()->asSequence()->sortedBy(oldName);
-	return creates->iterate(c : UML2EcoreMapping::PropertyMapping; acc  : Sequence(UML2EcoreMapping::PropertyMapping) = deletes | acc->including(c))->asOrderedSet();
+	var createsAndRenames : Sequence(UML2EcoreMapping::PropertyMapping) = creates->iterate(c : UML2EcoreMapping::PropertyMapping; acc : Sequence(UML2EcoreMapping::PropertyMapping) = renames | acc->including(c));
+	return createsAndRenames->iterate(c : UML2EcoreMapping::PropertyMapping; acc  : Sequence(UML2EcoreMapping::PropertyMapping) = deletes | acc->including(c))->asOrderedSet();
 }
 

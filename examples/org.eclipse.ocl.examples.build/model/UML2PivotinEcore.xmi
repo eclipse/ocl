@@ -63,12 +63,16 @@
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Class"/>
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Classifier"/>
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#StructuredClassifier"/>
-      <createProperties newName="ownedProperties">
+      <!--createProperties newName="ownedProperties">
         <oldProperties href="../model-gen/UML.uml#DataType-ownedAttribute"/>
         <oldProperties href="../model-gen/UML.uml#Class-ownedAttribute"/>
         <oldProperties href="../model-gen/UML.uml#StructuredClassifier-ownedAttribute"/>
-      </createProperties>
+      </createProperties-->
     </createTypes>
+    <!--createTypes newName="Feature">
+      <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Feature"/>
+      <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#StructuralFeature"/>
+    </createTypes-->
     <createTypes newName="AssociationClass">
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Association"/>
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#AssociationClass"/>
@@ -77,12 +81,6 @@
       <oldTypes xsi:type="uml:Class" href="../model-gen/OCL.uml#OCL-OCL_Expressions-Variable"/>
       <oldTypes xsi:type="uml:Class" href="../model-gen/OCL.uml#OCL-OCL_Variables-Variable"/>
     </createTypes>
-    <!--createTypes newName="CallOperationAction">
-      <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#CallOperationAction"/>
-    </createTypes>
-    <createTypes newName="SendSignalAction">
-      <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#SendSignalAction"/>
-    </createTypes-->
     <createTypes newName="TypeTemplateParameter">
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#ClassifierTemplateParameter"/>
     </createTypes>
@@ -333,8 +331,12 @@
   </mappings>
   <mappings xsi:type="u2ec:CreateProperty" newName="resultVariable" comment="Rename OpaqueExpression::result to resultVariable">
     <oldProperties href="../model-gen/UML.uml#OpaqueExpression-result.1"/>
-  </mappings>
+  </mappings-->
   <mappings xsi:type="u2ec:CreateProperty" newName="values" comment="Rename Slot::value to values">
     <oldProperties href="../model-gen/UML.uml#Slot-value"/>
-  </mappings-->
+  </mappings>
+  <mappings xsi:type="u2ec:CreateProperty" newName="definingProperty" comment="Rename Slot::definingFeature to definingProperty">
+    <oldProperties href="../model-gen/UML.uml#Slot-definingFeature"/>
+    <oldProperties href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances-Slot-definingProperty"/>
+  </mappings>
 </u2ec:Mappings>

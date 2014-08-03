@@ -28,13 +28,22 @@
         <generalization xmi:id="_XpnTEX7VEeOu79LxSz8Ylw" general="OCL-OCL_Classes-Class"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Operation" name="Operation">
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Operation-owningType" name="owningType" type="OCL-OCL_Classes-Class">
+        <ownedAttribute xmi:id="OCL-OCL_Classes-Operation-owningType" name="owningType" type="OCL-OCL_Classes-Class" isReadOnly="true" isDerived="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Property" name="Property">
-        <ownedAttribute xmi:id="OCL-OCL_Classes-Property-owningType" name="owningType" type="OCL-OCL_Classes-Class">
+        <ownedAttribute xmi:id="OCL-OCL_Classes-Property-owningType" name="owningType" type="OCL-OCL_Classes-Class" isReadOnly="true" isDerived="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBn7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_4bQI0BswEeSM9LreJtBwBg" name="isComposite" type="OCL-OCL_PrimitiveTypes-Boolean">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_DkEQUBsxEeSM9LreJtBwBg" value="false"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_j4eg8BszEeSM9LreJtBwBg" name="default" type="OCL-OCL_PrimitiveTypes-String">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qZBc0BszEeSM9LreJtBwBg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_g5FiMBs0EeSM9LreJtBwBg" name="opposite" type="OCL-OCL_Classes-Property">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mcgHcBs0EeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Type" name="Type" isAbstract="true"/>
@@ -43,6 +52,9 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Constraint" name="Constraint">
         <ownedAttribute xmi:id="_QcxJMBlREeSM9LreJtBwBg" name="specification" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QcxJMRlREeSM9LreJtBwBg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gwa58BsqEeSM9LreJtBwBg" name="context" type="_cma-sBsqEeSM9LreJtBwBg" isReadOnly="true" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_itJFUBsqEeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-ExpressionInOCL" name="ExpressionInOCL">
@@ -57,6 +69,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GchLcRmBEeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_cma-sBsqEeSM9LreJtBwBg" name="Namespace" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Operation" name="Operation">
         <ownedAttribute xmi:id="OCL-OCL_Constraints-Operation-bodyExpression" name="bodyExpression" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiEX7VEeOu79LxSz8Ylw"/>
@@ -322,6 +335,7 @@
     <packagedElement xmi:type="uml:Package" xmi:id="_LII0oBsDEeSM9LreJtBwBg" name="OCL_Messages">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CallOperationAction" name="CallOperationAction">
         <generalization xmi:id="_CfFesBsEEeSM9LreJtBwBg" general="_-5qQIBsDEeSM9LreJtBwBg"/>
+        <ownedAttribute xmi:id="_HKescBsoEeSM9LreJtBwBg" name="operation" type="_MTk3kBsEEeSM9LreJtBwBg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-MessageExp" name="MessageExp">
         <generalization xmi:id="_XpnTLX7VEeOu79LxSz8Ylw" general="_USzX8BsEEeSM9LreJtBwBg"/>
@@ -351,6 +365,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_MTk3kBsEEeSM9LreJtBwBg" name="Operation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-SendSignalAction" name="SendSignalAction">
         <generalization xmi:id="_F4viIBsEEeSM9LreJtBwBg" general="_-5qQIBsDEeSM9LreJtBwBg"/>
+        <ownedAttribute xmi:id="_6bBXQBsnEeSM9LreJtBwBg" name="signal" type="OCL-OCL_Types-Signal"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-Signal" name="Signal">
         <generalization xmi:id="_XpnTBn7VEeOu79LxSz8Ylw" general="_-5qQIBsDEeSM9LreJtBwBg"/>

@@ -147,10 +147,15 @@
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Evaluation-Throwable" name="Throwable"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Framework" name="MDT_OCL_Framework">
+      <packagedElement xmi:type="uml:Class" xmi:id="_mHOFsBsNEeSM9LreJtBwBg" name="Behavior" isAbstract="true"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Framework-Boolean" name="Boolean"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Framework-Class" name="Class">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Class-instanceClassName" name="instanceClassName" type="MDTOCL-MDT_OCL_Framework-String">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OAn7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gdHCkBsNEeSM9LreJtBwBg" name="ownedBehavior" type="_mHOFsBsNEeSM9LreJtBwBg" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jVSwoBsNEeSM9LreJtBwBg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j1VioBsNEeSM9LreJtBwBg" value="*"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Framework-Element" name="Element" isAbstract="true"/>
@@ -197,6 +202,10 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_package_ownedInstance" memberEnd="MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_A8ymsBseEeSM9LreJtBwBg" name="Property"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_AsjLQBseEeSM9LreJtBwBg" name="Slot">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-Slot-definingProperty" name="definingProperty" type="_A8ymsBseEeSM9LreJtBwBg"/>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Precedences" name="MDT_OCL_Precedences">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="MDTOCL-MDT_OCL_Precedences-AssociativityKind" name="AssociativityKind">
