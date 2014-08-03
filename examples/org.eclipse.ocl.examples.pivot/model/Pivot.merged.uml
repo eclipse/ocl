@@ -1576,7 +1576,7 @@
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTupleType" name="TupleType">
       <generalization xmi:id="Ppivot.TTupleType.g0" general="Ppivot.TDataType"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TType" name="Type">
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TType" name="Type" isAbstract="true">
       <ownedComment xmi:id="Ppivot.TType.oC0" annotatedElement="Ppivot.TType">
         <body>A type is a named element that is used as the type for a typed element. A type can be contained in a package.</body>
       </ownedComment>

@@ -256,7 +256,6 @@ public class PivotFactoryImpl
 			case PivotPackage.TUPLE_LITERAL_EXP: return (EObject)createTupleLiteralExp();
 			case PivotPackage.TUPLE_LITERAL_PART: return (EObject)createTupleLiteralPart();
 			case PivotPackage.TUPLE_TYPE: return (EObject)createTupleType();
-			case PivotPackage.TYPE: return (EObject)createType();
 			case PivotPackage.TYPE_EXP: return (EObject)createTypeExp();
 			case PivotPackage.TYPE_EXTENSION: return (EObject)createTypeExtension();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER: return (EObject)createTypeTemplateParameter();
@@ -1236,17 +1235,6 @@ public class PivotFactoryImpl
 	public TupleType createTupleType() {
 		TupleTypeImpl tupleType = new TupleTypeImpl();
 		return tupleType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type createType()
-	{
-		TypeImpl type = new TypeImpl();
-		return type;
 	}
 
 	/**

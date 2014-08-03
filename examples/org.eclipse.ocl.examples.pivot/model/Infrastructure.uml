@@ -1928,7 +1928,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAUH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="Core-Basic-DataType" name="DataType" isAbstract="true">
+      <packagedElement xmi:type="uml:Class" xmi:id="Core-Basic-DataType" name="DataType">
         <ownedComment xmi:id="Core-Basic-DataType-_ownedComment.0" annotatedElement="Core-Basic-DataType">
           <body>DataType is an abstract class that acts as a common superclass for different kinds of data types.</body>
         </ownedComment>

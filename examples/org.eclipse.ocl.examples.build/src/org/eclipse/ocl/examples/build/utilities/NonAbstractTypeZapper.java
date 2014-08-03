@@ -29,6 +29,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
  * <p>
  * For DataType non-abstract is in use so preserve it for now.
  */
+@Deprecated  // No longer in use
 public class NonAbstractTypeZapper extends WorkflowComponentWithModelSlot
 {
 	private Logger log = Logger.getLogger(getClass());	

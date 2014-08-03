@@ -462,7 +462,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_np0eYA27EeSm6471J7pVhQ" name="Operation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_eF87cA27EeSm6471J7pVhQ" name="Parameter"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_SuOOMA27EeSm6471J7pVhQ" name="Property"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_TQWD0A27EeSm6471J7pVhQ" name="Type"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TQWD0A27EeSm6471J7pVhQ" name="Type" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_d8ju4A27EeSm6471J7pVhQ" name="TypedElement" isAbstract="true"/>
     </packagedElement>
     <profileApplication xmi:id="_YWO1EH9cEeOrlIuDtf7a6A">

@@ -120,7 +120,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jh_vABNKEeCpr6XKiuQP7w" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_qClRsBNLEeCpr6XKiuQP7w" name="Type">
+      <packagedElement xmi:type="uml:Class" xmi:id="_qClRsBNLEeCpr6XKiuQP7w" name="Type" isAbstract="true">
         <ownedAttribute xmi:id="_U4vxMBNLEeCpr6XKiuQP7w" name="instanceClassName" type="_jh_vABNKEeCpr6XKiuQP7w">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N_n7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>

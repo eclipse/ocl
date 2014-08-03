@@ -50,9 +50,9 @@ Workflow {
     component = ConstraintRemover { skipOnErrors = true
     	modelSlot = "${umlSlot}"
     }
-    component = NonAbstractTypeZapper { skipOnErrors = true
-    	modelSlot = "${umlSlot}"
-    }
+//    component = NonAbstractTypeZapper { skipOnErrors = true
+//    	modelSlot = "${umlSlot}"
+//    }
     component = CommentNormalizer { skipOnErrors = true
     	modelSlot = "${umlSlot}"
     }

@@ -85,7 +85,7 @@ import org.eclipse.osgi.util.NLS;
  * @generated
  */
 @SuppressWarnings({"null","cast"})
-public class TypeImpl
+public abstract class TypeImpl
 		extends PackageableElementImpl
 		implements Type {
 

@@ -1504,7 +1504,7 @@
           type="#T.pivot.TupleLiteralExp"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.TupleType" name="TupleType" superClass="#T.pivot.DataType"/>
-    <ownedType xmi:id="T.pivot.Type" name="Type" superClass="#T.pivot.PackageableElement">
+    <ownedType xmi:id="T.pivot.Type" isAbstract="true" name="Type" superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.Type.extendedBys" name="extendedBys" opposite="#p.pivot.TypeExtension.type"
           type="#//@nestedPackage.1/@ownedType.150"/>
       <ownedAttribute xmi:id="p.pivot.Type.instanceClassName" isRequired="false" name="instanceClassName"
