@@ -1,4 +1,4 @@
-  duplicateUnnavigableOpposites, data: 
+Full  duplicateUnnavigableOpposites, data: 
 	Behavior::behavioredClassifier#classifierBehavior
 	Behavior::behavioredClassifier#ownedBehavior
 	Behavior::objectFlow#transformation
@@ -69,3 +69,42 @@
 	ValueSpecification::interactionUse#returnValue
 	ValueSpecification::interval#min
 	ValueSpecification::interval#max
+
+Reduced duplicateUnnavigableOpposites, data: 
+	Classification::Classifier::classifier <- Classification::Classifier::general
+	Classification::Classifier::classifier <- Classification::Classifier::redefinedClassifier
+	Classification::Property::connectorEnd <- StructuredClassifiers::ConnectorEnd::definingEnd
+	Classification::Property::connectorEnd <- StructuredClassifiers::ConnectorEnd::partWithPort
+	Classification::Property::property <- Classification::Property::opposite
+	Classification::Property::property <- Classification::Property::redefinedProperty
+	Classification::Property::property <- Classification::Property::subsettedProperty
+	Classification::Property::structuredClassifier <- StructuredClassifiers::StructuredClassifier::ownedAttribute
+	Classification::Property::structuredClassifier <- StructuredClassifiers::StructuredClassifier::part
+	CommonBehavior::Behavior::behavioredClassifier <- SimpleClassifiers::BehavioredClassifier::ownedBehavior
+	CommonBehavior::Behavior::behavioredClassifier <- SimpleClassifiers::BehavioredClassifier::classifierBehavior
+	CommonBehavior::Behavior::state <- StateMachines::State::doActivity
+	CommonBehavior::Behavior::state <- StateMachines::State::entry
+	CommonBehavior::Behavior::state <- StateMachines::State::exit
+	CommonStructure::Constraint::behavior <- CommonBehavior::Behavior::postcondition
+	CommonStructure::Constraint::behavior <- CommonBehavior::Behavior::precondition
+	CommonStructure::Element::directedRelationship <- CommonStructure::DirectedRelationship::target
+	CommonStructure::Element::directedRelationship <- CommonStructure::DirectedRelationship::source
+	CommonStructure::ParameterableElement::templateParameter <- CommonStructure::TemplateParameter::default
+	CommonStructure::ParameterableElement::templateParameter <- CommonStructure::TemplateParameter::ownedDefault
+	CommonStructure::Type::operation <- Classification::Operation::raisedException
+	CommonStructure::Type::operation <- Classification::Operation::type
+	SimpleClassifiers::Interface::component <- StructuredClassifiers::Component::required
+	SimpleClassifiers::Interface::component <- StructuredClassifiers::Component::provided
+	SimpleClassifiers::Interface::port <- StructuredClassifiers::Port::required
+	SimpleClassifiers::Interface::port <- StructuredClassifiers::Port::provided
+	StateMachines::Pseudostate::connectionPointReference <- StateMachines::ConnectionPointReference::exit
+	StateMachines::Pseudostate::connectionPointReference <- StateMachines::ConnectionPointReference::entry
+	StructuredClassifiers::CollaborationUse::classifier <- Classification::Classifier::representation
+	StructuredClassifiers::CollaborationUse::classifier <- Classification::Classifier::collaborationUse
+	Values::Duration::durationInterval <- Values::DurationInterval::max
+	Values::Duration::durationInterval <- Values::DurationInterval::min
+	Values::TimeExpression::timeInterval <- Values::TimeInterval::min
+	Values::TimeExpression::timeInterval <- Values::TimeInterval::max
+	Values::ValueSpecification::interval <- Values::Interval::max
+	Values::ValueSpecification::interval <- Values::Interval::min
+	

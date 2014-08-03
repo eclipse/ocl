@@ -147,7 +147,7 @@ property allCreateTypeNames : Set(String) = explicitCreateTypesMappings.oldTypes
 --property deletePropertyNames : Set(String) = deletePropertiesMappings.oldProperties.name->asSet();
 --property createPropertyNames : Set(String) = createPropertyMappings.oldProperties.name->asSet();
 property allAssociations : Set(UML::Association) = 
-	allPackages.ownedType->selectByKind(UML::Association)->asSet();
+	(allPackages-explicitDeletePackages).ownedType->selectByKind(UML::Association)->asSet();
 property allUnnavigableOpposites : Set(UML::Property) = 
 	allAssociations.ownedEnd->asSet();
 /**
@@ -169,7 +169,7 @@ property realizableUnnavigableForwards : Set(UML::Property) = realizableUnnaviga
 	
 property allUnnavigableForwards : Set(UML::Property) = realizableUnnavigableForwards; -- ->reject(isComposite);
 --property allUnnavigableForwards2 : Set(UML::Property) = allAssociations.memberEnd->asSet() - allAssociations.ownedEnd->asSet();
-property allTypes : Set(UML::Type) = allPackages.ownedType->asSet() - allAssociations;
+property allTypes : Set(UML::Type) = (allPackages-explicitDeletePackages).ownedType->asSet() - allAssociations;
 property allStructuredClassifiers : Set(UML::StructuredClassifier) = allTypes->selectByKind(UML::StructuredClassifier)->asSet();
 property allClasses : Set(UML::Class) = allTypes->selectByKind(UML::Class)->asSet();
 property allDeleteTypes : Set(UML::Type) = allTypes->select(allDeleteTypeNames->includes(name));
