@@ -291,8 +291,6 @@ public class PivotTables
 	 */
 	public static class TypeParameters {
 		public static final @NonNull ExecutorTypeParameter _Metaclass_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-
-		public static final @NonNull ExecutorTypeParameter _Visitor_R = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "R");
 	}
 
 	/**
@@ -426,7 +424,6 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _VariableExp = new EcoreExecutorType(PivotPackage.Literals.VARIABLE_EXP, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Vertex = new EcoreExecutorType(PivotPackage.Literals.VERTEX, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Visitable = new EcoreExecutorType(PivotPackage.Literals.VISITABLE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _Visitor = new EcoreExecutorType(PivotPackage.Literals.VISITOR, PACKAGE, 0, TypeParameters._Visitor_R);
 		public static final @NonNull EcoreExecutorType _VoidType = new EcoreExecutorType(PivotPackage.Literals.VOID_TYPE, PACKAGE, 0);
 
 		private static final @NonNull EcoreExecutorType[] types = {
@@ -557,7 +554,6 @@ public class PivotTables
 			_VariableExp,
 			_Vertex,
 			_Visitable,
-			_Visitor,
 			_VoidType
 		};
 
@@ -1954,10 +1950,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Visitable__OclAny = new ExecutorFragment(Types._Visitable, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Visitable__OclElement = new ExecutorFragment(Types._Visitable, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Visitable__Visitable = new ExecutorFragment(Types._Visitable, PivotTables.Types._Visitable);
-
-		private static final @NonNull ExecutorFragment _Visitor__OclAny = new ExecutorFragment(Types._Visitor, OCLstdlibTables.Types._OclAny);
-		private static final @NonNull ExecutorFragment _Visitor__OclElement = new ExecutorFragment(Types._Visitor, OCLstdlibTables.Types._OclElement);
-		private static final @NonNull ExecutorFragment _Visitor__Visitor = new ExecutorFragment(Types._Visitor, PivotTables.Types._Visitor);
 
 		private static final @NonNull ExecutorFragment _VoidType__Class = new ExecutorFragment(Types._VoidType, PivotTables.Types._Class);
 		private static final @NonNull ExecutorFragment _VoidType__Element = new ExecutorFragment(Types._VoidType, PivotTables.Types._Element);
@@ -4402,14 +4394,6 @@ public class PivotTables
 		};
 		private static final @NonNull int[] __Visitable = { 1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Visitor =
-		{
-			Fragments._Visitor__OclAny /* 0 */,
-			Fragments._Visitor__OclElement /* 1 */,
-			Fragments._Visitor__Visitor /* 2 */
-		};
-		private static final @NonNull int[] __Visitor = { 1,1,1 };
-
 		private static final @NonNull ExecutorFragment[] _VoidType =
 		{
 			Fragments._VoidType__OclAny /* 0 */,
@@ -4563,7 +4547,6 @@ public class PivotTables
 			Types._VariableExp.initFragments(_VariableExp, __VariableExp);
 			Types._Vertex.initFragments(_Vertex, __Vertex);
 			Types._Visitable.initFragments(_Visitable, __Visitable);
-			Types._Visitor.initFragments(_Visitor, __Visitor);
 			Types._VoidType.initFragments(_VoidType, __VoidType);
 		}
 	}
@@ -9281,29 +9264,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _Visitor__Visitor = {};
-		private static final @NonNull ExecutorOperation[] _Visitor__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(Metaclass(TT)) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(T)(Metaclass(T)) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(Metaclass(T)) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final @NonNull ExecutorOperation[] _Visitor__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-
 		private static final @NonNull ExecutorOperation[] _VoidType__VoidType = {};
 		private static final @NonNull ExecutorOperation[] _VoidType__Class = {};
 		private static final @NonNull ExecutorOperation[] _VoidType__Element = {
@@ -10731,10 +10691,6 @@ public class PivotTables
 			Fragments._Visitable__OclAny.initOperations(_Visitable__OclAny);
 			Fragments._Visitable__OclElement.initOperations(_Visitable__OclElement);
 			Fragments._Visitable__Visitable.initOperations(_Visitable__Visitable);
-
-			Fragments._Visitor__OclAny.initOperations(_Visitor__OclAny);
-			Fragments._Visitor__OclElement.initOperations(_Visitor__OclElement);
-			Fragments._Visitor__Visitor.initOperations(_Visitor__Visitor);
 
 			Fragments._VoidType__Class.initOperations(_VoidType__Class);
 			Fragments._VoidType__Element.initOperations(_VoidType__Element);
@@ -14760,8 +14716,6 @@ public class PivotTables
 
 		private static final @NonNull ExecutorProperty[] _Visitable = {};
 
-		private static final @NonNull ExecutorProperty[] _Visitor = {};
-
 		private static final @NonNull ExecutorProperty[] _VoidType = {
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
@@ -14949,7 +14903,6 @@ public class PivotTables
 			Fragments._VariableExp__VariableExp.initProperties(_VariableExp);
 			Fragments._Vertex__Vertex.initProperties(_Vertex);
 			Fragments._Visitable__Visitable.initProperties(_Visitable);
-			Fragments._Visitor__Visitor.initProperties(_Visitor);
 			Fragments._VoidType__VoidType.initProperties(_VoidType);
 		}
 	}

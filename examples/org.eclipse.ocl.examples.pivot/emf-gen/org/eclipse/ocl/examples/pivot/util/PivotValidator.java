@@ -945,8 +945,6 @@ public class PivotValidator
 				return validateVertex((Vertex)value, diagnostics, context);
 			case PivotPackage.VISITABLE:
 				return validateVisitable((Visitable)value, diagnostics, context);
-			case PivotPackage.VISITOR:
-				return validateVisitor((Visitor<?>)value, diagnostics, context);
 			case PivotPackage.VOID_TYPE:
 				return validateVoidType((VoidType)value, diagnostics, context);
 			case PivotPackage.ASSOCIATIVITY_KIND:
@@ -3372,16 +3370,6 @@ public class PivotValidator
 	public boolean validateVisitable(Visitable visitable,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)visitable, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateVisitor(Visitor<?> visitor,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)visitor, diagnostics, context);
 	}
 
 	/**

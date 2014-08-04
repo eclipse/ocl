@@ -1694,16 +1694,6 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable"
         isAbstract="true" isInterface="true" name="Visitable" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclElement"/>
-    <ownedType xmi:id="T.pivot.Visitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"
-        isAbstract="true" isInterface="true" name="Visitor" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclElement">
-      <ownedTemplateSignature xmi:id="s.T.pivot.Visitor">
-        <ownedParameter xsi:type="pivot:TypeTemplateParameter" xmi:id="t.pivot..VisitorR"
-            parameteredElement="#T.pivot..VisitorR">
-          <ownedParameteredElement xsi:type="pivot:Class" xmi:id="T.pivot..VisitorR"
-              name="R" templateParameter="#t.pivot..VisitorR"/>
-        </ownedParameter>
-      </ownedTemplateSignature>
-    </ownedType>
     <ownedType xmi:id="T.pivot.VoidType" name="VoidType" superClass="#T.pivot.Class"/>
   </nestedPackage>
   <nestedPackage xmi:id="P.$$" URI="http://www.eclipse.org/ocl/3.1.0/orphanage" name="$$"

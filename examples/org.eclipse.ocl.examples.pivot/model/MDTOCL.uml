@@ -470,13 +470,6 @@
         <interfaceRealization xmi:id="_lMyWQM-FEd-OX-Zde0V6vA" client="_xBkUsMeqEd-sJIf4tYBt-g" supplier="_T5siAM9-Ed-OX-Zde0V6vA" contract="_T5siAM9-Ed-OX-Zde0V6vA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_T5siAM9-Ed-OX-Zde0V6vA" name="Visitable" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_GklkEOfSEd-IXbTaV_5Nsg" name="Visitor" isAbstract="true">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_YfCXcOfSEd-IXbTaV_5Nsg" parameter="_aP87cOfSEd-IXbTaV_5Nsg">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_aP87cOfSEd-IXbTaV_5Nsg" parameteredElement="_dUCXgOfSEd-IXbTaV_5Nsg">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_dUCXgOfSEd-IXbTaV_5Nsg" name="R" templateParameter="_aP87cOfSEd-IXbTaV_5Nsg"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-      </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_0zzhIMezEd-sJIf4tYBt-g">
       <eAnnotations xmi:id="_0z1WUMezEd-sJIf4tYBt-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -501,7 +494,7 @@
   <Ecore:EDataType xmi:id="_9eufINPCEd-Vct1SlsNNwg" instanceClassName="java.lang.Throwable"/>
   <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.domain.elements.Nameable" base_Interface="_gp2QsN9WEd-5RuvZBdnt0A" className="Nameable"/>
   <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="_h0T4sN9WEd-5RuvZBdnt0A" className="Pivotable"/>
-  <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="_GklkEOfSEd-IXbTaV_5Nsg"/>
+  <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"/>
   <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" isResolveProxies="false"/>
   <Ecore:EDataType xmi:id="_W_mzkPPcEd-7P5P8zTFtow" instanceClassName="" dataTypeName="boolean"/>
   <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="_ttCmEPPiEd-7P5P8zTFtow"/>

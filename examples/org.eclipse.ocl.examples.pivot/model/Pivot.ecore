@@ -2024,9 +2024,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Visitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" abstract="true"
       interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Visitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" abstract="true"
-      interface="true">
-    <eTypeParameters name="R"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//Class"/>
 </ecore:EPackage>

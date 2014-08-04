@@ -1267,11 +1267,5 @@
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//Pivotable"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false">
-      <genTypeParameters>
-        <ecoreTypeParameter href="Pivot.ecore#//Visitor/R"/>
-      </genTypeParameters>
-      <ecoreClass href="Pivot.ecore#//Visitor"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

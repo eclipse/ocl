@@ -148,7 +148,6 @@ import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -1006,13 +1005,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass callExpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass visitorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -5481,15 +5473,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVisitor() {
-		return visitorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getAssociativityKind() {
 		return associativityKindEEnum;
 	}
@@ -6194,8 +6177,6 @@ public class PivotPackageImpl
 
 		visitableEClass = createEClass(VISITABLE);
 
-		visitorEClass = createEClass(VISITOR);
-
 		voidTypeEClass = createEClass(VOID_TYPE);
 
 		// Create enums
@@ -6241,7 +6222,6 @@ public class PivotPackageImpl
 
 		// Create type parameters
 		addETypeParameter(metaclassEClass, "T"); //$NON-NLS-1$
-		addETypeParameter(visitorEClass, "R"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -7469,8 +7449,6 @@ public class PivotPackageImpl
 		initEReference(getVertex_Outgoing(), this.getTransition(), this.getTransition_Source(), "outgoing", null, 0, -1, Vertex.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(visitableEClass, Visitable.class, "Visitable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(visitorEClass, Visitor.class, "Visitor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

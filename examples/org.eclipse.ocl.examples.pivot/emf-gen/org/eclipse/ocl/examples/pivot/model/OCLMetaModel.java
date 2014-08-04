@@ -261,7 +261,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _VariableExp = createClass(PivotPackage.Literals.VARIABLE_EXP);
 		protected final @NonNull Class _Vertex = createClass(PivotPackage.Literals.VERTEX);
 		protected final @NonNull Class _Visitable = createClass(PivotPackage.Literals.VISITABLE);
-		protected final @NonNull Class _Visitor = createClass(PivotPackage.Literals.VISITOR);
 		protected final @NonNull Class _VoidType = createClass(PivotPackage.Literals.VOID_TYPE);
 
 		protected final @NonNull Enumeration _AssociativityKind = createEnumeration(PivotPackage.Literals.ASSOCIATIVITY_KIND);
@@ -290,7 +289,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull EnumerationLiteral el__TransitionKind_external = createEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral(TransitionKind.EXTERNAL_VALUE));
 
 		protected final @NonNull Class _Metaclass_T = createClass("T");
-		protected final @NonNull Class _Visitor_R = createClass("R");
 
 		protected final @NonNull BagType _Bag_Annotation = createBagType("Bag"/*Annotation*/, "0", "*");
 		protected final @NonNull BagType _Bag_AssociationClassCallExp = createBagType("Bag"/*AssociationClassCallExp*/, "0", "*");
@@ -877,9 +875,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClass();
 			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _Visitable);
-			superClasses = type.getSuperClass();
-			superClasses.add(_OclElement);
-			ownedTypes.add(type = _Visitor);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OclElement);
 			ownedTypes.add(type = _VoidType);
@@ -3857,10 +3852,8 @@ public class OCLMetaModel extends ASResourceImpl
 		}
 
 		protected final @NonNull TypeTemplateParameter tp_Metaclass = createTypeTemplateParameter(_Metaclass_T);
-		protected final @NonNull TypeTemplateParameter tp_Visitor = createTypeTemplateParameter(_Visitor_R);
 		
 		protected final @NonNull TemplateSignature ts_Metaclass = createTemplateSignature(_Metaclass, tp_Metaclass);
-		protected final @NonNull TemplateSignature ts_Visitor = createTemplateSignature(_Visitor, tp_Visitor);
 		
 		protected void installTemplateSignatures() {
 		}

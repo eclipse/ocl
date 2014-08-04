@@ -1987,13 +1987,6 @@
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="Ppivot.TVisitable" name="Visitable" isAbstract="true"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="Ppivot.TVisitor" name="Visitor" isAbstract="true">
-      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="Ppivot.TVisitor.oTS" parameter="Ppivot.TVisitor.oTS.oP0">
-        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="Ppivot.TVisitor.oTS.oP0" parameteredElement="Ppivot.TVisitor.oTS.oP0.oPE">
-          <ownedParameteredElement xmi:type="uml:Class" xmi:id="Ppivot.TVisitor.oTS.oP0.oPE" name="R" templateParameter="Ppivot.TVisitor.oTS.oP0"/>
-        </ownedParameter>
-      </ownedTemplateSignature>
-    </packagedElement>
     <profileApplication xmi:id="Ppivot.pA0">
       <eAnnotations xmi:id="Ppivot.pA0.eA0" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -2036,5 +2029,4 @@
   <Ecore:EAttribute xmi:id="PA.Ppivot.TTypedElement.PisMany" isTransient="true" isVolatile="true" base_Property="Ppivot.TTypedElement.PisMany"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TVisitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="Ppivot.TVisitable"
       className="Visitable"/>
-  <Ecore:EClass xmi:id="PA.Ppivot.TVisitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="Ppivot.TVisitor"/>
 </xmi:XMI>

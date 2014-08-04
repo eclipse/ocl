@@ -606,7 +606,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 121;
+	int VOID_TYPE = 120;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -23519,34 +23519,6 @@ public interface PivotPackage
 	int VARIABLE_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.util.Visitor
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitor()
-	 * @generated
-	 */
-	int VISITOR = 120;
-
-	/**
-	 * The number of structural features of the '<em>Visitor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Visitor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23851,7 +23823,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 122;
+	int ASSOCIATIVITY_KIND = 121;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -23861,7 +23833,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 123;
+	int COLLECTION_KIND = 122;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -23871,7 +23843,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 124;
+	int PSEUDOSTATE_KIND = 123;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.TransitionKind <em>Transition Kind</em>}' enum.
@@ -23881,7 +23853,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransitionKind()
 	 * @generated
 	 */
-	int TRANSITION_KIND = 125;
+	int TRANSITION_KIND = 124;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -23890,7 +23862,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 126;
+	int BOOLEAN = 125;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -23900,7 +23872,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 127;
+	int INTEGER = 126;
 
 	/**
 	 * The meta object id for the '<em>Library Feature</em>' data type.
@@ -23910,7 +23882,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
 	 * @generated
 	 */
-	int LIBRARY_FEATURE = 128;
+	int LIBRARY_FEATURE = 127;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -23920,7 +23892,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 129;
+	int OBJECT = 128;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -23930,7 +23902,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 130;
+	int REAL = 129;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -23940,7 +23912,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 131;
+	int STRING = 130;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -23950,7 +23922,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 132;
+	int THROWABLE = 131;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -23960,7 +23932,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 133;
+	int UNLIMITED_NATURAL = 132;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -28700,16 +28672,6 @@ public interface PivotPackage
 	EAttribute getCallExp_Implicit();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Visitor</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.util.Visitor
-	 * @generated
-	 */
-	EClass getVisitor();
-
-	/**
 	 * Returns the meta object for enum '{@link org.eclipse.ocl.examples.pivot.AssociativityKind <em>Associativity Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32685,16 +32647,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute CALL_EXP__IMPLICIT = eINSTANCE.getCallExp_Implicit();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.util.Visitor
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitor()
-		 * @generated
-		 */
-		EClass VISITOR = eINSTANCE.getVisitor();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.AssociativityKind <em>Associativity Kind</em>}' enum.
