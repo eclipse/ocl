@@ -34,6 +34,7 @@
     <oldPackages href="../model-gen/UML.uml#Values"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Associations"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Classes"/>
+    <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Collections"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Constraints"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Expressions"/>
     <oldPackages href="../model-gen/OCL.uml#OCL-OCL_Library"/>
@@ -54,7 +55,6 @@
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Redefinitions"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Referring"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Stereotypes"/>
-    <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_TypedMultiplicity"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Visiting"/>
     <oldPackages href="../model-gen/MDTOCL2.uml#MDTOCL2-MDT_OCL2_Constraints"/>
     <oldPackages href="../model-gen/MDTOCL2.uml#MDTOCL2-MDT_OCL2_Root"/>
@@ -187,6 +187,12 @@
     <oldProperties href="../model-gen/UML.uml#Behavior-specification"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-context.1"/>
   </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot BehavioredClassifier features">
+    <oldProperties href="../model-gen/UML.uml#BehavioredClassifier-classifierBehavior"/>
+    <oldProperties href="../model-gen/UML.uml#A_classifierBehavior_behavioredClassifier-behavioredClassifier"/>
+    <oldProperties href="../model-gen/UML.uml#Behavior-context.1"/>
+    <oldProperties href="../model-gen/UML.uml#A_context_behavior-behavior"/>
+  </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Class features">
     <oldProperties href="../model-gen/UML.uml#Classifier-isFinalSpecialization"/>
     <oldProperties href="../model-gen/UML.uml#A_superClass_class-class"/>
@@ -202,6 +208,14 @@
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot InstanceSpecifcation features">
     <oldProperties href="../model-gen/UML.uml#InstanceSpecification-classifier"/>
+  </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot MultiplicityElement features">
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-isOrdered"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-isUnique"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-lower.1"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-upper.1"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-lowerValue"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-upperValue"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot NamedElement features">
     <oldProperties href="../model-gen/UML.uml#NamedElement-qualifiedName.1"/>
@@ -243,9 +257,14 @@
     <oldProperties href="../model-gen/UML.uml#Property-owningAssociation"/>
     <oldProperties href="../model-gen/UML.uml#A_ownedAttribute_owningSignal-owningSignal"/>
     <oldProperties href="../model-gen/UML.uml#Property-qualifier"/>
+    <!--oldProperties href="../model-gen/UML.uml#StructuredClassifier-slot"/-->
+    <oldProperties href="../model-gen/UML.uml#A_ownedAttribute_structuredClassifier-structuredClassifier"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Profile features">
     <oldProperties href="../model-gen/UML.uml#A_profile_stereotype-stereotype"/>
+  </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot RedefinableElement features">
+    <oldProperties href="../model-gen/UML.uml#RedefinableElement-isLeaf"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Region features">
     <oldProperties href="../model-gen/UML.uml#Region-redefinitionContext.1"/>

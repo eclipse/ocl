@@ -357,14 +357,6 @@
       <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type" name="A_extendedBys_type" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Type-extendedBys MDTOCL-MDT_OCL_Stereotypes-TypeExtension-type"/>
       <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype" name="A_extensionOfs_stereotype" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Stereotype-extensionOfs MDTOCL-MDT_OCL_Stereotypes-TypeExtension-stereotype"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity" name="MDT_OCL_TypedMultiplicity">
-      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-Boolean" name="Boolean"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-TypedElement" name="TypedElement" isAbstract="true">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-TypedElement-isRequired" name="isRequired" type="MDTOCL-MDT_OCL_TypedMultiplicity-Boolean">
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6OGn7VEeOu79LxSz8Ylw" value="true"/>
-        </ownedAttribute>
-      </packagedElement>
-    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Visiting" name="MDT_OCL_Visiting">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Visiting-Element" name="Element" isAbstract="true">
         <interfaceRealization xmi:id="_lMyWQM-FEd-OX-Zde0V6vA" client="MDTOCL-MDT_OCL_Visiting-Element" supplier="MDTOCL-MDT_OCL_Visiting-Visitable" contract="MDTOCL-MDT_OCL_Visiting-Visitable"/>
