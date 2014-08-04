@@ -139,6 +139,9 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 --		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
 --		_references := self.oldPackages->sortedBy(name).oclAsType(ecore::EObject);
 --	};
+	result.eAnnotations += object Ecore::EAnnotation {
+		source := 'http://www.eclipse.org/OCL/ASMetamodel';
+	};
 }
 
 helper UML2Ecore::CreateType::createType(createPackage : UML2Ecore::CreatePackage) : Ecore::EClassifier
@@ -174,6 +177,14 @@ inherits UML::Type::createAbstractType
 	var oldAbstractClasses : Set(UML::Class) := oldSameNamedClasses->select(isAbstract);
 	log('    oldAbstractClasses', oldAbstractClasses->display());
 	result._'abstract' := oldAbstractClasses->notEmpty();
+	var templateSignatures : Set(TemplateSignature) = oldClasses.ownedTemplateSignature->asSet();
+	if (templateSignatures->notEmpty()) {
+		var sortedTemplateSignatures : OrderedSet(TemplateSignature) = templateSignatures->excluding(null)->sortedBy(parameter->size());
+		if (sortedTemplateSignatures->notEmpty()) {
+			var templateSignature : TemplateSignature = sortedTemplateSignatures->last();
+			result.eTypeParameters += templateSignature.parameter->map createTemplateParameter();
+		}
+	}
 }
 mapping UML::Interface::createInterface(createType : UML2Ecore::CreateType) : Ecore::EClass
 inherits UML::Type::createAbstractType
@@ -270,6 +281,12 @@ helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : 
 --	var newDefaultValue : OclAny := if oldDefaultValue.oclIsKindOf(UML::EnumerationLiteral) and (umlEnumerationLiteral2eEnumLiteral->get(oldDefaultValue.oclAsType(UML::EnumerationLiteral)) <> null) then umlEnumerationLiteral2eEnumLiteral->get(oldDefaultValue.oclAsType(UML::EnumerationLiteral)) else oldDefaultValue endif;
 	output.defaultValueLiteral := oldDefaultValue;
 	return;
+}
+
+mapping UML::TemplateParameter::createTemplateParameter() : Ecore::ETypeParameter
+{
+--	log('  createTemplateParameter', self.name);
+	result.name := self.parameteredElement.oclAsType(NamedElement).name;
 }
 
 helper UML::ValueSpecification::getDefaultValue() : String

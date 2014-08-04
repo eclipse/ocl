@@ -42,11 +42,20 @@
         <ownedAttribute xmi:id="OCL-OCL_Classes-Operation-owningType" name="owningType" type="OCL-OCL_Classes-Class" isReadOnly="true" isDerived="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_11oLUBvpEeSIos3S87O_rg" name="ownedParameter" type="_w3ak4BvpEeSIos3S87O_rg" isOrdered="true" aggregation="composite" association="_9wkooBvpEeSIos3S87O_rg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_11oLURvpEeSIos3S87O_rg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_11oLUhvpEeSIos3S87O_rg" value="*"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_mZu_sBvWEeSIos3S87O_rg" name="Package">
         <ownedAttribute xmi:id="_qvzBABvWEeSIos3S87O_rg" name="ownedType" type="OCL-OCL_Classes-Class" aggregation="composite" association="__J2DUBvWEeSIos3S87O_rg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xbakcBvWEeSIos3S87O_rg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wrIXABvWEeSIos3S87O_rg" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_w3ak4BvpEeSIos3S87O_rg" name="Parameter">
+        <ownedAttribute xmi:id="_6jYT4BvpEeSIos3S87O_rg" name="operation" type="OCL-OCL_Classes-Operation" association="_9wkooBvpEeSIos3S87O_rg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6jYT4RvpEeSIos3S87O_rg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Property" name="Property">
@@ -66,6 +75,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-Type" name="Type" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_Qur8cBu-EeSIos3S87O_rg" name="TypedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Association" xmi:id="__J2DUBvWEeSIos3S87O_rg" memberEnd="_2yGVQBvWEeSIos3S87O_rg _qvzBABvWEeSIos3S87O_rg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_9wkooBvpEeSIos3S87O_rg" name="A_operation_ownedParameter" memberEnd="_6jYT4BvpEeSIos3S87O_rg _11oLUBvpEeSIos3S87O_rg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Collections" name="OCL_Collections">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-BagType" name="BagType">

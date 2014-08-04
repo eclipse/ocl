@@ -237,6 +237,7 @@
     <oldProperties href="../model-gen/UML.uml#Operation-upper.1"/>
     <oldProperties href="../model-gen/UML.uml#Operation-datatype"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinedOperation_operation-operation"/>
+    <oldProperties href="../model-gen/UML.uml#Operation-ownedParameter"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Package features">
     <oldProperties href="../model-gen/UML.uml#Package-ownedStereotype.1"/>
@@ -251,6 +252,7 @@
     <oldProperties href="../model-gen/UML.uml#Parameter-isException"/>
     <oldProperties href="../model-gen/UML.uml#Parameter-isStream"/>
     <oldProperties href="../model-gen/UML.uml#Parameter-defaultValue"/>
+    <oldProperties href="../model-gen/UML.uml#Parameter-operation"/>
     <oldProperties href="../model-gen/UML.uml#A_ownedParameter_behavior-behavior"/>
     <oldProperties href="../model-gen/UML.uml#A_role_structuredClassifier-structuredClassifier"/>
   </mappings>
