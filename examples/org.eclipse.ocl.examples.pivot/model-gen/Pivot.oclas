@@ -242,8 +242,7 @@
       <ownedAttribute xmi:id="p.pivot.Constraint.redefinedConstraint" name="redefinedConstraint"
           opposite="#p.pivot.Constraint.constraint" type="#//@nestedPackage.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.specification" isComposite="true"
-          isRequired="false" name="specification" opposite="#p.pivot.LanguageExpression.Constraint"
-          type="#T.pivot.LanguageExpression">
+          name="specification" opposite="#p.pivot.LanguageExpression.Constraint" type="#T.pivot.LanguageExpression">
         <ownedComment body="A condition that must be true when evaluated in order for the constraint to be satisfied."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Constraint.transition" isRequired="false" name="transition"

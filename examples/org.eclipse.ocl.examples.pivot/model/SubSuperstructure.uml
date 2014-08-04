@@ -433,7 +433,7 @@
             <ownedComment xmi:id="_JhArvq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArva5oEd-xTJkHwX_SlQ">
               <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
             </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQTn7VEeOu79LxSz8Ylw"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQTn7VEeOu79LxSz8Ylw" value="1"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_JhArv65oEd-xTJkHwX_SlQ" name="context" type="_ece4cLKGEeKjjeuHwYguuQ" isReadOnly="true" isDerived="true">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQT37VEeOu79LxSz8Ylw"/>

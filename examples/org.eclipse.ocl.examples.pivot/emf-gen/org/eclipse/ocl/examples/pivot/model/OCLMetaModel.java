@@ -2583,7 +2583,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setOpposite(pr_Constraint_constraint_redefinedConstraint);
 			ownedProperties.add(property = pr_Constraint_specification);
 			property.setIsComposite(true);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LanguageExpression_Constraint_specification);
 			ownedProperties.add(property = pr_Constraint_transition);

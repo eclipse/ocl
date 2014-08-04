@@ -335,7 +335,7 @@
         <ownedComment xmi:id="Ppivot.TConstraint.Pspecification.oC0" annotatedElement="Ppivot.TConstraint.Pspecification">
           <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.Pspecification.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.Pspecification.lV" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TConstraint.Pcontext" name="context" type="Ppivot.TNamespace" isReadOnly="true" isDerived="true">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.Pcontext.lV"/>
