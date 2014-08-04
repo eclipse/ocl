@@ -69,7 +69,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getNestedType <em>Nested Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getNestedClassifier <em>Nested Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedBehavior <em>Owned Behavior</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperation <em>Owned Operation</em>}</li>
@@ -185,14 +185,14 @@ public class ClassImpl
 	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
 
 	/**
-	 * The cached value of the '{@link #getNestedType() <em>Nested Type</em>}' containment reference list.
+	 * The cached value of the '{@link #getNestedClassifier() <em>Nested Classifier</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedType()
+	 * @see #getNestedClassifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> nestedType;
+	protected EList<org.eclipse.ocl.examples.pivot.Class> nestedClassifier;
 
 	/**
 	 * The cached value of the '{@link #getOwnedAttribute() <em>Owned Attribute</em>}' containment reference list.
@@ -541,8 +541,8 @@ public class ClassImpl
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__NESTED_TYPE:
-				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__NESTED_CLASSIFIER:
+				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
@@ -636,14 +636,13 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getNestedType()
+	public List<org.eclipse.ocl.examples.pivot.Class> getNestedClassifier()
 	{
-		if (nestedType == null)
+		if (nestedClassifier == null)
 		{
-			nestedType = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__NESTED_TYPE);
+			nestedClassifier = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__NESTED_CLASSIFIER);
 		}
-		return nestedType;
+		return nestedClassifier;
 	}
 
 	/**
@@ -706,8 +705,8 @@ public class ClassImpl
 				return isActive();
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.CLASS__NESTED_TYPE:
-				return getNestedType();
+			case PivotPackage.CLASS__NESTED_CLASSIFIER:
+				return getNestedClassifier();
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
@@ -791,9 +790,9 @@ public class ClassImpl
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.CLASS__NESTED_TYPE:
-				getNestedType().clear();
-				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.CLASS__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
+				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -878,8 +877,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.CLASS__NESTED_TYPE:
-				getNestedType().clear();
+			case PivotPackage.CLASS__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
 				return;
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -943,8 +942,8 @@ public class ClassImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.CLASS__NESTED_TYPE:
-				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.CLASS__NESTED_CLASSIFIER:
+				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:

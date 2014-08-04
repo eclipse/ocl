@@ -174,8 +174,8 @@ public class AssociationClassImpl
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__NESTED_TYPE:
-				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__NESTED_CLASSIFIER:
+				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
@@ -234,8 +234,8 @@ public class AssociationClassImpl
 				return isActive();
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.ASSOCIATION_CLASS__NESTED_TYPE:
-				return getNestedType();
+			case PivotPackage.ASSOCIATION_CLASS__NESTED_CLASSIFIER:
+				return getNestedClassifier();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
@@ -321,9 +321,9 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__NESTED_TYPE:
-				getNestedType().clear();
-				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
+				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -412,8 +412,8 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__NESTED_TYPE:
-				getNestedType().clear();
+			case PivotPackage.ASSOCIATION_CLASS__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -480,8 +480,8 @@ public class AssociationClassImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.ASSOCIATION_CLASS__NESTED_TYPE:
-				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__NESTED_CLASSIFIER:
+				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:

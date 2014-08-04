@@ -258,8 +258,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return isActive();
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.LAMBDA_TYPE__NESTED_TYPE:
-				return getNestedType();
+			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
+				return getNestedClassifier();
 			case PivotPackage.LAMBDA_TYPE__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
@@ -357,9 +357,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__NESTED_TYPE:
-				getNestedType().clear();
-				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
+				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -461,8 +461,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.LAMBDA_TYPE__NESTED_TYPE:
-				getNestedType().clear();
+			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
 				return;
 			case PivotPackage.LAMBDA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -542,8 +542,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.LAMBDA_TYPE__NESTED_TYPE:
-				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
+				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:

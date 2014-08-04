@@ -216,8 +216,8 @@ public class MessageTypeImpl
 				return isActive();
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.MESSAGE_TYPE__NESTED_TYPE:
-				return getNestedType();
+			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
+				return getNestedClassifier();
 			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
@@ -307,9 +307,9 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.MESSAGE_TYPE__NESTED_TYPE:
-				getNestedType().clear();
-				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
+				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -400,8 +400,8 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.MESSAGE_TYPE__NESTED_TYPE:
-				getNestedType().clear();
+			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
 				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -471,8 +471,8 @@ public class MessageTypeImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.MESSAGE_TYPE__NESTED_TYPE:
-				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
+				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:

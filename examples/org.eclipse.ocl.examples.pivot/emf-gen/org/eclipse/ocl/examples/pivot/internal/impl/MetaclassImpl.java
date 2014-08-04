@@ -177,8 +177,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return isActive();
 			case PivotPackage.METACLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.METACLASS__NESTED_TYPE:
-				return getNestedType();
+			case PivotPackage.METACLASS__NESTED_CLASSIFIER:
+				return getNestedClassifier();
 			case PivotPackage.METACLASS__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
@@ -266,9 +266,9 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.METACLASS__NESTED_TYPE:
-				getNestedType().clear();
-				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.METACLASS__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
+				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.METACLASS__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -357,8 +357,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.METACLASS__NESTED_TYPE:
-				getNestedType().clear();
+			case PivotPackage.METACLASS__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
 				return;
 			case PivotPackage.METACLASS__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -426,8 +426,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.METACLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.METACLASS__NESTED_TYPE:
-				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.METACLASS__NESTED_CLASSIFIER:
+				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.METACLASS__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:

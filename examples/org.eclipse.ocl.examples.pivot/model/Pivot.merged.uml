@@ -220,9 +220,9 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.Ppackage.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TClass.PnestedType" name="nestedType" type="Ppivot.TClass" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PnestedType.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PnestedType.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TClass.PnestedClassifier" name="nestedClassifier" type="Ppivot.TClass" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PnestedClassifier.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PnestedClassifier.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TClass.PownedBehavior" name="ownedBehavior" type="Ppivot.TBehavior" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedBehavior.lV"/>

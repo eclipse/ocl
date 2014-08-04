@@ -340,8 +340,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
-				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_CLASSIFIER:
+				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
@@ -421,8 +421,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return isActive();
 			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
-				return getNestedType();
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_CLASSIFIER:
+				return getNestedClassifier();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
@@ -516,9 +516,9 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
-				getNestedType().clear();
-				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
+				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -616,8 +616,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
-				getNestedType().clear();
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_CLASSIFIER:
+				getNestedClassifier().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
@@ -694,8 +694,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
-				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__NESTED_CLASSIFIER:
+				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
