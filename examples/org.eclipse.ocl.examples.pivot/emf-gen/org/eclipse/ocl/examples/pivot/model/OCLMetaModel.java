@@ -385,7 +385,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _Collection_Vertex = createCollectionType("Collection"/*Vertex*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_Class = createCollectionType("OrderedCollection"/*Class*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_CollectionLiteralPart = createCollectionType("OrderedCollection"/*CollectionLiteralPart*/, "0", "*");
-		protected final @NonNull CollectionType _OrderedCollection_Constraint = createCollectionType("OrderedCollection"/*Constraint*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_ConstructorPart = createCollectionType("OrderedCollection"/*ConstructorPart*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_Detail = createCollectionType("OrderedCollection"/*Detail*/, "0", "*");
 		protected final @NonNull CollectionType _OrderedCollection_Element = createCollectionType("OrderedCollection"/*Element*/, "0", "*");
@@ -403,7 +402,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _OrderedCollection_Variable = createCollectionType("OrderedCollection"/*Variable*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Class = createOrderedSetType("OrderedSet"/*Class*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_CollectionLiteralPart = createOrderedSetType("OrderedSet"/*CollectionLiteralPart*/, "0", "*");
-		protected final @NonNull OrderedSetType _OrderedSet_Constraint = createOrderedSetType("OrderedSet"/*Constraint*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_ConstructorPart = createOrderedSetType("OrderedSet"/*ConstructorPart*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Detail = createOrderedSetType("OrderedSet"/*Detail*/, "0", "*");
 		protected final @NonNull OrderedSetType _OrderedSet_Element = createOrderedSetType("OrderedSet"/*Element*/, "0", "*");
@@ -721,6 +719,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClass();
 			superClasses.add(_VariableDeclaration);
+			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _ParameterableElement);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Element);
@@ -1409,11 +1408,6 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_CollectionLiteralPart);
 			superClasses = type.getSuperClass();
 			superClasses.add(_Collection_CollectionLiteralPart);
-			orphanTypes.add(type = _OrderedCollection_Constraint);
-			type.setUnspecializedElement(_OrderedCollection);
-			type.setElementType(_Constraint);
-			superClasses = type.getSuperClass();
-			superClasses.add(_Collection_Constraint);
 			orphanTypes.add(type = _OrderedCollection_ConstructorPart);
 			type.setUnspecializedElement(_OrderedCollection);
 			type.setElementType(_ConstructorPart);
@@ -1501,12 +1495,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClass();
 			superClasses.add(_OrderedCollection_CollectionLiteralPart);
 			superClasses.add(_UniqueCollection_CollectionLiteralPart);
-			orphanTypes.add(type = _OrderedSet_Constraint);
-			type.setUnspecializedElement(_OrderedSet);
-			type.setElementType(_Constraint);
-			superClasses = type.getSuperClass();
-			superClasses.add(_OrderedCollection_Constraint);
-			superClasses.add(_UniqueCollection_Constraint);
 			orphanTypes.add(type = _OrderedSet_ConstructorPart);
 			type.setUnspecializedElement(_OrderedSet);
 			type.setElementType(_ConstructorPart);
@@ -2158,7 +2146,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_MessageType_referredSignal = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL, _Signal);
 		protected final @NonNull Property pr_Metaclass_instanceType = createProperty(PivotPackage.Literals.METACLASS__INSTANCE_TYPE, _Type);
 		protected final @NonNull Property pr_NamedElement_name = createProperty(PivotPackage.Literals.NAMED_ELEMENT__NAME, _String);
-		protected final @NonNull Property pr_Namespace_ownedRule = createProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE, _OrderedSet_Constraint);
+		protected final @NonNull Property pr_Namespace_ownedRule = createProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE, _Set_Constraint);
 		protected final @NonNull Property pr_Namespace_Constraint_context = createProperty("Constraint", _Bag_Constraint);
 		protected final @NonNull Property pr_Namespace_Import_importedNamespace = createProperty("Import", _Bag_Import);
 		protected final @NonNull Property pr_NavigationCallExp_navigationSource = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, _Property);
@@ -4064,8 +4052,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Class)));
 			_OrderedCollection_CollectionLiteralPart.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _CollectionLiteralPart)));
-			_OrderedCollection_Constraint.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
-				createTemplateParameterSubstitution(_OrderedCollection_T, _Constraint)));
 			_OrderedCollection_ConstructorPart.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ConstructorPart)));
 			_OrderedCollection_Detail.getTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
@@ -4100,8 +4086,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _Class)));
 			_OrderedSet_CollectionLiteralPart.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _CollectionLiteralPart)));
-			_OrderedSet_Constraint.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
-				createTemplateParameterSubstitution(_OrderedSet_T, _Constraint)));
 			_OrderedSet_ConstructorPart.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _ConstructorPart)));
 			_OrderedSet_Detail.getTemplateBinding().add(createTemplateBinding(_OrderedSet_,

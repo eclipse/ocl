@@ -16272,13 +16272,31 @@ public interface PivotPackage
 	int PARAMETER__TYPE = VARIABLE_DECLARATION__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNING_TEMPLATE_PARAMETER = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__TEMPLATE_PARAMETER = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Operation</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__OPERATION = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int PARAMETER__OPERATION = VARIABLE_DECLARATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -16287,7 +16305,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+	int PARAMETER_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -16326,13 +16344,31 @@ public interface PivotPackage
 	int PARAMETER___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
 
 	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___IS_TEMPLATE_PARAMETER = VARIABLE_DECLARATION_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
+	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.

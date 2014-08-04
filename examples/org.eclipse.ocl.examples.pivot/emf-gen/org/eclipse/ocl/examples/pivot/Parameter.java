@@ -32,7 +32,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface Parameter
-		extends VariableDeclaration {
+		extends VariableDeclaration, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' container reference.

@@ -714,7 +714,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TNamespace" name="Namespace" isAbstract="true">
       <generalization xmi:id="Ppivot.TNamespace.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TNamespace.PownedRule" name="ownedRule" type="Ppivot.TConstraint" isOrdered="true" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TNamespace.PownedRule" name="ownedRule" type="Ppivot.TConstraint" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TNamespace.PownedRule.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TNamespace.PownedRule.uV" value="*"/>
       </ownedAttribute>
@@ -907,7 +907,8 @@
         <body>A parameter is a typed element that represents a parameter of an operation.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TParameter.g0" general="Ppivot.TTypedElement"/>
-      <generalization xmi:id="Ppivot.TParameter.g1" general="Ppivot.TVariableDeclaration"/>
+      <generalization xmi:id="Ppivot.TParameter.g1" general="Ppivot.TParameterableElement"/>
+      <generalization xmi:id="Ppivot.TParameter.g2" general="Ppivot.TVariableDeclaration"/>
       <ownedAttribute xmi:id="Ppivot.TParameter.Poperation" name="operation" type="Ppivot.TOperation" association="Ppivot.A_ownedParameter_operation">
         <ownedComment xmi:id="Ppivot.TParameter.Poperation.oC0" annotatedElement="Ppivot.TParameter.Poperation">
           <body>The operation that owns the parameter.</body>
