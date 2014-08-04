@@ -2,6 +2,7 @@ package org.eclipse.ocl.examples.pivot.lookup;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -257,7 +258,15 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	@NonNull
 	public SingleResultEnvironment resolveDuplicates() {
-		if (elements.size() > 1)  {			
+		if (elements.size() > 1)  {
+			// FIXME this WAS done while "adding" elements. Adding here where they are supposed
+			// to be used. Talk with ED about this.
+			if (matchers != null) {
+				if (resolvers == null) {
+					resolvers = new HashSet<ScopeFilter>();
+				}
+				resolvers.addAll(matchers);
+			}
 			for (int i = 0; i < elements.size()-1;) {
 				boolean iRemoved = false;
 				@SuppressWarnings("null") @NonNull Object iValue = elements.get(i);
