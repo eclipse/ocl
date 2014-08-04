@@ -80,6 +80,8 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.lookup.ISingleResultEnvironment;
+import org.eclipse.ocl.examples.pivot.lookup.NewPivotNameResolver;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -161,10 +163,15 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //	private static final Logger logger = Logger.getLogger(EssentialOCLLeft2RightVisitor.class);
 
 	protected final @NonNull MetaModelManager metaModelManager;
+	/**
+	 * @since 3.5
+	 */
+	protected final @NonNull NewPivotNameResolver lResolver;
 	
 	public EssentialOCLCSLeft2RightVisitor(@NonNull CS2PivotConversion context) {
 		super(context);
 		this.metaModelManager = context.getMetaModelManager();
+		this.lResolver = new NewPivotNameResolver(metaModelManager); // FIXME factory method
 	}
 
 /*	protected OCLExpression zzcheckImplementation(NamedExpCS csNavigatingExp,
@@ -863,17 +870,29 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
-		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, expression.getName());
-		environmentView.addFilter(filter);
+//      //PREVIOUS CODE TO MAKE AUTO-GENERATION CODE WORK. FOR THE TIME BEING, USE WHEN GENERATING CODE
+//		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
+//		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, expression.getName());
+//		environmentView.addFilter(filter);
+//		Type sourceType = PivotUtil.getType(expression.getSource());
+//		int size = 0;
+//		if (sourceType != null) {
+//			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
+//			size = environmentView.computeLookups(lowerBoundType, null);
+//		}
+//		if (size == 1) {
+//			Operation operation = (Operation)environmentView.getContent();
+//  	//END-OF-CODE	
+			
+
+		//NEW CODE TO TEST NEW GENERATED LOOKUP VISITOR. FOR THE TIME BEING, USE ONLY WHEN RUNNING TEST CASES
 		Type sourceType = PivotUtil.getType(expression.getSource());
-		int size = 0;
-		if (sourceType != null) {
-			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
-			size = environmentView.computeLookups(lowerBoundType, null);
-		}
-		if (size == 1) {
-			Operation operation = (Operation)environmentView.getContent();
+		ISingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression,
+			filter);
+		if (env.getSize() == 1) {
+			Operation operation = (Operation) env.getSingleResult();
+		//END-OF-CODE
+			
 			context.setReferredOperation(expression, operation);
 			resolveOperationReturnType(expression);
 		}
@@ -889,6 +908,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 			String boundMessage;
+			
 			if (s.length() > 0) {
 				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, csOperator, sourceType, s.toString());
 			}

@@ -6,7 +6,8 @@ package pivot
 context Element
 def: parentEnv() : env::Environment =
 	let parent = oclContainer() in if parent.oclIsKindOf(Element) then parent.oclAsType(Element)._env(self) else null endif
-		
+
+	
 context Class
 def : _env(child : Element) : env::Environment =
 	let superClasses : Set(Class) = self->closure(superClass) in 
@@ -20,6 +21,8 @@ context DataType
 def : _env(child : Element) : env::Environment =
 	-- FIXME need to translate NewPivotLookupVisitor.visitDatatype
 	parentEnv().nestedEnv()
+		.addElements(self->closure(superClass).ownedAttribute->select(not isStatic))
+		.addElements(self->closure(superClass).ownedOperation->select(not isStatic))
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element
@@ -77,8 +80,8 @@ def : _env(child : Element) : env::Environment =
 		.addElements(self.ownedType)
 		.addElements(self.ownedPrecedence)
 
-context Metaclass
-def : _env(child : Element) : env::Environment = null
+--context Metaclass
+--def : _env(child : Element) : env::Environment = null
 --	parentEnv().nestedEnv()
 --		.addElements(env.elements) -- add instance type properties FIXME Dummy valid expression. I can't access to instanceType
 
