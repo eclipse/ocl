@@ -167,7 +167,7 @@ inherits UML::Type::createAbstractType
 {
 --	log('  createClass', self.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
-	result._'abstract' := createType.oldTypes->select(oclIsKindOf(UML::Class))->exists(oclAsType(UML::Class).isAbstract);
+	result._'abstract' := createType.oldTypes->select(oclIsKindOf(UML::Class))->select(c | c.name = self.name)->exists(oclAsType(UML::Class).isAbstract);
 }
 mapping UML::Interface::createInterface(createType : UML2Ecore::CreateType) : Ecore::EClass
 inherits UML::Type::createAbstractType
