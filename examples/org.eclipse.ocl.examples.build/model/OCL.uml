@@ -27,6 +27,10 @@
         <ownedAttribute xmi:id="_2yGVQBvWEeSIos3S87O_rg" name="package" type="_mZu_sBvWEeSIos3S87O_rg" association="__J2DUBvWEeSIos3S87O_rg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4GWycBvWEeSIos3S87O_rg"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_hk6zkBvbEeSIos3S87O_rg" name="superClass" type="OCL-OCL_Classes-Class">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hk6zkRvbEeSIos3S87O_rg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hk6zkhvbEeSIos3S87O_rg" value="*"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Classes-DataType" name="DataType">
         <generalization xmi:id="_XpnTEX7VEeOu79LxSz8Ylw" general="OCL-OCL_Classes-Class"/>

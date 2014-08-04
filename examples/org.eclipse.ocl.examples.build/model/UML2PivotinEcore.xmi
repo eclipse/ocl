@@ -184,6 +184,7 @@
     <oldProperties href="../model-gen/UML.uml#Behavior-postcondition"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-precondition"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-redefinedBehavior"/>
+    <oldProperties href="../model-gen/UML.uml#A_redefinedBehavior_behavior-behavior"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-specification"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-context.1"/>
   </mappings>
@@ -196,6 +197,7 @@
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Class features">
     <oldProperties href="../model-gen/UML.uml#Classifier-isFinalSpecialization"/>
     <oldProperties href="../model-gen/UML.uml#A_superClass_class-class"/>
+    <oldProperties href="../model-gen/UML.uml#Class-superClass.1"/>
     <oldProperties href="../model-gen/UML.uml#Classifier-general.1"/>
     <oldProperties href="../model-gen/UML.uml#Classifier-inheritedMember.1"/>
     <oldProperties href="../model-gen/UML.uml#A_classifier_instanceSpecification-instanceSpecification"/>
@@ -223,6 +225,8 @@
     <oldProperties href="../model-gen/UML.uml#A_member_memberNamespace-memberNamespace"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Operation features">
+    <oldProperties href="../model-gen/UML.uml#BehavioralFeature-isAbstract"/>
+    <oldProperties href="../model-gen/UML.uml#BehavioralFeature-method"/>
     <oldProperties href="../model-gen/UML.uml#Operation-isOrdered.1"/>
     <oldProperties href="../model-gen/UML.uml#Operation-isQuery"/>
     <oldProperties href="../model-gen/UML.uml#Operation-isUnique.1"/>
