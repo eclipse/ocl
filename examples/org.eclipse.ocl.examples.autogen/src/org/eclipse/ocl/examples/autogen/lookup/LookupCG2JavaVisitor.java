@@ -130,7 +130,7 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 			js.append("}\n");
 			js.append("else {\n");
 			js.pushIndentation(null);
-				js.append("return null;\n");		
+				js.append("return "+LookupClassContext.CONTEXT_NAME +";\n");		
 			js.popIndentation();
 		js.append("}\n");
 		js.popIndentation();
