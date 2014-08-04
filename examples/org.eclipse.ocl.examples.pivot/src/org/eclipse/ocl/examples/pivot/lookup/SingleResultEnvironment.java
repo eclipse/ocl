@@ -97,6 +97,11 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 		return evaluator;
 	}
 	
+//	To delete
+//	public String getName() {
+//		return name;
+//	}
+	
 	//
 	// ADDITIONAL STUFF TO INTEGRATE WITH
 	//
