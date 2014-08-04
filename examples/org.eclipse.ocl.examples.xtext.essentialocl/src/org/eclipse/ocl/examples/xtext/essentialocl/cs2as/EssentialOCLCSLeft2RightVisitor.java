@@ -870,28 +870,28 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorCS csOperator, @NonNull ScopeFilter filter) {
-//      //PREVIOUS CODE TO MAKE AUTO-GENERATION CODE WORK. FOR THE TIME BEING, USE WHEN GENERATING CODE
-//		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
-//		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, expression.getName());
-//		environmentView.addFilter(filter);
-//		Type sourceType = PivotUtil.getType(expression.getSource());
-//		int size = 0;
-//		if (sourceType != null) {
-//			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
-//			size = environmentView.computeLookups(lowerBoundType, null);
-//		}
-//		if (size == 1) {
-//			Operation operation = (Operation)environmentView.getContent();
-//  	//END-OF-CODE	
+      //PREVIOUS CODE TO MAKE AUTO-GENERATION CODE WORK. FOR THE TIME BEING, USE WHEN GENERATING CODE
+		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, expression.getName());
+		environmentView.addFilter(filter);
+		Type sourceType = PivotUtil.getType(expression.getSource());
+		int size = 0;
+		if (sourceType != null) {
+			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
+			size = environmentView.computeLookups(lowerBoundType, null);
+		}
+		if (size == 1) {
+			Operation operation = (Operation)environmentView.getContent();
+  	//END-OF-CODE	
 			
 
-		//NEW CODE TO TEST NEW GENERATED LOOKUP VISITOR. FOR THE TIME BEING, USE ONLY WHEN RUNNING TEST CASES
-		Type sourceType = PivotUtil.getType(expression.getSource());
-		ISingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression,
-			filter);
-		if (env.getSize() == 1) {
-			Operation operation = (Operation) env.getSingleResult();
-		//END-OF-CODE
+//		//NEW CODE TO TEST NEW GENERATED LOOKUP VISITOR. FOR THE TIME BEING, USE ONLY WHEN RUNNING TEST CASES
+//		Type sourceType = PivotUtil.getType(expression.getSource());
+//		ISingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression,
+//			filter);
+//		if (env.getSize() == 1) {
+//			Operation operation = (Operation) env.getSingleResult();
+//		//END-OF-CODE
 			
 			context.setReferredOperation(expression, operation);
 			resolveOperationReturnType(expression);
