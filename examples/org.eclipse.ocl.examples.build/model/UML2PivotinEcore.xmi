@@ -208,6 +208,9 @@
     <oldProperties href="../model-gen/UML.uml#A_redefinitionContext_state-state"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinitionContext_transition-transition"/>
   </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot ExpressionInOCL features">
+    <oldProperties href="../model-gen/UML.uml#OpaqueExpression-result.1"/>
+  </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot InstanceSpecifcation features">
     <oldProperties href="../model-gen/UML.uml#InstanceSpecification-classifier"/>
   </mappings>
@@ -249,6 +252,10 @@
     <oldProperties href="../model-gen/UML.uml#Parameter-isStream"/>
     <oldProperties href="../model-gen/UML.uml#Parameter-defaultValue"/>
     <oldProperties href="../model-gen/UML.uml#A_ownedParameter_behavior-behavior"/>
+    <oldProperties href="../model-gen/UML.uml#A_role_structuredClassifier-structuredClassifier"/>
+  </mappings>
+  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Profile features">
+    <oldProperties href="../model-gen/UML.uml#A_profile_stereotype-stereotype"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Property features">
     <oldProperties href="../model-gen/UML.uml#Property-isDerivedUnion"/>
@@ -261,11 +268,8 @@
     <oldProperties href="../model-gen/UML.uml#Property-owningAssociation"/>
     <oldProperties href="../model-gen/UML.uml#A_ownedAttribute_owningSignal-owningSignal"/>
     <oldProperties href="../model-gen/UML.uml#Property-qualifier"/>
-    <!--oldProperties href="../model-gen/UML.uml#StructuredClassifier-slot"/-->
+    <oldProperties href="../model-gen/UML.uml#A_definingFeature_slot-slot"/>
     <oldProperties href="../model-gen/UML.uml#A_ownedAttribute_structuredClassifier-structuredClassifier"/>
-  </mappings>
-  <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Profile features">
-    <oldProperties href="../model-gen/UML.uml#A_profile_stereotype-stereotype"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot RedefinableElement features">
     <oldProperties href="../model-gen/UML.uml#RedefinableElement-isLeaf"/>
@@ -331,7 +335,7 @@
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove replaced definition">
     <oldProperties href="../model-gen/UML.uml#Constraint-context"/>
-    <oldProperties href="../model-gen/UML.uml#Constraint-specification"/>
+    <!--oldProperties href="../model-gen/UML.uml#Constraint-specification"/-->
     <oldProperties href="../model-gen/UML.uml#A_constrainedElement_constraint-constraint"/>
     <oldProperties href="../model-gen/UML.uml#A_specification_owningConstraint-owningConstraint"/>
   </mappings>

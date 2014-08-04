@@ -200,7 +200,7 @@
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ATYoEBtEEeSM9LreJtBwBg"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_wtFQ4BusEeSIos3S87O_rg" name="package" type="MDTOCL-MDT_OCL_Instances-Package" association="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance">
+        <ownedAttribute xmi:id="_wtFQ4BusEeSIos3S87O_rg" name="owningPackage" type="MDTOCL-MDT_OCL_Instances-Package" association="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ziv2cBusEeSIos3S87O_rg"/>
         </ownedAttribute>
       </packagedElement>
@@ -214,7 +214,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K7U5AARMEeSiuvNrq-crrw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_package_ownedInstances" memberEnd="_wtFQ4BusEeSIos3S87O_rg MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_owningPackage_ownedInstances" memberEnd="_wtFQ4BusEeSIos3S87O_rg MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_A8ymsBseEeSM9LreJtBwBg" name="Property"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_AsjLQBseEeSM9LreJtBwBg" name="Slot">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-Slot-definingProperty" name="definingProperty" type="_A8ymsBseEeSM9LreJtBwBg"/>
@@ -362,13 +362,6 @@
         <interfaceRealization xmi:id="_lMyWQM-FEd-OX-Zde0V6vA" client="MDTOCL-MDT_OCL_Visiting-Element" supplier="MDTOCL-MDT_OCL_Visiting-Visitable" contract="MDTOCL-MDT_OCL_Visiting-Visitable"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="MDTOCL-MDT_OCL_Visiting-Visitable" name="Visitable" isAbstract="true"/>
-      <packagedElement xmi:type="uml:Interface" xmi:id="MDTOCL-MDT_OCL_Visiting-Visitor" name="Visitor" isAbstract="true">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_YfCXcOfSEd-IXbTaV_5Nsg" parameter="_aP87cOfSEd-IXbTaV_5Nsg">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_aP87cOfSEd-IXbTaV_5Nsg" parameteredElement="R">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="R" name="R" templateParameter="_aP87cOfSEd-IXbTaV_5Nsg"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-      </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_0zzhIMezEd-sJIf4tYBt-g">
       <eAnnotations xmi:id="_0z1WUMezEd-sJIf4tYBt-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -393,7 +386,7 @@
   <Ecore:EDataType xmi:id="_9eufINPCEd-Vct1SlsNNwg" instanceClassName="java.lang.Throwable"/>
   <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.domain.elements.Nameable" base_Interface="MDTOCL-MDT_OCL_Framework-Nameable" className="Nameable"/>
   <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="MDTOCL-MDT_OCL_Framework-Pivotable" className="Pivotable"/>
-  <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="MDTOCL-MDT_OCL_Visiting-Visitor"/>
+  <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor"/>
   <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" isResolveProxies="false"/>
   <Ecore:EDataType xmi:id="_W_mzkPPcEd-7P5P8zTFtow" instanceClassName="" dataTypeName="boolean"/>
   <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="MDTOCL-MDT_OCL_PrimitiveTypes-BooleanLiteralExp-booleanSymbol"/>

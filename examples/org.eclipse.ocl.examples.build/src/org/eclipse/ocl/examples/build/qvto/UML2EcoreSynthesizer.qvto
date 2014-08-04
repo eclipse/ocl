@@ -172,7 +172,7 @@ inherits UML::Type::createAbstractType
 	var oldSameNamedClasses : Set(UML::Class) := oldClasses->select(c | c.name = self.name);
 --	log('    oldSameNamedClasses', oldSameNamedClasses->display());
 	var oldAbstractClasses : Set(UML::Class) := oldSameNamedClasses->select(isAbstract);
---	log('    oldAbstractClasses', oldAbstractClasses->display());
+	log('    oldAbstractClasses', oldAbstractClasses->display());
 	result._'abstract' := oldAbstractClasses->notEmpty();
 }
 mapping UML::Interface::createInterface(createType : UML2Ecore::CreateType) : Ecore::EClass
