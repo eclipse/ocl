@@ -200,6 +200,9 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MJ2QuQRDEeSiuvNrq-crrw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2QugRDEeSiuvNrq-crrw" value="*"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_FGWBgBvYEeSIos3S87O_rg" name="owningPackage" type="_YzOH0ARKEeSiuvNrq-crrw" association="_usYzgARKEeSiuvNrq-crrw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J2CDwBvYEeSIos3S87O_rg"/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="_MJ2QuwRDEeSiuvNrq-crrw" name="classes" type="_I7IPEBtGEeSM9LreJtBwBg" association="_MJ2Q0wRDEeSiuvNrq-crrw">
           <ownedComment xmi:id="_MJ2QvARDEeSiuvNrq-crrw" annotatedElement="_MJ2QuwRDEeSiuvNrq-crrw">
             <body>The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.</body>
@@ -274,7 +277,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2Q5ARDEeSiuvNrq-crrw" value="*"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_usYzgARKEeSiuvNrq-crrw" name="A_package_ownedInstance" memberEnd="_dtrPoARKEeSiuvNrq-crrw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_usYzgARKEeSiuvNrq-crrw" name="A_owningPackage_ownedInstance" memberEnd="_FGWBgBvYEeSIos3S87O_rg _dtrPoARKEeSiuvNrq-crrw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_t35skMlAEd-bx742yyafXQ" name="MDT_OCL_Precedences">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_2eERIMlAEd-bx742yyafXQ" name="AssociativityKind">

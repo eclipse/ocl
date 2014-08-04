@@ -114,6 +114,7 @@ public interface Package
 	/**
 	 * Returns the value of the '<em><b>Owned Instances</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.InstanceSpecification}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -121,6 +122,7 @@ public interface Package
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Instances</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedInstances()
+	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification#getOwningPackage
 	 * @generated
 	 */
 	List<InstanceSpecification> getOwnedInstances();

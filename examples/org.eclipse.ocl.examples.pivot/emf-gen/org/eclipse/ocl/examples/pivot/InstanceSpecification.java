@@ -25,6 +25,7 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getClasses <em>Classes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSlots <em>Slots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSpecification <em>Specification</em>}</li>
  * </ul>
@@ -48,6 +49,33 @@ public interface InstanceSpecification extends PackageableElement
 	 * @generated
 	 */
 	List<org.eclipse.ocl.examples.pivot.Class> getClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Package</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Package</em>' container reference.
+	 * @see #setOwningPackage(org.eclipse.ocl.examples.pivot.Package)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification_OwningPackage()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedInstances
+	 * @generated
+	 */
+	org.eclipse.ocl.examples.pivot.Package getOwningPackage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getOwningPackage <em>Owning Package</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Package</em>' container reference.
+	 * @see #getOwningPackage()
+	 * @generated
+	 */
+	void setOwningPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Slots</b></em>' containment reference list.

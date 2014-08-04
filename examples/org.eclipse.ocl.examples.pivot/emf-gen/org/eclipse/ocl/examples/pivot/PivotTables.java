@@ -2193,9 +2193,9 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Import__Root__imports = new ExecutorPropertyWithImplementation("Root", Types._Import, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ROOT__IMPORTS));
 
 		public static final @NonNull ExecutorProperty _InstanceSpecification__classes = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES, Types._InstanceSpecification, 0);
-		public static final @NonNull ExecutorProperty _InstanceSpecification__slots = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, Types._InstanceSpecification, 1);
-		public static final @NonNull ExecutorProperty _InstanceSpecification__specification = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, Types._InstanceSpecification, 2);
-		public static final @NonNull ExecutorProperty _InstanceSpecification__Package__ownedInstances = new ExecutorPropertyWithImplementation("Package", Types._InstanceSpecification, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES));
+		public static final @NonNull ExecutorProperty _InstanceSpecification__owningPackage = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNING_PACKAGE, Types._InstanceSpecification, 1);
+		public static final @NonNull ExecutorProperty _InstanceSpecification__slots = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, Types._InstanceSpecification, 2);
+		public static final @NonNull ExecutorProperty _InstanceSpecification__specification = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, Types._InstanceSpecification, 3);
 
 		public static final @NonNull ExecutorProperty _IntegerLiteralExp__integerSymbol = new EcoreExecutorProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, Types._IntegerLiteralExp, 0);
 
@@ -11940,6 +11940,7 @@ public class PivotTables
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._InstanceSpecification__owningPackage,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._InstanceSpecification__slots,
 			PivotTables.Properties._InstanceSpecification__specification,
@@ -11950,7 +11951,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
 			PivotTables.Properties._EnumerationLiteral__EnumLiteralExp__referredEnumLiteral,
-			PivotTables.Properties._InstanceSpecification__Package__ownedInstances,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
 			PivotTables.Properties._ParameterableElement__templateParameter__default,
 			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
@@ -12132,6 +12132,7 @@ public class PivotTables
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._InstanceSpecification__owningPackage,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._InstanceSpecification__slots,
 			PivotTables.Properties._InstanceSpecification__specification,
@@ -12140,7 +12141,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._InstanceSpecification__Package__ownedInstances,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
 			PivotTables.Properties._ParameterableElement__templateParameter__default,
 			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,

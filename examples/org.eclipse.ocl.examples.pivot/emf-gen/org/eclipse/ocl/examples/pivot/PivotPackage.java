@@ -8993,13 +8993,22 @@ public interface PivotPackage
 	int INSTANCE_SPECIFICATION__CLASSES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SPECIFICATION__OWNING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Slots</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__SLOTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+	int INSTANCE_SPECIFICATION__SLOTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
@@ -9008,7 +9017,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SPECIFICATION__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Instance Specification</em>' class.
@@ -9017,7 +9026,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
+	int INSTANCE_SPECIFICATION_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -9135,6 +9144,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL__CLASSES = INSTANCE_SPECIFICATION__CLASSES;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL__OWNING_PACKAGE = INSTANCE_SPECIFICATION__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Slots</b></em>' containment reference list.
@@ -24763,6 +24781,17 @@ public interface PivotPackage
 	EReference getInstanceSpecification_Classes();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getOwningPackage <em>Owning Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Package</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification#getOwningPackage()
+	 * @see #getInstanceSpecification()
+	 * @generated
+	 */
+	EReference getInstanceSpecification_OwningPackage();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSlots <em>Slots</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29494,6 +29523,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference INSTANCE_SPECIFICATION__CLASSES = eINSTANCE.getInstanceSpecification_Classes();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Package</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_SPECIFICATION__OWNING_PACKAGE = eINSTANCE.getInstanceSpecification_OwningPackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Slots</b></em>' containment reference list feature.

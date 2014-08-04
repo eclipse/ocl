@@ -186,6 +186,10 @@ public class EnumerationLiteralImpl
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSlots()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
@@ -218,6 +222,8 @@ public class EnumerationLiteralImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				return ((InternalEList<?>)getSlots()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
@@ -240,6 +246,8 @@ public class EnumerationLiteralImpl
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_INSTANCES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.ENUMERATION__OWNED_LITERAL, Enumeration.class, msgs);
 		}
@@ -272,6 +280,8 @@ public class EnumerationLiteralImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
 				return getClasses();
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				return getSlots();
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
@@ -323,6 +333,9 @@ public class EnumerationLiteralImpl
 				getClasses().clear();
 				getClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				getSlots().clear();
 				getSlots().addAll((Collection<? extends Slot>)newValue);
@@ -373,6 +386,9 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
 				getClasses().clear();
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				getSlots().clear();
 				return;
@@ -414,6 +430,8 @@ public class EnumerationLiteralImpl
 				return templateParameter != null;
 			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
 				return classes != null && !classes.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
 				return slots != null && !slots.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:

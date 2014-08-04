@@ -520,6 +520,7 @@
         <details key="documentation" value="The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" eType="#//Package" eOpposite="#//Package/ownedInstances"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="slots" ordered="false" upperBound="-1" eType="#//Slot" containment="true" eOpposite="#//Slot/owningInstance">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description."/>
@@ -1242,7 +1243,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInstances" ordered="false" upperBound="-1" eType="#//InstanceSpecification"
-        containment="true">
+        containment="true" eOpposite="#//InstanceSpecification/owningPackage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The instance specification that owns this slot."/>
       </eAnnotations>

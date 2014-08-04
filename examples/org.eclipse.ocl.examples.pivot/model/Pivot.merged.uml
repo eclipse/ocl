@@ -561,6 +561,9 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TInstanceSpecification.Pslots.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TInstanceSpecification.Pslots.uV" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.PowningPackage" name="owningPackage" type="Ppivot.TPackage" association="Ppivot.A_owningPackage_ownedInstance">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TInstanceSpecification.PowningPackage.lV"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Pclasses" name="classes" type="Ppivot.TClass" association="Ppivot.A_type_instanceSpecification">
         <ownedComment xmi:id="Ppivot.TInstanceSpecification.Pclasses.oC0" annotatedElement="Ppivot.TInstanceSpecification.Pclasses">
           <body>The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.</body>
@@ -884,7 +887,7 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPackage.PimportedPackage.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TPackage.PownedInstances" name="ownedInstances" type="Ppivot.TInstanceSpecification" aggregation="composite"
-          association="Ppivot.A_package_ownedInstance">
+          association="Ppivot.A_owningPackage_ownedInstance">
         <ownedComment xmi:id="Ppivot.TPackage.PownedInstances.oC0" annotatedElement="Ppivot.TPackage.PownedInstances">
           <body>The instance specification that owns this slot.</body>
         </ownedComment>
@@ -1903,8 +1906,8 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template"
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.Ptemplate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedType_package" name="A_ownedType_package" memberEnd="Ppivot.TPackage.PownedType Ppivot.TClass.Ppackage"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningPackage_ownedInstance" name="A_owningPackage_ownedInstance" memberEnd="Ppivot.TInstanceSpecification.PowningPackage Ppivot.TPackage.PownedInstances"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningState_stateInvariant" name="A_owningState_stateInvariant" memberEnd="Ppivot.TState.PstateInvariant Ppivot.TConstraint.PowningState"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_package_ownedInstance" name="A_package_ownedInstance" memberEnd="Ppivot.TPackage.PownedInstances"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameterSubstitution_templateBinding" name="A_parameterSubstitution_templateBinding"
         memberEnd="Ppivot.TTemplateBinding.PparameterSubstitution Ppivot.TTemplateParameterSubstitution.PtemplateBinding"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameteredElement_templateParameter" name="A_parameteredElement_templateParameter"
