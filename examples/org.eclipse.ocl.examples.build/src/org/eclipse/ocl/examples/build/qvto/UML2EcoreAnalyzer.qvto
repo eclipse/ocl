@@ -6,6 +6,9 @@ modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 transformation PruneUML(in uml2ecore : UML2EcoreControl, out UML2EcoreMapping);
 
+property debugProperty : Boolean = false;
+property showDuplicateUnnavigableOpposites : Boolean = true;
+
 helper Set(UML::Property)::display() : String {
 	return self->sortedBy(getPropertyName())->iterate(p; acc : String = '' | acc + ' ' + p.getPropertyName());
 }
@@ -54,7 +57,7 @@ main() {
 --	log('  allUnnavigableOpposites', let opps : Sequence(UML::Property) = allUnnavigableOpposites->asSequence() in Sequence{1..allUnnavigableOpposites->size()}
 --	->iterate(i; acc : String = '' | let o = opps->at(i) in acc + ' ' + if o.name <> null then o.name else 'null' endif));
 --	log('  allUnnavigableOpposites', allUnnavigableOpposites->sortedBy(if name <> null then name else 'null' endif)->iterate(n; acc : String = '' | acc + ' ' + if n.name <> null then n.name else 'null' endif));
-	log('  duplicateUnnavigableOpposites', duplicateUnnavigableOpposites->sortedBy(getPropertyName())->iterate(n; acc : String = '' | acc + '\n\t' + n.getPropertyName() + ' <- ' + n.getOtherEnd().getPropertyName()));
+	if (showDuplicateUnnavigableOpposites) log('  duplicateUnnavigableOpposites', duplicateUnnavigableOpposites->sortedBy(getPropertyName())->iterate(n; acc : String = '' | acc + '\n\t' + n.getPropertyName() + ' -> ' + n.getOtherEnd().getPropertyName()));
 --	log('  allUnnavigableForwardsSize', allUnnavigableForwards->size());
 --	log('  allUnnavigableForwards', allUnnavigableForwards->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	var packageRenames : Set(UML2EcoreMapping::CreatePackage) := explicitCreatePackageMappings->map createRenamePackage()->asSet();
@@ -292,34 +295,42 @@ mapping String::createCreateProperty(wantedProperties : Set(UML::Property)) : UM
 --	log('  createPropertyMappings', createPropertyMappings->sortedBy(newName)->iterate(n; acc : String = '' | acc + ' ' + n.newName));
 --	log('    namedProperties', createPropertyMappings.oldProperties->flatten()->iterate(n; acc : String = '' | acc + ' ' + n.name));
 --	log('    oldProperties2', oldProperties2->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
---	log('  createCreateProperty', self);
+	if (debugProperty) log('  createCreateProperty', self);
 	var sameNamedProperties : Set(UML::Property) := wantedProperties->select(name = self);
---	log('    sameNamedProperties', sameNamedProperties->display());
+	if (debugProperty) log('    sameNamedProperties', sameNamedProperties->display());
 	var explicitCreateProperties : Set(UML2EcoreControl::CreateProperty) := explicitCreatePropertyMappings->select(oldProperties->intersection(sameNamedProperties)->notEmpty());
 --	log('    explicitCreateProperties', explicitCreateProperties->display());
 	assert fatal (explicitCreateProperties->size() <= 1) with log("Duplicate CreateProperty ", explicitCreateProperties->display());
 	result.newName := if explicitCreateProperties->notEmpty() then explicitCreateProperties->any(true).newName else self endif;
 	result.oldProperties := sameNamedProperties;
 	var oppositeProperties1 : Set(UML::Property) := sameNamedProperties.getOtherEnd()->excluding(null)->asSet();
---	log('    oppositeProperties1', oppositeProperties1->display());
+	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
 	var oppositeProperties2 : Set(UML::Property) := oppositeProperties1 - explicitDeleteProperties;
---	log('    oppositeProperties2', oppositeProperties2->display());
+	if (debugProperty) log('    oppositeProperties2', oppositeProperties2->display());
 	assert warning (oppositeProperties2->size() <= 1) with log("Duplicate Opposite Property " + oppositeProperties2->display());
 	result.opposite := oppositeProperties2->any(true); --(s - duplicateUnnavigableOpposites)->any(true);
 }
 
 mapping UML::Property::createDeleteProperty() : UML2EcoreMapping::DeleteProperty
 {
----	log('createDeleteProperty', self.name);
+	if (debugProperty) log('createDeleteProperty', self.name);
 	result.oldName := self.name;
 	result.oldProperties := self->asSet();
 }
 
 mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapping::CreateProperty
 {
----	log('createRenameProperty', self.name);
+	if (debugProperty) log('createRenameProperty', self.newName);
 	result.newName := self.newName;
-	result.oldProperties := self.oldProperties;
+	var oldProperties : Set(UML::Property) := self.oldProperties;
+	if (debugProperty) log('    oldProperties', oldProperties->display());
+	result.oldProperties := oldProperties;
+	var oppositeProperties1 : Set(UML::Property) := oldProperties.getOtherEnd()->excluding(null)->asSet();
+	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
+	var oppositeProperties2 : Set(UML::Property) := oppositeProperties1 - explicitDeleteProperties;
+	if (debugProperty) log('    oppositeProperties2', oppositeProperties2->display());
+	assert warning (oppositeProperties2->size() <= 1) with log("Duplicate Opposite Property " + oppositeProperties2->display());
+	result.opposite := oppositeProperties2->any(true); --(s - duplicateUnnavigableOpposites)->any(true);
 }
 
 /**

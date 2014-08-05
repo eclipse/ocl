@@ -197,7 +197,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5nTnEBtCEeSM9LreJtBwBg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5JpasBtCEeSM9LreJtBwBg" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ATYoEBtEEeSM9LreJtBwBg"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_wtFQ4BusEeSIos3S87O_rg" name="owningPackage" type="MDTOCL-MDT_OCL_Instances-Package" association="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance">
