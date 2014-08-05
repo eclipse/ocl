@@ -265,7 +265,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		}
 	}
 
-	public Type getMemberType(String typeName) {
+	public org.eclipse.ocl.examples.pivot.Class getMemberType(String typeName) {
 		Map<String, TypeServer> typeServers2 = typeServers;
 		if (typeServers2 == null) {
 			typeServers2 = initMemberTypes();

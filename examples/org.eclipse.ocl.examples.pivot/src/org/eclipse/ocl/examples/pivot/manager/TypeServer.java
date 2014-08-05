@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.State;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * A TypeServer serves coordinated behavior of one or more
@@ -47,5 +46,5 @@ public interface TypeServer extends DomainInheritance
 	/**
 	 * Return a Type that represents this type merge.
 	 */
-	@NonNull Type getPivotType();
+	@NonNull org.eclipse.ocl.examples.pivot.Class getPivotType();
 }

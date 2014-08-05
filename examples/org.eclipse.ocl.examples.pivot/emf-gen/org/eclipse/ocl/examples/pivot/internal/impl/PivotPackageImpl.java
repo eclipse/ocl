@@ -3794,6 +3794,16 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_Package()
+	{
+		return (EReference)classEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getClass_IsInterface()
 	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
@@ -3833,15 +3843,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getType_Package() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getType_OwnedAttribute()
 	{
 		return (EReference)typeEClass.getEStructuralFeatures().get(2);
@@ -3864,7 +3865,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getType_SuperClass()
 	{
-		return (EReference)typeEClass.getEStructuralFeatures().get(6);
+		return (EReference)typeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -5654,6 +5655,7 @@ public class PivotPackageImpl
 		createEAttribute(classEClass, CLASS__IS_INTERFACE);
 		createEReference(classEClass, CLASS__NESTED_TYPE);
 		createEReference(classEClass, CLASS__OWNED_BEHAVIOR);
+		createEReference(classEClass, CLASS__PACKAGE);
 
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__ITEM);
@@ -6126,7 +6128,6 @@ public class PivotPackageImpl
 		createEReference(typeEClass, TYPE__OWNED_ATTRIBUTE);
 		createEReference(typeEClass, TYPE__OWNED_INVARIANT);
 		createEReference(typeEClass, TYPE__OWNED_OPERATION);
-		createEReference(typeEClass, TYPE__PACKAGE);
 		createEReference(typeEClass, TYPE__SUPER_CLASS);
 		createEOperation(typeEClass, TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(typeEClass, TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
@@ -6422,6 +6423,7 @@ public class PivotPackageImpl
 		initEAttribute(getClass_IsInterface(), this.getBoolean(), "isInterface", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getClass_NestedType(), this.getClass_(), null, "nestedType", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedBehavior(), this.getBehavior(), null, "ownedBehavior", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getClass_Package(), this.getPackage(), this.getPackage_OwnedType(), "package", null, 0, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionItem_Item(), this.getOCLExpression(), null, "item", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7146,7 +7148,7 @@ public class PivotPackageImpl
 		initEAttribute(getPackage_NsPrefix(), this.getString(), "nsPrefix", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackage_NsURI(), this.getString(), "nsURI", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwnedInstances(), this.getInstanceSpecification(), null, "ownedInstances", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPackage_OwnedType(), this.getType(), this.getType_Package(), "ownedType", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPackage_OwnedType(), this.getClass_(), this.getClass_Package(), "ownedType", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_ProfileApplication(), this.getProfileApplication(), this.getProfileApplication_ApplyingPackage(), "profileApplication", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7375,7 +7377,6 @@ public class PivotPackageImpl
 		initEReference(getType_OwnedAttribute(), this.getProperty(), this.getProperty_OwningType(), "ownedAttribute", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getType_OwnedInvariant(), this.getConstraint(), null, "ownedInvariant", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getType_OwnedOperation(), this.getOperation(), this.getOperation_OwningType(), "ownedOperation", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getType_Package(), this.getPackage(), this.getPackage_OwnedType(), "package", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getType_SuperClass(), this.getType(), null, "superClass", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getType__ValidateUniqueInvariantName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUniqueInvariantName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

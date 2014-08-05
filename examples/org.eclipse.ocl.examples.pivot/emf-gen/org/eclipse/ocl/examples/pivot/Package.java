@@ -142,8 +142,8 @@ public interface Package
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -151,10 +151,10 @@ public interface Package
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Type</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedType()
-	 * @see org.eclipse.ocl.examples.pivot.Type#getPackage
+	 * @see org.eclipse.ocl.examples.pivot.Class#getPackage
 	 * @generated
 	 */
-	@NonNull List<Type> getOwnedType();
+	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedType();
 
 	/**
 	 * Returns the value of the '<em><b>Profile Application</b></em>' containment reference list.

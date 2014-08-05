@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeoclcs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 
 /**
@@ -75,7 +74,7 @@ public interface ClassifierContextDeclCS
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	Type getClassifier();
+	org.eclipse.ocl.examples.pivot.Class getClassifier();
 
 	/**
 	 * Returns the value of the '<em><b>Invariants</b></em>' containment reference list.

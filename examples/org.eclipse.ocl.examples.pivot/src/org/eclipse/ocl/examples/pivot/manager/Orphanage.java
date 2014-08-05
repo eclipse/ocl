@@ -34,7 +34,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.examples.pivot.resource.OCLASResourceFactory;
@@ -417,11 +416,11 @@ public class Orphanage extends PackageImpl
 	}
 	
 	@Override
-	public @NonNull EList<Type> getOwnedType() {
-		EList<Type> ownedType2 = ownedType;
+	public @NonNull EList<org.eclipse.ocl.examples.pivot.Class> getOwnedType() {
+		EList<org.eclipse.ocl.examples.pivot.Class> ownedType2 = ownedType;
 		if (ownedType2 == null)
 		{
-			ownedType2 = ownedType = new WeakEList<Type>(/*WeakReference.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE*/);
+			ownedType2 = ownedType = new WeakEList<org.eclipse.ocl.examples.pivot.Class>(/*WeakReference.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE*/);
 		}
 		return ownedType2;
 	}

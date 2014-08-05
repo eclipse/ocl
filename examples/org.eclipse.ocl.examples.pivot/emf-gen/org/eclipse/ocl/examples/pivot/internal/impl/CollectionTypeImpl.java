@@ -261,8 +261,6 @@ public class CollectionTypeImpl
 				return getOwnedInvariant();
 			case PivotPackage.COLLECTION_TYPE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				return getPackage();
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
@@ -277,6 +275,8 @@ public class CollectionTypeImpl
 				return getNestedType();
 			case PivotPackage.COLLECTION_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.COLLECTION_TYPE__PACKAGE:
+				return getPackage();
 			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
 				if (resolve) return getBehavioralType();
 				return basicGetBehavioralType();
@@ -360,9 +360,6 @@ public class CollectionTypeImpl
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -387,6 +384,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
 				setBehavioralType((Type)newValue);
@@ -464,9 +464,6 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -487,6 +484,9 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.COLLECTION_TYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
 				setBehavioralType((Type)null);
@@ -548,8 +548,6 @@ public class CollectionTypeImpl
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
@@ -564,6 +562,8 @@ public class CollectionTypeImpl
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.COLLECTION_TYPE__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
 				return behavioralType != null;
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:

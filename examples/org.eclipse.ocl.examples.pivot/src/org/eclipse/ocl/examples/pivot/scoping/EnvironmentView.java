@@ -248,12 +248,12 @@ public class EnvironmentView
 		return (name == null) || PivotUtil.conformsTo(requiredType, eClass) || ((requiredType != null) && PivotUtil.conformsTo(eClass, requiredType));
 	}
 
-	public void addAllElements(@NonNull Type type, @NonNull ScopeView scopeView) {
+	public void addAllElements(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull ScopeView scopeView) {
 		Element element = PivotUtil.getLowerBound(type);
 		Attribution attribution = PivotUtil.getAttribution(element);
 		attribution.computeLookup(element, this, scopeView);
 		TemplateableElement type2 = type.getUnspecializedElement();
-		element = (type2 instanceof Type ? (Type)type2 : type).getPackage();
+		element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getPackage();
 		if (element != null) {
 			attribution = PivotUtil.getAttribution(element);
 			attribution.computeLookup(element, this, scopeView);
@@ -267,7 +267,7 @@ public class EnvironmentView
 			}
 		}
 		else {
-			element = (type2 instanceof Type ? (Type)type2 : type).getPackage();
+			element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getPackage();
 			if (element != null) {
 				attribution = PivotUtil.getAttribution(element);
 				attribution.computeLookup(element, this, scopeView);
@@ -497,7 +497,7 @@ public class EnvironmentView
 			PackageServer packageServer = metaModelManager.getPackageServer(pkge);
 			String name2 = name;
 			if (name2 != null) {
-				Type type = packageServer.getMemberType(name2);
+				org.eclipse.ocl.examples.pivot.Class type = packageServer.getMemberType(name2);
 				if (type != null) {
 					addNamedElement(type);
 				}

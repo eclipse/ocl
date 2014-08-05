@@ -172,6 +172,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedType" ordered="false" upperBound="-1" eType="#//Class" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBehavior" ordered="false" upperBound="-1" eType="#//Behavior" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//Package" eOpposite="#//Package/ownedType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Specifies the owning package of this classifier, if any."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionItem" eSuperTypes="#//CollectionLiteralPart">
     <eOperations name="TypeIsItemType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1223,8 +1228,8 @@
         <details key="documentation" value="The instance specification that owns this slot."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false" upperBound="-1" eType="#//Type" containment="true"
-        eOpposite="#//Type/package">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false" upperBound="-1" eType="#//Class" containment="true"
+        eOpposite="#//Class/package">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The set of contained types."/>
       </eAnnotations>
@@ -1856,11 +1861,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1" eType="#//Property" containment="true" eOpposite="#//Property/owningType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInvariant" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperation" upperBound="-1" eType="#//Operation" containment="true" eOpposite="#//Operation/owningType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//Package" eOpposite="#//Package/ownedType">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Specifies the owning package of this classifier, if any."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" upperBound="-1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OCLExpression #//ReferringElement">

@@ -203,14 +203,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.BEHAVIOR__PACKAGE:
-				return basicSetPackage(null, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.BEHAVIOR__PACKAGE:
+				return basicSetPackage(null, msgs);
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				return basicSetTransition(null, msgs);
 		}
@@ -280,8 +280,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return getOwnedInvariant();
 			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.BEHAVIOR__PACKAGE:
-				return getPackage();
 			case PivotPackage.BEHAVIOR__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
@@ -296,6 +294,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return getNestedType();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.BEHAVIOR__PACKAGE:
+				return getPackage();
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				return getTransition();
 		}
@@ -370,9 +370,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.BEHAVIOR__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.BEHAVIOR__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -397,6 +394,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.BEHAVIOR__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				setTransition((Transition)newValue);
@@ -463,9 +463,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.BEHAVIOR__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.BEHAVIOR__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -486,6 +483,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return;
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.BEHAVIOR__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				setTransition((Transition)null);
@@ -536,8 +536,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.BEHAVIOR__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.BEHAVIOR__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
@@ -552,6 +550,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.BEHAVIOR__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				return getTransition() != null;
 		}

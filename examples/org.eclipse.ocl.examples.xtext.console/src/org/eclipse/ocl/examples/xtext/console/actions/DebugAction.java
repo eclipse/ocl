@@ -53,7 +53,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PivotIdResolver;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -101,9 +100,9 @@ public final class DebugAction extends Action
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
 			PivotIdResolver idResolver = metaModelManager.getIdResolver();
 			DomainType staticType = idResolver.getStaticTypeOf(contextObject);
-			Type contextType = metaModelManager.getType(staticType);
+			org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
 			if (contextType instanceof Metaclass) {
-				contextType = ((Metaclass<?>)contextType).getInstanceType();
+				contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
 			}
 			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getPackage();
 			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append("debug" + EcoreUtil.generateUUID() + ".ocl");

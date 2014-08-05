@@ -239,7 +239,7 @@ public class ElementUtil
 			for (EObject eRoot: asResource.getContents()) {
 				if (eRoot instanceof Root) {
 					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
-						for (Type asType: asPackage.getOwnedType()) {
+						for (org.eclipse.ocl.examples.pivot.Class asType: asPackage.getOwnedType()) {
 							for (Constraint asConstraint : asType.getOwnedInvariant()) {
 								LanguageExpression specification = asConstraint.getSpecification();
 								if (specification != null) {

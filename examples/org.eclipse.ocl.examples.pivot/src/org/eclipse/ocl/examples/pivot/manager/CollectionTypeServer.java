@@ -57,7 +57,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 	}
 	
 	protected @NonNull Type createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
-		Type unspecializedType = getPivotType();
+		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();

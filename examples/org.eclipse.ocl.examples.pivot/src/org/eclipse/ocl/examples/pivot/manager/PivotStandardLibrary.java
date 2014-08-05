@@ -90,20 +90,20 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 	private @Nullable CollectionType uniqueCollectionType = null;
 	private @Nullable PrimitiveType unlimitedNaturalType = null;
 	
-	private @Nullable Map<String, Type> nameToLibraryTypeMap = null;
+	private @Nullable Map<String, org.eclipse.ocl.examples.pivot.Class> nameToLibraryTypeMap = null;
 
 	/**
 	 * Names of all iterations in the libraries.
 	 */
 //	private Set<String> iterationNames = new HashSet<String>();
 
-	protected void defineLibraryType(@NonNull Type pivotType) {
-		Map<String, Type> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
+	protected void defineLibraryType(@NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
+		Map<String, org.eclipse.ocl.examples.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 		if (nameToLibraryTypeMap2 == null) {
-			nameToLibraryTypeMap = nameToLibraryTypeMap2 = new HashMap<String, Type>();
+			nameToLibraryTypeMap = nameToLibraryTypeMap2 = new HashMap<String, org.eclipse.ocl.examples.pivot.Class>();
 		}
 		String name = pivotType.getName();
-		Type oldType = nameToLibraryTypeMap2.put(name, pivotType);
+		org.eclipse.ocl.examples.pivot.Class oldType = nameToLibraryTypeMap2.put(name, pivotType);
 		if ((oldType != null) && (oldType != pivotType)) {
 			logger.warn("Conflicting pivot type '" + name + "'");
 		}
@@ -180,10 +180,10 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return integerType2;
 	}
 
-	public Type getLibraryType(@NonNull String typeName) {
-		Map<String, Type> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
+	public org.eclipse.ocl.examples.pivot.Class getLibraryType(@NonNull String typeName) {
+		Map<String, org.eclipse.ocl.examples.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 		if (nameToLibraryTypeMap2 == null) {
-			nameToLibraryTypeMap = nameToLibraryTypeMap2 = new HashMap<String, Type>();
+			nameToLibraryTypeMap = nameToLibraryTypeMap2 = new HashMap<String, org.eclipse.ocl.examples.pivot.Class>();
 			loadDefaultLibrary(defaultStandardLibraryURI);
 		}
 		return nameToLibraryTypeMap2.get(typeName);
@@ -343,12 +343,12 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return realType2;
 	}
 
-	public @NonNull Type getRequiredLibraryType(@NonNull String typeName) {
-		Type type = getLibraryType(typeName);
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getRequiredLibraryType(@NonNull String typeName) {
+		org.eclipse.ocl.examples.pivot.Class type = getLibraryType(typeName);
 		if (type == null) {
 //			nameToLibraryTypeMap = null;
 			type = getLibraryType(typeName);	// FIXME just a debug retry
-			Map<String, Type> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
+			Map<String, org.eclipse.ocl.examples.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 			if ((nameToLibraryTypeMap2 == null) || nameToLibraryTypeMap2.isEmpty()) {
 				throw new IllegalLibraryException(OCLMessages.EmptyLibrary_ERROR_);
 			}

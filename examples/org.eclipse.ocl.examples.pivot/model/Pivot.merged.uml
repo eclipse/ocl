@@ -213,6 +213,12 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PsuperClass.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PsuperClass.uV" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TClass.Ppackage" name="package" type="Ppivot.TPackage" association="Ppivot.A_ownedType_package">
+        <ownedComment xmi:id="Ppivot.TClass.Ppackage.oC0" annotatedElement="Ppivot.TClass.Ppackage">
+          <body>Specifies the owning package of this classifier, if any.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.Ppackage.lV"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TClass.PnestedType" name="nestedType" type="Ppivot.TClass" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PnestedType.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PnestedType.uV" value="*"/>
@@ -847,7 +853,7 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PnestingPackage.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TPackage.PownedType" name="ownedType" type="Ppivot.TType" aggregation="composite" association="Ppivot.A_ownedType_package">
+      <ownedAttribute xmi:id="Ppivot.TPackage.PownedType" name="ownedType" type="Ppivot.TClass" aggregation="composite" association="Ppivot.A_ownedType_package">
         <ownedComment xmi:id="Ppivot.TPackage.PownedType.oC0" annotatedElement="Ppivot.TPackage.PownedType">
           <body>The set of contained types.</body>
         </ownedComment>
@@ -1571,12 +1577,6 @@
       <generalization xmi:id="Ppivot.TType.g0" general="Ppivot.TNamedElement"/>
       <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TTemplateableElement"/>
       <generalization xmi:id="Ppivot.TType.g2" general="Ppivot.TParameterableElement"/>
-      <ownedAttribute xmi:id="Ppivot.TType.Ppackage" name="package" type="Ppivot.TPackage" association="Ppivot.A_ownedType_package">
-        <ownedComment xmi:id="Ppivot.TType.Ppackage.oC0" annotatedElement="Ppivot.TType.Ppackage">
-          <body>Specifies the owning package of this classifier, if any.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.Ppackage.lV"/>
-      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TType.PtemplateParameter" name="templateParameter" type="Ppivot.TTypeTemplateParameter" redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter"
           association="Ppivot.A_type_templateParameter_parameteredElement">
         <ownedComment xmi:id="Ppivot.TType.PtemplateParameter.oC0" annotatedElement="Ppivot.TType.PtemplateParameter">
@@ -1916,7 +1916,7 @@
         memberEnd="Ppivot.TTemplateParameter.PownedParameteredElement Ppivot.TParameterableElement.PowningTemplateParameter"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template"
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.Ptemplate"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedType_package" name="A_ownedType_package" memberEnd="Ppivot.TPackage.PownedType Ppivot.TType.Ppackage"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedType_package" name="A_ownedType_package" memberEnd="Ppivot.TPackage.PownedType Ppivot.TClass.Ppackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningState_stateInvariant" name="A_owningState_stateInvariant" memberEnd="Ppivot.TState.PstateInvariant Ppivot.TConstraint.PowningState"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_package_ownedInstance" name="A_package_ownedInstance" memberEnd="Ppivot.TPackage.PownedInstances"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameterSubstitution_templateBinding" name="A_parameterSubstitution_templateBinding"

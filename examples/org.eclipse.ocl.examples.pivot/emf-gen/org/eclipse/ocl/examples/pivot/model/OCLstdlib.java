@@ -506,8 +506,8 @@ public class OCLstdlib extends ASResourceImpl
 			createProperty("second", _Collection_product_T2));
 
 		protected void installOclTypes() {
-			final List<Type> ownedTypes = library.getOwnedType();
-			Type type;
+			final List<Class> ownedTypes = library.getOwnedType();
+			Class type;
 			List<Type> superClasses;
 			ownedTypes.add(type = _Class);
 			superClasses = type.getSuperClass();
@@ -561,7 +561,7 @@ public class OCLstdlib extends ASResourceImpl
 		}
 
 		protected void installPrimitiveTypes() {
-			final List<Type> ownedTypes = library.getOwnedType();
+			final List<Class> ownedTypes = library.getOwnedType();
 			PrimitiveType type;
 			ownedTypes.add(type = _Boolean);
 			type.getSuperClass().add(_OclAny);
@@ -581,8 +581,8 @@ public class OCLstdlib extends ASResourceImpl
 		}
 
 		protected void installCollectionTypes() {
-			final List<Type> ownedTypes = library.getOwnedType();
-			final List<Type> orphanTypes = orphans.getOwnedType();
+			final List<Class> ownedTypes = library.getOwnedType();
+			final List<Class> orphanTypes = orphans.getOwnedType();
 			CollectionType type;
 			List<Type> superClasses;
 			orphanTypes.add(type = _Bag_Bag_collectNested_V);
@@ -1225,8 +1225,8 @@ public class OCLstdlib extends ASResourceImpl
 		}
 
 		protected void installMetaclasses() {
-			final List<Type> ownedTypes = library.getOwnedType();
-			final List<Type> orphanTypes = orphans.getOwnedType();
+			final List<Class> ownedTypes = library.getOwnedType();
+			final List<Class> orphanTypes = orphans.getOwnedType();
 			Metaclass<?> type;
 			List<Type> superClasses;
 			orphanTypes.add(type = _Metaclass_UnlimitedNatural_oclAsType_TT);
@@ -1357,7 +1357,7 @@ public class OCLstdlib extends ASResourceImpl
 		}
 
 		protected void installTupleTypes() {
-			final List<Type> orphanTypes = orphans.getOwnedType();
+			final List<Class> orphanTypes = orphans.getOwnedType();
 			TupleType type;
 			List<Type> superClasses;
 			orphanTypes.add(type = _Tuple);
@@ -1393,7 +1393,7 @@ public class OCLstdlib extends ASResourceImpl
 		protected final @NonNull LambdaType _Lambda_UniqueCollection_T = createLambdaType("Lambda");
 		
 		protected void installLambdaTypes() {
-			final List<Type> orphanTypes = orphans.getOwnedType();
+			final List<Class> orphanTypes = orphans.getOwnedType();
 			LambdaType type;
 			List<Type> superClasses;
 			orphanTypes.add(type = _Lambda_Bag_T);

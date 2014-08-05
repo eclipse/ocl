@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.library.LibraryOperation;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.Type;
 
 public interface CodeGenHelper
 {
@@ -35,5 +34,5 @@ public interface CodeGenHelper
 	/**
 	 * Return the GenPackage for a type.
 	 */
-	@NonNull GenPackage getGenPackage(@NonNull Type type);
+	@NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type);
 }

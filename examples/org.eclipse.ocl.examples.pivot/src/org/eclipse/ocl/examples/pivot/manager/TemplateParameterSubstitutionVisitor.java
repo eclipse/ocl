@@ -108,16 +108,16 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return bestType;
 	}
 
-	public @NonNull DomainType specialize(@NonNull TemplateableElement templateableElement) {
+	public @NonNull org.eclipse.ocl.examples.pivot.Class specialize(@NonNull TemplateableElement templateableElement) {
 		Map<TemplateParameter, ParameterableElement> usageBindings = new HashMap<TemplateParameter, ParameterableElement>();
 		for (TemplateParameter templateParameter : context.keySet()) {
 			DomainType specialize = specialize(templateParameter);
 			if (specialize != null) {
-				Type specialized = metaModelManager.getType(specialize);
+				org.eclipse.ocl.examples.pivot.Class specialized = metaModelManager.getType(specialize);
 				usageBindings.put(templateParameter, specialized);
 			}
 		}
-		return metaModelManager.getSpecializedType((Type) templateableElement, usageBindings);
+		return metaModelManager.getSpecializedType((org.eclipse.ocl.examples.pivot.Class) templateableElement, usageBindings);
 	}
 
 	@Override

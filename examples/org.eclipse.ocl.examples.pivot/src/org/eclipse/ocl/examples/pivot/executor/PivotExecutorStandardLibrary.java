@@ -39,7 +39,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 //	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetaModelManager(), OCLstdlib.STDLIB_URI);
 
 	protected final @NonNull MetaModelManager metaModelManager;
-	private Map<DomainType, Type> typeMap = null;
+	private Map<DomainType, org.eclipse.ocl.examples.pivot.Class> typeMap = null;
 	private Map<DomainPackage, org.eclipse.ocl.examples.pivot.Package> packageMap = null;
 	
 //	public PivotExecutorStandardLibrary(MetaModelManager metaModelManager, String stdlibURI) {
@@ -76,15 +76,15 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		pivotPackage.setNsURI(domainPackage.getNsURI());
 		for (DomainType domainType : domainPackage.getOwnedType()) {
 			if (domainType != null) {
-				Type pivotType = createType(domainType);
+				org.eclipse.ocl.examples.pivot.Class pivotType = createType(domainType);
 				pivotPackage.getOwnedType().add(pivotType);
 			}
 		}
 		return pivotPackage;
 	}
 
-	protected @NonNull Type createType(@NonNull DomainType domainType) {
-		Type pivotType = PivotFactory.eINSTANCE.createType();
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class createType(@NonNull DomainType domainType) {
+		org.eclipse.ocl.examples.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
 		pivotType.setName(domainType.getName());
 		return pivotType;
 	}
@@ -114,16 +114,16 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 	
 	@SuppressWarnings("null")
-	protected Type getType(DomainType typeType) {
+	protected org.eclipse.ocl.examples.pivot.Class getType(DomainType typeType) {
 		if (typeType instanceof DomainCollectionType) {
 			DomainCollectionType domainCollectionType = (DomainCollectionType)typeType;
 			return metaModelManager.getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
 		}
 		if (typeMap == null) {
-			typeMap = new HashMap<DomainType, Type>();
+			typeMap = new HashMap<DomainType, org.eclipse.ocl.examples.pivot.Class>();
 		}
 		else {			
-			Type type = typeMap.get(typeType);
+			org.eclipse.ocl.examples.pivot.Class type = typeMap.get(typeType);
 			if (type != null) {
 				return type;
 			}

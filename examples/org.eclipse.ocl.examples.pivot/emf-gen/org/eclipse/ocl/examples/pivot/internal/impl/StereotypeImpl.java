@@ -178,14 +178,14 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_OPERATION:
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				return basicSetPackage(null, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__PACKAGE:
+				return basicSetPackage(null, msgs);
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return ((InternalEList<?>)getExtensionOfs()).basicRemove(otherEnd, msgs);
 		}
@@ -235,8 +235,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getOwnedInvariant();
 			case PivotPackage.STEREOTYPE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				return getPackage();
 			case PivotPackage.STEREOTYPE__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
@@ -251,6 +249,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getNestedType();
 			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.STEREOTYPE__PACKAGE:
+				return getPackage();
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return getExtensionOfs();
 		}
@@ -325,9 +325,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.STEREOTYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -352,6 +349,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.STEREOTYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				getExtensionOfs().clear();
@@ -419,9 +419,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.STEREOTYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -442,6 +439,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return;
 			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.STEREOTYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				getExtensionOfs().clear();
@@ -492,8 +492,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.STEREOTYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
@@ -508,6 +506,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.STEREOTYPE__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return extensionOfs != null && !extensionOfs.isEmpty();
 		}

@@ -53,33 +53,35 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 			}
 			if (!environmentView.hasFinalResult()) {
 				Type userType = type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() : type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx
-				Package contextPackage = userType.getPackage();
-				if (contextPackage != null) {
-					if (targetExpression.eContainer() == null) {
-						environmentView.addRootPackages();
-						environmentView.addAllPackages(contextPackage);
-					}
-					if (!environmentView.hasFinalResult()) {
-						environmentView.addElementsOfScope(contextPackage, scopeView);
-					}
-					if ((targetExpression.eContainer() == null) /*&& !environmentView.hasFinalResult()*/) {
-						environmentView.addRootPackages();
-						environmentView.addAllPackages(contextPackage);
+				if (userType instanceof org.eclipse.ocl.examples.pivot.Class) {
+					Package contextPackage = ((org.eclipse.ocl.examples.pivot.Class)userType).getPackage();
+					if (contextPackage != null) {
+						if (targetExpression.eContainer() == null) {
+							environmentView.addRootPackages();
+							environmentView.addAllPackages(contextPackage);
+						}
 						if (!environmentView.hasFinalResult()) {
 							environmentView.addElementsOfScope(contextPackage, scopeView);
-							if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
-								for (Type gType : metaModelManager.getGlobalTypes()) {
-									if (gType != null) {
-										environmentView.addNamedElement(gType);
+						}
+						if ((targetExpression.eContainer() == null) /*&& !environmentView.hasFinalResult()*/) {
+							environmentView.addRootPackages();
+							environmentView.addAllPackages(contextPackage);
+							if (!environmentView.hasFinalResult()) {
+								environmentView.addElementsOfScope(contextPackage, scopeView);
+								if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
+									for (Type gType : metaModelManager.getGlobalTypes()) {
+										if (gType != null) {
+											environmentView.addNamedElement(gType);
+										}
 									}
 								}
-							}
-							if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-								for (Map.Entry<String, DomainNamespace> entry : metaModelManager.getGlobalNamespaces()) {
-									String key = entry.getKey();
-									DomainNamespace value = entry.getValue();
-									if ((key != null) && (value != null)) {
-										environmentView.addElement(key, value);
+								if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
+									for (Map.Entry<String, DomainNamespace> entry : metaModelManager.getGlobalNamespaces()) {
+										String key = entry.getKey();
+										DomainNamespace value = entry.getValue();
+										if ((key != null) && (value != null)) {
+											environmentView.addElement(key, value);
+										}
 									}
 								}
 							}

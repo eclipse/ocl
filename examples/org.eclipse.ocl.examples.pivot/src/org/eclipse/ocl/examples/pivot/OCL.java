@@ -276,19 +276,19 @@ public class OCL {
 	 */
     public @NonNull OCLHelper createOCLHelper(@NonNull EObject element) {
         OCLHelperImpl helper = new OCLHelperImpl(this);
-        if (element instanceof Type) {
-        	helper.setContext((Type)element);
+        if (element instanceof org.eclipse.ocl.examples.pivot.Class) {
+        	helper.setContext((org.eclipse.ocl.examples.pivot.Class)element);
         }
         else if (element instanceof Operation) {
         	Operation operation = (Operation)element;
-			Type owningType = operation.getOwningType();
+        	org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)operation.getOwningType();	// FIXME cast
 			if (owningType != null) {
 				helper.setOperationContext(owningType, operation);
 			}
         }
         else if (element instanceof Property) {
         	Property property = (Property)element;
-			Type owningType = property.getOwningType();
+        	org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)property.getOwningType();
 			if (owningType != null) {
 				helper.setPropertyContext(owningType, property);
 			}

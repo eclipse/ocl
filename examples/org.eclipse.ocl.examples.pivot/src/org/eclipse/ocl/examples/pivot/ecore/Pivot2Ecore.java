@@ -372,7 +372,7 @@ public class Pivot2Ecore extends AbstractConversion
 	 * Return tre if asPackage is a Pivot Metamodel.
 	 */
 	public boolean isPivot(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage) {
-		List<Type> asTypes = asPackage.getOwnedType();
+		List<org.eclipse.ocl.examples.pivot.Class> asTypes = asPackage.getOwnedType();
 		if (DomainUtil.getNamedElement(asTypes, PivotPackage.Literals.ENUMERATION_LITERAL.getName()) == null) {
 			return false;
 		}

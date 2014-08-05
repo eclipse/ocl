@@ -1084,8 +1084,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 		}
-		Type behavioralType = PivotUtil.getType(operation);
-		Type returnType = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
+		org.eclipse.ocl.examples.pivot.Class behavioralType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(operation);
+		org.eclipse.ocl.examples.pivot.Class returnType = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
 		//
 		//	The flattening of collect() and consequently implicit-collect is not modelled accurately so we need to code it.
 		//
@@ -1144,8 +1144,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, sourceType);
-		Type returnType = null;
-		Type behavioralType = PivotUtil.getType(property);
+		org.eclipse.ocl.examples.pivot.Class returnType = null;
+		org.eclipse.ocl.examples.pivot.Class behavioralType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(property);
 		if (behavioralType != null) {
 			returnType = metaModelManager.getSpecializedType(behavioralType, templateBindings);
 			if (property.isStatic() && (behavioralType.getOwningTemplateParameter() != null)) {

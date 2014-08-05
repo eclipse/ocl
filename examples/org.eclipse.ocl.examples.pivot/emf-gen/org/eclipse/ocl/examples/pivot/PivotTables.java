@@ -2059,7 +2059,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Class__isInterface = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, Types._Class, 2);
 		public static final @NonNull ExecutorProperty _Class__nestedType = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__NESTED_TYPE, Types._Class, 3);
 		public static final @NonNull ExecutorProperty _Class__ownedBehavior = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, Types._Class, 4);
-		public static final @NonNull ExecutorProperty _Class__Class__nestedType = new ExecutorPropertyWithImplementation("Class", Types._Class, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__NESTED_TYPE));
+		public static final @NonNull ExecutorProperty _Class__package = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__PACKAGE, Types._Class, 5);
+		public static final @NonNull ExecutorProperty _Class__Class__nestedType = new ExecutorPropertyWithImplementation("Class", Types._Class, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__NESTED_TYPE));
 
 		public static final @NonNull ExecutorProperty _CollectionItem__item = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, Types._CollectionItem, 0);
 
@@ -2423,23 +2424,22 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Type__ownedAttribute = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__OWNED_ATTRIBUTE, Types._Type, 2);
 		public static final @NonNull ExecutorProperty _Type__ownedInvariant = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__OWNED_INVARIANT, Types._Type, 3);
 		public static final @NonNull ExecutorProperty _Type__ownedOperation = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__OWNED_OPERATION, Types._Type, 4);
-		public static final @NonNull ExecutorProperty _Type__package = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__PACKAGE, Types._Type, 5);
-		public static final @NonNull ExecutorProperty _Type__superClass = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__SUPER_CLASS, Types._Type, 6);
-		public static final @NonNull ExecutorProperty _Type__CollectionType__elementType = new ExecutorPropertyWithImplementation("CollectionType", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__DataType__behavioralType = new ExecutorPropertyWithImplementation("DataType", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE));
-		public static final @NonNull ExecutorProperty _Type__DynamicElement__metaType = new ExecutorPropertyWithImplementation("DynamicElement", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE));
-		public static final @NonNull ExecutorProperty _Type__LambdaType__contextType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__LambdaType__parameterType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
-		public static final @NonNull ExecutorProperty _Type__LambdaType__resultType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__Metaclass__instanceType = new ExecutorPropertyWithImplementation("Metaclass", Types._Type, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.METACLASS__INSTANCE_TYPE));
-		public static final @NonNull ExecutorProperty _Type__Type__superClass = new ExecutorPropertyWithImplementation("Type", Types._Type, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE__SUPER_CLASS));
-		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
-		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__lowerBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 16, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__upperBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 17, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__instanceSpecification__type = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Type, 18, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__TYPE));
-		public static final @NonNull ExecutorProperty _Type__operation__raisedException = new ExecutorPropertyWithImplementation("operation", Types._Type, 19, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
-		public static final @NonNull ExecutorProperty _Type__typeTemplateParameter__constrainingType = new ExecutorPropertyWithImplementation("typeTemplateParameter", Types._Type, 20, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE));
-		public static final @NonNull ExecutorProperty _Type__typedElement__type = new ExecutorPropertyWithImplementation("typedElement", Types._Type, 21, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+		public static final @NonNull ExecutorProperty _Type__superClass = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__SUPER_CLASS, Types._Type, 5);
+		public static final @NonNull ExecutorProperty _Type__CollectionType__elementType = new ExecutorPropertyWithImplementation("CollectionType", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
+		public static final @NonNull ExecutorProperty _Type__DataType__behavioralType = new ExecutorPropertyWithImplementation("DataType", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE));
+		public static final @NonNull ExecutorProperty _Type__DynamicElement__metaType = new ExecutorPropertyWithImplementation("DynamicElement", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE));
+		public static final @NonNull ExecutorProperty _Type__LambdaType__contextType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
+		public static final @NonNull ExecutorProperty _Type__LambdaType__parameterType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
+		public static final @NonNull ExecutorProperty _Type__LambdaType__resultType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
+		public static final @NonNull ExecutorProperty _Type__Metaclass__instanceType = new ExecutorPropertyWithImplementation("Metaclass", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.METACLASS__INSTANCE_TYPE));
+		public static final @NonNull ExecutorProperty _Type__Type__superClass = new ExecutorPropertyWithImplementation("Type", Types._Type, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE__SUPER_CLASS));
+		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
+		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__lowerBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__upperBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 16, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__instanceSpecification__type = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Type, 17, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__TYPE));
+		public static final @NonNull ExecutorProperty _Type__operation__raisedException = new ExecutorPropertyWithImplementation("operation", Types._Type, 18, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
+		public static final @NonNull ExecutorProperty _Type__typeTemplateParameter__constrainingType = new ExecutorPropertyWithImplementation("typeTemplateParameter", Types._Type, 19, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE));
+		public static final @NonNull ExecutorProperty _Type__typedElement__type = new ExecutorPropertyWithImplementation("typedElement", Types._Type, 20, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
 
 		public static final @NonNull ExecutorProperty _TypeExp__referredType = new EcoreExecutorProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, Types._TypeExp, 0);
 
@@ -10548,7 +10548,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -10601,7 +10601,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -10697,7 +10697,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -10754,7 +10754,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -10808,7 +10808,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -10948,7 +10948,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11021,7 +11021,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11146,7 +11146,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11318,7 +11318,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11388,7 +11388,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11474,7 +11474,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11563,7 +11563,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._ElementExtension__stereotype,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
@@ -11653,7 +11653,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -11989,7 +11989,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -12167,7 +12167,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._LambdaType__parameterType,
 			PivotTables.Properties._LambdaType__resultType,
 			PivotTables.Properties._Type__superClass,
@@ -12420,7 +12420,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._MessageType__referredOperation,
 			PivotTables.Properties._MessageType__referredSignal,
 			PivotTables.Properties._Type__superClass,
@@ -12476,7 +12476,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -12837,7 +12837,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13029,7 +13029,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13242,7 +13242,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13371,7 +13371,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13443,7 +13443,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13501,7 +13501,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13654,7 +13654,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._StateMachine__region,
 			PivotTables.Properties._StateMachine__submachineState,
 			PivotTables.Properties._Type__superClass,
@@ -13717,7 +13717,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -13844,7 +13844,6 @@ public class PivotTables
 			PivotTables.Properties._Type__ownedOperation,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
 			PivotTables.Properties._TemplateParameterType__specification,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
@@ -13951,7 +13950,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -14072,7 +14071,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -14119,7 +14118,6 @@ public class PivotTables
 			PivotTables.Properties._Type__ownedOperation,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -14299,7 +14297,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
@@ -14502,7 +14500,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._Type__package,
+			PivotTables.Properties._Class__package,
 			PivotTables.Properties._Type__superClass,
 			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,

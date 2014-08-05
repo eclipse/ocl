@@ -1037,7 +1037,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				Set<Stereotype> allStereotypes = new HashSet<Stereotype>();
 				gatherAllStereotypes(allStereotypes, extendingStereotypes);
 				for (@SuppressWarnings("null")@NonNull Stereotype stereotype : allStereotypes) {
-					Type baseType = getPivotType();
+					org.eclipse.ocl.examples.pivot.Class baseType = getPivotType();
 					initExtensionPropertiesFrom(baseType, stereotype);
 				}
 			}

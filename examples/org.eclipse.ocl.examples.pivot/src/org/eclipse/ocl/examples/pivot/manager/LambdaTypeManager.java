@@ -114,14 +114,14 @@ public class LambdaTypeManager
 			return getLambdaType(typeName, contextType, parameterTypes, resultType);
 		}
 		else {
-			Type specializedContextType = metaModelManager.getSpecializedType(contextType, bindings);
+			org.eclipse.ocl.examples.pivot.Class specializedContextType = metaModelManager.getSpecializedType(contextType, bindings);
 			List<Type> specializedParameterTypes = new ArrayList<Type>();
 			for (Type parameterType : parameterTypes) {
 				if (parameterType != null) {
 					specializedParameterTypes.add(metaModelManager.getSpecializedType(parameterType, bindings));
 				}
 			}
-			Type specializedResultType = metaModelManager.getSpecializedType(resultType, bindings);
+			org.eclipse.ocl.examples.pivot.Class specializedResultType = metaModelManager.getSpecializedType(resultType, bindings);
 			return getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
 		}
 	}

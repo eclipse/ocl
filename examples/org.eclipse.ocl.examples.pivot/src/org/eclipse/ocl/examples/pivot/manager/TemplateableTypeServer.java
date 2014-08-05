@@ -51,13 +51,13 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	}
 	
 	protected @NonNull Type createSpecialization(@NonNull DomainTypeParameters templateArguments) {
-		Type unspecializedType = getPivotType();
+		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		EClass eClass = unspecializedType.eClass();
 		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
-		Type specializedType = (Type) eFactoryInstance.create(eClass);		
+		org.eclipse.ocl.examples.pivot.Class specializedType = (org.eclipse.ocl.examples.pivot.Class) eFactoryInstance.create(eClass);		
 		specializedType.setName(typeName);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);

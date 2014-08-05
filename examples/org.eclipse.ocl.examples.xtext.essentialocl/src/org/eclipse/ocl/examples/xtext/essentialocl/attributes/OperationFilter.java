@@ -73,10 +73,10 @@ public class OperationFilter extends AbstractOperationFilter
 			@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> candidateBindings) {
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
-		Type referenceType = PivotUtil.getType(PivotUtil.getOwningType(reference));
-		Type candidateType = PivotUtil.getType(PivotUtil.getOwningType(candidate));
-		Type specializedReferenceType = metaModelManager.getSpecializedType(referenceType, referenceBindings);
-		Type specializedCandidateType = metaModelManager.getSpecializedType(candidateType, candidateBindings);
+		org.eclipse.ocl.examples.pivot.Class referenceType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(PivotUtil.getOwningType(reference));
+		org.eclipse.ocl.examples.pivot.Class candidateType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(PivotUtil.getOwningType(candidate));
+		org.eclipse.ocl.examples.pivot.Class specializedReferenceType = metaModelManager.getSpecializedType(referenceType, referenceBindings);
+		org.eclipse.ocl.examples.pivot.Class specializedCandidateType = metaModelManager.getSpecializedType(candidateType, candidateBindings);
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration)) {
 			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
 			if (iteratorCountDelta != 0) {
@@ -119,8 +119,8 @@ public class OperationFilter extends AbstractOperationFilter
 				candidateConversions = Integer.MIN_VALUE;
 			}
 			else {
-				referenceType = PivotUtil.getType(DomainUtil.nonNullModel(referenceParameter.getType()));
-				candidateType = PivotUtil.getType(DomainUtil.nonNullModel(candidateParameter.getType()));
+				referenceType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(DomainUtil.nonNullModel(referenceParameter.getType()));
+				candidateType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(DomainUtil.nonNullModel(candidateParameter.getType()));
 				specializedReferenceType = metaModelManager.getSpecializedType(referenceType, referenceBindings);
 				specializedCandidateType = metaModelManager.getSpecializedType(candidateType, candidateBindings);
 				if (argumentType != specializedReferenceType) {

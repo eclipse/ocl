@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -167,7 +166,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			cgClass.getSuperTypes().add(superClass);
 		}
 		cgPackage.getClasses().add(cgClass);
-		for (Type asType : asPackage.getOwnedType()) {
+		for (org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedType()) {
 			boolean hasCS2ASmappingOperation = false;
 			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperation(), "ast");			
 			if (astOperation != null) {
@@ -193,7 +192,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 						cgParameters.add(cgContext);
 					}
 					
-					Type constructorType = DomainUtil.nonNullState(constructorExp.getType());
+					org.eclipse.ocl.examples.pivot.Class constructorType = (org.eclipse.ocl.examples.pivot.Class)DomainUtil.nonNullState(constructorExp.getType());	// FIXME cast
 					GenClass genClass = DomainUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
 					EClass eClass = DomainUtil.nonNullState(genClass.getEcoreClass());
 					for (ConstructorPart constructorPart : constructorExp.getPart()) {

@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -99,7 +100,6 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedInvariant <em>Owned Invariant</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedOperation <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getSuperClass <em>Super Class</em>}</li>
  * </ul>
  * </p>
@@ -333,50 +333,6 @@ public class TypeImpl
 		unspecializedElement = newUnspecializedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.ocl.examples.pivot.Package getPackage() {
-		if (eContainerFeatureID() != PivotPackage.TYPE__PACKAGE) return null;
-		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPackage(
-			org.eclipse.ocl.examples.pivot.Package newPackage,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newPackage, PivotPackage.TYPE__PACKAGE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPackage(org.eclipse.ocl.examples.pivot.Package newPackage) {
-		if (newPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TYPE__PACKAGE && newPackage != null))
-		{
-			if (EcoreUtil.isAncestor(this, (EObject)newPackage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newPackage != null)
-				msgs = ((InternalEObject)newPackage).eInverseAdd(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
-			msgs = basicSetPackage(newPackage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE__PACKAGE, newPackage, newPackage));
 	}
 
 	/**
@@ -679,10 +635,6 @@ public class TypeImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_OPERATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE__PACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -721,8 +673,6 @@ public class TypeImpl
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_OPERATION:
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE__PACKAGE:
-				return basicSetPackage(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -739,8 +689,6 @@ public class TypeImpl
 		{
 			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.TYPE__PACKAGE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -787,8 +735,6 @@ public class TypeImpl
 				return getOwnedInvariant();
 			case PivotPackage.TYPE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.TYPE__PACKAGE:
-				return getPackage();
 			case PivotPackage.TYPE__SUPER_CLASS:
 				return getSuperClass();
 		}
@@ -862,9 +808,6 @@ public class TypeImpl
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -930,9 +873,6 @@ public class TypeImpl
 			case PivotPackage.TYPE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -981,8 +921,6 @@ public class TypeImpl
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.TYPE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.TYPE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 		}
@@ -1371,6 +1309,10 @@ public class TypeImpl
 
 	@NonNull
 	public List<? extends DomainConstraint> getOwnedRule() {
+		throw new UnsupportedOperationException();		// FIXME
+	}
+
+	public DomainPackage getPackage() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 } //TypeImpl

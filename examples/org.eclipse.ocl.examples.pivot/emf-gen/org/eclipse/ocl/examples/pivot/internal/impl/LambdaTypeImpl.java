@@ -256,8 +256,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return getOwnedInvariant();
 			case PivotPackage.LAMBDA_TYPE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				return getPackage();
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.LAMBDA_TYPE__OWNED_RULE:
@@ -272,6 +270,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return getNestedType();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.LAMBDA_TYPE__PACKAGE:
+				return getPackage();
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
 				if (resolve) return getBehavioralType();
 				return basicGetBehavioralType();
@@ -357,9 +357,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -384,6 +381,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.LAMBDA_TYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
 				setBehavioralType((Type)newValue);
@@ -463,9 +463,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -486,6 +483,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return;
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.LAMBDA_TYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
 				setBehavioralType((Type)null);
@@ -548,8 +548,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_RULE:
@@ -564,6 +562,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.LAMBDA_TYPE__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
 				return behavioralType != null;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:

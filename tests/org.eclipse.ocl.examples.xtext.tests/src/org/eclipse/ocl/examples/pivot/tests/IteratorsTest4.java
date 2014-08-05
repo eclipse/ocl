@@ -560,8 +560,8 @@ public class IteratorsTest4 extends PivotTestSuite
      * Tests that the closure() body is not necessarily compatible.
      */
     @Test public void test_closure_body_393509() {
-    	@SuppressWarnings("null") @NonNull Type packageMetaclass = metaModelManager.getPivotType("Package");
-    	@SuppressWarnings("null") @NonNull Type propertyMetaclass = metaModelManager.getPivotType("Property");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class propertyMetaclass = metaModelManager.getPivotType("Property");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
         Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
         SetValue expected = idResolver.createSetOfEach(typeId, nestingPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
@@ -900,8 +900,8 @@ public class IteratorsTest4 extends PivotTestSuite
      * the body expression type has a <tt>&lt;</tt> operation.
      */
     @Test public void test_sortedByRequiresComparability_192729() {
-    	Type context = metaModelManager.getPivotType("Package");
-    	Type type = metaModelManager.getPivotType("Type");
+    	org.eclipse.ocl.examples.pivot.Class context = metaModelManager.getPivotType("Package");
+    	org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getPivotType("Class");
      	assertValidationErrorQuery("ownedType->sortedBy(e | e)",
         	OCLMessages.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        

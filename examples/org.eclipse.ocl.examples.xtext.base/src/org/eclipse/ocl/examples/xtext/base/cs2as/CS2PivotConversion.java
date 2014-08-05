@@ -1210,7 +1210,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	protected @Nullable TemplateableElement specializeTemplates(@NonNull TypedTypeRefCS csElement) {
 		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedTemplateBinding();
 		assert ownedTemplateBinding != null;
-		Type unspecializedPivotElement = csElement.getType();
+		org.eclipse.ocl.examples.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.examples.pivot.Class)csElement.getType();	// FIXME cast
 //		logger.trace("Specializing " + moniker); //$NON-NLS-1$
 		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
 			String moniker = csElement.toString();
@@ -1220,7 +1220,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		//
 		//	Refresh the pivot specialization root
 		//
-		Type specializedPivotElement = PivotUtil.getPivot(Type.class, csElement);
+		org.eclipse.ocl.examples.pivot.Class specializedPivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
 		if (specializedPivotElement == null) {
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedParameterSubstitution().get(0);
@@ -1233,9 +1233,9 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				specializedPivotElement = templateArgument != null ? metaModelManager.getMetaclass(templateArgument) : unspecializedPivotElement;
 			}
 			else {
-				List<Type> templateArguments = new ArrayList<Type>();
+				List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : ownedTemplateBinding.getOwnedParameterSubstitution()) {
-					Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
+					ParameterableElement templateArgument = PivotUtil.getPivot(ParameterableElement.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 					templateArguments.add(templateArgument);
 				}
 				specializedPivotElement = metaModelManager.getLibraryType(unspecializedPivotElement, templateArguments);

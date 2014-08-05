@@ -107,7 +107,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		if (collType != null) {
 			EObject eContainer = collType.eContainer();
 			if (eContainer instanceof Library) {
-				for (Type type : ((Library)eContainer).getOwnedType()) {
+				for (org.eclipse.ocl.examples.pivot.Class type : ((Library)eContainer).getOwnedType()) {
 					if ((type instanceof CollectionType) && (type.getName().equals(name))) {
 						return (CollectionType)type;
 					}

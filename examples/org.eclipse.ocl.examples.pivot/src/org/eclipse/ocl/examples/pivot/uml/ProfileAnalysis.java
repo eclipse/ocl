@@ -88,7 +88,7 @@ public class ProfileAnalysis
 	}
 	
 	public void addTypeExtension(@NonNull TypeExtension asTypeExtension) {
-		Type extendedMetatype = asTypeExtension.getType();
+		org.eclipse.ocl.examples.pivot.Class extendedMetatype = (org.eclipse.ocl.examples.pivot.Class)asTypeExtension.getType();	// FIXME cast
 		Stereotype extendingStereotype = asTypeExtension.getStereotype();
 		if ((extendedMetatype != null) && (extendingStereotype != null)) {
 			allExtendedMetatypes.add(extendedMetatype);
@@ -338,7 +338,7 @@ public class ProfileAnalysis
 
 	private void computeMetatypeName2metatype() {
 		for (org.eclipse.ocl.examples.pivot.Package metapackage : allExtendedMetapackages) {
-			for (Type metatype : metapackage.getOwnedType()) {
+			for (org.eclipse.ocl.examples.pivot.Class metatype : metapackage.getOwnedType()) {
 				if (metatype != null) {
 					metatypeName2metatype.put(metatype.getName(), metatype);
 				}
@@ -348,7 +348,7 @@ public class ProfileAnalysis
 
 	private void computeMetatypeClosure() {
 		for (org.eclipse.ocl.examples.pivot.Package metapackage : allExtendedMetapackages) {
-			for (Type subMetatype : metapackage.getOwnedType()) {
+			for (org.eclipse.ocl.examples.pivot.Class subMetatype : metapackage.getOwnedType()) {
 				if (subMetatype != null) {
 					Set<Type> superMetatypeClosure = new HashSet<Type>();
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);

@@ -1754,6 +1754,12 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAOH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAOX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="Core-Basic-Type-package" name="package" type="Core-Basic-Package" association="Core-Basic-A_ownedType_package">
+          <ownedComment xmi:id="Core-Basic-Type-package-_ownedComment.0" annotatedElement="Core-Basic-Type-package">
+            <body>Specifies the owning package of this classifier, if any.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobARn7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="Core-Basic-Operation" name="Operation">
         <ownedComment xmi:id="Core-Basic-Operation-_ownedComment.0" annotatedElement="Core-Basic-Operation">
@@ -1840,12 +1846,6 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <body>A type is a named element that is used as the type for a typed element. A type can be contained in a package.</body>
         </ownedComment>
         <generalization xmi:id="_XpKnOH7VEeOu79LxSz8Ylw" general="Core-Basic-NamedElement"/>
-        <ownedAttribute xmi:id="Core-Basic-Type-package" name="package" type="Core-Basic-Package" association="Core-Basic-A_ownedType_package">
-          <ownedComment xmi:id="Core-Basic-Type-package-_ownedComment.0" annotatedElement="Core-Basic-Type-package">
-            <body>Specifies the owning package of this classifier, if any.</body>
-          </ownedComment>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobARn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="Core-Basic-NamedElement" name="NamedElement" isAbstract="true">
         <ownedComment xmi:id="Core-Basic-NamedElement-_ownedComment.0" annotatedElement="Core-Basic-NamedElement">
@@ -1920,7 +1920,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobATn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Package-ownedType" name="ownedType" type="Core-Basic-Type" aggregation="composite" association="Core-Basic-A_ownedType_package">
+        <ownedAttribute xmi:id="Core-Basic-Package-ownedType" name="ownedType" type="Core-Basic-Class" aggregation="composite" association="Core-Basic-A_ownedType_package">
           <ownedComment xmi:id="Core-Basic-Package-ownedType-_ownedComment.0" annotatedElement="Core-Basic-Package-ownedType">
             <body>The set of contained types.</body>
           </ownedComment>

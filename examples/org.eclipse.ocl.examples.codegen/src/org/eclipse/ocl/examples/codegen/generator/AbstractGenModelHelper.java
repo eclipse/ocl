@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -167,7 +166,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @NonNull Class<?> getEcoreInterfaceClass(@NonNull Type type) throws GenModelException {
+	public @NonNull Class<?> getEcoreInterfaceClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) throws GenModelException {
 		GenClassifier genClassifier = getGenClassifier(type);
 		String qualifiedInterfaceName;
 		if (genClassifier instanceof GenDataType) {
@@ -259,7 +258,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getEcoreInterfaceName(@NonNull Type type) {
+	public @Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
 			return genClassifier instanceof GenDataType  
@@ -271,7 +270,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getEcoreClassName(@NonNull Type type) {
+	public @Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
 			return genClassifier instanceof GenDataType  
@@ -282,7 +281,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		}
 	}
 	
-	protected @NonNull GenClass getGenClass(@NonNull Type type) throws GenModelException {
+	protected @NonNull GenClass getGenClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) throws GenModelException {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			String name = type.getName();
@@ -336,7 +335,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	} */
 	
 	@Override
-	public @NonNull GenClassifier getGenClassifier(@NonNull Type type) throws GenModelException {
+	public @NonNull GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.examples.pivot.Class type) throws GenModelException {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			String name = type.getName();
@@ -348,8 +347,8 @@ public class AbstractGenModelHelper implements GenModelHelper
 			}
 		}
 		for (DomainType partialType : metaModelManager.getPartialTypes(type)) {
-			if (partialType instanceof Type) {
-				genPackage = getGenPackage((Type)partialType);
+			if (partialType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				genPackage = getGenPackage((org.eclipse.ocl.examples.pivot.Class)partialType);
 				if (genPackage != null) {
 					String name = partialType.getName();
 					for (GenClassifier genClassifier : genPackage.getGenClassifiers()) {
@@ -365,7 +364,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	public @NonNull GenFeature getGenFeature(@NonNull Property property) throws GenModelException {
-		Type owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)property.getOwningType();	// FIXME cast
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = property.getName();
@@ -421,7 +420,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		for ( ; baseOperation.getRedefinedOperation().size() > 0; baseOperation = baseOperation.getRedefinedOperation().get(0)) {
 			;
 		}
-		Type owningType = baseOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)baseOperation.getOwningType();	// FIXME cast
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = operation.getName();
@@ -460,7 +459,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @Nullable GenPackage getGenPackage(@NonNull Type type) {
+	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		org.eclipse.ocl.examples.pivot.Package asPackage = type.getPackage();
 		if (asPackage == null) {
 			return null;
@@ -568,7 +567,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException {
-		Type owningType = operation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)operation.getOwningType();	// FIXME cast
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + operation);
 		}
@@ -583,7 +582,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getPropertyResultType(@NonNull Property property) throws GenModelException {
-		Type owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)property.getOwningType();	// FIXME cast
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + property);
 		}
@@ -606,7 +605,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getQualifiedFactoryInterfaceName(@NonNull Type type) {
+	public @Nullable String getQualifiedFactoryInterfaceName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage == null) {
 			return null;
@@ -624,7 +623,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getQualifiedFactoryInstanceAccessor(@NonNull Type type) {
+	public @Nullable String getQualifiedFactoryInstanceAccessor(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage == null) {
 			return null;

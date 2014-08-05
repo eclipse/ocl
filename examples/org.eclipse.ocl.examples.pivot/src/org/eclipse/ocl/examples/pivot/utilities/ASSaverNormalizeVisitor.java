@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -47,11 +46,11 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 		}
 	}
 	
-	protected static final class TypeComparator implements Comparator<Type>
+	protected static final class TypeComparator implements Comparator<org.eclipse.ocl.examples.pivot.Class>
 	{
-		public static final @NonNull Comparator<Type> INSTANCE = new TypeComparator();
+		public static final @NonNull Comparator<org.eclipse.ocl.examples.pivot.Class> INSTANCE = new TypeComparator();
 
-		public int compare(Type o1, Type o2) {
+		public int compare(org.eclipse.ocl.examples.pivot.Class o1, org.eclipse.ocl.examples.pivot.Class o2) {
 			assert o1 != null;
 			assert o2 != null;
 			String n1 = AS2Moniker.toString(o1);
@@ -80,7 +79,7 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 
 	@Override
 	public Object visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
-		@NonNull List<Type> ownedTypes = object.getOwnedType();
+		@NonNull List<org.eclipse.ocl.examples.pivot.Class> ownedTypes = object.getOwnedType();
 		sort(ownedTypes, TypeComparator.INSTANCE);
 		return null;
 	}

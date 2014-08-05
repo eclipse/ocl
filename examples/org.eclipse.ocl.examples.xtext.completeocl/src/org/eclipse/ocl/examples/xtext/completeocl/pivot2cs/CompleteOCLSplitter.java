@@ -104,6 +104,14 @@ public class CompleteOCLSplitter
 		}
 
 		@Override
+		public EObject caseClass(org.eclipse.ocl.examples.pivot.Class object) {
+			org.eclipse.ocl.examples.pivot.Package parent = object.getPackage();
+			org.eclipse.ocl.examples.pivot.Package separateParent = getSeparate(parent);
+			List<org.eclipse.ocl.examples.pivot.Class> separateSiblings = separateParent.getOwnedType();
+			return cloneNamedElement(separateSiblings, object);
+		}
+
+		@Override
 		public EObject caseConstraint(Constraint object) {
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
@@ -218,13 +226,13 @@ public class CompleteOCLSplitter
 			return separateObject;
 		}
 
-		@Override
-		public EObject caseType(Type object) {
-			org.eclipse.ocl.examples.pivot.Package parent = object.getPackage();
-			org.eclipse.ocl.examples.pivot.Package separateParent = getSeparate(parent);
-			List<Type> separateSiblings = separateParent.getOwnedType();
-			return cloneNamedElement(separateSiblings, object);
-		}
+//		@Override
+//		public EObject caseType(Type object) {
+//			org.eclipse.ocl.examples.pivot.Package parent = object.getPackage();
+//			org.eclipse.ocl.examples.pivot.Package separateParent = getSeparate(parent);
+//			List<org.eclipse.ocl.examples.pivot.Class> separateSiblings = separateParent.getOwnedType();
+//			return cloneNamedElement(separateSiblings, object);
+//		}
 
 		protected <T extends NamedElement> T cloneNamedElement(List<T> separateSiblings, T object) {
 			String name = object.getName();

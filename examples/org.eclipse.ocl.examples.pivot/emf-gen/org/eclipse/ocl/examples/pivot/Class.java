@@ -30,6 +30,7 @@ import java.util.List;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getNestedType <em>Nested Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,6 +104,32 @@ public interface Class
 	 * @generated
 	 */
 	List<Behavior> getOwnedBehavior();
+
+	/**
+	 * Returns the value of the '<em><b>Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies the owning package of this classifier, if any.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Package</em>' container reference.
+	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_Package()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedType
+	 * @generated
+	 */
+	org.eclipse.ocl.examples.pivot.Package getPackage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Package</em>' container reference.
+	 * @see #getPackage()
+	 * @generated
+	 */
+	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Interface</b></em>' attribute.

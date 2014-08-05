@@ -60,7 +60,7 @@ public class ExtensionTypeServer extends ExtensibleTypeServer
 
 	@Override
 	protected @NonNull Map<String, PartialProperties> initMemberProperties() {
-		Type pivotType = getPivotType();
+		org.eclipse.ocl.examples.pivot.Class pivotType = getPivotType();
 		if (pivotType instanceof ElementExtension) {
 			Type containingType = PivotUtil.getContainingType(((ElementExtension)pivotType).getBase());
 			if (containingType != null) {

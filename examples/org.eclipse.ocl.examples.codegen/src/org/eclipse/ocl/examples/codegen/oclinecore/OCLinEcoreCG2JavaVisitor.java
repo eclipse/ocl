@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -74,10 +73,10 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 				CGValuedElement cgBody = cgConstraint.getBody();
 				Element pivotClass = cgClass.getAst();
 				Element asElement = cgConstraint.getAst();
-				if ((cgBody != null) && (pivotClass instanceof Type) && (asElement instanceof Constraint)) {
+				if ((cgBody != null) && (pivotClass instanceof org.eclipse.ocl.examples.pivot.Class) && (asElement instanceof Constraint)) {
 					Constraint asConstraint = (Constraint) asElement;
 					localContext = globalContext.getLocalContext(cgConstraint);
-					String bodyText = generateValidatorBody(cgBody, asConstraint, (Type)pivotClass);
+					String bodyText = generateValidatorBody(cgBody, asConstraint, (org.eclipse.ocl.examples.pivot.Class)pivotClass);
 					String fragmentURI = getFragmentURI(pivotClass) + "==" + getRuleName(asConstraint);
 					bodies.put(fragmentURI, bodyText);
 				}
@@ -135,7 +134,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 		return toString();
 	}
 
-	protected @NonNull String generateValidatorBody(@NonNull CGValuedElement cgBody, @NonNull Constraint asConstraint, @NonNull Type asType) {
+	protected @NonNull String generateValidatorBody(@NonNull CGValuedElement cgBody, @NonNull Constraint asConstraint, @NonNull org.eclipse.ocl.examples.pivot.Class asType) {
 		js.resetStream();
 		String constraintName = asConstraint.getName();
 		GenClassifier genClassifier = genModelHelper.getGenClassifier(asType);

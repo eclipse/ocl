@@ -108,7 +108,7 @@ public interface Environment extends BasicEnvironment {
 	 * 
 	 * @return the context classifier
 	 */
-	@Nullable Type getContextClassifier();
+	@Nullable org.eclipse.ocl.examples.pivot.Class getContextClassifier();
 	
 	/**
 	 * Obtains the context operation of this environment, if it is an operation

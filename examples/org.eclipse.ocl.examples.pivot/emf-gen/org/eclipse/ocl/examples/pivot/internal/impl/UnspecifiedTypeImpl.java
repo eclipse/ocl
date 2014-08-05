@@ -225,8 +225,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getOwnedInvariant();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				return getPackage();
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
@@ -241,6 +239,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getNestedType();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
+				return getPackage();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				if (resolve) return getLowerBound();
 				return basicGetLowerBound();
@@ -319,9 +319,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -346,6 +343,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				setLowerBound((Type)newValue);
@@ -415,9 +415,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -438,6 +435,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				setLowerBound((Type)null);
@@ -491,8 +491,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
@@ -507,6 +505,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				return lowerBound != null;
 			case PivotPackage.UNSPECIFIED_TYPE__UPPER_BOUND:

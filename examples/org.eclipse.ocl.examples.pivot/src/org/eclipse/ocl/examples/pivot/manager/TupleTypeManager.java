@@ -153,7 +153,7 @@ public class TupleTypeManager
 					List<Property> ownedAttributes = tupleType.getOwnedAttribute();
 					for (TuplePartId partId : partIds) {
 						DomainType partType = idResolver.getType(partId.getTypeId(), tupleType);
-						Type partType2 = metaModelManager.getType(partType);
+						org.eclipse.ocl.examples.pivot.Class partType2 = metaModelManager.getType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
 					tupleType.getSuperClass().add(metaModelManager.getOclTupleType());
@@ -171,7 +171,7 @@ public class TupleTypeManager
 		for (DomainTypedElement part : parts) {
 			DomainType type1 = part.getType();
 			if (type1 != null) {
-				Type type2 = metaModelManager.getType(type1);
+				org.eclipse.ocl.examples.pivot.Class type2 = metaModelManager.getType(type1);
 				Type type3 = metaModelManager.getSpecializedType(type2, usageBindings);
 				partMap.put(part.getName(), type3);
 			}
@@ -236,16 +236,14 @@ public class TupleTypeManager
 		List<Property> parts = specializedTupleType.getOwnedAttribute();
 		for (Property part : parts) {
 			if (part != null) {
-				Type propertyType = PivotUtil.getType(part);
+				org.eclipse.ocl.examples.pivot.Class propertyType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(part);	// FIXME cast
 				if (propertyType != null) {
-					Type resolvedPropertyType = metaModelManager
-						.getSpecializedType(propertyType, usageBindings);
+					org.eclipse.ocl.examples.pivot.Class resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, usageBindings);
 					if (resolvedPropertyType != propertyType) {
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();
 						}
-						resolutions.put(DomainUtil.getSafeName(part),
-							resolvedPropertyType);
+						resolutions.put(DomainUtil.getSafeName(part), resolvedPropertyType);
 					}
 				}
 			}

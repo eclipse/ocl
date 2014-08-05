@@ -953,7 +953,7 @@
         </ownedParameter>
       </ownedTemplateSignature>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.Class" name="Class" superClass="#T.ocl.OclAny"/>
+    <ownedType xmi:id="T.ocl.Class" name="Class" superClass="#T.ocl.OclAny"/>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="Collection" elementType="#T.ocl..CollectionT"
         name="Collection" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
@@ -1308,8 +1308,7 @@
         </ownedParameter>
       </ownedTemplateSignature>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.Enumeration" name="Enumeration"
-        superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.Enumeration" name="Enumeration" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
@@ -1326,8 +1325,7 @@
         <ownedComment body="Return a set of all enumeration values of oclText[self]."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.EnumerationLiteral" name="EnumerationLiteral"
-        superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.EnumerationLiteral" name="EnumerationLiteral" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
@@ -1580,8 +1578,7 @@
         <ownedComment body="Returns a string representation of oclText[self]."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclComparable" name="OclComparable"
-        superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclComparable" name="OclComparable" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1619,8 +1616,7 @@
             type="#OclSelf"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclElement" name="OclElement"
-        superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclElement" name="OclElement" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1729,7 +1725,7 @@
         <ownedComment body="Returns 'invalid'."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclLambda" name="OclLambda" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclLambda" name="OclLambda" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1737,8 +1733,7 @@
       </ownedAnnotation>
       <ownedComment body="The type OclLambda is the implicit supertype of all Lambda types. The operations defined for OclLambda&#xA;therefore apply to all lambda expressions.&#xA;"/>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclMessage" name="OclMessage"
-        superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclMessage" name="OclMessage" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
@@ -1770,15 +1765,14 @@
       </ownedAnnotation>
       <ownedComment body="The pseudo-type OclSelf denotes the statically determinate type of oclText[self] in Operation&#xA;and Iteration signatures. Instances of OclSelf are never created.&#xA;"/>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclState" name="OclState" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclState" name="OclState" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
         </ownedDetail>
       </ownedAnnotation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclSummable" name="OclSummable"
-        superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclSummable" name="OclSummable" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1794,7 +1788,7 @@
         <ownedComment body="Return the 'zero' value of self to initialize a summation.&#xA;&#xA;zero().sum(self) = self."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclTuple" name="OclTuple" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclTuple" name="OclTuple" superClass="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1812,7 +1806,7 @@
             type="#OclSelf"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.OclType" name="OclType" superClass="#T.ocl.OclElement">
+    <ownedType xmi:id="T.ocl.OclType" name="OclType" superClass="#T.ocl.OclElement">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -2527,14 +2521,14 @@
         </ownedParameter>
       </ownedTemplateSignature>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.State" name="State" superClass="#T.ocl.OclState">
+    <ownedType xmi:id="T.ocl.State" name="State" superClass="#T.ocl.OclState">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
         </ownedDetail>
       </ownedAnnotation>
     </ownedType>
-    <ownedType xsi:type="pivot:Class" xmi:id="T.ocl.Type" name="Type" superClass="#T.ocl.OclType"/>
+    <ownedType xmi:id="T.ocl.Type" name="Type" superClass="#T.ocl.OclType"/>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="UniqueCollection" elementType="#T.ocl..UniqueCollectionT"
         name="UniqueCollection" superClass="#//@nestedPackage.1/@ownedType.82">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">

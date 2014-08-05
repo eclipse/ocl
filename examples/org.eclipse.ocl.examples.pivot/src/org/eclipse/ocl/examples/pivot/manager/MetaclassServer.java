@@ -106,7 +106,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 	} */
 
 	@Override
-	@Nullable Type findPivotType() {
+	@Nullable org.eclipse.ocl.examples.pivot.Class findPivotType() {
 		for (TypeTracker typeTracker : getTypeTrackers()) {
 			DomainType trackedType = typeTracker.getType();
 			if (trackedType instanceof Metaclass) {
@@ -117,7 +117,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 	}
 
 	public synchronized @NonNull Metaclass<?> getMetaclass(@NonNull Type type) {
-		Type pivotType = getPivotType();
+		org.eclipse.ocl.examples.pivot.Class pivotType = getPivotType();
 		assert pivotType instanceof Metaclass;
 		TemplateSignature templateSignature = pivotType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();

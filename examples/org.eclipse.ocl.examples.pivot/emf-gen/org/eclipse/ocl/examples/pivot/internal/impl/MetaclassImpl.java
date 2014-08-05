@@ -175,8 +175,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getOwnedInvariant();
 			case PivotPackage.METACLASS__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.METACLASS__PACKAGE:
-				return getPackage();
 			case PivotPackage.METACLASS__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.METACLASS__OWNED_RULE:
@@ -191,6 +189,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getNestedType();
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.METACLASS__PACKAGE:
+				return getPackage();
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				if (resolve) return getInstanceType();
 				return basicGetInstanceType();
@@ -266,9 +266,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.METACLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.METACLASS__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -293,6 +290,9 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.METACLASS__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				setInstanceType((Type)newValue);
@@ -359,9 +359,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.METACLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.METACLASS__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -382,6 +379,9 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return;
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.METACLASS__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				setInstanceType((Type)null);
@@ -432,8 +432,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.METACLASS__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.METACLASS__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.METACLASS__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.METACLASS__OWNED_RULE:
@@ -448,6 +446,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.METACLASS__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				return instanceType != null;
 		}
@@ -516,7 +516,7 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				for (EObject eObject : resource.getContents()) {
 					if (eObject instanceof Root) {
 						for (org.eclipse.ocl.examples.pivot.Package pkg : ((Root)eObject).getNestedPackage()) {
-							Type type = DomainUtil.getNamedElement(pkg.getOwnedType(), getName());
+							org.eclipse.ocl.examples.pivot.Class type = DomainUtil.getNamedElement(pkg.getOwnedType(), getName());
 							if (type instanceof Metaclass) {
 								setUnspecializedElement(type);
 								return type;

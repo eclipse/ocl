@@ -181,7 +181,7 @@ public class PackageImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Type> ownedType;
+	protected EList<org.eclipse.ocl.examples.pivot.Class> ownedType;
 
 	/**
 	 * The cached value of the '{@link #getProfileApplication() <em>Profile Application</em>}' containment reference list.
@@ -374,11 +374,11 @@ public class PackageImpl
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull List<Type> getOwnedType()
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedType()
 	{
 		if (ownedType == null)
 		{
-			ownedType = new EObjectContainmentWithInverseEList<Type>(Type.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE);
+			ownedType = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.CLASS__PACKAGE);
 		}
 		return ownedType;
 	}
@@ -670,7 +670,7 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends Type>)newValue);
+				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				getProfileApplication().clear();

@@ -177,14 +177,14 @@ public class AssociationClassImpl
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return basicSetPackage(null, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
+				return basicSetPackage(null, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getUnownedAttribute()).basicRemove(otherEnd, msgs);
 		}
@@ -233,8 +233,6 @@ public class AssociationClassImpl
 				return getOwnedInvariant();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return getPackage();
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
@@ -249,6 +247,8 @@ public class AssociationClassImpl
 				return getNestedType();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
+				return getPackage();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return getUnownedAttribute();
 		}
@@ -322,9 +322,6 @@ public class AssociationClassImpl
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -349,6 +346,9 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				getUnownedAttribute().clear();
@@ -415,9 +415,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -438,6 +435,9 @@ public class AssociationClassImpl
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				getUnownedAttribute().clear();
@@ -487,8 +487,6 @@ public class AssociationClassImpl
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
@@ -503,6 +501,8 @@ public class AssociationClassImpl
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return unownedAttribute != null && !unownedAttribute.isEmpty();
 		}

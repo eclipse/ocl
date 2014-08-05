@@ -67,7 +67,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
     } */
 	
     // implements the interface method
-	public @NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull Type context) {
+	public @NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull org.eclipse.ocl.examples.pivot.Class context) {
         
         Environment result =
             createEnvironment(parent);
@@ -168,7 +168,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
      * @return the user model's classifier for this context object, or the
      *     context itself if it is a classifier
      */
-    protected abstract @NonNull Type getClassifier(@NonNull Object context);
+    protected abstract @NonNull org.eclipse.ocl.examples.pivot.Class getClassifier(@NonNull Object context);
     
     /**
      * Queries whether tracing of evaluation is enabled.  Tracing

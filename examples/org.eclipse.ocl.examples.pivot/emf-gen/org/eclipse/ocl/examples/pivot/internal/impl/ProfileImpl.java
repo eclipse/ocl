@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -296,7 +295,7 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return;
 			case PivotPackage.PROFILE__OWNED_TYPE:
 				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends Type>)newValue);
+				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.PROFILE__PROFILE_APPLICATION:
 				getProfileApplication().clear();

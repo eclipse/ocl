@@ -266,14 +266,14 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
 				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				return basicSetPackage(null, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__PACKAGE:
+				return basicSetPackage(null, msgs);
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				return basicSetTransition(null, msgs);
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
@@ -329,8 +329,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getOwnedInvariant();
 			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				return getPackage();
 			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.STATE_MACHINE__OWNED_RULE:
@@ -345,6 +343,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getNestedType();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.STATE_MACHINE__PACKAGE:
+				return getPackage();
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				return getTransition();
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
@@ -427,9 +427,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -454,6 +451,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.STATE_MACHINE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				setTransition((Transition)newValue);
@@ -536,9 +536,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -559,6 +556,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return;
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.STATE_MACHINE__PACKAGE:
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				setTransition((Transition)null);
@@ -621,8 +621,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_RULE:
@@ -637,6 +635,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return nestedType != null && !nestedType.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.STATE_MACHINE__PACKAGE:
+				return getPackage() != null;
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				return getTransition() != null;
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:

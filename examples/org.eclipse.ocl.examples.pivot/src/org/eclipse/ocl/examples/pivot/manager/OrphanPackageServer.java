@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * The OrphanPackageServer ensures that orphan types have their own servers. (Numerous Collection, Metaclass and Tuple types have the
@@ -45,7 +44,7 @@ public class OrphanPackageServer extends RootPackageServer
 				return orphanTypeServer;
 			}
 		}
-		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(this, (Type)type);
+		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(this, (org.eclipse.ocl.examples.pivot.Class)type);
 		servers.put(type, new WeakReference<OrphanTypeServer>(orphanTypeServer));
 		return orphanTypeServer;
 	}

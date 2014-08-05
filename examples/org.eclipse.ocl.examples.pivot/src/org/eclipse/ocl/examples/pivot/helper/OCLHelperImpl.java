@@ -130,7 +130,7 @@ public class OCLHelperImpl implements OCLHelper
 		return getEnvironment().getContextProperty();
 	}
 	
-	public @Nullable Type getContextClassifier() {
+	public @Nullable org.eclipse.ocl.examples.pivot.Class getContextClassifier() {
 		return getEnvironment().getContextClassifier();
 	}
 	
@@ -160,13 +160,13 @@ public class OCLHelperImpl implements OCLHelper
 	}
 
 	public void setContext(@NonNull EClassifier context) {
-		Type pContext = metaModelManager.getPivotOfEcore(Type.class, context);
+		org.eclipse.ocl.examples.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, context);
 		if (pContext != null) {
 			setContext(pContext);
 		}
 	}
 	
-	public void setContext(@NonNull Type context) {
+	public void setContext(@NonNull org.eclipse.ocl.examples.pivot.Class context) {
 		setEnvironment(environmentFactory.createClassifierContext(getEnvironment(), context));
 	}
 	
@@ -189,27 +189,27 @@ public class OCLHelperImpl implements OCLHelper
     }
 
 	public void setOperationContext(@NonNull EClassifier context, @NonNull EOperation operation) {
-		Type pContext = metaModelManager.getPivotOfEcore(Type.class, context);
+		org.eclipse.ocl.examples.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, context);
 		Operation pOperation = metaModelManager.getPivotOfEcore(Operation.class, operation);
 		if ((pContext != null) && (pOperation != null)) {
 			setOperationContext(pContext, pOperation);
 		}
 	}
 	
-	public void setOperationContext(@NonNull Type context, @NonNull Operation operation) {
+	public void setOperationContext(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull Operation operation) {
         setContext(context);
 		setEnvironment(environmentFactory.createOperationContext(getEnvironment(), operation));
 	}
 	
 	public void setPropertyContext(@NonNull EClassifier context, @NonNull EStructuralFeature property) {
-		Type pContext = metaModelManager.getPivotOfEcore(Type.class, context);
+		org.eclipse.ocl.examples.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Class.class, context);
 		Property pProperty = metaModelManager.getPivotOfEcore(Property.class, property);
 		if ((pContext != null) && (pProperty != null)) {
 			setPropertyContext(pContext, pProperty);
 		}
 	}
 	
-	public void setPropertyContext(@NonNull Type context, @NonNull Property property) {
+	public void setPropertyContext(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull Property property) {
         setContext(context);
 		setEnvironment(environmentFactory.createPropertyContext(getEnvironment(), property));
 	}

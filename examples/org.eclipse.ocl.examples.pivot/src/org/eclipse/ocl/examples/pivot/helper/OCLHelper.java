@@ -76,14 +76,14 @@ public interface OCLHelper
 	 * @see #setOperationContext(Type, Operation)
      * @see #setPropertyContext(Type, Property)
 	 */
-	void setContext(@NonNull Type context);
+	void setContext(@NonNull org.eclipse.ocl.examples.pivot.Class context);
 
 	/**
 	 * Obtains my OCL context classifier as a classifier.
 	 * 
 	 * @return my context classifier (never <code>null</code>)
 	 */
-	@Nullable Type getContextClassifier();
+	@Nullable org.eclipse.ocl.examples.pivot.Class getContextClassifier();
 	
 	/**
 	 * Sets the operation context of the OCL expression for which syntax or
@@ -111,7 +111,7 @@ public interface OCLHelper
 	 * 
 	 * @see #setContext(Type)
 	 */
-	void setOperationContext(@NonNull Type context, @NonNull Operation operation);
+	void setOperationContext(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull Operation operation);
 
 	/**
 	 * Obtains my context operation, if my environment is an operation context.
@@ -133,7 +133,7 @@ public interface OCLHelper
 	 * 
 	 * @see #setContext(Type)
 	 */
-	void setPropertyContext(@NonNull Type context, @NonNull Property property);
+	void setPropertyContext(@NonNull org.eclipse.ocl.examples.pivot.Class context, @NonNull Property property);
 	
 	/**
 	 * Sets the attribute context of the OCL expression for which syntax or

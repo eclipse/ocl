@@ -1121,7 +1121,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @Nullable CGPackage visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package element) {
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		setAst(cgPackage, element);
-		for (Type asType : element.getOwnedType()) {
+		for (org.eclipse.ocl.examples.pivot.Class asType : element.getOwnedType()) {
 			CGClass cgClass = doVisit(CGClass.class, asType);
 			cgPackage.getClasses().add(cgClass);
 		}

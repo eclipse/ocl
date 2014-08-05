@@ -35,7 +35,6 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedInvariant <em>Owned Invariant</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperation <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getSuperClass <em>Super Class</em>}</li>
  * </ul>
  * </p>
@@ -62,32 +61,6 @@ public interface Type
 	 * @generated
 	 */
 	List<TypeExtension> getExtendedBys();
-
-	/**
-	 * Returns the value of the '<em><b>Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Specifies the owning package of this classifier, if any.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Package</em>' container reference.
-	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_Package()
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedType
-	 * @generated
-	 */
-	org.eclipse.ocl.examples.pivot.Package getPackage();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' container reference.
-	 * @see #getPackage()
-	 * @generated
-	 */
-	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.

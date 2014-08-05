@@ -25,7 +25,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -33,17 +32,17 @@ public interface GenModelHelper
 {
 	@NonNull Class<?> getAbstractOperationClass(@NonNull List<?> parameters);
 	@Nullable Class<?> getEcoreFactoryClass(@NonNull EPackage ePackage);
-	@NonNull Class<?> getEcoreInterfaceClass(@NonNull Type owningType) throws GenModelException;
+	@NonNull Class<?> getEcoreInterfaceClass(@NonNull org.eclipse.ocl.examples.pivot.Class owningType) throws GenModelException;
 	@Nullable String getEcoreInterfaceClassName(@NonNull EClass eClass);
 	@NonNull Class<?> getEcoreInterfaceClassifier(@NonNull EClassifier eClassifier) throws GenModelException;
 	@Nullable String getEcoreInterfaceClassifierName(@NonNull EClassifier eClassifier);
-	@Nullable String getEcoreInterfaceName(@NonNull Type type);
-	@Nullable String getEcoreClassName(@NonNull Type type);
-//	@Nullable GenClass getGenClass(@NonNull Type type);
-	@Nullable GenClassifier getGenClassifier(@NonNull Type type);
+	@Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.examples.pivot.Class type);
+	@Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.examples.pivot.Class type);
+//	@Nullable GenClass getGenClass(@NonNull org.eclipse.ocl.examples.pivot.Class type);
+	@Nullable GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.examples.pivot.Class type);
 	@Nullable GenOperation getGenOperation(@NonNull Operation operation);
 	@Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Package asPackage);
-	@Nullable GenPackage getGenPackage(@NonNull Type type);
+	@Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type);
 	@Nullable GenParameter getGenParameter(@NonNull Parameter parameter);
 	@NonNull String getGetAccessor(@NonNull Property aProperty) throws GenModelException;
 	@NonNull String getGetAccessor(@NonNull EStructuralFeature eStructuralFeature) throws GenModelException;
@@ -55,9 +54,9 @@ public interface GenModelHelper
 	@NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException;
 	@NonNull String getPropertyResultType(@NonNull Property property) throws GenModelException;
 	@Nullable String getQualifiedFactoryInterfaceName(@NonNull EPackage ePackage);
-	@Nullable String getQualifiedFactoryInterfaceName(@NonNull Type type);
+	@Nullable String getQualifiedFactoryInterfaceName(@NonNull org.eclipse.ocl.examples.pivot.Class type);
 	@Nullable String getQualifiedFactoryInstanceAccessor(@NonNull EPackage ePackage);
-	@Nullable String getQualifiedFactoryInstanceAccessor(@NonNull Type type);
+	@Nullable String getQualifiedFactoryInstanceAccessor(@NonNull org.eclipse.ocl.examples.pivot.Class type);
 	@Nullable String getQualifiedPackageInterfaceName(@NonNull EPackage ePackage);
 //	@Nullable String getQualifiedLiteraleName(@NonNull EPackage ePackage);
 //	@Nullable String getQualifiedOperationImplementationName(@NonNull CodeGenSnippet snippet, @NonNull Operation anOperation, @NonNull String stereotype);

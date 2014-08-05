@@ -69,7 +69,6 @@ import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFac
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
@@ -712,7 +711,7 @@ public class UsageTests
 			//
 			EObject eObject = eFactory.create(eClass);
 			OCLHelper helper = getHelper();
-			Type contextType = helper.getOCL().getMetaModelManager().getType(idResolver.getStaticTypeOf(eObject));
+			org.eclipse.ocl.examples.pivot.Class contextType = helper.getOCL().getMetaModelManager().getType(idResolver.getStaticTypeOf(eObject));
 			helper.setContext(contextType);
 //			ExpressionInOCL query = helper.createQuery("test(3, 2, 1)");
 //			assertCallCount(query, null, 2);

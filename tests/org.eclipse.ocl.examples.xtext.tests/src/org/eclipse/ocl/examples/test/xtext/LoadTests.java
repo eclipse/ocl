@@ -880,7 +880,7 @@ public class LoadTests extends XtextTestCase
 		Resource resource = doLoad_Concrete("Bug402767", "oclinecore");
 		Root root = (Root) resource.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pkg = root.getNestedPackage().get(0);
-		org.eclipse.ocl.examples.pivot.Class cls = (org.eclipse.ocl.examples.pivot.Class) pkg.getOwnedType().get(0);
+		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedType().get(0);
 		List<Property> ownedAttributes = cls.getOwnedAttribute();
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vBlank"), 1, 1);
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vQuery"), 0, 1);

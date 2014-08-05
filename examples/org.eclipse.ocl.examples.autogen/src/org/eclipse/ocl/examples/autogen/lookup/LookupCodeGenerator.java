@@ -186,7 +186,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//	Find expected AS elements
 		//
 		ParametersId emptyParametersId = IdManager.getParametersId();
-		Type asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedType(), PivotPackage.Literals.ELEMENT.getName()));
+		org.eclipse.ocl.examples.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedType(), PivotPackage.Literals.ELEMENT.getName()));
 		TypeServer asElementTypeServer = metaModelManager.getTypeServer(asElementType);
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
 		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(envOperationId));
@@ -358,7 +358,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
 			orphanage.getNestedPackage().add(asPackage);
 		}
-		Type asType = DomainUtil.getNamedElement(asPackage.getOwnedType(), className);
+		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.getNamedElement(asPackage.getOwnedType(), className);
 		if (asType == null) {
 			asType = PivotUtil.createClass(className);
 			asPackage.getOwnedType().add(asType);
@@ -376,7 +376,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 
 	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
-		for (@SuppressWarnings("null")@NonNull Type asType : asPackage.getOwnedType()) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedType()) {
 			for (Operation envOperation : asType.getOwnedOperation()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
 					List<Parameter> asParameters = envOperation.getOwnedParameter();

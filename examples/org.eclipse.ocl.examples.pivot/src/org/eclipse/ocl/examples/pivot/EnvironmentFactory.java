@@ -89,7 +89,7 @@ public interface EnvironmentFactory {
      * @see #createPropertyContext(Environment, Property)
      * @see #createInstanceContext(Environment, Object)
 	 */
-	@NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull Type context);
+	@NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull org.eclipse.ocl.examples.pivot.Class context);
 	
     /**
      * Creates an environment suitable for parsing OCL expressions on the

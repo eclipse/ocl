@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Type;
 
 public class FinalAnalysis
 {
@@ -39,7 +38,7 @@ public class FinalAnalysis
 		this.metaModelManager = packageManager.getMetaModelManager();
 		for (PackageServer packageServer :  packageManager.getAllPackages()) {
 			for (TypeServer typeServer :  packageServer.getMemberTypes()) {
-				Type subType = typeServer.getPivotType();
+				org.eclipse.ocl.examples.pivot.Class subType = typeServer.getPivotType();
 				DomainInheritance subInheritance = subType.getInheritance(metaModelManager);
 				for (DomainInheritance superType : typeServer.getAllSuperClasses()) {
 					Set<DomainInheritance> subInheritances = type2subTypes.get(superType);

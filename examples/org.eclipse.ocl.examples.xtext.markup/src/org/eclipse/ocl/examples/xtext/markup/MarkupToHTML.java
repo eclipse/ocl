@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -248,12 +247,12 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 			EClass eClass = ((EObject)context).eClass();
 			String name = eClass.getName();
 			assert name != null;
-			Type pivotType = metaModelManager.getPivotType(name);
+			org.eclipse.ocl.examples.pivot.Class pivotType = metaModelManager.getPivotType(name);
 			if (pivotType == null) {
 				Resource resource = eClass.eResource();
 				if (resource != null) {
 					Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-					pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+					pivotType = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClass);
 				}
 			}
 			if (pivotType != null) {

@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.pivot.Type;
  */
 public class OrphanTypeServer extends AbstractTypeServer implements Iterable<Type>
 {
- 	protected final @NonNull Type target;
+ 	protected final @NonNull org.eclipse.ocl.examples.pivot.Class target;
 	
-	protected OrphanTypeServer(@NonNull OrphanPackageServer packageServer, @NonNull Type type) {
+	protected OrphanTypeServer(@NonNull OrphanPackageServer packageServer, @NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		super(packageServer, type);
 		this.target = type;
 	}
@@ -34,7 +34,7 @@ public class OrphanTypeServer extends AbstractTypeServer implements Iterable<Typ
 		return this;			// 'this' is pragmatically an Iterable
 	}
 	
-	public @NonNull Type getPivotType() {
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotType() {
 		return target;
 	}
 

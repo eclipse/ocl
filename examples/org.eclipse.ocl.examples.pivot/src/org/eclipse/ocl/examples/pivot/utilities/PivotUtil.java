@@ -1229,13 +1229,13 @@ public class PivotUtil extends DomainUtil
 		return new EcoreExecutorManager(eObject, PivotTables.LIBRARY);
 	}
 
-	public static @NonNull Type getOwningType(@NonNull Feature feature) {
-		Type owner = null;
+	public static @NonNull org.eclipse.ocl.examples.pivot.Class getOwningType(@NonNull Feature feature) {
+		org.eclipse.ocl.examples.pivot.Class owner = null;
 		if (feature instanceof Property) {
-			owner = ((Property)feature).getOwningType();
+			owner = (org.eclipse.ocl.examples.pivot.Class)((Property)feature).getOwningType();	// FIXME cast
 		}
 		else if (feature instanceof Operation) {
-			owner = ((Operation)feature).getOwningType();
+			owner = (org.eclipse.ocl.examples.pivot.Class)((Operation)feature).getOwningType();	// FIXME cast
 		}
 		else {
 			throw new IllegalStateException("Unknown feature " + feature.eClass().getName());

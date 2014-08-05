@@ -490,8 +490,8 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _UniqueCollection_Vertex = createCollectionType("UniqueCollection"/*Vertex*/, "0", "*");
 
 		protected void installOclTypes() {
-			final List<Type> ownedTypes = metamodel.getOwnedType();
-			Type type;
+			final List<Class> ownedTypes = metamodel.getOwnedType();
+			Class type;
 			List<Type> superClasses;
 			ownedTypes.add(type = _Annotation);
 			superClasses = type.getSuperClass();
@@ -895,7 +895,7 @@ public class OCLMetaModel extends ASResourceImpl
 		}
 
 		protected void installPrimitiveTypes() {
-			final List<Type> ownedTypes = metamodel.getOwnedType();
+			final List<Class> ownedTypes = metamodel.getOwnedType();
 			PrimitiveType type;
 			ownedTypes.add(type = _Boolean);
 			ownedTypes.add(type = _Integer);
@@ -905,7 +905,7 @@ public class OCLMetaModel extends ASResourceImpl
 		}
 
 		protected void installEnumerations() {
-			final List<Type> ownedTypes = metamodel.getOwnedType();
+			final List<Class> ownedTypes = metamodel.getOwnedType();
 			Enumeration type;
 			List<EnumerationLiteral> enumerationLiterals;
 			ownedTypes.add(type = _AssociativityKind);
@@ -946,8 +946,8 @@ public class OCLMetaModel extends ASResourceImpl
 		}
 
 		protected void installCollectionTypes() {
-			final List<Type> ownedTypes = metamodel.getOwnedType();
-			final List<Type> orphanTypes = pk_$$.getOwnedType();
+			final List<Class> ownedTypes = metamodel.getOwnedType();
+			final List<Class> orphanTypes = pk_$$.getOwnedType();
 			CollectionType type;
 			List<Type> superClasses;
 			orphanTypes.add(type = _Bag_Annotation);
@@ -2056,6 +2056,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Class_isInterface = createProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, _Boolean);
 		protected final @NonNull Property pr_Class_nestedType = createProperty(PivotPackage.Literals.CLASS__NESTED_TYPE, _Set_Class);
 		protected final @NonNull Property pr_Class_ownedBehavior = createProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, _Set_Behavior);
+		protected final @NonNull Property pr_Class_package = createProperty(PivotPackage.Literals.CLASS__PACKAGE, _Package);
 		protected final @NonNull Property pr_Class_Class_nestedType = createProperty("Class", _Class);
 		protected final @NonNull Property pr_CollectionItem_item = createProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, _OCLExpression);
 		protected final @NonNull Property pr_CollectionLiteralExp_kind = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND, _CollectionKind);
@@ -2206,7 +2207,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Package_nsPrefix = createProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX, _String);
 		protected final @NonNull Property pr_Package_nsURI = createProperty(PivotPackage.Literals.PACKAGE__NS_URI, _String);
 		protected final @NonNull Property pr_Package_ownedInstances = createProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES, _Set_InstanceSpecification);
-		protected final @NonNull Property pr_Package_ownedType = createProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE, _Set_Type);
+		protected final @NonNull Property pr_Package_ownedType = createProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE, _Set_Class);
 		protected final @NonNull Property pr_Package_profileApplication = createProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, _Set_ProfileApplication);
 		protected final @NonNull Property pr_Package_Package_importedPackage = createProperty("Package", _Bag_Package);
 		protected final @NonNull Property pr_Package_Root_nestedPackage = createProperty("Root", _Root);
@@ -2345,7 +2346,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Type_ownedAttribute = createProperty(PivotPackage.Literals.TYPE__OWNED_ATTRIBUTE, _OrderedSet_Property);
 		protected final @NonNull Property pr_Type_ownedInvariant = createProperty(PivotPackage.Literals.TYPE__OWNED_INVARIANT, _Set_Constraint);
 		protected final @NonNull Property pr_Type_ownedOperation = createProperty(PivotPackage.Literals.TYPE__OWNED_OPERATION, _OrderedSet_Operation);
-		protected final @NonNull Property pr_Type_package = createProperty(PivotPackage.Literals.TYPE__PACKAGE, _Package);
 		protected final @NonNull Property pr_Type_superClass = createProperty(PivotPackage.Literals.TYPE__SUPER_CLASS, _OrderedSet_Type);
 		protected final @NonNull Property pr_Type_CollectionType_elementType = createProperty("CollectionType", _Bag_CollectionType);
 		protected final @NonNull Property pr_Type_DataType_behavioralType = createProperty("DataType", _Bag_DataType);
@@ -2480,6 +2480,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Behavior_Class_ownedBehavior);
+			ownedProperties.add(property = pr_Class_package);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_ownedType);
 			ownedProperties.add(property = pr_Class_Class_nestedType);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -3120,7 +3124,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Package_ownedType);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_package);
+			property.setOpposite(pr_Class_package);
 			ownedProperties.add(property = pr_Package_profileApplication);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -3681,10 +3685,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_owningType);
-			ownedProperties.add(property = pr_Type_package);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_ownedType);
 			ownedProperties.add(property = pr_Type_superClass);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_Type_superClass);
@@ -4272,6 +4272,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_Class, "A class is a type that has objects as its instances.");
 			installComment(pr_Class_isAbstract, "True when a class is abstract.");
 			installComment(pr_Class_isActive, "True when a class is active.");
+			installComment(pr_Class_package, "Specifies the owning package of this classifier, if any.");
 			installComment(_Comment, "A comment is a textual annotation that can be attached to a set of elements.");
 			installComment(pr_Comment_annotatedElement, "References the Element(s) being commented.");
 			installComment(pr_Comment_body, "Specifies a string that is the comment.");
@@ -4404,7 +4405,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(el__TransitionKind_internal, "Implies that the transition, if triggered, occurs without exiting or entering the source state. Thus, it does not cause a state change. This means that the entry or exit condition of the source state will not be invoked. An internal transition can be taken even if the state machine is in one or more regions nested within this state.");
 			installComment(el__TransitionKind_local, "Implies that the transition, if triggered, will not exit the composite (source) state, but it will apply to any state within the composite state, and these will be exited and entered.");
 			installComment(_Type, "A type is a named element that is used as the type for a typed element. A type can be contained in a package.\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
-			installComment(pr_Type_package, "Specifies the owning package of this classifier, if any.");
 			installComment(_TypeTemplateParameter, "A type template parameter exposes a type as a formal template parameter.");
 			installComment(pr_TypeTemplateParameter_allowSubstitutable, "Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.");
 			installComment(pr_TypeTemplateParameter_constrainingType, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");

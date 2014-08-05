@@ -695,7 +695,7 @@ public class JavaStream
 	}
 
 	public void appendQualifiedLiteralName(@NonNull Operation anOperation) {
-		Type type = anOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class type = (org.eclipse.ocl.examples.pivot.Class)anOperation.getOwningType();	// FIXME cast
 		if (type != null) {
 			GenPackage genPackage = codeGenerator.getGenModelHelper().getGenPackage(type);
 			if (genPackage != null) {

@@ -64,12 +64,12 @@ public class ASSaver
 	/**
 	 * Map of original specialization to local specialization
 	 */
-	private @NonNull Map<Type, Type> specializations = new HashMap<Type, Type>();
+	private @NonNull Map<org.eclipse.ocl.examples.pivot.Class, org.eclipse.ocl.examples.pivot.Class> specializations = new HashMap<org.eclipse.ocl.examples.pivot.Class, org.eclipse.ocl.examples.pivot.Class>();
 
 	/**
 	 * The extra package for copies of specializations.
 	 */
-	private /*@LazyNonNull*/ Type orphanageClass = null;
+	private /*@LazyNonNull*/ org.eclipse.ocl.examples.pivot.Class orphanageClass = null;
 
 	public void addSpecializingElement(@NonNull Element object) {
 		specializingElements.add(object);
@@ -121,8 +121,8 @@ public class ASSaver
 		}
 	}
 
-	protected @NonNull Type getOrphanClass(@NonNull org.eclipse.ocl.examples.pivot.Package orphanagePackage) {
-		Type orphanageClass2 = orphanageClass;
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class getOrphanClass(@NonNull org.eclipse.ocl.examples.pivot.Package orphanagePackage) {
+		org.eclipse.ocl.examples.pivot.Class orphanageClass2 = orphanageClass;
 		if (orphanageClass2 == null) {
 			orphanageClass = orphanageClass2 = PivotFactory.eINSTANCE.createAnyType();		// No superclasses
 			orphanageClass2.setName(PivotConstants.ORPHANAGE_NAME);
@@ -206,7 +206,7 @@ public class ASSaver
 						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getNestedPackage()) {
 							if (Orphanage.isTypeOrphanage(asPackage)) {
 								orphanage = orphanage2 = asPackage;
-								for (Type asType : orphanage2.getOwnedType()) {
+								for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedType()) {
 									if (PivotConstants.ORPHANAGE_NAME.equals(asType.getName())) {
 										orphanageClass = asType;
 									}
@@ -221,7 +221,7 @@ public class ASSaver
 				}
 				if ((eRoot instanceof org.eclipse.ocl.examples.pivot.Package) && Orphanage.isTypeOrphanage((org.eclipse.ocl.examples.pivot.Package)eRoot)) {	// FIXME Obsolete
 					orphanage = orphanage2 = (org.eclipse.ocl.examples.pivot.Package)eRoot;
-					for (Type asType : orphanage2.getOwnedType()) {
+					for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedType()) {
 						if (PivotConstants.ORPHANAGE_NAME.equals(asType.getName())) {
 							orphanageClass = asType;
 						}
@@ -295,10 +295,10 @@ public class ASSaver
 			return referredType;
 		}
 		@SuppressWarnings("unchecked")
-		T resolvedType = (T) specializations.get(referredType);
+		org.eclipse.ocl.examples.pivot.Class resolvedType = specializations.get(referredType);
 		if (resolvedType == null) {
-			resolvedType = DomainUtil.nonNullEMF(EcoreUtil.copy(referredType));
-			specializations.put(referredType, resolvedType);
+			resolvedType = DomainUtil.nonNullEMF(EcoreUtil.copy((org.eclipse.ocl.examples.pivot.Class)referredType));	// FIXME cast
+			specializations.put((org.eclipse.ocl.examples.pivot.Class)referredType, resolvedType);	// FIXME cast
 			specializations.put(resolvedType, resolvedType);
 			EObject eContainer = resolvedType.eContainer();
 			if (eContainer == null) {
@@ -327,6 +327,6 @@ public class ASSaver
 			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
 		} */
 		locateSpecializations(Collections.singletonList(resolvedType));
-		return resolvedType;
+		return (T)resolvedType;
 	}
 }

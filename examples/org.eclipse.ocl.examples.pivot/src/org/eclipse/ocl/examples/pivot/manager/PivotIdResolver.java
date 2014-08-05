@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.types.DomainInvalidTypeImpl;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -146,7 +145,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainType getType(@NonNull EClassifier eClassifier) {
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getType(@NonNull EClassifier eClassifier) {
 		EObject eType = eClassifier;
 		EPackage ePackage = eClassifier.getEPackage();
 		if (ePackage == UMLPackage.eINSTANCE) {
@@ -156,7 +155,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				DomainPackage asMetamodel = metaModelManager.getASMetamodel();
 				if (asMetamodel != null) {
 					PackageServer packageServer = metaModelManager.getPackageServer(asMetamodel);
-					Type pivotType = packageServer.getMemberType(typeName);
+					org.eclipse.ocl.examples.pivot.Class pivotType = packageServer.getMemberType(typeName);
 					if (pivotType != null) {
 						return pivotType;
 					}
@@ -191,7 +190,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				DomainPackage asMetamodel = metaModelManager.getASMetamodel();
 				if (asMetamodel != null) {
 					PackageServer packageServer = metaModelManager.getPackageServer(asMetamodel);
-					Type pivotType = packageServer.getMemberType(typeName);
+					org.eclipse.ocl.examples.pivot.Class pivotType = packageServer.getMemberType(typeName);
 					if (pivotType != null) {
 						return pivotType;
 					}
@@ -207,7 +206,8 @@ public class PivotIdResolver extends AbstractIdResolver
 		} catch (ParserException e) {
 			logger.error("Failed to convert '" + eType + "'", e);
 		}
-		return new DomainInvalidTypeImpl(standardLibrary, "No object created by Ecore2Pivot");
+//		return new DomainInvalidTypeImpl(standardLibrary, "No object created by Ecore2Pivot");
+		return metaModelManager.getOclInvalidType();
 	}
 
 	@Override

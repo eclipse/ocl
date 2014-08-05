@@ -108,9 +108,9 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	}
 	
     // implements the interface method
-	public @Nullable Type getContextClassifier() {
+	public @Nullable org.eclipse.ocl.examples.pivot.Class getContextClassifier() {
 		Variable selfVariable = getSelfVariable();
-		return selfVariable != null ? selfVariable.getType() : null;
+		return selfVariable != null ? (org.eclipse.ocl.examples.pivot.Class)selfVariable.getType() : null;	// FIXME cast
 	}
 	
     // implements the interface method
@@ -183,7 +183,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 		
 		// ensure that the environment knows its package context
 		if (getContextPackage() == null) {
-			Type contextClassifier = getContextClassifier();
+			org.eclipse.ocl.examples.pivot.Class contextClassifier = getContextClassifier();
 			
 			if (contextClassifier != null) {
 				setContextPackage(contextClassifier.getPackage());

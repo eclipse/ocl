@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.Type;
 
 import com.google.common.collect.Iterables;
 
@@ -32,7 +31,7 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 	/**
 	 * Lazily cached best type representation.
 	 */
-	private @Nullable Type representativeType = null;
+	private @Nullable org.eclipse.ocl.examples.pivot.Class representativeType = null;
 	
 	protected ExtensibleTypeServer(@NonNull PackageServer packageServer, @NonNull DomainType domainType) {
 		super(packageServer, domainType);
@@ -67,11 +66,11 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 	/**
 	 * Return the Type to represent this type merge.
 	 */
-	@Nullable Type findPivotType() {
+	@Nullable org.eclipse.ocl.examples.pivot.Class findPivotType() {
 		for (TypeTracker typeTracker : trackers) {
 			DomainType trackedType = typeTracker.getType();
-			if (trackedType instanceof Type) {
-				return (Type)trackedType;
+			if (trackedType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				return (org.eclipse.ocl.examples.pivot.Class)trackedType;
 			}
 		}
 		return null;
@@ -83,8 +82,8 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 		return transform;
 	}
 	
-	public @NonNull Type getPivotType() {
-		Type representativeType2 = representativeType;
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getPivotType() {
+		org.eclipse.ocl.examples.pivot.Class representativeType2 = representativeType;
 		if (representativeType2 == null) {
 			representativeType2 = representativeType = findPivotType();
 			if (representativeType2 == null) {

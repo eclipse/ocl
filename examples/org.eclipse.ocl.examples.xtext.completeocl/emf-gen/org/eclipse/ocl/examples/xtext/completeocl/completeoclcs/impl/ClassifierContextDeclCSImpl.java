@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.basecs.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
@@ -238,14 +237,13 @@ public class ClassifierContextDeclCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Type getClassifier() {
+	public org.eclipse.ocl.examples.pivot.Class getClassifier() {
 		PathNameCS pathName2 = pathName;
 		if (pathName2 == null) {
 			return null;
 		}
-		CS2Pivot.setElementType(pathName2, PivotPackage.Literals.TYPE, this,
-			null);
-		return (Type) pathName2.getElement();
+		CS2Pivot.setElementType(pathName2, PivotPackage.Literals.TYPE, this, null);
+		return (org.eclipse.ocl.examples.pivot.Class) pathName2.getElement();
 	}
 
 	/**

@@ -151,8 +151,6 @@ public class TemplateParameterTypeImpl
 				return getOwnedInvariant();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
 				return getOwnedOperation();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
-				return getPackage();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
 				return getSuperClass();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
@@ -228,9 +226,6 @@ public class TemplateParameterTypeImpl
 				getOwnedOperation().clear();
 				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends Type>)newValue);
@@ -299,9 +294,6 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
 				getOwnedOperation().clear();
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
@@ -353,8 +345,6 @@ public class TemplateParameterTypeImpl
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
 				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
-				return getPackage() != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:

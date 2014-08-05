@@ -122,9 +122,11 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			}
 			catch (Exception e) {}
 		} */
-		org.eclipse.ocl.examples.pivot.Package asPackage = type.getPackage();
-		if ((asPackage != null) && (asPackage.eContainer() instanceof Orphanage)) {
-			return new SimpleDataTypeDescriptor(id, asPackage.getName() + "." + type.getName());
+		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+			org.eclipse.ocl.examples.pivot.Package asPackage = ((org.eclipse.ocl.examples.pivot.Class)type).getPackage();
+			if ((asPackage != null) && (asPackage.eContainer() instanceof Orphanage)) {
+				return new SimpleDataTypeDescriptor(id, asPackage.getName() + "." + type.getName());
+			}
 		}
 		return new RootObjectDescriptor(id);
 	}

@@ -100,7 +100,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGContainmentBody(@NonNull CGContainmentBody object) {
-		Type asType = DomainUtil.nonNullState(((Operation) object.getAst()).getType());
+		org.eclipse.ocl.examples.pivot.Class asType = (org.eclipse.ocl.examples.pivot.Class)DomainUtil.nonNullState(((Operation) object.getAst()).getType());	// FIXME cast
 		String factoryName = context.getGenModelHelper().getQualifiedFactoryInterfaceName(asType);
 		// TypeDescriptor typeDescriptor = context.getTypeDescriptor(asType.getTypeId(), false);
 		String typeQualifiedName = context.getGenModelHelper().getEcoreInterfaceName(asType);

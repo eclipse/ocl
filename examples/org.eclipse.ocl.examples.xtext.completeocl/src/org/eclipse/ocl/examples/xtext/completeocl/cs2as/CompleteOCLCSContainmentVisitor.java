@@ -126,7 +126,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	/**
 	 * Mapping from the complemented type to the complementing types for each complemented type.
 	 */
-	private Map<Type, List<Type>> modelType2contextTypes = new HashMap<Type, List<Type>>();
+	private Map<org.eclipse.ocl.examples.pivot.Class, List<org.eclipse.ocl.examples.pivot.Class>> modelType2contextTypes = new HashMap<org.eclipse.ocl.examples.pivot.Class, List<org.eclipse.ocl.examples.pivot.Class>>();
 	
 	/**
 	 * Mapping from the complemented type to the list of complementing operations for each complementing type.
@@ -225,15 +225,15 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	}
 
 	protected void installTypeContainment() {
-		Map<org.eclipse.ocl.examples.pivot.Package, Set<Type>> nestedContextTypeMaps =
-				new HashMap<org.eclipse.ocl.examples.pivot.Package, Set<Type>>();
-		for (Type modelType : modelType2contextTypes.keySet()) {
-			for (@SuppressWarnings("null")@NonNull Type contextType : modelType2contextTypes.get(modelType)) {
+		Map<org.eclipse.ocl.examples.pivot.Package, Set<org.eclipse.ocl.examples.pivot.Class>> nestedContextTypeMaps =
+				new HashMap<org.eclipse.ocl.examples.pivot.Package, Set<org.eclipse.ocl.examples.pivot.Class>>();
+		for (org.eclipse.ocl.examples.pivot.Class modelType : modelType2contextTypes.keySet()) {
+			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class contextType : modelType2contextTypes.get(modelType)) {
 				org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelType.getPackage();
 				org.eclipse.ocl.examples.pivot.Package parentContextPackage = modelPackage2contextPackage.get(parentModelPackage);
-				Set<Type> ownedTypes = nestedContextTypeMaps.get(parentContextPackage);
+				Set<org.eclipse.ocl.examples.pivot.Class> ownedTypes = nestedContextTypeMaps.get(parentContextPackage);
 				if (ownedTypes == null) {
-					ownedTypes = new HashSet<Type>();
+					ownedTypes = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 					nestedContextTypeMaps.put(parentContextPackage, ownedTypes);
 //					ownedTypes.addAll(parentContextPackage.getOwnedType());
 				}
@@ -249,9 +249,9 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		for (org.eclipse.ocl.examples.pivot.Package parentContextPackage : nestedContextTypeMaps.keySet()) {
-			Set<Type> ownedTypes = nestedContextTypeMaps.get(parentContextPackage);
+			Set<org.eclipse.ocl.examples.pivot.Class> ownedTypes = nestedContextTypeMaps.get(parentContextPackage);
 			if (ownedTypes != null) {
-				List<Type> parentOwnedTypes = parentContextPackage.getOwnedType();
+				List<org.eclipse.ocl.examples.pivot.Class> parentOwnedTypes = parentContextPackage.getOwnedType();
 				assert parentOwnedTypes != null;
 				PivotUtil.refreshSet(parentOwnedTypes, ownedTypes);
 			}
@@ -300,14 +300,14 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		return contextPackage;
 	}
 
-	protected Type refreshContextType(@NonNull Type modelClassifier, @Nullable ClassifierContextDeclCS csElement) {
+	protected Type refreshContextType(@NonNull org.eclipse.ocl.examples.pivot.Class modelClassifier, @Nullable ClassifierContextDeclCS csElement) {
 		if (modelClassifier.eIsProxy()) {
 			return null;
 		}
-		@NonNull Type contextClassifier = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
-		List<Type> contextClassifiers = modelType2contextTypes.get(modelClassifier);
+		@NonNull org.eclipse.ocl.examples.pivot.Class contextClassifier = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
+		List<org.eclipse.ocl.examples.pivot.Class> contextClassifiers = modelType2contextTypes.get(modelClassifier);
 		if (contextClassifiers == null) {
-			contextClassifiers = new ArrayList<Type>();
+			contextClassifiers = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
 			modelType2contextTypes.put(modelClassifier, contextClassifiers);
 		}
 		context.refreshName(contextClassifier, DomainUtil.nonNullModel(modelClassifier.getName()));
@@ -356,7 +356,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(@NonNull ClassifierContextDeclCS csElement) {
-		Type modelClassifier = csElement.getClassifier();
+		org.eclipse.ocl.examples.pivot.Class modelClassifier = csElement.getClassifier();
 		if (modelClassifier != null) {
 			Type contextClassifier = refreshContextType(modelClassifier, csElement);
 			if (contextClassifier != null) {
@@ -469,8 +469,8 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		int pathSize = path.size();
 		Element modelParent = pathSize >= 2 ? path.get(pathSize-2).getElement() : null;
 		@NonNull Operation contextOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-		if (modelParent instanceof Type) {
-			Type modelClassifier = (Type) modelParent;
+		if (modelParent instanceof org.eclipse.ocl.examples.pivot.Class) {
+			org.eclipse.ocl.examples.pivot.Class modelClassifier = (org.eclipse.ocl.examples.pivot.Class) modelParent;
 			refreshContextType(modelClassifier, null);
 			registerOperation(modelClassifier, contextOperation);
 		}
@@ -533,7 +533,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		if ((modelProperty != null) && !modelProperty.eIsProxy()) {
 			context.refreshName(contextProperty, DomainUtil.nonNullModel(modelProperty.getName()));
 			contextProperty.setType(modelProperty.getType());
-			Type modelClassifier = modelProperty.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class modelClassifier = (org.eclipse.ocl.examples.pivot.Class)modelProperty.getOwningType();	// FIXME cast
 			if (modelClassifier != null) {
 				refreshContextType(modelClassifier, null);
 				registerProperty(modelClassifier, contextProperty);

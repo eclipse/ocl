@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -378,7 +379,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		return castElement;
 	}
 	
-	public Type getPivotType(@NonNull EObject eObject) {
+	public org.eclipse.ocl.examples.pivot.Class getPivotType(@NonNull EObject eObject) {
 		Element pivotElement = newCreateMap.get(eObject);
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
@@ -398,11 +399,11 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		if (pivotElement == null) {
 			error("Unresolved " + eObject);
 		}
-		else if (!(pivotElement instanceof Type)) {
+		else if (!(pivotElement instanceof org.eclipse.ocl.examples.pivot.Class)) {
 			error("Incompatible " + eObject);
 		}
 		else {
-			return (Type) pivotElement;
+			return (org.eclipse.ocl.examples.pivot.Class) pivotElement;
 		}
 		return null;
 	}
@@ -448,7 +449,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 			newCreateMap = new HashMap<EObject, Element>();
 			org.eclipse.ocl.examples.pivot.Package asLibrary = metaModelManager.getOclAnyType().getPackage();
 			newCreateMap.put(libraryEPackage, asLibrary);
-			List<Type> ownedType = asLibrary.getOwnedType();
+			List<org.eclipse.ocl.examples.pivot.Class> ownedType = asLibrary.getOwnedType();
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();
 			for (EClassifier eClassifier : libraryEPackage.getEClassifiers()) {
 				String name = getOriginalName(eClassifier); //.substring(prefix);
@@ -722,11 +723,11 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		EClassifier eClassifier = eGenericType.getEClassifier();
 		List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		assert eTypeParameters.size() == eTypeArguments.size();
-		Type unspecializedPivotType = getPivotType(eClassifier);
+		org.eclipse.ocl.examples.pivot.Class unspecializedPivotType = getPivotType(eClassifier);
 		if (unspecializedPivotType == null) {
 			return null;
 		}
- 		List<Type> templateArguments = new ArrayList<Type>();
+ 		List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
 		for (EGenericType eTypeArgument : eTypeArguments) {
 			if (eTypeArgument != null) {
 				Type typeArgument = resolveType(resolvedSpecializations, eTypeArgument);
