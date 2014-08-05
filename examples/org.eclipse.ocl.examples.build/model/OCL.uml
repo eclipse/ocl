@@ -142,7 +142,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Constraints" name="OCL_Constraints">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Constraints-Constraint" name="Constraint">
-        <ownedAttribute xmi:id="_QcxJMBlREeSM9LreJtBwBg" name="specification" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite">
+        <ownedAttribute xmi:id="_QcxJMBlREeSM9LreJtBwBg" name="specification" type="_foQQkBmAEeSM9LreJtBwBg" aggregation="composite" association="_kOeEUBzOEeSIos3S87O_rg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QcxJMRlREeSM9LreJtBwBg"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_gwa58BsqEeSM9LreJtBwBg" name="context" type="_cma-sBsqEeSM9LreJtBwBg" isReadOnly="true" isDerived="true">
@@ -159,6 +159,9 @@
         </ownedAttribute>
         <ownedAttribute xmi:id="_GchLcBmBEeSM9LreJtBwBg" name="body" type="_Ap5skBmBEeSM9LreJtBwBg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GchLcRmBEeSM9LreJtBwBg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_bRneEBzOEeSIos3S87O_rg" name="owningConstraint" type="OCL-OCL_Constraints-Constraint" association="_kOeEUBzOEeSIos3S87O_rg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ewmGYBzOEeSIos3S87O_rg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_cma-sBsqEeSM9LreJtBwBg" name="Namespace" isAbstract="true"/>
@@ -180,6 +183,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_w5OpIBmAEeSM9LreJtBwBg" name="ValueSpecification" isAbstract="true"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Ap5skBmBEeSM9LreJtBwBg" name="String"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_kOeEUBzOEeSIos3S87O_rg" name="A_specification_owningConstraint" memberEnd="_QcxJMBlREeSM9LreJtBwBg _bRneEBzOEeSIos3S87O_rg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Expressions" name="OCL_Expressions">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-AssociationClassCallExp" name="AssociationClassCallExp">

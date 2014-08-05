@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -288,6 +289,8 @@ public class ExpressionInOCLImpl
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
 				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
+				return basicSetOwningConstraint(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
@@ -335,6 +338,8 @@ public class ExpressionInOCLImpl
 				return getBody();
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
 				return getLanguage();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
+				return getOwningConstraint();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
@@ -390,6 +395,9 @@ public class ExpressionInOCLImpl
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				setBody((String)newValue);
+				return;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
+				setOwningConstraint((Constraint)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				setBodyExpression((OCLExpression)newValue);
@@ -447,6 +455,9 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				setBody(BODY_EDEFAULT);
 				return;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
+				setOwningConstraint((Constraint)null);
+				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				setBodyExpression((OCLExpression)null);
 				return;
@@ -496,6 +507,8 @@ public class ExpressionInOCLImpl
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
 				return LANGUAGE_EDEFAULT == null ? getLanguage() != null : !LANGUAGE_EDEFAULT.equals(getLanguage());
+			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
+				return getOwningConstraint() != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:

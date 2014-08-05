@@ -2123,7 +2123,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_LambdaType_resultType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE, _Type);
 		protected final @NonNull Property pr_LanguageExpression_body = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__BODY, _String);
 		protected final @NonNull Property pr_LanguageExpression_language = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__LANGUAGE, _String);
-		protected final @NonNull Property pr_LanguageExpression_Constraint_specification = createProperty("Constraint", _Constraint);
+		protected final @NonNull Property pr_LanguageExpression_owningConstraint = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, _Constraint);
 		protected final @NonNull Property pr_LanguageExpression_Operation_bodyExpression = createProperty("Operation", _Operation);
 		protected final @NonNull Property pr_LanguageExpression_Property_defaultExpression = createProperty("Property", _Property);
 		protected final @NonNull Property pr_LanguageExpression_owningInstanceSpec_specification = createProperty("owningInstanceSpec", _InstanceSpecification);
@@ -2584,7 +2584,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Constraint_specification);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LanguageExpression_Constraint_specification);
+			property.setOpposite(pr_LanguageExpression_owningConstraint);
 			ownedProperties.add(property = pr_Constraint_transition);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -2841,8 +2841,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setIsTransient(true);
 			property.setIsVolatile(true);
-			ownedProperties.add(property = pr_LanguageExpression_Constraint_specification);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_LanguageExpression_owningConstraint);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Constraint_specification);

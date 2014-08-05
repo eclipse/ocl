@@ -2204,7 +2204,7 @@ public class PivotTables
 
 		public static final @NonNull ExecutorProperty _LanguageExpression__body = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__BODY, Types._LanguageExpression, 0);
 		public static final @NonNull ExecutorProperty _LanguageExpression__language = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__LANGUAGE, Types._LanguageExpression, 1);
-		public static final @NonNull ExecutorProperty _LanguageExpression__Constraint__specification = new ExecutorPropertyWithImplementation("Constraint", Types._LanguageExpression, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
+		public static final @NonNull ExecutorProperty _LanguageExpression__owningConstraint = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, Types._LanguageExpression, 2);
 		public static final @NonNull ExecutorProperty _LanguageExpression__Operation__bodyExpression = new ExecutorPropertyWithImplementation("Operation", Types._LanguageExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION));
 		public static final @NonNull ExecutorProperty _LanguageExpression__Property__defaultExpression = new ExecutorPropertyWithImplementation("Property", Types._LanguageExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION));
 		public static final @NonNull ExecutorProperty _LanguageExpression__owningInstanceSpec__specification = new ExecutorPropertyWithImplementation("owningInstanceSpec", Types._LanguageExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION));
@@ -11932,6 +11932,7 @@ public class PivotTables
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._LanguageExpression__owningConstraint,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._ExpressionInOCL__parameterVariable,
 			PivotTables.Properties._ExpressionInOCL__resultVariable,
@@ -11940,7 +11941,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
-			PivotTables.Properties._LanguageExpression__Constraint__specification,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
 			PivotTables.Properties._LanguageExpression__Operation__bodyExpression,
 			PivotTables.Properties._LanguageExpression__Property__defaultExpression,
@@ -12421,13 +12421,13 @@ public class PivotTables
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._LanguageExpression__owningConstraint,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._ParameterableElement__templateParameter,
 			PivotTables.Properties._TypedElement__type,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
-			PivotTables.Properties._LanguageExpression__Constraint__specification,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
 			PivotTables.Properties._LanguageExpression__Operation__bodyExpression,
 			PivotTables.Properties._LanguageExpression__Property__defaultExpression,

@@ -9363,13 +9363,22 @@ public interface PivotPackage
 	int LANGUAGE_EXPRESSION__LANGUAGE = VALUE_SPECIFICATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owning Constraint</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_EXPRESSION__OWNING_CONSTRAINT = VALUE_SPECIFICATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Language Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 2;
+	int LANGUAGE_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -9595,6 +9604,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL__LANGUAGE = LANGUAGE_EXPRESSION__LANGUAGE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Constraint</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__OWNING_CONSTRAINT = LANGUAGE_EXPRESSION__OWNING_CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -25371,6 +25389,17 @@ public interface PivotPackage
 	EAttribute getLanguageExpression_Language();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint <em>Owning Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Constraint</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint()
+	 * @see #getLanguageExpression()
+	 * @generated
+	 */
+	EReference getLanguageExpression_OwningConstraint();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.LetExp <em>Let Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29987,6 +30016,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute LANGUAGE_EXPRESSION__LANGUAGE = eINSTANCE.getLanguageExpression_Language();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Constraint</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGE_EXPRESSION__OWNING_CONSTRAINT = eINSTANCE.getLanguageExpression_OwningConstraint();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LetExpImpl <em>Let Exp</em>}' class.

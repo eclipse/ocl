@@ -57,7 +57,6 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -956,7 +955,7 @@ public class OCLinEcoreTablesUtils
 		if (owningType == null) {
 			return "null";
 		}
-		String qualifiedSignature = PrettyPrinter.printType(anOperation, (Namespace)owningType);	// FIXME cast
+		String qualifiedSignature = PrettyPrinter.printType(anOperation, owningType);
 		int colonColonIndex = qualifiedSignature.indexOf("::");
 		int parenthesisIndex = qualifiedSignature.indexOf("(");
 		if ((parenthesisIndex < 0) ? (colonColonIndex > 0) : (colonColonIndex < parenthesisIndex)) {	// FIXME use a decent inherently right algorithm

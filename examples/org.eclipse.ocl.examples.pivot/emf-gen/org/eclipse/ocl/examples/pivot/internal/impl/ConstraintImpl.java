@@ -187,9 +187,9 @@ public class ConstraintImpl
 		{
 			NotificationChain msgs = null;
 			if (specification != null)
-				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRAINT__SPECIFICATION, null, msgs);
+				msgs = ((InternalEObject)specification).eInverseRemove(this, PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, LanguageExpression.class, msgs);
 			if (newSpecification != null)
-				msgs = ((InternalEObject)newSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRAINT__SPECIFICATION, null, msgs);
+				msgs = ((InternalEObject)newSpecification).eInverseAdd(this, PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, LanguageExpression.class, msgs);
 			msgs = basicSetSpecification(newSpecification, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -466,6 +466,10 @@ public class ConstraintImpl
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetPreContext((Operation)otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__SPECIFICATION:
+				if (specification != null)
+					msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRAINT__SPECIFICATION, null, msgs);
+				return basicSetSpecification((LanguageExpression)otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__TRANSITION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

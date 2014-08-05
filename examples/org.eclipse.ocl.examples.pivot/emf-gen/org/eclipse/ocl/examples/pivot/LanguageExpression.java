@@ -26,6 +26,7 @@ package org.eclipse.ocl.examples.pivot;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint <em>Owning Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,5 +71,32 @@ public interface LanguageExpression extends ValueSpecification, org.eclipse.ocl.
 	 * @generated
 	 */
 	String getLanguage();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Constraint</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Constraint</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Constraint</em>' container reference.
+	 * @see #setOwningConstraint(Constraint)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLanguageExpression_OwningConstraint()
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getSpecification
+	 * @generated
+	 */
+	Constraint getOwningConstraint();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint <em>Owning Constraint</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Constraint</em>' container reference.
+	 * @see #getOwningConstraint()
+	 * @generated
+	 */
+	void setOwningConstraint(Constraint value);
 
 } // LanguageExpression

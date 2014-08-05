@@ -75,10 +75,6 @@ Workflow {
     		from = "/${projectName}/model/MDTOCL.uml"
     		to = "/${projectName}/model-gen/MDTOCL.uml"
     	}
-    	mapping = Mapping {
-    		from = "/${projectName}/model/MDTOCL2.uml"
-    		to = "/${projectName}/model-gen/MDTOCL2.uml"
-    	}
     }
     //
     //	Create an OclPivot.ecore that can be compared with the new.

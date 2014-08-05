@@ -16,7 +16,6 @@
     <oldPackages href="../model-gen/UML.uml#UseCases"/>
     <oldPackages href="../model-gen/OCL.uml#OCL"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL"/>
-    <oldPackages href="../model-gen/MDTOCL2.uml#MDTOCL2"/>
   </mappings>
   <mappings
       xsi:type="u2ec:CreatePackage"
@@ -50,15 +49,14 @@
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Ecore"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Evaluation"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Framework"/>
+    <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Precedences"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_PrimitiveTypes"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Redefinitions"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Referring"/>
+    <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Root"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Stereotypes"/>
     <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Visiting"/>
-    <oldPackages href="../model-gen/MDTOCL2.uml#MDTOCL2-MDT_OCL2_Constraints"/>
-    <oldPackages href="../model-gen/MDTOCL2.uml#MDTOCL2-MDT_OCL2_Root"/>
-    <oldPackages href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances"/>
     <createTypes newName="Class">
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Class"/>
       <oldTypes xsi:type="uml:Class" href="../model-gen/UML.uml#Classifier"/>
@@ -336,7 +334,6 @@
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove replaced definition">
     <oldProperties href="../model-gen/UML.uml#Constraint-context"/>
-    <!--oldProperties href="../model-gen/UML.uml#Constraint-specification"/-->
     <oldProperties href="../model-gen/UML.uml#A_constrainedElement_constraint-constraint"/>
     <oldProperties href="../model-gen/UML.uml#A_specification_owningConstraint-owningConstraint"/>
   </mappings>

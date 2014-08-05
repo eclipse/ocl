@@ -242,7 +242,8 @@
       <ownedAttribute xmi:id="p.pivot.Constraint.redefinedConstraint" name="redefinedConstraint"
           opposite="#p.pivot.Constraint.constraint" type="#//@nestedPackage.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Constraint.specification" isComposite="true"
-          name="specification" opposite="#p.pivot.LanguageExpression.Constraint" type="#T.pivot.LanguageExpression">
+          name="specification" opposite="#p.pivot.LanguageExpression.owningConstraint"
+          type="#T.pivot.LanguageExpression">
         <ownedComment body="A condition that must be true when evaluated in order for the constraint to be satisfied."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Constraint.transition" isRequired="false" name="transition"
@@ -625,9 +626,8 @@
           isReadOnly="true" isTransient="true" isVolatile="true" name="language" type="#String">
         <ownedComment body="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.LanguageExpression.Constraint" implicit="true"
-          isRequired="false" name="Constraint" opposite="#p.pivot.Constraint.specification"
-          type="#T.pivot.Constraint"/>
+      <ownedAttribute xmi:id="p.pivot.LanguageExpression.owningConstraint" isRequired="false"
+          name="owningConstraint" opposite="#p.pivot.Constraint.specification" type="#T.pivot.Constraint"/>
       <ownedAttribute xmi:id="p.pivot.LanguageExpression.Operation" implicit="true"
           isRequired="false" name="Operation" opposite="#p.pivot.Operation.bodyExpression"
           type="#T.pivot.Operation"/>

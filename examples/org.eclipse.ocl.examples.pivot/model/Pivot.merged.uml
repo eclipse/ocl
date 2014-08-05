@@ -331,7 +331,8 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstraint.PconstrainedElement.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TConstraint.PconstrainedElement.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TConstraint.Pspecification" name="specification" type="Ppivot.TLanguageExpression" aggregation="composite">
+      <ownedAttribute xmi:id="Ppivot.TConstraint.Pspecification" name="specification" type="Ppivot.TLanguageExpression" aggregation="composite"
+          association="Ppivot.A_specification_owningConstraint">
         <ownedComment xmi:id="Ppivot.TConstraint.Pspecification.oC0" annotatedElement="Ppivot.TConstraint.Pspecification">
           <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
         </ownedComment>
@@ -638,6 +639,9 @@
         <ownedComment xmi:id="Ppivot.TLanguageExpression.Planguage.oC0" annotatedElement="Ppivot.TLanguageExpression.Planguage">
           <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
         </ownedComment>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TLanguageExpression.PowningConstraint" name="owningConstraint" type="Ppivot.TConstraint" association="Ppivot.A_specification_owningConstraint">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLanguageExpression.PowningConstraint.lV"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLetExp" name="LetExp">
@@ -1938,6 +1942,8 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_slot_owningInstance" name="A_slot_owningInstance" memberEnd="Ppivot.TInstanceSpecification.Pslots Ppivot.TSlot.PowningInstance"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_specification_owningConstraint" name="A_specification_owningConstraint"
+        memberEnd="Ppivot.TConstraint.Pspecification Ppivot.TLanguageExpression.PowningConstraint"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_specification_owningInstanceSpec" name="A_specification_owningInstanceSpec"
         memberEnd="Ppivot.TInstanceSpecification.Pspecification Ppivot.A_specification_owningInstanceSpec.PowningInstanceSpec">
       <ownedEnd xmi:id="Ppivot.A_specification_owningInstanceSpec.PowningInstanceSpec" name="owningInstanceSpec" type="Ppivot.TInstanceSpecification"

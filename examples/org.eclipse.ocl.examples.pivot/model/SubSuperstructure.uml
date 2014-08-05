@@ -429,7 +429,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQTH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQTX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="specification" type="_VcCqIBlSEeSM9LreJtBwBg" aggregation="composite">
+          <ownedAttribute xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="specification" type="_VcCqIBlSEeSM9LreJtBwBg" aggregation="composite" association="_U6pm4BzMEeSIos3S87O_rg">
             <ownedComment xmi:id="_JhArvq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArva5oEd-xTJkHwX_SlQ">
               <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
             </ownedComment>
@@ -563,7 +563,11 @@
             </ownedComment>
             <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-String"/>
           </ownedAttribute>
+          <ownedAttribute xmi:id="_MoSIEBzMEeSIos3S87O_rg" name="owningConstraint" type="_JhArsK5oEd-xTJkHwX_SlQ" association="_U6pm4BzMEeSIos3S87O_rg">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qb_qQBzMEeSIos3S87O_rg"/>
+          </ownedAttribute>
         </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_U6pm4BzMEeSIos3S87O_rg" name="A_specification_owningConstraint" memberEnd="_JhArva5oEd-xTJkHwX_SlQ _MoSIEBzMEeSIos3S87O_rg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
         <packagedElement xmi:type="uml:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class">

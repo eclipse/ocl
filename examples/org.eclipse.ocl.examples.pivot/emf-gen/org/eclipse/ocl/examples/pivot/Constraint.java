@@ -62,6 +62,7 @@ public interface Constraint
 
 	/**
 	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint <em>Owning Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -70,6 +71,7 @@ public interface Constraint
 	 * @return the value of the '<em>Specification</em>' containment reference.
 	 * @see #setSpecification(LanguageExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Specification()
+	 * @see org.eclipse.ocl.examples.pivot.LanguageExpression#getOwningConstraint
 	 * @generated
 	 */
 	LanguageExpression getSpecification();

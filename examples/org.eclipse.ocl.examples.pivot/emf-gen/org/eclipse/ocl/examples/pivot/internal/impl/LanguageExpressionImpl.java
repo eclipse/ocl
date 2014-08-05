@@ -13,10 +13,16 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
@@ -33,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.LanguageExpressionImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.LanguageExpressionImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.LanguageExpressionImpl#getOwningConstraint <em>Owning Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -129,6 +136,130 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Constraint getOwningConstraint()
+	{
+		if (eContainerFeatureID() != PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT) return null;
+		return (Constraint)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningConstraint(Constraint newOwningConstraint, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningConstraint, PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningConstraint(Constraint newOwningConstraint)
+	{
+		if (newOwningConstraint != eInternalContainer() || (eContainerFeatureID() != PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT && newOwningConstraint != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningConstraint))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningConstraint != null)
+				msgs = ((InternalEObject)newOwningConstraint).eInverseAdd(this, PivotPackage.CONSTRAINT__SPECIFICATION, Constraint.class, msgs);
+			msgs = basicSetOwningConstraint(newOwningConstraint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, newOwningConstraint, newOwningConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
+				if (templateParameter != null)
+					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningConstraint((Constraint)otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
+				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATION:
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
+				return basicSetOwningTemplateParameter(null, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
+				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				return basicSetOwningConstraint(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.CONSTRAINT__SPECIFICATION, Constraint.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -160,6 +291,8 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return getBody();
 			case PivotPackage.LANGUAGE_EXPRESSION__LANGUAGE:
 				return getLanguage();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				return getOwningConstraint();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -209,6 +342,9 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:
 				setBody((String)newValue);
 				return;
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				setOwningConstraint((Constraint)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -253,6 +389,9 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:
 				setBody(BODY_EDEFAULT);
 				return;
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				setOwningConstraint((Constraint)null);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -291,6 +430,8 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
 			case PivotPackage.LANGUAGE_EXPRESSION__LANGUAGE:
 				return LANGUAGE_EDEFAULT == null ? getLanguage() != null : !LANGUAGE_EDEFAULT.equals(getLanguage());
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
+				return getOwningConstraint() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

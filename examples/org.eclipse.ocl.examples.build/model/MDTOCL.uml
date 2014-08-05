@@ -300,6 +300,30 @@
         <interfaceRealization xmi:id="_ArPHIPt0EeGgYeRoQSJFAw" client="MDTOCL-MDT_OCL_Referring-VariableExp" supplier="MDTOCL-MDT_OCL_Referring-ReferringElement" contract="MDTOCL-MDT_OCL_Referring-ReferringElement"/>
       </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_10znYOC1EeK2XIQZsal-uQ" name="MDT_OCL_Root">
+      <packagedElement xmi:type="uml:Class" xmi:id="_hor24OC2EeK2XIQZsal-uQ" name="Import">
+        <generalization xmi:id="_PG7HtvcPEeOIuskgmmQAHw" general="_0pHa4OC2EeK2XIQZsal-uQ"/>
+        <ownedAttribute xmi:id="_-mmXsOC2EeK2XIQZsal-uQ" name="importedNamespace" type="_lVjxQOC2EeK2XIQZsal-uQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_0pHa4OC2EeK2XIQZsal-uQ" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lVjxQOC2EeK2XIQZsal-uQ" name="Namespace" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lkT-8OC2EeK2XIQZsal-uQ" name="Package"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_noL7MOC2EeK2XIQZsal-uQ" name="Root">
+        <generalization xmi:id="_PG7Ht_cPEeOIuskgmmQAHw" general="_lVjxQOC2EeK2XIQZsal-uQ"/>
+        <ownedAttribute xmi:id="_KGF50OC3EeK2XIQZsal-uQ" name="nestedPackage" type="_lkT-8OC2EeK2XIQZsal-uQ" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HsfcPEeOIuskgmmQAHw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HsvcPEeOIuskgmmQAHw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_XLYVEOC3EeK2XIQZsal-uQ" name="externalURI" type="_ZX1lkOC3EeK2XIQZsal-uQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7Hs_cPEeOIuskgmmQAHw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Xjt8kOC3EeK2XIQZsal-uQ" name="imports" type="_hor24OC2EeK2XIQZsal-uQ" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HtPcPEeOIuskgmmQAHw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HtfcPEeOIuskgmmQAHw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZX1lkOC3EeK2XIQZsal-uQ" name="String"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Stereotypes" name="MDT_OCL_Stereotypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Boolean" name="Boolean"/>
       <packagedElement xmi:type="uml:Class" xmi:id="__SVv8BqBEeSM9LreJtBwBg" name="Class"/>

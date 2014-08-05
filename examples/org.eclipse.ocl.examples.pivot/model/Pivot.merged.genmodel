@@ -366,6 +366,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//LanguageExpression/language"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//LanguageExpression/owningConstraint"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//ValueSpecification"/>
