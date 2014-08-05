@@ -84,7 +84,7 @@
           isRequired="false" name="MessageExp" opposite="#p.pivot.MessageExp.calledOperation"
           type="#T.pivot.MessageExp"/>
     </ownedType>
-    <ownedType xmi:id="T.pivot.Class" name="Class" superClass="#T.pivot.Type #T.pivot.Namespace">
+    <ownedType xmi:id="T.pivot.Class" name="Class" superClass="#T.pivot.Type #T.pivot.Namespace #T.pivot.TemplateableElement">
       <ownedAttribute xmi:id="p.pivot.Class.isAbstract" default="false" name="isAbstract"
           type="#Boolean">
         <ownedComment body="True when a class is abstract."/>
@@ -1504,7 +1504,7 @@
           type="#T.pivot.TupleLiteralExp"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.TupleType" name="TupleType" superClass="#T.pivot.DataType"/>
-    <ownedType xmi:id="T.pivot.Type" name="Type" superClass="#T.pivot.NamedElement #T.pivot.TemplateableElement #T.pivot.ParameterableElement">
+    <ownedType xmi:id="T.pivot.Type" name="Type" superClass="#T.pivot.NamedElement #T.pivot.ParameterableElement">
       <ownedAttribute xmi:id="p.pivot.Type.extendedBys" name="extendedBys" opposite="#p.pivot.TypeExtension.type"
           type="#//@nestedPackage.1/@ownedType.151"/>
       <ownedAttribute xmi:id="p.pivot.Type.instanceClassName" isRequired="false" name="instanceClassName"

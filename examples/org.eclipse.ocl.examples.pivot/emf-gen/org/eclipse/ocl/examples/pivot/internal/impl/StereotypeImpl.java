@@ -113,12 +113,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -129,6 +123,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
+				if (ownedTemplateSignature != null)
+					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
+				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_OPERATION:
@@ -161,10 +161,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNING_TEMPLATE_PARAMETER:
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.STEREOTYPE__TEMPLATE_PARAMETER:
@@ -175,6 +171,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
+				return basicSetOwnedTemplateSignature(null, msgs);
+			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
+				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_ATTRIBUTE:
@@ -213,12 +213,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return isStatic();
 			case PivotPackage.STEREOTYPE__NAME:
 				return getName();
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
-			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
-				return getTemplateBinding();
-			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
-				return getUnspecializedElement();
 			case PivotPackage.STEREOTYPE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.STEREOTYPE__TEMPLATE_PARAMETER:
@@ -232,6 +226,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getOwnedInvariant();
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
 				return getOwnedRule();
+			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
+				return getOwnedTemplateSignature();
+			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
+				return getTemplateBinding();
+			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
+				return getUnspecializedElement();
 			case PivotPackage.STEREOTYPE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.STEREOTYPE__IS_ACTIVE:
@@ -289,16 +289,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
-				return;
-			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)newValue);
-				return;
 			case PivotPackage.STEREOTYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
 				return;
@@ -319,6 +309,16 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)newValue);
+				return;
+			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
+				getTemplateBinding().clear();
+				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
+			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -388,15 +388,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				return;
-			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)null);
-				return;
 			case PivotPackage.STEREOTYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
@@ -414,6 +405,15 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return;
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
 				getOwnedRule().clear();
+				return;
+			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
+				return;
+			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
+				getTemplateBinding().clear();
+				return;
+			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)null);
 				return;
 			case PivotPackage.STEREOTYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -471,12 +471,6 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.STEREOTYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
-			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
-				return unspecializedElement != null;
 			case PivotPackage.STEREOTYPE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.STEREOTYPE__TEMPLATE_PARAMETER:
@@ -489,6 +483,12 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
+			case PivotPackage.STEREOTYPE__TEMPLATE_BINDING:
+				return templateBinding != null && !templateBinding.isEmpty();
+			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
+				return unspecializedElement != null;
 			case PivotPackage.STEREOTYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.STEREOTYPE__IS_ACTIVE:

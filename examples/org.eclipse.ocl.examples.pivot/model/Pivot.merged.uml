@@ -178,6 +178,7 @@
       </ownedComment>
       <generalization xmi:id="Ppivot.TClass.g0" general="Ppivot.TType"/>
       <generalization xmi:id="Ppivot.TClass.g1" general="Ppivot.TNamespace"/>
+      <generalization xmi:id="Ppivot.TClass.g2" general="Ppivot.TTemplateableElement"/>
       <ownedAttribute xmi:id="Ppivot.TClass.PisAbstract" name="isAbstract" type="Ppivot.TBoolean">
         <ownedComment xmi:id="Ppivot.TClass.PisAbstract.oC0" annotatedElement="Ppivot.TClass.PisAbstract">
           <body>True when a class is abstract.</body>
@@ -233,6 +234,12 @@
       <ownedAttribute xmi:id="Ppivot.TClass.PinstanceClassName" name="instanceClassName" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PinstanceClassName.lV"/>
       </ownedAttribute>
+      <ownedOperation xmi:id="Ppivot.TClass.OisTemplate" name="isTemplate" isQuery="true" redefinedOperation="Ppivot.TTemplateableElement.OisTemplate">
+        <ownedComment xmi:id="Ppivot.TClass.OisTemplate.oC0" annotatedElement="Ppivot.TClass.OisTemplate">
+          <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="Ppivot.TClass.OisTemplate.Pnull" type="Ppivot.TBoolean" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCollectionItem" name="CollectionItem">
       <generalization xmi:id="Ppivot.TCollectionItem.g0" general="Ppivot.TCollectionLiteralPart"/>
@@ -1575,8 +1582,7 @@
         <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TType.g0" general="Ppivot.TNamedElement"/>
-      <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TTemplateableElement"/>
-      <generalization xmi:id="Ppivot.TType.g2" general="Ppivot.TParameterableElement"/>
+      <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TParameterableElement"/>
       <ownedAttribute xmi:id="Ppivot.TType.PtemplateParameter" name="templateParameter" type="Ppivot.TTypeTemplateParameter" redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter"
           association="Ppivot.A_type_templateParameter_parameteredElement">
         <ownedComment xmi:id="Ppivot.TType.PtemplateParameter.oC0" annotatedElement="Ppivot.TType.PtemplateParameter">
@@ -1595,12 +1601,6 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PextendedBys.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TType.PextendedBys.uV" value="*"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="Ppivot.TType.OisTemplate" name="isTemplate" isQuery="true" redefinedOperation="Ppivot.TTemplateableElement.OisTemplate">
-        <ownedComment xmi:id="Ppivot.TType.OisTemplate.oC0" annotatedElement="Ppivot.TType.OisTemplate">
-          <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
-        </ownedComment>
-        <ownedParameter xmi:id="Ppivot.TType.OisTemplate.Pnull" type="Ppivot.TBoolean" direction="return"/>
-      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypeExp" name="TypeExp">
       <generalization xmi:id="Ppivot.TTypeExp.g0" general="Ppivot.TOCLExpression"/>

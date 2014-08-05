@@ -548,7 +548,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					}
 					else if (hasEcore(prop)) {
 //					    List<Constraint> constraints = prop.getOwnedRule();
-						Type owningType = DomainUtil.nonNullModel(prop.getOwningType());
+						org.eclipse.ocl.examples.pivot.Class owningType = DomainUtil.nonNullModel(prop.getOwningType());
 /*						if (constraints.size() > 0) {
 							s.appendClassReference(ExecutorPropertyWithImplementation.class);
 							s.append("(");

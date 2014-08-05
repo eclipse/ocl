@@ -14,12 +14,14 @@ import java.util.HashSet
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.ocl.examples.pivot.AnyType
+import org.eclipse.ocl.examples.pivot.Class
 import org.eclipse.ocl.examples.pivot.CollectionType
 import org.eclipse.ocl.examples.pivot.Comment
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral
 import org.eclipse.ocl.examples.pivot.Iteration
 import org.eclipse.ocl.examples.pivot.LambdaType
 import org.eclipse.ocl.examples.pivot.Operation
+import org.eclipse.ocl.examples.pivot.Package
 import org.eclipse.ocl.examples.pivot.Parameter
 import org.eclipse.ocl.examples.pivot.Precedence
 import org.eclipse.ocl.examples.pivot.Property
@@ -32,7 +34,7 @@ import org.eclipse.ocl.examples.pivot.Type
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
-	protected def String declareCollectionTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareCollectionTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedCollectionTypes()»
 				protected final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
@@ -41,7 +43,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareEnumerations(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareEnumerations(Package pkg) {
 		'''
 			«FOR enumeration : pkg.getRootPackage().getSortedEnumerations()»
 				«var enumerationName = enumeration.getPrefixedSymbolName("_" + enumeration.partialName())»
@@ -54,7 +56,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareMetaclasses(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareMetaclasses(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedMetaclasses()»
 				protected final @NonNull Metaclass<?> «type.getPrefixedSymbolName("_" + type.partialName())» = createMetaclass("«type.
@@ -63,7 +65,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareOclTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareOclTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getSortedOclTypes()»
 				protected final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
@@ -72,7 +74,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareParameterTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareParameterTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedParameterTypes()»
 				protected final @NonNull Class «type.getPrefixedSymbolName("_" + type.partialName())» = createClass("«type.name»");
@@ -80,13 +82,13 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declarePrimitiveTypes(org.eclipse.ocl.examples.pivot.Package pkg) {'''
+	protected def String declarePrimitiveTypes(Package pkg) {'''
 		«FOR type : pkg.getRootPackage().getSortedPrimitiveTypes()»
 		protected final @NonNull PrimitiveType «type.getPrefixedSymbolName("_" + type.partialName())» = createPrimitiveType("«type.name»");
 		«ENDFOR»
 	'''}
 
-	protected def String declareProperties(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareProperties(Package pkg) {
 		var allProperties = getAllProperties(pkg.getRootPackage());
 		'''
 			«FOR property : allProperties»
@@ -95,7 +97,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareTupleTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String declareTupleTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedTupleTypes()»
 				protected final @NonNull TupleType «type.getPrefixedSymbolName("_" + type.partialName())» = createTupleType("«type.name»",
@@ -105,8 +107,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineCollectionTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
-		var org.eclipse.ocl.examples.pivot.Package orphanPackage = pkg.getOrphanPackage();
+	protected def String defineCollectionTypes(Package pkg) {
+		var Package orphanPackage = pkg.getOrphanPackage();
 		'''
 			protected void installCollectionTypes() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
@@ -129,7 +131,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineComments(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineComments(Package pkg) {
 		'''
 			protected void installComments() {
 				«FOR pElement : pkg.getRootPackage().getSortedCommentedElements()»
@@ -141,7 +143,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineEnumerations(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineEnumerations(Package pkg) {
 		'''
 			protected void installEnumerations() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
@@ -159,7 +161,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineIterations(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineIterations(Package pkg) {
 		var List<Iteration> allIterations = pkg.getRootPackage().getSortedIterations();
 		'''
 			«IF allIterations.size() > 0»
@@ -227,7 +229,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineLambdaTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineLambdaTypes(Package pkg) {
 		var allLambdaTypes = pkg.getRootPackage().getSortedLambdaTypes();
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
@@ -253,7 +255,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineMetaclasses(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineMetaclasses(Package pkg) {
 		var allMetaclasses = pkg.getRootPackage().getSortedMetaclasses();
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
@@ -278,7 +280,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineOclTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineOclTypes(Package pkg) {
 		var allOclTypes = pkg.getSortedOclTypes();
 		'''
 			protected void installOclTypes() {
@@ -295,7 +297,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineOperations(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineOperations(Package pkg) {
 		var allOperations = pkg.getRootPackage().getSortedOperations();
 		'''
 			«FOR operation : allOperations»
@@ -340,10 +342,10 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String definePackages(org.eclipse.ocl.examples.pivot.Package pkg0) {
+	protected def String definePackages(Package pkg0) {
 		var rootPackage = pkg0.getRootPackage();
 		var allPackages = rootPackage.getSortedPackages();
-		var morePackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>(allPackages);
+		var morePackages = new HashSet<Package>(allPackages);
 		morePackages.remove(pkg0);
 		'''
 			«IF morePackages.size() > 0»
@@ -363,14 +365,14 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineParameterTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineParameterTypes(Package pkg) {
 		'''
 			protected void installParameterTypes() {
 			}
 		'''
 	}
 
-	protected def String definePrecedences(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String definePrecedences(Package pkg) {
 		var allLibraries = pkg.getRootPackage().getSortedLibraries();
 		var allOperations = pkg.getRootPackage().getSortedOperationsWithPrecedence();
 		'''
@@ -396,7 +398,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String definePrimitiveTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String definePrimitiveTypes(Package pkg) {
 		var allTypes = pkg.getRootPackage().getSortedPrimitiveTypes();
 		'''
 			protected void installPrimitiveTypes() {
@@ -413,7 +415,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineProperties(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineProperties(Package pkg) {
 		var allProperties = getAllProperties(pkg.getRootPackage());
 		'''
 			protected void installProperties() {
@@ -469,7 +471,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTemplateBindings(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineTemplateBindings(Package pkg) {
 		var allTemplateableElements = pkg.getRootPackage().getSortedTemplateableElements();
 		'''
 			protected void installTemplateBindings() {
@@ -484,7 +486,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTemplateSignatures(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineTemplateSignatures(Package pkg) {
 		var allTemplateParameters = pkg.getRootPackage().getSortedTemplateParameters();
 		var allTemplateSignatures = pkg.getRootPackage().getSortedTemplateSignatures();
 		'''
@@ -505,7 +507,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTupleTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String defineTupleTypes(Package pkg) {
 		var allTupleTypes = pkg.getRootPackage().getSortedTupleTypes();
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
@@ -531,7 +533,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		return "createProperty(" + property.name + ", " + property.type.getSymbolName() + ")";
 	}
 
-	protected def String emitPackage(org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected def String emitPackage(Package pkg) {
 		'''
 			«FOR nestedPackage : pkg.getSortedPackages()»
 				«IF nestedPackage.getNestedPackage().size() > 0»
@@ -553,7 +555,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String emitSuperClasses(org.eclipse.ocl.examples.pivot.Class type) {
+	protected def String emitSuperClasses(Class type) {
 		var superClasses = type.getSuperclassesInPackage();
 		'''
 			«IF superClasses.size() > 0»
@@ -580,7 +582,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
 //			VoidType: return "void"		
 			Type case element.getTemplateParameter() != null: return element.getTemplateParameter().simpleName() + "_" + element.javaName()
-			Type case element.templateBinding.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
+			Class case element.templateBinding.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
 			Type: return element.javaName()
 			Comment case element.body == null: return "null"
 			Comment: return element.javaName(element.body.substring(0, Math.min(11, element.body.length() - 1)))
@@ -588,7 +590,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			EnumerationLiteral: return element.enumeration.partialName() + "_" + element.javaName()
 			Operation case element.owningType == null: return "null_" + element.javaName()
 			Operation: return element.owningType.partialName() + "_" + element.javaName()
-			org.eclipse.ocl.examples.pivot.Package: return element.javaName()
+			Package: return element.javaName()
 			Parameter case element.eContainer() == null: return "null_" + element.javaName()
 			Parameter: return element.eContainer().partialName() + "_" + element.javaName()
 			Precedence: return element.javaName()

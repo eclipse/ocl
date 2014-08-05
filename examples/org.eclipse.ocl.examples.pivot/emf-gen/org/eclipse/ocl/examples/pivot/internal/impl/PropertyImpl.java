@@ -1943,7 +1943,7 @@ public class PropertyImpl
 	}
 
 	public @Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		Type owningType = getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = getOwningType();
 		if (owningType != null) {
 			return standardLibrary.getInheritance(owningType);
 		}

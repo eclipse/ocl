@@ -76,7 +76,13 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 		if (owningTemplateParameter != null) {
 			return owningTemplateParameter.accept(this);
 		}
-		return super.visitClass(object);
+		if (context.showNames()) {
+			context.appendParent(context.getScope(), object, "::");
+		}
+		context.appendName(object);
+		context.appendTemplateParameters(object);
+		context.appendTemplateBindings(object);
+		return null;
 	}
 
 	@Override
@@ -231,8 +237,6 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			context.appendParent(context.getScope(), object, "::");
 		}
 		context.appendName(object);
-		context.appendTemplateParameters(object);
-		context.appendTemplateBindings(object);
 		return null;
 	}
 

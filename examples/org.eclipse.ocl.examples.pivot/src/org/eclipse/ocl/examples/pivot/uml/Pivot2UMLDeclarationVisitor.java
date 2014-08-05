@@ -51,7 +51,7 @@ public class Pivot2UMLDeclarationVisitor
 		super(context);
 	}
 
-	protected void copyClassifier(@NonNull org.eclipse.uml2.uml.Classifier umlClassifier, @NonNull Type pivotType) {
+	protected void copyClassifier(@NonNull org.eclipse.uml2.uml.Classifier umlClassifier, @NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
 		copyNamedElement(umlClassifier, pivotType);
 		TemplateSignature pivotTemplateSignature = pivotType.getOwnedTemplateSignature();
 		if (pivotTemplateSignature != null) {

@@ -214,7 +214,12 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			return null;
 		}
 		else {
-			return super.visitClass(object);
+			for (TemplateBinding templateBinding : object.getTemplateBinding()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+					safeVisit(templateParameterSubstitution.getActual());
+				}
+			}
+			return null;
 		}
 	}
 
@@ -349,11 +354,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitType(@NonNull Type object) {
-		for (TemplateBinding templateBinding : object.getTemplateBinding()) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
-				safeVisit(templateParameterSubstitution.getActual());
-			}
-		}
 		return null;
 	}
 }

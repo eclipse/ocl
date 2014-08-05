@@ -362,7 +362,7 @@ public class Pivot2Ecore extends AbstractConversion
 		if (!(asType instanceof CollectionType)) {
 			return null;
 		}
-		if (asType.getUnspecializedElement() == metaModelManager.getCollectionType()) {
+		if (((CollectionType)asType).getUnspecializedElement() == metaModelManager.getCollectionType()) {
 			return null;		// Collection(T) cannot be distinguished from concrete Ecore collections
 		}
 		return (CollectionType)asType;

@@ -415,7 +415,7 @@ public class OCLinEcoreTablesUtils
 			}
 			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
 				Operation containerOperation  = (Operation) owningTemplateParameter.getSignature().getTemplate();
-				Type containerType = containerOperation.getOwningType();
+				org.eclipse.ocl.examples.pivot.Class containerType = containerOperation.getOwningType();
 				assert containerType != null;
 				String prefix = getQualifiedTablesClassName(containerType);
 				if (prefix.length() <= 0) {
@@ -551,7 +551,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
-			Type type = DomainUtil.nonNullModel(operation.getOwningType());
+			org.eclipse.ocl.examples.pivot.Class type = DomainUtil.nonNullModel(operation.getOwningType());
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".Operations.");
 			return super.visitOperation(operation);
@@ -559,7 +559,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitProperty(@NonNull Property property) {
-			Type type = DomainUtil.nonNullModel(property.getOwningType());
+			org.eclipse.ocl.examples.pivot.Class type = DomainUtil.nonNullModel(property.getOwningType());
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".Properties.");
 			return super.visitProperty(property);
@@ -952,7 +952,7 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	public static @NonNull String getSignature(@NonNull Operation anOperation) {
-		Type owningType = anOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = anOperation.getOwningType();
 		if (owningType == null) {
 			return "null";
 		}
@@ -1042,7 +1042,7 @@ public class OCLinEcoreTablesUtils
 	 * but no Ecore EReference.
 	 */
 	protected @NonNull Boolean hasEcore(@NonNull Property property) {
-		Type owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
 		if (owningType == null) {
 			return false;
 		}

@@ -49,7 +49,12 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 		if (owningTemplateParameter != null) {
 			owningTemplateParameter.accept(this);
 		}
-		return super.visitClass(object);
+		for (TemplateBinding templateBinding : object.getTemplateBinding()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+				safeVisit(templateParameterSubstitution.getActual());
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -105,11 +110,6 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 
 	@Override
 	public @Nullable Object visitType(@NonNull Type object) {
-		for (TemplateBinding templateBinding : object.getTemplateBinding()) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
-				safeVisit(templateParameterSubstitution.getActual());
-			}
-		}
 		return null;
 	}
 }

@@ -232,7 +232,7 @@ public class Pivot2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObjec
 			eTypedElement.setOrdered(true);
 			eTypedElement.setUnique(true);
 		}
-		else if ((pivotType instanceof CollectionType) && (pivotType.getUnspecializedElement() != context.getMetaModelManager().getCollectionType())) {		// Collection(T) cannot be distinguished from concrete Ecore collections
+		else if ((pivotType instanceof CollectionType) && (((CollectionType)pivotType).getUnspecializedElement() != context.getMetaModelManager().getCollectionType())) {		// Collection(T) cannot be distinguished from concrete Ecore collections
 			CollectionType collectionType = (CollectionType)pivotType;
 			Type elementType = collectionType.getElementType();
 			EObject eObject = typeRefVisitor.safeVisit(elementType);

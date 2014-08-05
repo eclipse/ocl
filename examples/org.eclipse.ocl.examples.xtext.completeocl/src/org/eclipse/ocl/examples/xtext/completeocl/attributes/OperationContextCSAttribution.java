@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -64,8 +63,8 @@ public class OperationContextCSAttribution extends AbstractAttribution
 				List<PathElementCS> path = pathName.getPath();
 				if (path.size() > 1) {
 					Element element = path.get(path.size()-2).getElement();
-					if (element instanceof Type) {
-						Type type = (Type) element;
+					if (element instanceof org.eclipse.ocl.examples.pivot.Class) {
+						org.eclipse.ocl.examples.pivot.Class type = (org.eclipse.ocl.examples.pivot.Class) element;
 //						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 						environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 						environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);

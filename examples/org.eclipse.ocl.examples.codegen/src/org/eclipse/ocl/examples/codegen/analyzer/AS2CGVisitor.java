@@ -1025,7 +1025,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					}
 					cgOperationCallExp = cgEcoreOperationCallExp;
 				} catch (GenModelException e) {
-					Type asType = asOperation.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class asType = asOperation.getOwningType();
 					String className = asType.getInstanceClassName();
 					if (className != null) {
 						CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();

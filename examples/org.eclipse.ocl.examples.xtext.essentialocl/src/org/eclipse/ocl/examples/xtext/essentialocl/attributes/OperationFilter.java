@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -161,7 +162,9 @@ public class OperationFilter extends AbstractOperationFilter
 		}
 		HashMap<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
 		bindings.put(candidateIteration.getOwningType().getOwnedTemplateSignature().getOwnedParameter().get(0), ((CollectionType)sourceType).getElementType());
-		PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
+		if (sourceType instanceof TemplateableElement) {
+			PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
+		}
 		TemplateSignature templateSignature = candidateIteration.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
@@ -187,7 +190,7 @@ public class OperationFilter extends AbstractOperationFilter
 	protected @Nullable Map<TemplateParameter, ParameterableElement> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
 		Type sourceType = this.sourceType;
 		Map<TemplateParameter, ParameterableElement> bindings = null;
-		Type containingType = candidateOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class containingType = candidateOperation.getOwningType();
 		if ((containingType instanceof CollectionType) && (sourceType != null)) {
 			if (!(sourceType instanceof CollectionType)) {
 				sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()
@@ -202,7 +205,9 @@ public class OperationFilter extends AbstractOperationFilter
 			bindings = new HashMap<TemplateParameter, ParameterableElement>();
 			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameter().get(0), elementType);
 		}			
-		bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
+		if (sourceType instanceof TemplateableElement) {
+			bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
+		}
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {

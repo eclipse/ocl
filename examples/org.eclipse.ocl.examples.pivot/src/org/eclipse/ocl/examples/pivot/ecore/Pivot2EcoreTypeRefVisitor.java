@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -178,8 +179,7 @@ public class Pivot2EcoreTypeRefVisitor
 			eGenericType.setETypeParameter(eTypeParameter);
 			return eGenericType;
 		}
-		List<TemplateBinding> templateBindings = pivotType.getTemplateBinding();
-		if (templateBindings.size() == 0) {
+		if (!(pivotType instanceof TemplateableElement) || (((TemplateableElement)pivotType).getTemplateBinding().size() == 0)) {
 			EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
 			if (eClassifier != null) {
 				return eClassifier;
@@ -204,8 +204,9 @@ public class Pivot2EcoreTypeRefVisitor
 			}
 			return null;	// FIXME may be null if not from Ecore
 		}
+		List<TemplateBinding> templateBindings = ((TemplateableElement)pivotType).getTemplateBinding();
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement(pivotType));
+		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)pivotType));
 		eGenericType.setEClassifier((EClassifier) rawType);
 		// FIXME signature ordering, multiple bindings
 		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitution());

@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.PackageServer;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
@@ -213,8 +212,8 @@ public class AliasAnalysis extends AdapterImpl
 							otherPackages.add((org.eclipse.ocl.examples.pivot.Package)eContainer);
 							break;
 						}
-						if (eContainer instanceof Type) {
-							eContainer = PivotUtil.getUnspecializedTemplateableElement((Type)eContainer);
+						if (eContainer instanceof org.eclipse.ocl.examples.pivot.Class) {
+							eContainer = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)eContainer);
 						}
 					}
 				}

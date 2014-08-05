@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.domain.ids.PropertyId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * @since 3.5
@@ -46,8 +45,8 @@ public class UnboxedExplicitNavigationProperty extends AbstractProperty
 		}
 		// A specialized property such as CollectionType.elementType is returned from the specialized type
 		// An unspecialized property such as CollectionType.ownedOperation is returned from the unspecialized type
-		if ((eObject instanceof Type) && !eObject.eIsSet(eFeature2)) {
-			TemplateableElement rawType = ((Type)eObject).getUnspecializedElement();
+		if ((eObject instanceof TemplateableElement) && !eObject.eIsSet(eFeature2)) {
+			TemplateableElement rawType = ((TemplateableElement)eObject).getUnspecializedElement();
 			if (rawType != null) {
 				eObject = rawType;
 			}

@@ -127,12 +127,6 @@ public class TemplateParameterTypeImpl
 				return isStatic();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				return getName();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				return getTemplateBinding();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__UNSPECIALIZED_ELEMENT:
-				return getUnspecializedElement();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:
@@ -181,16 +175,6 @@ public class TemplateParameterTypeImpl
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				setName((String)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
@@ -243,15 +227,6 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)null);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
@@ -295,12 +270,6 @@ public class TemplateParameterTypeImpl
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__UNSPECIALIZED_ELEMENT:
-				return unspecializedElement != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER:

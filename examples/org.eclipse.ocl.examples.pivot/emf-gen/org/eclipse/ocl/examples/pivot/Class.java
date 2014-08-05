@@ -43,7 +43,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Class
-		extends Type, Namespace {
+		extends Type, Namespace, TemplateableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.

@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 
 import com.google.common.collect.Iterables;
@@ -345,7 +345,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		if (pivotType instanceof TypeServer) {
 			return (TypeServer)pivotType;
 		}
-		assert !(pivotType instanceof Type) || (pivotType instanceof Metaclass<?>) || (((Type)pivotType).getUnspecializedElement() == null);
+		assert !(pivotType instanceof TemplateableElement) || (pivotType instanceof Metaclass<?>) || (((TemplateableElement)pivotType).getUnspecializedElement() == null);
 		Map<String, TypeServer> typeServers2 = typeServers;
 		if (typeServers2 == null) {
 			typeServers2 = initMemberTypes();
@@ -383,7 +383,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 			else {
 				typeServer = new TemplateableTypeServer(this, pivotType);
 			}
-			if ((pivotType instanceof Type) && (((Type)pivotType).getUnspecializedElement() == null)) {
+			if ((pivotType instanceof TemplateableElement) && (((TemplateableElement)pivotType).getUnspecializedElement() == null)) {
 				typeServers2.put(name, typeServer);
 			}
 		}

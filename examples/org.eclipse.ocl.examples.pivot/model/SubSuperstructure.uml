@@ -3,6 +3,23 @@
   <uml:Package xmi:id="_0" name="SubSuperStructure">
     <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs" name="AuxiliaryConstructs">
       <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs-Templates" name="Templates">
+        <packagedElement xmi:type="uml:Class" xmi:id="_RHSqABpbEeSM9LreJtBwBg" name="Class">
+          <generalization xmi:id="_XnqLPH7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
+          <ownedOperation xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate" name="isTemplate" bodyCondition="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec" isQuery="true" redefinedOperation="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate">
+              <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
+            </ownedComment>
+            <ownedRule xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate">
+              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec-_specification">
+                <language>OCL</language>
+                <body>oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-_ownedParameter.0" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_nFdeAJwSEd-STLWP-FLKew" name="Element" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_iWKggA3IEeSm6471J7pVhQ" name="NamedElement" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement" name="ParameterableElement" isAbstract="true">
@@ -278,7 +295,6 @@
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-Classifier-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier">
             <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
           </ownedComment>
-          <generalization xmi:id="_XnqLPH7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
           <generalization xmi:id="_XnqLPX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
           <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-Classifier-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-Classifier-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier-templateParameter">
@@ -286,20 +302,6 @@
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfUX7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedOperation xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate" name="isTemplate" bodyCondition="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec" isQuery="true" redefinedOperation="AuxiliaryConstructs-Templates-TemplateableElement-isTemplate">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate">
-              <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
-            </ownedComment>
-            <ownedRule xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-Classifier-isTemplate">
-              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-spec-_specification">
-                <language>OCL</language>
-                <body>oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())</body>
-              </specification>
-            </ownedRule>
-            <ownedParameter xmi:id="AuxiliaryConstructs-Templates-Classifier-isTemplate-_ownedParameter.0" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
-            </ownedParameter>
-          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" name="TypeTemplateParameter">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter">

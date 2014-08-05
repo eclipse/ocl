@@ -401,7 +401,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	public Continuation<?> visitDefOperationCS(@NonNull DefOperationCS csElement) {
 		@NonNull Operation contextOperation = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 		ClassifierContextDeclCS csClassifierContextDecl = csElement.getClassifierContextDecl();
-		Type modelClassifier = csClassifierContextDecl.getClassifier();
+		org.eclipse.ocl.examples.pivot.Class modelClassifier = csClassifierContextDecl.getClassifier();
 		if (modelClassifier != null) {
 			registerOperation(modelClassifier, contextOperation);
 		}
@@ -415,7 +415,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	public Continuation<?> visitDefPropertyCS(@NonNull DefPropertyCS csElement) {
 		@NonNull Property contextProperty = refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 		ClassifierContextDeclCS csClassifierContextDecl = csElement.getClassifierContextDecl();
-		Type modelClassifier = csClassifierContextDecl.getClassifier();
+		org.eclipse.ocl.examples.pivot.Class modelClassifier = csClassifierContextDecl.getClassifier();
 		if (modelClassifier != null) {
 			registerProperty(modelClassifier, contextProperty);
 		}

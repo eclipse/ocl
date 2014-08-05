@@ -1698,7 +1698,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _TemplateParameterType__OclType = new ExecutorFragment(Types._TemplateParameterType, OCLstdlibTables.Types._OclType);
 		private static final @NonNull ExecutorFragment _TemplateParameterType__ParameterableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _TemplateParameterType__TemplateParameterType = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateParameterType);
-		private static final @NonNull ExecutorFragment _TemplateParameterType__TemplateableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _TemplateParameterType__Type = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _TemplateParameterType__Visitable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Visitable);
 
@@ -1793,7 +1792,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Type__OclElement = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Type__OclType = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclType);
 		private static final @NonNull ExecutorFragment _Type__ParameterableElement = new ExecutorFragment(Types._Type, PivotTables.Types._ParameterableElement);
-		private static final @NonNull ExecutorFragment _Type__TemplateableElement = new ExecutorFragment(Types._Type, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _Type__Type = new ExecutorFragment(Types._Type, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _Type__Visitable = new ExecutorFragment(Types._Type, PivotTables.Types._Visitable);
 
@@ -4019,11 +4017,10 @@ public class PivotTables
 			Fragments._TemplateParameterType__Element /* 3 */,
 			Fragments._TemplateParameterType__NamedElement /* 4 */,
 			Fragments._TemplateParameterType__ParameterableElement /* 4 */,
-			Fragments._TemplateParameterType__TemplateableElement /* 4 */,
 			Fragments._TemplateParameterType__Type /* 5 */,
 			Fragments._TemplateParameterType__TemplateParameterType /* 6 */
 		};
-		private static final @NonNull int[] __TemplateParameterType = { 1,1,3,1,3,1,1 };
+		private static final @NonNull int[] __TemplateParameterType = { 1,1,3,1,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TemplateSignature =
 		{
@@ -4155,10 +4152,9 @@ public class PivotTables
 			Fragments._Type__Element /* 3 */,
 			Fragments._Type__NamedElement /* 4 */,
 			Fragments._Type__ParameterableElement /* 4 */,
-			Fragments._Type__TemplateableElement /* 4 */,
 			Fragments._Type__Type /* 5 */
 		};
-		private static final @NonNull int[] __Type = { 1,1,3,1,3,1 };
+		private static final @NonNull int[] __Type = { 1,1,3,1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _TypeExp =
 		{
@@ -8256,10 +8252,6 @@ public class PivotTables
 			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
 			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameterType__TemplateableElement = {
-			PivotTables.Operations._TemplateableElement__isTemplate /* isTemplate() */,
-			PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
-		};
 		private static final @NonNull ExecutorOperation[] _TemplateParameterType__Type = {
 			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
 		};
@@ -8601,10 +8593,6 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _Type__ParameterableElement = {
 			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
 			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
-		};
-		private static final @NonNull ExecutorOperation[] _Type__TemplateableElement = {
-			PivotTables.Operations._TemplateableElement__isTemplate /* isTemplate() */,
-			PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
 		};
 		private static final @NonNull ExecutorOperation[] _Type__Visitable = {};
 
@@ -10259,7 +10247,6 @@ public class PivotTables
 			Fragments._TemplateParameterType__OclType.initOperations(_TemplateParameterType__OclType);
 			Fragments._TemplateParameterType__ParameterableElement.initOperations(_TemplateParameterType__ParameterableElement);
 			Fragments._TemplateParameterType__TemplateParameterType.initOperations(_TemplateParameterType__TemplateParameterType);
-			Fragments._TemplateParameterType__TemplateableElement.initOperations(_TemplateParameterType__TemplateableElement);
 			Fragments._TemplateParameterType__Type.initOperations(_TemplateParameterType__Type);
 			Fragments._TemplateParameterType__Visitable.initOperations(_TemplateParameterType__Visitable);
 
@@ -10354,7 +10341,6 @@ public class PivotTables
 			Fragments._Type__OclElement.initOperations(_Type__OclElement);
 			Fragments._Type__OclType.initOperations(_Type__OclType);
 			Fragments._Type__ParameterableElement.initOperations(_Type__ParameterableElement);
-			Fragments._Type__TemplateableElement.initOperations(_Type__TemplateableElement);
 			Fragments._Type__Type.initOperations(_Type__Type);
 			Fragments._Type__Visitable.initOperations(_Type__Visitable);
 
@@ -13890,12 +13876,9 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Type__ownedInvariant,
-			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._TemplateParameterType__specification,
-			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
-			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Type__CollectionType__elementType,
@@ -14164,11 +14147,8 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Type__ownedInvariant,
-			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
-			PivotTables.Properties._TemplateableElement__templateBinding,
 			PivotTables.Properties._ParameterableElement__templateParameter,
-			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Type__CollectionType__elementType,

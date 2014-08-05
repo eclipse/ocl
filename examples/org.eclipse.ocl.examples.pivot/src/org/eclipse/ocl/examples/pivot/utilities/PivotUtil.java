@@ -947,9 +947,7 @@ public class PivotUtil extends DomainUtil
 		}
 		if (eObject instanceof TemplateableElement) {
 			TemplateableElement unspecializedTemplateableElement = (TemplateableElement)eObject;
-			if (eObject instanceof Type) {
-				eObject = getUnspecializedTemplateableElement((Type)eObject);
-			}
+			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
@@ -972,9 +970,7 @@ public class PivotUtil extends DomainUtil
 		}
 		if (eObject instanceof TemplateableElement) {
 			TemplateableElement unspecializedTemplateableElement = (TemplateableElement)eObject;
-			if (eObject instanceof Type) {
-				eObject = getUnspecializedTemplateableElement((Type)eObject);
-			}
+			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
@@ -990,8 +986,8 @@ public class PivotUtil extends DomainUtil
 	}
 
 	public static @Nullable Map<TemplateParameter, ParameterableElement> getAllTemplateParametersAsBindings(@NonNull EObject eObject) {
-		if (eObject instanceof Type) {
-			eObject = getUnspecializedTemplateableElement((Type)eObject);
+		if (eObject instanceof TemplateableElement) {
+			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 		}
 		Map<TemplateParameter, ParameterableElement> result = null;
 		EObject eContainer = eObject.eContainer();
@@ -1655,15 +1651,18 @@ public class PivotUtil extends DomainUtil
 		return (uri != null) && isASURI(uri.toString());
 	}
 
-	public static boolean isLibraryType(@NonNull Type type) {
+	public static boolean isLibraryType(@NonNull Type type) {	// FIXME org.eclipse.ocl.examples.pivot.Class
 		if (type instanceof LambdaType) {
 			return false;
 		}
 		else if (type instanceof TupleType) {
 			return false;			
 		}
+		else if (type instanceof TemplateableElement){
+			return ((TemplateableElement)type).getTemplateBinding().isEmpty();			
+		}
 		else {
-			return type.getTemplateBinding().isEmpty();			
+			return false;
 		}
 	}
 	

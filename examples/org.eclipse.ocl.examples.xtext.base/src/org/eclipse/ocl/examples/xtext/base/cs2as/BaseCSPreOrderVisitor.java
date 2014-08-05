@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -287,7 +288,9 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		public BasicContinuation<?> execute() {
 			Type pivotElement = PivotUtil.getPivot(Type.class, csElement);
 			if (pivotElement != null) {
-				context.refreshTemplateSignature(csElement, pivotElement);
+				if (pivotElement instanceof TemplateableElement) {
+					context.refreshTemplateSignature(csElement, (TemplateableElement)pivotElement);
+				}
 				context.getTypesHaveSignaturesInterDependency().setSatisfied(this);
 			}
 			return null;

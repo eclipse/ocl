@@ -66,7 +66,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(ClassifierContextDeclCS ele) {
-		Type classifier = ele.getClassifier();
+		org.eclipse.ocl.examples.pivot.Class classifier = ele.getClassifier();
 		if (classifier == null) {
 			return "<<null>>";
 		}

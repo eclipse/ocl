@@ -29,9 +29,9 @@ public class MetaclassAttribution extends AbstractAttribution
 		Metaclass<?> targetClass = (Metaclass<?>) target;
 		environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetClass));
 		Type instanceType = targetClass.getInstanceType();
-		if (instanceType != null) {
-			environmentView.addAllOperations(instanceType, null);
-			environmentView.addAllProperties(instanceType, null);
+		if (instanceType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			environmentView.addAllOperations((org.eclipse.ocl.examples.pivot.Class)instanceType, null);
+			environmentView.addAllProperties((org.eclipse.ocl.examples.pivot.Class)instanceType, null);
 //			Type metatype = environmentView.getMetaModelManager().getPivotType(instanceType.eClass().getName());	// FIXME getMetaType
 //			if (metatype != null) {
 //				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);

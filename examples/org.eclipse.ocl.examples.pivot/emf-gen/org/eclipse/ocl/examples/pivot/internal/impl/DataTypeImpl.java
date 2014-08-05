@@ -194,12 +194,6 @@ public class DataTypeImpl
 				return isStatic();
 			case PivotPackage.DATA_TYPE__NAME:
 				return getName();
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
-			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				return getTemplateBinding();
-			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
-				return getUnspecializedElement();
 			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.DATA_TYPE__TEMPLATE_PARAMETER:
@@ -213,6 +207,12 @@ public class DataTypeImpl
 				return getOwnedInvariant();
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
 				return getOwnedRule();
+			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				return getOwnedTemplateSignature();
+			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
+				return getTemplateBinding();
+			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
+				return getUnspecializedElement();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.DATA_TYPE__IS_ACTIVE:
@@ -273,16 +273,6 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)newValue);
-				return;
 			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
 				return;
@@ -303,6 +293,16 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)newValue);
+				return;
+			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
+				getTemplateBinding().clear();
+				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
+			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -374,15 +374,6 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				return;
-			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
-				setUnspecializedElement((TemplateableElement)null);
-				return;
 			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
@@ -400,6 +391,15 @@ public class DataTypeImpl
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
+				return;
+			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				setOwnedTemplateSignature((TemplateSignature)null);
+				return;
+			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
+				getTemplateBinding().clear();
+				return;
+			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)null);
 				return;
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -460,12 +460,6 @@ public class DataTypeImpl
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.DATA_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
-			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
-			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
-				return unspecializedElement != null;
 			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.DATA_TYPE__TEMPLATE_PARAMETER:
@@ -478,6 +472,12 @@ public class DataTypeImpl
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				return ownedTemplateSignature != null;
+			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
+				return templateBinding != null && !templateBinding.isEmpty();
+			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
+				return unspecializedElement != null;
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.DATA_TYPE__IS_ACTIVE:

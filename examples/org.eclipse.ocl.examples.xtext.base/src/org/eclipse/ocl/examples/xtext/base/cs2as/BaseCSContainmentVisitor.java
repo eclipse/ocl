@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -132,7 +133,9 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		if ((newInstanceClassName != oldInstanceClassName) && ((newInstanceClassName == null) || !newInstanceClassName.equals(oldInstanceClassName))) {
 			pivotElement.setInstanceClassName(newInstanceClassName);
 		}
-		context.refreshTemplateSignature(csElement, pivotElement);
+		if (pivotElement instanceof TemplateableElement) {
+			context.refreshTemplateSignature(csElement, (TemplateableElement)pivotElement);
+		}
 		context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariant(), csElement.getOwnedConstraint());
 		return pivotElement;
 	}

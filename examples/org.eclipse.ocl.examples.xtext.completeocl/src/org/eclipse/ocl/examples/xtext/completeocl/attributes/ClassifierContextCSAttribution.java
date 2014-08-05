@@ -30,7 +30,7 @@ public class ClassifierContextCSAttribution extends AbstractAttribution
 		ClassifierContextDeclCS targetElement = (ClassifierContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__INVARIANTS) {
-			Type type = targetElement.getClassifier();
+			org.eclipse.ocl.examples.pivot.Class type = targetElement.getClassifier();
 			if (type != null) {
 				environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 				environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);

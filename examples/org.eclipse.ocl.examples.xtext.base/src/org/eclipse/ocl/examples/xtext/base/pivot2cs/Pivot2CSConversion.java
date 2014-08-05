@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
@@ -309,9 +310,11 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			csInvariant.setStereotype(UMLReflection.INVARIANT);
 		}
 		refreshList(csElement.getOwnedConstraint(), csInvariants);
-		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
-		if (ownedTemplateSignature != null) {
-			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
+		if (object instanceof TemplateableElement) {
+			TemplateSignature ownedTemplateSignature = ((TemplateableElement)object).getOwnedTemplateSignature();
+			if (ownedTemplateSignature != null) {
+				csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
+			}
 		}
 		if (object.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
 			csElement.setInstanceClassName(object.getInstanceClassName());
@@ -466,7 +469,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	public <T extends TypedElementCS> T refreshTypedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull TypedElement object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		Type type = object.getType();
-		if ((type instanceof CollectionType) && (type.getUnspecializedElement() != metaModelManager.getCollectionType())) {
+		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != metaModelManager.getCollectionType())) {
 			PivotUtil.debugWellContainedness(type);
 			type = ((CollectionType)type).getElementType();
 		}
@@ -492,7 +495,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			int lower;
 			int upper;
 			Type type = object.getType();
-			if ((type instanceof CollectionType) && (type.getUnspecializedElement() != metaModelManager.getCollectionType())) {
+			if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != metaModelManager.getCollectionType())) {
 				CollectionType collectionType = (CollectionType)type;
 				lower = collectionType.getLower().intValue();
 				Number upper2 = collectionType.getUpper();

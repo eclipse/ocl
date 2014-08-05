@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -56,7 +57,7 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 		if (templateParameters.size() != 1) {
 			return false;
 		}
-		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
+		Map<TemplateParameter, ParameterableElement> bindings = sourceType instanceof TemplateableElement ? PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement)sourceType) : null;
 		TemplateParameter iteratorParameter = templateParameters.get(0);
 		if (bindings != null) {
 			bindings.put(iteratorParameter, iteratorType);

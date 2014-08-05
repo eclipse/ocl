@@ -82,10 +82,6 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return allOwnedElements();
 			case PivotPackage.SELF_TYPE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
-			case PivotPackage.SELF_TYPE___IS_TEMPLATE:
-				return isTemplate();
-			case PivotPackage.SELF_TYPE___PARAMETERABLE_ELEMENTS:
-				return parameterableElements();
 			case PivotPackage.SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.SELF_TYPE___IS_TEMPLATE_PARAMETER:
@@ -94,6 +90,10 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
+			case PivotPackage.SELF_TYPE___IS_TEMPLATE:
+				return isTemplate();
+			case PivotPackage.SELF_TYPE___PARAMETERABLE_ELEMENTS:
+				return parameterableElements();
 			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 		}
@@ -126,13 +126,13 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 
 	@Override
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		if (selfType instanceof TemplateableElement) {
+		if (selfType instanceof org.eclipse.ocl.examples.pivot.Class) {
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager((EObject) expr);
-				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);
+				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (org.eclipse.ocl.examples.pivot.Class)selfType);
 				visitor.visit((CallExp)expr);
-				return visitor.specialize((Type)selfType);
+				return visitor.specialize((org.eclipse.ocl.examples.pivot.Class)selfType);
 			}
 		}
 		return selfType;

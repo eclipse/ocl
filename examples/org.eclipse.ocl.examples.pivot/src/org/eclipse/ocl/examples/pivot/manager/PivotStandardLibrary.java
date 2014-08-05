@@ -275,7 +275,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclLambdaType2;
 	}
 
-	public Type getOclMessageType() {
+	public org.eclipse.ocl.examples.pivot.Class getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
 	}
 
@@ -446,7 +446,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 	}
 
 	protected @NonNull <T extends TemplateableElement> T resolveRequiredSimpleType(@NonNull Class<T> requiredClassType, @NonNull String name) {
-		Type type = getRequiredLibraryType(name);
+		org.eclipse.ocl.examples.pivot.Class type = getRequiredLibraryType(name);
 		if (requiredClassType.isAssignableFrom(type.getClass())) {
 			@SuppressWarnings("unchecked")
 			T type2 = (T) type;
@@ -458,7 +458,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 	}
 
 	protected @NonNull <T extends TemplateableElement> T resolveRequiredTemplateableType(@NonNull Class<T> requiredClassType, @NonNull String name, int parameterCount) {
-		Type type = getRequiredLibraryType(name);
+		org.eclipse.ocl.examples.pivot.Class type = getRequiredLibraryType(name);
 		if (requiredClassType.isAssignableFrom(type.getClass())) {
 			if (type.getOwnedTemplateSignature() == null) {
 				throw new IllegalLibraryException(name + " is not a templated type");

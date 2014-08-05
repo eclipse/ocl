@@ -402,7 +402,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		LanguageExpression envSpecification = DomainUtil.nonNullState(envOperation.getBodyExpression());
 		ExpressionInOCL envExpressionInOCL = metaModelManager.getQueryOrThrow(envSpecification);
 		//
-		Type asType = DomainUtil.nonNullState(envOperation.getOwningType());
+		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.nonNullState(envOperation.getOwningType());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
 		reDefinitions.put(envExpressionInOCL.getContextVariable(), asElement);
 		//

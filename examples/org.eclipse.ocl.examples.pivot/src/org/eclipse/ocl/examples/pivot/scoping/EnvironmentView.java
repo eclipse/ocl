@@ -295,7 +295,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addAllOperations(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
+	public void addAllOperations(@NonNull org.eclipse.ocl.examples.pivot.Class type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.ITERATION)		// If ITERATION is acceptable then so too is OPERATION
 				&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want operations when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);

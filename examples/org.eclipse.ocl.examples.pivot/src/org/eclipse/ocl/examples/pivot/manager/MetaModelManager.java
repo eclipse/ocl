@@ -1700,7 +1700,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (implementation == null) {
 				LanguageExpression specification = operation.getBodyExpression();
 				if (specification != null) {
-					Type owningType = operation.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningType();
 					if (owningType != null) {
 						try {
 							ExpressionInOCL query = getQueryOrThrow(specification);
@@ -2160,7 +2160,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (pivotContainer instanceof Slot) {
 				Property asDefiningFeature = ((Slot)pivotContainer).getDefiningProperty();
 				if (asDefiningFeature != null) {
-					Type pivotType = asDefiningFeature.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class pivotType = asDefiningFeature.getOwningType();
 					if (pivotType != null) {				
 						return new ClassContext(this, null, pivotType);
 					}
@@ -2672,7 +2672,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			//
 			org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)type);
 			Map<TemplateParameter, ParameterableElement> typeBindings = PivotUtil.getAllTemplateParametersAsBindings(type);
-			PivotUtil.getAllTemplateParameterSubstitutions(typeBindings, type);
+			if (type instanceof TemplateableElement) {
+				PivotUtil.getAllTemplateParameterSubstitutions(typeBindings, (TemplateableElement)type);
+			}
 			if ((typeBindings != null) && !typeBindings.isEmpty()) {
 				//
 				//	Re-bind the type bindings to use those of the usage.
@@ -2779,7 +2781,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if ((thatType == null) || (thatType instanceof DataType) || !(thatType instanceof org.eclipse.ocl.examples.pivot.Class)) {
 			return;
 		}
-		Type thisType = thisProperty.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class thisType = thisProperty.getOwningType();
 		if (thisType == null) {								// e.g. an EAnnotation
 			return;
 		}
@@ -3247,15 +3249,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 */
 	public @NonNull Operation resolveBaseOperation(@NonNull Operation operation) {
 		Set<Operation> allOperations = new HashSet<Operation>();
-		@SuppressWarnings("null") @NonNull Type owningType = operation.getOwningType();
+		@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningType();
 		@SuppressWarnings("null") @NonNull String operationName = operation.getName();
 		@NonNull List<Parameter> ownedParameter = operation.getOwnedParameter();
 		resolveAllOperations(allOperations, owningType, operation.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, operationName, ownedParameter);
 		Operation baseOperation = operation;
 		for (Operation candidateOperation : allOperations) {
 			if (candidateOperation != operation) {
-				@SuppressWarnings("null") @NonNull Type baseType = baseOperation.getOwningType();
-				@SuppressWarnings("null") @NonNull Type candidateType = candidateOperation.getOwningType();
+				@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class baseType = baseOperation.getOwningType();
+				@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class candidateType = candidateOperation.getOwningType();
 				if (conformsTo(baseType, candidateType, null)) {
 					baseOperation = candidateOperation;
 				}

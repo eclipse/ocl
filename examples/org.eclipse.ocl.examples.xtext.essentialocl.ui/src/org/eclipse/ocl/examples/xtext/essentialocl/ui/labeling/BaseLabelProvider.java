@@ -256,7 +256,9 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected void appendType(@NonNull StringBuilder s, Type type) {
 		appendName(s, type);
-		appendTemplateBindings(s, type);
+		if (type instanceof TemplateableElement) {
+			appendTemplateBindings(s, (TemplateableElement)type);
+		}
 	}
 
 	protected void appendType(@NonNull StringBuilder s, TypeRefCS type) {

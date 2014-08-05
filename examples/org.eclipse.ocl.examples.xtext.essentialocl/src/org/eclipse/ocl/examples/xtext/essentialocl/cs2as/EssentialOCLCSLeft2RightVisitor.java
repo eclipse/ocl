@@ -71,6 +71,7 @@ import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -1020,7 +1021,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 			templateBindings.put(null, sourceType);		// Use the null key to pass OclSelf without creating an object
 		}
-		PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, sourceType);
+		if (sourceType instanceof TemplateableElement) {
+			PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, (TemplateableElement)sourceType);
+		}
 //		PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, operation);
 		TemplateSignature templateSignature = operation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
@@ -1137,13 +1140,15 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				sourceType = ((Metaclass<?>)sourceType).getInstanceType();
 			}
 			templateBindings.put(null, sourceType);		// Use the null key to pass OclSelf without creating an object
-			Type owningType = property.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
 			if (owningType instanceof Metaclass) {
 				owningType = PivotUtil.getUnspecializedTemplateableElement(owningType);
 				templateBindings.put(owningType.getOwnedTemplateSignature().getOwnedParameter().get(0), sourceType);		// Use the null key to pass OclSelf without creating an object
 			}
 		}
-		PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, sourceType);
+		if (sourceType instanceof TemplateableElement) {
+			PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, (TemplateableElement)sourceType);
+		}
 		org.eclipse.ocl.examples.pivot.Class returnType = null;
 		org.eclipse.ocl.examples.pivot.Class behavioralType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(property);
 		if (behavioralType != null) {

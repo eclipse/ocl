@@ -13,10 +13,10 @@ package org.eclipse.ocl.examples.xtext.base.cs2as;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
@@ -35,7 +35,7 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		if (pivot == null) {
 			return false;
 		}
-		Type type = PivotUtil.getUnspecializedTemplateableElement(pivot);
+		Type type = pivot instanceof org.eclipse.ocl.examples.pivot.Class ? PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)pivot) : pivot;
 		assert type == pivot;		// WIP
 		if (type instanceof AnyType) {
 			return true;

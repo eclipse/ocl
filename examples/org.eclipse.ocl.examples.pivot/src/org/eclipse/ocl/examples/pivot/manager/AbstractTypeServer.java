@@ -914,8 +914,8 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				if (superTypeServer != null) {
 					for (DomainType superType : superTypeServer.getPartialTypes()) {
 						assert superType != null;
-						if (superType instanceof Type) {
-							Type unspecializedType = PivotUtil.getUnspecializedTemplateableElement((Type) superType);
+						if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
+							org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) superType);
 							TypeServer unspecializedTypeServer = packageManager.getTypeServer(unspecializedType);
 							for (DomainType unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
 								assert unspecializedPartialType != null;
@@ -972,8 +972,8 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				if (superTypeServer != null) {
 					for (DomainType superType : superTypeServer.getPartialTypes()) {
 						assert superType != null;
-						if (superType instanceof Type) {
-							Type unspecializedType = PivotUtil.getUnspecializedTemplateableElement((Type) superType);
+						if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
+							org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) superType);
 							List<TypeExtension> extendedBys = unspecializedType.getExtendedBys();
 							if (extendedBys.size() > 0) {
 								if (extendingStereotypes == null) {
@@ -1103,8 +1103,8 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 
 	protected void initMemberPropertiesFrom(@NonNull DomainType asType) {
 		DomainType asPrimaryType;
-		if (asType instanceof Type) {
-			asPrimaryType = PivotUtil.getUnspecializedTemplateableElement((Type) asType);
+		if (asType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			asPrimaryType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) asType);
 		}
 		else {
 			asPrimaryType = asType;
