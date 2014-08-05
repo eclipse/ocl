@@ -1,6 +1,6 @@
 
 modeltype UML2Ecore uses 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
-modeltype UML uses 'http://www.eclipse.org/uml2/4.0.0/UML';
+modeltype UML uses 'http://www.eclipse.org/uml2/5.0.0/UML';
 modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 transformation PruneUML(in analysis : UML2Ecore, out Ecore);
@@ -79,10 +79,10 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->createType(self)->sortedBy(name);
 --	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Interface))->createType(self)->sortedBy(name);
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->createType(self)->sortedBy(name);
-	result.eAnnotations += object Ecore::EAnnotation {
-		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
-		_references := self.oldPackages->sortedBy(name).oclAsType(ecore::EObject);
-	};
+--	result.eAnnotations += object Ecore::EAnnotation {
+--		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
+--		_references := self.oldPackages->sortedBy(name).oclAsType(ecore::EObject);
+--	};
 }
 
 helper UML2Ecore::CreateType::createType(createPackage : UML2Ecore::CreatePackage) : Ecore::EClassifier
@@ -98,7 +98,7 @@ disjuncts UML::Class::createClass, UML::Interface::createInterface, UML::Enumera
 abstract mapping UML::Type::createAbstractType(createType : UML2Ecore::CreateType) : Ecore::EClassifier
 {
 --	log('  createAbstractType', self.name);
-	result.name := self.name;
+	result.name := createType.newName;
 	result.map installComments(createType.oldTypes.ownedComment->asSet());
 	createType.oldTypes->forEach(t) { umlType2eClassifier->put(t, result); };
 	eClassifier2createType->put(result, createType);
@@ -108,7 +108,7 @@ inherits UML::Type::createAbstractType
 {
 --	log('  createClass', self.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
-	result._'abstract' := createType.oldTypes->select(oclIsKindOf(UML::Class))->exists(oclAsType(UML::Class).isAbstract);
+	result._'abstract' := createType.oldTypes->select(oclIsKindOf(UML::Class))->forAll(oclAsType(UML::Class).isAbstract);
 }
 mapping UML::Interface::createInterface(createType : UML2Ecore::CreateType) : Ecore::EClass
 inherits UML::Type::createAbstractType
@@ -135,10 +135,27 @@ mapping UML::EnumerationLiteral::createEnumerationLiteral() : Ecore::EEnumLitera
 {	
 	var idx : Integer := self.enumeration.ownedLiteral->indexOf(self)-1;
 --	log('  convertEnumerationLiteral', self.name + self.enumeration.ownedLiteral->iterate(l; acc : String = ':' | acc + ' ' + l.name) + ' / ' + idx.toString());
---	umlEnumerationLiteral2eEnumLiteral->put(self, result);
+	umlEnumerationLiteral2eEnumLiteral->put(self, result);
 	result.name := self.name;
 	result.map installComments(self.ownedComment);
 	result.value := self.enumeration.ownedLiteral->indexOf(self)-1;
+}
+
+mapping UML2EcoreMapping::CreateOperation::createOperation(type : Ecore::EClassifier, oldOperations : Set(UML::Operation), newType : Ecore::EClassifier) : Ecore::EOperation
+{
+	oldOperations->forEach(p) { umlOperation2eOperation->put(p, result); };
+	eOperation2createOperation->put(result, self);
+	var oldOperation : Operation := oldOperations->any(true);
+--	log('  createReference', self.newName);
+	result.name := self.newName;
+	result.map installComments(oldOperations.ownedComment->asSet());
+	result.lowerBound := oldOperation.lower;
+	result.upperBound := oldOperation.upper;
+	result.unique := oldOperation.isUnique;
+	result._'ordered' := if (0 <= oldOperation.upper) and (oldOperation.upper <= 1) then true else oldOperation.isOrdered endif;
+--	log('    createStructuralFeature', Sequence{oldType, newType});
+	result.eType := newType;
+--	log('  defaultValues', defaultValues->iterate(l; acc : String = ':' | acc + ' ' + l.toString()));
 }
 
 mapping UML2EcoreMapping::CreateProperty::createProperty(type : Ecore::EClassifier, oldProperties : Set(UML::Property), newType : Ecore::EClassifier) : Ecore::EStructuralFeature
@@ -149,6 +166,11 @@ when { newType.oclIsKindOf(Ecore::EDataType) }
 --	log('  createAttribute', self.newName);
 	self.createStructuralFeature(result, oldProperties, newType);
 	result.map installUnsettable(oldProperties, 'Ecore::EAttribute');
+	var isDerived : Boolean := oldProperties->forAll(isDerived);
+	result._'derived' := isDerived;
+//	result.transient := isDerived;
+	result.map installTransient(oldProperties, 'Ecore::EAttribute', isDerived);
+	result.volatile := isDerived;
 }
 mapping UML2EcoreMapping::CreateProperty::createReference(type : Ecore::EClassifier, oldProperties : Set(UML::Property), newType : Ecore::EClassifier) : Ecore::EReference
 when { not newType.oclIsKindOf(Ecore::EDataType) }
@@ -171,21 +193,26 @@ helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : 
 	output.lowerBound := oldProperty.lower;
 	output.upperBound := oldProperty.upper;
 	output.unique := oldProperty.isUnique;
-	output._'ordered' := if (oldProperty.upper <= 1) then true else oldProperty.isOrdered endif;
+	output._'ordered' := if (0 <= oldProperty.upper) and (oldProperty.upper <= 1) then true else oldProperty.isOrdered endif;
 	output.changeable := not oldProperty.isReadOnly;
-	output._'derived' := oldProperty.isDerived;
 --	output.unsettable := false; --oldProperty.lower < 1;
 --	output.unsettable := false; --(oldProperty.lower = 1) and (oldProperty.upper = 1) and defaultValues->isEmpty() and output.oclIsKindOf(EAttribute); -- BooleanLiteralExp.booleanSymbol
 --	log('    createStructuralFeature', Sequence{oldType, newType});
 	output.eType := newType;
 --	log('  defaultValues', defaultValues->iterate(l; acc : String = ':' | acc + ' ' + l.toString()));
-	output.defaultValueLiteral := if defaultValues->notEmpty() then defaultValues->any(true).getDefaultValue() else null endif;
+	var oldDefaultValue : String := if defaultValues->notEmpty() then defaultValues->any(true).getDefaultValue() else null endif;
+--	var newDefaultValue : OclAny := if oldDefaultValue.oclIsKindOf(UML::EnumerationLiteral) and (umlEnumerationLiteral2eEnumLiteral->get(oldDefaultValue.oclAsType(UML::EnumerationLiteral)) <> null) then umlEnumerationLiteral2eEnumLiteral->get(oldDefaultValue.oclAsType(UML::EnumerationLiteral)) else oldDefaultValue endif;
+	output.defaultValueLiteral := oldDefaultValue;
 	return;
 }
 
 helper UML::ValueSpecification::getDefaultValue() : String
 {
 	return self.toString();
+}
+helper UML::InstanceValue::getDefaultValue() : String
+{
+	return self.instance.name;
 }
 helper UML::LiteralBoolean::getDefaultValue() : String
 {
@@ -220,6 +247,18 @@ mapping inout Ecore::EClassifier::installInstanceClassName(in types : Set(UML::T
 --	result.defaultValue := instanceClassName;
 }
 
+mapping inout Ecore::EStructuralFeature::installTransient(in properties : Set(UML::Property), stereotypeName : String, defaultValue : Boolean)
+{
+	var stereotypedProperties : Set(UML::Property) := properties->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
+	var stereotypedProperty : UML::Property := if stereotypedProperties->notEmpty() then stereotypedProperties->any(true) else null endif;
+--	var stereotypes : Set(UML::Stereotype) := createType.oldTypes.oclAsType(UML::DataType).getAppliedStereotype('Ecore::EDataType')->asSet();
+--	log('stereotypedType', stereotypedType);
+	var transient : Boolean := if stereotypedProperty <> null then stereotypedProperty.getValue(stereotypedProperty.getAppliedStereotype(stereotypeName), 'isTransient').oclAsType(Boolean) else defaultValue endif;
+--	log('instanceClassName', instanceClassName);
+	self.transient := transient ;
+--	result.defaultValue := instanceClassName;
+}
+
 mapping inout Ecore::EStructuralFeature::installUnsettable(in properties : Set(UML::Property), stereotypeName : String)
 {
 	var stereotypedProperties : Set(UML::Property) := properties->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
@@ -237,12 +276,14 @@ mapping inout Ecore::EStructuralFeature::installUnsettable(in properties : Set(U
  */
 property umlType2eClassifier : Dict(UML::Type, Ecore::EClassifier) = Dict{};
 property umlType2eClass : Dict(UML::Type, Ecore::EClass) = Dict{};
---property umlEnumerationLiteral2eEnumLiteral : Dict(UML::EnumerationLiteral, Ecore::EEnumLiteral) = Dict{};
+property umlEnumerationLiteral2eEnumLiteral : Dict(UML::EnumerationLiteral, Ecore::EEnumLiteral) = Dict{};
 --property umlPackage2ePackage : Dict(UML::Package, Ecore::EPackage) = Dict{};
+property umlOperation2eOperation : Dict(UML::Operation, Ecore::EOperation) = Dict{};
 property umlProperty2eReference : Dict(UML::Property, Ecore::EReference) = Dict{};
 
 property eClassifier2createType : Dict(Ecore::EClassifier, UML2Ecore::CreateType) = Dict{};
 --property ePackage2createPackage : Dict(Ecore::EPackage, UML2Ecore::CreatePackage) = Dict{};
+property eOperation2createOperation : Dict(Ecore::EOperation, UML2Ecore::CreateOperation) = Dict{};
 property eReference2createProperty : Dict(Ecore::EReference, UML2Ecore::CreateProperty) = Dict{};
 
 /**
@@ -294,6 +335,29 @@ mapping inout Ecore::EClass::resolveEClass()
 			self.eStructuralFeatures += pc.map createProperty(self, pc.oldProperties, newType);
 		} endif;
 	};
+	
+	
+	var operationCreates  : Set(UML2EcoreMapping::CreateOperation) := mergedCreateTypes.operationMappings->select(oclIsKindOf(UML2EcoreMapping::CreateOperation)).oclAsType(UML2EcoreMapping::CreateOperation)->asSet();
+--	log('  operationCreates', operationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	var inheritedOperationCreates  : Set(UML2EcoreMapping::CreateOperation) := inheritedCreateTypes.operationMappings->select(oclIsKindOf(UML2EcoreMapping::CreateOperation)).oclAsType(UML2EcoreMapping::CreateOperation)->asSet();
+--	log('  inheritedOperationCreates', inheritedOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	var operationCreateNames  : Set(String) := operationCreates.newName->asSet();
+--	log('  operationCreateNames', operationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	var inheritedOperationCreateNames  : Set(String) := inheritedOperationCreates.newName->asSet();
+--	log('  inheritedOperationCreateNames', inheritedOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	var localOperationCreateNames  : Set(String) := operationCreateNames - inheritedOperationCreateNames;
+--	log('  localOperationCreateNames', localOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	var localOperationCreates  : Set(UML2EcoreMapping::CreateOperation) := operationCreates->select(localOperationCreateNames->includes(newName));
+--	log('  localOperationCreates', localOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	localOperationCreates->sortedBy(newName)->forEach(pc) {
+		var oldOperation : Operation := pc.oldOperations->any(true);
+		var oldType : UML::Type := oldOperation.type;
+		var newType : Ecore::EClassifier := umlType2eClassifier->get(oldType);
+		if (newType <> null) then {
+			self.eOperations += pc.map createOperation(self, pc.oldOperations, newType);
+		} endif;
+	};
+	
 }
 
 mapping inout Ecore::EReference::resolveEReference()
@@ -306,7 +370,12 @@ mapping inout Ecore::EReference::resolveEReference()
 --	log('  oppositeProperties', oppositeProperties->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
 	var oppositeReferences : Set(Ecore::EReference) := oppositeProperties->collect(c | umlProperty2eReference->get(c))->asSet();
 --	log('  oppositeReferences', oppositeReferences->sortedBy(name)->iterate(c; acc : String = '' | acc + ' ' + c.name));
-	self.eOpposite := if oppositeReferences->notEmpty() and not self._'derived' and oppositeReferences->forAll(not _'derived') then oppositeReferences->any(true) else null endif;
+--	self.eOpposite := if oppositeReferences->notEmpty() and not self._'derived' and oppositeReferences->forAll(not _'derived') then oppositeReferences->any(true) else null endif;
+	self.eOpposite := if oppositeReferences->notEmpty() then oppositeReferences->any(true) else null endif;
+	var isDerived : Boolean := oldProperties->forAll(isDerived) and oppositeReferences->isEmpty();
+	self._'derived' := isDerived;
+	self.map installTransient(oldProperties, 'Ecore::EReference', isDerived);
+	self.volatile := isDerived;
 }
 
 helper getAllClasses(classes : Set(UML::Class)) : Set(UML::Class) {

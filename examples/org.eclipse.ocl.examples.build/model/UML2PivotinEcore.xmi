@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:u2ec="http://www.eclipse.org/ocl/2012/UML2EcoreControl"
-    xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML"
+    xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
     xsi:schemaLocation="http://www.eclipse.org/ocl/2012/UML2EcoreControl UML2EcoreControl.ecore">
   <mappings
       xsi:type="u2ec:DeletePackages">
@@ -26,6 +26,8 @@
         href="../model-gen/OCL.uml#OCL"/>
     <oldPackages
         href="../model-gen/MDTOCL.uml#MDTOCL"/>
+    <oldPackages
+        href="../model-gen/MDTOCL2.uml#MDTOCL2"/>
   </mappings>
   <mappings
       xsi:type="u2ec:CreatePackage"
@@ -51,53 +53,53 @@
     <oldPackages
         href="../model-gen/UML.uml#Values"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Basic"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Associations"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Expressions"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Classes"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Types"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Constraints"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_PrimitiveTypes"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Expressions"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Variables"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Library"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Associations"/>
+        href="../model-gen/OCL.uml#OCL-OCL_PrimitiveTypes"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Classes"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Types"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Constraints"/>
+        href="../model-gen/OCL.uml#OCL-OCL_Variables"/>
     <oldPackages
-        href="../model-gen/OCL.uml#OCL_Library"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Annotations"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Annotations"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Cache"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Cache"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Dynamics"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Constraints"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Ecore"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Dynamics"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Evaluation"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Ecore"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Framework"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Evaluation"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Precedences"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Framework"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_PrimitiveTypes"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Precedences"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Redefinitions"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_PrimitiveTypes"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Referring"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Redefinitions"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Stereotypes"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Referring"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_TypedMultiplicity"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Root"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Visiting"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Stereotypes"/>
+        href="../model-gen/MDTOCL2.uml#MDTOCL2-MDT_OCL2_Constraints"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_TypedMultiplicity"/>
+        href="../model-gen/MDTOCL2.uml#MDTOCL2-MDT_OCL2_Root"/>
     <oldPackages
-        href="../model-gen/MDTOCL.uml#MDT_OCL_Visiting"/>
+        href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances"/>
     <createTypes
         newName="Class">
       <oldTypes
@@ -132,7 +134,7 @@
         newName="CallOperationAction">
       <oldTypes
           xsi:type="uml:Class"
-          href="../model-gen/OCL.uml#CallOperationAction"/>
+          href="../model-gen/UML.uml#CallOperationAction"/>
     </createTypes>
     <createTypes
         newName="SendSignalAction">
