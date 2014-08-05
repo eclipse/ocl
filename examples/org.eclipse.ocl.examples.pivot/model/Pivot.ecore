@@ -495,15 +495,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="importedNamespace" lowerBound="1" eType="#//Namespace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InstanceSpecification" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceSpecification" eSuperTypes="#//PackageableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An instance specification is a model element that represents an instance in a modeled system."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1" eType="#//Package" eOpposite="#//Package/ownedInstances">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The instance specification that owns this slot."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="slots" ordered="false" upperBound="-1" eType="#//Slot" containment="true" eOpposite="#//Slot/owningInstance">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description."/>
@@ -1216,7 +1211,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInstances" ordered="false" upperBound="-1" eType="#//InstanceSpecification"
-        containment="true" eOpposite="#//InstanceSpecification/package">
+        containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The instance specification that owns this slot."/>
       </eAnnotations>

@@ -1031,6 +1031,8 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _InstanceSpecification__NamedElement = new ExecutorFragment(Types._InstanceSpecification, PivotTables.Types._NamedElement);
 		private static final @NonNull ExecutorFragment _InstanceSpecification__OclAny = new ExecutorFragment(Types._InstanceSpecification, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _InstanceSpecification__OclElement = new ExecutorFragment(Types._InstanceSpecification, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _InstanceSpecification__PackageableElement = new ExecutorFragment(Types._InstanceSpecification, PivotTables.Types._PackageableElement);
+		private static final @NonNull ExecutorFragment _InstanceSpecification__ParameterableElement = new ExecutorFragment(Types._InstanceSpecification, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _InstanceSpecification__Visitable = new ExecutorFragment(Types._InstanceSpecification, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _IntegerLiteralExp__Element = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Element);
@@ -2137,10 +2139,10 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Import__importedNamespace = new EcoreExecutorProperty(PivotPackage.Literals.IMPORT__IMPORTED_NAMESPACE, Types._Import, 0);
 		public static final @NonNull ExecutorProperty _Import__Root__imports = new ExecutorPropertyWithImplementation("Root", Types._Import, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ROOT__IMPORTS));
 
-		public static final @NonNull ExecutorProperty _InstanceSpecification__package = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__PACKAGE, Types._InstanceSpecification, 0);
-		public static final @NonNull ExecutorProperty _InstanceSpecification__slots = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, Types._InstanceSpecification, 1);
-		public static final @NonNull ExecutorProperty _InstanceSpecification__specification = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, Types._InstanceSpecification, 2);
-		public static final @NonNull ExecutorProperty _InstanceSpecification__type = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__TYPE, Types._InstanceSpecification, 3);
+		public static final @NonNull ExecutorProperty _InstanceSpecification__slots = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, Types._InstanceSpecification, 0);
+		public static final @NonNull ExecutorProperty _InstanceSpecification__specification = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, Types._InstanceSpecification, 1);
+		public static final @NonNull ExecutorProperty _InstanceSpecification__type = new EcoreExecutorProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__TYPE, Types._InstanceSpecification, 2);
+		public static final @NonNull ExecutorProperty _InstanceSpecification__Package__ownedInstances = new ExecutorPropertyWithImplementation("Package", Types._InstanceSpecification, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES));
 
 		public static final @NonNull ExecutorProperty _IntegerLiteralExp__integerSymbol = new EcoreExecutorProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, Types._IntegerLiteralExp, 0);
 
@@ -3074,9 +3076,11 @@ public class PivotTables
 			Fragments._InstanceSpecification__Visitable /* 2 */,
 			Fragments._InstanceSpecification__Element /* 3 */,
 			Fragments._InstanceSpecification__NamedElement /* 4 */,
-			Fragments._InstanceSpecification__InstanceSpecification /* 5 */
+			Fragments._InstanceSpecification__ParameterableElement /* 4 */,
+			Fragments._InstanceSpecification__PackageableElement /* 5 */,
+			Fragments._InstanceSpecification__InstanceSpecification /* 6 */
 		};
-		private static final @NonNull int[] __InstanceSpecification = { 1,1,2,1,1,1 };
+		private static final @NonNull int[] __InstanceSpecification = { 1,1,2,1,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _IntegerLiteralExp =
 		{
@@ -5972,6 +5976,11 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _InstanceSpecification__PackageableElement = {};
+		private static final @NonNull ExecutorOperation[] _InstanceSpecification__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
 		};
 		private static final @NonNull ExecutorOperation[] _InstanceSpecification__Visitable = {};
 
@@ -9477,6 +9486,8 @@ public class PivotTables
 			Fragments._InstanceSpecification__NamedElement.initOperations(_InstanceSpecification__NamedElement);
 			Fragments._InstanceSpecification__OclAny.initOperations(_InstanceSpecification__OclAny);
 			Fragments._InstanceSpecification__OclElement.initOperations(_InstanceSpecification__OclElement);
+			Fragments._InstanceSpecification__PackageableElement.initOperations(_InstanceSpecification__PackageableElement);
+			Fragments._InstanceSpecification__ParameterableElement.initOperations(_InstanceSpecification__ParameterableElement);
 			Fragments._InstanceSpecification__Visitable.initOperations(_InstanceSpecification__Visitable);
 
 			Fragments._IntegerLiteralExp__Element.initOperations(_IntegerLiteralExp__Element);
@@ -11721,15 +11732,21 @@ public class PivotTables
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
-			PivotTables.Properties._InstanceSpecification__package,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._InstanceSpecification__slots,
 			PivotTables.Properties._InstanceSpecification__specification,
+			PivotTables.Properties._ParameterableElement__templateParameter,
 			PivotTables.Properties._InstanceSpecification__type,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._Element__comment__annotatedElement
+			PivotTables.Properties._InstanceSpecification__Package__ownedInstances,
+			PivotTables.Properties._Element__comment__annotatedElement,
+			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
+			PivotTables.Properties._ParameterableElement__templateParameter__default,
+			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
+			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
 		};
 
 		private static final @NonNull ExecutorProperty[] _IntegerLiteralExp = {

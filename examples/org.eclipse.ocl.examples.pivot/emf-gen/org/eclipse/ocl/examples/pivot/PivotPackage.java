@@ -9666,7 +9666,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__EXTENSION = NAMED_ELEMENT__EXTENSION;
+	int INSTANCE_SPECIFICATION__EXTENSION = PACKAGEABLE_ELEMENT__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -9675,7 +9675,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+	int INSTANCE_SPECIFICATION__OWNED_ANNOTATION = PACKAGEABLE_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -9684,7 +9684,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+	int INSTANCE_SPECIFICATION__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -9693,7 +9693,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+	int INSTANCE_SPECIFICATION__IS_STATIC = PACKAGEABLE_ELEMENT__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9702,16 +9702,25 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__NAME = NAMED_ELEMENT__NAME;
+	int INSTANCE_SPECIFICATION__NAME = PACKAGEABLE_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Slots</b></em>' containment reference list.
@@ -9720,7 +9729,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__SLOTS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int INSTANCE_SPECIFICATION__SLOTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
@@ -9729,7 +9738,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__SPECIFICATION = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SPECIFICATION__SPECIFICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -9738,7 +9747,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int INSTANCE_SPECIFICATION__TYPE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Instance Specification</em>' class.
@@ -9747,7 +9756,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int INSTANCE_SPECIFICATION_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -9756,7 +9765,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+	int INSTANCE_SPECIFICATION___ALL_OWNED_ELEMENTS = PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -9765,7 +9774,25 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
+	int INSTANCE_SPECIFICATION___GET_VALUE__TYPE_STRING = PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SPECIFICATION___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Instance Specification</em>' class.
@@ -9774,7 +9801,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SPECIFICATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int INSTANCE_SPECIFICATION_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -22828,17 +22855,6 @@ public interface PivotPackage
 	EClass getInstanceSpecification();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getPackage <em>Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.InstanceSpecification#getPackage()
-	 * @see #getInstanceSpecification()
-	 * @generated
-	 */
-	EReference getInstanceSpecification_Package();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSlots <em>Slots</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27515,14 +27531,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass INSTANCE_SPECIFICATION = eINSTANCE.getInstanceSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Package</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSTANCE_SPECIFICATION__PACKAGE = eINSTANCE.getInstanceSpecification_Package();
 
 		/**
 		 * The meta object literal for the '<em><b>Slots</b></em>' containment reference list feature.

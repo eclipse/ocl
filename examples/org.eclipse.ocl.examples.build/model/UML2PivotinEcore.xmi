@@ -157,6 +157,27 @@
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Abstraction"/>
     <oldTypes
+        xsi:type="uml:Enumeration"
+        href="../model-gen/UML.uml#AggregationKind"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#AnyReceiveEvent"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#BehavioralFeature"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#BehavioredClassifier"/>
+    <oldTypes
+        xsi:type="uml:Enumeration"
+        href="../model-gen/UML.uml#CallConcurrencyKind"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#CallEvent"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#ChangeEvent"/>
+    <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Collaboration"/>
     <oldTypes
@@ -188,10 +209,7 @@
         href="../model-gen/UML.uml#Dependency"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#EncapsulatedClassifier"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Port"/>
+        href="../model-gen/UML.uml#DirectedRelationship"/>
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Duration"/>
@@ -206,16 +224,43 @@
         href="../model-gen/UML.uml#DurationObservation"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#TimeConstraint"/>
+        href="../model-gen/UML.uml#ElementImport"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#TimeExpression"/>
+        href="../model-gen/UML.uml#EncapsulatedClassifier"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#TimeInterval"/>
+        href="../model-gen/UML.uml#Event"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#TimeObservation"/>
+        href="../model-gen/UML.uml#Expression"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Extension"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#ExtensionEnd"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#FunctionBehavior"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Generalization"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#GeneralizationSet"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Image"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#InstanceValue"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Interface"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#InterfaceRealization"/>
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Interval"/>
@@ -245,19 +290,22 @@
         href="../model-gen/UML.uml#LiteralUnlimitedNatural"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Expression"/>
+        href="../model-gen/UML.uml#MessageEvent"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#StringExpression"/>
+        href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#MultiplicityElement"/>
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Observation"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#DirectedRelationship"/>
+        href="../model-gen/UML.uml#OpaqueBehavior"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ElementImport"/>
+        href="../model-gen/UML.uml#OpaqueExpression"/>
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#PackageImport"/>
@@ -265,119 +313,20 @@
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#PackageMerge"/>
     <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Realization"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Relationship"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Usage"/>
-    <oldTypes
         xsi:type="uml:Enumeration"
-        href="../model-gen/UML.uml#VisibilityKind"/>
-    <oldTypes
-        xsi:type="uml:Enumeration"
-        href="../model-gen/UML.uml#CallConcurrencyKind"/>
+        href="../model-gen/UML.uml#ParameterDirectionKind"/>
     <oldTypes
         xsi:type="uml:Enumeration"
         href="../model-gen/UML.uml#ParameterEffectKind"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Generalization"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#GeneralizationSet"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#InstanceSpecification"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#InstanceValue"/>
-    <oldTypes
-        xsi:type="uml:Class"
         href="../model-gen/UML.uml#ParameterSet"/>
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#RedefinableElement"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#RedefinableTemplateSignature"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Slot"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Substitution"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Interface"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#InterfaceRealization"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Reception"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#BehavioredClassifier"/>
+        href="../model-gen/UML.uml#Port"/>
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ProfileApplication"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Image"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Extension"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ExtensionEnd"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#BehavioralFeature"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#MultiplicityElement"/>
-    <oldTypes
-        xsi:type="uml:Enumeration"
-        href="../model-gen/UML.uml#AggregationKind"/>
-    <oldTypes
-        xsi:type="uml:Enumeration"
-        href="../model-gen/UML.uml#ParameterDirectionKind"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#StructuralFeature"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#AnyReceiveEvent"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#CallEvent"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ChangeEvent"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Event"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#MessageEvent"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#SignalEvent"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#TimeEvent"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#FunctionBehavior"/>
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#OpaqueBehavior"/>
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ProtocolConformance"/>
@@ -387,10 +336,88 @@
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ProtocolTransition"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Realization"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Reception"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#RedefinableElement"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#RedefinableTemplateSignature"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Relationship"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#SignalEvent"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#StringExpression"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#StructuralFeature"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Substitution"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#TimeConstraint"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#TimeEvent"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#TimeExpression"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#TimeInterval"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#TimeObservation"/>
+    <oldTypes
+        xsi:type="uml:Class"
+        href="../model-gen/UML.uml#Usage"/>
+    <oldTypes
+        xsi:type="uml:Enumeration"
+        href="../model-gen/UML.uml#VisibilityKind"/>
   </mappings>
   <mappings
       xsi:type="u2ec:DeleteProperties">
     <oldProperties
+        href="../model-gen/UML.uml#DeploymentTarget-deployedElement.1"/>
+    <oldProperties
+        href="../model-gen/UML.uml#EnumerationLiteral-classifier.1"/>
+    <oldProperties
         href="../model-gen/UML.uml#Namespace-importedMember.1"/>
+    <oldProperties
+        href="../model-gen/UML.uml#OpaqueExpression-behavior"/>
+  </mappings>
+  <mappings
+      xsi:type="u2ec:CreateProperty"
+      newName="type">
+    <oldProperties
+        href="../model-gen/UML.uml#InstanceSpecification-classifier"/>
+  </mappings>
+  <mappings
+      xsi:type="u2ec:CreateProperty"
+      newName="slots">
+    <oldProperties
+        href="../model-gen/UML.uml#InstanceSpecification-slot"/>
+  </mappings>
+  <mappings
+      xsi:type="u2ec:CreateProperty"
+      newName="resultVariable">
+    <oldProperties
+        href="../model-gen/UML.uml#OpaqueExpression-result.1"/>
+  </mappings>
+  <mappings
+      xsi:type="u2ec:CreateProperty"
+      newName="values">
+    <oldProperties
+        href="../model-gen/UML.uml#Slot-value"/>
   </mappings>
 </u2ec:Mappings>

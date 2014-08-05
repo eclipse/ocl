@@ -494,11 +494,7 @@ oclContents()
           name="Root" opposite="#p.pivot.Root.imports" type="#T.pivot.Root"/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.InstanceSpecification" name="InstanceSpecification"
-        superClass="#T.pivot.NamedElement">
-      <ownedAttribute xmi:id="p.pivot.InstanceSpecification.package" name="package"
-          opposite="#p.pivot.Package.ownedInstances" type="#T.pivot.Package">
-        <ownedComment body="The instance specification that owns this slot."/>
-      </ownedAttribute>
+        superClass="#T.pivot.PackageableElement">
       <ownedAttribute xmi:id="p.pivot.InstanceSpecification.slots" isComposite="true"
           name="slots" opposite="#p.pivot.Slot.owningInstance" type="#//@nestedPackage.1/@ownedType.149">
         <ownedComment body="A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description."/>
@@ -512,6 +508,9 @@ oclContents()
           type="#//@nestedPackage.1/@ownedType.157">
         <ownedComment body="The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them."/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="p.pivot.InstanceSpecification.Package" implicit="true"
+          isRequired="false" name="Package" opposite="#p.pivot.Package.ownedInstances"
+          type="#T.pivot.Package"/>
       <ownedComment body="An instance specification is a model element that represents an instance in a modeled system."/>
     </ownedType>
     <ownedType xsi:type="pivot:Class" xmi:id="T.pivot.IntegerLiteralExp" name="IntegerLiteralExp"
@@ -1208,7 +1207,7 @@ endif
       <ownedAttribute xmi:id="p.pivot.Package.nsURI" isRequired="false" name="nsURI"
           type="#String"/>
       <ownedAttribute xmi:id="p.pivot.Package.ownedInstances" isComposite="true" name="ownedInstances"
-          opposite="#p.pivot.InstanceSpecification.package" type="#//@nestedPackage.1/@ownedType.140">
+          opposite="#p.pivot.InstanceSpecification.Package" type="#//@nestedPackage.1/@ownedType.140">
         <ownedComment body="The instance specification that owns this slot."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Package.ownedType" isComposite="true" name="ownedType"

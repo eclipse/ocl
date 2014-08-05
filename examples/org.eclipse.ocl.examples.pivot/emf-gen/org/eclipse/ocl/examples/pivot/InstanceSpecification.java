@@ -24,7 +24,6 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSlots <em>Slots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getType <em>Type</em>}</li>
@@ -34,34 +33,8 @@ import java.util.List;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification()
  * @generated
  */
-public interface InstanceSpecification extends NamedElement
+public interface InstanceSpecification extends PackageableElement
 {
-	/**
-	 * Returns the value of the '<em><b>Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The instance specification that owns this slot.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Package</em>' container reference.
-	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification_Package()
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedInstances
-	 * @generated
-	 */
-	org.eclipse.ocl.examples.pivot.Package getPackage();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.InstanceSpecification#getPackage <em>Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' container reference.
-	 * @see #getPackage()
-	 * @generated
-	 */
-	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
-
 	/**
 	 * Returns the value of the '<em><b>Slots</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Slot}.

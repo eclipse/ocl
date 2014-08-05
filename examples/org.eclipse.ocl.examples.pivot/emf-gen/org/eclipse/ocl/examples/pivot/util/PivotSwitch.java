@@ -707,7 +707,9 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				InstanceSpecification instanceSpecification = (InstanceSpecification)theEObject;
 				T1 result = caseInstanceSpecification(instanceSpecification);
+				if (result == null) result = casePackageableElement(instanceSpecification);
 				if (result == null) result = caseNamedElement(instanceSpecification);
+				if (result == null) result = caseParameterableElement(instanceSpecification);
 				if (result == null) result = caseElement(instanceSpecification);
 				if (result == null) result = caseNameable(instanceSpecification);
 				if (result == null) result = caseVisitable(instanceSpecification);

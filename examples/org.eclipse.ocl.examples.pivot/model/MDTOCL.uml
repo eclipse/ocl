@@ -187,12 +187,7 @@
         <ownedComment xmi:id="_MJ2QsQRDEeSiuvNrq-crrw" annotatedElement="_MJ2QsARDEeSiuvNrq-crrw">
           <body>An instance specification is a model element that represents an instance in a modeled system.</body>
         </ownedComment>
-        <generalization xmi:id="_MJ2QtgRDEeSiuvNrq-crrw" general="_QSHGkARDEeSiuvNrq-crrw"/>
-        <ownedAttribute xmi:id="_kLYS4ARKEeSiuvNrq-crrw" name="package" type="_YzOH0ARKEeSiuvNrq-crrw" association="_usYzgARKEeSiuvNrq-crrw">
-          <ownedComment xmi:id="_kLYS4QRKEeSiuvNrq-crrw" annotatedElement="_kLYS4ARKEeSiuvNrq-crrw">
-            <body>The instance specification that owns this slot.</body>
-          </ownedComment>
-        </ownedAttribute>
+        <generalization xmi:id="_MJ2QtgRDEeSiuvNrq-crrw" general="_98EugA52EeSGbqOFzwyD_w"/>
         <ownedAttribute xmi:id="_MJ2QtwRDEeSiuvNrq-crrw" name="slots" type="_MJ2QwgRDEeSiuvNrq-crrw" aggregation="composite" association="_MJ2Q0gRDEeSiuvNrq-crrw">
           <ownedComment xmi:id="_MJ2QuARDEeSiuvNrq-crrw" annotatedElement="_MJ2QtwRDEeSiuvNrq-crrw">
             <body>A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.</body>
@@ -224,6 +219,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K7U5AARMEeSiuvNrq-crrw" value="*"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_98EugA52EeSGbqOFzwyD_w" name="PackageableElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_yiip4ARDEeSiuvNrq-crrw" name="Property"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_MJ2QwgRDEeSiuvNrq-crrw" name="Slot">
         <ownedComment xmi:id="_MJ2QwwRDEeSiuvNrq-crrw" annotatedElement="_MJ2QwgRDEeSiuvNrq-crrw">
@@ -273,7 +269,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MJ2Q5ARDEeSiuvNrq-crrw" value="*"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_usYzgARKEeSiuvNrq-crrw" name="A_package_ownedInstance" memberEnd="_kLYS4ARKEeSiuvNrq-crrw _dtrPoARKEeSiuvNrq-crrw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_usYzgARKEeSiuvNrq-crrw" name="A_package_ownedInstance" memberEnd="_dtrPoARKEeSiuvNrq-crrw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_t35skMlAEd-bx742yyafXQ" name="MDT_OCL_Precedences">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_2eERIMlAEd-bx742yyafXQ" name="AssociativityKind">

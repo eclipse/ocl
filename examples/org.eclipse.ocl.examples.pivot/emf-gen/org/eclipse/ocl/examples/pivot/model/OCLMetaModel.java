@@ -614,7 +614,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _InstanceSpecification);
 			superClasses = type.getSuperClass();
-			superClasses.add(_NamedElement);
+			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _IntegerLiteralExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_NumericLiteralExp);
@@ -2148,10 +2148,10 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_IfExp_thenExpression = createProperty(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION, _OCLExpression);
 		protected final @NonNull Property pr_Import_importedNamespace = createProperty(PivotPackage.Literals.IMPORT__IMPORTED_NAMESPACE, _Namespace);
 		protected final @NonNull Property pr_Import_Root_imports = createProperty("Root", _Root);
-		protected final @NonNull Property pr_InstanceSpecification_package = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__PACKAGE, _Package);
 		protected final @NonNull Property pr_InstanceSpecification_slots = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, _Set_Slot);
 		protected final @NonNull Property pr_InstanceSpecification_specification = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, _ExpressionInOCL);
 		protected final @NonNull Property pr_InstanceSpecification_type = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__TYPE, _Set_Type);
+		protected final @NonNull Property pr_InstanceSpecification_Package_ownedInstances = createProperty("Package", _Package);
 		protected final @NonNull Property pr_IntegerLiteralExp_integerSymbol = createProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, _Integer);
 		protected final @NonNull Property pr_IterateExp_result = createProperty(PivotPackage.Literals.ITERATE_EXP__RESULT, _Variable);
 		protected final @NonNull Property pr_Iteration_ownedAccumulator = createProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATOR, _OrderedSet_Parameter);
@@ -2816,9 +2816,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Root_imports);
 			ownedProperties = _InstanceSpecification.getOwnedAttribute();
-			ownedProperties.add(property = pr_InstanceSpecification_package);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_ownedInstances);
 			ownedProperties.add(property = pr_InstanceSpecification_slots);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -2831,6 +2828,11 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_InstanceSpecification_type);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_instanceSpecification_type);
+			ownedProperties.add(property = pr_InstanceSpecification_Package_ownedInstances);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_ownedInstances);
 			ownedProperties = _IntegerLiteralExp.getOwnedAttribute();
 			ownedProperties.add(property = pr_IntegerLiteralExp_integerSymbol);
 			property.setIsResolveProxies(true);
@@ -3128,7 +3130,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Package_ownedInstances);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_InstanceSpecification_package);
+			property.setOpposite(pr_InstanceSpecification_Package_ownedInstances);
 			ownedProperties.add(property = pr_Package_ownedType);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -4310,7 +4312,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_ExpressionInOCL_language, "Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");
 			installComment(_FinalState, "A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed.");
 			installComment(_InstanceSpecification, "An instance specification is a model element that represents an instance in a modeled system.");
-			installComment(pr_InstanceSpecification_package, "The instance specification that owns this slot.");
 			installComment(pr_InstanceSpecification_slots, "A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.");
 			installComment(pr_InstanceSpecification_specification, "A specification of how to compute, derive, or construct the instance.");
 			installComment(pr_InstanceSpecification_type, "The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.");

@@ -538,12 +538,7 @@
       <ownedComment xmi:id="Ppivot.TInstanceSpecification.oC0" annotatedElement="Ppivot.TInstanceSpecification">
         <body>An instance specification is a model element that represents an instance in a modeled system.</body>
       </ownedComment>
-      <generalization xmi:id="Ppivot.TInstanceSpecification.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Ppackage" name="package" type="Ppivot.TPackage" association="Ppivot.A_package_ownedInstance">
-        <ownedComment xmi:id="Ppivot.TInstanceSpecification.Ppackage.oC0" annotatedElement="Ppivot.TInstanceSpecification.Ppackage">
-          <body>The instance specification that owns this slot.</body>
-        </ownedComment>
-      </ownedAttribute>
+      <generalization xmi:id="Ppivot.TInstanceSpecification.g0" general="Ppivot.TPackageableElement"/>
       <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Pslots" name="slots" type="Ppivot.TSlot" aggregation="composite" association="Ppivot.A_slot_owningInstance">
         <ownedComment xmi:id="Ppivot.TInstanceSpecification.Pslots.oC0" annotatedElement="Ppivot.TInstanceSpecification.Pslots">
           <body>A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.</body>
@@ -1912,7 +1907,7 @@
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.Ptemplate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedType_package" name="A_ownedType_package" memberEnd="Ppivot.TPackage.PownedType Ppivot.TType.Ppackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningState_stateInvariant" name="A_owningState_stateInvariant" memberEnd="Ppivot.TState.PstateInvariant Ppivot.TConstraint.PowningState"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_package_ownedInstance" name="A_package_ownedInstance" memberEnd="Ppivot.TInstanceSpecification.Ppackage Ppivot.TPackage.PownedInstances"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_package_ownedInstance" name="A_package_ownedInstance" memberEnd="Ppivot.TPackage.PownedInstances"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameterSubstitution_templateBinding" name="A_parameterSubstitution_templateBinding"
         memberEnd="Ppivot.TTemplateBinding.PparameterSubstitution Ppivot.TTemplateParameterSubstitution.PtemplateBinding"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameteredElement_templateParameter" name="A_parameteredElement_templateParameter"

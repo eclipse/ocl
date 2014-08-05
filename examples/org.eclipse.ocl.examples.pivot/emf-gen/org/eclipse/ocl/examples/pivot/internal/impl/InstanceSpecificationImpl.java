@@ -15,20 +15,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
@@ -36,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Slot;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -45,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getSlots <em>Slots</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.InstanceSpecificationImpl#getType <em>Type</em>}</li>
@@ -54,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class InstanceSpecificationImpl extends NamedElementImpl implements InstanceSpecification
+public class InstanceSpecificationImpl extends PackageableElementImpl implements InstanceSpecification
 {
 	/**
 	 * The cached value of the '{@link #getSlots() <em>Slots</em>}' containment reference list.
@@ -105,51 +98,6 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.INSTANCE_SPECIFICATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.ocl.examples.pivot.Package getPackage()
-	{
-		if (eContainerFeatureID() != PivotPackage.INSTANCE_SPECIFICATION__PACKAGE) return null;
-		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPackage(org.eclipse.ocl.examples.pivot.Package newPackage, NotificationChain msgs)
-	{
-		msgs = eBasicSetContainer((InternalEObject)newPackage, PivotPackage.INSTANCE_SPECIFICATION__PACKAGE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPackage(org.eclipse.ocl.examples.pivot.Package newPackage)
-	{
-		if (newPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.INSTANCE_SPECIFICATION__PACKAGE && newPackage != null))
-		{
-			if (EcoreUtil.isAncestor(this, (EObject)newPackage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newPackage != null)
-				msgs = ((InternalEObject)newPackage).eInverseAdd(this, PivotPackage.PACKAGE__OWNED_INSTANCES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
-			msgs = basicSetPackage(newPackage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.INSTANCE_SPECIFICATION__PACKAGE, newPackage, newPackage));
 	}
 
 	/**
@@ -241,10 +189,14 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 		{
 			case PivotPackage.INSTANCE_SPECIFICATION__EXTENSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
+			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
+			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
+				if (templateParameter != null)
+					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
+				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSlots()).basicAdd(otherEnd, msgs);
 		}
@@ -267,30 +219,16 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
+				return basicSetOwningTemplateParameter(null, msgs);
+			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
+				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				return ((InternalEList<?>)getSlots()).basicRemove(otherEnd, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
 				return basicSetSpecification(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-	{
-		switch (eContainerFeatureID())
-		{
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_INSTANCES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
-		}
-		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
 	/**
@@ -313,8 +251,11 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 				return isStatic();
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				return getName();
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
-				return getPackage();
+			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
+				return getOwningTemplateParameter();
+			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
+				if (resolve) return getTemplateParameter();
+				return basicGetTemplateParameter();
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				return getSlots();
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
@@ -354,8 +295,11 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				getSlots().clear();
@@ -397,8 +341,11 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				getSlots().clear();
@@ -433,8 +380,10 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.INSTANCE_SPECIFICATION__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
+				return getOwningTemplateParameter() != null;
+			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
+				return templateParameter != null;
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
 				return slots != null && !slots.isEmpty();
 			case PivotPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
