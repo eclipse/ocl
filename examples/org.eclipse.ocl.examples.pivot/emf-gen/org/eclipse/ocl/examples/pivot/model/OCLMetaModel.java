@@ -2718,7 +2718,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setOpposite(pr_EnumerationLiteral_enumeration);
 			ownedProperties = _EnumerationLiteral.getOwnedAttribute();
 			ownedProperties.add(property = pr_EnumerationLiteral_enumeration);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Enumeration_ownedLiteral);
 			ownedProperties.add(property = pr_EnumerationLiteral_value);

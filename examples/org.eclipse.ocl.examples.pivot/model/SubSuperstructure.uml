@@ -1094,25 +1094,21 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <ownedComment xmi:id="_DKDntUefEeKdl-y5nJoJpQ" annotatedElement="_DKDntEefEeKdl-y5nJoJpQ">
               <body>A state with isComposite=true is said to be a composite state. A composite state is a state that contains at least one region.</body>
             </ownedComment>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnXQYH7VEeOu79LxSz8Ylw" value="false"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_DKDnt0efEeKdl-y5nJoJpQ" name="isOrthogonal" type="_lg9w8EegEeKdl-y5nJoJpQ" isReadOnly="true" isDerived="true">
             <ownedComment xmi:id="_DKDnuEefEeKdl-y5nJoJpQ" annotatedElement="_DKDnt0efEeKdl-y5nJoJpQ">
               <body>A state with isOrthogonal=true is said to be an orthogonal composite state. An orthogonal composite state contains two or more regions.</body>
             </ownedComment>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnXQYX7VEeOu79LxSz8Ylw" value="false"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_DKDnukefEeKdl-y5nJoJpQ" name="isSimple" type="_lg9w8EegEeKdl-y5nJoJpQ" isReadOnly="true" isDerived="true">
             <ownedComment xmi:id="_DKDnu0efEeKdl-y5nJoJpQ" annotatedElement="_DKDnukefEeKdl-y5nJoJpQ">
               <body>A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine.</body>
             </ownedComment>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnXQYn7VEeOu79LxSz8Ylw" value="true"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_DKDnvUefEeKdl-y5nJoJpQ" name="isSubmachineState" type="_lg9w8EegEeKdl-y5nJoJpQ" isReadOnly="true" isDerived="true">
             <ownedComment xmi:id="_DKDnvkefEeKdl-y5nJoJpQ" annotatedElement="_DKDnvUefEeKdl-y5nJoJpQ">
               <body>A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).</body>
             </ownedComment>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnXQY37VEeOu79LxSz8Ylw" value="false"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_DKDnwEefEeKdl-y5nJoJpQ" name="submachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_9FFU1EebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_DKDnwUefEeKdl-y5nJoJpQ" annotatedElement="_DKDnwEefEeKdl-y5nJoJpQ">

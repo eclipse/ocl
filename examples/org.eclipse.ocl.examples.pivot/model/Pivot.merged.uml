@@ -487,7 +487,7 @@
         <ownedComment xmi:id="Ppivot.TEnumerationLiteral.Penumeration.oC0" annotatedElement="Ppivot.TEnumerationLiteral.Penumeration">
           <body>The Enumeration that this EnumerationLiteral is a member of.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TEnumerationLiteral.Penumeration.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TEnumerationLiteral.Penumeration.lV" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TEnumerationLiteral.Pvalue" name="value" type="Ppivot.TInteger">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TEnumerationLiteral.Pvalue.lV"/>
@@ -1211,25 +1211,21 @@
         <ownedComment xmi:id="Ppivot.TState.PisComposite.oC0" annotatedElement="Ppivot.TState.PisComposite">
           <body>A state with isComposite=true is said to be a composite state. A composite state is a state that contains at least one region.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TState.PisComposite.dlV" value="false"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TState.PisOrthogonal" name="isOrthogonal" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true">
         <ownedComment xmi:id="Ppivot.TState.PisOrthogonal.oC0" annotatedElement="Ppivot.TState.PisOrthogonal">
           <body>A state with isOrthogonal=true is said to be an orthogonal composite state. An orthogonal composite state contains two or more regions.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TState.PisOrthogonal.dlV" value="false"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TState.PisSimple" name="isSimple" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true">
         <ownedComment xmi:id="Ppivot.TState.PisSimple.oC0" annotatedElement="Ppivot.TState.PisSimple">
           <body>A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TState.PisSimple.dlV" value="true"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TState.PisSubmachineState" name="isSubmachineState" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true">
         <ownedComment xmi:id="Ppivot.TState.PisSubmachineState.oC0" annotatedElement="Ppivot.TState.PisSubmachineState">
           <body>A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TState.PisSubmachineState.dlV" value="false"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TState.Psubmachine" name="submachine" type="Ppivot.TStateMachine" association="Ppivot.A_submachineState_submachine">
         <ownedComment xmi:id="Ppivot.TState.Psubmachine.oC0" annotatedElement="Ppivot.TState.Psubmachine">

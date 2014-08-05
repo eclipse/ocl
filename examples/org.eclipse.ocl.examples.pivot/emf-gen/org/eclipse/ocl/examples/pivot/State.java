@@ -50,7 +50,6 @@ public interface State
 
 	/**
 	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -64,7 +63,6 @@ public interface State
 
 	/**
 	 * Returns the value of the '<em><b>Is Orthogonal</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -78,7 +76,6 @@ public interface State
 
 	/**
 	 * Returns the value of the '<em><b>Is Simple</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -92,7 +89,6 @@ public interface State
 
 	/**
 	 * Returns the value of the '<em><b>Is Submachine State</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->

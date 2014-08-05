@@ -1893,7 +1893,7 @@ includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
           <ownedComment xmi:id="Core-Basic-EnumerationLiteral-enumeration-_ownedComment.0" annotatedElement="Core-Basic-EnumerationLiteral-enumeration">
             <body>The Enumeration that this EnumerationLiteral is a member of.</body>
           </ownedComment>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAS37VEeOu79LxSz8Ylw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAS37VEeOu79LxSz8Ylw" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="Core-Basic-PrimitiveType" name="PrimitiveType">

@@ -366,8 +366,8 @@
       <ownedComment body="An enumeration defines a set of literals that can be used as its values."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.EnumerationLiteral" name="EnumerationLiteral" superClass="#T.pivot.InstanceSpecification">
-      <ownedAttribute xmi:id="p.pivot.EnumerationLiteral.enumeration" isRequired="false"
-          name="enumeration" opposite="#p.pivot.Enumeration.ownedLiteral" type="#T.pivot.Enumeration">
+      <ownedAttribute xmi:id="p.pivot.EnumerationLiteral.enumeration" name="enumeration"
+          opposite="#p.pivot.Enumeration.ownedLiteral" type="#T.pivot.Enumeration">
         <ownedComment body="The Enumeration that this EnumerationLiteral is a member of."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.EnumerationLiteral.value" default="0" isRequired="false"
@@ -1250,23 +1250,20 @@
           type="#T.pivot.Behavior">
         <ownedComment body="An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.State.isComposite" default="false" isDerived="true"
-          isReadOnly="true" isTransient="true" isVolatile="true" name="isComposite"
-          type="#Boolean">
+      <ownedAttribute xmi:id="p.pivot.State.isComposite" isDerived="true" isReadOnly="true"
+          isTransient="true" isVolatile="true" name="isComposite" type="#Boolean">
         <ownedComment body="A state with isComposite=true is said to be a composite state. A composite state is a state that contains at least one region."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.State.isOrthogonal" default="false" isDerived="true"
-          isReadOnly="true" isTransient="true" isVolatile="true" name="isOrthogonal"
-          type="#Boolean">
+      <ownedAttribute xmi:id="p.pivot.State.isOrthogonal" isDerived="true" isReadOnly="true"
+          isTransient="true" isVolatile="true" name="isOrthogonal" type="#Boolean">
         <ownedComment body="A state with isOrthogonal=true is said to be an orthogonal composite state. An orthogonal composite state contains two or more regions."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.State.isSimple" default="true" isDerived="true"
-          isReadOnly="true" isTransient="true" isVolatile="true" name="isSimple" type="#Boolean">
+      <ownedAttribute xmi:id="p.pivot.State.isSimple" isDerived="true" isReadOnly="true"
+          isTransient="true" isVolatile="true" name="isSimple" type="#Boolean">
         <ownedComment body="A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine."/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="p.pivot.State.isSubmachineState" default="false" isDerived="true"
-          isReadOnly="true" isTransient="true" isVolatile="true" name="isSubmachineState"
-          type="#Boolean">
+      <ownedAttribute xmi:id="p.pivot.State.isSubmachineState" isDerived="true" isReadOnly="true"
+          isTransient="true" isVolatile="true" name="isSubmachineState" type="#Boolean">
         <ownedComment body="A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine)."/>
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.State.redefinedState" isRequired="false" name="redefinedState"

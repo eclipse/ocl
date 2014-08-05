@@ -159,7 +159,7 @@ public class StateImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_SIMPLE_EDEFAULT = true;
+	protected static final boolean IS_SIMPLE_EDEFAULT = false;
 	/**
 	 * The default value of the '{@link #isSubmachineState() <em>Is Submachine State</em>}' attribute.
 	 * <!-- begin-user-doc -->
