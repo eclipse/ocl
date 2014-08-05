@@ -18,10 +18,13 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
@@ -33,13 +36,73 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.internal.resource.XMI2UMLHandler;
+import org.eclipse.uml2.uml.internal.resource.XMI2UMLLoadImpl;
+import org.eclipse.uml2.uml.internal.resource.XMI2UMLResourceFactoryImpl;
+import org.eclipse.uml2.uml.internal.resource.XMI2UMLResourceImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resource.XMI2UMLResource;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Assigns simple package/type/type-name xmi:ids to Packages, Types, Properties that do not already have them.
+ * *.xmi inputs are handled so as to use local rather than registered OMG resources.
  */
+@SuppressWarnings("restriction")
 public class IdAssigner extends AbstractWorkflowComponent
 {
+	protected static final class LocalXMI2UMLResourceFactory extends XMI2UMLResourceFactoryImpl
+	{
+		public static final @NonNull LocalXMI2UMLResourceFactory INSTANCE = new LocalXMI2UMLResourceFactory();
+		
+		@Override
+		public Resource createResourceGen(URI uri) {
+			XMI2UMLResource result = new LocalXMI2UMLResource(uri);
+			result.setEncoding(XMI2UMLResource.DEFAULT_ENCODING);
+			return result;
+		}
+	}
+
+	protected static final class LocalXMI2UMLResource extends XMI2UMLResourceImpl
+	{
+		protected LocalXMI2UMLResource(URI uri) {
+			super(uri);
+		}
+
+		@Override
+		protected XMLLoad createXMLLoad() {
+			return new LocalXMI2UMLLoad(createXMLHelper());
+		}
+	}
+
+	protected static final class LocalXMI2UMLLoad extends XMI2UMLLoadImpl
+	{
+		protected LocalXMI2UMLLoad(XMLHelper helper) {
+			super(helper);
+		}
+
+		@Override
+		protected DefaultHandler makeDefaultHandler() {
+			return new LocalXMI2UMLHandler(resource, helper, options);
+		}
+	}
+
+	protected static final class LocalXMI2UMLHandler extends XMI2UMLHandler
+	{
+		protected LocalXMI2UMLHandler(XMLResource xmiResource, XMLHelper helper, Map<?, ?> options) {
+			super(xmiResource, helper, options);
+		}
+
+		@Override
+		protected void handleProxy(InternalEObject proxy, String uriLiteral) {
+			if (uriLiteral.startsWith(XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI)) {
+				URI uri = URI.createURI(uriLiteral);
+				uriLiteral = uri.lastSegment() + "#" + uri.fragment();
+			}
+			super.handleProxy(proxy, uriLiteral);
+		}
+	}
+
 	protected Logger log = Logger.getLogger(getClass());	
 	private ResourceSet resourceSet = null;	
 	protected Map<URI, URI> uriMapping = new HashMap<URI, URI>();
@@ -77,12 +140,23 @@ public class IdAssigner extends AbstractWorkflowComponent
 
 	@Override
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
-		ResourceSet resourceSet = getResourceSet();
+		ResourceSetImpl resourceSet = (ResourceSetImpl) getResourceSet();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", LocalXMI2UMLResourceFactory.INSTANCE);
 		Map<UMLResource, UMLResource> resourceMap = new HashMap<UMLResource, UMLResource>();
 		for (URI fromURI : uriMapping.keySet()) {
 			log.info("Assigning Ids from '" + fromURI + "'");
 			URI toURI = uriMapping.get(fromURI);
 			UMLResource fromResource = (UMLResource) resourceSet.getResource(fromURI, true);
+			EcoreUtil.resolveAll(fromResource);
+			for (EObject eRoot : fromResource.getContents()) {
+				if (eRoot instanceof org.eclipse.uml2.uml.Package) {
+					org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package)eRoot;
+					String uri = umlPackage.getURI();
+					if (uri != null) {
+						resourceSet.getURIResourceMap().put(URI.createURI(uri), fromResource);
+					}
+				}	// http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi
+			}
 			UMLResource toResource = (UMLResource) resourceSet.createResource(toURI);
 			resourceMap.put(fromResource, toResource);
 		}

@@ -6,7 +6,7 @@ modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 transformation PruneUML(in uml2ecore : UML2EcoreControl, out UML2EcoreMapping);
 
-property debugPackage : Boolean = true;
+property debugPackage : Boolean = false;
 property debugProperty : Boolean = false;
 property showDuplicateUnnavigableOpposites : Boolean = true;
 

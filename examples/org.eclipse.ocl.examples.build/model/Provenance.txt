@@ -1,6 +1,5 @@
-PrimitiveTypes.uml		UML 2.5 Beta2 PrimitiveTypes.xmi with added xsi:schemaLocation
-UML.uml					UML 2.5 Beta2 UML.xmi with added xsi:schemaLocation
-						references to http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi replaced by PrimitiveTypes.uml
+PrimitiveTypes.xmi		UML 2.5 Beta2 PrimitiveTypes.xmi unedited
+UML.xmi					UML 2.5 Beta2 UML.xmi unedited
 
 OCL.uml 				Working MDT/OCL file
 MDTOCL.uml				Working MDT/OCL file

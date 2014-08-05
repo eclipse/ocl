@@ -30,11 +30,15 @@ var ecoreSlot = "ecore"
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
-//    bean = StandaloneSetup { resourceSet = resourceSet
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	uriMap = Mapping {
+    		from = "http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi"
+    		to = "platform:/resource/${projectName}/model/PrimitiveTypes.xmi"
+    	}
 //    	platformUri = ".."
 //    	scanClassPath = true
 //    	registerGeneratedEPackage = "org.eclipse.xtext.common.types.TypesPackage"
-//    }
+    }
     bean = ProjectMapSetup { resourceSet = resourceSet }
     bean = UMLStandaloneSetup { resourceSet = resourceSet }
     bean = OCLStandaloneSetup { resourceSet = resourceSet
@@ -53,11 +57,11 @@ Workflow {
     component = IdAssigner { resourceSet = resourceSet skipOnErrors = true
     	assignFlatIds = true
     	mapping = Mapping {
-    		from = "/${projectName}/model/PrimitiveTypes.uml"
+    		from = "/${projectName}/model/PrimitiveTypes.xmi"
     		to = "/${projectName}/model-gen/PrimitiveTypes.uml"
     	}
     	mapping = Mapping {
-    		from = "/${projectName}/model/UML.uml"
+    		from = "/${projectName}/model/UML.xmi"
     		to = "/${projectName}/model-gen/UML.uml"
     	}
     }

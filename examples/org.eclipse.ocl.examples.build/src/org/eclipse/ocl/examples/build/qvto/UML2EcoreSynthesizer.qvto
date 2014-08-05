@@ -8,7 +8,7 @@ transformation PruneUML(in analysis : UML2Ecore, out Ecore);
 property debugProperties : Boolean = false;
 property debugCreateProperty : Boolean = false;
 property debugType : Boolean = false;
-property debug_EClass_abstract : Boolean = true;
+property debug_EClass_abstract : Boolean = false;
 property debug_EReference_eOpposite : Boolean = false;
 property showPropertyOverrides : Boolean = true;
 
@@ -399,7 +399,7 @@ property eReference2createProperty : Dict(Ecore::EReference, UML2Ecore::CreatePr
  */
 mapping inout Ecore::EClass::resolveEClass()
 {
-	if (debugType) log('resolveEClass', self.name);
+	if (debugType or debugProperties) log('resolveEClass', self.name);
 	var createType : UML2Ecore::CreateType := eClassifier2createType->get(self);
 	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
 	if (debugType) log('  allOldTypes', allOldTypes->display());
