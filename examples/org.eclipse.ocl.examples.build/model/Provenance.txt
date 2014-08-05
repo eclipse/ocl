@@ -1,8 +1,7 @@
-PrimitiveTypes.uml		UML 2.5 Beta PrimitiveTypes.xmi with adjusted namespaces
-UML.uml					UML 2.5 Beta UML.xmi with adjusted namespaces
+PrimitiveTypes.uml		UML 2.5 Beta2 PrimitiveTypes.xmi with added xsi:schemaLocation
+UML.uml					UML 2.5 Beta2 UML.xmi with added xsi:schemaLocation
+						references to http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi replaced by PrimitiveTypes.uml
 
-							ActivityNode.isConsistentWith isQuery set true
-							Action.allOwnedNodes delete refines
-
-OCL.cmof 				Working MDT/OCL file
-MDTOCL.cmof				Working MDT/OCL file
+OCL.uml 				Working MDT/OCL file
+MDTOCL.uml				Working MDT/OCL file
+MDTOCL2.uml				Working MDT/OCL file

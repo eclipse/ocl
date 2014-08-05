@@ -6,6 +6,7 @@ modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 transformation PruneUML(in uml2ecore : UML2EcoreControl, out UML2EcoreMapping);
 
+property debugPackage : Boolean = true;
 property debugProperty : Boolean = false;
 property showDuplicateUnnavigableOpposites : Boolean = true;
 
@@ -74,7 +75,7 @@ main() {
  */
 mapping UML2EcoreControl::CreatePackage::createRenamePackage() : UML2EcoreMapping::CreatePackage
 {
---	log('createRenamePackage', self.label);
+	if (debugPackage) log('createRenamePackage', self.label);
 	var myOldTypes : Set(UML::Type) := self.oldPackages.ownedType->reject(oclIsKindOf(UML::Association))->asSet();	
 	var myCreateTypes : Set(UML2EcoreControl::CreateType) := self.createTypes;
 	var myOldTypeNames : Set(String) := myOldTypes.name->asSet();	
@@ -107,7 +108,7 @@ mapping UML2EcoreControl::CreatePackage::createRenamePackage() : UML2EcoreMappin
  */
 mapping UML::Package::createCopyPackage() : UML2EcoreMapping::CreatePackage
 {	
---	log('createCreatePackage', self);		
+	if (debugPackage) log('createCreatePackage', self);		
 	var renameTypeMappings : Set(UML2EcoreControl::CreateType) := Set{}; --self.typeMappings->selectByKind(UML2Ecore::CreateType)->asSet();
 	var renameTypes : Set(UML::Type) := renameTypeMappings.oldTypes->asSet();
 	var myTypes : Set(UML::Type) := self.ownedType->reject(oclIsKindOf(UML::Association))->asSet();
@@ -128,7 +129,7 @@ mapping UML::Package::createCopyPackage() : UML2EcoreMapping::CreatePackage
  */
 mapping UML::Package::createDeletePackage() : UML2EcoreMapping::DeletePackage
 {
---	log('createDeletePackage', self.name);
+	if (debugPackage) log('createDeletePackage', self.name);
 	result.oldName := self.name;
 	result.oldPackages := self->asSet();
 	var unwantedTypes : Set(UML::Type) := self.ownedType->reject(oclIsKindOf(UML::Association));-->reject(allCreateTypeNames->includes(name));

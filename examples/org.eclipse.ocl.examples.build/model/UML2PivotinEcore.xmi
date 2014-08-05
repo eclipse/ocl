@@ -165,9 +165,9 @@
     <oldTypes xsi:type="uml:Enumeration" href="../model-gen/UML.uml#VisibilityKind"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties">
-    <oldProperties href="../model-gen/UML.uml#DeploymentTarget-deployedElement.1"/>
-    <oldProperties href="../model-gen/UML.uml#EnumerationLiteral-classifier.1"/>
-    <oldProperties href="../model-gen/UML.uml#Namespace-importedMember.1"/>
+    <oldProperties href="../model-gen/UML.uml#DeploymentTarget-deployedElement"/>
+    <oldProperties href="../model-gen/UML.uml#EnumerationLiteral-classifier"/>
+    <oldProperties href="../model-gen/UML.uml#Namespace-importedMember"/>
     <oldProperties href="../model-gen/UML.uml#OpaqueExpression-behavior"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove the duplicate child ownership">
@@ -177,7 +177,7 @@
     <oldProperties href="../model-gen/UML.uml#A_constrainingClassifier_classifierTemplateParameter-classifierTemplateParameter"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Behavior features">
-    <oldProperties href="../model-gen/UML.uml#Behavior-context.1"/>
+    <oldProperties href="../model-gen/UML.uml#Behavior-context"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-isReentrant"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-ownedParameter"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-ownedParameterSet"/>
@@ -186,30 +186,29 @@
     <oldProperties href="../model-gen/UML.uml#Behavior-redefinedBehavior"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinedBehavior_behavior-behavior"/>
     <oldProperties href="../model-gen/UML.uml#Behavior-specification"/>
-    <oldProperties href="../model-gen/UML.uml#Behavior-context.1"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot BehavioredClassifier features">
     <oldProperties href="../model-gen/UML.uml#BehavioredClassifier-classifierBehavior"/>
     <oldProperties href="../model-gen/UML.uml#A_classifierBehavior_behavioredClassifier-behavioredClassifier"/>
-    <oldProperties href="../model-gen/UML.uml#Behavior-context.1"/>
+    <oldProperties href="../model-gen/UML.uml#Behavior-context"/>
     <oldProperties href="../model-gen/UML.uml#A_context_behavior-behavior"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Class features">
     <oldProperties href="../model-gen/UML.uml#Classifier-isFinalSpecialization"/>
     <oldProperties href="../model-gen/UML.uml#A_superClass_class-class"/>
-    <oldProperties href="../model-gen/UML.uml#Class-superClass.1"/>
-    <oldProperties href="../model-gen/UML.uml#Classifier-general.1"/>
-    <oldProperties href="../model-gen/UML.uml#Classifier-inheritedMember.1"/>
+    <oldProperties href="../model-gen/UML.uml#Class-superClass"/>
+    <oldProperties href="../model-gen/UML.uml#Classifier-general"/>
+    <oldProperties href="../model-gen/UML.uml#Classifier-inheritedMember"/>
     <oldProperties href="../model-gen/UML.uml#A_classifier_instanceSpecification-instanceSpecification"/>
     <oldProperties href="../model-gen/UML.uml#A_nestedClassifier_nestingClass-nestingClass"/>
-    <oldProperties href="../model-gen/UML.uml#StructuredClassifier-part.1"/>
+    <oldProperties href="../model-gen/UML.uml#StructuredClassifier-part"/>
     <oldProperties href="../model-gen/UML.uml#Classifier-redefinedClassifier"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinitionContext_region-region"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinitionContext_state-state"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinitionContext_transition-transition"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot ExpressionInOCL features">
-    <oldProperties href="../model-gen/UML.uml#OpaqueExpression-result.1"/>
+    <oldProperties href="../model-gen/UML.uml#OpaqueExpression-result"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot InstanceSpecifcation features">
     <oldProperties href="../model-gen/UML.uml#InstanceSpecification-classifier"/>
@@ -217,30 +216,30 @@
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot MultiplicityElement features">
     <oldProperties href="../model-gen/UML.uml#MultiplicityElement-isOrdered"/>
     <oldProperties href="../model-gen/UML.uml#MultiplicityElement-isUnique"/>
-    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-lower.1"/>
-    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-upper.1"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-lower"/>
+    <oldProperties href="../model-gen/UML.uml#MultiplicityElement-upper"/>
     <oldProperties href="../model-gen/UML.uml#MultiplicityElement-lowerValue"/>
     <oldProperties href="../model-gen/UML.uml#MultiplicityElement-upperValue"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot NamedElement features">
-    <oldProperties href="../model-gen/UML.uml#NamedElement-qualifiedName.1"/>
+    <oldProperties href="../model-gen/UML.uml#NamedElement-qualifiedName"/>
     <oldProperties href="../model-gen/UML.uml#A_inheritedMember_inheritingClassifier-inheritingClassifier"/>
     <oldProperties href="../model-gen/UML.uml#A_member_memberNamespace-memberNamespace"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Operation features">
     <oldProperties href="../model-gen/UML.uml#BehavioralFeature-isAbstract"/>
     <oldProperties href="../model-gen/UML.uml#BehavioralFeature-method"/>
-    <oldProperties href="../model-gen/UML.uml#Operation-isOrdered.1"/>
+    <oldProperties href="../model-gen/UML.uml#Operation-isOrdered"/>
     <oldProperties href="../model-gen/UML.uml#Operation-isQuery"/>
-    <oldProperties href="../model-gen/UML.uml#Operation-isUnique.1"/>
-    <oldProperties href="../model-gen/UML.uml#Operation-lower.1"/>
-    <oldProperties href="../model-gen/UML.uml#Operation-upper.1"/>
+    <oldProperties href="../model-gen/UML.uml#Operation-isUnique"/>
+    <oldProperties href="../model-gen/UML.uml#Operation-lower"/>
+    <oldProperties href="../model-gen/UML.uml#Operation-upper"/>
     <oldProperties href="../model-gen/UML.uml#Operation-datatype"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinedOperation_operation-operation"/>
     <oldProperties href="../model-gen/UML.uml#Operation-ownedParameter"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Package features">
-    <oldProperties href="../model-gen/UML.uml#Package-ownedStereotype.1"/>
+    <oldProperties href="../model-gen/UML.uml#Package-ownedStereotype"/>
     <oldProperties href="../model-gen/UML.uml#Package-packagedElement"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot PackageableElement features">
@@ -248,7 +247,7 @@
     <oldProperties href="../model-gen/UML.uml#A_packagedElement_owningPackage-owningPackage"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Parameter features">
-    <oldProperties href="../model-gen/UML.uml#Parameter-default.1"/>
+    <oldProperties href="../model-gen/UML.uml#Parameter-default"/>
     <oldProperties href="../model-gen/UML.uml#Parameter-isException"/>
     <oldProperties href="../model-gen/UML.uml#Parameter-isStream"/>
     <oldProperties href="../model-gen/UML.uml#Parameter-defaultValue"/>
@@ -277,18 +276,18 @@
     <oldProperties href="../model-gen/UML.uml#RedefinableElement-isLeaf"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Region features">
-    <oldProperties href="../model-gen/UML.uml#Region-redefinitionContext.1"/>
+    <oldProperties href="../model-gen/UML.uml#Region-redefinitionContext"/>
     <oldProperties href="../model-gen/UML.uml#A_extendedRegion_region-region"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot State features">
-    <oldProperties href="../model-gen/UML.uml#State-redefinitionContext.1"/>
+    <oldProperties href="../model-gen/UML.uml#State-redefinitionContext"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinedState_state-state"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Statemachine features">
     <oldProperties href="../model-gen/UML.uml#A_extendedStateMachine_stateMachine-stateMachine"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot Stereotype features">
-    <oldProperties href="../model-gen/UML.uml#Stereotype-profile.1"/>
+    <oldProperties href="../model-gen/UML.uml#Stereotype-profile"/>
     <oldProperties href="../model-gen/UML.uml#A_ownedStereotype_owningPackage-owningPackage"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot TemplateSignature features">
@@ -304,13 +303,13 @@
     <oldProperties href="../model-gen/UML.uml#A_ownedActual_owningTemplateParameterSubstitution-owningTemplateParameterSubstitution"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
-    <oldProperties href="../model-gen/UML.uml#Association-endType.1"/>
+    <oldProperties href="../model-gen/UML.uml#Association-endType"/>
     <oldProperties href="../model-gen/UML.uml#Association-isDerived"/>
     <oldProperties href="../model-gen/UML.uml#Association-memberEnd"/>
     <oldProperties href="../model-gen/UML.uml#Association-ownedEnd"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
-    <oldProperties href="../model-gen/UML.uml#Association-endType.1"/>
+    <oldProperties href="../model-gen/UML.uml#Association-endType"/>
     <oldProperties href="../model-gen/UML.uml#Association-isDerived"/>
     <oldProperties href="../model-gen/UML.uml#Association-memberEnd"/>
     <oldProperties href="../model-gen/UML.uml#Association-ownedEnd"/>
@@ -328,7 +327,7 @@
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove non-Pivot features">
     <oldProperties href="../model-gen/UML.uml#Transition-redefinedTransition"/>
-    <oldProperties href="../model-gen/UML.uml#Transition-redefinitionContext.1"/>
+    <oldProperties href="../model-gen/UML.uml#Transition-redefinitionContext"/>
     <oldProperties href="../model-gen/UML.uml#A_redefinedTransition_transition-transition"/>
   </mappings>
   <mappings xsi:type="u2ec:DeleteProperties" comment="Remove the refactored Operation Constraint">
