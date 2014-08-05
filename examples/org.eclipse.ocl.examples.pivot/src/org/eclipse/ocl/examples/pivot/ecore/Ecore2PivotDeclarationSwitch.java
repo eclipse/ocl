@@ -72,7 +72,7 @@ import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -488,7 +488,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public Object caseEParameter(EParameter eObject) {
 		@SuppressWarnings("null") @NonNull EParameter eObject2 = eObject;
 		Parameter pivotElement = converter.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, eObject2);
-		copyTypedMultiplicityElement(pivotElement, eObject2, null);
+		copyTypedElement(pivotElement, eObject2, null);
 		return pivotElement;
 	}
 
@@ -573,7 +573,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	protected @NonNull Operation convertEOperation2Operation(@NonNull EOperation eOperation) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eOperation);
 		List<EAnnotation> excludedAnnotations = convertEOperationEAnnotations(pivotElement, eOperation);
-		copyTypedMultiplicityElement(pivotElement, eOperation, excludedAnnotations);
+		copyTypedElement(pivotElement, eOperation, excludedAnnotations);
 		doSwitchAll(pivotElement.getOwnedParameter(), eOperation.getEParameters());
 		@SuppressWarnings("null") @NonNull List<ETypeParameter> eTypeParameters = eOperation.getETypeParameters();
 		copyTemplateSignature(pivotElement,eTypeParameters);
@@ -787,7 +787,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				pivotElement.setImplementation(new EObjectProperty(eObject, null));
 			}
 		}
-		copyTypedMultiplicityElement(pivotElement, eObject, excludedAnnotations);
+		copyTypedElement(pivotElement, eObject, excludedAnnotations);
 		pivotElement.setIsReadOnly(!eObject.isChangeable());			
 		pivotElement.setIsDerived(eObject.isDerived());			
 		pivotElement.setIsTransient(eObject.isTransient());			
@@ -801,7 +801,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		}
 	}
 
-	protected void copyTypedMultiplicityElement(@NonNull TypedMultiplicityElement pivotElement, @NonNull ETypedElement eTypedElement, List<EAnnotation> excludedAnnotations) {
+	protected void copyTypedElement(@NonNull TypedElement pivotElement, @NonNull ETypedElement eTypedElement, List<EAnnotation> excludedAnnotations) {
 		copyNamedElement(pivotElement, eTypedElement);
 		copyAnnotatedElement(pivotElement, eTypedElement, excludedAnnotations);
 		int lower = eTypedElement.getLowerBound();

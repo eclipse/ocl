@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -274,6 +275,8 @@ public class LetExpImpl
 				return getOwnedComment();
 			case PivotPackage.LET_EXP__NAME:
 				return getName();
+			case PivotPackage.LET_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.LET_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.LET_EXP__TYPE:
@@ -391,6 +394,8 @@ public class LetExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.LET_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.LET_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.LET_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.LET_EXP__TYPE:
@@ -418,6 +423,10 @@ public class LetExpImpl
 				return allOwnedElements();
 			case PivotPackage.LET_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.LET_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.LET_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.LET_EXP___VALIDATE_TYPE_IS_IN_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsInType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

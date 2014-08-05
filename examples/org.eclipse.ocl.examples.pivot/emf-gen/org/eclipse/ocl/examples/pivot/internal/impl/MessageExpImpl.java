@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -434,6 +435,8 @@ public class MessageExpImpl
 				return getOwnedComment();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return getName();
+			case PivotPackage.MESSAGE_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.MESSAGE_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.MESSAGE_EXP__TYPE:
@@ -568,6 +571,8 @@ public class MessageExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.MESSAGE_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.MESSAGE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.MESSAGE_EXP__TYPE:
@@ -599,6 +604,10 @@ public class MessageExpImpl
 				return allOwnedElements();
 			case PivotPackage.MESSAGE_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.MESSAGE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.MESSAGE_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.MESSAGE_EXP___VALIDATE_ONE_CALL_OR_ONE_SEND__DIAGNOSTICCHAIN_MAP:
 				return validateOneCallOrOneSend((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.MESSAGE_EXP___VALIDATE_TARGET_IS_NOT_ACOLLECTION__DIAGNOSTICCHAIN_MAP:

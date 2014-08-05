@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
@@ -69,7 +69,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		super(context);
 	}
 
-	protected TypedRefCS convertTypeRef(@NonNull TypedMultiplicityElement object) {
+	protected TypedRefCS convertTypeRef(@NonNull TypedElement object) {
 		Type type = object.getType();
 		if (type == null) {
 			return null;

@@ -132,6 +132,8 @@ public class StateExpImpl
 				return getOwnedComment();
 			case PivotPackage.STATE_EXP__NAME:
 				return getName();
+			case PivotPackage.STATE_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.STATE_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.STATE_EXP__TYPE:
@@ -242,6 +244,8 @@ public class StateExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.STATE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.STATE_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.STATE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.STATE_EXP__TYPE:

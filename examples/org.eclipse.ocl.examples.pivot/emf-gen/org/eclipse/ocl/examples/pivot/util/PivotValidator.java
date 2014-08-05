@@ -130,7 +130,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
@@ -928,8 +927,6 @@ public class PivotValidator
 				return validateTypeTemplateParameter((TypeTemplateParameter)value, diagnostics, context);
 			case PivotPackage.TYPED_ELEMENT:
 				return validateTypedElement((TypedElement)value, diagnostics, context);
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT:
-				return validateTypedMultiplicityElement((TypedMultiplicityElement)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP:
 				return validateUnlimitedNaturalLiteralExp((UnlimitedNaturalLiteralExp)value, diagnostics, context);
 			case PivotPackage.UNSPECIFIED_TYPE:
@@ -1151,17 +1148,6 @@ public class PivotValidator
 	public boolean validateTypedElement(TypedElement typedElement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)typedElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypedMultiplicityElement(
-			TypedMultiplicityElement typedMultiplicityElement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)typedMultiplicityElement, diagnostics, context);
 	}
 
 	/**

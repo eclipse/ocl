@@ -144,6 +144,8 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return getOwnedComment();
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				return getName();
+			case PivotPackage.LANGUAGE_EXPRESSION__IS_MANY:
+				return isMany();
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
@@ -275,6 +277,8 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.LANGUAGE_EXPRESSION__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:

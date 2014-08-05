@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.domain.library.LibraryFeature;
  * @generated
  */
 public interface Feature
-		extends TypedMultiplicityElement {
+		extends TypedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Implementation Class</b></em>' attribute.

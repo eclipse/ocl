@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -394,6 +395,8 @@ public abstract class LoopExpImpl
 				return getOwnedComment();
 			case PivotPackage.LOOP_EXP__NAME:
 				return getName();
+			case PivotPackage.LOOP_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.LOOP_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.LOOP_EXP__TYPE:
@@ -537,6 +540,8 @@ public abstract class LoopExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.LOOP_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.LOOP_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.LOOP_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.LOOP_EXP__TYPE:
@@ -570,6 +575,10 @@ public abstract class LoopExpImpl
 				return allOwnedElements();
 			case PivotPackage.LOOP_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.LOOP_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP:
 				return validateNoInitializers((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP:

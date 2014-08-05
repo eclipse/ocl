@@ -68,7 +68,7 @@ import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2PivotDeclarationSwitch;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -370,7 +370,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Parameter caseParameter(org.eclipse.uml2.uml.Parameter eObject) {
 		assert eObject != null;
 		Parameter pivotElement = converter.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, eObject);
-		copyTypedMultiplicityElement(pivotElement, eObject, null);
+		copyTypedElement(pivotElement, eObject, null);
 		return pivotElement;
 	}
 
@@ -859,9 +859,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 
 
 	protected void copyProperty(@NonNull Property pivotElement, @NonNull org.eclipse.uml2.uml.Property umlProperty, List<EAnnotation> excludedAnnotations) {
-		copyTypedMultiplicityElement(pivotElement, umlProperty, excludedAnnotations);
-//		converter.copyMultiplicityElement(pivotElement, umlProperty);
-		pivotElement.setIsReadOnly(umlProperty.isReadOnly());			
+		copyTypedElement(pivotElement, umlProperty, excludedAnnotations);		pivotElement.setIsReadOnly(umlProperty.isReadOnly());			
 		pivotElement.setIsDerived(umlProperty.isDerived());			
 //		pivotElement.setIsTransient(umlProperty.isTransient());			
 //		pivotElement.setIsUnsettable(umlProperty.isUnsettable());			
@@ -890,7 +888,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	protected void copyTypedMultiplicityElement(@NonNull TypedMultiplicityElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement, List<EAnnotation> excludedAnnotations) {
+	protected void copyTypedElement(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement, List<EAnnotation> excludedAnnotations) {
 		copyNamedElement(pivotElement, umlTypedElement);
 		int lower = ((org.eclipse.uml2.uml.MultiplicityElement)umlTypedElement).getLower();
 		int upper = ((org.eclipse.uml2.uml.MultiplicityElement)umlTypedElement).getUpper();

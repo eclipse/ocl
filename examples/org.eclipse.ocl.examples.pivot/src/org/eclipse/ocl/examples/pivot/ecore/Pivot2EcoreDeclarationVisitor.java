@@ -70,7 +70,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -264,7 +264,7 @@ public class Pivot2EcoreDeclarationVisitor
 		}
 	}
 
-	protected void copyTypedElement(@NonNull ETypedElement eTypedElement, @NonNull TypedMultiplicityElement pivotTypedElement) {
+	protected void copyTypedElement(@NonNull ETypedElement eTypedElement, @NonNull TypedElement pivotTypedElement) {
 		copyNamedElement(eTypedElement, pivotTypedElement);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eTypedElement.getEAnnotations();
 		safeVisitAll(eAnnotations, pivotTypedElement.getOwnedAnnotation());

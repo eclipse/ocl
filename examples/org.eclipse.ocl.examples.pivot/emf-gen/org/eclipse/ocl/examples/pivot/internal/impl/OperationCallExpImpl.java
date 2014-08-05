@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -219,6 +220,8 @@ public class OperationCallExpImpl
 				return getOwnedComment();
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return getName();
+			case PivotPackage.OPERATION_CALL_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
@@ -362,6 +365,8 @@ public class OperationCallExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.OPERATION_CALL_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
@@ -414,6 +419,10 @@ public class OperationCallExpImpl
 				return allOwnedElements();
 			case PivotPackage.OPERATION_CALL_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.OPERATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.OPERATION_CALL_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.OPERATION_CALL_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
 			case PivotPackage.OPERATION_CALL_EXP___VALIDATE_ARGUMENT_COUNT__DIAGNOSTICCHAIN_MAP:

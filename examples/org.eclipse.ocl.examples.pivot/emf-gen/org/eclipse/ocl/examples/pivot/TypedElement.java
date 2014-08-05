@@ -25,6 +25,7 @@ package org.eclipse.ocl.examples.pivot;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TypedElement#isMany <em>Is Many</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TypedElement#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TypedElement#getType <em>Type</em>}</li>
  * </ul>
@@ -61,6 +62,20 @@ public interface TypedElement
 	void setType(Type value);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean CompatibleBody(ValueSpecification bodySpecification);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	Parameter makeParameter();
+
+	/**
 	 * Returns the value of the '<em><b>Is Required</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
@@ -85,5 +100,15 @@ public interface TypedElement
 	 * @generated
 	 */
 	void setIsRequired(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Many</em>' attribute.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypedElement_IsMany()
+	 * @generated
+	 */
+	boolean isMany();
 
 } // TypedElement

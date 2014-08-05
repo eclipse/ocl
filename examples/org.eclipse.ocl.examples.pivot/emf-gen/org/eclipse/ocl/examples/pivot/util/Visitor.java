@@ -147,7 +147,6 @@ public interface Visitor<R>
 	@Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object);
 	@Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object);
 	@Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object);
-	@Nullable R visitTypedMultiplicityElement(@NonNull org.eclipse.ocl.examples.pivot.TypedMultiplicityElement object);
 	@Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object);
 	@Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object);
 	@Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object);

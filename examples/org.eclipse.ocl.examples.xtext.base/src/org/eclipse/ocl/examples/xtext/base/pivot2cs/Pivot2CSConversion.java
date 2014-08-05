@@ -43,7 +43,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -450,7 +449,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	}
 
 	public <T extends StructuralFeatureCS> T refreshStructuralFeature(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull Property object) {
-		T csElement = refreshTypedMultiplicityElement(csClass, csEClass, object);
+		T csElement = refreshTypedElement(csClass, csEClass, object);
 		refreshQualifiers(csElement.getQualifier(), "derived", object.isDerived());
 		refreshQualifiers(csElement.getQualifier(), "readonly", object.isReadOnly());
 		refreshQualifiers(csElement.getQualifier(), "static", object.isStatic());
@@ -468,33 +467,30 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	
 	public <T extends TypedElementCS> T refreshTypedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull TypedElement object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
-		Type type = object.getType();
+		final Type type = object.getType();
+		final Type elementType;
 		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != metaModelManager.getCollectionType())) {
 			PivotUtil.debugWellContainedness(type);
-			type = ((CollectionType)type).getElementType();
+			elementType = ((CollectionType)type).getElementType();
 		}
 		else if (type instanceof VoidType) {
-			type = null;
+			elementType = null;
 		}
-		if (type != null) {
-			PivotUtil.debugWellContainedness(type);
-			TypedRefCS typeRef = visitReference(TypedRefCS.class, type, null);
+		else {
+			elementType = type;
+		}
+		if (elementType != null) {
+			PivotUtil.debugWellContainedness(elementType);
+			TypedRefCS typeRef = visitReference(TypedRefCS.class, elementType, null);
 			csElement.setOwnedType(typeRef);
 		}
 		else {
 			csElement.setOwnedType(null);
 		}
-//		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRule(), null));		
-		return csElement;
-	}
-
-	public <T extends TypedElementCS> T refreshTypedMultiplicityElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull TypedMultiplicityElement object) {
-		T csElement = refreshTypedElement(csClass, csEClass, object);
 		TypedRefCS csTypeRef = csElement.getOwnedType();
 		if (csTypeRef != null) {
 			int lower;
 			int upper;
-			Type type = object.getType();
 			if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != metaModelManager.getCollectionType())) {
 				CollectionType collectionType = (CollectionType)type;
 				lower = collectionType.getLower().intValue();

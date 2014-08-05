@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.basecs.AnnotationCS;
@@ -330,7 +330,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 
 	@Override
 	public BasicContinuation<?> visitTypedElementCS(@NonNull TypedElementCS csTypedElement) {
-		TypedMultiplicityElement pivotElement = PivotUtil.getPivot(TypedMultiplicityElement.class, csTypedElement);
+		TypedElement pivotElement = PivotUtil.getPivot(TypedElement.class, csTypedElement);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csTypedElement, pivotElement);
 			context.refreshRequiredType(pivotElement, csTypedElement);

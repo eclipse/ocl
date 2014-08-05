@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -198,6 +199,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return getOwnedComment();
 			case PivotPackage.ITERATE_EXP__NAME:
 				return getName();
+			case PivotPackage.ITERATE_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.ITERATE_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.ITERATE_EXP__TYPE:
@@ -352,6 +355,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.ITERATE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.ITERATE_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ITERATE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ITERATE_EXP__TYPE:
@@ -406,6 +411,10 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return allOwnedElements();
 			case PivotPackage.ITERATE_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.ITERATE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.ITERATE_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.ITERATE_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP:
 				return validateNoInitializers((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATE_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP:

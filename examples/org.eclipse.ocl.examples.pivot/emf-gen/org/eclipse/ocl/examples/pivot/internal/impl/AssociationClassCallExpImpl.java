@@ -135,6 +135,8 @@ public class AssociationClassCallExpImpl
 				return getOwnedComment();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return getName();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE:
@@ -287,6 +289,8 @@ public class AssociationClassCallExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE:

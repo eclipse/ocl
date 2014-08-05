@@ -383,17 +383,17 @@
           isRequired="false" name="bodyExpression" opposite="#p.pivot.OCLExpression.ExpressionInOCL"
           type="#T.pivot.OCLExpression"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.contextVariable" isComposite="true"
-          isRequired="false" name="contextVariable" opposite="#//@nestedPackage.0/@ownedType.128/@ownedAttribute.3"
+          isRequired="false" name="contextVariable" opposite="#//@nestedPackage.0/@ownedType.127/@ownedAttribute.3"
           type="#T.pivot.Variable"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.parameterVariable" isComposite="true"
-          name="parameterVariable" opposite="#//@nestedPackage.0/@ownedType.128/@ownedAttribute.4"
+          name="parameterVariable" opposite="#//@nestedPackage.0/@ownedType.127/@ownedAttribute.4"
           type="#//@nestedPackage.1/@ownedType.123"/>
       <ownedAttribute xmi:id="p.pivot.ExpressionInOCL.resultVariable" isComposite="true"
-          isRequired="false" name="resultVariable" opposite="#//@nestedPackage.0/@ownedType.128/@ownedAttribute.5"
+          isRequired="false" name="resultVariable" opposite="#//@nestedPackage.0/@ownedType.127/@ownedAttribute.5"
           type="#T.pivot.Variable"/>
       <ownedComment body="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
     </ownedType>
-    <ownedType xmi:id="T.pivot.Feature" isAbstract="true" name="Feature" superClass="#T.pivot.TypedMultiplicityElement">
+    <ownedType xmi:id="T.pivot.Feature" isAbstract="true" name="Feature" superClass="#T.pivot.TypedElement">
       <ownedAttribute xmi:id="p.pivot.Feature.implementation" isRequired="false" isTransient="true"
           name="implementation" type="#T.pivot.LibraryFeature"/>
       <ownedAttribute xmi:id="p.pivot.Feature.implementationClass" isRequired="false"
@@ -903,7 +903,7 @@
         superClass="#T.pivot.NamedElement #T.pivot.ParameterableElement">
       <ownedComment body="Packageable elements are able to serve as a template parameter."/>
     </ownedType>
-    <ownedType xmi:id="T.pivot.Parameter" name="Parameter" superClass="#T.pivot.TypedMultiplicityElement #T.pivot.VariableDeclaration">
+    <ownedType xmi:id="T.pivot.Parameter" name="Parameter" superClass="#T.pivot.VariableDeclaration">
       <ownedAttribute xmi:id="p.pivot.Parameter.operation" isRequired="false" name="operation"
           opposite="#p.pivot.Operation.ownedParameter" type="#T.pivot.Operation">
         <ownedComment body="The operation that owns the parameter."/>
@@ -1580,6 +1580,8 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.TypedElement" isAbstract="true" name="TypedElement"
         superClass="#T.pivot.NamedElement">
+      <ownedAttribute xmi:id="p.pivot.TypedElement.isMany" isDerived="true" isReadOnly="true"
+          isTransient="true" isVolatile="true" name="isMany" type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.TypedElement.isRequired" default="true" name="isRequired"
           type="#Boolean"/>
       <ownedAttribute xmi:id="p.pivot.TypedElement.type" isRequired="false" name="type"
@@ -1587,16 +1589,13 @@
         <ownedComment body="The type of the TypedElement."/>
       </ownedAttribute>
       <ownedComment body="A typed element is a kind of named element that represents an element with a type."/>
-    </ownedType>
-    <ownedType xmi:id="T.pivot.TypedMultiplicityElement" isAbstract="true" name="TypedMultiplicityElement"
-        superClass="#T.pivot.TypedElement">
-      <ownedOperation xmi:id="o.pivot.TypedMultiplicityElement.CompatibleBody..pivot.ValueSpecification"
+      <ownedOperation xmi:id="o.pivot.TypedElement.CompatibleBody..pivot.ValueSpecification"
           name="CompatibleBody" type="#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;bodySpecification.type.conformsTo(self.type)&#xA;&#xA;"/>
-        <ownedParameter xmi:id="p0o.pivot.TypedMultiplicityElement.CompatibleBody..pivot.ValueSpecification"
+        <ownedParameter xmi:id="p0o.pivot.TypedElement.CompatibleBody..pivot.ValueSpecification"
             name="bodySpecification" type="#T.pivot.ValueSpecification"/>
       </ownedOperation>
-      <ownedOperation xmi:id="o.pivot.TypedMultiplicityElement.makeParameter" name="makeParameter"
+      <ownedOperation xmi:id="o.pivot.TypedElement.makeParameter" name="makeParameter"
           type="#T.pivot.Parameter">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="Parameter{name='name'}&#xA;&#xA;"/>
       </ownedOperation>

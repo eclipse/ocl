@@ -396,6 +396,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypedElement/isRequired"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypedElement/isMany"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//Namespace"/>
@@ -603,9 +606,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Feature/implementation"/>
       </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false">
-      <ecoreClass href="Pivot.ecore#//TypedMultiplicityElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//Parameter"/>

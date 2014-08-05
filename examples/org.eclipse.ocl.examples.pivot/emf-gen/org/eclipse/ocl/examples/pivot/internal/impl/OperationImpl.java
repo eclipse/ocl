@@ -72,7 +72,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -918,7 +918,7 @@ public class OperationImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_2 = this.getBodyExpression();
-		        final /*@Thrown*/ boolean b_0 = ((TypedMultiplicityElement)this).CompatibleBody((ValueSpecification)bodyExpression_2);
+		        final /*@Thrown*/ boolean b_0 = ((TypedElement)this).CompatibleBody((ValueSpecification)bodyExpression_2);
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
@@ -1267,6 +1267,8 @@ public class OperationImpl
 				return getOwnedComment();
 			case PivotPackage.OPERATION__NAME:
 				return getName();
+			case PivotPackage.OPERATION__IS_MANY:
+				return isMany();
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.OPERATION__TYPE:
@@ -1531,6 +1533,8 @@ public class OperationImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.OPERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.OPERATION__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.OPERATION__TYPE:

@@ -64,7 +64,7 @@ inv ClosureBodyTypeIsConformanttoIteratorType:
 inv SortedByIteratorTypeIsComparable:
 	true
 
-context TypedMultiplicityElement
+context TypedElement
 def: CompatibleBody(bodySpecification : ValueSpecification) : Boolean =
 	bodySpecification.type.conformsTo(self.type)
 

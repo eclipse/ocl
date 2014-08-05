@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.osgi.util.NLS;
@@ -183,6 +184,8 @@ public class EnumLiteralExpImpl
 				return getOwnedComment();
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return getName();
+			case PivotPackage.ENUM_LITERAL_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
@@ -293,6 +296,8 @@ public class EnumLiteralExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.ENUM_LITERAL_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
@@ -318,6 +323,10 @@ public class EnumLiteralExpImpl
 				return allOwnedElements();
 			case PivotPackage.ENUM_LITERAL_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.ENUM_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.ENUM_LITERAL_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.ENUM_LITERAL_EXP___VALIDATE_TYPE_IS_ENUMERATION_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsEnumerationType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

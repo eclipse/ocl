@@ -191,6 +191,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getOwnedComment();
 			case PivotPackage.ITERATION__NAME:
 				return getName();
+			case PivotPackage.ITERATION__IS_MANY:
+				return isMany();
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.ITERATION__TYPE:
@@ -476,6 +478,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.ITERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.ITERATION__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ITERATION__TYPE:

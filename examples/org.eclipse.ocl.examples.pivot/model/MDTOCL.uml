@@ -455,19 +455,11 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_zNR5QMilEd-sJIf4tYBt-g" name="MDT_OCL_TypedMultiplicity">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_iauzUOLYEeGCOa0Md3lQkQ" name="Boolean"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_7WjzQB51EeCxNNh5B6u04A" name="Feature" isAbstract="true">
-        <generalization xmi:id="_Xp6OJH7VEeOu79LxSz8Ylw" general="_9HMksMilEd-sJIf4tYBt-g"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_4Yv4kMilEd-sJIf4tYBt-g" name="Parameter">
-        <generalization xmi:id="_Xp6OJX7VEeOu79LxSz8Ylw" general="_9HMksMilEd-sJIf4tYBt-g"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_4oqj4MilEd-sJIf4tYBt-g" name="TypedElement" isAbstract="true">
         <ownedAttribute xmi:id="_n1w4oOLYEeGCOa0Md3lQkQ" name="isRequired" type="_iauzUOLYEeGCOa0Md3lQkQ">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6OGn7VEeOu79LxSz8Ylw" value="true"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_9HMksMilEd-sJIf4tYBt-g" name="TypedMultiplicityElement" isAbstract="true">
-        <generalization xmi:id="_Xp6OJn7VEeOu79LxSz8Ylw" general="_4oqj4MilEd-sJIf4tYBt-g"/>
+        <ownedAttribute xmi:id="_iMnUQBuwEeSIos3S87O_rg" name="isMany" type="_iauzUOLYEeGCOa0Md3lQkQ" isReadOnly="true" isDerived="true"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_tG-HYMeqEd-sJIf4tYBt-g" name="MDT_OCL_Visiting">
@@ -530,4 +522,5 @@
   <Ecore:EClass xmi:id="_VF5C4PtzEeGgYeRoQSJFAw" base_Interface="_RhE4UPtzEeGgYeRoQSJFAw"/>
   <Ecore:EReference xmi:id="_mVct8H7YEeOu79LxSz8Ylw" isTransient="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_cDP_kH8_EeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isUnsettable="true" isResolveProxies="false"/>
+  <Ecore:EAttribute xmi:id="_eEjuMBu6EeSIos3S87O_rg" isTransient="true" isVolatile="true" base_Property="_iMnUQBuwEeSIos3S87O_rg"/>
 </xmi:XMI>

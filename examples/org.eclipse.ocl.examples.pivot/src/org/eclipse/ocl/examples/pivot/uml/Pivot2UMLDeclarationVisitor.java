@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.uml2.uml.Classifier;
@@ -119,29 +119,10 @@ public class Pivot2UMLDeclarationVisitor
 		safeVisitAll(umlNamedElement.getOwnedComments(), pivotNamedElement.getOwnedComment());
 	}
 
-	protected void copyTypedElement(@NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement, @NonNull TypedMultiplicityElement pivotTypedElement) {
+	protected void copyTypedElement(@NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement, @NonNull TypedElement pivotTypedElement) {
 		copyNamedElement(umlTypedElement, pivotTypedElement);
 		context.defer(pivotTypedElement);		// Defer type/multiplicity setting
 	}
-
-/*	protected void zzcopyMultiplicityElement(@NonNull org.eclipse.uml2.uml.MultiplicityElement umlMultiplicityElement, @NonNull TypedMultiplicityElement pivotTypedElement) {
-		Integer lower = pivotTypedElement.getLower().intValue();
-		if (lower.equals(UMLPackage.Literals.MULTIPLICITY_ELEMENT__LOWER.getDefaultValue())) {
-//			umlMultiplicityElement.eUnset(UMLPackage.Literals.MULTIPLICITY_ELEMENT__LOWER);
-		}
-		else {
-			umlMultiplicityElement.setLower(lower);
-		}
-		Integer upper = pivotTypedElement.getUpper().intValue();
-		if (upper.equals(UMLPackage.Literals.MULTIPLICITY_ELEMENT__UPPER.getDefaultValue())) {
-//			umlMultiplicityElement.eUnset(UMLPackage.Literals.MULTIPLICITY_ELEMENT__UPPER);
-		}
-		else {
-			umlMultiplicityElement.setUpper(upper);
-		}
-//		umlMultiplicityElement.setIsUnique(pivotTypedElement.isUnique());
-//		umlMultiplicityElement.setIsOrdered(pivotTypedElement.isOrdered());
-	} */
 
 	public <T extends EObject> void safeVisitAll(List<T> eObjects, List<? extends Element> pivotObjects) {
 		for (Element pivotObject : pivotObjects) {

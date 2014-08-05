@@ -516,8 +516,7 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TFeature" name="Feature" isAbstract="true">
-      <generalization xmi:id="Ppivot.TFeature.g0" general="Ppivot.TNamedElement"/>
-      <generalization xmi:id="Ppivot.TFeature.g1" general="Ppivot.TTypedMultiplicityElement"/>
+      <generalization xmi:id="Ppivot.TFeature.g0" general="Ppivot.TTypedElement"/>
       <ownedAttribute xmi:id="Ppivot.TFeature.PisStatic" name="isStatic" type="Ppivot.TBoolean">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TFeature.PisStatic.dlV" value="false"/>
       </ownedAttribute>
@@ -906,7 +905,6 @@
       </ownedComment>
       <generalization xmi:id="Ppivot.TParameter.g0" general="Ppivot.TTypedElement"/>
       <generalization xmi:id="Ppivot.TParameter.g1" general="Ppivot.TVariableDeclaration"/>
-      <generalization xmi:id="Ppivot.TParameter.g2" general="Ppivot.TTypedMultiplicityElement"/>
       <ownedAttribute xmi:id="Ppivot.TParameter.Poperation" name="operation" type="Ppivot.TOperation" association="Ppivot.A_ownedParameter_operation">
         <ownedComment xmi:id="Ppivot.TParameter.Poperation.oC0" annotatedElement="Ppivot.TParameter.Poperation">
           <body>The operation that owns the parameter.</body>
@@ -1668,9 +1666,7 @@
       <ownedAttribute xmi:id="Ppivot.TTypedElement.PisRequired" name="isRequired" type="Ppivot.TBoolean">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TTypedElement.PisRequired.dlV" value="true"/>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypedMultiplicityElement" name="TypedMultiplicityElement" isAbstract="true">
-      <generalization xmi:id="Ppivot.TTypedMultiplicityElement.g0" general="Ppivot.TTypedElement"/>
+      <ownedAttribute xmi:id="Ppivot.TTypedElement.PisMany" name="isMany" type="Ppivot.TBoolean" isReadOnly="true" isDerived="true"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TUnlimitedNaturalLiteralExp" name="UnlimitedNaturalLiteralExp">
       <generalization xmi:id="Ppivot.TUnlimitedNaturalLiteralExp.g0" general="Ppivot.TNumericLiteralExp"/>
@@ -2033,6 +2029,7 @@
   <Ecore:EDataType xmi:id="PA.Ppivot.TUnlimitedNatural" instanceClassName="java.lang.Number" base_PrimitiveType="Ppivot.TUnlimitedNatural"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TBooleanLiteralExp.PbooleanSymbol" isUnsettable="true" base_Property="Ppivot.TBooleanLiteralExp.PbooleanSymbol"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TReferringElement" base_Interface="Ppivot.TReferringElement"/>
+  <Ecore:EAttribute xmi:id="PA.Ppivot.TTypedElement.PisMany" isTransient="true" isVolatile="true" base_Property="Ppivot.TTypedElement.PisMany"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TVisitable" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="Ppivot.TVisitable"
       className="Visitable"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TVisitor" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="Ppivot.TVisitor"/>

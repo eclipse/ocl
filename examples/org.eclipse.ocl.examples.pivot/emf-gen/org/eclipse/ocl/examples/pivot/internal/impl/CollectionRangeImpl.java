@@ -223,6 +223,8 @@ public class CollectionRangeImpl
 				return getOwnedComment();
 			case PivotPackage.COLLECTION_RANGE__NAME:
 				return getName();
+			case PivotPackage.COLLECTION_RANGE__IS_MANY:
+				return isMany();
 			case PivotPackage.COLLECTION_RANGE__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.COLLECTION_RANGE__TYPE:
@@ -340,6 +342,8 @@ public class CollectionRangeImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.COLLECTION_RANGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.COLLECTION_RANGE__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.COLLECTION_RANGE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.COLLECTION_RANGE__TYPE:

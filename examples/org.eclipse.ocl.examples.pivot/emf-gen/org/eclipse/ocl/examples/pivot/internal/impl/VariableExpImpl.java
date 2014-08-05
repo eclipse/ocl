@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -178,6 +179,8 @@ public class VariableExpImpl
 				return getOwnedComment();
 			case PivotPackage.VARIABLE_EXP__NAME:
 				return getName();
+			case PivotPackage.VARIABLE_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.VARIABLE_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.VARIABLE_EXP__TYPE:
@@ -296,6 +299,8 @@ public class VariableExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.VARIABLE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.VARIABLE_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.VARIABLE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.VARIABLE_EXP__TYPE:
@@ -341,6 +346,10 @@ public class VariableExpImpl
 				return allOwnedElements();
 			case PivotPackage.VARIABLE_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.VARIABLE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.VARIABLE_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.VARIABLE_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
 		}

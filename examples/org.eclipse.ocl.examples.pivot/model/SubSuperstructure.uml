@@ -1470,14 +1470,13 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_xg6fUPF8Ed-BXqn3guNB1A" name="Sub_IsStatic">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_KrFBsPF9Ed-BXqn3guNB1A" name="Boolean"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_t41z8B1DEeCzDcYDg75xng" name="Class"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_0_eQ4PF8Ed-BXqn3guNB1A" name="Feature" isAbstract="true">
         <generalization xmi:id="_XnqLV37VEeOu79LxSz8Ylw" general="_coJOwPF-Ed-Ob5Xbijlg7g"/>
         <ownedAttribute xmi:id="_C_PXYPF9Ed-BXqn3guNB1A" name="isStatic" type="_KrFBsPF9Ed-BXqn3guNB1A">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_IZ4VcBtBEeSM9LreJtBwBg" value="false"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_coJOwPF-Ed-Ob5Xbijlg7g" name="NamedElement" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_coJOwPF-Ed-Ob5Xbijlg7g" name="TypedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_4ji0kPF8Ed-BXqn3guNB1A" name="Operation">
         <generalization xmi:id="_XnqLWH7VEeOu79LxSz8Ylw" general="_0_eQ4PF8Ed-BXqn3guNB1A"/>
       </packagedElement>

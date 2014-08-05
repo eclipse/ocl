@@ -171,7 +171,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitFeature(@NonNull org.eclipse.ocl.examples.pivot.Feature object) {
-		return visitTypedMultiplicityElement(object);
+		return visitTypedElement(object);
 	}
 
 	public @Nullable R visitFeatureCallExp(@NonNull org.eclipse.ocl.examples.pivot.FeatureCallExp object) {
@@ -307,7 +307,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {
-		return visitTypedMultiplicityElement(object);
+		return visitVariableDeclaration(object);
 	}
 
 	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.examples.pivot.ParameterableElement object) {
@@ -464,10 +464,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object) {
 		return visitNamedElement(object);
-	}
-
-	public @Nullable R visitTypedMultiplicityElement(@NonNull org.eclipse.ocl.examples.pivot.TypedMultiplicityElement object) {
-		return visitTypedElement(object);
 	}
 
 	public @Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object) {

@@ -475,7 +475,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1" eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultVariable" eType="#//Variable" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="#//LibraryFeature" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
@@ -1261,7 +1261,7 @@
       <details key="documentation" value="Packageable elements are able to serve as a template parameter."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//TypedMultiplicityElement #//VariableDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//VariableDeclaration">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A parameter is a typed element that represents a parameter of an operation."/>
     </eAnnotations>
@@ -1911,17 +1911,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A typed element is a kind of named element that represents an element with a type."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="typedElement"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The type of the TypedElement."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedMultiplicityElement" abstract="true" eSuperTypes="#//TypedElement">
     <eOperations name="CompatibleBody" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;bodySpecification.type.conformsTo(self.type)&#xA;&#xA;"/>
@@ -1933,6 +1922,17 @@
         <details key="body" value="Parameter{name='name'}&#xA;&#xA;"/>
       </eAnnotations>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMany" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
+        transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="typedElement"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The type of the TypedElement."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol" lowerBound="1" eType="#//UnlimitedNatural"/>

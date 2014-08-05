@@ -135,7 +135,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
@@ -832,13 +831,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass typedElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typedMultiplicityElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -4668,16 +4660,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedElement_Type() {
-		return (EReference)typedElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElement_IsRequired()
+	public EAttribute getTypedElement_IsMany()
 	{
 		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -4687,8 +4670,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTypedMultiplicityElement() {
-		return typedMultiplicityElementEClass;
+	public EReference getTypedElement_Type() {
+		return (EReference)typedElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4696,9 +4679,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTypedMultiplicityElement__CompatibleBody__ValueSpecification()
+	public EOperation getTypedElement__CompatibleBody__ValueSpecification()
 	{
-		return typedMultiplicityElementEClass.getEOperations().get(0);
+		return typedElementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -4706,9 +4689,19 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTypedMultiplicityElement__MakeParameter()
+	public EOperation getTypedElement__MakeParameter()
 	{
-		return typedMultiplicityElementEClass.getEOperations().get(1);
+		return typedElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTypedElement_IsRequired()
+	{
+		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -6148,12 +6141,11 @@ public class PivotPackageImpl
 		createEReference(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER);
 
 		typedElementEClass = createEClass(TYPED_ELEMENT);
+		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_MANY);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_REQUIRED);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
-
-		typedMultiplicityElementEClass = createEClass(TYPED_MULTIPLICITY_ELEMENT);
-		createEOperation(typedMultiplicityElementEClass, TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION);
-		createEOperation(typedMultiplicityElementEClass, TYPED_MULTIPLICITY_ELEMENT___MAKE_PARAMETER);
+		createEOperation(typedElementEClass, TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION);
+		createEOperation(typedElementEClass, TYPED_ELEMENT___MAKE_PARAMETER);
 
 		unlimitedNaturalLiteralExpEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP);
 		createEAttribute(unlimitedNaturalLiteralExpEClass, UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL);
@@ -6280,7 +6272,7 @@ public class PivotPackageImpl
 		enumerationEClass.getESuperTypes().add(this.getDataType());
 		enumerationLiteralEClass.getESuperTypes().add(this.getInstanceSpecification());
 		expressionInOCLEClass.getESuperTypes().add(this.getLanguageExpression());
-		featureEClass.getESuperTypes().add(this.getTypedMultiplicityElement());
+		featureEClass.getESuperTypes().add(this.getTypedElement());
 		featureCallExpEClass.getESuperTypes().add(this.getCallExp());
 		finalStateEClass.getESuperTypes().add(this.getState());
 		ifExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -6324,7 +6316,6 @@ public class PivotPackageImpl
 		packageEClass.getESuperTypes().add(this.getNamespace());
 		packageableElementEClass.getESuperTypes().add(this.getNamedElement());
 		packageableElementEClass.getESuperTypes().add(this.getParameterableElement());
-		parameterEClass.getESuperTypes().add(this.getTypedMultiplicityElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		parameterableElementEClass.getESuperTypes().add(this.getElement());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
@@ -6369,7 +6360,6 @@ public class PivotPackageImpl
 		typeExtensionEClass.getESuperTypes().add(this.getElement());
 		typeTemplateParameterEClass.getESuperTypes().add(this.getTemplateParameter());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
-		typedMultiplicityElementEClass.getESuperTypes().add(this.getTypedElement());
 		unlimitedNaturalLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		unspecifiedTypeEClass.getESuperTypes().add(this.getClass_());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -7408,15 +7398,14 @@ public class PivotPackageImpl
 		initEReference(getTypeTemplateParameter_ConstrainingClassifier(), this.getClass_(), null, "constrainingClassifier", null, 0, -1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTypedElement_IsMany(), this.getBoolean(), "isMany", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTypedElement_IsRequired(), this.getBoolean(), "isRequired", "true", 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTypedElement_Type(), this.getType(), null, "type", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(typedMultiplicityElementEClass, TypedMultiplicityElement.class, "TypedMultiplicityElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		op = initEOperation(getTypedMultiplicityElement__CompatibleBody__ValueSpecification(), this.getBoolean(), "CompatibleBody", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getTypedElement__CompatibleBody__ValueSpecification(), this.getBoolean(), "CompatibleBody", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getValueSpecification(), "bodySpecification", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getTypedMultiplicityElement__MakeParameter(), this.getParameter(), "makeParameter", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getTypedElement__MakeParameter(), this.getParameter(), "makeParameter", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(unlimitedNaturalLiteralExpEClass, UnlimitedNaturalLiteralExp.class, "UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol(), this.getUnlimitedNatural(), "unlimitedNaturalSymbol", null, 1, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -286,7 +286,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 116;
+	int VARIABLE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -576,7 +576,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 112;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 111;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -586,7 +586,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 114;
+	int UNSPECIFIED_VALUE_EXP = 113;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -596,7 +596,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 118;
+	int VARIABLE_EXP = 117;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -606,7 +606,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 122;
+	int VOID_TYPE = 121;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -626,7 +626,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 120;
+	int VISITABLE = 119;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -779,16 +779,6 @@ public interface PivotPackage
 	int TYPE_TEMPLATE_PARAMETER = 109;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl <em>Typed Multiplicity Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedMultiplicityElement()
-	 * @generated
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT = 111;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -846,7 +836,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 117;
+	int VARIABLE_DECLARATION = 116;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationTemplateParameterImpl <em>Operation Template Parameter</em>}' class.
@@ -886,7 +876,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 115;
+	int VALUE_SPECIFICATION = 114;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}' class.
@@ -1345,7 +1335,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 119;
+	int VERTEX = 118;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ConnectionPointReferenceImpl <em>Connection Point Reference</em>}' class.
@@ -2712,13 +2702,22 @@ public interface PivotPackage
 	int TYPED_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__IS_MANY = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__IS_REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int TYPED_ELEMENT__IS_REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2727,7 +2726,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int TYPED_ELEMENT__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element</em>' class.
@@ -2736,7 +2735,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -2757,13 +2756,31 @@ public interface PivotPackage
 	int TYPED_ELEMENT___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT___MAKE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Typed Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int TYPED_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -2811,6 +2828,15 @@ public interface PivotPackage
 	int OCL_EXPRESSION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION__IS_MANY = TYPED_ELEMENT__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2854,6 +2880,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OCL_EXPRESSION___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>OCL Expression</em>' class.
@@ -2908,6 +2952,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP__NAME = OCL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -2973,6 +3026,24 @@ public interface PivotPackage
 	int CALL_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3025,6 +3096,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__NAME = CALL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__IS_MANY = CALL_EXP__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -3099,6 +3179,24 @@ public interface PivotPackage
 	int FEATURE_CALL_EXP___GET_VALUE__TYPE_STRING = CALL_EXP___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP___MAKE_PARAMETER = CALL_EXP___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>Feature Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3151,6 +3249,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__NAME = FEATURE_CALL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__IS_MANY = FEATURE_CALL_EXP__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -3243,6 +3350,24 @@ public interface PivotPackage
 	int NAVIGATION_CALL_EXP___GET_VALUE__TYPE_STRING = FEATURE_CALL_EXP___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP___MAKE_PARAMETER = FEATURE_CALL_EXP___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>Navigation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3295,6 +3420,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__IS_MANY = NAVIGATION_CALL_EXP__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -3394,6 +3528,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP___GET_VALUE__TYPE_STRING = NAVIGATION_CALL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP___MAKE_PARAMETER = NAVIGATION_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Association Class Call Exp</em>' class.
@@ -4755,6 +4907,15 @@ public interface PivotPackage
 	int LITERAL_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4798,6 +4959,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LITERAL_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Literal Exp</em>' class.
@@ -4854,6 +5033,15 @@ public interface PivotPackage
 	int PRIMITIVE_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP__IS_MANY = LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4897,6 +5085,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP___GET_VALUE__TYPE_STRING = LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Primitive Literal Exp</em>' class.
@@ -4953,6 +5159,15 @@ public interface PivotPackage
 	int BOOLEAN_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP__IS_MANY = PRIMITIVE_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5005,6 +5220,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP___GET_VALUE__TYPE_STRING = PRIMITIVE_LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Boolean</em>' operation.
@@ -5160,6 +5393,15 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_PART__NAME = TYPED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART__IS_MANY = TYPED_ELEMENT__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5203,6 +5445,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_PART___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Collection Literal Part</em>' class.
@@ -5259,6 +5519,15 @@ public interface PivotPackage
 	int COLLECTION_ITEM__NAME = COLLECTION_LITERAL_PART__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM__IS_MANY = COLLECTION_LITERAL_PART__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5311,6 +5580,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM___GET_VALUE__TYPE_STRING = COLLECTION_LITERAL_PART___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM___COMPATIBLE_BODY__VALUESPECIFICATION = COLLECTION_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM___MAKE_PARAMETER = COLLECTION_LITERAL_PART___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Item Type</em>' operation.
@@ -5376,6 +5663,15 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP__IS_MANY = LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5437,6 +5733,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP___GET_VALUE__TYPE_STRING = LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Bag Kind Is Bag</em>' operation.
@@ -5538,6 +5852,15 @@ public interface PivotPackage
 	int COLLECTION_RANGE__NAME = COLLECTION_LITERAL_PART__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE__IS_MANY = COLLECTION_LITERAL_PART__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5599,6 +5922,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_RANGE___GET_VALUE__TYPE_STRING = COLLECTION_LITERAL_PART___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE___COMPATIBLE_BODY__VALUESPECIFICATION = COLLECTION_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE___MAKE_PARAMETER = COLLECTION_LITERAL_PART___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Collection Range</em>' class.
@@ -6204,6 +6545,15 @@ public interface PivotPackage
 	int CONSTRUCTOR_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6267,6 +6617,24 @@ public interface PivotPackage
 	int CONSTRUCTOR_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>Constructor Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6319,6 +6687,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_PART__NAME = TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART__IS_MANY = TYPED_ELEMENT__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -6382,6 +6759,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_PART___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Constructor Part</em>' class.
@@ -7338,6 +7733,15 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION__NAME = TYPED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION__IS_MANY = TYPED_ELEMENT__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7399,6 +7803,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VALUE_SPECIFICATION___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -7527,6 +7949,15 @@ public interface PivotPackage
 	int DYNAMIC_VALUE_SPECIFICATION__NAME = VALUE_SPECIFICATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VALUE_SPECIFICATION__IS_MANY = VALUE_SPECIFICATION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7588,6 +8019,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION___GET_VALUE__TYPE_STRING = VALUE_SPECIFICATION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION = VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VALUE_SPECIFICATION___MAKE_PARAMETER = VALUE_SPECIFICATION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -8049,6 +8498,15 @@ public interface PivotPackage
 	int ENUM_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP__IS_MANY = LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8101,6 +8559,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUM_LITERAL_EXP___GET_VALUE__TYPE_STRING = LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Enumeration Type</em>' operation.
@@ -8806,6 +9282,15 @@ public interface PivotPackage
 	int LANGUAGE_EXPRESSION__NAME = VALUE_SPECIFICATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_EXPRESSION__IS_MANY = VALUE_SPECIFICATION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8885,6 +9370,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LANGUAGE_EXPRESSION___GET_VALUE__TYPE_STRING = VALUE_SPECIFICATION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION = VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_EXPRESSION___MAKE_PARAMETER = VALUE_SPECIFICATION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -9013,6 +9516,15 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL__NAME = LANGUAGE_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__IS_MANY = LANGUAGE_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9130,6 +9642,24 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL___GET_VALUE__TYPE_STRING = LANGUAGE_EXPRESSION___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL___COMPATIBLE_BODY__VALUESPECIFICATION = LANGUAGE_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL___MAKE_PARAMETER = LANGUAGE_EXPRESSION___MAKE_PARAMETER;
+
+	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9217,7 +9747,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__COMMENT = TYPED_ELEMENT__COMMENT;
+	int FEATURE__COMMENT = TYPED_ELEMENT__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -9226,7 +9756,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__EXTENSION = TYPED_ELEMENT__EXTENSION;
+	int FEATURE__EXTENSION = TYPED_ELEMENT__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -9235,7 +9765,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
+	int FEATURE__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -9244,7 +9774,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
+	int FEATURE__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9253,7 +9783,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__NAME = TYPED_ELEMENT__NAME;
+	int FEATURE__NAME = TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_MANY = TYPED_ELEMENT__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -9262,7 +9801,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
+	int FEATURE__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9271,124 +9810,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The number of structural features of the '<em>Typed Multiplicity Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Compatible Body</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___MAKE_PARAMETER = TYPED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__COMMENT = TYPED_MULTIPLICITY_ELEMENT__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__EXTENSION = TYPED_MULTIPLICITY_ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IS_REQUIRED = TYPED_MULTIPLICITY_ELEMENT__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
+	int FEATURE__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -9397,7 +9819,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IMPLEMENTATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
+	int FEATURE__IMPLEMENTATION = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
@@ -9406,7 +9828,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IMPLEMENTATION_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
+	int FEATURE__IMPLEMENTATION_CLASS = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -9415,7 +9837,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
+	int FEATURE__IS_STATIC = TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -9424,7 +9846,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 3;
+	int FEATURE_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -9433,7 +9855,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE___ALL_OWNED_ELEMENTS = TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS;
+	int FEATURE___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -9442,7 +9864,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE___GET_VALUE__TYPE_STRING = TYPED_MULTIPLICITY_ELEMENT___GET_VALUE__TYPE_STRING;
+	int FEATURE___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The operation id for the '<em>Compatible Body</em>' operation.
@@ -9451,7 +9873,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+	int FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
 	 * The operation id for the '<em>Make Parameter</em>' operation.
@@ -9460,7 +9882,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE___MAKE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT___MAKE_PARAMETER;
+	int FEATURE___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -9469,7 +9891,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
+	int FEATURE_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -10003,6 +10425,15 @@ public interface PivotPackage
 	int IF_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10073,6 +10504,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int IF_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Condition Type Is Boolean</em>' operation.
@@ -10228,6 +10677,15 @@ public interface PivotPackage
 	int NUMERIC_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP__IS_MANY = PRIMITIVE_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10271,6 +10729,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NUMERIC_LITERAL_EXP___GET_VALUE__TYPE_STRING = PRIMITIVE_LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Numeric Literal Exp</em>' class.
@@ -10327,6 +10803,15 @@ public interface PivotPackage
 	int INTEGER_LITERAL_EXP__NAME = NUMERIC_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__IS_MANY = NUMERIC_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10379,6 +10864,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INTEGER_LITERAL_EXP___GET_VALUE__TYPE_STRING = NUMERIC_LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP___MAKE_PARAMETER = NUMERIC_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Integer</em>' operation.
@@ -10444,6 +10947,15 @@ public interface PivotPackage
 	int INVALID_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__IS_MANY = LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10487,6 +10999,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP___GET_VALUE__TYPE_STRING = LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Invalid Literal Exp</em>' class.
@@ -10840,6 +11370,15 @@ public interface PivotPackage
 	int LOOP_EXP__NAME = CALL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__IS_MANY = CALL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10930,6 +11469,24 @@ public interface PivotPackage
 	int LOOP_EXP___GET_VALUE__TYPE_STRING = CALL_EXP___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP___MAKE_PARAMETER = CALL_EXP___MAKE_PARAMETER;
+
+	/**
 	 * The operation id for the '<em>Validate No Initializers</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11000,6 +11557,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP__NAME = LOOP_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__IS_MANY = LOOP_EXP__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -11099,6 +11665,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP___GET_VALUE__TYPE_STRING = LOOP_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___MAKE_PARAMETER = LOOP_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate No Initializers</em>' operation.
@@ -11207,6 +11791,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION__NAME = FEATURE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IS_MANY = FEATURE__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -11576,6 +12169,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__NAME = OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IS_MANY = OPERATION__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -11965,6 +12567,15 @@ public interface PivotPackage
 	int ITERATOR_EXP__NAME = LOOP_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__IS_MANY = LOOP_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12053,6 +12664,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP___GET_VALUE__TYPE_STRING = LOOP_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP___MAKE_PARAMETER = LOOP_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate No Initializers</em>' operation.
@@ -12757,6 +13386,15 @@ public interface PivotPackage
 	int LET_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12818,6 +13456,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LET_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is In Type</em>' operation.
@@ -13378,6 +14034,15 @@ public interface PivotPackage
 	int MESSAGE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13457,6 +14122,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate One Call Or One Send</em>' operation.
@@ -14278,6 +14961,15 @@ public interface PivotPackage
 	int NULL_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__IS_MANY = PRIMITIVE_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14321,6 +15013,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP___GET_VALUE__TYPE_STRING = PRIMITIVE_LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Null Literal Exp</em>' class.
@@ -14375,6 +15085,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP__NAME = FEATURE_CALL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__IS_MANY = FEATURE_CALL_EXP__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -14465,6 +15184,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP___GET_VALUE__TYPE_STRING = FEATURE_CALL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP___MAKE_PARAMETER = FEATURE_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -14782,6 +15519,15 @@ public interface PivotPackage
 	int OPPOSITE_PROPERTY_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__IS_MANY = NAVIGATION_CALL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14879,6 +15625,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP___GET_VALUE__TYPE_STRING = NAVIGATION_CALL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP___MAKE_PARAMETER = NAVIGATION_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Opposite Property Call Exp</em>' class.
@@ -15232,13 +15996,73 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE_OPERATION_COUNT = COLLECTION_TYPE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl <em>Profile Application</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfileApplication()
+	 * @generated
+	 */
+	int PROFILE_APPLICATION = 76;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSlot()
+	 * @generated
+	 */
+	int SLOT = 89;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl <em>State Machine</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateMachine()
+	 * @generated
+	 */
+	int STATE_MACHINE = 92;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl <em>Stereotype</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStereotype()
+	 * @generated
+	 */
+	int STEREOTYPE = 93;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransition()
+	 * @generated
+	 */
+	int TRANSITION = 101;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl <em>Trigger</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTrigger()
+	 * @generated
+	 */
+	int TRIGGER = 102;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__COMMENT = TYPED_MULTIPLICITY_ELEMENT__COMMENT;
+	int VARIABLE_DECLARATION__COMMENT = TYPED_ELEMENT__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -15247,7 +16071,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__EXTENSION = TYPED_MULTIPLICITY_ELEMENT__EXTENSION;
+	int VARIABLE_DECLARATION__EXTENSION = TYPED_ELEMENT__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -15256,7 +16080,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
+	int VARIABLE_DECLARATION__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15265,7 +16089,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
+	int VARIABLE_DECLARATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -15274,7 +16098,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
+	int VARIABLE_DECLARATION__NAME = TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION__IS_MANY = TYPED_ELEMENT__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -15283,7 +16116,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__IS_REQUIRED = TYPED_MULTIPLICITY_ELEMENT__IS_REQUIRED;
+	int VARIABLE_DECLARATION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -15292,25 +16125,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
+	int VARIABLE_DECLARATION__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Operation</b></em>' container reference.
+	 * The number of structural features of the '<em>Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__OPERATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
+	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -15319,7 +16143,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER___ALL_OWNED_ELEMENTS = TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS;
+	int VARIABLE_DECLARATION___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -15328,7 +16152,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER___GET_VALUE__TYPE_STRING = TYPED_MULTIPLICITY_ELEMENT___GET_VALUE__TYPE_STRING;
+	int VARIABLE_DECLARATION___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The operation id for the '<em>Compatible Body</em>' operation.
@@ -15337,7 +16161,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+	int VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
 	 * The operation id for the '<em>Make Parameter</em>' operation.
@@ -15346,7 +16170,142 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER___MAKE_PARAMETER = TYPED_MULTIPLICITY_ELEMENT___MAKE_PARAMETER;
+	int VARIABLE_DECLARATION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
+
+	/**
+	 * The number of operations of the '<em>Variable Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__COMMENT = VARIABLE_DECLARATION__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__EXTENSION = VARIABLE_DECLARATION__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNED_ANNOTATION = VARIABLE_DECLARATION__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNED_COMMENT = VARIABLE_DECLARATION__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__IS_MANY = VARIABLE_DECLARATION__IS_MANY;
+
+	/**
+	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__IS_REQUIRED = VARIABLE_DECLARATION__IS_REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__TYPE = VARIABLE_DECLARATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OPERATION = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___ALL_OWNED_ELEMENTS = VARIABLE_DECLARATION___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___GET_VALUE__TYPE_STRING = VARIABLE_DECLARATION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___COMPATIBLE_BODY__VALUESPECIFICATION = VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
@@ -15355,7 +16314,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
+	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -16150,16 +17109,6 @@ public interface PivotPackage
 	int PROFILE_OPERATION_COUNT = PACKAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl <em>Profile Application</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfileApplication()
-	 * @generated
-	 */
-	int PROFILE_APPLICATION = 76;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16302,6 +17251,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY__NAME = FEATURE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_MANY = FEATURE__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -16673,6 +17631,15 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__IS_MANY = NAVIGATION_CALL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16770,6 +17737,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP___GET_VALUE__TYPE_STRING = NAVIGATION_CALL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___MAKE_PARAMETER = NAVIGATION_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -17006,6 +17991,15 @@ public interface PivotPackage
 	int REAL_LITERAL_EXP__NAME = NUMERIC_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP__IS_MANY = NUMERIC_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17058,6 +18052,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP___GET_VALUE__TYPE_STRING = NUMERIC_LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP___MAKE_PARAMETER = NUMERIC_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Real Literal Exp</em>' class.
@@ -18725,16 +19737,6 @@ public interface PivotPackage
 	int SIGNAL_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSlot()
-	 * @generated
-	 */
-	int SLOT = 89;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18879,6 +19881,15 @@ public interface PivotPackage
 	int STATE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18933,6 +19944,24 @@ public interface PivotPackage
 	int STATE_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>State Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18940,16 +19969,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl <em>State Machine</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateMachine()
-	 * @generated
-	 */
-	int STATE_MACHINE = 92;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -19292,16 +20311,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE_OPERATION_COUNT = BEHAVIOR_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl <em>Stereotype</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStereotype()
-	 * @generated
-	 */
-	int STEREOTYPE = 93;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -19655,6 +20664,15 @@ public interface PivotPackage
 	int STRING_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP__IS_MANY = PRIMITIVE_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19707,6 +20725,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP___GET_VALUE__TYPE_STRING = PRIMITIVE_LITERAL_EXP___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>String Literal Exp</em>' class.
@@ -20303,16 +21339,6 @@ public interface PivotPackage
 	int TEMPLATEABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransition()
-	 * @generated
-	 */
-	int TRANSITION = 101;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20466,16 +21492,6 @@ public interface PivotPackage
 	int TRANSITION_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl <em>Trigger</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTrigger()
-	 * @generated
-	 */
-	int TRIGGER = 102;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20620,6 +21636,15 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__IS_MANY = LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20674,6 +21699,24 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP___GET_VALUE__TYPE_STRING = LITERAL_EXP___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>Tuple Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20681,105 +21724,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__COMMENT = TYPED_ELEMENT__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__EXTENSION = TYPED_ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__NAME = TYPED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__IS_REQUIRED = TYPED_ELEMENT__IS_REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__TYPE = TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The number of structural features of the '<em>Variable Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___GET_VALUE__TYPE_STRING = TYPED_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The number of operations of the '<em>Variable Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -20825,6 +21769,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__IS_MANY = VARIABLE_DECLARATION__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -20879,6 +21832,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART___GET_VALUE__TYPE_STRING = VARIABLE_DECLARATION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION = VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Tuple Literal Part</em>' class.
@@ -21250,6 +22221,15 @@ public interface PivotPackage
 	int TYPE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21302,6 +22282,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -21611,6 +22609,15 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__NAME = NUMERIC_LITERAL_EXP__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__IS_MANY = NUMERIC_LITERAL_EXP__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21665,6 +22672,24 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP___GET_VALUE__TYPE_STRING = NUMERIC_LITERAL_EXP___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP___MAKE_PARAMETER = NUMERIC_LITERAL_EXP___MAKE_PARAMETER;
+
+	/**
 	 * The number of operations of the '<em>Unlimited Natural Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21681,7 +22706,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedType()
 	 * @generated
 	 */
-	int UNSPECIFIED_TYPE = 113;
+	int UNSPECIFIED_TYPE = 112;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -22044,6 +23069,15 @@ public interface PivotPackage
 	int UNSPECIFIED_VALUE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
+
+	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22087,6 +23121,24 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Value Exp</em>' class.
@@ -22141,6 +23193,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__IS_MANY = VARIABLE_DECLARATION__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -22215,6 +23276,24 @@ public interface PivotPackage
 	int VARIABLE___GET_VALUE__TYPE_STRING = VARIABLE_DECLARATION___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE___COMPATIBLE_BODY__VALUESPECIFICATION = VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
+
+	/**
 	 * The operation id for the '<em>Validate Compatible Initialiser Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22276,6 +23355,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP__NAME = OCL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Many</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__IS_MANY = OCL_EXPRESSION__IS_MANY;
 
 	/**
 	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
@@ -22341,6 +23429,24 @@ public interface PivotPackage
 	int VARIABLE_EXP___GET_VALUE__TYPE_STRING = OCL_EXPRESSION___GET_VALUE__TYPE_STRING;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
+	 * The operation id for the '<em>Make Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
+
+	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22366,7 +23472,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitor()
 	 * @generated
 	 */
-	int VISITOR = 121;
+	int VISITOR = 120;
 
 	/**
 	 * The number of structural features of the '<em>Visitor</em>' class.
@@ -22691,7 +23797,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 123;
+	int ASSOCIATIVITY_KIND = 122;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -22701,7 +23807,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 124;
+	int COLLECTION_KIND = 123;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -22711,7 +23817,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 125;
+	int PSEUDOSTATE_KIND = 124;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.TransitionKind <em>Transition Kind</em>}' enum.
@@ -22721,7 +23827,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransitionKind()
 	 * @generated
 	 */
-	int TRANSITION_KIND = 126;
+	int TRANSITION_KIND = 125;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -22730,7 +23836,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 127;
+	int BOOLEAN = 126;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -22740,7 +23846,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 128;
+	int INTEGER = 127;
 
 	/**
 	 * The meta object id for the '<em>Library Feature</em>' data type.
@@ -22750,7 +23856,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
 	 * @generated
 	 */
-	int LIBRARY_FEATURE = 129;
+	int LIBRARY_FEATURE = 128;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -22760,7 +23866,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 130;
+	int OBJECT = 129;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -22770,7 +23876,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 131;
+	int REAL = 130;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -22780,7 +23886,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 132;
+	int STRING = 131;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -22790,7 +23896,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 133;
+	int THROWABLE = 132;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -22800,7 +23906,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 134;
+	int UNLIMITED_NATURAL = 133;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -26632,6 +27738,17 @@ public interface PivotPackage
 	EClass getTypedElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.TypedElement#isMany <em>Is Many</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Many</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TypedElement#isMany()
+	 * @see #getTypedElement()
+	 * @generated
+	 */
+	EAttribute getTypedElement_IsMany();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TypedElement#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26643,6 +27760,26 @@ public interface PivotPackage
 	EReference getTypedElement_Type();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TypedElement#CompatibleBody(org.eclipse.ocl.examples.pivot.ValueSpecification) <em>Compatible Body</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Compatible Body</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.TypedElement#CompatibleBody(org.eclipse.ocl.examples.pivot.ValueSpecification)
+	 * @generated
+	 */
+	EOperation getTypedElement__CompatibleBody__ValueSpecification();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TypedElement#makeParameter() <em>Make Parameter</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Make Parameter</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.TypedElement#makeParameter()
+	 * @generated
+	 */
+	EOperation getTypedElement__MakeParameter();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.TypedElement#isRequired <em>Is Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26652,36 +27789,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getTypedElement_IsRequired();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TypedMultiplicityElement <em>Typed Multiplicity Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Typed Multiplicity Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypedMultiplicityElement
-	 * @generated
-	 */
-	EClass getTypedMultiplicityElement();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TypedMultiplicityElement#CompatibleBody(org.eclipse.ocl.examples.pivot.ValueSpecification) <em>Compatible Body</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Compatible Body</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TypedMultiplicityElement#CompatibleBody(org.eclipse.ocl.examples.pivot.ValueSpecification)
-	 * @generated
-	 */
-	EOperation getTypedMultiplicityElement__CompatibleBody__ValueSpecification();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TypedMultiplicityElement#makeParameter() <em>Make Parameter</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Make Parameter</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TypedMultiplicityElement#makeParameter()
-	 * @generated
-	 */
-	EOperation getTypedMultiplicityElement__MakeParameter();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.AssociationClass <em>Association Class</em>}'.
@@ -30777,6 +31884,14 @@ public interface PivotPackage
 		EClass TYPED_ELEMENT = eINSTANCE.getTypedElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Many</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT__IS_MANY = eINSTANCE.getTypedElement_IsMany();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30785,30 +31900,12 @@ public interface PivotPackage
 		EReference TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Required</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT__IS_REQUIRED = eINSTANCE.getTypedElement_IsRequired();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl <em>Typed Multiplicity Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedMultiplicityElement()
-		 * @generated
-		 */
-		EClass TYPED_MULTIPLICITY_ELEMENT = eINSTANCE.getTypedMultiplicityElement();
-
-		/**
 		 * The meta object literal for the '<em><b>Compatible Body</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = eINSTANCE.getTypedMultiplicityElement__CompatibleBody__ValueSpecification();
+		EOperation TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = eINSTANCE.getTypedElement__CompatibleBody__ValueSpecification();
 
 		/**
 		 * The meta object literal for the '<em><b>Make Parameter</b></em>' operation.
@@ -30816,7 +31913,15 @@ public interface PivotPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TYPED_MULTIPLICITY_ELEMENT___MAKE_PARAMETER = eINSTANCE.getTypedMultiplicityElement__MakeParameter();
+		EOperation TYPED_ELEMENT___MAKE_PARAMETER = eINSTANCE.getTypedElement__MakeParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Required</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT__IS_REQUIRED = eINSTANCE.getTypedElement_IsRequired();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.

@@ -10,22 +10,38 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.UnlimitedValue;
+import org.eclipse.ocl.examples.library.classifier.OclTypeConformsToOperation;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#isMany <em>Is Many</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -45,6 +62,15 @@ public abstract class TypedElementImpl
 		extends NamedElementImpl
 		implements TypedElement {
 
+	/**
+	 * The default value of the '{@link #isMany() <em>Is Many</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMany()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MANY_EDEFAULT = false;
 	/**
 	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -139,6 +165,42 @@ public abstract class TypedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean CompatibleBody(final ValueSpecification bodySpecification)
+	{
+		/**
+		 * bodySpecification.type.conformsTo(self.type)
+		 */
+		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @Nullable /*@Thrown*/ DomainType type = bodySpecification.getType();
+		final @Nullable /*@Thrown*/ DomainType type_0 = this.getType();
+		final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
+		return conformsTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter makeParameter()
+	{
+		/**
+		 * Parameter{name = 'name'}
+		 */
+		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final @NonNull /*@NonInvalid*/ DomainProperty CTORid_name = idResolver.getProperty(PivotTables.PROPid_name);
+		final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_Parameter_0 = idResolver.getType(PivotTables.CLSSid_Parameter, null);
+		final @NonNull /*@Thrown*/ DomainTypedElement symbol_0 = (DomainTypedElement)TYP_pivot_c_c_Parameter_0.createInstance();
+		CTORid_name.initValue(symbol_0, PivotTables.STR_name);
+		return (Parameter)symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -176,6 +238,8 @@ public abstract class TypedElementImpl
 				return getOwnedComment();
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return getName();
+			case PivotPackage.TYPED_ELEMENT__IS_MANY:
+				return isMany();
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.TYPED_ELEMENT__TYPE:
@@ -277,12 +341,36 @@ public abstract class TypedElementImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.TYPED_ELEMENT__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__TYPE:
 				return type != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case PivotPackage.TYPED_ELEMENT___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+			case PivotPackage.TYPED_ELEMENT___GET_VALUE__TYPE_STRING:
+				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.TYPED_ELEMENT___MAKE_PARAMETER:
+				return makeParameter();
+		}
+		return eDynamicInvoke(operationID, arguments);
 	}
 
 	/**
@@ -304,5 +392,15 @@ public abstract class TypedElementImpl
 	public @NonNull TypeId getTypeId() {
 		Type type2 = getType();
 		return type2 != null ? type2.getTypeId() : TypeId.OCL_INVALID;
+	}
+
+	public boolean isMany() {
+		Type type = getType();
+		if (type instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)type;
+			IntegerValue upperValue = collectionType.getUpperValue();
+			return (upperValue instanceof UnlimitedValue) || (upperValue.intValue() > 1);
+		}
+		return false;
 	}
 } //TypedElementImpl

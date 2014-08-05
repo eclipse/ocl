@@ -198,7 +198,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 
 	@Override
 	public ElementCS visitOperation(@NonNull Operation object) {
-		OperationCS csElement = context.refreshTypedMultiplicityElement(OperationCS.class, BaseCSPackage.Literals.OPERATION_CS, object);
+		OperationCS csElement = context.refreshTypedElement(OperationCS.class, BaseCSPackage.Literals.OPERATION_CS, object);
 		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
 		csElement.setOwnedTemplateSignature(context.visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
@@ -223,7 +223,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 
 	@Override
 	public ElementCS visitParameter(@NonNull Parameter object) {
-		ParameterCS csElement = context.refreshTypedMultiplicityElement(ParameterCS.class, BaseCSPackage.Literals.PARAMETER_CS, object);
+		ParameterCS csElement = context.refreshTypedElement(ParameterCS.class, BaseCSPackage.Literals.PARAMETER_CS, object);
 		return csElement;
 	}
 

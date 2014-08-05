@@ -462,10 +462,6 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitTypedMultiplicityElement(@NonNull org.eclipse.ocl.examples.pivot.TypedMultiplicityElement object) {
-		return null;
-	}
-
 	public @Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object) {
 		return null;
 	}

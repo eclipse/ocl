@@ -252,7 +252,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _TypeExtension = createClass(PivotPackage.Literals.TYPE_EXTENSION);
 		protected final @NonNull Class _TypeTemplateParameter = createClass(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER);
 		protected final @NonNull Class _TypedElement = createClass(PivotPackage.Literals.TYPED_ELEMENT);
-		protected final @NonNull Class _TypedMultiplicityElement = createClass(PivotPackage.Literals.TYPED_MULTIPLICITY_ELEMENT);
 		protected final @NonNull Class _UnlimitedNaturalLiteralExp = createClass(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP);
 		protected final @NonNull Class _UnspecifiedType = createClass(PivotPackage.Literals.UNSPECIFIED_TYPE);
 		protected final @NonNull Class _UnspecifiedValueExp = createClass(PivotPackage.Literals.UNSPECIFIED_VALUE_EXP);
@@ -595,7 +594,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_LanguageExpression);
 			ownedTypes.add(type = _Feature);
 			superClasses = type.getSuperClass();
-			superClasses.add(_TypedMultiplicityElement);
+			superClasses.add(_TypedElement);
 			ownedTypes.add(type = _FeatureCallExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_CallExp);
@@ -719,7 +718,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClass();
-			superClasses.add(_TypedMultiplicityElement);
 			superClasses.add(_VariableDeclaration);
 			ownedTypes.add(type = _ParameterableElement);
 			superClasses = type.getSuperClass();
@@ -851,9 +849,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _TypedElement);
 			superClasses = type.getSuperClass();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _TypedMultiplicityElement);
-			superClasses = type.getSuperClass();
-			superClasses.add(_TypedElement);
 			ownedTypes.add(type = _UnlimitedNaturalLiteralExp);
 			superClasses = type.getSuperClass();
 			superClasses.add(_NumericLiteralExp);
@@ -1937,8 +1932,8 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Operation op_TemplateableElement_isTemplate = createOperation("isTemplate", _Boolean, null, null);
 		protected final @NonNull Operation op_TemplateableElement_parameterableElements = createOperation("parameterableElements", _Set_ParameterableElement, null, null);
 		protected final @NonNull Operation op_Type_specializeIn = createOperation("specializeIn", _Type, null, null);
-		protected final @NonNull Operation op_TypedMultiplicityElement_CompatibleBody = createOperation("CompatibleBody", _Boolean, null, null);
-		protected final @NonNull Operation op_TypedMultiplicityElement_makeParameter = createOperation("makeParameter", _Parameter, null, null);
+		protected final @NonNull Operation op_TypedElement_CompatibleBody = createOperation("CompatibleBody", _Boolean, null, null);
+		protected final @NonNull Operation op_TypedElement_makeParameter = createOperation("makeParameter", _Parameter, null, null);
 		protected final @NonNull Operation op_ValueSpecification_booleanValue = createOperation("booleanValue", _Boolean, null, null);
 		protected final @NonNull Operation op_ValueSpecification_integerValue = createOperation("integerValue", _Integer, null, null);
 		protected final @NonNull Operation op_ValueSpecification_isComputable = createOperation("isComputable", _Boolean, null, null);
@@ -1993,12 +1988,12 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("expr", _OCLExpression, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
-			ownedOperations = _TypedMultiplicityElement.getOwnedOperation();
-			ownedOperations.add(operation = op_TypedMultiplicityElement_CompatibleBody);
+			ownedOperations = _TypedElement.getOwnedOperation();
+			ownedOperations.add(operation = op_TypedElement_CompatibleBody);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type.conformsTo(self.type)"));
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
-			ownedOperations.add(operation = op_TypedMultiplicityElement_makeParameter);
+			ownedOperations.add(operation = op_TypedElement_makeParameter);
 			operation.setBodyExpression(createExpressionInOCL(_Parameter, "Parameter{name=\'name\'}"));
 			ownedOperations = _ValueSpecification.getOwnedOperation();
 			ownedOperations.add(operation = op_ValueSpecification_booleanValue);
@@ -2349,6 +2344,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TypeExtension_type = createProperty(PivotPackage.Literals.TYPE_EXTENSION__TYPE, _Type);
 		protected final @NonNull Property pr_TypeTemplateParameter_allowSubstitutable = createProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE, _Boolean);
 		protected final @NonNull Property pr_TypeTemplateParameter_constrainingClassifier = createProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER, _Set_Class);
+		protected final @NonNull Property pr_TypedElement_isMany = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_MANY, _Boolean);
 		protected final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
 		protected final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
 		protected final @NonNull Property pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol = createProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL, _UnlimitedNatural);
@@ -3761,6 +3757,12 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_typeTemplateParameter_constrainingClassifier);
 			ownedProperties = _TypedElement.getOwnedAttribute();
+			ownedProperties.add(property = pr_TypedElement_isMany);
+			property.setIsDerived(true);
+			property.setIsReadOnly(true);
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			property.setIsVolatile(true);
 			ownedProperties.add(property = pr_TypedElement_isRequired);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_TypedElement_type);

@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions.Global;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
@@ -623,40 +623,11 @@ public class PrettyPrinter
 		}
 	}
 
-	public void appendTypedMultiplicity(TypedMultiplicityElement object) {
-//		int lower = object.getLower().intValue();
-//		int upper = object.getUpper().intValue();
-//		if (upper != 1) {
-//			if (object.isOrdered()) {
-//				if (object.isUnique()) {
-//					append(TypeId.ORDERED_SET_NAME);
-//				}
-//				else {
-//					append(TypeId.SEQUENCE_NAME);
-//				}
-//			}
-//			else {
-//				if (object.isUnique()) {
-//					append(TypeId.SET_NAME);
-//				}
-//				else {
-//					append(TypeId.BAG_NAME);
-//				}
-//			}
-//			append("(");
-//			appendElement(object.getType());
-//			if ((lower > 0) || (upper >= 0)) {
-//				appendMultiplicity(lower, upper);
-//			}
-//			append(")");
-//		}
-//		else {
-			appendElement(object.getType());
-			if (!object.isRequired()) {
-				append("[?]");
-			}
-//			appendMultiplicity(lower, upper);
-//		}
+	public void appendTypedMultiplicity(TypedElement object) {
+		appendElement(object.getType());
+		if (!object.isRequired()) {
+			append("[?]");
+		}
 	}
 
 	public @Nullable Precedence getCurrentPrecedence() {

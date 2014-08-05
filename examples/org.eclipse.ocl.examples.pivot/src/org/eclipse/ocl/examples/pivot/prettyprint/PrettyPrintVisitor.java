@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -242,17 +241,6 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 
 	@Override
 	public Object visitTypedElement(@NonNull TypedElement object) {
-		if (context.showNames()) {
-			context.appendParent(context.getScope(), object, "::");
-			context.appendName(object);
-			context.append(" : ");
-		}
-		context.appendElement(object.getType());
-		return null;
-	}
-
-	@Override
-	public Object visitTypedMultiplicityElement(@NonNull TypedMultiplicityElement object) {
 		if (context.showNames()) {
 			context.appendParent(context.getScope(), object, "::");
 			context.appendName(object);

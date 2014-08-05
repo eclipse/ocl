@@ -350,4 +350,7 @@
     <oldProperties href="../model-gen/UML.uml#InstanceSpecification-specification"/>
     <oldProperties href="../model-gen/MDTOCL.uml#MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification"/>
   </mappings>
+  <mappings xsi:type="u2ec:CreateProperty" newName="application" comment="Rename ambiguous Profile::profileApplication to application">
+    <oldProperties href="../model-gen/UML.uml#A_appliedProfile_profileApplication-profileApplication"/>
+  </mappings>
 </u2ec:Mappings>

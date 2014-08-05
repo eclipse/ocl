@@ -41,7 +41,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public abstract class FeatureImpl
-		extends TypedMultiplicityElementImpl
+		extends TypedElementImpl
 		implements Feature {
 
 	/**
@@ -208,6 +208,8 @@ public abstract class FeatureImpl
 				return getOwnedComment();
 			case PivotPackage.FEATURE__NAME:
 				return getName();
+			case PivotPackage.FEATURE__IS_MANY:
+				return isMany();
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.FEATURE__TYPE:
@@ -336,6 +338,8 @@ public abstract class FeatureImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.FEATURE__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.FEATURE__TYPE:

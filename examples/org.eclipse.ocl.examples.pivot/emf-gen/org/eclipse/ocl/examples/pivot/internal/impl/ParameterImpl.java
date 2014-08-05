@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  */
 @SuppressWarnings("cast")
 public class ParameterImpl
-		extends TypedMultiplicityElementImpl
+		extends VariableDeclarationImpl
 		implements Parameter {
 
 	/**
@@ -194,6 +194,8 @@ public class ParameterImpl
 				return getOwnedComment();
 			case PivotPackage.PARAMETER__NAME:
 				return getName();
+			case PivotPackage.PARAMETER__IS_MANY:
+				return isMany();
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.PARAMETER__TYPE:
@@ -303,6 +305,8 @@ public class ParameterImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PARAMETER__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.PARAMETER__TYPE:

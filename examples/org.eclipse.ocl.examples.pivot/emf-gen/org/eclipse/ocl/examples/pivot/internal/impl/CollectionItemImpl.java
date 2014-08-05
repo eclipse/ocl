@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.osgi.util.NLS;
@@ -214,6 +215,8 @@ public class CollectionItemImpl
 				return getOwnedComment();
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return getName();
+			case PivotPackage.COLLECTION_ITEM__IS_MANY:
+				return isMany();
 			case PivotPackage.COLLECTION_ITEM__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.COLLECTION_ITEM__TYPE:
@@ -323,6 +326,8 @@ public class CollectionItemImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.COLLECTION_ITEM__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.COLLECTION_ITEM__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.COLLECTION_ITEM__TYPE:
@@ -348,6 +353,10 @@ public class CollectionItemImpl
 				return allOwnedElements();
 			case PivotPackage.COLLECTION_ITEM___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.COLLECTION_ITEM___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.COLLECTION_ITEM___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.COLLECTION_ITEM___VALIDATE_TYPE_IS_ITEM_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsItemType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

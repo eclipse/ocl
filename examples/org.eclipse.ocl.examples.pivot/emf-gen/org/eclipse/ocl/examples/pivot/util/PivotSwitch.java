@@ -121,7 +121,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
@@ -664,7 +663,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				Feature feature = (Feature)theEObject;
 				T1 result = caseFeature(feature);
-				if (result == null) result = caseTypedMultiplicityElement(feature);
 				if (result == null) result = caseTypedElement(feature);
 				if (result == null) result = caseNamedElement(feature);
 				if (result == null) result = caseElement(feature);
@@ -810,7 +808,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseTemplateableElement(iteration);
 				if (result == null) result = caseNamespace(iteration);
 				if (result == null) result = caseParameterableElement(iteration);
-				if (result == null) result = caseTypedMultiplicityElement(iteration);
 				if (result == null) result = caseTypedElement(iteration);
 				if (result == null) result = caseNamedElement(iteration);
 				if (result == null) result = caseElement(iteration);
@@ -1071,7 +1068,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseNamespace(operation);
 				if (result == null) result = caseParameterableElement(operation);
-				if (result == null) result = caseTypedMultiplicityElement(operation);
 				if (result == null) result = caseTypedElement(operation);
 				if (result == null) result = caseNamedElement(operation);
 				if (result == null) result = caseElement(operation);
@@ -1172,7 +1168,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				Parameter parameter = (Parameter)theEObject;
 				T1 result = caseParameter(parameter);
-				if (result == null) result = caseTypedMultiplicityElement(parameter);
 				if (result == null) result = caseVariableDeclaration(parameter);
 				if (result == null) result = caseTypedElement(parameter);
 				if (result == null) result = caseNamedElement(parameter);
@@ -1272,7 +1267,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseProperty(property);
 				if (result == null) result = caseFeature(property);
 				if (result == null) result = caseParameterableElement(property);
-				if (result == null) result = caseTypedMultiplicityElement(property);
 				if (result == null) result = caseTypedElement(property);
 				if (result == null) result = caseNamedElement(property);
 				if (result == null) result = caseElement(property);
@@ -1706,18 +1700,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(typedElement);
 				if (result == null) result = caseNameable(typedElement);
 				if (result == null) result = caseVisitable(typedElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT:
-			{
-				TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)theEObject;
-				T1 result = caseTypedMultiplicityElement(typedMultiplicityElement);
-				if (result == null) result = caseTypedElement(typedMultiplicityElement);
-				if (result == null) result = caseNamedElement(typedMultiplicityElement);
-				if (result == null) result = caseElement(typedMultiplicityElement);
-				if (result == null) result = caseNameable(typedMultiplicityElement);
-				if (result == null) result = caseVisitable(typedMultiplicityElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3349,21 +3331,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseTypedElement(TypedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Multiplicity Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Multiplicity Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseTypedMultiplicityElement(TypedMultiplicityElement object) {
 		return null;
 	}
 

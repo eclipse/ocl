@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -177,18 +176,6 @@ public class Pivot2UMLReferenceVisitor
 
 	@Override
 	public EObject visitTypedElement(@NonNull TypedElement pivotTypedElement) {
-		org.eclipse.uml2.uml.TypedElement umlTypedElement = context.getCreated(org.eclipse.uml2.uml.TypedElement.class, pivotTypedElement);
-		Type pivotType = pivotTypedElement.getType();
-		if (pivotType == null) {
-			return null;				// Occurs for Operation return type
-		}
-		org.eclipse.uml2.uml.Type umlType = context.getCreated(org.eclipse.uml2.uml.Type.class, pivotType);
-		umlTypedElement.setType(umlType);
-		return null;
-	}
-
-	@Override
-	public EObject visitTypedMultiplicityElement(@NonNull TypedMultiplicityElement pivotTypedElement) {
 		org.eclipse.uml2.uml.TypedElement umlTypedElement = context.getCreated(org.eclipse.uml2.uml.TypedElement.class, pivotTypedElement);
 		Type pivotType = pivotTypedElement.getType();
 		if ((pivotType == null) || (pivotType instanceof VoidType)) {				// Occurs for Operation return type

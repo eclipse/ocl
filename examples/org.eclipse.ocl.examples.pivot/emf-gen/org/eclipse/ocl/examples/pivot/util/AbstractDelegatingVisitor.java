@@ -483,10 +483,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitTypedElement(object);
 	}
 
-	public @Nullable R visitTypedMultiplicityElement(@NonNull org.eclipse.ocl.examples.pivot.TypedMultiplicityElement object) {
-		return delegate.visitTypedMultiplicityElement(object);
-	}
-
 	public @Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object) {
 		return delegate.visitUnlimitedNaturalLiteralExp(object);
 	}

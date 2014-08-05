@@ -121,6 +121,8 @@ public class UnlimitedNaturalLiteralExpImpl
 				return getOwnedComment();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__NAME:
 				return getName();
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:
@@ -230,6 +232,8 @@ public class UnlimitedNaturalLiteralExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP__TYPE:

@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ReferringElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -134,6 +135,8 @@ public class TypeExpImpl
 				return getOwnedComment();
 			case PivotPackage.TYPE_EXP__NAME:
 				return getName();
+			case PivotPackage.TYPE_EXP__IS_MANY:
+				return isMany();
 			case PivotPackage.TYPE_EXP__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.TYPE_EXP__TYPE:
@@ -244,6 +247,8 @@ public class TypeExpImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TYPE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.TYPE_EXP__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.TYPE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.TYPE_EXP__TYPE:
@@ -287,6 +292,10 @@ public class TypeExpImpl
 				return allOwnedElements();
 			case PivotPackage.TYPE_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.TYPE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.TYPE_EXP___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.TYPE_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
 		}

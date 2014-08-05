@@ -200,6 +200,9 @@
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ATYoEBtEEeSM9LreJtBwBg"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_wtFQ4BusEeSIos3S87O_rg" name="package" type="MDTOCL-MDT_OCL_Instances-Package" association="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ziv2cBusEeSIos3S87O_rg"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_3x36ABtDEeSM9LreJtBwBg" name="LanguageExpression" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Instances-Package" name="Package">
@@ -211,7 +214,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K7U5AARMEeSiuvNrq-crrw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_package_ownedInstance" memberEnd="MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_package_ownedInstances" memberEnd="_wtFQ4BusEeSIos3S87O_rg MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_A8ymsBseEeSM9LreJtBwBg" name="Property"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_AsjLQBseEeSM9LreJtBwBg" name="Slot">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-Slot-definingProperty" name="definingProperty" type="_A8ymsBseEeSM9LreJtBwBg"/>
@@ -356,19 +359,10 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity" name="MDT_OCL_TypedMultiplicity">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-Boolean" name="Boolean"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-Feature" name="Feature" isAbstract="true">
-        <generalization xmi:id="_Xp6OJH7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_TypedMultiplicity-TypedMultiplicityElement"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-Parameter" name="Parameter">
-        <generalization xmi:id="_Xp6OJX7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_TypedMultiplicity-TypedMultiplicityElement"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-TypedElement" name="TypedElement" isAbstract="true">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-TypedElement-isRequired" name="isRequired" type="MDTOCL-MDT_OCL_TypedMultiplicity-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6OGn7VEeOu79LxSz8Ylw" value="true"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_TypedMultiplicity-TypedMultiplicityElement" name="TypedMultiplicityElement" isAbstract="true">
-        <generalization xmi:id="_Xp6OJn7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_TypedMultiplicity-TypedElement"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Visiting" name="MDT_OCL_Visiting">

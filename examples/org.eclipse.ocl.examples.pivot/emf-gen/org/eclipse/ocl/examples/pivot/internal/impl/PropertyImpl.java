@@ -64,7 +64,7 @@ import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -1259,7 +1259,7 @@ public class PropertyImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ LanguageExpression defaultExpression_1 = this.getDefaultExpression();
-		        final /*@Thrown*/ boolean b_0 = ((TypedMultiplicityElement)this).CompatibleBody((ValueSpecification)defaultExpression_1);
+		        final /*@Thrown*/ boolean b_0 = ((TypedElement)this).CompatibleBody((ValueSpecification)defaultExpression_1);
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
@@ -1445,6 +1445,8 @@ public class PropertyImpl
 				return getOwnedComment();
 			case PivotPackage.PROPERTY__NAME:
 				return getName();
+			case PivotPackage.PROPERTY__IS_MANY:
+				return isMany();
 			case PivotPackage.PROPERTY__IS_REQUIRED:
 				return isRequired();
 			case PivotPackage.PROPERTY__TYPE:
@@ -1739,6 +1741,8 @@ public class PropertyImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.PROPERTY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PROPERTY__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.PROPERTY__TYPE:

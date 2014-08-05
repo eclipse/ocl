@@ -122,7 +122,6 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
@@ -748,11 +747,6 @@ public class PivotAdapterFactory
 			public Adapter caseTypedElement(TypedElement object)
 			{
 				return createTypedElementAdapter();
-			}
-			@Override
-			public Adapter caseTypedMultiplicityElement(TypedMultiplicityElement object)
-			{
-				return createTypedMultiplicityElementAdapter();
 			}
 			@Override
 			public Adapter caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object)
@@ -2199,20 +2193,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.TypedMultiplicityElement <em>Typed Multiplicity Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.TypedMultiplicityElement
-	 * @generated
-	 */
-	public Adapter createTypedMultiplicityElementAdapter() {
 		return null;
 	}
 

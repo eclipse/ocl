@@ -66,7 +66,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.context.AbstractBase2PivotConversion;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
@@ -1022,7 +1022,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		PivotUtil.refreshList(pivotElements, newPivotElements);
 	}
 
-	public Type refreshRequiredType(@NonNull TypedMultiplicityElement pivotElement, @NonNull TypedElementCS csTypedElement) {
+	public Type refreshRequiredType(@NonNull TypedElement pivotElement, @NonNull TypedElementCS csTypedElement) {
 		TypedRefCS ownedType = csTypedElement.getOwnedType();
 		Type pivotType = null;
 		boolean isRequired = false;

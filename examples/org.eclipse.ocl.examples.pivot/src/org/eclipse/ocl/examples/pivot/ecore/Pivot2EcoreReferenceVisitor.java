@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -429,16 +428,7 @@ public class Pivot2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObjec
 			if (pivotType == null) {
 				return null;				// Occurs for Operation return type
 			}
-			setEType(eTypedElement, pivotType);
-		}
-		return null;
-	}
-
-	@Override
-	public EObject visitTypedMultiplicityElement(@NonNull TypedMultiplicityElement pivotTypedElement) {
-		ETypedElement eTypedElement = context.getCreated(ETypedElement.class, pivotTypedElement);
-		if (eTypedElement != null) {
-			Type pivotType = pivotTypedElement.getType();
+//			setEType(eTypedElement, pivotType);
 			setETypeAndMultiplicity(eTypedElement, pivotType, pivotTypedElement.isRequired());
 		}
 		return null;
