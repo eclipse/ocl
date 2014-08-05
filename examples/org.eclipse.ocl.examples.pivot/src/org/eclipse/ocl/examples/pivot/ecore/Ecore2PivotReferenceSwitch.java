@@ -92,7 +92,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EClass eObject2 = eObject;
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject2);
 		if (pivotElement != null) {
-			doSwitchAll(Type.class, pivotElement.getSuperClass(), eObject2.getEGenericSuperTypes());
+			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClass(), eObject2.getEGenericSuperTypes());
 			if (pivotElement.getSuperClass().isEmpty()) {
 				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
 				pivotElement.getSuperClass().add(oclElementType);
@@ -193,8 +193,8 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 					oppositeProperty = PivotFactory.eINSTANCE.createProperty();
 					oppositeProperty.setName(oppositeName);
 					oppositeProperty.setImplicit(true);
-					Type remoteType = pivotElement.getType();
-					Type localType = PivotUtil.getOwningType(pivotElement);
+					org.eclipse.ocl.examples.pivot.Class remoteType = (org.eclipse.ocl.examples.pivot.Class)pivotElement.getType();	// FIXME cast
+					org.eclipse.ocl.examples.pivot.Class localType = PivotUtil.getOwningType(pivotElement);
 					oppositeProperty.setType(localType);
 					String uniqueValue = details.get(PROPERTY_OPPOSITE_ROLE_UNIQUE_KEY);
 					String orderedValue = details.get(PROPERTY_OPPOSITE_ROLE_ORDERED_KEY);
@@ -237,9 +237,9 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 							oppositeProperty = PivotFactory.eINSTANCE.createProperty();
 							oppositeProperty.setName(oppositeName);
 							oppositeProperty.setImplicit(true);
-							Type remoteType = pivotElement.getType();
+							org.eclipse.ocl.examples.pivot.Class remoteType = (org.eclipse.ocl.examples.pivot.Class)pivotElement.getType();	// FIXME cast
 							if (remoteType instanceof CollectionType) {
-								remoteType = ((CollectionType)remoteType).getElementType();
+								remoteType = (org.eclipse.ocl.examples.pivot.Class)((CollectionType)remoteType).getElementType();	// FIXME cast
 							}
 							//
 							//

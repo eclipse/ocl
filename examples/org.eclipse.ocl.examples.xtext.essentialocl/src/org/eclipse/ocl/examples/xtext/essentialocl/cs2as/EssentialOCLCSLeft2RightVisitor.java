@@ -247,16 +247,16 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	
 	protected @Nullable Iteration getBestIteration(@NonNull List<NamedElement> invocations) {
 		Iteration bestIteration = null;
-		Type bestType = null;
+		org.eclipse.ocl.examples.pivot.Class bestType = null;
 		int bestIteratorsSize = Integer.MAX_VALUE;
 		for (NamedElement operation : invocations) {
 			if (operation instanceof Iteration) {
 				Iteration iteration = (Iteration) operation;
 				int iteratorsSize = iteration.getOwnedIterator().size();
 				if ((bestIteration == null) || (iteratorsSize <= bestIteratorsSize)) {
-					Type specializedType = iteration.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class specializedType = iteration.getOwningType();
 					if (specializedType != null) {
-						Type unspecializedType = PivotUtil.getUnspecializedTemplateableElement(specializedType);
+						org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(specializedType);
 						if ((bestType == null) || !metaModelManager.isSuperClassOf(unspecializedType, bestType)) {
 							bestIteration = iteration;
 							bestType = unspecializedType;

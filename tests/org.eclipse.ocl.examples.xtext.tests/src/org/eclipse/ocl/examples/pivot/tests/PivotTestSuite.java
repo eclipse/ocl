@@ -907,7 +907,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createBodyCondition(@NonNull Operation context, @NonNull String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext((org.eclipse.ocl.examples.pivot.Class)context.getOwningType(), context);
+		helper.setOperationContext(context.getOwningType(), context);
 		
 		ExpressionInOCL result = null;
 		
@@ -945,7 +945,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //        }
 	}
 
-	public void createGeneralization(Type special, Type general) {
+	public void createGeneralization(org.eclipse.ocl.examples.pivot.Class special, org.eclipse.ocl.examples.pivot.Class general) {
 		special.getSuperClass().add(general);
 	}
 
@@ -987,7 +987,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return eLiteral;
 	}
 
-	protected Operation createOwnedOperation(Type aClass, String name, List<String> paramNames, List<Type> paramTypes, Type type, boolean isQuery) {
+	protected Operation createOwnedOperation(org.eclipse.ocl.examples.pivot.Class aClass, String name, List<String> paramNames, List<Type> paramTypes, Type type, boolean isQuery) {
 		Operation eOperation = PivotFactory.eINSTANCE.createOperation();
 		eOperation.setName(name);
 		eOperation.setType(type);
@@ -1008,7 +1008,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return eParameter;
 	}
 
-	protected Operation createOwnedPrimitiveOperation(Type aPrimitiveType, String name, EList<String> paramNames, EList<Type> paramTypes, Type type, boolean isQuery) {
+	protected Operation createOwnedPrimitiveOperation(org.eclipse.ocl.examples.pivot.Class aPrimitiveType, String name, EList<String> paramNames, EList<Type> paramTypes, Type type, boolean isQuery) {
 		return createOwnedOperation(aPrimitiveType, name, paramNames, paramTypes, type, isQuery);
 	}
 
@@ -1054,7 +1054,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createPostcondition(@NonNull Operation context, @NonNull String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext((org.eclipse.ocl.examples.pivot.Class)context.getOwningType(), context);
+		helper.setOperationContext(context.getOwningType(), context);
 		
 		ExpressionInOCL result = null;
 		
@@ -1071,7 +1071,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createPrecondition(@NonNull Operation context, @NonNull String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext((org.eclipse.ocl.examples.pivot.Class)context.getOwningType(), context);
+		helper.setOperationContext(context.getOwningType(), context);
 		
 		ExpressionInOCL result = null;
 		
@@ -1241,7 +1241,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
 	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
 	 */
-	protected Property getAttribute(@NonNull Type classifier, @NonNull String name, @NonNull Type type) {
+	protected Property getAttribute(@NonNull org.eclipse.ocl.examples.pivot.Class classifier, @NonNull String name, @NonNull Type type) {
 		Property feature = DomainUtil.getNamedElement(classifier.getOwnedAttribute(), name);
 		if (feature == null)
 			return null;

@@ -52,7 +52,10 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		if (type instanceof VoidType) {
 			return true;
 		}
-		List<Type> superClasses = type.getSuperClass();
-		return !superClasses.isEmpty();
+		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+			List<org.eclipse.ocl.examples.pivot.Class> superClasses = ((org.eclipse.ocl.examples.pivot.Class)type).getSuperClass();
+			return !superClasses.isEmpty();
+		}
+		return false;
 	}
 }

@@ -121,33 +121,6 @@ public interface Operation
 	@NonNull List<Operation> getRedefinedOperation();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperation <em>Owned Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Type</em>' container reference.
-	 * @see #setOwningType(Type)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_OwningType()
-	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedOperation
-	 * @generated
-	 */
-	Type getOwningType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' container reference.
-	 * @see #getOwningType()
-	 * @generated
-	 */
-	void setOwningType(Type value);
-
-	/**
 	 * Returns the value of the '<em><b>Precondition</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Constraint}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Constraint#getPreContext <em>Pre Context</em>}'.
@@ -259,17 +232,30 @@ public interface Operation
 	void setIsValidating(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Class</b></em>' reference.
+	 * Returns the value of the '<em><b>Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperation <em>Owned Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The class that owns the operation.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Class</em>' reference.
+	 * @return the value of the '<em>Class</em>' container reference.
+	 * @see #setClass_(org.eclipse.ocl.examples.pivot.Class)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_Class()
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedOperation
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class</em>' container reference.
+	 * @see #getClass_()
+	 * @generated
+	 */
+	void setClass_(org.eclipse.ocl.examples.pivot.Class value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -298,4 +284,6 @@ public interface Operation
 	 * @generated
 	 */
 	boolean validateUniquePostconditionName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	org.eclipse.ocl.examples.pivot.Class getOwningType();
 } // Operation

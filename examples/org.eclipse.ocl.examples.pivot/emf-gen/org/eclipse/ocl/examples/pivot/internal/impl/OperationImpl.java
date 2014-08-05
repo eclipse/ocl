@@ -606,51 +606,6 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getOwningType()
-	{
-		if (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TYPE) return null;
-		return (Type)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningType(Type newOwningType, NotificationChain msgs)
-	{
-		msgs = eBasicSetContainer((InternalEObject)newOwningType, PivotPackage.OPERATION__OWNING_TYPE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningType(Type newOwningType)
-	{
-		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TYPE && newOwningType != null))
-		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningType))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningType != null)
-				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, PivotPackage.TYPE__OWNED_OPERATION, Type.class, msgs);
-			msgs = basicSetOwningType(newOwningType, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNING_TYPE, newOwningType, newOwningType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getPrecondition()
 	{
@@ -776,8 +731,19 @@ public class OperationImpl
 	 * @generated
 	 */
 	public org.eclipse.ocl.examples.pivot.Class getClass_() {
-		org.eclipse.ocl.examples.pivot.Class class_ = basicGetClass_();
-		return class_ != null && ((EObject)class_).eIsProxy() ? (org.eclipse.ocl.examples.pivot.Class)eResolveProxy((InternalEObject)class_) : class_;
+		if (eContainerFeatureID() != PivotPackage.OPERATION__CLASS) return null;
+		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetClass_(org.eclipse.ocl.examples.pivot.Class newClass, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newClass, PivotPackage.OPERATION__CLASS, msgs);
+		return msgs;
 	}
 
 	/**
@@ -788,6 +754,29 @@ public class OperationImpl
 	public org.eclipse.ocl.examples.pivot.Class basicGetClass_()
 	{
 		return null;		// FIXME Eliminate this field altogether
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass)
+	{
+		if (newClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__CLASS && newClass != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newClass))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newClass != null)
+				msgs = ((InternalEObject)newClass).eInverseAdd(this, PivotPackage.CLASS__OWNED_OPERATION, org.eclipse.ocl.examples.pivot.Class.class, msgs);
+			msgs = basicSetClass_(newClass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__CLASS, newClass, newClass));
 	}
 
 	/**
@@ -1185,12 +1174,12 @@ public class OperationImpl
 				if (templateParameter != null)
 					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameter()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNING_TYPE:
+			case PivotPackage.OPERATION__CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningType((Type)otherEnd, msgs);
+				return basicSetClass_((org.eclipse.ocl.examples.pivot.Class)otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_PARAMETER:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameter()).basicAdd(otherEnd, msgs);
 			case PivotPackage.OPERATION__POSTCONDITION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPostcondition()).basicAdd(otherEnd, msgs);
 			case PivotPackage.OPERATION__PRECONDITION:
@@ -1229,10 +1218,10 @@ public class OperationImpl
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
+			case PivotPackage.OPERATION__CLASS:
+				return basicSetClass_(null, msgs);
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNING_TYPE:
-				return basicSetOwningType(null, msgs);
 			case PivotPackage.OPERATION__POSTCONDITION:
 				return ((InternalEList<?>)getPostcondition()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION__PRECONDITION:
@@ -1253,8 +1242,8 @@ public class OperationImpl
 		{
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.OPERATION__OWNING_TYPE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TYPE__OWNED_OPERATION, Type.class, msgs);
+			case PivotPackage.OPERATION__CLASS:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.CLASS__OWNED_OPERATION, org.eclipse.ocl.examples.pivot.Class.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -1305,8 +1294,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.OPERATION__CLASS:
-				if (resolve) return getClass_();
-				return basicGetClass_();
+				return getClass_();
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				return isInvalidating();
 			case PivotPackage.OPERATION__IS_VALIDATING:
@@ -1397,6 +1385,9 @@ public class OperationImpl
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)newValue);
 				return;
+			case PivotPackage.OPERATION__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
+				return;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
 				return;
@@ -1406,9 +1397,6 @@ public class OperationImpl
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				getOwnedParameter().clear();
 				getOwnedParameter().addAll((Collection<? extends Parameter>)newValue);
-				return;
-			case PivotPackage.OPERATION__OWNING_TYPE:
-				setOwningType((Type)newValue);
 				return;
 			case PivotPackage.OPERATION__POSTCONDITION:
 				getPostcondition().clear();
@@ -1493,6 +1481,9 @@ public class OperationImpl
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)null);
 				return;
+			case PivotPackage.OPERATION__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
+				return;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
 				return;
@@ -1501,9 +1492,6 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				getOwnedParameter().clear();
-				return;
-			case PivotPackage.OPERATION__OWNING_TYPE:
-				setOwningType((Type)null);
 				return;
 			case PivotPackage.OPERATION__POSTCONDITION:
 				getPostcondition().clear();
@@ -1568,7 +1556,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.OPERATION__CLASS:
-				return basicGetClass_() != null;
+				return getClass_() != null;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
 				return ((eFlags & IS_INVALIDATING_EFLAG) != 0) != IS_INVALIDATING_EDEFAULT;
 			case PivotPackage.OPERATION__IS_VALIDATING:
@@ -1799,5 +1787,9 @@ public class OperationImpl
 			}
 		}
 		return operationId2;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Class getOwningType() {
+		return getClass_();
 	}
 } //OperationImpl

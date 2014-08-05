@@ -191,15 +191,15 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if ((object.getPrecondition().size() <= 0) && (object.getBodyExpression() == null) && (object.getPostcondition().size() <= 0)) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class modelType = (org.eclipse.ocl.examples.pivot.Class)object.getOwningType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningType();
 		org.eclipse.ocl.examples.pivot.Package modelPackage = modelType.getPackage();
-		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope((org.eclipse.ocl.examples.pivot.Class)modelType);
+		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(modelType);
 		OperationContextDeclCS csContext = context.refreshElement(OperationContextDeclCS.class, CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS, object);
 		if (csContext != null) {
 			refreshPathNamedElement(csContext, object, modelPackage);
 //			csContext.getNamespace().add(owningType);
 			csContext.setOwnedType(convertTypeRef(object));
-			org.eclipse.ocl.examples.pivot.Package owningPackage = ((org.eclipse.ocl.examples.pivot.Class)object.getOwningType()).getPackage();	// FIXME cast
+			org.eclipse.ocl.examples.pivot.Package owningPackage = object.getOwningType().getPackage();
 			if (owningPackage != null) {
 				importPackage(owningPackage);
 			}
@@ -264,9 +264,9 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if (object.getDefaultExpression() == null) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class modelType = (org.eclipse.ocl.examples.pivot.Class)object.getOwningType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningType();
 		org.eclipse.ocl.examples.pivot.Package modelPackage = modelType.getPackage();
-		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope((org.eclipse.ocl.examples.pivot.Class)modelType);
+		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(modelType);
 		PropertyContextDeclCS csContext = context.refreshElement(PropertyContextDeclCS.class, CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS, object);
 		if ((csContext != null) && (modelPackage != null)) {
 			refreshPathNamedElement(csContext, object, modelPackage);

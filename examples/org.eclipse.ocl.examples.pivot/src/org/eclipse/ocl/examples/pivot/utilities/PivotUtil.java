@@ -1029,8 +1029,8 @@ public class PivotUtil extends DomainUtil
 					}
 				}
 			}
-			if (eObject instanceof Type) {
-				for (Type superType : ((Type)eObject).getSuperClass()) {
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClass()) {
 					map = getAllTemplateParameterSubstitutions(map, superType);
 				}		
 			}
@@ -1232,10 +1232,10 @@ public class PivotUtil extends DomainUtil
 	public static @NonNull org.eclipse.ocl.examples.pivot.Class getOwningType(@NonNull Feature feature) {
 		org.eclipse.ocl.examples.pivot.Class owner = null;
 		if (feature instanceof Property) {
-			owner = (org.eclipse.ocl.examples.pivot.Class)((Property)feature).getOwningType();	// FIXME cast
+			owner = ((Property)feature).getOwningType();
 		}
 		else if (feature instanceof Operation) {
-			owner = (org.eclipse.ocl.examples.pivot.Class)((Operation)feature).getOwningType();	// FIXME cast
+			owner = ((Operation)feature).getOwningType();
 		}
 		else {
 			throw new IllegalStateException("Unknown feature " + feature.eClass().getName());
@@ -1560,7 +1560,7 @@ public class PivotUtil extends DomainUtil
 			if (typedElement instanceof Parameter) {
 				Operation operation = ((Parameter)typedElement).getOperation();
 				if (operation != null) {
-					Type selfType = operation.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class selfType = operation.getOwningType();
 					if (selfType != null) {
 						type = selfType;
 					}

@@ -183,7 +183,7 @@ public class Pivot2EcoreDeclarationVisitor
 		this.delegateInstaller = context.getDelegateInstaller();
 	}
 
-	protected void copyClassifier(@NonNull EClassifier eClassifier, @NonNull Type pivotType) {
+	protected void copyClassifier(@NonNull EClassifier eClassifier, @NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
 		copyNamedElement(eClassifier, pivotType);
 		@SuppressWarnings("null")@NonNull List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		copyTemplateSignature(eTypeParameters, pivotType);

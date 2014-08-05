@@ -84,7 +84,7 @@ class TypeTracker implements Adapter.Internal
 		}
 		int eventType = notification.getEventType();
 		Object feature = notification.getFeature();
-		if (feature == PivotPackage.Literals.TYPE__OWNED_OPERATION) {
+		if (feature == PivotPackage.Literals.CLASS__OWNED_OPERATION) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
@@ -122,7 +122,7 @@ class TypeTracker implements Adapter.Internal
 				}
 			}
 		}
-		else if (feature == PivotPackage.Literals.TYPE__OWNED_ATTRIBUTE) {
+		else if (feature == PivotPackage.Literals.CLASS__OWNED_ATTRIBUTE) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
@@ -160,7 +160,7 @@ class TypeTracker implements Adapter.Internal
 				}
 			}
 		}
-		else if (feature == PivotPackage.Literals.TYPE__SUPER_CLASS) {
+		else if (feature == PivotPackage.Literals.CLASS__SUPER_CLASS) {
 			switch (eventType) {
 				case Notification.ADD:
 				case Notification.ADD_MANY:

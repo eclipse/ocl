@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -337,18 +336,18 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANT:
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
 				return ((InternalEList<?>)getNestedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
+				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
+				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				return basicSetPackage(null, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
@@ -414,14 +413,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return getExtendedBys();
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
-				return getOwnedAttribute();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
-				return getOwnedOperation();
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				return getSuperClass();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
@@ -432,10 +425,16 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return isInterface();
 			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
 				return getNestedType();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
+				return getOwnedAttribute();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
+				return getOwnedOperation();
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				return getPackage();
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
+				return getSuperClass();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase();
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
@@ -505,21 +504,9 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
-				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
 				getOwnedRule().clear();
@@ -538,12 +525,24 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				getNestedType().clear();
 				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
+				getOwnedAttribute().clear();
+				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
+				getOwnedOperation().clear();
+				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
+				getSuperClass().clear();
+				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)newValue);
@@ -610,17 +609,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				getSuperClass().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
 				getOwnedRule().clear();
@@ -637,11 +627,20 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
 				getNestedType().clear();
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
+				getOwnedAttribute().clear();
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
+				getOwnedOperation().clear();
+				return;
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
+				getSuperClass().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)null);
@@ -695,14 +694,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
-				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
-				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
@@ -713,10 +706,16 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.ELEMENT_EXTENSION__NESTED_TYPE:
 				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_ATTRIBUTE:
+				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_OPERATION:
+				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
+				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase() != null;
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:

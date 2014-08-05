@@ -167,9 +167,9 @@ public class OCLstdlibTests extends XtextTestCase
 				}
 				assertEquals(fileClass, javaClass);
 			}
-			if (fileElement instanceof Type) {
-				List<Element> fileTypes = new ArrayList<Element>(((Type)fileElement).getSuperClass());
-				List<Element> javaTypes = new ArrayList<Element>(((Type)javaElement).getSuperClass());
+			if (fileElement instanceof org.eclipse.ocl.examples.pivot.Class) {
+				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)fileElement).getSuperClass());
+				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)javaElement).getSuperClass());
 				Collections.sort(fileTypes, MonikeredComparator.INSTANCE);
 				Collections.sort(javaTypes, MonikeredComparator.INSTANCE);
 				assertEquals(fileTypes.size(), javaTypes.size());
@@ -332,9 +332,9 @@ public class OCLstdlibTests extends XtextTestCase
 				}
 				assertEquals(fileClass, javaClass);
 			}
-			if (fileElement instanceof Type) {
-				List<Element> fileTypes = new ArrayList<Element>(((Type)fileElement).getSuperClass());
-				List<Element> javaTypes = new ArrayList<Element>(((Type)javaElement).getSuperClass());
+			if (fileElement instanceof org.eclipse.ocl.examples.pivot.Class) {
+				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)fileElement).getSuperClass());
+				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)javaElement).getSuperClass());
 				Collections.sort(fileTypes, MonikeredComparator.INSTANCE);
 				Collections.sort(javaTypes, MonikeredComparator.INSTANCE);
 				assertEquals(fileTypes.size(), javaTypes.size());

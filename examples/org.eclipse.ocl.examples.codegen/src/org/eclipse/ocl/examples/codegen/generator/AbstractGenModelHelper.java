@@ -364,7 +364,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	public @NonNull GenFeature getGenFeature(@NonNull Property property) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)property.getOwningType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = property.getName();
@@ -420,7 +420,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		for ( ; baseOperation.getRedefinedOperation().size() > 0; baseOperation = baseOperation.getRedefinedOperation().get(0)) {
 			;
 		}
-		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)baseOperation.getOwningType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class owningType = baseOperation.getOwningType();
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = operation.getName();
@@ -567,7 +567,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)operation.getOwningType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningType();
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + operation);
 		}
@@ -582,7 +582,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getPropertyResultType(@NonNull Property property) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)property.getOwningType();	// FIXME cast
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + property);
 		}

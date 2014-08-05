@@ -231,10 +231,10 @@ public class EcoreOCLEValidator implements EValidator
 	public static final @NonNull TracingOption VALIDATE_INSTANCE = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/instance");
 	public static final @NonNull TracingOption VALIDATE_OPAQUE_ELEMENT = new TracingOption(PivotPlugin.PLUGIN_ID, "validate/opaqueElement");
 
-	protected static void gatherTypes(@NonNull Set<Type> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull Type newType) {
+	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.examples.pivot.Class> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull org.eclipse.ocl.examples.pivot.Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariant());
-			for (Type superType : newType.getSuperClass()) {
+			for (org.eclipse.ocl.examples.pivot.Class superType : newType.getSuperClass()) {
 				if (superType != null) {
 					gatherTypes(allTypes, allConstraints, superType);
 				}

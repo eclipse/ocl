@@ -281,14 +281,14 @@ public class OCL {
         }
         else if (element instanceof Operation) {
         	Operation operation = (Operation)element;
-        	org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)operation.getOwningType();	// FIXME cast
+        	org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningType();
 			if (owningType != null) {
 				helper.setOperationContext(owningType, operation);
 			}
         }
         else if (element instanceof Property) {
         	Property property = (Property)element;
-        	org.eclipse.ocl.examples.pivot.Class owningType = (org.eclipse.ocl.examples.pivot.Class)property.getOwningType();
+        	org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
 			if (owningType != null) {
 				helper.setPropertyContext(owningType, property);
 			}

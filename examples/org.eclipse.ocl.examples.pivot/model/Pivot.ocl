@@ -37,7 +37,7 @@ p.oclIsKindOf(self.oclType())
 context Property
 def: isAttribute(p : Property) : Boolean =
 --Type.allInstances()->exists(c| c.ownedAttribute->includes(p))
-let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) and container.oclAsType(Type).ownedAttribute->includes(self)
+let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedAttribute->includes(self)
 
 --inv DerivedIsInitialised: isDerived implies ownedRule->one(stereotype = 'derivation') or ownedRule->one(stereotype = 'initial')
 

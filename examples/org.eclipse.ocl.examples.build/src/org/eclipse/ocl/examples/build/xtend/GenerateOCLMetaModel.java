@@ -91,9 +91,9 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		}
 	};
 
-	protected CollectionType findCollectionType(Iterable<Type> types, String name) {
+	protected CollectionType findCollectionType(Iterable<org.eclipse.ocl.examples.pivot.Class> types, String name) {
 		CollectionType collType = null;
-		for (Type type : types) {
+		for (org.eclipse.ocl.examples.pivot.Class type : types) {
 			if (type instanceof CollectionType) {
 				TemplateableElement unspecializedElement = type.getUnspecializedElement();
 				if (unspecializedElement instanceof CollectionType) {
@@ -126,7 +126,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		return null;
 	}
 	
-	protected DataType findPrimitiveType(Iterable<Type> types, String name) {
+	protected DataType findPrimitiveType(Iterable<org.eclipse.ocl.examples.pivot.Class> types, String name) {
 		for (Type type : types) {
 			if ((type instanceof DataType) && (type.getName().equals(name))) {
 				return (DataType)type;
@@ -156,16 +156,16 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 	}
 
 	@Override
-	protected @NonNull Collection<Type> getOclTypes(@NonNull Root root) {
-		Map<String, Type> allElements = new HashMap<String, Type>();
+	protected @NonNull Collection<org.eclipse.ocl.examples.pivot.Class> getOclTypes(@NonNull Root root) {
+		Map<String, org.eclipse.ocl.examples.pivot.Class> allElements = new HashMap<String, org.eclipse.ocl.examples.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if ((eObject instanceof Type) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
+			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
 				!(eObject instanceof Metaclass<?>) && !(eObject instanceof TupleType) &&
-				(((Type)eObject).getOwningTemplateParameter() == null)) {
-				allElements.put(((Type)eObject).getName(), (Type)eObject);
+				(((org.eclipse.ocl.examples.pivot.Class)eObject).getOwningTemplateParameter() == null)) {
+				allElements.put(((org.eclipse.ocl.examples.pivot.Class)eObject).getName(), (org.eclipse.ocl.examples.pivot.Class)eObject);
 			}
 		}
 //		if (allElements.containsKey("Boolean")) {
@@ -176,7 +176,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			allElements.remove("String");
 			allElements.remove("UnlimitedNatural");
 //		}
-			@SuppressWarnings("null")@NonNull Collection<Type> values = allElements.values();
+		@SuppressWarnings("null")@NonNull Collection<org.eclipse.ocl.examples.pivot.Class> values = allElements.values();
 		return values;
 	}
 	
@@ -248,8 +248,8 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			log.info("Saving '" + saveURI + "'");
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
-				if (eObject instanceof Type) {
-					List<Property> ownedAttribute = ((Type)eObject).getOwnedAttribute();
+				if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+					List<Property> ownedAttribute = ((org.eclipse.ocl.examples.pivot.Class)eObject).getOwnedAttribute();
 					List<Property> properties = new ArrayList<Property>(ownedAttribute);
 					Collections.sort(properties, OCLinEcoreTablesUtils.propertyComparator);
 					ownedAttribute.clear();

@@ -606,23 +606,17 @@ public class OCLinEcoreTablesUtils
 	}
 
 	protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> getActiveClassesSortedByName(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
-		Set<? extends Type> activeTypes = getActiveTypes(pPackage);
-		List<org.eclipse.ocl.examples.pivot.Class> sortedClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
-		for (Type activeType : activeTypes) {
-			if (activeType instanceof org.eclipse.ocl.examples.pivot.Class) {
-				sortedClasses.add((org.eclipse.ocl.examples.pivot.Class)activeType);
-			}
-		}
+		List<org.eclipse.ocl.examples.pivot.Class> sortedClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(getActiveTypes(pPackage));
 		Collections.sort(sortedClasses, nameComparator);
 		return sortedClasses;
 	}
 	
-	protected @NonNull Set<? extends Type> getActiveTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
+	protected @NonNull Set<? extends org.eclipse.ocl.examples.pivot.Class> getActiveTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
 		Package oclstdlibPackage = metaModelManager.getBooleanType().getPackage();
 		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
 		Type elementType = metaModelManager.getPivotType("Element");
 		if (oclstdlibPackage == pPackage) {
-			Set<Type> types = new HashSet<Type>();
+			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 			for (org.eclipse.ocl.examples.pivot.Class type : oclstdlibPackage.getOwnedType()) {
 				assert type != null;
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
@@ -636,7 +630,7 @@ public class OCLinEcoreTablesUtils
 			return types;
 		}
 		else if (pivotMetaModel == pPackage) {
-			Set<Type> types = new HashSet<Type>();
+			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 			for (DomainType type : pivotMetaModel.getOwnedType()) {
 				assert type != null;
 				boolean pruned = false;
@@ -656,8 +650,8 @@ public class OCLinEcoreTablesUtils
 						}
 					}
 				}
-				if (!pruned && (myType != null)) {
-					types.add(myType);
+				if (!pruned && (myType instanceof org.eclipse.ocl.examples.pivot.Class)) {
+					types.add((org.eclipse.ocl.examples.pivot.Class)myType);
 				}
 			}
 //			if (oclstdlibPackage != null) {
@@ -848,7 +842,7 @@ public class OCLinEcoreTablesUtils
 		return sortedProperties;
 	}
 	
-	protected @NonNull LinkedHashSet<Operation> getOperations(@NonNull Type type) {
+	protected @NonNull LinkedHashSet<Operation> getOperations(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
 		for (Operation operation : metaModelManager.getMemberOperations(type, false)) {
 			operations.add(operation);
@@ -895,7 +889,7 @@ public class OCLinEcoreTablesUtils
 		return asPackage;
 	}
 	
-	protected @NonNull LinkedHashSet<Property> getProperties(@NonNull Type type) {
+	protected @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		Set<String> names = new HashSet<String>();
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
 		for (Property property : metaModelManager.getMemberProperties(type, true)) {
@@ -1118,10 +1112,10 @@ public class OCLinEcoreTablesUtils
 //		primaryPackage.setName("ocl");
 		List<org.eclipse.ocl.examples.pivot.Class> primaryTypes = primaryPackage.getOwnedType();
 		for (Library library : metaModelManager.getLibraries()) {
-			Map<Type,Type> typeMap = new HashMap<Type,Type>();
+			Map<org.eclipse.ocl.examples.pivot.Class,org.eclipse.ocl.examples.pivot.Class> typeMap = new HashMap<org.eclipse.ocl.examples.pivot.Class,org.eclipse.ocl.examples.pivot.Class>();
 			ArrayList<org.eclipse.ocl.examples.pivot.Class> libraryTypes = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(library.getOwnedType());
 			for (org.eclipse.ocl.examples.pivot.Class secondaryType : libraryTypes) {
-				Type primaryType = DomainUtil.getNamedElement(primaryTypes, secondaryType.getName());
+				org.eclipse.ocl.examples.pivot.Class primaryType = DomainUtil.getNamedElement(primaryTypes, secondaryType.getName());
 				if (primaryType != null) {
 					typeMap.put(secondaryType, primaryType);
 				}
@@ -1129,12 +1123,12 @@ public class OCLinEcoreTablesUtils
 					primaryTypes.add(secondaryType);
 				}
 			}
-			for (Type secondaryType : libraryTypes) {
-				Type primaryType = typeMap.get(secondaryType);
+			for (org.eclipse.ocl.examples.pivot.Class secondaryType : libraryTypes) {
+				org.eclipse.ocl.examples.pivot.Class primaryType = typeMap.get(secondaryType);
 				if (primaryType != null) {
-					List<Type> primarySuperClasses = primaryType.getSuperClass();
-					for (Type secondarySuperClass : secondaryType.getSuperClass()) {
-						Type primarySuperClass = typeMap.get(secondarySuperClass);
+					List<org.eclipse.ocl.examples.pivot.Class> primarySuperClasses = primaryType.getSuperClass();
+					for (org.eclipse.ocl.examples.pivot.Class secondarySuperClass : secondaryType.getSuperClass()) {
+						org.eclipse.ocl.examples.pivot.Class primarySuperClass = typeMap.get(secondarySuperClass);
 						if (primarySuperClass == null) {
 							primarySuperClasses.add(secondarySuperClass);
 						}
@@ -1147,8 +1141,8 @@ public class OCLinEcoreTablesUtils
 				}
 			}
 		}
-		for (Type primaryType : primaryTypes) {
-			List<Type> primarySuperClasses = primaryType.getSuperClass();
+		for (org.eclipse.ocl.examples.pivot.Class primaryType : primaryTypes) {
+			List<org.eclipse.ocl.examples.pivot.Class> primarySuperClasses = primaryType.getSuperClass();
 			Type classType = DomainUtil.getNamedElement(primarySuperClasses, TypeId.CLASS_NAME);
 			Type metaclass = DomainUtil.getNamedElement(primarySuperClasses, "Classifier");
 			if ((classType != null) && (metaclass != null)) {

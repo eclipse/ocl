@@ -171,10 +171,28 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedType" ordered="false" upperBound="-1" eType="#//Class" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1" eType="#//Property" containment="true" eOpposite="#//Property/class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBehavior" ordered="false" upperBound="-1" eType="#//Behavior" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperation" upperBound="-1" eType="#//Operation" containment="true" eOpposite="#//Operation/class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The operations owned by a class. These do not include the inherited operations."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//Package" eOpposite="#//Package/ownedType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies the owning package of this classifier, if any."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" ordered="false" upperBound="-1" eType="#//Class">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="class"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The immediate superclasses of a class, from which the class inherits."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -1135,7 +1153,7 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//LanguageExpression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class" changeable="false" volatile="true" transient="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class" eOpposite="#//Class/ownedOperation">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The class that owns the operation."/>
       </eAnnotations>
@@ -1147,7 +1165,8 @@
         <details key="documentation" value="The parameters to the operation."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//Type" eOpposite="#//Type/ownedOperation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//Class" changeable="false" volatile="true" transient="true"
+        derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="postcondition" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"
         eOpposite="#//Constraint/postContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="#//Precedence"/>
@@ -1318,13 +1337,12 @@
     </eOperations>
     <eOperations name="isAttribute" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) and container.oclAsType(Type).ownedAttribute->includes(self)&#xA;&#xA;"/>
+        <details key="body" value="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedAttribute->includes(self)&#xA;&#xA;"/>
       </eAnnotations>
       <eParameters name="p" lowerBound="1" eType="#//Property"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associationClass" eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class" changeable="false" volatile="true" transient="true"
-        resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Class" eOpposite="#//Class/ownedAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The class that owns the property, and of which the property is an attribute."/>
       </eAnnotations>
@@ -1365,7 +1383,8 @@
         <details key="documentation" value="Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//Type" eOpposite="#//Type/ownedAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//Class" changeable="false" volatile="true" transient="true"
+        derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedProperty" ordered="false" upperBound="-1" eType="#//Property">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="property"/>
@@ -1858,10 +1877,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedBys" ordered="false" upperBound="-1" eType="#//TypeExtension" eOpposite="#//TypeExtension/type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1" eType="#//Property" containment="true" eOpposite="#//Property/owningType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInvariant" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperation" upperBound="-1" eType="#//Operation" containment="true" eOpposite="#//Operation/owningType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" upperBound="-1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OCLExpression #//ReferringElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="#//Type"/>

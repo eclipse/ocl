@@ -1102,10 +1102,10 @@ public class LoadTests extends XtextTestCase
 		assertEquals("PackageXXX", pivotPackageXXX.getName());
 		assertEquals("nsPrefixXXX", pivotPackageXXX.getNsPrefix());
 		assertEquals(2, pivotPackageXXX.getOwnedType().size());
-		Type pivotTypeXXX0 = pivotPackageXXX.getOwnedType().get(0);
+		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX0 = pivotPackageXXX.getOwnedType().get(0);
 		assertEquals("MutableXXX", pivotTypeXXX0.getName());
 		assertEquals("Class", pivotTypeXXX0.eClass().getName());
-		Type pivotTypeXXX1 = pivotPackageXXX.getOwnedType().get(1);
+		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX1 = pivotPackageXXX.getOwnedType().get(1);
 		assertEquals("ClassXXX", pivotTypeXXX1.getName());
 		assertEquals("Class", pivotTypeXXX1.eClass().getName());
 		assertEquals(2, pivotTypeXXX1.getOwnedAttribute().size());
@@ -1127,10 +1127,10 @@ public class LoadTests extends XtextTestCase
 		assertEquals("PackageYYY", pivotPackageYYY.getName());
 		assertEquals("nsPrefixYYY", pivotPackageYYY.getNsPrefix());
 		assertEquals(2, pivotPackageYYY.getOwnedType().size());
-		Type pivotTypeYYY0 = pivotPackageYYY.getOwnedType().get(0);
+		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY0 = pivotPackageYYY.getOwnedType().get(0);
 		assertEquals("MutableYYY", pivotTypeYYY0.getName());
 		assertEquals("DataType", pivotTypeYYY0.eClass().getName());
-		Type pivotTypeYYY1 = pivotPackageYYY.getOwnedType().get(1);
+		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY1 = pivotPackageYYY.getOwnedType().get(1);
 		assertEquals("ClassYYY", pivotTypeYYY1.getName());
 		assertEquals("Class", pivotTypeYYY1.eClass().getName());
 		assertEquals(2, pivotTypeYYY1.getOwnedAttribute().size());

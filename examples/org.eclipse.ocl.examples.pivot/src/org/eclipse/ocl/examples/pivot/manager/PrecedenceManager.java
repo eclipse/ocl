@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -143,7 +142,7 @@ public class PrecedenceManager
 		}
 	}
 
-	protected void compilePrecedenceType(@NonNull List<String> errors, @NonNull Type pivotType) {
+	protected void compilePrecedenceType(@NonNull List<String> errors, @NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
 		for (Operation operation : pivotType.getOwnedOperation()) {
 			if (operation != null) {
 				compilePrecedenceOperation(errors, operation);

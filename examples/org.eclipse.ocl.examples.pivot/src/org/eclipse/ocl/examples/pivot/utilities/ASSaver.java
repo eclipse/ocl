@@ -294,7 +294,6 @@ public class ASSaver
 		if (PivotUtil.isLibraryType(referredType)) {
 			return referredType;
 		}
-		@SuppressWarnings("unchecked")
 		org.eclipse.ocl.examples.pivot.Class resolvedType = specializations.get(referredType);
 		if (resolvedType == null) {
 			resolvedType = DomainUtil.nonNullEMF(EcoreUtil.copy((org.eclipse.ocl.examples.pivot.Class)referredType));	// FIXME cast

@@ -44,13 +44,13 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	// FIXME tests fail if keys are weak since GC is too aggressive across tests
 	// The actual types are weak keys so that parameterizations using stale types are garbage collected. 
 	//
-	private @Nullable /*WeakHash*/Map<DomainTypeParameters, WeakReference<Type>> specializations = null;
+	private @Nullable /*WeakHash*/Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
 	protected TemplateableTypeServer(@NonNull PackageServer packageServer, @NonNull DomainType domainType) {
 		super(packageServer, domainType);
 	}
 	
-	protected @NonNull Type createSpecialization(@NonNull DomainTypeParameters templateArguments) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull DomainTypeParameters templateArguments) {
 		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
@@ -98,15 +98,15 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		if (templateArguments.parametersSize() != iMax) {
 			return null;
 		}
-		Map<DomainTypeParameters, WeakReference<Type>> specializations2 = specializations;
+		Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations2 = specializations;
 		if (specializations2 == null) {
 			return null;
 		}
-		WeakReference<Type> weakReference = specializations2.get(templateArguments);
+		WeakReference<org.eclipse.ocl.examples.pivot.Class> weakReference = specializations2.get(templateArguments);
 		if (weakReference == null) {
 			return null;
 		}
-		Type type = weakReference.get();
+		org.eclipse.ocl.examples.pivot.Class type = weakReference.get();
 		if (type == null) {
 			synchronized (specializations2) {
 				type = weakReference.get();
@@ -118,35 +118,35 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		return type;
 	}
 
-	public synchronized @NonNull Type getSpecializedType(@NonNull List<? extends DomainElement> templateArguments) {
+	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull List<? extends DomainElement> templateArguments) {
 		return getSpecializedType(new DomainTypeParameters(templateArguments));
 	}
 
-	public synchronized @NonNull Type getSpecializedType(@NonNull DomainTypeParameters templateArguments) {
+	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull DomainTypeParameters templateArguments) {
 		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			throw new IllegalArgumentException("Incompatible template argument count");
 		}
-		Map<DomainTypeParameters, WeakReference<Type>> specializations2 = specializations;
+		Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations2 = specializations;
 		if (specializations2 == null) {
 			synchronized(this) {
 				specializations2 = specializations;
 				if (specializations2 == null) {
-					specializations2 = specializations = new /*Weak*/HashMap<DomainTypeParameters, WeakReference<Type>>();
+					specializations2 = specializations = new /*Weak*/HashMap<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>>();
 				}
 			}
 		}
 		synchronized (specializations2) {
-			Type specializedType = null;
-			WeakReference<Type> weakReference = specializations2.get(templateArguments);
+			org.eclipse.ocl.examples.pivot.Class specializedType = null;
+			WeakReference<org.eclipse.ocl.examples.pivot.Class> weakReference = specializations2.get(templateArguments);
 			if (weakReference != null) {
 				specializedType = weakReference.get();
 			}
 			if (specializedType == null) {
 				specializedType = createSpecialization(templateArguments);
-				specializations2.put(templateArguments, new WeakReference<Type>(specializedType));
+				specializations2.put(templateArguments, new WeakReference<org.eclipse.ocl.examples.pivot.Class>(specializedType));
 			}
 			return specializedType;
 		}

@@ -166,11 +166,11 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlInterface);
 		if (pivotElement != null) {
 			List<org.eclipse.uml2.uml.Generalization> umlGeneralizations = umlInterface.getGeneralizations();
-			List<Type> newSuperTypes = new ArrayList<Type>(Math.max(1, umlGeneralizations.size()));
+			List<org.eclipse.ocl.examples.pivot.Class> newSuperTypes = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(Math.max(1, umlGeneralizations.size()));
 			for (org.eclipse.uml2.uml.Generalization umlGeneralization : umlGeneralizations) {
 				org.eclipse.uml2.uml.Classifier umlGeneral = umlGeneralization.getGeneral();
 				if (umlGeneral != null) {
-					Type pivotGeneral = converter.getCreated(Type.class, umlGeneral);
+					org.eclipse.ocl.examples.pivot.Class pivotGeneral = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlGeneral);
 					if (!newSuperTypes.contains(pivotGeneral)) {
 						newSuperTypes.add(pivotGeneral);
 					}

@@ -155,10 +155,10 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
+			case PivotPackage.ITERATION__CLASS:
+				return basicSetClass_(null, msgs);
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNING_TYPE:
-				return basicSetOwningType(null, msgs);
 			case PivotPackage.ITERATION__POSTCONDITION:
 				return ((InternalEList<?>)getPostcondition()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__PRECONDITION:
@@ -218,8 +218,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.ITERATION__CLASS:
-				if (resolve) return getClass_();
-				return basicGetClass_();
+				return getClass_();
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				return isInvalidating();
 			case PivotPackage.ITERATION__IS_VALIDATING:
@@ -315,6 +314,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)newValue);
 				return;
+			case PivotPackage.ITERATION__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
+				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
 				return;
@@ -324,9 +326,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				getOwnedParameter().clear();
 				getOwnedParameter().addAll((Collection<? extends Parameter>)newValue);
-				return;
-			case PivotPackage.ITERATION__OWNING_TYPE:
-				setOwningType((Type)newValue);
 				return;
 			case PivotPackage.ITERATION__POSTCONDITION:
 				getPostcondition().clear();
@@ -420,6 +419,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)null);
 				return;
+			case PivotPackage.ITERATION__CLASS:
+				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
+				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
 				return;
@@ -428,9 +430,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				getOwnedParameter().clear();
-				return;
-			case PivotPackage.ITERATION__OWNING_TYPE:
-				setOwningType((Type)null);
 				return;
 			case PivotPackage.ITERATION__POSTCONDITION:
 				getPostcondition().clear();
@@ -502,7 +501,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.ITERATION__CLASS:
-				return basicGetClass_() != null;
+				return getClass_() != null;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				return ((eFlags & IS_INVALIDATING_EFLAG) != 0) != IS_INVALIDATING_EDEFAULT;
 			case PivotPackage.ITERATION__IS_VALIDATING:

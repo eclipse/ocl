@@ -44,7 +44,7 @@ public class OrphanPackageServer extends RootPackageServer
 				return orphanTypeServer;
 			}
 		}
-		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(this, (org.eclipse.ocl.examples.pivot.Class)type);
+		OrphanTypeServer orphanTypeServer = new OrphanTypeServer(this, (org.eclipse.ocl.examples.pivot.Class)type);	// FIXME cast
 		servers.put(type, new WeakReference<OrphanTypeServer>(orphanTypeServer));
 		return orphanTypeServer;
 	}

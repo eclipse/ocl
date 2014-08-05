@@ -40,11 +40,11 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 
 	@Override
 	public Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		List<Type> superClasses = object.getSuperClass();
+		List<org.eclipse.ocl.examples.pivot.Class> superClasses = object.getSuperClass();
 		for (int i = 0; i < superClasses.size(); i++) {
-			Type referredClass = superClasses.get(i);
+			org.eclipse.ocl.examples.pivot.Class referredClass = superClasses.get(i);
 			if (referredClass != null) {
-				Type resolvedClass = context.resolveType(referredClass);
+				org.eclipse.ocl.examples.pivot.Class resolvedClass = context.resolveType(referredClass);
 				superClasses.set(i, resolvedClass);
 			}
 		}

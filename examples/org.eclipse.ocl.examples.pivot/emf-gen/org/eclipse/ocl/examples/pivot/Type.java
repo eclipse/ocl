@@ -32,10 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getExtendedBys <em>Extended Bys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedInvariant <em>Owned Invariant</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperation <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getSuperClass <em>Super Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,55 +58,6 @@ public interface Type
 	 * @generated
 	 */
 	List<TypeExtension> getExtendedBys();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getOwningType <em>Owning Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Attribute</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Attribute</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedAttribute()
-	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningType
-	 * @generated
-	 */
-	@NonNull List<Property> getOwnedAttribute();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Operation</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Operation}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Operation</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Operation</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedOperation()
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningType
-	 * @generated
-	 */
-	@NonNull List<Operation> getOwnedOperation();
-
-	/**
-	 * Returns the value of the '<em><b>Super Class</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Super Class</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Class</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_SuperClass()
-	 * @generated
-	 */
-	@NonNull List<Type> getSuperClass();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Invariant</b></em>' containment reference list.

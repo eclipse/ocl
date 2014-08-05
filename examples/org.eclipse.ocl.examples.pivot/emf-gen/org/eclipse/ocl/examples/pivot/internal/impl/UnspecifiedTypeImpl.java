@@ -219,14 +219,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getExtendedBys();
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
-				return getOwnedAttribute();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
-				return getOwnedOperation();
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				return getSuperClass();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
@@ -237,10 +231,16 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return isInterface();
 			case PivotPackage.UNSPECIFIED_TYPE__NESTED_TYPE:
 				return getNestedType();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
+				return getOwnedAttribute();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
+				return getOwnedOperation();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				return getPackage();
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
+				return getSuperClass();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				if (resolve) return getLowerBound();
 				return basicGetLowerBound();
@@ -307,21 +307,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
@@ -340,12 +328,24 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				getNestedType().clear();
 				getNestedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
+				getOwnedAttribute().clear();
+				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
+				getOwnedOperation().clear();
+				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
+				getSuperClass().clear();
+				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				setLowerBound((Type)newValue);
@@ -406,17 +406,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
@@ -433,11 +424,20 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__NESTED_TYPE:
 				getNestedType().clear();
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
+				getOwnedAttribute().clear();
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
+				getOwnedOperation().clear();
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
+				getSuperClass().clear();
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				setLowerBound((Type)null);
@@ -485,14 +485,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
-				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
-				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
@@ -503,10 +497,16 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.UNSPECIFIED_TYPE__NESTED_TYPE:
 				return nestedType != null && !nestedType.isEmpty();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ATTRIBUTE:
+				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_OPERATION:
+				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
+				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				return lowerBound != null;
 			case PivotPackage.UNSPECIFIED_TYPE__UPPER_BOUND:

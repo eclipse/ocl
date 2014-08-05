@@ -86,8 +86,8 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		public BasicContinuation<?> execute() {
 			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
 			if (pivotElement != null) {
-				List<Type> superClasses = pivotElement.getSuperClass();
-				context.refreshList(Type.class, superClasses, csElement.getOwnedSuperType());
+				List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotElement.getSuperClass();
+				context.refreshList(org.eclipse.ocl.examples.pivot.Class.class, superClasses, csElement.getOwnedSuperType());
 				if (superClasses.isEmpty()) {
 					org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
 					pivotElement.getSuperClass().add(oclElementType);
@@ -237,8 +237,8 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				return false;
 			}
 			Type pivotType = csElement.getType();
-			if (pivotType != null) {
-				if (pivotType.getSuperClass().size() <= 0) {
+			if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				if (((org.eclipse.ocl.examples.pivot.Class)pivotType).getSuperClass().size() <= 0) {
 					return false;
 				}
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
@@ -412,7 +412,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	public Continuation<?> visitDataTypeCS(@NonNull DataTypeCS csDataType) {
 		DataType pivotElement = PivotUtil.getPivot(DataType.class, csDataType);
 		if (pivotElement != null) {
-			List<Type> pivotSuperClasses = pivotElement.getSuperClass();
+			List<org.eclipse.ocl.examples.pivot.Class> pivotSuperClasses = pivotElement.getSuperClass();
 			pivotSuperClasses.clear();
 			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
 			pivotSuperClasses.add(oclElementType);
@@ -429,7 +429,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	public Continuation<?> visitEnumerationCS(@NonNull EnumerationCS csEnumeration) {
 		org.eclipse.ocl.examples.pivot.Enumeration pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Enumeration.class, csEnumeration);
 		if (pivotElement != null) {
-			List<Type> pivotSuperClasses = pivotElement.getSuperClass();
+			List<org.eclipse.ocl.examples.pivot.Class> pivotSuperClasses = pivotElement.getSuperClass();
 			pivotSuperClasses.clear();
 			org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
 			pivotSuperClasses.add(oclElementType);

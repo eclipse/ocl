@@ -156,17 +156,17 @@ import com.google.common.collect.Iterables;
 
 public class MetaModelManager extends PivotStandardLibrary implements Adapter.Internal, MetaModelManageable
 {		
-	public class CompleteTypeOperationsIterable extends CompleteElementIterable<Type, Operation>
+	public class CompleteTypeOperationsIterable extends CompleteElementIterable<org.eclipse.ocl.examples.pivot.Class, Operation>
 	{
 		protected final Boolean selectStatic;	// null for static/non-static, true for static, false for non-static
 		
-		public CompleteTypeOperationsIterable(@NonNull Iterable<Type> types, boolean selectStatic) {
+		public CompleteTypeOperationsIterable(@NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> types, boolean selectStatic) {
 			super(types);
 			this.selectStatic = selectStatic;
 		}
 
 		@Override
-		protected @NonNull Iterable<Operation> getInnerIterable(@NonNull Type model) {
+		protected @NonNull Iterable<Operation> getInnerIterable(@NonNull org.eclipse.ocl.examples.pivot.Class model) {
 			return DomainUtil.nonNullEMF(model.getOwnedOperation());
 		}
 
@@ -181,17 +181,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 	}
 	
-	public class CompleteClassPropertiesIterable extends CompleteElementIterable<Type, Property>
+	public class CompleteClassPropertiesIterable extends CompleteElementIterable<org.eclipse.ocl.examples.pivot.Class, Property>
 	{
 		protected final Boolean selectStatic;	// null for static/non-static, true for static, false for non-static
 		
-		public CompleteClassPropertiesIterable(@NonNull Iterable<Type> types, boolean selectStatic) {
+		public CompleteClassPropertiesIterable(@NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> types, boolean selectStatic) {
 			super(types);
 			this.selectStatic = selectStatic;
 		}
 
 		@Override
-		protected @NonNull Iterable<Property> getInnerIterable(@NonNull Type model) {
+		protected @NonNull Iterable<Property> getInnerIterable(@NonNull org.eclipse.ocl.examples.pivot.Class model) {
 			return DomainUtil.nonNullEMF(model.getOwnedAttribute());
 		}
 
@@ -207,14 +207,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	public class CompleteClassSuperClassesIterable
-			extends CompleteElementIterable<Type, Type> {
+			extends CompleteElementIterable<org.eclipse.ocl.examples.pivot.Class, org.eclipse.ocl.examples.pivot.Class> {
 
-		public CompleteClassSuperClassesIterable(@NonNull Iterable<Type> types) {
+		public CompleteClassSuperClassesIterable(@NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> types) {
 			super(types);
 		}
 
 		@Override
-		protected @NonNull Iterable<Type> getInnerIterable(@NonNull Type model) {
+		protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> getInnerIterable(@NonNull org.eclipse.ocl.examples.pivot.Class model) {
 			return DomainUtil.nonNullEMF(model.getSuperClass());
 		}
 	}
@@ -831,9 +831,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 			return false;
 		}
-		for (Type superClass : getSuperClasses(firstType)) {
-			if ((superClass != null) && conformsTo(superClass, secondType, bindings)) {
-				return true;
+		if (firstType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : getSuperClasses((org.eclipse.ocl.examples.pivot.Class)firstType)) {
+				if ((superClass != null) && conformsTo(superClass, secondType, bindings)) {
+					return true;
+				}
 			}
 		}
 //		List<TemplateBinding> templateBindings = actualType.getTemplateBinding();
@@ -1373,6 +1375,23 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	@Deprecated
+	public @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> getAllTypes(@NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
+//		if (pivotType == null) {
+//			return EMPTY_TYPE_LIST;
+//		}
+//		return getTypeTracker(pivotType).getTypeServer().getTypes();
+		TypeServer typeServer = packageManager.findTypeServer(pivotType);
+		if (typeServer != null) {
+			@SuppressWarnings("null") @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> filter = Iterables.filter(typeServer.getPartialTypes(), org.eclipse.ocl.examples.pivot.Class.class);
+			return filter;
+		}
+		else  {
+			@SuppressWarnings("null") @NonNull List<org.eclipse.ocl.examples.pivot.Class> singletonList = Collections.singletonList(pivotType);
+			return singletonList;
+		}
+	}
+
+	@Deprecated
 	public @NonNull Iterable<Type> getAllTypes(@NonNull Type pivotType) {
 //		if (pivotType == null) {
 //			return EMPTY_TYPE_LIST;
@@ -1489,11 +1508,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return specializedType;
 	}
 
-	public @NonNull Set<DomainInheritance> getCommonClasses(@NonNull Type leftClass, @NonNull Type rightClass, @NonNull Set<DomainInheritance> commonClasses) {
+	public @NonNull Set<DomainInheritance> getCommonClasses(@NonNull org.eclipse.ocl.examples.pivot.Class leftClass, @NonNull Type rightClass, @NonNull Set<DomainInheritance> commonClasses) {
 		if (conformsTo(rightClass, leftClass, null)) {
 			commonClasses.add(leftClass.getInheritance(this));
 		}
-		for (Type superClass : leftClass.getSuperClass()) {
+		for (org.eclipse.ocl.examples.pivot.Class superClass : leftClass.getSuperClass()) {
 			if (superClass != null) {
 				Set<DomainInheritance> commonSuperClasses = getCommonClasses(superClass, rightClass, commonClasses);
 				commonClasses.addAll(commonSuperClasses);
@@ -1842,7 +1861,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 	}
 
-	public @NonNull Iterable<Comment> getLocalComments(@NonNull Type type) {
+	public @NonNull Iterable<Comment> getLocalComments(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 //		if (type == null) {
 //			return EMPTY_COMMENT_LIST;
 //		}
@@ -1876,7 +1895,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 	} */
 
-	public @NonNull Iterable<Constraint> getLocalInvariants(@NonNull Type type) {
+	public @NonNull Iterable<Constraint> getLocalInvariants(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 //		if (type == null) {
 //			return EMPTY_CONSTRAINT_LIST;
 //		}
@@ -1893,7 +1912,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return lockingAnnotation;
 	}
 
-	public @NonNull Iterable<Operation> getMemberOperations(@NonNull Type type, boolean selectStatic) {
+	public @NonNull Iterable<Operation> getMemberOperations(@NonNull org.eclipse.ocl.examples.pivot.Class type, boolean selectStatic) {
 		if (type.getOwningTemplateParameter() != null) {
 			return EMPTY_OPERATION_LIST;
 		}
@@ -1921,7 +1940,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return null;
 	}
 
-	public @NonNull Iterable<Property> getMemberProperties(@NonNull Type type, boolean selectStatic) {
+	public @NonNull Iterable<Property> getMemberProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type, boolean selectStatic) {
 		if (type.getOwningTemplateParameter() != null) {
 			return EMPTY_PROPERTY_LIST;
 		}
@@ -2682,9 +2701,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return (org.eclipse.ocl.examples.pivot.Class)type;
 	}
 	
-	public Iterable<Type> getSuperClasses(Type pivotType) {
+	public Iterable<org.eclipse.ocl.examples.pivot.Class> getSuperClasses(org.eclipse.ocl.examples.pivot.Class pivotType) {
 		if ((pivotType == null) || (pivotType.getOwningTemplateParameter() != null)) {
-			return Collections.<Type>singletonList(getOclAnyType());	// FIXME lower bound
+			return Collections.<org.eclipse.ocl.examples.pivot.Class>singletonList(getOclAnyType());	// FIXME lower bound
 		}
 		else {
 //			if (type.getTemplateBinding().size() > 0) {		// FIXME need lazy specialization
@@ -2757,7 +2776,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (thatType instanceof CollectionType) {
 			thatType = ((CollectionType)thatType).getElementType();
 		}
-		if ((thatType == null) || (thatType instanceof DataType)) {
+		if ((thatType == null) || (thatType instanceof DataType) || !(thatType instanceof org.eclipse.ocl.examples.pivot.Class)) {
 			return;
 		}
 		Type thisType = thisProperty.getOwningType();
@@ -2786,8 +2805,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE));
 			newOpposite.setIsRequired(true);
 		}
-		thatType = getMutable((org.eclipse.ocl.examples.pivot.Class)thatType);		// FIXME cast
-		thatType.getOwnedAttribute().add(newOpposite);		// WIP moved for debugging
+		thatType = getMutable((org.eclipse.ocl.examples.pivot.Class)thatType);
+		((org.eclipse.ocl.examples.pivot.Class)thatType).getOwnedAttribute().add(newOpposite);		// WIP moved for debugging
 		newOpposite.setOpposite(thisProperty);
 		thisProperty.setOpposite(newOpposite);
 	}
@@ -2834,12 +2853,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type == MetaModelManager.class;
 	}
 
-	public boolean isSuperClassOf(@NonNull Type unspecializedFirstType, @NonNull Type secondType) {
-		Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);	// FIXME cast
+	public boolean isSuperClassOf(@NonNull org.eclipse.ocl.examples.pivot.Class unspecializedFirstType, @NonNull org.eclipse.ocl.examples.pivot.Class secondType) {
+		org.eclipse.ocl.examples.pivot.Class unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);	// FIXME cast
 		if (unspecializedFirstType == unspecializedSecondType) {
 			return true;
 		}
-		for (Type superClass : getSuperClasses(unspecializedSecondType)) {
+		for (org.eclipse.ocl.examples.pivot.Class superClass : getSuperClasses(unspecializedSecondType)) {
 			if ((superClass != null) && isSuperClassOf(unspecializedFirstType, superClass)) {
 				return true;
 			}
@@ -3245,7 +3264,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return baseOperation;
 	}
 
-	public @Nullable Set<Operation> resolveLocalOperation(@NonNull Type pivotClass, @NonNull String operationName, Type... pivotArguments) {
+	public @Nullable Set<Operation> resolveLocalOperation(@NonNull org.eclipse.ocl.examples.pivot.Class pivotClass, @NonNull String operationName, Type... pivotArguments) {
 		@Nullable Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = null; 	// FIXME
 		Set<Operation> pivotOperations = null;
 		for (Operation pivotOperation : pivotClass.getOwnedOperation()) {
@@ -3286,7 +3305,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return pivotOperations;
 	}
 
-	public Operation resolveOperation(@NonNull Type leftType, @NonNull String operationName, Type... rightTypes) {
+	public Operation resolveOperation(@NonNull org.eclipse.ocl.examples.pivot.Class leftType, @NonNull String operationName, Type... rightTypes) {
 		Set<Operation> candidateOperations = resolveOperations(leftType, operationName, rightTypes);
 		if (candidateOperations == null) {
 			return null;
@@ -3297,15 +3316,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return candidateOperations.iterator().next();
 	}
 
-	public Set<Operation> resolveOperations(@NonNull Type pivotClass, @NonNull String operationName, Type... pivotArguments) {
+	public Set<Operation> resolveOperations(@NonNull org.eclipse.ocl.examples.pivot.Class pivotClass, @NonNull String operationName, Type... pivotArguments) {
 		@SuppressWarnings("unused")
 		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, pivotClass);
 		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
 		for (TemplateBinding templateBinding : pivotClass.getTemplateBinding()) {
 			TemplateSignature signature = templateBinding.getSignature();
 			TemplateableElement template = signature.getTemplate();
-			if (template instanceof Type) {
-				Set<Operation> morePivotOperations = resolveLocalOperation((Type) template, operationName, pivotArguments);
+			if (template instanceof org.eclipse.ocl.examples.pivot.Class) {
+				Set<Operation> morePivotOperations = resolveLocalOperation((org.eclipse.ocl.examples.pivot.Class) template, operationName, pivotArguments);
 				if (morePivotOperations != null) {
 					if (pivotOperations == null) {
 						pivotOperations = morePivotOperations;
@@ -3317,17 +3336,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		if (pivotOperations == null) {
-			List<Type> superClasses = pivotClass.getSuperClass();
+			List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotClass.getSuperClass();
 			if (!superClasses.isEmpty()) {
-				for (Type superClass : superClasses) {
-					if (superClass != null) {
-						Set<Operation> superOperations = resolveOperations(superClass, operationName, pivotArguments);
-						if (superOperations != null) {
-							if (pivotOperations == null) {
-								pivotOperations = superOperations;
-							} else {
-								pivotOperations.addAll(superOperations);
-							}
+				for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
+					Set<Operation> superOperations = resolveOperations(superClass, operationName, pivotArguments);
+					if (superOperations != null) {
+						if (pivotOperations == null) {
+							pivotOperations = superOperations;
+						} else {
+							pivotOperations.addAll(superOperations);
 						}
 					}
 				}

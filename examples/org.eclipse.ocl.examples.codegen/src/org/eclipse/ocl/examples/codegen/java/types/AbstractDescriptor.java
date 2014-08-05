@@ -99,6 +99,9 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		else if (javaClass == Property.class) {
 			javaClass = DomainProperty.class;
 		}
+		else if (javaClass == org.eclipse.ocl.examples.pivot.Class.class) {
+			javaClass = DomainType.class;
+		}
 		else if (javaClass == Type.class) {
 			javaClass = DomainType.class;
 		}

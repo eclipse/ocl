@@ -508,7 +508,7 @@ public class OCLstdlib extends ASResourceImpl
 		protected void installOclTypes() {
 			final List<Class> ownedTypes = library.getOwnedType();
 			Class type;
-			List<Type> superClasses;
+			List<Class> superClasses;
 			ownedTypes.add(type = _Class);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OclAny);
@@ -584,7 +584,7 @@ public class OCLstdlib extends ASResourceImpl
 			final List<Class> ownedTypes = library.getOwnedType();
 			final List<Class> orphanTypes = orphans.getOwnedType();
 			CollectionType type;
-			List<Type> superClasses;
+			List<Class> superClasses;
 			orphanTypes.add(type = _Bag_Bag_collectNested_V);
 			type.setUnspecializedElement(_Bag_Bag_T);
 			type.setElementType(_Bag_collectNested_V);
@@ -1228,7 +1228,7 @@ public class OCLstdlib extends ASResourceImpl
 			final List<Class> ownedTypes = library.getOwnedType();
 			final List<Class> orphanTypes = orphans.getOwnedType();
 			Metaclass<?> type;
-			List<Type> superClasses;
+			List<Class> superClasses;
 			orphanTypes.add(type = _Metaclass_UnlimitedNatural_oclAsType_TT);
 			type.setUnspecializedElement(_Metaclass);
 			type.setInstanceType(_UnlimitedNatural_oclAsType_TT);
@@ -1359,7 +1359,7 @@ public class OCLstdlib extends ASResourceImpl
 		protected void installTupleTypes() {
 			final List<Class> orphanTypes = orphans.getOwnedType();
 			TupleType type;
-			List<Type> superClasses;
+			List<Class> superClasses;
 			orphanTypes.add(type = _Tuple);
 			superClasses = type.getSuperClass();
 			superClasses.add(_OclTuple);
@@ -1395,7 +1395,7 @@ public class OCLstdlib extends ASResourceImpl
 		protected void installLambdaTypes() {
 			final List<Class> orphanTypes = orphans.getOwnedType();
 			LambdaType type;
-			List<Type> superClasses;
+			List<Class> superClasses;
 			orphanTypes.add(type = _Lambda_Bag_T);
 			type.setContextType(_Bag_T);
 			type.setResultType(_Boolean);

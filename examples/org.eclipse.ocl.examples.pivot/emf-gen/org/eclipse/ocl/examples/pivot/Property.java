@@ -461,33 +461,6 @@ public interface Property
 	void setReferredProperty(Property value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Type</em>' container reference.
-	 * @see #setOwningType(Type)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_OwningType()
-	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute
-	 * @generated
-	 */
-	Type getOwningType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getOwningType <em>Owning Type</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' container reference.
-	 * @see #getOwningType()
-	 * @generated
-	 */
-	void setOwningType(Type value);
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -502,17 +475,32 @@ public interface Property
 	boolean validateCompatibleDefaultExpression(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
-	 * Returns the value of the '<em><b>Class</b></em>' reference.
+	 * Returns the value of the '<em><b>Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttribute <em>Owned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The class that owns the property, and of which the property is an attribute.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Class</em>' reference.
+	 * @return the value of the '<em>Class</em>' container reference.
+	 * @see #setClass_(org.eclipse.ocl.examples.pivot.Class)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Class()
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedAttribute
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
 
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class</em>' container reference.
+	 * @see #getClass_()
+	 * @generated
+	 */
+	void setClass_(org.eclipse.ocl.examples.pivot.Class value);
+
 	@NonNull PropertyId getPropertyId();
+
+	org.eclipse.ocl.examples.pivot.Class getOwningType();
 } // Property

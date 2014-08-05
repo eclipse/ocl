@@ -622,8 +622,8 @@ public class PackageManager implements PackageServerParent
 		}
 	}
 
-	void resolveSuperClasses(@NonNull Type specializedClass, @NonNull Type unspecializedClass, Map<TemplateParameter, ParameterableElement> allBindings) {
-		for (Type superType : unspecializedClass.getSuperClass()) {
+	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass, Map<TemplateParameter, ParameterableElement> allBindings) {
+		for (org.eclipse.ocl.examples.pivot.Class superType : unspecializedClass.getSuperClass()) {
 			List<TemplateBinding> superTemplateBindings = superType.getTemplateBinding();
 			if (superTemplateBindings.size() > 0) {
 				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
@@ -639,20 +639,20 @@ public class PackageManager implements PackageServerParent
 				TypeServer superTypeServer = metaModelManager.getTypeServer(unspecializedSuperType);
 				if ((superTypeServer instanceof CollectionTypeServer) && (superTemplateArgumentList.size() == 1)) {
 					ParameterableElement templateArgument = superTemplateArgumentList.get(0);
-					if (templateArgument instanceof Type) {
-						Type specializedSuperType = ((CollectionTypeServer)superTypeServer).getSpecializedType((Type)templateArgument, null, null);
+					if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Class) {
+						org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((CollectionTypeServer)superTypeServer).getSpecializedType((org.eclipse.ocl.examples.pivot.Class)templateArgument, null, null);
 						specializedClass.getSuperClass().add(specializedSuperType);
 					}
 				}
 				else if ((superTypeServer instanceof MetaclassServer) && (superTemplateArgumentList.size() == 1)) {
 					ParameterableElement templateArgument = superTemplateArgumentList.get(0);
-					if (templateArgument instanceof Type) {
-						Type superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass((Type)templateArgument);
+					if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Class) {
+						org.eclipse.ocl.examples.pivot.Class superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass((org.eclipse.ocl.examples.pivot.Class)templateArgument);
 						specializedClass.getSuperClass().add(superMetaclass);
 					}
 				}
 				else if (superTypeServer instanceof TemplateableTypeServer) {
-					Type specializedSuperType = ((TemplateableTypeServer)superTypeServer).getSpecializedType(superTemplateArgumentList);
+					org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((TemplateableTypeServer)superTypeServer).getSpecializedType(superTemplateArgumentList);
 					specializedClass.getSuperClass().add(specializedSuperType);
 				}
 			}

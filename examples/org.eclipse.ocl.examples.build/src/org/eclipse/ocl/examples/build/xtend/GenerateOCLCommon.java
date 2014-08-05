@@ -53,7 +53,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.AS2Moniker;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.xtext.util.Strings;
@@ -225,13 +224,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
-	protected @NonNull Set<Type> getAllTypes(@NonNull Root root) {
-		Set<Type> allElements = new HashSet<Type>();
+	protected @NonNull Set<org.eclipse.ocl.examples.pivot.Class> getAllTypes(@NonNull Root root) {
+		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if (eObject instanceof Type) {
-				allElements.add((Type)eObject);
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+				allElements.add((org.eclipse.ocl.examples.pivot.Class)eObject);
 			}
 		}
 		return allElements;
@@ -246,16 +245,16 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return moniker;
 	}
 
-	protected @NonNull Collection<Type> getOclTypes(@NonNull Root root) {
-		Set<Type> allElements = new HashSet<Type>();
+	protected @NonNull Collection<org.eclipse.ocl.examples.pivot.Class> getOclTypes(@NonNull Root root) {
+		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if ((eObject instanceof Type) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
+			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
 				!(eObject instanceof Metaclass<?>) && !(eObject instanceof TupleType) &&
-				(((Type)eObject).getOwningTemplateParameter() == null)) {
-				allElements.add((Type)eObject);
+				(((org.eclipse.ocl.examples.pivot.Class)eObject).getOwningTemplateParameter() == null)) {
+				allElements.add((org.eclipse.ocl.examples.pivot.Class)eObject);
 			}
 		}
 		return allElements;
@@ -275,7 +274,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull String getPartialName(@NonNull Property property) {
-		Type owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
 		if (owningType == null) {
 			return "null_" + javaName(property);
 		}
@@ -345,14 +344,14 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<Element> getSortedCommentedElements(@NonNull Root root) {
-		Collection<Type> oclTypes = getOclTypes(root);
+		Collection<org.eclipse.ocl.examples.pivot.Class> oclTypes = getOclTypes(root);
 		Set<Element> allElements = new HashSet<Element>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
 			if ((eObject instanceof Element) && !(eObject instanceof Constraint) &&
 				!((eObject instanceof Property) && (((Property)eObject).getOwningType() == null)) &&
-				!((eObject instanceof Type) && !oclTypes.contains(eObject))) {
+				!((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !oclTypes.contains(eObject))) {
 				Element t = (Element)eObject;
 				if (t.getOwnedComment().size() > 0) {
 					allElements.add(t);
@@ -398,7 +397,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<Iteration> getSortedIterations(@NonNull Type type, @NonNull List<Iteration> allIterations) {
+	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull List<Iteration> allIterations) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation operation : type.getOwnedOperation()) {
 			if (allIterations.contains(operation)) {
@@ -452,8 +451,8 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<Type> getSortedOclTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
-		List<Type> sortedElements = new ArrayList<Type>(getOclTypes(getRootPackage(pkg)));
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedOclTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
+		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(getOclTypes(getRootPackage(pkg)));
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}
@@ -473,7 +472,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<Operation> getSortedOperations(@NonNull Type type, @NonNull List<Operation> allOperations) {
+	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull List<Operation> allOperations) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation operation : type.getOwnedOperation()) {
 			if (allOperations.contains(operation)) {
@@ -504,26 +503,26 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<Type> getSortedOwningTypes(@NonNull List<? extends Operation> operations) {
-		Set<Type> allElements = new HashSet<Type>();
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedOwningTypes(@NonNull List<? extends Operation> operations) {
+		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		for (Operation operation : operations) {
 			if (operation.getOwningType() != null) {
 				allElements.add(operation.getOwningType());
 			}
 		}
-		List<Type> sortedElements = new ArrayList<Type>(allElements);
+		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}
 
-	protected @NonNull List<Type> getSortedOwningTypes2(@NonNull List<? extends Property> properties) {
-		Set<Type> allElements = new HashSet<Type>();
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedOwningTypes2(@NonNull List<? extends Property> properties) {
+		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		for (Property property : properties) {
 			if (property.getOwningType() != null) {
 				allElements.add(property.getOwningType());
 			}
 		}
-		List<Type> sortedElements = new ArrayList<Type>(allElements);
+		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}
@@ -548,19 +547,19 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<Type> getSortedParameterTypes(@NonNull Root root) {
-		Set<Type> allElements = new HashSet<Type>();
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedParameterTypes(@NonNull Root root) {
+		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if (eObject instanceof Type) {
-				Type t = (Type)eObject;
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+				org.eclipse.ocl.examples.pivot.Class t = (org.eclipse.ocl.examples.pivot.Class)eObject;
 				if (t.getOwningTemplateParameter() != null) {
 					allElements.add(t);
 				}
 			}
 		}
-		List<Type> sortedElements = new ArrayList<Type>(allElements);
+		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}
@@ -600,13 +599,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<Property> getSortedProperties(@NonNull Type type) {
+	protected @NonNull List<Property> getSortedProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		List<Property> sortedElements = new ArrayList<Property>(type.getOwnedAttribute());
 		Collections.sort(sortedElements, OCLinEcoreTablesUtils.propertyComparator);
 		return sortedElements;
 	}
 
-	protected @NonNull List<Property> getSortedProperties(@NonNull Type type, @NonNull List<Property> allProperties) {
+	protected @NonNull List<Property> getSortedProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull List<Property> allProperties) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property property : type.getOwnedAttribute()) {
 			if (allProperties.contains(property)) {
@@ -684,15 +683,11 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperclassesInPackage(@NonNull Type type) {	// FIXME org.eclipse.ocl.examples.pivot.Class
+	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperclassesInPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		List<org.eclipse.ocl.examples.pivot.Class> allElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
-		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (Type superclass : type.getSuperClass()) {
-				if (superclass instanceof org.eclipse.ocl.examples.pivot.Class) {
-					if (getRootPackage(((org.eclipse.ocl.examples.pivot.Class)superclass).getPackage()) == getRootPackage(((org.eclipse.ocl.examples.pivot.Class)type).getPackage())) {
-						allElements.add((org.eclipse.ocl.examples.pivot.Class)superclass);
-					}
-				}
+		for (org.eclipse.ocl.examples.pivot.Class superclass : type.getSuperClass()) {
+			if (getRootPackage(superclass.getPackage()) == getRootPackage(type.getPackage())) {
+				allElements.add(superclass);
 			}
 		}
 		return allElements;

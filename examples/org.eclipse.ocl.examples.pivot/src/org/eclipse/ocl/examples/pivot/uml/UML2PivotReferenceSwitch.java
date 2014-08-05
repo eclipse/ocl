@@ -78,7 +78,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 		assert umlClass != null;
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlClass);
 		if (pivotElement != null) {
-			doSwitchAll(Type.class, pivotElement.getSuperClass(), umlClass.getSuperClasses());
+			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClass(), umlClass.getSuperClasses());
 			if (pivotElement.getSuperClass().isEmpty()) {
 				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
 				pivotElement.getSuperClass().add(oclElementType);
@@ -152,7 +152,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 					}
 				}
 			}
-			Type pivotType = null;
+			org.eclipse.ocl.examples.pivot.Class pivotType = null;
 			org.eclipse.uml2.uml.Association umlAssociation = umlProperty.getAssociation();
 			if (umlAssociation != null) {
 				if (umlProperty.getOwningAssociation() != null) {
@@ -162,14 +162,14 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 				if (opposite != null) {
 					org.eclipse.uml2.uml.Type oppositeType = opposite.getType();
 					if (oppositeType != null) {
-						pivotType = converter.getCreated(Type.class, oppositeType);
+						pivotType = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, oppositeType);
 					}
 				}
 			}
 			if (pivotType == null) {
 				EObject eContainer = umlProperty.eContainer();
 				if (eContainer !=null){
-					pivotType = converter.getCreated(Type.class, eContainer);
+					pivotType = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eContainer);
 				}
 			}
 			if (pivotType != null) {

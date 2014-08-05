@@ -150,7 +150,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		super(context);
 	}
 
-	protected void installOperationContainment(@NonNull Type modelType, @NonNull Type contextType) {
+	protected void installOperationContainment(@NonNull Type modelType, @NonNull org.eclipse.ocl.examples.pivot.Class contextType) {
 		List<Operation> newContextOperations = modelType2contextOperations.get(modelType);
 		List<Operation> oldContextOperations = contextType.getOwnedOperation();
 		if ((newContextOperations == null) || newContextOperations.isEmpty()) {
@@ -206,7 +206,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		PivotUtil.refreshSet(nestedPackages, nestedContextRoots);
 	}
 
-	protected void installPropertyContainment(@NonNull Type modelType, @NonNull Type contextType, @NonNull List<Constraint> allInvariants) {
+	protected void installPropertyContainment(@NonNull Type modelType, @NonNull org.eclipse.ocl.examples.pivot.Class contextType, @NonNull List<Constraint> allInvariants) {
 		List<Property> contextProperties = modelType2contextProperties.get(modelType);
 		if (contextProperties == null) {
 			contextType.getOwnedAttribute().clear();
@@ -533,7 +533,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		if ((modelProperty != null) && !modelProperty.eIsProxy()) {
 			context.refreshName(contextProperty, DomainUtil.nonNullModel(modelProperty.getName()));
 			contextProperty.setType(modelProperty.getType());
-			org.eclipse.ocl.examples.pivot.Class modelClassifier = (org.eclipse.ocl.examples.pivot.Class)modelProperty.getOwningType();	// FIXME cast
+			org.eclipse.ocl.examples.pivot.Class modelClassifier = modelProperty.getOwningType();
 			if (modelClassifier != null) {
 				refreshContextType(modelClassifier, null);
 				registerProperty(modelClassifier, contextProperty);

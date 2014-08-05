@@ -50,13 +50,13 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 	// FIXME tests fail if keys are weak since GC is too aggressive across tests
 	// The actual types are weak keys so that parameterizations using stale types are garbage collected. 
 	//
-	private @Nullable /*WeakHash*/Map<CollectionTypeParameters<Type>, WeakReference<Type>> specializations = null;
+	private @Nullable /*WeakHash*/Map<CollectionTypeParameters<Type>, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
 	protected CollectionTypeServer(@NonNull PackageServer packageServer, @NonNull DomainCollectionType domainType) {
 		super(packageServer, domainType);
 	}
 	
-	protected @NonNull Type createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
 		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
@@ -101,15 +101,15 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		if (templateParameters.size() != 1) {
 			return null;
 		}
-		Map<CollectionTypeParameters<Type>, WeakReference<Type>> specializations2 = specializations;
+		Map<CollectionTypeParameters<Type>, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations2 = specializations;
 		if (specializations2 == null) {
 			return null;
 		}
-		WeakReference<Type> weakReference = specializations2.get(typeParameters);
+		WeakReference<org.eclipse.ocl.examples.pivot.Class> weakReference = specializations2.get(typeParameters);
 		if (weakReference == null) {
 			return null;
 		}
-		Type type = weakReference.get();
+		org.eclipse.ocl.examples.pivot.Class type = weakReference.get();
 		if (type == null) {
 			synchronized (specializations2) {
 				type = weakReference.get();
@@ -121,7 +121,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		return type;
 	}
 
-	public synchronized @NonNull Type getSpecializedType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		assert getPivotType() instanceof CollectionType;
 		IntegerValue lower2 = lower;
 		IntegerValue upper2 = upper;
@@ -132,24 +132,24 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 			upper2 = ValuesUtil.UNLIMITED_VALUE;
 		}
 		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParameters<Type>(elementType, lower2, upper2);
-		Map<CollectionTypeParameters<Type>, WeakReference<Type>> specializations2 = specializations;
+		Map<CollectionTypeParameters<Type>, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations2 = specializations;
 		if (specializations2 == null) {
 			synchronized(this) {
 				specializations2 = specializations;
 				if (specializations2 == null) {
-					specializations2 = specializations = new /*Weak*/HashMap<CollectionTypeParameters<Type>, WeakReference<Type>>();
+					specializations2 = specializations = new /*Weak*/HashMap<CollectionTypeParameters<Type>, WeakReference<org.eclipse.ocl.examples.pivot.Class>>();
 				}
 			}
 		}
 		synchronized (specializations2) {
-			Type specializedType = null;
-			WeakReference<Type> weakReference = specializations2.get(typeParameters);
+			org.eclipse.ocl.examples.pivot.Class specializedType = null;
+			WeakReference<org.eclipse.ocl.examples.pivot.Class> weakReference = specializations2.get(typeParameters);
 			if (weakReference != null) {
 				specializedType = weakReference.get();
 			}
 			if (specializedType == null) {
 				specializedType = createSpecialization(typeParameters);
-				specializations2.put(typeParameters, new WeakReference<Type>(specializedType));
+				specializations2.put(typeParameters, new WeakReference<org.eclipse.ocl.examples.pivot.Class>(specializedType));
 			}
 			return specializedType;
 		}

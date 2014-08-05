@@ -15,7 +15,6 @@ import org.eclipse.ocl.examples.pivot.CollectionType
 import org.eclipse.ocl.examples.pivot.DataType
 import org.eclipse.ocl.examples.pivot.Package
 import org.eclipse.ocl.examples.pivot.Root
-import org.eclipse.ocl.examples.pivot.Type
 
 public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 {
@@ -49,7 +48,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			«ENDFOR»
 	'''}
 	
-	protected def String defineCollectionTypeName(Set<Type> allTypes, String typeName) {
+	protected def String defineCollectionTypeName(Set<org.eclipse.ocl.examples.pivot.Class> allTypes, String typeName) {
 		var CollectionType collectionType = allTypes.findCollectionType(typeName);
 		var collectionName = collectionType.getPrefixedSymbolName("_"+typeName);
 		var signatureName = collectionType.ownedTemplateSignature.getPrefixedSymbolName("_"+typeName+"_");
@@ -61,7 +60,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 	'''
 	}
 	
-	protected def String definePrimitiveTypeName(Set<Type> allTypes, String typeName) {
+	protected def String definePrimitiveTypeName(Set<org.eclipse.ocl.examples.pivot.Class> allTypes, String typeName) {
 		var DataType primitiveType = allTypes.findPrimitiveType(typeName);
 	'''
 		protected final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();

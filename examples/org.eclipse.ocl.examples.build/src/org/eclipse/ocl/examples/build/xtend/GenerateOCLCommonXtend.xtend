@@ -114,7 +114,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
 				«ENDIF»
 				CollectionType type;
-				List<Type> superClasses;
+				List<Class> superClasses;
 				«FOR type : pkg.getRootPackage().getSortedCollectionTypes()»
 				«IF type.unspecializedElement == null»
 				ownedTypes.add(type = «type.getSymbolName()»);
@@ -239,7 +239,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			protected void installLambdaTypes() {
 				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
 				LambdaType type;
-				List<Type> superClasses;
+				List<Class> superClasses;
 				«FOR type : allLambdaTypes»
 					orphanTypes.add(type = «type.getSymbolName()»);
 					type.setContextType(«type.contextType.getSymbolName()»);
@@ -263,7 +263,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
 				«ENDIF»
 				Metaclass<?> type;
-				List<Type> superClasses;
+				List<Class> superClasses;
 				«FOR type : allMetaclasses»
 					«IF type.unspecializedElement == null»
 						ownedTypes.add(type = «type.getSymbolName()»);
@@ -284,7 +284,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			protected void installOclTypes() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
 				Class type;
-				List<Type> superClasses;
+				List<Class> superClasses;
 				«FOR type : allOclTypes»
 					ownedTypes.add(type = «type.getSymbolName()»);
 					«IF !(type instanceof AnyType)»
@@ -512,7 +512,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			protected void installTupleTypes() {
 				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
 				TupleType type;
-				List<Type> superClasses;
+				List<Class> superClasses;
 				«FOR type : allTupleTypes»
 					orphanTypes.add(type = «type.getSymbolName()»);
 					«FOR property : type.getSortedProperties()»
@@ -553,7 +553,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String emitSuperClasses(Type type) {
+	protected def String emitSuperClasses(org.eclipse.ocl.examples.pivot.Class type) {
 		var superClasses = type.getSuperclassesInPackage();
 		'''
 			«IF superClasses.size() > 0»

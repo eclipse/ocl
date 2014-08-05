@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
@@ -131,12 +130,12 @@ public class ConstraintMerger extends AbstractProjectComponent
 						if ((eObject instanceof Library) || (eObject instanceof Orphanage)) {
 							tit.prune();
 						}
-						else if (eObject instanceof Type) {
-							Type mergeType = (Type)eObject;
+						else if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+							org.eclipse.ocl.examples.pivot.Class mergeType = (org.eclipse.ocl.examples.pivot.Class)eObject;
 							TypeServer typeServer = metaModelManager.getTypeServer(mergeType);
 							for (DomainType dType : typeServer.getPartialTypes()) {
-								if (dType instanceof Type) {
-									Type primaryType = (Type)dType;
+								if (dType instanceof org.eclipse.ocl.examples.pivot.Class) {
+									org.eclipse.ocl.examples.pivot.Class primaryType = (org.eclipse.ocl.examples.pivot.Class)dType;
 									if (primaryType.eResource() == asResource) {
 										mergeType(metaModelManager, primaryType, mergeType);
 										break;
@@ -179,7 +178,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		}
 	}
 
-	protected void mergeType(@NonNull MetaModelManager metaModelManager, @NonNull Type primaryType, @NonNull Type mergeType) {
+	protected void mergeType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.ocl.examples.pivot.Class primaryType, @NonNull org.eclipse.ocl.examples.pivot.Class mergeType) {
 		List<Constraint> mergeInvariants = mergeType.getOwnedInvariant();
 		List<Constraint> primaryInvariants = primaryType.getOwnedInvariant();
 		for (Constraint mergeInvariant : new ArrayList<Constraint>(mergeInvariants)) {

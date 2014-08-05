@@ -410,7 +410,7 @@ public class PropertyCallExpImpl
 	public DomainType getSpecializedReferredPropertyOwningType()
 	{
 		Property referredProperty = getReferredProperty();
-		Type referencedType = referredProperty.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class referencedType = referredProperty.getClass_();
 		if (!TemplateSpecialisation.needsSpecialisation(referencedType)) {
 			return referencedType;
 		}

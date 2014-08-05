@@ -28,34 +28,15 @@
         <generalization xmi:id="_XpnTEX7VEeOu79LxSz8Ylw" general="_v7rW4JL1Ed-tR9a-2UcrVA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_FtxH4NuVEeCDCuGrEZi3xA" name="Operation">
-        <ownedAttribute xmi:id="_ouPOwNuaEeCDCuGrEZi3xA" name="owningType" type="_6qQXINuUEeCDCuGrEZi3xA" association="_PlOGcNubEeCDCuGrEZi3xA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBX7VEeOu79LxSz8Ylw"/>
+        <ownedAttribute xmi:id="_ahoT8BpPEeSM9LreJtBwBg" name="owningType" type="_v7rW4JL1Ed-tR9a-2UcrVA" isReadOnly="true" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cumh0BpPEeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_Hk7BUNuWEeCDCuGrEZi3xA" name="Property">
-        <ownedAttribute xmi:id="_2GwvENuaEeCDCuGrEZi3xA" name="owningType" type="_6qQXINuUEeCDCuGrEZi3xA" association="_7j7iYNuaEeCDCuGrEZi3xA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBn7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_L-zlYH9cEeOrlIuDtf7a6A" name="class" type="_v7rW4JL1Ed-tR9a-2UcrVA" isReadOnly="true" isDerived="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OyXSIH9cEeOrlIuDtf7a6A"/>
+        <ownedAttribute xmi:id="_mWx9ABpPEeSM9LreJtBwBg" name="owningType" type="_v7rW4JL1Ed-tR9a-2UcrVA" isReadOnly="true" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mWx9ARpPEeSM9LreJtBwBg"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_6qQXINuUEeCDCuGrEZi3xA" name="Type" isAbstract="true">
-        <ownedAttribute xmi:id="_-gU0UNuVEeCDCuGrEZi3xA" name="ownedAttribute" type="_Hk7BUNuWEeCDCuGrEZi3xA" isOrdered="true" aggregation="composite" association="_7j7iYNuaEeCDCuGrEZi3xA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiB37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiCH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_LEIIkNuVEeCDCuGrEZi3xA" name="ownedOperation" type="_FtxH4NuVEeCDCuGrEZi3xA" isOrdered="true" aggregation="composite" association="_PlOGcNubEeCDCuGrEZi3xA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiCX7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiCn7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_l2_4sNuWEeCDCuGrEZi3xA" name="superClass" type="_6qQXINuUEeCDCuGrEZi3xA" isOrdered="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiC37VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiDH7VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_7j7iYNuaEeCDCuGrEZi3xA" name="A_ownedAttribute_owningType" memberEnd="_-gU0UNuVEeCDCuGrEZi3xA _2GwvENuaEeCDCuGrEZi3xA"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_PlOGcNubEeCDCuGrEZi3xA" name="A_ownedOperation_owningType" memberEnd="_LEIIkNuVEeCDCuGrEZi3xA _ouPOwNuaEeCDCuGrEZi3xA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_ym0uQK5vEd-xTJkHwX_SlQ" name="OCL_Constraints">
       <packagedElement xmi:type="uml:Class" xmi:id="_1blU4K5vEd-xTJkHwX_SlQ" name="Constraint">
@@ -491,5 +472,7 @@
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Package>
-  <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" base_Property="_L-zlYH9cEeOrlIuDtf7a6A" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_j37U8BpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_ahoT8BpPEeSM9LreJtBwBg" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_mWx9AhpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_mWx9ABpPEeSM9LreJtBwBg" isResolveProxies="false"/>
 </xmi:XMI>

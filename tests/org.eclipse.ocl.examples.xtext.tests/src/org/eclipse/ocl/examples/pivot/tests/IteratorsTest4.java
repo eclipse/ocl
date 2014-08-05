@@ -484,7 +484,7 @@ public class IteratorsTest4 extends PivotTestSuite
      * Tests that the closure() iterator handles cycles.
      */
     @Test public void test_closure_cycles() {
-    	@SuppressWarnings("null") @NonNull Type packageMetaclass = metaModelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
         Property nestedPackage = getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
         Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);

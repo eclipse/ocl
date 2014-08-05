@@ -52,7 +52,6 @@ public class HTMLExportOCLValidationResultTests extends AbstractExportOCLValidat
 		assertTrue("Expected \"" + expression + "\" to be true", (Boolean) xPathResult);
 	}
 
-	@SuppressWarnings("deprecation")
 	protected @NonNull String doTest() throws IOException {
 		String exported = exporter.export(rootNode, exportedFileName);
 		FileWriter writer = new FileWriter(exportedFileName);

@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.util.PivotSwitch;
@@ -144,8 +143,8 @@ public class CompleteOCLSplitter
 
 		@Override
 		public EObject caseOperation(Operation object) {
-			Type parent = object.getOwningType();
-			Type separateParent = getSeparate(parent);
+			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class separateParent = getSeparate(parent);
 			List<Operation> separateSiblings = separateParent.getOwnedOperation();
 			@SuppressWarnings("serial")
 			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
@@ -194,8 +193,8 @@ public class CompleteOCLSplitter
 
 		@Override
 		public EObject caseProperty(Property object) {
-			Type parent = object.getOwningType();
-			Type separateParent = getSeparate(parent);
+			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class separateParent = getSeparate(parent);
 			List<Property> separateSiblings = separateParent.getOwnedAttribute();
 			@SuppressWarnings("serial")
 			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)

@@ -705,7 +705,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
 		final @NonNull MetaModelManager metaModelManager = packageManager.getMetaModelManager();
-		final Iterator<Type> iterator = metaModelManager.getSuperClasses(getPivotType()).iterator();			// FIXME Use local cache
+		final Iterator<org.eclipse.ocl.examples.pivot.Class> iterator = metaModelManager.getSuperClasses(getPivotType()).iterator();			// FIXME Use local cache
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
@@ -1242,7 +1242,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return baseProperty;
 	} */
 
-	protected @NonNull Property createExtensionProperty(@NonNull ElementExtension stereotypeInstance, @NonNull Type baseType) {
+	protected @NonNull Property createExtensionProperty(@NonNull ElementExtension stereotypeInstance, @NonNull org.eclipse.ocl.examples.pivot.Class baseType) {
 		Stereotype stereotype = stereotypeInstance.getStereotype();
 		Map<String, PartialProperties> name2properties2 = name2properties;
 		assert name2properties2 != null;
@@ -1278,7 +1278,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return extensionProperty;
 	}
 
-	protected void initExtensionPropertiesFrom(@NonNull Type baseType, @NonNull Stereotype stereotype) {
+	protected void initExtensionPropertiesFrom(@NonNull org.eclipse.ocl.examples.pivot.Class baseType, @NonNull Stereotype stereotype) {
 		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
 		ElementExtension elementExtension = metaModelManager.getElementExtension(baseType, stereotype);
 //		for (ElementExtension elementExtension : baseType.getExtensions())

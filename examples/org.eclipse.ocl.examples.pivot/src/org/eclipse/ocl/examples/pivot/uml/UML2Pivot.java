@@ -315,7 +315,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		}
 
 		@Override
-		public void addProperty(@NonNull Type asType, @NonNull Property asProperty) {
+		public void addProperty(@NonNull org.eclipse.ocl.examples.pivot.Class asType, @NonNull Property asProperty) {
 			root.addProperty(asType, asProperty);
 		}
 
@@ -421,7 +421,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		private List<Resource> importedResources = null;
 
 //		private @NonNull Set<org.eclipse.uml2.uml.Property> umlProperties = new HashSet<org.eclipse.uml2.uml.Property>();
-		private @NonNull Map<Type, List<Property>> type2properties = new HashMap<Type, List<Property>>();
+		private @NonNull Map<org.eclipse.ocl.examples.pivot.Class, List<Property>> type2properties = new HashMap<org.eclipse.ocl.examples.pivot.Class, List<Property>>();
 //		private @NonNull Map<Type, List<Property>> stereotypeProperties = new HashMap<Type, List<Property>>();
 
 		protected Outer(@NonNull Resource umlResource, @NonNull MetaModelManager metaModelManager) {
@@ -505,7 +505,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		}
 
 		@Override
-		public void addProperty(@NonNull Type asType, @NonNull Property asProperty) {
+		public void addProperty(@NonNull org.eclipse.ocl.examples.pivot.Class asType, @NonNull Property asProperty) {
 			List<Property> asProperties = type2properties.get(asType);
 			if (asProperties == null) {
 				asProperties = new ArrayList<Property>();
@@ -782,7 +782,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 			}
 			Set<Type> allPropertiedTypes = new HashSet<Type>(typeProperties.keySet()); */
 //			allPropertiedTypes.addAll(stereotypeProperties.keySet());
-			for (Type pivotType : type2properties.keySet()) {
+			for (org.eclipse.ocl.examples.pivot.Class pivotType : type2properties.keySet()) {
 				List<Property> asProperties = type2properties.get(pivotType);
 				Collections.sort(asProperties, DomainUtil.NAMEABLE_COMPARATOR);
 				refreshList(DomainUtil.nonNullEMF(pivotType.getOwnedAttribute()), asProperties);
@@ -851,7 +851,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 
 	public abstract void addProfileApplication(@NonNull ProfileApplication asProfileApplication) ;
 
-	public abstract void addProperty(@NonNull Type asType, @NonNull Property asProperty);
+	public abstract void addProperty(@NonNull org.eclipse.ocl.examples.pivot.Class asType, @NonNull Property asProperty);
 
 	public abstract void addStereotype(@NonNull Stereotype asStereotype);
 

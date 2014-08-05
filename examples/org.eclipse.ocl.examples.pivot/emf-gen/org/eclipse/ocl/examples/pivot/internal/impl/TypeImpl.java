@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -65,11 +64,9 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -97,10 +94,7 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getExtendedBys <em>Extended Bys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedInvariant <em>Owned Invariant</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedOperation <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getSuperClass <em>Super Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -182,16 +176,6 @@ public class TypeImpl
 	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedAttribute() <em>Owned Attribute</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Property> ownedAttribute;
-
-	/**
 	 * The cached value of the '{@link #getOwnedInvariant() <em>Owned Invariant</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,26 +184,6 @@ public class TypeImpl
 	 * @ordered
 	 */
 	protected EList<Constraint> ownedInvariant;
-
-	/**
-	 * The cached value of the '{@link #getOwnedOperation() <em>Owned Operation</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Operation> ownedOperation;
-
-	/**
-	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSuperClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Type> superClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -333,48 +297,6 @@ public class TypeImpl
 		unspecializedElement = newUnspecializedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public @NonNull List<Property> getOwnedAttribute()
-	{
-		if (ownedAttribute == null)
-		{
-			ownedAttribute = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.TYPE__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__OWNING_TYPE);
-		}
-		return ownedAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public @NonNull List<Operation> getOwnedOperation()
-	{
-		if (ownedOperation == null)
-		{
-			ownedOperation = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.TYPE__OWNED_OPERATION, PivotPackage.OPERATION__OWNING_TYPE);
-		}
-		return ownedOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public @NonNull List<Type> getSuperClass()
-	{
-		if (superClass == null)
-		{
-			superClass = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.TYPE__SUPER_CLASS);
-		}
-		return superClass;
 	}
 
 	/**
@@ -631,10 +553,6 @@ public class TypeImpl
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE__OWNED_OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -667,12 +585,8 @@ public class TypeImpl
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_INVARIANT:
 				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -729,14 +643,8 @@ public class TypeImpl
 				return getExtendedBys();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return getOwnedAttribute();
 			case PivotPackage.TYPE__OWNED_INVARIANT:
 				return getOwnedInvariant();
-			case PivotPackage.TYPE__OWNED_OPERATION:
-				return getOwnedOperation();
-			case PivotPackage.TYPE__SUPER_CLASS:
-				return getSuperClass();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -796,21 +704,9 @@ public class TypeImpl
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
-				return;
 			case PivotPackage.TYPE__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
 				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.TYPE__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
-				return;
-			case PivotPackage.TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -864,17 +760,8 @@ public class TypeImpl
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				return;
 			case PivotPackage.TYPE__OWNED_INVARIANT:
 				getOwnedInvariant().clear();
-				return;
-			case PivotPackage.TYPE__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				return;
-			case PivotPackage.TYPE__SUPER_CLASS:
-				getSuperClass().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -915,14 +802,8 @@ public class TypeImpl
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.TYPE__OWNED_INVARIANT:
 				return ownedInvariant != null && !ownedInvariant.isEmpty();
-			case PivotPackage.TYPE__OWNED_OPERATION:
-				return ownedOperation != null && !ownedOperation.isEmpty();
-			case PivotPackage.TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -1129,10 +1010,6 @@ public class TypeImpl
 		return getOwnedAttribute();
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
-		return getSuperClass();
-	}
-
 	public @NonNull String getMetaTypeName() {
 		return eClass().getName();
 	}
@@ -1313,6 +1190,20 @@ public class TypeImpl
 	}
 
 	public DomainPackage getPackage() {
+		throw new UnsupportedOperationException();		// FIXME
+	}
+
+	@NonNull
+	public List<? extends DomainProperty> getOwnedAttribute() {
+		throw new UnsupportedOperationException();		// FIXME
+	}
+
+	@NonNull
+	public List<? extends DomainOperation> getOwnedOperation() {
+		throw new UnsupportedOperationException();		// FIXME
+	}
+
+	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 } //TypeImpl
