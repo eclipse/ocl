@@ -681,6 +681,61 @@ public class LoadTests extends XtextTestCase
 		assertNoValidationErrors("Second validation", asResource);
 	}
 
+	public void testLoad_Refresh2_oclinecore() throws IOException, InterruptedException {
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			OCLDelegateDomain.initialize(null);
+		}
+		String testFile = 
+				"package example : ex = 'http://www.example.org/examples/example.ecore'\n" + 
+				"{\n" + 
+				"	class NamedElement;\n" + 
+				"	class Package;\n" + 
+				"	class Class;\n" + 
+				"	class Operation;\n" + 
+				"	class Property;\n" + 
+				"\n" + 
+				"	class CompletePackageParent extends NamedElement\n" + 
+				"	{\n" + 
+				"		property nestedPackages#completePackage : Set(CompletePackage) { composes };\n" + 
+				"	}\n" + 
+				"	/** MetaModelManager/PackageManager API */\n" + 
+				"	class CompleteModel extends CompletePackageParent\n" + 
+				"	{\n" + 
+				"	}\n" + 
+				"	class CompletePackage extends CompletePackageParent\n" + 
+				"	{\n" + 
+				"		property completePackage#nestedPackages : CompletePackageParent;\n" + 
+				"		property nestedPackages : Set(CompletePackage) { composes };\n" + 
+				"		property partialPackages : OrderedSet(Package);\n" + 
+				"		property nestedClasses#completePackage : CompleteClass[*] { composes };\n" + 
+				"	}\n" + 
+				"	class CompleteClass extends NamedElement\n" + 
+				"	{\n" + 
+				"		property completePackage#nestedClasses : CompletePackage;\n" + 
+				"		property partialClasses : OrderedSet(Class);\n" + 
+				"	}\n" + 
+				"	class CompleteOperation extends NamedElement\n" + 
+				"	{\n" + 
+				"	}\n" + 
+				"	class CompleteProperty extends NamedElement\n" + 
+				"	{\n" + 
+				"	}\n" + 
+				"}";
+		createOCLinEcoreFile("Refresh2.oclinecore", testFile);
+		Resource asResource = doLoad_Concrete("Refresh2", "oclinecore");
+		assertNoValidationErrors("First validation", asResource);
+		CS2PivotResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
+		try {
+			resourceAdapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+		assertNoValidationErrors("Second validation", asResource);
+	}
+
 	public void testLoad_RoyalAndLoyal_ecore() throws IOException, InterruptedException {
 		doLoad("RoyalAndLoyal", "ecore");
 	}	

@@ -64,11 +64,11 @@ Workflow {
     component = IdAssigner { resourceSet = resourceSet skipOnErrors = true
     	assignFlatIds = false
     	mapping = Mapping {
-    		from = "/org.eclipse.ocl.examples.pivot/model/OCL.uml"
+    		from = "/${projectName}/model/OCL.uml"
     		to = "/${projectName}/model-gen/OCL.uml"
     	}
     	mapping = Mapping {
-    		from = "/org.eclipse.ocl.examples.pivot/model/MDTOCL.uml"
+    		from = "/${projectName}/model/MDTOCL.uml"
     		to = "/${projectName}/model-gen/MDTOCL.uml"
     	}
     	mapping = Mapping {

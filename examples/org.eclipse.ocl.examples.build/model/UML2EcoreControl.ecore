@@ -2,6 +2,9 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UML2EcoreControl" nsURI="http://www.eclipse.org/ocl/2012/UML2EcoreControl"
     nsPrefix="u2ec">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="uml" value="http://www.eclipse.org/uml2/5.0.0/UML"/>
+  </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -74,21 +77,39 @@
       </eAnnotations>
       <eParameters name="operations" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
     </eOperations>
+    <eOperations name="packageLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if p &lt;> null then nameLabel(p.name) else 'null' endif"/>
+      </eAnnotations>
+      <eParameters name="p" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+    </eOperations>
     <eOperations name="packageLabels" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="packages->select(name &lt;> null)->sortedBy(name)->iterate(p; acc : String = '' | acc + ' ' + p.name)"/>
+        <details key="body" value="packages->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + packageLabel(p))"/>
       </eAnnotations>
       <eParameters name="packages" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
     </eOperations>
+    <eOperations name="propertyLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if p &lt;> null then let t = if p.class &lt;> null then p.class else p.association endif in typeLabel(t) + '::' + nameLabel(p.name) else 'null' endif"/>
+      </eAnnotations>
+      <eParameters name="p" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+    </eOperations>
     <eOperations name="propertyLabels" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="properties->select(name &lt;> null)->sortedBy(name)->iterate(p; acc : String = '' | acc + ' ' + p.class.package.name + '::' + p.class.name + '::' + p.name)"/>
+        <details key="body" value="properties->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + propertyLabel(p))"/>
       </eAnnotations>
       <eParameters name="properties" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
     </eOperations>
+    <eOperations name="typeLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if t &lt;> null then packageLabel(t.package) + '::' + nameLabel(t.name) else 'null' endif"/>
+      </eAnnotations>
+      <eParameters name="t" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
+    </eOperations>
     <eOperations name="typeLabels" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="types->select(name &lt;> null)->sortedBy(name)->iterate(p; acc : String = '' | acc + ' ' + p.package.name + '::' + p.name)"/>
+        <details key="body" value="types->sortedBy(nameLabel(name))->iterate(t; acc : String = '' | acc + ' ' + typeLabel(t))"/>
       </eAnnotations>
       <eParameters name="types" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
     </eOperations>
@@ -97,6 +118,7 @@
         <details key="derivation" value="label()"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mappings">
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" ordered="false"
