@@ -1025,6 +1025,18 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		Type behavioralType = PivotUtil.getType(operation);
 		Type returnType = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
+		if (operation instanceof Iteration) {
+			List<Parameter> formalIterators = ((Iteration)operation).getOwnedIterator();
+			List<Variable> actualIterators = ((LoopExp)callExp).getIterator();
+			int iMax = Math.min(formalIterators.size(), actualIterators.size());
+			for (int i = 0; i < iMax; i++) {
+				Parameter iterator = formalIterators.get(i);
+				Variable actualVariable = actualIterators.get(i);
+				Type behavioralIteratorType = PivotUtil.getType(iterator);
+				Type iteratorType = behavioralIteratorType != null ? metaModelManager.getSpecializedType(behavioralIteratorType, templateBindings) : null;
+				actualVariable.setType(iteratorType);
+			}
+		}
 		//
 		//	The flattening of collect() and consequently implicit-collect is not modelled accurately so we need to code it.
 		//

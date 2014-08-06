@@ -888,7 +888,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				if (secondTemplateParameter != null) {
 					ParameterableElement parameterableElement = bindings.get(secondTemplateParameter);
 					if (parameterableElement instanceof Type) {
-						secondElementType = (Type) parameterableElement;
+						Type commonElementType = getCommonType((Type) parameterableElement, firstElementType, bindings);
+						bindings.put(secondTemplateParameter, commonElementType);
+						return true;
 					}
 					else if ((parameterableElement == null) && bindings.containsKey(secondTemplateParameter)) {
 						bindings.put(secondTemplateParameter, firstElementType);
