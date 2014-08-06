@@ -39,8 +39,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterateCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
@@ -67,6 +69,8 @@ import org.eclipse.ocl.examples.codegen.utilities.CGModelResourceFactory;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -441,6 +445,35 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		append("$isUNDEFINED("); //$NON-NLS-1$
 		safeVisit(cgIsUndefinedExp.getSource());
 		append(")"); //$NON-NLS-1$
+		return null;
+	}
+
+	@Override
+	public @Nullable String visitCGIterationCallExp(@NonNull CGIterationCallExp ic) {
+		CGValuedElement source = ic.getSource();
+		safeVisit(source);
+		LoopExp iterationCallExp = (LoopExp) ic.getAst();
+		Iteration iter = iterationCallExp.getReferredIteration();
+	        Type sourceType = source != null ? iterationCallExp.getSource().getType() : null;
+			append(sourceType instanceof CollectionType
+					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			appendName(iter);
+		append("(");
+		String prefix = "";//$NON-NLS-1$
+		for (CGValuedElement argument : ic.getIterators()) {
+			append(prefix);
+			safeVisit(argument);
+			prefix = ", ";//$NON-NLS-1$
+		}
+		if (ic instanceof CGLibraryIterateCallExp) {
+			append("; ");
+			safeVisit(((CGLibraryIterateCallExp)ic).getResult());
+		}
+		append(" | ");
+		safeVisit(ic.getBody());
+		append(")");
+//		appendAtPre(oc);
 		return null;
 	}
 	
