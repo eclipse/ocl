@@ -195,6 +195,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		final LibraryIteration libraryIteration = DomainUtil.nonNullState(cgIterationCallExp.getLibraryIteration());
 		final Method actualMethod = getJavaMethod(libraryIteration);
 		final Class<?> actualReturnClass = actualMethod != null ? actualMethod.getReturnType() : null;
+		boolean actualIsNonNull = (actualMethod != null) && (context.getIsNonNull(actualMethod) == Boolean.TRUE);
+		boolean expectedIsNonNull = cgIterationCallExp.isNonNull();
 		final String astName = getSymbolName(null, cgIterationCallExp.getValueName());
 		final String bodyName = getSymbolName(null, "BODY_" + astName);
 		final String implementationName = getSymbolName(null, "IMPL_" + astName);
@@ -361,8 +363,15 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		//
 		js.appendDeclaration(cgIterationCallExp);
 		js.append(" = ");
+		if (expectedIsNonNull && !actualIsNonNull) {
+			js.appendClassReference(DomainUtil.class);
+			js.append(".nonNullState(");
+		}
 		js.appendClassCast(cgIterationCallExp, actualReturnClass);
 		js.append(implementationName + ".evaluateIteration(" + managerName + ")");
+		if (expectedIsNonNull && !actualIsNonNull) {
+			js.append(")");
+		}
 		js.append(";\n");
 		return true;
 	}

@@ -9,10 +9,11 @@ def: parentEnv() : env::Environment =
 		
 context Class
 def : _env(child : Element) : env::Environment =
+	let superClasses : Set(Class) = self->closure(superClass) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
-		.addElements(self.ownedAttribute->select(not isStatic))
-		.addElements(self.ownedOperation->select(not isStatic))
+		.addElements(superClasses.ownedAttribute->select(not isStatic))
+		.addElements(superClasses.ownedOperation->select(not isStatic))
 		.addElements(self.ownedBehavior)
 
 context DataType
