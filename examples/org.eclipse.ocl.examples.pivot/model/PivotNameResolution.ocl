@@ -10,7 +10,7 @@ def: parentEnv() : env::Environment =
 	
 context Class
 def : _env(child : Element) : env::Environment =
-	let superClasses : Set(Class) = self->closure(superClass) in 
+	let superClasses : Set(Class) = self->closure(superClass->asSet()) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(superClasses.ownedAttribute->select(not isStatic))
@@ -19,10 +19,10 @@ def : _env(child : Element) : env::Environment =
 
 context DataType
 def : _env(child : Element) : env::Environment =
-	-- FIXME need to translate NewPivotLookupVisitor.visitDatatype
+	let superClasses : Set(Class) = self->closure(c : Class | c.superClass->asSet()) in 
 	parentEnv().nestedEnv()
-		.addElements(self->closure(superClass).ownedAttribute->select(not isStatic))
-		.addElements(self->closure(superClass).ownedOperation->select(not isStatic))
+		.addElements(superClasses.ownedAttribute->select(not isStatic))
+		.addElements(superClasses.ownedOperation->select(not isStatic))
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element
