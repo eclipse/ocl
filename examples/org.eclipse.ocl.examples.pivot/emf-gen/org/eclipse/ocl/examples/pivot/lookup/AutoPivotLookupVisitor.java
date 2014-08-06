@@ -391,10 +391,7 @@ public class AutoPivotLookupVisitor
             }
         };
         final @NonNull  ExecutorSingleIterationManager MGR_closure_0_0 = new ExecutorSingleIterationManager(evaluator, SET_CLSSid_DataType, BODY_closure_0_0, oclAsSet_0, ACC_closure_0_0);
-        final @Nullable /*@Thrown*/ SetValue closure_0 = (SetValue)IMPL_closure_0_0.evaluateIteration(MGR_closure_0_0);
-        if (closure_0 == null) {
-        	 throw new InvalidValueException("Null closure value");
-        }
+        final @NonNull /*@Thrown*/ SetValue closure_0 = DomainUtil.nonNullState((SetValue)IMPL_closure_0_0.evaluateIteration(MGR_closure_0_0));
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_0 = closure_0.iterator();
         @NonNull /*@Thrown*/ BagValue collect;
@@ -1028,16 +1025,18 @@ public class AutoPivotLookupVisitor
      * visitRoot(element : Root) : env::Environment[?]
      * 
      * 
-     * emptyEnv()
+     * this.parentEnv(element)
      * .addElements(element.imports)
      * .addElements(element.nestedPackage)
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitRoot(final @NonNull /*@NonInvalid*/ Root element_10) {
-        final @NonNull /*@NonInvalid*/ DomainType TYP_env_c_c_Environment_0 = idResolver.getType(CLSSid_Environment, null);
-        final @NonNull /*@NonInvalid*/ Environment symbol_0 = (Environment)TYP_env_c_c_Environment_0.createInstance();
+        final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_10);
+        if (parentEnv == null) {
+            throw new InvalidValueException("Null source for \'env::Environment::addElements(Collection(pivot::NamedElement)) : env::Environment\'");
+        }
         final @NonNull /*@Thrown*/ List<Import> imports = element_10.getImports();
-        final @NonNull /*@Thrown*/ Environment addElements = symbol_0.addElements(imports);
+        final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
         final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_10.getNestedPackage();
         assert nestedPackage != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(nestedPackage);
