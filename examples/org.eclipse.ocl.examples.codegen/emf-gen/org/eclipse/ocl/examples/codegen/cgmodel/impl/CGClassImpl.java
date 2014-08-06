@@ -266,12 +266,19 @@ public class CGClassImpl extends CGNamedElementImpl implements CGClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT FIXME workaround BUG 89325
 	 */
+	@SuppressWarnings("serial")
 	@Override
 	public List<CGClass> getTemplateParameters() {
 		if (templateParameters == null) {
-			templateParameters = new EObjectEList<CGClass>(CGClass.class, this, CGModelPackage.CG_CLASS__TEMPLATE_PARAMETERS);
+			templateParameters = new EObjectEList<CGClass>(CGClass.class, this, CGModelPackage.CG_CLASS__TEMPLATE_PARAMETERS)
+			{
+				@Override
+				protected boolean isUnique() {
+					return false;
+				}
+			};
 		}
 		return templateParameters;
 	}

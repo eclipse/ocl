@@ -110,8 +110,8 @@
         <details key="documentation" value="the boolean value"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateParameters" upperBound="-1"
-        eType="#//CGClass" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateParameters" unique="false"
+        upperBound="-1" eType="#//CGClass" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGCollectionExp" eSuperTypes="#//CGValuedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"

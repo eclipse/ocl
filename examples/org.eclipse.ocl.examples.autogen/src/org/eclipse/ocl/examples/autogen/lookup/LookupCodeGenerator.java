@@ -162,6 +162,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected final @NonNull Property asIdResolverProperty;
 	protected final @NonNull Operation asVisitorEnvOperation;
 	protected final @NonNull Operation asVisitorParentEnvOperation;
+	protected final @NonNull Type asEnvironmentType;
 	//
 	//	Important CG elements
 	//
@@ -189,7 +190,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(envOperationId));
 		OperationId parentEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);
 		this.asElementParentEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(parentEnvOperationId));
-		Type asEnvironmentType = DomainUtil.nonNullState(asElementParentEnvOperation.getType());
+		this.asEnvironmentType = DomainUtil.nonNullState(asElementParentEnvOperation.getType());
 		TypeServer asEnvironmentTypeServer = metaModelManager.getTypeServer(asEnvironmentType);
 		OperationId nestedEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.NESTED_ENV_NAME, emptyParametersId);
 		this.asEnvironmentNestedEnvOperation = DomainUtil.nonNullState((Operation)asEnvironmentTypeServer.getMemberOperation(nestedEnvOperationId));
@@ -282,8 +283,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 //			String superClassName = "AbstractExtending" + visitorClass; // The default Abstract Visitor generated for the language
 			String superClassName = "AbstractExtendingVisitor"; // The default Abstract Visitor generated for the language
 			CGClass superClass = getExternalClass(visitorPackage, superClassName, false);
-			superClass.getTemplateParameters().add(getExternalClass(Object.class));
-			superClass.getTemplateParameters().add(getExternalClass(Environment.class));
+			CGClass cgResultClass = getExternalClass(getVisitorResultClass());
+			superClass.getTemplateParameters().add(cgResultClass);
+			superClass.getTemplateParameters().add(cgResultClass);
 			cgClass.getSuperTypes().add(superClass);
 		}
 	}
@@ -443,6 +445,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	public @NonNull Class<?> getVisitableClass() {
 		return Visitable.class;
 	}
+
+	@Override
+	public @NonNull Class<?> getVisitorResultClass() {
+		return Environment.class;
+	}
 	
 	@Override
 	protected @NonNull String getVisitorPackageName(@NonNull String visitorsPackageName) {
@@ -546,7 +553,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	}
 
 	/**
-	 * Copy all the visitXXX operation bodies from the _emv bodies replacing references to redefined parameters.
+	 * Copy all the visitXXX operation bodies from the _env bodies replacing references to redefined parameters.
 	 */
 	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, Operation> envOperation2asOperation) {
 		for (@SuppressWarnings("null")@NonNull Operation envOperation : envOperation2asOperation.keySet()) {
@@ -556,6 +563,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			OCLExpression asExpression = RereferencingCopier.copy(DomainUtil.nonNullState(envExpressionInOCL.getBodyExpression()), reDefinitions);
 			ExpressionInOCL asExpressionInOCL = PivotUtil.createExpressionInOCL(null, asExpression, asElement);
 			PivotUtil.initOperation(asOperation, asExpressionInOCL);
+			asOperation.setType(asEnvironmentType);
 			asOperation.setIsRequired(false);
 		}
 	}

@@ -80,9 +80,8 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 			js.append("this.");
 			js.appendReferenceTo(context.getChildVariable());
 			js.append(" = " + LookupClassContext.ELEMENT_NAME + ";\n");
-			js.append("return (");
-			js.appendClassReference(Environment.class);
-			js.append(")" + LookupClassContext.ELEMENT_NAME);
+			js.append("return ");
+			js.append(LookupClassContext.ELEMENT_NAME);
 			js.append(".accept(this);\n");
 		js.popIndentation();
 		js.append("}\n");
@@ -124,9 +123,7 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 				js.append("this.");
 				js.appendReferenceTo(context.getChildVariable());
 				js.append(" = " + LookupClassContext.ELEMENT_NAME + ";\n");
-				js.append("return (");
-				js.appendClassReference(Environment.class);
-				js.append(")((");
+				js.append("return ((");
 				js.appendClassReference(Visitable.class);
 				js.append(")" + LookupClassContext.PARENT_NAME + ").accept(this);\n");
 			js.popIndentation();

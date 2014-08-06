@@ -61,7 +61,7 @@ import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 public class AutoPivotLookupVisitor
-	extends AbstractExtendingVisitor<Object, Environment>
+	extends AbstractExtendingVisitor<Environment, Environment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_examples_s_env_ecore = IdManager.getNsURIPackageId("http://www.example.org/examples/env.ecore", null, null);
@@ -121,7 +121,7 @@ public class AutoPivotLookupVisitor
      */
     public @Nullable Environment envForChild(@NonNull Element element, @Nullable Element child) {
         this.child = element;
-        return (Environment)element.accept(this);
+        return element.accept(this);
     }
     
     /**
@@ -131,14 +131,14 @@ public class AutoPivotLookupVisitor
         EObject parent = element.eContainer();
         if (parent instanceof Visitable) {
             this.child = element;
-            return (Environment)((Visitable)parent).accept(this);
+            return ((Visitable)parent).accept(this);
         }
         else {
             return null;
         }
     }
     
-    public @Nullable Object visiting(@NonNull Visitable visitable) {
+    public @Nullable Environment visiting(@NonNull Visitable visitable) {
         throw new UnsupportedOperationException("AutoPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     
@@ -688,12 +688,12 @@ public class AutoPivotLookupVisitor
     }
     
     /**
-     * visitMetaclass(element : Metaclass) : OclVoid[?]
+     * visitMetaclass(element : Metaclass) : env::Environment[?]
      * 
      * null
      */
     @Override
-    public @Nullable /*@NonInvalid*/ Object visitMetaclass(final @NonNull /*@NonInvalid*/ Metaclass<?> element_8) {
+    public @Nullable /*@NonInvalid*/ Environment visitMetaclass(final @NonNull /*@NonInvalid*/ Metaclass<?> element_8) {
         return null;
     }
     
