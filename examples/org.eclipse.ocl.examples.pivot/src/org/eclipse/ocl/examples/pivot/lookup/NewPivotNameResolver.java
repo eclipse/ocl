@@ -1,6 +1,7 @@
 package org.eclipse.ocl.examples.pivot.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -18,6 +19,7 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 
 	public NewPivotNameResolver(@NonNull MetaModelManager mmManager) {
 		super(mmManager);
+		OCLstdlibTables.LIBRARY.getClass();		// FIXME Why isn't initialization inherently reliable?
 	}
 
 	@Override
