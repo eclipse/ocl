@@ -75,6 +75,8 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -93,7 +95,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			@NonNull String visitorClass,
 			@Nullable String superProjectPrefix,
 			@Nullable String superProjectName,
-			@Nullable String superVisitorClass) {
+			@Nullable String superVisitorClass,
+			@Nullable String baseProjectPrefix) {
 		EPackage ePackage = genPackage.getEcorePackage();
 		assert ePackage != null;
 //		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
@@ -108,40 +111,49 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
-		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI("model/PivotLookup.ocl").resolve(projectResourceURI);
+		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI("model/" + projectPrefix + "NameResolution.ocl").resolve(projectResourceURI);
 		OCL ocl = environmentFactory.createOCL();
 //		Resource resource = metamodelManager.getResource(nameResoURI, CompleteOCL);
 		Resource resource = ClassUtil.nonNullState(ocl.parse(nameResoURI));
 //		Root root = (Root) resource.getContents().get(0);
 //		return root.getNestedPackage().get(0);
-//	}
-		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		
+//	}		
 		for (EObject root : resource.getContents()) {
 			if (root instanceof Model) {
 				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package asPackage : ((Model)root).getOwnedPackages()) {
-					GenPackage superGenPackage = null;
 					org.eclipse.ocl.pivot.Package asSuperPackage = null;
 					if (superProjectPrefix != null) {
-						for (GenPackage gPackage : genPackage.getGenModel().getAllUsedGenPackagesWithClassifiers()) {
-							String name = gPackage.getPrefix();
-							if (name.startsWith(superProjectPrefix)) {
-								superGenPackage = gPackage;
-								EPackage eSuperPackage = gPackage.getEcorePackage();
-								asSuperPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
-								break;
-							}
-						}
-						if (superGenPackage == null) {
+						asSuperPackage = getPackage(genPackage, superProjectPrefix, environmentFactory);
+						if (asSuperPackage == null) {
 							throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 						}
 					}
-					AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, asPackage, asSuperPackage, genPackage, // superGenPackage,
+					org.eclipse.ocl.pivot.Package basePackage = asPackage;
+					if (baseProjectPrefix != null) {
+						basePackage = getPackage(genPackage, baseProjectPrefix, environmentFactory);
+						if (basePackage == null) {
+							throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+						}
+					}
+					AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, asPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
 							projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
 					autoCodeGenerator.saveSourceFile();
 				}
 			}
 		}
+	}
+	
+	@Nullable
+	private static org.eclipse.ocl.pivot.Package getPackage(GenPackage genPackage, String packageName, EnvironmentFactory envFactory) {
+		MetamodelManager metaModelManager = envFactory.getMetamodelManager();
+		for (GenPackage gPackage : genPackage.getGenModel().getAllUsedGenPackagesWithClassifiers()) {
+			String name = gPackage.getPrefix();
+			if (name.startsWith(packageName)) {
+				EPackage eSuperPackage = gPackage.getEcorePackage();
+				return metaModelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
+			}
+		}
+		return null;
 	}
 	
 	protected final @NonNull String packageName;
@@ -175,7 +187,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	private @Nullable CGProperty cgChildVariable = null;
 
 	protected LookupCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage,
-			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage, @NonNull GenPackage genPackage,
+			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage, @NonNull org.eclipse.ocl.pivot.Package asBasePackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass,
 			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass) {
 		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
@@ -187,8 +199,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//
 		//	Find expected AS elements
 		//
+		// FIXME Bad. This is PIVOT dependent code which means that the LookupCodeGenerator can only work with pivot-based lookup descriptions
 		ParametersId emptyParametersId = IdManager.getParametersId();
-		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(asPackage).getOwnedCompleteClass(PivotPackage.Literals.ELEMENT.getName());
+		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(asBasePackage).getOwnedCompleteClass(PivotPackage.Literals.ELEMENT.getName());
 		org.eclipse.ocl.pivot.Class asElementType = asElementCompleteClass.getPrimaryClass();
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
 		this.asElementEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));

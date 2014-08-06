@@ -42,9 +42,16 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 		
 	protected final  MetaModelManager mmManager;
+	
+	// FIXME remove this constructor when the manual visitor is not needed anymore
 	public NewPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull Environment env) {
 		super(env);
 		this.mmManager = mmManager;
+	}
+	
+	public NewPivotLookupVisitor( @NonNull Environment env) {
+		super(env);
+		mmManager = null;
 	}
 	
 //	@Override

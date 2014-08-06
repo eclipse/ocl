@@ -50,6 +50,11 @@ var superModelName
  */
 var superProjectPrefix = ""
 
+/*
+ * The prefix of the inherited project hosting the base generate models; e.g. "Pivot", "" for a base visitor.
+ */
+var baseProjectPrefix = ""
+ 
 /**
  * (Optional) The package for generated model interfaces; default: "${projectName}.${modelName}".
  */
@@ -123,5 +128,6 @@ Workflow {
     	superVisitorClassName = superVisitorClassName
     	visitablePackageName = visitablePackageName
     	visitableClassName= visitableClassName
+    	baseProjectPrefix= baseProjectPrefix
     }
 }
