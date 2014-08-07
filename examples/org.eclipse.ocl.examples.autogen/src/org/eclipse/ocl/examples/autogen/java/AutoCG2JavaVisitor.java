@@ -92,14 +92,14 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 		js.append("}\n");
 	}
 	
-	@Override
-	protected void appendAtOverride(@NonNull CGOperation cgOperation) {
-		// FIXME CGOperation is not properly modelled to wisely discern if the operation needs an Override or not
-		// Custom logic based on specific visitors design
-		if (!isDerivedVisitor(cgOperation.getContainingClass())) {
-			js.append("@Override\n");
-		}
-	}
+//	@Override 
+//	protected void appendAtOverride(@NonNull CGOperation cgOperation) {
+//		// FIXME CGOperation is not properly modelled to wisely discern if the operation needs an Override or not
+//		// Custom logic based on specific visitors design
+//		if (!isDerivedVisitor(cgOperation.getContainingClass())) {
+//			js.append("@Override\n");
+//		}
+//	}
 
 	@Override
 	public @NonNull Boolean visitCGASTCallExp(@NonNull CGASTCallExp object) {
