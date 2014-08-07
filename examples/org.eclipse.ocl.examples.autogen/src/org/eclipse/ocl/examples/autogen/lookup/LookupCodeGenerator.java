@@ -143,6 +143,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		}
 	}
 	
+	
 	@Nullable
 	private static org.eclipse.ocl.pivot.Package getPackage(GenPackage genPackage, String packageName, EnvironmentFactory envFactory) {
 		MetamodelManager metaModelManager = envFactory.getMetamodelManager();
