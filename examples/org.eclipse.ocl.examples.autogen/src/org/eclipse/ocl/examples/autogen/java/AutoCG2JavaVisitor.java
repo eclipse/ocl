@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 import org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
@@ -47,8 +48,7 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 	@Override
 	protected void doClassMethods(@NonNull CGClass cgClass) {
 		doConstructor(cgClass);
-		List<CGClass> cgSuperTypes = cgClass.getSuperTypes();
-		if (cgSuperTypes.size() <= 1) {
+		if (! isDerivedVisitor(cgClass)) {
 			doVisiting(cgClass);
 		}
 		super.doClassMethods(cgClass);
@@ -63,6 +63,10 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 			}
 			js.append("\n");
 		}
+	}
+
+	protected boolean isDerivedVisitor(CGClass cgClass) {
+		return cgClass.getSuperTypes().size() > 1;
 	}
 	
 	protected abstract void doConstructor(@NonNull CGClass cgClass);
@@ -86,6 +90,15 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 		js.append(");\n");
 		js.popIndentation();
 		js.append("}\n");
+	}
+	
+	@Override
+	protected void appendAtOverride(@NonNull CGOperation cgOperation) {
+		// FIXME CGOperation is not properly modelled to wisely discern if the operation needs an Override or not
+		// Custom logic based on specific visitors design
+		if (!isDerivedVisitor(cgOperation.getContainingClass())) {
+			js.append("@Override\n");
+		}
 	}
 
 	@Override
