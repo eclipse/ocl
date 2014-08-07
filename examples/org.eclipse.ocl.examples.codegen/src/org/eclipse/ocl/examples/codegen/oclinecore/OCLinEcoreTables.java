@@ -68,6 +68,8 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
 public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 {
 	protected final boolean useNullAnnotations;
+	private @Nullable String precedingPackageName = null;		// Initialization linkage
+	private @Nullable String currentPackageName = null;			// Initialization linkage
 	
 	public OCLinEcoreTables(@NonNull GenPackage genPackage) {
 		super(genPackage);
@@ -99,6 +101,33 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			}
 		}
 		s.append(constants.substring(i));
+	}
+
+	protected void appendInitializationStart(@NonNull String name) {
+		currentPackageName = name;
+		s.append("\t\tstatic {\n");
+//		s.append("\t\t\tSystem.out.println(\"" + getTablesClassName() + "::" + currentPackageName + " Start\");\n");
+		s.append("\t\t\tInit.initStart();\n");
+		if (precedingPackageName != null) {
+			s.append("\t\t\t" + precedingPackageName + ".init();\n");
+		}
+		s.append("\t\t}\n");
+	}
+
+	protected void appendInitializationEnd(boolean isContinuation) {
+		if (!isContinuation) {
+			s.append("\n");
+			s.append("\t\tstatic {\n");
+		}
+		s.append("\t\t\tInit.initEnd();\n");
+//		s.append("\t\t\tSystem.out.println(\"" + getTablesClassName() + "::" + currentPackageName + " End\");\n");
+		s.append("\t\t}\n");
+		s.append("\n");
+		s.append("\t\t/**\n");
+		s.append("\t\t * Force initialization of the fields of " + getTablesClassName() + "::" + currentPackageName + " and all preceding sub-packages.\n");
+		s.append("\t\t */\n");
+		s.append("\t\tpublic static void init() {}\n");
+		precedingPackageName = currentPackageName;
 	}
 
 	protected void appendTypeFlags(@NonNull Type type) {
@@ -154,7 +183,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		return fragmentOperations;
 	}	
 	
-	public @NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> computeFragmentProperties() {
+	protected @NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> computeFragmentProperties() {
 		LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> fragmentProperties = new LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>();
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
@@ -179,7 +208,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	/**\n");
 		s.append("	 *	The lists of enumeration literals for each enumeration.\n");
 		s.append("	 */\n");
-		s.append("	public static class EnumerationLiterals {");
+		s.append("	public static class EnumerationLiterals {\n");
+		appendInitializationStart("EnumerationLiterals");	
 		for (org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			if (pClass instanceof Enumeration) {
 				s.append("\n");
@@ -237,9 +267,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append(");\n");
 			}
 		}
-		s.append("		}\n");
 		s.append("\n");
-		s.append("		public static void init() {}\n");
+		appendInitializationEnd(true);	
 		s.append("	}\n");
 	}
 
@@ -247,7 +276,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	/**\n");
 		s.append("	 *	The fragment descriptors for the local elements of each type and its supertypes.\n");
 		s.append("	 */\n");
-		s.append("	public static class Fragments {");
+		s.append("	public static class Fragments {\n");
+		appendInitializationStart("Fragments");	
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			s.append("\n");
@@ -269,13 +299,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append(");\n");
 			}
 		}
-		s.append("\n");
-		s.append("		/*\n");
-		s.append("		 * Force initialization.\n");
-		s.append("		 */\n");
-		s.append("		public static void init() {\n");
-		s.append("			Types.init();\n");
-		s.append("		}\n");
+		appendInitializationEnd(false);	
 		s.append("	}\n");
 	}
 
@@ -286,9 +310,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		int page = 1;
 		int pageMax = paginatedFragmentOperations.size();
 		for (LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations : paginatedFragmentOperations) {
-			s.append("	public static class FragmentOperations");
-			s.appendPage(page, pageMax);
-			s.append(" {");
+			String pagedName = getPagedName("FragmentOperations", page, pageMax);
+			s.append("	public static class " + pagedName);
+			s.append(" {\n");
+			appendInitializationStart(pagedName);	
 			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : fragmentOperations.keySet()) {
 				assert pClass != null;
 				s.append("\n");
@@ -330,11 +355,9 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("		/*\n");
 			s.append("		 *	Install the operation descriptors in the fragment descriptors.\n");
 			s.append("		 */\n");
-			s.append("		public static void init() {\n");
-			s.append("			TypeFragments.init();\n");
+			s.append("		static {\n");
 			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : fragmentOperations.keySet()) {
 				assert pClass != null;
-				s.append("\n");
 				for (org.eclipse.ocl.pivot.Class pSuperClass : getAllSupertypesSortedByName(pClass)) {
 					assert pSuperClass != null;
 					s.append("			Fragments.");
@@ -347,24 +370,26 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.appendUnscopedTypeName(metamodelManager, pSuperClass);
 					s.append(");\n");
 				}
+				s.append("\n");
 			}
-			s.append("		}\n");
+			appendInitializationEnd(true);	
 			s.append("	}\n");
 			s.append("\n");
 			page++;
 		}
 	}	
 	
-	public void declareFragmentProperties(@NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>>> paginatedFragmentProperties) {
+	protected void declareFragmentProperties(@NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>>> paginatedFragmentProperties) {
 		s.append("	/**\n");
 		s.append("	 *	The lists of local properties for the local fragment of each type.\n");
 		s.append("	 */\n");
 		int page = 1;
 		int pageMax = paginatedFragmentProperties.size();
 		for (LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties : paginatedFragmentProperties) {
-			s.append("	public static class FragmentProperties");
-			s.appendPage(page, pageMax);
-			s.append(" {");
+			String pagedName = getPagedName("FragmentProperties", page, pageMax);
+			s.append("	public static class " + pagedName);
+			s.append(" {\n");
+			appendInitializationStart(pagedName);	
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class pClass : fragmentProperties.keySet()) {
 				List<Property> sortedProperties = fragmentProperties.get(pClass);
 				s.append("\n");
@@ -398,9 +423,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	//		s.append("		static {\n");
 	//		s.append("		}\n");
 	//		s.append("\n");
-			s.append("		public static void init() {\n");
-			s.append("			TypeFragments.init();\n");
-			s.append("\n");
+			s.append("		static {\n");
 			for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : fragmentProperties.keySet()) {
 				assert pClass != null;
 				s.append("			Fragments.");
@@ -411,18 +434,60 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.appendScopedTypeName(pClass);
 				s.append(");\n");
 			}
-			s.append("		}\n");
+			s.append("\n");
+			appendInitializationEnd(true);	
 			s.append("	}\n");
 			s.append("\n");
 			page++;
 		}
+	}
+	
+	protected void declareInit() {
+		s.append("	/**\n");
+		s.append("	 * The multiple packages above avoid problems with the Java 65536 byte limit but introduce a difficulty in ensuring that\n");
+		s.append("	 * static construction occurs in the disciplined order of the packages when construction may start in any of the packages.\n");
+		s.append("	 * The problem is resolved by ensuring that the static construction of each package first initializes its immediate predecessor.\n");
+		s.append("	 * On completion of predecessor initialization, the residual packages are initialized by starting an initialization in the last package.\n");
+		s.append("	 * This class maintains a count so that the various predecessors can distinguish whether they are the starting point and so\n");
+		s.append("	 * ensure that residual construction occurs just once after all predecessors.\n");
+		s.append("	 */\n");
+		s.append("	private static class Init {\n");
+		s.append("		/**\n");
+		s.append("		 * Counter of nested static constructions. On return to zero residual construction starts. -ve once residual construction started.\n");
+		s.append("		 */\n");
+		s.append("		private static int initCount = 0;\n");
+		s.append("\n");
+		s.append("		/**\n");
+		s.append("		 * Invoked at the start of a static construction to defer residual cobstruction until primary constructions complete.\n");
+		s.append("		 */\n");
+		s.append("		private static void initStart() {\n");
+		s.append("			if (initCount >= 0) {\n");
+		s.append("				initCount++;\n");
+//		s.append("				System.out.println(\"" + getTablesClassName() + "::initStart \" + initCount);\n");
+		s.append("			}\n");
+		s.append("		}\n");
+		s.append("\n");
+		s.append("		/**\n");
+		s.append("		 * Invoked at the end of a static construction to activate residual cobstruction once primary constructions complete.\n");
+		s.append("		 */\n");
+		s.append("		private static void initEnd() {\n");
+		s.append("			if (initCount > 0) {\n");
+//		s.append("				System.out.println(\"" + getTablesClassName() + "::initEnd \" + initCount);\n");
+		s.append("				if (--initCount == 0) {\n");
+		s.append("					initCount = -1;\n");
+		s.append("					" + precedingPackageName + ".init();\n");
+		s.append("				}\n");
+		s.append("			}\n");
+		s.append("		}\n");
+		s.append("	}\n");
 	}
 
 	protected void declareOperations() {
 		s.append("	/**\n");
 		s.append("	 *	The operation descriptors for each operation of each type.\n");
 		s.append("	 */\n");
-		s.append("	public static class Operations {");
+		s.append("	public static class Operations {\n");
+		appendInitializationStart("Operations");	
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			List<Operation> sortedOperations = new ArrayList<Operation>(getOperations(pClass));
@@ -468,7 +533,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append(");\n");
 			}
 		}
-		s.append("\n");
+		appendInitializationEnd(false);	
 		s.append("	}\n");
 	}
 
@@ -484,6 +549,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The parameter lists shared by operations.\n");
 		s.append("	 */\n");
 		s.append("	public static class Parameters {\n");
+		appendInitializationStart("Parameters");	
+		s.append("\n");
 		List<ParameterTypes> sortedLists = new ArrayList<ParameterTypes>(allLists);
 		Collections.sort(sortedLists, templateBindingNameComparator);
 		for (/*@NonNull*/ ParameterTypes types : sortedLists) {
@@ -504,6 +571,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			}
 			s.append(");\n");
 		}
+		appendInitializationEnd(false);	
 		s.append("	}\n");
 	}
 
@@ -511,10 +579,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	/**\n");
 		s.append("	 *	The property descriptors for each property of each type.\n");
 		s.append("	 */\n");
-		s.append("	public static class Properties {");
+		s.append("	public static class Properties {\n");
+		appendInitializationStart("Properties");	
+		boolean isFirst = false;
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
-			boolean isFirst = true;
 			List<Property> sortedProperties = getLocalPropertiesSortedByName(pClass);
 			assert pClass != null;
 			for (int i = 0; i < sortedProperties.size(); i++) {
@@ -600,15 +669,9 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append(";");
 				}
 			}
+			isFirst = true;
 		}
-		s.append("\n");
-		s.append("\n");
-		s.append("		/*\n");
-		s.append("		 * Force initialization.\n");
-		s.append("		 */\n");
-		s.append("		public static void init() {\n");
-		s.append("			Types.init();\n");
-		s.append("		}\n");
+		appendInitializationEnd(false);	
 		s.append("	}\n");
 	}
 
@@ -662,6 +725,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The type descriptors for each type.\n");
 		s.append("	 */\n");
 		s.append("	public static class Types {\n");
+		appendInitializationStart("Types");	
+		s.append("\n");
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			declareType(pClass);
@@ -671,12 +736,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.appendClassReference(EcoreExecutorType.class);
 		s.append("[] types = {");
 		boolean isFirst = true;
-		boolean hasEnumeration = false;
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
-			if (pClass instanceof Enumeration) {
-				hasEnumeration = true;
-			}
 			if (!isFirst) {
 				s.append(",");
 			}
@@ -699,25 +760,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.appendClassReference(getQualifiedTablesClassName(extendedPackage));
 			s.append(".PACKAGE, PACKAGE);\n");
 		}
-		s.append("			TypeFragments.init();\n");
-		int iMax = paginatedFragmentOperations.size();
-		for (int i = 1; i <= iMax; i++) {
-			s.append("			FragmentOperations");
-			s.appendPage(i, iMax);
-			s.append(".init();\n");
-		}
-		iMax = paginatedFragmentProperties.size();
-		for (int i = 1; i <= iMax; i++) {
-			s.append("			FragmentProperties");
-			s.appendPage(i, iMax);
-			s.append(".init();\n");
-		}
-		if (hasEnumeration) {
-			s.append("			EnumerationLiterals.init();\n");
-		}
-		s.append("		}\n");
-		s.append("\n");
-		s.append("		public static void init() {}\n");
+		appendInitializationEnd(true);	
 		s.append("	}\n");
 	}
 	
@@ -725,7 +768,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	/**\n");
 		s.append("	 *	The fragments for all base types in depth order: OclAny first, OclSelf last.\n");
 		s.append("	 */\n");
-		s.append("	public static class TypeFragments {");
+		s.append("	public static class TypeFragments {\n");
+		appendInitializationStart("TypeFragments");	
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			final Map<org.eclipse.ocl.pivot.Class, Integer> allSuperTypes = new HashMap<org.eclipse.ocl.pivot.Class, Integer>();
@@ -790,10 +834,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("		/**\n");
 		s.append("		 *	Install the fragment descriptors in the class descriptors.\n");
 		s.append("		 */\n");
-		s.append("		public static void init() {\n");
-		s.append("			Fragments.init();\n");
-		s.append("			Properties.init();\n");
-		s.append("\n");
+		s.append("		static {\n");
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			s.append("			");
@@ -808,7 +849,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 //			}
 			s.append(");\n");
 		}
-		s.append("		}\n");
+		s.append("\n");
+		appendInitializationEnd(true);	
 		s.append("	}\n");
 	}
 		
@@ -816,7 +858,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	/**\n");
 		s.append("	 *	The type parameters for templated types and operations.\n");
 		s.append("	 */\n");
-		s.append("	public static class TypeParameters {");
+		s.append("	public static class TypeParameters {\n");
+		appendInitializationStart("TypeParameters");	
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			TemplateSignature templateSignature = pClass.getOwnedSignature();
 			if (templateSignature != null) {
@@ -883,6 +926,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				}
 			}
 		}
+		appendInitializationEnd(false);	
 		s.append("	}\n");
 	}
 
@@ -901,10 +945,14 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("@SuppressWarnings(\"nls\")\n");
 		s.append("public class " + tablesClassName + "\n");
 		s.append("{\n");
+		s.append("	static {\n");
+//		s.append("		System.out.println(\"" + getTablesClassName() + " Start\");\n");
+		s.append("		Init.initStart();\n");
+		s.append("	}\n");
+		s.append("\n");
 		s.append("	/**\n");
 		s.append("	 *	The package descriptor for the package.\n");
-		s.append("	 */\n");
-		
+		s.append("	 */\n");		
 		s.append("	public static final ");
 		s.append(atNonNull());
 		s.append(" ");
@@ -943,6 +991,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			appendConstants(constants);
 		}
 		
+		precedingPackageName = getTablesClassName();
 		s.append("\n");
 		declareTypeParameters();
 		s.append("\n");
@@ -964,17 +1013,22 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 //		s.append("\n");
 		declareEnumerationLiterals();
 		s.append("\n");
-		s.append("	/*\n");
-		s.append("	 * Force initialization.\n");
-		s.append("	 */\n");
+		declareInit();
+		s.append("\n");
 		s.append("	static {\n");
-		s.append("		Types.init();\n");
+		s.append("		Init.initEnd();\n");
+//		s.append("		System.out.println(\"" + getTablesClassName() + " End\");\n");
 		s.append("	}\n");
+		s.append("\n");
+		s.append("	/*\n");
+		s.append("	 * Force initialization of outer fields. Inner fields are lazily initialized.\n");
+		s.append("	 */\n");
+		s.append("	public static void init() {}\n");
 		s.append("}\n");
 		return s.toString();
 	}
 	
-	public @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginateFragmentOperations(@NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations) {
+	protected @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginateFragmentOperations(@NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations) {
 		List<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>> paginatedFragmentOperations = new ArrayList<LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>>>();
 		LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> pageOfFragmentOperations = null;
 		int size = 0;
@@ -995,7 +1049,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		return paginatedFragmentOperations;
 	}
 	
-	public @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>> paginateFragmentProperties(@NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties) {
+	protected @NonNull List<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>> paginateFragmentProperties(@NonNull LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties) {
 		List<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>> paginatedFragmentProperties = new ArrayList<LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>>>();
 		LinkedHashMap<org.eclipse.ocl.pivot.Class,List<Property>> pageOfFragmentProperties = null;
 		int size = 0;

@@ -195,6 +195,15 @@ public class OCLinEcoreTablesUtils
 		}
 		return null;
 	}
+
+	public @NonNull String getPagedName(@NonNull String name, int i, int iMax) {
+		if (i < iMax) {
+			return name + i;
+		}
+		else {
+			return name;
+		}
+	}
 	
 	public static @NonNull Boolean isBuiltInType(@NonNull Type type) {
 //		System.out.println(ClassUtil.debugSimpleName(type) + " + " + ClassUtil.debugSimpleName(type.getTypeId()) + " + " + type.getTypeId());
@@ -258,12 +267,6 @@ public class OCLinEcoreTablesUtils
 
 		public void appendName(@NonNull NamedElement namedElement) {
 			s.append(AbstractGenModelHelper.encodeName(namedElement));
-		}
-
-		public void appendPage(int i, int iMax) {
-			if (i < iMax) {
-				s.append(i);
-			}
 		}
 
 		public void appendParameterName(@NonNull NamedElement namedElement) {

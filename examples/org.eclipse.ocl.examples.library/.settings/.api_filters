@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.ocl.examples.library" version="2">
+    <resource path="emf-gen/org/eclipse/ocl/examples/library/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="init()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/library/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables$Operations">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="init()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/library/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables$Parameters">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="init()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/examples/library/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables$TypeParameters">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="init()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
