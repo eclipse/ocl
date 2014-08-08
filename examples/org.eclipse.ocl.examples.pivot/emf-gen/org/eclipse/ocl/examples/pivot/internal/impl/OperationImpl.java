@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -833,7 +834,7 @@ public class OperationImpl
 		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
-		            final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
+		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
 		            final @Nullable /*@Thrown*/ DomainExpression oclAsType = (DomainExpression)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {

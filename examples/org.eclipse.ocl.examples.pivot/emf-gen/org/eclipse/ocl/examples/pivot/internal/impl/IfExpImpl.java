@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -269,7 +270,7 @@ public class IfExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @NonNull /*@NonInvalid*/ DomainType TYP_Boolean_0 = idResolver.getType(TypeId.BOOLEAN, null);
+		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Boolean_0 = idResolver.getType(TypeId.BOOLEAN, null);
 		    final @Nullable /*@Thrown*/ DomainExpression condition = this.getCondition();
 		    if (condition == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");

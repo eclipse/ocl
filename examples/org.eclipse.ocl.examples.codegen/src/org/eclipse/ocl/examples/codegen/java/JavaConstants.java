@@ -12,9 +12,9 @@ package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.ids.impl.WeakHashMapOfWeakReference;
@@ -48,7 +48,7 @@ public class JavaConstants
 	
 
 	public static final @NonNull TypeId DOMAIN_PROPERTY_TYPE_ID = getJavaTypeId(DomainProperty.class);
-	public static final @NonNull TypeId DOMAIN_TYPE_TYPE_ID = getJavaTypeId(DomainType.class);
+	public static final @NonNull TypeId DOMAIN_TYPE_TYPE_ID = getJavaTypeId(DomainClass.class);
 	public static final @NonNull TypeId EVALUATOR_TYPE_ID = getJavaTypeId(DomainEvaluator.class);
 	public static final @NonNull TypeId ID_RESOLVER_TYPE_ID = getJavaTypeId(IdResolver.class);
 //	public static final @NonNull TypeId SELF_TYPE_ID = getJavaTypeId(Object.class);

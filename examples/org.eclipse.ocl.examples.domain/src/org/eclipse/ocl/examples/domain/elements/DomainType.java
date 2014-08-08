@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.domain.elements;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -25,19 +24,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return true if this type conform to thatType within standardLibrary.
 	 */
 	boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType);
-
-	/**
-	 * Return a new instance of this type from valueFactory. Properties may be initialised using
-	 * {@link DomainProperty#initValue(Object, Object) } provided no side-effect free
-	 * OCL functionality is permitted to use the ObjectValue until initialisation has completed.
-	 */
-	@NonNull Object createInstance();
-
-	/**
-	 * Return a new instance of this data type from valueFactory.
-	 * @param value string initial value
-	 */
-	@Nullable Object createInstance( @NonNull String value);
 	
 	/**
 	 * Return the most derived type com mon to this type and thatType within standardLibrary.

@@ -1051,7 +1051,7 @@ public class PropertyImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_self_71;
 		try {
-		    final @NonNull /*@NonInvalid*/ DomainType TYP_Class_0 = idResolver.getType(PivotTables.CLSSid_Class, null);
+		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Class_0 = idResolver.getType(PivotTables.CLSSid_Class, null);
 		    if (CAUGHT_container instanceof InvalidValueException) {
 		        throw (InvalidValueException)CAUGHT_container;
 		    }
@@ -1063,7 +1063,7 @@ public class PropertyImpl
 		}
 		@NonNull /*@Caught*/ Object CAUGHT_b;
 		try {
-		    final @NonNull /*@NonInvalid*/ DomainType TYP_Class_1 = idResolver.getType(PivotTables.CLSSid_Class, null);
+		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Class_1 = idResolver.getType(PivotTables.CLSSid_Class, null);
 		    if (CAUGHT_container instanceof InvalidValueException) {
 		        throw (InvalidValueException)CAUGHT_container;
 		    }
@@ -1175,7 +1175,7 @@ public class PropertyImpl
 		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
-		            final @NonNull /*@NonInvalid*/ DomainType TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
+		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression defaultExpression_0 = this.getDefaultExpression();
 		            final @Nullable /*@Thrown*/ DomainExpression oclAsType = (DomainExpression)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, defaultExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {

@@ -313,25 +313,18 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 		return eDynamicIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: "); //$NON-NLS-1$
-		result.append(value);
-		result.append(')');
-		return result.toString();
+	public String toString() {
+		return super.toString();
 	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitConstructorExp(this);
+	}
+
+	@Override
+	public org.eclipse.ocl.examples.pivot.Class getType() {
+		return (org.eclipse.ocl.examples.pivot.Class)super.getType();
 	}
 } //ConstructorExpImpl

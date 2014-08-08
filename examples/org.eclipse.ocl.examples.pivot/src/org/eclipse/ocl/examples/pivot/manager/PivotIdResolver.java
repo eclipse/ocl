@@ -211,13 +211,13 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context) {
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		if (type instanceof TemplateParameter) {
 			type = ((TemplateParameter)type).getParameteredElement();
 		}
 		assert type != null;
-		return (Type)type;
+		return (org.eclipse.ocl.examples.pivot.Class)type;
 	}
 
 	@Override

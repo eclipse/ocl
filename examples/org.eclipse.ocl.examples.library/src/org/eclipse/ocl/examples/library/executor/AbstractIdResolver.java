@@ -793,10 +793,10 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	public abstract @NonNull DomainType getType(@NonNull EClassifier eClassifier);
 
-	public @NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context) {
+	public @NonNull DomainClass getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
-		return (DomainType)type;
+		return (DomainClass)type;
 	}
 
 	private @NonNull Object getTypeKeyOf(@Nullable Object value) {

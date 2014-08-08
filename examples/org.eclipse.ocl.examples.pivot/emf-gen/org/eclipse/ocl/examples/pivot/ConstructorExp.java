@@ -70,4 +70,5 @@ public interface ConstructorExp extends OCLExpression
 	 */
 	void setValue(String value);
 
+	org.eclipse.ocl.examples.pivot.Class getType();
 } // ConstructorExp

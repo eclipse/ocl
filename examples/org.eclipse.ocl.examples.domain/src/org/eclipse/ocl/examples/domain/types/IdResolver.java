@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
@@ -105,7 +106,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainType getType(@NonNull EClassifier eClassifier);
 
-	@NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context);
+	@NonNull DomainClass getType(@NonNull TypeId typeId, @Nullable Object context);
 
 	boolean oclEquals(@Nullable Object thisValue, @Nullable Object thatValue);
 

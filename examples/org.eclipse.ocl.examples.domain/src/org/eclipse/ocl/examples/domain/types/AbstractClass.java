@@ -18,11 +18,21 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
 {
 	public AbstractClass(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name) {
 		super(standardLibrary, name);
+	}
+
+	public @NonNull ObjectValue createInstance() {
+		throw new UnsupportedOperationException();
+	}
+
+	public @NonNull Value createInstance(@NonNull String value) {
+		throw new UnsupportedOperationException();
 	}
 
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {

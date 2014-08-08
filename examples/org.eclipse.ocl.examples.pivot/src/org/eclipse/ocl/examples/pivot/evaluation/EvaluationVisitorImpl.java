@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -373,7 +374,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
     @Override
 	public Object visitConstructorExp(@NonNull ConstructorExp ce) {
-		DomainType type = ce.getType();
+		DomainClass type = (DomainClass) ce.getType();
 		String value = ce.getValue();
 		Object object;
 		if (value == null) {

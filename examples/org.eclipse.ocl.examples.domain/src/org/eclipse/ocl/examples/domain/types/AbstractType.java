@@ -21,8 +21,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.values.OCLValue;
-import org.eclipse.ocl.examples.domain.values.ObjectValue;
-import org.eclipse.ocl.examples.domain.values.Value;
 
 public abstract class AbstractType implements DomainType	// FIXME rename as perhaps DerivativeType
 {
@@ -33,14 +31,6 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	public AbstractType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name) {
 		this.standardLibrary = standardLibrary;
 		this.name = name;
-	}
-
-	public @NonNull ObjectValue createInstance() {
-		throw new UnsupportedOperationException();
-	}
-
-	public @NonNull Value createInstance(@NonNull String value) {
-		throw new UnsupportedOperationException();
 	}
 
 	public abstract @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type);

@@ -13,9 +13,23 @@ package org.eclipse.ocl.examples.domain.elements;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 public interface DomainClass extends DomainType
 {
+	/**
+	 * Return a new instance of this type from valueFactory. Properties may be initialised using
+	 * {@link DomainProperty#initValue(Object, Object) } provided no side-effect free
+	 * OCL functionality is permitted to use the ObjectValue until initialisation has completed.
+	 */
+	@NonNull Object createInstance();
+
+	/**
+	 * Return a new instance of this data type from valueFactory.
+	 * @param value string initial value
+	 */
+	@Nullable Object createInstance( @NonNull String value);
+
 	@NonNull List<? extends DomainOperation> getOwnedOperations();
 
 	@NonNull List<? extends DomainProperty> getOwnedProperties();
