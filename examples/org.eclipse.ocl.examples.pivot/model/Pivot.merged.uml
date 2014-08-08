@@ -179,6 +179,7 @@
       <generalization xmi:id="Ppivot.TClass.g0" general="Ppivot.TType"/>
       <generalization xmi:id="Ppivot.TClass.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TClass.g2" general="Ppivot.TTemplateableElement"/>
+      <generalization xmi:id="Ppivot.TClass.g3" general="Ppivot.TParameterableElement"/>
       <ownedAttribute xmi:id="Ppivot.TClass.PisAbstract" name="isAbstract" type="Ppivot.TBoolean">
         <ownedComment xmi:id="Ppivot.TClass.PisAbstract.oC0" annotatedElement="Ppivot.TClass.PisAbstract">
           <body>True when a class is abstract.</body>

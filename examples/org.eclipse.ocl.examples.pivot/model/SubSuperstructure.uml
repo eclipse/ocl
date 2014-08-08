@@ -5,6 +5,7 @@
       <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs-Templates" name="Templates">
         <packagedElement xmi:type="uml:Class" xmi:id="_RHSqABpbEeSM9LreJtBwBg" name="Class">
           <generalization xmi:id="_XnqLPH7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
+          <generalization xmi:id="_9IFfsB8zEeSG6YCqNQ2wgQ" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_nFdeAJwSEd-STLWP-FLKew" name="Element" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_iWKggA3IEeSm6471J7pVhQ" name="NamedElement" isAbstract="true"/>
