@@ -639,26 +639,6 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTemplate()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<ParameterableElement> parameterableElements()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateUniqueInvariantName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -1125,33 +1105,6 @@ public class ClassImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
-	{
-		if (baseClass == TemplateableElement.class)
-		{
-			switch (baseOperationID)
-			{
-				case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE: return PivotPackage.CLASS___IS_TEMPLATE;
-				case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS: return PivotPackage.CLASS___PARAMETERABLE_ELEMENTS;
-				default: return -1;
-			}
-		}
-		if (baseClass == Namespace.class)
-		{
-			switch (baseOperationID)
-			{
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
@@ -1167,10 +1120,6 @@ public class ClassImpl
 				return isTemplateParameter();
 			case PivotPackage.CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
-			case PivotPackage.CLASS___IS_TEMPLATE:
-				return isTemplate();
-			case PivotPackage.CLASS___PARAMETERABLE_ELEMENTS:
-				return parameterableElements();
 			case PivotPackage.CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

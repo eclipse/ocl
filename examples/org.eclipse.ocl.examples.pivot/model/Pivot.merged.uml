@@ -238,12 +238,6 @@
       <ownedAttribute xmi:id="Ppivot.TClass.PinstanceClassName" name="instanceClassName" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PinstanceClassName.lV"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="Ppivot.TClass.OisTemplate" name="isTemplate" isQuery="true" redefinedOperation="Ppivot.TTemplateableElement.OisTemplate">
-        <ownedComment xmi:id="Ppivot.TClass.OisTemplate.oC0" annotatedElement="Ppivot.TClass.OisTemplate">
-          <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
-        </ownedComment>
-        <ownedParameter xmi:id="Ppivot.TClass.OisTemplate.Pnull" type="Ppivot.TBoolean" direction="return"/>
-      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCollectionItem" name="CollectionItem">
       <generalization xmi:id="Ppivot.TCollectionItem.g0" general="Ppivot.TCollectionLiteralPart"/>
@@ -1490,21 +1484,6 @@
       <ownedAttribute xmi:id="Ppivot.TTemplateableElement.PunspecializedElement" name="unspecializedElement" type="Ppivot.TTemplateableElement">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateableElement.PunspecializedElement.lV"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="Ppivot.TTemplateableElement.OparameterableElements" name="parameterableElements" isQuery="true">
-        <ownedComment xmi:id="Ppivot.TTemplateableElement.OparameterableElements.oC0" annotatedElement="Ppivot.TTemplateableElement.OparameterableElements">
-          <body>The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.</body>
-        </ownedComment>
-        <ownedParameter xmi:id="Ppivot.TTemplateableElement.OparameterableElements.Pnull" type="Ppivot.TParameterableElement" direction="return">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateableElement.OparameterableElements.Pnull.lV"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateableElement.OparameterableElements.Pnull.uV" value="*"/>
-        </ownedParameter>
-      </ownedOperation>
-      <ownedOperation xmi:id="Ppivot.TTemplateableElement.OisTemplate" name="isTemplate" isQuery="true">
-        <ownedComment xmi:id="Ppivot.TTemplateableElement.OisTemplate.oC0" annotatedElement="Ppivot.TTemplateableElement.OisTemplate">
-          <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
-        </ownedComment>
-        <ownedParameter xmi:id="Ppivot.TTemplateableElement.OisTemplate.Pnull" type="Ppivot.TBoolean" direction="return"/>
-      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTransition" name="Transition">
       <ownedComment xmi:id="Ppivot.TTransition.oC0" annotatedElement="Ppivot.TTransition">

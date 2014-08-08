@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,12 +24,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -182,24 +179,6 @@ public abstract class TemplateableElementImpl
 		unspecializedElement = newUnspecializedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<ParameterableElement> parameterableElements() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplate() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
 	}
 
 	/**
@@ -381,28 +360,6 @@ public abstract class TemplateableElementImpl
 				return unspecializedElement != null;
 		}
 		return eDynamicIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
-		switch (operationID)
-		{
-			case PivotPackage.TEMPLATEABLE_ELEMENT___ALL_OWNED_ELEMENTS:
-				return allOwnedElements();
-			case PivotPackage.TEMPLATEABLE_ELEMENT___GET_VALUE__TYPE_STRING:
-				return getValue((Type)arguments.get(0), (String)arguments.get(1));
-			case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE:
-				return isTemplate();
-			case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS:
-				return parameterableElements();
-		}
-		return eDynamicInvoke(operationID, arguments);
 	}
 
 } //TemplateableElementImpl

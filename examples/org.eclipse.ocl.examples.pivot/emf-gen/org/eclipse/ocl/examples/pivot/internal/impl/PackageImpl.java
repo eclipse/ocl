@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,14 +36,12 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -475,24 +472,6 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ParameterableElement> parameterableElements() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplate() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -904,58 +883,6 @@ public class PackageImpl
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == TemplateableElement.class)
-		{
-			switch (baseOperationID)
-			{
-				case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE: return PivotPackage.PACKAGE___IS_TEMPLATE;
-				case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS: return PivotPackage.PACKAGE___PARAMETERABLE_ELEMENTS;
-				default: return -1;
-			}
-		}
-		if (baseClass == Namespace.class)
-		{
-			switch (baseOperationID)
-			{
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
-		switch (operationID)
-		{
-			case PivotPackage.PACKAGE___ALL_OWNED_ELEMENTS:
-				return allOwnedElements();
-			case PivotPackage.PACKAGE___GET_VALUE__TYPE_STRING:
-				return getValue((Type)arguments.get(0), (String)arguments.get(1));
-			case PivotPackage.PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
-				return isCompatibleWith((ParameterableElement)arguments.get(0));
-			case PivotPackage.PACKAGE___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
-			case PivotPackage.PACKAGE___IS_TEMPLATE:
-				return isTemplate();
-			case PivotPackage.PACKAGE___PARAMETERABLE_ELEMENTS:
-				return parameterableElements();
-		}
-		return eDynamicInvoke(operationID, arguments);
 	}
 
 	/**

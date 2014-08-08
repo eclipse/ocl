@@ -346,10 +346,7 @@ public class CodegencompanyTables
 			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
 			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompanySizeKind__TemplateableElement = {
-			PivotTables.Operations._TemplateableElement__isTemplate /* isTemplate() */,
-			PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
-		};
+		private static final @NonNull ExecutorOperation[] _CompanySizeKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Type = {
 			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
 		};

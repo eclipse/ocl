@@ -285,12 +285,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateableElement/ownedTemplateSignature"/>
       </genFeatures>
-      <genOperations xsi:type="genmodel:GenOperation">
-        <ecoreOperation href="Pivot.ecore#//TemplateableElement/parameterableElements"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation">
-        <ecoreOperation href="Pivot.ecore#//TemplateableElement/isTemplate"/>
-      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//TemplateBinding"/>

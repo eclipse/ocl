@@ -354,7 +354,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _Collection_OppositePropertyCallExp = createCollectionType("Collection"/*OppositePropertyCallExp*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_Package = createCollectionType("Collection"/*Package*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_Parameter = createCollectionType("Collection"/*Parameter*/, "0", "*");
-		protected final @NonNull CollectionType _Collection_ParameterableElement = createCollectionType("Collection"/*ParameterableElement*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_Precedence = createCollectionType("Collection"/*Precedence*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_ProfileApplication = createCollectionType("Collection"/*ProfileApplication*/, "0", "*");
 		protected final @NonNull CollectionType _Collection_Property = createCollectionType("Collection"/*Property*/, "0", "*");
@@ -426,7 +425,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull SetType _Set_InstanceSpecification = createSetType("Set"/*InstanceSpecification*/, "0", "*");
 		protected final @NonNull SetType _Set_Operation = createSetType("Set"/*Operation*/, "0", "*");
 		protected final @NonNull SetType _Set_Package = createSetType("Set"/*Package*/, "0", "*");
-		protected final @NonNull SetType _Set_ParameterableElement = createSetType("Set"/*ParameterableElement*/, "0", "*");
 		protected final @NonNull SetType _Set_ProfileApplication = createSetType("Set"/*ProfileApplication*/, "0", "*");
 		protected final @NonNull SetType _Set_Property = createSetType("Set"/*Property*/, "0", "*");
 		protected final @NonNull SetType _Set_Pseudostate = createSetType("Set"/*Pseudostate*/, "0", "*");
@@ -461,7 +459,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull CollectionType _UniqueCollection_Operation = createCollectionType("UniqueCollection"/*Operation*/, "0", "*");
 		protected final @NonNull CollectionType _UniqueCollection_Package = createCollectionType("UniqueCollection"/*Package*/, "0", "*");
 		protected final @NonNull CollectionType _UniqueCollection_Parameter = createCollectionType("UniqueCollection"/*Parameter*/, "0", "*");
-		protected final @NonNull CollectionType _UniqueCollection_ParameterableElement = createCollectionType("UniqueCollection"/*ParameterableElement*/, "0", "*");
 		protected final @NonNull CollectionType _UniqueCollection_Precedence = createCollectionType("UniqueCollection"/*Precedence*/, "0", "*");
 		protected final @NonNull CollectionType _UniqueCollection_ProfileApplication = createCollectionType("UniqueCollection"/*ProfileApplication*/, "0", "*");
 		protected final @NonNull CollectionType _UniqueCollection_Property = createCollectionType("UniqueCollection"/*Property*/, "0", "*");
@@ -1258,11 +1255,6 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
-			orphanTypes.add(type = _Collection_ParameterableElement);
-			type.setUnspecializedElement(_Collection);
-			type.setElementType(_ParameterableElement);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_Precedence);
 			type.setUnspecializedElement(_Collection);
 			type.setElementType(_Precedence);
@@ -1634,11 +1626,6 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Package);
-			orphanTypes.add(type = _Set_ParameterableElement);
-			type.setUnspecializedElement(_Set);
-			type.setElementType(_ParameterableElement);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_UniqueCollection_ParameterableElement);
 			orphanTypes.add(type = _Set_ProfileApplication);
 			type.setUnspecializedElement(_Set);
 			type.setElementType(_ProfileApplication);
@@ -1809,11 +1796,6 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Parameter);
-			orphanTypes.add(type = _UniqueCollection_ParameterableElement);
-			type.setUnspecializedElement(_UniqueCollection);
-			type.setElementType(_ParameterableElement);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Collection_ParameterableElement);
 			orphanTypes.add(type = _UniqueCollection_Precedence);
 			type.setUnspecializedElement(_UniqueCollection);
 			type.setElementType(_Precedence);
@@ -1925,8 +1907,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyType = createOperation("getSpecializedReferredPropertyType", _Class, null, null);
 		protected final @NonNull Operation op_ReferringElement_getReferredElement = createOperation("getReferredElement", _Element, null, null);
 		protected final @NonNull Operation op_SelfType_specializeIn = createOperation("specializeIn", _Type, null, null);
-		protected final @NonNull Operation op_TemplateableElement_isTemplate = createOperation("isTemplate", _Boolean, null, null);
-		protected final @NonNull Operation op_TemplateableElement_parameterableElements = createOperation("parameterableElements", _Set_ParameterableElement, null, null);
 		protected final @NonNull Operation op_Type_specializeIn = createOperation("specializeIn", _Type, null, null);
 		protected final @NonNull Operation op_TypedElement_CompatibleBody = createOperation("CompatibleBody", _Boolean, null, null);
 		protected final @NonNull Operation op_TypedElement_makeParameter = createOperation("makeParameter", _Parameter, null, null);
@@ -1975,9 +1955,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("expr", _OCLExpression, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
-			ownedOperations = _TemplateableElement.getOwnedOperations();
-			ownedOperations.add(operation = op_TemplateableElement_isTemplate);
-			ownedOperations.add(operation = op_TemplateableElement_parameterableElements);
 			ownedOperations = _Type.getOwnedOperations();
 			ownedOperations.add(operation = op_Type_specializeIn);
 			operation.setBodyExpression(createExpressionInOCL(_Type, "self"));
@@ -3960,8 +3937,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _Package)));
 			_Collection_Parameter.getTemplateBinding().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Parameter)));
-			_Collection_ParameterableElement.getTemplateBinding().add(createTemplateBinding(_Collection_,
-				createTemplateParameterSubstitution(_Collection_T, _ParameterableElement)));
 			_Collection_Precedence.getTemplateBinding().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Precedence)));
 			_Collection_ProfileApplication.getTemplateBinding().add(createTemplateBinding(_Collection_,
@@ -4104,8 +4079,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _Operation)));
 			_Set_Package.getTemplateBinding().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Package)));
-			_Set_ParameterableElement.getTemplateBinding().add(createTemplateBinding(_Set_,
-				createTemplateParameterSubstitution(_Set_T, _ParameterableElement)));
 			_Set_ProfileApplication.getTemplateBinding().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _ProfileApplication)));
 			_Set_Property.getTemplateBinding().add(createTemplateBinding(_Set_,
@@ -4174,8 +4147,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Package)));
 			_UniqueCollection_Parameter.getTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Parameter)));
-			_UniqueCollection_ParameterableElement.getTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
-				createTemplateParameterSubstitution(_UniqueCollection_T, _ParameterableElement)));
 			_UniqueCollection_Precedence.getTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Precedence)));
 			_UniqueCollection_ProfileApplication.getTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
@@ -4340,9 +4311,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_TemplateSignature_ownedParameter, "The formal template parameters that are owned by this template signature.");
 			installComment(pr_TemplateSignature_template, "The element that owns this template signature.");
 			installComment(_TemplateableElement, "A templateable element is an element that can optionally be defined as a template and bound to other templates.");
-			installComment(op_TemplateableElement_isTemplate, "The query isTemplate() returns whether this templateable element is actually a template.");
 			installComment(pr_TemplateableElement_ownedTemplateSignature, "The optional template signature specifying the formal template parameters.");
-			installComment(op_TemplateableElement_parameterableElements, "The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.");
 			installComment(pr_TemplateableElement_templateBinding, "The optional bindings from this element to templates.");
 			installComment(_Transition, "A transition is a directed relationship between a source vertex and a target vertex. It may be part of a compound transition, which takes the state machine from one state configuration to another, representing the complete response of the state machine to an occurrence of an event of a particular type.");
 			installComment(pr_Transition_container, "Designates the region that owns this transition.");

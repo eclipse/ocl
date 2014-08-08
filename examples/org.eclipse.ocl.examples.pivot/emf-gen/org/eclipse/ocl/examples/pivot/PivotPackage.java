@@ -2000,31 +2000,13 @@ public interface PivotPackage
 	int CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___IS_TEMPLATE = TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___PARAMETERABLE_ELEMENTS = TYPE_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE_OPERATION_COUNT + 2;
+	int CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -2033,7 +2015,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = TYPE_OPERATION_COUNT + 3;
+	int CLASS_OPERATION_COUNT = TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -2295,24 +2277,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -2601,24 +2565,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -3818,24 +3764,6 @@ public interface PivotPackage
 	int DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4158,24 +4086,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___IS_TEMPLATE = DATA_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -4502,24 +4412,6 @@ public interface PivotPackage
 	int BAG_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___IS_TEMPLATE = COLLECTION_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4806,24 +4698,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -7139,24 +7013,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7461,24 +7317,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___IS_TEMPLATE = DYNAMIC_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___PARAMETERABLE_ELEMENTS = DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -8399,24 +8237,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8865,24 +8685,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___IS_TEMPLATE = DATA_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -11307,24 +11109,6 @@ public interface PivotPackage
 	int INVALID_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12054,31 +11838,13 @@ public interface PivotPackage
 	int OPERATION___MAKE_PARAMETER = FEATURE___MAKE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___IS_TEMPLATE = FEATURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___PARAMETERABLE_ELEMENTS = FEATURE_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 2;
+	int OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -12087,7 +11853,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 3;
+	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
@@ -12096,7 +11862,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 4;
+	int OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Loadable Implementation</em>' operation.
@@ -12105,7 +11871,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_LOADABLE_IMPLEMENTATION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 5;
+	int OPERATION___VALIDATE_LOADABLE_IMPLEMENTATION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Postcondition Name</em>' operation.
@@ -12114,7 +11880,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_UNIQUE_POSTCONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 6;
+	int OPERATION___VALIDATE_UNIQUE_POSTCONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Precondition Name</em>' operation.
@@ -12123,7 +11889,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_UNIQUE_PRECONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 7;
+	int OPERATION___VALIDATE_UNIQUE_PRECONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -12132,7 +11898,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 8;
+	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -12439,24 +12205,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION___MAKE_PARAMETER = OPERATION___MAKE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___IS_TEMPLATE = OPERATION___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___PARAMETERABLE_ELEMENTS = OPERATION___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Is Compatible With</em>' operation.
@@ -13305,24 +13053,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE___IS_TEMPLATE = DATA_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13710,31 +13440,13 @@ public interface PivotPackage
 	int PACKAGE___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___IS_TEMPLATE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___PARAMETERABLE_ELEMENTS = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 2;
+	int PACKAGE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -13960,24 +13672,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY___IS_TEMPLATE_PARAMETER = PACKAGE___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY___PARAMETERABLE_ELEMENTS = PACKAGE___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Library</em>' class.
@@ -14448,24 +14142,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14752,24 +14428,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -15960,24 +15618,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___IS_TEMPLATE = COLLECTION_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16857,24 +16497,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___IS_TEMPLATE = DATA_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17116,24 +16738,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE___IS_TEMPLATE_PARAMETER = PACKAGE___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE___PARAMETERABLE_ELEMENTS = PACKAGE___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Profile</em>' class.
@@ -18648,24 +18252,6 @@ public interface PivotPackage
 	int SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19089,24 +18675,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___IS_TEMPLATE = COLLECTION_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19431,24 +18999,6 @@ public interface PivotPackage
 	int SET_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___IS_TEMPLATE = COLLECTION_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19726,24 +19276,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -20304,24 +19836,6 @@ public interface PivotPackage
 	int STATE_MACHINE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE___IS_TEMPLATE = BEHAVIOR___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE___PARAMETERABLE_ELEMENTS = BEHAVIOR___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20608,24 +20122,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -21321,31 +20817,13 @@ public interface PivotPackage
 	int TEMPLATEABLE_ELEMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT___IS_TEMPLATE = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS = ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Templateable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATEABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
+	int TEMPLATEABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -22147,24 +21625,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___IS_TEMPLATE = DATA_TYPE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -22997,24 +22457,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23733,24 +23175,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -26922,26 +26346,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateableElement_UnspecializedElement();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#parameterableElements() <em>Parameterable Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Parameterable Elements</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#parameterableElements()
-	 * @generated
-	 */
-	EOperation getTemplateableElement__ParameterableElements();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#isTemplate() <em>Is Template</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Template</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#isTemplate()
-	 * @generated
-	 */
-	EOperation getTemplateableElement__IsTemplate();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Transition <em>Transition</em>}'.
@@ -31235,22 +30639,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT = eINSTANCE.getTemplateableElement_UnspecializedElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Parameterable Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS = eINSTANCE.getTemplateableElement__ParameterableElements();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Template</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATEABLE_ELEMENT___IS_TEMPLATE = eINSTANCE.getTemplateableElement__IsTemplate();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.

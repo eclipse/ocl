@@ -103,24 +103,4 @@ public interface TemplateableElement
 	 */
 	void setUnspecializedElement(TemplateableElement value);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.
-	 * <!-- end-model-doc -->
-	 * @generated
-	 */
-	List<ParameterableElement> parameterableElements();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The query isTemplate() returns whether this templateable element is actually a template.
-	 * <!-- end-model-doc -->
-	 * @generated
-	 */
-	boolean isTemplate();
-
 } // TemplateableElement

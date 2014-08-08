@@ -1130,24 +1130,6 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ParameterableElement> parameterableElements() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplate() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -1664,8 +1646,6 @@ public class OperationImpl
 		{
 			switch (baseOperationID)
 			{
-				case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE: return PivotPackage.OPERATION___IS_TEMPLATE;
-				case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS: return PivotPackage.OPERATION___PARAMETERABLE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -1707,10 +1687,6 @@ public class OperationImpl
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.OPERATION___MAKE_PARAMETER:
 				return makeParameter();
-			case PivotPackage.OPERATION___IS_TEMPLATE:
-				return isTemplate();
-			case PivotPackage.OPERATION___PARAMETERABLE_ELEMENTS:
-				return parameterableElements();
 			case PivotPackage.OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.OPERATION___IS_TEMPLATE_PARAMETER:
