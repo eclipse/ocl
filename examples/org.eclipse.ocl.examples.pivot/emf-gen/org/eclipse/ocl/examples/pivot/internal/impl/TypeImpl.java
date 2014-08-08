@@ -378,8 +378,6 @@ public abstract class TypeImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
-			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
 			case PivotPackage.TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 		}

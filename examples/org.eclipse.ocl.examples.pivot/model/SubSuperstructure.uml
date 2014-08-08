@@ -13,13 +13,6 @@
             <body>Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLOX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
-          <generalization xmi:id="_Tp6jgBp2EeSM9LreJtBwBg" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation-templateParameter">
-              <body>The template parameter that exposes this element as a formal parameter.</body>
-            </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfUH7VEeOu79LxSz8Ylw"/>
-          </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Package" name="Package">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-Package-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Package">
@@ -55,20 +48,6 @@
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfT37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedOperation xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter" name="isTemplateParameter" bodyCondition="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" isQuery="true">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
-              <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
-            </ownedComment>
-            <ownedRule xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec" name="spec" constrainedElement="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter">
-              <specification xmi:type="uml:ExpressionInOCL" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-spec-_specification">
-                <language>OCL</language>
-                <body>templateParameter->notEmpty()</body>
-              </specification>
-            </ownedRule>
-            <ownedParameter xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-isTemplateParameter-_ownedParameter.0" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
-            </ownedParameter>
-          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Property" name="Property">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-Property-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property">

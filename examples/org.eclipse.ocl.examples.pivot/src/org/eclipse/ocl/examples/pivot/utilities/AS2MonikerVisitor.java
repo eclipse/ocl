@@ -383,16 +383,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitOperation(@NonNull Operation object) {
-		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {			// FIXME does this happen ?
-			TemplateableElement owningTemplateElement = owningTemplateParameter.getSignature().getTemplate();
-			if (!context.hasEmitted(owningTemplateParameter)/* || !context.isTemplateParameter(owningTemplateParameter)*/) {
-				context.appendElement(owningTemplateElement);
-				context.append(TEMPLATE_PARAMETER_PREFIX);
-			}
-			context.appendName(object);
-		}
-		else if (!object.getTemplateBinding().isEmpty()) {
+		if (!object.getTemplateBinding().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
 			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);

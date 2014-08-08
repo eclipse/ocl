@@ -96,16 +96,6 @@ public interface ParameterableElement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.
-	 * <!-- end-model-doc -->
-	 * @generated
-	 */
-	boolean isTemplateParameter();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	boolean isCompatibleWith(ParameterableElement p);

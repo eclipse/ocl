@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -149,10 +148,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
@@ -212,11 +207,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getUnspecializedElement();
 			case PivotPackage.ITERATION__OWNED_RULE:
 				return getOwnedRule();
-			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.ITERATION__IS_INVALIDATING:
@@ -304,12 +294,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)newValue);
@@ -410,12 +394,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
-			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)null);
 				return;
@@ -496,10 +474,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return unspecializedElement != null;
 			case PivotPackage.ITERATION__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.ITERATION__IS_INVALIDATING:

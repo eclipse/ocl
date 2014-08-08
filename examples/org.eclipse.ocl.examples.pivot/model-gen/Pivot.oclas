@@ -788,7 +788,7 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:DataType" xmi:id="T.pivot.Object" instanceClassName="java.lang.Object"
         name="Object" superClasses="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny"/>
-    <ownedClasses xmi:id="T.pivot.Operation" name="Operation" superClasses="#T.pivot.Feature #T.pivot.TemplateableElement #T.pivot.Namespace #T.pivot.ParameterableElement">
+    <ownedClasses xmi:id="T.pivot.Operation" name="Operation" superClasses="#T.pivot.Feature #T.pivot.TemplateableElement #T.pivot.Namespace">
       <ownedComment body="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
       <ownedInvariants xmi:id="cipivot.Operation.CompatibleReturn" isCallable="true"
           name="CompatibleReturn">
@@ -924,10 +924,6 @@
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;p.oclIsKindOf(self.oclType())&#xA;&#xA;"/>
         <ownedParameter xmi:id="p0o.pivot.ParameterableElement.isCompatibleWith..pivot.ParameterableElement"
             name="p" type="#T.pivot.ParameterableElement"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="o.pivot.ParameterableElement.isTemplateParameter" name="isTemplateParameter"
-          type="#Boolean">
-        <ownedComment body="The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter."/>
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.ParameterableElement.owningTemplateParameter"
           isRequired="false" name="owningTemplateParameter" opposite="#p.pivot.TemplateParameter.ownedParameteredElement"

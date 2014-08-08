@@ -243,9 +243,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ParameterableElement/owningTemplateParameter"/>
       </genFeatures>
-      <genOperations xsi:type="genmodel:GenOperation">
-        <ecoreOperation href="Pivot.ecore#//ParameterableElement/isTemplateParameter"/>
-      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//TemplateParameter"/>

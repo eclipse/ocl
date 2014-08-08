@@ -1847,12 +1847,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public Iterable<Comment> getLocalComments(@NonNull Operation operation) {
-		if (operation.getOwningTemplateParameter() != null) {
-			return EMPTY_COMMENT_LIST;
-		}
-		else {
-			return new CompleteElementCommentsIterable(getAllOperations(operation));
-		}
+		return new CompleteElementCommentsIterable(getAllOperations(operation));
 	}
 
 	public @NonNull Iterable<Comment> getLocalComments(@NonNull Property property) {

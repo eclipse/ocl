@@ -285,16 +285,6 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -585,7 +575,6 @@ public class ParameterImpl
 			switch (baseOperationID)
 			{
 				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.PARAMETER___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.PARAMETER___IS_TEMPLATE_PARAMETER;
 				default: return -1;
 			}
 		}
@@ -612,8 +601,6 @@ public class ParameterImpl
 				return makeParameter();
 			case PivotPackage.PARAMETER___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
-			case PivotPackage.PARAMETER___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

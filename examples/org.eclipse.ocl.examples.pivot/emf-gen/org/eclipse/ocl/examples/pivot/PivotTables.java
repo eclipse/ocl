@@ -1107,7 +1107,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Iteration__OclAny = new ExecutorFragment(Types._Iteration, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Iteration__OclElement = new ExecutorFragment(Types._Iteration, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Iteration__Operation = new ExecutorFragment(Types._Iteration, PivotTables.Types._Operation);
-		private static final @NonNull ExecutorFragment _Iteration__ParameterableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _Iteration__TemplateableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _Iteration__TypedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedElement);
 		private static final @NonNull ExecutorFragment _Iteration__Visitable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Visitable);
@@ -1319,7 +1318,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Operation__OclAny = new ExecutorFragment(Types._Operation, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Operation__OclElement = new ExecutorFragment(Types._Operation, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Operation__Operation = new ExecutorFragment(Types._Operation, PivotTables.Types._Operation);
-		private static final @NonNull ExecutorFragment _Operation__ParameterableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _Operation__TemplateableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _Operation__TypedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedElement);
 		private static final @NonNull ExecutorFragment _Operation__Visitable = new ExecutorFragment(Types._Operation, PivotTables.Types._Visitable);
@@ -1990,8 +1988,6 @@ public class PivotTables
 
 		public static final @NonNull ExecutorOperation _ParameterableElement__isCompatibleWith = new ExecutorOperation("isCompatibleWith", Parameters._ParameterableElement, Types._ParameterableElement,
 			0, DomainTypeParameters.EMPTY_LIST, null);
-		public static final @NonNull ExecutorOperation _ParameterableElement__isTemplateParameter = new ExecutorOperation("isTemplateParameter", Parameters._, Types._ParameterableElement,
-			1, DomainTypeParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Property__isAttribute = new ExecutorOperation("isAttribute", Parameters._Property, Types._Property,
 			0, DomainTypeParameters.EMPTY_LIST, null);
@@ -3205,7 +3201,6 @@ public class PivotTables
 			Fragments._Iteration__Visitable /* 2 */,
 			Fragments._Iteration__Element /* 3 */,
 			Fragments._Iteration__NamedElement /* 4 */,
-			Fragments._Iteration__ParameterableElement /* 4 */,
 			Fragments._Iteration__TemplateableElement /* 4 */,
 			Fragments._Iteration__Namespace /* 5 */,
 			Fragments._Iteration__TypedElement /* 5 */,
@@ -3213,7 +3208,7 @@ public class PivotTables
 			Fragments._Iteration__Operation /* 7 */,
 			Fragments._Iteration__Iteration /* 8 */
 		};
-		private static final @NonNull int[] __Iteration = { 1,1,2,1,3,2,1,1,1 };
+		private static final @NonNull int[] __Iteration = { 1,1,2,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _IteratorExp =
 		{
@@ -3502,14 +3497,13 @@ public class PivotTables
 			Fragments._Operation__Visitable /* 2 */,
 			Fragments._Operation__Element /* 3 */,
 			Fragments._Operation__NamedElement /* 4 */,
-			Fragments._Operation__ParameterableElement /* 4 */,
 			Fragments._Operation__TemplateableElement /* 4 */,
 			Fragments._Operation__Namespace /* 5 */,
 			Fragments._Operation__TypedElement /* 5 */,
 			Fragments._Operation__Feature /* 6 */,
 			Fragments._Operation__Operation /* 7 */
 		};
-		private static final @NonNull int[] __Operation = { 1,1,2,1,3,2,1,1 };
+		private static final @NonNull int[] __Operation = { 1,1,2,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OperationCallExp =
 		{
@@ -4589,8 +4583,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _AnyType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _AnyType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _AnyType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _AnyType__Type = {
@@ -4633,8 +4626,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _AssociationClass__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _AssociationClass__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _AssociationClass__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _AssociationClass__Type = {
@@ -4719,8 +4711,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _AssociativityKind__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _AssociativityKind__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _AssociativityKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _AssociativityKind__Type = {
@@ -4765,8 +4756,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _BagType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _BagType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _BagType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _BagType__Type = {
@@ -4809,8 +4799,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Behavior__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Behavior__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Behavior__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Behavior__Type = {
@@ -4954,8 +4943,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Class__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Class__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Class__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Class__Type = {
@@ -5037,8 +5025,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionKind__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _CollectionKind__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CollectionKind__Type = {
@@ -5187,8 +5174,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _CollectionType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CollectionType__Type = {
@@ -5285,8 +5271,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Constraint__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Constraint__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Constraint__Visitable = {};
 
@@ -5394,8 +5379,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _DataType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _DataType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _DataType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _DataType__Type = {
@@ -5471,8 +5455,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicBehavior__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _DynamicBehavior__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicBehavior__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Type = {
@@ -5572,8 +5555,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _DynamicType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _DynamicType__Type = {
@@ -5611,8 +5593,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -5690,8 +5671,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _ElementExtension__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _ElementExtension__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _ElementExtension__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _ElementExtension__Type = {
@@ -5773,8 +5753,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Enumeration__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Enumeration__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Enumeration__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Enumeration__Type = {
@@ -5813,8 +5792,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Visitable = {};
 
@@ -5849,8 +5827,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -6065,8 +6042,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _InstanceSpecification__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _InstanceSpecification__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _InstanceSpecification__Visitable = {};
 
@@ -6179,8 +6155,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _InvalidType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _InvalidType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _InvalidType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _InvalidType__Type = {
@@ -6259,10 +6234,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Iteration__Operation = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
-		};
 		private static final @NonNull ExecutorOperation[] _Iteration__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Iteration__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -6346,8 +6317,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _LambdaType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _LambdaType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _LambdaType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _LambdaType__Type = {
@@ -6385,8 +6355,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _LanguageExpression__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _LanguageExpression__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _LanguageExpression__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -6469,8 +6438,7 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _Library__Package = {};
 		private static final @NonNull ExecutorOperation[] _Library__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Library__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Library__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Library__Visitable = {};
@@ -6634,8 +6602,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _MessageType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _MessageType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _MessageType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _MessageType__Type = {
@@ -6678,8 +6645,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Metaclass__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Metaclass__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Metaclass__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Metaclass__Type = {
@@ -6985,10 +6951,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Operation__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
-		};
 		private static final @NonNull ExecutorOperation[] _Operation__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Operation__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -7111,8 +7073,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _OrderedSetType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _OrderedSetType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _OrderedSetType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _OrderedSetType__Type = {
@@ -7151,8 +7112,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Package__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Package__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Package__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Package__Visitable = {};
@@ -7186,8 +7146,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _PackageableElement__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _PackageableElement__Visitable = {};
 
@@ -7220,8 +7179,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Parameter__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Parameter__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -7231,8 +7189,7 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _Parameter__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _ParameterableElement__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _ParameterableElement__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
@@ -7386,8 +7343,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _PrimitiveType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _PrimitiveType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _PrimitiveType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _PrimitiveType__Type = {
@@ -7427,8 +7383,7 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _Profile__Package = {};
 		private static final @NonNull ExecutorOperation[] _Profile__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Profile__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Profile__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Profile__Visitable = {};
@@ -7493,8 +7448,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Property__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Property__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -7616,8 +7570,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _PseudostateKind__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _PseudostateKind__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _PseudostateKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _PseudostateKind__Type = {
@@ -7787,8 +7740,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _SelfType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _SelfType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _SelfType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _SelfType__Type = {
@@ -7863,8 +7815,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _SequenceType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _SequenceType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _SequenceType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _SequenceType__Type = {
@@ -7909,8 +7860,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _SetType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _SetType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _SetType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _SetType__Type = {
@@ -7953,8 +7903,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Signal__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Signal__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Signal__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Signal__Type = {
@@ -8094,8 +8043,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _StateMachine__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _StateMachine__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _StateMachine__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _StateMachine__Type = {
@@ -8138,8 +8086,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Stereotype__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Stereotype__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Stereotype__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Stereotype__Type = {
@@ -8301,8 +8248,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _TemplateParameterType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _TemplateParameterType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _TemplateParameterType__Type = {
 			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
@@ -8453,8 +8399,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _TransitionKind__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _TransitionKind__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _TransitionKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _TransitionKind__Type = {
@@ -8599,8 +8544,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _TupleType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _TupleType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _TupleType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _TupleType__Type = {
@@ -8643,8 +8587,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Type__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _Type__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _Type__Visitable = {};
 
@@ -8849,8 +8792,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _UnspecifiedType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _UnspecifiedType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _UnspecifiedType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _UnspecifiedType__Type = {
@@ -8930,8 +8872,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _ValueSpecification__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _ValueSpecification__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _ValueSpecification__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
@@ -9134,8 +9075,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _VoidType__PackageableElement = {};
 		private static final @NonNull ExecutorOperation[] _VoidType__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _VoidType__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _VoidType__Type = {
@@ -9683,7 +9623,6 @@ public class PivotTables
 			Fragments._Iteration__OclAny.initOperations(_Iteration__OclAny);
 			Fragments._Iteration__OclElement.initOperations(_Iteration__OclElement);
 			Fragments._Iteration__Operation.initOperations(_Iteration__Operation);
-			Fragments._Iteration__ParameterableElement.initOperations(_Iteration__ParameterableElement);
 			Fragments._Iteration__TemplateableElement.initOperations(_Iteration__TemplateableElement);
 			Fragments._Iteration__TypedElement.initOperations(_Iteration__TypedElement);
 			Fragments._Iteration__Visitable.initOperations(_Iteration__Visitable);
@@ -9895,7 +9834,6 @@ public class PivotTables
 			Fragments._Operation__OclAny.initOperations(_Operation__OclAny);
 			Fragments._Operation__OclElement.initOperations(_Operation__OclElement);
 			Fragments._Operation__Operation.initOperations(_Operation__Operation);
-			Fragments._Operation__ParameterableElement.initOperations(_Operation__ParameterableElement);
 			Fragments._Operation__TemplateableElement.initOperations(_Operation__TemplateableElement);
 			Fragments._Operation__TypedElement.initOperations(_Operation__TypedElement);
 			Fragments._Operation__Visitable.initOperations(_Operation__Visitable);
@@ -12084,14 +12022,12 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._Operation__owningClass,
-			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._Operation__postcondition,
 			PivotTables.Properties._Operation__precedence,
 			PivotTables.Properties._Operation__precondition,
 			PivotTables.Properties._Operation__raisedException,
 			PivotTables.Properties._Operation__redefinedOperation,
 			PivotTables.Properties._TemplateableElement__templateBinding,
-			PivotTables.Properties._ParameterableElement__templateParameter,
 			PivotTables.Properties._TypedElement__type,
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
@@ -12104,11 +12040,7 @@ public class PivotTables
 			PivotTables.Properties._Iteration__LoopExp__referredIteration,
 			PivotTables.Properties._Operation__MessageType__referredOperation,
 			PivotTables.Properties._Operation__OperationCallExp__referredOperation,
-			PivotTables.Properties._Operation__operation__redefinedOperation,
-			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
-			PivotTables.Properties._ParameterableElement__templateParameter__default,
-			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
-			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
+			PivotTables.Properties._Operation__operation__redefinedOperation
 		};
 
 		private static final @NonNull ExecutorProperty[] _IteratorExp = {
@@ -12700,14 +12632,12 @@ public class PivotTables
 			PivotTables.Properties._Namespace__ownedRule,
 			PivotTables.Properties._TemplateableElement__ownedTemplateSignature,
 			PivotTables.Properties._Operation__owningClass,
-			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._Operation__postcondition,
 			PivotTables.Properties._Operation__precedence,
 			PivotTables.Properties._Operation__precondition,
 			PivotTables.Properties._Operation__raisedException,
 			PivotTables.Properties._Operation__redefinedOperation,
 			PivotTables.Properties._TemplateableElement__templateBinding,
-			PivotTables.Properties._ParameterableElement__templateParameter,
 			PivotTables.Properties._TypedElement__type,
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
@@ -12719,11 +12649,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__Import__importedNamespace,
 			PivotTables.Properties._Operation__MessageType__referredOperation,
 			PivotTables.Properties._Operation__OperationCallExp__referredOperation,
-			PivotTables.Properties._Operation__operation__redefinedOperation,
-			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
-			PivotTables.Properties._ParameterableElement__templateParameter__default,
-			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
-			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
+			PivotTables.Properties._Operation__operation__redefinedOperation
 		};
 
 		private static final @NonNull ExecutorProperty[] _OperationCallExp = {

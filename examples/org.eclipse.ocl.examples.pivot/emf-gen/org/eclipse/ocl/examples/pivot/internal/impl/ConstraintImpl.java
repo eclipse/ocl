@@ -769,8 +769,6 @@ public class ConstraintImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.CONSTRAINT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
-			case PivotPackage.CONSTRAINT___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
 			case PivotPackage.CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

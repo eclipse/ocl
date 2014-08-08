@@ -343,8 +343,7 @@ public class CodegencompanyTables
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */,
-			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Type = {

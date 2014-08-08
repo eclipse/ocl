@@ -1567,22 +1567,13 @@ public interface PivotPackage
 	int PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Packageable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -1700,15 +1691,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -1970,15 +1952,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -2249,15 +2222,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -2537,15 +2501,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -3736,15 +3691,6 @@ public interface PivotPackage
 	int DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4058,15 +4004,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -4384,15 +4321,6 @@ public interface PivotPackage
 	int BAG_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4670,15 +4598,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -6319,15 +6238,6 @@ public interface PivotPackage
 	int CONSTRAINT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6985,15 +6895,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7289,15 +7190,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -7642,22 +7534,13 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER = TYPED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___BOOLEAN_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 2;
+	int VALUE_SPECIFICATION___BOOLEAN_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Integer Value</em>' operation.
@@ -7666,7 +7549,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___INTEGER_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 3;
+	int VALUE_SPECIFICATION___INTEGER_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Computable</em>' operation.
@@ -7675,7 +7558,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___IS_COMPUTABLE = TYPED_ELEMENT_OPERATION_COUNT + 4;
+	int VALUE_SPECIFICATION___IS_COMPUTABLE = TYPED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Null</em>' operation.
@@ -7684,7 +7567,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___IS_NULL = TYPED_ELEMENT_OPERATION_COUNT + 5;
+	int VALUE_SPECIFICATION___IS_NULL = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>String Value</em>' operation.
@@ -7693,7 +7576,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___STRING_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 6;
+	int VALUE_SPECIFICATION___STRING_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Unlimited Value</em>' operation.
@@ -7702,7 +7585,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___UNLIMITED_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 7;
+	int VALUE_SPECIFICATION___UNLIMITED_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Value Specification</em>' class.
@@ -7711,7 +7594,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 8;
+	int VALUE_SPECIFICATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -7856,15 +7739,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER = VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -8207,15 +8081,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -8659,15 +8524,6 @@ public interface PivotPackage
 	int ENUMERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8830,15 +8686,6 @@ public interface PivotPackage
 	int INSTANCE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SPECIFICATION___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Instance Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8999,15 +8846,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = INSTANCE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL___IS_TEMPLATE_PARAMETER = INSTANCE_SPECIFICATION___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Enumeration Literal</em>' class.
@@ -9198,15 +9036,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LANGUAGE_EXPRESSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION___IS_TEMPLATE_PARAMETER = VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -9477,15 +9306,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = LANGUAGE_EXPRESSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___IS_TEMPLATE_PARAMETER = LANGUAGE_EXPRESSION___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -11081,15 +10901,6 @@ public interface PivotPackage
 	int INVALID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11675,31 +11486,13 @@ public interface PivotPackage
 	int OPERATION__OWNED_RULE = FEATURE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNING_TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__BODY_EXPRESSION = FEATURE_FEATURE_COUNT + 6;
+	int OPERATION__BODY_EXPRESSION = FEATURE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Is Invalidating</b></em>' attribute.
@@ -11708,7 +11501,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IS_INVALIDATING = FEATURE_FEATURE_COUNT + 7;
+	int OPERATION__IS_INVALIDATING = FEATURE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
@@ -11717,7 +11510,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IS_VALIDATING = FEATURE_FEATURE_COUNT + 8;
+	int OPERATION__IS_VALIDATING = FEATURE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
@@ -11726,7 +11519,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 9;
+	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -11735,7 +11528,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNING_CLASS = FEATURE_FEATURE_COUNT + 10;
+	int OPERATION__OWNING_CLASS = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' containment reference list.
@@ -11744,7 +11537,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__POSTCONDITION = FEATURE_FEATURE_COUNT + 11;
+	int OPERATION__POSTCONDITION = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -11753,7 +11546,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 12;
+	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Precondition</b></em>' containment reference list.
@@ -11762,7 +11555,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECONDITION = FEATURE_FEATURE_COUNT + 13;
+	int OPERATION__PRECONDITION = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
@@ -11771,7 +11564,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 14;
+	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Operation</b></em>' reference list.
@@ -11780,7 +11573,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__REDEFINED_OPERATION = FEATURE_FEATURE_COUNT + 15;
+	int OPERATION__REDEFINED_OPERATION = FEATURE_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
@@ -11789,7 +11582,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 16;
+	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -11828,31 +11621,13 @@ public interface PivotPackage
 	int OPERATION___MAKE_PARAMETER = FEATURE___MAKE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 2;
+	int OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Loadable Implementation</em>' operation.
@@ -11861,7 +11636,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_LOADABLE_IMPLEMENTATION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
+	int OPERATION___VALIDATE_LOADABLE_IMPLEMENTATION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Postcondition Name</em>' operation.
@@ -11870,7 +11645,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_UNIQUE_POSTCONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 4;
+	int OPERATION___VALIDATE_UNIQUE_POSTCONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Precondition Name</em>' operation.
@@ -11879,7 +11654,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_UNIQUE_PRECONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 5;
+	int OPERATION___VALIDATE_UNIQUE_PRECONDITION_NAME__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -11888,7 +11663,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 6;
+	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -12024,24 +11799,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNING_TEMPLATE_PARAMETER = OPERATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__TEMPLATE_PARAMETER = OPERATION__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -12195,24 +11952,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION___MAKE_PARAMETER = OPERATION___MAKE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___IS_TEMPLATE_PARAMETER = OPERATION___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
@@ -13025,15 +12764,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13421,15 +13151,6 @@ public interface PivotPackage
 	int PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13653,15 +13374,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY___IS_TEMPLATE_PARAMETER = PACKAGE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Library</em>' class.
@@ -14114,15 +13826,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14400,15 +14103,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -15356,15 +15050,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15731,22 +15416,13 @@ public interface PivotPackage
 	int PARAMETER___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER___IS_TEMPLATE_PARAMETER = VARIABLE_DECLARATION_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 2;
+	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -15839,22 +15515,13 @@ public interface PivotPackage
 	int PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER = ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Parameterable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
+	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Pivotable</em>' class.
@@ -16235,15 +15902,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16485,15 +16143,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE___IS_TEMPLATE_PARAMETER = PACKAGE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Profile</em>' class.
@@ -16937,22 +16586,13 @@ public interface PivotPackage
 	int PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Validate Compatible Default Expression</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 2;
+	int PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Attribute</em>' operation.
@@ -16961,7 +16601,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 3;
+	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Property</em>' class.
@@ -16970,7 +16610,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
+	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -17990,15 +17630,6 @@ public interface PivotPackage
 	int SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18413,15 +18044,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18737,15 +18359,6 @@ public interface PivotPackage
 	int SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19014,15 +18627,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -19574,15 +19178,6 @@ public interface PivotPackage
 	int STATE_MACHINE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE___IS_TEMPLATE_PARAMETER = BEHAVIOR___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19860,15 +19455,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -20481,15 +20067,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -21482,15 +21059,6 @@ public interface PivotPackage
 	int TUPLE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22312,15 +21880,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23030,15 +22589,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -26510,16 +26060,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getParameterableElement_TemplateParameter();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#isTemplateParameter() <em>Is Template Parameter</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Template Parameter</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#isTemplateParameter()
-	 * @generated
-	 */
-	EOperation getParameterableElement__IsTemplateParameter();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#isCompatibleWith(org.eclipse.ocl.examples.pivot.ParameterableElement) <em>Is Compatible With</em>}' operation.
@@ -30730,14 +30270,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER = eINSTANCE.getParameterableElement_TemplateParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Template Parameter</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER = eINSTANCE.getParameterableElement__IsTemplateParameter();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Compatible With</b></em>' operation.

@@ -217,15 +217,6 @@ public abstract class ParameterableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTemplateParameter() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isCompatibleWith(final ParameterableElement p)
 	{
 		/**
@@ -442,8 +433,6 @@ public abstract class ParameterableElementImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
-			case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

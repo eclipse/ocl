@@ -1116,7 +1116,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true" eSuperTypes="#//TypedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//TemplateableElement #//Namespace #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//TemplateableElement #//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -1289,11 +1289,6 @@
         <details key="body" value="&#xA;p.oclIsKindOf(self.oclType())&#xA;&#xA;"/>
       </eAnnotations>
       <eParameters name="p" lowerBound="1" eType="#//ParameterableElement"/>
-    </eOperations>
-    <eOperations name="isTemplateParameter" lowerBound="1" eType="#//Boolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter."/>
-      </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateParameter" eType="#//TemplateParameter" eOpposite="#//TemplateParameter/ownedParameteredElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -220,15 +220,6 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTemplateParameter() {
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isCompatibleWith(final ParameterableElement p)
 	{
 		/**
@@ -582,7 +573,6 @@ public abstract class ValueSpecificationImpl
 			switch (baseOperationID)
 			{
 				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER;
 				default: return -1;
 			}
 		}
@@ -616,8 +606,6 @@ public abstract class ValueSpecificationImpl
 				return makeParameter();
 			case PivotPackage.VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
-			case PivotPackage.VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER:
-				return isTemplateParameter();
 			case PivotPackage.VALUE_SPECIFICATION___BOOLEAN_VALUE:
 				return booleanValue();
 			case PivotPackage.VALUE_SPECIFICATION___INTEGER_VALUE:

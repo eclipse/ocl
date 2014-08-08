@@ -751,7 +751,6 @@
       <generalization xmi:id="Ppivot.TOperation.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TOperation.g2" general="Ppivot.TFeature"/>
       <generalization xmi:id="Ppivot.TOperation.g3" general="Ppivot.TTemplateableElement"/>
-      <generalization xmi:id="Ppivot.TOperation.g4" general="Ppivot.TParameterableElement"/>
       <ownedAttribute xmi:id="Ppivot.TOperation.PraisedException" name="raisedException" type="Ppivot.TType" association="Ppivot.A_raisedException_operation">
         <ownedComment xmi:id="Ppivot.TOperation.PraisedException.oC0" annotatedElement="Ppivot.TOperation.PraisedException">
           <body>The exceptions that are declared as possible during an invocation of the operation.</body>
@@ -772,12 +771,6 @@
           <body>The class that owns the operation.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PowningClass.lV"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.PtemplateParameter" name="templateParameter" type="Ppivot.TTypeTemplateParameter" redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter">
-        <ownedComment xmi:id="Ppivot.TOperation.PtemplateParameter.oC0" annotatedElement="Ppivot.TOperation.PtemplateParameter">
-          <body>The template parameter that exposes this element as a formal parameter.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PtemplateParameter.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TOperation.Pprecondition" name="precondition" type="Ppivot.TConstraint" aggregation="composite" association="Ppivot.A_precondition_preContext">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.Pprecondition.lV"/>
@@ -921,12 +914,6 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameterableElement.PowningTemplateParameter.lV"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="Ppivot.TParameterableElement.OisTemplateParameter" name="isTemplateParameter" isQuery="true">
-        <ownedComment xmi:id="Ppivot.TParameterableElement.OisTemplateParameter.oC0" annotatedElement="Ppivot.TParameterableElement.OisTemplateParameter">
-          <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
-        </ownedComment>
-        <ownedParameter xmi:id="Ppivot.TParameterableElement.OisTemplateParameter.Pnull" type="Ppivot.TBoolean" direction="return"/>
-      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
       <generalization xmi:id="Ppivot.TPrecedence.g0" general="Ppivot.TNamedElement"/>

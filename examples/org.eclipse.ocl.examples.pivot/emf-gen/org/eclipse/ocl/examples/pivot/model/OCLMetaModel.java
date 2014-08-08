@@ -687,7 +687,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Feature);
 			superClasses.add(_TemplateableElement);
 			superClasses.add(_Namespace);
-			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _OperationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_FeatureCallExp);
@@ -1897,7 +1896,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Operation op_Element_allOwnedElements = createOperation("allOwnedElements", _Set_Element, null, null);
 		protected final @NonNull Operation op_Element_getValue = createOperation("getValue", _Element, null, null);
 		protected final @NonNull Operation op_ParameterableElement_isCompatibleWith = createOperation("isCompatibleWith", _Boolean, null, null);
-		protected final @NonNull Operation op_ParameterableElement_isTemplateParameter = createOperation("isTemplateParameter", _Boolean, null, null);
 		protected final @NonNull Operation op_Property_isAttribute = createOperation("isAttribute", _Boolean, null, null);
 		protected final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyOwningType = createOperation("getSpecializedReferredPropertyOwningType", _Class, null, null);
 		protected final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyType = createOperation("getSpecializedReferredPropertyType", _Class, null, null);
@@ -1932,7 +1930,6 @@ public class OCLMetaModel extends ASResourceImpl
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "p.oclIsKindOf(self.oclType())"));
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("p", _ParameterableElement, true));
-			ownedOperations.add(operation = op_ParameterableElement_isTemplateParameter);
 			ownedOperations = _Property.getOwnedOperations();
 			ownedOperations.add(operation = op_Property_isAttribute);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))\nlet container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)"));
@@ -4232,7 +4229,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_Parameter, "A parameter is a typed element that represents a parameter of an operation.");
 			installComment(pr_Parameter_operation, "The operation that owns the parameter.");
 			installComment(_ParameterableElement, "A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.");
-			installComment(op_ParameterableElement_isTemplateParameter, "The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.");
 			installComment(pr_ParameterableElement_owningTemplateParameter, "The formal template parameter that owns this element.");
 			installComment(pr_ParameterableElement_templateParameter, "The template parameter that exposes this element as a formal parameter.");
 			installComment(_PrimitiveType, "A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");

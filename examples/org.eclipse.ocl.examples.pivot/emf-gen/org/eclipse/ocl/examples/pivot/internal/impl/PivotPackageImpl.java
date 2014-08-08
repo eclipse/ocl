@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import static org.eclipse.ocl.examples.pivot.PivotPackage.CLASS;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -4203,15 +4201,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getParameterableElement__IsTemplateParameter() {
-		return parameterableElementEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getParameterableElement__IsCompatibleWith__ParameterableElement()
 	{
 		return parameterableElementEClass.getEOperations().get(0);
@@ -5903,7 +5892,6 @@ public class PivotPackageImpl
 		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER);
 		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER);
 		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT);
-		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER);
 
 		pivotableEClass = createEClass(PIVOTABLE);
 
@@ -6253,7 +6241,6 @@ public class PivotPackageImpl
 		operationEClass.getESuperTypes().add(this.getFeature());
 		operationEClass.getESuperTypes().add(this.getTemplateableElement());
 		operationEClass.getESuperTypes().add(this.getNamespace());
-		operationEClass.getESuperTypes().add(this.getParameterableElement());
 		operationCallExpEClass.getESuperTypes().add(this.getFeatureCallExp());
 		operationCallExpEClass.getESuperTypes().add(this.getReferringElement());
 		oppositePropertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
@@ -7115,8 +7102,6 @@ public class PivotPackageImpl
 
 		op = initEOperation(getParameterableElement__IsCompatibleWith__ParameterableElement(), this.getBoolean(), "isCompatibleWith", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getParameterableElement(), "p", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEOperation(getParameterableElement__IsTemplateParameter(), this.getBoolean(), "isTemplateParameter", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pivotableEClass, Pivotable.class, "Pivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

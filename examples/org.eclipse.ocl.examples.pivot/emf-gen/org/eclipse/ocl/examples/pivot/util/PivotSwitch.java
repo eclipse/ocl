@@ -806,7 +806,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseFeature(iteration);
 				if (result == null) result = caseTemplateableElement(iteration);
 				if (result == null) result = caseNamespace(iteration);
-				if (result == null) result = caseParameterableElement(iteration);
 				if (result == null) result = caseTypedElement(iteration);
 				if (result == null) result = caseNamedElement(iteration);
 				if (result == null) result = caseElement(iteration);
@@ -1066,7 +1065,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseFeature(operation);
 				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseNamespace(operation);
-				if (result == null) result = caseParameterableElement(operation);
 				if (result == null) result = caseTypedElement(operation);
 				if (result == null) result = caseNamedElement(operation);
 				if (result == null) result = caseElement(operation);
