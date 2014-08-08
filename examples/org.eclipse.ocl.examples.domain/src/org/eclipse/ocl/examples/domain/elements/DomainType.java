@@ -67,16 +67,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return true if this is an invalid type (with an associated error message).
 	 */
 	boolean isInvalid();
-	
-	/**
-	 * Return true if this type is a Collection type and has ordered elements.
-	 */
-	boolean isOrdered();		
-	
-	/**
-	 * Return true if this type is a Collection type and has unique elements.
-	 */
-	boolean isUnique();
 
 	/*@NonNull*/ DomainType specializeIn(@NonNull DomainCallExp expr, /*@NonNull*/ DomainType selfType);
 }

@@ -45,6 +45,16 @@ public interface DomainClass extends DomainType
 	@NonNull DomainTypeParameters getTypeParameters();
 	
 	/**
+	 * Return true if this type is a Collection type and has ordered elements.
+	 */
+	boolean isOrdered();
+	
+	/**
+	 * Return true if this type is a Collection type and has unique elements.
+	 */
+	boolean isUnique();
+	
+	/**
 	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
 	 * by the given Standard Library.
 	 */

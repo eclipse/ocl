@@ -56,7 +56,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		}
 		AbstractCollectionType thatClass = (AbstractCollectionType) type;
 		// FIXME kind
-		DomainType commonContainerClass = containerType;		// FIXME WIP
+		DomainClass commonContainerClass = containerType;		// FIXME WIP
 		DomainType commonElementClass = elementType.getCommonType(idResolver, thatClass.getElementType());
 		if ((commonContainerClass == containerType) && (commonElementClass == elementType)) {
 			return this;

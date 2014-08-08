@@ -55,4 +55,12 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return DomainTypeParameters.EMPTY_LIST;
 	}
+
+	public boolean isOrdered() {
+		return false;
+	}
+
+	public boolean isUnique() {
+		return false;
+	}
 }
