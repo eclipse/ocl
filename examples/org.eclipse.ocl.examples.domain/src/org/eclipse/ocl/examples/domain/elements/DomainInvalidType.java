@@ -11,6 +11,6 @@
 package org.eclipse.ocl.examples.domain.elements;
 
 
-public interface DomainInvalidType extends DomainType
+public interface DomainInvalidType extends DomainClass
 {
 }

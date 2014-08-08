@@ -18,14 +18,14 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.AbstractType;
+import org.eclipse.ocl.examples.domain.types.AbstractClass;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 /**
  * JavaType supports the usage of Java Class to define the type of an object.
  */
-public class JavaType extends AbstractType
+public class JavaType extends AbstractClass
 {
 	protected final @NonNull Class<?> javaClass;
 	

@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
-public abstract class AbstractSpecializedType extends AbstractType
+public abstract class AbstractSpecializedType extends AbstractClass
 {
 	protected final @NonNull DomainType containerType;
 	

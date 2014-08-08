@@ -11,7 +11,7 @@
 package org.eclipse.ocl.examples.domain.elements;
 
 
-public interface DomainMetaclass extends DomainType {
+public interface DomainMetaclass extends DomainClass {
 	DomainType getContainerType();
 	DomainType getInstanceType();
 }

@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
  * KnownSubInheritances are also notified of invalidation avoiding the need for an adapting Inheritance
  * to adapt more than its own target class.
  */
-public interface DomainInheritance extends DomainType
+public interface DomainInheritance extends DomainClass
 {
 	public static DomainInheritance[] EMPTY_ARRAY = new DomainInheritance[0];
 

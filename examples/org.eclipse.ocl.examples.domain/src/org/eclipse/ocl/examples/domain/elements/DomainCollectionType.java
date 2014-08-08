@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 
-public interface DomainCollectionType extends DomainType
+public interface DomainCollectionType extends DomainClass
 {
 	/*@NonNull*/ DomainType getContainerType();		
 	/*@NonNull*/ DomainType getElementType();

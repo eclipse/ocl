@@ -15,7 +15,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 
-public interface DomainLambdaType extends DomainType
+public interface DomainLambdaType extends DomainClass
 {
 	DomainType getContextType();
 	@NonNull ParametersId getParametersId();

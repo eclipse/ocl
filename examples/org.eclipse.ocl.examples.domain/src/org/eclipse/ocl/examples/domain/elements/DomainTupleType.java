@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 
 
-public interface DomainTupleType extends DomainType
+public interface DomainTupleType extends DomainClass
 {
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.

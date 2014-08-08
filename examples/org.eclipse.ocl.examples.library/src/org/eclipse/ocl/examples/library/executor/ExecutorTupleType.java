@@ -20,10 +20,10 @@ import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TuplePartId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.AbstractType;
+import org.eclipse.ocl.examples.domain.types.AbstractClass;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 
-public class ExecutorTupleType extends AbstractType implements ExecutorTypeArgument
+public class ExecutorTupleType extends AbstractClass implements ExecutorTypeArgument
 {
 	protected final @NonNull TypeId typeId;
 

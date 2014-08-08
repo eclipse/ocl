@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
-public class AbstractTupleType extends AbstractType implements DomainTupleType
+public class AbstractTupleType extends AbstractClass implements DomainTupleType
 {
 	protected final @NonNull TupleTypeId typeId;
 

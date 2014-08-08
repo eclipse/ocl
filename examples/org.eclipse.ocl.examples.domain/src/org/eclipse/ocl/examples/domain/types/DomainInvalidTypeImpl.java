@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.UnsupportedOperation;
 
-public class DomainInvalidTypeImpl extends AbstractType implements DomainInvalidType
+public class DomainInvalidTypeImpl extends AbstractClass implements DomainInvalidType
 {
 	protected final @NonNull String message;
 
