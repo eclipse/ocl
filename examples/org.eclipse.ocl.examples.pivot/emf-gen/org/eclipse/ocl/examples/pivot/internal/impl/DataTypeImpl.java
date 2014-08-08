@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DataTypeImpl#getBehavioralType <em>Behavioral Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DataTypeImpl#getBehavioralClass <em>Behavioral Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DataTypeImpl#isSerializable <em>Is Serializable</em>}</li>
  * </ul>
  * </p>
@@ -60,14 +60,14 @@ public class DataTypeImpl
 		implements DataType {
 
 	/**
-	 * The cached value of the '{@link #getBehavioralType() <em>Behavioral Type</em>}' reference.
+	 * The cached value of the '{@link #getBehavioralClass() <em>Behavioral Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBehavioralType()
+	 * @see #getBehavioralClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected Type behavioralType;
+	protected org.eclipse.ocl.examples.pivot.Class behavioralClass;
 	/**
 	 * The default value of the '{@link #isSerializable() <em>Is Serializable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -134,19 +134,19 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getBehavioralType()
+	public org.eclipse.ocl.examples.pivot.Class getBehavioralClass()
 	{
-		if (behavioralType != null && ((EObject)behavioralType).eIsProxy())
+		if (behavioralClass != null && ((EObject)behavioralClass).eIsProxy())
 		{
-			InternalEObject oldBehavioralType = (InternalEObject)behavioralType;
-			behavioralType = (Type)eResolveProxy(oldBehavioralType);
-			if (behavioralType != oldBehavioralType)
+			InternalEObject oldBehavioralClass = (InternalEObject)behavioralClass;
+			behavioralClass = (org.eclipse.ocl.examples.pivot.Class)eResolveProxy(oldBehavioralClass);
+			if (behavioralClass != oldBehavioralClass)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE, oldBehavioralType, behavioralType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS, oldBehavioralClass, behavioralClass));
 			}
 		}
-		return behavioralType;
+		return behavioralClass;
 	}
 
 	/**
@@ -154,9 +154,9 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetBehavioralType()
+	public org.eclipse.ocl.examples.pivot.Class basicGetBehavioralClass()
 	{
-		return behavioralType;
+		return behavioralClass;
 	}
 
 	/**
@@ -164,12 +164,12 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBehavioralType(Type newBehavioralType)
+	public void setBehavioralClass(org.eclipse.ocl.examples.pivot.Class newBehavioralClass)
 	{
-		Type oldBehavioralType = behavioralType;
-		behavioralType = newBehavioralType;
+		org.eclipse.ocl.examples.pivot.Class oldBehavioralClass = behavioralClass;
+		behavioralClass = newBehavioralClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE, oldBehavioralType, behavioralType));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS, oldBehavioralClass, behavioralClass));
 	}
 
 	/**
@@ -229,9 +229,9 @@ public class DataTypeImpl
 				return getPackage();
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
 				return getSuperClass();
-			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
-				if (resolve) return getBehavioralType();
-				return basicGetBehavioralType();
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
+				if (resolve) return getBehavioralClass();
+				return basicGetBehavioralClass();
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				return isSerializable();
 		}
@@ -331,8 +331,8 @@ public class DataTypeImpl
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)newValue);
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
@@ -420,8 +420,8 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
-			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)null);
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
@@ -486,8 +486,8 @@ public class DataTypeImpl
 				return getPackage() != null;
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
-			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
-				return behavioralType != null;
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
+				return behavioralClass != null;
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 		}
@@ -524,7 +524,7 @@ public class DataTypeImpl
 			return IdManager.getNsURIPackageId(PivotPackage.eNS_URI, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE).getDataTypeId(name2, getTypeParameters().parametersSize());
 		}
 		else {
-			Type behavioralType = getBehavioralType();
+			Type behavioralType = getBehavioralClass();
 			if ((behavioralType != null) && (behavioralType != this)) {
 //				return behavioralType.getTypeId();
 			}
@@ -534,7 +534,7 @@ public class DataTypeImpl
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		DomainType behavioralType = getBehavioralType();
+		DomainType behavioralType = getBehavioralClass();
 		return standardLibrary.getInheritance(behavioralType != null ? behavioralType : this);
 	}
 } //DataTypeImpl

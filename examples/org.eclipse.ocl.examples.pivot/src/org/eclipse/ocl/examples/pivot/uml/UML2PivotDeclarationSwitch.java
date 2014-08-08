@@ -439,7 +439,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		if (primaryElement != null) {
 //			@SuppressWarnings("unused")TypeServer typeServer1 = metaModelManager.getTypeServer(primaryElement);
 //			@SuppressWarnings("unused")TypeServer typeServer2 = metaModelManager.getTypeServer(pivotElement);
-			pivotElement.setBehavioralType(primaryElement);
+			pivotElement.setBehavioralClass(primaryElement);
 			org.eclipse.uml2.uml.Package umlPackage = umlPrimitiveType.getPackage();
 			if (umlPackage != null) {
 				String nsURI = umlPackage.getURI();

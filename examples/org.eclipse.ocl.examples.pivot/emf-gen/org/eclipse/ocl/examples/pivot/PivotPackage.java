@@ -3764,13 +3764,13 @@ public interface PivotPackage
 	int DATA_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__BEHAVIORAL_TYPE = CLASS_FEATURE_COUNT + 0;
+	int DATA_TYPE__BEHAVIORAL_CLASS = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -4079,13 +4079,13 @@ public interface PivotPackage
 	int COLLECTION_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__BEHAVIORAL_TYPE = DATA_TYPE__BEHAVIORAL_TYPE;
+	int COLLECTION_TYPE__BEHAVIORAL_CLASS = DATA_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -4421,13 +4421,13 @@ public interface PivotPackage
 	int BAG_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__BEHAVIORAL_TYPE = COLLECTION_TYPE__BEHAVIORAL_TYPE;
+	int BAG_TYPE__BEHAVIORAL_CLASS = COLLECTION_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -8804,13 +8804,13 @@ public interface PivotPackage
 	int ENUMERATION__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION__BEHAVIORAL_TYPE = DATA_TYPE__BEHAVIORAL_TYPE;
+	int ENUMERATION__BEHAVIORAL_CLASS = DATA_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -13242,13 +13242,13 @@ public interface PivotPackage
 	int LAMBDA_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE__BEHAVIORAL_TYPE = DATA_TYPE__BEHAVIORAL_TYPE;
+	int LAMBDA_TYPE__BEHAVIORAL_CLASS = DATA_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -15897,13 +15897,13 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__BEHAVIORAL_TYPE = COLLECTION_TYPE__BEHAVIORAL_TYPE;
+	int ORDERED_SET_TYPE__BEHAVIORAL_CLASS = COLLECTION_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -16821,13 +16821,13 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__BEHAVIORAL_TYPE = DATA_TYPE__BEHAVIORAL_TYPE;
+	int PRIMITIVE_TYPE__BEHAVIORAL_CLASS = DATA_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -19035,13 +19035,13 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__BEHAVIORAL_TYPE = COLLECTION_TYPE__BEHAVIORAL_TYPE;
+	int SEQUENCE_TYPE__BEHAVIORAL_CLASS = COLLECTION_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -19377,13 +19377,13 @@ public interface PivotPackage
 	int SET_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__BEHAVIORAL_TYPE = COLLECTION_TYPE__BEHAVIORAL_TYPE;
+	int SET_TYPE__BEHAVIORAL_CLASS = COLLECTION_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -22140,13 +22140,13 @@ public interface PivotPackage
 	int TUPLE_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Behavioral Type</b></em>' reference.
+	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__BEHAVIORAL_TYPE = DATA_TYPE__BEHAVIORAL_TYPE;
+	int TUPLE_TYPE__BEHAVIORAL_CLASS = DATA_TYPE__BEHAVIORAL_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
@@ -24229,6 +24229,17 @@ public interface PivotPackage
 	EClass getDataType();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralClass <em>Behavioral Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Behavioral Class</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.DataType#getBehavioralClass()
+	 * @see #getDataType()
+	 * @generated
+	 */
+	EReference getDataType_BehavioralClass();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.DataType#isSerializable <em>Is Serializable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24238,17 +24249,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getDataType_IsSerializable();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralType <em>Behavioral Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Behavioral Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.DataType#getBehavioralType()
-	 * @see #getDataType()
-	 * @generated
-	 */
-	EReference getDataType_BehavioralType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.BooleanLiteralExp <em>Boolean Literal Exp</em>}'.
@@ -29078,20 +29078,20 @@ public interface PivotPackage
 		EClass DATA_TYPE = eINSTANCE.getDataType();
 
 		/**
+		 * The meta object literal for the '<em><b>Behavioral Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_TYPE__BEHAVIORAL_CLASS = eINSTANCE.getDataType_BehavioralClass();
+
+		/**
 		 * The meta object literal for the '<em><b>Is Serializable</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute DATA_TYPE__IS_SERIALIZABLE = eINSTANCE.getDataType_IsSerializable();
-
-		/**
-		 * The meta object literal for the '<em><b>Behavioral Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_TYPE__BEHAVIORAL_TYPE = eINSTANCE.getDataType_BehavioralType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.

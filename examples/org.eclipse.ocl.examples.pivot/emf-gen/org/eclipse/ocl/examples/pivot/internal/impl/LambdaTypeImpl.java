@@ -270,9 +270,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return getPackage();
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				return getSuperClass();
-			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
-				if (resolve) return getBehavioralType();
-				return basicGetBehavioralType();
+			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
+				if (resolve) return getBehavioralClass();
+				return basicGetBehavioralClass();
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				return isSerializable();
 			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:
@@ -380,8 +380,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)newValue);
+			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
@@ -479,8 +479,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
-			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)null);
+			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
@@ -554,8 +554,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return getPackage() != null;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
-			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_TYPE:
-				return behavioralType != null;
+			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
+				return behavioralClass != null;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:

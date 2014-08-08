@@ -447,7 +447,7 @@ public class PropertyCallExpImpl
 			}
 		}
 		if (specializedType instanceof DataType) {
-			Type behavioralType = ((DataType)specializedType).getBehavioralType();
+			Type behavioralType = ((DataType)specializedType).getBehavioralClass();
 			return behavioralType != null ? behavioralType : specializedType;
 		}
 		else {

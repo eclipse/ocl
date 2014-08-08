@@ -87,7 +87,7 @@
         <ownedAttribute xmi:id="_1oqkABNLEeCpr6XKiuQP7w" name="isSerializable" type="_rfGIcBNKEeCpr6XKiuQP7w">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N837VEeOu79LxSz8Ylw" value="true"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_Dc17IDjTEeCGIMjC1C-wtw" name="behavioralType" type="_qClRsBNLEeCpr6XKiuQP7w">
+        <ownedAttribute xmi:id="_Dc17IDjTEeCGIMjC1C-wtw" name="behavioralClass" type="_I7AsgBNOEeCpr6XKiuQP7w">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N9H7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>

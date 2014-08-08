@@ -2033,6 +2033,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Class_package = createProperty(PivotPackage.Literals.CLASS__PACKAGE, _Package);
 		protected final @NonNull Property pr_Class_superClass = createProperty(PivotPackage.Literals.CLASS__SUPER_CLASS, _Set_Class);
 		protected final @NonNull Property pr_Class_Class_nestedClassifier = createProperty("Class", _Class);
+		protected final @NonNull Property pr_Class_DataType_behavioralClass = createProperty("DataType", _Bag_DataType);
 		protected final @NonNull Property pr_Class_Operation_owningType = createProperty("Operation", _Bag_Operation);
 		protected final @NonNull Property pr_Class_Property_owningType = createProperty("Property", _Bag_Property);
 		protected final @NonNull Property pr_Class_class_superClass = createProperty("class", _Class);
@@ -2070,7 +2071,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_ConstructorPart_initExpression = createProperty(PivotPackage.Literals.CONSTRUCTOR_PART__INIT_EXPRESSION, _OCLExpression);
 		protected final @NonNull Property pr_ConstructorPart_referredProperty = createProperty(PivotPackage.Literals.CONSTRUCTOR_PART__REFERRED_PROPERTY, _Property);
 		protected final @NonNull Property pr_ConstructorPart_ConstructorExp_part = createProperty("ConstructorExp", _ConstructorExp);
-		protected final @NonNull Property pr_DataType_behavioralType = createProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE, _Type);
+		protected final @NonNull Property pr_DataType_behavioralClass = createProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS, _Class);
 		protected final @NonNull Property pr_DataType_isSerializable = createProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE, _Boolean);
 		protected final @NonNull Property pr_Detail_value = createProperty(PivotPackage.Literals.DETAIL__VALUE, _Set_String);
 		protected final @NonNull Property pr_Detail_Annotation_ownedDetail = createProperty("Annotation", _Annotation);
@@ -2323,7 +2324,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Type_instanceClassName = createProperty(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME, _String);
 		protected final @NonNull Property pr_Type_ownedInvariant = createProperty(PivotPackage.Literals.TYPE__OWNED_INVARIANT, _Set_Constraint);
 		protected final @NonNull Property pr_Type_CollectionType_elementType = createProperty("CollectionType", _Bag_CollectionType);
-		protected final @NonNull Property pr_Type_DataType_behavioralType = createProperty("DataType", _Bag_DataType);
 		protected final @NonNull Property pr_Type_DynamicElement_metaType = createProperty("DynamicElement", _Bag_DynamicElement);
 		protected final @NonNull Property pr_Type_LambdaType_contextType = createProperty("LambdaType", _Bag_LambdaType);
 		protected final @NonNull Property pr_Type_LambdaType_parameterType = createProperty("LambdaType", _Bag_LambdaType);
@@ -2473,6 +2473,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_nestedClassifier);
+			ownedProperties.add(property = pr_Class_DataType_behavioralClass);
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_DataType_behavioralClass);
 			ownedProperties.add(property = pr_Class_Operation_owningType);
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
@@ -2626,10 +2630,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ConstructorExp_part);
 			ownedProperties = _DataType.getOwnedAttribute();
-			ownedProperties.add(property = pr_DataType_behavioralType);
+			ownedProperties.add(property = pr_DataType_behavioralClass);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_DataType_behavioralType);
+			property.setOpposite(pr_Class_DataType_behavioralClass);
 			ownedProperties.add(property = pr_DataType_isSerializable);
 			property.setIsResolveProxies(true);
 			ownedProperties = _Detail.getOwnedAttribute();
@@ -3682,10 +3686,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CollectionType_elementType);
-			ownedProperties.add(property = pr_Type_DataType_behavioralType);
-			property.setImplicit(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_DataType_behavioralType);
 			ownedProperties.add(property = pr_Type_DynamicElement_metaType);
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);

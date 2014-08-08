@@ -856,7 +856,7 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//DataType/isSerializable"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//DataType/behavioralType"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//DataType/behavioralClass"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

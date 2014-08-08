@@ -27,7 +27,7 @@ public class DataTypeAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		DataType targetElement = (DataType) target;
-		Type behavioralType = targetElement.getBehavioralType();
+		Type behavioralType = targetElement.getBehavioralClass();
 		Attribution attribution;
 		if (behavioralType != null) {
 			attribution = PivotUtil.getAttribution(behavioralType);

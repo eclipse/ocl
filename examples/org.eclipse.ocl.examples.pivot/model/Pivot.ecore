@@ -379,7 +379,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="behavioralType" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavioralClass" eType="#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Detail" eSuperTypes="#//NamedElement">

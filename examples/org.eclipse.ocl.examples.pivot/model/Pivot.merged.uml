@@ -385,8 +385,8 @@
       <ownedAttribute xmi:id="Ppivot.TDataType.PisSerializable" name="isSerializable" type="Ppivot.TBoolean">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TDataType.PisSerializable.dlV" value="true"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TDataType.PbehavioralType" name="behavioralType" type="Ppivot.TType">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TDataType.PbehavioralType.lV"/>
+      <ownedAttribute xmi:id="Ppivot.TDataType.PbehavioralClass" name="behavioralClass" type="Ppivot.TClass">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TDataType.PbehavioralClass.lV"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDetail" name="Detail">

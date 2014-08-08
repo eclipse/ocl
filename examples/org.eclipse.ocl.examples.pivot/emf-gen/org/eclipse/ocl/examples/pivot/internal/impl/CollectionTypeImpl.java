@@ -275,9 +275,9 @@ public class CollectionTypeImpl
 				return getPackage();
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				return getSuperClass();
-			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
-				if (resolve) return getBehavioralType();
-				return basicGetBehavioralType();
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_CLASS:
+				if (resolve) return getBehavioralClass();
+				return basicGetBehavioralClass();
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				return isSerializable();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
@@ -383,8 +383,8 @@ public class CollectionTypeImpl
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)newValue);
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
@@ -480,8 +480,8 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
-			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)null);
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
@@ -554,8 +554,8 @@ public class CollectionTypeImpl
 				return getPackage() != null;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
-				return behavioralType != null;
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_CLASS:
+				return behavioralClass != null;
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:

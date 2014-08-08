@@ -270,62 +270,62 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			try {
 				MetaModelManager metaModelManager = converter.getMetaModelManager();
 				if (instanceClass == boolean.class) {
-					pivotElement.setBehavioralType(metaModelManager.getBooleanType());
+					pivotElement.setBehavioralClass(metaModelManager.getBooleanType());
 				}
 				else if (instanceClass == byte.class) {
-					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == char.class) {
-					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == double.class) {
-					pivotElement.setBehavioralType(metaModelManager.getRealType());
+					pivotElement.setBehavioralClass(metaModelManager.getRealType());
 				}
 				else if (instanceClass == float.class) {
-					pivotElement.setBehavioralType(metaModelManager.getRealType());
+					pivotElement.setBehavioralClass(metaModelManager.getRealType());
 				}
 				else if (instanceClass == int.class) {
-					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == long.class) {
-					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == short.class) {
-					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+					pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 				}
 				else {
 					if (instanceClass == BigDecimal.class) {
-						pivotElement.setBehavioralType(metaModelManager.getRealType());
+						pivotElement.setBehavioralClass(metaModelManager.getRealType());
 					}
 					else if (instanceClass == BigInteger.class) {
-						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Boolean.class) {
-						pivotElement.setBehavioralType(metaModelManager.getBooleanType());
+						pivotElement.setBehavioralClass(metaModelManager.getBooleanType());
 					}
 					else if (instanceClass == Byte.class) {
-						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Character.class) {
-						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Double.class) {
-						pivotElement.setBehavioralType(metaModelManager.getRealType());
+						pivotElement.setBehavioralClass(metaModelManager.getRealType());
 					}
 					else if (instanceClass == Float.class) {
-						pivotElement.setBehavioralType(metaModelManager.getRealType());
+						pivotElement.setBehavioralClass(metaModelManager.getRealType());
 					}
 					else if (instanceClass == Integer.class) {
-						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Long.class) {
-						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Short.class) {
-						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+						pivotElement.setBehavioralClass(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == String.class) {
-						pivotElement.setBehavioralType(metaModelManager.getStringType());
+						pivotElement.setBehavioralClass(metaModelManager.getStringType());
 					}
 					else {
 						instanceClass.getDeclaredMethod("compareTo", instanceClass);

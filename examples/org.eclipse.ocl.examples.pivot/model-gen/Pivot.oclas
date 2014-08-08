@@ -118,6 +118,8 @@
       </ownedAttribute>
       <ownedAttribute xmi:id="p.pivot.Class.Class" implicit="true" isRequired="false"
           name="Class" opposite="#p.pivot.Class.nestedClassifier" type="#T.pivot.Class"/>
+      <ownedAttribute xmi:id="p.pivot.Class.DataType" implicit="true" name="DataType"
+          opposite="#p.pivot.DataType.behavioralClass" type="#//@ownedPackages.1/@ownedType.6"/>
       <ownedAttribute xmi:id="p.pivot.Class.Operation" implicit="true" name="Operation"
           opposite="#p.pivot.Operation.owningType" type="#//@ownedPackages.1/@ownedType.18"/>
       <ownedAttribute xmi:id="p.pivot.Class.Property" implicit="true" name="Property"
@@ -276,8 +278,8 @@
           type="#T.pivot.ConstructorExp"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.DataType" name="DataType" superClass="#T.pivot.Class">
-      <ownedAttribute xmi:id="p.pivot.DataType.behavioralType" isRequired="false"
-          name="behavioralType" opposite="#p.pivot.Type.DataType" type="#T.pivot.Type"/>
+      <ownedAttribute xmi:id="p.pivot.DataType.behavioralClass" isRequired="false"
+          name="behavioralClass" opposite="#p.pivot.Class.DataType" type="#T.pivot.Class"/>
       <ownedAttribute xmi:id="p.pivot.DataType.isSerializable" default="true" name="isSerializable"
           type="#Boolean"/>
       <ownedComment body="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
@@ -609,11 +611,11 @@
       </ownedInvariant>
     </ownedType>
     <ownedType xmi:id="T.pivot.LambdaType" name="LambdaType" superClass="#T.pivot.DataType">
-      <ownedAttribute xmi:id="p.pivot.LambdaType.contextType" name="contextType" opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.6"
+      <ownedAttribute xmi:id="p.pivot.LambdaType.contextType" name="contextType" opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.5"
           type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.LambdaType.parameterType" name="parameterType"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.7" type="#//@ownedPackages.1/@ownedType.124"/>
-      <ownedAttribute xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.8"
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.6" type="#//@ownedPackages.1/@ownedType.124"/>
+      <ownedAttribute xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.7"
           type="#T.pivot.Type"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.LanguageExpression" isAbstract="true" name="LanguageExpression"
@@ -1512,8 +1514,6 @@
           opposite="#p.pivot.Constraint.Type" type="#//@ownedPackages.1/@ownedType.130"/>
       <ownedAttribute xmi:id="p.pivot.Type.CollectionType" implicit="true" name="CollectionType"
           opposite="#p.pivot.CollectionType.elementType" type="#//@ownedPackages.1/@ownedType.3"/>
-      <ownedAttribute xmi:id="p.pivot.Type.DataType" implicit="true" name="DataType"
-          opposite="#p.pivot.DataType.behavioralType" type="#//@ownedPackages.1/@ownedType.6"/>
       <ownedAttribute xmi:id="p.pivot.Type.DynamicElement" implicit="true" name="DynamicElement"
           opposite="#p.pivot.DynamicElement.metaType" type="#//@ownedPackages.1/@ownedType.7"/>
       <ownedAttribute implicit="true" name="LambdaType" opposite="#p.pivot.LambdaType.contextType"
@@ -1602,9 +1602,9 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.UnspecifiedType" name="UnspecifiedType" superClass="#T.pivot.Class">
       <ownedAttribute xmi:id="p.pivot.UnspecifiedType.lowerBound" name="lowerBound"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.11" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.10" type="#T.pivot.Type"/>
       <ownedAttribute xmi:id="p.pivot.UnspecifiedType.upperBound" name="upperBound"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.12" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedAttribute.11" type="#T.pivot.Type"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.UnspecifiedValueExp" name="UnspecifiedValueExp" superClass="#T.pivot.OCLExpression"/>
     <ownedType xmi:id="T.pivot.ValueSpecification" isAbstract="true" name="ValueSpecification"

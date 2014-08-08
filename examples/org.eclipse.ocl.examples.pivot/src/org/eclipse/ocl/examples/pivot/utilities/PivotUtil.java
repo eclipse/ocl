@@ -1080,7 +1080,7 @@ public class PivotUtil extends DomainUtil
 	public static @NonNull Type getBehavioralType(@NonNull Type type) {		// FIXME fold this into normal code
 		if (type instanceof DataType) {
 			DataType dataType = (DataType)type;
-			Type behavioralType = dataType.getBehavioralType();
+			Type behavioralType = dataType.getBehavioralClass();
 			if (behavioralType != null) {
 				return behavioralType;
 			}
@@ -1574,7 +1574,7 @@ public class PivotUtil extends DomainUtil
 			}
 		}
 		else if (type instanceof DataType) {
-			Type behavioralType = ((DataType)type).getBehavioralType();
+			Type behavioralType = ((DataType)type).getBehavioralClass();
 			if (behavioralType != null) {
 				type = behavioralType;
 			}

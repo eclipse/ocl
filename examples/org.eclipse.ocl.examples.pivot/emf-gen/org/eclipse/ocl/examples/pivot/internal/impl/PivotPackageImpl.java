@@ -1415,9 +1415,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataType_IsSerializable()
+	public EReference getDataType_BehavioralClass()
 	{
-		return (EAttribute)dataTypeEClass.getEStructuralFeatures().get(1);
+		return (EReference)dataTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1425,9 +1425,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataType_BehavioralType()
+	public EAttribute getDataType_IsSerializable()
 	{
-		return (EReference)dataTypeEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)dataTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5716,7 +5716,7 @@ public class PivotPackageImpl
 		createEReference(constructorPartEClass, CONSTRUCTOR_PART__REFERRED_PROPERTY);
 
 		dataTypeEClass = createEClass(DATA_TYPE);
-		createEReference(dataTypeEClass, DATA_TYPE__BEHAVIORAL_TYPE);
+		createEReference(dataTypeEClass, DATA_TYPE__BEHAVIORAL_CLASS);
 		createEAttribute(dataTypeEClass, DATA_TYPE__IS_SERIALIZABLE);
 
 		detailEClass = createEClass(DETAIL);
@@ -6537,7 +6537,7 @@ public class PivotPackageImpl
 		initEReference(getConstructorPart_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 1, 1, ConstructorPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getDataType_BehavioralType(), this.getType(), null, "behavioralType", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDataType_BehavioralClass(), this.getClass_(), null, "behavioralClass", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDataType_IsSerializable(), this.getBoolean(), "isSerializable", "true", 1, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(detailEClass, Detail.class, "Detail", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

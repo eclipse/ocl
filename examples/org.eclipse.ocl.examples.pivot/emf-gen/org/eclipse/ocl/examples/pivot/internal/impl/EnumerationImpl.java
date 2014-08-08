@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -253,9 +252,9 @@ public class EnumerationImpl
 				return getPackage();
 			case PivotPackage.ENUMERATION__SUPER_CLASS:
 				return getSuperClass();
-			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
-				if (resolve) return getBehavioralType();
-				return basicGetBehavioralType();
+			case PivotPackage.ENUMERATION__BEHAVIORAL_CLASS:
+				if (resolve) return getBehavioralClass();
+				return basicGetBehavioralClass();
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				return isSerializable();
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
@@ -356,8 +355,8 @@ public class EnumerationImpl
 				getSuperClass().clear();
 				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)newValue);
+			case PivotPackage.ENUMERATION__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
@@ -448,8 +447,8 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__SUPER_CLASS:
 				getSuperClass().clear();
 				return;
-			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)null);
+			case PivotPackage.ENUMERATION__BEHAVIORAL_CLASS:
+				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
@@ -516,8 +515,8 @@ public class EnumerationImpl
 				return getPackage() != null;
 			case PivotPackage.ENUMERATION__SUPER_CLASS:
 				return superClass != null && !superClass.isEmpty();
-			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
-				return behavioralType != null;
+			case PivotPackage.ENUMERATION__BEHAVIORAL_CLASS:
+				return behavioralClass != null;
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:

@@ -23,7 +23,7 @@ package org.eclipse.ocl.examples.pivot;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralType <em>Behavioral Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralClass <em>Behavioral Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.DataType#isSerializable <em>Is Serializable</em>}</li>
  * </ul>
  * </p>
@@ -61,27 +61,27 @@ public interface DataType
 	void setIsSerializable(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Behavioral Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Behavioral Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Behavioral Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Behavioral Type</em>' reference.
-	 * @see #setBehavioralType(Type)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType_BehavioralType()
+	 * @return the value of the '<em>Behavioral Class</em>' reference.
+	 * @see #setBehavioralClass(org.eclipse.ocl.examples.pivot.Class)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType_BehavioralClass()
 	 * @generated
 	 */
-	Type getBehavioralType();
+	org.eclipse.ocl.examples.pivot.Class getBehavioralClass();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralType <em>Behavioral Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralClass <em>Behavioral Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Behavioral Type</em>' reference.
-	 * @see #getBehavioralType()
+	 * @param value the new value of the '<em>Behavioral Class</em>' reference.
+	 * @see #getBehavioralClass()
 	 * @generated
 	 */
-	void setBehavioralType(Type value);
+	void setBehavioralClass(org.eclipse.ocl.examples.pivot.Class value);
 } // DataType
