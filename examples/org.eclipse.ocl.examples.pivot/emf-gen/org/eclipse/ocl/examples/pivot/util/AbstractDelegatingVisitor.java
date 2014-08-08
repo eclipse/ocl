@@ -303,10 +303,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitOperationCallExp(object);
 	}
 
-	public @Nullable R visitOperationTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.OperationTemplateParameter object) {
-		return delegate.visitOperationTemplateParameter(object);
-	}
-
 	public @Nullable R visitOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.OppositePropertyCallExp object) {
 		return delegate.visitOppositePropertyCallExp(object);
 	}

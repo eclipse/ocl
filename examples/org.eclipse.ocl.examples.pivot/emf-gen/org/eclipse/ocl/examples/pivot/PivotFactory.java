@@ -176,15 +176,6 @@ public interface PivotFactory
 	Parameter createParameter();
 
 	/**
-	 * Returns a new object of class '<em>Operation Template Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation Template Parameter</em>'.
-	 * @generated
-	 */
-	OperationTemplateParameter createOperationTemplateParameter();
-
-	/**
 	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

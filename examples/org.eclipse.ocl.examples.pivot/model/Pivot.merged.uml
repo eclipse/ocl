@@ -773,8 +773,7 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PowningClass.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.PtemplateParameter" name="templateParameter" type="Ppivot.TOperationTemplateParameter"
-          redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter" association="Ppivot.A_operation_templateParameter_parameteredElement">
+      <ownedAttribute xmi:id="Ppivot.TOperation.PtemplateParameter" name="templateParameter" type="Ppivot.TTypeTemplateParameter" redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter">
         <ownedComment xmi:id="Ppivot.TOperation.PtemplateParameter.oC0" annotatedElement="Ppivot.TOperation.PtemplateParameter">
           <body>The template parameter that exposes this element as a formal parameter.</body>
         </ownedComment>
@@ -817,18 +816,6 @@
       </ownedAttribute>
       <interfaceRealization xmi:id="Ppivot.TOperationCallExp.interfaceRealization0" client="Ppivot.TOperationCallExp" supplier="Ppivot.TReferringElement"
           contract="Ppivot.TReferringElement"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOperationTemplateParameter" name="OperationTemplateParameter">
-      <ownedComment xmi:id="Ppivot.TOperationTemplateParameter.oC0" annotatedElement="Ppivot.TOperationTemplateParameter">
-        <body>An operation template parameter exposes an operation as a formal parameter for a template.</body>
-      </ownedComment>
-      <generalization xmi:id="Ppivot.TOperationTemplateParameter.g0" general="Ppivot.TTemplateParameter"/>
-      <ownedAttribute xmi:id="Ppivot.TOperationTemplateParameter.PparameteredElement" name="parameteredElement" type="Ppivot.TOperation"
-          redefinedProperty="Ppivot.TTemplateParameter.PparameteredElement" association="Ppivot.A_operation_templateParameter_parameteredElement">
-        <ownedComment xmi:id="Ppivot.TOperationTemplateParameter.PparameteredElement.oC0" annotatedElement="Ppivot.TOperationTemplateParameter.PparameteredElement">
-          <body>The operation for this template parameter.</body>
-        </ownedComment>
-      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOppositePropertyCallExp" name="OppositePropertyCallExp">
       <generalization xmi:id="Ppivot.TOppositePropertyCallExp.g0" general="Ppivot.TNavigationCallExp"/>
@@ -1847,8 +1834,6 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_operation_redefinedOperation.Poperation.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_operation_templateParameter_parameteredElement" name="A_operation_templateParameter_parameteredElement"
-        memberEnd="Ppivot.TOperation.PtemplateParameter Ppivot.TOperationTemplateParameter.PparameteredElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_opposite_property" name="A_opposite_property" memberEnd="Ppivot.TProperty.Popposite Ppivot.A_opposite_property.Pproperty">
       <ownedEnd xmi:id="Ppivot.A_opposite_property.Pproperty" name="property" type="Ppivot.TProperty" association="Ppivot.A_opposite_property">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_opposite_property.Pproperty.lV"/>

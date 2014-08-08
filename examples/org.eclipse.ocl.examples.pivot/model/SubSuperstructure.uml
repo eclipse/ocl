@@ -14,22 +14,11 @@
           </ownedComment>
           <generalization xmi:id="_XnqLOX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
           <generalization xmi:id="_Tp6jgBp2EeSM9LreJtBwBg" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-OperationTemplateParameter" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" redefinedProperty="AuxiliaryConstructs-Templates-ParameterableElement-templateParameter">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-Operation-templateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Operation-templateParameter">
               <body>The template parameter that exposes this element as a formal parameter.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfUH7VEeOu79LxSz8Ylw"/>
-          </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter" name="OperationTemplateParameter">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter">
-            <body>An operation template parameter exposes an operation as a formal parameter for a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLOn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateParameter"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-Operation" redefinedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement">
-              <body>The operation for this template parameter.</body>
-            </ownedComment>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Package" name="Package">
@@ -346,7 +335,6 @@
           </ownedEnd>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement" name="A_type_templateParameter_parameteredElement" memberEnd="AuxiliaryConstructs-Templates-Classifier-templateParameter AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_operation_templateParameter_parameteredElement" name="A_operation_templateParameter_parameteredElement" memberEnd="AuxiliaryConstructs-Templates-Operation-templateParameter AuxiliaryConstructs-Templates-OperationTemplateParameter-parameteredElement"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter" name="A_constrainingType_typeTemplateParameter" memberEnd="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter-classifierTemplateParameter">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter-classifierTemplateParameter" name="typeTemplateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" association="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQSn7VEeOu79LxSz8Ylw"/>

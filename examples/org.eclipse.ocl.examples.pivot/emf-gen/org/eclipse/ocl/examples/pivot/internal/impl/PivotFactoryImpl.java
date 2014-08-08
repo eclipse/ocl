@@ -70,7 +70,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -219,7 +218,6 @@ public class PivotFactoryImpl
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return (EObject)createOperationCallExp();
-			case PivotPackage.OPERATION_TEMPLATE_PARAMETER: return (EObject)createOperationTemplateParameter();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP: return (EObject)createOppositePropertyCallExp();
 			case PivotPackage.ORDERED_SET_TYPE: return (EObject)createOrderedSetType();
 			case PivotPackage.PACKAGE: return (EObject)createPackage();
@@ -506,16 +504,6 @@ public class PivotFactoryImpl
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperationTemplateParameter createOperationTemplateParameter() {
-		OperationTemplateParameterImpl operationTemplateParameter = new OperationTemplateParameterImpl();
-		return operationTemplateParameter;
 	}
 
 	/**

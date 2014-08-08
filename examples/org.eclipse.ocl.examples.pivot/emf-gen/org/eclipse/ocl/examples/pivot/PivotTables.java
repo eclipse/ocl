@@ -364,7 +364,6 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _Object = new EcoreExecutorType("Object", PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Operation = new EcoreExecutorType(PivotPackage.Literals.OPERATION, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OperationCallExp = new EcoreExecutorType(PivotPackage.Literals.OPERATION_CALL_EXP, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OperationTemplateParameter = new EcoreExecutorType(PivotPackage.Literals.OPERATION_TEMPLATE_PARAMETER, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OppositePropertyCallExp = new EcoreExecutorType(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OrderedSetType = new EcoreExecutorType(PivotPackage.Literals.ORDERED_SET_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Package = new EcoreExecutorType(PivotPackage.Literals.PACKAGE, PACKAGE, 0);
@@ -494,7 +493,6 @@ public class PivotTables
 			_Object,
 			_Operation,
 			_OperationCallExp,
-			_OperationTemplateParameter,
 			_OppositePropertyCallExp,
 			_OrderedSetType,
 			_Package,
@@ -1338,13 +1336,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _OperationCallExp__ReferringElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._ReferringElement);
 		private static final @NonNull ExecutorFragment _OperationCallExp__TypedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._TypedElement);
 		private static final @NonNull ExecutorFragment _OperationCallExp__Visitable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Visitable);
-
-		private static final @NonNull ExecutorFragment _OperationTemplateParameter__Element = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Element);
-		private static final @NonNull ExecutorFragment _OperationTemplateParameter__OclAny = new ExecutorFragment(Types._OperationTemplateParameter, OCLstdlibTables.Types._OclAny);
-		private static final @NonNull ExecutorFragment _OperationTemplateParameter__OclElement = new ExecutorFragment(Types._OperationTemplateParameter, OCLstdlibTables.Types._OclElement);
-		private static final @NonNull ExecutorFragment _OperationTemplateParameter__OperationTemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._OperationTemplateParameter);
-		private static final @NonNull ExecutorFragment _OperationTemplateParameter__TemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._TemplateParameter);
-		private static final @NonNull ExecutorFragment _OperationTemplateParameter__Visitable = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _OppositePropertyCallExp__CallExp = new ExecutorFragment(Types._OppositePropertyCallExp, PivotTables.Types._CallExp);
 		private static final @NonNull ExecutorFragment _OppositePropertyCallExp__Element = new ExecutorFragment(Types._OppositePropertyCallExp, PivotTables.Types._Element);
@@ -3537,17 +3528,6 @@ public class PivotTables
 		};
 		private static final @NonNull int[] __OperationCallExp = { 1,1,3,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _OperationTemplateParameter =
-		{
-			Fragments._OperationTemplateParameter__OclAny /* 0 */,
-			Fragments._OperationTemplateParameter__OclElement /* 1 */,
-			Fragments._OperationTemplateParameter__Visitable /* 2 */,
-			Fragments._OperationTemplateParameter__Element /* 3 */,
-			Fragments._OperationTemplateParameter__TemplateParameter /* 4 */,
-			Fragments._OperationTemplateParameter__OperationTemplateParameter /* 5 */
-		};
-		private static final @NonNull int[] __OperationTemplateParameter = { 1,1,1,1,1,1 };
-
 		private static final @NonNull ExecutorFragment[] _OppositePropertyCallExp =
 		{
 			Fragments._OppositePropertyCallExp__OclAny /* 0 */,
@@ -4478,7 +4458,6 @@ public class PivotTables
 			Types._Object.initFragments(_Object, __Object);
 			Types._Operation.initFragments(_Operation, __Operation);
 			Types._OperationCallExp.initFragments(_OperationCallExp, __OperationCallExp);
-			Types._OperationTemplateParameter.initFragments(_OperationTemplateParameter, __OperationTemplateParameter);
 			Types._OppositePropertyCallExp.initFragments(_OppositePropertyCallExp, __OppositePropertyCallExp);
 			Types._OrderedSetType.initFragments(_OrderedSetType, __OrderedSetType);
 			Types._Package.initFragments(_Package, __Package);
@@ -7056,35 +7035,6 @@ public class PivotTables
 			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
 		};
 		private static final @NonNull ExecutorOperation[] _OperationCallExp__Visitable = {};
-
-		private static final @NonNull ExecutorOperation[] _OperationTemplateParameter__OperationTemplateParameter = {};
-		private static final @NonNull ExecutorOperation[] _OperationTemplateParameter__Element = {
-			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
-			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
-		};
-		private static final @NonNull ExecutorOperation[] _OperationTemplateParameter__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(Metaclass(TT)) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(T)(Metaclass(T)) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(T)(Metaclass(T)) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final @NonNull ExecutorOperation[] _OperationTemplateParameter__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-		private static final @NonNull ExecutorOperation[] _OperationTemplateParameter__TemplateParameter = {};
-		private static final @NonNull ExecutorOperation[] _OperationTemplateParameter__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__OppositePropertyCallExp = {};
 		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__CallExp = {};
@@ -9963,13 +9913,6 @@ public class PivotTables
 			Fragments._OperationCallExp__TypedElement.initOperations(_OperationCallExp__TypedElement);
 			Fragments._OperationCallExp__Visitable.initOperations(_OperationCallExp__Visitable);
 
-			Fragments._OperationTemplateParameter__Element.initOperations(_OperationTemplateParameter__Element);
-			Fragments._OperationTemplateParameter__OclAny.initOperations(_OperationTemplateParameter__OclAny);
-			Fragments._OperationTemplateParameter__OclElement.initOperations(_OperationTemplateParameter__OclElement);
-			Fragments._OperationTemplateParameter__OperationTemplateParameter.initOperations(_OperationTemplateParameter__OperationTemplateParameter);
-			Fragments._OperationTemplateParameter__TemplateParameter.initOperations(_OperationTemplateParameter__TemplateParameter);
-			Fragments._OperationTemplateParameter__Visitable.initOperations(_OperationTemplateParameter__Visitable);
-
 			Fragments._OppositePropertyCallExp__CallExp.initOperations(_OppositePropertyCallExp__CallExp);
 			Fragments._OppositePropertyCallExp__Element.initOperations(_OppositePropertyCallExp__Element);
 			Fragments._OppositePropertyCallExp__FeatureCallExp.initOperations(_OppositePropertyCallExp__FeatureCallExp);
@@ -12820,23 +12763,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__initExpression
 		};
 
-		private static final @NonNull ExecutorProperty[] _OperationTemplateParameter = {
-			PivotTables.Properties._Element__comment,
-			PivotTables.Properties._TemplateParameter__default,
-			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Element__ownedAnnotation,
-			PivotTables.Properties._Element__ownedComment,
-			PivotTables.Properties._TemplateParameter__ownedDefault,
-			PivotTables.Properties._TemplateParameter__ownedParameteredElement,
-			PivotTables.Properties._TemplateParameter__parameteredElement,
-			PivotTables.Properties._TemplateParameter__signature,
-			PivotTables.Properties._Element__Annotation__ownedContent,
-			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Element__Constraint__constrainedElement,
-			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._TemplateParameter__templateParameterSubstitution__formal
-		};
-
 		private static final @NonNull ExecutorProperty[] _OppositePropertyCallExp = {
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Element__extension,
@@ -14659,7 +14585,6 @@ public class PivotTables
 			Fragments._Object__Object.initProperties(_Object);
 			Fragments._Operation__Operation.initProperties(_Operation);
 			Fragments._OperationCallExp__OperationCallExp.initProperties(_OperationCallExp);
-			Fragments._OperationTemplateParameter__OperationTemplateParameter.initProperties(_OperationTemplateParameter);
 			Fragments._OppositePropertyCallExp__OppositePropertyCallExp.initProperties(_OppositePropertyCallExp);
 			Fragments._OrderedSetType__OrderedSetType.initProperties(_OrderedSetType);
 			Fragments._Package__Package.initProperties(_Package);

@@ -204,7 +204,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull DataType _Object = createDataType(PivotPackage.Literals.OBJECT);
 		protected final @NonNull Class _Operation = createClass(PivotPackage.Literals.OPERATION);
 		protected final @NonNull Class _OperationCallExp = createClass(PivotPackage.Literals.OPERATION_CALL_EXP);
-		protected final @NonNull Class _OperationTemplateParameter = createClass(PivotPackage.Literals.OPERATION_TEMPLATE_PARAMETER);
 		protected final @NonNull Class _OppositePropertyCallExp = createClass(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP);
 		protected final @NonNull Class _OrderedSetType = createClass(PivotPackage.Literals.ORDERED_SET_TYPE);
 		protected final @NonNull Class _Package = createClass(PivotPackage.Literals.PACKAGE);
@@ -693,9 +692,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_FeatureCallExp);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _OperationTemplateParameter);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_TemplateParameter);
 			ownedTypes.add(type = _OppositePropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NavigationCallExp);
@@ -4227,7 +4223,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Operation_ownedParameter, "The parameters to the operation.");
 			installComment(pr_Operation_owningClass, "The class that owns the operation.");
 			installComment(pr_Operation_raisedException, "The exceptions that are declared as possible during an invocation of the operation.");
-			installComment(_OperationTemplateParameter, "An operation template parameter exposes an operation as a formal parameter for a template.");
 			installComment(_Package, "A package is a container for types and other packages.\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.");
 			installComment(pr_Package_ownedClasses, "The set of contained types.");
 			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");

@@ -102,7 +102,6 @@ public interface Visitor<R>
 	@Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.examples.pivot.OCLExpression object);
 	@Nullable R visitOperation(@NonNull org.eclipse.ocl.examples.pivot.Operation object);
 	@Nullable R visitOperationCallExp(@NonNull org.eclipse.ocl.examples.pivot.OperationCallExp object);
-	@Nullable R visitOperationTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.OperationTemplateParameter object);
 	@Nullable R visitOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.OppositePropertyCallExp object);
 	@Nullable R visitOrderedSetType(@NonNull org.eclipse.ocl.examples.pivot.OrderedSetType object);
 	@Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object);

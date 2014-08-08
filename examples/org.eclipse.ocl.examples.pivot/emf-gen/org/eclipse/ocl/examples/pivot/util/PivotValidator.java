@@ -82,7 +82,6 @@ import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
@@ -833,8 +832,6 @@ public class PivotValidator
 				return validateOperation((Operation)value, diagnostics, context);
 			case PivotPackage.OPERATION_CALL_EXP:
 				return validateOperationCallExp((OperationCallExp)value, diagnostics, context);
-			case PivotPackage.OPERATION_TEMPLATE_PARAMETER:
-				return validateOperationTemplateParameter((OperationTemplateParameter)value, diagnostics, context);
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP:
 				return validateOppositePropertyCallExp((OppositePropertyCallExp)value, diagnostics, context);
 			case PivotPackage.ORDERED_SET_TYPE:
@@ -1369,17 +1366,6 @@ public class PivotValidator
 	public boolean validateParameter(Parameter parameter,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)parameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOperationTemplateParameter(
-			OperationTemplateParameter operationTemplateParameter,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)operationTemplateParameter, diagnostics, context);
 	}
 
 	/**

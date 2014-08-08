@@ -76,7 +76,6 @@ import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
@@ -512,11 +511,6 @@ public class PivotAdapterFactory
 			public Adapter caseOperationCallExp(OperationCallExp object)
 			{
 				return createOperationCallExpAdapter();
-			}
-			@Override
-			public Adapter caseOperationTemplateParameter(OperationTemplateParameter object)
-			{
-				return createOperationTemplateParameterAdapter();
 			}
 			@Override
 			public Adapter caseOppositePropertyCallExp(OppositePropertyCallExp object)
@@ -2244,20 +2238,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.OperationTemplateParameter <em>Operation Template Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.OperationTemplateParameter
-	 * @generated
-	 */
-	public Adapter createOperationTemplateParameterAdapter() {
 		return null;
 	}
 

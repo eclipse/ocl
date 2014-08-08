@@ -75,7 +75,6 @@ import org.eclipse.ocl.examples.pivot.NumericLiteralExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OperationTemplateParameter;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
@@ -1089,16 +1088,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(operationCallExp);
 				if (result == null) result = caseNameable(operationCallExp);
 				if (result == null) result = caseVisitable(operationCallExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.OPERATION_TEMPLATE_PARAMETER:
-			{
-				OperationTemplateParameter operationTemplateParameter = (OperationTemplateParameter)theEObject;
-				T1 result = caseOperationTemplateParameter(operationTemplateParameter);
-				if (result == null) result = caseTemplateParameter(operationTemplateParameter);
-				if (result == null) result = caseElement(operationTemplateParameter);
-				if (result == null) result = caseVisitable(operationTemplateParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3385,21 +3374,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseVariableDeclaration(VariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operation Template Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operation Template Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseOperationTemplateParameter(OperationTemplateParameter object) {
 		return null;
 	}
 
