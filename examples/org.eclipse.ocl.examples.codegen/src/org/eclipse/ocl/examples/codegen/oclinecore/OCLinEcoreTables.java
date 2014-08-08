@@ -447,7 +447,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append(", Parameters.");
 				s.append(getTemplateBindingsName(op.getParameterTypes()));
 				s.append(", ");
-				op.getOwningType().accept(emitLiteralVisitor);
+				op.getOwningClass().accept(emitLiteralVisitor);
 				s.append(",\n			" + i + ", ");
 				if (ownedTemplateSignature == null) {
 					s.appendClassReference(DomainTypeParameters.class);
@@ -548,7 +548,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					}
 					else if (hasEcore(prop)) {
 //					    List<Constraint> constraints = prop.getOwnedRule();
-						org.eclipse.ocl.examples.pivot.Class owningType = DomainUtil.nonNullModel(prop.getOwningType());
+						org.eclipse.ocl.examples.pivot.Class owningType = DomainUtil.nonNullModel(prop.getOwningClass());
 /*						if (constraints.size() > 0) {
 							s.appendClassReference(ExecutorPropertyWithImplementation.class);
 							s.append("(");
@@ -588,7 +588,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.append("(");
 							s.append(genPackage.getPrefix());
 							s.append("Package.Literals." );
-							appendUpperName(DomainUtil.nonNullModel(opposite.getOwningType()));
+							appendUpperName(DomainUtil.nonNullModel(opposite.getOwningClass()));
 							s.append("__" );
 							appendUpperName(opposite);
 							s.append("))");

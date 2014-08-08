@@ -33,8 +33,8 @@ public class PropertyAttribution extends AbstractAttribution
 			while (type instanceof CollectionType) {
 				type = ((CollectionType)type).getElementType();
 			}
-			if (type != null) {
-				environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				environmentView.addAllProperties((org.eclipse.ocl.examples.pivot.Class)type, FeatureFilter.SELECT_NON_STATIC);
 			}
 		}
 		return scopeView.getParent();

@@ -656,7 +656,7 @@ public class PivotUtil extends DomainUtil
 	public static @NonNull TupleType createTupleType(@NonNull String name, Property... properties) {
 		TupleType pivotType = PivotFactory.eINSTANCE.createTupleType();
 		pivotType.setName(name);
-		List<Property> ownedProperties = pivotType.getOwnedAttribute();
+		List<Property> ownedProperties = pivotType.getOwnedProperties();
 		for (Property property : properties) {
 			ownedProperties.add(property);
 		}
@@ -1225,13 +1225,13 @@ public class PivotUtil extends DomainUtil
 		return new EcoreExecutorManager(eObject, PivotTables.LIBRARY);
 	}
 
-	public static @NonNull org.eclipse.ocl.examples.pivot.Class getOwningType(@NonNull Feature feature) {
+/*	public static @NonNull org.eclipse.ocl.examples.pivot.Class getOwningType(@NonNull Feature feature) {
 		org.eclipse.ocl.examples.pivot.Class owner = null;
 		if (feature instanceof Property) {
-			owner = ((Property)feature).getOwningType();
+			owner = ((Property)feature).getOwningClass();
 		}
 		else if (feature instanceof Operation) {
-			owner = ((Operation)feature).getOwningType();
+			owner = ((Operation)feature).getOwningClass();
 		}
 		else {
 			throw new IllegalStateException("Unknown feature " + feature.eClass().getName());
@@ -1240,7 +1240,7 @@ public class PivotUtil extends DomainUtil
 			throw new IllegalStateException("Orphan feature " + feature.eClass().getName());
 		}
 		return owner;
-	}
+	} */
 
 	public static @Nullable org.eclipse.ocl.examples.pivot.Package getPackage(@NonNull EObject object) {
 		for (EObject eObject = object; eObject != null; eObject = eObject.eContainer()) {
@@ -1556,7 +1556,7 @@ public class PivotUtil extends DomainUtil
 			if (typedElement instanceof Parameter) {
 				Operation operation = ((Parameter)typedElement).getOperation();
 				if (operation != null) {
-					org.eclipse.ocl.examples.pivot.Class selfType = operation.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class selfType = operation.getOwningClass();
 					if (selfType != null) {
 						type = selfType;
 					}

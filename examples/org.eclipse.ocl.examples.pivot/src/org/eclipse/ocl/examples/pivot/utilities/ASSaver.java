@@ -278,7 +278,7 @@ public class ASSaver
 			}
 			orphanageClass = getOrphanClass(orphanage2);
 		}
-		orphanageClass.getOwnedOperation().add(resolvedOperation);
+		orphanageClass.getOwnedOperations().add(resolvedOperation);
 		operations.put(moniker, resolvedOperation);
 		String newMoniker = AS2Moniker.toString(resolvedOperation);
 		assert moniker.equals(newMoniker);

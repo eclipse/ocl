@@ -225,7 +225,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		Operation oclInvalidOperation2 = oclInvalidOperation;
 		if (oclInvalidOperation2 == null) {
 			InvalidType invalidType = getOclInvalidType();
-			List<Operation> invalidOperations = invalidType.getOwnedOperation();
+			List<Operation> invalidOperations = invalidType.getOwnedOperations();
 			String invalidName = "oclBadOperation";
 			oclInvalidOperation2 = DomainUtil.getNamedElement(invalidOperations, invalidName);
 			if (oclInvalidOperation2 == null) {
@@ -244,7 +244,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		Property oclInvalidProperty2 = oclInvalidProperty;
 		if (oclInvalidProperty2 == null) {
 			InvalidType invalidType = getOclInvalidType();
-			List<Property> invalidProperties = invalidType.getOwnedAttribute();
+			List<Property> invalidProperties = invalidType.getOwnedProperties();
 			String invalidName = "oclBadProperty";
 			oclInvalidProperty2 = DomainUtil.getNamedElement(invalidProperties, invalidName);
 			if (oclInvalidProperty2 == null) {
@@ -275,7 +275,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 		return oclLambdaType2;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class getOclMessageType() {
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
 	}
 

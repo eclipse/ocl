@@ -39,8 +39,8 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, csNameExp);
 			if (pivot != null) {
 				Type type = pivot.getType();
-				if (type != null) {
-					environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
+				if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+					environmentView.addAllProperties((org.eclipse.ocl.examples.pivot.Class)type, FeatureFilter.SELECT_NON_STATIC);
 				}
 			}
 			return null;

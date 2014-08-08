@@ -102,7 +102,7 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 
 	@Override
 	public @Nullable Object visitTupleType(@NonNull TupleType object) {
-		for (Property tuplePart : object.getOwnedAttribute()) {
+		for (Property tuplePart : object.getOwnedProperties()) {
 			safeVisit(tuplePart.getType());
 		}
 		return super.visitTupleType(object);

@@ -37,7 +37,7 @@ public class TuplePartImpl
 		TuplePartId partId2 = partId;
 		if (partId2 == null) {
 			String name2 = DomainUtil.getSafeName(this);
-			int index = ((TupleType)eContainer()).getOwnedAttribute().indexOf(this);
+			int index = ((TupleType)eContainer()).getOwnedProperties().indexOf(this);
 			partId = partId2 = IdManager.getTuplePartId(index, name2, getTypeId());
 		}
 		return partId2;

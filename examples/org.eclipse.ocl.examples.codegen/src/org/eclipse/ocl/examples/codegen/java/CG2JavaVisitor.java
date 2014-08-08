@@ -1048,7 +1048,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	@Override
 	public @NonNull Boolean visitCGEcoreOperationCallExp(@NonNull CGEcoreOperationCallExp cgOperationCallExp) {
 		Operation pOperation = cgOperationCallExp.getReferredOperation();
-		CGTypeId cgTypeId = analyzer.getTypeId(pOperation.getOwningType().getTypeId());
+		CGTypeId cgTypeId = analyzer.getTypeId(pOperation.getOwningClass().getTypeId());
 //		TypeDescriptor requiredTypeDescriptor = context.getUnboxedDescriptor(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = context.getUnboxedDescriptor(DomainUtil.nonNullState(cgTypeId.getElementId()));
 		CGValuedElement source = getExpression(cgOperationCallExp.getSource());
@@ -1107,7 +1107,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	@Override
 	public @NonNull Boolean visitCGEcorePropertyCallExp(@NonNull CGEcorePropertyCallExp cgPropertyCallExp) {
 		Property asProperty = cgPropertyCallExp.getReferredProperty();
-		CGTypeId cgTypeId = analyzer.getTypeId(asProperty.getOwningType().getTypeId());
+		CGTypeId cgTypeId = analyzer.getTypeId(asProperty.getOwningClass().getTypeId());
 		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = context.getUnboxedDescriptor(elementId);
 		EStructuralFeature eStructuralFeature = DomainUtil.nonNullState(cgPropertyCallExp.getEStructuralFeature());

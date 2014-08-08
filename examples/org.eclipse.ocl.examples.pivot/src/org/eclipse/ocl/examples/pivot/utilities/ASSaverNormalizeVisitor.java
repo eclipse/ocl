@@ -72,7 +72,7 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 
 	@Override
 	public Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		List<Property> ownedAttributes = object.getOwnedAttribute();
+		List<Property> ownedAttributes = object.getOwnedProperties();
 		sort(ownedAttributes, PropertyComparator.INSTANCE);
 		return null;
 	}

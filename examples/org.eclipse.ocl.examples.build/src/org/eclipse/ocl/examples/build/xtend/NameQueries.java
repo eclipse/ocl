@@ -71,7 +71,7 @@ public class NameQueries
 	
 	public static @NonNull String getEcoreLiteral(@NonNull Property property) {
 		if (!property.isImplicit()) {
-			org.eclipse.ocl.examples.pivot.Class type = property.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class type = property.getOwningClass();
 			if (type != null) {
 				String nsURI = DomainUtil.nonNullModel(type.getPackage().getURI());
 				GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);

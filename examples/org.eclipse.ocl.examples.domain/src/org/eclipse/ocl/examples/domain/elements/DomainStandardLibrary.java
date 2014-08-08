@@ -37,7 +37,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Bag(T)</tt> type (an instance of BagType)
      */
-	@NonNull DomainType getBagType();
+	@NonNull DomainClass getBagType();
 
 	/**
 	 * Return the instance of the Bag metatype whose elements are of elementType.
@@ -50,7 +50,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Boolean</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainType getBooleanType();
+	@NonNull DomainClass getBooleanType();
 	
     /**
      * Obtains the generic instance of the CollectionType metatype, named
@@ -58,12 +58,12 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Collection(T)</tt> type (an instance of CollectionType)
      */
-	@NonNull DomainType getCollectionType();
+	@NonNull DomainClass getCollectionType();
 	
 	/**
 	 * Return the specialized collection type for the containerType for elementType.
 	 */
-	@NonNull DomainCollectionType getCollectionType(@NonNull DomainType containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
+	@NonNull DomainCollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper);
 
 	/**
 	 * Return the enumeration for a given enumerator.
@@ -76,7 +76,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Enumeration</tt> type (an instance of Enumeration)
      */
-	@NonNull DomainType getEnumerationType();
+	@NonNull DomainClass getEnumerationType();
 
 	/**
 	 * Return the Inheritance dispatch table for a given type.
@@ -89,7 +89,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Integer</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainType getIntegerType();
+	@NonNull DomainClass getIntegerType();
 
 	/**
 	 * Return the instance of the Metaclass metatype whose class is classType.
@@ -102,7 +102,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Metaclass</tt> type (an instance of Metaclass)
      */
-	@NonNull DomainType getMetaclassType();
+	@NonNull DomainClass getMetaclassType();
 
     /**
      * Returns the meta-type of a given type.
@@ -121,7 +121,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclAny</tt> type (an instance of AnyType)
      */
-	@NonNull DomainType getOclAnyType();
+	@NonNull DomainClass getOclAnyType();
 	
     /**
      * Obtains the single instance of the OclComparable metatype, named
@@ -129,7 +129,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclAny</tt> type (an instance of Class)
      */
-	@NonNull DomainType getOclComparableType();
+	@NonNull DomainClass getOclComparableType();
 
     /**
      * Obtains the single instance of the Class metatype, named
@@ -137,7 +137,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclElement</tt> type (an instance of Class)
      */
-	@NonNull DomainType getOclElementType();
+	@NonNull DomainClass getOclElementType();
 
 	@NonNull DomainOperation getOclInvalidOperation();
 	
@@ -147,7 +147,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclInvalid</tt> type (an instance of InvalidType)
      */
-	@NonNull DomainType getOclInvalidType();
+	@NonNull DomainClass getOclInvalidType();
 	
     /**
      * Obtains the generic instance of the MessageType metatype, named
@@ -155,7 +155,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclMessage</tt> type (an instance of MessageType)
      */
-	DomainType getOclMessageType();
+	@NonNull DomainClass getOclMessageType();
 
     /**
      * Obtains the single instance of the OclSelf pseudo-metatype, named
@@ -163,7 +163,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclSelf</tt> type (an instance of SelfType)
      */
-	@NonNull DomainType getOclSelfType();
+	@NonNull DomainClass getOclSelfType();
 	
     /**
      * Obtains the single instance of the OclSummable metatype, named
@@ -171,7 +171,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclAny</tt> type (an instance of Class)
      */
-	@NonNull DomainType getOclSummableType();
+	@NonNull DomainClass getOclSummableType();
 	
     /**
      * Obtains the single instance of the OclTupleType metatype, named
@@ -179,7 +179,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclTuple</tt> type (an instance of Class)
      */
-	@NonNull DomainType getOclTupleType();
+	@NonNull DomainClass getOclTupleType();
 	
 	DomainType getOclType(@NonNull String typeName);
 	
@@ -189,7 +189,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclVoid</tt> type (an instance of VoidType)
      */
-	@NonNull DomainType getOclVoidType();
+	@NonNull DomainClass getOclVoidType();
 	
     DomainElement getOperationTemplateParameter(@NonNull DomainOperation anOperation, int index);
 
@@ -199,7 +199,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OrderedCollection(T)</tt> type (an instance of CollectionType)
      */
-	@NonNull DomainType getOrderedCollectionType();
+	@NonNull DomainClass getOrderedCollectionType();
 
 	/**
      * Obtains the generic instance of the OrderedSetType metatype, named
@@ -207,7 +207,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OrderedSet(T)</tt> type (an instance of OrderedSetType)
      */
-	@NonNull DomainType getOrderedSetType();
+	@NonNull DomainClass getOrderedSetType();
 
 	/**
 	 * Return the instance of the OrderedSet metatype whose elements are of elementType.
@@ -222,7 +222,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Real</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainType getRealType();
+	@NonNull DomainClass getRealType();
 
 	DomainPackage getRootPackage(@NonNull String name);
 	
@@ -232,7 +232,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Sequence(T)</tt> type (an instance of SequenceType)
      */
-	@NonNull DomainType getSequenceType();
+	@NonNull DomainClass getSequenceType();
 
 	/**
 	 * Return the instance of the Sequence metatype whose elements are of elementType.
@@ -245,7 +245,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Set(T)</tt> type (an instance of SetType)
      */
-	@NonNull DomainType getSetType();
+	@NonNull DomainClass getSetType();
 
 	/**
 	 * Return the instance of the Set metatype whose elements are of elementType.
@@ -258,7 +258,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>String</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainType getStringType();
+	@NonNull DomainClass getStringType();
 
 	/**
      * Obtains the generic instance of the UniqueCollection metatype, named
@@ -266,7 +266,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Set(T)</tt> type (an instance of CollectionType)
      */
-	@NonNull DomainType getUniqueCollectionType();
+	@NonNull DomainClass getUniqueCollectionType();
    
     /**
      * Obtains the instance of the PrimitiveType metatype,
@@ -275,7 +275,7 @@ public interface DomainStandardLibrary
      * @return the <tt>UnlimitedNatural</tt> type (an instance of
      *     PrimitiveType)
      */
-	@NonNull DomainType getUnlimitedNaturalType();
+	@NonNull DomainClass getUnlimitedNaturalType();
 	
 	boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType);
 

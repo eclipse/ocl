@@ -255,7 +255,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				Iteration iteration = (Iteration) operation;
 				int iteratorsSize = iteration.getOwnedIterator().size();
 				if ((bestIteration == null) || (iteratorsSize <= bestIteratorsSize)) {
-					org.eclipse.ocl.examples.pivot.Class specializedType = iteration.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class specializedType = iteration.getOwningClass();
 					if (specializedType != null) {
 						org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(specializedType);
 						if ((bestType == null) || !metaModelManager.isSuperClassOf(unspecializedType, bestType)) {
@@ -509,7 +509,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		Iteration iteration = getBestIteration(invocations);
 		if (iteration != null) {
 			if (sourceExp == null) {
-				sourceExp = createImplicitSourceVariableExp(csNameExp, iteration.getOwningType());
+				sourceExp = createImplicitSourceVariableExp(csNameExp, iteration.getOwningClass());
 			}
 			Type sourceType = sourceExp.getType();
 			ScopeFilter scopeFilter = new OperationFilter(sourceType, csRoundBracketedClause);
@@ -523,7 +523,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Operation exampleOperation = getExampleOperation(invocations);
 			if (exampleOperation != null) {
 				if (sourceExp == null) {
-					sourceExp = createImplicitSourceVariableExp(csNameExp, exampleOperation.getOwningType());
+					sourceExp = createImplicitSourceVariableExp(csNameExp, exampleOperation.getOwningClass());
 				}
 				OperationCallExp operationCallExp = refreshOperationCallExp(csNameExp, sourceExp);
 				if (invocations.size() == 1) {
@@ -1140,7 +1140,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				sourceType = ((Metaclass<?>)sourceType).getInstanceType();
 			}
 			templateBindings.put(null, sourceType);		// Use the null key to pass OclSelf without creating an object
-			org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
 			if (owningType instanceof Metaclass) {
 				owningType = PivotUtil.getUnspecializedTemplateableElement(owningType);
 				templateBindings.put(owningType.getOwnedTemplateSignature().getOwnedParameter().get(0), sourceType);		// Use the null key to pass OclSelf without creating an object
@@ -1596,7 +1596,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		else if (element instanceof Property) {
 			Property property = (Property) element;
-			OCLExpression sourceExp = createImplicitSourceVariableExp(csNameExp, property.getOwningType());
+			OCLExpression sourceExp = createImplicitSourceVariableExp(csNameExp, property.getOwningClass());
 			return resolvePropertyCallExp(sourceExp, csNameExp, property);
 		}
 		else if (element instanceof Operation) {

@@ -143,7 +143,7 @@ public class PrecedenceManager
 	}
 
 	protected void compilePrecedenceType(@NonNull List<String> errors, @NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
-		for (Operation operation : pivotType.getOwnedOperation()) {
+		for (Operation operation : pivotType.getOwnedOperations()) {
 			if (operation != null) {
 				compilePrecedenceOperation(errors, operation);
 			}

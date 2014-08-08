@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
@@ -81,7 +82,6 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getAssociationClass <em>Association Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefaultExpression <em>Default Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isImplicit <em>Implicit</em>}</li>
@@ -95,7 +95,7 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOpposite <em>Opposite</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getRedefinedProperty <em>Redefined Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getSubsettedProperty <em>Subsetted Property</em>}</li>
@@ -1037,7 +1037,7 @@ public class PropertyImpl
 		 * in
 		 *   container.oclIsKindOf(Class) and
 		 *   container.oclAsType(Class)
-		 *   .ownedAttribute->includes(self)
+		 *   .ownedProperties->includes(self)
 		 */
 		@Nullable /*@Caught*/ Object CAUGHT_container;
 		try {
@@ -1067,13 +1067,13 @@ public class PropertyImpl
 		    if (CAUGHT_container instanceof InvalidValueException) {
 		        throw (InvalidValueException)CAUGHT_container;
 		    }
-		    final @Nullable /*@Thrown*/ DomainType oclAsType = (DomainType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Class_1);
+		    final @Nullable /*@Thrown*/ DomainClass oclAsType = (DomainClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Class_1);
 		    if (oclAsType == null) {
-		        throw new InvalidValueException("Null source for \'pivot::Class::ownedAttribute\'");
+		        throw new InvalidValueException("Null source for \'pivot::Class::ownedProperties\'");
 		    }
-		    final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedAttribute = oclAsType.getOwnedAttribute();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedAttribute = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedAttribute);
-		    final /*@Thrown*/ boolean b = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedAttribute, this).booleanValue();
+		    final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedProperties = oclAsType.getOwnedProperties();
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedProperties);
+		    final /*@Thrown*/ boolean b = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedProperties, this).booleanValue();
 		    CAUGHT_b = b;
 		}
 		catch (Exception e) {
@@ -1368,10 +1368,10 @@ public class PropertyImpl
 				if (associationClass != null)
 					msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
 				return basicSetAssociationClass((AssociationClass)otherEnd, msgs);
-			case PivotPackage.PROPERTY__CLASS:
+			case PivotPackage.PROPERTY__OWNING_CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetClass_((org.eclipse.ocl.examples.pivot.Class)otherEnd, msgs);
+				return basicSetOwningClass((org.eclipse.ocl.examples.pivot.Class)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1400,10 +1400,10 @@ public class PropertyImpl
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return basicSetAssociationClass(null, msgs);
-			case PivotPackage.PROPERTY__CLASS:
-				return basicSetClass_(null, msgs);
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
 				return basicSetDefaultExpression(null, msgs);
+			case PivotPackage.PROPERTY__OWNING_CLASS:
+				return basicSetOwningClass(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1420,8 +1420,8 @@ public class PropertyImpl
 		{
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.PROPERTY__CLASS:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.CLASS__OWNED_ATTRIBUTE, org.eclipse.ocl.examples.pivot.Class.class, msgs);
+			case PivotPackage.PROPERTY__OWNING_CLASS:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.CLASS__OWNED_PROPERTIES, org.eclipse.ocl.examples.pivot.Class.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -1466,8 +1466,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (resolve) return getAssociationClass();
 				return basicGetAssociationClass();
-			case PivotPackage.PROPERTY__CLASS:
-				return getClass_();
 			case PivotPackage.PROPERTY__DEFAULT:
 				return getDefault();
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
@@ -1495,8 +1493,8 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OPPOSITE:
 				if (resolve) return getOpposite();
 				return basicGetOpposite();
-			case PivotPackage.PROPERTY__OWNING_TYPE:
-				return getOwningType();
+			case PivotPackage.PROPERTY__OWNING_CLASS:
+				return getOwningClass();
 			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
 				return getRedefinedProperty();
 			case PivotPackage.PROPERTY__REFERRED_PROPERTY:
@@ -1561,9 +1559,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)newValue);
 				return;
-			case PivotPackage.PROPERTY__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
-				return;
 			case PivotPackage.PROPERTY__DEFAULT:
 				setDefault((String)newValue);
 				return;
@@ -1603,6 +1598,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__OPPOSITE:
 				setOpposite((Property)newValue);
+				return;
+			case PivotPackage.PROPERTY__OWNING_CLASS:
+				setOwningClass((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
 				getRedefinedProperty().clear();
@@ -1667,9 +1665,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)null);
 				return;
-			case PivotPackage.PROPERTY__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
-				return;
 			case PivotPackage.PROPERTY__DEFAULT:
 				setDefault(DEFAULT_EDEFAULT);
 				return;
@@ -1708,6 +1703,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__OPPOSITE:
 				setOpposite((Property)null);
+				return;
+			case PivotPackage.PROPERTY__OWNING_CLASS:
+				setOwningClass((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
 				getRedefinedProperty().clear();
@@ -1759,8 +1757,6 @@ public class PropertyImpl
 				return templateParameter != null;
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return associationClass != null;
-			case PivotPackage.PROPERTY__CLASS:
-				return getClass_() != null;
 			case PivotPackage.PROPERTY__DEFAULT:
 				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
@@ -1787,8 +1783,8 @@ public class PropertyImpl
 				return keys != null && !keys.isEmpty();
 			case PivotPackage.PROPERTY__OPPOSITE:
 				return opposite != null;
-			case PivotPackage.PROPERTY__OWNING_TYPE:
-				return getOwningType() != null;
+			case PivotPackage.PROPERTY__OWNING_CLASS:
+				return getOwningClass() != null;
 			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
 				return redefinedProperty != null && !redefinedProperty.isEmpty();
 			case PivotPackage.PROPERTY__REFERRED_PROPERTY:
@@ -1907,8 +1903,8 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class getClass_() {
-		if (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS) return null;
+	public org.eclipse.ocl.examples.pivot.Class getOwningClass() {
+		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
 	}
 
@@ -1917,9 +1913,9 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetClass_(org.eclipse.ocl.examples.pivot.Class newClass, NotificationChain msgs)
+	public NotificationChain basicSetOwningClass(org.eclipse.ocl.examples.pivot.Class newOwningClass, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newClass, PivotPackage.PROPERTY__CLASS, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningClass, PivotPackage.PROPERTY__OWNING_CLASS, msgs);
 		return msgs;
 	}
 
@@ -1928,26 +1924,26 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass)
+	public void setOwningClass(org.eclipse.ocl.examples.pivot.Class newOwningClass)
 	{
-		if (newClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS && newClass != null))
+		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS && newOwningClass != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newClass))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newClass != null)
-				msgs = ((InternalEObject)newClass).eInverseAdd(this, PivotPackage.CLASS__OWNED_ATTRIBUTE, org.eclipse.ocl.examples.pivot.Class.class, msgs);
-			msgs = basicSetClass_(newClass, msgs);
+			if (newOwningClass != null)
+				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, PivotPackage.CLASS__OWNED_PROPERTIES, org.eclipse.ocl.examples.pivot.Class.class, msgs);
+			msgs = basicSetOwningClass(newOwningClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__CLASS, newClass, newClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_CLASS, newOwningClass, newOwningClass));
 	}
 
 	public @Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		org.eclipse.ocl.examples.pivot.Class owningType = getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = getOwningClass();
 		if (owningType != null) {
 			return standardLibrary.getInheritance(owningType);
 		}
@@ -1965,7 +1961,7 @@ public class PropertyImpl
 				propertyId2 = propertyId;
 				if (propertyId2 == null) {
 					String name = DomainUtil.nonNullModel(getName());
-					TypeId typeId = getOwningType().getTypeId();
+					TypeId typeId = getOwningClass().getTypeId();
 					propertyId = propertyId2 = typeId.getPropertyId(name);
 				}
 			}
@@ -1983,9 +1979,5 @@ public class PropertyImpl
 			return;
 		}
 		throw new UnsupportedOperationException();
-	}
-
-	public org.eclipse.ocl.examples.pivot.Class getOwningType() {
-		return getClass_();
 	}
 } //PropertyImpl

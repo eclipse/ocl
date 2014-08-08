@@ -74,7 +74,7 @@ public class TupleTypeImpl
 		TupleTypeId tupleTypeId2 = tupleTypeId;
 		if (tupleTypeId2 == null) {
 			String name2 = DomainUtil.getSafeName(this);
-			List<Property> parts = getOwnedAttribute();
+			List<Property> parts = getOwnedProperties();
 			int iSize = parts.size();
 			List<TuplePartId> partIds = new ArrayList<TuplePartId>(iSize);
 			for (int i = 0; i < iSize; i++) {

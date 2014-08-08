@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -29,10 +30,10 @@ import com.google.common.base.Function;
  */
 class TypeTracker implements Adapter.Internal
 {
-	public static Function<TypeTracker, DomainType> tracker2type = new Function<TypeTracker, DomainType>()
+	public static Function<TypeTracker, DomainClass> tracker2type = new Function<TypeTracker, DomainClass>()
 	{
-		public DomainType apply(TypeTracker typeTracker) {
-			return typeTracker.getType();
+		public DomainClass apply(TypeTracker typeTracker) {
+			return (DomainClass)typeTracker.getType();				// FIXME cast
 		}
 	};
 
@@ -84,7 +85,7 @@ class TypeTracker implements Adapter.Internal
 		}
 		int eventType = notification.getEventType();
 		Object feature = notification.getFeature();
-		if (feature == PivotPackage.Literals.CLASS__OWNED_OPERATION) {
+		if (feature == PivotPackage.Literals.CLASS__OWNED_OPERATIONS) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
@@ -122,7 +123,7 @@ class TypeTracker implements Adapter.Internal
 				}
 			}
 		}
-		else if (feature == PivotPackage.Literals.CLASS__OWNED_ATTRIBUTE) {
+		else if (feature == PivotPackage.Literals.CLASS__OWNED_PROPERTIES) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();

@@ -54,7 +54,6 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.library.JavaCompareToOperation;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 {				
@@ -119,7 +118,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 						parameter.setType(metaModelManager.getOclSelfType());
 						operation.getOwnedParameter().add(parameter);
 						operation.setType(metaModelManager.getIntegerType());
-						pivotElement.getOwnedOperation().add(operation);
+						pivotElement.getOwnedOperations().add(operation);
 						pivotElement.getSuperClasses().add(metaModelManager.getOclComparableType());
 					}
 				} catch (Exception e) {
@@ -194,7 +193,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 					oppositeProperty.setName(oppositeName);
 					oppositeProperty.setImplicit(true);
 					org.eclipse.ocl.examples.pivot.Class remoteType = (org.eclipse.ocl.examples.pivot.Class)pivotElement.getType();	// FIXME cast
-					org.eclipse.ocl.examples.pivot.Class localType = PivotUtil.getOwningType(pivotElement);
+					org.eclipse.ocl.examples.pivot.Class localType = pivotElement.getOwningClass();
 					oppositeProperty.setType(localType);
 					String uniqueValue = details.get(PROPERTY_OPPOSITE_ROLE_UNIQUE_KEY);
 					String orderedValue = details.get(PROPERTY_OPPOSITE_ROLE_ORDERED_KEY);
@@ -221,7 +220,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 						oppositeProperty.setType(localType);
 						oppositeProperty.setIsRequired(lower == one);
 					}
-					remoteType.getOwnedAttribute().add(oppositeProperty);
+					remoteType.getOwnedProperties().add(oppositeProperty);
 					oppositeProperty.setOpposite(pivotElement);
 				}
 			}
@@ -267,7 +266,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 								oppositeProperty.setType(localType);
 								oppositeProperty.setIsRequired(lower.equals(ValuesUtil.ONE_VALUE));
 							}
-							remoteType.getOwnedAttribute().add(oppositeProperty);
+							remoteType.getOwnedProperties().add(oppositeProperty);
 							oppositeProperty.setOpposite(pivotElement);
 						}
 					}

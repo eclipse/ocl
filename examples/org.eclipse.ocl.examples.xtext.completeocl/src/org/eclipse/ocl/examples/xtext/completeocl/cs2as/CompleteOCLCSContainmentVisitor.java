@@ -152,7 +152,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 
 	protected void installOperationContainment(@NonNull Type modelType, @NonNull org.eclipse.ocl.examples.pivot.Class contextType) {
 		List<Operation> newContextOperations = modelType2contextOperations.get(modelType);
-		List<Operation> oldContextOperations = contextType.getOwnedOperation();
+		List<Operation> oldContextOperations = contextType.getOwnedOperations();
 		if ((newContextOperations == null) || newContextOperations.isEmpty()) {
 			if (!oldContextOperations.isEmpty()) {
 				oldContextOperations.clear();
@@ -209,10 +209,10 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	protected void installPropertyContainment(@NonNull Type modelType, @NonNull org.eclipse.ocl.examples.pivot.Class contextType, @NonNull List<Constraint> allInvariants) {
 		List<Property> contextProperties = modelType2contextProperties.get(modelType);
 		if (contextProperties == null) {
-			contextType.getOwnedAttribute().clear();
+			contextType.getOwnedProperties().clear();
 		}
 		else {
-			PivotUtil.refreshList(contextType.getOwnedAttribute(), contextProperties);
+			PivotUtil.refreshList(contextType.getOwnedProperties(), contextProperties);
 			for (Property contextProperty : contextProperties) {
 				assert contextProperty != null;
 				List<Constraint> derivedInvariants = property2invariants.get(contextProperty);
@@ -533,7 +533,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		if ((modelProperty != null) && !modelProperty.eIsProxy()) {
 			context.refreshName(contextProperty, DomainUtil.nonNullModel(modelProperty.getName()));
 			contextProperty.setType(modelProperty.getType());
-			org.eclipse.ocl.examples.pivot.Class modelClassifier = modelProperty.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class modelClassifier = modelProperty.getOwningClass();
 			if (modelClassifier != null) {
 				refreshContextType(modelClassifier, null);
 				registerProperty(modelClassifier, contextProperty);

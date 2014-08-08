@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.domain.values.IntegerValue;
 
 public interface DomainCollectionType extends DomainClass
 {
-	/*@NonNull*/ DomainType getContainerType();		
+	/*@NonNull*/ DomainClass getContainerType();		
 	/*@NonNull*/ DomainType getElementType();
 	@NonNull IntegerValue getLowerValue();		
 	@NonNull CollectionTypeId getTypeId();

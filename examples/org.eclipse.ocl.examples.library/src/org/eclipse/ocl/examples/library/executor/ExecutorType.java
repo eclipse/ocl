@@ -86,18 +86,6 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return indexes.length;
 	}
 
-	public @NonNull List<? extends DomainOperation> getLocalOperations() {
-		return getSelfFragment().getLocalOperations();
-	}
-
-	public @NonNull List<? extends DomainProperty> getLocalProperties() {
-		return getSelfFragment().getLocalProperties();
-	}
-
-	public @NonNull List<? extends DomainClass> getSuperClasses() {
-		return getSelfFragment().getSuperClasses();
-	}
-
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {
 		DomainProperties allProperties2 = allProperties;
 		if (allProperties2 == null) {
@@ -110,11 +98,11 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		throw new UnsupportedOperationException();
 	}
 
-	public @NonNull List<? extends DomainProperty> getOwnedAttribute() {
+	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
 		return getSelfFragment().getLocalProperties();
 	}
 
-	public @NonNull List<? extends DomainOperation> getOwnedOperation() {
+	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
 		return getSelfFragment().getLocalOperations();
 	}
 
@@ -124,6 +112,10 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
 		return OCLstdlibTables.LIBRARY;
+	}
+
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
+		return getSelfFragment().getSuperClasses();
 	}
 	
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {

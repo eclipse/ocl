@@ -178,8 +178,8 @@ public class ImplementationManager
 		if (property.isImplicit()) {
 			return new ImplicitNonCompositionProperty(property);
 		}
-		if (property.getOwningType() instanceof TupleType) {
-			TupleType tupleType = (TupleType)property.getOwningType();
+		if (property.getOwningClass() instanceof TupleType) {
+			TupleType tupleType = (TupleType)property.getOwningClass();
 			String name = property.getName();
 			assert name != null;
 			TuplePartId tuplePartId = tupleType.getTypeId().getPartId(name);
@@ -189,8 +189,8 @@ public class ImplementationManager
 		if (property.isStatic()) {
 			return new StaticProperty(property);
 		}
-		if ((property.getOwningType() instanceof ElementExtension)			// direct access to extension property
-			  || (property.getOwningType() instanceof Stereotype)) {			// indirect access from a Stereotype operation
+		if ((property.getOwningClass() instanceof ElementExtension)			// direct access to extension property
+			  || (property.getOwningClass() instanceof Stereotype)) {			// indirect access from a Stereotype operation
 			return new StereotypeProperty(property);
 		}
 		for (ExplicitNavigator explicitNavigator : explicitNavigators) {

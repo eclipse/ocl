@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -125,7 +125,7 @@ public class Pivot2EcoreTypeRefVisitor
 			return eClassifier;
 		}
 		TypeServer typeServer = metaModelManager.getTypeServer(pivotType);
-		for (DomainType aType : typeServer.getPartialTypes()) {
+		for (DomainClass aType : typeServer.getPartialTypes()) {
 			if (!(aType instanceof PrimitiveType)) {
 				eClassifier = context.getCreated(EDataType.class, pivotType);
 				if (eClassifier != null) {
@@ -185,7 +185,7 @@ public class Pivot2EcoreTypeRefVisitor
 				return eClassifier;
 			}
 			if (metaModelManager.isTypeServeable(pivotType)) {
-				for (DomainType type : metaModelManager.getPartialTypes(pivotType)) {
+				for (DomainClass type : metaModelManager.getPartialTypes(pivotType)) {
 					if (type instanceof PivotObjectImpl) {
 						EObject eTarget = ((PivotObjectImpl)type).getETarget();
 						if (eTarget != null) {

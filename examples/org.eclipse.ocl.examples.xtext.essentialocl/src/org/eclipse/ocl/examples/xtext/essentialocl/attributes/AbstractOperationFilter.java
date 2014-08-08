@@ -42,7 +42,7 @@ public abstract class AbstractOperationFilter implements ScopeFilter
 
 	protected @Nullable Map<TemplateParameter, ParameterableElement> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
 		Type sourceType = this.sourceType;
-		if (!(sourceType instanceof CollectionType) && (candidateOperation.getOwningType() instanceof CollectionType) && (sourceType != null)) {
+		if (!(sourceType instanceof CollectionType) && (candidateOperation.getOwningClass() instanceof CollectionType) && (sourceType != null)) {
 			assert sourceType != null;
 			sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()
 		}			

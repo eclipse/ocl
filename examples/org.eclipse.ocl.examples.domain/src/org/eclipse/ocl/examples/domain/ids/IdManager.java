@@ -320,7 +320,7 @@ public final class IdManager
       */
 	public static @NonNull OperationId getOperationId(@NonNull DomainOperation anOperation) {
 		String name = DomainUtil.getSafeName(anOperation);
-		DomainType parentType = anOperation.getOwningType();
+		DomainClass parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();
 		DomainType[] parameterTypes = DomainUtil.getOperationParameterTypes(anOperation);
 		DomainTypeParameters typeParameters = anOperation.getTypeParameters();

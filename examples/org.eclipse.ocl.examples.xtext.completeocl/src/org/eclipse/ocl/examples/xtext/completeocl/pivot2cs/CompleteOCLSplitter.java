@@ -143,9 +143,9 @@ public class CompleteOCLSplitter
 
 		@Override
 		public EObject caseOperation(Operation object) {
-			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningClass();
 			org.eclipse.ocl.examples.pivot.Class separateParent = getSeparate(parent);
-			List<Operation> separateSiblings = separateParent.getOwnedOperation();
+			List<Operation> separateSiblings = separateParent.getOwnedOperations();
 			@SuppressWarnings("serial")
 			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
 			{
@@ -193,9 +193,9 @@ public class CompleteOCLSplitter
 
 		@Override
 		public EObject caseProperty(Property object) {
-			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningType();
+			org.eclipse.ocl.examples.pivot.Class parent = object.getOwningClass();
 			org.eclipse.ocl.examples.pivot.Class separateParent = getSeparate(parent);
-			List<Property> separateSiblings = separateParent.getOwnedAttribute();
+			List<Property> separateSiblings = separateParent.getOwnedProperties();
 			@SuppressWarnings("serial")
 			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
 			{

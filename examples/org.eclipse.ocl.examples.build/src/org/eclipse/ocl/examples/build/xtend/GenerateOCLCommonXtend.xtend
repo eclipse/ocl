@@ -178,7 +178,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				Iteration iteration;
 				Parameter parameter;
 				«FOR type : allIterations.getSortedOwningTypes()»
-					ownedIterations = «type.getSymbolName()».getOwnedOperation();
+					ownedIterations = «type.getSymbolName()».getOwnedOperations();
 					«FOR iteration : type.getSortedIterations(allIterations)»
 						ownedIterations.add(iteration = «iteration.getSymbolName()»);
 						«IF iteration.isInvalidating»
@@ -312,7 +312,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				Operation operation;
 				Parameter parameter;
 				«FOR type : allOperations.getSortedOwningTypes()»
-					ownedOperations = «type.getSymbolName()».getOwnedOperation();
+					ownedOperations = «type.getSymbolName()».getOwnedOperations();
 					«FOR operation : type.getSortedOperations(allOperations)»
 						ownedOperations.add(operation = «operation.getSymbolName()»);
 						«IF operation.isInvalidating»
@@ -422,7 +422,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				List<Property> ownedProperties;
 				Property property;
 				«FOR type : allProperties.getSortedOwningTypes2()»
-					ownedProperties = «type.getSymbolName()».getOwnedAttribute();
+					ownedProperties = «type.getSymbolName()».getOwnedProperties();
 					«FOR property : type.getSortedProperties(allProperties)»
 						ownedProperties.add(property = «property.getSymbolName()»);
 						«IF property.isComposite»
@@ -588,8 +588,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			Comment: return element.javaName(element.body.substring(0, Math.min(11, element.body.length() - 1)))
 			EnumerationLiteral case element.enumeration == null: return "null"
 			EnumerationLiteral: return element.enumeration.partialName() + "_" + element.javaName()
-			Operation case element.owningType == null: return "null_" + element.javaName()
-			Operation: return element.owningType.partialName() + "_" + element.javaName()
+			Operation case element.owningClass == null: return "null_" + element.javaName()
+			Operation: return element.owningClass.partialName() + "_" + element.javaName()
 			Package: return element.javaName()
 			Parameter case element.eContainer() == null: return "null_" + element.javaName()
 			Parameter: return element.eContainer().partialName() + "_" + element.javaName()
@@ -621,8 +621,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			TemplateParameterSubstitution: return element.templateBinding.boundElement.simpleName()
 			Type case element.getTemplateParameter() == null: return element.javaName()
 			Type: return element.getTemplateParameter().simpleName() + "_" + element.javaName()
-			Operation case element.owningType == null: return "null_" + element.javaName()
-			Operation: return element.owningType.simpleName() + "_" + element.javaName()
+			Operation case element.owningClass == null: return "null_" + element.javaName()
+			Operation: return element.owningClass.simpleName() + "_" + element.javaName()
 			default: return "xyzzy" + element.eClass().name
 		}		
 	}

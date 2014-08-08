@@ -209,7 +209,7 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			context.appendParent(context.getScope(), object, "::");
 		}
 		context.appendName(object);
-		List<Property> tupleParts = object.getOwnedAttribute();
+		List<Property> tupleParts = object.getOwnedProperties();
 		if (!tupleParts.isEmpty()) {
 			context.append("(");
 			String prefix = ""; //$NON-NLS-1$

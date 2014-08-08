@@ -607,7 +607,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryResults(null, "Set{false,true}", "Boolean.allInstances()");
     	assertQueryResults(null, "Set{false,true}", "true.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "Boolean.oclType().allInstances()");
-    	assertQueryEquals(null, 1, "true.oclType().ownedOperation->select(name = 'xor')->any(true).ownedParameter->size()");
+    	assertQueryEquals(null, 1, "true.oclType().ownedOperations->select(name = 'xor')->any(true).ownedParameter->size()");
     }
 
     /**
@@ -631,7 +631,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Collections.
      */
     @Test public void test_oclType_Collection() {   	
-     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperation->select(name = 'flatten')->size()");
+     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
     	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getOclAnyType(), null, null), "Set{}->oclType()");
     	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getUnlimitedNaturalType(), null, null), "Set{1}->oclType()");
     	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
@@ -707,7 +707,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryInvalid(null, "OclInvalid.allInstances()");
     	assertQueryInvalid(null, "invalid.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
-    	assertQueryInvalid(null, "invalid.oclType().ownedOperation->select(name = '=')->any(true).ownedParameter->size()");
+    	assertQueryInvalid(null, "invalid.oclType().ownedOperations->select(name = '=')->any(true).ownedParameter->size()");
     }
 
     /**
@@ -723,7 +723,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
     	assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
-    	assertQueryEquals(null, 1, "null.oclType().ownedOperation->select(name = '=')->any(true).ownedParameter->size()");
+    	assertQueryEquals(null, 1, "null.oclType().ownedOperations->select(name = '=')->any(true).ownedParameter->size()");
     }
 
     /**

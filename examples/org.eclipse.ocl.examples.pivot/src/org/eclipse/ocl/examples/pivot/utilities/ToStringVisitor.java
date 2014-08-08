@@ -736,7 +736,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitIteration(@NonNull Iteration iteration) {
-		appendQualifiedName(iteration.getOwningType(), ".", iteration);
+		appendQualifiedName(iteration.getOwningClass(), ".", iteration);
 		appendTemplateBindings(iteration.getTemplateBinding());
 		appendTemplateSignature(iteration.getOwnedTemplateSignature());
 		append("(");
@@ -887,7 +887,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitOperation(@NonNull Operation operation) {
-		appendQualifiedName(operation.getOwningType(), "::", operation);
+		appendQualifiedName(operation.getOwningClass(), "::", operation);
 		appendTemplateBindings(operation.getTemplateBinding());
 		appendTemplateSignature(operation.getOwnedTemplateSignature());
 		append("(");
@@ -989,7 +989,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitProperty(@NonNull Property property) {
-		appendQualifiedName(property.getOwningType(), "::", property);
+		appendQualifiedName(property.getOwningClass(), "::", property);
 		return null;
 	}
 
@@ -1125,7 +1125,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		appendName(object);
 		append("(");
 		String prefix = "";
-		for (TypedElement part : object.getOwnedAttribute()) {
+		for (TypedElement part : object.getOwnedProperties()) {
 			append(prefix);
 			appendName(part);
 			append(":");

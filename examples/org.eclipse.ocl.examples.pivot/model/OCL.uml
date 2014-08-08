@@ -27,16 +27,6 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_xU8P4JL1Ed-tR9a-2UcrVA" name="DataType">
         <generalization xmi:id="_XpnTEX7VEeOu79LxSz8Ylw" general="_v7rW4JL1Ed-tR9a-2UcrVA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_FtxH4NuVEeCDCuGrEZi3xA" name="Operation">
-        <ownedAttribute xmi:id="_ahoT8BpPEeSM9LreJtBwBg" name="owningType" type="_v7rW4JL1Ed-tR9a-2UcrVA" isReadOnly="true" isDerived="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cumh0BpPEeSM9LreJtBwBg"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_Hk7BUNuWEeCDCuGrEZi3xA" name="Property">
-        <ownedAttribute xmi:id="_mWx9ABpPEeSM9LreJtBwBg" name="owningType" type="_v7rW4JL1Ed-tR9a-2UcrVA" isReadOnly="true" isDerived="true">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mWx9ARpPEeSM9LreJtBwBg"/>
-        </ownedAttribute>
-      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_ym0uQK5vEd-xTJkHwX_SlQ" name="OCL_Constraints">
       <packagedElement xmi:type="uml:Class" xmi:id="_1blU4K5vEd-xTJkHwX_SlQ" name="Constraint">
@@ -473,6 +463,6 @@
     </profileApplication>
   </uml:Package>
   <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="_j37U8BpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_ahoT8BpPEeSM9LreJtBwBg" isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="_mWx9AhpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" base_Property="_mWx9ABpPEeSM9LreJtBwBg" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_j37U8BpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_mWx9AhpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
 </xmi:XMI>

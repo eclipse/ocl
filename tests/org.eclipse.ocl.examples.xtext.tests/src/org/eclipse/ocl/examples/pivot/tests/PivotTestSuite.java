@@ -907,7 +907,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createBodyCondition(@NonNull Operation context, @NonNull String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context.getOwningType(), context);
+		helper.setOperationContext(context.getOwningClass(), context);
 		
 		ExpressionInOCL result = null;
 		
@@ -961,7 +961,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
 		eAttribute.setName(name);
 		eAttribute.setType(type);
-		aClass.getOwnedAttribute().add(eAttribute);
+		aClass.getOwnedProperties().add(eAttribute);
 		return eAttribute;
 	}
 
@@ -996,7 +996,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 				createOwnedParameter(eOperation, paramNames.get(i), paramTypes.get(i));
 			}
 		}
-		aClass.getOwnedOperation().add(eOperation);
+		aClass.getOwnedOperations().add(eOperation);
 		return eOperation;
 	}
 
@@ -1023,7 +1023,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		Property eReference = PivotFactory.eINSTANCE.createProperty();
 		eReference.setName(name);
 		eReference.setType(type);
-		aClass.getOwnedAttribute().add(eReference);
+		aClass.getOwnedProperties().add(eReference);
 		return eReference;
 	}
 
@@ -1054,7 +1054,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createPostcondition(@NonNull Operation context, @NonNull String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context.getOwningType(), context);
+		helper.setOperationContext(context.getOwningClass(), context);
 		
 		ExpressionInOCL result = null;
 		
@@ -1071,7 +1071,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createPrecondition(@NonNull Operation context, @NonNull String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext(context.getOwningType(), context);
+		helper.setOperationContext(context.getOwningClass(), context);
 		
 		ExpressionInOCL result = null;
 		
@@ -1242,7 +1242,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
 	 */
 	protected Property getAttribute(@NonNull org.eclipse.ocl.examples.pivot.Class classifier, @NonNull String name, @NonNull Type type) {
-		Property feature = DomainUtil.getNamedElement(classifier.getOwnedAttribute(), name);
+		Property feature = DomainUtil.getNamedElement(classifier.getOwnedProperties(), name);
 		if (feature == null)
 			return null;
 		// check type

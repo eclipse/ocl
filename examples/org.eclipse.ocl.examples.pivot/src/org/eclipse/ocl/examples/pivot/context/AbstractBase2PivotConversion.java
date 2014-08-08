@@ -96,7 +96,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		if (type instanceof TupleType) {
 			TupleType tupleType = (TupleType)type;
 			List<Property> resolvedProperties = new ArrayList<Property>();
-			for (Property part : ((TupleType)type).getOwnedAttribute()) {
+			for (Property part : ((TupleType)type).getOwnedProperties()) {
 				if (metaModelManager.isUnderspecified(part.getType())) {
 					Property prop = PivotFactory.eINSTANCE.createProperty();
 					prop.setName(part.getName());
@@ -156,7 +156,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 		Variable contextVariable = pivotSpecification.getContextVariable();
 //		pivotSpecification.getParameterVariable().clear();
 		if ((contextVariable != null) && !contextOperation.eIsProxy()) {
-			setType(contextVariable, contextOperation.getOwningType());
+			setType(contextVariable, contextOperation.getOwningClass());
 			setParameterVariables(pivotSpecification, DomainUtil.nonNullEMF(contextOperation.getOwnedParameter()));
 		}
 		if (resultName != null) {
@@ -207,7 +207,7 @@ public abstract class AbstractBase2PivotConversion extends AbstractConversion im
 	public void setPropertyContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Property contextProperty) {
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if ((contextVariable != null) && !contextProperty.eIsProxy()) {
-			setType(contextVariable, contextProperty.getOwningType());
+			setType(contextVariable, contextProperty.getOwningClass());
 		}
 	}
 

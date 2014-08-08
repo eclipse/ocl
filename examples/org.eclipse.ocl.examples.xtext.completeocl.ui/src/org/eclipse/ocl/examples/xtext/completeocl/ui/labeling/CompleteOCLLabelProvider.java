@@ -182,7 +182,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		if (operation.eIsProxy()) {
 			return "<<unresolved-proxy>>";
 		}
-		appendName(s, PivotUtil.getOwningType(operation));
+		appendName(s, operation.getOwningClass());
 		s.append("::");
 		appendName(s, operation);
 		s.append("(");
@@ -254,7 +254,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		if (feature.eIsProxy()) {
 			return "<<unresolved-proxy>>";
 		}
-		appendName(s, PivotUtil.getOwningType(feature));
+		appendName(s, feature.getOwningClass());
 		s.append("::");
 		appendName(s, feature);
 		s.append(" : ");

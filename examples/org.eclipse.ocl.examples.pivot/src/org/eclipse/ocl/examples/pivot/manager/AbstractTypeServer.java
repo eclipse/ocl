@@ -165,7 +165,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 			Map<DomainType, DomainProperty> primaryProperties = new HashMap<DomainType, DomainProperty>();
 			for (DomainProperty property : values) {
 				if (property != null) {
-					DomainType owningType = property.getOwningType();
+					DomainClass owningType = property.getOwningClass();
 					if (owningType != null) {
 						DomainType domainType = metaModelManager.getPrimaryType(owningType);
 						if (!primaryProperties.containsKey(domainType)) {
@@ -674,7 +674,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				superTypeServer = packageManager.getTypeServer(superInheritance);
 			}
 			if (superTypeServer != null) {
-				for (DomainType superType : superTypeServer.getPartialTypes()) {
+				for (DomainClass superType : superTypeServer.getPartialTypes()) {
 					assert superType != null;
 					if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
 						org.eclipse.ocl.examples.pivot.Class superClass = (org.eclipse.ocl.examples.pivot.Class)superType;
@@ -729,11 +729,11 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 	}
 	
 	public @NonNull List<? extends DomainOperation> getLocalOperations() {
-		return DomainUtil.nonNullEMF(getPivotType().getOwnedOperation());			// FIXME Use local cache
+		return DomainUtil.nonNullEMF(getPivotType().getOwnedOperations());			// FIXME Use local cache
 	}
 
 	public @NonNull List<? extends DomainProperty> getLocalProperties() {
-		return DomainUtil.nonNullEMF(getPivotType().getOwnedAttribute());			// FIXME Use local cache
+		return DomainUtil.nonNullEMF(getPivotType().getOwnedProperties());			// FIXME Use local cache
 	}
 
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
@@ -852,12 +852,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return getPivotType().getMetaTypeName();
 	}
 
-	public @NonNull List<? extends DomainProperty> getOwnedAttribute() {
-		return DomainUtil.nonNullEMF(getPivotType().getOwnedAttribute());			// FIXME Use local cache
+	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+		return DomainUtil.nonNullEMF(getPivotType().getOwnedProperties());			// FIXME Use local cache
 	}
 	
-	public @NonNull List<? extends DomainOperation> getOwnedOperation() {
-		return DomainUtil.nonNullEMF(getPivotType().getOwnedOperation());			// FIXME Use local cache
+	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
+		return DomainUtil.nonNullEMF(getPivotType().getOwnedOperations());			// FIXME Use local cache
 	}
 
 	public final @NonNull PackageManager getPackageManager() {
@@ -891,7 +891,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		
 //	}
 
-	protected void initMemberFeaturesFrom(@NonNull DomainType pivotType) {
+	protected void initMemberFeaturesFrom(@NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
 		if (name2operations != null) {
 			initMemberOperationsFrom(pivotType);
 		}	
@@ -913,12 +913,12 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					superTypeServer = packageManager.getTypeServer(superClass);
 				}
 				if (superTypeServer != null) {
-					for (DomainType superType : superTypeServer.getPartialTypes()) {
+					for (DomainClass superType : superTypeServer.getPartialTypes()) {
 						assert superType != null;
 						if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) superType);
 							TypeServer unspecializedTypeServer = packageManager.getTypeServer(unspecializedType);
-							for (DomainType unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
+							for (DomainClass unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
 								assert unspecializedPartialType != null;
 								initMemberOperationsFrom(unspecializedPartialType);
 							}
@@ -940,11 +940,11 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return name2operations2;
 	}
 
-	private void initMemberOperationsFrom(@NonNull DomainType type) {
+	private void initMemberOperationsFrom(@NonNull DomainClass type) {
 		if (INIT_MEMBER_OPERATIONS.isActive()) {
 			INIT_MEMBER_OPERATIONS.println(this + " from " + type);
 		}
-		for (DomainOperation pivotOperation : type.getLocalOperations()) {
+		for (DomainOperation pivotOperation : type.getOwnedOperations()) {
 			if ((pivotOperation != null) && (pivotOperation.getName() != null)) {		// name may be null for partially initialized Complete OCL document.
 				addedMemberOperation(pivotOperation);
 			}
@@ -971,7 +971,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					superTypeServer = packageManager.getTypeServer(superClass);
 				}
 				if (superTypeServer != null) {
-					for (DomainType superType : superTypeServer.getPartialTypes()) {
+					for (DomainClass superType : superTypeServer.getPartialTypes()) {
 						assert superType != null;
 						if (superType instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) superType);
@@ -1002,11 +1002,11 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 								}
 							}
 							TypeServer unspecializedTypeServer = packageManager.getTypeServer(unspecializedType);
-							for (DomainType unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
+							for (DomainClass unspecializedPartialType : unspecializedTypeServer.getPartialTypes()) {
 								assert unspecializedPartialType != null;
 								initMemberPropertiesFrom(unspecializedPartialType);
-								if (unspecializedPartialType instanceof Type) {
-									List<ElementExtension> extensions = ((Type)unspecializedPartialType).getExtension();
+								if (unspecializedPartialType instanceof org.eclipse.ocl.examples.pivot.Class) {
+									List<ElementExtension> extensions = ((org.eclipse.ocl.examples.pivot.Class)unspecializedPartialType).getExtension();
 									if (extensions.size() > 0) {
 										if (allExtensions == null) {
 											allExtensions = new ArrayList<ElementExtension>();
@@ -1082,11 +1082,11 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 				if (newStereotypes == null) {
 					newStereotypes = new HashSet<Stereotype>();
 				}
-				for (DomainType partialType : superTypeServer.getPartialTypes()) {
+				for (DomainClass partialType : superTypeServer.getPartialTypes()) {
 					if (partialType instanceof Stereotype) {
 						Stereotype partialStereotype = (Stereotype) partialType;
 						newStereotypes.add(partialStereotype);
-						for (DomainType superType : partialStereotype.getSuperClasses()) {
+						for (DomainClass superType : partialStereotype.getSuperClasses()) {
 							if (superType instanceof Stereotype) {
 								Stereotype superStereotype = (Stereotype)superType;
 								superType = metaModelManager.getPrimaryElement(superStereotype);
@@ -1102,8 +1102,8 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}
 	}
 
-	protected void initMemberPropertiesFrom(@NonNull DomainType asType) {
-		DomainType asPrimaryType;
+	protected void initMemberPropertiesFrom(@NonNull DomainClass asType) {
+		DomainClass asPrimaryType;
 		if (asType instanceof org.eclipse.ocl.examples.pivot.Class) {
 			asPrimaryType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class) asType);
 		}
@@ -1119,7 +1119,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 //				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
 			}
 		}
-		for (DomainProperty pivotProperty : asPrimaryType.getLocalProperties()) {
+		for (DomainProperty pivotProperty : asPrimaryType.getOwnedProperties()) {
 			if (pivotProperty != null) {
 				addedMemberProperty(pivotProperty);
 			}
@@ -1263,7 +1263,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		if (extensionProperty == null) {
 			extensionProperty = PivotFactory.eINSTANCE.createProperty();
 			extensionProperty.setName(extensionPropertyName);
-			baseType.getOwnedAttribute().add(extensionProperty);
+			baseType.getOwnedProperties().add(extensionProperty);
 		}
 		extensionProperty.setType(stereotype);
 		boolean isRequired = false;

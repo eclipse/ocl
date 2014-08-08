@@ -785,7 +785,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 			for (org.eclipse.ocl.examples.pivot.Class pivotType : type2properties.keySet()) {
 				List<Property> asProperties = type2properties.get(pivotType);
 				Collections.sort(asProperties, DomainUtil.NAMEABLE_COMPARATOR);
-				refreshList(DomainUtil.nonNullEMF(pivotType.getOwnedAttribute()), asProperties);
+				refreshList(DomainUtil.nonNullEMF(pivotType.getOwnedProperties()), asProperties);
 			}
 		}
 

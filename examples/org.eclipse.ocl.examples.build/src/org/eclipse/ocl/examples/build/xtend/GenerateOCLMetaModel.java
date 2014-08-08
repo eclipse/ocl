@@ -249,7 +249,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
 				if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-					List<Property> ownedAttribute = ((org.eclipse.ocl.examples.pivot.Class)eObject).getOwnedAttribute();
+					List<Property> ownedAttribute = ((org.eclipse.ocl.examples.pivot.Class)eObject).getOwnedProperties();
 					List<Property> properties = new ArrayList<Property>(ownedAttribute);
 					Collections.sort(properties, OCLinEcoreTablesUtils.propertyComparator);
 					ownedAttribute.clear();

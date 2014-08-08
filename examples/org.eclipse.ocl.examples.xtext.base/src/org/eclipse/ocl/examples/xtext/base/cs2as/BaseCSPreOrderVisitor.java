@@ -337,7 +337,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				}
 				TupleType tupleType = context.getMetaModelManager().getTupleType(name, parts, null);
 				context.installPivotTypeWithMultiplicity(tupleType, csElement);
-				List<Property> tupleParts = tupleType.getOwnedAttribute();
+				List<Property> tupleParts = tupleType.getOwnedProperties();
 				for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 					String partName = csTuplePart.getName();
 					Property tuplePart = DomainUtil.getNamedElement(tupleParts, partName);

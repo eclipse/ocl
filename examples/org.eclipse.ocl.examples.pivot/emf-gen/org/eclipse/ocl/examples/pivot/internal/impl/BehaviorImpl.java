@@ -152,10 +152,10 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
-			case PivotPackage.BEHAVIOR__OWNED_ATTRIBUTE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
-			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
+			case PivotPackage.BEHAVIOR__OWNED_OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
+			case PivotPackage.BEHAVIOR__OWNED_PROPERTIES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -202,12 +202,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
-			case PivotPackage.BEHAVIOR__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
-			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
+			case PivotPackage.BEHAVIOR__OWNED_OPERATIONS:
+				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.BEHAVIOR__OWNED_PROPERTIES:
+				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				return basicSetPackage(null, msgs);
 			case PivotPackage.BEHAVIOR__TRANSITION:
@@ -283,12 +283,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return isInterface();
 			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
 				return getNestedClassifier();
-			case PivotPackage.BEHAVIOR__OWNED_ATTRIBUTE:
-				return getOwnedAttribute();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
-			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
-				return getOwnedOperation();
+			case PivotPackage.BEHAVIOR__OWNED_OPERATIONS:
+				return getOwnedOperations();
+			case PivotPackage.BEHAVIOR__OWNED_PROPERTIES:
+				return getOwnedProperties();
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				return getPackage();
 			case PivotPackage.BEHAVIOR__SUPER_CLASSES:
@@ -373,17 +373,17 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				getNestedClassifier().clear();
 				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.BEHAVIOR__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
-				return;
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
-			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
+			case PivotPackage.BEHAVIOR__OWNED_OPERATIONS:
+				getOwnedOperations().clear();
+				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				return;
+			case PivotPackage.BEHAVIOR__OWNED_PROPERTIES:
+				getOwnedProperties().clear();
+				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -463,14 +463,14 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
 				getNestedClassifier().clear();
 				return;
-			case PivotPackage.BEHAVIOR__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				return;
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
-			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
-				getOwnedOperation().clear();
+			case PivotPackage.BEHAVIOR__OWNED_OPERATIONS:
+				getOwnedOperations().clear();
+				return;
+			case PivotPackage.BEHAVIOR__OWNED_PROPERTIES:
+				getOwnedProperties().clear();
 				return;
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -531,12 +531,12 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
 				return nestedClassifier != null && !nestedClassifier.isEmpty();
-			case PivotPackage.BEHAVIOR__OWNED_ATTRIBUTE:
-				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
-			case PivotPackage.BEHAVIOR__OWNED_OPERATION:
-				return ownedOperation != null && !ownedOperation.isEmpty();
+			case PivotPackage.BEHAVIOR__OWNED_OPERATIONS:
+				return ownedOperations != null && !ownedOperations.isEmpty();
+			case PivotPackage.BEHAVIOR__OWNED_PROPERTIES:
+				return ownedProperties != null && !ownedProperties.isEmpty();
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				return getPackage() != null;
 			case PivotPackage.BEHAVIOR__SUPER_CLASSES:

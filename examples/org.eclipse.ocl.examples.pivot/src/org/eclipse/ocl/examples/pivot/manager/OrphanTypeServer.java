@@ -13,15 +13,15 @@ package org.eclipse.ocl.examples.pivot.manager;
 import java.util.Iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.SingletonIterator;
-import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * An OrphanTypeServer provides a 'merge' type behaviour for a synthesized type that forms part of the
  * OrphanPackage rather than a true package. OrphanTypeServer provides lightweight support that
  * eliminates the redundant notification tracking.
  */
-public class OrphanTypeServer extends AbstractTypeServer implements Iterable<Type>
+public class OrphanTypeServer extends AbstractTypeServer implements Iterable<DomainClass>
 {
  	protected final @NonNull org.eclipse.ocl.examples.pivot.Class target;
 	
@@ -30,7 +30,7 @@ public class OrphanTypeServer extends AbstractTypeServer implements Iterable<Typ
 		this.target = type;
 	}
 
-	public @NonNull Iterable<Type> getPartialTypes() {
+	public @NonNull Iterable<DomainClass> getPartialTypes() {
 		return this;			// 'this' is pragmatically an Iterable
 	}
 	
@@ -38,8 +38,8 @@ public class OrphanTypeServer extends AbstractTypeServer implements Iterable<Typ
 		return target;
 	}
 
-	public @NonNull Iterator<Type> iterator() {
-		return new SingletonIterator<Type>(target);
+	public @NonNull Iterator<DomainClass> iterator() {
+		return new SingletonIterator<DomainClass>(target);
 	}
 
 	@Override

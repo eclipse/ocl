@@ -29,8 +29,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.domain.library.AbstractOperation;
 import org.eclipse.ocl.examples.domain.library.AbstractTernaryOperation;
@@ -59,7 +59,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		if (element instanceof DomainOperation) {
 			int sameNames = 0;
 			int myIndex = 0;
-			for (DomainOperation operation : ((DomainOperation)element).getOwningType().getOwnedOperation()) {
+			for (DomainOperation operation : ((DomainOperation)element).getOwningClass().getOwnedOperations()) {
 				String rawName = rawEncodeName(DomainUtil.nonNullModel(operation.getName()), DomainUtil.nonNullModel(operation.getOwnedParameter().size()));
 				if (rawName.equals(rawEncodeName)) {
 					if (operation == element) {
@@ -346,7 +346,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 				}
 			}
 		}
-		for (DomainType partialType : metaModelManager.getPartialTypes(type)) {
+		for (DomainClass partialType : metaModelManager.getPartialTypes(type)) {
 			if (partialType instanceof org.eclipse.ocl.examples.pivot.Class) {
 				genPackage = getGenPackage((org.eclipse.ocl.examples.pivot.Class)partialType);
 				if (genPackage != null) {
@@ -364,7 +364,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	public @NonNull GenFeature getGenFeature(@NonNull Property property) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = property.getName();
@@ -420,7 +420,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		for ( ; baseOperation.getRedefinedOperation().size() > 0; baseOperation = baseOperation.getRedefinedOperation().get(0)) {
 			;
 		}
-		org.eclipse.ocl.examples.pivot.Class owningType = baseOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = baseOperation.getOwningClass();
 		if (owningType != null) {
 			GenClass genClass = getGenClass(owningType);
 			String name = operation.getName();
@@ -567,7 +567,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = operation.getOwningClass();
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + operation);
 		}
@@ -582,7 +582,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @NonNull String getPropertyResultType(@NonNull Property property) throws GenModelException {
-		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
 		if (owningType == null) {
 			throw new GenModelException("No owningType for " + property);
 		}

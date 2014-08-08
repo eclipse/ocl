@@ -23,7 +23,7 @@ public interface DomainFeature extends DomainTypedElement
 	/**
 	 * Return the owner this feature.
 	 */
-	/*@NonNull*/ DomainType getOwningType();
+	/*@NonNull*/ DomainClass getOwningClass();
 
 	/**
 	 * Return true if this is a static operation.

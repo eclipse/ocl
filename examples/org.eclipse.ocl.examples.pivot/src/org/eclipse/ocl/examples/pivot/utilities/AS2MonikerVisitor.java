@@ -522,7 +522,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTupleType(@NonNull TupleType object) {
-		List<Property> ownedAttributes = object.getOwnedAttribute();
+		List<Property> ownedAttributes = object.getOwnedProperties();
 		if (ownedAttributes.isEmpty()) {
 			super.visitTupleType(object);
 		}

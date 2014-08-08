@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -79,7 +80,7 @@ public class ExecutorOperation implements DomainOperation
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
-	public @NonNull DomainType getOwningType() {
+	public @NonNull DomainClass getOwningClass() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

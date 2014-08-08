@@ -399,7 +399,7 @@ public class EnvironmentView
 		}
 	}
 	
-	public void addAllProperties(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
+	public void addAllProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want properties when looking for NAMESPACE
 			assert metaModelManager.isTypeServeable(type);

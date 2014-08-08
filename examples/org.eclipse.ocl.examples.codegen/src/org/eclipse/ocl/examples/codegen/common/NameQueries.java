@@ -173,7 +173,7 @@ public class NameQueries
 				@Override
 				protected String computeUniqueText(Operation operation) {
 					StringBuilder s = new StringBuilder();
-					appendJavaCharacters(s, operation.getOwningType().getName());
+					appendJavaCharacters(s, operation.getOwningClass().getName());
 					s.append('_');
 					int arity = operation.getOwnedParameter().size();
 					String string = operation.getName();
@@ -275,7 +275,7 @@ public class NameQueries
 				@Override
 				protected String computeUniqueText(Property property) {
 					StringBuilder s = new StringBuilder();
-					appendJavaCharacters(s, property.getOwningType().getName());
+					appendJavaCharacters(s, property.getOwningClass().getName());
 					s.append('_');
 					appendJavaCharacters(s, property.getName());
 					if (isUsed(s.toString())) {

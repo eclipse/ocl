@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
@@ -81,9 +82,9 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	}
 
 	protected EClassifier getEClassifier(@NonNull Type type) {
-		for (DomainType dType : metaModelManager.getPartialTypes(type)) {
-			if (dType instanceof Type) {
-				Type pType = (Type) dType;
+		for (DomainClass dType : metaModelManager.getPartialTypes(type)) {
+			if (dType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				org.eclipse.ocl.examples.pivot.Class pType = (org.eclipse.ocl.examples.pivot.Class) dType;
 				EClassifier eClass = (EClassifier) pType.getETarget();
 				if (eClass != null) {
 					return eClass;

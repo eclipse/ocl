@@ -246,7 +246,7 @@ public class ElementUtil
 									return metaModelManager.getQueryOrThrow(specification);
 								}
 							}
-							for (Operation asOperation : asType.getOwnedOperation()) {
+							for (Operation asOperation : asType.getOwnedOperations()) {
 								LanguageExpression specification = asOperation.getBodyExpression();
 								if (specification != null) {
 									return metaModelManager.getQueryOrThrow(specification);

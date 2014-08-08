@@ -107,14 +107,14 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(object);
 		ClassCS csElement = context.refreshClassifier(ClassCS.class, BaseCSPackage.Literals.CLASS_CS, object);
-		context.refreshList(csElement.getOwnedProperty(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedAttribute(),
+		context.refreshList(csElement.getOwnedProperty(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedProperties(),
 			new Pivot2CS.Predicate<Property>()
 			{
 				public boolean filter(@NonNull Property element) {
 					return !element.isImplicit();
 				}
 			}));
-		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperation(), null));
+		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
 		final Type oclElementType = context.getMetaModelManager().getOclElementType();
 		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
 			new Pivot2CS.Predicate<Type>()

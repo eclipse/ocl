@@ -523,14 +523,6 @@ public abstract class TypeImpl
 		}
 	}
 
-	public @NonNull List<? extends DomainOperation> getLocalOperations() {
-		return getOwnedOperation();
-	}
-
-	public @NonNull List<? extends DomainProperty> getLocalProperties() {
-		return getOwnedAttribute();
-	}
-
 	public @NonNull String getMetaTypeName() {
 		return eClass().getName();
 	}
@@ -658,12 +650,12 @@ public abstract class TypeImpl
 	}
 
 	@NonNull
-	public List<? extends DomainProperty> getOwnedAttribute() {
+	public List<? extends DomainProperty> getOwnedProperties() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
 	@NonNull
-	public List<? extends DomainOperation> getOwnedOperation() {
+	public List<? extends DomainOperation> getOwnedOperations() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

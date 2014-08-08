@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
@@ -69,7 +70,7 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof DomainTupleType) {
 			DomainTupleType tupleType = (DomainTupleType)referencedType;
-			for (DomainProperty tuplePart : tupleType.getLocalProperties()) {
+			for (DomainProperty tuplePart : tupleType.getOwnedProperties()) {
 				DomainType tuplePartType = tuplePart.getType();
 				if (needsSpecialisation(tuplePartType)) {
 					return true;
@@ -130,7 +131,7 @@ public class TemplateSpecialisation
 			if (elementType == null) {
 				elementType = standardLibrary.getOclAnyType();
 			}
-			DomainType containerType = DomainUtil.nonNullState(collectionType.getContainerType());
+			DomainClass containerType = DomainUtil.nonNullState(collectionType.getContainerType());
 			return standardLibrary.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
 		}
 		if (referencedType instanceof DomainMetaclass) {
@@ -152,9 +153,9 @@ public class TemplateSpecialisation
 		return null;
 	}
 
-	public DomainType getSpecialisation(@NonNull DomainType referredType) {
+	public DomainClass getSpecialisation(@NonNull DomainType referredType) {
 		DomainType specialisation = getResolution(referredType);
-		return specialisation != null ? specialisation : referredType;
+		return (DomainClass) (specialisation != null ? specialisation : referredType);	// FIXME cast
 	}
 	
 	public void installEquivalence(@Nullable DomainType resolvedType, @Nullable DomainType referencedType) {
@@ -201,8 +202,8 @@ public class TemplateSpecialisation
 			if (resolvedType instanceof DomainTupleType) {
 				DomainTupleType referencedTupleType = (DomainTupleType)referencedType;
 				DomainTupleType resolvedTupleType = (DomainTupleType)resolvedType;
-				Iterable<? extends DomainProperty> referencedTupleParts = referencedTupleType.getLocalProperties();
-				for (DomainProperty resolvedTuplePart : resolvedTupleType.getLocalProperties()) {
+				Iterable<? extends DomainProperty> referencedTupleParts = referencedTupleType.getOwnedProperties();
+				for (DomainProperty resolvedTuplePart : resolvedTupleType.getOwnedProperties()) {
 					DomainProperty referencedTuplePart = DomainUtil.getNamedElement(referencedTupleParts, resolvedTuplePart.getName());
 					if (referencedTuplePart != null) {
 						DomainType resolvedTuplePartType = resolvedTuplePart.getType();

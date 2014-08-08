@@ -371,7 +371,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		}
 		String name = object.getName();
 		if (object.isImplicit() && (eContainer instanceof org.eclipse.ocl.examples.pivot.Class)) {
-			for (Property asProperty : ((org.eclipse.ocl.examples.pivot.Class)eContainer).getOwnedAttribute()) {
+			for (Property asProperty : ((org.eclipse.ocl.examples.pivot.Class)eContainer).getOwnedProperties()) {
 				if ((asProperty != object) && name.equals(asProperty.getName())) {
 					return false;	// Ambiguous implicit opposites must use UUIDs
 				}

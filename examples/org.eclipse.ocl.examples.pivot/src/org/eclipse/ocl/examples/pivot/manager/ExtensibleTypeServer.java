@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 
@@ -76,9 +77,9 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 		return null;
 	}
 
-	public @NonNull Iterable<DomainType> getPartialTypes() {
+	public @NonNull Iterable<DomainClass> getPartialTypes() {
 		@SuppressWarnings("null")
-		@NonNull Iterable<DomainType> transform = Iterables.transform(trackers, TypeTracker.tracker2type);
+		@NonNull Iterable<DomainClass> transform = Iterables.transform(trackers, TypeTracker.tracker2type);
 		return transform;
 	}
 	
@@ -100,7 +101,7 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 			}
 		}
 		TypeTracker typeTracker = new TypeTracker(this, pivotType);
-		initMemberFeaturesFrom(pivotType);	
+		initMemberFeaturesFrom((org.eclipse.ocl.examples.pivot.Class)pivotType);	
 		trackers.add(typeTracker);
 		packageManager.addTypeTracker(pivotType, typeTracker);
 		return typeTracker;

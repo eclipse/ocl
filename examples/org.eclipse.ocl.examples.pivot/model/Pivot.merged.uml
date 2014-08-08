@@ -191,21 +191,21 @@
         </ownedComment>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TClass.PisActive.dlV" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TClass.PownedAttribute" name="ownedAttribute" type="Ppivot.TProperty" isOrdered="true" aggregation="composite"
-          association="Ppivot.A_ownedAttribute_class">
-        <ownedComment xmi:id="Ppivot.TClass.PownedAttribute.oC0" annotatedElement="Ppivot.TClass.PownedAttribute">
+      <ownedAttribute xmi:id="Ppivot.TClass.PownedProperties" name="ownedProperties" type="Ppivot.TProperty" isOrdered="true" aggregation="composite"
+          association="Ppivot.A_ownedProperties_owningClass">
+        <ownedComment xmi:id="Ppivot.TClass.PownedProperties.oC0" annotatedElement="Ppivot.TClass.PownedProperties">
           <body>The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedAttribute.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedAttribute.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedProperties.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedProperties.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TClass.PownedOperation" name="ownedOperation" type="Ppivot.TOperation" isOrdered="true" aggregation="composite"
-          association="Ppivot.A_ownedOperation_class">
-        <ownedComment xmi:id="Ppivot.TClass.PownedOperation.oC0" annotatedElement="Ppivot.TClass.PownedOperation">
+      <ownedAttribute xmi:id="Ppivot.TClass.PownedOperations" name="ownedOperations" type="Ppivot.TOperation" isOrdered="true" aggregation="composite"
+          association="Ppivot.A_ownedOperations_owningClass">
+        <ownedComment xmi:id="Ppivot.TClass.PownedOperations.oC0" annotatedElement="Ppivot.TClass.PownedOperations">
           <body>The operations owned by a class. These do not include the inherited operations.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedOperation.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedOperation.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedOperations.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedOperations.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TClass.PsuperClasses" name="superClasses" type="Ppivot.TClass" association="Ppivot.A_superClasses_subClasses">
         <ownedComment xmi:id="Ppivot.TClass.PsuperClasses.oC0" annotatedElement="Ppivot.TClass.PsuperClasses">
@@ -769,11 +769,11 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PownedParameter.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOperation.PownedParameter.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.Pclass" name="class" type="Ppivot.TClass" association="Ppivot.A_ownedOperation_class">
-        <ownedComment xmi:id="Ppivot.TOperation.Pclass.oC0" annotatedElement="Ppivot.TOperation.Pclass">
+      <ownedAttribute xmi:id="Ppivot.TOperation.PowningClass" name="owningClass" type="Ppivot.TClass" association="Ppivot.A_ownedOperations_owningClass">
+        <ownedComment xmi:id="Ppivot.TOperation.PowningClass.oC0" annotatedElement="Ppivot.TOperation.PowningClass">
           <body>The class that owns the operation.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.Pclass.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PowningClass.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TOperation.PtemplateParameter" name="templateParameter" type="Ppivot.TOperationTemplateParameter"
           redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter" association="Ppivot.A_operation_templateParameter_parameteredElement">
@@ -781,9 +781,6 @@
           <body>The template parameter that exposes this element as a formal parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PtemplateParameter.lV"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TOperation.PowningType" name="owningType" type="Ppivot.TClass" isReadOnly="true" isDerived="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.PowningType.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TOperation.Pprecondition" name="precondition" type="Ppivot.TConstraint" aggregation="composite" association="Ppivot.A_precondition_preContext">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperation.Pprecondition.lV"/>
@@ -1020,11 +1017,11 @@
         </ownedComment>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisDerived.dlV" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TProperty.Pclass" name="class" type="Ppivot.TClass" association="Ppivot.A_ownedAttribute_class">
-        <ownedComment xmi:id="Ppivot.TProperty.Pclass.oC0" annotatedElement="Ppivot.TProperty.Pclass">
+      <ownedAttribute xmi:id="Ppivot.TProperty.PowningClass" name="owningClass" type="Ppivot.TClass" association="Ppivot.A_ownedProperties_owningClass">
+        <ownedComment xmi:id="Ppivot.TProperty.PowningClass.oC0" annotatedElement="Ppivot.TProperty.PowningClass">
           <body>The class that owns the property, and of which the property is an attribute.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.Pclass.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PowningClass.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.Popposite" name="opposite" type="Ppivot.TProperty" association="Ppivot.A_opposite_property">
         <ownedComment xmi:id="Ppivot.TProperty.Popposite.oC0" annotatedElement="Ppivot.TProperty.Popposite">
@@ -1038,9 +1035,6 @@
       <ownedAttribute xmi:id="Ppivot.TProperty.Pimplicit" name="implicit" type="Ppivot.TBoolean">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.Pimplicit.lV"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.Pimplicit.dlV" value="false"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TProperty.PowningType" name="owningType" type="Ppivot.TClass" isReadOnly="true" isDerived="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PowningType.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultExpression" name="defaultExpression" type="Ppivot.TLanguageExpression" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultExpression.lV"/>
@@ -1889,7 +1883,6 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_ownedActual_owningTemplateParameterSubstitution.PowningTemplateParameterSubstitution.lV"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedAttribute_class" name="A_ownedAttribute_class" memberEnd="Ppivot.TClass.PownedAttribute Ppivot.TProperty.Pclass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedComment_owningElement" name="A_ownedComment_owningElement" memberEnd="Ppivot.TElement.PownedComment Ppivot.TComment.PowningElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedDefault_templateParameter" name="A_ownedDefault_templateParameter"
         memberEnd="Ppivot.TTemplateParameter.PownedDefault Ppivot.A_ownedDefault_templateParameter.PtemplateParameter">
@@ -1899,11 +1892,12 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedLiteral_enumeration" name="A_ownedLiteral_enumeration" memberEnd="Ppivot.TEnumeration.PownedLiteral Ppivot.TEnumerationLiteral.Penumeration"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedOperation_class" name="A_ownedOperation_class" memberEnd="Ppivot.TClass.PownedOperation Ppivot.TOperation.Pclass"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedOperations_owningClass" name="A_ownedOperations_owningClass" memberEnd="Ppivot.TClass.PownedOperations Ppivot.TOperation.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Ppivot.TOperation.PownedParameter Ppivot.TParameter.Poperation"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_signature" name="A_ownedParameter_signature" memberEnd="Ppivot.TTemplateSignature.PownedParameter Ppivot.TTemplateParameter.Psignature"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameteredElement_owningTemplateParameter" name="A_ownedParameteredElement_owningTemplateParameter"
         memberEnd="Ppivot.TTemplateParameter.PownedParameteredElement Ppivot.TParameterableElement.PowningTemplateParameter"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedProperties_owningClass" name="A_ownedProperties_owningClass" memberEnd="Ppivot.TClass.PownedProperties Ppivot.TProperty.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template"
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.Ptemplate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedType_package" name="A_ownedType_package" memberEnd="Ppivot.TPackage.PownedType Ppivot.TClass.Ppackage"/>
@@ -2004,10 +1998,6 @@
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisOrthogonal" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisOrthogonal"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSimple" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSimple"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSubmachineState" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSubmachineState"/>
-  <Ecore:EReference xmi:id="PA.Ppivot.TOperation.PowningType" isTransient="true" isVolatile="true" base_Property="Ppivot.TOperation.PowningType"
-      isResolveProxies="false"/>
-  <Ecore:EReference xmi:id="PA.Ppivot.TProperty.PowningType" isTransient="true" isVolatile="true" base_Property="Ppivot.TProperty.PowningType"
-      isResolveProxies="false"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TTemplateableElement.PunspecializedElement" isTransient="true" base_Property="Ppivot.TTemplateableElement.PunspecializedElement"
       isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TFeature.Pimplementation" isTransient="true" base_Property="Ppivot.TFeature.Pimplementation"/>

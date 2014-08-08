@@ -155,10 +155,10 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
-			case PivotPackage.ITERATION__CLASS:
-				return basicSetClass_(null, msgs);
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNING_CLASS:
+				return basicSetOwningClass(null, msgs);
 			case PivotPackage.ITERATION__POSTCONDITION:
 				return ((InternalEList<?>)getPostcondition()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__PRECONDITION:
@@ -219,16 +219,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return basicGetTemplateParameter();
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return getBodyExpression();
-			case PivotPackage.ITERATION__CLASS:
-				return getClass_();
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				return isInvalidating();
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				return isValidating();
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return getOwnedParameter();
-			case PivotPackage.ITERATION__OWNING_TYPE:
-				return getOwningType();
+			case PivotPackage.ITERATION__OWNING_CLASS:
+				return getOwningClass();
 			case PivotPackage.ITERATION__POSTCONDITION:
 				return getPostcondition();
 			case PivotPackage.ITERATION__PRECEDENCE:
@@ -316,9 +314,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)newValue);
 				return;
-			case PivotPackage.ITERATION__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
-				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
 				return;
@@ -328,6 +323,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				getOwnedParameter().clear();
 				getOwnedParameter().addAll((Collection<? extends Parameter>)newValue);
+				return;
+			case PivotPackage.ITERATION__OWNING_CLASS:
+				setOwningClass((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.ITERATION__POSTCONDITION:
 				getPostcondition().clear();
@@ -421,9 +419,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)null);
 				return;
-			case PivotPackage.ITERATION__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
-				return;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
 				return;
@@ -432,6 +427,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				getOwnedParameter().clear();
+				return;
+			case PivotPackage.ITERATION__OWNING_CLASS:
+				setOwningClass((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.ITERATION__POSTCONDITION:
 				getPostcondition().clear();
@@ -504,16 +502,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return templateParameter != null;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return bodyExpression != null;
-			case PivotPackage.ITERATION__CLASS:
-				return getClass_() != null;
 			case PivotPackage.ITERATION__IS_INVALIDATING:
 				return ((eFlags & IS_INVALIDATING_EFLAG) != 0) != IS_INVALIDATING_EDEFAULT;
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				return ((eFlags & IS_VALIDATING_EFLAG) != 0) != IS_VALIDATING_EDEFAULT;
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return ownedParameter != null && !ownedParameter.isEmpty();
-			case PivotPackage.ITERATION__OWNING_TYPE:
-				return getOwningType() != null;
+			case PivotPackage.ITERATION__OWNING_CLASS:
+				return getOwningClass() != null;
 			case PivotPackage.ITERATION__POSTCONDITION:
 				return postcondition != null && !postcondition.isEmpty();
 			case PivotPackage.ITERATION__PRECEDENCE:

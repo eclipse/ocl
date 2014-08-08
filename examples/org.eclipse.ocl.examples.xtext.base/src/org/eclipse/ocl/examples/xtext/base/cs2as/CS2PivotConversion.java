@@ -929,7 +929,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningType());
+					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass());
 					setOperationContext(pivotSpecification, contextOperation, null);
 				}
 				else {
@@ -939,7 +939,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningType());
+					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass());
 					setOperationContext(pivotSpecification, contextOperation, Environment.RESULT_VARIABLE_NAME);
 				}
 				else {
@@ -957,7 +957,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			Property contextProperty = (Property)eContainer;
 			if (contextProperty != null) {
 				setPropertyContext(pivotSpecification, contextProperty);
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextProperty.getOwningType());
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextProperty.getOwningClass());
 			}
 			else {
 				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null);
@@ -966,7 +966,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 			Operation contextOperation = (Operation)eContainer;
 			if (contextOperation != null) {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningType());
+				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass());
 				setOperationContext(pivotSpecification, contextOperation, null);
 			}
 			else {

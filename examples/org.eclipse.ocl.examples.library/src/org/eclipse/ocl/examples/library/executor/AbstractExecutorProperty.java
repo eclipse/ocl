@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
@@ -50,7 +51,7 @@ public abstract class AbstractExecutorProperty implements DomainProperty
 		return DomainUtil.nonNullState(opposite);
 	}
 
-	public DomainType getOwningType() {
+	public DomainClass getOwningClass() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

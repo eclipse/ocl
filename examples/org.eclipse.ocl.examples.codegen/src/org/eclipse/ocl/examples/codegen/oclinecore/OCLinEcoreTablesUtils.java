@@ -36,6 +36,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.NameQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -381,7 +382,7 @@ public class OCLinEcoreTablesUtils
 			s.append("(LIBRARY, ");
 			s.appendString(DomainUtil.nonNullModel(tupleType.getName()));
 			s.append(", ");
-			for (Property part : tupleType.getOwnedAttribute()) {
+			for (Property part : tupleType.getOwnedProperties()) {
 				s.append(", ");
 				part.getType().accept(this);
 			}
@@ -414,7 +415,7 @@ public class OCLinEcoreTablesUtils
 			}
 			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
 				Operation containerOperation  = (Operation) owningTemplateParameter.getSignature().getTemplate();
-				org.eclipse.ocl.examples.pivot.Class containerType = containerOperation.getOwningType();
+				org.eclipse.ocl.examples.pivot.Class containerType = containerOperation.getOwningClass();
 				assert containerType != null;
 				String prefix = getQualifiedTablesClassName(containerType);
 				if (prefix.length() <= 0) {
@@ -476,7 +477,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
-			s.appendScopedTypeName(DomainUtil.nonNullModel(operation.getOwningType()));
+			s.appendScopedTypeName(DomainUtil.nonNullModel(operation.getOwningClass()));
 			s.append("__");
 			s.appendName(operation);
 			return null;
@@ -491,7 +492,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitProperty(@NonNull Property property) {
-			s.appendScopedTypeName(DomainUtil.nonNullModel(property.getOwningType()));
+			s.appendScopedTypeName(DomainUtil.nonNullModel(property.getOwningClass()));
 			s.append("__");
 			s.appendName(property);
 			if (property.isImplicit()) {
@@ -550,7 +551,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
-			org.eclipse.ocl.examples.pivot.Class type = DomainUtil.nonNullModel(operation.getOwningType());
+			org.eclipse.ocl.examples.pivot.Class type = DomainUtil.nonNullModel(operation.getOwningClass());
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".Operations.");
 			return super.visitOperation(operation);
@@ -558,7 +559,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitProperty(@NonNull Property property) {
-			org.eclipse.ocl.examples.pivot.Class type = DomainUtil.nonNullModel(property.getOwningType());
+			org.eclipse.ocl.examples.pivot.Class type = DomainUtil.nonNullModel(property.getOwningClass());
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".Properties.");
 			return super.visitProperty(property);
@@ -635,7 +636,7 @@ public class OCLinEcoreTablesUtils
 				boolean pruned = false;
 				Type myType = null;
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				for (DomainType partialType : typeServer.getPartialTypes()) {
+				for (DomainClass partialType : typeServer.getPartialTypes()) {
 					DomainPackage partialPackage = partialType.getPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if ((elementType != null) && !typeServer.conformsTo(metaModelManager, elementType)) {
@@ -742,7 +743,7 @@ public class OCLinEcoreTablesUtils
 			}
 			else if (pivotMetaModel == pPackage) {
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
-				for (DomainType partialType : typeServer.getPartialTypes()) {
+				for (DomainClass partialType : typeServer.getPartialTypes()) {
 					DomainPackage partialPackage = partialType.getPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if (!typeServer.conformsTo(metaModelManager, elementType)) {
@@ -951,7 +952,7 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	public static @NonNull String getSignature(@NonNull Operation anOperation) {
-		org.eclipse.ocl.examples.pivot.Class owningType = anOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = anOperation.getOwningClass();
 		if (owningType == null) {
 			return "null";
 		}
@@ -1001,7 +1002,7 @@ public class OCLinEcoreTablesUtils
 			if (templateParameter != null) {
 				TemplateableElement template = templateParameter.getSignature().getTemplate();
 				if (template instanceof Operation) {
-					s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningType())));
+					s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningClass())));
 					s.append("_");
 				}
 				s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel((NamedElement) template)));
@@ -1041,7 +1042,7 @@ public class OCLinEcoreTablesUtils
 	 * but no Ecore EReference.
 	 */
 	protected @NonNull Boolean hasEcore(@NonNull Property property) {
-		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
 		if (owningType == null) {
 			return false;
 		}
@@ -1135,8 +1136,8 @@ public class OCLinEcoreTablesUtils
 							primarySuperClasses.add(primarySuperClass);
 						}
 					}
-					primaryType.getOwnedOperation().addAll(secondaryType.getOwnedOperation());
-					primaryType.getOwnedAttribute().addAll(secondaryType.getOwnedAttribute());
+					primaryType.getOwnedOperations().addAll(secondaryType.getOwnedOperations());
+					primaryType.getOwnedProperties().addAll(secondaryType.getOwnedProperties());
 				}
 			}
 		}

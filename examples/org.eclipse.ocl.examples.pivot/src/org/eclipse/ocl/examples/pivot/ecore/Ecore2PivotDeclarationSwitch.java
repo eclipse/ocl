@@ -175,7 +175,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setIsAbstract(eObject2.isAbstract());			
 		pivotElement.setIsInterface(eObject2.isInterface());			
 		doSwitchAll(eObject2.getEGenericSuperTypes());
-		List<Operation> pivotOperations = pivotElement.getOwnedOperation();
+		List<Operation> pivotOperations = pivotElement.getOwnedOperations();
 		List<Constraint> pivotInvariants = pivotElement.getOwnedInvariant();
 		for (@SuppressWarnings("null")@NonNull EOperation eOperation : eObject2.getEOperations()) {
 			if (converter.isInvariant(eOperation)) {
@@ -187,7 +187,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				pivotOperations.add((Operation) pivotObject);
 			}
 		}
-		List<Property> pivotProperties = pivotElement.getOwnedAttribute();
+		List<Property> pivotProperties = pivotElement.getOwnedProperties();
 		doSwitchAll(pivotProperties, eObject2.getEStructuralFeatures());
 		if (duplicatesAnnotation != null) {
 			for (EObject eContent : duplicatesAnnotation.getContents()) {

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
@@ -490,11 +491,11 @@ public abstract class AbstractIdResolver implements IdResolver
 		enumerator2enumerationLiteralId = null;
 	}
 
-	public @NonNull DomainType getCollectionType(@NonNull CollectionTypeId typeId) {
+	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId) {
 		return getCollectionType(typeId, null, null);
 	}
 
-	public @NonNull DomainType getCollectionType(@NonNull CollectionTypeId typeId, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		CollectionTypeId generalizedId = typeId.getGeneralizedId();
 		if ((typeId == generalizedId) && (lower == null) && (upper == null)) {
 			if (generalizedId == TypeId.BAG) {
@@ -973,7 +974,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			return standardLibrary.getMetaclass(elementType);
 		}
 		else {
-			DomainType collectionType = getCollectionType(collectionTypeId);
+			DomainClass collectionType = getCollectionType(collectionTypeId);
 			return standardLibrary.getCollectionType(collectionType, elementType, null, null);
 		}
 	}

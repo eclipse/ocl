@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -462,7 +463,7 @@ public class OperationCallExpImpl
 		 *   in
 		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameter
 		 *     in
-		 *       let selfType : Type = operation.owningType
+		 *       let selfType : Type = operation.owningClass
 		 *       in
 		 *         Sequence{1..argument->size()
 		 *         }
@@ -483,7 +484,7 @@ public class OperationCallExpImpl
 		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
 		    }
 		    final @NonNull /*@Thrown*/ List<? extends DomainTypedElement> parameters = operation.getOwnedParameter();
-		    final @Nullable /*@Thrown*/ DomainType selfType_1 = operation.getOwningType();
+		    final @Nullable /*@Thrown*/ DomainClass selfType_1 = operation.getOwningClass();
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    final @NonNull /*@Thrown*/ List<? extends DomainExpression> argument = this.getArgument();

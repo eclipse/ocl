@@ -183,7 +183,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, metaModelManager.getStringType());
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, metaModelManager.getBooleanType());
 			TupleType tupleType = metaModelManager.getTupleManager().getTupleType("Tuple", tupleParts);
-			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedAttribute(), PivotConstants.STATUS_PART_NAME);
+			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;

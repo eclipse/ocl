@@ -160,14 +160,14 @@ public class Pivot2UMLDeclarationVisitor
 		Classifier umlClassifier;
 		if (pivotClass.isInterface()) {
 			Interface umlInterface = UMLFactory.eINSTANCE.createInterface();
-			safeVisitAll(umlInterface.getOwnedOperations(), pivotClass.getOwnedOperation());
-			safeVisitAll(umlInterface.getOwnedAttributes(), pivotClass.getOwnedAttribute());
+			safeVisitAll(umlInterface.getOwnedOperations(), pivotClass.getOwnedOperations());
+			safeVisitAll(umlInterface.getOwnedAttributes(), pivotClass.getOwnedProperties());
 			umlClassifier = umlInterface;
 		}
 		else {
 			org.eclipse.uml2.uml.Class umlClass = UMLFactory.eINSTANCE.createClass();
-			safeVisitAll(umlClass.getOwnedOperations(), pivotClass.getOwnedOperation());
-			safeVisitAll(umlClass.getOwnedAttributes(), pivotClass.getOwnedAttribute());
+			safeVisitAll(umlClass.getOwnedOperations(), pivotClass.getOwnedOperations());
+			safeVisitAll(umlClass.getOwnedAttributes(), pivotClass.getOwnedProperties());
 			umlClassifier = umlClass;
 		}
 		copyClassifier(umlClassifier, pivotClass);

@@ -48,8 +48,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return the inheritance description for this type within standardLibrary.
 	 */
 	@NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
-	@NonNull List<? extends DomainOperation> getLocalOperations();
-	@NonNull List<? extends DomainProperty> getLocalProperties();
 	
 	/**
 	 * Return the name of the meta-type of this type.
@@ -65,10 +63,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return the unique executable form of this type within standardLibrary.
 	 */
 	@NonNull DomainType getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
-
-	@NonNull List<? extends DomainProperty> getOwnedAttribute();
-
-	@NonNull List<? extends DomainOperation> getOwnedOperation();
 	
 	/**
 	 * Return the package containing this type.

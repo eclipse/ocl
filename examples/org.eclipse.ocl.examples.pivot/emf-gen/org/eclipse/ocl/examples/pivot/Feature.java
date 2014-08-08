@@ -107,5 +107,7 @@ public interface Feature
 	 * @generated
 	 */
 	void setImplementation(LibraryFeature value);
+	
+	org.eclipse.ocl.examples.pivot.Class getOwningClass();
 
 } // Feature

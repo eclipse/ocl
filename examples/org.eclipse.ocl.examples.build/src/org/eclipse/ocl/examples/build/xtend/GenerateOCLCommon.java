@@ -181,7 +181,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
 			if ((eObject instanceof Property) && !(eObject.eContainer() instanceof TupleType) &&
-				(((Property)eObject).getOwningType() != null)) {
+				(((Property)eObject).getOwningClass() != null)) {
 				allElements.add((Property)eObject);
 			}
 		}
@@ -274,7 +274,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull String getPartialName(@NonNull Property property) {
-		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
 		if (owningType == null) {
 			return "null_" + javaName(property);
 		}
@@ -350,7 +350,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
 			if ((eObject instanceof Element) && !(eObject instanceof Constraint) &&
-				!((eObject instanceof Property) && (((Property)eObject).getOwningType() == null)) &&
+				!((eObject instanceof Property) && (((Property)eObject).getOwningClass() == null)) &&
 				!((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !oclTypes.contains(eObject))) {
 				Element t = (Element)eObject;
 				if (t.getOwnedComment().size() > 0) {
@@ -399,7 +399,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 
 	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull List<Iteration> allIterations) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
-		for (Operation operation : type.getOwnedOperation()) {
+		for (Operation operation : type.getOwnedOperations()) {
 			if (allIterations.contains(operation)) {
 				allElements.add((Iteration)operation);
 			}
@@ -474,7 +474,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 
 	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull List<Operation> allOperations) {
 		Set<Operation> allElements = new HashSet<Operation>();
-		for (Operation operation : type.getOwnedOperation()) {
+		for (Operation operation : type.getOwnedOperations()) {
 			if (allOperations.contains(operation)) {
 				allElements.add(operation);
 			}
@@ -506,8 +506,8 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedOwningTypes(@NonNull List<? extends Operation> operations) {
 		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		for (Operation operation : operations) {
-			if (operation.getOwningType() != null) {
-				allElements.add(operation.getOwningType());
+			if (operation.getOwningClass() != null) {
+				allElements.add(operation.getOwningClass());
 			}
 		}
 		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
@@ -518,8 +518,8 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSortedOwningTypes2(@NonNull List<? extends Property> properties) {
 		Set<org.eclipse.ocl.examples.pivot.Class> allElements = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
 		for (Property property : properties) {
-			if (property.getOwningType() != null) {
-				allElements.add(property.getOwningType());
+			if (property.getOwningClass() != null) {
+				allElements.add(property.getOwningClass());
 			}
 		}
 		List<org.eclipse.ocl.examples.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(allElements);
@@ -590,7 +590,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
 			if ((eObject instanceof Property) && !(eObject.eContainer() instanceof TupleType) &&
-				(((Property)eObject).getOwningType() != null)) {
+				(((Property)eObject).getOwningClass() != null)) {
 				allElements.add((Property)eObject);
 			}
 		}
@@ -600,14 +600,14 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<Property> getSortedProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		List<Property> sortedElements = new ArrayList<Property>(type.getOwnedAttribute());
+		List<Property> sortedElements = new ArrayList<Property>(type.getOwnedProperties());
 		Collections.sort(sortedElements, OCLinEcoreTablesUtils.propertyComparator);
 		return sortedElements;
 	}
 
 	protected @NonNull List<Property> getSortedProperties(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull List<Property> allProperties) {
 		Set<Property> allElements = new HashSet<Property>();
-		for (Property property : type.getOwnedAttribute()) {
+		for (Property property : type.getOwnedProperties()) {
 			if (allProperties.contains(property)) {
 				allElements.add(property);
 			}
@@ -664,7 +664,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<Property> getSortedTupleParts(@NonNull TupleType tupleType) {
-		List<Property> sortedElements = new ArrayList<Property>(tupleType.getOwnedAttribute());
+		List<Property> sortedElements = new ArrayList<Property>(tupleType.getOwnedProperties());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}

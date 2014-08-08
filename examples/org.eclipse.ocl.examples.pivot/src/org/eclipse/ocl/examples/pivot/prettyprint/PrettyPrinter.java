@@ -446,7 +446,7 @@ public class PrettyPrinter
 					(parent instanceof Type) &&
 						PivotConstants.ORPHANAGE_NAME.equals(((Type)parent).getName())) {
 					Operation operation = (Operation)element;
-					append(operation.getOwningType().getName());
+					append(operation.getOwningClass().getName());
 					appendTemplateBindings(operation);
 					append(parentSeparator);
 					return;

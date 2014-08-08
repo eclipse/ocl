@@ -317,7 +317,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	public @Nullable DomainOperation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes) {
-		for (DomainOperation localOperation : getLocalOperations()) {
+		for (DomainOperation localOperation : getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {
 				ParametersId firstParametersId = localOperation.getParametersId();
 				int iMax = firstParametersId.size();

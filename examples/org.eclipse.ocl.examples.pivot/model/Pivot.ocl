@@ -37,7 +37,7 @@ p.oclIsKindOf(self.oclType())
 context Property
 def: isAttribute(p : Property) : Boolean =
 --Type.allInstances()->exists(c| c.ownedAttribute->includes(p))
-let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedAttribute->includes(self)
+let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)
 
 --inv DerivedIsInitialised: isDerived implies ownedRule->one(stereotype = 'derivation') or ownedRule->one(stereotype = 'initial')
 
@@ -347,7 +347,7 @@ context OperationCallExp
 inv ArgumentTypeIsConformant:
 	let operation : Operation = self.referredOperation in
 	let parameters : OrderedSet(Parameter) = operation.ownedParameter in
-	let selfType : Type = operation.owningType in
+	let selfType : Type = operation.owningClass in
 	Sequence{1..argument->size()}->forAll (i | 
 		let argument : OCLExpression = argument->at(i) in
 		let parameter : Parameter = parameters->at(i) in
@@ -362,7 +362,7 @@ inv ArgumentCount: argument->size() = referredOperation.ownedParameter->size()
 --inv StaticSourceIsNull: referredOperation.isStatic implies source = null
 
 --inv NonStaticSourceIsConformant: let operation : Operation = self.referredOperation in
---	not operation.isStatic implies source <> null --.type.conformsTo(operation.owningType.specializeIn(self, operation.owningType))
+--	not operation.isStatic implies source <> null --.type.conformsTo(operation.owningClass.specializeIn(self, operation.owningClass))
 
 
 --context OperationCallExp
@@ -372,8 +372,8 @@ inv ArgumentCount: argument->size() = referredOperation.ownedParameter->size()
 --p.kind <> ParameterDirectionKind::out)
 
 context PropertyCallExp
-def: getSpecializedReferredPropertyOwningType() : Type = referredProperty.owningType -- extended in Java code
-def: getSpecializedReferredPropertyType() : Type = referredProperty.type -- extended in Java code
+def: getSpecializedReferredPropertyOwningType() : Class = referredProperty.owningClass -- extended in Java code
+def: getSpecializedReferredPropertyType() : Class = referredProperty.type.oclAsType(Class) -- extended in Java code
 /** The type of the source conforms to the owning type of the property. */
 inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies source.type.conformsTo(getSpecializedReferredPropertyOwningType())
 /** The type of the call expression is the type of the referred property. */

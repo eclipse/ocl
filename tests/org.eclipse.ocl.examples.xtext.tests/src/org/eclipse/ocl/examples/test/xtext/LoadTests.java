@@ -881,7 +881,7 @@ public class LoadTests extends XtextTestCase
 		Root root = (Root) resource.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pkg = root.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedType().get(0);
-		List<Property> ownedAttributes = cls.getOwnedAttribute();
+		List<Property> ownedAttributes = cls.getOwnedProperties();
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vBlank"), 1, 1);
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vQuery"), 0, 1);
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vPlus"), 1, -1);
@@ -1108,9 +1108,9 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX1 = pivotPackageXXX.getOwnedType().get(1);
 		assertEquals("ClassXXX", pivotTypeXXX1.getName());
 		assertEquals("Class", pivotTypeXXX1.eClass().getName());
-		assertEquals(2, pivotTypeXXX1.getOwnedAttribute().size());
-		Property pivotPropertyXXX0 = pivotTypeXXX1.getOwnedAttribute().get(0);
-		Property pivotPropertyXXX1 = pivotTypeXXX1.getOwnedAttribute().get(1);
+		assertEquals(2, pivotTypeXXX1.getOwnedProperties().size());
+		Property pivotPropertyXXX0 = pivotTypeXXX1.getOwnedProperties().get(0);
+		Property pivotPropertyXXX1 = pivotTypeXXX1.getOwnedProperties().get(1);
 		assertEquals("fromXXX", pivotPropertyXXX0.getName());
 		assertEquals("toXXX", pivotPropertyXXX1.getName());
 		assertEquals(pivotPropertyXXX1, pivotPropertyXXX0.getOpposite());
@@ -1133,9 +1133,9 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY1 = pivotPackageYYY.getOwnedType().get(1);
 		assertEquals("ClassYYY", pivotTypeYYY1.getName());
 		assertEquals("Class", pivotTypeYYY1.eClass().getName());
-		assertEquals(2, pivotTypeYYY1.getOwnedAttribute().size());
-		Property pivotPropertyYYY0 = pivotTypeYYY1.getOwnedAttribute().get(0);
-		Property pivotPropertyYYY1 = pivotTypeYYY1.getOwnedAttribute().get(1);
+		assertEquals(2, pivotTypeYYY1.getOwnedProperties().size());
+		Property pivotPropertyYYY0 = pivotTypeYYY1.getOwnedProperties().get(0);
+		Property pivotPropertyYYY1 = pivotTypeYYY1.getOwnedProperties().get(1);
 		assertEquals("fromYYY", pivotPropertyYYY0.getName());
 		assertEquals("toYYY", pivotPropertyYYY1.getName());
 		assertEquals(pivotPropertyYYY1, pivotPropertyYYY0.getOpposite());

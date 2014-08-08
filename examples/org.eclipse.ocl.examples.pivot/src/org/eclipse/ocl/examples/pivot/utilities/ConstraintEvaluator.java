@@ -52,7 +52,7 @@ public abstract class ConstraintEvaluator<T>
 		if (body instanceof PropertyCallExp) {
 			PropertyCallExp propertyCallExp = (PropertyCallExp)body;
 			Property referredProperty = propertyCallExp.getReferredProperty();
-			if ((referredProperty != null) && (referredProperty.getOwningType() instanceof TupleType) && PivotConstants.STATUS_PART_NAME.equals(referredProperty.getName())) {
+			if ((referredProperty != null) && (referredProperty.getOwningClass() instanceof TupleType) && PivotConstants.STATUS_PART_NAME.equals(referredProperty.getName())) {
 				body = propertyCallExp.getSource();
 			}
 		}

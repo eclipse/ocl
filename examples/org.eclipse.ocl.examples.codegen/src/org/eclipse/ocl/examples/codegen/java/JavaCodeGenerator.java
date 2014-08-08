@@ -440,7 +440,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		if (!(eOperation instanceof EOperation)) {
 			return null;
 		}
-		CGTypeId cgTypeId = getAnalyzer().getTypeId(asOperation.getOwningType().getTypeId());
+		CGTypeId cgTypeId = getAnalyzer().getTypeId(asOperation.getOwningClass().getTypeId());
 		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = getUnboxedDescriptor(elementId);
 		String getAccessor = genModelHelper.getOperationAccessor(asOperation);
@@ -461,7 +461,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		if (!(eStructuralFeature instanceof EStructuralFeature)) {
 			return null;
 		}
-		CGTypeId cgTypeId = getAnalyzer().getTypeId(asProperty.getOwningType().getTypeId());
+		CGTypeId cgTypeId = getAnalyzer().getTypeId(asProperty.getOwningClass().getTypeId());
 		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = getUnboxedDescriptor(elementId);
 		String getAccessor = genModelHelper.getGetAccessor((EStructuralFeature)eStructuralFeature);

@@ -196,10 +196,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__OWNED_OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -266,12 +266,12 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__OWNED_OPERATIONS:
+				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
+				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				return basicSetPackage(null, msgs);
 			case PivotPackage.STATE_MACHINE__TRANSITION:
@@ -333,12 +333,12 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return isInterface();
 			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
 				return getNestedClassifier();
-			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
-				return getOwnedAttribute();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
-			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
-				return getOwnedOperation();
+			case PivotPackage.STATE_MACHINE__OWNED_OPERATIONS:
+				return getOwnedOperations();
+			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
+				return getOwnedProperties();
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				return getPackage();
 			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
@@ -431,17 +431,17 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				getNestedClassifier().clear();
 				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
-				return;
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
-				getOwnedOperation().clear();
-				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
+			case PivotPackage.STATE_MACHINE__OWNED_OPERATIONS:
+				getOwnedOperations().clear();
+				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				return;
+			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
+				getOwnedProperties().clear();
+				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -537,14 +537,14 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
 				getNestedClassifier().clear();
 				return;
-			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
-				getOwnedAttribute().clear();
-				return;
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
-			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
-				getOwnedOperation().clear();
+			case PivotPackage.STATE_MACHINE__OWNED_OPERATIONS:
+				getOwnedOperations().clear();
+				return;
+			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
+				getOwnedProperties().clear();
 				return;
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -617,12 +617,12 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
 				return nestedClassifier != null && !nestedClassifier.isEmpty();
-			case PivotPackage.STATE_MACHINE__OWNED_ATTRIBUTE:
-				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
-			case PivotPackage.STATE_MACHINE__OWNED_OPERATION:
-				return ownedOperation != null && !ownedOperation.isEmpty();
+			case PivotPackage.STATE_MACHINE__OWNED_OPERATIONS:
+				return ownedOperations != null && !ownedOperations.isEmpty();
+			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
+				return ownedProperties != null && !ownedProperties.isEmpty();
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				return getPackage() != null;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:

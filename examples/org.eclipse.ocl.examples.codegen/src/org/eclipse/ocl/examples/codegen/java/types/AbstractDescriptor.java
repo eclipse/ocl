@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
@@ -100,7 +101,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			javaClass = DomainProperty.class;
 		}
 		else if (javaClass == org.eclipse.ocl.examples.pivot.Class.class) {
-			javaClass = DomainType.class;
+			javaClass = DomainClass.class;
 		}
 		else if (javaClass == Type.class) {
 			javaClass = DomainType.class;

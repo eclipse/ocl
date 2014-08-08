@@ -12,9 +12,9 @@ package org.eclipse.ocl.examples.pivot.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
 import org.eclipse.ocl.examples.library.executor.ReflectiveFragment;
 import org.eclipse.ocl.examples.pivot.manager.TypeServer;
@@ -29,8 +29,8 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 		TypeServer typeServer = (TypeServer) derivedInheritance;
 		String baseOperationName = baseOperation.getName();
 		ParametersId baseParametersId = baseOperation.getParametersId();
-		for (DomainType partialType : typeServer.getPartialTypes()) {
-			for (DomainOperation localOperation : partialType.getOwnedOperation()) {
+		for (DomainClass partialType : typeServer.getPartialTypes()) {
+			for (DomainOperation localOperation : partialType.getOwnedOperations()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
 					return localOperation;
 				}

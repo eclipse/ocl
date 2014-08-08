@@ -111,7 +111,7 @@ public class Pivot2EcoreDeclarationVisitor
 			if (anOperation.getRedefinedOperation().size() == 0) {
 				return false;
 			}
-			if ("containingActivity".equals(anOperation.getName()) && "ActivityNode".equals(anOperation.getOwningType().getName())) {
+			if ("containingActivity".equals(anOperation.getName()) && "ActivityNode".equals(anOperation.getOwningClass().getName())) {
 				return false;		// FIXME Bug 405061 workaround
 			}
 			return true;
@@ -154,7 +154,7 @@ public class Pivot2EcoreDeclarationVisitor
 			if (anOperation.getRedefinedOperation().size() == 0) {
 				return true;
 			}
-			if ("containingActivity".equals(anOperation.getName()) && "ActivityNode".equals(anOperation.getOwningType().getName())) {
+			if ("containingActivity".equals(anOperation.getName()) && "ActivityNode".equals(anOperation.getOwningClass().getName())) {
 				return true;		// FIXME Bug 405061 workaround
 			}
 			return false;
@@ -394,10 +394,10 @@ public class Pivot2EcoreDeclarationVisitor
 		@SuppressWarnings("null")@NonNull List<EOperation> eOperations = eClass.getEOperations();
 		@SuppressWarnings("null")@NonNull Iterable<Constraint> nonDuplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariant(), nonDuplicateConstraintsFilter);
 //		safeVisitAll(eOperations, nonDuplicateConstraints);
-		@SuppressWarnings("null")@NonNull Iterable<Operation> nonDuplicateOperations = Iterables.filter(pivotClass.getOwnedOperation(), nonDuplicateOperationsFilter);
+		@SuppressWarnings("null")@NonNull Iterable<Operation> nonDuplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), nonDuplicateOperationsFilter);
 		safeVisitAll(eOperations, nonDuplicateOperations);
 		@SuppressWarnings("null")@NonNull List<EStructuralFeature> eStructuralFeatures = eClass.getEStructuralFeatures();
-		@SuppressWarnings("null")@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotClass.getOwnedAttribute(), nonDuplicatePropertiesFilter);
+		@SuppressWarnings("null")@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), nonDuplicatePropertiesFilter);
 		safeVisitAll(eStructuralFeatures, nonDuplicateProperties);
 		for (Constraint pivotInvariant : nonDuplicateConstraints) {
 			if (pivotInvariant.isCallable()) {
@@ -424,7 +424,7 @@ public class Pivot2EcoreDeclarationVisitor
 					context.defer(asConstraint);		// Defer references
 				}
 			}
-			@SuppressWarnings("null")@NonNull Iterable<Operation> duplicateOperations = Iterables.filter(pivotClass.getOwnedOperation(), duplicateOperationsFilter);
+			@SuppressWarnings("null")@NonNull Iterable<Operation> duplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), duplicateOperationsFilter);
 			for (Operation asOperation : duplicateOperations) {
 				if (eDuplicates == null) {
 					eDuplicates = new ArrayList<ETypedElement>();
@@ -434,7 +434,7 @@ public class Pivot2EcoreDeclarationVisitor
 					eDuplicates.add((EOperation)eOperation);
 				}
 			}
-			@SuppressWarnings("null")@NonNull Iterable<Property> duplicateProperties = Iterables.filter(pivotClass.getOwnedAttribute(), duplicatePropertiesFilter);
+			@SuppressWarnings("null")@NonNull Iterable<Property> duplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), duplicatePropertiesFilter);
 			for (Property asProperty : duplicateProperties) {
 				if (eDuplicates == null) {
 					eDuplicates = new ArrayList<ETypedElement>();

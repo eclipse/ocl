@@ -42,14 +42,14 @@
           </ownedComment>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_tT8mYsV_EeOUxMGVZGOl2Q" value="false"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Class-ownedAttribute" name="ownedAttribute" type="Core-Basic-Property" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedAttribute_class">
+        <ownedAttribute xmi:id="Core-Basic-Class-ownedAttribute" name="ownedProperties" type="Core-Basic-Property" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedAttribute_class">
           <ownedComment xmi:id="Core-Basic-Class-ownedAttribute-_ownedComment.0" annotatedElement="Core-Basic-Class-ownedAttribute">
             <body>The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.</body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobANH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobANX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Class-ownedOperation" name="ownedOperation" type="Core-Basic-Operation" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedOperation_class">
+        <ownedAttribute xmi:id="Core-Basic-Class-ownedOperation" name="ownedOperations" type="Core-Basic-Operation" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedOperation_class">
           <ownedComment xmi:id="Core-Basic-Class-ownedOperation-_ownedComment.0" annotatedElement="Core-Basic-Class-ownedOperation">
             <body>The operations owned by a class. These do not include the inherited operations.</body>
           </ownedComment>
@@ -89,7 +89,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAPH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAPX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Operation-class" name="class" type="Core-Basic-Class" association="Core-Basic-A_ownedOperation_class">
+        <ownedAttribute xmi:id="Core-Basic-Operation-class" name="owningClass" type="Core-Basic-Class" association="Core-Basic-A_ownedOperation_class">
           <ownedComment xmi:id="Core-Basic-Operation-class-_ownedComment.0" annotatedElement="Core-Basic-Operation-class">
             <body>The class that owns the operation.</body>
           </ownedComment>
@@ -137,7 +137,7 @@
           </ownedComment>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XobAQ37VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Property-class" name="class" type="Core-Basic-Class" association="Core-Basic-A_ownedAttribute_class">
+        <ownedAttribute xmi:id="Core-Basic-Property-class" name="owningClass" type="Core-Basic-Class" association="Core-Basic-A_ownedAttribute_class">
           <ownedComment xmi:id="Core-Basic-Property-class-_ownedComment.0" annotatedElement="Core-Basic-Property-class">
             <body>The class that owns the property, and of which the property is an attribute.</body>
           </ownedComment>
@@ -287,14 +287,14 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAV37VEeOu79LxSz8Ylw" value="*"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedAttribute_class" name="A_ownedAttribute_class" memberEnd="Core-Basic-Class-ownedAttribute Core-Basic-Property-class"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedAttribute_class" name="A_ownedProperties_owningClass" memberEnd="Core-Basic-Class-ownedAttribute Core-Basic-Property-class"/>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_opposite_property" name="A_opposite_property" memberEnd="Core-Basic-Property-opposite Core-Basic-A_opposite_property-property">
         <ownedEnd xmi:id="Core-Basic-A_opposite_property-property" name="property" type="Core-Basic-Property" association="Core-Basic-A_opposite_property">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAWH7VEeOu79LxSz8Ylw"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Core-Basic-Operation-ownedParameter Core-Basic-Parameter-operation"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedOperation_class" name="A_ownedOperation_class" memberEnd="Core-Basic-Class-ownedOperation Core-Basic-Operation-class"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedOperation_class" name="A_ownedOperations_owningClass" memberEnd="Core-Basic-Class-ownedOperation Core-Basic-Operation-class"/>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_superClass_class" name="A_superClasses_subClasses" memberEnd="Core-Basic-Class-superClass Core-Basic-A_superClass_class-class">
         <ownedEnd xmi:id="Core-Basic-A_superClass_class-class" name="subClasses" type="Core-Basic-Class" association="Core-Basic-A_superClass_class">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAWX7VEeOu79LxSz8Ylw"/>

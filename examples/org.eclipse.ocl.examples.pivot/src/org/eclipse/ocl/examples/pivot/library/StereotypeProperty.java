@@ -57,7 +57,7 @@ public class StereotypeProperty extends ConstrainedProperty
 		else if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;
 			String propertyName = property.getName();
-			Property extensionProperty = DomainUtil.getNamedElement(elementExtension.getOwnedAttribute(), propertyName);
+			Property extensionProperty = DomainUtil.getNamedElement(elementExtension.getOwnedProperties(), propertyName);
 			if (extensionProperty == null) {
 				boolean gotIt = false;
 				String defaultValue = null;
@@ -75,7 +75,7 @@ public class StereotypeProperty extends ConstrainedProperty
 					}
 				}
 				if (!gotIt && (elementExtension.isApplied() || elementExtension.isRequired())) {
-					Property theProperty = DomainUtil.getNamedElement(elementExtension.getStereotype().getOwnedAttribute(), propertyName);
+					Property theProperty = DomainUtil.getNamedElement(elementExtension.getStereotype().getOwnedProperties(), propertyName);
 					defaultValue = theProperty.getDefault();
 					defaultExpression = theProperty.getDefaultExpression();
 					gotIt = true;
@@ -87,7 +87,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				extensionProperty.setType(property.getType());
 				extensionProperty.setDefault(defaultValue);
 				extensionProperty.setDefaultExpression(defaultExpression);
-				elementExtension.getOwnedAttribute().add(extensionProperty);
+				elementExtension.getOwnedProperties().add(extensionProperty);
 			}
 /*			Property extensionProperty = DomainUtil.getNamedElement(elementExtension.getOwnedAttribute(), propertyName);
 			if (extensionProperty == null) {

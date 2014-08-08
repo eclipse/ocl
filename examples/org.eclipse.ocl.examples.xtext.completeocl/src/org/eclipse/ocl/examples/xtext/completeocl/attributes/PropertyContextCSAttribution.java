@@ -33,7 +33,7 @@ public class PropertyContextCSAttribution extends AbstractAttribution
 		 || (containmentFeature == CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS__DERIVED_INVARIANTS)) {
 			Property property = targetElement.getProperty();
 			if (property != null) {
-				org.eclipse.ocl.examples.pivot.Class type = property.getOwningType();
+				org.eclipse.ocl.examples.pivot.Class type = property.getOwningClass();
 				if (type != null) {
 					environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 					environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -31,7 +32,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	protected final @NonNull CollectionTypeId typeId;
 	
 	public AbstractCollectionType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name,
-			@NonNull DomainType containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
+			@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable IntegerValue upper) {
 		super(standardLibrary, name, containerType);
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
@@ -85,7 +86,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public DomainType getContainerType() {
+	public DomainClass getContainerType() {
 		return containerType;
 	}
 
@@ -103,8 +104,8 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 //	}
 
 	@Override
-	public @NonNull List<? extends DomainOperation> getOwnedOperation() {
-		return containerType.getOwnedOperation();
+	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
+		return containerType.getOwnedOperations();
 	}
 
 	public @NonNull CollectionTypeId getTypeId() {

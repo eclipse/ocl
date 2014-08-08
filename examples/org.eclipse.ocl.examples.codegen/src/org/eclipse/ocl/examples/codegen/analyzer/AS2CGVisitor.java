@@ -546,11 +546,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			CGConstraint cgConstraint = doVisit(CGConstraint.class, asConstraint);
 			cgClass.getInvariants().add(cgConstraint);
 		}
-		for (Operation asOperation : element.getOwnedOperation()) {
+		for (Operation asOperation : element.getOwnedOperations()) {
 			CGOperation cgOperation = doVisit(CGOperation.class, asOperation);
 			cgClass.getOperations().add(cgOperation);
 		}
-		for (Property asProperty : element.getOwnedAttribute()) {
+		for (Property asProperty : element.getOwnedProperties()) {
 			CGProperty cgProperty = doVisit(CGProperty.class, asProperty);
 			cgClass.getProperties().add(cgProperty);
 		}
@@ -1025,7 +1025,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					}
 					cgOperationCallExp = cgEcoreOperationCallExp;
 				} catch (GenModelException e) {
-					org.eclipse.ocl.examples.pivot.Class asType = asOperation.getOwningType();
+					org.eclipse.ocl.examples.pivot.Class asType = asOperation.getOwningClass();
 					String className = asType.getInstanceClassName();
 					if (className != null) {
 						CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();

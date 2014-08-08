@@ -168,7 +168,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 		cgPackage.getClasses().add(cgClass);
 		for (org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedType()) {
 			boolean hasCS2ASmappingOperation = false;
-			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperation(), "ast");			
+			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {
 				LanguageExpression specification = DomainUtil.nonNullState(astOperation.getBodyExpression());
 				ExpressionInOCL expressionInOCL = metaModelManager.getQueryOrThrow(specification);

@@ -74,11 +74,13 @@ public class OperationFilter extends AbstractOperationFilter
 			@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> candidateBindings) {
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
-		org.eclipse.ocl.examples.pivot.Class referenceType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(PivotUtil.getOwningType(reference));
-		org.eclipse.ocl.examples.pivot.Class candidateType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(PivotUtil.getOwningType(candidate));
-		org.eclipse.ocl.examples.pivot.Class specializedReferenceType = metaModelManager.getSpecializedType(referenceType, referenceBindings);
-		org.eclipse.ocl.examples.pivot.Class specializedCandidateType = metaModelManager.getSpecializedType(candidateType, candidateBindings);
-		if ((reference instanceof Iteration) && (candidate instanceof Iteration)) {
+		org.eclipse.ocl.examples.pivot.Class referenceClass = reference.getOwningClass();
+		org.eclipse.ocl.examples.pivot.Class candidateClass = candidate.getOwningClass();
+		org.eclipse.ocl.examples.pivot.Class referenceType = referenceClass != null ? (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(referenceClass) : null;
+		org.eclipse.ocl.examples.pivot.Class candidateType = candidateClass != null ? (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(candidateClass) : null;
+		org.eclipse.ocl.examples.pivot.Class specializedReferenceType = referenceType != null ? metaModelManager.getSpecializedType(referenceType, referenceBindings) : null;
+		org.eclipse.ocl.examples.pivot.Class specializedCandidateType = candidateType != null ? metaModelManager.getSpecializedType(candidateType, candidateBindings) : null;
+		if ((reference instanceof Iteration) && (candidate instanceof Iteration) && (specializedReferenceType != null) && (specializedCandidateType != null)) {
 			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
 			if (iteratorCountDelta != 0) {
 				return iteratorCountDelta;
@@ -154,14 +156,14 @@ public class OperationFilter extends AbstractOperationFilter
 
 	protected @Nullable Map<TemplateParameter, ParameterableElement> getIterationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Iteration candidateIteration) {
 		Type sourceType = this.sourceType;
-		if (!(sourceType instanceof CollectionType) && (candidateIteration.getOwningType() instanceof CollectionType) && (sourceType != null)) {
+		if (!(sourceType instanceof CollectionType) && (candidateIteration.getOwningClass() instanceof CollectionType) && (sourceType != null)) {
 			sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()
 		}
 		if (!(sourceType instanceof CollectionType)) {			// May be InvalidType
 			return null;
 		}
 		HashMap<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
-		bindings.put(candidateIteration.getOwningType().getOwnedTemplateSignature().getOwnedParameter().get(0), ((CollectionType)sourceType).getElementType());
+		bindings.put(candidateIteration.getOwningClass().getOwnedTemplateSignature().getOwnedParameter().get(0), ((CollectionType)sourceType).getElementType());
 		if (sourceType instanceof TemplateableElement) {
 			PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
 		}
@@ -190,7 +192,7 @@ public class OperationFilter extends AbstractOperationFilter
 	protected @Nullable Map<TemplateParameter, ParameterableElement> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
 		Type sourceType = this.sourceType;
 		Map<TemplateParameter, ParameterableElement> bindings = null;
-		org.eclipse.ocl.examples.pivot.Class containingType = candidateOperation.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class containingType = candidateOperation.getOwningClass();
 		if ((containingType instanceof CollectionType) && (sourceType != null)) {
 			if (!(sourceType instanceof CollectionType)) {
 				sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()

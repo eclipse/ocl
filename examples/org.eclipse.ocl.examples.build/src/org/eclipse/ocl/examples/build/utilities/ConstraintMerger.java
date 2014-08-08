@@ -28,7 +28,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
@@ -133,7 +133,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 						else if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
 							org.eclipse.ocl.examples.pivot.Class mergeType = (org.eclipse.ocl.examples.pivot.Class)eObject;
 							TypeServer typeServer = metaModelManager.getTypeServer(mergeType);
-							for (DomainType dType : typeServer.getPartialTypes()) {
+							for (DomainClass dType : typeServer.getPartialTypes()) {
 								if (dType instanceof org.eclipse.ocl.examples.pivot.Class) {
 									org.eclipse.ocl.examples.pivot.Class primaryType = (org.eclipse.ocl.examples.pivot.Class)dType;
 									if (primaryType.eResource() == asResource) {
@@ -186,9 +186,9 @@ public class ConstraintMerger extends AbstractProjectComponent
 			PivotUtil.resetContainer(mergeInvariant);
 			primaryInvariants.add(mergeInvariant);
 		}
-		List<Property> mergeProperties = mergeType.getOwnedAttribute();
+		List<Property> mergeProperties = mergeType.getOwnedProperties();
 		if (mergeProperties.size() > 0) {
-			List<Property> primaryProperties = primaryType.getOwnedAttribute();
+			List<Property> primaryProperties = primaryType.getOwnedProperties();
 			for (@SuppressWarnings("null")@NonNull Property mergeProperty : new ArrayList<Property>(mergeProperties)) {
 				Property primaryProperty = metaModelManager.getPrimaryElement(mergeProperty);
 				if (primaryProperty != mergeProperty) {			// If merge needed
@@ -204,9 +204,9 @@ public class ConstraintMerger extends AbstractProjectComponent
 				}
 			}
 		}
-		List<Operation> mergeOperations = mergeType.getOwnedOperation();
+		List<Operation> mergeOperations = mergeType.getOwnedOperations();
 		if (mergeOperations.size() > 0) {
-			List<Operation> primaryOperations = primaryType.getOwnedOperation();
+			List<Operation> primaryOperations = primaryType.getOwnedOperations();
 			for (@SuppressWarnings("null")@NonNull Operation mergeOperation : new ArrayList<Operation>(mergeOperations)) {
 				Operation primaryOperation = metaModelManager.getPrimaryElement(mergeOperation);
 				if (primaryOperation != mergeOperation) {		// If merge needed

@@ -81,7 +81,7 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 		//
 		assertConsoleResult(consolePage, ecoreBook, "name", "'Book'\n");
 		assertConsoleResult(consolePage, ecoreBook, "copies", "<b><error>Parsing failure\n</error></b><error>\n1: Unresolved Property '::copies'\n</error>");
-		assertConsoleResult(consolePage, ecoreBook, "oclType().ownedAttribute->sortedBy(name)",
+		assertConsoleResult(consolePage, ecoreBook, "oclType().ownedProperties->sortedBy(name)",
 			"ecore::EClass::EClass\n" + 
 			"ecore::EClass::EClass\n" + 
 			"ecore::EClass::EReference\n" + 

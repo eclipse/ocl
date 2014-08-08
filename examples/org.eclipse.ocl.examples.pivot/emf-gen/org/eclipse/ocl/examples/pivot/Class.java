@@ -32,9 +32,9 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getNestedClassifier <em>Nested Classifier</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperation <em>Owned Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operations</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedProperties <em>Owned Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
@@ -112,20 +112,20 @@ public interface Class
 	List<Behavior> getOwnedBehavior();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Operation}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The operations owned by a class. These do not include the inherited operations.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Operation</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedOperation()
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getClass_
+	 * @return the value of the '<em>Owned Operations</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedOperations()
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningClass
 	 * @generated
 	 */
-	@NonNull List<Operation> getOwnedOperation();
+	@NonNull List<Operation> getOwnedOperations();
 
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.
@@ -209,19 +209,19 @@ public interface Class
 	List<Class> getNestedClassifier();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Properties</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Attribute</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedAttribute()
-	 * @see org.eclipse.ocl.examples.pivot.Property#getClass_
+	 * @return the value of the '<em>Owned Properties</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedProperties()
+	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningClass
 	 * @generated
 	 */
-	@NonNull List<Property> getOwnedAttribute();
+	@NonNull List<Property> getOwnedProperties();
 
 } // Class

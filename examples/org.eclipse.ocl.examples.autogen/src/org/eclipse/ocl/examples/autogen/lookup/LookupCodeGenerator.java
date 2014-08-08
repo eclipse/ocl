@@ -210,7 +210,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		this.asChildProperty = createNativeProperty(LookupClassContext.CHILD_NAME, asElementType, false);
 		this.asEvaluatorProperty = createNativeProperty(JavaConstants.EVALUATOR_NAME, DomainEvaluator.class, true);
 		this.asIdResolverProperty = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
-		List<Property> asVisitorProperties = asVisitorClass.getOwnedAttribute();
+		List<Property> asVisitorProperties = asVisitorClass.getOwnedProperties();
 		asVisitorProperties.add(asChildProperty);
 		asVisitorProperties.add(asEvaluatorProperty);
 		asVisitorProperties.add(asIdResolverProperty);
@@ -224,7 +224,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		asVisitorParentEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
 		asVisitorParentEnvOperation.setImplementation(NativeStaticOperation.INSTANCE);
 		asVisitorParentEnvOperation.setIsRequired(false);
-		List<Operation> asVisitorOperations = asVisitorClass.getOwnedOperation();
+		List<Operation> asVisitorOperations = asVisitorClass.getOwnedOperations();
 		asVisitorOperations.add(asVisitorEnvOperation);
 		asVisitorOperations.add(asVisitorParentEnvOperation);
 	}
@@ -325,7 +325,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		cgClass.setName(className);
 		convertSuperTypes(cgClass);
 		cgPackage.getClasses().add(cgClass);
-		convertProperties(cgClass, asVisitorClass.getOwnedAttribute());
+		convertProperties(cgClass, asVisitorClass.getOwnedProperties());
 		Map<Element,Element> reDefinitions = new HashMap<Element,Element>();
 		Map<Operation, Operation> envOperation2asOperation = createVisitOperationDeclarations(reDefinitions);
 		rewriteVisitOperationBodies(reDefinitions, envOperation2asOperation);
@@ -377,7 +377,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
 		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedType()) {
-			for (Operation envOperation : asType.getOwnedOperation()) {
+			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
 					List<Parameter> asParameters = envOperation.getOwnedParameter();
 					if (asParameters.size() == 1) {
@@ -402,7 +402,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		LanguageExpression envSpecification = DomainUtil.nonNullState(envOperation.getBodyExpression());
 		ExpressionInOCL envExpressionInOCL = metaModelManager.getQueryOrThrow(envSpecification);
 		//
-		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.nonNullState(envOperation.getOwningType());
+		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.nonNullState(envOperation.getOwningClass());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
 		reDefinitions.put(envExpressionInOCL.getContextVariable(), asElement);
 		//

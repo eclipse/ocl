@@ -11,21 +11,21 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public abstract class AbstractSpecializedType extends AbstractClass
 {
-	protected final @NonNull DomainType containerType;
+	protected final @NonNull DomainClass containerType;
 	
-	public AbstractSpecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name, @NonNull DomainType containerType) {
+	public AbstractSpecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull String name, @NonNull DomainClass containerType) {
 		super(standardLibrary, name);
 		this.containerType = containerType;
 	}
 
-	public DomainType getContainerType() {
+	public DomainClass getContainerType() {
 		return containerType;
 	}
 

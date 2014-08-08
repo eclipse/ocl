@@ -14,10 +14,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation;
 import org.eclipse.ocl.examples.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation;
+import org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.Class;
@@ -62,7 +62,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.lookup.Environment;
@@ -77,6 +76,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_examples_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.examples.pivot.lookup");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_examples_domain_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.examples.domain.evaluation");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_examples_domain_types = IdManager.getRootPackageId("org.eclipse.ocl.examples.domain.types");
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_INVid = TypeId.BAG.getSpecializedId(TypeId.OCL_INVALID);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AutoPivotLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_examples_pivot_lookup.getClassId("AutoPivotLookupVisitor", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Behavior = PACKid_$metamodel$.getClassId("Behavior", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = PACKid_$metamodel$.getClassId("Class", 0);
@@ -99,25 +99,17 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Package = PACKid_$metamodel$.getClassId("Package", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Parameter = PACKid_$metamodel$.getClassId("Parameter", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Precedence = PACKid_$metamodel$.getClassId("Precedence", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Root = PACKid_$metamodel$.getClassId("Root", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Type = PACKid_$metamodel$.getClassId("Type", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValuesUtil.integerValueOf("1");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Operation = TypeId.BAG.getSpecializedId(CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(CLSSid_Property);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_INVid = TypeId.SET.getSpecializedId(TypeId.OCL_INVALID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Import);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Operation);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Parameter);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Precedence);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Type = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Type);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Variable);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Type = TypeId.SET.getSpecializedId(CLSSid_Type);
     
     protected @Nullable /*@Thrown*/ Element child;
     protected final @NonNull /*@Thrown*/ DomainEvaluator evaluator;
@@ -159,12 +151,13 @@ public class AutoPivotLookupVisitor
      * visitClass(element : Class) : env::Environment[?]
      * 
      * 
-     * let superClasses : Set(Class) = element->closure(superClass)
+     * let superClasses : Set(Class) = element->closure(invalid)
      * in
      *   let
      *     inner : env::Environment = context.addElements(
-     *       superClasses.ownedAttribute->select(not isStatic))
-     *     .addElements(superClasses.ownedOperation->select(not isStatic))
+     *       superClasses.oclBadProperty->select(invalid.oclBadOperation()))
+     *     .addElements(
+     *       superClasses.oclBadProperty->select(invalid.oclBadOperation()))
      *     .addElements(element.ownedBehavior)
      *   in
      *     if inner.hasFinalResult()
@@ -179,171 +172,74 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_CLSSid_Class, element);
         final @NonNull DomainType TYPE_superClasses_0 = evaluator.getStaticTypeOf(oclAsSet);
         final @NonNull LibraryIteration IMPL_superClasses_0 = (LibraryIteration)TYPE_superClasses_0.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
-        final @NonNull Object ACC_superClasses_0 = IMPL_superClasses_0.createAccumulatorValue(evaluator, SET_CLSSid_Class, ORD_CLSSid_Type);
+        final @NonNull Object ACC_superClasses_0 = IMPL_superClasses_0.createAccumulatorValue(evaluator, SET_CLSSid_Class, TypeId.OCL_INVALID);
         /**
          * Implementation of the iterator body.
          */
         final @NonNull AbstractBinaryOperation BODY_superClasses_0 = new AbstractBinaryOperation()
         {
             /**
-             * superClass
+             * invalid
              */
             @Override
             public @Nullable Object evaluate(final @NonNull DomainEvaluator evaluator, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
-                final @Nullable /*@NonInvalid*/ Class symbol_0 = (Class)_1;
-                if (symbol_0 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::Type::superClass\'");
-                }
-                final @NonNull /*@Thrown*/ List<? extends DomainType> superClass = symbol_0.getSuperClass();
-                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_superClass = idResolver.createOrderedSetOfAll(ORD_CLSSid_Type, superClass);
-                return BOXED_superClass;
+                throw ValuesUtil.INVALID_VALUE;
             }
         };
         final @NonNull  ExecutorSingleIterationManager MGR_superClasses_0 = new ExecutorSingleIterationManager(evaluator, SET_CLSSid_Class, BODY_superClasses_0, oclAsSet, ACC_superClasses_0);
         final @NonNull /*@Thrown*/ SetValue superClasses = DomainUtil.nonNullState((SetValue)IMPL_superClasses_0.evaluateIteration(MGR_superClasses_0));
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
-        @Nullable Iterator<?> ITERATOR__1_0 = superClasses.iterator();
-        @NonNull /*@Thrown*/ BagValue collect;
-        while (true) {
-            if (!ITERATOR__1_0.hasNext()) {
-                collect = accumulator;
-                break;
-            }
-            @Nullable /*@NonInvalid*/ Class _1_0 = (Class)ITERATOR__1_0.next();
-            /**
-             * ownedAttribute
-             */
-            if (_1_0 == null) {
-                throw new InvalidValueException("Null source for \'pivot::Type::ownedAttribute\'");
-            }
-            final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedAttribute = _1_0.getOwnedAttribute();
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedAttribute = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedAttribute);
-            //
-            for (Object value : BOXED_ownedAttribute.flatten().getElements()) {
-                accumulator.add(value);
-            }
-        }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
-        @Nullable Iterator<?> ITERATOR__1_1 = collect.iterator();
-        @NonNull /*@Thrown*/ BagValue select;
-        while (true) {
-            if (!ITERATOR__1_1.hasNext()) {
-                select = accumulator_0;
-                break;
-            }
-            @Nullable /*@NonInvalid*/ DomainProperty _1_1 = (DomainProperty)ITERATOR__1_1.next();
-            /**
-             * _'null' : Boolean
-             */
-            @NonNull /*@Caught*/ Object CAUGHT_self_0;
-            try {
-                if (_1_1 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::NamedElement::isStatic\'");
-                }
-                final /*@Thrown*/ boolean self_0 = _1_1.isStatic();
-                CAUGHT_self_0 = self_0;
-            }
-            catch (Exception e) {
-                CAUGHT_self_0 = ValuesUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_0 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_0;
-            }
-            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_self_0 instanceof InvalidValueException;
-            /*@Thrown*/ boolean symbol_2;
-            if (symbol_1) {
-                symbol_2 = (Boolean)CAUGHT_self_0;
-            }
-            else {
-                final /*@Thrown*/ boolean eq = CAUGHT_self_0 == Boolean.FALSE;
-                symbol_2 = eq;
-            }
-            //
-            if (symbol_2 == ValuesUtil.TRUE_VALUE) {
-                accumulator_0.add(_1_1);
-            }
-        }
-        final List<? extends Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
-        assert UNBOXED_select != null;
-        final @NonNull /*@Thrown*/ Environment addElements = context.addElements(UNBOXED_select);
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValuesUtil.createBagAccumulatorValue(BAG_INVid);
         @Nullable Iterator<?> ITERATOR__1_2 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_0;
         while (true) {
             if (!ITERATOR__1_2.hasNext()) {
-                collect_0 = accumulator_1;
+                collect_0 = accumulator;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Class _1_2 = (Class)ITERATOR__1_2.next();
+            @Nullable /*@NonInvalid*/ DomainClass _1_2 = (DomainClass)ITERATOR__1_2.next();
             /**
-             * ownedOperation
+             * oclBadProperty
              */
             if (_1_2 == null) {
-                throw new InvalidValueException("Null source for \'pivot::Type::ownedOperation\'");
+                throw new InvalidValueException("Null source for \'OclInvalid::oclBadProperty\'");
             }
-            final @NonNull /*@Thrown*/ List<? extends DomainOperation> ownedOperation = _1_2.getOwnedOperation();
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperation = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperation);
+            final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty_0 = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, _1_2));
             //
-            for (Object value : BOXED_ownedOperation.flatten().getElements()) {
-                accumulator_1.add(value);
+            for (Object value : oclBadProperty_0.flatten().getElements()) {
+                accumulator.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValuesUtil.createBagAccumulatorValue(BAG_INVid);
         @Nullable Iterator<?> ITERATOR__1_3 = collect_0.iterator();
         @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
             if (!ITERATOR__1_3.hasNext()) {
-                select_0 = accumulator_2;
+                select_0 = accumulator_0;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainOperation _1_3 = (DomainOperation)ITERATOR__1_3.next();
+            @Nullable /*@NonInvalid*/ InvalidValueException _1_3 = (InvalidValueException)ITERATOR__1_3.next();
             /**
-             * _'null' : Boolean
+             * invalid.oclBadOperation()
              */
-            @NonNull /*@Caught*/ Object CAUGHT_self_1;
-            try {
-                if (_1_3 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::NamedElement::isStatic\'");
-                }
-                final /*@Thrown*/ boolean self_1 = _1_3.isStatic();
-                CAUGHT_self_1 = self_1;
-            }
-            catch (Exception e) {
-                CAUGHT_self_1 = ValuesUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_1 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_1;
-            }
-            final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_self_1 instanceof InvalidValueException;
-            /*@Thrown*/ boolean symbol_4;
-            if (symbol_3) {
-                symbol_4 = (Boolean)CAUGHT_self_1;
-            }
-            else {
-                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_1 == Boolean.FALSE;
-                symbol_4 = eq_0;
-            }
             //
-            if (symbol_4 == ValuesUtil.TRUE_VALUE) {
-                accumulator_2.add(_1_3);
-            }
+            throw new InvalidValueException("Non-Boolean body for \'\'{0}\'\'", "select");
         }
-        final List<? extends Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
+        final List<? extends Object> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Object.class);
         assert UNBOXED_select_0 != null;
-        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select_0);
-        final @Nullable /*@Thrown*/ List<Behavior> ownedBehavior = element.getOwnedBehavior();
-        assert ownedBehavior != null;
+        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements((List<? extends DomainNamedElement>)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element.getOwnedBehavior();
         final @NonNull /*@Thrown*/ Environment inner = addElements_0.addElements(ownedBehavior);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ Environment symbol_5;
+        @Nullable /*@Thrown*/ Environment symbol_0;
         if (hasFinalResult) {
-            symbol_5 = inner;
+            symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element);
-            symbol_5 = parentEnv;
+            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv((Element)element);
+            symbol_0 = parentEnv;
         }
-        return symbol_5;
+        return symbol_0;
     }
     
     /**
@@ -374,8 +270,10 @@ public class AutoPivotLookupVisitor
      * 
      * let
      *   inner : env::Environment = context.addElements(element.ownedLiteral)
-     *   .addElements(element.ownedAttribute->select(not isStatic))
-     *   .addElements(element.ownedOperation->select(not isStatic))
+     *   .addElements(
+     *     element.oclBadProperty->select(invalid.oclBadOperation()))
+     *   .addElements(
+     *     element.oclBadProperty->select(invalid.oclBadOperation()))
      *   .addElements(element.ownedBehavior)
      * in
      *   if inner.hasFinalResult()
@@ -385,111 +283,41 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
-        final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiteral = element_2.getOwnedLiteral();
-        final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedLiteral);
-        final @NonNull /*@Thrown*/ List<? extends DomainProperty> ownedAttribute = element_2.getOwnedAttribute();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedAttribute = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedAttribute);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
-        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedAttribute.iterator();
-        @NonNull /*@Thrown*/ OrderedSetValue select;
-        while (true) {
-            if (!ITERATOR__1.hasNext()) {
-                select = accumulator;
-                break;
-            }
-            @Nullable /*@NonInvalid*/ DomainProperty _1 = (DomainProperty)ITERATOR__1.next();
-            /**
-             * _'null' : Boolean
-             */
-            @NonNull /*@Caught*/ Object CAUGHT_self_0;
-            try {
-                if (_1 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::NamedElement::isStatic\'");
-                }
-                final /*@Thrown*/ boolean self_0 = _1.isStatic();
-                CAUGHT_self_0 = self_0;
-            }
-            catch (Exception e) {
-                CAUGHT_self_0 = ValuesUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_0 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_0;
-            }
-            final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_0 instanceof InvalidValueException;
-            /*@Thrown*/ boolean symbol_1;
-            if (symbol_0) {
-                symbol_1 = (Boolean)CAUGHT_self_0;
-            }
-            else {
-                final /*@Thrown*/ boolean eq = CAUGHT_self_0 == Boolean.FALSE;
-                symbol_1 = eq;
-            }
-            //
-            if (symbol_1 == ValuesUtil.TRUE_VALUE) {
-                accumulator.add(_1);
-            }
-        }
-        final List<? extends Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
-        assert UNBOXED_select != null;
-        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select);
-        final @NonNull /*@Thrown*/ List<? extends DomainOperation> ownedOperation = element_2.getOwnedOperation();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperation = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperation);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
-        @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperation.iterator();
-        @NonNull /*@Thrown*/ OrderedSetValue select_0;
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty_0 = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_2));
+        final @NonNull /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_INVid, oclBadProperty_0);
+        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(SET_INVid);
+        @Nullable Iterator<?> ITERATOR__1_0 = oclAsSet_0.iterator();
+        @NonNull /*@Thrown*/ SetValue select_0;
         while (true) {
             if (!ITERATOR__1_0.hasNext()) {
-                select_0 = accumulator_0;
+                select_0 = accumulator;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainOperation _1_0 = (DomainOperation)ITERATOR__1_0.next();
+            @Nullable /*@NonInvalid*/ InvalidValueException _1_0 = (InvalidValueException)ITERATOR__1_0.next();
             /**
-             * _'null' : Boolean
+             * invalid.oclBadOperation()
              */
-            @NonNull /*@Caught*/ Object CAUGHT_self_1;
-            try {
-                if (_1_0 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::NamedElement::isStatic\'");
-                }
-                final /*@Thrown*/ boolean self_1 = _1_0.isStatic();
-                CAUGHT_self_1 = self_1;
-            }
-            catch (Exception e) {
-                CAUGHT_self_1 = ValuesUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_1 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_1;
-            }
-            final /*@NonInvalid*/ boolean symbol_2 = CAUGHT_self_1 instanceof InvalidValueException;
-            /*@Thrown*/ boolean symbol_3;
-            if (symbol_2) {
-                symbol_3 = (Boolean)CAUGHT_self_1;
-            }
-            else {
-                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_1 == Boolean.FALSE;
-                symbol_3 = eq_0;
-            }
             //
-            if (symbol_3 == ValuesUtil.TRUE_VALUE) {
-                accumulator_0.add(_1_0);
-            }
+            throw new InvalidValueException("Non-Boolean body for \'\'{0}\'\'", "select");
         }
-        final List<? extends Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
+        final List<? extends Object> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Object.class);
         assert UNBOXED_select_0 != null;
-        final @NonNull /*@Thrown*/ Environment addElements_1 = addElements_0.addElements(UNBOXED_select_0);
-        final @Nullable /*@Thrown*/ List<Behavior> ownedBehavior = element_2.getOwnedBehavior();
-        assert ownedBehavior != null;
+        final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiteral = element_2.getOwnedLiteral();
+        final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedLiteral);
+        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements((List<? extends DomainNamedElement>)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ Environment addElements_1 = addElements_0.addElements((List<? extends DomainNamedElement>)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element_2.getOwnedBehavior();
         final @NonNull /*@Thrown*/ Environment inner = addElements_1.addElements(ownedBehavior);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ Environment symbol_4;
+        @Nullable /*@Thrown*/ Environment symbol_0;
         if (hasFinalResult) {
-            symbol_4 = inner;
+            symbol_0 = inner;
         }
         else {
             final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_2);
-            symbol_4 = parentEnv;
+            symbol_0 = parentEnv;
         }
-        return symbol_4;
+        return symbol_0;
     }
     
     /**
@@ -520,7 +348,7 @@ public class AutoPivotLookupVisitor
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_3);
+            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv((Element)element_3);
             symbol_0 = parentEnv;
         }
         return symbol_0;
@@ -737,7 +565,7 @@ public class AutoPivotLookupVisitor
      * 
      * 
      * let
-     *   inner : env::Environment = context.addElements(element.nestedPackage)
+     *   inner : env::Environment = context.addElements(element.oclBadProperty)
      *   .addElements(element.ownedType)
      *   .addElements(element.ownedPrecedence)
      * in
@@ -748,10 +576,9 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_7.getOwnedPackages();
-        assert nestedPackage != null;
-        final @NonNull /*@Thrown*/ Environment addElements = context.addElements(nestedPackage);
-        final @Nullable /*@Thrown*/ List<? extends DomainType> ownedType = element_7.getOwnedType();
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_7));
+        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)oclBadProperty);
+        final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedType = element_7.getOwnedType();
         assert ownedType != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedType);
         final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedence = element_7.getOwnedPrecedence();
@@ -826,7 +653,7 @@ public class AutoPivotLookupVisitor
      * 
      * 
      * let
-     *   inner : env::Environment = context.addElements(element.nestedPackage)
+     *   inner : env::Environment = context.addElements(element.oclBadProperty)
      *   .addElements(element.ownedType)
      * in
      *   if inner.hasFinalResult()
@@ -836,10 +663,9 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_10.getOwnedPackages();
-        assert nestedPackage != null;
-        final @NonNull /*@Thrown*/ Environment addElements = context.addElements(nestedPackage);
-        final @Nullable /*@Thrown*/ List<? extends DomainType> ownedType = element_10.getOwnedType();
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_10));
+        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)oclBadProperty);
+        final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedType = element_10.getOwnedType();
         assert ownedType != null;
         final @NonNull /*@Thrown*/ Environment inner = addElements.addElements(ownedType);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -860,7 +686,7 @@ public class AutoPivotLookupVisitor
      * 
      * this.parentEnv(element)
      * .addElements(element.imports)
-     * .addElements(element.nestedPackage)
+     * .addElements(element.oclBadProperty)
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitRoot(final @NonNull /*@NonInvalid*/ Root element_11) {
@@ -870,9 +696,8 @@ public class AutoPivotLookupVisitor
         }
         final @NonNull /*@Thrown*/ List<Import> imports = element_11.getImports();
         final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_11.getOwnedPackages();
-        assert nestedPackage != null;
-        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(nestedPackage);
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_11));
+        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements((List<? extends DomainNamedElement>)oclBadProperty);
         return addElements_0;
     }
 }

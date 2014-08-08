@@ -20,6 +20,7 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
@@ -36,8 +37,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	private @NonNull Map<String, WeakReference<EcoreExecutorPackage>> ePackageMap = new WeakHashMap<String, WeakReference<EcoreExecutorPackage>>();
 	private Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap = null;
 	private /*@LazyNonNull*/ Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions = null;
-	private /*@LazyNonNull*/ DomainType enumerationType = null;
-	private /*@LazyNonNull*/ DomainType metaclassType = null;
+	private /*@LazyNonNull*/ DomainClass enumerationType = null;
+	private /*@LazyNonNull*/ DomainClass metaclassType = null;
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
@@ -77,7 +78,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		return metaclass;
 	}
 
-	public @NonNull DomainType getEnumerationType() {
+	public @NonNull DomainClass getEnumerationType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
 			throw new IllegalStateException("No extension package registered to define Enumeration type"); //$NON-NLS-1$
@@ -87,7 +88,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
 			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainType type : extensionPackage.getOwnedType()) {
+				for (DomainClass type : extensionPackage.getOwnedType()) {
 					if ("Enumeration".equals(type.getName())) { //$NON-NLS-1$
 						enumerationType = type;
 						return type;
@@ -153,7 +154,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 	}
 
-	public @NonNull DomainType getMetaclassType() {
+	public @NonNull DomainClass getMetaclassType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
 			throw new IllegalStateException("No extension package registered to define Metaclass type"); //$NON-NLS-1$
@@ -163,7 +164,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
 			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainType type : extensionPackage.getOwnedType()) {
+				for (DomainClass type : extensionPackage.getOwnedType()) {
 					if ("Metaclass".equals(type.getName())) { //$NON-NLS-1$
 						metaclassType = type;
 						return type;

@@ -191,7 +191,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if ((object.getPrecondition().size() <= 0) && (object.getBodyExpression() == null) && (object.getPostcondition().size() <= 0)) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningClass();
 		org.eclipse.ocl.examples.pivot.Package modelPackage = modelType.getPackage();
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(modelType);
 		OperationContextDeclCS csContext = context.refreshElement(OperationContextDeclCS.class, CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS, object);
@@ -199,7 +199,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			refreshPathNamedElement(csContext, object, modelPackage);
 //			csContext.getNamespace().add(owningType);
 			csContext.setOwnedType(convertTypeRef(object));
-			org.eclipse.ocl.examples.pivot.Package owningPackage = object.getOwningType().getPackage();
+			org.eclipse.ocl.examples.pivot.Package owningPackage = object.getOwningClass().getPackage();
 			if (owningPackage != null) {
 				importPackage(owningPackage);
 			}
@@ -223,14 +223,14 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			if (classifierContext !=  null) {
 				contexts.add(classifierContext);
 			}
-			for (Operation operation : type.getOwnedOperation()) {
+			for (Operation operation : type.getOwnedOperations()) {
 				assert operation != null;
 				OperationContextDeclCS operationContext = context.visitDeclaration(OperationContextDeclCS.class, operation);
 				if (operationContext !=  null) {
 					contexts.add(operationContext);
 				}
 			}
-			for (Property property : type.getOwnedAttribute()) {
+			for (Property property : type.getOwnedProperties()) {
 				assert property != null;
 				PropertyContextDeclCS propertyContext = context.visitDeclaration(PropertyContextDeclCS.class, property);
 				if (propertyContext !=  null) {
@@ -264,7 +264,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if (object.getDefaultExpression() == null) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningType();
+		org.eclipse.ocl.examples.pivot.Class modelType = object.getOwningClass();
 		org.eclipse.ocl.examples.pivot.Package modelPackage = modelType.getPackage();
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope(modelType);
 		PropertyContextDeclCS csContext = context.refreshElement(PropertyContextDeclCS.class, CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS, object);

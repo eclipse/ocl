@@ -80,14 +80,6 @@ public class DomainReflectiveType extends ReflectiveType
 		};
 	}
 
-	public @NonNull List<? extends DomainOperation> getLocalOperations() {
-		return domainType.getLocalOperations();
-	}
-
-	public @NonNull List<? extends DomainProperty> getLocalProperties() {
-		return domainType.getLocalProperties();
-	}
-
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		return domainType.getSuperClasses();
 	}
@@ -104,12 +96,12 @@ public class DomainReflectiveType extends ReflectiveType
 		return domainType.getMetaTypeName();
 	}
 
-	public @NonNull List<? extends DomainProperty> getOwnedAttribute() {
-		return domainType.getLocalProperties();
+	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
+		return domainType.getOwnedOperations();
 	}
 
-	public @NonNull List<? extends DomainOperation> getOwnedOperation() {
-		return domainType.getLocalOperations();
+	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+		return domainType.getOwnedProperties();
 	}
 
 	public @NonNull DomainStandardLibrary getStandardLibrary() {

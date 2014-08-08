@@ -237,7 +237,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitIterateExp(@NonNull IterateExp object) {
 		Iteration referredIteration = object.getReferredIteration();
 		visit(referredIteration, object);
-		visit(referredIteration.getOwningType(), object.getSource());
+		visit(referredIteration.getOwningClass(), object.getSource());
 		visitAllTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
 		visitAllTypedElements(referredIteration.getOwnedAccumulator(), Collections.singletonList(object.getResult()));
 		visitAllTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
@@ -248,7 +248,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitIteratorExp(@NonNull IteratorExp object) {
 		Iteration referredIteration = object.getReferredIteration();
 		visit(referredIteration, object);
-		visit(referredIteration.getOwningType(), object.getSource());
+		visit(referredIteration.getOwningClass(), object.getSource());
 		visitAllTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
 		visitAllTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
 		return null;
@@ -279,7 +279,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitOperationCallExp(@NonNull OperationCallExp object) {
 		Operation referredOperation = object.getReferredOperation();
 		visit(referredOperation, object);
-		visit(referredOperation.getOwningType(), object.getSource());
+		visit(referredOperation.getOwningClass(), object.getSource());
 		visitAllTypedElements(referredOperation.getOwnedParameter(), object.getArgument());
 		return null;
 	}
@@ -291,7 +291,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			Property referredProperty = referredOppositeProperty.getOpposite();
 			if (referredProperty != null) {
 				visit(referredProperty, object);
-				visit(referredProperty.getOwningType(), object.getSource());
+				visit(referredProperty.getOwningClass(), object.getSource());
 			}
 		}
 		return null;
@@ -307,7 +307,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		Property referredProperty = object.getReferredProperty();
 		if (referredProperty != null) {
 			visit(referredProperty, object);
-			visit(referredProperty.getOwningType(), object.getSource());
+			visit(referredProperty.getOwningClass(), object.getSource());
 		}
 		return null;
 	}
@@ -347,7 +347,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	@Override
 	public @Nullable Object visitTupleType(@NonNull TupleType object) {
 		if (actual instanceof TupleType) {
-			visitAllTypedElements(object.getOwnedAttribute(), ((TupleType)actual).getOwnedAttribute());
+			visitAllTypedElements(object.getOwnedProperties(), ((TupleType)actual).getOwnedProperties());
 		}
 		return null;
 	}

@@ -598,7 +598,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		}
 		pivotElement.setInstanceClassName(instanceClassName);
 //		doSwitchAll(umlClass.getSuperClasses());
-		doSwitchAll(pivotElement.getOwnedOperation(), umlClassifier.getOperations(), null);
+		doSwitchAll(pivotElement.getOwnedOperations(), umlClassifier.getOperations(), null);
 		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> umlAttributes = umlClassifier.getAttributes();
 /*		converter.addProperties(umlAttributes, new UML2Pivot.Predicate<org.eclipse.uml2.uml.Property>()
 		{

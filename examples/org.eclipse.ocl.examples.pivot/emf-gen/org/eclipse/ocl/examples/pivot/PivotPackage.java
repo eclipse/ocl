@@ -1919,31 +1919,31 @@ public interface PivotPackage
 	int CLASS__NESTED_CLASSIFIER = TYPE_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_ATTRIBUTE = TYPE_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_BEHAVIOR = TYPE_FEATURE_COUNT + 9;
+	int CLASS__OWNED_BEHAVIOR = TYPE_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_OPERATION = TYPE_FEATURE_COUNT + 10;
+	int CLASS__OWNED_OPERATIONS = TYPE_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_PROPERTIES = TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -2216,15 +2216,6 @@ public interface PivotPackage
 	int ANY_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2234,13 +2225,22 @@ public interface PivotPackage
 	int ANY_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int ANY_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -2513,15 +2513,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2531,13 +2522,22 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int ASSOCIATION_CLASS__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -3719,15 +3719,6 @@ public interface PivotPackage
 	int DATA_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3737,13 +3728,22 @@ public interface PivotPackage
 	int DATA_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int DATA_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -4034,15 +4034,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE__NESTED_CLASSIFIER = DATA_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNED_ATTRIBUTE = DATA_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4052,13 +4043,22 @@ public interface PivotPackage
 	int COLLECTION_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__OWNED_OPERATION = DATA_TYPE__OWNED_OPERATION;
+	int COLLECTION_TYPE__OWNED_OPERATIONS = DATA_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -4376,15 +4376,6 @@ public interface PivotPackage
 	int BAG_TYPE__NESTED_CLASSIFIER = COLLECTION_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNED_ATTRIBUTE = COLLECTION_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4394,13 +4385,22 @@ public interface PivotPackage
 	int BAG_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__OWNED_OPERATION = COLLECTION_TYPE__OWNED_OPERATION;
+	int BAG_TYPE__OWNED_OPERATIONS = COLLECTION_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -4718,15 +4718,6 @@ public interface PivotPackage
 	int BEHAVIOR__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4736,13 +4727,22 @@ public interface PivotPackage
 	int BEHAVIOR__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int BEHAVIOR__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -7040,15 +7040,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7058,13 +7049,22 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int DYNAMIC_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -7355,15 +7355,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__NESTED_CLASSIFIER = DYNAMIC_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_ATTRIBUTE = DYNAMIC_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7373,13 +7364,22 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR = DYNAMIC_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__OWNED_OPERATION = DYNAMIC_TYPE__OWNED_OPERATION;
+	int DYNAMIC_BEHAVIOR__OWNED_OPERATIONS = DYNAMIC_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_PROPERTIES = DYNAMIC_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -8282,15 +8282,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8300,13 +8291,22 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int ELEMENT_EXTENSION__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -8759,15 +8759,6 @@ public interface PivotPackage
 	int ENUMERATION__NESTED_CLASSIFIER = DATA_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__OWNED_ATTRIBUTE = DATA_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8777,13 +8768,22 @@ public interface PivotPackage
 	int ENUMERATION__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION__OWNED_OPERATION = DATA_TYPE__OWNED_OPERATION;
+	int ENUMERATION__OWNED_OPERATIONS = DATA_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -11226,15 +11226,6 @@ public interface PivotPackage
 	int INVALID_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11244,13 +11235,22 @@ public interface PivotPackage
 	int INVALID_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int INVALID_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -11946,22 +11946,13 @@ public interface PivotPackage
 	int OPERATION__BODY_EXPRESSION = FEATURE_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__CLASS = FEATURE_FEATURE_COUNT + 7;
-
-	/**
 	 * The feature id for the '<em><b>Is Invalidating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IS_INVALIDATING = FEATURE_FEATURE_COUNT + 8;
+	int OPERATION__IS_INVALIDATING = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
@@ -11970,7 +11961,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__IS_VALIDATING = FEATURE_FEATURE_COUNT + 9;
+	int OPERATION__IS_VALIDATING = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
@@ -11979,16 +11970,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 10;
+	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNING_TYPE = FEATURE_FEATURE_COUNT + 11;
+	int OPERATION__OWNING_CLASS = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' containment reference list.
@@ -11997,7 +11988,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__POSTCONDITION = FEATURE_FEATURE_COUNT + 12;
+	int OPERATION__POSTCONDITION = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -12006,7 +11997,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 13;
+	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Precondition</b></em>' containment reference list.
@@ -12015,7 +12006,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__PRECONDITION = FEATURE_FEATURE_COUNT + 14;
+	int OPERATION__PRECONDITION = FEATURE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
@@ -12024,7 +12015,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 15;
+	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Operation</b></em>' reference list.
@@ -12033,7 +12024,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__REDEFINED_OPERATION = FEATURE_FEATURE_COUNT + 16;
+	int OPERATION__REDEFINED_OPERATION = FEATURE_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
@@ -12042,7 +12033,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 17;
+	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -12324,15 +12315,6 @@ public interface PivotPackage
 	int ITERATION__BODY_EXPRESSION = OPERATION__BODY_EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__CLASS = OPERATION__CLASS;
-
-	/**
 	 * The feature id for the '<em><b>Is Invalidating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12360,13 +12342,13 @@ public interface PivotPackage
 	int ITERATION__OWNED_PARAMETER = OPERATION__OWNED_PARAMETER;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION__OWNING_TYPE = OPERATION__OWNING_TYPE;
+	int ITERATION__OWNING_CLASS = OPERATION__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' containment reference list.
@@ -13197,15 +13179,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE__NESTED_CLASSIFIER = DATA_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__OWNED_ATTRIBUTE = DATA_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13215,13 +13188,22 @@ public interface PivotPackage
 	int LAMBDA_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE__OWNED_OPERATION = DATA_TYPE__OWNED_OPERATION;
+	int LAMBDA_TYPE__OWNED_OPERATIONS = DATA_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -14367,15 +14349,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14385,13 +14358,22 @@ public interface PivotPackage
 	int MESSAGE_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int MESSAGE_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -14682,15 +14664,6 @@ public interface PivotPackage
 	int METACLASS__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14700,13 +14673,22 @@ public interface PivotPackage
 	int METACLASS__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METACLASS__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int METACLASS__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -15852,15 +15834,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__NESTED_CLASSIFIER = COLLECTION_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNED_ATTRIBUTE = COLLECTION_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15870,13 +15843,22 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__OWNED_OPERATION = COLLECTION_TYPE__OWNED_OPERATION;
+	int ORDERED_SET_TYPE__OWNED_OPERATIONS = COLLECTION_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -16776,15 +16758,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__NESTED_CLASSIFIER = DATA_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNED_ATTRIBUTE = DATA_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16794,13 +16767,22 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__OWNED_OPERATION = DATA_TYPE__OWNED_OPERATION;
+	int PRIMITIVE_TYPE__OWNED_OPERATIONS = DATA_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -17406,22 +17388,13 @@ public interface PivotPackage
 	int PROPERTY__ASSOCIATION_CLASS = FEATURE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__CLASS = FEATURE_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 4;
+	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Default Expression</b></em>' containment reference.
@@ -17430,7 +17403,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__DEFAULT_EXPRESSION = FEATURE_FEATURE_COUNT + 5;
+	int PROPERTY__DEFAULT_EXPRESSION = FEATURE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -17439,7 +17412,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 6;
+	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -17448,7 +17421,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 7;
+	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -17457,7 +17430,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 8;
+	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
@@ -17466,7 +17439,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 9;
+	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -17475,7 +17448,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 10;
+	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
@@ -17484,7 +17457,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 11;
+	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
@@ -17493,7 +17466,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 12;
+	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
@@ -17502,7 +17475,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 13;
+	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
@@ -17511,7 +17484,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 14;
+	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Keys</b></em>' reference list.
@@ -17520,7 +17493,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 15;
+	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Opposite</b></em>' reference.
@@ -17529,16 +17502,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 16;
+	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 15;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNING_TYPE = FEATURE_FEATURE_COUNT + 17;
+	int PROPERTY__OWNING_CLASS = FEATURE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Property</b></em>' reference list.
@@ -17547,7 +17520,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__REDEFINED_PROPERTY = FEATURE_FEATURE_COUNT + 18;
+	int PROPERTY__REDEFINED_PROPERTY = FEATURE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
@@ -17556,7 +17529,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__REFERRED_PROPERTY = FEATURE_FEATURE_COUNT + 19;
+	int PROPERTY__REFERRED_PROPERTY = FEATURE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Subsetted Property</b></em>' reference list.
@@ -17565,7 +17538,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__SUBSETTED_PROPERTY = FEATURE_FEATURE_COUNT + 20;
+	int PROPERTY__SUBSETTED_PROPERTY = FEATURE_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -17574,7 +17547,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 21;
+	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 20;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -18594,15 +18567,6 @@ public interface PivotPackage
 	int SELF_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18612,13 +18576,22 @@ public interface PivotPackage
 	int SELF_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int SELF_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -18990,15 +18963,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__NESTED_CLASSIFIER = COLLECTION_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNED_ATTRIBUTE = COLLECTION_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19008,13 +18972,22 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__OWNED_OPERATION = COLLECTION_TYPE__OWNED_OPERATION;
+	int SEQUENCE_TYPE__OWNED_OPERATIONS = COLLECTION_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -19332,15 +19305,6 @@ public interface PivotPackage
 	int SET_TYPE__NESTED_CLASSIFIER = COLLECTION_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNED_ATTRIBUTE = COLLECTION_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19350,13 +19314,22 @@ public interface PivotPackage
 	int SET_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__OWNED_OPERATION = COLLECTION_TYPE__OWNED_OPERATION;
+	int SET_TYPE__OWNED_OPERATIONS = COLLECTION_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -19674,15 +19647,6 @@ public interface PivotPackage
 	int SIGNAL__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19692,13 +19656,22 @@ public interface PivotPackage
 	int SIGNAL__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int SIGNAL__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -20205,15 +20178,6 @@ public interface PivotPackage
 	int STATE_MACHINE__NESTED_CLASSIFIER = BEHAVIOR__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__OWNED_ATTRIBUTE = BEHAVIOR__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20223,13 +20187,22 @@ public interface PivotPackage
 	int STATE_MACHINE__OWNED_BEHAVIOR = BEHAVIOR__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__OWNED_OPERATION = BEHAVIOR__OWNED_OPERATION;
+	int STATE_MACHINE__OWNED_OPERATIONS = BEHAVIOR__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__OWNED_PROPERTIES = BEHAVIOR__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -20547,15 +20520,6 @@ public interface PivotPackage
 	int STEREOTYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20565,13 +20529,22 @@ public interface PivotPackage
 	int STEREOTYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int STEREOTYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -22095,15 +22068,6 @@ public interface PivotPackage
 	int TUPLE_TYPE__NESTED_CLASSIFIER = DATA_TYPE__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNED_ATTRIBUTE = DATA_TYPE__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22113,13 +22077,22 @@ public interface PivotPackage
 	int TUPLE_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__OWNED_OPERATION = DATA_TYPE__OWNED_OPERATION;
+	int TUPLE_TYPE__OWNED_OPERATIONS = DATA_TYPE__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -22943,15 +22916,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22961,13 +22925,22 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int UNSPECIFIED_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -23699,15 +23672,6 @@ public interface PivotPackage
 	int VOID_TYPE__NESTED_CLASSIFIER = CLASS__NESTED_CLASSIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
 	 * The feature id for the '<em><b>Owned Behavior</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23717,13 +23681,22 @@ public interface PivotPackage
 	int VOID_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
 
 	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+	int VOID_TYPE__OWNED_OPERATIONS = CLASS__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -26815,15 +26788,26 @@ public interface PivotPackage
 	EReference getClass_OwnedBehavior();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperation <em>Owned Operation</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Operation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedOperation()
+	 * @return the meta object for the containment reference list '<em>Owned Operations</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedOperations()
 	 * @see #getClass_()
 	 * @generated
 	 */
-	EReference getClass_OwnedOperation();
+	EReference getClass_OwnedOperations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedProperties <em>Owned Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Properties</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedProperties()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_OwnedProperties();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}'.
@@ -26868,17 +26852,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getClass_NestedClassifier();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttribute <em>Owned Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Attribute</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedAttribute()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_OwnedAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Type <em>Type</em>}'.
@@ -27631,15 +27604,15 @@ public interface PivotPackage
 	EReference getProperty_Opposite();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Property#getOwningType <em>Owning Type</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Property#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Owning Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningType()
+	 * @return the meta object for the container reference '<em>Owning Class</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningClass()
 	 * @see #getProperty()
 	 * @generated
 	 */
-	EReference getProperty_OwningType();
+	EReference getProperty_OwningClass();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Property#isImplicit <em>Implicit</em>}'.
@@ -27783,17 +27756,6 @@ public interface PivotPackage
 	EOperation getProperty__ValidateCompatibleDefaultExpression__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Property#getClass_()
-	 * @see #getProperty()
-	 * @generated
-	 */
-	EReference getProperty_Class();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27910,15 +27872,15 @@ public interface PivotPackage
 	EReference getOperation_OwnedParameter();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Owning Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningType()
+	 * @return the meta object for the container reference '<em>Owning Class</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningClass()
 	 * @see #getOperation()
 	 * @generated
 	 */
-	EReference getOperation_OwningType();
+	EReference getOperation_OwningClass();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Operation#getPrecondition <em>Precondition</em>}'.
@@ -27996,17 +27958,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getOperation_RedefinedOperation();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getClass_()
-	 * @see #getOperation()
-	 * @generated
-	 */
-	EReference getOperation_Class();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Operation#validateCompatibleReturn(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Return</em>}' operation.
@@ -31190,12 +31141,20 @@ public interface PivotPackage
 		EReference CLASS__OWNED_BEHAVIOR = eINSTANCE.getClass_OwnedBehavior();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Operation</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS__OWNED_OPERATION = eINSTANCE.getClass_OwnedOperation();
+		EReference CLASS__OWNED_OPERATIONS = eINSTANCE.getClass_OwnedOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__OWNED_PROPERTIES = eINSTANCE.getClass_OwnedProperties();
 
 		/**
 		 * The meta object literal for the '<em><b>Package</b></em>' container reference feature.
@@ -31228,14 +31187,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference CLASS__NESTED_CLASSIFIER = eINSTANCE.getClass_NestedClassifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Attribute</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__OWNED_ATTRIBUTE = eINSTANCE.getClass_OwnedAttribute();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl <em>Type</em>}' class.
@@ -31826,12 +31777,12 @@ public interface PivotPackage
 		EReference PROPERTY__OPPOSITE = eINSTANCE.getProperty_Opposite();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY__OWNING_TYPE = eINSTANCE.getProperty_OwningType();
+		EReference PROPERTY__OWNING_CLASS = eINSTANCE.getProperty_OwningClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Implicit</b></em>' attribute feature.
@@ -31938,14 +31889,6 @@ public interface PivotPackage
 		EOperation PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getProperty__ValidateCompatibleDefaultExpression__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Class</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY__CLASS = eINSTANCE.getProperty_Class();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -32040,12 +31983,12 @@ public interface PivotPackage
 		EReference OPERATION__OWNED_PARAMETER = eINSTANCE.getOperation_OwnedParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION__OWNING_TYPE = eINSTANCE.getOperation_OwningType();
+		EReference OPERATION__OWNING_CLASS = eINSTANCE.getOperation_OwningClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Precondition</b></em>' containment reference list feature.
@@ -32102,14 +32045,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference OPERATION__REDEFINED_OPERATION = eINSTANCE.getOperation_RedefinedOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Class</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION__CLASS = eINSTANCE.getOperation_Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Compatible Return</b></em>' operation.

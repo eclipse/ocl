@@ -16,6 +16,10 @@ import org.eclipse.jdt.annotation.NonNull;
 
 public interface DomainClass extends DomainType
 {
+	@NonNull List<? extends DomainOperation> getOwnedOperations();
+
+	@NonNull List<? extends DomainProperty> getOwnedProperties();
+
 	@NonNull List<? extends DomainClass> getSuperClasses();
 
 	/**

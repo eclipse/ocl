@@ -97,8 +97,8 @@ public class TupleTypeManager
 	}
 
     public @Nullable Type getCommonType(@NonNull TupleType leftType, @NonNull TupleType rightType, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
-		List<Property> leftProperties = leftType.getOwnedAttribute();
-		List<Property> rightProperties = rightType.getOwnedAttribute();
+		List<Property> leftProperties = leftType.getOwnedProperties();
+		List<Property> rightProperties = rightType.getOwnedProperties();
 		int iSize = leftProperties.size();
 		if (iSize != rightProperties.size()) {
 			return null;
@@ -150,7 +150,7 @@ public class TupleTypeManager
 				if (tupleType == null) {
 					tupleType = new TupleTypeImpl(tupleTypeId);
 					TuplePartId[] partIds = tupleTypeId.getPartIds();
-					List<Property> ownedAttributes = tupleType.getOwnedAttribute();
+					List<Property> ownedAttributes = tupleType.getOwnedProperties();
 					for (TuplePartId partId : partIds) {
 						DomainType partType = idResolver.getType(partId.getTypeId(), tupleType);
 						org.eclipse.ocl.examples.pivot.Class partType2 = metaModelManager.getType(partType);
@@ -233,7 +233,7 @@ public class TupleTypeManager
 //		return getTupleType(type.getName(), type.getOwnedAttribute(), usageBindings);
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
-		List<Property> parts = specializedTupleType.getOwnedAttribute();
+		List<Property> parts = specializedTupleType.getOwnedProperties();
 		for (Property part : parts) {
 			if (part != null) {
 				org.eclipse.ocl.examples.pivot.Class propertyType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(part);	// FIXME cast
@@ -263,7 +263,7 @@ public class TupleTypeManager
 			return specializedTupleType;
 		}
 		else {
-			return getTupleType(DomainUtil.getSafeName(type), type.getOwnedAttribute(), usageBindings);
+			return getTupleType(DomainUtil.getSafeName(type), type.getOwnedProperties(), usageBindings);
 		}
 	}
 }
