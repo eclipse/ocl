@@ -86,7 +86,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				}
 			}
 			else {
-				for (DomainType asType : userPackage.getOwnedType()) {
+				for (DomainType asType : userPackage.getOwnedClasses()) {
 					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
 						if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
 							roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
@@ -270,7 +270,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	@Override
 	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
-			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getPackage());
+			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getOwningPackage());
 		}
 		String name = id.getName();
 		DomainPackage knownPackage = roots2package.get(name);

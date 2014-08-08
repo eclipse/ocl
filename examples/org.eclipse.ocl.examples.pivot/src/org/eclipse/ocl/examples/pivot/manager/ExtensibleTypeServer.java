@@ -34,10 +34,10 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 	 */
 	private @Nullable org.eclipse.ocl.examples.pivot.Class representativeType = null;
 	
-	protected ExtensibleTypeServer(@NonNull PackageServer packageServer, @NonNull DomainType domainType) {
+	protected ExtensibleTypeServer(@NonNull PackageServer packageServer, @NonNull DomainClass domainType) {
 		super(packageServer, domainType);
 		if (!(domainType instanceof PrimitiveType)) {		// FIXME why are primitives in mismatched packages? use testLoad_Internationalized_profile_uml 
-			packageServer.assertSamePackage(domainType.getPackage());
+			packageServer.assertSamePackage(domainType.getOwningPackage());
 		}
 	}
 

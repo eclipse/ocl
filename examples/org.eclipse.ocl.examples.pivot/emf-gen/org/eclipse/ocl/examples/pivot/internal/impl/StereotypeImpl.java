@@ -133,10 +133,10 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__PACKAGE:
+			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtensionOfs()).basicAdd(otherEnd, msgs);
 		}
@@ -183,8 +183,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return ((InternalEList<?>)getExtensionOfs()).basicRemove(otherEnd, msgs);
 		}
@@ -244,8 +244,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getOwnedOperations();
 			case PivotPackage.STEREOTYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
@@ -340,8 +340,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -428,8 +428,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -493,8 +493,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.STEREOTYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:

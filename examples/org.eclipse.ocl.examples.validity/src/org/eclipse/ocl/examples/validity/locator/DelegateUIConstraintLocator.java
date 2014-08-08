@@ -95,7 +95,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			if (contextType instanceof Metaclass) {
 				contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
 			}
-			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getPackage();
+			org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getOwningPackage();
 			IPath documentPath = XtextConsolePlugin.getInstance().getStateLocation().append("debug" + EcoreUtil.generateUUID() + ".ocl");
 			IFileStore documentStore = EFS.getLocalFileSystem().getStore(documentPath);
 			OutputStream documentStream = documentStore.openOutputStream(0, monitor);

@@ -95,7 +95,7 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedProperties <em>Owned Properties</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
  * </p>
@@ -470,10 +470,9 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public org.eclipse.ocl.examples.pivot.Package getPackage()
+	public org.eclipse.ocl.examples.pivot.Package getOwningPackage()
 	{
-		if (eContainerFeatureID() != PivotPackage.CLASS__PACKAGE) return null;
+		if (eContainerFeatureID() != PivotPackage.CLASS__OWNING_PACKAGE) return null;
 		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
 	}
 
@@ -482,9 +481,9 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPackage(org.eclipse.ocl.examples.pivot.Package newPackage, NotificationChain msgs)
+	public NotificationChain basicSetOwningPackage(org.eclipse.ocl.examples.pivot.Package newOwningPackage, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newPackage, PivotPackage.CLASS__PACKAGE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningPackage, PivotPackage.CLASS__OWNING_PACKAGE, msgs);
 		return msgs;
 	}
 
@@ -493,22 +492,22 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPackage(org.eclipse.ocl.examples.pivot.Package newPackage)
+	public void setOwningPackage(org.eclipse.ocl.examples.pivot.Package newOwningPackage)
 	{
-		if (newPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CLASS__PACKAGE && newPackage != null))
+		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CLASS__OWNING_PACKAGE && newOwningPackage != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newPackage))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newPackage != null)
-				msgs = ((InternalEObject)newPackage).eInverseAdd(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
-			msgs = basicSetPackage(newPackage, msgs);
+			if (newOwningPackage != null)
+				msgs = ((InternalEObject)newOwningPackage).eInverseAdd(this, PivotPackage.PACKAGE__OWNED_CLASSES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			msgs = basicSetOwningPackage(newOwningPackage, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__PACKAGE, newPackage, newPackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__OWNING_PACKAGE, newOwningPackage, newOwningPackage));
 	}
 
 	/**
@@ -548,10 +547,10 @@ public class ClassImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__PACKAGE:
+			case PivotPackage.CLASS__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -596,8 +595,8 @@ public class ClassImpl
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.CLASS__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -614,8 +613,8 @@ public class ClassImpl
 		{
 			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.CLASS__PACKAGE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			case PivotPackage.CLASS__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_CLASSES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -817,8 +816,8 @@ public class ClassImpl
 				return getOwnedOperations();
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.CLASS__PACKAGE:
-				return getPackage();
+			case PivotPackage.CLASS__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.CLASS__SUPER_CLASSES:
 				return getSuperClasses();
 		}
@@ -910,8 +909,8 @@ public class ClassImpl
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.CLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.CLASS__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.CLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -993,8 +992,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.CLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.CLASS__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.CLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -1054,8 +1053,8 @@ public class ClassImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.CLASS__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.CLASS__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.CLASS__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 		}

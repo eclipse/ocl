@@ -63,7 +63,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAOH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAOX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Type-package" name="package" type="Core-Basic-Package" association="Core-Basic-A_ownedType_package">
+        <ownedAttribute xmi:id="Core-Basic-Type-package" name="owningPackage" type="Core-Basic-Package" association="Core-Basic-A_ownedType_package">
           <ownedComment xmi:id="Core-Basic-Type-package-_ownedComment.0" annotatedElement="Core-Basic-Type-package">
             <body>Specifies the owning package of this classifier, if any.</body>
           </ownedComment>
@@ -229,7 +229,7 @@
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobATn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Package-ownedType" name="ownedType" type="Core-Basic-Class" aggregation="composite" association="Core-Basic-A_ownedType_package">
+        <ownedAttribute xmi:id="Core-Basic-Package-ownedType" name="ownedClasses" type="Core-Basic-Class" aggregation="composite" association="Core-Basic-A_ownedType_package">
           <ownedComment xmi:id="Core-Basic-Package-ownedType-_ownedComment.0" annotatedElement="Core-Basic-Package-ownedType">
             <body>The set of contained types.</body>
           </ownedComment>
@@ -309,7 +309,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedLiteral_enumeration" name="A_ownedLiteral_enumeration" memberEnd="Core-Basic-Enumeration-ownedLiteral Core-Basic-EnumerationLiteral-enumeration"/>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_nestedPackage_nestingPackage" name="A_nestedPackage_nestingPackage" memberEnd="Core-Basic-Package-nestedPackage Core-Basic-Package-nestingPackage"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedType_package" name="A_ownedType_package" memberEnd="Core-Basic-Package-ownedType Core-Basic-Type-package"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedType_package" name="A_ownedClasses_owningPackage" memberEnd="Core-Basic-Package-ownedType Core-Basic-Type-package"/>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_annotatedElement_comment" name="A_annotatedElement_comment" memberEnd="Core-Basic-Comment-annotatedElement Core-Basic-A_annotatedElement_comment-comment"/>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedComment_owningElement" name="A_ownedComment_owningElement" memberEnd="Core-Basic-Element-ownedComment Core-Basic-A_ownedComment_owningElement-owningElement"/>
     </packagedElement>

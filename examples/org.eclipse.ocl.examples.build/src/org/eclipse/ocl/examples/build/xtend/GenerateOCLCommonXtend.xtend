@@ -111,9 +111,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var Package orphanPackage = pkg.getOrphanPackage();
 		'''
 			protected void installCollectionTypes() {
-				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
+				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				«IF orphanPackage != null»
-				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
+				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				«ENDIF»
 				CollectionType type;
 				List<Class> superClasses;
@@ -146,7 +146,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String defineEnumerations(Package pkg) {
 		'''
 			protected void installEnumerations() {
-				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
+				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				Enumeration type;
 				List<EnumerationLiteral> enumerationLiterals;
 				«FOR enumeration : pkg.getRootPackage().getSortedEnumerations()»
@@ -239,7 +239,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«ENDFOR»
 			
 			protected void installLambdaTypes() {
-				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
+				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				LambdaType type;
 				List<Class> superClasses;
 				«FOR type : allLambdaTypes»
@@ -260,9 +260,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
 			protected void installMetaclasses() {
-				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
+				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				«IF orphanPackage != null»
-					final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
+					final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				«ENDIF»
 				Metaclass<?> type;
 				List<Class> superClasses;
@@ -284,7 +284,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allOclTypes = pkg.getSortedOclTypes();
 		'''
 			protected void installOclTypes() {
-				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
+				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				Class type;
 				List<Class> superClasses;
 				«FOR type : allOclTypes»
@@ -402,7 +402,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allTypes = pkg.getRootPackage().getSortedPrimitiveTypes();
 		'''
 			protected void installPrimitiveTypes() {
-				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedType();
+				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				PrimitiveType type;
 				«FOR type : allTypes»
 					«var superClasses = type.getSuperclassesInPackage()»
@@ -512,7 +512,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
 			protected void installTupleTypes() {
-				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedType();
+				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				TupleType type;
 				List<Class> superClasses;
 				«FOR type : allTupleTypes»

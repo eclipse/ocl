@@ -177,7 +177,7 @@ public abstract class ReflectiveType extends AbstractInheritance
 	}
 
 	public @NonNull TypeId getTypeId() {
-		return getPackage().getPackageId().getClassId(name, getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
+		return getOwningPackage().getPackageId().getClassId(name, getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
 	}
 
 	protected synchronized void initialize() {

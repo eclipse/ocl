@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
@@ -74,10 +75,10 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(domainPackage.getName());
 		pivotPackage.setURI(domainPackage.getURI());
-		for (DomainType domainType : domainPackage.getOwnedType()) {
+		for (DomainType domainType : domainPackage.getOwnedClasses()) {
 			if (domainType != null) {
 				org.eclipse.ocl.examples.pivot.Class pivotType = createType(domainType);
-				pivotPackage.getOwnedType().add(pivotType);
+				pivotPackage.getOwnedClasses().add(pivotType);
 			}
 		}
 		return pivotPackage;
@@ -131,7 +132,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		if (packageMap == null) {
 			packageMap = new HashMap<DomainPackage, org.eclipse.ocl.examples.pivot.Package>();
 		}		
-		DomainPackage domainPackage = typeType.getPackage();
+		DomainPackage domainPackage = ((DomainClass)typeType).getOwningPackage();
 		DomainPackage pivotPackage = packageMap.get(domainPackage);
 		if (pivotPackage == null) {
 			String nsURI = domainPackage.getURI();

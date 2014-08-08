@@ -107,7 +107,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		if (collType != null) {
 			EObject eContainer = collType.eContainer();
 			if (eContainer instanceof Library) {
-				for (org.eclipse.ocl.examples.pivot.Class type : ((Library)eContainer).getOwnedType()) {
+				for (org.eclipse.ocl.examples.pivot.Class type : ((Library)eContainer).getOwnedClasses()) {
 					if ((type instanceof CollectionType) && (type.getName().equals(name))) {
 						return (CollectionType)type;
 					}
@@ -137,7 +137,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 
 	protected abstract String generateMetamodel(@NonNull Root pivotModel);
 	
-	protected String getEcoreLiteral(@NonNull Type elem) {
+	protected String getEcoreLiteral(@NonNull org.eclipse.ocl.examples.pivot.Class elem) {
 		return NameQueries.getEcoreLiteral(elem);
 	}
 

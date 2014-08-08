@@ -253,7 +253,7 @@ public class EnvironmentView
 		Attribution attribution = PivotUtil.getAttribution(element);
 		attribution.computeLookup(element, this, scopeView);
 		TemplateableElement type2 = type.getUnspecializedElement();
-		element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getPackage();
+		element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getOwningPackage();
 		if (element != null) {
 			attribution = PivotUtil.getAttribution(element);
 			attribution.computeLookup(element, this, scopeView);
@@ -267,7 +267,7 @@ public class EnvironmentView
 			}
 		}
 		else {
-			element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getPackage();
+			element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getOwningPackage();
 			if (element != null) {
 				attribution = PivotUtil.getAttribution(element);
 				attribution.computeLookup(element, this, scopeView);

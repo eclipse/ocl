@@ -186,7 +186,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 			org.eclipse.ocl.examples.pivot.Class contextClassifier = getContextClassifier();
 			
 			if (contextClassifier != null) {
-				setContextPackage(contextClassifier.getPackage());
+				setContextPackage(contextClassifier.getOwningPackage());
 			}
 		}
 	}

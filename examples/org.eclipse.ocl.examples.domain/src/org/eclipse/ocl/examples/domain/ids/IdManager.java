@@ -183,7 +183,7 @@ public final class IdManager
 	public static @NonNull ClassId getClassId(@NonNull DomainClass aType) {
 		String name = aType.getName();
 		assert name != null;
-		DomainPackage parentPackage = aType.getPackage();
+		DomainPackage parentPackage = aType.getOwningPackage();
 		if (parentPackage != null) {
 			DomainTypeParameters typeParameters = aType.getTypeParameters();
 			PackageId packageId = parentPackage.getPackageId();
@@ -207,7 +207,7 @@ public final class IdManager
 	public static @NonNull DataTypeId getDataTypeId(@NonNull DomainClass aType) {
 		String name = aType.getName();
 		assert name != null;
-		DomainPackage parentPackage = aType.getPackage();
+		DomainPackage parentPackage = aType.getOwningPackage();
 		if (parentPackage != null) {
 			DomainTypeParameters typeParameters = aType.getTypeParameters();
 			PackageId packageId = parentPackage.getPackageId();
@@ -224,7 +224,7 @@ public final class IdManager
 	public static @NonNull EnumerationId getEnumerationId(@NonNull DomainEnumeration anEnumeration) {
 		String name = anEnumeration.getName();
 		assert name != null;
-		DomainPackage parentPackage = anEnumeration.getPackage();
+		DomainPackage parentPackage = anEnumeration.getOwningPackage();
 		assert parentPackage != null;
 		return parentPackage.getPackageId().getEnumerationId(name);
 	}

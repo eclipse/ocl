@@ -104,9 +104,9 @@ public class CompleteOCLSplitter
 
 		@Override
 		public EObject caseClass(org.eclipse.ocl.examples.pivot.Class object) {
-			org.eclipse.ocl.examples.pivot.Package parent = object.getPackage();
+			org.eclipse.ocl.examples.pivot.Package parent = object.getOwningPackage();
 			org.eclipse.ocl.examples.pivot.Package separateParent = getSeparate(parent);
-			List<org.eclipse.ocl.examples.pivot.Class> separateSiblings = separateParent.getOwnedType();
+			List<org.eclipse.ocl.examples.pivot.Class> separateSiblings = separateParent.getOwnedClasses();
 			return cloneNamedElement(separateSiblings, object);
 		}
 

@@ -54,7 +54,7 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 			if (!environmentView.hasFinalResult()) {
 				Type userType = type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() : type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx
 				if (userType instanceof org.eclipse.ocl.examples.pivot.Class) {
-					Package contextPackage = ((org.eclipse.ocl.examples.pivot.Class)userType).getPackage();
+					Package contextPackage = ((org.eclipse.ocl.examples.pivot.Class)userType).getOwningPackage();
 					if (contextPackage != null) {
 						if (targetExpression.eContainer() == null) {
 							environmentView.addRootPackages();

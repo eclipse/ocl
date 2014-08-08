@@ -44,7 +44,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 
 	@Override
 	protected @NonNull Iterable<? extends DomainType> getDomainTypes() {
-		return DomainUtil.nonNullPivot(domainPackage.getOwnedType());
+		return DomainUtil.nonNullPivot(domainPackage.getOwnedClasses());
 	}
 
 	public List<? extends DomainPackage> getOwnedPackages() {

@@ -266,8 +266,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return getOwnedOperations();
 			case PivotPackage.LAMBDA_TYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.LAMBDA_TYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
@@ -373,8 +373,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.LAMBDA_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -473,8 +473,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.LAMBDA_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -550,8 +550,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.LAMBDA_TYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.LAMBDA_TYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:

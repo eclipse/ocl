@@ -296,10 +296,10 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -348,8 +348,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return basicSetBase(null, msgs);
 		}
@@ -368,8 +368,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 		{
 			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_CLASSES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.ELEMENT__EXTENSION, Element.class, msgs);
 		}
@@ -429,8 +429,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return getOwnedOperations();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
-				return getPackage();
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
@@ -532,8 +532,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -628,8 +628,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -702,8 +702,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:

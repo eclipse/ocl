@@ -186,7 +186,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//	Find expected AS elements
 		//
 		ParametersId emptyParametersId = IdManager.getParametersId();
-		org.eclipse.ocl.examples.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedType(), PivotPackage.Literals.ELEMENT.getName()));
+		org.eclipse.ocl.examples.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()));
 		TypeServer asElementTypeServer = metaModelManager.getTypeServer(asElementType);
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
 		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementTypeServer.getMemberOperation(envOperationId));
@@ -296,7 +296,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		org.eclipse.ocl.examples.pivot.Class asVisitorClass = PivotUtil.createClass(className);
 		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
 		org.eclipse.ocl.examples.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
-		asVisitorPackage.getOwnedType().add(asVisitorClass);
+		asVisitorPackage.getOwnedClasses().add(asVisitorClass);
 		Root asVisitorRoot = PivotUtil.createRoot(nsURI + ".java");
 		asVisitorRoot.getOwnedPackages().add(asVisitorPackage);
 		metaModelManager.installRoot(asVisitorRoot);
@@ -358,10 +358,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
 			orphanage.getOwnedPackages().add(asPackage);
 		}
-		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.getNamedElement(asPackage.getOwnedType(), className);
+		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.getNamedElement(asPackage.getOwnedClasses(), className);
 		if (asType == null) {
 			asType = PivotUtil.createClass(className);
-			asPackage.getOwnedType().add(asType);
+			asPackage.getOwnedClasses().add(asType);
 		}
 		Property asChildProperty = PivotUtil.createProperty(name, asType);
 		asChildProperty.setImplementation(NativeProperty.INSTANCE);
@@ -376,7 +376,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 
 	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedType()) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
 					List<Parameter> asParameters = envOperation.getOwnedParameter();

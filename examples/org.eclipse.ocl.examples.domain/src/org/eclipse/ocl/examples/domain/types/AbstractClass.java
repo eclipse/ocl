@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
@@ -45,6 +46,10 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	public @NonNull List<? extends DomainProperty> getOwnedProperties() {
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
+
+	public DomainPackage getOwningPackage() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 

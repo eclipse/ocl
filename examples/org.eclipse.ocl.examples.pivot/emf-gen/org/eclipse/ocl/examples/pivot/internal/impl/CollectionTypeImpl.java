@@ -272,8 +272,8 @@ public class CollectionTypeImpl
 				return getOwnedOperations();
 			case PivotPackage.COLLECTION_TYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.COLLECTION_TYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_CLASS:
@@ -377,8 +377,8 @@ public class CollectionTypeImpl
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.COLLECTION_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -475,8 +475,8 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.COLLECTION_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -551,8 +551,8 @@ public class CollectionTypeImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.COLLECTION_TYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.COLLECTION_TYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_CLASS:

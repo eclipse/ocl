@@ -1928,13 +1928,13 @@ public interface PivotPackage
 	int CLASS__OWNED_PROPERTIES = TYPE_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__PACKAGE = TYPE_FEATURE_COUNT + 12;
+	int CLASS__OWNING_PACKAGE = TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -2225,13 +2225,13 @@ public interface PivotPackage
 	int ANY_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__PACKAGE = CLASS__PACKAGE;
+	int ANY_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -2522,13 +2522,13 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS__PACKAGE = CLASS__PACKAGE;
+	int ASSOCIATION_CLASS__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -3728,13 +3728,13 @@ public interface PivotPackage
 	int DATA_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__PACKAGE = CLASS__PACKAGE;
+	int DATA_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -4043,13 +4043,13 @@ public interface PivotPackage
 	int COLLECTION_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
+	int COLLECTION_TYPE__OWNING_PACKAGE = DATA_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -4385,13 +4385,13 @@ public interface PivotPackage
 	int BAG_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
+	int BAG_TYPE__OWNING_PACKAGE = COLLECTION_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -4727,13 +4727,13 @@ public interface PivotPackage
 	int BEHAVIOR__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__PACKAGE = CLASS__PACKAGE;
+	int BEHAVIOR__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -7049,13 +7049,13 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_TYPE__PACKAGE = CLASS__PACKAGE;
+	int DYNAMIC_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -7364,13 +7364,13 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__OWNED_PROPERTIES = DYNAMIC_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__PACKAGE = DYNAMIC_TYPE__PACKAGE;
+	int DYNAMIC_BEHAVIOR__OWNING_PACKAGE = DYNAMIC_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -8291,13 +8291,13 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__PACKAGE = CLASS__PACKAGE;
+	int ELEMENT_EXTENSION__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -8768,13 +8768,13 @@ public interface PivotPackage
 	int ENUMERATION__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION__PACKAGE = DATA_TYPE__PACKAGE;
+	int ENUMERATION__OWNING_PACKAGE = DATA_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -11235,13 +11235,13 @@ public interface PivotPackage
 	int INVALID_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__PACKAGE = CLASS__PACKAGE;
+	int INVALID_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -13188,13 +13188,13 @@ public interface PivotPackage
 	int LAMBDA_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
+	int LAMBDA_TYPE__OWNING_PACKAGE = DATA_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -13620,13 +13620,22 @@ public interface PivotPackage
 	int PACKAGE__NS_PREFIX = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_CLASSES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_INSTANCES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
+	int PACKAGE__OWNED_INSTANCES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -13635,16 +13644,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_TYPE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PACKAGE__OWNED_PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -13863,6 +13863,15 @@ public interface PivotPackage
 	int LIBRARY__NS_PREFIX = PACKAGE__NS_PREFIX;
 
 	/**
+	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_CLASSES = PACKAGE__OWNED_CLASSES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13879,15 +13888,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__OWNED_PACKAGES = PACKAGE__OWNED_PACKAGES;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__OWNED_TYPE = PACKAGE__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -14358,13 +14358,13 @@ public interface PivotPackage
 	int MESSAGE_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__PACKAGE = CLASS__PACKAGE;
+	int MESSAGE_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -14673,13 +14673,13 @@ public interface PivotPackage
 	int METACLASS__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METACLASS__PACKAGE = CLASS__PACKAGE;
+	int METACLASS__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -15843,13 +15843,13 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
+	int ORDERED_SET_TYPE__OWNING_PACKAGE = COLLECTION_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -16767,13 +16767,13 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
+	int PRIMITIVE_TYPE__OWNING_PACKAGE = DATA_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -17019,6 +17019,15 @@ public interface PivotPackage
 	int PROFILE__NS_PREFIX = PACKAGE__NS_PREFIX;
 
 	/**
+	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__OWNED_CLASSES = PACKAGE__OWNED_CLASSES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17035,15 +17044,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__OWNED_PACKAGES = PACKAGE__OWNED_PACKAGES;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__OWNED_TYPE = PACKAGE__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -18576,13 +18576,13 @@ public interface PivotPackage
 	int SELF_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE__PACKAGE = CLASS__PACKAGE;
+	int SELF_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -18972,13 +18972,13 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
+	int SEQUENCE_TYPE__OWNING_PACKAGE = COLLECTION_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -19314,13 +19314,13 @@ public interface PivotPackage
 	int SET_TYPE__OWNED_PROPERTIES = COLLECTION_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
+	int SET_TYPE__OWNING_PACKAGE = COLLECTION_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -19656,13 +19656,13 @@ public interface PivotPackage
 	int SIGNAL__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__PACKAGE = CLASS__PACKAGE;
+	int SIGNAL__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -20187,13 +20187,13 @@ public interface PivotPackage
 	int STATE_MACHINE__OWNED_PROPERTIES = BEHAVIOR__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__PACKAGE = BEHAVIOR__PACKAGE;
+	int STATE_MACHINE__OWNING_PACKAGE = BEHAVIOR__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -20529,13 +20529,13 @@ public interface PivotPackage
 	int STEREOTYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__PACKAGE = CLASS__PACKAGE;
+	int STEREOTYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -22059,13 +22059,13 @@ public interface PivotPackage
 	int TUPLE_TYPE__OWNED_PROPERTIES = DATA_TYPE__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
+	int TUPLE_TYPE__OWNING_PACKAGE = DATA_TYPE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -22907,13 +22907,13 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__PACKAGE = CLASS__PACKAGE;
+	int UNSPECIFIED_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -23663,13 +23663,13 @@ public interface PivotPackage
 	int VOID_TYPE__OWNED_PROPERTIES = CLASS__OWNED_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__PACKAGE = CLASS__PACKAGE;
+	int VOID_TYPE__OWNING_PACKAGE = CLASS__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -26785,15 +26785,15 @@ public interface PivotPackage
 	EReference getClass_OwnedProperties();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Class#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Class#getPackage()
+	 * @return the meta object for the container reference '<em>Owning Package</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwningPackage()
 	 * @see #getClass_()
 	 * @generated
 	 */
-	EReference getClass_Package();
+	EReference getClass_OwningPackage();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Classes</em>}'.
@@ -27341,6 +27341,17 @@ public interface PivotPackage
 	EAttribute getPackage_NsPrefix();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedClasses <em>Owned Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Classes</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedClasses()
+	 * @see #getPackage()
+	 * @generated
+	 */
+	EReference getPackage_OwnedClasses();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27372,17 +27383,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getPackage_ImportedPackage();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedType()
-	 * @see #getPackage()
-	 * @generated
-	 */
-	EReference getPackage_OwnedType();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Package#getOwningPackage <em>Owning Package</em>}'.
@@ -31129,12 +31129,12 @@ public interface PivotPackage
 		EReference CLASS__OWNED_PROPERTIES = eINSTANCE.getClass_OwnedProperties();
 
 		/**
-		 * The meta object literal for the '<em><b>Package</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Package</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS__PACKAGE = eINSTANCE.getClass_Package();
+		EReference CLASS__OWNING_PACKAGE = eINSTANCE.getClass_OwningPackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Super Classes</b></em>' reference list feature.
@@ -31565,6 +31565,14 @@ public interface PivotPackage
 		EAttribute PACKAGE__NS_PREFIX = eINSTANCE.getPackage_NsPrefix();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE__OWNED_CLASSES = eINSTANCE.getPackage_OwnedClasses();
+
+		/**
 		 * The meta object literal for the '<em><b>Owned Instances</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31587,14 +31595,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PACKAGE__IMPORTED_PACKAGE = eINSTANCE.getPackage_ImportedPackage();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PACKAGE__OWNED_TYPE = eINSTANCE.getPackage_OwnedType();
 
 		/**
 		 * The meta object literal for the '<em><b>Owning Package</b></em>' container reference feature.

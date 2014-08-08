@@ -200,10 +200,10 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__PACKAGE:
+			case PivotPackage.STATE_MACHINE__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -272,8 +272,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.STATE_MACHINE__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				return basicSetTransition(null, msgs);
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
@@ -339,8 +339,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getOwnedOperations();
 			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				return getPackage();
+			case PivotPackage.STATE_MACHINE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.STATE_MACHINE__TRANSITION:
@@ -443,8 +443,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.STATE_MACHINE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -546,8 +546,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.STATE_MACHINE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -623,8 +623,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.STATE_MACHINE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.STATE_MACHINE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.STATE_MACHINE__TRANSITION:

@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.ClassId;
@@ -170,7 +169,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
         final @NonNull /*@NonInvalid*/ DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_CLSSid_Class, element);
-        final @NonNull DomainType TYPE_superClasses_0 = evaluator.getStaticTypeOf(oclAsSet);
+        final @NonNull DomainClass TYPE_superClasses_0 = evaluator.getStaticTypeOf(oclAsSet);
         final @NonNull LibraryIteration IMPL_superClasses_0 = (LibraryIteration)TYPE_superClasses_0.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
         final @NonNull Object ACC_superClasses_0 = IMPL_superClasses_0.createAccumulatorValue(evaluator, SET_CLSSid_Class, TypeId.OCL_INVALID);
         /**
@@ -566,7 +565,7 @@ public class AutoPivotLookupVisitor
      * 
      * let
      *   inner : env::Environment = context.addElements(element.oclBadProperty)
-     *   .addElements(element.ownedType)
+     *   .addElements(element.oclBadProperty)
      *   .addElements(element.ownedPrecedence)
      * in
      *   if inner.hasFinalResult()
@@ -576,11 +575,9 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
-        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_7));
-        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)oclBadProperty);
-        final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedType = element_7.getOwnedType();
-        assert ownedType != null;
-        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedType);
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty_0 = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_7));
+        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)oclBadProperty_0);
+        final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements((List<? extends DomainNamedElement>)oclBadProperty_0);
         final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedence = element_7.getOwnedPrecedence();
         assert ownedPrecedence != null;
         final @NonNull /*@Thrown*/ Environment inner = addElements_0.addElements(ownedPrecedence);
@@ -654,7 +651,7 @@ public class AutoPivotLookupVisitor
      * 
      * let
      *   inner : env::Environment = context.addElements(element.oclBadProperty)
-     *   .addElements(element.ownedType)
+     *   .addElements(element.oclBadProperty)
      * in
      *   if inner.hasFinalResult()
      *   then inner
@@ -663,11 +660,9 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
-        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_10));
-        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)oclBadProperty);
-        final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedType = element_10.getOwnedType();
-        assert ownedType != null;
-        final @NonNull /*@Thrown*/ Environment inner = addElements.addElements(ownedType);
+        final @NonNull /*@Thrown*/ InvalidValueException oclBadProperty_0 = DomainUtil.nonNullState((InvalidValueException)OclAnyUnsupportedOperation.INSTANCE.evaluate(evaluator, TypeId.OCL_INVALID, element_10));
+        final @NonNull /*@Thrown*/ Environment addElements = context.addElements((List<? extends DomainNamedElement>)oclBadProperty_0);
+        final @NonNull /*@Thrown*/ Environment inner = addElements.addElements((List<? extends DomainNamedElement>)oclBadProperty_0);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ Environment symbol_0;
         if (hasFinalResult) {

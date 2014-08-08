@@ -151,7 +151,7 @@ public class EcoreReflectiveType extends ReflectiveType
 	}
 
 	public @NonNull DomainStandardLibrary getStandardLibrary() {
-		return ((EcoreReflectivePackage)getPackage()).getStandardLibrary(); //OCLstdlibTables.LIBRARY;
+		return ((EcoreReflectivePackage)getOwningPackage()).getStandardLibrary(); //OCLstdlibTables.LIBRARY;
 	}
 
 	public @NonNull DomainTypeParameters getTypeParameters() {

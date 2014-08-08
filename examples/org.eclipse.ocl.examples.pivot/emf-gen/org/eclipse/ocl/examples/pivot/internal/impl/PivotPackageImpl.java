@@ -3829,7 +3829,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_Package()
+	public EReference getClass_OwningPackage()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(8);
 	}
@@ -4319,7 +4319,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_OwnedInstances()
+	public EReference getPackage_OwnedClasses()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(3);
 	}
@@ -4329,9 +4329,19 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_OwnedPackages()
+	public EReference getPackage_OwnedInstances()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackage_OwnedPackages()
+	{
+		return (EReference)packageEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -4342,15 +4352,6 @@ public class PivotPackageImpl
 	public EReference getPackage_ImportedPackage()
 	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPackage_OwnedType() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -5641,7 +5642,7 @@ public class PivotPackageImpl
 		createEReference(classEClass, CLASS__OWNED_INVARIANTS);
 		createEReference(classEClass, CLASS__OWNED_OPERATIONS);
 		createEReference(classEClass, CLASS__OWNED_PROPERTIES);
-		createEReference(classEClass, CLASS__PACKAGE);
+		createEReference(classEClass, CLASS__OWNING_PACKAGE);
 		createEReference(classEClass, CLASS__SUPER_CLASSES);
 		createEOperation(classEClass, CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP);
 
@@ -5922,9 +5923,9 @@ public class PivotPackageImpl
 		createEAttribute(packageEClass, PACKAGE__URI);
 		createEReference(packageEClass, PACKAGE__IMPORTED_PACKAGE);
 		createEAttribute(packageEClass, PACKAGE__NS_PREFIX);
+		createEReference(packageEClass, PACKAGE__OWNED_CLASSES);
 		createEReference(packageEClass, PACKAGE__OWNED_INSTANCES);
 		createEReference(packageEClass, PACKAGE__OWNED_PACKAGES);
-		createEReference(packageEClass, PACKAGE__OWNED_TYPE);
 		createEReference(packageEClass, PACKAGE__OWNING_PACKAGE);
 		createEReference(packageEClass, PACKAGE__PROFILE_APPLICATION);
 
@@ -6404,7 +6405,7 @@ public class PivotPackageImpl
 		initEReference(getClass_OwnedInvariants(), this.getConstraint(), null, "ownedInvariants", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedOperations(), this.getOperation(), this.getOperation_OwningClass(), "ownedOperations", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedProperties(), this.getProperty(), this.getProperty_OwningClass(), "ownedProperties", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getClass_Package(), this.getPackage(), this.getPackage_OwnedType(), "package", null, 0, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getClass_OwningPackage(), this.getPackage(), this.getPackage_OwnedClasses(), "owningPackage", null, 0, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_SuperClasses(), this.getClass_(), null, "superClasses", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getClass__ValidateUniqueInvariantName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUniqueInvariantName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7137,9 +7138,9 @@ public class PivotPackageImpl
 		initEAttribute(getPackage_URI(), this.getString(), "URI", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_ImportedPackage(), this.getPackage(), null, "importedPackage", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackage_NsPrefix(), this.getString(), "nsPrefix", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPackage_OwnedClasses(), this.getClass_(), this.getClass_OwningPackage(), "ownedClasses", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwnedInstances(), this.getInstanceSpecification(), this.getInstanceSpecification_OwningPackage(), "ownedInstances", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwnedPackages(), this.getPackage(), this.getPackage_OwningPackage(), "ownedPackages", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPackage_OwnedType(), this.getClass_(), this.getClass_Package(), "ownedType", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwningPackage(), this.getPackage(), this.getPackage_OwnedPackages(), "owningPackage", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_ProfileApplication(), this.getProfileApplication(), this.getProfileApplication_ApplyingPackage(), "profileApplication", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 

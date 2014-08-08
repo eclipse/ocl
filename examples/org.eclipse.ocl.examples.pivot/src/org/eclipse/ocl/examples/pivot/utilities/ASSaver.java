@@ -126,7 +126,7 @@ public class ASSaver
 		if (orphanageClass2 == null) {
 			orphanageClass = orphanageClass2 = PivotFactory.eINSTANCE.createAnyType();		// No superclasses
 			orphanageClass2.setName(PivotConstants.ORPHANAGE_NAME);
-			orphanagePackage.getOwnedType().add(orphanageClass2);
+			orphanagePackage.getOwnedClasses().add(orphanageClass2);
 		}
 		return orphanageClass2;
 	}
@@ -206,7 +206,7 @@ public class ASSaver
 						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getOwnedPackages()) {
 							if (Orphanage.isTypeOrphanage(asPackage)) {
 								orphanage = orphanage2 = asPackage;
-								for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedType()) {
+								for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedClasses()) {
 									if (PivotConstants.ORPHANAGE_NAME.equals(asType.getName())) {
 										orphanageClass = asType;
 									}
@@ -221,7 +221,7 @@ public class ASSaver
 				}
 				if ((eRoot instanceof org.eclipse.ocl.examples.pivot.Package) && Orphanage.isTypeOrphanage((org.eclipse.ocl.examples.pivot.Package)eRoot)) {	// FIXME Obsolete
 					orphanage = orphanage2 = (org.eclipse.ocl.examples.pivot.Package)eRoot;
-					for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedType()) {
+					for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedClasses()) {
 						if (PivotConstants.ORPHANAGE_NAME.equals(asType.getName())) {
 							orphanageClass = asType;
 						}
@@ -305,7 +305,7 @@ public class ASSaver
 				if (orphanage2 == null) {
 					orphanage2 = getOrphanPackage(resource);
 				}
-				orphanage.getOwnedType().add(resolvedType);
+				orphanage.getOwnedClasses().add(resolvedType);
 			}
 		}
 /*			String moniker = Pivot2Moniker.toString(referredType);

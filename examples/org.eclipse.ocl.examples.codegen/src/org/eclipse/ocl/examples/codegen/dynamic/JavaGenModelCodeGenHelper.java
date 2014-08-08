@@ -92,7 +92,7 @@ public class JavaGenModelCodeGenHelper implements CodeGenHelper
 
 	@Override
 	public @NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		org.eclipse.ocl.examples.pivot.Package pPackage = type.getPackage();
+		org.eclipse.ocl.examples.pivot.Package pPackage = type.getOwningPackage();
 		String nsURI = pPackage.getURI();
 		GenPackage genPackage = uriMap.get(nsURI);
 		if (nsURI != null) {

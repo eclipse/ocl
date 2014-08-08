@@ -50,7 +50,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	/**
 	 * Return the package containing this type.
 	 */
-	/* @NonNull*/ DomainPackage getPackage();
+//	/* @NonNull*/ DomainPackage getPackage();
 
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.

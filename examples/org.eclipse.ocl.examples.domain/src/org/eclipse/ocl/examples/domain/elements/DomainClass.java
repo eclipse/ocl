@@ -36,6 +36,8 @@ public interface DomainClass extends DomainType
 	@NonNull List<? extends DomainOperation> getOwnedOperations();
 
 	@NonNull List<? extends DomainProperty> getOwnedProperties();
+	
+	DomainPackage getOwningPackage();
 
 	@NonNull List<? extends DomainClass> getSuperClasses();
 

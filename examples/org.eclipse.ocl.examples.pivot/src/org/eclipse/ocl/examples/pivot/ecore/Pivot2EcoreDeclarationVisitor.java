@@ -554,7 +554,7 @@ public class Pivot2EcoreDeclarationVisitor
 		@SuppressWarnings("null")@NonNull List<EPackage> eSubpackages = ePackage.getESubpackages();
 		safeVisitAll(eSubpackages, pivotPackage.getOwnedPackages());
 		@SuppressWarnings("null")@NonNull List<EClassifier> eClassifiers = ePackage.getEClassifiers();
-		safeVisitAll(eClassifiers, pivotPackage.getOwnedType());
+		safeVisitAll(eClassifiers, pivotPackage.getOwnedClasses());
 		return ePackage;
 	}
 

@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.context.ClassContext;
 import org.eclipse.ocl.examples.pivot.context.ModelContext;
 import org.eclipse.ocl.examples.pivot.context.OperationContext;
@@ -79,7 +78,7 @@ public class OCLHelperImpl implements OCLHelper
 	}
 
 	public @NonNull ExpressionInOCL createInvariant(@NonNull String expression) throws ParserException {
-		Type contextClassifier = getEnvironment().getContextClassifier();
+		org.eclipse.ocl.examples.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		if (contextClassifier == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
@@ -106,7 +105,7 @@ public class OCLHelperImpl implements OCLHelper
 	}
 
 	public @NonNull ExpressionInOCL createQuery(@NonNull String expression) throws ParserException {
-		Type contextClassifier = getEnvironment().getContextClassifier();
+		org.eclipse.ocl.examples.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		ParserContext parserContext;
 		if (contextClassifier != null) {
 			parserContext = new ClassContext(metaModelManager, null, contextClassifier);
@@ -118,7 +117,7 @@ public class OCLHelperImpl implements OCLHelper
 	}
 
 	protected @NonNull ExpressionInOCL createSpecification(@NonNull String expression) throws ParserException {
-		Type contextClassifier = getEnvironment().getContextClassifier();
+		org.eclipse.ocl.examples.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		if (contextClassifier == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}

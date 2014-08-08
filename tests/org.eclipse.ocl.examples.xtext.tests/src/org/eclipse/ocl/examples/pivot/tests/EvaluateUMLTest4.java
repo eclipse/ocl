@@ -102,7 +102,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 		EObject context = doLoadUML(ocl, "Bug431638", "Bug431638Model.Class1.Attribute1");
 		assertNotNull(context);
 		org.eclipse.ocl.examples.pivot.Class contextType = (org.eclipse.ocl.examples.pivot.Class)metaModelManager.getIdResolver().getStaticTypeOf(context);	// FIXME cast
-		org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getPackage();
+		org.eclipse.ocl.examples.pivot.Package contextPackage = contextType.getOwningPackage();
 //		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
 //		assertEquals(IdManager.METAMODEL, contextPackage.getPackageId());
 		assertEquals(DomainConstants.UML_METAMODEL_NAME, contextPackage.getPackageId().getDisplayName());

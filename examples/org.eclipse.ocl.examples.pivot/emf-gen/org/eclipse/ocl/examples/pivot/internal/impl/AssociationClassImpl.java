@@ -132,10 +132,10 @@ public class AssociationClassImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
+			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUnownedAttribute()).basicAdd(otherEnd, msgs);
 		}
@@ -182,8 +182,8 @@ public class AssociationClassImpl
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getUnownedAttribute()).basicRemove(otherEnd, msgs);
 		}
@@ -242,8 +242,8 @@ public class AssociationClassImpl
 				return getOwnedOperations();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return getPackage();
+			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
@@ -337,8 +337,8 @@ public class AssociationClassImpl
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -424,8 +424,8 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -488,8 +488,8 @@ public class AssociationClassImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.ASSOCIATION_CLASS__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:

@@ -123,12 +123,12 @@ public class LibraryImpl extends PackageImpl implements Library
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LIBRARY__OWNED_CLASSES:
+				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_PACKAGES:
 				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LIBRARY__OWNED_TYPE:
-				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
@@ -178,12 +178,12 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getImportedPackage();
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				return getNsPrefix();
+			case PivotPackage.LIBRARY__OWNED_CLASSES:
+				return getOwnedClasses();
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return getOwnedInstances();
 			case PivotPackage.LIBRARY__OWNED_PACKAGES:
 				return getOwnedPackages();
-			case PivotPackage.LIBRARY__OWNED_TYPE:
-				return getOwnedType();
 			case PivotPackage.LIBRARY__OWNING_PACKAGE:
 				return getOwningPackage();
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
@@ -254,6 +254,10 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				setNsPrefix((String)newValue);
 				return;
+			case PivotPackage.LIBRARY__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				getOwnedClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
@@ -261,10 +265,6 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__OWNED_PACKAGES:
 				getOwnedPackages().clear();
 				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
-				return;
-			case PivotPackage.LIBRARY__OWNED_TYPE:
-				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.LIBRARY__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -333,14 +333,14 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
 				return;
+			case PivotPackage.LIBRARY__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				return;
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				return;
 			case PivotPackage.LIBRARY__OWNED_PACKAGES:
 				getOwnedPackages().clear();
-				return;
-			case PivotPackage.LIBRARY__OWNED_TYPE:
-				getOwnedType().clear();
 				return;
 			case PivotPackage.LIBRARY__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -393,12 +393,12 @@ public class LibraryImpl extends PackageImpl implements Library
 				return importedPackage != null && !importedPackage.isEmpty();
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
+			case PivotPackage.LIBRARY__OWNED_CLASSES:
+				return ownedClasses != null && !ownedClasses.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_PACKAGES:
 				return ownedPackages != null && !ownedPackages.isEmpty();
-			case PivotPackage.LIBRARY__OWNED_TYPE:
-				return ownedType != null && !ownedType.isEmpty();
 			case PivotPackage.LIBRARY__OWNING_PACKAGE:
 				return getOwningPackage() != null;
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:

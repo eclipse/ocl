@@ -166,7 +166,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			cgClass.getSuperTypes().add(superClass);
 		}
 		cgPackage.getClasses().add(cgClass);
-		for (org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedType()) {
+		for (org.eclipse.ocl.examples.pivot.Class asType : asPackage.getOwnedClasses()) {
 			boolean hasCS2ASmappingOperation = false;
 			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {

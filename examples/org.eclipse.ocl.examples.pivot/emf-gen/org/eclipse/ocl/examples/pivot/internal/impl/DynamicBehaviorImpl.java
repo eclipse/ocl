@@ -158,10 +158,10 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -210,8 +210,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTY:
 				return ((InternalEList<?>)getOwnedProperty()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
@@ -232,8 +232,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 		{
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_TYPE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_CLASSES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__TRANSITION:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TRANSITION__EFFECT, Transition.class, msgs);
 		}
@@ -293,8 +293,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return getOwnedOperations();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
-				return getPackage();
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.DYNAMIC_BEHAVIOR__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE:
@@ -394,8 +394,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -488,8 +488,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -559,8 +559,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.DYNAMIC_BEHAVIOR__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.DYNAMIC_BEHAVIOR__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.DYNAMIC_BEHAVIOR__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.DYNAMIC_BEHAVIOR__META_TYPE:

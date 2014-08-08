@@ -381,8 +381,11 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 //			else if (pivotType instanceof ElementExtension) {
 //				typeServer = new ExtensionTypeServer(this, (ElementExtension)pivotType);
 //			}
+			else if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
+				typeServer = new TemplateableTypeServer(this, (org.eclipse.ocl.examples.pivot.Class)pivotType);
+			}
 			else {
-				typeServer = new TemplateableTypeServer(this, pivotType);
+				throw new UnsupportedOperationException("TemplateType");
 			}
 			if ((pivotType instanceof TemplateableElement) && (((TemplateableElement)pivotType).getUnspecializedElement() == null)) {
 				typeServers2.put(name, typeServer);
@@ -416,7 +419,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 	}
 
 	private void initMemberTypes(@NonNull DomainPackage pivotPackage) {
-		for (DomainType pivotType : pivotPackage.getOwnedType()) {
+		for (DomainType pivotType : pivotPackage.getOwnedClasses()) {
 			if (pivotType != null) {
 				addedMemberType(pivotType);
 			}

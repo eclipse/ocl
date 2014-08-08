@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -46,7 +46,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 	//
 	private @Nullable /*WeakHash*/Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.examples.pivot.Class>> specializations = null;
 
-	protected TemplateableTypeServer(@NonNull PackageServer packageServer, @NonNull DomainType domainType) {
+	protected TemplateableTypeServer(@NonNull PackageServer packageServer, @NonNull DomainClass domainType) {
 		super(packageServer, domainType);
 	}
 	
@@ -87,7 +87,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		specializedType.setUnspecializedElement(unspecializedType);
 		MetaModelManager metaModelManager = packageManager.getMetaModelManager();
 		Orphanage orphanage = Orphanage.getOrphanage(metaModelManager.getASResourceSet());
-		specializedType.setPackage(orphanage);
+		specializedType.setOwningPackage(orphanage);
 		return specializedType;
 	}
 

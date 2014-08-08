@@ -80,7 +80,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	@SuppressWarnings("null")
 	@Override
-	public @NonNull List<DomainInheritance> getOwnedType() {
+	public @NonNull List<DomainInheritance> getOwnedClasses() {
 		if (types != null) {
 			return Lists.<DomainInheritance>newArrayList(types);
 		}
@@ -91,7 +91,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	@Override
 	public DomainInheritance getType(String typeName) {
-		for (DomainInheritance type: getOwnedType()) {
+		for (DomainInheritance type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}

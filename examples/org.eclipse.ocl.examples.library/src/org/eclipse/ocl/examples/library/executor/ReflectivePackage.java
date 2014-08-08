@@ -59,7 +59,7 @@ public abstract class ReflectivePackage extends ExecutorPackage
 	}
 
 	@Override
-	public @NonNull List<? extends DomainType> getOwnedType() {
+	public @NonNull List<? extends DomainType> getOwnedClasses() {
 		Map<DomainType, DomainInheritance> types2 = types;
 		if (types2 == null) {
 			types2 = computeClasses();

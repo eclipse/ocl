@@ -53,7 +53,7 @@ class PackageTracker implements Adapter.Internal
 
 	void dispose() {
 		PackageManager packageManager = packageServer.getPackageManager();
-		for (DomainType type : target.getOwnedType()) {
+		for (DomainType type : target.getOwnedClasses()) {
 			if (type != null) {
 				packageManager.removedType(type);
 			}
@@ -93,7 +93,7 @@ class PackageTracker implements Adapter.Internal
 	public void notifyChanged(Notification notification) {
 		int eventType = notification.getEventType();
 		Object feature = notification.getFeature();
-		if (feature == PivotPackage.Literals.PACKAGE__OWNED_TYPE) {
+		if (feature == PivotPackage.Literals.PACKAGE__OWNED_CLASSES) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();

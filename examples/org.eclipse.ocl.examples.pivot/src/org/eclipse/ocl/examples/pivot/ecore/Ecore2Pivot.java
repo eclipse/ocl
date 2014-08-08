@@ -447,9 +447,9 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		EPackage libraryEPackage = isLibrary(ecoreContents);
 		if (libraryEPackage != null) {
 			newCreateMap = new HashMap<EObject, Element>();
-			org.eclipse.ocl.examples.pivot.Package asLibrary = metaModelManager.getOclAnyType().getPackage();
+			org.eclipse.ocl.examples.pivot.Package asLibrary = metaModelManager.getOclAnyType().getOwningPackage();
 			newCreateMap.put(libraryEPackage, asLibrary);
-			List<org.eclipse.ocl.examples.pivot.Class> ownedType = asLibrary.getOwnedType();
+			List<org.eclipse.ocl.examples.pivot.Class> ownedType = asLibrary.getOwnedClasses();
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();
 			for (EClassifier eClassifier : libraryEPackage.getEClassifiers()) {
 				String name = getOriginalName(eClassifier); //.substring(prefix);

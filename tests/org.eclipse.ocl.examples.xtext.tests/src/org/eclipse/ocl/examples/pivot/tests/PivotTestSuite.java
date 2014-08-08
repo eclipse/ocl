@@ -219,7 +219,7 @@ public abstract class PivotTestSuite extends PivotTestCase
         try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
     		MetaModelManager metaModelManager = environment.getMetaModelManager();
-    		Type contextClassifier = environment.getContextClassifier();
+    		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
     		ParserContext semanticContext = new ClassContext(metaModelManager, null, contextClassifier);
 			resource = semanticContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
@@ -256,7 +256,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
    		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
    		MetaModelManager metaModelManager = environment.getMetaModelManager();
-   		Type contextClassifier = environment.getContextClassifier();
+   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
    		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
    		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -289,7 +289,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			helper.setContext(contextType);
 			PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
 			MetaModelManager metaModelManager = environment.getMetaModelManager();
-			Type contextClassifier = environment.getContextClassifier();
+			org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
 			ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -771,7 +771,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		try {
 	   		PivotEnvironment environment = (PivotEnvironment) getHelper().getEnvironment();
 	   		MetaModelManager metaModelManager = environment.getMetaModelManager();
-	   		Type contextClassifier = environment.getContextClassifier();
+	   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -795,7 +795,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			helper.setContext(contextType);
 	   		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
 	   		MetaModelManager metaModelManager = environment.getMetaModelManager();
-	   		Type contextClassifier = environment.getContextClassifier();
+	   		org.eclipse.ocl.examples.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
@@ -969,14 +969,14 @@ public abstract class PivotTestSuite extends PivotTestCase
 		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
 		eClass.setIsAbstract(isAbstract);
-		aPackage.getOwnedType().add(eClass);
+		aPackage.getOwnedClasses().add(eClass);
 		return eClass;
 	}
 
 	protected Enumeration createOwnedEnumeration(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
 		Enumeration eEnum = PivotFactory.eINSTANCE.createEnumeration();
 		eEnum.setName(name);
-		aPackage.getOwnedType().add(eEnum);
+		aPackage.getOwnedClasses().add(eEnum);
 		return eEnum;
 	}
 
@@ -1015,7 +1015,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected org.eclipse.ocl.examples.pivot.Class createOwnedPrimitiveType(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
 		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
-		aPackage.getOwnedType().add(eClass);
+		aPackage.getOwnedClasses().add(eClass);
 		return eClass;
 	}
 

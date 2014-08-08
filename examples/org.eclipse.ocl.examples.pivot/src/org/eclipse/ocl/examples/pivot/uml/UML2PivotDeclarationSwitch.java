@@ -832,10 +832,10 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			pivotElement.getProfileApplication().clear();
 		}
 		if (umlTypes != null) {
-			doSwitchAll(pivotElement.getOwnedType(), umlTypes, null);
+			doSwitchAll(pivotElement.getOwnedClasses(), umlTypes, null);
 		}
 		else {
-			pivotElement.getOwnedType().clear();
+			pivotElement.getOwnedClasses().clear();
 		}
 		if (umlAssociations != null) {
 			for (org.eclipse.uml2.uml.Association umlAssociation : umlAssociations) {

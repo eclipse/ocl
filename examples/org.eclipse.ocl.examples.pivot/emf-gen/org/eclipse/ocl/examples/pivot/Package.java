@@ -31,9 +31,9 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsPrefix <em>Ns Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedClasses <em>Owned Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedPackages <em>Owned Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
@@ -143,20 +143,20 @@ public interface Package
 	@NonNull List<Package> getImportedPackage();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Classes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The set of contained types.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Type</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedType()
-	 * @see org.eclipse.ocl.examples.pivot.Class#getPackage
+	 * @return the value of the '<em>Owned Classes</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedClasses()
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwningPackage
 	 * @generated
 	 */
-	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedType();
+	@NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Profile Application</b></em>' containment reference list.

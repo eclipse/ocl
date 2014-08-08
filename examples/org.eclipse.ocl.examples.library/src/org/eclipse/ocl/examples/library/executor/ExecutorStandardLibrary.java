@@ -88,7 +88,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
 			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainClass type : extensionPackage.getOwnedType()) {
+				for (DomainClass type : extensionPackage.getOwnedClasses()) {
 					if ("Enumeration".equals(type.getName())) { //$NON-NLS-1$
 						enumerationType = type;
 						return type;
@@ -115,7 +115,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 				return containerType.getInheritance(this);
 			}
 		}
-		DomainPackage domainPackage = type.getPackage();
+		DomainPackage domainPackage = ((DomainClass)type).getOwningPackage();		// FIXME cast
 		Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap2;
 		synchronized (this) {
 			String nsURI = domainPackage.getURI();
@@ -164,7 +164,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
 			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainClass type : extensionPackage.getOwnedType()) {
+				for (DomainClass type : extensionPackage.getOwnedClasses()) {
 					if ("Metaclass".equals(type.getName())) { //$NON-NLS-1$
 						metaclassType = type;
 						return type;

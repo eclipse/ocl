@@ -126,12 +126,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PROFILE__OWNED_CLASSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedInstances()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_PACKAGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPackages()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PROFILE__OWNED_TYPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -172,12 +172,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROFILE__OWNED_CLASSES:
+				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_PACKAGES:
 				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROFILE__OWNED_TYPE:
-				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.PROFILE__PROFILE_APPLICATION:
@@ -227,12 +227,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return getImportedPackage();
 			case PivotPackage.PROFILE__NS_PREFIX:
 				return getNsPrefix();
+			case PivotPackage.PROFILE__OWNED_CLASSES:
+				return getOwnedClasses();
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				return getOwnedInstances();
 			case PivotPackage.PROFILE__OWNED_PACKAGES:
 				return getOwnedPackages();
-			case PivotPackage.PROFILE__OWNED_TYPE:
-				return getOwnedType();
 			case PivotPackage.PROFILE__OWNING_PACKAGE:
 				return getOwningPackage();
 			case PivotPackage.PROFILE__PROFILE_APPLICATION:
@@ -303,6 +303,10 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__NS_PREFIX:
 				setNsPrefix((String)newValue);
 				return;
+			case PivotPackage.PROFILE__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				getOwnedClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
@@ -310,10 +314,6 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__OWNED_PACKAGES:
 				getOwnedPackages().clear();
 				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
-				return;
-			case PivotPackage.PROFILE__OWNED_TYPE:
-				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.PROFILE__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -382,14 +382,14 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
 				return;
+			case PivotPackage.PROFILE__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				return;
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				return;
 			case PivotPackage.PROFILE__OWNED_PACKAGES:
 				getOwnedPackages().clear();
-				return;
-			case PivotPackage.PROFILE__OWNED_TYPE:
-				getOwnedType().clear();
 				return;
 			case PivotPackage.PROFILE__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -442,12 +442,12 @@ public class ProfileImpl extends PackageImpl implements Profile
 				return importedPackage != null && !importedPackage.isEmpty();
 			case PivotPackage.PROFILE__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
+			case PivotPackage.PROFILE__OWNED_CLASSES:
+				return ownedClasses != null && !ownedClasses.isEmpty();
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.PROFILE__OWNED_PACKAGES:
 				return ownedPackages != null && !ownedPackages.isEmpty();
-			case PivotPackage.PROFILE__OWNED_TYPE:
-				return ownedType != null && !ownedType.isEmpty();
 			case PivotPackage.PROFILE__OWNING_PACKAGE:
 				return getOwningPackage() != null;
 			case PivotPackage.PROFILE__PROFILE_APPLICATION:

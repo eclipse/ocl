@@ -778,7 +778,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_closure_invalidBody_142518() {
         assertQueryInvalid(getUMLMetamodel(),
-            "let c : ocl::Type = invalid in ownedType->closure(c)", EvaluatorMessages.InvalidLiteral, InvalidValueException.class);
+            "let c : ocl::Type = invalid in ownedClasses->closure(c)", EvaluatorMessages.InvalidLiteral, InvalidValueException.class);
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
@@ -902,10 +902,10 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_sortedByRequiresComparability_192729() {
     	org.eclipse.ocl.examples.pivot.Class context = metaModelManager.getPivotType("Package");
     	org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getPivotType("Class");
-     	assertValidationErrorQuery("ownedType->sortedBy(e | e)",
+     	assertValidationErrorQuery("ownedClasses->sortedBy(e | e)",
         	OCLMessages.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        
-    	assertQuery(context, "ownedType->sortedBy(e | e.name)");
+    	assertQuery(context, "ownedClasses->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         
         // EDate defines an OclComparable::compareTo by having a java.lang.Comparable instance class

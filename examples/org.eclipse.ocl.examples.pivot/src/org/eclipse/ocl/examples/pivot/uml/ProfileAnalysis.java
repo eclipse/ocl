@@ -75,7 +75,7 @@ public class ProfileAnalysis
 	
 	public void addStereotype(@NonNull Stereotype asStereotype) {
 		allStereotypes.add(asStereotype);
-		org.eclipse.ocl.examples.pivot.Package asPackage = asStereotype.getPackage();
+		org.eclipse.ocl.examples.pivot.Package asPackage = asStereotype.getOwningPackage();
 		if (asPackage instanceof Profile) {
 			Profile asProfile = (Profile) asPackage;
 			Set<Stereotype> ownedStereotypes = profile2ownedStereotypes.get(asProfile);
@@ -93,7 +93,7 @@ public class ProfileAnalysis
 		if ((extendedMetatype != null) && (extendingStereotype != null)) {
 			allExtendedMetatypes.add(extendedMetatype);
 			allExtendingStereotypes.add(extendingStereotype);
-			org.eclipse.ocl.examples.pivot.Package metaPackage = extendedMetatype.getPackage();
+			org.eclipse.ocl.examples.pivot.Package metaPackage = extendedMetatype.getOwningPackage();
 			if (metaPackage != null) {
 				allExtendedMetapackages.add(metaPackage);
 			}
@@ -338,7 +338,7 @@ public class ProfileAnalysis
 
 	private void computeMetatypeName2metatype() {
 		for (org.eclipse.ocl.examples.pivot.Package metapackage : allExtendedMetapackages) {
-			for (org.eclipse.ocl.examples.pivot.Class metatype : metapackage.getOwnedType()) {
+			for (org.eclipse.ocl.examples.pivot.Class metatype : metapackage.getOwnedClasses()) {
 				if (metatype != null) {
 					metatypeName2metatype.put(metatype.getName(), metatype);
 				}
@@ -348,7 +348,7 @@ public class ProfileAnalysis
 
 	private void computeMetatypeClosure() {
 		for (org.eclipse.ocl.examples.pivot.Package metapackage : allExtendedMetapackages) {
-			for (org.eclipse.ocl.examples.pivot.Class subMetatype : metapackage.getOwnedType()) {
+			for (org.eclipse.ocl.examples.pivot.Class subMetatype : metapackage.getOwnedClasses()) {
 				if (subMetatype != null) {
 					Set<Type> superMetatypeClosure = new HashSet<Type>();
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);

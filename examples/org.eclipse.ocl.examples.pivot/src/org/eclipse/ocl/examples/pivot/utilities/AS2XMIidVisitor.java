@@ -205,7 +205,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	@Override
 	public Boolean visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		
-		if (Orphanage.isTypeOrphanage(object.getPackage())) {
+		if (Orphanage.isTypeOrphanage(object.getOwningPackage())) {
 			return false;
 		}
 		String name = object.getName();
@@ -217,7 +217,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
 		if (owningTemplateParameter != null) {
 			NamedElement template = (NamedElement) owningTemplateParameter.getSignature().getTemplate();
-			if ((template instanceof Type) && Orphanage.isTypeOrphanage(((Type)template).getPackage())) {
+			if ((template instanceof org.eclipse.ocl.examples.pivot.Class) && Orphanage.isTypeOrphanage(((org.eclipse.ocl.examples.pivot.Class)template).getOwningPackage())) {
 				return false;
 			}
 			s.append(TYPE_PREFIX);

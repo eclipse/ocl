@@ -235,8 +235,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getOwnedOperations();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
@@ -335,8 +335,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -425,8 +425,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -493,8 +493,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:

@@ -107,7 +107,7 @@ public class EcoreExecutorManager extends ExecutorManager
 					roots = resource.getContents();
 				}
 			}
-			DomainPackage root = standardLibrary.getOclAnyType().getPackage();
+			DomainPackage root = standardLibrary.getOclAnyType().getOwningPackage();
 			if (root instanceof EObject) {
 				if (roots == null) {
 					roots = new ArrayList<EObject>();

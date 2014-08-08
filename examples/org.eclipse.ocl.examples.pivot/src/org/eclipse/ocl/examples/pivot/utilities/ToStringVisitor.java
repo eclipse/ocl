@@ -444,7 +444,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			appendName(cls);
 		}
 		else {
-			org.eclipse.ocl.examples.pivot.Package pkg = cls.getPackage();
+			org.eclipse.ocl.examples.pivot.Package pkg = cls.getOwningPackage();
 			if (pkg == null) {
 				append("null::");
 				appendName(cls);

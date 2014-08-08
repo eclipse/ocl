@@ -208,7 +208,7 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/superClasses"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/package"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/owningPackage"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/nestedClassifier"/>
@@ -733,7 +733,7 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedInstances"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedType"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedClasses"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

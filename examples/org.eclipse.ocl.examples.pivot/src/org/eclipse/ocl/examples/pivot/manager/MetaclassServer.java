@@ -74,7 +74,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 		packageManager.resolveSuperClasses(metaclass, metaclassType, allBindings);
 		//
 		Orphanage orphanage = Orphanage.getOrphanage(metaModelManager.getASResourceSet());
-		metaclass.setPackage(orphanage);
+		metaclass.setOwningPackage(orphanage);
 		return metaclass;
 	}
 

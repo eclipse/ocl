@@ -138,10 +138,10 @@ public class EnumerationImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_PROPERTIES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProperties()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ENUMERATION__PACKAGE:
+			case PivotPackage.ENUMERATION__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedLiteral()).basicAdd(otherEnd, msgs);
 		}
@@ -188,8 +188,8 @@ public class EnumerationImpl
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.ENUMERATION__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return ((InternalEList<?>)getOwnedLiteral()).basicRemove(otherEnd, msgs);
 		}
@@ -248,8 +248,8 @@ public class EnumerationImpl
 				return getOwnedOperations();
 			case PivotPackage.ENUMERATION__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.ENUMERATION__PACKAGE:
-				return getPackage();
+			case PivotPackage.ENUMERATION__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.ENUMERATION__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.ENUMERATION__BEHAVIORAL_CLASS:
@@ -348,8 +348,8 @@ public class EnumerationImpl
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.ENUMERATION__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.ENUMERATION__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.ENUMERATION__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -441,8 +441,8 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.ENUMERATION__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.ENUMERATION__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.ENUMERATION__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -511,8 +511,8 @@ public class EnumerationImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.ENUMERATION__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.ENUMERATION__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.ENUMERATION__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.ENUMERATION__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ENUMERATION__BEHAVIORAL_CLASS:

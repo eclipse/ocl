@@ -244,7 +244,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
-	public final @NonNull DomainPackage getPackage() {
+	public final @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
 	}
 

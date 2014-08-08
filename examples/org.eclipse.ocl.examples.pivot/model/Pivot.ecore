@@ -195,7 +195,7 @@
         <details key="documentation" value="The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//Package" eOpposite="#//Package/ownedType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" eType="#//Package" eOpposite="#//Package/ownedClasses">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies the owning package of this classifier, if any."/>
       </eAnnotations>
@@ -1244,6 +1244,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="URI" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importedPackage" ordered="false" upperBound="-1" eType="#//Package"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedClasses" ordered="false" upperBound="-1" eType="#//Class" containment="true"
+        eOpposite="#//Class/owningPackage">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of contained types."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInstances" ordered="false" upperBound="-1" eType="#//InstanceSpecification"
         containment="true" eOpposite="#//InstanceSpecification/owningPackage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1254,12 +1260,6 @@
         eOpposite="#//Package/owningPackage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The set of contained packages."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false" upperBound="-1" eType="#//Class" containment="true"
-        eOpposite="#//Class/package">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The set of contained types."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" eType="#//Package" eOpposite="#//Package/ownedPackages">

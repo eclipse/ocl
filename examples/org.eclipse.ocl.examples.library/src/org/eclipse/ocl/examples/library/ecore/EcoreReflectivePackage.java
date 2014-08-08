@@ -94,7 +94,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 	}
 
 	@Override
-	public @NonNull List<DomainInheritance> getOwnedType() {
+	public @NonNull List<DomainInheritance> getOwnedClasses() {
 		Map<EClassifier, DomainInheritance> types2 = types;
 		if (types2 == null) {
 			types2 = computeClasses();
@@ -105,7 +105,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 
 	@Override
 	public DomainInheritance getType(String typeName) {
-		for (DomainInheritance type: getOwnedType()) {
+		for (DomainInheritance type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}

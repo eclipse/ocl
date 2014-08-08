@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -59,9 +58,9 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
-	public DomainPackage getPackage() {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
-	}
+//	public DomainPackage getPackage() {
+//		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+//	}
 	
 	public final DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;

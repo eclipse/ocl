@@ -224,8 +224,8 @@ public class MessageTypeImpl
 				return getOwnedOperations();
 			case PivotPackage.MESSAGE_TYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.MESSAGE_TYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.MESSAGE_TYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:
@@ -323,8 +323,8 @@ public class MessageTypeImpl
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.MESSAGE_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.MESSAGE_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -412,8 +412,8 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.MESSAGE_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.MESSAGE_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -479,8 +479,8 @@ public class MessageTypeImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.MESSAGE_TYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.MESSAGE_TYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:

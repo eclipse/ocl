@@ -214,7 +214,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
 		PackageCS csPackage = context.refreshNamedElement(PackageCS.class, BaseCSPackage.Literals.PACKAGE_CS, object);
-		context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
+		context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedClasses(), null));
 		csPackage.setNsPrefix(object.getNsPrefix());
 		csPackage.setNsURI(object.getURI());
 		context.refreshList(csPackage.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));

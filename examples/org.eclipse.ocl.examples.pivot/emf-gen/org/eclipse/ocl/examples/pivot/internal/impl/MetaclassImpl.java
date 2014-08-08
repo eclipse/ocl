@@ -185,8 +185,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getOwnedOperations();
 			case PivotPackage.METACLASS__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.METACLASS__PACKAGE:
-				return getPackage();
+			case PivotPackage.METACLASS__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.METACLASS__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
@@ -282,8 +282,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.METACLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.METACLASS__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.METACLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -369,8 +369,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.METACLASS__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.METACLASS__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.METACLASS__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -434,8 +434,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.METACLASS__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.METACLASS__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.METACLASS__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.METACLASS__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
@@ -506,7 +506,7 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				for (EObject eObject : resource.getContents()) {
 					if (eObject instanceof Root) {
 						for (org.eclipse.ocl.examples.pivot.Package pkg : ((Root)eObject).getOwnedPackages()) {
-							org.eclipse.ocl.examples.pivot.Class type = DomainUtil.getNamedElement(pkg.getOwnedType(), getName());
+							org.eclipse.ocl.examples.pivot.Class type = DomainUtil.getNamedElement(pkg.getOwnedClasses(), getName());
 							if (type instanceof Metaclass) {
 								setUnspecializedElement(type);
 								return type;

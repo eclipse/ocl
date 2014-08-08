@@ -229,7 +229,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				new HashMap<org.eclipse.ocl.examples.pivot.Package, Set<org.eclipse.ocl.examples.pivot.Class>>();
 		for (org.eclipse.ocl.examples.pivot.Class modelType : modelType2contextTypes.keySet()) {
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Class contextType : modelType2contextTypes.get(modelType)) {
-				org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelType.getPackage();
+				org.eclipse.ocl.examples.pivot.Package parentModelPackage = modelType.getOwningPackage();
 				org.eclipse.ocl.examples.pivot.Package parentContextPackage = modelPackage2contextPackage.get(parentModelPackage);
 				Set<org.eclipse.ocl.examples.pivot.Class> ownedTypes = nestedContextTypeMaps.get(parentContextPackage);
 				if (ownedTypes == null) {
@@ -251,7 +251,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		for (org.eclipse.ocl.examples.pivot.Package parentContextPackage : nestedContextTypeMaps.keySet()) {
 			Set<org.eclipse.ocl.examples.pivot.Class> ownedTypes = nestedContextTypeMaps.get(parentContextPackage);
 			if (ownedTypes != null) {
-				List<org.eclipse.ocl.examples.pivot.Class> parentOwnedTypes = parentContextPackage.getOwnedType();
+				List<org.eclipse.ocl.examples.pivot.Class> parentOwnedTypes = parentContextPackage.getOwnedClasses();
 				assert parentOwnedTypes != null;
 				PivotUtil.refreshSet(parentOwnedTypes, ownedTypes);
 			}
@@ -312,7 +312,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		}
 		context.refreshName(contextClassifier, DomainUtil.nonNullModel(modelClassifier.getName()));
 		contextClassifiers.add(contextClassifier);
-		org.eclipse.ocl.examples.pivot.Package modelPackage = modelClassifier.getPackage();
+		org.eclipse.ocl.examples.pivot.Package modelPackage = modelClassifier.getOwningPackage();
 		if (modelPackage != null) {
 			PackageDeclarationCS csPackage = null;
 			if (csElement != null) {
@@ -321,7 +321,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 					csPackage = (PackageDeclarationCS)eContainer;
 				}
 			}
-			Package contextPackage = contextClassifier.getPackage();
+			Package contextPackage = contextClassifier.getOwningPackage();
 			if ((csPackage != null) || (contextPackage == null)) {
 				refreshContextPackage(modelPackage, csPackage);
 			}

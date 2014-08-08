@@ -460,7 +460,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 
 	@Override
 	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
-		org.eclipse.ocl.examples.pivot.Package asPackage = type.getPackage();
+		org.eclipse.ocl.examples.pivot.Package asPackage = type.getOwningPackage();
 		if (asPackage == null) {
 			return null;
 		}

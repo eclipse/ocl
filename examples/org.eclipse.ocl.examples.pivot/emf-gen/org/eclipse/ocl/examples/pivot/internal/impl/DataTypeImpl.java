@@ -225,8 +225,8 @@ public class DataTypeImpl
 				return getOwnedOperations();
 			case PivotPackage.DATA_TYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.DATA_TYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.DATA_TYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
@@ -324,8 +324,8 @@ public class DataTypeImpl
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.DATA_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -414,8 +414,8 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.DATA_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.DATA_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -482,8 +482,8 @@ public class DataTypeImpl
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.DATA_TYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.DATA_TYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:

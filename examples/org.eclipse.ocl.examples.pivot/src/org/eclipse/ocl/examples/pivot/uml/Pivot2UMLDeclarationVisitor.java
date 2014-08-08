@@ -299,7 +299,7 @@ public class Pivot2UMLDeclarationVisitor
 //			umlPackage.setNsURI(pivotPackage.getNsURI());
 //		}
 		safeVisitAll(umlPackage.getNestedPackages(), pivotPackage.getOwnedPackages());
-		safeVisitAll(umlPackage.getOwnedTypes(), pivotPackage.getOwnedType());
+		safeVisitAll(umlPackage.getOwnedTypes(), pivotPackage.getOwnedClasses());
 		return umlPackage;
 	}
 

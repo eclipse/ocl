@@ -396,8 +396,8 @@ public class OCLinEcoreTablesUtils
 			if (owningTemplateParameter == null) {
 				type.accept(emitQualifiedLiteralVisitor);
 			}
-			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Type) {
-				Type containerType = (Type) owningTemplateParameter.getSignature().getTemplate();
+			else if (owningTemplateParameter.getSignature().getTemplate() instanceof org.eclipse.ocl.examples.pivot.Class) {
+				org.eclipse.ocl.examples.pivot.Class containerType = (org.eclipse.ocl.examples.pivot.Class) owningTemplateParameter.getSignature().getTemplate();
 				assert containerType != null;
 				String prefix = getQualifiedTablesClassName(containerType);
 				if (prefix.length() <= 0) {
@@ -530,6 +530,14 @@ public class OCLinEcoreTablesUtils
 		}
 
 		@Override
+		public @Nullable Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+			s.appendClassReference(getQualifiedTablesClassName(type));
+			s.append(".Types.");
+			s.appendScopedTypeName(type);
+			return null;
+		}		
+
+		@Override
 		public @Nullable Object visitCollectionType(@NonNull CollectionType object) {
 			CollectionType unspecializedObject = PivotUtil.getUnspecializedTemplateableElement(object);
 			s.appendClassReference(getQualifiedTablesClassName(unspecializedObject));
@@ -573,14 +581,6 @@ public class OCLinEcoreTablesUtils
 			return null;
 //			[ast.getTablesClassName(genPackage).getPrefixedSymbolName('tuple_type_')/][/template]
 		}
-
-		@Override
-		public @Nullable Object visitType(@NonNull Type type) {
-			s.appendClassReference(getQualifiedTablesClassName(type));
-			s.append(".Types.");
-			s.appendScopedTypeName(type);
-			return null;
-		}		
 	}
 
 	protected final @NonNull CodeGenString s = new CodeGenString();
@@ -612,12 +612,12 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	protected @NonNull Set<? extends org.eclipse.ocl.examples.pivot.Class> getActiveTypes(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
-		Package oclstdlibPackage = metaModelManager.getBooleanType().getPackage();
+		Package oclstdlibPackage = metaModelManager.getBooleanType().getOwningPackage();
 		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
 		Type elementType = metaModelManager.getPivotType("Element");
 		if (oclstdlibPackage == pPackage) {
 			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
-			for (org.eclipse.ocl.examples.pivot.Class type : oclstdlibPackage.getOwnedType()) {
+			for (org.eclipse.ocl.examples.pivot.Class type : oclstdlibPackage.getOwnedClasses()) {
 				assert type != null;
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
 				if ((elementType != null) && typeServer.conformsTo(metaModelManager, elementType)) {
@@ -631,13 +631,13 @@ public class OCLinEcoreTablesUtils
 		}
 		else if (pivotMetaModel == pPackage) {
 			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
-			for (DomainType type : pivotMetaModel.getOwnedType()) {
+			for (DomainType type : pivotMetaModel.getOwnedClasses()) {
 				assert type != null;
 				boolean pruned = false;
 				Type myType = null;
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
 				for (DomainClass partialType : typeServer.getPartialTypes()) {
-					DomainPackage partialPackage = partialType.getPackage();
+					DomainPackage partialPackage = partialType.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if ((elementType != null) && !typeServer.conformsTo(metaModelManager, elementType)) {
 //							System.out.println("Prune " + type.getName());
@@ -662,7 +662,7 @@ public class OCLinEcoreTablesUtils
 			return types;
 		}
 		else {
-			return new HashSet<org.eclipse.ocl.examples.pivot.Class>(pPackage.getOwnedType());
+			return new HashSet<org.eclipse.ocl.examples.pivot.Class>(pPackage.getOwnedClasses());
 		}
 	}
 
@@ -707,7 +707,7 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	protected @Nullable org.eclipse.ocl.examples.pivot.Package getExtendedPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
-		Package oclstdlibPackage = metaModelManager.getBooleanType().getPackage();
+		Package oclstdlibPackage = metaModelManager.getBooleanType().getOwningPackage();
 		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
 		if (oclstdlibPackage == pPackage) {
 			return null;
@@ -724,13 +724,13 @@ public class OCLinEcoreTablesUtils
 		return genPackage;
 	}
 	
-	protected @Nullable GenPackage getGenPackage(@NonNull Type type) {
-		DomainPackage pPackage = type.getPackage();
+	protected @Nullable GenPackage getGenPackage(@NonNull DomainClass type) {
+		DomainPackage pPackage = type.getOwningPackage();
 		assert pPackage != null;
-		Package oclstdlibPackage = metaModelManager.getBooleanType().getPackage();
-		Type elementType = metaModelManager.getPivotType("Element");
+		Package oclstdlibPackage = metaModelManager.getBooleanType().getOwningPackage();
+		org.eclipse.ocl.examples.pivot.Class elementType = metaModelManager.getPivotType("Element");
 		if ((elementType != null) && (oclstdlibPackage != null)) {
-			DomainPackage pivotMetaModel = elementType.getPackage();
+			DomainPackage pivotMetaModel = elementType.getOwningPackage();
 			assert pivotMetaModel != null;
 			if (oclstdlibPackage == pPackage) {
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
@@ -744,7 +744,7 @@ public class OCLinEcoreTablesUtils
 			else if (pivotMetaModel == pPackage) {
 				TypeServer typeServer = metaModelManager.getTypeServer(type);
 				for (DomainClass partialType : typeServer.getPartialTypes()) {
-					DomainPackage partialPackage = partialType.getPackage();
+					DomainPackage partialPackage = partialType.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if (!typeServer.conformsTo(metaModelManager, elementType)) {
 							return getGenPackage(oclstdlibPackage);
@@ -906,7 +906,7 @@ public class OCLinEcoreTablesUtils
 		return properties;
 	}
 	
-	protected @NonNull String getQualifiedTablesClassName(@NonNull Type type) {
+	protected @NonNull String getQualifiedTablesClassName(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			return genPackage.getReflectionPackageName() + "." + getTablesClassName(genPackage);
@@ -930,7 +930,7 @@ public class OCLinEcoreTablesUtils
 		org.eclipse.ocl.examples.pivot.Package thisPackage = getPivotPackage(genPackage);
 		if (thisPackage != null) {
 			PrimitiveType booleanType = metaModelManager.getBooleanType();
-			DomainPackage libraryPackage = booleanType.getPackage();
+			DomainPackage libraryPackage = booleanType.getOwningPackage();
 			if (libraryPackage != null) {
 				GenPackage gPackage = getGenPackage(libraryPackage);
 				if (gPackage != null) {
@@ -1068,7 +1068,7 @@ public class OCLinEcoreTablesUtils
 	protected @NonNull Boolean hasSharedLibrary() {
 		org.eclipse.ocl.examples.pivot.Package thisPackage = getPivotPackage(genPackage);
 		PrimitiveType booleanType = metaModelManager.getBooleanType();
-		org.eclipse.ocl.examples.pivot.Package libraryPackage = booleanType.getPackage();
+		org.eclipse.ocl.examples.pivot.Package libraryPackage = booleanType.getOwningPackage();
 		return thisPackage != libraryPackage;
 	}
 
@@ -1110,10 +1110,10 @@ public class OCLinEcoreTablesUtils
 	
 	protected void mergeLibrary(@NonNull org.eclipse.ocl.examples.pivot.Package primaryPackage) {
 //		primaryPackage.setName("ocl");
-		List<org.eclipse.ocl.examples.pivot.Class> primaryTypes = primaryPackage.getOwnedType();
+		List<org.eclipse.ocl.examples.pivot.Class> primaryTypes = primaryPackage.getOwnedClasses();
 		for (Library library : metaModelManager.getLibraries()) {
 			Map<org.eclipse.ocl.examples.pivot.Class,org.eclipse.ocl.examples.pivot.Class> typeMap = new HashMap<org.eclipse.ocl.examples.pivot.Class,org.eclipse.ocl.examples.pivot.Class>();
-			ArrayList<org.eclipse.ocl.examples.pivot.Class> libraryTypes = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(library.getOwnedType());
+			ArrayList<org.eclipse.ocl.examples.pivot.Class> libraryTypes = new ArrayList<org.eclipse.ocl.examples.pivot.Class>(library.getOwnedClasses());
 			for (org.eclipse.ocl.examples.pivot.Class secondaryType : libraryTypes) {
 				org.eclipse.ocl.examples.pivot.Class primaryType = DomainUtil.getNamedElement(primaryTypes, secondaryType.getName());
 				if (primaryType != null) {

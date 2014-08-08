@@ -134,7 +134,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	public @Nullable DomainType getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
-		return DomainUtil.getNamedElement(parentPackage.getOwnedType(), name);
+		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 	}
 
 	public @Nullable DomainPackage getNsURIPackage(@NonNull String nsURI) {

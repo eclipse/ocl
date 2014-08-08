@@ -38,7 +38,7 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedProperties <em>Owned Properties</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
  * </p>
@@ -146,30 +146,30 @@ public interface Class
 	@NonNull List<Operation> getOwnedOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}'.
+	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedClasses <em>Owned Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Specifies the owning package of this classifier, if any.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Package</em>' container reference.
-	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_Package()
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedType
+	 * @return the value of the '<em>Owning Package</em>' container reference.
+	 * @see #setOwningPackage(org.eclipse.ocl.examples.pivot.Package)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwningPackage()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedClasses
 	 * @generated
 	 */
-	org.eclipse.ocl.examples.pivot.Package getPackage();
+	org.eclipse.ocl.examples.pivot.Package getOwningPackage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#getOwningPackage <em>Owning Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' container reference.
-	 * @see #getPackage()
+	 * @param value the new value of the '<em>Owning Package</em>' container reference.
+	 * @see #getOwningPackage()
 	 * @generated
 	 */
-	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
+	void setOwningPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Super Classes</b></em>' reference list.

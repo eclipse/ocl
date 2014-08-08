@@ -61,9 +61,9 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedClasses <em>Owned Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedPackages <em>Owned Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
@@ -167,6 +167,16 @@ public class PackageImpl
 	protected String nsPrefix = NS_PREFIX_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getOwnedClasses() <em>Owned Classes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.eclipse.ocl.examples.pivot.Class> ownedClasses;
+
+	/**
 	 * The cached value of the '{@link #getOwnedInstances() <em>Owned Instances</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,16 +195,6 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages;
-
-	/**
-	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> ownedType;
 
 	/**
 	 * The cached value of the '{@link #getProfileApplication() <em>Profile Application</em>}' containment reference list.
@@ -402,13 +402,13 @@ public class PackageImpl
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedType()
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses()
 	{
-		if (ownedType == null)
+		if (ownedClasses == null)
 		{
-			ownedType = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.CLASS__PACKAGE);
+			ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE);
 		}
-		return ownedType;
+		return ownedClasses;
 	}
 
 	/**
@@ -519,12 +519,12 @@ public class PackageImpl
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedInstances()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_PACKAGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPackages()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_TYPE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -563,12 +563,12 @@ public class PackageImpl
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_PACKAGES:
 				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_TYPE:
-				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
@@ -633,12 +633,12 @@ public class PackageImpl
 				return getImportedPackage();
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return getNsPrefix();
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return getOwnedClasses();
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return getOwnedInstances();
 			case PivotPackage.PACKAGE__OWNED_PACKAGES:
 				return getOwnedPackages();
-			case PivotPackage.PACKAGE__OWNED_TYPE:
-				return getOwnedType();
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				return getOwningPackage();
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
@@ -706,6 +706,10 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				setNsPrefix((String)newValue);
 				return;
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				getOwnedClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
@@ -713,10 +717,6 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_PACKAGES:
 				getOwnedPackages().clear();
 				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
-				return;
-			case PivotPackage.PACKAGE__OWNED_TYPE:
-				getOwnedType().clear();
-				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -780,14 +780,14 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
 				return;
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				return;
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				return;
 			case PivotPackage.PACKAGE__OWNED_PACKAGES:
 				getOwnedPackages().clear();
-				return;
-			case PivotPackage.PACKAGE__OWNED_TYPE:
-				getOwnedType().clear();
 				return;
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -836,12 +836,12 @@ public class PackageImpl
 				return importedPackage != null && !importedPackage.isEmpty();
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return ownedClasses != null && !ownedClasses.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_PACKAGES:
 				return ownedPackages != null && !ownedPackages.isEmpty();
-			case PivotPackage.PACKAGE__OWNED_TYPE:
-				return ownedType != null && !ownedType.isEmpty();
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				return getOwningPackage() != null;
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:

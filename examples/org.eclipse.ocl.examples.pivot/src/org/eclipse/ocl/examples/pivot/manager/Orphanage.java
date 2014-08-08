@@ -410,17 +410,17 @@ public class Orphanage extends PackageImpl
 	}
 
 	public void dispose() {
-		if (ownedType != null) {
-			((WeakEList<?>)ownedType).dispose();
+		if (ownedClasses != null) {
+			((WeakEList<?>)ownedClasses).dispose();
 		}
 	}
 	
 	@Override
-	public @NonNull EList<org.eclipse.ocl.examples.pivot.Class> getOwnedType() {
-		EList<org.eclipse.ocl.examples.pivot.Class> ownedType2 = ownedType;
+	public @NonNull EList<org.eclipse.ocl.examples.pivot.Class> getOwnedClasses() {
+		EList<org.eclipse.ocl.examples.pivot.Class> ownedType2 = ownedClasses;
 		if (ownedType2 == null)
 		{
-			ownedType2 = ownedType = new WeakEList<org.eclipse.ocl.examples.pivot.Class>(/*WeakReference.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE*/);
+			ownedType2 = ownedClasses = new WeakEList<org.eclipse.ocl.examples.pivot.Class>(/*WeakReference.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE*/);
 		}
 		return ownedType2;
 	}

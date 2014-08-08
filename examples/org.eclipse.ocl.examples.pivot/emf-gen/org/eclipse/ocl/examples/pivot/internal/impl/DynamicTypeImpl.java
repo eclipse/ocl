@@ -196,8 +196,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTIES:
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
-			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case PivotPackage.DYNAMIC_TYPE__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTY:
 				return ((InternalEList<?>)getOwnedProperty()).basicRemove(otherEnd, msgs);
 		}
@@ -257,8 +257,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return getOwnedOperations();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTIES:
 				return getOwnedProperties();
-			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
-				return getPackage();
+			case PivotPackage.DYNAMIC_TYPE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
 				return getSuperClasses();
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
@@ -356,8 +356,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				getOwnedProperties().clear();
 				getOwnedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.DYNAMIC_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -447,8 +447,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTIES:
 				getOwnedProperties().clear();
 				return;
-			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
-				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.DYNAMIC_TYPE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
@@ -515,8 +515,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTIES:
 				return ownedProperties != null && !ownedProperties.isEmpty();
-			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
-				return getPackage() != null;
+			case PivotPackage.DYNAMIC_TYPE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:

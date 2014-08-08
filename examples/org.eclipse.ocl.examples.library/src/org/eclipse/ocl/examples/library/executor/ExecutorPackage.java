@@ -59,7 +59,7 @@ public abstract class ExecutorPackage implements DomainPackage
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
-	public abstract @NonNull List<? extends DomainType> getOwnedType();
+	public abstract @NonNull List<? extends DomainType> getOwnedClasses();
 
 	public @NonNull PackageId getPackageId() {
 		return packageId;
@@ -67,7 +67,7 @@ public abstract class ExecutorPackage implements DomainPackage
 
 
 	public DomainType getType(String typeName) {
-		for (DomainType type: getOwnedType()) {
+		for (DomainType type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}

@@ -880,7 +880,7 @@ public class LoadTests extends XtextTestCase
 		Resource resource = doLoad_Concrete("Bug402767", "oclinecore");
 		Root root = (Root) resource.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pkg = root.getOwnedPackages().get(0);
-		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedType().get(0);
+		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedClasses().get(0);
 		List<Property> ownedAttributes = cls.getOwnedProperties();
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vBlank"), 1, 1);
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vQuery"), 0, 1);
@@ -1035,8 +1035,8 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package pivotPackage1 = pivotRoot1.getOwnedPackages().get(0);
 		assertEquals("PackageA", pivotPackage1.getName());
 		assertEquals("nsPrefixA", pivotPackage1.getNsPrefix());
-		assertEquals(1, pivotPackage1.getOwnedType().size());
-		Type pivotType1 = pivotPackage1.getOwnedType().get(0);
+		assertEquals(1, pivotPackage1.getOwnedClasses().size());
+		Type pivotType1 = pivotPackage1.getOwnedClasses().get(0);
 		assertEquals("ClassA", pivotType1.getName());
 		assertEquals("Class", pivotType1.eClass().getName());
 //
@@ -1050,8 +1050,8 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package pivotPackage2 = pivotRoot2.getOwnedPackages().get(0);
 		assertEquals("PackageB", pivotPackage2.getName());
 		assertEquals("nsPrefixB", pivotPackage2.getNsPrefix());
-		assertEquals(1, pivotPackage2.getOwnedType().size());
-		Type pivotType2 = pivotPackage2.getOwnedType().get(0);
+		assertEquals(1, pivotPackage2.getOwnedClasses().size());
+		Type pivotType2 = pivotPackage2.getOwnedClasses().get(0);
 		assertEquals("ClassB", pivotType2.getName());
 		assertEquals("DataType", pivotType2.eClass().getName());
 //		
@@ -1101,11 +1101,11 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package pivotPackageXXX = pivotRootXXX.getOwnedPackages().get(0);
 		assertEquals("PackageXXX", pivotPackageXXX.getName());
 		assertEquals("nsPrefixXXX", pivotPackageXXX.getNsPrefix());
-		assertEquals(2, pivotPackageXXX.getOwnedType().size());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX0 = pivotPackageXXX.getOwnedType().get(0);
+		assertEquals(2, pivotPackageXXX.getOwnedClasses().size());
+		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX0 = pivotPackageXXX.getOwnedClasses().get(0);
 		assertEquals("MutableXXX", pivotTypeXXX0.getName());
 		assertEquals("Class", pivotTypeXXX0.eClass().getName());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX1 = pivotPackageXXX.getOwnedType().get(1);
+		org.eclipse.ocl.examples.pivot.Class pivotTypeXXX1 = pivotPackageXXX.getOwnedClasses().get(1);
 		assertEquals("ClassXXX", pivotTypeXXX1.getName());
 		assertEquals("Class", pivotTypeXXX1.eClass().getName());
 		assertEquals(2, pivotTypeXXX1.getOwnedProperties().size());
@@ -1126,11 +1126,11 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package pivotPackageYYY = pivotRootYYY.getOwnedPackages().get(0);
 		assertEquals("PackageYYY", pivotPackageYYY.getName());
 		assertEquals("nsPrefixYYY", pivotPackageYYY.getNsPrefix());
-		assertEquals(2, pivotPackageYYY.getOwnedType().size());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY0 = pivotPackageYYY.getOwnedType().get(0);
+		assertEquals(2, pivotPackageYYY.getOwnedClasses().size());
+		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY0 = pivotPackageYYY.getOwnedClasses().get(0);
 		assertEquals("MutableYYY", pivotTypeYYY0.getName());
 		assertEquals("DataType", pivotTypeYYY0.eClass().getName());
-		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY1 = pivotPackageYYY.getOwnedType().get(1);
+		org.eclipse.ocl.examples.pivot.Class pivotTypeYYY1 = pivotPackageYYY.getOwnedClasses().get(1);
 		assertEquals("ClassYYY", pivotTypeYYY1.getName());
 		assertEquals("Class", pivotTypeYYY1.eClass().getName());
 		assertEquals(2, pivotTypeYYY1.getOwnedProperties().size());

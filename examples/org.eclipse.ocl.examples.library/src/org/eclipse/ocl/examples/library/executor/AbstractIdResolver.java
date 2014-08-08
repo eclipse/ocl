@@ -352,7 +352,7 @@ public abstract class AbstractIdResolver implements IdResolver
 				if (enumerator2enumerationLiteralId2 == null) {
 					enumerator2enumerationLiteralId = enumerator2enumerationLiteralId2 = new HashMap<Enumerator, EnumerationLiteralId>();
 					for (DomainPackage dPackage : standardLibrary.getAllPackages()) {
-						for (DomainType dType : dPackage.getOwnedType()) {
+						for (DomainType dType : dPackage.getOwnedClasses()) {
 							if (dType instanceof DomainEnumeration) {
 								for (DomainEnumerationLiteral dEnumerationLiteral : ((DomainEnumeration) dType).getEnumerationLiterals()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();

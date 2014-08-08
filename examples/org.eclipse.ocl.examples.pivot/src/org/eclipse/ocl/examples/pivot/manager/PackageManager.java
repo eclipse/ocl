@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.DomainConstants;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
@@ -521,10 +522,10 @@ public class PackageManager implements PackageServerParent
 		String name = primitiveType.getName();
 		PrimitiveTypeServer primitiveTypeServer = primitiveType2server.get(name);
 		if (primitiveTypeServer == null) {
-			org.eclipse.ocl.examples.pivot.Package primitivePackage = primitiveType.getPackage();
+			org.eclipse.ocl.examples.pivot.Package primitivePackage = primitiveType.getOwningPackage();
 			if (!(primitivePackage instanceof Library)) {
 				AnyType oclAnyType = metaModelManager.getOclAnyType();
-				primitivePackage = DomainUtil.nonNullState(oclAnyType.getPackage());
+				primitivePackage = DomainUtil.nonNullState(oclAnyType.getOwningPackage());
 			}
 			PackageServer packageServer = getPackageServer(primitivePackage);
 			primitiveTypeServer = new PrimitiveTypeServer(packageServer, primitiveType);
@@ -576,13 +577,16 @@ public class PackageManager implements PackageServerParent
 			primitiveTypeServer.getTypeTracker(pivotType);
 			return primitiveTypeServer;
 		}
-		else {
-			DomainPackage pivotPackage = pivotType.getPackage();
+		else if (pivotType instanceof DomainClass) {
+			DomainPackage pivotPackage = ((DomainClass)pivotType).getOwningPackage();
 			if (pivotPackage == null) {
 				throw new IllegalStateException("type has no package");
 			}
 			PackageServer packageServer = getPackageServer(pivotPackage);
 			return packageServer.getTypeServer(pivotType);
+		}
+		else {
+			throw new UnsupportedOperationException("TemplateType");
 		}
 	}
 

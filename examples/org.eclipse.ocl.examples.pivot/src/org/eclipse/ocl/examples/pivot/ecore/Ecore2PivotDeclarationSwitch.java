@@ -154,9 +154,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		String newName = AbstractEcore2Pivot.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
-			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getPackage();
+			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getOwningPackage();
 			if (parentPackage != null) {
-				parentPackage.getOwnedType().remove(pivotElement);
+				parentPackage.getOwnedClasses().remove(pivotElement);
 			}
 		}
 		pivotElement.setName(newName);
@@ -259,9 +259,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		String oldName = pivotElement.getName();
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
-			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getPackage();
+			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getOwningPackage();
 			if (parentPackage != null) {
-				parentPackage.getOwnedType().remove(pivotElement);
+				parentPackage.getOwnedClasses().remove(pivotElement);
 			}
 		}
 		pivotElement.setName(newName);
@@ -347,9 +347,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		String newName = AbstractEcore2Pivot.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
-			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getPackage();
+			org.eclipse.ocl.examples.pivot.Package parentPackage = pivotElement.getOwningPackage();
 			if (parentPackage != null) {
-				parentPackage.getOwnedType().remove(pivotElement);
+				parentPackage.getOwnedClasses().remove(pivotElement);
 			}
 		}
 		pivotElement.setName(newName);
@@ -480,7 +480,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 //		copyNamedElement(pivotElement, eObject2);
 		copyAnnotatedElement(pivotElement, eObject2, exclusions);
 		doSwitchAll(pivotElement.getOwnedPackages(), eObject2.getESubpackages());
-		doSwitchAll(pivotElement.getOwnedType(), eObject2.getEClassifiers());
+		doSwitchAll(pivotElement.getOwnedClasses(), eObject2.getEClassifiers());
 		return pivotElement;
 	}
 
