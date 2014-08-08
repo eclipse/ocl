@@ -422,7 +422,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	//	else if (UMLReflection.INITIAL.equals(stereotype)) {
 	//		return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InitialConstraint.gif";
 	//	}
-		else if (eContainingFeature == PivotPackage.Literals.TYPE__OWNED_INVARIANT) {
+		else if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {

@@ -12,6 +12,8 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 
 
@@ -33,6 +35,7 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getNestedClassifier <em>Nested Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedProperties <em>Owned Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}</li>
@@ -112,6 +115,21 @@ public interface Class
 	List<Behavior> getOwnedBehavior();
 
 	/**
+	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Constraint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Invariants</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Invariants</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedInvariants()
+	 * @generated
+	 */
+	@NonNull List<Constraint> getOwnedInvariants();
+
+	/**
 	 * Returns the value of the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Operation}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningClass <em>Owning Class</em>}'.
@@ -166,6 +184,13 @@ public interface Class
 	 * @generated
 	 */
 	@NonNull List<Class> getSuperClasses();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateUniqueInvariantName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Returns the value of the '<em><b>Is Interface</b></em>' attribute.

@@ -919,7 +919,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			Constraint contextConstraint = (Constraint)eContainer;
 			eContainer = contextConstraint.eContainer();
 			eContainingFeature = contextConstraint.eContainingFeature();
-			if (eContainingFeature == PivotPackage.Literals.TYPE__OWNED_INVARIANT) {
+			if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
 				Type contextType = (Type)eContainer;
 				if (contextType != null) {
 					setClassifierContext(pivotSpecification, contextType);

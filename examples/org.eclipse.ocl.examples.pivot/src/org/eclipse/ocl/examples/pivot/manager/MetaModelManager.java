@@ -239,15 +239,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public class CompleteElementInvariantsIterable
-			extends CompleteElementIterable<Type, Constraint> {
+			extends CompleteElementIterable<org.eclipse.ocl.examples.pivot.Class, Constraint> {
 
-		public CompleteElementInvariantsIterable(@NonNull Iterable<? extends Type> models) {
+		public CompleteElementInvariantsIterable(@NonNull Iterable<? extends org.eclipse.ocl.examples.pivot.Class> models) {
 			super(models);
 		}
 
 		@Override
-		protected @NonNull Iterable<Constraint> getInnerIterable(@NonNull Type model) {
-			return DomainUtil.nonNullEMF(model.getOwnedInvariant());
+		protected @NonNull Iterable<Constraint> getInnerIterable(@NonNull org.eclipse.ocl.examples.pivot.Class model) {
+			return DomainUtil.nonNullEMF(model.getOwnedInvariants());
 		}
 	}
 
@@ -1293,7 +1293,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (partialSuperType instanceof org.eclipse.ocl.examples.pivot.Class) {
 				DomainPackage partialPackage = partialSuperType.getPackage();
 				if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
-					knownInvariants.addAll(((org.eclipse.ocl.examples.pivot.Class)partialSuperType).getOwnedInvariant());
+					knownInvariants.addAll(((org.eclipse.ocl.examples.pivot.Class)partialSuperType).getOwnedInvariants());
 				}
 			}
 		}
@@ -1303,7 +1303,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					if (partialSuperType instanceof org.eclipse.ocl.examples.pivot.Class) {
 						DomainPackage partialPackage = partialSuperType.getPackage();
 						if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
-							knownInvariants.addAll(((org.eclipse.ocl.examples.pivot.Class)partialSuperType).getOwnedInvariant());
+							knownInvariants.addAll(((org.eclipse.ocl.examples.pivot.Class)partialSuperType).getOwnedInvariants());
 						}
 					}
 				}

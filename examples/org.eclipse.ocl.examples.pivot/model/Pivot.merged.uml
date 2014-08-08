@@ -228,6 +228,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedBehavior.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedBehavior.uV" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TClass.PownedInvariants" name="ownedInvariants" type="Ppivot.TConstraint" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedInvariants.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedInvariants.uV" value="*"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TClass.PisInterface" name="isInterface" type="Ppivot.TBoolean">
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TClass.PisInterface.dlV" value="false"/>
       </ownedAttribute>
@@ -1589,10 +1593,6 @@
           <body>The template parameter that exposes this element as a formal parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PtemplateParameter.lV"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TType.PownedInvariant" name="ownedInvariant" type="Ppivot.TConstraint" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PownedInvariant.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TType.PownedInvariant.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TType.PinstanceClassName" name="instanceClassName" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PinstanceClassName.lV"/>

@@ -31,6 +31,8 @@ public interface DomainClass extends DomainType
 	 */
 	@Nullable Object createInstance( @NonNull String value);
 
+	@NonNull List<? extends DomainConstraint> getOwnedInvariants();
+
 	@NonNull List<? extends DomainOperation> getOwnedOperations();
 
 	@NonNull List<? extends DomainProperty> getOwnedProperties();

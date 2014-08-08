@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.domain.elements;
 
-import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -81,6 +79,4 @@ public interface DomainType extends DomainNamespace, OCLValue
 	boolean isUnique();
 
 	/*@NonNull*/ DomainType specializeIn(@NonNull DomainCallExp expr, /*@NonNull*/ DomainType selfType);
-
-	@NonNull List<? extends DomainConstraint> getOwnedInvariant();
 }

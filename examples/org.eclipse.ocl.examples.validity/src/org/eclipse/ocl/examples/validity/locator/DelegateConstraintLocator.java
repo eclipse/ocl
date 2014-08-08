@@ -43,7 +43,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.ConstraintEvaluator;
@@ -68,9 +67,9 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 			if (eAnnotation instanceof EAnnotation) {
 				EObject eClassifier = ((EAnnotation)eAnnotation).eContainer();
 				if (eClassifier instanceof EClassifier) {
-					Type asType = metaModelManager.getPivotOf(Type.class, eClassifier);
+					org.eclipse.ocl.examples.pivot.Class asType = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Class.class, eClassifier);
 					if (asType != null) {
-						return DomainUtil.getNamedElement(asType.getOwnedInvariant(), eEntry.getKey());
+						return DomainUtil.getNamedElement(asType.getOwnedInvariants(), eEntry.getKey());
 					}
 				}
 			}

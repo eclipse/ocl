@@ -12,10 +12,6 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
@@ -32,7 +28,6 @@ import org.eclipse.jdt.annotation.NonNull;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getExtendedBys <em>Extended Bys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedInvariant <em>Owned Invariant</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,21 +53,6 @@ public interface Type
 	 * @generated
 	 */
 	List<TypeExtension> getExtendedBys();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Constraint}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Invariant</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Invariant</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedInvariant()
-	 * @generated
-	 */
-	@NonNull List<Constraint> getOwnedInvariant();
 
 	/**
 	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
@@ -105,12 +85,5 @@ public interface Type
 	 * @generated
 	 */
 	Type specializeIn(OCLExpression expr, Type selfType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	boolean validateUniqueInvariantName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Type

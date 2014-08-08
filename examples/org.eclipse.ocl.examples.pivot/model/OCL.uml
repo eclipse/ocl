@@ -29,6 +29,12 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_ym0uQK5vEd-xTJkHwX_SlQ" name="OCL_Constraints">
+      <packagedElement xmi:type="uml:Class" xmi:id="_8Fq9EB8KEeSG6YCqNQ2wgQ" name="Class">
+        <ownedAttribute xmi:id="_v47pcLGPEeKHeOerXjTPgw" name="ownedInvariants" type="_1blU4K5vEd-xTJkHwX_SlQ" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiEn7VEeOu79LxSz8Ylw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiE37VEeOu79LxSz8Ylw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_1blU4K5vEd-xTJkHwX_SlQ" name="Constraint">
         <ownedAttribute xmi:id="_MMlqQBlNEeSM9LreJtBwBg" name="postContext" type="_UeMwcLGAEeKHeOerXjTPgw" association="_WLIXABlNEeSM9LreJtBwBg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MMlqQRlNEeSM9LreJtBwBg"/>
@@ -50,12 +56,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiEX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_euiaALGPEeKHeOerXjTPgw" name="Type" isAbstract="true">
-        <ownedAttribute xmi:id="_v47pcLGPEeKHeOerXjTPgw" name="ownedInvariant" type="_1blU4K5vEd-xTJkHwX_SlQ" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiEn7VEeOu79LxSz8Ylw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiE37VEeOu79LxSz8Ylw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_euiaALGPEeKHeOerXjTPgw" name="Type" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_3AeT4LGPEeKHeOerXjTPgw" name="Property">
         <ownedAttribute xmi:id="_9mPuALGPEeKHeOerXjTPgw" name="defaultExpression" type="_NdU7cLGQEeKHeOerXjTPgw" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFH7VEeOu79LxSz8Ylw"/>

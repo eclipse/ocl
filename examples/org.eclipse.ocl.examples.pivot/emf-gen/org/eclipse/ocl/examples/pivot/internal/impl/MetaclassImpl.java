@@ -161,8 +161,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getExtendedBys();
 			case PivotPackage.METACLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.METACLASS__OWNED_INVARIANT:
-				return getOwnedInvariant();
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.METACLASS__TEMPLATE_BINDING:
@@ -181,6 +179,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getNestedClassifier();
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.METACLASS__OWNED_INVARIANTS:
+				return getOwnedInvariants();
 			case PivotPackage.METACLASS__OWNED_OPERATIONS:
 				return getOwnedOperations();
 			case PivotPackage.METACLASS__OWNED_PROPERTIES:
@@ -239,10 +239,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.METACLASS__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -273,6 +269,10 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.METACLASS__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
+				getOwnedInvariants().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.METACLASS__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -333,9 +333,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.METACLASS__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				return;
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -362,6 +359,9 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return;
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.METACLASS__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
 				return;
 			case PivotPackage.METACLASS__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -410,8 +410,6 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.METACLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.METACLASS__OWNED_INVARIANT:
-				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.METACLASS__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.METACLASS__TEMPLATE_BINDING:
@@ -430,6 +428,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.METACLASS__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.METACLASS__OWNED_INVARIANTS:
+				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.METACLASS__OWNED_OPERATIONS:
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.METACLASS__OWNED_PROPERTIES:

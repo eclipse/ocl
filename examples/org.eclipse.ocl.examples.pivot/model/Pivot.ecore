@@ -159,6 +159,18 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A class is a type that has objects as its instances."/>
     </eAnnotations>
+    <eOperations name="UniqueInvariantName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ownedInvariants->isUnique(name)&#xA;&#xA;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="True when a class is abstract."/>
@@ -172,6 +184,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedClassifier" upperBound="-1" eType="#//Class" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBehavior" ordered="false" upperBound="-1" eType="#//Behavior" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInvariants" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperations" upperBound="-1" eType="#//Operation" containment="true" eOpposite="#//Operation/owningClass">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The operations owned by a class. These do not include the inherited operations."/>
@@ -1857,18 +1870,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
     </eAnnotations>
-    <eOperations name="UniqueInvariantName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="ownedInvariant->isUnique(name)&#xA;&#xA;"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
     <eOperations name="specializeIn" lowerBound="1" eType="#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self&#xA;&#xA;"/>
@@ -1878,7 +1879,6 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedBys" ordered="false" upperBound="-1" eType="#//TypeExtension" eOpposite="#//TypeExtension/type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInvariant" ordered="false" upperBound="-1" eType="#//Constraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OCLExpression #//ReferringElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="#//Type"/>

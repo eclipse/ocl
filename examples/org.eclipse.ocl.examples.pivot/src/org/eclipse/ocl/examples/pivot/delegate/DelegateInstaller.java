@@ -70,7 +70,7 @@ public class DelegateInstaller
 	public static @Nullable String getAnnotationKey(@NonNull Constraint pivotConstraint) {
 		String name = pivotConstraint.getName();
 		EStructuralFeature eContainingFeature = pivotConstraint.eContainingFeature();
-		if (eContainingFeature == PivotPackage.Literals.TYPE__OWNED_INVARIANT) {
+		if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
 			if (pivotConstraint.isCallable()) {
 				return "body";
 			}

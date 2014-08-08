@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -121,7 +120,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		return null;
 	}
 
-	protected Type refreshClassifier(@NonNull Type pivotElement, @NonNull ClassifierCS csElement) {
+	protected Type refreshClassifier(@NonNull org.eclipse.ocl.examples.pivot.Class pivotElement, @NonNull ClassifierCS csElement) {
 		if (csElement.eIsSet(BaseCSPackage.Literals.CLASSIFIER_CS__INSTANCE_CLASS_NAME)) {
 			pivotElement.setInstanceClassName(csElement.getInstanceClassName());
 		}
@@ -133,10 +132,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		if ((newInstanceClassName != oldInstanceClassName) && ((newInstanceClassName == null) || !newInstanceClassName.equals(oldInstanceClassName))) {
 			pivotElement.setInstanceClassName(newInstanceClassName);
 		}
-		if (pivotElement instanceof TemplateableElement) {
-			context.refreshTemplateSignature(csElement, (TemplateableElement)pivotElement);
-		}
-		context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariant(), csElement.getOwnedConstraint());
+		context.refreshTemplateSignature(csElement, pivotElement);
+		context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariants(), csElement.getOwnedConstraint());
 		return pivotElement;
 	}
 

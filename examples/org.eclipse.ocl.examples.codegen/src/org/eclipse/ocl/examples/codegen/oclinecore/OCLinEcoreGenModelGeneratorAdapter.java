@@ -68,7 +68,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
@@ -133,9 +132,9 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	}
 
 	protected void convertConstraintToOperation(@NonNull Ecore2Pivot ecore2pivot, @NonNull GenModel genModel, @NonNull EClassifier eClassifier, @NonNull String key, @NonNull String body, @Nullable String message) {
-		Type pType = ecore2pivot.getCreated(Type.class, eClassifier);
+		org.eclipse.ocl.examples.pivot.Class pType = ecore2pivot.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eClassifier);
 		if (pType != null) {
-			List<Constraint> ownedInvariants = pType.getOwnedInvariant();
+			List<Constraint> ownedInvariants = pType.getOwnedInvariants();
 			for (Constraint rule : ownedInvariants) {
 				String ruleName = rule.getName();
 				if (ruleName == null) {
@@ -363,7 +362,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	}
 	
 	protected boolean hasConstraints(org.eclipse.ocl.examples.pivot.Class pivotClass) {
-		if (pivotClass.getOwnedInvariant().size() > 0) {
+		if (pivotClass.getOwnedInvariants().size() > 0) {
 			return true;
 		}
 		for (Operation operation : PivotQueries.getOperations(pivotClass)) {

@@ -192,7 +192,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 						cgParameters.add(cgContext);
 					}
 					
-					org.eclipse.ocl.examples.pivot.Class constructorType = (org.eclipse.ocl.examples.pivot.Class)DomainUtil.nonNullState(constructorExp.getType());	// FIXME cast
+					org.eclipse.ocl.examples.pivot.Class constructorType = DomainUtil.nonNullState(constructorExp.getType());
 					GenClass genClass = DomainUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
 					EClass eClass = DomainUtil.nonNullState(genClass.getEcoreClass());
 					for (ConstructorPart constructorPart : constructorExp.getPart()) {

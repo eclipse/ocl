@@ -200,8 +200,6 @@ public class MessageTypeImpl
 				return getExtendedBys();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANT:
-				return getOwnedInvariant();
 			case PivotPackage.MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.MESSAGE_TYPE__TEMPLATE_BINDING:
@@ -220,6 +218,8 @@ public class MessageTypeImpl
 				return getNestedClassifier();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:
+				return getOwnedInvariants();
 			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATIONS:
 				return getOwnedOperations();
 			case PivotPackage.MESSAGE_TYPE__OWNED_PROPERTIES:
@@ -280,10 +280,6 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -314,6 +310,10 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
+				getOwnedInvariants().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -376,9 +376,6 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -405,6 +402,9 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
 				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -455,8 +455,6 @@ public class MessageTypeImpl
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANT:
-				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.MESSAGE_TYPE__TEMPLATE_BINDING:
@@ -475,6 +473,8 @@ public class MessageTypeImpl
 				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:
+				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATIONS:
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_PROPERTIES:

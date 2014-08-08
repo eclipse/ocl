@@ -87,7 +87,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 //				pivotElement.getSuperClass().add(oclElementType);
 //			}
 			List<org.eclipse.uml2.uml.Constraint> invariants = umlClass.getOwnedRules();
-			doSwitchAll(Constraint.class, pivotElement.getOwnedInvariant(), invariants);
+			doSwitchAll(Constraint.class, pivotElement.getOwnedInvariants(), invariants);
 			copyConstraints(pivotElement, umlClass, invariants);
 		}
 		return pivotElement;
@@ -109,7 +109,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlClassifier);
 		if (pivotElement != null) {
 			List<org.eclipse.uml2.uml.Constraint> invariants = umlClassifier.getOwnedRules();
-			doSwitchAll(Constraint.class, pivotElement.getOwnedInvariant(), invariants);
+			doSwitchAll(Constraint.class, pivotElement.getOwnedInvariants(), invariants);
 			copyConstraints(pivotElement, umlClassifier, invariants);
 		}
 		return umlClassifier;

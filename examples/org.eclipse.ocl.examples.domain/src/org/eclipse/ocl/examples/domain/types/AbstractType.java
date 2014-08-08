@@ -55,10 +55,6 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		return getInheritance(standardLibrary);
 	}
 
-	public @NonNull List<? extends DomainConstraint> getOwnedInvariant() {
-		throw new UnsupportedOperationException();			// FIXME
-	}
-
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}

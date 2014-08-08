@@ -216,15 +216,15 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/ownedBehavior"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/ownedInvariants"/>
+      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Class/isInterface"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//Type"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Type/ownedInvariant"/>
-      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Type/instanceClassName"/>
       </genFeatures>
@@ -329,6 +329,30 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//TypeExtension"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypeExtension/isRequired"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TypeExtension/stereotype"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TypeExtension/type"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//Stereotype"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Stereotype/extensionOfs"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false">
+      <ecoreClass href="Pivot.ecore#//Namespace"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Namespace/ownedRule"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//Constraint"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Constraint/constrainedElement"/>
@@ -401,12 +425,6 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypedElement/isMany"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false">
-      <ecoreClass href="Pivot.ecore#//Namespace"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Namespace/ownedRule"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
@@ -626,24 +644,6 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Precedence/order"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//TypeExtension"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypeExtension/isRequired"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TypeExtension/stereotype"/>
-      </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TypeExtension/type"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//Stereotype"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Stereotype/extensionOfs"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

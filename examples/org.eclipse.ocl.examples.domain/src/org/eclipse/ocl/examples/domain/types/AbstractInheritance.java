@@ -236,7 +236,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return oclAnyType.getInheritance(standardLibrary);
 	}
 
-	public @NonNull List<? extends DomainConstraint> getOwnedInvariant() {
+	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

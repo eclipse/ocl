@@ -149,10 +149,10 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 
 	@Override
 	public Continuation<?> visitClassifierCS(@NonNull ClassifierCS csClassifier) {
-		Type pivotElement = PivotUtil.getPivot(Type.class, csClassifier);
+		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csClassifier);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csClassifier, pivotElement);
-			context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariant(), csClassifier.getOwnedConstraint());
+			context.refreshPivotList(Constraint.class, pivotElement.getOwnedInvariants(), csClassifier.getOwnedConstraint());
 		}
 		return null;
 	}

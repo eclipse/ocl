@@ -176,7 +176,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setIsInterface(eObject2.isInterface());			
 		doSwitchAll(eObject2.getEGenericSuperTypes());
 		List<Operation> pivotOperations = pivotElement.getOwnedOperations();
-		List<Constraint> pivotInvariants = pivotElement.getOwnedInvariant();
+		List<Constraint> pivotInvariants = pivotElement.getOwnedInvariants();
 		for (@SuppressWarnings("null")@NonNull EOperation eOperation : eObject2.getEOperations()) {
 			if (converter.isInvariant(eOperation)) {
 				Object pivotObject = doSwitch(eOperation);
@@ -867,7 +867,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		Map<String, Constraint> newConstraintMap = null;
 		Map<String, Constraint> oldInvariantMap = null;
 		List<Constraint> newInvariants = null;
-		List<Constraint> oldInvariants = pivotElement.getOwnedInvariant();
+		List<Constraint> oldInvariants = pivotElement.getOwnedInvariants();
 		if (oldInvariants.size() > 0) {
 			oldInvariantMap = new HashMap<String, Constraint>();
 			for (Constraint oldInvariant : oldInvariants) {

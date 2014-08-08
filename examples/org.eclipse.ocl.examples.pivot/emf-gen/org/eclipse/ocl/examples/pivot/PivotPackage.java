@@ -1676,22 +1676,13 @@ public interface PivotPackage
 	int TYPE__INSTANCE_CLASS_NAME = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_INVARIANT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
+	int TYPE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -1730,22 +1721,13 @@ public interface PivotPackage
 	int TYPE___IS_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
+	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Type</em>' class.
@@ -1754,7 +1736,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 2;
+	int TYPE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -1838,15 +1820,6 @@ public interface PivotPackage
 	int CLASS__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_INVARIANT = TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1928,13 +1901,22 @@ public interface PivotPackage
 	int CLASS__OWNED_BEHAVIOR = TYPE_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_INVARIANTS = TYPE_FEATURE_COUNT + 9;
+
+	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_OPERATIONS = TYPE_FEATURE_COUNT + 9;
+	int CLASS__OWNED_OPERATIONS = TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
@@ -1943,7 +1925,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_PROPERTIES = TYPE_FEATURE_COUNT + 10;
+	int CLASS__OWNED_PROPERTIES = TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -1952,7 +1934,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__PACKAGE = TYPE_FEATURE_COUNT + 11;
+	int CLASS__PACKAGE = TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -1961,7 +1943,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASSES = TYPE_FEATURE_COUNT + 12;
+	int CLASS__SUPER_CLASSES = TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -1970,7 +1952,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 13;
+	int CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -2009,15 +1991,6 @@ public interface PivotPackage
 	int CLASS___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2045,13 +2018,22 @@ public interface PivotPackage
 	int CLASS___PARAMETERABLE_ELEMENTS = TYPE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = TYPE_OPERATION_COUNT + 2;
+	int CLASS_OPERATION_COUNT = TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -2135,15 +2117,6 @@ public interface PivotPackage
 	int ANY_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2223,6 +2196,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -2306,15 +2288,6 @@ public interface PivotPackage
 	int ANY_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2340,6 +2313,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Any Type</em>' class.
@@ -2432,15 +2414,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2520,6 +2493,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -2612,15 +2594,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2646,6 +2619,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Association Class</em>' class.
@@ -3638,15 +3620,6 @@ public interface PivotPackage
 	int DATA_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3726,6 +3699,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -3827,15 +3809,6 @@ public interface PivotPackage
 	int DATA_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3861,6 +3834,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Data Type</em>' class.
@@ -3953,15 +3935,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4041,6 +4014,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_INVARIANTS = DATA_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -4169,15 +4151,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4203,6 +4176,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Collection Type</em>' class.
@@ -4295,15 +4277,6 @@ public interface PivotPackage
 	int BAG_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4383,6 +4356,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_INVARIANTS = COLLECTION_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -4511,15 +4493,6 @@ public interface PivotPackage
 	int BAG_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4545,6 +4518,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Bag Type</em>' class.
@@ -4637,15 +4619,6 @@ public interface PivotPackage
 	int BEHAVIOR__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4725,6 +4698,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -4817,15 +4799,6 @@ public interface PivotPackage
 	int BEHAVIOR___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4851,6 +4824,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Behavior</em>' class.
@@ -6959,15 +6941,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7047,6 +7020,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -7148,15 +7130,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7182,6 +7155,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Dynamic Type</em>' class.
@@ -7274,15 +7256,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME = DYNAMIC_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_INVARIANT = DYNAMIC_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7362,6 +7335,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR = DYNAMIC_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_INVARIANTS = DYNAMIC_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -7472,15 +7454,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7506,6 +7479,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR___PARAMETERABLE_ELEMENTS = DYNAMIC_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Dynamic Behavior</em>' class.
@@ -8201,15 +8183,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8289,6 +8262,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -8408,15 +8390,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8442,6 +8415,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Element Extension</em>' class.
@@ -8678,15 +8660,6 @@ public interface PivotPackage
 	int ENUMERATION__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8766,6 +8739,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__OWNED_INVARIANTS = DATA_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -8876,15 +8858,6 @@ public interface PivotPackage
 	int ENUMERATION___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8910,6 +8883,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Enumeration</em>' class.
@@ -11145,15 +11127,6 @@ public interface PivotPackage
 	int INVALID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11233,6 +11206,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -11316,15 +11298,6 @@ public interface PivotPackage
 	int INVALID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11350,6 +11323,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Invalid Type</em>' class.
@@ -13098,15 +13080,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13186,6 +13159,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE__OWNED_INVARIANTS = DATA_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -13314,15 +13296,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13348,6 +13321,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Lambda Type</em>' class.
@@ -14268,15 +14250,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14356,6 +14329,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -14457,15 +14439,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14491,6 +14464,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Message Type</em>' class.
@@ -14583,15 +14565,6 @@ public interface PivotPackage
 	int METACLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14671,6 +14644,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -14763,15 +14745,6 @@ public interface PivotPackage
 	int METACLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14797,6 +14770,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Metaclass</em>' class.
@@ -15753,15 +15735,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15841,6 +15814,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_INVARIANTS = COLLECTION_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -15969,15 +15951,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16003,6 +15976,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Ordered Set Type</em>' class.
@@ -16677,15 +16659,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16765,6 +16738,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_INVARIANTS = DATA_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -16866,15 +16848,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16900,6 +16873,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Primitive Type</em>' class.
@@ -18486,15 +18468,6 @@ public interface PivotPackage
 	int SELF_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18574,6 +18547,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -18657,15 +18639,6 @@ public interface PivotPackage
 	int SELF_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18691,6 +18664,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -18882,15 +18864,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18970,6 +18943,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_INVARIANTS = COLLECTION_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -19098,15 +19080,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19132,6 +19105,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Sequence Type</em>' class.
@@ -19224,15 +19206,6 @@ public interface PivotPackage
 	int SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNED_INVARIANT = COLLECTION_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19312,6 +19285,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__OWNED_BEHAVIOR = COLLECTION_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_INVARIANTS = COLLECTION_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -19440,15 +19422,6 @@ public interface PivotPackage
 	int SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19474,6 +19447,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE___PARAMETERABLE_ELEMENTS = COLLECTION_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = COLLECTION_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Set Type</em>' class.
@@ -19566,15 +19548,6 @@ public interface PivotPackage
 	int SIGNAL__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19654,6 +19627,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -19737,15 +19719,6 @@ public interface PivotPackage
 	int SIGNAL___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19771,6 +19744,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Signal</em>' class.
@@ -20097,15 +20079,6 @@ public interface PivotPackage
 	int STATE_MACHINE__INSTANCE_CLASS_NAME = BEHAVIOR__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__OWNED_INVARIANT = BEHAVIOR__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20185,6 +20158,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE__OWNED_BEHAVIOR = BEHAVIOR__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__OWNED_INVARIANTS = BEHAVIOR__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -20313,15 +20295,6 @@ public interface PivotPackage
 	int STATE_MACHINE___IS_TEMPLATE_PARAMETER = BEHAVIOR___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20347,6 +20320,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE___PARAMETERABLE_ELEMENTS = BEHAVIOR___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>State Machine</em>' class.
@@ -20439,15 +20421,6 @@ public interface PivotPackage
 	int STEREOTYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20527,6 +20500,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -20619,15 +20601,6 @@ public interface PivotPackage
 	int STEREOTYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20653,6 +20626,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Stereotype</em>' class.
@@ -21087,15 +21069,6 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_INVARIANT = TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Specification</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21148,15 +21121,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -21987,15 +21951,6 @@ public interface PivotPackage
 	int TUPLE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNED_INVARIANT = DATA_TYPE__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22075,6 +22030,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__OWNED_BEHAVIOR = DATA_TYPE__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_INVARIANTS = DATA_TYPE__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -22176,15 +22140,6 @@ public interface PivotPackage
 	int TUPLE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22210,6 +22165,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE___PARAMETERABLE_ELEMENTS = DATA_TYPE___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DATA_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Tuple Type</em>' class.
@@ -22835,15 +22799,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22923,6 +22878,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -23024,15 +22988,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23058,6 +23013,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Type</em>' class.
@@ -23591,15 +23555,6 @@ public interface PivotPackage
 	int VOID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owned Invariant</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNED_INVARIANT = CLASS__OWNED_INVARIANT;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23679,6 +23634,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__OWNED_BEHAVIOR = CLASS__OWNED_BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_INVARIANTS = CLASS__OWNED_INVARIANTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -23762,15 +23726,6 @@ public interface PivotPackage
 	int VOID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23796,6 +23751,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Void Type</em>' class.
@@ -26788,6 +26752,17 @@ public interface PivotPackage
 	EReference getClass_OwnedBehavior();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedInvariants <em>Owned Invariants</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Invariants</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedInvariants()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_OwnedInvariants();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26830,6 +26805,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getClass_SuperClasses();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Class#validateUniqueInvariantName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unique Invariant Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Class#validateUniqueInvariantName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClass__ValidateUniqueInvariantName__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}'.
@@ -26875,17 +26860,6 @@ public interface PivotPackage
 	EReference getType_ExtendedBys();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedInvariant <em>Owned Invariant</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Invariant</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedInvariant()
-	 * @see #getType()
-	 * @generated
-	 */
-	EReference getType_OwnedInvariant();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26905,16 +26879,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getType__SpecializeIn__OCLExpression_Type();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#validateUniqueInvariantName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unique Invariant Name</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.Type#validateUniqueInvariantName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getType__ValidateUniqueInvariantName__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateableElement <em>Templateable Element</em>}'.
@@ -31141,6 +31105,14 @@ public interface PivotPackage
 		EReference CLASS__OWNED_BEHAVIOR = eINSTANCE.getClass_OwnedBehavior();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Invariants</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__OWNED_INVARIANTS = eINSTANCE.getClass_OwnedInvariants();
+
+		/**
 		 * The meta object literal for the '<em><b>Owned Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31171,6 +31143,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference CLASS__SUPER_CLASSES = eINSTANCE.getClass_SuperClasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Unique Invariant Name</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateUniqueInvariantName__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Interface</b></em>' attribute feature.
@@ -31207,14 +31187,6 @@ public interface PivotPackage
 		EReference TYPE__EXTENDED_BYS = eINSTANCE.getType_ExtendedBys();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Invariant</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE__OWNED_INVARIANT = eINSTANCE.getType_OwnedInvariant();
-
-		/**
 		 * The meta object literal for the '<em><b>Instance Class Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31229,14 +31201,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = eINSTANCE.getType__SpecializeIn__OCLExpression_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Unique Invariant Name</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getType__ValidateUniqueInvariantName__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl <em>Templateable Element</em>}' class.

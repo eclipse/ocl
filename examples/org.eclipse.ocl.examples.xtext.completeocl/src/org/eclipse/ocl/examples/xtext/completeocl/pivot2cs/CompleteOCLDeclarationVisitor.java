@@ -124,7 +124,18 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 
 	@Override
 	public ElementCS visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		return visitType(object);
+		List<Constraint> ownedInvariant = object.getOwnedInvariants();
+		if (ownedInvariant.size() <= 0) {
+			return null;
+		}
+		org.eclipse.ocl.examples.pivot.Package objectPackage = object.getPackage();
+		ClassifierContextDeclCS csContext = context.refreshElement(ClassifierContextDeclCS.class, CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, object);
+		if ((csContext != null) && (objectPackage != null)) {
+			refreshPathNamedElement(csContext, object, objectPackage);
+			importPackage(objectPackage);
+			context.refreshList(csContext.getInvariants(), context.visitDeclarations(ConstraintCS.class, ownedInvariant, null));
+		}
+		return csContext;
 	}
 
 	@Override
@@ -312,20 +323,6 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 
 	@Override
 	public ElementCS visitType(@NonNull Type object) {
-		List<Constraint> ownedInvariant = object.getOwnedInvariant();
-		if (ownedInvariant.size() <= 0) {
-			return null;
-		}
-		if (object instanceof org.eclipse.ocl.examples.pivot.Class) {
-			org.eclipse.ocl.examples.pivot.Package objectPackage = ((org.eclipse.ocl.examples.pivot.Class)object).getPackage();
-			ClassifierContextDeclCS csContext = context.refreshElement(ClassifierContextDeclCS.class, CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, object);
-			if ((csContext != null) && (objectPackage != null)) {
-				refreshPathNamedElement(csContext, object, objectPackage);
-				importPackage(objectPackage);
-				context.refreshList(csContext.getInvariants(), context.visitDeclarations(ConstraintCS.class, ownedInvariant, null));
-			}
-			return csContext;
-		}
 		return null;
 	}
 }

@@ -374,7 +374,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
     @Override
 	public Object visitConstructorExp(@NonNull ConstructorExp ce) {
-		DomainClass type = (DomainClass) ce.getType();
+    	org.eclipse.ocl.examples.pivot.Class type = ce.getType();
 		String value = ce.getValue();
 		Object object;
 		if (value == null) {

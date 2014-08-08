@@ -240,7 +240,7 @@ public class ElementUtil
 				if (eRoot instanceof Root) {
 					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getOwnedPackages()) {
 						for (org.eclipse.ocl.examples.pivot.Class asType: asPackage.getOwnedType()) {
-							for (Constraint asConstraint : asType.getOwnedInvariant()) {
+							for (Constraint asConstraint : asType.getOwnedInvariants()) {
 								LanguageExpression specification = asConstraint.getSpecification();
 								if (specification != null) {
 									return metaModelManager.getQueryOrThrow(specification);

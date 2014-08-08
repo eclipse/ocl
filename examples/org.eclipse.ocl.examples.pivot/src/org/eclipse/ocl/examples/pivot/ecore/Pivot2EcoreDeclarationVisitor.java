@@ -197,7 +197,7 @@ public class Pivot2EcoreDeclarationVisitor
 		}
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
 		delegateInstaller.installDelegates(eClassifier, pivotType);
-		for (Constraint pivotInvariant : pivotType.getOwnedInvariant()) {
+		for (Constraint pivotInvariant : pivotType.getOwnedInvariants()) {
 			if (!pivotInvariant.isCallable()) {
 				safeVisit(pivotInvariant);		// Results are inserted directly
 			}
@@ -392,7 +392,7 @@ public class Pivot2EcoreDeclarationVisitor
 		eClass.setInterface(pivotClass.isInterface());
 		context.defer(pivotClass);		// Defer superclass resolution
 		@SuppressWarnings("null")@NonNull List<EOperation> eOperations = eClass.getEOperations();
-		@SuppressWarnings("null")@NonNull Iterable<Constraint> nonDuplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariant(), nonDuplicateConstraintsFilter);
+		@SuppressWarnings("null")@NonNull Iterable<Constraint> nonDuplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), nonDuplicateConstraintsFilter);
 //		safeVisitAll(eOperations, nonDuplicateConstraints);
 		@SuppressWarnings("null")@NonNull Iterable<Operation> nonDuplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), nonDuplicateOperationsFilter);
 		safeVisitAll(eOperations, nonDuplicateOperations);
@@ -409,7 +409,7 @@ public class Pivot2EcoreDeclarationVisitor
 		}
 		if (!context.isSuppressDuplicates()) {
 			List<ETypedElement> eDuplicates = null;
-			@SuppressWarnings("null")@NonNull Iterable<Constraint> duplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariant(), duplicateConstraintsFilter);
+			@SuppressWarnings("null")@NonNull Iterable<Constraint> duplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), duplicateConstraintsFilter);
 			for (Constraint asConstraint : duplicateConstraints) {
 				if (eDuplicates == null) {
 					eDuplicates = new ArrayList<ETypedElement>();

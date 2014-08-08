@@ -245,7 +245,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 					allInvariants.addAll(typeInvariants);
 				}
 				installPropertyContainment(modelType, contextType, allInvariants);
-				PivotUtil.refreshList(contextType.getOwnedInvariant(), allInvariants);
+				PivotUtil.refreshList(contextType.getOwnedInvariants(), allInvariants);
 			}
 		}
 		for (org.eclipse.ocl.examples.pivot.Package parentContextPackage : nestedContextTypeMaps.keySet()) {

@@ -65,10 +65,10 @@
           type="#T.pivot.State"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.BooleanLiteralExp" name="BooleanLiteralExp" superClasses="#T.pivot.PrimitiveLiteralExp">
-      <ownedInvariant xmi:id="cipivot.BooleanLiteralExp.TypeIsBoolean" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.BooleanLiteralExp.TypeIsBoolean" isCallable="true"
           name="TypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.BooleanLiteralExp.booleanSymbol" isUnsettable="true"
           name="booleanSymbol" type="#Boolean"/>
     </ownedType>
@@ -87,6 +87,10 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Class" name="Class" superClasses="#T.pivot.Type #T.pivot.TemplateableElement #T.pivot.Namespace">
       <ownedComment body="A class is a type that has objects as its instances."/>
+      <ownedInvariants xmi:id="cipivot.Class.UniqueInvariantName" isCallable="true"
+          name="UniqueInvariantName">
+        <specification xsi:type="pivot:ExpressionInOCL" body="ownedInvariants->isUnique(name)&#xA;&#xA;"/>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Class.isAbstract" default="false" name="isAbstract"
           type="#Boolean">
         <ownedComment body="True when a class is abstract."/>
@@ -101,6 +105,8 @@
           name="nestedClassifier" opposite="#p.pivot.Class.Class" type="#//@ownedPackages.1/@ownedType.108"/>
       <ownedProperties xmi:id="p.pivot.Class.ownedBehavior" isComposite="true" name="ownedBehavior"
           opposite="#p.pivot.Behavior.Class" type="#//@ownedPackages.1/@ownedType.126"/>
+      <ownedProperties xmi:id="p.pivot.Class.ownedInvariants" isComposite="true" name="ownedInvariants"
+          opposite="#p.pivot.Constraint.Class" type="#//@ownedPackages.1/@ownedType.130"/>
       <ownedProperties xmi:id="p.pivot.Class.ownedOperations" isComposite="true" name="ownedOperations"
           opposite="#p.pivot.Operation.owningClass" type="#//@ownedPackages.1/@ownedType.116">
         <ownedComment body="The operations owned by a class. These do not include the inherited operations."/>
@@ -131,10 +137,10 @@
           type="#T.pivot.TypeTemplateParameter"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.CollectionItem" name="CollectionItem" superClasses="#T.pivot.CollectionLiteralPart">
-      <ownedInvariant xmi:id="cipivot.CollectionItem.TypeIsItemType" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.CollectionItem.TypeIsItemType" isCallable="true"
           name="TypeIsItemType">
         <specification xsi:type="pivot:ExpressionInOCL" body="type = item.type&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.CollectionItem.item" isComposite="true" name="item"
           opposite="#p.pivot.OCLExpression.CollectionItem" type="#T.pivot.OCLExpression"/>
     </ownedType>
@@ -147,26 +153,26 @@
       <ownedLiteral name="Sequence" value="4"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.CollectionLiteralExp" name="CollectionLiteralExp" superClasses="#T.pivot.LiteralExp">
-      <ownedInvariant xmi:id="cipivot.CollectionLiteralExp.BagKindIsBag" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.BagKindIsBag" isCallable="true"
           name="BagKindIsBag">
         <specification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Bag implies type.oclIsKindOf (BagType)&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.CollectionLiteralExp.CollectionKindIsConcrete"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.CollectionKindIsConcrete"
           isCallable="true" name="CollectionKindIsConcrete">
         <specification xsi:type="pivot:ExpressionInOCL" body="kind &lt;> CollectionKind::Collection&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.CollectionLiteralExp.OrderedSetKindIsOrderedSet"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.OrderedSetKindIsOrderedSet"
           isCallable="true" name="OrderedSetKindIsOrderedSet">
         <specification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::OrderedSet implies type.oclIsKindOf (OrderedSetType)&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.CollectionLiteralExp.SequenceKindIsSequence"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.SequenceKindIsSequence"
           isCallable="true" name="SequenceKindIsSequence">
         <specification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Sequence implies type.oclIsKindOf (SequenceType)&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.CollectionLiteralExp.SetKindIsSet" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.SetKindIsSet" isCallable="true"
           name="SetKindIsSet">
         <specification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Set implies type.oclIsKindOf (SetType)&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.CollectionLiteralExp.kind" name="kind" type="#T.pivot.CollectionKind"/>
       <ownedProperties xmi:id="p.pivot.CollectionLiteralExp.part" isComposite="true"
           name="part" opposite="#p.pivot.CollectionLiteralPart.CollectionLiteralExp"
@@ -223,9 +229,9 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Constraint" name="Constraint" superClasses="#T.pivot.PackageableElement">
       <ownedComment body="A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element."/>
-      <ownedInvariant xmi:id="cipivot.Constraint.UniqueName" isCallable="true" name="UniqueName">
+      <ownedInvariants xmi:id="cipivot.Constraint.UniqueName" isCallable="true" name="UniqueName">
         <specification xsi:type="pivot:ExpressionInOCL" body="true "/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Constraint.constrainedElement" name="constrainedElement"
           opposite="#p.pivot.Element.Constraint" type="#//@ownedPackages.1/@ownedType.112">
         <ownedComment body="The ordered set of Elements referenced by this Constraint."/>
@@ -250,10 +256,10 @@
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Constraint.transition" isRequired="false" name="transition"
           opposite="#p.pivot.Transition.guard" type="#T.pivot.Transition"/>
+      <ownedProperties xmi:id="p.pivot.Constraint.Class" implicit="true" isRequired="false"
+          name="Class" opposite="#p.pivot.Class.ownedInvariants" type="#T.pivot.Class"/>
       <ownedProperties xmi:id="p.pivot.Constraint.Namespace" implicit="true" isRequired="false"
           name="Namespace" opposite="#p.pivot.Namespace.ownedRule" type="#T.pivot.Namespace"/>
-      <ownedProperties xmi:id="p.pivot.Constraint.Type" implicit="true" isRequired="false"
-          name="Type" opposite="#p.pivot.Type.ownedInvariant" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.Constraint.constraint" implicit="true" isRequired="false"
           name="constraint" opposite="#p.pivot.Constraint.redefinedConstraint" type="#T.pivot.Constraint"/>
     </ownedType>
@@ -349,10 +355,10 @@
           opposite="#p.pivot.Stereotype.ElementExtension" type="#T.pivot.Stereotype"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.EnumLiteralExp" name="EnumLiteralExp" superClasses="#T.pivot.LiteralExp">
-      <ownedInvariant xmi:id="cipivot.EnumLiteralExp.TypeIsEnumerationType" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.EnumLiteralExp.TypeIsEnumerationType" isCallable="true"
           name="TypeIsEnumerationType">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.type = referredEnumLiteral.enumeration&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.EnumLiteralExp.referredEnumLiteral" isRequired="false"
           name="referredEnumLiteral" opposite="#p.pivot.EnumerationLiteral.EnumLiteralExp"
           type="#T.pivot.EnumerationLiteral"/>
@@ -408,10 +414,10 @@
       <ownedComment body="A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed."/>
     </ownedType>
     <ownedType xmi:id="T.pivot.IfExp" name="IfExp" superClasses="#T.pivot.OCLExpression">
-      <ownedInvariant xmi:id="cipivot.IfExp.ConditionTypeIsBoolean" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.IfExp.ConditionTypeIsBoolean" isCallable="true"
           name="ConditionTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.condition.type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.IfExp.condition" isComposite="true" name="condition"
           opposite="#//@ownedPackages.0/@ownedType.69/@ownedProperties.6" type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.IfExp.elseExpression" isComposite="true" name="elseExpression"
@@ -445,28 +451,28 @@
       </ownedProperties>
     </ownedType>
     <ownedType xmi:id="T.pivot.IntegerLiteralExp" name="IntegerLiteralExp" superClasses="#T.pivot.NumericLiteralExp">
-      <ownedInvariant xmi:id="cipivot.IntegerLiteralExp.TypeIsInteger" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.IntegerLiteralExp.TypeIsInteger" isCallable="true"
           name="TypeIsInteger">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.type = Integer&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.IntegerLiteralExp.integerSymbol" name="integerSymbol"
           type="#Integer"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.InvalidLiteralExp" name="InvalidLiteralExp" superClasses="#T.pivot.LiteralExp"/>
     <ownedType xmi:id="T.pivot.InvalidType" name="InvalidType" superClasses="#T.pivot.Class"/>
     <ownedType xmi:id="T.pivot.IterateExp" name="IterateExp" superClasses="#T.pivot.LoopExp #T.pivot.ReferringElement">
-      <ownedInvariant xmi:id="cipivot.IterateExp.BodyTypeConformsToResultType" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.IterateExp.BodyTypeConformsToResultType" isCallable="true"
           name="BodyTypeConformsToResultType">
         <specification xsi:type="pivot:ExpressionInOCL" body="_'body'.type.conformsTo(result.type)&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IterateExp.OneInitializer" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IterateExp.OneInitializer" isCallable="true"
           name="OneInitializer">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.result.initExpression->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IterateExp.TypeIsResultType" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IterateExp.TypeIsResultType" isCallable="true"
           name="TypeIsResultType">
         <specification xsi:type="pivot:ExpressionInOCL" body="type = result.type&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.IterateExp.result" isComposite="true" isRequired="false"
           name="result" opposite="#p.pivot.Variable.IterateExp" type="#T.pivot.Variable"/>
     </ownedType>
@@ -481,137 +487,137 @@
           opposite="#p.pivot.LoopExp.referredIteration" type="#//@ownedPackages.1/@ownedType.13"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.IteratorExp" name="IteratorExp" superClasses="#T.pivot.LoopExp #T.pivot.ReferringElement">
-      <ownedInvariant xmi:id="cipivot.IteratorExp.AnyBodyTypeIsBoolean" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.IteratorExp.AnyBodyTypeIsBoolean" isCallable="true"
           name="AnyBodyTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'any' implies _'body'.type = 'Boolean'&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.AnyHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.AnyHasOneIterator" isCallable="true"
           name="AnyHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'any' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.AnyTypeIsSourceElementType" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.AnyTypeIsSourceElementType" isCallable="true"
           name="AnyTypeIsSourceElementType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'any' implies type = source.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ClosureBodyTypeIsConformanttoIteratorType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ClosureBodyTypeIsConformanttoIteratorType"
           isCallable="true" name="ClosureBodyTypeIsConformanttoIteratorType">
         <specification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;true&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ClosureElementTypeIsSourceElementType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ClosureElementTypeIsSourceElementType"
           isCallable="true" name="ClosureElementTypeIsSourceElementType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'closure' implies&#xA;type.oclAsType(CollectionType).elementType&#xA;= source.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ClosureHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ClosureHasOneIterator" isCallable="true"
           name="ClosureHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'closure' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ClosureSourceElementTypeIsBodyElementType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ClosureSourceElementTypeIsBodyElementType"
           isCallable="true" name="ClosureSourceElementTypeIsBodyElementType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'closure' implies&#xA;source.type.oclAsType(CollectionType).elementType =&#xA;if _'body'.type.oclIsKindOf(CollectionType)&#xA;then _'body'.type.oclAsType(CollectionType).elementType&#xA;else _'body'.type&#xA;endif&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ClosureTypeIsUniqueCollection" isCallable="true"
-          name="ClosureTypeIsUniqueCollection">
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ClosureTypeIsUniqueCollection"
+          isCallable="true" name="ClosureTypeIsUniqueCollection">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'closure' implies&#xA;if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then&#xA;type.oclIsKindOf(OrderedSetType)&#xA;else&#xA;type.oclIsKindOf(SetType)&#xA;endif&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.CollectElementTypeIsSourceElementType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectElementTypeIsSourceElementType"
           isCallable="true" name="CollectElementTypeIsSourceElementType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collect' implies&#xA;type.oclAsType(CollectionType).elementType =&#xA;_'body'.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.CollectHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectHasOneIterator" isCallable="true"
           name="CollectHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collect' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.CollectNestedHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectNestedHasOneIterator" isCallable="true"
           name="CollectNestedHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collectNested' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.CollectNestedTypeIsBag" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectNestedTypeIsBag" isCallable="true"
           name="CollectNestedTypeIsBag">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collectNested' implies type.oclIsKindOf(BagType)&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.CollectNestedTypeIsBodyType" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectNestedTypeIsBodyType" isCallable="true"
           name="CollectNestedTypeIsBodyType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collectNested' implies type = _'body'.type&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.CollectTypeIsUnordered" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.CollectTypeIsUnordered" isCallable="true"
           name="CollectTypeIsUnordered">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'collect' implies&#xA;if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then&#xA;type.oclIsKindOf(SequenceType)&#xA;else&#xA;type.oclIsKindOf(BagType)&#xA;endif&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ExistsBodyTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ExistsBodyTypeIsBoolean" isCallable="true"
           name="ExistsBodyTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'exists' implies _'body'.type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ExistsTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ExistsTypeIsBoolean" isCallable="true"
           name="ExistsTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'exists' implies type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ForAllBodyTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ForAllBodyTypeIsBoolean" isCallable="true"
           name="ForAllBodyTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'forAll' implies _'body'.type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.ForAllTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.ForAllTypeIsBoolean" isCallable="true"
           name="ForAllTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'forAll' implies type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.IsUniqueHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.IsUniqueHasOneIterator" isCallable="true"
           name="IsUniqueHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'isUnique' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.IsUniqueTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.IsUniqueTypeIsBoolean" isCallable="true"
           name="IsUniqueTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'isUnique' implies type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.IteratorTypeIsSourceElementType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.IteratorTypeIsSourceElementType"
           isCallable="true" name="IteratorTypeIsSourceElementType">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.iterator->forAll(source.type.oclAsType (CollectionType).elementType.conformsTo(type))&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.OneBodyTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.OneBodyTypeIsBoolean" isCallable="true"
           name="OneBodyTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'one' implies _'body'.type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.OneHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.OneHasOneIterator" isCallable="true"
           name="OneHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'one' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.OneTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.OneTypeIsBoolean" isCallable="true"
           name="OneTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'one' implies type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.RejectOrSelectHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.RejectOrSelectHasOneIterator" isCallable="true"
           name="RejectOrSelectHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'reject' or name = 'select' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.RejectOrSelectTypeIsBoolean" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.RejectOrSelectTypeIsBoolean" isCallable="true"
           name="RejectOrSelectTypeIsBoolean">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'reject' or name = 'select' implies type = Boolean&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.RejectOrSelectTypeIsSourceType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.RejectOrSelectTypeIsSourceType"
           isCallable="true" name="RejectOrSelectTypeIsSourceType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'reject' or name = 'select' implies type = source.type&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.SortedByElementTypeIsSourceElementType"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.SortedByElementTypeIsSourceElementType"
           isCallable="true" name="SortedByElementTypeIsSourceElementType">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'sortedBy' implies&#xA;type.oclAsType(CollectionType).elementType =&#xA;_'body'.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.SortedByHasOneIterator" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.SortedByHasOneIterator" isCallable="true"
           name="SortedByHasOneIterator">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'sortedBy' implies iterator->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.SortedByIsOrderedIfSourceIsOrdered"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.SortedByIsOrderedIfSourceIsOrdered"
           isCallable="true" name="SortedByIsOrderedIfSourceIsOrdered">
         <specification xsi:type="pivot:ExpressionInOCL" body="name = 'sortedBy' implies&#xA;if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(BagType) then&#xA;type.oclIsKindOf(SequenceType)&#xA;else&#xA;type.oclIsKindOf(OrderedSetType)&#xA;endif&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.IteratorExp.SortedByIteratorTypeIsComparable"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IteratorExp.SortedByIteratorTypeIsComparable"
           isCallable="true" name="SortedByIteratorTypeIsComparable">
         <specification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;true&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
     </ownedType>
     <ownedType xmi:id="T.pivot.LambdaType" name="LambdaType" superClasses="#T.pivot.DataType">
       <ownedProperties xmi:id="p.pivot.LambdaType.contextType" name="contextType"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.5" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.4" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.LambdaType.parameterType" name="parameterType"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.6" type="#//@ownedPackages.1/@ownedType.124"/>
-      <ownedProperties xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.7"
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.5" type="#//@ownedPackages.1/@ownedType.124"/>
+      <ownedProperties xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.6"
           type="#T.pivot.Type"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.LanguageExpression" isAbstract="true" name="LanguageExpression"
@@ -638,9 +644,9 @@
           type="#T.pivot.InstanceSpecification"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.LetExp" name="LetExp" superClasses="#T.pivot.OCLExpression">
-      <ownedInvariant xmi:id="cipivot.LetExp.TypeIsInType" isCallable="true" name="TypeIsInType">
+      <ownedInvariants xmi:id="cipivot.LetExp.TypeIsInType" isCallable="true" name="TypeIsInType">
         <specification xsi:type="pivot:ExpressionInOCL" body="type = _'in'.type&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.LetExp.in" isComposite="true" name="in" opposite="#p.pivot.OCLExpression.LetExp"
           type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.LetExp.variable" isComposite="true" name="variable"
@@ -654,13 +660,13 @@
         name="LibraryFeature" superClasses="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny"/>
     <ownedType xmi:id="T.pivot.LiteralExp" isAbstract="true" name="LiteralExp" superClasses="#T.pivot.OCLExpression"/>
     <ownedType xmi:id="T.pivot.LoopExp" isAbstract="true" name="LoopExp" superClasses="#T.pivot.CallExp">
-      <ownedInvariant xmi:id="cipivot.LoopExp.NoInitializers" isCallable="true" name="NoInitializers">
+      <ownedInvariants xmi:id="cipivot.LoopExp.NoInitializers" isCallable="true" name="NoInitializers">
         <specification xsi:type="pivot:ExpressionInOCL" body="self.iterator->forAll(initExpression->isEmpty())&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.LoopExp.SourceIsCollection" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.LoopExp.SourceIsCollection" isCallable="true"
           name="SourceIsCollection">
         <specification xsi:type="pivot:ExpressionInOCL" body="source.type.oclIsKindOf (CollectionType)&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.LoopExp.body" isComposite="true" name="body"
           opposite="#p.pivot.OCLExpression.LoopExp" type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.LoopExp.iterator" isComposite="true" name="iterator"
@@ -669,14 +675,14 @@
           name="referredIteration" opposite="#p.pivot.Iteration.LoopExp" type="#T.pivot.Iteration"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.MessageExp" name="MessageExp" superClasses="#T.pivot.OCLExpression">
-      <ownedInvariant xmi:id="cipivot.MessageExp.OneCallOrOneSend" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.MessageExp.OneCallOrOneSend" isCallable="true"
           name="OneCallOrOneSend">
         <specification xsi:type="pivot:ExpressionInOCL" body="calledOperation->size() + sentSignal->size() = 1&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.MessageExp.TargetIsNotACollection" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.MessageExp.TargetIsNotACollection" isCallable="true"
           name="TargetIsNotACollection">
         <specification xsi:type="pivot:ExpressionInOCL" body="not target.type.oclIsKindOf (CollectionType)&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.MessageExp.argument" isComposite="true" name="argument"
           opposite="#//@ownedPackages.0/@ownedType.69/@ownedProperties.11" type="#//@ownedPackages.1/@ownedType.115"/>
       <ownedProperties xmi:id="p.pivot.MessageExp.calledOperation" isComposite="true"
@@ -781,22 +787,22 @@
         name="Object" superClasses="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib.oclas#T.ocl.OclAny"/>
     <ownedType xmi:id="T.pivot.Operation" name="Operation" superClasses="#T.pivot.Feature #T.pivot.TemplateableElement #T.pivot.Namespace #T.pivot.ParameterableElement">
       <ownedComment body="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
-      <ownedInvariant xmi:id="cipivot.Operation.CompatibleReturn" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.Operation.CompatibleReturn" isCallable="true"
           name="CompatibleReturn">
         <specification xsi:type="pivot:ExpressionInOCL" body="bodyExpression &lt;> null and bodyExpression.oclAsType(ExpressionInOCL).bodyExpression &lt;> null implies CompatibleBody(bodyExpression)&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.Operation.LoadableImplementation" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.Operation.LoadableImplementation" isCallable="true"
           name="LoadableImplementation">
         <specification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;true&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.Operation.UniquePostconditionName" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.Operation.UniquePostconditionName" isCallable="true"
           name="UniquePostconditionName">
         <specification xsi:type="pivot:ExpressionInOCL" body="postcondition->isUnique(name)&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.Operation.UniquePreconditionName" isCallable="true"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.Operation.UniquePreconditionName" isCallable="true"
           name="UniquePreconditionName">
         <specification xsi:type="pivot:ExpressionInOCL" body="precondition->isUnique(name)&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Operation.bodyExpression" isComposite="true"
           isRequired="false" name="bodyExpression" opposite="#p.pivot.LanguageExpression.Operation"
           type="#T.pivot.LanguageExpression"/>
@@ -836,14 +842,14 @@
           name="operation" opposite="#p.pivot.Operation.redefinedOperation" type="#T.pivot.Operation"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.OperationCallExp" name="OperationCallExp" superClasses="#T.pivot.FeatureCallExp #T.pivot.ReferringElement">
-      <ownedInvariant xmi:id="cipivot.OperationCallExp.ArgumentCount" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.OperationCallExp.ArgumentCount" isCallable="true"
           name="ArgumentCount">
         <specification xsi:type="pivot:ExpressionInOCL" body="argument->size() = referredOperation.ownedParameter->size()&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.OperationCallExp.ArgumentTypeIsConformant" isCallable="true"
-          name="ArgumentTypeIsConformant">
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.OperationCallExp.ArgumentTypeIsConformant"
+          isCallable="true" name="ArgumentTypeIsConformant">
         <specification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;let operation : Operation = self.referredOperation in&#xA;&#x9;let parameters : OrderedSet(Parameter) = operation.ownedParameter in&#xA;&#x9;let selfType : Type = operation.owningClass in&#xA;&#x9;Sequence{1..argument->size()}->forAll (i | &#xA;&#x9;&#x9;let argument : OCLExpression = argument->at(i) in&#xA;&#x9;&#x9;let parameter : Parameter = parameters->at(i) in&#xA;&#x9;&#x9;let parameterType : Type = parameter.type in&#xA;&#x9;&#x9;argument.type.conformsTo(parameterType.specializeIn(self, selfType)))&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.OperationCallExp.argument" isComposite="true"
           name="argument" opposite="#p.pivot.OCLExpression.OperationCallExp" type="#//@ownedPackages.1/@ownedType.115"/>
       <ownedProperties xmi:id="p.pivot.OperationCallExp.referredOperation" isRequired="false"
@@ -977,10 +983,10 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.Property" name="Property" superClasses="#T.pivot.Feature #T.pivot.ParameterableElement">
       <ownedComment body="A property is a typed element that represents an attribute of a class.&#xA;Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
-      <ownedInvariant xmi:id="cipivot.Property.CompatibleDefaultExpression" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.Property.CompatibleDefaultExpression" isCallable="true"
           name="CompatibleDefaultExpression">
         <specification xsi:type="pivot:ExpressionInOCL" body="defaultExpression &lt;> null and defaultExpression.oclAsType(ExpressionInOCL).bodyExpression &lt;> null implies CompatibleBody(defaultExpression)&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedOperations xmi:id="o.pivot.Property.isAttribute..pivot.Property" name="isAttribute"
           type="#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)&#xA;&#xA;"/>
@@ -1064,14 +1070,14 @@
           name="slot" opposite="#p.pivot.Slot.definingProperty" type="#T.pivot.Slot"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.PropertyCallExp" name="PropertyCallExp" superClasses="#T.pivot.NavigationCallExp #T.pivot.ReferringElement">
-      <ownedInvariant xmi:id="cipivot.PropertyCallExp.CompatibleResultType" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.PropertyCallExp.CompatibleResultType" isCallable="true"
           name="CompatibleResultType">
         <specification xsi:type="pivot:ExpressionInOCL" body="type = getSpecializedReferredPropertyType()&#xA;&#xA;"/>
-      </ownedInvariant>
-      <ownedInvariant xmi:id="cipivot.PropertyCallExp.NonStaticSourceTypeIsConformant"
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.PropertyCallExp.NonStaticSourceTypeIsConformant"
           isCallable="true" name="NonStaticSourceTypeIsConformant">
         <specification xsi:type="pivot:ExpressionInOCL" body="not referredProperty.isStatic implies source.type.conformsTo(getSpecializedReferredPropertyOwningType())&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedOperations xmi:id="o.pivot.PropertyCallExp.getSpecializedReferredPropertyOwningType"
           name="getSpecializedReferredPropertyOwningType" type="#T.pivot.Class">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="referredProperty.owningClass "/>
@@ -1502,10 +1508,6 @@
     <ownedType xmi:id="T.pivot.TupleType" name="TupleType" superClasses="#T.pivot.DataType"/>
     <ownedType xmi:id="T.pivot.Type" isAbstract="true" name="Type" superClasses="#T.pivot.PackageableElement">
       <ownedComment body="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
-      <ownedInvariant xmi:id="cipivot.Type.UniqueInvariantName" isCallable="true"
-          name="UniqueInvariantName">
-        <specification xsi:type="pivot:ExpressionInOCL" body="ownedInvariant->isUnique(name)&#xA;&#xA;"/>
-      </ownedInvariant>
       <ownedOperations xmi:id="o.pivot.Type.specializeIn..pivot.OCLExpression..pivot.Type"
           name="specializeIn" type="#T.pivot.Type">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="self&#xA;&#xA;"/>
@@ -1518,8 +1520,6 @@
           type="#//@ownedPackages.1/@ownedType.150"/>
       <ownedProperties xmi:id="p.pivot.Type.instanceClassName" isRequired="false"
           name="instanceClassName" type="#String"/>
-      <ownedProperties xmi:id="p.pivot.Type.ownedInvariant" isComposite="true" name="ownedInvariant"
-          opposite="#p.pivot.Constraint.Type" type="#//@ownedPackages.1/@ownedType.130"/>
       <ownedProperties xmi:id="p.pivot.Type.CollectionType" implicit="true" name="CollectionType"
           opposite="#p.pivot.CollectionType.elementType" type="#//@ownedPackages.1/@ownedType.3"/>
       <ownedProperties xmi:id="p.pivot.Type.DynamicElement" implicit="true" name="DynamicElement"
@@ -1597,9 +1597,9 @@
     </ownedType>
     <ownedType xmi:id="T.pivot.UnspecifiedType" name="UnspecifiedType" superClasses="#T.pivot.Class">
       <ownedProperties xmi:id="p.pivot.UnspecifiedType.lowerBound" name="lowerBound"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.10" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.9" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.UnspecifiedType.upperBound" name="upperBound"
-          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.11" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedType.118/@ownedProperties.10" type="#T.pivot.Type"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.UnspecifiedValueExp" name="UnspecifiedValueExp" superClasses="#T.pivot.OCLExpression"/>
     <ownedType xmi:id="T.pivot.ValueSpecification" isAbstract="true" name="ValueSpecification"
@@ -1632,10 +1632,10 @@
           isRequired="false" name="owningSlot" opposite="#p.pivot.Slot.values" type="#T.pivot.Slot"/>
     </ownedType>
     <ownedType xmi:id="T.pivot.Variable" name="Variable" superClasses="#T.pivot.VariableDeclaration">
-      <ownedInvariant xmi:id="cipivot.Variable.CompatibleInitialiserType" isCallable="true"
+      <ownedInvariants xmi:id="cipivot.Variable.CompatibleInitialiserType" isCallable="true"
           name="CompatibleInitialiserType">
         <specification xsi:type="pivot:ExpressionInOCL" body="initExpression &lt;> null implies initExpression.type.conformsTo(type)&#xA;&#xA;"/>
-      </ownedInvariant>
+      </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Variable.implicit" default="false" isRequired="false"
           name="implicit" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Variable.initExpression" isComposite="true"

@@ -173,23 +173,23 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
 			    "bodyConstraint.specification = null";
-		Type testType = metaModelManager.getIntegerType();
-		assert testType.getOwnedInvariant().isEmpty();
+		org.eclipse.ocl.examples.pivot.Class testType = metaModelManager.getIntegerType();
+		assert testType.getOwnedInvariants().isEmpty();
 		assertQueryTrue(testType, textQuery);
 //		assertQueryTrue(ValuesUtil.createTypeValue(metaModelManager.getMetaclass(testType)), textQuery);
 	}
 	
 	@Test public void test_let_implies_let_implies() {
 		String textQuery = 
-			    "let bodyConstraint : Constraint = oclType().ownedInvariant->any(name = 'body')\n" + 
+			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
 			    "let bodySpecification : ValueSpecification = bodyConstraint.specification\n" +
 			    "in bodySpecification <> null and\n" +
 			    "bodySpecification.oclIsKindOf(ExpressionInOCL) implies\n" +
 			    "true";
 //	    "CompatibleBody(bodySpecification)";
-		Type testType = metaModelManager.getIntegerType();
-		assert testType.getOwnedInvariant().isEmpty();
+		org.eclipse.ocl.examples.pivot.Class testType = metaModelManager.getIntegerType();
+		assert testType.getOwnedInvariants().isEmpty();
 		assertQueryTrue(-1, textQuery);
 	}
 	
@@ -231,8 +231,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		Root pivotRoot = (Root) metaModel.getContents().get(0);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedType().get(0);
-		Constraint pivotConstraint = pivotType.getOwnedInvariant().get(0);
-		String textQuery = "context.oclAsType(Type).ownedInvariant->excluding(self)->forAll(name <> self.name or isCallable <> self.isCallable)";
+		Constraint pivotConstraint = pivotType.getOwnedInvariants().get(0);
+		String textQuery = "context.oclAsType(Class).ownedInvariants->excluding(self)->forAll(name <> self.name or isCallable <> self.isCallable)";
 		assertQueryTrue(pivotConstraint, textQuery);
 	}
 	

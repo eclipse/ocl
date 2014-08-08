@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -33,6 +34,10 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 
 	public @NonNull Value createInstance(@NonNull String value) {
 		throw new UnsupportedOperationException();
+	}
+
+	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
+		throw new UnsupportedOperationException();			// FIXME
 	}
 
 	public @NonNull List<? extends DomainOperation> getOwnedOperations() {

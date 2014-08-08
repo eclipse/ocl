@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
@@ -302,18 +301,16 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 	}
 
-	protected <T extends ClassifierCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull Type object) {
+	protected <T extends ClassifierCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
-		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariant(), null);
+		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {
 			csInvariant.setStereotype(UMLReflection.INVARIANT);
 		}
 		refreshList(csElement.getOwnedConstraint(), csInvariants);
-		if (object instanceof TemplateableElement) {
-			TemplateSignature ownedTemplateSignature = ((TemplateableElement)object).getOwnedTemplateSignature();
-			if (ownedTemplateSignature != null) {
-				csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
-			}
+		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
+		if (ownedTemplateSignature != null) {
+			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
 		if (object.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
 			csElement.setInstanceClassName(object.getInstanceClassName());

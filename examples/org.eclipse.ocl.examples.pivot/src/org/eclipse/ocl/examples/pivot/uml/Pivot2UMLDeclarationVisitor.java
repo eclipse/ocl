@@ -65,7 +65,7 @@ public class Pivot2UMLDeclarationVisitor
 //		}
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
 		StringBuilder s = null;
-		for (Constraint pivotConstraint : pivotType.getOwnedInvariant()) {
+		for (Constraint pivotConstraint : pivotType.getOwnedInvariants()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 			if (s == null) {
 				s = new StringBuilder();

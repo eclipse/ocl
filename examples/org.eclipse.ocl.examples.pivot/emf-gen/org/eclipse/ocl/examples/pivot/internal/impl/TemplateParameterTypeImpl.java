@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -132,8 +131,6 @@ public class TemplateParameterTypeImpl
 				return getExtendedBys();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_INVARIANT:
-				return getOwnedInvariant();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				return getSpecification();
 		}
@@ -182,10 +179,6 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				setSpecification((String)newValue);
 				return;
@@ -229,9 +222,6 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				setSpecification(SPECIFICATION_EDEFAULT);
 				return;
@@ -266,8 +256,6 @@ public class TemplateParameterTypeImpl
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_INVARIANT:
-				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
 				return SPECIFICATION_EDEFAULT == null ? specification != null : !SPECIFICATION_EDEFAULT.equals(specification);
 		}

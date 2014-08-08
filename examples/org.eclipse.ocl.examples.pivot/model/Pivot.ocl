@@ -52,8 +52,8 @@ inv LoadableImplementation:
 inv UniquePreconditionName: precondition->isUnique(name)
 inv UniquePostconditionName: postcondition->isUnique(name)
 
-context Type
-inv UniqueInvariantName: ownedInvariant->isUnique(name)
+context Class
+inv UniqueInvariantName: ownedInvariants->isUnique(name)
 
 context Variable
 inv CompatibleInitialiserType: initExpression <> null implies initExpression.type.conformsTo(type)

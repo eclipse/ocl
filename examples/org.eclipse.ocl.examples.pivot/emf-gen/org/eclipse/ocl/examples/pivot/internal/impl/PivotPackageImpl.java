@@ -3799,7 +3799,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_OwnedOperations()
+	public EReference getClass_OwnedInvariants()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(5);
 	}
@@ -3809,7 +3809,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_OwnedProperties()
+	public EReference getClass_OwnedOperations()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(6);
 	}
@@ -3819,7 +3819,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_Package()
+	public EReference getClass_OwnedProperties()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(7);
 	}
@@ -3829,9 +3829,29 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_SuperClasses()
+	public EReference getClass_Package()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_SuperClasses()
+	{
+		return (EReference)classEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getClass__ValidateUniqueInvariantName__DiagnosticChain_Map()
+	{
+		return classEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -3878,16 +3898,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getType_OwnedInvariant()
-	{
-		return (EReference)typeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getType_InstanceClassName()
 	{
 		return (EAttribute)typeEClass.getEStructuralFeatures().get(1);
@@ -3899,16 +3909,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EOperation getType__SpecializeIn__OCLExpression_Type()
-	{
-		return typeEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getType__ValidateUniqueInvariantName__DiagnosticChain_Map()
 	{
 		return typeEClass.getEOperations().get(0);
 	}
@@ -5638,10 +5638,12 @@ public class PivotPackageImpl
 		createEAttribute(classEClass, CLASS__IS_INTERFACE);
 		createEReference(classEClass, CLASS__NESTED_CLASSIFIER);
 		createEReference(classEClass, CLASS__OWNED_BEHAVIOR);
+		createEReference(classEClass, CLASS__OWNED_INVARIANTS);
 		createEReference(classEClass, CLASS__OWNED_OPERATIONS);
 		createEReference(classEClass, CLASS__OWNED_PROPERTIES);
 		createEReference(classEClass, CLASS__PACKAGE);
 		createEReference(classEClass, CLASS__SUPER_CLASSES);
+		createEOperation(classEClass, CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP);
 
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__ITEM);
@@ -6111,8 +6113,6 @@ public class PivotPackageImpl
 		typeEClass = createEClass(TYPE);
 		createEReference(typeEClass, TYPE__EXTENDED_BYS);
 		createEAttribute(typeEClass, TYPE__INSTANCE_CLASS_NAME);
-		createEReference(typeEClass, TYPE__OWNED_INVARIANT);
-		createEOperation(typeEClass, TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(typeEClass, TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
 
 		typeExpEClass = createEClass(TYPE_EXP);
@@ -6401,10 +6401,20 @@ public class PivotPackageImpl
 		initEAttribute(getClass_IsInterface(), this.getBoolean(), "isInterface", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getClass_NestedClassifier(), this.getClass_(), null, "nestedClassifier", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedBehavior(), this.getBehavior(), null, "ownedBehavior", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getClass_OwnedInvariants(), this.getConstraint(), null, "ownedInvariants", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedOperations(), this.getOperation(), this.getOperation_OwningClass(), "ownedOperations", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedProperties(), this.getProperty(), this.getProperty_OwningClass(), "ownedProperties", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_Package(), this.getPackage(), this.getPackage_OwnedType(), "package", null, 0, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_SuperClasses(), this.getClass_(), null, "superClasses", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getClass__ValidateUniqueInvariantName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUniqueInvariantName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionItem_Item(), this.getOCLExpression(), null, "item", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7355,16 +7365,6 @@ public class PivotPackageImpl
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getType_ExtendedBys(), this.getTypeExtension(), this.getTypeExtension_Type(), "extendedBys", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getType_InstanceClassName(), this.getString(), "instanceClassName", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getType_OwnedInvariant(), this.getConstraint(), null, "ownedInvariant", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getType__ValidateUniqueInvariantName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUniqueInvariantName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getType__SpecializeIn__OCLExpression_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getOCLExpression(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

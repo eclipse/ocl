@@ -12,11 +12,14 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -26,18 +29,27 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
+import org.eclipse.ocl.examples.domain.values.SetValue;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -49,6 +61,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -58,8 +71,10 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,6 +92,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getNestedClassifier <em>Nested Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedBehavior <em>Owned Behavior</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedProperties <em>Owned Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getPackage <em>Package</em>}</li>
@@ -209,6 +225,16 @@ public class ClassImpl
 	 * @ordered
 	 */
 	protected EList<Behavior> ownedBehavior;
+
+	/**
+	 * The cached value of the '{@link #getOwnedInvariants() <em>Owned Invariants</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInvariants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> ownedInvariants;
 
 	/**
 	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operations</em>}' containment reference list.
@@ -413,6 +439,21 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
+	public @NonNull List<Constraint> getOwnedInvariants()
+	{
+		if (ownedInvariants == null)
+		{
+			ownedInvariants = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.CLASS__OWNED_INVARIANTS);
+		}
+		return ownedInvariants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Operation> getOwnedOperations()
@@ -539,8 +580,6 @@ public class ClassImpl
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.CLASS__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_INVARIANT:
-				return ((InternalEList<?>)getOwnedInvariant()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
@@ -551,6 +590,8 @@ public class ClassImpl
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_INVARIANTS:
+				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
@@ -612,6 +653,63 @@ public class ClassImpl
 	public List<ParameterableElement> parameterableElements()
 	{
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUniqueInvariantName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * inv UniqueInvariantName: ownedInvariants->isUnique(name)
+		 */
+		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
+		try {
+		    final @NonNull /*@Thrown*/ List<? extends DomainConstraint> ownedInvariants = this.getOwnedInvariants();
+		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
+		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedInvariants.iterator();
+		    /*@Thrown*/ boolean isUnique;
+		    while (true) {
+		        if (!ITERATOR__1.hasNext()) {
+		            isUnique = ValuesUtil.TRUE_VALUE;
+		            break;
+		        }
+		        @Nullable /*@NonInvalid*/ DomainConstraint _1 = (DomainConstraint)ITERATOR__1.next();
+		        /**
+		         * name
+		         */
+		        if (_1 == null) {
+		            throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
+		        }
+		        final @Nullable /*@Thrown*/ String name = _1.getName();
+		        //
+		        if (accumulator.includes(name) == ValuesUtil.TRUE_VALUE) {
+		            isUnique = ValuesUtil.FALSE_VALUE;			// Abort after second find
+		            break;
+		        }
+		        else {
+		            accumulator.add(name);
+		        }
+		    }
+		    CAUGHT_isUnique = isUnique;
+		}
+		catch (Exception e) {
+		    CAUGHT_isUnique = ValuesUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_isUnique == ValuesUtil.TRUE_VALUE) {
+		    return true;
+		}
+		if (diagnostics != null) {
+		    int severity = Diagnostic.WARNING;
+		    String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Class", "UniqueInvariantName", EObjectValidator.getObjectLabel(this, context)});
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CLASS__UNIQUE_INVARIANT_NAME, message, new Object [] { this }));
+		}
+		return false;
 	}
 
 	/**
@@ -695,8 +793,6 @@ public class ClassImpl
 				return getExtendedBys();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
-			case PivotPackage.CLASS__OWNED_INVARIANT:
-				return getOwnedInvariant();
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
@@ -715,6 +811,8 @@ public class ClassImpl
 				return getNestedClassifier();
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
+			case PivotPackage.CLASS__OWNED_INVARIANTS:
+				return getOwnedInvariants();
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				return getOwnedOperations();
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
@@ -769,10 +867,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				getOwnedInvariant().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -803,6 +897,10 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case PivotPackage.CLASS__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
+				getOwnedInvariants().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -859,9 +957,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
-			case PivotPackage.CLASS__OWNED_INVARIANT:
-				getOwnedInvariant().clear();
-				return;
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -888,6 +983,9 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
+				return;
+			case PivotPackage.CLASS__OWNED_INVARIANTS:
+				getOwnedInvariants().clear();
 				return;
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				getOwnedOperations().clear();
@@ -932,8 +1030,6 @@ public class ClassImpl
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case PivotPackage.CLASS__OWNED_INVARIANT:
-				return ownedInvariant != null && !ownedInvariant.isEmpty();
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
@@ -952,6 +1048,8 @@ public class ClassImpl
 				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.CLASS__OWNED_INVARIANTS:
+				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
@@ -1068,14 +1166,14 @@ public class ClassImpl
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.CLASS___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
-				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.CLASS___IS_TEMPLATE:
 				return isTemplate();
 			case PivotPackage.CLASS___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
+			case PivotPackage.CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
+				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

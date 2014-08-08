@@ -229,7 +229,7 @@ public class UMLOCLEValidator implements EValidator
 
 	protected static void gatherTypes(@NonNull Set<Type> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull org.eclipse.ocl.examples.pivot.Class newType) {
 		if (allTypes.add(newType)) {
-			allConstraints.addAll(newType.getOwnedInvariant());
+			allConstraints.addAll(newType.getOwnedInvariants());
 			for (org.eclipse.ocl.examples.pivot.Class superType : newType.getSuperClasses()) {
 				if (superType != null) {
 					gatherTypes(allTypes, allConstraints, superType);

@@ -1503,7 +1503,7 @@ public class PivotUtil extends DomainUtil
 
 	public static String getStereotype(@NonNull Constraint object) {
 		EStructuralFeature eContainingFeature = object.eContainingFeature();
-		if (eContainingFeature == PivotPackage.Literals.TYPE__OWNED_INVARIANT) {
+		if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
 			return UMLReflection.INVARIANT;
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {

@@ -542,7 +542,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @Nullable CGClass visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class element) {
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
 		setAst(cgClass, element);
-		for (Constraint asConstraint : element.getOwnedInvariant()) {
+		for (Constraint asConstraint : element.getOwnedInvariants()) {
 			CGConstraint cgConstraint = doVisit(CGConstraint.class, asConstraint);
 			cgClass.getInvariants().add(cgConstraint);
 		}
