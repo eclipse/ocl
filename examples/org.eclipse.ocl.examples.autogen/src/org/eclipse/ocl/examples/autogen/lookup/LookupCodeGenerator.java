@@ -120,24 +120,28 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 //	}		
 		for (EObject root : resource.getContents()) {
 			if (root instanceof Model) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package asPackage : ((Model)root).getOwnedPackages()) {
-					org.eclipse.ocl.pivot.Package asSuperPackage = null;
-					if (superProjectPrefix != null) {
-						asSuperPackage = getPackage(genPackage, superProjectPrefix, environmentFactory);
-						if (asSuperPackage == null) {
-							throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+				org.eclipse.ocl.pivot.Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, environmentFactory));
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package oclDocPackage : ((Model)root).getOwnedPackages()) {
+					if (projectPrefix.equals("Pivot") ||  // FIXME Hack !! Why the oclDocPackage is the OCL library ????!!!!!!!! I want the PIVOT !!!!! 
+							environmentFactory.getMetamodelManager().getPrimaryPackage(oclDocPackage).getName().equals(asPackage.getName())) { // FIXME more robust check than name equality ?
+						org.eclipse.ocl.pivot.Package asSuperPackage = null;
+						if (superProjectPrefix != null) {
+							asSuperPackage = getPackage(genPackage, superProjectPrefix, environmentFactory);
+							if (asSuperPackage == null) {
+								throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+							}
 						}
-					}
-					org.eclipse.ocl.pivot.Package basePackage = asPackage;
-					if (baseProjectPrefix != null) {
-						basePackage = getPackage(genPackage, baseProjectPrefix, environmentFactory);
-						if (basePackage == null) {
-							throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+						org.eclipse.ocl.pivot.Package basePackage = asPackage;
+						if (baseProjectPrefix != null) {
+							basePackage = getPackage(genPackage, baseProjectPrefix, environmentFactory);
+							if (basePackage == null) {
+								throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+							}
 						}
+						AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, asPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
+								projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
+						autoCodeGenerator.saveSourceFile();
 					}
-					AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, asPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
-							projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
-					autoCodeGenerator.saveSourceFile();
 				}
 			}
 		}

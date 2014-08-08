@@ -16,7 +16,7 @@ def : _env(child : Element) : env::Environment =
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(superClasses.ownedAttribute->select(not isStatic))
 		.addElements(superClasses.ownedOperation->select(not isStatic))
-		.addElements(self.ownedBehavior)
+		.addElements(superClasses.ownedBehavior)
 
 context DataType
 def : _env(child : Element) : env::Environment =
@@ -32,12 +32,13 @@ def: _env(child : Element) : env::Environment =
 	
 context Enumeration
 def : _env(child : Element) : env::Environment =
+	let superClasses : Set(Class) = self->closure(c : Class | c.superClass->asSet()) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(self.ownedLiteral)
-		.addElements(self.ownedAttribute->select(not isStatic))
-		.addElements(self.ownedOperation->select(not isStatic))
-		.addElements(self.ownedBehavior)
+		.addElements(superClasses.ownedAttribute->select(not isStatic))
+		.addElements(superClasses.ownedOperation->select(not isStatic))
+		.addElements(superClasses.ownedBehavior)
 		
 
 
