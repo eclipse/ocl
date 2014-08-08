@@ -78,10 +78,10 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 		assert umlClass != null;
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlClass);
 		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClass(), umlClass.getSuperClasses());
-			if (pivotElement.getSuperClass().isEmpty()) {
+			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
+			if (pivotElement.getSuperClasses().isEmpty()) {
 				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
-				pivotElement.getSuperClass().add(oclElementType);
+				pivotElement.getSuperClasses().add(oclElementType);
 			}
 		}
 		return pivotElement;

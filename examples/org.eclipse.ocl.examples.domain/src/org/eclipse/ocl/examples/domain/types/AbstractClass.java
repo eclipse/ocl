@@ -22,7 +22,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 		super(standardLibrary, name);
 	}
 
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 }

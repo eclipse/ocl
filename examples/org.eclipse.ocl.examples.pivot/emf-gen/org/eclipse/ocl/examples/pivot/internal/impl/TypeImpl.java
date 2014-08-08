@@ -696,10 +696,6 @@ public abstract class TypeImpl
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
-		throw new UnsupportedOperationException();		// FIXME
-	}
-
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		throw new UnsupportedOperationException();		// FIXME
 	}

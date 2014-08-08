@@ -335,7 +335,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			} catch (Exception e) {
 			}
 		}
-		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
+		pivotElement.getSuperClasses().add(metaModelManager.getOclAnyType());
 		return pivotElement;
 	}
 
@@ -356,7 +356,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		doSwitchAll(pivotElement.getOwnedLiteral(), eObject2.getELiterals());
 //		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
-		pivotElement.getSuperClass().add(metaModelManager.getEnumerationType());
+		pivotElement.getSuperClasses().add(metaModelManager.getEnumerationType());
 		return pivotElement;
 	}
 

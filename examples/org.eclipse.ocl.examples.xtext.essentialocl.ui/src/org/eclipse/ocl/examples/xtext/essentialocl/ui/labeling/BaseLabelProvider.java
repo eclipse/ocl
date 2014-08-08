@@ -360,7 +360,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClass());
+		appendSuperTypes(s, ele.getSuperClasses());
 		return s.toString();
 	}
 
@@ -392,7 +392,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendType(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClass());
+		appendSuperTypes(s, ele.getSuperClasses());
 		return s.toString();
 	}
 
@@ -450,7 +450,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClass());
+		appendSuperTypes(s, ele.getSuperClasses());
 		String instance = ele.getInstanceClassName();
 		if (instance != null) {
 			s.append(" [");
@@ -468,7 +468,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClass());
+		appendSuperTypes(s, ele.getSuperClasses());
 		String instance = ele.getInstanceClassName();
 		if (instance != null) {
 			s.append(" [");
@@ -801,7 +801,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected String text(TupleType ele) {
 		StringBuilder s = new StringBuilder();
 		appendType(s, ele);
-		appendSuperTypes(s, ele.getSuperClass());
+		appendSuperTypes(s, ele.getSuperClasses());
 		return s.toString();
 	}
 

@@ -73,7 +73,7 @@ public class Pivot2UMLReferenceVisitor
 	@Override
 	public EObject visitClass(@NonNull Class pivotClass) {
 		org.eclipse.uml2.uml.Class umlClass = context.getCreated(org.eclipse.uml2.uml.Class.class, pivotClass);
-		safeVisitAll(umlClass.getSuperClasses(), pivotClass.getSuperClass());
+		safeVisitAll(umlClass.getSuperClasses(), pivotClass.getSuperClasses());
 		return umlClass;
 	}
 

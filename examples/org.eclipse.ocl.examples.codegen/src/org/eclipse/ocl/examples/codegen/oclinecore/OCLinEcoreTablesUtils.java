@@ -1125,8 +1125,8 @@ public class OCLinEcoreTablesUtils
 			for (org.eclipse.ocl.examples.pivot.Class secondaryType : libraryTypes) {
 				org.eclipse.ocl.examples.pivot.Class primaryType = typeMap.get(secondaryType);
 				if (primaryType != null) {
-					List<org.eclipse.ocl.examples.pivot.Class> primarySuperClasses = primaryType.getSuperClass();
-					for (org.eclipse.ocl.examples.pivot.Class secondarySuperClass : secondaryType.getSuperClass()) {
+					List<org.eclipse.ocl.examples.pivot.Class> primarySuperClasses = primaryType.getSuperClasses();
+					for (org.eclipse.ocl.examples.pivot.Class secondarySuperClass : secondaryType.getSuperClasses()) {
 						org.eclipse.ocl.examples.pivot.Class primarySuperClass = typeMap.get(secondarySuperClass);
 						if (primarySuperClass == null) {
 							primarySuperClasses.add(secondarySuperClass);
@@ -1141,7 +1141,7 @@ public class OCLinEcoreTablesUtils
 			}
 		}
 		for (org.eclipse.ocl.examples.pivot.Class primaryType : primaryTypes) {
-			List<org.eclipse.ocl.examples.pivot.Class> primarySuperClasses = primaryType.getSuperClass();
+			List<org.eclipse.ocl.examples.pivot.Class> primarySuperClasses = primaryType.getSuperClasses();
 			Type classType = DomainUtil.getNamedElement(primarySuperClasses, TypeId.CLASS_NAME);
 			Type metaclass = DomainUtil.getNamedElement(primarySuperClasses, "Classifier");
 			if ((classType != null) && (metaclass != null)) {

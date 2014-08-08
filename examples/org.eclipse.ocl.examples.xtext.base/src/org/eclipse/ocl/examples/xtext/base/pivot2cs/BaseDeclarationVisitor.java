@@ -116,7 +116,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			}));
 		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperation(), null));
 		final Type oclElementType = context.getMetaModelManager().getOclElementType();
-		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClass(),
+		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
 			new Pivot2CS.Predicate<Type>()
 			{
 				public boolean filter(@NonNull Type element) {

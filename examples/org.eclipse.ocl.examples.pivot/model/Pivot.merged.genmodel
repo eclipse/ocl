@@ -205,7 +205,7 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/ownedAttribute"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/superClass"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/superClasses"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Class/package"/>

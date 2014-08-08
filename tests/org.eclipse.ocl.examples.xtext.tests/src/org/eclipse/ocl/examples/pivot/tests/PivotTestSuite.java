@@ -204,7 +204,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 	
 	public void addSupertype(@NonNull org.eclipse.ocl.examples.pivot.Class aClass, @NonNull org.eclipse.ocl.examples.pivot.Class superClass) {
-		aClass.getSuperClass().add(superClass);
+		aClass.getSuperClasses().add(superClass);
 	}
     
 	/**
@@ -946,7 +946,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	public void createGeneralization(org.eclipse.ocl.examples.pivot.Class special, org.eclipse.ocl.examples.pivot.Class general) {
-		special.getSuperClass().add(general);
+		special.getSuperClasses().add(general);
 	}
 
 	protected @NonNull OCLHelper createHelper() {

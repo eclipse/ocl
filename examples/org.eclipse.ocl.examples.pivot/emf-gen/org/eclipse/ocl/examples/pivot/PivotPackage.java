@@ -1955,13 +1955,13 @@ public interface PivotPackage
 	int CLASS__PACKAGE = TYPE_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASS = TYPE_FEATURE_COUNT + 12;
+	int CLASS__SUPER_CLASSES = TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -2252,13 +2252,13 @@ public interface PivotPackage
 	int ANY_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int ANY_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The number of structural features of the '<em>Any Type</em>' class.
@@ -2549,13 +2549,13 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int ASSOCIATION_CLASS__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Unowned Attribute</b></em>' reference list.
@@ -3755,13 +3755,13 @@ public interface PivotPackage
 	int DATA_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int DATA_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -4070,13 +4070,13 @@ public interface PivotPackage
 	int COLLECTION_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
+	int COLLECTION_TYPE__SUPER_CLASSES = DATA_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -4412,13 +4412,13 @@ public interface PivotPackage
 	int BAG_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
+	int BAG_TYPE__SUPER_CLASSES = COLLECTION_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -4754,13 +4754,13 @@ public interface PivotPackage
 	int BEHAVIOR__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int BEHAVIOR__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Transition</b></em>' container reference.
@@ -7076,13 +7076,13 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int DYNAMIC_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
@@ -7391,13 +7391,13 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__PACKAGE = DYNAMIC_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__SUPER_CLASS = DYNAMIC_TYPE__SUPER_CLASS;
+	int DYNAMIC_BEHAVIOR__SUPER_CLASSES = DYNAMIC_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
@@ -8318,13 +8318,13 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int ELEMENT_EXTENSION__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Base</b></em>' container reference.
@@ -8795,13 +8795,13 @@ public interface PivotPackage
 	int ENUMERATION__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
+	int ENUMERATION__SUPER_CLASSES = DATA_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -11262,13 +11262,13 @@ public interface PivotPackage
 	int INVALID_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int INVALID_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type</em>' class.
@@ -13233,13 +13233,13 @@ public interface PivotPackage
 	int LAMBDA_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
+	int LAMBDA_TYPE__SUPER_CLASSES = DATA_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -14403,13 +14403,13 @@ public interface PivotPackage
 	int MESSAGE_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int MESSAGE_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
@@ -14718,13 +14718,13 @@ public interface PivotPackage
 	int METACLASS__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METACLASS__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int METACLASS__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Instance Type</b></em>' reference.
@@ -15888,13 +15888,13 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
+	int ORDERED_SET_TYPE__SUPER_CLASSES = COLLECTION_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -16812,13 +16812,13 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
+	int PRIMITIVE_TYPE__SUPER_CLASSES = DATA_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -18630,13 +18630,13 @@ public interface PivotPackage
 	int SELF_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int SELF_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The number of structural features of the '<em>Self Type</em>' class.
@@ -19026,13 +19026,13 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
+	int SEQUENCE_TYPE__SUPER_CLASSES = COLLECTION_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -19368,13 +19368,13 @@ public interface PivotPackage
 	int SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__SUPER_CLASS = COLLECTION_TYPE__SUPER_CLASS;
+	int SET_TYPE__SUPER_CLASSES = COLLECTION_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -19710,13 +19710,13 @@ public interface PivotPackage
 	int SIGNAL__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int SIGNAL__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The number of structural features of the '<em>Signal</em>' class.
@@ -20241,13 +20241,13 @@ public interface PivotPackage
 	int STATE_MACHINE__PACKAGE = BEHAVIOR__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__SUPER_CLASS = BEHAVIOR__SUPER_CLASS;
+	int STATE_MACHINE__SUPER_CLASSES = BEHAVIOR__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Transition</b></em>' container reference.
@@ -20583,13 +20583,13 @@ public interface PivotPackage
 	int STEREOTYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int STEREOTYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Extension Ofs</b></em>' containment reference list.
@@ -22131,13 +22131,13 @@ public interface PivotPackage
 	int TUPLE_TYPE__PACKAGE = DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__SUPER_CLASS = DATA_TYPE__SUPER_CLASS;
+	int TUPLE_TYPE__SUPER_CLASSES = DATA_TYPE__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Behavioral Class</b></em>' reference.
@@ -22979,13 +22979,13 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int UNSPECIFIED_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' reference.
@@ -23735,13 +23735,13 @@ public interface PivotPackage
 	int VOID_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+	int VOID_TYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
 	 * The number of structural features of the '<em>Void Type</em>' class.
@@ -26837,15 +26837,15 @@ public interface PivotPackage
 	EReference getClass_Package();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Class#getSuperClass <em>Super Class</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Super Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Class#getSuperClass()
+	 * @return the meta object for the reference list '<em>Super Classes</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Class#getSuperClasses()
 	 * @see #getClass_()
 	 * @generated
 	 */
-	EReference getClass_SuperClass();
+	EReference getClass_SuperClasses();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}'.
@@ -31206,12 +31206,12 @@ public interface PivotPackage
 		EReference CLASS__PACKAGE = eINSTANCE.getClass_Package();
 
 		/**
-		 * The meta object literal for the '<em><b>Super Class</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Super Classes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS__SUPER_CLASS = eINSTANCE.getClass_SuperClass();
+		EReference CLASS__SUPER_CLASSES = eINSTANCE.getClass_SuperClasses();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Interface</b></em>' attribute feature.

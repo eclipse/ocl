@@ -237,8 +237,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getOwnedOperation();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				if (resolve) return getLowerBound();
 				return basicGetLowerBound();
@@ -338,9 +338,9 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				setLowerBound((Type)newValue);
@@ -428,8 +428,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				setLowerBound((Type)null);
@@ -495,8 +495,8 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.UNSPECIFIED_TYPE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__LOWER_BOUND:
 				return lowerBound != null;
 			case PivotPackage.UNSPECIFIED_TYPE__UPPER_BOUND:

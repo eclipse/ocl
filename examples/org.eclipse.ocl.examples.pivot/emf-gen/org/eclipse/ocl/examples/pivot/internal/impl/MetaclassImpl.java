@@ -187,8 +187,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return getOwnedOperation();
 			case PivotPackage.METACLASS__PACKAGE:
 				return getPackage();
-			case PivotPackage.METACLASS__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.METACLASS__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				if (resolve) return getInstanceType();
 				return basicGetInstanceType();
@@ -285,9 +285,9 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.METACLASS__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.METACLASS__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				setInstanceType((Type)newValue);
@@ -372,8 +372,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			case PivotPackage.METACLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.METACLASS__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.METACLASS__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				setInstanceType((Type)null);
@@ -436,8 +436,8 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.METACLASS__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.METACLASS__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.METACLASS__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.METACLASS__INSTANCE_TYPE:
 				return instanceType != null;
 		}

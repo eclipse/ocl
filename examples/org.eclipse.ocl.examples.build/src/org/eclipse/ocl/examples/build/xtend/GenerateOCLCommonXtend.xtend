@@ -155,7 +155,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					«FOR enumerationLiteral : enumeration.ownedLiteral»
 						enumerationLiterals.add(«enumerationLiteral.getSymbolName()»);
 					«ENDFOR»
-					type.getSuperClass().add(_Enumeration);
+					type.getSuperClasses().add(_Enumeration);
 				«ENDFOR»
 			}
 		'''
@@ -408,7 +408,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					«var superClasses = type.getSuperclassesInPackage()»
 					ownedTypes.add(type = «type.getSymbolName()»);
 					«FOR superClass : superClasses»
-						type.getSuperClass().add(«superClass.getSymbolName()»);
+						type.getSuperClasses().add(«superClass.getSymbolName()»);
 					«ENDFOR»
 				«ENDFOR»
 			}
@@ -559,15 +559,15 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var superClasses = type.getSuperclassesInPackage();
 		'''
 			«IF superClasses.size() > 0»
-				superClasses = type.getSuperClass();
+				superClasses = type.getSuperClasses();
 				«FOR superClass : superClasses»
 					superClasses.add(«superClass.getSymbolName()»);
 				«ENDFOR»
 			«ELSEIF (type instanceof CollectionType)»
-				superClasses = type.getSuperClass();
+				superClasses = type.getSuperClasses();
 				superClasses.add(_OclAny);
 			«ELSEIF !(type instanceof AnyType)»
-				superClasses = type.getSuperClass();
+				superClasses = type.getSuperClasses();
 				superClasses.add(_OclElement);
 			«ENDIF»
 		'''

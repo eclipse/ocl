@@ -244,8 +244,8 @@ public class AssociationClassImpl
 				return getOwnedOperation();
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				return getPackage();
-			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return getUnownedAttribute();
 		}
@@ -340,9 +340,9 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				getUnownedAttribute().clear();
@@ -427,8 +427,8 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				getUnownedAttribute().clear();
@@ -490,8 +490,8 @@ public class AssociationClassImpl
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return unownedAttribute != null && !unownedAttribute.isEmpty();
 		}

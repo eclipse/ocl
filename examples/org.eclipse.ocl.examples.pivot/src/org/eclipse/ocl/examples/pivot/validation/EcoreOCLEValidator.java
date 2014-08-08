@@ -234,7 +234,7 @@ public class EcoreOCLEValidator implements EValidator
 	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.examples.pivot.Class> allTypes, @NonNull Set<DomainConstraint> allConstraints, @NonNull org.eclipse.ocl.examples.pivot.Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariant());
-			for (org.eclipse.ocl.examples.pivot.Class superType : newType.getSuperClass()) {
+			for (org.eclipse.ocl.examples.pivot.Class superType : newType.getSuperClasses()) {
 				if (superType != null) {
 					gatherTypes(allTypes, allConstraints, superType);
 				}

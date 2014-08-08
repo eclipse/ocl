@@ -623,7 +623,7 @@ public class PackageManager implements PackageServerParent
 	}
 
 	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass, Map<TemplateParameter, ParameterableElement> allBindings) {
-		for (org.eclipse.ocl.examples.pivot.Class superType : unspecializedClass.getSuperClass()) {
+		for (org.eclipse.ocl.examples.pivot.Class superType : unspecializedClass.getSuperClasses()) {
 			List<TemplateBinding> superTemplateBindings = superType.getTemplateBinding();
 			if (superTemplateBindings.size() > 0) {
 				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
@@ -641,23 +641,23 @@ public class PackageManager implements PackageServerParent
 					ParameterableElement templateArgument = superTemplateArgumentList.get(0);
 					if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Class) {
 						org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((CollectionTypeServer)superTypeServer).getSpecializedType((org.eclipse.ocl.examples.pivot.Class)templateArgument, null, null);
-						specializedClass.getSuperClass().add(specializedSuperType);
+						specializedClass.getSuperClasses().add(specializedSuperType);
 					}
 				}
 				else if ((superTypeServer instanceof MetaclassServer) && (superTemplateArgumentList.size() == 1)) {
 					ParameterableElement templateArgument = superTemplateArgumentList.get(0);
 					if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Class) {
 						org.eclipse.ocl.examples.pivot.Class superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass((org.eclipse.ocl.examples.pivot.Class)templateArgument);
-						specializedClass.getSuperClass().add(superMetaclass);
+						specializedClass.getSuperClasses().add(superMetaclass);
 					}
 				}
 				else if (superTypeServer instanceof TemplateableTypeServer) {
 					org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((TemplateableTypeServer)superTypeServer).getSpecializedType(superTemplateArgumentList);
-					specializedClass.getSuperClass().add(specializedSuperType);
+					specializedClass.getSuperClasses().add(specializedSuperType);
 				}
 			}
 			else {
-				specializedClass.getSuperClass().add(superType);
+				specializedClass.getSuperClasses().add(superType);
 			}
 		}
 	}

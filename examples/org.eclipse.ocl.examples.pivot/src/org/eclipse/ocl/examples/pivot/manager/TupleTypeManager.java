@@ -156,7 +156,7 @@ public class TupleTypeManager
 						org.eclipse.ocl.examples.pivot.Class partType2 = metaModelManager.getType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
-					tupleType.getSuperClass().add(metaModelManager.getOclTupleType());
+					tupleType.getSuperClasses().add(metaModelManager.getOclTupleType());
 					tupleid2tuple2.put(tupleTypeId, tupleType);
 					metaModelManager.addOrphanClass(tupleType);
 				}

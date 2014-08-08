@@ -268,8 +268,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return getOwnedOperation();
 			case PivotPackage.LAMBDA_TYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
@@ -376,9 +376,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
 				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)newValue);
@@ -476,8 +476,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
 				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)null);
@@ -552,8 +552,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.LAMBDA_TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.LAMBDA_TYPE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__BEHAVIORAL_CLASS:
 				return behavioralClass != null;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:

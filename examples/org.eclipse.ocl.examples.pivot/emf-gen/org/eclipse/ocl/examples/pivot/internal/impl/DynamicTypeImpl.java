@@ -259,8 +259,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return getOwnedOperation();
 			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				if (resolve) return getMetaType();
 				return basicGetMetaType();
@@ -359,9 +359,9 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				setMetaType((Type)newValue);
@@ -450,8 +450,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				setMetaType((Type)null);
@@ -517,8 +517,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.DYNAMIC_TYPE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__META_TYPE:
 				return metaType != null;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_PROPERTY:

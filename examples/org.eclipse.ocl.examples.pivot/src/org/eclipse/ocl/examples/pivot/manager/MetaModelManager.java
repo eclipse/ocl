@@ -215,7 +215,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 		@Override
 		protected @NonNull Iterable<org.eclipse.ocl.examples.pivot.Class> getInnerIterable(@NonNull org.eclipse.ocl.examples.pivot.Class model) {
-			return DomainUtil.nonNullEMF(model.getSuperClass());
+			return DomainUtil.nonNullEMF(model.getSuperClasses());
 		}
 	}
 
@@ -1512,7 +1512,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (conformsTo(rightClass, leftClass, null)) {
 			commonClasses.add(leftClass.getInheritance(this));
 		}
-		for (org.eclipse.ocl.examples.pivot.Class superClass : leftClass.getSuperClass()) {
+		for (org.eclipse.ocl.examples.pivot.Class superClass : leftClass.getSuperClasses()) {
 			if (superClass != null) {
 				Set<DomainInheritance> commonSuperClasses = getCommonClasses(superClass, rightClass, commonClasses);
 				commonClasses.addAll(commonSuperClasses);
@@ -3338,7 +3338,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		if (pivotOperations == null) {
-			List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotClass.getSuperClass();
+			List<org.eclipse.ocl.examples.pivot.Class> superClasses = pivotClass.getSuperClasses();
 			if (!superClasses.isEmpty()) {
 				for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
 					Set<Operation> superOperations = resolveOperations(superClass, operationName, pivotArguments);

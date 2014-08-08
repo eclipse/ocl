@@ -226,8 +226,8 @@ public class MessageTypeImpl
 				return getOwnedOperation();
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:
 				if (resolve) return getReferredOperation();
 				return basicGetReferredOperation();
@@ -326,9 +326,9 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:
 				setReferredOperation((Operation)newValue);
@@ -415,8 +415,8 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:
 				setReferredOperation((Operation)null);
@@ -481,8 +481,8 @@ public class MessageTypeImpl
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__REFERRED_OPERATION:
 				return referredOperation != null;
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:

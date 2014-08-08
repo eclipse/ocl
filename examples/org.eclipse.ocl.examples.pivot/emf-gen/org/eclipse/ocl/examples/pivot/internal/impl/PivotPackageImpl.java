@@ -3819,7 +3819,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_SuperClass()
+	public EReference getClass_SuperClasses()
 	{
 		return (EReference)classEClass.getEStructuralFeatures().get(8);
 	}
@@ -5659,7 +5659,7 @@ public class PivotPackageImpl
 		createEReference(classEClass, CLASS__OWNED_BEHAVIOR);
 		createEReference(classEClass, CLASS__OWNED_OPERATION);
 		createEReference(classEClass, CLASS__PACKAGE);
-		createEReference(classEClass, CLASS__SUPER_CLASS);
+		createEReference(classEClass, CLASS__SUPER_CLASSES);
 
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__ITEM);
@@ -6424,7 +6424,7 @@ public class PivotPackageImpl
 		initEReference(getClass_OwnedBehavior(), this.getBehavior(), null, "ownedBehavior", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedOperation(), this.getOperation(), this.getOperation_Class(), "ownedOperation", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_Package(), this.getPackage(), this.getPackage_OwnedType(), "package", null, 0, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getClass_SuperClass(), this.getClass_(), null, "superClass", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getClass_SuperClasses(), this.getClass_(), null, "superClasses", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionItem_Item(), this.getOCLExpression(), null, "item", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7546,11 +7546,11 @@ public class PivotPackageImpl
 	{
 		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName"; //$NON-NLS-1$	
 		addAnnotation
-		  (getClass_SuperClass(), 
+		  (getClass_SuperClasses(), 
 		   source, 
 		   new String[] 
 		   {
-			 "body", "class" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "subClasses" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getConnectionPointReference_Entry(), 

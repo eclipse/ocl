@@ -94,8 +94,8 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return getSelfFragment().getLocalProperties();
 	}
 
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
-		return getSelfFragment().getLocalSuperTypes();
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
+		return getSelfFragment().getSuperClasses();
 	}
 
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {

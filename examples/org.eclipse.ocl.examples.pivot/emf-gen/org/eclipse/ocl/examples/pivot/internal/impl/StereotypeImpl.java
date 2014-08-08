@@ -246,8 +246,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getOwnedOperation();
 			case PivotPackage.STEREOTYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.STEREOTYPE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return getExtensionOfs();
 		}
@@ -343,9 +343,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				getExtensionOfs().clear();
@@ -431,8 +431,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.STEREOTYPE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				getExtensionOfs().clear();
@@ -495,8 +495,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.STEREOTYPE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.STEREOTYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
 				return extensionOfs != null && !extensionOfs.isEmpty();
 		}

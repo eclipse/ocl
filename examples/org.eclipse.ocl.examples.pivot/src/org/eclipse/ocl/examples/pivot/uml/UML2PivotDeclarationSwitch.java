@@ -203,7 +203,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> umlAttributes = umlDataType.getAttributes();
 		doSwitchAll(umlAttributes);
 //		converter.addProperties(umlAttributes, null);
-		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
+		pivotElement.getSuperClasses().add(metaModelManager.getOclAnyType());
 		return pivotElement;
 	}
 
@@ -214,7 +214,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, umlEnumeration);
 		doSwitchAll(pivotElement.getOwnedLiteral(), umlEnumeration.getOwnedLiterals(), null);
 //		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
-		pivotElement.getSuperClass().add(metaModelManager.getEnumerationType());
+		pivotElement.getSuperClasses().add(metaModelManager.getEnumerationType());
 		return pivotElement;
 	}
 

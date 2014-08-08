@@ -685,7 +685,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 
 	protected @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperclassesInPackage(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
 		List<org.eclipse.ocl.examples.pivot.Class> allElements = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
-		for (org.eclipse.ocl.examples.pivot.Class superclass : type.getSuperClass()) {
+		for (org.eclipse.ocl.examples.pivot.Class superclass : type.getSuperClasses()) {
 			if (getRootPackage(superclass.getPackage()) == getRootPackage(type.getPackage())) {
 				allElements.add(superclass);
 			}

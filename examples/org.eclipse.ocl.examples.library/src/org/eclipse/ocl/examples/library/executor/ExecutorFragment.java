@@ -72,7 +72,7 @@ public class ExecutorFragment extends AbstractFragment
 		return Lists.newArrayList(properties);
 	}
 
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();		// WIP 
 	}
 

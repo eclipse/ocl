@@ -1026,7 +1026,7 @@ public class PivotUtil extends DomainUtil
 				}
 			}
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClass()) {
+				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClasses()) {
 					map = getAllTemplateParameterSubstitutions(map, superType);
 				}		
 			}

@@ -187,9 +187,9 @@
         <details key="documentation" value="Specifies the owning package of this classifier, if any."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" ordered="false" upperBound="-1" eType="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClasses" ordered="false" upperBound="-1" eType="#//Class">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="class"/>
+        <details key="body" value="subClasses"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The immediate superclasses of a class, from which the class inherits."/>

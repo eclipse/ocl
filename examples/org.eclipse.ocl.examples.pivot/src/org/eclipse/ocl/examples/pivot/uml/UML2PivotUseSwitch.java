@@ -180,7 +180,7 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
 				newSuperTypes.add(oclElementType);
 			}
-			PivotUtil.refreshList(pivotElement.getSuperClass(), newSuperTypes);
+			PivotUtil.refreshList(pivotElement.getSuperClasses(), newSuperTypes);
 		}
 		return pivotElement;
 	}

@@ -227,8 +227,8 @@ public class DataTypeImpl
 				return getOwnedOperation();
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
@@ -327,9 +327,9 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
 				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)newValue);
@@ -417,8 +417,8 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
 				setBehavioralClass((org.eclipse.ocl.examples.pivot.Class)null);
@@ -484,8 +484,8 @@ public class DataTypeImpl
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.DATA_TYPE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_CLASS:
 				return behavioralClass != null;
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:

@@ -58,7 +58,7 @@ public class DomainReflectiveType extends ReflectiveType
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final Iterator<? extends DomainClass> iterator = domainType.getLocalSuperTypes().iterator();
+		final Iterator<? extends DomainClass> iterator = domainType.getSuperClasses().iterator();
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
@@ -88,8 +88,8 @@ public class DomainReflectiveType extends ReflectiveType
 		return domainType.getLocalProperties();
 	}
 
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
-		return domainType.getLocalSuperTypes();
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
+		return domainType.getSuperClasses();
 	}
 
 	public @Nullable DomainProperty getMemberProperty(@NonNull String name) {

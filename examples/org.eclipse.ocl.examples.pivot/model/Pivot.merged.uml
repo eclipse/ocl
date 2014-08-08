@@ -207,12 +207,12 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedOperation.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedOperation.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TClass.PsuperClass" name="superClass" type="Ppivot.TClass" association="Ppivot.A_superClass_class">
-        <ownedComment xmi:id="Ppivot.TClass.PsuperClass.oC0" annotatedElement="Ppivot.TClass.PsuperClass">
+      <ownedAttribute xmi:id="Ppivot.TClass.PsuperClasses" name="superClasses" type="Ppivot.TClass" association="Ppivot.A_superClasses_subClasses">
+        <ownedComment xmi:id="Ppivot.TClass.PsuperClasses.oC0" annotatedElement="Ppivot.TClass.PsuperClasses">
           <body>The immediate superclasses of a class, from which the class inherits.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PsuperClass.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PsuperClass.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PsuperClasses.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PsuperClasses.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TClass.Ppackage" name="package" type="Ppivot.TPackage" association="Ppivot.A_ownedType_package">
         <ownedComment xmi:id="Ppivot.TClass.Ppackage.oC0" annotatedElement="Ppivot.TClass.Ppackage">
@@ -1952,10 +1952,10 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_submachineState_submachine" name="A_submachineState_submachine" memberEnd="Ppivot.TStateMachine.PsubmachineState Ppivot.TState.Psubmachine"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_superClass_class" name="A_superClass_class" memberEnd="Ppivot.TClass.PsuperClass Ppivot.A_superClass_class.Pclass">
-      <ownedEnd xmi:id="Ppivot.A_superClass_class.Pclass" name="class" type="Ppivot.TClass" association="Ppivot.A_superClass_class">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_superClass_class.Pclass.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_superClass_class.Pclass.uV" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_superClasses_subClasses" name="A_superClasses_subClasses" memberEnd="Ppivot.TClass.PsuperClasses Ppivot.A_superClasses_subClasses.PsubClasses">
+      <ownedEnd xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses" name="subClasses" type="Ppivot.TClass" association="Ppivot.A_superClasses_subClasses">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_templateBinding_boundElement" name="A_templateBinding_boundElement" memberEnd="Ppivot.TTemplateableElement.PtemplateBinding Ppivot.TTemplateBinding.PboundElement"/>

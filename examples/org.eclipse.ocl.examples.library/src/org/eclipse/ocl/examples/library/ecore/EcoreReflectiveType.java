@@ -134,7 +134,7 @@ public class EcoreReflectiveType extends ReflectiveType
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

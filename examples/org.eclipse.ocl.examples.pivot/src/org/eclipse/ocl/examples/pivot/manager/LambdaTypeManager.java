@@ -82,7 +82,7 @@ public class LambdaTypeManager
 		lambdaType.setContextType(contextType);
 		lambdaType.getParameterType().addAll(parameterTypes);
 		lambdaType.setResultType(resultType);
-		lambdaType.getSuperClass().add(metaModelManager.getOclLambdaType());
+		lambdaType.getSuperClasses().add(metaModelManager.getOclLambdaType());
 		metaModelManager.addOrphanClass(lambdaType);
 		lambdasList.add(lambdaType);
 		return lambdaType;

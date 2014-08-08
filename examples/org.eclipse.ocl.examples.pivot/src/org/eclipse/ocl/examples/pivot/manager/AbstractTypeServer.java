@@ -736,8 +736,8 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		return DomainUtil.nonNullEMF(getPivotType().getOwnedAttribute());			// FIXME Use local cache
 	}
 
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
-		return DomainUtil.nonNullEMF(getPivotType().getSuperClass());			// FIXME Use local cache
+	public @NonNull List<? extends DomainClass> getSuperClasses() {
+		return DomainUtil.nonNullEMF(getPivotType().getSuperClasses());			// FIXME Use local cache
 	}
 
 	@Override
@@ -1086,7 +1086,7 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 					if (partialType instanceof Stereotype) {
 						Stereotype partialStereotype = (Stereotype) partialType;
 						newStereotypes.add(partialStereotype);
-						for (DomainType superType : partialStereotype.getSuperClass()) {
+						for (DomainType superType : partialStereotype.getSuperClasses()) {
 							if (superType instanceof Stereotype) {
 								Stereotype superStereotype = (Stereotype)superType;
 								superType = metaModelManager.getPrimaryElement(superStereotype);

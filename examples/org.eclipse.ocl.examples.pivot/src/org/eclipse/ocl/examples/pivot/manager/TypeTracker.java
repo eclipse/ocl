@@ -160,7 +160,7 @@ class TypeTracker implements Adapter.Internal
 				}
 			}
 		}
-		else if (feature == PivotPackage.Literals.CLASS__SUPER_CLASS) {
+		else if (feature == PivotPackage.Literals.CLASS__SUPER_CLASSES) {
 			switch (eventType) {
 				case Notification.ADD:
 				case Notification.ADD_MANY:

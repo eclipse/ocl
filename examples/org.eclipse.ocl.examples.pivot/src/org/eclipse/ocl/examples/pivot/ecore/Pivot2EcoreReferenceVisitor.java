@@ -296,7 +296,7 @@ public class Pivot2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObjec
 	@Override
 	public EObject visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class pivotClass) {
 		EClass eClass = context.getCreated(EClass.class, pivotClass);
-		safeVisitAll(EClass.class, eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClass());
+		safeVisitAll(EClass.class, eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClasses());
 		return eClass;
 	}
 

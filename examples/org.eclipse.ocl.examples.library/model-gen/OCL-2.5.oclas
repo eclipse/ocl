@@ -28,7 +28,7 @@
     <ownedPrecedence xmi:id="Z.OR" name="OR" order="7"/>
     <ownedPrecedence xmi:id="Z.XOR" name="XOR" order="8"/>
     <ownedPrecedence xmi:id="Z.IMPLIES" name="IMPLIES" order="9"/>
-    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Boolean" name="Boolean" superClass="#T.ocl.OclAny">
+    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Boolean" name="Boolean" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
@@ -437,7 +437,7 @@
             name="b" type="#Boolean"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Integer" name="Integer" superClass="#Real">
+    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Integer" name="Integer" superClasses="#Real">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
@@ -503,7 +503,7 @@
         <ownedComment body="Converts oclText[self] to a string value.&#xA;"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Real" name="Real" superClass="#T.ocl.OclComparable #T.ocl.OclSummable">
+    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="Real" name="Real" superClasses="#T.ocl.OclComparable #T.ocl.OclSummable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
@@ -597,7 +597,7 @@
         <ownedComment body="Converts oclText[self] to a string value.&#xA;"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="String" name="String" superClass="#T.ocl.OclComparable #T.ocl.OclSummable">
+    <ownedType xsi:type="pivot:PrimitiveType" xmi:id="String" name="String" superClasses="#T.ocl.OclComparable #T.ocl.OclSummable">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
@@ -791,7 +791,7 @@
       </ownedOperation>
     </ownedType>
     <ownedType xsi:type="pivot:PrimitiveType" xmi:id="UnlimitedNatural" name="UnlimitedNatural"
-        superClass="#Integer">
+        superClasses="#Integer">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Primitive</value>
@@ -813,7 +813,7 @@
       </ownedOperation>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" xmi:id="Bag" elementType="#T.ocl..BagT" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.46">
+        superClasses="#//@ownedPackages.1/@ownedType.46">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -954,9 +954,9 @@
         </ownedParameter>
       </ownedTemplateSignature>
     </ownedType>
-    <ownedType xmi:id="T.ocl.Class" name="Class" superClass="#T.ocl.OclAny"/>
+    <ownedType xmi:id="T.ocl.Class" name="Class" superClasses="#T.ocl.OclAny"/>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="Collection" elementType="#T.ocl..CollectionT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -1309,7 +1309,7 @@
         </ownedParameter>
       </ownedTemplateSignature>
     </ownedType>
-    <ownedType xmi:id="T.ocl.Enumeration" name="Enumeration" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.Enumeration" name="Enumeration" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
@@ -1326,7 +1326,7 @@
         <ownedComment body="Return a set of all enumeration values of oclText[self]."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.EnumerationLiteral" name="EnumerationLiteral" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.EnumerationLiteral" name="EnumerationLiteral" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
@@ -1337,7 +1337,7 @@
       <ownedComment body="The standard type EnumerationLiteral represents a named constant value of an Enumeration.&#xA;"/>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" xmi:id="Metaclass" instanceType="#T.ocl..MetaclassT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1579,7 +1579,7 @@
         <ownedComment body="Returns a string representation of oclText[self]."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclComparable" name="OclComparable" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclComparable" name="OclComparable" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1617,7 +1617,7 @@
             type="#OclSelf"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclElement" name="OclElement" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclElement" name="OclElement" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1638,7 +1638,7 @@
       </ownedOperation>
     </ownedType>
     <ownedType xsi:type="pivot:InvalidType" xmi:id="T.ocl.OclInvalid" name="OclInvalid"
-        superClass="#T.ocl.OclVoid">
+        superClasses="#T.ocl.OclVoid">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1726,7 +1726,7 @@
         <ownedComment body="Returns 'invalid'."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclLambda" name="OclLambda" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclLambda" name="OclLambda" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1734,7 +1734,7 @@
       </ownedAnnotation>
       <ownedComment body="The type OclLambda is the implicit supertype of all Lambda types. The operations defined for OclLambda&#xA;therefore apply to all lambda expressions.&#xA;"/>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclMessage" name="OclMessage" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclMessage" name="OclMessage" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
@@ -1758,7 +1758,7 @@
         <ownedComment body="Returns oclText[true] if the OclMessage represents the sending of a UML Signal.&#xA;"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:SelfType" xmi:id="OclSelf" name="OclSelf" superClass="#T.ocl.OclAny">
+    <ownedType xsi:type="pivot:SelfType" xmi:id="OclSelf" name="OclSelf" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1766,14 +1766,14 @@
       </ownedAnnotation>
       <ownedComment body="The pseudo-type OclSelf denotes the statically determinate type of oclText[self] in Operation&#xA;and Iteration signatures. Instances of OclSelf are never created.&#xA;"/>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclState" name="OclState" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclState" name="OclState" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
         </ownedDetail>
       </ownedAnnotation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclSummable" name="OclSummable" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclSummable" name="OclSummable" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1789,7 +1789,7 @@
         <ownedComment body="Return the 'zero' value of self to initialize a summation.&#xA;&#xA;zero().sum(self) = self."/>
       </ownedOperation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclTuple" name="OclTuple" superClass="#T.ocl.OclAny">
+    <ownedType xmi:id="T.ocl.OclTuple" name="OclTuple" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1807,7 +1807,7 @@
             type="#OclSelf"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.OclType" name="OclType" superClass="#T.ocl.OclElement">
+    <ownedType xmi:id="T.ocl.OclType" name="OclType" superClasses="#T.ocl.OclElement">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1821,7 +1821,7 @@
             type="#T.ocl.OclType"/>
       </ownedOperation>
     </ownedType>
-    <ownedType xsi:type="pivot:VoidType" xmi:id="T.ocl.OclVoid" name="OclVoid" superClass="#T.ocl.OclAny">
+    <ownedType xsi:type="pivot:VoidType" xmi:id="T.ocl.OclVoid" name="OclVoid" superClasses="#T.ocl.OclAny">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>OCL</value>
@@ -1868,7 +1868,7 @@
       </ownedOperation>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="OrderedCollection" elementType="#T.ocl..OrderedCollectionT"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.63">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.63">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -1904,7 +1904,7 @@
       </ownedTemplateSignature>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" xmi:id="OrderedSet" elementType="#T.ocl..OrderedSetT"
-        name="OrderedSet" superClass="#//@ownedPackages.1/@ownedType.113 #//@ownedPackages.1/@ownedType.160">
+        name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedType.113 #//@ownedPackages.1/@ownedType.160">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -2190,7 +2190,7 @@
       </ownedTemplateSignature>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" xmi:id="Sequence" elementType="#T.ocl..SequenceT"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.119">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.119">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -2377,7 +2377,7 @@
       </ownedTemplateSignature>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" xmi:id="Set" elementType="#T.ocl..SetT" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.165">
+        superClasses="#//@ownedPackages.1/@ownedType.165">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -2522,16 +2522,16 @@
         </ownedParameter>
       </ownedTemplateSignature>
     </ownedType>
-    <ownedType xmi:id="T.ocl.State" name="State" superClass="#T.ocl.OclState">
+    <ownedType xmi:id="T.ocl.State" name="State" superClasses="#T.ocl.OclState">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>UML</value>
         </ownedDetail>
       </ownedAnnotation>
     </ownedType>
-    <ownedType xmi:id="T.ocl.Type" name="Type" superClass="#T.ocl.OclType"/>
+    <ownedType xmi:id="T.ocl.Type" name="Type" superClasses="#T.ocl.OclType"/>
     <ownedType xsi:type="pivot:CollectionType" xmi:id="UniqueCollection" elementType="#T.ocl..UniqueCollectionT"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.82">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.82">
       <ownedAnnotation xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetail name="ClassGroup">
           <value>Collection</value>
@@ -2586,893 +2586,893 @@
   <ownedPackages xmi:id="P.$$" URI="http://www.eclipse.org/ocl/3.1.0/orphanage" name="$$"
       nsPrefix="orphanage">
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"
-        resultType="#Boolean" superClass="#T.ocl.OclLambda"/>
+        resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"
-        resultType="#T.ocl.Bag..collectNestedV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Bag..collectNestedV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"
-        resultType="#T.ocl.Bag..collectV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Bag..collectV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"
-        resultType="#T.ocl.OclAny" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..BagT" name="Lambda"
-        resultType="#//@ownedPackages.1/@ownedType.142" superClass="#T.ocl.OclLambda"/>
+        resultType="#//@ownedPackages.1/@ownedType.142" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..CollectionT" name="Lambda"
-        resultType="#Boolean" superClass="#T.ocl.OclLambda"/>
+        resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..CollectionT" name="Lambda"
-        resultType="#T.ocl.Collection..collectNestedV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Collection..collectNestedV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..CollectionT" name="Lambda"
-        resultType="#T.ocl.Collection..collectV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Collection..collectV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..CollectionT" name="Lambda"
-        resultType="#T.ocl.Collection..iterateTacc" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Collection..iterateTacc" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..CollectionT" name="Lambda"
-        resultType="#T.ocl.OclAny" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..OrderedSetT" name="Lambda"
-        resultType="#Boolean" superClass="#T.ocl.OclLambda"/>
+        resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..OrderedSetT" name="Lambda"
-        resultType="#T.ocl.OclAny" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..OrderedSetT" name="Lambda"
-        resultType="#OrderedSet" superClass="#T.ocl.OclLambda"/>
+        resultType="#OrderedSet" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..OrderedSetT" name="Lambda"
-        resultType="#T.ocl.OrderedSet..collectNestedV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OrderedSet..collectNestedV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..OrderedSetT" name="Lambda"
-        resultType="#T.ocl.OrderedSet..collectV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OrderedSet..collectV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SequenceT" name="Lambda"
-        resultType="#Boolean" superClass="#T.ocl.OclLambda"/>
+        resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SequenceT" name="Lambda"
-        resultType="#T.ocl.OclAny" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SequenceT" name="Lambda"
-        resultType="#//@ownedPackages.1/@ownedType.127" superClass="#T.ocl.OclLambda"/>
+        resultType="#//@ownedPackages.1/@ownedType.127" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SequenceT" name="Lambda"
-        resultType="#T.ocl.Sequence..collectNestedV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Sequence..collectNestedV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SequenceT" name="Lambda"
-        resultType="#T.ocl.Sequence..collectV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Sequence..collectV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SetT" name="Lambda"
-        resultType="#Boolean" superClass="#T.ocl.OclLambda"/>
+        resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SetT" name="Lambda"
-        resultType="#T.ocl.OclAny" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SetT" name="Lambda"
-        resultType="#Set" superClass="#T.ocl.OclLambda"/>
+        resultType="#Set" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SetT" name="Lambda"
-        resultType="#T.ocl.Set..collectNestedV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Set..collectNestedV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..SetT" name="Lambda"
-        resultType="#T.ocl.Set..collectV" superClass="#T.ocl.OclLambda"/>
+        resultType="#T.ocl.Set..collectV" superClasses="#T.ocl.OclLambda"/>
     <ownedType xsi:type="pivot:LambdaType" contextType="#T.ocl..UniqueCollectionT"
-        name="Lambda" resultType="#T.ocl.OclAny" superClass="#T.ocl.OclLambda"/>
-    <ownedType xsi:type="pivot:TupleType" name="Tuple" superClass="#T.ocl.OclTuple">
+        name="Lambda" resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
+    <ownedType xsi:type="pivot:TupleType" name="Tuple" superClasses="#T.ocl.OclTuple">
       <ownedAttribute name="first" type="#T.ocl..CollectionT"/>
       <ownedAttribute name="second" type="#T.ocl.Collection..productT2"/>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Bag..collectNestedV" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.41">
+        superClasses="#//@ownedPackages.1/@ownedType.41">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Bag..collectNestedV" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Bag..collectV" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.42">
+        superClasses="#//@ownedPackages.1/@ownedType.42">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Bag..collectV" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Bag..flattenT2" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.43">
+        superClasses="#//@ownedPackages.1/@ownedType.43">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Bag..flattenT2" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Bag..selectByKindTT" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.44">
+        superClasses="#//@ownedPackages.1/@ownedType.44">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Bag..selectByKindTT" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Bag..selectByTypeTT" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.45">
+        superClasses="#//@ownedPackages.1/@ownedType.45">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Bag..selectByTypeTT" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl..CollectionT" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.55">
+        superClasses="#//@ownedPackages.1/@ownedType.55">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:BagType" elementType="#Collection" name="Bag" superClass="#//@ownedPackages.1/@ownedType.56">
+    <ownedType xsi:type="pivot:BagType" elementType="#Collection" name="Bag" superClasses="#//@ownedPackages.1/@ownedType.56">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#Collection" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Enumeration" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.58">
+        superClasses="#//@ownedPackages.1/@ownedType.58">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Enumeration" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:BagType" elementType="#Metaclass" name="Bag" superClass="#//@ownedPackages.1/@ownedType.59">
+    <ownedType xsi:type="pivot:BagType" elementType="#Metaclass" name="Bag" superClasses="#//@ownedPackages.1/@ownedType.59">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#Metaclass" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Set..collectNestedV" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.76">
+        superClasses="#//@ownedPackages.1/@ownedType.76">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Set..collectNestedV" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:BagType" elementType="#T.ocl.Set..collectV" name="Bag"
-        superClass="#//@ownedPackages.1/@ownedType.77">
+        superClasses="#//@ownedPackages.1/@ownedType.77">
       <templateBinding signature="#s.Bag">
         <parameterSubstitution actual="#T.ocl.Set..collectV" formal="#t.ocl..BagT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#Integer" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#Integer" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#String" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#String" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#//@ownedPackages.1/@ownedType.26"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#//@ownedPackages.1/@ownedType.26" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Bag..collectNestedV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Bag..collectNestedV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Bag..collectV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Bag..collectV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Bag..flattenT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Bag..flattenT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Bag..selectByKindTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Bag..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Bag..selectByTypeTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Bag..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..BagT" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..BagT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..collectNestedV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..collectNestedV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..collectV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..collectV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..excludesAllT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..excludesAllT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..flattenT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..flattenT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..includesAllT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..includesAllT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..productT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..productT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..selectByKindTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Collection..selectByTypeTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Collection..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..CollectionT" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#Collection" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#Collection" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.EnumerationLiteral"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Enumeration" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Enumeration" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#Metaclass" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#Metaclass" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OclAny" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OclAny" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OclElement" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OclElement" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#OclSelf" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#OclSelf" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..OrderedCollectionT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..OrderedCollectionT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..collectNestedV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..collectNestedV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..collectV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..collectV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..flattenT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..flattenT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..selectByKindTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..selectByTypeTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..OrderedSetT" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..OrderedSetT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..collectNestedV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Sequence..collectNestedV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..collectV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Sequence..collectV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..flattenT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Sequence..flattenT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..selectByKindTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..selectByTypeTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..SequenceT" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..SequenceT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..collectNestedV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Set..collectNestedV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..collectV"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Set..collectV" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..flattenT2"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Set..flattenT2" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..selectByKindTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Set..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..selectByTypeTT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl.Set..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..SetT" name="Collection"
-        superClass="#T.ocl.OclAny">
+        superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..SetT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..UniqueCollectionT"
-        name="Collection" superClass="#T.ocl.OclAny">
+        name="Collection" superClasses="#T.ocl.OclAny">
       <templateBinding signature="#s.Collection">
         <parameterSubstitution actual="#T.ocl..UniqueCollectionT" formal="#t.ocl..CollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.UnlimitedNatural..oclAsTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.UnlimitedNatural..oclAsTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Bag..selectByKindTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Bag..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Bag..selectByTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Bag..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Collection..selectByKindTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Collection..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Collection..selectByTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Collection..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclAny..oclAsTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclAny..oclAsTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclAny..oclIsKindOfT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclAny..oclIsKindOfT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclAny..oclIsTypeOfT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclAny..oclIsTypeOfT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclInvalid..oclAsTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclInvalid..oclAsTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclInvalid..oclIsKindOfT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclInvalid..oclIsKindOfT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclInvalid..oclIsTypeOfT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclInvalid..oclIsTypeOfT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclInvalid" name="Metaclass"
-        superClass="#T.ocl.Class #T.ocl.OclType">
+        superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclInvalid" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#OclSelf" name="Metaclass"
-        superClass="#T.ocl.Class #T.ocl.OclType">
+        superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#OclSelf" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclVoid" name="Metaclass"
-        superClass="#T.ocl.Class #T.ocl.OclType">
+        superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OclVoid" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OrderedSet..selectByKindTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.OrderedSet..selectByTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Sequence..selectByKindTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Sequence..selectByTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Set..selectByKindTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Set..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:Metaclass" instanceType="#T.ocl.Set..selectByTypeTT"
-        name="Metaclass" superClass="#T.ocl.Class #T.ocl.OclType">
+        name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
       <templateBinding signature="#s.Metaclass">
         <parameterSubstitution actual="#T.ocl.Set..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#Integer" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.38">
+        superClasses="#//@ownedPackages.1/@ownedType.38">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#Integer" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#String" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.39">
+        superClasses="#//@ownedPackages.1/@ownedType.39">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#String" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..BagT" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.46">
+        superClasses="#//@ownedPackages.1/@ownedType.46">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl..BagT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..CollectionT" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.55">
+        superClasses="#//@ownedPackages.1/@ownedType.55">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.EnumerationLiteral"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.57">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.57">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..collectNestedV"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.64">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.64">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..collectNestedV" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..collectV"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.65">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.65">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..collectV" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..flattenT2"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.66">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.66">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..flattenT2" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..selectByKindTT"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.67">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.67">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByKindTT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..selectByTypeTT"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.68">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.68">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByTypeTT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..OrderedSetT" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.69">
+        superClasses="#//@ownedPackages.1/@ownedType.69">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl..OrderedSetT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..collectNestedV"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.70">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.70">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.Sequence..collectNestedV" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..collectV"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.71">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.71">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.Sequence..collectV" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..flattenT2"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.72">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.72">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.Sequence..flattenT2" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..selectByKindTT"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.73">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.73">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByKindTT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Sequence..selectByTypeTT"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.74">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.74">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByTypeTT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..SequenceT" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.75">
+        superClasses="#//@ownedPackages.1/@ownedType.75">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl..SequenceT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..SetT" name="OrderedCollection"
-        superClass="#//@ownedPackages.1/@ownedType.81">
+        superClasses="#//@ownedPackages.1/@ownedType.81">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl..SetT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..UniqueCollectionT"
-        name="OrderedCollection" superClass="#//@ownedPackages.1/@ownedType.82">
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedType.82">
       <templateBinding signature="#s.OrderedCollection">
         <parameterSubstitution actual="#T.ocl..UniqueCollectionT" formal="#t.ocl..OrderedCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl..CollectionT" name="OrderedSet"
-        superClass="#//@ownedPackages.1/@ownedType.106 #//@ownedPackages.1/@ownedType.152">
+        superClasses="#//@ownedPackages.1/@ownedType.106 #//@ownedPackages.1/@ownedType.152">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl.EnumerationLiteral"
-        name="OrderedSet" superClass="#//@ownedPackages.1/@ownedType.107 #//@ownedPackages.1/@ownedType.153">
+        name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedType.107 #//@ownedPackages.1/@ownedType.153">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl.OrderedSet..flattenT2"
-        name="OrderedSet" superClass="#//@ownedPackages.1/@ownedType.110 #//@ownedPackages.1/@ownedType.157">
+        name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedType.110 #//@ownedPackages.1/@ownedType.157">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl.OrderedSet..flattenT2" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl.OrderedSet..selectByKindTT"
-        name="OrderedSet" superClass="#//@ownedPackages.1/@ownedType.111 #//@ownedPackages.1/@ownedType.158">
+        name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedType.111 #//@ownedPackages.1/@ownedType.158">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByKindTT" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl.OrderedSet..selectByTypeTT"
-        name="OrderedSet" superClass="#//@ownedPackages.1/@ownedType.112 #//@ownedPackages.1/@ownedType.159">
+        name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedType.112 #//@ownedPackages.1/@ownedType.159">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByTypeTT" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl..SequenceT" name="OrderedSet"
-        superClass="#//@ownedPackages.1/@ownedType.119 #//@ownedPackages.1/@ownedType.161">
+        superClasses="#//@ownedPackages.1/@ownedType.119 #//@ownedPackages.1/@ownedType.161">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl..SequenceT" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl..SetT" name="OrderedSet"
-        superClass="#//@ownedPackages.1/@ownedType.120 #//@ownedPackages.1/@ownedType.165">
+        superClasses="#//@ownedPackages.1/@ownedType.120 #//@ownedPackages.1/@ownedType.165">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl..SetT" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:OrderedSetType" elementType="#T.ocl..UniqueCollectionT"
-        name="OrderedSet" superClass="#//@ownedPackages.1/@ownedType.121 #//@ownedPackages.1/@ownedType.166">
+        name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedType.121 #//@ownedPackages.1/@ownedType.166">
       <templateBinding signature="#s.OrderedSet">
         <parameterSubstitution actual="#T.ocl..UniqueCollectionT" formal="#t.ocl..OrderedSetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#Integer" name="Sequence"
-        superClass="#//@ownedPackages.1/@ownedType.103">
+        superClasses="#//@ownedPackages.1/@ownedType.103">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#Integer" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#String" name="Sequence"
-        superClass="#//@ownedPackages.1/@ownedType.104">
+        superClasses="#//@ownedPackages.1/@ownedType.104">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#String" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl..BagT" name="Sequence"
-        superClass="#//@ownedPackages.1/@ownedType.105">
+        superClasses="#//@ownedPackages.1/@ownedType.105">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl..BagT" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl..CollectionT" name="Sequence"
-        superClass="#//@ownedPackages.1/@ownedType.106">
+        superClasses="#//@ownedPackages.1/@ownedType.106">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.OrderedSet..collectNestedV"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.108">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.108">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.OrderedSet..collectNestedV" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.OrderedSet..collectV"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.109">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.109">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.OrderedSet..collectV" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.Sequence..collectNestedV"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.114">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.114">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.Sequence..collectNestedV" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.Sequence..collectV"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.115">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.115">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.Sequence..collectV" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.Sequence..flattenT2"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.116">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.116">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.Sequence..flattenT2" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.Sequence..selectByKindTT"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.117">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.117">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByKindTT" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SequenceType" elementType="#T.ocl.Sequence..selectByTypeTT"
-        name="Sequence" superClass="#//@ownedPackages.1/@ownedType.118">
+        name="Sequence" superClasses="#//@ownedPackages.1/@ownedType.118">
       <templateBinding signature="#s.Sequence">
         <parameterSubstitution actual="#T.ocl.Sequence..selectByTypeTT" formal="#t.ocl..SequenceT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#//@ownedPackages.1/@ownedType.26"
-        name="Set" superClass="#//@ownedPackages.1/@ownedType.150">
+        name="Set" superClasses="#//@ownedPackages.1/@ownedType.150">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#//@ownedPackages.1/@ownedType.26" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#T.ocl..BagT" name="Set" superClass="#//@ownedPackages.1/@ownedType.151">
+    <ownedType xsi:type="pivot:SetType" elementType="#T.ocl..BagT" name="Set" superClasses="#//@ownedPackages.1/@ownedType.151">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl..BagT" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.ocl..CollectionT" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.152">
+        superClasses="#//@ownedPackages.1/@ownedType.152">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.ocl.OclElement" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.155">
+        superClasses="#//@ownedPackages.1/@ownedType.155">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl.OclElement" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
-    <ownedType xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClass="#//@ownedPackages.1/@ownedType.156">
+    <ownedType xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClasses="#//@ownedPackages.1/@ownedType.156">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#OclSelf" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.ocl.Set..flattenT2" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.162">
+        superClasses="#//@ownedPackages.1/@ownedType.162">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl.Set..flattenT2" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.ocl.Set..selectByKindTT" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.163">
+        superClasses="#//@ownedPackages.1/@ownedType.163">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl.Set..selectByKindTT" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.ocl.Set..selectByTypeTT" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.164">
+        superClasses="#//@ownedPackages.1/@ownedType.164">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl.Set..selectByTypeTT" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:SetType" elementType="#T.ocl..UniqueCollectionT" name="Set"
-        superClass="#//@ownedPackages.1/@ownedType.166">
+        superClasses="#//@ownedPackages.1/@ownedType.166">
       <templateBinding signature="#s.Set">
         <parameterSubstitution actual="#T.ocl..UniqueCollectionT" formal="#t.ocl..SetT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#//@ownedPackages.1/@ownedType.26"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.40">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.40">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#//@ownedPackages.1/@ownedType.26" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..BagT" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.46">
+        superClasses="#//@ownedPackages.1/@ownedType.46">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl..BagT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..CollectionT" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.55">
+        superClasses="#//@ownedPackages.1/@ownedType.55">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl..CollectionT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.EnumerationLiteral"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.57">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.57">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OclAny" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.60">
+        superClasses="#//@ownedPackages.1/@ownedType.60">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.OclAny" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OclElement" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.61">
+        superClasses="#//@ownedPackages.1/@ownedType.61">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.OclElement" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#OclSelf" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.62">
+        superClasses="#//@ownedPackages.1/@ownedType.62">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#OclSelf" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..flattenT2"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.66">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.66">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..flattenT2" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..selectByKindTT"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.67">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.67">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByKindTT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.OrderedSet..selectByTypeTT"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.68">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.68">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.OrderedSet..selectByTypeTT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..OrderedSetT" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.69">
+        superClasses="#//@ownedPackages.1/@ownedType.69">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl..OrderedSetT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..SequenceT" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.75">
+        superClasses="#//@ownedPackages.1/@ownedType.75">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl..SequenceT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..flattenT2"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.78">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.78">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.Set..flattenT2" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..selectByKindTT"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.79">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.79">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.Set..selectByKindTT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl.Set..selectByTypeTT"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.80">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.80">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl.Set..selectByTypeTT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..SetT" name="UniqueCollection"
-        superClass="#//@ownedPackages.1/@ownedType.81">
+        superClasses="#//@ownedPackages.1/@ownedType.81">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl..SetT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>
     </ownedType>
     <ownedType xsi:type="pivot:CollectionType" elementType="#T.ocl..UniqueCollectionT"
-        name="UniqueCollection" superClass="#//@ownedPackages.1/@ownedType.82">
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedType.82">
       <templateBinding signature="#s.UniqueCollection">
         <parameterSubstitution actual="#T.ocl..UniqueCollectionT" formal="#t.ocl..UniqueCollectionT"/>
       </templateBinding>

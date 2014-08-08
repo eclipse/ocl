@@ -56,7 +56,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobANn7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAN37VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Class-superClass" name="superClass" type="Core-Basic-Class" association="Core-Basic-A_superClass_class">
+        <ownedAttribute xmi:id="Core-Basic-Class-superClass" name="superClasses" type="Core-Basic-Class" association="Core-Basic-A_superClass_class">
           <ownedComment xmi:id="Core-Basic-Class-superClass-_ownedComment.0" annotatedElement="Core-Basic-Class-superClass">
             <body>The immediate superclasses of a class, from which the class inherits.</body>
           </ownedComment>
@@ -295,8 +295,8 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Core-Basic-Operation-ownedParameter Core-Basic-Parameter-operation"/>
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedOperation_class" name="A_ownedOperation_class" memberEnd="Core-Basic-Class-ownedOperation Core-Basic-Operation-class"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_superClass_class" name="A_superClass_class" memberEnd="Core-Basic-Class-superClass Core-Basic-A_superClass_class-class">
-        <ownedEnd xmi:id="Core-Basic-A_superClass_class-class" name="class" type="Core-Basic-Class" association="Core-Basic-A_superClass_class">
+      <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_superClass_class" name="A_superClasses_subClasses" memberEnd="Core-Basic-Class-superClass Core-Basic-A_superClass_class-class">
+        <ownedEnd xmi:id="Core-Basic-A_superClass_class-class" name="subClasses" type="Core-Basic-Class" association="Core-Basic-A_superClass_class">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAWX7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAWn7VEeOu79LxSz8Ylw" value="*"/>
         </ownedEnd>

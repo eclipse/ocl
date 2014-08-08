@@ -36,7 +36,7 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperation <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getPackage <em>Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSuperClass <em>Super Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,18 +154,18 @@ public interface Class
 	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
-	 * Returns the value of the '<em><b>Super Class</b></em>' reference list.
+	 * Returns the value of the '<em><b>Super Classes</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The immediate superclasses of a class, from which the class inherits.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Super Class</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_SuperClass()
+	 * @return the value of the '<em>Super Classes</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_SuperClasses()
 	 * @generated
 	 */
-	List<Class> getSuperClass();
+	@NonNull List<Class> getSuperClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Is Interface</b></em>' attribute.

@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
-import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.pivot.Behavior;
@@ -75,7 +75,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedBehavior <em>Owned Behavior</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperation <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getPackage <em>Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSuperClass <em>Super Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
  * </p>
  *
@@ -226,14 +226,14 @@ public class ClassImpl
 	protected EList<Operation> ownedOperation;
 
 	/**
-	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' reference list.
+	 * The cached value of the '{@link #getSuperClasses() <em>Super Classes</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSuperClass()
+	 * @see #getSuperClasses()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> superClass;
+	protected EList<org.eclipse.ocl.examples.pivot.Class> superClasses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -580,13 +580,13 @@ public class ClassImpl
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperClass()
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Class> getSuperClasses()
 	{
-		if (superClass == null)
+		if (superClasses == null)
 		{
-			superClass = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASS);
+			superClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASSES);
 		}
-		return superClass;
+		return superClasses;
 	}
 
 	/**
@@ -716,8 +716,8 @@ public class ClassImpl
 				return getOwnedOperation();
 			case PivotPackage.CLASS__PACKAGE:
 				return getPackage();
-			case PivotPackage.CLASS__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.CLASS__SUPER_CLASSES:
+				return getSuperClasses();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -810,9 +810,9 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.CLASS__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.CLASS__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -893,8 +893,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.CLASS__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.CLASS__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -953,8 +953,8 @@ public class ClassImpl
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.CLASS__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.CLASS__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.CLASS__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -1088,11 +1088,6 @@ public class ClassImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitClass(this);
-	}
-
-	@Override
-	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
-		return getSuperClass();
 	}
 
 	@Override

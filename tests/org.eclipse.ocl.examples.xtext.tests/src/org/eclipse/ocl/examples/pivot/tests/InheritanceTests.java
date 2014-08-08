@@ -175,13 +175,13 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
 			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
 			try {
-				metaModelManager.getRealType().getSuperClass().add(metaModelManager.getIntegerType());
+				metaModelManager.getRealType().getSuperClasses().add(metaModelManager.getIntegerType());
 				unlimitedNaturalTypeInheritance.getDepth();
 				fail("Missing IllegalStateException");
 			} catch (IllegalStateException e) {
 				// FIXME validate body
 			} finally {
-				metaModelManager.getRealType().getSuperClass().remove(metaModelManager.getIntegerType());
+				metaModelManager.getRealType().getSuperClasses().remove(metaModelManager.getIntegerType());
 			}
 		} finally {
 			metaModelManager.dispose();
@@ -197,11 +197,11 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
 			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
 			try {
-				metaModelManager.getRealType().getSuperClass().add(metaModelManager.getStringType());
+				metaModelManager.getRealType().getSuperClasses().add(metaModelManager.getStringType());
 				assertEquals(3, metaModelManager.getInheritance(metaModelManager.getRealType()).getDepth());
 				assertEquals(5, unlimitedNaturalTypeInheritance.getDepth());
 			} finally {
-				metaModelManager.getRealType().getSuperClass().remove(metaModelManager.getStringType());
+				metaModelManager.getRealType().getSuperClasses().remove(metaModelManager.getStringType());
 			}
 		} finally {
 			metaModelManager.dispose();
@@ -218,13 +218,13 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
 			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
 			try {
-				metaModelManager.getIntegerType().getSuperClass().remove(metaModelManager.getRealType());
-				metaModelManager.getIntegerType().getSuperClass().add(metaModelManager.getOclAnyType());
+				metaModelManager.getIntegerType().getSuperClasses().remove(metaModelManager.getRealType());
+				metaModelManager.getIntegerType().getSuperClasses().add(metaModelManager.getOclAnyType());
 				assertEquals(2, unlimitedNaturalTypeInheritance.getDepth());
 				assertEquals(1, metaModelManager.getInheritance(metaModelManager.getIntegerType()).getDepth());
 				assertEquals(2, metaModelManager.getInheritance(metaModelManager.getRealType()).getDepth());
 			} finally {
-				metaModelManager.getIntegerType().getSuperClass().add(metaModelManager.getRealType());
+				metaModelManager.getIntegerType().getSuperClasses().add(metaModelManager.getRealType());
 			}
 		} finally {
 			metaModelManager.dispose();

@@ -291,8 +291,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return getOwnedOperation();
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				return getPackage();
-			case PivotPackage.BEHAVIOR__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.BEHAVIOR__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				return getTransition();
 		}
@@ -388,9 +388,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.BEHAVIOR__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.BEHAVIOR__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				setTransition((Transition)newValue);
@@ -475,8 +475,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.BEHAVIOR__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.BEHAVIOR__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				setTransition((Transition)null);
@@ -539,8 +539,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.BEHAVIOR__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.BEHAVIOR__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.BEHAVIOR__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.BEHAVIOR__TRANSITION:
 				return getTransition() != null;
 		}

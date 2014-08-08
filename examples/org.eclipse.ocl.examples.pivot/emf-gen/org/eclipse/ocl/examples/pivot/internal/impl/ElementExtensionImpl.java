@@ -431,8 +431,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return getOwnedOperation();
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				return getPackage();
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase();
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
@@ -535,9 +535,9 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)newValue);
@@ -631,8 +631,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				setBase((Element)null);
@@ -704,8 +704,8 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.ELEMENT_EXTENSION__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase() != null;
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:

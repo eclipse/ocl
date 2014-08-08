@@ -341,8 +341,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return getOwnedOperation();
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				return getPackage();
-			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
-				return getSuperClass();
+			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
+				return getSuperClasses();
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				return getTransition();
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:
@@ -446,9 +446,9 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
-				getSuperClass().clear();
-				getSuperClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				setTransition((Transition)newValue);
@@ -549,8 +549,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
-				getSuperClass().clear();
+			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
+				getSuperClasses().clear();
 				return;
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				setTransition((Transition)null);
@@ -625,8 +625,8 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.STATE_MACHINE__PACKAGE:
 				return getPackage() != null;
-			case PivotPackage.STATE_MACHINE__SUPER_CLASS:
-				return superClass != null && !superClass.isEmpty();
+			case PivotPackage.STATE_MACHINE__SUPER_CLASSES:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.STATE_MACHINE__TRANSITION:
 				return getTransition() != null;
 			case PivotPackage.STATE_MACHINE__CONNECTION_POINT:

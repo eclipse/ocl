@@ -92,10 +92,10 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EClass eObject2 = eObject;
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject2);
 		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClass(), eObject2.getEGenericSuperTypes());
-			if (pivotElement.getSuperClass().isEmpty()) {
+			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject2.getEGenericSuperTypes());
+			if (pivotElement.getSuperClasses().isEmpty()) {
 				org.eclipse.ocl.examples.pivot.Class oclElementType = metaModelManager.getOclElementType();
-				pivotElement.getSuperClass().add(oclElementType);
+				pivotElement.getSuperClasses().add(oclElementType);
 			}
 		}
 		return null;
@@ -120,7 +120,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 						operation.getOwnedParameter().add(parameter);
 						operation.setType(metaModelManager.getIntegerType());
 						pivotElement.getOwnedOperation().add(operation);
-						pivotElement.getSuperClass().add(metaModelManager.getOclComparableType());
+						pivotElement.getSuperClasses().add(metaModelManager.getOclComparableType());
 					}
 				} catch (Exception e) {
 				}

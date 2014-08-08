@@ -16,5 +16,5 @@ import org.eclipse.jdt.annotation.NonNull;
 
 public interface DomainClass extends DomainType
 {
-	@NonNull List<? extends DomainClass> getLocalSuperTypes();
+	@NonNull List<? extends DomainClass> getSuperClasses();
 }
