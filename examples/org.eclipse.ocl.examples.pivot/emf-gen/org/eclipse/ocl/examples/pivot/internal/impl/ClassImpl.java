@@ -26,13 +26,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -1088,6 +1089,34 @@ public class ClassImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitClass(this);
+	}
+
+	private TypeId typeId = null;
+	
+	public @NonNull TypeId getTypeId() {
+		TypeId typeId2 = typeId;
+		if (typeId2 == null) {
+			synchronized (this) {
+				typeId2 = typeId;
+				if (typeId2 == null) {
+					typeId = typeId2 = computeId();
+				}
+			}
+		}
+		return typeId2;
+	}
+	
+	public @NonNull TypeId computeId() {
+		TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
+		if (owningTemplateParameter != null) {
+			return owningTemplateParameter.getElementId();
+		}
+//		else if (eContainer() instanceof Library) {		// FIXME this should not be needed 
+//			return IdManager.getNsURIPackageId(PivotPackage.eNS_URI, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE).getClassId(name, getTypeParameters().parametersSize());
+//		}
+		else {
+			return IdManager.getClassId(this);
+		}
 	}
 
 	@Override

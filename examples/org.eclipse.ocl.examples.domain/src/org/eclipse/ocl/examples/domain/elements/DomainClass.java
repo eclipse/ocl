@@ -17,4 +17,9 @@ import org.eclipse.jdt.annotation.NonNull;
 public interface DomainClass extends DomainType
 {
 	@NonNull List<? extends DomainClass> getSuperClasses();
+
+	/**
+	 * Return the ordered list of type parameters of this type.
+	 */
+	@NonNull DomainTypeParameters getTypeParameters();
 }

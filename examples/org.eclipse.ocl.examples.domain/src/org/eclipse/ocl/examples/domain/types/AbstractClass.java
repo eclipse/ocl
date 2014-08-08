@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 
 public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
 {
@@ -24,5 +25,9 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 
 	public @NonNull List<? extends DomainClass> getSuperClasses() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
+
+	public @NonNull DomainTypeParameters getTypeParameters() {
+		return DomainTypeParameters.EMPTY_LIST;
 	}
 }

@@ -76,11 +76,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	/* @NonNull*/ DomainPackage getPackage();
 
 	/**
-	 * Return the ordered list of type parameters of this type.
-	 */
-	@NonNull DomainTypeParameters getTypeParameters();
-
-	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.
 	 */
 	@NonNull TypeId getTypeId();

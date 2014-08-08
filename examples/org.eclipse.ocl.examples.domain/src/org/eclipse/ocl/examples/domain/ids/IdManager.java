@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.DomainConstants;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
@@ -179,7 +180,7 @@ public final class IdManager
     /**
      * Return the classId for aType.
       */
-	public static @NonNull ClassId getClassId(@NonNull DomainType aType) {
+	public static @NonNull ClassId getClassId(@NonNull DomainClass aType) {
 		String name = aType.getName();
 		assert name != null;
 		DomainPackage parentPackage = aType.getPackage();
@@ -203,7 +204,7 @@ public final class IdManager
     /**
      * Return the dataTypeId for aType.
       */
-	public static @NonNull DataTypeId getDataTypeId(@NonNull DomainType aType) {
+	public static @NonNull DataTypeId getDataTypeId(@NonNull DomainClass aType) {
 		String name = aType.getName();
 		assert name != null;
 		DomainPackage parentPackage = aType.getPackage();

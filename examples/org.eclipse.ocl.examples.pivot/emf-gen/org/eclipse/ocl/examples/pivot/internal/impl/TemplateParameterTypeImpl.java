@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -286,5 +287,11 @@ public class TemplateParameterTypeImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitTemplateParameterType(this);
+	}
+	
+	public @NonNull TypeId getTypeId() {
+		TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
+		assert owningTemplateParameter != null;
+		return owningTemplateParameter.getElementId();
 	}
 } //TemplateParameterTypeImpl

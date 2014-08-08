@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.values.OCLValue;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
@@ -100,10 +99,6 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	
 	public final DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;
-	}
-
-	public @NonNull DomainTypeParameters getTypeParameters() {
-		return DomainTypeParameters.EMPTY_LIST;
 	}
 
 	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {

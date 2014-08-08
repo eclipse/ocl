@@ -43,7 +43,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
@@ -534,34 +533,6 @@ public abstract class TypeImpl
 
 	public @NonNull String getMetaTypeName() {
 		return eClass().getName();
-	}
-
-	private TypeId typeId = null;
-	
-	public @NonNull TypeId getTypeId() {
-		TypeId typeId2 = typeId;
-		if (typeId2 == null) {
-			synchronized (this) {
-				typeId2 = typeId;
-				if (typeId2 == null) {
-					typeId = typeId2 = computeId();
-				}
-			}
-		}
-		return typeId2;
-	}
-	
-	public @NonNull TypeId computeId() {
-		TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
-			return (TypeId) owningTemplateParameter.getElementId();
-		}
-//		else if (eContainer() instanceof Library) {		// FIXME this should not be needed 
-//			return IdManager.getNsURIPackageId(PivotPackage.eNS_URI, PivotPackage.eNS_PREFIX, PivotPackage.eINSTANCE).getClassId(name, getTypeParameters().parametersSize());
-//		}
-		else {
-			return IdManager.getClassId(this);
-		}
 	}
 
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
