@@ -903,7 +903,7 @@
         superClasses="#T.pivot.NamedElement #T.pivot.ParameterableElement">
       <ownedComment body="Packageable elements are able to serve as a template parameter."/>
     </ownedClasses>
-    <ownedClasses xmi:id="T.pivot.Parameter" name="Parameter" superClasses="#T.pivot.VariableDeclaration #T.pivot.ParameterableElement">
+    <ownedClasses xmi:id="T.pivot.Parameter" name="Parameter" superClasses="#T.pivot.VariableDeclaration">
       <ownedComment body="A parameter is a typed element that represents a parameter of an operation."/>
       <ownedProperties xmi:id="p.pivot.Parameter.operation" isRequired="false" name="operation"
           opposite="#p.pivot.Operation.ownedParameter" type="#T.pivot.Operation">

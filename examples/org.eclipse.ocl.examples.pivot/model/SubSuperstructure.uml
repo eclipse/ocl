@@ -29,9 +29,6 @@
           <generalization xmi:id="_XnqLO37VEeOu79LxSz8Ylw" general="_iWKggA3IEeSm6471J7pVhQ"/>
           <generalization xmi:id="_x5lyIA3IEeSm6471J7pVhQ" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_KYQtcBvgEeSIos3S87O_rg" name="Parameter">
-          <generalization xmi:id="_OG9z0BvgEeSIos3S87O_rg" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-ParameterableElement" name="ParameterableElement" isAbstract="true">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-ParameterableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ParameterableElement">
             <body>A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.</body>

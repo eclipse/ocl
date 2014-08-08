@@ -709,7 +709,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
-			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _ParameterableElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
