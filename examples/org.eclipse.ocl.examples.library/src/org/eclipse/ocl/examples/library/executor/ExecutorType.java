@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -93,7 +94,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return getSelfFragment().getLocalProperties();
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
 		return getSelfFragment().getLocalSuperTypes();
 	}
 

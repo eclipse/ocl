@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.library.executor;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -37,7 +38,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 	}
 
 	@Override
-	protected @NonNull ReflectiveType createExecutorType(@NonNull DomainType domainType) {
+	protected @NonNull ReflectiveType createExecutorType(@NonNull DomainClass domainType) {
 		return new DomainReflectiveType(this, domainType);
 	}
 

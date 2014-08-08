@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -115,7 +116,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 	}
 
 	@Override
-	protected @NonNull DomainInheritance createExecutorType(@NonNull DomainType domainType) {
+	protected @NonNull DomainInheritance createExecutorType(@NonNull DomainClass domainType) {
 		return getTypeServer(domainType);
 	}
 

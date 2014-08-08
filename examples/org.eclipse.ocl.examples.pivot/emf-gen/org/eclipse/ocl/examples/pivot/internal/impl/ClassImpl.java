@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.pivot.Behavior;
@@ -1090,7 +1091,7 @@ public class ClassImpl
 	}
 
 	@Override
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
 		return getSuperClass();
 	}
 

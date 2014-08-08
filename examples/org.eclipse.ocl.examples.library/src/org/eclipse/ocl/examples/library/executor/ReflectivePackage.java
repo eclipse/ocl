@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -37,15 +38,15 @@ public abstract class ReflectivePackage extends ExecutorPackage
 	protected synchronized @NonNull Map<DomainType, DomainInheritance> computeClasses() {
 		Map<DomainType, DomainInheritance> types2 = types = new HashMap<DomainType, DomainInheritance>();
 		for (DomainType domainType : getDomainTypes()) {
-			if (domainType != null) {
-				DomainInheritance executorType = createExecutorType(domainType);
+			if (domainType instanceof DomainClass) {		// FIXME no cast
+				DomainInheritance executorType = createExecutorType((DomainClass)domainType);
 				types2.put(domainType, executorType);
 			}
 		}
 		return types2;
 	}
 
-	protected abstract @NonNull DomainInheritance createExecutorType(@NonNull DomainType domainType);
+	protected abstract @NonNull DomainInheritance createExecutorType(@NonNull DomainClass domainType);
 
 	protected abstract @NonNull Iterable<? extends DomainType> getDomainTypes();
 

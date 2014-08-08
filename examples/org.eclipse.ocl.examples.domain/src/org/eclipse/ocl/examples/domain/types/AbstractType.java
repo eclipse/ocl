@@ -61,10 +61,6 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
-	}
-
 //	public @NonNull String getMetaTypeName() {
 //		TypeId typeId = getTypeId();
 //		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types

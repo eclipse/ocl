@@ -15,11 +15,11 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -29,10 +29,10 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 public class DomainReflectiveType extends ReflectiveType
 {
 	protected final @NonNull DomainStandardLibrary standardLibrary;
-	protected final @NonNull DomainType domainType;
+	protected final @NonNull DomainClass domainType;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
-	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainType domainType) {
+	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainClass domainType) {
 		super(DomainUtil.nonNullModel(domainType.getName()), evaluationPackage, computeFlags(domainType));
 		this.standardLibrary = evaluationPackage.getStandardLibrary();
 		this.domainType = domainType;
@@ -58,7 +58,7 @@ public class DomainReflectiveType extends ReflectiveType
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		final Iterator<? extends DomainType> iterator = domainType.getLocalSuperTypes().iterator();
+		final Iterator<? extends DomainClass> iterator = domainType.getLocalSuperTypes().iterator();
 		return new Iterable<DomainInheritance>()
 		{
 			public Iterator<DomainInheritance> iterator() {
@@ -88,7 +88,7 @@ public class DomainReflectiveType extends ReflectiveType
 		return domainType.getLocalProperties();
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
 		return domainType.getLocalSuperTypes();
 	}
 

@@ -50,7 +50,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	@NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
 	@NonNull List<? extends DomainOperation> getLocalOperations();
 	@NonNull List<? extends DomainProperty> getLocalProperties();
-	@NonNull List<? extends DomainType> getLocalSuperTypes();
 	
 	/**
 	 * Return the name of the meta-type of this type.

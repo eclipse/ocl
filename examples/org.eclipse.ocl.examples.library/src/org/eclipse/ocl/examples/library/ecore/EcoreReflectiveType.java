@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
@@ -134,7 +134,7 @@ public class EcoreReflectiveType extends ReflectiveType
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

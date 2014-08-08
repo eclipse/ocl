@@ -10,6 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.domain.elements;
 
+import java.util.List;
+
+import org.eclipse.jdt.annotation.NonNull;
+
 public interface DomainClass extends DomainType
 {
+	@NonNull List<? extends DomainClass> getLocalSuperTypes();
 }

@@ -14,10 +14,10 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -72,7 +72,7 @@ public class ExecutorFragment extends AbstractFragment
 		return Lists.newArrayList(properties);
 	}
 
-	public @NonNull List<? extends DomainType> getLocalSuperTypes() {
+	public @NonNull List<? extends DomainClass> getLocalSuperTypes() {
 		throw new UnsupportedOperationException();		// WIP 
 	}
 
