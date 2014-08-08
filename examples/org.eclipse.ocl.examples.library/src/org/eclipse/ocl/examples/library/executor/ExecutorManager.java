@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -139,15 +140,15 @@ public abstract class ExecutorManager implements DomainEvaluator
 		return standardLibrary;
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		return getIdResolver().getStaticTypeOf(value);
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 

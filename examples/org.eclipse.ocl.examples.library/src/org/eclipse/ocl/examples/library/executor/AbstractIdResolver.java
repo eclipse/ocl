@@ -202,7 +202,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	protected final @NonNull DomainStandardLibrary standardLibrary;
-	private final @NonNull Map<Object, DomainType> key2type = new HashMap<Object, DomainType>();	// Concurrent puts are duplicates
+	private final @NonNull Map<Object, DomainClass> key2type = new HashMap<Object, DomainClass>();	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<EnumerationLiteralId, Enumerator> enumerationLiteral2enumerator = null;	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<Enumerator, EnumerationLiteralId> enumerator2enumerationLiteralId = null;	// Concurrent puts are duplicates
 
@@ -544,7 +544,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 	
-	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof CollectionValue) {
 			CollectionValue collectionValue = (CollectionValue) value;
 			DomainType elementType = getDynamicTypeOf(collectionValue.iterable());
@@ -566,7 +566,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @Nullable DomainType getDynamicTypeOf(@NonNull Object... values) {
 		DomainType elementType = null;
 		for (Object value : values) {
-			DomainType valueType = getDynamicTypeOf(value);
+			DomainClass valueType = getDynamicTypeOf(value);
 			if (elementType == null) {
 				elementType = valueType;
 			}
@@ -583,7 +583,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values) {
 		DomainType elementType = null;
 		for (Object value : values) {
-			DomainType valueType = getDynamicTypeOf(value);
+			DomainClass valueType = getDynamicTypeOf(value);
 			if (elementType == null) {
 				elementType = valueType;
 			}
@@ -594,8 +594,8 @@ public abstract class AbstractIdResolver implements IdResolver
 		return elementType;
 	}
 
-	public synchronized @NonNull DomainType getJavaType(@NonNull Class<?> javaClass) {
-		DomainType type = key2type.get(javaClass);
+	public synchronized @NonNull DomainClass getJavaType(@NonNull Class<?> javaClass) {
+		DomainClass type = key2type.get(javaClass);
 		if (type != null) {
 			return type;
 		}
@@ -612,7 +612,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return type;
 	}
 
-	public @NonNull DomainType getMetaclass(@NonNull MetaclassId metaclassId) {
+	public @NonNull DomainClass getMetaclass(@NonNull MetaclassId metaclassId) {
 		if (metaclassId == TypeId.METACLASS) {
 			return standardLibrary.getMetaclassType();
 		}
@@ -651,9 +651,9 @@ public abstract class AbstractIdResolver implements IdResolver
 		return standardLibrary;
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof DomainType) {
-			DomainType type = key2type.get(value);
+			DomainClass type = key2type.get(value);
 			if (type == null) {
 				type = standardLibrary.getMetaclass((DomainType) value);
 				assert type != null;
@@ -664,7 +664,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (value instanceof EObject) {
 			EClass eClass = ((EObject)value).eClass();
 			assert eClass != null;
-			DomainType type = key2type.get(eClass);
+			DomainClass type = key2type.get(eClass);
 			if (type == null) {
 				type = getType(eClass);
 				assert type != null;
@@ -674,9 +674,9 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else if (value instanceof Value) {
 			TypeId typeId = ((Value)value).getTypeId();			
-			DomainType type = key2type.get(typeId);
+			DomainClass type = key2type.get(typeId);
 			if (type == null) {
-				type = (DomainType) typeId.accept(this);
+				type = (DomainClass) typeId.accept(this);
 				assert type != null;
 				key2type.put(typeId, type);
 			}
@@ -711,19 +711,19 @@ public abstract class AbstractIdResolver implements IdResolver
 		return getJavaType(jClass);
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, Object... values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, Object... values) {
 		Object bestTypeId = getTypeKeyOf(value);
-		DomainType bestType = key2type.get(bestTypeId);
+		DomainClass bestType = key2type.get(bestTypeId);
 		assert bestType != null;
 		Collection<Object> assessedTypeKeys = null;
 		int count = 0;
 		for (Object anotherValue : values) {
 			Object anotherTypeId = getTypeKeyOf(anotherValue);
 			if ((assessedTypeKeys == null) ? (anotherTypeId != bestTypeId) : !assessedTypeKeys.contains(anotherTypeId)) {
-				DomainType anotherType = key2type.get(anotherTypeId);
+				DomainClass anotherType = key2type.get(anotherTypeId);
 				assert anotherType != null;
 				DomainType commonType = bestType.getCommonType(this, anotherType);
-				if (commonType != bestType) {
+				if ((commonType != bestType) && (commonType instanceof DomainClass)) {
 					if (assessedTypeKeys == null) {
 						assessedTypeKeys = new ArrayList<Object>();
 						assessedTypeKeys.add(bestTypeId);
@@ -732,7 +732,7 @@ public abstract class AbstractIdResolver implements IdResolver
 						assessedTypeKeys = new HashSet<Object>(assessedTypeKeys);
 					}
 					assessedTypeKeys.add(anotherTypeId);
-					bestType = commonType;
+					bestType = (DomainClass)commonType;
 					bestTypeId = anotherTypeId;
 				}
 			}
@@ -740,9 +740,9 @@ public abstract class AbstractIdResolver implements IdResolver
 		return bestType;
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		Object bestTypeKey = getTypeKeyOf(value);
-		DomainType bestType = key2type.get(bestTypeKey);
+		DomainClass bestType = key2type.get(bestTypeKey);
 		assert bestType != null;
 		Collection<Object> assessedTypeKeys = null;
 		int count = 0;
@@ -750,7 +750,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			assert anotherValue != null;
 			Object anotherTypeKey = getTypeKeyOf(anotherValue);
 			if ((assessedTypeKeys == null) ? (anotherTypeKey != bestTypeKey) : !assessedTypeKeys.contains(anotherTypeKey)) {
-				DomainType anotherType = key2type.get(anotherTypeKey);
+				DomainClass anotherType = key2type.get(anotherTypeKey);
 				assert anotherType != null;
 				DomainType commonType = bestType.getCommonType(this, anotherType);
 				if (commonType != bestType) {
@@ -791,7 +791,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	public abstract @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId);
 
-	public abstract @NonNull DomainType getType(@NonNull EClassifier eClassifier);
+	public abstract @NonNull DomainClass getType(@NonNull EClassifier eClassifier);
 
 	public @NonNull DomainClass getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
@@ -812,7 +812,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else*/ if (value instanceof EObject) {
 			EClass typeKey = ((EObject)value).eClass();
 			assert typeKey != null;
-			DomainType type = key2type.get(typeKey);
+			DomainClass type = key2type.get(typeKey);
 			if (type == null) {
 				type = getType(typeKey);
 				assert type != null;
@@ -822,9 +822,9 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else if (value instanceof Value) {
 			TypeId typeKey = ((Value)value).getTypeId();			
-			DomainType type = key2type.get(typeKey);
+			DomainClass type = key2type.get(typeKey);
 			if (type == null) {
-				type = (DomainType) typeKey.accept(this);
+				type = (DomainClass) typeKey.accept(this);
 				assert type != null;
 				key2type.put(typeKey, type);
 			}
@@ -838,7 +838,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else {
 			Class<?> typeKey = value.getClass();
 			assert typeKey != null;
-			DomainType type = key2type.get(typeKey);
+			DomainClass type = key2type.get(typeKey);
 			if (type != null) {
 				return typeKey;
 			}

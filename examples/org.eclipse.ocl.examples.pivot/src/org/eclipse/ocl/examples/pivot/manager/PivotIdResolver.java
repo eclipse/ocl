@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.compatibility.UML_4_2.UMLUtil;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
@@ -69,9 +69,9 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
-			DomainType metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			DomainClass metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -104,13 +104,13 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
 				org.eclipse.uml2.uml.Element umlElement = (org.eclipse.uml2.uml.Element)value;
 				metaModelManager.getPivotOf(Element.class, umlElement); // Needed by test_stereotypes_Bug431638
 				EClass umlEClass = umlElement.eClass();
-				Type umlAStype = metaModelManager.getPivotOf(Type.class, umlEClass);
+				org.eclipse.ocl.examples.pivot.Class umlAStype = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Class.class, umlEClass);
 				if (umlAStype != null) {
 					return umlAStype;
 				}
@@ -119,7 +119,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
 			}
-			DomainType metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			DomainClass metaType = UML2PivotUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}

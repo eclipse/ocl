@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.OCLValue;
 
@@ -26,7 +25,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType);
 	
 	/**
-	 * Return the most derived type com mon to this type and thatType within standardLibrary.
+	 * Return the most derived type common to this type and thatType within standardLibrary.
 	 */
 	@NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType thatType);
 
@@ -80,13 +79,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 * Return true if this type is a Collection type and has unique elements.
 	 */
 	boolean isUnique();
-	
-	/**
-	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
-	 * by the given Standard Library.
-	 */
-	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
-	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
 
 	/*@NonNull*/ DomainType specializeIn(@NonNull DomainCallExp expr, /*@NonNull*/ DomainType selfType);
 

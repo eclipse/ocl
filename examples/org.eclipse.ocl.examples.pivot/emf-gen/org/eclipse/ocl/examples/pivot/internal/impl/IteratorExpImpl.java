@@ -167,7 +167,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				diagnostic = new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, String.valueOf(comparableType), LibraryConstants.COMPARE_TO);
 			}
 			else {
-				LibraryFeature implementation = type.lookupImplementation(metaModelManager, staticOperation);
+				LibraryFeature implementation = ((DomainClass)type).lookupImplementation(metaModelManager, staticOperation);	// FIXME cast
 				if (implementation == OclComparableCompareToOperation.INSTANCE) {
 					if (diagnostics == null) {
 						return false;

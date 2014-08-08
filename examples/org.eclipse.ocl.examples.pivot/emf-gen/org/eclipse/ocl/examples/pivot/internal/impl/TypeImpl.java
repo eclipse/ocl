@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -553,16 +552,6 @@ public abstract class TypeImpl
 
 	public boolean isUnique() {
 		return false;
-	}
-
-	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
-		DomainInheritance inheritance = getInheritance(standardLibrary);
-		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
-	}
-
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
-		DomainInheritance inheritance = getInheritance(standardLibrary);
-		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 
 	public boolean oclEquals(@NonNull OCLValue thatValue) {

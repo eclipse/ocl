@@ -84,7 +84,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values);
 	
-	@NonNull DomainType getJavaType(@NonNull Class<?> javaClass);
+	@NonNull DomainClass getJavaType(@NonNull Class<?> javaClass);
 
 	@NonNull DomainType getMetaclass(@NonNull MetaclassId metaclassId);
 
@@ -94,11 +94,11 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainStandardLibrary getStandardLibrary();
 
-	@NonNull DomainType getStaticTypeOf(@Nullable Object value);
+	@NonNull DomainClass getStaticTypeOf(@Nullable Object value);
 
-	@NonNull DomainType getStaticTypeOf(@Nullable Object value, Object... values);
+	@NonNull DomainClass getStaticTypeOf(@Nullable Object value, Object... values);
 
-	@NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	@NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 
 	@NonNull DomainTypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId);
 

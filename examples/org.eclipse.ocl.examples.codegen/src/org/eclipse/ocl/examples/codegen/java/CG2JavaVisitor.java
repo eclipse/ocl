@@ -95,8 +95,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.examples.domain.ids.ClassId;
@@ -215,7 +215,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		js.append("final "); 
 		js.appendIsRequired(true);
 		js.append(" ");
-		js.appendClassReference(DomainType.class);
+		js.appendClassReference(DomainClass.class);		// FIXME lookup type
 		js.append(" " + staticTypeName + " = ");
 //		js.appendReferenceTo(evaluatorParameter);
 		js.append(JavaConstants.EVALUATOR_NAME);

@@ -33,6 +33,10 @@ public class ExecutorLambdaType extends AbstractClass implements ExecutorTypeArg
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
+	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
@@ -42,15 +46,6 @@ public class ExecutorLambdaType extends AbstractClass implements ExecutorTypeArg
 	}
 
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
-		throw new UnsupportedOperationException();			// WIP fixme
-	}
-
-	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainType... argumentTypes) {
-		throw new UnsupportedOperationException();			// WIP fixme
-	}
-
-	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 

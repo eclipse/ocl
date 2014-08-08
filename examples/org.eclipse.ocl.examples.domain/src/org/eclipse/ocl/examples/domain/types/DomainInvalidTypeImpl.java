@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInvalidType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -32,8 +33,7 @@ public class DomainInvalidTypeImpl extends AbstractClass implements DomainInvali
 		return false;
 	}
 
-	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		return this;
 	}	
 

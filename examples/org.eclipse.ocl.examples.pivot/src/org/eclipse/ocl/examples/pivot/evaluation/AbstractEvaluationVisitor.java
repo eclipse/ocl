@@ -19,8 +19,8 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -181,15 +182,15 @@ public abstract class AbstractEvaluationVisitor
 		return metaModelManager;
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value);
 	}
 
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  

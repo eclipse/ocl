@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 //import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -26,9 +25,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
@@ -78,7 +76,7 @@ public class UML2PivotUtil
 	/**
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
 	 */
-	public static @Nullable DomainType getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable DomainClass getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EClass umlEClass = umlElement.eClass();
 		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {
 			for (org.eclipse.uml2.uml.Class umlMetaclass : umlStereotype.getAllExtendedMetaclasses()) {
@@ -86,7 +84,7 @@ public class UML2PivotUtil
 				org.eclipse.uml2.uml.Type umlType = umlPackage.getOwnedType(umlEClass.getName());
 				if (umlType != null) {
 					try {
-						Type umlAStype = metaModelManager.getPivotOf(Type.class, umlType);
+						org.eclipse.ocl.examples.pivot.Class umlAStype = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Class.class, umlType);
 						if (umlAStype != null) {
 							return umlAStype;
 						}

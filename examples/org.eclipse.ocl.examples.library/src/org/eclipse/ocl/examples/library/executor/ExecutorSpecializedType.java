@@ -56,7 +56,6 @@ public class ExecutorSpecializedType extends AbstractClass implements ExecutorTy
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
-	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}

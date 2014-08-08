@@ -20,9 +20,9 @@ import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -253,17 +253,17 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	public abstract @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor();
  
 	@Override
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
 		return delegate.getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
 
 	@Override
-	public @NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
 

@@ -50,8 +50,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
 	}
 
-	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (!(type instanceof AbstractCollectionType)) {
 			return standardLibrary.getOclAnyType();
 		}

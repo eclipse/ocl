@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 
 public interface DomainEvaluator
@@ -44,9 +44,9 @@ public interface DomainEvaluator
 
 	@NonNull DomainStandardLibrary getStandardLibrary();
 
-	@NonNull DomainType getStaticTypeOf(@Nullable Object value);
-	@NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
-	@NonNull DomainType getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	@NonNull DomainClass getStaticTypeOf(@Nullable Object value);
+	@NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
+	@NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 	
 	/**
 	 * Return true if the evaluation has been canceled.

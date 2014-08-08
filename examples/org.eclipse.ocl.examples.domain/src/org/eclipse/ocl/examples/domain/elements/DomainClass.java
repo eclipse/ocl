@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public interface DomainClass extends DomainType
 {
@@ -40,4 +41,11 @@ public interface DomainClass extends DomainType
 	 * Return the ordered list of type parameters of this type.
 	 */
 	@NonNull DomainTypeParameters getTypeParameters();
+	
+	/**
+	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
+	 * by the given Standard Library.
+	 */
+	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
+	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
 }

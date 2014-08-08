@@ -477,7 +477,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OCLExpression source = iterateExp.getSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValuesUtil.asCollectionValue(acceptedValue);
-		DomainType dynamicSourceType = metaModelManager.getIdResolver().getType(sourceValue.getTypeId(), null);
+		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getType(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -552,7 +552,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
-		DomainType dynamicSourceType = metaModelManager.getIdResolver().getType(sourceValue.getTypeId(), null);
+		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getType(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -689,7 +689,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//	Resolve source dispatch type
 		//
  		PivotIdResolver idResolver = metaModelManager.getIdResolver();
-		DomainType actualSourceType = idResolver.getStaticTypeOf(sourceValue);
+		DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 		List<Parameter> ownedParameters = apparentOperation.getOwnedParameter();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
 			//
@@ -698,8 +698,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			List<OCLExpression> arguments = operationCallExp.getArgument();
 			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
 			if (onlyArgument != null) {
-				DomainType actualArgType = idResolver.getStaticTypeOf(onlyArgument);
-				actualSourceType = actualSourceType.getCommonType(idResolver, actualArgType);
+				DomainClass actualArgType = idResolver.getStaticTypeOf(onlyArgument);
+				actualSourceType = (DomainClass)actualSourceType.getCommonType(idResolver, actualArgType);
 			}
 			Operation actualOperation = (Operation) actualSourceType.lookupActualOperation(metaModelManager, apparentOperation);
 			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation(actualOperation);

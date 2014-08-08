@@ -52,7 +52,6 @@ public class ExecutorTupleType extends AbstractClass implements ExecutorTypeArgu
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
-	@Override
 	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}

@@ -33,8 +33,6 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		this.name = name;
 	}
 
-	public abstract @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type);
-
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(this);
 //		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
