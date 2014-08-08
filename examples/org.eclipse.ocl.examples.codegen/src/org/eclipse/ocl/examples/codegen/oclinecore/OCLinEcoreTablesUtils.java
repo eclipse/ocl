@@ -915,7 +915,7 @@ public class OCLinEcoreTablesUtils
 	protected @NonNull String getQualifiedTablesClassName(@NonNull Type type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
-			return genPackage.getInterfacePackageName() + "." + getTablesClassName(genPackage);
+			return genPackage.getReflectionPackageName() + "." + getTablesClassName(genPackage);
 		}
 		else {
 			return "UnknownMetaModelTables";
@@ -925,7 +925,7 @@ public class OCLinEcoreTablesUtils
 	protected @NonNull String getQualifiedTablesClassName(@NonNull org.eclipse.ocl.examples.pivot.Package pPackage) {
 		GenPackage genPackage = getGenPackage(pPackage);
 		if (genPackage != null) {
-			return genPackage.getInterfacePackageName() + "." + getTablesClassName(genPackage);
+			return genPackage.getReflectionPackageName() + "." + getTablesClassName(genPackage);
 		}
 		else {
 			return "UnknownMetaModelTables";
@@ -940,7 +940,7 @@ public class OCLinEcoreTablesUtils
 			if (libraryPackage != null) {
 				GenPackage gPackage = getGenPackage(libraryPackage);
 				if (gPackage != null) {
-					return gPackage.getInterfacePackageName() + "." + gPackage.getPrefix() + AbstractGenModelHelper.TABLES_CLASS_SUFFIX;
+					return gPackage.getReflectionPackageName() + "." + gPackage.getPrefix() + AbstractGenModelHelper.TABLES_CLASS_SUFFIX;
 				}
 			}
 		}

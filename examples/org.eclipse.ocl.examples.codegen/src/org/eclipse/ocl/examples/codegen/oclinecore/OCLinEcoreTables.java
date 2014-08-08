@@ -1052,7 +1052,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s1.append(" *******************************************************************************/\n");
 		
 		s1.append("package ");
-		s1.append(genPackage.getQualifiedPackageName());
+		s1.append(genPackage.getReflectionPackageName());
 		s1.append(";\n");
 		
 		s1.append("\n");
