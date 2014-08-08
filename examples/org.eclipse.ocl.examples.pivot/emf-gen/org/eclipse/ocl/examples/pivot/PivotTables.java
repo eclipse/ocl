@@ -1467,7 +1467,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Property__NamedElement = new ExecutorFragment(Types._Property, PivotTables.Types._NamedElement);
 		private static final @NonNull ExecutorFragment _Property__OclAny = new ExecutorFragment(Types._Property, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Property__OclElement = new ExecutorFragment(Types._Property, OCLstdlibTables.Types._OclElement);
-		private static final @NonNull ExecutorFragment _Property__ParameterableElement = new ExecutorFragment(Types._Property, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _Property__Property = new ExecutorFragment(Types._Property, PivotTables.Types._Property);
 		private static final @NonNull ExecutorFragment _Property__TypedElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedElement);
 		private static final @NonNull ExecutorFragment _Property__Visitable = new ExecutorFragment(Types._Property, PivotTables.Types._Visitable);
@@ -3704,12 +3703,11 @@ public class PivotTables
 			Fragments._Property__Visitable /* 2 */,
 			Fragments._Property__Element /* 3 */,
 			Fragments._Property__NamedElement /* 4 */,
-			Fragments._Property__ParameterableElement /* 4 */,
 			Fragments._Property__TypedElement /* 5 */,
 			Fragments._Property__Feature /* 6 */,
 			Fragments._Property__Property /* 7 */
 		};
-		private static final @NonNull int[] __Property = { 1,1,2,1,2,1,1,1 };
+		private static final @NonNull int[] __Property = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _PropertyCallExp =
 		{
@@ -7447,9 +7445,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Property__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
-		};
 		private static final @NonNull ExecutorOperation[] _Property__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
 			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
@@ -9983,7 +9978,6 @@ public class PivotTables
 			Fragments._Property__NamedElement.initOperations(_Property__NamedElement);
 			Fragments._Property__OclAny.initOperations(_Property__OclAny);
 			Fragments._Property__OclElement.initOperations(_Property__OclElement);
-			Fragments._Property__ParameterableElement.initOperations(_Property__ParameterableElement);
 			Fragments._Property__Property.initOperations(_Property__Property);
 			Fragments._Property__TypedElement.initOperations(_Property__TypedElement);
 			Fragments._Property__Visitable.initOperations(_Property__Visitable);
@@ -13058,11 +13052,9 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._Property__owningClass,
-			PivotTables.Properties._ParameterableElement__owningTemplateParameter,
 			PivotTables.Properties._Property__redefinedProperty,
 			PivotTables.Properties._Property__referredProperty,
 			PivotTables.Properties._Property__subsettedProperty,
-			PivotTables.Properties._ParameterableElement__templateParameter,
 			PivotTables.Properties._TypedElement__type,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
@@ -13075,14 +13067,10 @@ public class PivotTables
 			PivotTables.Properties._Property__Property__keys,
 			PivotTables.Properties._Property__Property__referredProperty,
 			PivotTables.Properties._Property__PropertyCallExp__referredProperty,
-			PivotTables.Properties._ParameterableElement__owningTemplateParameterSubstitution__ownedActual,
 			PivotTables.Properties._Property__property__opposite,
 			PivotTables.Properties._Property__property__redefinedProperty,
 			PivotTables.Properties._Property__property__subsettedProperty,
-			PivotTables.Properties._Property__slot__definingProperty,
-			PivotTables.Properties._ParameterableElement__templateParameter__default,
-			PivotTables.Properties._ParameterableElement__templateParameter__ownedDefault,
-			PivotTables.Properties._ParameterableElement__templateParameterSubstitution__actual
+			PivotTables.Properties._Property__slot__definingProperty
 		};
 
 		private static final @NonNull ExecutorProperty[] _PropertyCallExp = {

@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.domain.ids.PropertyId;
  *
  * <!-- begin-model-doc -->
  * A property is a typed element that represents an attribute of a class.
- * Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,7 +55,7 @@ import org.eclipse.ocl.examples.domain.ids.PropertyId;
  * @generated
  */
 public interface Property
-		extends Feature, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainProperty {
+		extends Feature, org.eclipse.ocl.examples.domain.elements.DomainProperty {
 
 	/**
 	 * Returns the value of the '<em><b>Association Class</b></em>' reference.

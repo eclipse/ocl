@@ -79,8 +79,6 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getAssociationClass <em>Association Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getDefaultExpression <em>Default Expression</em>}</li>
@@ -108,16 +106,6 @@ import org.eclipse.osgi.util.NLS;
 public class PropertyImpl
 		extends FeatureImpl
 		implements Property {
-
-	/**
-	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTemplateParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateParameter templateParameter;
 
 	/**
 	 * The cached value of the '{@link #getAssociationClass() <em>Association Class</em>}' reference.
@@ -407,133 +395,6 @@ public class PropertyImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PROPERTY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter getTemplateParameter() {
-		if (templateParameter != null && ((EObject)templateParameter).eIsProxy())
-		{
-			InternalEObject oldTemplateParameter = (InternalEObject)templateParameter;
-			templateParameter = (TemplateParameter)eResolveProxy(oldTemplateParameter);
-			if (templateParameter != oldTemplateParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.PROPERTY__TEMPLATE_PARAMETER, oldTemplateParameter, templateParameter));
-			}
-		}
-		return templateParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter basicGetTemplateParameter() {
-		return templateParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTemplateParameter(
-			TemplateParameter newTemplateParameter, NotificationChain msgs) {
-		TemplateParameter oldTemplateParameter = templateParameter;
-		templateParameter = newTemplateParameter;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__TEMPLATE_PARAMETER, oldTemplateParameter, newTemplateParameter);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
-			if (owningTemplateParameter != null && owningTemplateParameter != newTemplateParameter)
-			{
-				setOwningTemplateParameter(null);
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTemplateParameter(TemplateParameter newTemplateParameter) {
-		if (newTemplateParameter != templateParameter)
-		{
-			NotificationChain msgs = null;
-			if (templateParameter != null)
-				msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			if (newTemplateParameter != null)
-				msgs = ((InternalEObject)newTemplateParameter).eInverseAdd(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			msgs = basicSetTemplateParameter(newTemplateParameter, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__TEMPLATE_PARAMETER, newTemplateParameter, newTemplateParameter));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter getOwningTemplateParameter() {
-		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER) return null;
-		return (TemplateParameter)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningTemplateParameter(
-			TemplateParameter newOwningTemplateParameter, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateParameter, PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwningTemplateParameter != null)
-			{
-				if (newOwningTemplateParameter != templateParameter)
-				{
-					setTemplateParameter(newOwningTemplateParameter);
-				}
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningTemplateParameter(
-			TemplateParameter newOwningTemplateParameter) {
-		if (newOwningTemplateParameter != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER && newOwningTemplateParameter != null))
-		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateParameter))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningTemplateParameter != null)
-				msgs = ((InternalEObject)newOwningTemplateParameter).eInverseAdd(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			msgs = basicSetOwningTemplateParameter(newOwningTemplateParameter, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER, newOwningTemplateParameter, newOwningTemplateParameter));
 	}
 
 	/**
@@ -1004,22 +865,6 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		/**
-		 * p.oclIsKindOf(self.oclType())
-		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		final @NonNull /*@Thrown*/ DomainType oclType = OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, this);
-		final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, p, oclType).booleanValue();
-		return oclIsKindOf;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isAttribute(final Property p)
 	{
 		/**
@@ -1347,14 +1192,6 @@ public class PropertyImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (associationClass != null)
 					msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE, AssociationClass.class, msgs);
@@ -1385,10 +1222,6 @@ public class PropertyImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return basicSetAssociationClass(null, msgs);
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
@@ -1409,8 +1242,6 @@ public class PropertyImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.CLASS__OWNED_PROPERTIES, org.eclipse.ocl.examples.pivot.Class.class, msgs);
 		}
@@ -1449,11 +1280,6 @@ public class PropertyImpl
 				return getImplementationClass();
 			case PivotPackage.PROPERTY__IS_STATIC:
 				return isStatic();
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (resolve) return getAssociationClass();
 				return basicGetAssociationClass();
@@ -1540,12 +1366,6 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__IS_STATIC:
 				setIsStatic((Boolean)newValue);
-				return;
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)newValue);
@@ -1647,12 +1467,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)null);
 				return;
@@ -1742,10 +1556,6 @@ public class PropertyImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.PROPERTY__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
-			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return associationClass != null;
 			case PivotPackage.PROPERTY__DEFAULT:
@@ -1792,62 +1602,6 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ParameterableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER: return PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
-				case PivotPackage.PROPERTY__TEMPLATE_PARAMETER: return PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ParameterableElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER: return PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER;
-				case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER: return PivotPackage.PROPERTY__TEMPLATE_PARAMETER;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ParameterableElement.class)
-		{
-			switch (baseOperationID)
-			{
-				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
@@ -1861,8 +1615,6 @@ public class PropertyImpl
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.PROPERTY___MAKE_PARAMETER:
 				return makeParameter();
-			case PivotPackage.PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
-				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP:
 				return validateCompatibleDefaultExpression((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY___IS_ATTRIBUTE__PROPERTY:

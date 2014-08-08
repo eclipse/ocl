@@ -959,12 +959,8 @@
       <ownedComment xmi:id="Ppivot.TProperty.oC0" annotatedElement="Ppivot.TProperty">
         <body>A property is a typed element that represents an attribute of a class.</body>
       </ownedComment>
-      <ownedComment xmi:id="Ppivot.TProperty.oC1" annotatedElement="Ppivot.TProperty">
-        <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
-      </ownedComment>
       <generalization xmi:id="Ppivot.TProperty.g0" general="Ppivot.TTypedElement"/>
       <generalization xmi:id="Ppivot.TProperty.g1" general="Ppivot.TFeature"/>
-      <generalization xmi:id="Ppivot.TProperty.g2" general="Ppivot.TParameterableElement"/>
       <ownedAttribute xmi:id="Ppivot.TProperty.PisReadOnly" name="isReadOnly" type="Ppivot.TBoolean">
         <ownedComment xmi:id="Ppivot.TProperty.PisReadOnly.oC0" annotatedElement="Ppivot.TProperty.PisReadOnly">
           <body>If isReadOnly is true, the attribute may not be written to after initialization.</body>

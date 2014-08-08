@@ -16352,31 +16352,13 @@ public interface PivotPackage
 	int PROPERTY__IS_STATIC = FEATURE__IS_STATIC;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__OWNING_TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__ASSOCIATION_CLASS = FEATURE_FEATURE_COUNT + 2;
+	int PROPERTY__ASSOCIATION_CLASS = FEATURE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -16385,7 +16367,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 3;
+	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Default Expression</b></em>' containment reference.
@@ -16394,7 +16376,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__DEFAULT_EXPRESSION = FEATURE_FEATURE_COUNT + 4;
+	int PROPERTY__DEFAULT_EXPRESSION = FEATURE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -16403,7 +16385,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 5;
+	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -16412,7 +16394,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 6;
+	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -16421,7 +16403,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 7;
+	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
@@ -16430,7 +16412,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 8;
+	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -16439,7 +16421,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 9;
+	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
@@ -16448,7 +16430,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 10;
+	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
@@ -16457,7 +16439,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 11;
+	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
@@ -16466,7 +16448,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 12;
+	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
@@ -16475,7 +16457,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 13;
+	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Keys</b></em>' reference list.
@@ -16484,7 +16466,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 14;
+	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Opposite</b></em>' reference.
@@ -16493,7 +16475,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 15;
+	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -16502,7 +16484,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNING_CLASS = FEATURE_FEATURE_COUNT + 16;
+	int PROPERTY__OWNING_CLASS = FEATURE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Property</b></em>' reference list.
@@ -16511,7 +16493,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__REDEFINED_PROPERTY = FEATURE_FEATURE_COUNT + 17;
+	int PROPERTY__REDEFINED_PROPERTY = FEATURE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
@@ -16520,7 +16502,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__REFERRED_PROPERTY = FEATURE_FEATURE_COUNT + 18;
+	int PROPERTY__REFERRED_PROPERTY = FEATURE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Subsetted Property</b></em>' reference list.
@@ -16529,7 +16511,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__SUBSETTED_PROPERTY = FEATURE_FEATURE_COUNT + 19;
+	int PROPERTY__SUBSETTED_PROPERTY = FEATURE_FEATURE_COUNT + 17;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -16538,7 +16520,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 20;
+	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 18;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -16577,22 +16559,13 @@ public interface PivotPackage
 	int PROPERTY___MAKE_PARAMETER = FEATURE___MAKE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Compatible Default Expression</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
+	int PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Attribute</em>' operation.
@@ -16601,7 +16574,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 2;
+	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Property</em>' class.
@@ -16610,7 +16583,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 3;
+	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.

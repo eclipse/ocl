@@ -1323,9 +1323,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="applyingPackage" lowerBound="1" eType="#//Package" eOpposite="#//Package/profileApplication"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStrict" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//Feature #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//Feature">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A property is a typed element that represents an attribute of a class.&#xA;Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
+      <details key="documentation" value="A property is a typed element that represents an attribute of a class."/>
     </eAnnotations>
     <eOperations name="CompatibleDefaultExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">

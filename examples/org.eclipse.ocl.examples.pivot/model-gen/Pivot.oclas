@@ -976,8 +976,8 @@
       <ownedProperties xmi:id="p.pivot.ProfileApplication.isStrict" default="false"
           name="isStrict" type="#Boolean"/>
     </ownedClasses>
-    <ownedClasses xmi:id="T.pivot.Property" name="Property" superClasses="#T.pivot.Feature #T.pivot.ParameterableElement">
-      <ownedComment body="A property is a typed element that represents an attribute of a class.&#xA;Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
+    <ownedClasses xmi:id="T.pivot.Property" name="Property" superClasses="#T.pivot.Feature">
+      <ownedComment body="A property is a typed element that represents an attribute of a class."/>
       <ownedInvariants xmi:id="cipivot.Property.CompatibleDefaultExpression" isCallable="true"
           name="CompatibleDefaultExpression">
         <specification xsi:type="pivot:ExpressionInOCL" body="defaultExpression &lt;> null and defaultExpression.oclAsType(ExpressionInOCL).bodyExpression &lt;> null implies CompatibleBody(defaultExpression)&#xA;&#xA;"/>

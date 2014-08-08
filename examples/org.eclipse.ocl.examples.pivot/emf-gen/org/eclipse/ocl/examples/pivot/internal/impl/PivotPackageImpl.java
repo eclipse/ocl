@@ -6259,7 +6259,6 @@ public class PivotPackageImpl
 		profileEClass.getESuperTypes().add(this.getPackage());
 		profileApplicationEClass.getESuperTypes().add(this.getElement());
 		propertyEClass.getESuperTypes().add(this.getFeature());
-		propertyEClass.getESuperTypes().add(this.getParameterableElement());
 		propertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		propertyCallExpEClass.getESuperTypes().add(this.getReferringElement());
 		pseudostateEClass.getESuperTypes().add(this.getVertex());

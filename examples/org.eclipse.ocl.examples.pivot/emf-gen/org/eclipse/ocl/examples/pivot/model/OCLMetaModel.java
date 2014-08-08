@@ -734,7 +734,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Feature);
-			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _PropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NavigationCallExp);
@@ -4232,7 +4231,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_ParameterableElement_owningTemplateParameter, "The formal template parameter that owns this element.");
 			installComment(pr_ParameterableElement_templateParameter, "The template parameter that exposes this element as a formal parameter.");
 			installComment(_PrimitiveType, "A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");
-			installComment(_Property, "A property is a typed element that represents an attribute of a class.\nProperty specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(_Property, "A property is a typed element that represents an attribute of a class.");
 			installComment(pr_Property_default, "A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.");
 			installComment(pr_Property_isComposite, "If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.");
 			installComment(pr_Property_isDerived, "If isDerived is true, the value of the attribute is derived from information elsewhere.");

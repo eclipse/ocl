@@ -1851,12 +1851,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public @NonNull Iterable<Comment> getLocalComments(@NonNull Property property) {
-		if (property.getOwningTemplateParameter() != null) {
-			return EMPTY_COMMENT_LIST;
-		}
-		else {
-			return new CompleteElementCommentsIterable(getAllProperties(property));
-		}
+		return new CompleteElementCommentsIterable(getAllProperties(property));
 	}
 
 	public @NonNull Iterable<Comment> getLocalComments(@NonNull org.eclipse.ocl.examples.pivot.Class type) {

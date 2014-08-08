@@ -49,12 +49,6 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfT37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-Property" name="Property">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-Property-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property">
-            <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLNn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-ParameterableElement"/>
-        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding" name="TemplateBinding">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding">
             <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>

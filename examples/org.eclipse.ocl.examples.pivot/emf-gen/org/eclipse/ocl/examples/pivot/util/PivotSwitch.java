@@ -1254,7 +1254,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				Property property = (Property)theEObject;
 				T1 result = caseProperty(property);
 				if (result == null) result = caseFeature(property);
-				if (result == null) result = caseParameterableElement(property);
 				if (result == null) result = caseTypedElement(property);
 				if (result == null) result = caseNamedElement(property);
 				if (result == null) result = caseElement(property);
