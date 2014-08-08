@@ -40,6 +40,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
@@ -330,7 +331,7 @@ public class UsageTests
 			if (project != null) {
 				getCompilationUnits(compilationUnits, project);
 				java.net.URI locationURI = project.getLocationURI();
-				String binURI = locationURI + "/bin";
+				String binURI = URIUtil.toUnencodedString(locationURI) + "/bin";
 				URI uri = URI.createURI(binURI);
 				if (uri.isFile()) {
 					binURI = uri.toFileString().replace("\\", "/");

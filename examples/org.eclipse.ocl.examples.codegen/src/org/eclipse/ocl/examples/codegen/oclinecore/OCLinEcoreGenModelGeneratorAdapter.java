@@ -28,6 +28,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -60,6 +61,7 @@ import org.eclipse.ocl.common.internal.options.CodeGenerationMode;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.codegen.common.PivotQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -348,8 +350,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		    IProject modelProject = workspace.getRoot().getProject(modelProjectDirectory);
 		    IPath javaSource = new Path(modelDirectory);
 		    IFolder folder = modelProject.getParent().getFolder(javaSource);
-		    java.net.URI locationURI = folder.getLocationURI();
-		    return new File(locationURI.getRawPath());
+		    java.net.URI locationURI = DomainUtil.nonNullState(folder.getLocationURI());
+		    return DomainUtil.nonNullState(URIUtil.toFile(locationURI));
 		}
 		else {
 		    URI locationURI = URI.createPlatformResourceURI(modelDirectory, true);
