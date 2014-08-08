@@ -4399,18 +4399,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypeTemplateParameter_AllowSubstitutable() {
-		return (EAttribute)typeTemplateParameterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeTemplateParameter_ConstrainingClassifier()
+	public EReference getTypeTemplateParameter_ConstrainingClass()
 	{
-		return (EReference)typeTemplateParameterEClass.getEStructuralFeatures().get(1);
+		return (EReference)typeTemplateParameterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -6076,8 +6067,7 @@ public class PivotPackageImpl
 		createEReference(typeExtensionEClass, TYPE_EXTENSION__TYPE);
 
 		typeTemplateParameterEClass = createEClass(TYPE_TEMPLATE_PARAMETER);
-		createEAttribute(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE);
-		createEReference(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER);
+		createEReference(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS);
 
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_MANY);
@@ -7319,8 +7309,7 @@ public class PivotPackageImpl
 		initEReference(getTypeExtension_Type(), this.getType(), this.getType_ExtendedBys(), "type", null, 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeTemplateParameterEClass, TypeTemplateParameter.class, "TypeTemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypeTemplateParameter_AllowSubstitutable(), this.getBoolean(), "allowSubstitutable", "true", 1, 1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getTypeTemplateParameter_ConstrainingClassifier(), this.getClass_(), null, "constrainingClassifier", null, 0, -1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTypeTemplateParameter_ConstrainingClass(), this.getClass_(), null, "constrainingClass", null, 0, -1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTypedElement_IsMany(), this.getBoolean(), "isMany", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7597,7 +7586,7 @@ public class PivotPackageImpl
 			 "body", "owningTemplateParameterSubstitution" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
-		  (getTypeTemplateParameter_ConstrainingClassifier(), 
+		  (getTypeTemplateParameter_ConstrainingClass(), 
 		   source, 
 		   new String[] 
 		   {

@@ -2005,7 +2005,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Class_DataType_behavioralClass = createProperty("DataType", _Bag_DataType);
 		protected final @NonNull Property pr_Class_instanceSpecification_classes = createProperty("instanceSpecification", _InstanceSpecification);
 		protected final @NonNull Property pr_Class_subClasses_superClasses = createProperty("subClasses", _Class);
-		protected final @NonNull Property pr_Class_typeTemplateParameter_constrainingClassifier = createProperty("typeTemplateParameter", _TypeTemplateParameter);
+		protected final @NonNull Property pr_Class_typeTemplateParameter_constrainingClass = createProperty("typeTemplateParameter", _TypeTemplateParameter);
 		protected final @NonNull Property pr_CollectionItem_item = createProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, _OCLExpression);
 		protected final @NonNull Property pr_CollectionLiteralExp_kind = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND, _CollectionKind);
 		protected final @NonNull Property pr_CollectionLiteralExp_part = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART, _OrderedSet_CollectionLiteralPart);
@@ -2302,8 +2302,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TypeExtension_isRequired = createProperty(PivotPackage.Literals.TYPE_EXTENSION__IS_REQUIRED, _Boolean);
 		protected final @NonNull Property pr_TypeExtension_stereotype = createProperty(PivotPackage.Literals.TYPE_EXTENSION__STEREOTYPE, _Stereotype);
 		protected final @NonNull Property pr_TypeExtension_type = createProperty(PivotPackage.Literals.TYPE_EXTENSION__TYPE, _Type);
-		protected final @NonNull Property pr_TypeTemplateParameter_allowSubstitutable = createProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE, _Boolean);
-		protected final @NonNull Property pr_TypeTemplateParameter_constrainingClassifier = createProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER, _Set_Class);
+		protected final @NonNull Property pr_TypeTemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
 		protected final @NonNull Property pr_TypedElement_isMany = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_MANY, _Boolean);
 		protected final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
 		protected final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
@@ -2455,11 +2454,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_superClasses);
-			ownedProperties.add(property = pr_Class_typeTemplateParameter_constrainingClassifier);
+			ownedProperties.add(property = pr_Class_typeTemplateParameter_constrainingClass);
 			property.setImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TypeTemplateParameter_constrainingClassifier);
+			property.setOpposite(pr_TypeTemplateParameter_constrainingClass);
 			ownedProperties = _CollectionItem.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionItem_item);
 			property.setIsComposite(true);
@@ -3685,11 +3684,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_extendedBys);
 			ownedProperties = _TypeTemplateParameter.getOwnedProperties();
-			ownedProperties.add(property = pr_TypeTemplateParameter_allowSubstitutable);
+			ownedProperties.add(property = pr_TypeTemplateParameter_constrainingClass);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_TypeTemplateParameter_constrainingClassifier);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Class_typeTemplateParameter_constrainingClassifier);
+			property.setOpposite(pr_Class_typeTemplateParameter_constrainingClass);
 			ownedProperties = _TypedElement.getOwnedProperties();
 			ownedProperties.add(property = pr_TypedElement_isMany);
 			property.setIsDerived(true);
@@ -4315,8 +4312,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(el__TransitionKind_local, "Implies that the transition, if triggered, will not exit the composite (source) state, but it will apply to any state within the composite state, and these will be exited and entered.");
 			installComment(_Type, "A type is a named element that is used as the type for a typed element. A type can be contained in a package.\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
 			installComment(_TypeTemplateParameter, "A type template parameter exposes a type as a formal template parameter.");
-			installComment(pr_TypeTemplateParameter_allowSubstitutable, "Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.");
-			installComment(pr_TypeTemplateParameter_constrainingClassifier, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
+			installComment(pr_TypeTemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
 			installComment(_TypedElement, "A typed element is a kind of named element that represents an element with a type.");
 			installComment(pr_TypedElement_type, "The type of the TypedElement.");
 			installComment(_ValueSpecification, "A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");

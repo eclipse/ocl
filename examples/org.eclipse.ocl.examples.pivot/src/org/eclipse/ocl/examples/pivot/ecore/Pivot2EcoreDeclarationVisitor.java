@@ -697,7 +697,7 @@ public class Pivot2EcoreDeclarationVisitor
 		ETypeParameter eTypeParameter = EcoreFactory.eINSTANCE.createETypeParameter();
 		eTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
 		context.putCreated(pivotTypeTemplateParameter, eTypeParameter);
-		if (!pivotTypeTemplateParameter.getConstrainingClassifier().isEmpty()) {
+		if (!pivotTypeTemplateParameter.getConstrainingClass().isEmpty()) {
 			context.defer(pivotTypeTemplateParameter);
 		}
 		return eTypeParameter;

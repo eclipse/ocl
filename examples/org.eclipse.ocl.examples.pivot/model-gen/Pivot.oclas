@@ -134,7 +134,7 @@
       <ownedProperties xmi:id="p.pivot.Class.subClasses" implicit="true" isRequired="false"
           name="subClasses" opposite="#p.pivot.Class.superClasses" type="#T.pivot.Class"/>
       <ownedProperties xmi:id="p.pivot.Class.typeTemplateParameter" implicit="true"
-          isRequired="false" name="typeTemplateParameter" opposite="#p.pivot.TypeTemplateParameter.constrainingClassifier"
+          isRequired="false" name="typeTemplateParameter" opposite="#p.pivot.TypeTemplateParameter.constrainingClass"
           type="#T.pivot.TypeTemplateParameter"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionItem" name="CollectionItem" superClasses="#T.pivot.CollectionLiteralPart">
@@ -1545,13 +1545,8 @@
     <ownedClasses xmi:id="T.pivot.TypeTemplateParameter" name="TypeTemplateParameter"
         superClasses="#T.pivot.TemplateParameter">
       <ownedComment body="A type template parameter exposes a type as a formal template parameter."/>
-      <ownedProperties xmi:id="p.pivot.TypeTemplateParameter.allowSubstitutable" default="true"
-          name="allowSubstitutable" type="#Boolean">
-        <ownedComment body="Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter."/>
-      </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.TypeTemplateParameter.constrainingClassifier"
-          name="constrainingClassifier" opposite="#p.pivot.Class.typeTemplateParameter"
-          type="#//@ownedPackages.1/@ownedClasses.126">
+      <ownedProperties xmi:id="p.pivot.TypeTemplateParameter.constrainingClass" name="constrainingClass"
+          opposite="#p.pivot.Class.typeTemplateParameter" type="#//@ownedPackages.1/@ownedClasses.126">
         <ownedComment body="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </ownedProperties>
     </ownedClasses>

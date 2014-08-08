@@ -21366,22 +21366,13 @@ public interface PivotPackage
 	int TYPE_TEMPLATE_PARAMETER__SIGNATURE = TEMPLATE_PARAMETER__SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Allow Substitutable</b></em>' attribute.
+	 * The feature id for the '<em><b>Constraining Class</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE = TEMPLATE_PARAMETER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Constraining Classifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER = TEMPLATE_PARAMETER_FEATURE_COUNT + 1;
+	int TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS = TEMPLATE_PARAMETER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Type Template Parameter</em>' class.
@@ -21390,7 +21381,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 2;
+	int TYPE_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -26233,26 +26224,15 @@ public interface PivotPackage
 	EClass getTypeTemplateParameter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#isAllowSubstitutable <em>Allow Substitutable</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClass <em>Constraining Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Allow Substitutable</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#isAllowSubstitutable()
+	 * @return the meta object for the reference list '<em>Constraining Class</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClass()
 	 * @see #getTypeTemplateParameter()
 	 * @generated
 	 */
-	EAttribute getTypeTemplateParameter_AllowSubstitutable();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClassifier <em>Constraining Classifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraining Classifier</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClassifier()
-	 * @see #getTypeTemplateParameter()
-	 * @generated
-	 */
-	EReference getTypeTemplateParameter_ConstrainingClassifier();
+	EReference getTypeTemplateParameter_ConstrainingClass();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Property <em>Property</em>}'.
@@ -30396,20 +30376,12 @@ public interface PivotPackage
 		EClass TYPE_TEMPLATE_PARAMETER = eINSTANCE.getTypeTemplateParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Allow Substitutable</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Constraining Class</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE = eINSTANCE.getTypeTemplateParameter_AllowSubstitutable();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraining Classifier</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER = eINSTANCE.getTypeTemplateParameter_ConstrainingClassifier();
+		EReference TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS = eINSTANCE.getTypeTemplateParameter_ConstrainingClass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.

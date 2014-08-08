@@ -366,7 +366,7 @@ public class Pivot2UMLDeclarationVisitor
 		umlTypeParameter.setOwnedParameteredElement((ParameterableElement) safeVisit(pivotTypeTemplateParameter.getOwnedParameteredElement()));
 //		umlTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
 		context.putCreated(pivotTypeTemplateParameter, umlTypeParameter);
-		if (!pivotTypeTemplateParameter.getConstrainingClassifier().isEmpty()) {
+		if (!pivotTypeTemplateParameter.getConstrainingClass().isEmpty()) {
 			context.defer(pivotTypeTemplateParameter);
 		}
 		return umlTypeParameter;

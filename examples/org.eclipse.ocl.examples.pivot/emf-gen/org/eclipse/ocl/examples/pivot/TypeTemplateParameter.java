@@ -24,8 +24,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#isAllowSubstitutable <em>Allow Substitutable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClassifier <em>Constraining Classifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClass <em>Constraining Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,42 +35,17 @@ public interface TypeTemplateParameter
 		extends TemplateParameter {
 
 	/**
-	 * Returns the value of the '<em><b>Allow Substitutable</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Allow Substitutable</em>' attribute.
-	 * @see #setAllowSubstitutable(boolean)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypeTemplateParameter_AllowSubstitutable()
-	 * @generated
-	 */
-	boolean isAllowSubstitutable();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#isAllowSubstitutable <em>Allow Substitutable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Allow Substitutable</em>' attribute.
-	 * @see #isAllowSubstitutable()
-	 * @generated
-	 */
-	void setAllowSubstitutable(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Constraining Classifier</b></em>' reference list.
+	 * Returns the value of the '<em><b>Constraining Class</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Constraining Classifier</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypeTemplateParameter_ConstrainingClassifier()
+	 * @return the value of the '<em>Constraining Class</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypeTemplateParameter_ConstrainingClass()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.examples.pivot.Class> getConstrainingClassifier();
+	List<org.eclipse.ocl.examples.pivot.Class> getConstrainingClass();
 
 } // TypeTemplateParameter

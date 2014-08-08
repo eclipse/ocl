@@ -239,19 +239,12 @@
             </specification>
           </ownedRule>
           <generalization xmi:id="_XnqLPn7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateParameter"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-allowSubstitutable" name="allowSubstitutable">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-allowSubstitutable-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-allowSubstitutable">
-              <body>Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.</body>
-            </ownedComment>
-            <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnNfUn7VEeOu79LxSz8Ylw" value="true"/>
-          </ownedAttribute>
           <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement" name="parameteredElement" type="AuxiliaryConstructs-Templates-Classifier" redefinedProperty="AuxiliaryConstructs-Templates-TemplateParameter-parameteredElement" association="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement">
               <body>The parameterable classifier for this template parameter.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType" name="constrainingClassifier" type="_RHSqABpbEeSM9LreJtBwBg" association="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType" name="constrainingClass" type="_RHSqABpbEeSM9LreJtBwBg" association="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType">
               <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
             </ownedComment>
@@ -306,7 +299,7 @@
           </ownedEnd>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_classifier_templateParameter_parameteredElement" name="A_type_templateParameter_parameteredElement" memberEnd="AuxiliaryConstructs-Templates-Classifier-templateParameter AuxiliaryConstructs-Templates-ClassifierTemplateParameter-parameteredElement"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter" name="A_constrainingType_typeTemplateParameter" memberEnd="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter-classifierTemplateParameter">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter" name="A_constrainingClass_typeTemplateParameter" memberEnd="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter-classifierTemplateParameter">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter-classifierTemplateParameter" name="typeTemplateParameter" type="AuxiliaryConstructs-Templates-ClassifierTemplateParameter" association="AuxiliaryConstructs-Templates-A_constrainingType_classifierTemplateParameter">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQSn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQS37VEeOu79LxSz8Ylw" value="*"/>

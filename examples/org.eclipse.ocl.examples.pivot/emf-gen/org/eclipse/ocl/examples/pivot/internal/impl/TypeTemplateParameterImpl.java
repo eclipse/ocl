@@ -13,10 +13,8 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -35,8 +33,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#isAllowSubstitutable <em>Allow Substitutable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#getConstrainingClassifier <em>Constraining Classifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#getConstrainingClass <em>Constraining Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,34 +44,14 @@ public class TypeTemplateParameterImpl
 		implements TypeTemplateParameter {
 
 	/**
-	 * The default value of the '{@link #isAllowSubstitutable() <em>Allow Substitutable</em>}' attribute.
+	 * The cached value of the '{@link #getConstrainingClass() <em>Constraining Class</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAllowSubstitutable()
+	 * @see #getConstrainingClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean ALLOW_SUBSTITUTABLE_EDEFAULT = true;
-
-	/**
-	 * The flag representing the value of the '{@link #isAllowSubstitutable() <em>Allow Substitutable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAllowSubstitutable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ALLOW_SUBSTITUTABLE_EFLAG = 1 << 8;
-
-	/**
-	 * The cached value of the '{@link #getConstrainingClassifier() <em>Constraining Classifier</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstrainingClassifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> constrainingClassifier;
+	protected EList<org.eclipse.ocl.examples.pivot.Class> constrainingClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,7 +60,6 @@ public class TypeTemplateParameterImpl
 	 */
 	protected TypeTemplateParameterImpl() {
 		super();
-		eFlags |= ALLOW_SUBSTITUTABLE_EFLAG;
 	}
 
 	/**
@@ -101,34 +77,13 @@ public class TypeTemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAllowSubstitutable() {
-		return (eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAllowSubstitutable(boolean newAllowSubstitutable) {
-		boolean oldAllowSubstitutable = (eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0;
-		if (newAllowSubstitutable) eFlags |= ALLOW_SUBSTITUTABLE_EFLAG; else eFlags &= ~ALLOW_SUBSTITUTABLE_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE, oldAllowSubstitutable, newAllowSubstitutable));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<org.eclipse.ocl.examples.pivot.Class> getConstrainingClassifier()
+	public List<org.eclipse.ocl.examples.pivot.Class> getConstrainingClass()
 	{
-		if (constrainingClassifier == null)
+		if (constrainingClass == null)
 		{
-			constrainingClassifier = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER);
+			constrainingClass = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS);
 		}
-		return constrainingClassifier;
+		return constrainingClass;
 	}
 
 	/**
@@ -160,10 +115,8 @@ public class TypeTemplateParameterImpl
 				return basicGetParameteredElement();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				return getSignature();
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
-				return isAllowSubstitutable();
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER:
-				return getConstrainingClassifier();
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
+				return getConstrainingClass();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -209,12 +162,9 @@ public class TypeTemplateParameterImpl
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				setSignature((TemplateSignature)newValue);
 				return;
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
-				setAllowSubstitutable((Boolean)newValue);
-				return;
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER:
-				getConstrainingClassifier().clear();
-				getConstrainingClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
+				getConstrainingClass().clear();
+				getConstrainingClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -256,11 +206,8 @@ public class TypeTemplateParameterImpl
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				setSignature((TemplateSignature)null);
 				return;
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
-				setAllowSubstitutable(ALLOW_SUBSTITUTABLE_EDEFAULT);
-				return;
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER:
-				getConstrainingClassifier().clear();
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
+				getConstrainingClass().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -293,10 +240,8 @@ public class TypeTemplateParameterImpl
 				return parameteredElement != null;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				return getSignature() != null;
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
-				return ((eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0) != ALLOW_SUBSTITUTABLE_EDEFAULT;
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASSIFIER:
-				return constrainingClassifier != null && !constrainingClassifier.isEmpty();
+			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
+				return constrainingClass != null && !constrainingClass.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

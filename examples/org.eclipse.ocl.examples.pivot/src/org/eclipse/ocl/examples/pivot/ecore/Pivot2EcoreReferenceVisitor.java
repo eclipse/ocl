@@ -411,7 +411,7 @@ public class Pivot2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObjec
 	@Override
 	public EObject visitTypeTemplateParameter(@NonNull TypeTemplateParameter pivotTypeTemplateParameter) {
 		ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, pivotTypeTemplateParameter);
-		for (org.eclipse.ocl.examples.pivot.Class constrainingType : pivotTypeTemplateParameter.getConstrainingClassifier()) {
+		for (org.eclipse.ocl.examples.pivot.Class constrainingType : pivotTypeTemplateParameter.getConstrainingClass()) {
 			if (constrainingType != null) {
 				EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 				eTypeParameter.getEBounds().add(eGenericType);

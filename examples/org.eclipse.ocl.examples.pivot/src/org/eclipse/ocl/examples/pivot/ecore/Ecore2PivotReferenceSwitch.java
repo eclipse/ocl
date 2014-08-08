@@ -443,7 +443,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject2);
 		if (pivotElement != null) {
 			TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, typeTemplateParameter.getConstrainingClassifier(), eObject2.getEBounds());
+			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, typeTemplateParameter.getConstrainingClass(), eObject2.getEBounds());
 		}
 		return null;
 	}

@@ -312,11 +312,8 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//TypeTemplateParameter"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//TypeTemplateParameter/allowSubstitutable"/>
-      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TypeTemplateParameter/constrainingClassifier"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TypeTemplateParameter/constrainingClass"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
