@@ -197,7 +197,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
 			pivotElement.setURI(newNsURI);
 		}
-		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackage(), csElement.getOwnedNestedPackage());
+		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedNestedPackage());
 		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getOwnedType(), csElement.getOwnedType());
 		return pivotElement;
 	}
@@ -254,7 +254,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	 */
 	protected @NonNull <T extends Root> T refreshRootPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootPackageCS csElement) {
 		@NonNull T pivotElement = refreshRoot(pivotClass, pivotEClass,  csElement);
-		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackage(), csElement.getOwnedNestedPackage());
+		context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedNestedPackage());
 		return pivotElement;
 	}
 

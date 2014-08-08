@@ -30,11 +30,11 @@ import org.eclipse.jdt.annotation.NonNull;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getImportedPackage <em>Imported Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackage <em>Nested Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedInstances <em>Owned Instances</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedPackages <em>Owned Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Package#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
  * </p>
@@ -46,20 +46,20 @@ public interface Package
 		extends PackageableElement, TemplateableElement, Namespace, org.eclipse.ocl.examples.domain.elements.DomainPackage {
 
 	/**
-	 * Returns the value of the '<em><b>Nested Package</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Package}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The set of contained packages.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Package</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NestedPackage()
-	 * @see org.eclipse.ocl.examples.pivot.Package#getNestingPackage
+	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedPackages()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwningPackage
 	 * @generated
 	 */
-	@NonNull List<Package> getNestedPackage();
+	@NonNull List<Package> getOwnedPackages();
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.
@@ -176,29 +176,29 @@ public interface Package
 	@NonNull List<ProfileApplication> getProfileApplication();
 
 	/**
-	 * Returns the value of the '<em><b>Nesting Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackage <em>Nested Package</em>}'.
+	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedPackages <em>Owned Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The containing package.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nesting Package</em>' container reference.
-	 * @see #setNestingPackage(Package)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NestingPackage()
-	 * @see org.eclipse.ocl.examples.pivot.Package#getNestedPackage
+	 * @return the value of the '<em>Owning Package</em>' container reference.
+	 * @see #setOwningPackage(Package)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwningPackage()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedPackages
 	 * @generated
 	 */
-	Package getNestingPackage();
+	Package getOwningPackage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Package#getOwningPackage <em>Owning Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nesting Package</em>' container reference.
-	 * @see #getNestingPackage()
+	 * @param value the new value of the '<em>Owning Package</em>' container reference.
+	 * @see #getOwningPackage()
 	 * @generated
 	 */
-	void setNestingPackage(Package value);
+	void setOwningPackage(Package value);
 
 } // Package

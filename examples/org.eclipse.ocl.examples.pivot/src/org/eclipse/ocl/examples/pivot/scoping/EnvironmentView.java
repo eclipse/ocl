@@ -343,14 +343,14 @@ public class EnvironmentView
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			String name2 = name;
 			if (name2 != null) {
-				for (org.eclipse.ocl.examples.pivot.Package pkge : root.getNestedPackage()) {
+				for (org.eclipse.ocl.examples.pivot.Package pkge : root.getOwnedPackages()) {
 					if ((pkge != null) && name2.equals(pkge.getName())) {
 						addElement(name2, metaModelManager.getPrimaryPackage(pkge));
 					}
 				}
 			}
 			else {
-				for (org.eclipse.ocl.examples.pivot.Package pkge : root.getNestedPackage()) {
+				for (org.eclipse.ocl.examples.pivot.Package pkge : root.getOwnedPackages()) {
 					if (pkge != null) {
 						addNamedElement(metaModelManager.getPrimaryPackage(pkge));
 					}

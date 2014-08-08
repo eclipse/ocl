@@ -552,7 +552,7 @@ public class Pivot2EcoreDeclarationVisitor
 			ePackage.setNsURI(pivotPackage.getURI());
 		}
 		@SuppressWarnings("null")@NonNull List<EPackage> eSubpackages = ePackage.getESubpackages();
-		safeVisitAll(eSubpackages, pivotPackage.getNestedPackage());
+		safeVisitAll(eSubpackages, pivotPackage.getOwnedPackages());
 		@SuppressWarnings("null")@NonNull List<EClassifier> eClassifiers = ePackage.getEClassifiers();
 		safeVisitAll(eClassifiers, pivotPackage.getOwnedType());
 		return ePackage;
@@ -626,7 +626,7 @@ public class Pivot2EcoreDeclarationVisitor
 	public Object visitRoot(@NonNull Root pivotRoot) {
 		EModelElement firstElement = null;
 		List<EObject> outputObjects = new ArrayList<EObject>();
-		for (org.eclipse.ocl.examples.pivot.Package pivotObject : pivotRoot.getNestedPackage()) {
+		for (org.eclipse.ocl.examples.pivot.Package pivotObject : pivotRoot.getOwnedPackages()) {
 			if (!Orphanage.isTypeOrphanage(pivotObject)) {
 				Object ecoreObject = safeVisit(pivotObject);
 				if (ecoreObject instanceof EObject) {

@@ -20,8 +20,8 @@ import org.eclipse.ocl.examples.domain.ids.PackageId;
 public interface DomainPackage extends DomainNamespace
 {
 	@Nullable EPackage getEPackage();
-	/*@NonNull*/ List<? extends DomainPackage>  getNestedPackage();
-	/*@Nullable*/ DomainPackage getNestingPackage();
+	/*@NonNull*/ List<? extends DomainPackage>  getOwnedPackages();
+	/*@Nullable*/ DomainPackage getOwningPackage();
 	/*@Nullable*/ String getNsPrefix();
 	/*@Nullable*/ String getURI();
 	/*@NonNull*/ List<? extends DomainType> getOwnedType();

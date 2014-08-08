@@ -25,7 +25,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getExternalURI <em>External URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getNestedPackage <em>Nested Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Root#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,7 +36,7 @@ public interface Root extends Namespace, org.eclipse.ocl.examples.domain.element
 {
 
 	/**
-	 * Returns the value of the '<em><b>Nested Package</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Package}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,11 +44,11 @@ public interface Root extends Namespace, org.eclipse.ocl.examples.domain.element
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nested Package</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot_NestedPackage()
+	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRoot_OwnedPackages()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.examples.pivot.Package> getNestedPackage();
+	List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages();
 
 	/**
 	 * Returns the value of the '<em><b>External URI</b></em>' attribute.

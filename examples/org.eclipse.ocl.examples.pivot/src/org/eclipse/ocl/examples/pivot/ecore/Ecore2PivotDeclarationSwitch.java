@@ -422,10 +422,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (nameChange || nsURIChange) {
 			EObject eContainer = pivotElement.eContainer();
 			if (eContainer instanceof Root) {
-				((Root)eContainer).getNestedPackage().remove(pivotElement);
+				((Root)eContainer).getOwnedPackages().remove(pivotElement);
 			}
 			else if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
-				((org.eclipse.ocl.examples.pivot.Package)eContainer).getNestedPackage().remove(pivotElement);
+				((org.eclipse.ocl.examples.pivot.Package)eContainer).getOwnedPackages().remove(pivotElement);
 			}
 		}
 		pivotElement.setName(newName);
@@ -479,7 +479,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		converter.addMapping(eObject2, pivotElement);
 //		copyNamedElement(pivotElement, eObject2);
 		copyAnnotatedElement(pivotElement, eObject2, exclusions);
-		doSwitchAll(pivotElement.getNestedPackage(), eObject2.getESubpackages());
+		doSwitchAll(pivotElement.getOwnedPackages(), eObject2.getESubpackages());
 		doSwitchAll(pivotElement.getOwnedType(), eObject2.getEClassifiers());
 		return pivotElement;
 	}

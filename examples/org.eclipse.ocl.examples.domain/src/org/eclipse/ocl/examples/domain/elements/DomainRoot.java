@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.domain.elements;
 
 public interface DomainRoot extends DomainNamespace
 {
-	/*@NonNull*/ Iterable<? extends DomainPackage>  getNestedPackage();
+	/*@NonNull*/ Iterable<? extends DomainPackage>  getOwnedPackages();
 //	/*@Nullable*/ String getNsPrefix();
 //	/*@Nullable*/ String getNsURI();
 //	/*@NonNull*/ Iterable<? extends DomainType> getOwnedType();

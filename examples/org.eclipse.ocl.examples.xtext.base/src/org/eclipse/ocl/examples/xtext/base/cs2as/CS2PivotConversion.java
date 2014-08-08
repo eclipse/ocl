@@ -554,7 +554,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 					oldPackagesByName.put(name, pkg);
 				}
 			}
-			@NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = pkg.getNestedPackage();
+			@NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = pkg.getOwnedPackages();
 			gatherOldPackages(nestedPackage);
 		}
 	}
@@ -578,7 +578,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 	}
 
 	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
-		org.eclipse.ocl.examples.pivot.Package nestingPackage = pkg.getNestingPackage();
+		org.eclipse.ocl.examples.pivot.Package nestingPackage = pkg.getOwningPackage();
 		if (nestingPackage != null) {
 			getQualifiedName(s, nestingPackage);
 			s.append("$$");
@@ -1266,7 +1266,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			if (asResource != null) {
 				for (EObject eObject : asResource.getContents()) {
 					if (eObject instanceof Root) {
-						@SuppressWarnings("null") @NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Root)eObject).getNestedPackage();
+						@SuppressWarnings("null") @NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackage = ((Root)eObject).getOwnedPackages();
 						gatherOldPackages(nestedPackage);
 					}
 				}

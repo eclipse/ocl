@@ -238,7 +238,7 @@ public class ElementUtil
 			ASResource asResource = cs2asAdapter.getASResource(csResource);
 			for (EObject eRoot: asResource.getContents()) {
 				if (eRoot instanceof Root) {
-					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getNestedPackage()) {
+					for (org.eclipse.ocl.examples.pivot.Package asPackage: ((Root)eRoot).getOwnedPackages()) {
 						for (org.eclipse.ocl.examples.pivot.Class asType: asPackage.getOwnedType()) {
 							for (Constraint asConstraint : asType.getOwnedInvariant()) {
 								LanguageExpression specification = asConstraint.getSpecification();

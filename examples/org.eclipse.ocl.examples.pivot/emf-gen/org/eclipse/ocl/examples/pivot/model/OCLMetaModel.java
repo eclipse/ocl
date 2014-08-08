@@ -134,8 +134,8 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Package pk_$$ = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/3.1.0/orphanage", null);
 		
 		protected void installPackages() {
-			root.getNestedPackage().add(pk_$$);
-			root.getNestedPackage().add(metamodel);
+			root.getOwnedPackages().add(pk_$$);
+			root.getOwnedPackages().add(metamodel);
 		}
 
 		protected final @NonNull Class _Annotation = createClass(PivotPackage.Literals.ANNOTATION);
@@ -2183,14 +2183,14 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_OppositePropertyCallExp_referredProperty = createProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY, _Property);
 		protected final @NonNull Property pr_Package_URI = createProperty(PivotPackage.Literals.PACKAGE__URI, _String);
 		protected final @NonNull Property pr_Package_importedPackage = createProperty(PivotPackage.Literals.PACKAGE__IMPORTED_PACKAGE, _Set_Package);
-		protected final @NonNull Property pr_Package_nestedPackage = createProperty(PivotPackage.Literals.PACKAGE__NESTED_PACKAGE, _Set_Package);
-		protected final @NonNull Property pr_Package_nestingPackage = createProperty(PivotPackage.Literals.PACKAGE__NESTING_PACKAGE, _Package);
 		protected final @NonNull Property pr_Package_nsPrefix = createProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX, _String);
 		protected final @NonNull Property pr_Package_ownedInstances = createProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES, _Set_InstanceSpecification);
+		protected final @NonNull Property pr_Package_ownedPackages = createProperty(PivotPackage.Literals.PACKAGE__OWNED_PACKAGES, _Set_Package);
 		protected final @NonNull Property pr_Package_ownedType = createProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE, _Set_Class);
+		protected final @NonNull Property pr_Package_owningPackage = createProperty(PivotPackage.Literals.PACKAGE__OWNING_PACKAGE, _Package);
 		protected final @NonNull Property pr_Package_profileApplication = createProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, _Set_ProfileApplication);
 		protected final @NonNull Property pr_Package_Package_importedPackage = createProperty("Package", _Bag_Package);
-		protected final @NonNull Property pr_Package_Root_nestedPackage = createProperty("Root", _Root);
+		protected final @NonNull Property pr_Package_Root_ownedPackages = createProperty("Root", _Root);
 		protected final @NonNull Property pr_Parameter_operation = createProperty(PivotPackage.Literals.PARAMETER__OPERATION, _Operation);
 		protected final @NonNull Property pr_Parameter_Iteration_ownedAccumulator = createProperty("Iteration", _Iteration);
 		protected final @NonNull Property pr_Parameter_Iteration_ownedIterator = createProperty("Iteration", _Iteration);
@@ -2254,7 +2254,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Region_Region_extendedRegion = createProperty("Region", _Bag_Region);
 		protected final @NonNull Property pr_Root_externalURI = createProperty(PivotPackage.Literals.ROOT__EXTERNAL_URI, _String);
 		protected final @NonNull Property pr_Root_imports = createProperty(PivotPackage.Literals.ROOT__IMPORTS, _OrderedSet_Import);
-		protected final @NonNull Property pr_Root_nestedPackage = createProperty(PivotPackage.Literals.ROOT__NESTED_PACKAGE, _Set_Package);
+		protected final @NonNull Property pr_Root_ownedPackages = createProperty(PivotPackage.Literals.ROOT__OWNED_PACKAGES, _Set_Package);
 		protected final @NonNull Property pr_SendSignalAction_signal = createProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL, _Signal);
 		protected final @NonNull Property pr_SendSignalAction_MessageExp_sentSignal = createProperty("MessageExp", _MessageExp);
 		protected final @NonNull Property pr_Signal_MessageType_referredSignal = createProperty("MessageType", _Bag_MessageType);
@@ -3110,14 +3110,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Package_importedPackage);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_Package_importedPackage);
-			ownedProperties.add(property = pr_Package_nestedPackage);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_nestingPackage);
-			ownedProperties.add(property = pr_Package_nestingPackage);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_nestedPackage);
 			ownedProperties.add(property = pr_Package_nsPrefix);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -3125,10 +3117,18 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_InstanceSpecification_owningPackage);
+			ownedProperties.add(property = pr_Package_ownedPackages);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_owningPackage);
 			ownedProperties.add(property = pr_Package_ownedType);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_package);
+			ownedProperties.add(property = pr_Package_owningPackage);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_ownedPackages);
 			ownedProperties.add(property = pr_Package_profileApplication);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -3137,11 +3137,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_importedPackage);
-			ownedProperties.add(property = pr_Package_Root_nestedPackage);
+			ownedProperties.add(property = pr_Package_Root_ownedPackages);
 			property.setImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Root_nestedPackage);
+			property.setOpposite(pr_Root_ownedPackages);
 			ownedProperties = _Parameter.getOwnedAttribute();
 			ownedProperties.add(property = pr_Parameter_operation);
 			property.setIsRequired(false);
@@ -3388,10 +3388,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Import_Root_imports);
-			ownedProperties.add(property = pr_Root_nestedPackage);
+			ownedProperties.add(property = pr_Root_ownedPackages);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_Root_nestedPackage);
+			property.setOpposite(pr_Package_Root_ownedPackages);
 			ownedProperties = _SendSignalAction.getOwnedAttribute();
 			ownedProperties.add(property = pr_SendSignalAction_signal);
 			property.setIsResolveProxies(true);
@@ -4284,10 +4284,10 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Operation_raisedException, "The exceptions that are declared as possible during an invocation of the operation.");
 			installComment(_OperationTemplateParameter, "An operation template parameter exposes an operation as a formal parameter for a template.");
 			installComment(_Package, "A package is a container for types and other packages.\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.");
-			installComment(pr_Package_nestedPackage, "The set of contained packages.");
-			installComment(pr_Package_nestingPackage, "The containing package.");
 			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");
+			installComment(pr_Package_ownedPackages, "The set of contained packages.");
 			installComment(pr_Package_ownedType, "The set of contained types.");
+			installComment(pr_Package_owningPackage, "The containing package.");
 			installComment(_PackageableElement, "Packageable elements are able to serve as a template parameter.");
 			installComment(_Parameter, "A parameter is a typed element that represents a parameter of an operation.");
 			installComment(pr_Parameter_operation, "The operation that owns the parameter.");

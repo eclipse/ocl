@@ -175,10 +175,10 @@ public class CompleteOCLSplitter
 			}
 			List<org.eclipse.ocl.examples.pivot.Package> separateSiblings;
 			if (separateParent instanceof Root) {
-				separateSiblings = ((Root)separateParent).getNestedPackage();
+				separateSiblings = ((Root)separateParent).getOwnedPackages();
 			}
 			else {
-				separateSiblings = ((org.eclipse.ocl.examples.pivot.Package)separateParent).getNestedPackage();
+				separateSiblings = ((org.eclipse.ocl.examples.pivot.Package)separateParent).getOwnedPackages();
 			}
 			org.eclipse.ocl.examples.pivot.Package separateObject = DomainUtil.getNamedElement(separateSiblings, name);
 			if (separateObject == null) {

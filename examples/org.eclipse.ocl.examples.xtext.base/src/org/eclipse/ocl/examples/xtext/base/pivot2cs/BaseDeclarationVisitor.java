@@ -217,7 +217,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
 		csPackage.setNsPrefix(object.getNsPrefix());
 		csPackage.setNsURI(object.getURI());
-		context.refreshList(csPackage.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getNestedPackage(), null));
+		context.refreshList(csPackage.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
 		return csPackage;
 	}
 
@@ -263,7 +263,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitRoot(@NonNull Root object) {
 		RootPackageCS csElement = context.refreshElement(RootPackageCS.class, BaseCSPackage.Literals.ROOT_PACKAGE_CS, object);
-		context.refreshList(csElement.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getNestedPackage(), null));
+		context.refreshList(csElement.getOwnedNestedPackage(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
 		context.visitDeclarations(ImportCS.class, object.getImports(), null);
 		return csElement;
 	}

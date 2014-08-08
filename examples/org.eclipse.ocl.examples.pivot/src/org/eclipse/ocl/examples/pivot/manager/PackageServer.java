@@ -289,7 +289,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		return packageManager.getMetaModelManager();
 	}
 
-	public List<NestedPackageServer> getNestedPackage() {
+	public List<NestedPackageServer> getOwnedPackages() {
 		return getMemberPackages();
 	}
 
@@ -394,7 +394,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 	}
 
 	private void initMemberPackages(@NonNull DomainPackage pivotPackage) {
-		for (DomainPackage nestedPackage : pivotPackage.getNestedPackage()) {
+		for (DomainPackage nestedPackage : pivotPackage.getOwnedPackages()) {
 			if (nestedPackage != null) {
 				addedMemberPackage(nestedPackage);
 			}

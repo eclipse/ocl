@@ -3163,16 +3163,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRoot_NestedPackage()
-	{
-		return (EReference)rootEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getRoot_ExternalURI()
 	{
 		return (EAttribute)rootEClass.getEStructuralFeatures().get(0);
@@ -3186,6 +3176,16 @@ public class PivotPackageImpl
 	public EReference getRoot_Imports()
 	{
 		return (EReference)rootEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRoot_OwnedPackages()
+	{
+		return (EReference)rootEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4310,26 +4310,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_NestedPackage() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPackage_NestingPackage() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getPackage_NsPrefix() {
-		return (EAttribute)packageEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)packageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4339,7 +4321,17 @@ public class PivotPackageImpl
 	 */
 	public EReference getPackage_OwnedInstances()
 	{
-		return (EReference)packageEClass.getEStructuralFeatures().get(5);
+		return (EReference)packageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackage_OwnedPackages()
+	{
+		return (EReference)packageEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -4358,6 +4350,16 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EReference getPackage_OwnedType() {
+		return (EReference)packageEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackage_OwningPackage()
+	{
 		return (EReference)packageEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -5936,11 +5938,11 @@ public class PivotPackageImpl
 		packageEClass = createEClass(PACKAGE);
 		createEAttribute(packageEClass, PACKAGE__URI);
 		createEReference(packageEClass, PACKAGE__IMPORTED_PACKAGE);
-		createEReference(packageEClass, PACKAGE__NESTED_PACKAGE);
-		createEReference(packageEClass, PACKAGE__NESTING_PACKAGE);
 		createEAttribute(packageEClass, PACKAGE__NS_PREFIX);
 		createEReference(packageEClass, PACKAGE__OWNED_INSTANCES);
+		createEReference(packageEClass, PACKAGE__OWNED_PACKAGES);
 		createEReference(packageEClass, PACKAGE__OWNED_TYPE);
+		createEReference(packageEClass, PACKAGE__OWNING_PACKAGE);
 		createEReference(packageEClass, PACKAGE__PROFILE_APPLICATION);
 
 		packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
@@ -6023,7 +6025,7 @@ public class PivotPackageImpl
 		rootEClass = createEClass(ROOT);
 		createEAttribute(rootEClass, ROOT__EXTERNAL_URI);
 		createEReference(rootEClass, ROOT__IMPORTS);
-		createEReference(rootEClass, ROOT__NESTED_PACKAGE);
+		createEReference(rootEClass, ROOT__OWNED_PACKAGES);
 
 		selfTypeEClass = createEClass(SELF_TYPE);
 		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1);
@@ -7145,11 +7147,11 @@ public class PivotPackageImpl
 		initEClass(packageEClass, org.eclipse.ocl.examples.pivot.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPackage_URI(), this.getString(), "URI", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_ImportedPackage(), this.getPackage(), null, "importedPackage", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPackage_NestedPackage(), this.getPackage(), this.getPackage_NestingPackage(), "nestedPackage", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPackage_NestingPackage(), this.getPackage(), this.getPackage_NestedPackage(), "nestingPackage", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackage_NsPrefix(), this.getString(), "nsPrefix", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwnedInstances(), this.getInstanceSpecification(), this.getInstanceSpecification_OwningPackage(), "ownedInstances", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPackage_OwnedPackages(), this.getPackage(), this.getPackage_OwningPackage(), "ownedPackages", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwnedType(), this.getClass_(), this.getClass_Package(), "ownedType", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPackage_OwningPackage(), this.getPackage(), this.getPackage_OwnedPackages(), "owningPackage", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_ProfileApplication(), this.getProfileApplication(), this.getProfileApplication_ApplyingPackage(), "profileApplication", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7264,7 +7266,7 @@ public class PivotPackageImpl
 		initEClass(rootEClass, Root.class, "Root", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getRoot_ExternalURI(), this.getString(), "externalURI", null, 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRoot_Imports(), this.getImport(), null, "imports", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getRoot_NestedPackage(), this.getPackage(), null, "nestedPackage", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRoot_OwnedPackages(), this.getPackage(), null, "ownedPackages", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(selfTypeEClass, SelfType.class, "SelfType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

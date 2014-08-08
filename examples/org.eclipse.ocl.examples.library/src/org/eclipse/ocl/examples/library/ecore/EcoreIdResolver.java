@@ -102,7 +102,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				roots2package.put(name, userPackage);
 			}
 		}
-		addPackages(userPackage.getNestedPackage());
+		addPackages(userPackage.getOwnedPackages());
 	}
 
 	private void addPackages(/*@NonNull*/ Iterable<? extends DomainPackage> userPackages) {
@@ -186,7 +186,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				EObject root = EcoreUtil.getRootContainer(crossReferencedEObject);
 				if (moreRoots.add(root) && !directRoots.contains(root)) {
 					if (root instanceof DomainRoot) {
-						addPackages(((DomainRoot)root).getNestedPackage());
+						addPackages(((DomainRoot)root).getOwnedPackages());
 					}
 					else if (root instanceof DomainPackage) {					// Perhaps this is only needed for a lazy JUnit test
 						addPackage((DomainPackage)root);
@@ -205,7 +205,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		for (EObject eObject : directRoots) {
 			if (eObject instanceof DomainRoot) {
-				addPackages(((DomainRoot)eObject).getNestedPackage());
+				addPackages(((DomainRoot)eObject).getOwnedPackages());
 			}
 //			else if (eObject instanceof DomainPackage) {							// Perhaps this is only needed for a lazy JUnit test
 //				addPackage((DomainPackage)eObject);

@@ -406,7 +406,7 @@ public class Pivot2Ecore extends AbstractConversion
 	protected void setGenerationInProgress(@NonNull Resource asResource, boolean isLoading) {
 		for (EObject eRoot : asResource.getContents()) {
 			if (eRoot instanceof Root) {
-				for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getNestedPackage()) {
+				for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getOwnedPackages()) {
 					if (asPackage != null) {
 						setGenerationInProgress(asPackage, isLoading);
 					}
@@ -428,7 +428,7 @@ public class Pivot2Ecore extends AbstractConversion
 				resourceLoadStatus.setGenerationInProgress(isGenerating);
 			}
 		}
-		for (org.eclipse.ocl.examples.pivot.Package asNestedPackage : asPackage.getNestedPackage()) {
+		for (org.eclipse.ocl.examples.pivot.Package asNestedPackage : asPackage.getOwnedPackages()) {
 			if (asNestedPackage != null) {
 				setGenerationInProgress(asNestedPackage, isGenerating);
 			}

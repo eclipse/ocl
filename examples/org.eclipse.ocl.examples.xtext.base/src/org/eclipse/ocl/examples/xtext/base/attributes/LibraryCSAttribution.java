@@ -93,7 +93,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 					metaModelManager.installResource(resource);
 					for (EObject root : resource.getContents()) {
 						if (root instanceof Root) {
-							for (DomainElement pkg : ((Root)root).getNestedPackage()) {
+							for (DomainElement pkg : ((Root)root).getOwnedPackages()) {
 								if (pkg instanceof Library) {
 									environmentView.addElement(name, pkg);									
 								}

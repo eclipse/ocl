@@ -89,7 +89,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	protected void gatherPackages(@NonNull List<org.eclipse.ocl.examples.pivot.Package> allPackages, @NonNull List<org.eclipse.ocl.examples.pivot.Package> nestedPackages) {
 		allPackages.addAll(nestedPackages);
 		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : nestedPackages) {
-			List<org.eclipse.ocl.examples.pivot.Package> nestedNestedPackages = nestedPackage.getNestedPackage();
+			List<org.eclipse.ocl.examples.pivot.Package> nestedNestedPackages = nestedPackage.getOwnedPackages();
 			assert nestedNestedPackages != null;
 			gatherPackages(allPackages, nestedNestedPackages);
 		}
@@ -98,7 +98,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	protected void importPackage(@NonNull org.eclipse.ocl.examples.pivot.Package aPackage) {
 		context.importNamespace(aPackage, null);
 		org.eclipse.ocl.examples.pivot.Package nestingPackage = null;
-		while ((nestingPackage = aPackage.getNestingPackage()) != null) {
+		while ((nestingPackage = aPackage.getOwningPackage()) != null) {
 			aPackage = nestingPackage;
 			context.importNamespace(aPackage, null);
 		}
@@ -302,7 +302,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		assert object.eContainer() == null;
 		CompleteOCLDocumentCS csDocument = context.refreshElement(CompleteOCLDocumentCS.class, CompleteOCLCSPackage.Literals.COMPLETE_OCL_DOCUMENT_CS, object);
 		List<org.eclipse.ocl.examples.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		List<Package> nestedPackages = object.getNestedPackage();
+		List<Package> nestedPackages = object.getOwnedPackages();
 		assert nestedPackages != null;
 		gatherPackages(allPackages, nestedPackages); 
 		context.refreshList(csDocument.getPackages(), context.visitDeclarations(PackageDeclarationCS.class, allPackages, null));

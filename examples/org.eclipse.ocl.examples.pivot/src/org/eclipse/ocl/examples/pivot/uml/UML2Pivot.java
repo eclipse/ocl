@@ -925,7 +925,7 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 				error("Bad UML content : " + eObject.eClass().getName());
 			}
 		}
-		PivotUtil.refreshList(pivotRoot2.getNestedPackage(), rootPackages);
+		PivotUtil.refreshList(pivotRoot2.getOwnedPackages(), rootPackages);
 		return pivotRoot2;
 	}
 

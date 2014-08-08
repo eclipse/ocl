@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getExternalURI <em>External URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getNestedPackage <em>Nested Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,14 +78,14 @@ public class RootImpl extends NamespaceImpl implements Root
 	 */
 	protected EList<Import> imports;
 	/**
-	 * The cached value of the '{@link #getNestedPackage() <em>Nested Package</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedPackage()
+	 * @see #getOwnedPackages()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Package> nestedPackage;
+	protected EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,13 +112,13 @@ public class RootImpl extends NamespaceImpl implements Root
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<org.eclipse.ocl.examples.pivot.Package> getNestedPackage()
+	public List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
 	{
-		if (nestedPackage == null)
+		if (ownedPackages == null)
 		{
-			nestedPackage = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.ROOT__NESTED_PACKAGE);
+			ownedPackages = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.ROOT__OWNED_PACKAGES);
 		}
-		return nestedPackage;
+		return ownedPackages;
 	}
 
 	/**
@@ -181,8 +181,8 @@ public class RootImpl extends NamespaceImpl implements Root
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ROOT__IMPORTS:
 				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ROOT__NESTED_PACKAGE:
-				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ROOT__OWNED_PACKAGES:
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -213,8 +213,8 @@ public class RootImpl extends NamespaceImpl implements Root
 				return getExternalURI();
 			case PivotPackage.ROOT__IMPORTS:
 				return getImports();
-			case PivotPackage.ROOT__NESTED_PACKAGE:
-				return getNestedPackage();
+			case PivotPackage.ROOT__OWNED_PACKAGES:
+				return getOwnedPackages();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -260,9 +260,9 @@ public class RootImpl extends NamespaceImpl implements Root
 				getImports().clear();
 				getImports().addAll((Collection<? extends Import>)newValue);
 				return;
-			case PivotPackage.ROOT__NESTED_PACKAGE:
-				getNestedPackage().clear();
-				getNestedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
+			case PivotPackage.ROOT__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -302,8 +302,8 @@ public class RootImpl extends NamespaceImpl implements Root
 			case PivotPackage.ROOT__IMPORTS:
 				getImports().clear();
 				return;
-			case PivotPackage.ROOT__NESTED_PACKAGE:
-				getNestedPackage().clear();
+			case PivotPackage.ROOT__OWNED_PACKAGES:
+				getOwnedPackages().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -335,8 +335,8 @@ public class RootImpl extends NamespaceImpl implements Root
 				return EXTERNAL_URI_EDEFAULT == null ? externalURI != null : !EXTERNAL_URI_EDEFAULT.equals(externalURI);
 			case PivotPackage.ROOT__IMPORTS:
 				return imports != null && !imports.isEmpty();
-			case PivotPackage.ROOT__NESTED_PACKAGE:
-				return nestedPackage != null && !nestedPackage.isEmpty();
+			case PivotPackage.ROOT__OWNED_PACKAGES:
+				return ownedPackages != null && !ownedPackages.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

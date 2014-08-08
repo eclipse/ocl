@@ -131,7 +131,7 @@ class PackageTracker implements Adapter.Internal
 				}
 			}
 		}
-		else if (feature == PivotPackage.Literals.PACKAGE__NESTED_PACKAGE) {
+		else if (feature == PivotPackage.Literals.PACKAGE__OWNED_PACKAGES) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();

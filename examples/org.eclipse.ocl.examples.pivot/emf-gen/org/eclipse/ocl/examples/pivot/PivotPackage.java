@@ -13647,31 +13647,13 @@ public interface PivotPackage
 	int PACKAGE__IMPORTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NESTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NESTING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
-
-	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NS_PREFIX = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PACKAGE__NS_PREFIX = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
@@ -13680,7 +13662,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_INSTANCES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PACKAGE__OWNED_INSTANCES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
@@ -13689,7 +13680,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_TYPE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 10;
+	int PACKAGE__OWNED_TYPE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Profile Application</b></em>' containment reference list.
@@ -13890,24 +13890,6 @@ public interface PivotPackage
 	int LIBRARY__IMPORTED_PACKAGE = PACKAGE__IMPORTED_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__NESTED_PACKAGE = PACKAGE__NESTED_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__NESTING_PACKAGE = PACKAGE__NESTING_PACKAGE;
-
-	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13926,6 +13908,15 @@ public interface PivotPackage
 	int LIBRARY__OWNED_INSTANCES = PACKAGE__OWNED_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_PACKAGES = PACKAGE__OWNED_PACKAGES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13933,6 +13924,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__OWNED_TYPE = PACKAGE__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNING_PACKAGE = PACKAGE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Profile Application</b></em>' containment reference list.
@@ -17046,24 +17046,6 @@ public interface PivotPackage
 	int PROFILE__IMPORTED_PACKAGE = PACKAGE__IMPORTED_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__NESTED_PACKAGE = PACKAGE__NESTED_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__NESTING_PACKAGE = PACKAGE__NESTING_PACKAGE;
-
-	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17082,6 +17064,15 @@ public interface PivotPackage
 	int PROFILE__OWNED_INSTANCES = PACKAGE__OWNED_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__OWNED_PACKAGES = PACKAGE__OWNED_PACKAGES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17089,6 +17080,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__OWNED_TYPE = PACKAGE__OWNED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__OWNING_PACKAGE = PACKAGE__OWNING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Profile Application</b></em>' containment reference list.
@@ -18387,13 +18387,13 @@ public interface PivotPackage
 	int ROOT__IMPORTS = NAMESPACE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT__NESTED_PACKAGE = NAMESPACE_FEATURE_COUNT + 2;
+	int ROOT__OWNED_PACKAGES = NAMESPACE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Root</em>' class.
@@ -26113,17 +26113,6 @@ public interface PivotPackage
 	EClass getRoot();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Root#getNestedPackage <em>Nested Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Nested Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Root#getNestedPackage()
-	 * @see #getRoot()
-	 * @generated
-	 */
-	EReference getRoot_NestedPackage();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Root#getExternalURI <em>External URI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26144,6 +26133,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getRoot_Imports();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Root#getOwnedPackages <em>Owned Packages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Packages</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Root#getOwnedPackages()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EReference getRoot_OwnedPackages();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.SelfType <em>Self Type</em>}'.
@@ -27393,28 +27393,6 @@ public interface PivotPackage
 	EAttribute getPackage_URI();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackage <em>Nested Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Nested Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getNestedPackage()
-	 * @see #getPackage()
-	 * @generated
-	 */
-	EReference getPackage_NestedPackage();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Package#getNestingPackage <em>Nesting Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Nesting Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getNestingPackage()
-	 * @see #getPackage()
-	 * @generated
-	 */
-	EReference getPackage_NestingPackage();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Package#getNsPrefix <em>Ns Prefix</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27437,6 +27415,17 @@ public interface PivotPackage
 	EReference getPackage_OwnedInstances();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedPackages <em>Owned Packages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Packages</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedPackages()
+	 * @see #getPackage()
+	 * @generated
+	 */
+	EReference getPackage_OwnedPackages();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Package#getImportedPackage <em>Imported Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27457,6 +27446,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getPackage_OwnedType();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Package#getOwningPackage <em>Owning Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Package</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwningPackage()
+	 * @see #getPackage()
+	 * @generated
+	 */
+	EReference getPackage_OwningPackage();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getProfileApplication <em>Profile Application</em>}'.
@@ -30616,14 +30616,6 @@ public interface PivotPackage
 		EClass ROOT = eINSTANCE.getRoot();
 
 		/**
-		 * The meta object literal for the '<em><b>Nested Package</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROOT__NESTED_PACKAGE = eINSTANCE.getRoot_NestedPackage();
-
-		/**
 		 * The meta object literal for the '<em><b>External URI</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30638,6 +30630,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference ROOT__IMPORTS = eINSTANCE.getRoot_Imports();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Packages</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROOT__OWNED_PACKAGES = eINSTANCE.getRoot_OwnedPackages();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl <em>Self Type</em>}' class.
@@ -31642,22 +31642,6 @@ public interface PivotPackage
 		EAttribute PACKAGE__URI = eINSTANCE.getPackage_URI();
 
 		/**
-		 * The meta object literal for the '<em><b>Nested Package</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PACKAGE__NESTED_PACKAGE = eINSTANCE.getPackage_NestedPackage();
-
-		/**
-		 * The meta object literal for the '<em><b>Nesting Package</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PACKAGE__NESTING_PACKAGE = eINSTANCE.getPackage_NestingPackage();
-
-		/**
 		 * The meta object literal for the '<em><b>Ns Prefix</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31674,6 +31658,14 @@ public interface PivotPackage
 		EReference PACKAGE__OWNED_INSTANCES = eINSTANCE.getPackage_OwnedInstances();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Packages</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE__OWNED_PACKAGES = eINSTANCE.getPackage_OwnedPackages();
+
+		/**
 		 * The meta object literal for the '<em><b>Imported Package</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31688,6 +31680,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PACKAGE__OWNED_TYPE = eINSTANCE.getPackage_OwnedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Package</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE__OWNING_PACKAGE = eINSTANCE.getPackage_OwningPackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Profile Application</b></em>' containment reference list feature.

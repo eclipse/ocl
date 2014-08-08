@@ -140,7 +140,7 @@ public class ASSaver
 			orphanage2.setURI(PivotConstants.ORPHANAGE_URI);
 			EList<EObject> contents = resource.getContents();
 			if ((contents.size() > 0) && (contents.get(0) instanceof Root)) {
-				((Root)contents.get(0)).getNestedPackage().add(orphanage2);
+				((Root)contents.get(0)).getOwnedPackages().add(orphanage2);
 			}
 			else {
 				contents.add(orphanage2);
@@ -203,7 +203,7 @@ public class ASSaver
 						root = (Root) eRoot;
 					}
 					if (orphanage2 == null) {
-						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getNestedPackage()) {
+						for (org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)eRoot).getOwnedPackages()) {
 							if (Orphanage.isTypeOrphanage(asPackage)) {
 								orphanage = orphanage2 = asPackage;
 								for (org.eclipse.ocl.examples.pivot.Class asType : orphanage2.getOwnedType()) {

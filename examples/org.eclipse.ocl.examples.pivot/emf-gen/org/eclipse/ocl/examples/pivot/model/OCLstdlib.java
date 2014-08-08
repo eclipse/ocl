@@ -278,8 +278,8 @@ public class OCLstdlib extends ASResourceImpl
 		protected final @NonNull Package orphans = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/3.1.0/orphanage", null);
 		
 		protected void installPackages() {
-			root.getNestedPackage().add(orphans);
-			root.getNestedPackage().add(library);
+			root.getOwnedPackages().add(orphans);
+			root.getOwnedPackages().add(library);
 		}
 
 		protected final @NonNull Class _Class = createClass("Class");

@@ -123,14 +123,14 @@ public class LibraryImpl extends PackageImpl implements Library
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LIBRARY__NESTED_PACKAGE:
-				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LIBRARY__NESTING_PACKAGE:
-				return basicSetNestingPackage(null, msgs);
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LIBRARY__OWNED_PACKAGES:
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LIBRARY__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
 				return ((InternalEList<?>)getProfileApplication()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
@@ -176,16 +176,16 @@ public class LibraryImpl extends PackageImpl implements Library
 				return getURI();
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				return getImportedPackage();
-			case PivotPackage.LIBRARY__NESTED_PACKAGE:
-				return getNestedPackage();
-			case PivotPackage.LIBRARY__NESTING_PACKAGE:
-				return getNestingPackage();
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				return getNsPrefix();
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return getOwnedInstances();
+			case PivotPackage.LIBRARY__OWNED_PACKAGES:
+				return getOwnedPackages();
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return getOwnedType();
+			case PivotPackage.LIBRARY__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
 				return getProfileApplication();
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:
@@ -251,13 +251,6 @@ public class LibraryImpl extends PackageImpl implements Library
 				getImportedPackage().clear();
 				getImportedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
 				return;
-			case PivotPackage.LIBRARY__NESTED_PACKAGE:
-				getNestedPackage().clear();
-				getNestedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
-				return;
-			case PivotPackage.LIBRARY__NESTING_PACKAGE:
-				setNestingPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				setNsPrefix((String)newValue);
 				return;
@@ -265,9 +258,16 @@ public class LibraryImpl extends PackageImpl implements Library
 				getOwnedInstances().clear();
 				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
 				return;
+			case PivotPackage.LIBRARY__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
+				return;
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
+			case PivotPackage.LIBRARY__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
 				getProfileApplication().clear();
@@ -330,20 +330,20 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				return;
-			case PivotPackage.LIBRARY__NESTED_PACKAGE:
-				getNestedPackage().clear();
-				return;
-			case PivotPackage.LIBRARY__NESTING_PACKAGE:
-				setNestingPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
 				return;
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				return;
+			case PivotPackage.LIBRARY__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				return;
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				getOwnedType().clear();
+				return;
+			case PivotPackage.LIBRARY__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
 				getProfileApplication().clear();
@@ -391,16 +391,16 @@ public class LibraryImpl extends PackageImpl implements Library
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.LIBRARY__IMPORTED_PACKAGE:
 				return importedPackage != null && !importedPackage.isEmpty();
-			case PivotPackage.LIBRARY__NESTED_PACKAGE:
-				return nestedPackage != null && !nestedPackage.isEmpty();
-			case PivotPackage.LIBRARY__NESTING_PACKAGE:
-				return getNestingPackage() != null;
 			case PivotPackage.LIBRARY__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
+			case PivotPackage.LIBRARY__OWNED_PACKAGES:
+				return ownedPackages != null && !ownedPackages.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
+			case PivotPackage.LIBRARY__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.LIBRARY__PROFILE_APPLICATION:
 				return profileApplication != null && !profileApplication.isEmpty();
 			case PivotPackage.LIBRARY__OWNED_PRECEDENCE:

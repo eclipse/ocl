@@ -60,11 +60,11 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestedPackage <em>Nested Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedInstances <em>Owned Instances</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
  * </p>
@@ -147,16 +147,6 @@ public class PackageImpl
 	protected EList<org.eclipse.ocl.examples.pivot.Package> importedPackage;
 
 	/**
-	 * The cached value of the '{@link #getNestedPackage() <em>Nested Package</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedPackage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Package> nestedPackage;
-
-	/**
 	 * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,6 +175,16 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected EList<InstanceSpecification> ownedInstances;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPackages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.eclipse.ocl.examples.pivot.Package> ownedPackages;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference list.
@@ -330,13 +330,13 @@ public class PackageImpl
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getNestedPackage()
+	public @NonNull List<org.eclipse.ocl.examples.pivot.Package> getOwnedPackages()
 	{
-		if (nestedPackage == null)
+		if (ownedPackages == null)
 		{
-			nestedPackage = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__NESTED_PACKAGE, PivotPackage.PACKAGE__NESTING_PACKAGE);
+			ownedPackages = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__OWNED_PACKAGES, PivotPackage.PACKAGE__OWNING_PACKAGE);
 		}
-		return nestedPackage;
+		return ownedPackages;
 	}
 
 	/**
@@ -431,8 +431,8 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Package getNestingPackage() {
-		if (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE) return null;
+	public org.eclipse.ocl.examples.pivot.Package getOwningPackage() {
+		if (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE) return null;
 		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
 	}
 
@@ -441,10 +441,9 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNestingPackage(
-			org.eclipse.ocl.examples.pivot.Package newNestingPackage,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newNestingPackage, PivotPackage.PACKAGE__NESTING_PACKAGE, msgs);
+	public NotificationChain basicSetOwningPackage(org.eclipse.ocl.examples.pivot.Package newOwningPackage, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningPackage, PivotPackage.PACKAGE__OWNING_PACKAGE, msgs);
 		return msgs;
 	}
 
@@ -453,22 +452,22 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNestingPackage(
-			org.eclipse.ocl.examples.pivot.Package newNestingPackage) {
-		if (newNestingPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE && newNestingPackage != null))
+	public void setOwningPackage(
+			org.eclipse.ocl.examples.pivot.Package newOwningPackage) {
+		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE && newOwningPackage != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newNestingPackage))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newNestingPackage != null)
-				msgs = ((InternalEObject)newNestingPackage).eInverseAdd(this, PivotPackage.PACKAGE__NESTED_PACKAGE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
-			msgs = basicSetNestingPackage(newNestingPackage, msgs);
+			if (newOwningPackage != null)
+				msgs = ((InternalEObject)newOwningPackage).eInverseAdd(this, PivotPackage.PACKAGE__OWNED_PACKAGES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			msgs = basicSetOwningPackage(newOwningPackage, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__NESTING_PACKAGE, newNestingPackage, newNestingPackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNING_PACKAGE, newOwningPackage, newOwningPackage));
 	}
 
 	/**
@@ -520,16 +519,16 @@ public class PackageImpl
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PACKAGE__NESTED_PACKAGE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedPackage()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetNestingPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedInstances()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPackages()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedType()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProfileApplication()).basicAdd(otherEnd, msgs);
 		}
@@ -564,14 +563,14 @@ public class PackageImpl
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__NESTED_PACKAGE:
-				return ((InternalEList<?>)getNestedPackage()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				return basicSetNestingPackage(null, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ((InternalEList<?>)getOwnedType()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				return ((InternalEList<?>)getProfileApplication()).basicRemove(otherEnd, msgs);
 		}
@@ -590,8 +589,8 @@ public class PackageImpl
 		{
 			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__NESTED_PACKAGE, org.eclipse.ocl.examples.pivot.Package.class, msgs);
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_PACKAGES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -632,16 +631,16 @@ public class PackageImpl
 				return getURI();
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				return getImportedPackage();
-			case PivotPackage.PACKAGE__NESTED_PACKAGE:
-				return getNestedPackage();
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				return getNestingPackage();
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return getNsPrefix();
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return getOwnedInstances();
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return getOwnedPackages();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return getOwnedType();
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return getOwningPackage();
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				return getProfileApplication();
 		}
@@ -704,13 +703,6 @@ public class PackageImpl
 				getImportedPackage().clear();
 				getImportedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
 				return;
-			case PivotPackage.PACKAGE__NESTED_PACKAGE:
-				getNestedPackage().clear();
-				getNestedPackage().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
-				return;
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				setNestingPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
-				return;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				setNsPrefix((String)newValue);
 				return;
@@ -718,9 +710,16 @@ public class PackageImpl
 				getOwnedInstances().clear();
 				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
 				return;
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
+				return;
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				getProfileApplication().clear();
@@ -778,20 +777,20 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				getImportedPackage().clear();
 				return;
-			case PivotPackage.PACKAGE__NESTED_PACKAGE:
-				getNestedPackage().clear();
-				return;
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				setNestingPackage((org.eclipse.ocl.examples.pivot.Package)null);
-				return;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				setNsPrefix(NS_PREFIX_EDEFAULT);
 				return;
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				getOwnedInstances().clear();
 				return;
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				return;
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				getProfileApplication().clear();
@@ -835,16 +834,16 @@ public class PackageImpl
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
 				return importedPackage != null && !importedPackage.isEmpty();
-			case PivotPackage.PACKAGE__NESTED_PACKAGE:
-				return nestedPackage != null && !nestedPackage.isEmpty();
-			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				return getNestingPackage() != null;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
 				return ownedInstances != null && !ownedInstances.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return ownedPackages != null && !ownedPackages.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TYPE:
 				return ownedType != null && !ownedType.isEmpty();
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
 			case PivotPackage.PACKAGE__PROFILE_APPLICATION:
 				return profileApplication != null && !profileApplication.isEmpty();
 		}

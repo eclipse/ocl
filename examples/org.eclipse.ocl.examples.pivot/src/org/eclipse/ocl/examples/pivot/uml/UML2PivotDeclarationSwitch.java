@@ -809,10 +809,10 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			pivotElement.getOwnedInstances().clear();
 		}
 		if (umlNestedPackages != null) {
-			doSwitchAll(pivotElement.getNestedPackage(), umlNestedPackages, null);
+			doSwitchAll(pivotElement.getOwnedPackages(), umlNestedPackages, null);
 		}
 		else {
-			pivotElement.getNestedPackage().clear();
+			pivotElement.getOwnedPackages().clear();
 		}
 		if (umlProfileApplications != null) {
 			doSwitchAll(pivotElement.getProfileApplication(), umlProfileApplications, null);

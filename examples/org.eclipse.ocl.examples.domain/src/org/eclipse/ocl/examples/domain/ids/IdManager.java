@@ -360,7 +360,7 @@ public final class IdManager
 		}
 		String name = aPackage.getName();
 		assert name != null;
-		DomainPackage parentPackage = aPackage.getNestingPackage();
+		DomainPackage parentPackage = aPackage.getOwningPackage();
 		if (parentPackage != null) {
 			return parentPackage.getPackageId().getNestedPackageId(name);
 		}

@@ -505,7 +505,7 @@ public class MetaclassImpl<T> extends ClassImpl implements Metaclass<T>
 			if (resource != null) {
 				for (EObject eObject : resource.getContents()) {
 					if (eObject instanceof Root) {
-						for (org.eclipse.ocl.examples.pivot.Package pkg : ((Root)eObject).getNestedPackage()) {
+						for (org.eclipse.ocl.examples.pivot.Package pkg : ((Root)eObject).getOwnedPackages()) {
 							org.eclipse.ocl.examples.pivot.Class type = DomainUtil.getNamedElement(pkg.getOwnedType(), getName());
 							if (type instanceof Metaclass) {
 								setUnspecializedElement(type);

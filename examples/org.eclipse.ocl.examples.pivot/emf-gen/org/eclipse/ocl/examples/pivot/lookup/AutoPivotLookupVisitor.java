@@ -748,7 +748,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_7.getNestedPackage();
+        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_7.getOwnedPackages();
         assert nestedPackage != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(nestedPackage);
         final @Nullable /*@Thrown*/ List<? extends DomainType> ownedType = element_7.getOwnedType();
@@ -836,7 +836,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_10.getNestedPackage();
+        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_10.getOwnedPackages();
         assert nestedPackage != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(nestedPackage);
         final @Nullable /*@Thrown*/ List<? extends DomainType> ownedType = element_10.getOwnedType();
@@ -870,7 +870,7 @@ public class AutoPivotLookupVisitor
         }
         final @NonNull /*@Thrown*/ List<Import> imports = element_11.getImports();
         final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_11.getNestedPackage();
+        final @Nullable /*@Thrown*/ List<? extends DomainPackage> nestedPackage = element_11.getOwnedPackages();
         assert nestedPackage != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(nestedPackage);
         return addElements_0;

@@ -855,18 +855,18 @@
       <generalization xmi:id="Ppivot.TPackage.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TPackage.g2" general="Ppivot.TTemplateableElement"/>
       <generalization xmi:id="Ppivot.TPackage.g3" general="Ppivot.TPackageableElement"/>
-      <ownedAttribute xmi:id="Ppivot.TPackage.PnestedPackage" name="nestedPackage" type="Ppivot.TPackage" aggregation="composite" association="Ppivot.A_nestedPackage_nestingPackage">
-        <ownedComment xmi:id="Ppivot.TPackage.PnestedPackage.oC0" annotatedElement="Ppivot.TPackage.PnestedPackage">
+      <ownedAttribute xmi:id="Ppivot.TPackage.PownedPackages" name="ownedPackages" type="Ppivot.TPackage" aggregation="composite" association="Ppivot.A_nestedPackage_nestingPackage">
+        <ownedComment xmi:id="Ppivot.TPackage.PownedPackages.oC0" annotatedElement="Ppivot.TPackage.PownedPackages">
           <body>The set of contained packages.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PnestedPackage.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPackage.PnestedPackage.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PownedPackages.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPackage.PownedPackages.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TPackage.PnestingPackage" name="nestingPackage" type="Ppivot.TPackage" association="Ppivot.A_nestedPackage_nestingPackage">
-        <ownedComment xmi:id="Ppivot.TPackage.PnestingPackage.oC0" annotatedElement="Ppivot.TPackage.PnestingPackage">
+      <ownedAttribute xmi:id="Ppivot.TPackage.PowningPackage" name="owningPackage" type="Ppivot.TPackage" association="Ppivot.A_nestedPackage_nestingPackage">
+        <ownedComment xmi:id="Ppivot.TPackage.PowningPackage.oC0" annotatedElement="Ppivot.TPackage.PowningPackage">
           <body>The containing package.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PnestingPackage.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PowningPackage.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TPackage.PownedType" name="ownedType" type="Ppivot.TClass" aggregation="composite" association="Ppivot.A_ownedType_package">
         <ownedComment xmi:id="Ppivot.TPackage.PownedType.oC0" annotatedElement="Ppivot.TPackage.PownedType">
@@ -1152,9 +1152,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TRoot" name="Root">
       <generalization xmi:id="Ppivot.TRoot.g0" general="Ppivot.TNamespace"/>
-      <ownedAttribute xmi:id="Ppivot.TRoot.PnestedPackage" name="nestedPackage" type="Ppivot.TPackage" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.PnestedPackage.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TRoot.PnestedPackage.uV" value="*"/>
+      <ownedAttribute xmi:id="Ppivot.TRoot.PownedPackages" name="ownedPackages" type="Ppivot.TPackage" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.PownedPackages.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TRoot.PownedPackages.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TRoot.PexternalURI" name="externalURI" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRoot.PexternalURI.lV"/>
@@ -1867,7 +1867,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_guard_transition" name="A_guard_transition" memberEnd="Ppivot.TTransition.Pguard Ppivot.TConstraint.Ptransition"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_incoming_target" name="A_incoming_target" memberEnd="Ppivot.TVertex.Pincoming Ppivot.TTransition.Ptarget"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_nestedPackage_nestingPackage" name="A_nestedPackage_nestingPackage" memberEnd="Ppivot.TPackage.PnestedPackage Ppivot.TPackage.PnestingPackage"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_nestedPackage_nestingPackage" name="A_nestedPackage_nestingPackage" memberEnd="Ppivot.TPackage.PownedPackages Ppivot.TPackage.PowningPackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_operation_redefinedOperation" name="A_operation_redefinedOperation" memberEnd="Ppivot.A_operation_redefinedOperation.Poperation Ppivot.TOperation.PredefinedOperation">
       <ownedEnd xmi:id="Ppivot.A_operation_redefinedOperation.Poperation" name="operation" type="Ppivot.TOperation" association="Ppivot.A_operation_redefinedOperation">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_operation_redefinedOperation.Poperation.lV"/>

@@ -117,8 +117,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
         assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "ownedType->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "let name : String = 'String' in ownedType->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.package.ownedType->select(name = type.name) = Set{Integer}");
-        assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "nestedPackage->select(oclIsKindOf(Integer))->isEmpty()");
-        assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "nestedPackage->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
+        assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
+        assertQueryTrue(metaModelManager.getOclAnyType().getPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
     }
 
 	@Test public void test_iterator_scope() {
@@ -229,7 +229,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2pivot(getOCL(), metaModelText);
 		Root pivotRoot = (Root) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getNestedPackage().get(0);
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedType().get(0);
 		Constraint pivotConstraint = pivotType.getOwnedInvariant().get(0);
 		String textQuery = "context.oclAsType(Type).ownedInvariant->excluding(self)->forAll(name <> self.name or isCallable <> self.isCallable)";
@@ -274,7 +274,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2pivot(getOCL(), metaModelText);
 		Root pivotRoot = (Root) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getNestedPackage().get(0);
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotType = pivotPackage.getOwnedType().get(0);
 		EClass eClass = metaModelManager.getEcoreOfPivot(EClass.class, pivotType);
 		Object testObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
@@ -307,7 +307,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2pivot(getOCL(), metaModelText);
 		Root pivotRoot = (Root) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getNestedPackage().get(0);
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotTypeA = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "A");
 		org.eclipse.ocl.examples.pivot.Class pivotTypeB = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "B");
 		EPackage ePackage = metaModelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
@@ -457,7 +457,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		UML2Pivot.initialize(resourceSet);
 		URI uri = getTestModelURI("model/Fruit.uml");
 		Element element = metaModelManager.loadResource(uri, null, resourceSet);
-		org.eclipse.ocl.examples.pivot.Package fruitPackage = ((Root)element).getNestedPackage().get(0);
+		org.eclipse.ocl.examples.pivot.Package fruitPackage = ((Root)element).getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class treeClass = DomainUtil.getNamedElement(fruitPackage.getOwnedType(), "Tree");
 		ExpressionInOCL query = createQuery(treeClass, "self.height>20");
 		assertNotNull(query);
@@ -518,7 +518,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"}\n";
 		Resource metaModel = cs2pivot(getOCL(), metaModelText);
 		Root pivotRoot = (Root) metaModel.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getNestedPackage().get(0);
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotRoot.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class pivotTypeDomain = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "Domain");
 //		org.eclipse.ocl.examples.pivot.Class pivotTypeT1 = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "T1");
 		org.eclipse.ocl.examples.pivot.Class pivotTypeT2a = DomainUtil.getNamedElement(pivotPackage.getOwnedType(), "T2a");

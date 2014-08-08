@@ -536,10 +536,10 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String emitPackage(Package pkg) {
 		'''
 			«FOR nestedPackage : pkg.getSortedPackages()»
-				«IF nestedPackage.getNestedPackage().size() > 0»
+				«IF nestedPackage.getOwnedPackages().size() > 0»
 					«emitPackage(nestedPackage)»
 				«ENDIF»
-				«pkg.getSymbolName()».getNestedPackage().add(«nestedPackage.getSymbolName()»);
+				«pkg.getSymbolName()».getOwnedPackages().add(«nestedPackage.getSymbolName()»);
 			«ENDFOR»
 		'''
 	}
@@ -547,10 +547,10 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String emitRoot(Root pkg) {
 		'''
 			«FOR nestedPackage : pkg.getSortedPackages()»
-				«IF nestedPackage.getNestedPackage().size() > 0»
+				«IF nestedPackage.getOwnedPackages().size() > 0»
 					«emitPackage(nestedPackage)»
 				«ENDIF»
-				«pkg.getSymbolName()».getNestedPackage().add(«nestedPackage.getSymbolName()»);
+				«pkg.getSymbolName()».getOwnedPackages().add(«nestedPackage.getSymbolName()»);
 			«ENDFOR»
 		'''
 	}

@@ -387,7 +387,7 @@ public class AutoBaseCSContainmentVisitor
         }
         final List<? extends Package> UNBOXED_collect = collect.asEcoreObjects(idResolver, Package.class);
         assert UNBOXED_collect != null;
-        context.refreshList(result.getNestedPackage(), UNBOXED_collect);
+        context.refreshList(result.getOwnedPackages(), UNBOXED_collect);
         // AS element comments update;
         context.refreshComments(result, self);
         return null;

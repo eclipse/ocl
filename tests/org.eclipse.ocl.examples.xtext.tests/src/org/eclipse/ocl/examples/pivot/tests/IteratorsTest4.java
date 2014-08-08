@@ -146,13 +146,13 @@ public class IteratorsTest4 extends PivotTestSuite
     	SetValue expected = idResolver.createSetOfEach(typeId, "pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected, "nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
+        assertQueryEquals(pkg1, expected, "ownedPackages->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
 
         // shorter form
-        assertQueryEquals(pkg1, expected, "nestedPackage->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
+        assertQueryEquals(pkg1, expected, "ownedPackages->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
 
         // shortest form
-        assertQueryEquals(pkg1, expected, "nestedPackage->iterate(s : Set(String) = Set{} | s->including(name))");
+        assertQueryEquals(pkg1, expected, "ownedPackages->iterate(s : Set(String) = Set{} | s->including(name))");
 
         assertQueryEquals(pkg1, "pfx_a_b_c", "Sequence{'a','b','c'}->iterate(e : String; s : String = 'pfx' | s + '_' + e)");
     }
@@ -166,16 +166,16 @@ public class IteratorsTest4 extends PivotTestSuite
 		CollectionValue expected = idResolver.createSetOfEach(typeId, pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expected, "nestedPackage->select(p : ocl::Package | p.name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "ownedPackages->select(p : ocl::Package | p.name <> 'bob')");
 
         // shorter form
-        assertQueryEquals(pkg1, expected, "nestedPackage->select(p | p.name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "ownedPackages->select(p | p.name <> 'bob')");
 
         // shortest form
-        assertQueryEquals(pkg1, expected, "nestedPackage->select(name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "ownedPackages->select(name <> 'bob')");
 
         Value expected2 = idResolver.createSetOfEach(typeId, bob, pkg2, pkg3);
-        assertQueryEquals(pkg1, expected2, "nestedPackage->select(true)");
+        assertQueryEquals(pkg1, expected2, "ownedPackages->select(true)");
     }
 
     /**
@@ -187,16 +187,16 @@ public class IteratorsTest4 extends PivotTestSuite
 		CollectionValue expected = idResolver.createSetOfEach(typeId, pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expected, "nestedPackage->reject(p : ocl::Package | p.name = 'bob')");
+        assertQueryEquals(pkg1, expected, "ownedPackages->reject(p : ocl::Package | p.name = 'bob')");
 
         // shorter form
-        assertQueryEquals(pkg1, expected, "nestedPackage->reject(p | p.name = 'bob')");
+        assertQueryEquals(pkg1, expected, "ownedPackages->reject(p | p.name = 'bob')");
 
         // shortest form
-        assertQueryEquals(pkg1, expected, "nestedPackage->reject(name = 'bob')");
+        assertQueryEquals(pkg1, expected, "ownedPackages->reject(name = 'bob')");
 
         expected = idResolver.createSetOfEach(typeId);
-        assertQueryEquals(pkg1, expected, "nestedPackage->reject(true)");
+        assertQueryEquals(pkg1, expected, "ownedPackages->reject(true)");
     }
 
     /**
@@ -204,16 +204,16 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_any() {
         // complete form
-    	assertQueryEquals(pkg1, bob, "nestedPackage->any(p : ocl::Package | p.name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "ownedPackages->any(p : ocl::Package | p.name = 'bob')");
 
         // shorter form
-    	assertQueryEquals(pkg1, bob, "nestedPackage->any(p | p.name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "ownedPackages->any(p | p.name = 'bob')");
 
         // shortest form
-    	assertQueryEquals(pkg1, bob, "nestedPackage->any(name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "ownedPackages->any(name = 'bob')");
 
         // negative
-        assertQueryNotSame(pkg1, bob, "nestedPackage->any(name = 'pkg2')");
+        assertQueryNotSame(pkg1, bob, "ownedPackages->any(name = 'pkg2')");
 
         assertQueryInvalid(null, "Sequence{}->any(s | s = false)");		// OMG Issue 18504
         assertQueryFalse(null, "Sequence{false}->any(s | s = false)");
@@ -223,8 +223,8 @@ public class IteratorsTest4 extends PivotTestSuite
         assertQueryNull(null, "Sequence{null}->any(s | s = null)");
         assertQueryNull(null, "Sequence{null, null}->any(s | s = null)");
 
-        assertQueryDefined(pkg1, "nestedPackage->any(true)");
-        assertQueryInvalid(pkg1, "nestedPackage->any(false)");			// OMG Issue 18504
+        assertQueryDefined(pkg1, "ownedPackages->any(true)");
+        assertQueryInvalid(pkg1, "ownedPackages->any(false)");			// OMG Issue 18504
     }
 
     /**
@@ -243,7 +243,7 @@ public class IteratorsTest4 extends PivotTestSuite
         assertQueryTrue(pkg1, "Sequence{null,1}->isUnique(e | e)");
         assertQueryFalse(pkg1, "Sequence{null,null}->isUnique(e | e)");
 
-        assertQueryTrue(pkg1, "nestedPackage->isUnique(name)");
+        assertQueryTrue(pkg1, "ownedPackages->isUnique(name)");
     }
 
     /**
@@ -269,7 +269,7 @@ public class IteratorsTest4 extends PivotTestSuite
         // does not occur
         assertQueryFalse(pkg1, "Sequence{}->exists(e | e = 'c')");
 
-        assertQueryTrue(pkg1, "nestedPackage->exists(true)");
+        assertQueryTrue(pkg1, "ownedPackages->exists(true)");
     }
 
     /**
@@ -297,7 +297,7 @@ public class IteratorsTest4 extends PivotTestSuite
         // desired result
         assertQueryTrue(pkg1, "Sequence{}->forAll(e | e = 'c')");
 
-        assertQueryTrue(pkg1, "nestedPackage->forAll(true)");
+        assertQueryTrue(pkg1, "ownedPackages->forAll(true)");
         //
         assertQueryTrue(pkg1, "Sequence{1..0}->forAll(false)");
         assertQueryFalse(pkg1, "Sequence{1..1}->forAll(false)");
@@ -326,23 +326,23 @@ public class IteratorsTest4 extends PivotTestSuite
         CollectionValue expected1 = idResolver.createBagOfEach(typeId, "pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p : ocl::Package | p.name)");
+        assertQueryEquals(pkg1, expected1, "ownedPackages->collect(p : ocl::Package | p.name)");
 
         // shorter form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p | p.name)");
+        assertQueryEquals(pkg1, expected1, "ownedPackages->collect(p | p.name)");
 
         // yet shorter form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(name)");
+        assertQueryEquals(pkg1, expected1, "ownedPackages->collect(name)");
 
         // shortest form
-        assertQueryEquals(pkg1, expected1, "nestedPackage.name");
+        assertQueryEquals(pkg1, expected1, "ownedPackages.name");
 
         // flattening of nested collections
         CollectionValue expected2 = idResolver.createBagOfEach(typeId, jim, pkg4, pkg5);
-        // nestedPackage is Set<Package>
-        // nestedPackage->collectNested(nestedPackage) is Bag<Set<Package>>
-        // nestedPackage->collectNested(nestedPackage)->flatten() is Bag<Package>
-        assertQueryEquals(pkg1, expected2, "nestedPackage.nestedPackage");
+        // ownedPackages is Set<Package>
+        // ownedPackages->collectNested(ownedPackages) is Bag<Set<Package>>
+        // ownedPackages->collectNested(ownedPackages)->flatten() is Bag<Package>
+        assertQueryEquals(pkg1, expected2, "ownedPackages.ownedPackages");
         assertQueryResults(pkg1, "Sequence{1,2}", "let s:Sequence(OclAny) = Sequence{'a','bb'} in s->collect(oclAsType(String)).size()");
     }
 
@@ -353,7 +353,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		"nestedPackage.unknownAttribute",
+    		"ownedPackages.unknownAttribute",
         	OCLMessages.UnresolvedProperty_ERROR_, "Set(Package)", "unknownAttribute");
    }
 
@@ -364,7 +364,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		"nestedPackage.unknownOperation(self)",
+    		"ownedPackages.unknownOperation(self)",
         	OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", "self");
    }
 
@@ -398,13 +398,13 @@ public class IteratorsTest4 extends PivotTestSuite
         CollectionValue expected1 = idResolver.createBagOfEach(typeId, "pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p : ocl::Package | p.name)");
+        assertQueryEquals(pkg1, expected1, "ownedPackages->collectNested(p : ocl::Package | p.name)");
 
         // shorter form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p | p.name)");
+        assertQueryEquals(pkg1, expected1, "ownedPackages->collectNested(p | p.name)");
 
         // shortest form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(name)");
+        assertQueryEquals(pkg1, expected1, "ownedPackages->collectNested(name)");
 
         // nested collections not flattened
 		Set<org.eclipse.ocl.examples.pivot.Package> e1 = Collections.singleton(jim);
@@ -412,7 +412,7 @@ public class IteratorsTest4 extends PivotTestSuite
         HashSet<Object> e3 = new HashSet<Object>(Arrays.asList(new Object[] {pkg4, pkg5}));
 		CollectionValue expected2 = idResolver.createBagOfEach(typeId, e1, e2, e3);
 
-        assertQueryEquals(pkg1, expected2, "nestedPackage->collectNested(nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "ownedPackages->collectNested(ownedPackages)");
         // Bug 423489 - ensure return is collection of body type not source type
         assertQueryResults(pkg1, "Sequence{1,2}", "let s:Sequence(OclAny) = Sequence{'a','bb'} in s->collectNested(oclAsType(String)).size()");
         assertQueryResults(pkg1, "Sequence{Sequence{1,2},Sequence{3,4}}", "let s:Sequence(Sequence(OclAny)) = Sequence{Sequence{'a','bb'},Sequence{'ccc','dddd'}} in s->collectNested(oclAsType(Sequence(String)))->collectNested(s | s.size())");
@@ -429,13 +429,13 @@ public class IteratorsTest4 extends PivotTestSuite
         OrderedSetValue expectedSet = idResolver.createOrderedSetOfEach(typeId, bob, pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p : ocl::Package | p.name)");
+        assertQueryEquals(pkg1, expectedSet, "ownedPackages->sortedBy(p : ocl::Package | p.name)");
 
         // shorter form
-        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p | p.name)");
+        assertQueryEquals(pkg1, expectedSet, "ownedPackages->sortedBy(p | p.name)");
 
         // shortest form
-        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(name)");
+        assertQueryEquals(pkg1, expectedSet, "ownedPackages->sortedBy(name)");
 
     	CollectionTypeId stringsTypeId = TypeId.SEQUENCE.getSpecializedId(TypeId.STRING);
         SequenceValue expected = idResolver.createSequenceOfEach(stringsTypeId, "a", "b", "c", "d", "e");
@@ -458,26 +458,26 @@ public class IteratorsTest4 extends PivotTestSuite
     	@SuppressWarnings("null") @NonNull Type packageType = metaModelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
     	CollectionValue expected1 = idResolver.createSetOfEach(typeId, pkg1, pkg3, pkg5, george); // closure does include sources (george)
-        assertQueryEquals(george, expected1, "self.oclAsType(Package)->closure(nestingPackage)");
+        assertQueryEquals(george, expected1, "self.oclAsType(Package)->closure(owningPackage)");
 
         CollectionValue expected2 = idResolver.createSetOfEach(typeId, pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
 //        CollectionValue expected2a = metaModelManager.createOrderedSetValue(null, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected2, "self.oclAsType(Package)->closure(nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self.oclAsType(Package)->closure(ownedPackages)");
 // FIXME not a valid test for UML's unordered nested packages
-//        assertQueryEquals(pkg1, expected2a, "self->asSequence()->closure(nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self.oclAsType(Package)->closure(nestedPackage->asSequence())");
+//        assertQueryEquals(pkg1, expected2a, "self->asSequence()->closure(ownedPackages)");
+        assertQueryEquals(pkg1, expected2, "self.oclAsType(Package)->closure(ownedPackages->asSequence())");
 	    SetValue expected3 = idResolver.createSetOfEach(typeId, pkg1, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected3, "self.oclAsType(Package)->asBag()->closure(nestedPackage)");
-        assertQueryEquals(pkg1, expected3, "self.oclAsType(Package)->closure(nestedPackage->asBag())");
+        assertQueryEquals(pkg1, expected3, "self.oclAsType(Package)->asBag()->closure(ownedPackages)");
+        assertQueryEquals(pkg1, expected3, "self.oclAsType(Package)->closure(ownedPackages->asBag())");
 
         // empty closure
         CollectionTypeId collectedId = expected1.getTypeId();
 //        @SuppressWarnings("unused") DomainType elementType = collectionType.getElementType();
-		assertQueryEquals(pkg1, idResolver.createSetOfEach(collectedId, pkg1), "self.oclAsType(Package)->closure(nestingPackage)");
-//WIP        assertQueryNotEquals(pkg1, getEmptySetValue(), "self->closure(nestingPackage)");
+		assertQueryEquals(pkg1, idResolver.createSetOfEach(collectedId, pkg1), "self.oclAsType(Package)->closure(owningPackage)");
+//WIP        assertQueryNotEquals(pkg1, getEmptySetValue(), "self->closure(owningPackage)");
         // empty closure
-        assertQueryEquals(pkg1, idResolver.createOrderedSetOfEach(collectedId, pkg1), "self.oclAsType(Package)->asSequence()->closure(nestingPackage)");
-//WIP 		assertQueryNotEquals(pkg1, metaModelManager.createOrderedSetValue(metaModelManager.getOrderedSetType(elementType)), "self->asSequence()->closure(nestingPackage)");
+        assertQueryEquals(pkg1, idResolver.createOrderedSetOfEach(collectedId, pkg1), "self.oclAsType(Package)->asSequence()->closure(owningPackage)");
+//WIP 		assertQueryNotEquals(pkg1, metaModelManager.createOrderedSetValue(metaModelManager.getOrderedSetType(elementType)), "self->asSequence()->closure(owningPackage)");
     }
 
     /**
@@ -486,11 +486,11 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_closure_cycles() {
     	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
-        Property nestedPackage = getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
-        Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
-        SetValue expected = idResolver.createSetOfEach(typeId, nestedPackage, nestingPackage); // cyclic closure *does* include self
-        assertQueryEquals(nestingPackage, expected, "self->closure(opposite)");
-        assertQueryEquals(nestedPackage, expected, "self->closure(opposite)");
+        Property ownedPackages = getAttribute(packageMetaclass, "ownedPackages", packageMetaclass);
+        Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
+        SetValue expected = idResolver.createSetOfEach(typeId, ownedPackages, owningPackage); // cyclic closure *does* include self
+        assertQueryEquals(owningPackage, expected, "self->closure(opposite)");
+        assertQueryEquals(ownedPackages, expected, "self->closure(opposite)");
     }
 
     /**
@@ -563,9 +563,9 @@ public class IteratorsTest4 extends PivotTestSuite
     	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class packageMetaclass = metaModelManager.getPivotType("Package");
     	@SuppressWarnings("null") @NonNull org.eclipse.ocl.examples.pivot.Class propertyMetaclass = metaModelManager.getPivotType("Property");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
-        Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
-        SetValue expected = idResolver.createSetOfEach(typeId, nestingPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
-        assertQueryEquals(nestingPackage, expected, "self->closure(i : OclElement | i.oclContainer())");
+        Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
+        SetValue expected = idResolver.createSetOfEach(typeId, owningPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
+        assertQueryEquals(owningPackage, expected, "self->closure(i : OclElement | i.oclContainer())");
 		assertValidationErrorQuery2(propertyMetaclass, "self->closure(oclContainer())", OCLMessages.IncompatibleBodyType_WARNING_, "OclElement", "Property");
     }
 

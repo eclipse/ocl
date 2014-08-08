@@ -1040,14 +1040,14 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull Root parentRoot, @NonNull String name) {
 		@SuppressWarnings("null")
 		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
-		parentRoot.getNestedPackage().add(aPackage);
+		parentRoot.getOwnedPackages().add(aPackage);
 		return aPackage;
 	}
 
 	protected @NonNull org.eclipse.ocl.examples.pivot.Package createPackage(@NonNull org.eclipse.ocl.examples.pivot.Package parentPackage, @NonNull String name) {
 		@SuppressWarnings("null")
 		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
-		parentPackage.getNestedPackage().add(aPackage);
+		parentPackage.getOwnedPackages().add(aPackage);
 		return aPackage;
 	}
 	

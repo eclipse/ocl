@@ -124,7 +124,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		fruitEPackage = (EPackage)ecoreResource.getContents().get(0);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
-		fruitPackage = DomainUtil.getNamedElement(ecore2Pivot.getPivotRoot().getNestedPackage(), "fruit");
+		fruitPackage = DomainUtil.getNamedElement(ecore2Pivot.getPivotRoot().getOwnedPackages(), "fruit");
 		
 		fruit = (EClass) getEClassifier(fruitEPackage, "Fruit");
 		fruit_ripen = getEOperation(fruit, "ripen", null, null);

@@ -542,7 +542,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<org.eclipse.ocl.examples.pivot.Package> getSortedPackages(@NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
-		List<org.eclipse.ocl.examples.pivot.Package> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Package>(pkg.getNestedPackage());
+		List<org.eclipse.ocl.examples.pivot.Package> sortedElements = new ArrayList<org.eclipse.ocl.examples.pivot.Package>(pkg.getOwnedPackages());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}

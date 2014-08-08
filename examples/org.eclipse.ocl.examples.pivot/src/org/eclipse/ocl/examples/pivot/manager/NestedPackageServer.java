@@ -37,7 +37,7 @@ public class NestedPackageServer extends PackageServer
 	@Override
 	protected void assertSamePackage(@Nullable DomainPackage domainPackage) {
 		assert domainPackage != null;
-		DomainPackage parentPackage = domainPackage.getNestingPackage();
+		DomainPackage parentPackage = domainPackage.getOwningPackage();
 		assert parentPackage != null;
 		parentPackageServer.assertSamePackage(parentPackage);
 		super.assertSamePackage(domainPackage);
@@ -49,7 +49,7 @@ public class NestedPackageServer extends PackageServer
 		parentPackageServer.disposedNestedPackageServer(this);
 	}
 
-	public @NonNull DomainPackage getNestingPackage() {
+	public @NonNull DomainPackage getOwningPackage() {
 		return parentPackageServer;
 	}
 

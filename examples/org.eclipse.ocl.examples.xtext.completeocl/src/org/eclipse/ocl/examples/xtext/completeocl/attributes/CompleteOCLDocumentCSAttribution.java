@@ -51,7 +51,7 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 					if (namespace instanceof Root) {
 						environmentView.addAllPackages((Root)namespace);
 					} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {		// FIXME This legacy behaviour needs cleaning up
-						for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackage()) {
+						for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getOwnedPackages()) {
 							assert rootPackage != null;
 							environmentView.addNamedElement(rootPackage);		// FIXME Rationalize root of pivot model
 							environmentView.addAllPackages(rootPackage);

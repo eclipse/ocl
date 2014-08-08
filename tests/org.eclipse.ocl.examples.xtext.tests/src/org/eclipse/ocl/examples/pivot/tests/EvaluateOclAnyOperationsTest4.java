@@ -622,7 +622,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryEquals(null, getMetaclass(packageType), "Package.oclType()");
     	assertQueryResults(null, "Set{}", "Package.allInstances()");
     	assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
-       	assertQueryResults(pkg1, "self.oclAsType(Package)->closure(nestedPackage)->including(self)", "Package.allInstances()");
+       	assertQueryResults(pkg1, "self.oclAsType(Package)->closure(ownedPackages)->including(self)", "Package.allInstances()");
        	assertQueryEquals(pkg1, 8, "self.oclType().allInstances()->size()");
        	assertQueryEquals(pkg1, 0, "Package.oclType().allInstances()->size()");
     }

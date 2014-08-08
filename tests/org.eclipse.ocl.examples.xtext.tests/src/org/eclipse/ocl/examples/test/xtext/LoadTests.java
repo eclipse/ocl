@@ -879,7 +879,7 @@ public class LoadTests extends XtextTestCase
 		createOCLinEcoreFile("Bug402767.oclinecore", testFile);
 		Resource resource = doLoad_Concrete("Bug402767", "oclinecore");
 		Root root = (Root) resource.getContents().get(0);
-		org.eclipse.ocl.examples.pivot.Package pkg = root.getNestedPackage().get(0);
+		org.eclipse.ocl.examples.pivot.Package pkg = root.getOwnedPackages().get(0);
 		org.eclipse.ocl.examples.pivot.Class cls = pkg.getOwnedType().get(0);
 		List<Property> ownedAttributes = cls.getOwnedAttribute();
 		checkMultiplicity(DomainUtil.getNamedElement(ownedAttributes, "vBlank"), 1, 1);
@@ -1031,8 +1031,8 @@ public class LoadTests extends XtextTestCase
 		assertEquals(1, asResource.getContents().size());
 		Root pivotRoot1 = (Root) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotRoot1.getName());
-		assertEquals(1, pivotRoot1.getNestedPackage().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackage1 = pivotRoot1.getNestedPackage().get(0);
+		assertEquals(1, pivotRoot1.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackage1 = pivotRoot1.getOwnedPackages().get(0);
 		assertEquals("PackageA", pivotPackage1.getName());
 		assertEquals("nsPrefixA", pivotPackage1.getNsPrefix());
 		assertEquals(1, pivotPackage1.getOwnedType().size());
@@ -1046,8 +1046,8 @@ public class LoadTests extends XtextTestCase
 		assertEquals(1, asResource.getContents().size());
 		Root pivotRoot2 = (Root) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotRoot2.getName());
-		assertEquals(1, pivotRoot2.getNestedPackage().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackage2 = pivotRoot2.getNestedPackage().get(0);
+		assertEquals(1, pivotRoot2.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackage2 = pivotRoot2.getOwnedPackages().get(0);
 		assertEquals("PackageB", pivotPackage2.getName());
 		assertEquals("nsPrefixB", pivotPackage2.getNsPrefix());
 		assertEquals(1, pivotPackage2.getOwnedType().size());
@@ -1097,8 +1097,8 @@ public class LoadTests extends XtextTestCase
 		assertEquals(1, asResource.getContents().size());
 		Root pivotRootXXX = (Root) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotRootXXX.getName());
-		assertEquals(1, pivotRootXXX.getNestedPackage().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackageXXX = pivotRootXXX.getNestedPackage().get(0);
+		assertEquals(1, pivotRootXXX.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackageXXX = pivotRootXXX.getOwnedPackages().get(0);
 		assertEquals("PackageXXX", pivotPackageXXX.getName());
 		assertEquals("nsPrefixXXX", pivotPackageXXX.getNsPrefix());
 		assertEquals(2, pivotPackageXXX.getOwnedType().size());
@@ -1122,8 +1122,8 @@ public class LoadTests extends XtextTestCase
 		assertEquals(1, asResource.getContents().size());
 		Root pivotRootYYY = (Root) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotRootYYY.getName());
-		assertEquals(1, pivotRootYYY.getNestedPackage().size());
-		org.eclipse.ocl.examples.pivot.Package pivotPackageYYY = pivotRootYYY.getNestedPackage().get(0);
+		assertEquals(1, pivotRootYYY.getOwnedPackages().size());
+		org.eclipse.ocl.examples.pivot.Package pivotPackageYYY = pivotRootYYY.getOwnedPackages().get(0);
 		assertEquals("PackageYYY", pivotPackageYYY.getName());
 		assertEquals("nsPrefixYYY", pivotPackageYYY.getNsPrefix());
 		assertEquals(2, pivotPackageYYY.getOwnedType().size());

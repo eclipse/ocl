@@ -95,7 +95,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		DomainPackage rootPackage = metaModelManager.getRootPackage(packageName);
 		if (rootPackage == null) {
 			Orphanage orphanage = metaModelManager.getOrphanage();
-			rootPackage = DomainUtil.getNamedElement(orphanage.getNestedPackage(), packageName);
+			rootPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
 			if (rootPackage == null) {
 				throw new UnsupportedOperationException();
 			}

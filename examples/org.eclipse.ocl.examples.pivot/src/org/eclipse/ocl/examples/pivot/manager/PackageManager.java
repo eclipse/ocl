@@ -119,7 +119,7 @@ public class PackageManager implements PackageServerParent
 			packageServer.assertSamePackage(pivotPackage);
 		}
 		packageServer.addTrackedPackage(pivotPackage);
-		for (DomainPackage nestedPackage : pivotPackage.getNestedPackage()) {
+		for (DomainPackage nestedPackage : pivotPackage.getOwnedPackages()) {
 			if (nestedPackage != null) {
 				addPackage(packageServer, nestedPackage);
 			}
@@ -170,7 +170,7 @@ public class PackageManager implements PackageServerParent
 	}
 	
 	public synchronized void addRoot(@NonNull Root pivotRoot) {
-		for (org.eclipse.ocl.examples.pivot.Package asPackage : pivotRoot.getNestedPackage()) {
+		for (org.eclipse.ocl.examples.pivot.Package asPackage : pivotRoot.getOwnedPackages()) {
 			String nsURI = asPackage.getURI();
 			String sharedURI = getSharedURI(nsURI);
 			if (sharedURI == nsURI) {
@@ -183,7 +183,7 @@ public class PackageManager implements PackageServerParent
 			}
 		}
 		rootTrackers.add(new RootTracker(this, pivotRoot));
-		for (DomainPackage pivotPackage : pivotRoot.getNestedPackage()) {
+		for (DomainPackage pivotPackage : pivotRoot.getOwnedPackages()) {
 			if (pivotPackage != null) {
 				addPackage(this, pivotPackage);
 			}
@@ -432,7 +432,7 @@ public class PackageManager implements PackageServerParent
 			}
 			if (packageServer == null) {
 				PackageServerParent packageServerParent;
-				DomainPackage pivotPackageParent = pivotPackage.getNestingPackage();
+				DomainPackage pivotPackageParent = pivotPackage.getOwningPackage();
 				if (pivotPackageParent == null) {
 					packageServerParent = this;
 				}
@@ -453,7 +453,7 @@ public class PackageManager implements PackageServerParent
 	public @NonNull PackageTracker getPackageTracker(@NonNull DomainPackage pivotPackage) {	// FIXME Review wrt getMemberPackageServer()
 		PackageTracker packageTracker = package2tracker.get(pivotPackage);
 		if (packageTracker == null) {
-			DomainPackage nestingPackage = pivotPackage.getNestingPackage();
+			DomainPackage nestingPackage = pivotPackage.getOwningPackage();
 			PackageServer packageServer;
 			if (nestingPackage != null) {
 				PackageServer nestingPackageServer = getPackageServer(nestingPackage);
@@ -601,7 +601,7 @@ public class PackageManager implements PackageServerParent
 	public synchronized void removeRoot(@NonNull Root pivotRoot) {
 		for (RootTracker rootTracker : rootTrackers) {
 			if (rootTracker.getTarget() == pivotRoot) {
-				pivotRoot.getNestedPackage().clear();
+				pivotRoot.getOwnedPackages().clear();
 				rootTracker.dispose();
 				break;
 			}

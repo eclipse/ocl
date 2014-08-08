@@ -74,7 +74,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 		return idResolver;
 	}
 
-	public List<? extends DomainPackage> getNestedPackage() {
+	public List<? extends DomainPackage> getOwnedPackages() {
 		Map<String, EcoreReflectivePackage> nestedPackages2 = nestedPackages;
 		if (nestedPackages2 == null) {
 			nestedPackages = nestedPackages2 = new HashMap<String, EcoreReflectivePackage>();
@@ -89,7 +89,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 		return new ArrayList<DomainPackage>(nestedPackages2.values());
 	}
 
-	public DomainPackage getNestingPackage() {
+	public DomainPackage getOwningPackage() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

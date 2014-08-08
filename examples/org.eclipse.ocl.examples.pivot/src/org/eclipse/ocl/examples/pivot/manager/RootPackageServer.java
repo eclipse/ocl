@@ -31,7 +31,7 @@ public class RootPackageServer extends PackageServer
 	@Override
 	protected void assertSamePackage(@Nullable DomainPackage domainPackage) {
 		assert domainPackage != null;
-		DomainPackage parentPackage = domainPackage.getNestingPackage();
+		DomainPackage parentPackage = domainPackage.getOwningPackage();
 		assert parentPackage == null;
 		String typeBasedNsURI = domainPackage.getURI();
 		String serverBasedNsURI = getURI();
@@ -53,7 +53,7 @@ public class RootPackageServer extends PackageServer
 		return metapackageId;
 	}
 
-	public @Nullable DomainPackage getNestingPackage() {
+	public @Nullable DomainPackage getOwningPackage() {
 		return null;
 	}
 

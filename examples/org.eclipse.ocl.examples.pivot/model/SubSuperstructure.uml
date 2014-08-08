@@ -1419,7 +1419,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
         <packagedElement xmi:type="uml:Class" xmi:id="_ZE--wIQLEeGSY6MLEc_weQ" name="Package"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_lqIjIMZ_EeGSosHO1vMMFA" name="Root">
           <generalization xmi:id="_XnqLVH7VEeOu79LxSz8Ylw" general="_vUwG8MaCEeGSosHO1vMMFA"/>
-          <ownedAttribute xmi:id="_UMBmIMaCEeGSosHO1vMMFA" name="nestedPackage" type="_ZE--wIQLEeGSY6MLEc_weQ" aggregation="composite">
+          <ownedAttribute xmi:id="_UMBmIMaCEeGSosHO1vMMFA" name="ownedPackages" type="_ZE--wIQLEeGSY6MLEc_weQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaVX7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XngaVn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>

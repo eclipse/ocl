@@ -54,7 +54,7 @@ class RootTracker implements Adapter.Internal
 	public void notifyChanged(Notification notification) {
 		int eventType = notification.getEventType();
 		Object feature = notification.getFeature();
-		if (feature == PivotPackage.Literals.ROOT__NESTED_PACKAGE) {
+		if (feature == PivotPackage.Literals.ROOT__OWNED_PACKAGES) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();

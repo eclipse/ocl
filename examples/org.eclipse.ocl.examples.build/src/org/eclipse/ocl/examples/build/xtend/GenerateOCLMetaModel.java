@@ -230,7 +230,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			ASSaver saver = new ASSaver(asResource);
 			/*Package orphanage =*/ saver.localizeSpecializations();
 //			if ((orphanage != null) && (pivotModel instanceof Root)) {
-//				(pivotModel as Root).getNestedPackage().add(orphanage);
+//				(pivotModel as Root).getOwnedPackages().add(orphanage);
 //			}
 			String fileName = outputFolder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");

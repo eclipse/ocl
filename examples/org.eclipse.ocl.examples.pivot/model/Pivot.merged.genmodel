@@ -718,10 +718,10 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//Package"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/nestedPackage"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/ownedPackages"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/nestingPackage"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/owningPackage"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Package/profileApplication"/>
@@ -1177,7 +1177,7 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//Root"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Root/nestedPackage"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Root/ownedPackages"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Root/externalURI"/>

@@ -111,7 +111,7 @@ public class AliasAnalysis extends AdapterImpl
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
 			if (localPackage != null) {
 				DomainPackage primaryPackage = metaModelManager.getPackageServer(localPackage);
-				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage.getNestingPackage() == null)) {
+				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage.getOwningPackage() == null)) {
 					if (!allAliases.containsKey(primaryPackage)) {
 						String alias = computeAlias(primaryPackage);
 						allAliases.put(localPackage, alias);

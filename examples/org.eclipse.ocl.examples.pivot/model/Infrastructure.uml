@@ -216,14 +216,14 @@
           <body>A package is a container for types and other packages.</body>
         </ownedComment>
         <generalization xmi:id="_XpKnPn7VEeOu79LxSz8Ylw" general="Core-Basic-NamedElement"/>
-        <ownedAttribute xmi:id="Core-Basic-Package-nestedPackage" name="nestedPackage" type="Core-Basic-Package" aggregation="composite" association="Core-Basic-A_nestedPackage_nestingPackage">
+        <ownedAttribute xmi:id="Core-Basic-Package-nestedPackage" name="ownedPackages" type="Core-Basic-Package" aggregation="composite" association="Core-Basic-A_nestedPackage_nestingPackage">
           <ownedComment xmi:id="Core-Basic-Package-nestedPackage-_ownedComment.0" annotatedElement="Core-Basic-Package-nestedPackage">
             <body>The set of contained packages.</body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobATH7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobATX7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="Core-Basic-Package-nestingPackage" name="nestingPackage" type="Core-Basic-Package" association="Core-Basic-A_nestedPackage_nestingPackage">
+        <ownedAttribute xmi:id="Core-Basic-Package-nestingPackage" name="owningPackage" type="Core-Basic-Package" association="Core-Basic-A_nestedPackage_nestingPackage">
           <ownedComment xmi:id="Core-Basic-Package-nestingPackage-_ownedComment.0" annotatedElement="Core-Basic-Package-nestingPackage">
             <body>The containing package.</body>
           </ownedComment>

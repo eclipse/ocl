@@ -50,7 +50,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return ePackage;
 	}
 
-	public List<? extends DomainPackage> getNestedPackage() {
+	public List<? extends DomainPackage> getOwnedPackages() {
 		List<EcoreExecutorPackage> packages2 = packages;
 		if (packages2 == null) {
 			synchronized (this) {
@@ -70,7 +70,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return packages2;
 	}
 
-	public DomainPackage getNestingPackage() {
+	public DomainPackage getOwningPackage() {
 		EPackage eSuperPackage = ePackage.getESuperPackage();
 		if (eSuperPackage == null) {
 			return null;

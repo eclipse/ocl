@@ -117,7 +117,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		
 		for (EObject root : resource.getContents()) {
 			if (root instanceof Root) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)root).getNestedPackage()) {
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package asPackage : ((Root)root).getOwnedPackages()) {
 					GenPackage superGenPackage = null;
 					org.eclipse.ocl.examples.pivot.Package asSuperPackage = null;
 					if (superProjectPrefix != null) {
@@ -298,7 +298,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		org.eclipse.ocl.examples.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
 		asVisitorPackage.getOwnedType().add(asVisitorClass);
 		Root asVisitorRoot = PivotUtil.createRoot(nsURI + ".java");
-		asVisitorRoot.getNestedPackage().add(asVisitorPackage);
+		asVisitorRoot.getOwnedPackages().add(asVisitorPackage);
 		metaModelManager.installRoot(asVisitorRoot);
 		return asVisitorClass;
 	}
@@ -353,10 +353,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
 		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
 		Orphanage orphanage = metaModelManager.getOrphanage();
-		org.eclipse.ocl.examples.pivot.Package asPackage = DomainUtil.getNamedElement(orphanage.getNestedPackage(), packageName);
+		org.eclipse.ocl.examples.pivot.Package asPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
 		if (asPackage == null) {
 			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
-			orphanage.getNestedPackage().add(asPackage);
+			orphanage.getOwnedPackages().add(asPackage);
 		}
 		org.eclipse.ocl.examples.pivot.Class asType = DomainUtil.getNamedElement(asPackage.getOwnedType(), className);
 		if (asType == null) {

@@ -848,7 +848,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 				}
 			}
 		}
-		PivotUtil.refreshList(pivotRoot.getNestedPackage(), newPackages);
+		PivotUtil.refreshList(pivotRoot.getOwnedPackages(), newPackages);
 		Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
 		for (EGenericType eGenericType : genericTypes) {
 			if (eGenericType != null) {

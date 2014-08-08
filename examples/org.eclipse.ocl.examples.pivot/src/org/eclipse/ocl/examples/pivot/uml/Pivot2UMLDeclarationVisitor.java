@@ -298,7 +298,7 @@ public class Pivot2UMLDeclarationVisitor
 //		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_URI)) {
 //			umlPackage.setNsURI(pivotPackage.getNsURI());
 //		}
-		safeVisitAll(umlPackage.getNestedPackages(), pivotPackage.getNestedPackage());
+		safeVisitAll(umlPackage.getNestedPackages(), pivotPackage.getOwnedPackages());
 		safeVisitAll(umlPackage.getOwnedTypes(), pivotPackage.getOwnedType());
 		return umlPackage;
 	}

@@ -957,7 +957,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package pkg) {
-		appendQualifiedName(pkg.getNestingPackage(), "::", pkg);
+		appendQualifiedName(pkg.getOwningPackage(), "::", pkg);
 		return null;
 	}
 

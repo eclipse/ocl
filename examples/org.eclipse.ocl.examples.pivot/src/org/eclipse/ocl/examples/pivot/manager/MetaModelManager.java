@@ -2826,7 +2826,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public void installRoot(@NonNull Root pivotRoot) {
 		packageManager.addRoot(pivotRoot);
-		for (DomainPackage asPackage : pivotRoot.getNestedPackage()) {
+		for (DomainPackage asPackage : pivotRoot.getOwnedPackages()) {
 			if ((asPackage instanceof Library) && !asLibraries.contains(asPackage)) {
 				Library asLibrary = (Library)asPackage;
 				String uri = asLibrary.getURI();

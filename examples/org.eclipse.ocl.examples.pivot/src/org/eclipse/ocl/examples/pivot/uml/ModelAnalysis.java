@@ -277,7 +277,7 @@ public class ModelAnalysis
 
 	private void computeProfileClosure(@NonNull Set<Profile> allProfiles, @NonNull Profile asProfile) {
 		if (allProfiles.add(asProfile)) {
-			for (org.eclipse.ocl.examples.pivot.Package asNestedPackage : asProfile.getNestedPackage()) {
+			for (org.eclipse.ocl.examples.pivot.Package asNestedPackage : asProfile.getOwnedPackages()) {
 				if (asNestedPackage instanceof Profile) {
 					computeProfileClosure(allProfiles, (Profile) asNestedPackage);
 				}

@@ -67,7 +67,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 	'''}
 
 	protected override String generateMetamodel(Root root) {
-		var Package pkg = root.nestedPackage.findPackage();
+		var Package pkg = root.ownedPackages.findPackage();
 		if (pkg == null) {
 			return null;
 		}
