@@ -177,10 +177,10 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS:
+				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
@@ -225,10 +225,10 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return getInstanceClassName();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
 				return getOwnedRule();
+			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS:
+				return getOwnedTemplateBindings();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
-			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_BINDING:
-				return getOwnedTemplateBinding();
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
@@ -301,12 +301,12 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
-				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -392,11 +392,11 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
+			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				return;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -467,10 +467,10 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS:
+				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.DYNAMIC_TYPE__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:

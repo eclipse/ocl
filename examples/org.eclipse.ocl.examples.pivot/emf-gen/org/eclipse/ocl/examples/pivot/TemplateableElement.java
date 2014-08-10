@@ -24,8 +24,8 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  * </ul>
  * </p>
@@ -37,20 +37,20 @@ public interface TemplateableElement
 		extends Element {
 
 	/**
-	 * Returns the value of the '<em><b>Template Binding</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Template Bindings</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateBinding}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional bindings from this element to templates.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Template Binding</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_TemplateBinding()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement
+	 * @return the value of the '<em>Owned Template Bindings</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_OwnedTemplateBindings()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement
 	 * @generated
 	 */
-	List<TemplateBinding> getOwnedTemplateBinding();
+	List<TemplateBinding> getOwnedTemplateBindings();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.

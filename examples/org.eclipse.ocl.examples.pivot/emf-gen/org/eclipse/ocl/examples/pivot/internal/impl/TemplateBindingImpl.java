@@ -41,8 +41,8 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getBoundElement <em>Bound Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getSignature <em>Signature</em>}</li>
  * </ul>
  * </p>
@@ -153,7 +153,7 @@ public class TemplateBindingImpl
 	 * @generated
 	 */
 	public TemplateableElement getOwningTemplateableElement() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT) return null;
+		if (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT) return null;
 		return (TemplateableElement)eInternalContainer();
 	}
 
@@ -162,32 +162,10 @@ public class TemplateBindingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBoundElement(
-			TemplateableElement newBoundElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newBoundElement, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT, msgs);
+	public NotificationChain basicSetOwningTemplateableElement(TemplateableElement newOwningTemplateableElement, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateableElement, PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT, msgs);
 		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBoundElement(TemplateableElement newBoundElement) {
-		if (newBoundElement != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT && newBoundElement != null))
-		{
-			if (EcoreUtil.isAncestor(this, (EObject)newBoundElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newBoundElement != null)
-				msgs = ((InternalEObject)newBoundElement).eInverseAdd(this, PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, TemplateableElement.class, msgs);
-			msgs = basicSetBoundElement(newBoundElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT, newBoundElement, newBoundElement));
 	}
 
 	/**
@@ -207,12 +185,12 @@ public class TemplateBindingImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetBoundElement((TemplateableElement)otherEnd, msgs);
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateParameterSubstitutions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningTemplateableElement((TemplateableElement)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -235,10 +213,10 @@ public class TemplateBindingImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return basicSetBoundElement(null, msgs);
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				return ((InternalEList<?>)getOwnedTemplateParameterSubstitutions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				return basicSetOwningTemplateableElement(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -253,8 +231,8 @@ public class TemplateBindingImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, TemplateableElement.class, msgs);
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS, TemplateableElement.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -276,10 +254,10 @@ public class TemplateBindingImpl
 				return getOwnedAnnotation();
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return getOwningTemplateableElement();
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				return getOwnedTemplateParameterSubstitutions();
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				return getOwningTemplateableElement();
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				if (resolve) return getSignature();
 				return basicGetSignature();
@@ -313,12 +291,12 @@ public class TemplateBindingImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				setBoundElement((TemplateableElement)newValue);
-				return;
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				getOwnedTemplateParameterSubstitutions().clear();
 				getOwnedTemplateParameterSubstitutions().addAll((Collection<? extends TemplateParameterSubstitution>)newValue);
+				return;
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				setOwningTemplateableElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				setSignature((TemplateSignature)newValue);
@@ -348,11 +326,11 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				setBoundElement((TemplateableElement)null);
-				return;
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				getOwnedTemplateParameterSubstitutions().clear();
+				return;
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				setOwningTemplateableElement((TemplateableElement)null);
 				return;
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				setSignature((TemplateSignature)null);
@@ -378,10 +356,10 @@ public class TemplateBindingImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return getOwningTemplateableElement() != null;
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				return ownedTemplateParameterSubstitutions != null && !ownedTemplateParameterSubstitutions.isEmpty();
+			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
+				return getOwningTemplateableElement() != null;
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
 				return signature != null;
 		}
@@ -391,5 +369,10 @@ public class TemplateBindingImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitTemplateBinding(this);
+	}
+
+	public void setOwningTemplateableElement(TemplateableElement value) {
+		// TODO Auto-generated method stub
+		
 	}
 } //TemplateBindingImpl

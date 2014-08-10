@@ -207,10 +207,10 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return getInstanceClassName();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				return getOwnedRule();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_BINDINGS:
+				return getOwnedTemplateBindings();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
-				return getOwnedTemplateBinding();
 			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
@@ -284,12 +284,12 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
-				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -374,11 +374,11 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -449,10 +449,10 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_BINDINGS:
+				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:

@@ -24,8 +24,8 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}</li>
  * </ul>
  * </p>
@@ -77,26 +77,26 @@ public interface TemplateBinding
 	List<TemplateParameterSubstitution> getOwnedTemplateParameterSubstitutions();
 
 	/**
-	 * Returns the value of the '<em><b>Bound Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding <em>Template Binding</em>}'.
+	 * Returns the value of the '<em><b>Owning Templateable Element</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBindings <em>Owned Template Bindings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is bound by this binding.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Bound Element</em>' container reference.
+	 * @return the value of the '<em>Owning Templateable Element</em>' container reference.
 	 * @see #setOwningTemplateableElement(TemplateableElement)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_BoundElement()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_OwningTemplateableElement()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBindings
 	 * @generated
 	 */
 	TemplateableElement getOwningTemplateableElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bound Element</em>' container reference.
+	 * @param value the new value of the '<em>Owning Templateable Element</em>' container reference.
 	 * @see #getOwningTemplateableElement()
 	 * @generated
 	 */

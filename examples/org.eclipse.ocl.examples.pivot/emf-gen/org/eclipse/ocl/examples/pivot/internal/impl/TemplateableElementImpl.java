@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  * </ul>
  * </p>
@@ -49,6 +49,16 @@ public abstract class TemplateableElementImpl
 		implements TemplateableElement {
 
 	/**
+	 * The cached value of the '{@link #getOwnedTemplateBindings() <em>Owned Template Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTemplateBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TemplateBinding> ownedTemplateBindings;
+
+	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,16 +67,6 @@ public abstract class TemplateableElementImpl
 	 * @ordered
 	 */
 	protected TemplateSignature ownedTemplateSignature;
-
-	/**
-	 * The cached value of the '{@link #getOwnedTemplateBinding() <em>Template Binding</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateBinding()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TemplateBinding> templateBinding;
 
 	/**
 	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
@@ -102,13 +102,13 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<TemplateBinding> getOwnedTemplateBinding()
+	public List<TemplateBinding> getOwnedTemplateBindings()
 	{
-		if (templateBinding == null)
+		if (ownedTemplateBindings == null)
 		{
-			templateBinding = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+			ownedTemplateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT);
 		}
-		return templateBinding;
+		return ownedTemplateBindings;
 	}
 
 	/**
@@ -198,12 +198,12 @@ public abstract class TemplateableElementImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, null, msgs);
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
-			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBinding()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -226,10 +226,10 @@ public abstract class TemplateableElementImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS:
+				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -251,10 +251,10 @@ public abstract class TemplateableElementImpl
 				return getOwnedAnnotation();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				return getOwnedComment();
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS:
+				return getOwnedTemplateBindings();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
-			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
-				return getOwnedTemplateBinding();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 		}
@@ -287,12 +287,12 @@ public abstract class TemplateableElementImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
-				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -322,11 +322,11 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -352,10 +352,10 @@ public abstract class TemplateableElementImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS:
+				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 		}

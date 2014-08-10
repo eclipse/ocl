@@ -573,7 +573,7 @@ public class PrettyPrinter
     public void appendTemplateBindings(TemplateableElement typeRef) {
     	Mode savedMode = pushMode(Mode.NAME);
 		try {
-			List<TemplateBinding> templateBindings = typeRef.getOwnedTemplateBinding();
+			List<TemplateBinding> templateBindings = typeRef.getOwnedTemplateBindings();
 			if (!templateBindings.isEmpty()) {
 				append("(");
 				String prefix = ""; //$NON-NLS-1$

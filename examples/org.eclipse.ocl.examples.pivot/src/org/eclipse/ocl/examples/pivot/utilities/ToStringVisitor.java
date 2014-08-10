@@ -327,7 +327,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			appendName(object);
 			if (object instanceof TemplateableElement) {
 				TemplateableElement templateableElement = (TemplateableElement) object;
-				appendTemplateBindings(templateableElement.getOwnedTemplateBinding());
+				appendTemplateBindings(templateableElement.getOwnedTemplateBindings());
 				appendTemplateSignature(templateableElement.getOwnedTemplateSignature());
 			}
 		}
@@ -450,7 +450,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		else {
 			appendName(cls);
 		}
-		appendTemplateBindings(cls.getOwnedTemplateBinding());
+		appendTemplateBindings(cls.getOwnedTemplateBindings());
 		appendTemplateSignature(cls.getOwnedTemplateSignature());
 		return null;
 	}
@@ -514,7 +514,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitCollectionType(@NonNull CollectionType object) {
 		appendName(object);
-		appendTemplateBindings(object.getOwnedTemplateBinding());
+		appendTemplateBindings(object.getOwnedTemplateBindings());
 		appendTemplateSignature(object.getOwnedTemplateSignature());
 		Number lower = object.getLower();
 		Number upper = object.getUpper();
@@ -731,7 +731,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitIteration(@NonNull Iteration iteration) {
 		appendQualifiedName(iteration.getOwningClass(), ".", iteration);
-		appendTemplateBindings(iteration.getOwnedTemplateBinding());
+		appendTemplateBindings(iteration.getOwnedTemplateBindings());
 		appendTemplateSignature(iteration.getOwnedTemplateSignature());
 		append("(");
 		boolean isFirst = true;
@@ -861,8 +861,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitMetaclass(@NonNull Metaclass<?> object) {
 		appendName(object);
-		if (object.getOwnedTemplateBinding().size() > 0) {
-			appendTemplateBindings(object.getOwnedTemplateBinding());
+		if (object.getOwnedTemplateBindings().size() > 0) {
+			appendTemplateBindings(object.getOwnedTemplateBindings());
 		}
 		else if (object.getInstanceType() != null) {
 			append("<");
@@ -882,7 +882,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitOperation(@NonNull Operation operation) {
 		appendQualifiedName(operation.getOwningClass(), "::", operation);
-		appendTemplateBindings(operation.getOwnedTemplateBinding());
+		appendTemplateBindings(operation.getOwnedTemplateBindings());
 		appendTemplateSignature(operation.getOwnedTemplateSignature());
 		append("(");
 		boolean isFirst = true;

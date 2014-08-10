@@ -49,8 +49,8 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
@@ -71,6 +71,16 @@ public class PackageImpl
 		implements org.eclipse.ocl.examples.pivot.Package {
 		
 	/**
+	 * The cached value of the '{@link #getOwnedTemplateBindings() <em>Owned Template Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTemplateBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TemplateBinding> ownedTemplateBindings;
+
+	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,16 +89,6 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected TemplateSignature ownedTemplateSignature;
-
-	/**
-	 * The cached value of the '{@link #getOwnedTemplateBinding() <em>Template Binding</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateBinding()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TemplateBinding> templateBinding;
 
 	/**
 	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
@@ -262,13 +262,13 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<TemplateBinding> getOwnedTemplateBinding()
+	public List<TemplateBinding> getOwnedTemplateBindings()
 	{
-		if (templateBinding == null)
+		if (ownedTemplateBindings == null)
 		{
-			templateBinding = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+			ownedTemplateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT);
 		}
-		return templateBinding;
+		return ownedTemplateBindings;
 	}
 
 	/**
@@ -457,12 +457,12 @@ public class PackageImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
-			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_CLASSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
@@ -499,10 +499,10 @@ public class PackageImpl
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
+				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_CLASSES:
 				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
@@ -554,10 +554,10 @@ public class PackageImpl
 				return getName();
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return getOwnedRule();
+			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
+				return getOwnedTemplateBindings();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
-			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
-				return getOwnedTemplateBinding();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.PACKAGE__URI:
@@ -613,12 +613,12 @@ public class PackageImpl
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
-				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -683,11 +683,11 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
+			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
+				getOwnedTemplateBindings().clear();
+				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
-				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -741,10 +741,10 @@ public class PackageImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PACKAGE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS:
+				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
-			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
-				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.PACKAGE__URI:
@@ -778,8 +778,8 @@ public class PackageImpl
 		{
 			switch (derivedFeatureID)
 			{
+				case PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS;
 				case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
-				case PivotPackage.PACKAGE__TEMPLATE_BINDING: return PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING;
 				case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
@@ -805,8 +805,8 @@ public class PackageImpl
 		{
 			switch (baseFeatureID)
 			{
+				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS: return PivotPackage.PACKAGE__OWNED_TEMPLATE_BINDINGS;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-				case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING: return PivotPackage.PACKAGE__TEMPLATE_BINDING;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}

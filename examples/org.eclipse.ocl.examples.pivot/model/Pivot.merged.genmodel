@@ -280,7 +280,7 @@
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//TemplateableElement"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateableElement/templateBinding"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateableElement/ownedTemplateBindings"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateableElement/unspecializedElement"/>
@@ -298,7 +298,7 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateBinding/ownedTemplateParameterSubstitutions"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateBinding/boundElement"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateBinding/owningTemplateableElement"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

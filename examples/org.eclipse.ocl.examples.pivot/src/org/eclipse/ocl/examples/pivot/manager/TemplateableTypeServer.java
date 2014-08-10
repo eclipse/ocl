@@ -77,7 +77,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 				}
 			}
 		}
-		specializedType.getOwnedTemplateBinding().add(templateBinding);
+		specializedType.getOwnedTemplateBindings().add(templateBinding);
 		packageManager.resolveSuperClasses(specializedType, unspecializedType, allBindings);
 //		if (specializedType instanceof Metaclass) {
 //			Type instanceType = (Type) templateArguments.get(0);

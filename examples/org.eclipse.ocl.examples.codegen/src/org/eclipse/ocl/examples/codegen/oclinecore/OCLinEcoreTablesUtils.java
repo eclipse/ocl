@@ -1051,7 +1051,7 @@ public class OCLinEcoreTablesUtils
 		}
 		s.append(AbstractGenModelHelper.encodeName(element));
 		if (element instanceof TemplateableElement) {
-			List<TemplateBinding> templateBindings = ((TemplateableElement)element).getOwnedTemplateBinding();
+			List<TemplateBinding> templateBindings = ((TemplateableElement)element).getOwnedTemplateBindings();
 			if (templateBindings.size() > 0) {
 				s.append("_");
 				for (TemplateBinding templateBinding : templateBindings) {

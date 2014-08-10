@@ -219,7 +219,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitCollectionType(@NonNull CollectionType object) {
-		if (object.getOwnedTemplateBinding().isEmpty()) {
+		if (object.getOwnedTemplateBindings().isEmpty()) {
 			appendName(object.getName());
 			return true;
 		}
@@ -272,7 +272,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitMetaclass(@NonNull Metaclass<?> object) {
-		if (object.getOwnedTemplateBinding().isEmpty()) {
+		if (object.getOwnedTemplateBindings().isEmpty()) {
 			appendName(object.getName());
 			return true;
 		}

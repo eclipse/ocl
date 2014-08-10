@@ -2241,8 +2241,8 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Stereotype_extensionOfs = createProperty(PivotPackage.Literals.STEREOTYPE__EXTENSION_OFS, _Set_TypeExtension);
 		protected final @NonNull Property pr_Stereotype_ElementExtension_stereotype = createProperty("ElementExtension", _Bag_ElementExtension);
 		protected final @NonNull Property pr_StringLiteralExp_stringSymbol = createProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL, _String);
-		protected final @NonNull Property pr_TemplateBinding_boundElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__BOUND_ELEMENT, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateBinding_ownedTemplateParameterSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS, _Set_TemplateParameterSubstitution);
+		protected final @NonNull Property pr_TemplateBinding_owningTemplateableElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateBinding_signature = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE, _TemplateSignature);
 		protected final @NonNull Property pr_TemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
 		protected final @NonNull Property pr_TemplateParameter_default = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, _Class);
@@ -2254,8 +2254,8 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TemplateSignature_ownedTemplateParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS, _OrderedSet_TemplateParameter);
 		protected final @NonNull Property pr_TemplateSignature_template = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateSignature_templateBinding_signature = createProperty("templateBinding", _TemplateBinding);
+		protected final @NonNull Property pr_TemplateableElement_ownedTemplateBindings = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS, _Set_TemplateBinding);
 		protected final @NonNull Property pr_TemplateableElement_ownedTemplateSignature = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, _TemplateSignature);
-		protected final @NonNull Property pr_TemplateableElement_templateBinding = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, _Set_TemplateBinding);
 		protected final @NonNull Property pr_TemplateableElement_unspecializedElement = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT, _TemplateableElement);
 		protected final @NonNull Property pr_Transition_container = createProperty(PivotPackage.Literals.TRANSITION__CONTAINER, _Region);
 		protected final @NonNull Property pr_Transition_effect = createProperty(PivotPackage.Literals.TRANSITION__EFFECT, _Behavior);
@@ -3443,13 +3443,13 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_StringLiteralExp_stringSymbol);
 			property.setIsResolveProxies(true);
 			ownedProperties = _TemplateBinding.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateBinding_boundElement);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateableElement_templateBinding);
 			ownedProperties.add(property = pr_TemplateBinding_ownedTemplateParameterSubstitutions);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_owningTemplateBinding);
+			ownedProperties.add(property = pr_TemplateBinding_owningTemplateableElement);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateableElement_ownedTemplateBindings);
 			ownedProperties.add(property = pr_TemplateBinding_signature);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateSignature_templateBinding_signature);
@@ -3493,15 +3493,15 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_signature);
 			ownedProperties = _TemplateableElement.getOwnedProperties();
+			ownedProperties.add(property = pr_TemplateableElement_ownedTemplateBindings);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateBinding_owningTemplateableElement);
 			ownedProperties.add(property = pr_TemplateableElement_ownedTemplateSignature);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateSignature_template);
-			ownedProperties.add(property = pr_TemplateableElement_templateBinding);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateBinding_boundElement);
 			ownedProperties.add(property = pr_TemplateableElement_unspecializedElement);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
@@ -3731,385 +3731,385 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull TemplateSignature ts_Metaclass = createTemplateSignature(_Metaclass, tp_T);
 
 		protected void installTemplateBindings() {
-			_Bag_Annotation.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Annotation.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Annotation)));
-			_Bag_AssociationClassCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_AssociationClassCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _AssociationClassCallExp)));
-			_Bag_CallOperationAction.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_CallOperationAction.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _CallOperationAction)));
-			_Bag_CollectionType.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_CollectionType.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _CollectionType)));
-			_Bag_Constraint.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Constraint)));
-			_Bag_ConstructorPart.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _ConstructorPart)));
-			_Bag_DataType.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_DataType.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _DataType)));
-			_Bag_DynamicElement.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_DynamicElement.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _DynamicElement)));
-			_Bag_DynamicProperty.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _DynamicProperty)));
-			_Bag_ElementExtension.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _ElementExtension)));
-			_Bag_EnumLiteralExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_EnumLiteralExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _EnumLiteralExp)));
-			_Bag_Import.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Import.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Import)));
-			_Bag_LambdaType.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_LambdaType.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _LambdaType)));
-			_Bag_LoopExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_LoopExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _LoopExp)));
-			_Bag_MessageType.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_MessageType.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _MessageType)));
-			_Bag_Metaclass.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Metaclass.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Metaclass)));
-			_Bag_NavigationCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_NavigationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _NavigationCallExp)));
-			_Bag_OperationCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_OperationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _OperationCallExp)));
-			_Bag_Operation.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Operation.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Operation)));
-			_Bag_OppositePropertyCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_OppositePropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _OppositePropertyCallExp)));
-			_Bag_Package.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Package.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Package)));
-			_Bag_PropertyCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_PropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _PropertyCallExp)));
-			_Bag_Property.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Property.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Property)));
-			_Bag_Region.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Region.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Region)));
-			_Bag_SendSignalAction.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_SendSignalAction.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _SendSignalAction)));
-			_Bag_StateExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_StateExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _StateExp)));
-			_Bag_StateMachine.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _StateMachine)));
-			_Bag_State.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_State.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _State)));
-			_Bag_TemplateParameter.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _TemplateParameter)));
-			_Bag_TypeExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_TypeExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _TypeExp)));
-			_Bag_UnspecifiedType.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_UnspecifiedType.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _UnspecifiedType)));
-			_Bag_VariableExp.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_VariableExp.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _VariableExp)));
-			_Bag_Variable.getOwnedTemplateBinding().add(createTemplateBinding(_Bag_,
+			_Bag_Variable.getOwnedTemplateBindings().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _Variable)));
-			_Collection_String.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_String.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _String)));
-			_Collection_Annotation.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Annotation.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Annotation)));
-			_Collection_AssociationClassCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_AssociationClassCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _AssociationClassCallExp)));
-			_Collection_Behavior.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Behavior.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Behavior)));
-			_Collection_CallOperationAction.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_CallOperationAction.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _CallOperationAction)));
-			_Collection_Class.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Class.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Class)));
-			_Collection_CollectionLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _CollectionLiteralPart)));
-			_Collection_CollectionType.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_CollectionType.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _CollectionType)));
-			_Collection_Comment.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Comment.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Comment)));
-			_Collection_ConnectionPointReference.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_ConnectionPointReference.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _ConnectionPointReference)));
-			_Collection_Constraint.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Constraint)));
-			_Collection_ConstructorPart.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _ConstructorPart)));
-			_Collection_DataType.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_DataType.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _DataType)));
-			_Collection_Detail.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Detail.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Detail)));
-			_Collection_DynamicElement.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_DynamicElement.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _DynamicElement)));
-			_Collection_DynamicProperty.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _DynamicProperty)));
-			_Collection_ElementExtension.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _ElementExtension)));
-			_Collection_Element.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Element.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Element)));
-			_Collection_EnumLiteralExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_EnumLiteralExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _EnumLiteralExp)));
-			_Collection_EnumerationLiteral.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _EnumerationLiteral)));
-			_Collection_Import.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Import.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Import)));
-			_Collection_InstanceSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _InstanceSpecification)));
-			_Collection_LambdaType.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_LambdaType.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _LambdaType)));
-			_Collection_LoopExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_LoopExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _LoopExp)));
-			_Collection_MessageType.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_MessageType.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _MessageType)));
-			_Collection_Metaclass.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Metaclass.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Metaclass)));
-			_Collection_NavigationCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_NavigationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _NavigationCallExp)));
-			_Collection_OCLExpression.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _OCLExpression)));
-			_Collection_OperationCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_OperationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _OperationCallExp)));
-			_Collection_Operation.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Operation.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Operation)));
-			_Collection_OppositePropertyCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_OppositePropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _OppositePropertyCallExp)));
-			_Collection_Package.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Package.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Package)));
-			_Collection_Parameter.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Parameter)));
-			_Collection_Precedence.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Precedence)));
-			_Collection_ProfileApplication.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _ProfileApplication)));
-			_Collection_PropertyCallExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_PropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _PropertyCallExp)));
-			_Collection_Property.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Property.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Property)));
-			_Collection_Pseudostate.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Pseudostate.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Pseudostate)));
-			_Collection_Region.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Region.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Region)));
-			_Collection_SendSignalAction.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_SendSignalAction.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _SendSignalAction)));
-			_Collection_Slot.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Slot.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Slot)));
-			_Collection_StateExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_StateExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _StateExp)));
-			_Collection_StateMachine.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _StateMachine)));
-			_Collection_State.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_State.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _State)));
-			_Collection_TemplateBinding.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _TemplateBinding)));
-			_Collection_TemplateParameterSubstitution.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _TemplateParameterSubstitution)));
-			_Collection_TemplateParameter.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _TemplateParameter)));
-			_Collection_Transition.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Transition.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Transition)));
-			_Collection_Trigger.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Trigger.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Trigger)));
-			_Collection_TupleLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _TupleLiteralPart)));
-			_Collection_TypeExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_TypeExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _TypeExp)));
-			_Collection_TypeExtension.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_TypeExtension.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _TypeExtension)));
-			_Collection_Type.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Type.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Type)));
-			_Collection_UnspecifiedType.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_UnspecifiedType.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _UnspecifiedType)));
-			_Collection_ValueSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _ValueSpecification)));
-			_Collection_VariableExp.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_VariableExp.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _VariableExp)));
-			_Collection_Variable.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Variable.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Variable)));
-			_Collection_Vertex.getOwnedTemplateBinding().add(createTemplateBinding(_Collection_,
+			_Collection_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(_Collection_,
 				createTemplateParameterSubstitution(_Collection_T, _Vertex)));
-			_OrderedCollection_Class.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Class.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Class)));
-			_OrderedCollection_CollectionLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _CollectionLiteralPart)));
-			_OrderedCollection_ConstructorPart.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ConstructorPart)));
-			_OrderedCollection_Detail.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Detail.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Detail)));
-			_OrderedCollection_Element.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Element.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Element)));
-			_OrderedCollection_EnumerationLiteral.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _EnumerationLiteral)));
-			_OrderedCollection_Import.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Import.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Import)));
-			_OrderedCollection_OCLExpression.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _OCLExpression)));
-			_OrderedCollection_Operation.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Operation.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Operation)));
-			_OrderedCollection_Parameter.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Parameter)));
-			_OrderedCollection_Precedence.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Precedence)));
-			_OrderedCollection_Property.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Property.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Property)));
-			_OrderedCollection_TemplateParameter.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _TemplateParameter)));
-			_OrderedCollection_TupleLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _TupleLiteralPart)));
-			_OrderedCollection_Type.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Type.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Type)));
-			_OrderedCollection_ValueSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ValueSpecification)));
-			_OrderedCollection_Variable.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedCollection_,
+			_OrderedCollection_Variable.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedCollection_,
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Variable)));
-			_OrderedSet_Class.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Class.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Class)));
-			_OrderedSet_CollectionLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _CollectionLiteralPart)));
-			_OrderedSet_ConstructorPart.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _ConstructorPart)));
-			_OrderedSet_Detail.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Detail.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Detail)));
-			_OrderedSet_Element.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Element.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Element)));
-			_OrderedSet_EnumerationLiteral.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _EnumerationLiteral)));
-			_OrderedSet_Import.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Import.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Import)));
-			_OrderedSet_OCLExpression.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _OCLExpression)));
-			_OrderedSet_Operation.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Operation.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Operation)));
-			_OrderedSet_Parameter.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Parameter)));
-			_OrderedSet_Precedence.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Precedence)));
-			_OrderedSet_Property.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Property.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Property)));
-			_OrderedSet_TemplateParameter.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _TemplateParameter)));
-			_OrderedSet_TupleLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _TupleLiteralPart)));
-			_OrderedSet_ValueSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _ValueSpecification)));
-			_OrderedSet_Variable.getOwnedTemplateBinding().add(createTemplateBinding(_OrderedSet_,
+			_OrderedSet_Variable.getOwnedTemplateBindings().add(createTemplateBinding(_OrderedSet_,
 				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
-			_Sequence_Type.getOwnedTemplateBinding().add(createTemplateBinding(_Sequence_,
+			_Sequence_Type.getOwnedTemplateBindings().add(createTemplateBinding(_Sequence_,
 				createTemplateParameterSubstitution(_Sequence_T, _Type)));
-			_Set_String.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_String.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _String)));
-			_Set_Behavior.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Behavior.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Behavior)));
-			_Set_Class.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Class.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Class)));
-			_Set_Comment.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Comment.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Comment)));
-			_Set_ConnectionPointReference.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_ConnectionPointReference.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _ConnectionPointReference)));
-			_Set_Constraint.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Constraint)));
-			_Set_DynamicProperty.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _DynamicProperty)));
-			_Set_ElementExtension.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _ElementExtension)));
-			_Set_Element.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Element.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Element)));
-			_Set_InstanceSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _InstanceSpecification)));
-			_Set_Operation.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Operation.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Operation)));
-			_Set_Package.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Package.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Package)));
-			_Set_ProfileApplication.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _ProfileApplication)));
-			_Set_Property.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Property.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Property)));
-			_Set_Pseudostate.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Pseudostate.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Pseudostate)));
-			_Set_Region.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Region.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Region)));
-			_Set_Region_1.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Region_1.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Region)));
-			_Set_Slot.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Slot.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Slot)));
-			_Set_StateMachine.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _StateMachine)));
-			_Set_State.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_State.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _State)));
-			_Set_TemplateBinding.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _TemplateBinding)));
-			_Set_TemplateParameterSubstitution.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _TemplateParameterSubstitution)));
-			_Set_Transition.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Transition.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Transition)));
-			_Set_Trigger.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Trigger.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Trigger)));
-			_Set_TypeExtension.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_TypeExtension.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _TypeExtension)));
-			_Set_Type.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Type.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Type)));
-			_Set_Vertex.getOwnedTemplateBinding().add(createTemplateBinding(_Set_,
+			_Set_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(_Set_,
 				createTemplateParameterSubstitution(_Set_T, _Vertex)));
-			_UniqueCollection_String.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_String.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _String)));
-			_UniqueCollection_Behavior.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Behavior.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Behavior)));
-			_UniqueCollection_Class.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Class.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Class)));
-			_UniqueCollection_CollectionLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _CollectionLiteralPart)));
-			_UniqueCollection_Comment.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Comment.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Comment)));
-			_UniqueCollection_ConnectionPointReference.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_ConnectionPointReference.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ConnectionPointReference)));
-			_UniqueCollection_Constraint.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Constraint)));
-			_UniqueCollection_ConstructorPart.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ConstructorPart)));
-			_UniqueCollection_Detail.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Detail.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Detail)));
-			_UniqueCollection_DynamicProperty.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _DynamicProperty)));
-			_UniqueCollection_ElementExtension.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ElementExtension)));
-			_UniqueCollection_Element.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Element.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Element)));
-			_UniqueCollection_EnumerationLiteral.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _EnumerationLiteral)));
-			_UniqueCollection_Import.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Import.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Import)));
-			_UniqueCollection_InstanceSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _InstanceSpecification)));
-			_UniqueCollection_OCLExpression.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _OCLExpression)));
-			_UniqueCollection_Operation.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Operation.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Operation)));
-			_UniqueCollection_Package.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Package.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Package)));
-			_UniqueCollection_Parameter.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Parameter)));
-			_UniqueCollection_Precedence.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Precedence)));
-			_UniqueCollection_ProfileApplication.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ProfileApplication)));
-			_UniqueCollection_Property.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Property.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Property)));
-			_UniqueCollection_Pseudostate.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Pseudostate.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Pseudostate)));
-			_UniqueCollection_Region.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Region.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Region)));
-			_UniqueCollection_Slot.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Slot.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Slot)));
-			_UniqueCollection_StateMachine.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _StateMachine)));
-			_UniqueCollection_State.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_State.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _State)));
-			_UniqueCollection_TemplateBinding.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateBinding)));
-			_UniqueCollection_TemplateParameterSubstitution.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateParameterSubstitution)));
-			_UniqueCollection_TemplateParameter.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateParameter)));
-			_UniqueCollection_Transition.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Transition.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Transition)));
-			_UniqueCollection_Trigger.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Trigger.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Trigger)));
-			_UniqueCollection_TupleLiteralPart.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TupleLiteralPart)));
-			_UniqueCollection_TypeExtension.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_TypeExtension.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TypeExtension)));
-			_UniqueCollection_Type.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Type.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Type)));
-			_UniqueCollection_ValueSpecification.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ValueSpecification)));
-			_UniqueCollection_Variable.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Variable.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Variable)));
-			_UniqueCollection_Vertex.getOwnedTemplateBinding().add(createTemplateBinding(_UniqueCollection_,
+			_UniqueCollection_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(_UniqueCollection_,
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Vertex)));
 		}
 
@@ -4214,8 +4214,8 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_StateMachine_region, "The regions owned directly by the state machine.");
 			installComment(pr_StateMachine_submachineState, "References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state.");
 			installComment(_TemplateBinding, "A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
-			installComment(pr_TemplateBinding_boundElement, "The element that is bound by this binding.");
 			installComment(pr_TemplateBinding_ownedTemplateParameterSubstitutions, "The parameter substitutions owned by this template binding.");
+			installComment(pr_TemplateBinding_owningTemplateableElement, "The element that is bound by this binding.");
 			installComment(pr_TemplateBinding_signature, "The template signature for the template that is the target of the binding.");
 			installComment(_TemplateParameter, "A template parameter exposes a parameterable element as a formal template parameter of a template.");
 			installComment(pr_TemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
@@ -4229,8 +4229,8 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_TemplateSignature_ownedTemplateParameters, "The formal template parameters that are owned by this template signature.");
 			installComment(pr_TemplateSignature_template, "The element that owns this template signature.");
 			installComment(_TemplateableElement, "A templateable element is an element that can optionally be defined as a template and bound to other templates.");
+			installComment(pr_TemplateableElement_ownedTemplateBindings, "The optional bindings from this element to templates.");
 			installComment(pr_TemplateableElement_ownedTemplateSignature, "The optional template signature specifying the formal template parameters.");
-			installComment(pr_TemplateableElement_templateBinding, "The optional bindings from this element to templates.");
 			installComment(_Transition, "A transition is a directed relationship between a source vertex and a target vertex. It may be part of a compound transition, which takes the state machine from one state configuration to another, representing the complete response of the state machine to an occurrence of an event of a particular type.");
 			installComment(pr_Transition_container, "Designates the region that owns this transition.");
 			installComment(pr_Transition_effect, "Specifies an optional behavior to be performed when the transition fires.");

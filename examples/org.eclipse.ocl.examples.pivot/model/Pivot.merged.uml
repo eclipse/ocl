@@ -1300,8 +1300,9 @@
         <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TTemplateBinding.g0" general="Ppivot.TElement"/>
-      <ownedAttribute xmi:id="Ppivot.TTemplateBinding.PboundElement" name="boundElement" type="Ppivot.TTemplateableElement" association="Ppivot.A_templateBinding_boundElement">
-        <ownedComment xmi:id="Ppivot.TTemplateBinding.PboundElement.oC0" annotatedElement="Ppivot.TTemplateBinding.PboundElement">
+      <ownedAttribute xmi:id="Ppivot.TTemplateBinding.PowningTemplateableElement" name="owningTemplateableElement" type="Ppivot.TTemplateableElement"
+          association="Ppivot.A_ownedTemplateBindings_owningTemplateableElement">
+        <ownedComment xmi:id="Ppivot.TTemplateBinding.PowningTemplateableElement.oC0" annotatedElement="Ppivot.TTemplateBinding.PowningTemplateableElement">
           <body>The element that is bound by this binding.</body>
         </ownedComment>
       </ownedAttribute>
@@ -1390,13 +1391,13 @@
         <body>A templateable element is an element that can optionally be defined as a template and bound to other templates.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TTemplateableElement.g0" general="Ppivot.TElement"/>
-      <ownedAttribute xmi:id="Ppivot.TTemplateableElement.PtemplateBinding" name="templateBinding" type="Ppivot.TTemplateBinding" aggregation="composite"
-          association="Ppivot.A_templateBinding_boundElement">
-        <ownedComment xmi:id="Ppivot.TTemplateableElement.PtemplateBinding.oC0" annotatedElement="Ppivot.TTemplateableElement.PtemplateBinding">
+      <ownedAttribute xmi:id="Ppivot.TTemplateableElement.PownedTemplateBindings" name="ownedTemplateBindings" type="Ppivot.TTemplateBinding"
+          aggregation="composite" association="Ppivot.A_ownedTemplateBindings_owningTemplateableElement">
+        <ownedComment xmi:id="Ppivot.TTemplateableElement.PownedTemplateBindings.oC0" annotatedElement="Ppivot.TTemplateableElement.PownedTemplateBindings">
           <body>The optional bindings from this element to templates.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateableElement.PtemplateBinding.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateableElement.PtemplateBinding.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateableElement.PownedTemplateBindings.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateableElement.PownedTemplateBindings.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTemplateableElement.PownedTemplateSignature" name="ownedTemplateSignature" type="Ppivot.TTemplateSignature"
           aggregation="composite" association="Ppivot.A_ownedTemplateSignature_template">
@@ -1750,6 +1751,8 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedOperations_owningClass" name="A_ownedOperations_owningClass" memberEnd="Ppivot.TClass.PownedOperations Ppivot.TOperation.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Ppivot.TOperation.PownedParameter Ppivot.TParameter.Poperation"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedProperties_owningClass" name="A_ownedProperties_owningClass" memberEnd="Ppivot.TClass.PownedProperties Ppivot.TProperty.PowningClass"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateBindings_owningTemplateableElement" name="A_ownedTemplateBindings_owningTemplateableElement"
+        memberEnd="Ppivot.TTemplateableElement.PownedTemplateBindings Ppivot.TTemplateBinding.PowningTemplateableElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateParameterSubstitutions_templateBinding" name="A_ownedTemplateParameterSubstitutions_templateBinding"
         memberEnd="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions Ppivot.TTemplateParameterSubstitution.PowningTemplateBinding"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateParameters_owningTemplateSignature" name="A_ownedTemplateParameters_owningTemplateSignature"
@@ -1803,7 +1806,6 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_templateBinding_boundElement" name="A_templateBinding_boundElement" memberEnd="Ppivot.TTemplateableElement.PtemplateBinding Ppivot.TTemplateBinding.PboundElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_transition_trigger" name="A_transition_trigger" memberEnd="Ppivot.TTrigger.Ptransition Ppivot.TTransition.Ptrigger"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_instanceSpecification" name="A_type_instanceSpecification" memberEnd="Ppivot.TInstanceSpecification.Pclasses Ppivot.A_type_instanceSpecification.PinstanceSpecification">
       <ownedEnd xmi:id="Ppivot.A_type_instanceSpecification.PinstanceSpecification" name="instanceSpecification" type="Ppivot.TInstanceSpecification"

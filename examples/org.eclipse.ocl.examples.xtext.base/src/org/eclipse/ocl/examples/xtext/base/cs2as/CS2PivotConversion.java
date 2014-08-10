@@ -1236,7 +1236,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 			//
 			//	Refresh the pivot specialization bindings and parameter substitutions
 			//
-			@SuppressWarnings("null") @NonNull List<TemplateBinding> templateBindings = specializedPivotElement.getOwnedTemplateBinding();
+			@SuppressWarnings("null") @NonNull List<TemplateBinding> templateBindings = specializedPivotElement.getOwnedTemplateBindings();
 			List<TemplateSignature> templateSignatures = getTemplateSignatures(unspecializedPivotElement);
 			List<TemplateBindingCS> csTemplateBindings = getTemplateBindings(csElement);
 			specializeTemplateBindings(templateBindings, templateSignatures, csTemplateBindings);

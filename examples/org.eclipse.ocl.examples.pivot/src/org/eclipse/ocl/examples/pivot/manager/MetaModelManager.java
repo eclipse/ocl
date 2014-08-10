@@ -2870,7 +2870,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		org.eclipse.ocl.examples.pivot.Class asClass = type.isClass();
 		if (asClass != null) {
-			for (TemplateBinding templateBinding : asClass.getOwnedTemplateBinding()) {
+			for (TemplateBinding templateBinding : asClass.getOwnedTemplateBindings()) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 					if (isUnderspecified(templateParameterSubstitution.getActual())) {
 						return true;
@@ -3288,7 +3288,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		@SuppressWarnings("unused")
 		Map<TemplateParameter, Type> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, pivotClass);
 		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
-		for (TemplateBinding templateBinding : pivotClass.getOwnedTemplateBinding()) {
+		for (TemplateBinding templateBinding : pivotClass.getOwnedTemplateBindings()) {
 			TemplateSignature signature = templateBinding.getSignature();
 			TemplateableElement template = signature.getTemplate();
 			if (template instanceof org.eclipse.ocl.examples.pivot.Class) {

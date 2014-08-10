@@ -466,8 +466,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			protected void installTemplateBindings() {
 				«FOR templateableElement : allTemplateableElements»
-					«FOR templateBinding : templateableElement.ownedTemplateBinding»
-						«templateableElement.getSymbolName()».getTemplateBinding().add(createTemplateBinding(«templateBinding.signature.getSymbolName()»,
+					«FOR templateBinding : templateableElement.ownedTemplateBindings»
+						«templateableElement.getSymbolName()».getOwnedTemplateBindings().add(createTemplateBinding(«templateBinding.signature.getSymbolName()»,
 							«FOR templateParameterSubstitution : templateBinding.ownedTemplateParameterSubstitutions SEPARATOR (",\n")»
 							createTemplateParameterSubstitution(«templateParameterSubstitution.formal.getSymbolName()», «templateParameterSubstitution.actual.getSymbolName()»)«ENDFOR»));
 					«ENDFOR»
@@ -569,7 +569,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			CollectionType: return element.javaName() + "_" + element.elementType.partialName()
 			LambdaType case element.contextType == null: return "null"
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
-			Class case element.ownedTemplateBinding.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
+			Class case element.ownedTemplateBindings.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
 			Class: return element.javaName()
 			Comment case element.body == null: return "null"
 			Comment: return element.javaName(element.body.substring(0, Math.min(11, element.body.length() - 1)))

@@ -28,7 +28,7 @@ public class ClassAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Class targetClass = (org.eclipse.ocl.examples.pivot.Class) target;
 		assert !(target instanceof Metaclass<?>);
-		if (targetClass.getOwnedTemplateBinding().size() == 0) {
+		if (targetClass.getOwnedTemplateBindings().size() == 0) {
 			EObject scopeTarget = scopeView.getTarget();
 			if (scopeTarget instanceof Pivotable) {
 				Element pivot = ((Pivotable)scopeTarget).getPivot();

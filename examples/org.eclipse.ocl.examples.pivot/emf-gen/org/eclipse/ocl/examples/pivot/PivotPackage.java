@@ -1636,22 +1636,22 @@ public interface PivotPackage
 	int CLASS__OWNED_RULE = TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_TEMPLATE_BINDINGS = TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__TEMPLATE_BINDING = TYPE_FEATURE_COUNT + 2;
+	int CLASS__OWNED_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -1897,6 +1897,15 @@ public interface PivotPackage
 	int ANY_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1904,15 +1913,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -2158,6 +2158,15 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2165,15 +2174,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -3328,6 +3328,15 @@ public interface PivotPackage
 	int DATA_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3335,15 +3344,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -3607,6 +3607,15 @@ public interface PivotPackage
 	int COLLECTION_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS = DATA_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3614,15 +3623,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE = DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__TEMPLATE_BINDING = DATA_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -3913,6 +3913,15 @@ public interface PivotPackage
 	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_TEMPLATE_BINDINGS = COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3920,15 +3929,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -4219,6 +4219,15 @@ public interface PivotPackage
 	int BEHAVIOR__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4226,15 +4235,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -6550,6 +6550,15 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6557,15 +6566,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -6829,6 +6829,15 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__OWNED_RULE = DYNAMIC_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_BINDINGS = DYNAMIC_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6836,15 +6845,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE = DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__TEMPLATE_BINDING = DYNAMIC_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -7648,6 +7648,15 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7655,15 +7664,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -8089,6 +8089,15 @@ public interface PivotPackage
 	int ENUMERATION__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__OWNED_TEMPLATE_BINDINGS = DATA_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8096,15 +8105,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__OWNED_TEMPLATE_SIGNATURE = DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__TEMPLATE_BINDING = DATA_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -10526,6 +10526,15 @@ public interface PivotPackage
 	int INVALID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10533,15 +10542,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -11246,22 +11246,22 @@ public interface PivotPackage
 	int OPERATION__OWNED_RULE = FEATURE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_TEMPLATE_BINDINGS = FEATURE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 2;
+	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -11561,6 +11561,15 @@ public interface PivotPackage
 	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_TEMPLATE_BINDINGS = OPERATION__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11568,15 +11577,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__OWNED_TEMPLATE_SIGNATURE = OPERATION__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__TEMPLATE_BINDING = OPERATION__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -12335,6 +12335,15 @@ public interface PivotPackage
 	int LAMBDA_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE__OWNED_TEMPLATE_BINDINGS = DATA_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12342,15 +12351,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE__OWNED_TEMPLATE_SIGNATURE = DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__TEMPLATE_BINDING = DATA_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -12776,22 +12776,22 @@ public interface PivotPackage
 	int PACKAGE__OWNED_RULE = NAMESPACE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_TEMPLATE_BINDINGS = NAMESPACE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = NAMESPACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__TEMPLATE_BINDING = NAMESPACE_FEATURE_COUNT + 1;
+	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = NAMESPACE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -12965,6 +12965,15 @@ public interface PivotPackage
 	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__OWNED_TEMPLATE_BINDINGS = PACKAGE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12972,15 +12981,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__TEMPLATE_BINDING = PACKAGE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -13361,6 +13361,15 @@ public interface PivotPackage
 	int MESSAGE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13368,15 +13377,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -13640,6 +13640,15 @@ public interface PivotPackage
 	int METACLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13647,15 +13656,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -14450,6 +14450,15 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_TEMPLATE_BINDINGS = COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14457,15 +14466,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -15134,6 +15134,15 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_TEMPLATE_BINDINGS = DATA_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15141,15 +15150,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE = DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__TEMPLATE_BINDING = DATA_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -15395,6 +15395,15 @@ public interface PivotPackage
 	int PROFILE__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__OWNED_TEMPLATE_BINDINGS = PACKAGE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15402,15 +15411,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__TEMPLATE_BINDING = PACKAGE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -16817,6 +16817,15 @@ public interface PivotPackage
 	int SELF_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16824,15 +16833,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -17177,6 +17177,15 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_TEMPLATE_BINDINGS = COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17184,15 +17193,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -17483,6 +17483,15 @@ public interface PivotPackage
 	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_TEMPLATE_BINDINGS = COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17490,15 +17499,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -17789,6 +17789,15 @@ public interface PivotPackage
 	int SIGNAL__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17796,15 +17805,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -18284,6 +18284,15 @@ public interface PivotPackage
 	int STATE_MACHINE__OWNED_RULE = BEHAVIOR__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__OWNED_TEMPLATE_BINDINGS = BEHAVIOR__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18291,15 +18300,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE = BEHAVIOR__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__TEMPLATE_BINDING = BEHAVIOR__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -18590,6 +18590,15 @@ public interface PivotPackage
 	int STEREOTYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18597,15 +18606,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -18959,22 +18959,22 @@ public interface PivotPackage
 	int TEMPLATE_BINDING__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Bound Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING__BOUND_ELEMENT = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS = ELEMENT_FEATURE_COUNT + 1;
+	int TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Templateable Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Signature</b></em>' reference.
@@ -19400,22 +19400,22 @@ public interface PivotPackage
 	int TEMPLATEABLE_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 1;
+	int TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -20057,6 +20057,15 @@ public interface PivotPackage
 	int TUPLE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_TEMPLATE_BINDINGS = DATA_TYPE__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20064,15 +20073,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__OWNED_TEMPLATE_SIGNATURE = DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__TEMPLATE_BINDING = DATA_TYPE__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -20734,6 +20734,15 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20741,15 +20750,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -21454,6 +21454,15 @@ public interface PivotPackage
 	int VOID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_TEMPLATE_BINDINGS = CLASS__OWNED_TEMPLATE_BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21461,15 +21470,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -24762,15 +24762,15 @@ public interface PivotPackage
 	EClass getTemplateableElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding <em>Template Binding</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBindings <em>Owned Template Bindings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Template Binding</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBinding()
+	 * @return the meta object for the containment reference list '<em>Owned Template Bindings</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBindings()
 	 * @see #getTemplateableElement()
 	 * @generated
 	 */
-	EReference getTemplateableElement_TemplateBinding();
+	EReference getTemplateableElement_OwnedTemplateBindings();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.
@@ -24935,17 +24935,6 @@ public interface PivotPackage
 	EReference getTemplateBinding_Signature();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Bound Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement()
-	 * @see #getTemplateBinding()
-	 * @generated
-	 */
-	EReference getTemplateBinding_BoundElement();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24955,6 +24944,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateBinding_OwnedTemplateParameterSubstitutions();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Templateable Element</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement()
+	 * @see #getTemplateBinding()
+	 * @generated
+	 */
+	EReference getTemplateBinding_OwningTemplateableElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateSignature <em>Template Signature</em>}'.
@@ -28935,12 +28935,12 @@ public interface PivotPackage
 		EClass TEMPLATEABLE_ELEMENT = eINSTANCE.getTemplateableElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Template Binding</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Template Bindings</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING = eINSTANCE.getTemplateableElement_TemplateBinding();
+		EReference TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS = eINSTANCE.getTemplateableElement_OwnedTemplateBindings();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Template Signature</b></em>' containment reference feature.
@@ -29069,20 +29069,20 @@ public interface PivotPackage
 		EReference TEMPLATE_BINDING__SIGNATURE = eINSTANCE.getTemplateBinding_Signature();
 
 		/**
-		 * The meta object literal for the '<em><b>Bound Element</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_BINDING__BOUND_ELEMENT = eINSTANCE.getTemplateBinding_BoundElement();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS = eINSTANCE.getTemplateBinding_OwnedTemplateParameterSubstitutions();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Templateable Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT = eINSTANCE.getTemplateBinding_OwningTemplateableElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
