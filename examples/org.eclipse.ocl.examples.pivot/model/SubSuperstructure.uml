@@ -53,18 +53,24 @@
               <body>The template signature that owns this template parameter.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default" name="default" type="_RHSqABpbEeSM9LreJtBwBg" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
-            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-default">
-              <body>The element that is the default for this formal template parameter.</body>
-            </ownedComment>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfRH7VEeOu79LxSz8Ylw"/>
-          </ownedAttribute>
           <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType" name="constrainingClass" type="_RHSqABpbEeSM9LreJtBwBg">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType">
               <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfU37VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfVH7VEeOu79LxSz8Ylw" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default" name="lowerBound" type="_RHSqABpbEeSM9LreJtBwBg" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
+            <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-default-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-default">
+              <body>The element that is the default for this formal template parameter.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfRH7VEeOu79LxSz8Ylw"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_lUe_ICDJEeSNlrewQPlAjA" name="upperBound" type="_RHSqABpbEeSM9LreJtBwBg" association="_qpt-cCDJEeSNlrewQPlAjA">
+            <ownedComment xmi:id="_lUe_ISDJEeSNlrewQPlAjA" annotatedElement="_lUe_ICDJEeSNlrewQPlAjA">
+              <body>The element that is the default for this formal template parameter.</body>
+            </ownedComment>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lUe_IiDJEeSNlrewQPlAjA"/>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" name="TemplateParameterSubstitution">
@@ -168,10 +174,16 @@
           </ownedEnd>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter" name="A_default_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-default AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter" name="A_lowerBound_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-default AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQRn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQR37VEeOu79LxSz8Ylw" value="*"/>
+          </ownedEnd>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_qpt-cCDJEeSNlrewQPlAjA" name="A_upperBound_templateParameter" memberEnd="_lUe_ICDJEeSNlrewQPlAjA _qpt-cSDJEeSNlrewQPlAjA">
+          <ownedEnd xmi:id="_qpt-cSDJEeSNlrewQPlAjA" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="_qpt-cCDJEeSNlrewQPlAjA">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qpt-ciDJEeSNlrewQPlAjA"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qpt-cyDJEeSNlrewQPlAjA" value="*"/>
           </ownedEnd>
         </packagedElement>
       </packagedElement>

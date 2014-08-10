@@ -1323,18 +1323,24 @@
           <body>The template signature that owns this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.Pdefault" name="default" type="Ppivot.TClass" association="Ppivot.A_default_templateParameter">
-        <ownedComment xmi:id="Ppivot.TTemplateParameter.Pdefault.oC0" annotatedElement="Ppivot.TTemplateParameter.Pdefault">
-          <body>The element that is the default for this formal template parameter.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.Pdefault.lV"/>
-      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PconstrainingClass" name="constrainingClass" type="Ppivot.TClass">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.oC0" annotatedElement="Ppivot.TTemplateParameter.PconstrainingClass">
           <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.uV" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PlowerBound" name="lowerBound" type="Ppivot.TClass" association="Ppivot.A_lowerBound_templateParameter">
+        <ownedComment xmi:id="Ppivot.TTemplateParameter.PlowerBound.oC0" annotatedElement="Ppivot.TTemplateParameter.PlowerBound">
+          <body>The element that is the default for this formal template parameter.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PlowerBound.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PupperBound" name="upperBound" type="Ppivot.TClass" association="Ppivot.A_upperBound_templateParameter">
+        <ownedComment xmi:id="Ppivot.TTemplateParameter.PupperBound.oC0" annotatedElement="Ppivot.TTemplateParameter.PupperBound">
+          <body>The element that is the default for this formal template parameter.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PupperBound.lV"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTemplateParameterSubstitution" name="TemplateParameterSubstitution">
@@ -1696,13 +1702,6 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_container_subvertex" name="A_container_subvertex" memberEnd="Ppivot.TVertex.Pcontainer Ppivot.TRegion.Psubvertex"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_container_transition" name="A_container_transition" memberEnd="Ppivot.TTransition.Pcontainer Ppivot.TRegion.Ptransition"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_default_templateParameter" name="A_default_templateParameter" memberEnd="Ppivot.TTemplateParameter.Pdefault Ppivot.A_default_templateParameter.PtemplateParameter">
-      <ownedEnd xmi:id="Ppivot.A_default_templateParameter.PtemplateParameter" name="templateParameter" type="Ppivot.TTemplateParameter"
-          association="Ppivot.A_default_templateParameter">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_default_templateParameter.PtemplateParameter.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_default_templateParameter.PtemplateParameter.uV" value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_deferrableTrigger_state" name="A_deferrableTrigger_state" memberEnd="Ppivot.TState.PdeferrableTrigger Ppivot.TTrigger.Pstate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_definingProperty_slot" name="A_definingProperty_slot" memberEnd="Ppivot.TSlot.PdefiningProperty Ppivot.A_definingProperty_slot.Pslot">
       <ownedEnd xmi:id="Ppivot.A_definingProperty_slot.Pslot" name="slot" type="Ppivot.TSlot" association="Ppivot.A_definingProperty_slot">
@@ -1724,6 +1723,13 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_guard_transition" name="A_guard_transition" memberEnd="Ppivot.TTransition.Pguard Ppivot.TConstraint.Ptransition"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_incoming_target" name="A_incoming_target" memberEnd="Ppivot.TVertex.Pincoming Ppivot.TTransition.Ptarget"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_lowerBound_templateParameter" name="A_lowerBound_templateParameter" memberEnd="Ppivot.TTemplateParameter.PlowerBound Ppivot.A_lowerBound_templateParameter.PtemplateParameter">
+      <ownedEnd xmi:id="Ppivot.A_lowerBound_templateParameter.PtemplateParameter" name="templateParameter" type="Ppivot.TTemplateParameter"
+          association="Ppivot.A_lowerBound_templateParameter">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_lowerBound_templateParameter.PtemplateParameter.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_lowerBound_templateParameter.PtemplateParameter.uV" value="*"/>
+      </ownedEnd>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_nestedPackage_nestingPackage" name="A_nestedPackage_nestingPackage" memberEnd="Ppivot.TPackage.PownedPackages Ppivot.TPackage.PowningPackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_operation_redefinedOperation" name="A_operation_redefinedOperation" memberEnd="Ppivot.A_operation_redefinedOperation.Poperation Ppivot.TOperation.PredefinedOperation">
       <ownedEnd xmi:id="Ppivot.A_operation_redefinedOperation.Poperation" name="operation" type="Ppivot.TOperation" association="Ppivot.A_operation_redefinedOperation">
@@ -1810,6 +1816,13 @@
       <ownedEnd xmi:id="Ppivot.A_type_typedElement.PtypedElement" name="typedElement" type="Ppivot.TTypedElement" association="Ppivot.A_type_typedElement">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_type_typedElement.PtypedElement.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_type_typedElement.PtypedElement.uV" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_upperBound_templateParameter" name="A_upperBound_templateParameter" memberEnd="Ppivot.TTemplateParameter.PupperBound Ppivot.A_upperBound_templateParameter.PtemplateParameter">
+      <ownedEnd xmi:id="Ppivot.A_upperBound_templateParameter.PtemplateParameter" name="templateParameter" type="Ppivot.TTemplateParameter"
+          association="Ppivot.A_upperBound_templateParameter">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_upperBound_templateParameter.PtemplateParameter.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_upperBound_templateParameter.PtemplateParameter.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_value_owningSlot" name="A_value_owningSlot" memberEnd="Ppivot.TSlot.Pvalues Ppivot.A_value_owningSlot.PowningSlot">

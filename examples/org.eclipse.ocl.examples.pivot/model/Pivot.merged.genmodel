@@ -262,10 +262,13 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameter/owningTemplateSignature"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameter/default"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameter/constrainingClass"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameter/constrainingClass"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameter/lowerBound"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateParameter/upperBound"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

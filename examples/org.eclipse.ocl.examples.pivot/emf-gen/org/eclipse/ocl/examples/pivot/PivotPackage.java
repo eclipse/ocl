@@ -19003,13 +19003,13 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER__CONSTRAINING_CLASS = TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' reference.
+	 * The feature id for the '<em><b>Lower Bound</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__DEFAULT = TYPE_FEATURE_COUNT + 1;
+	int TEMPLATE_PARAMETER__LOWER_BOUND = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Signature</b></em>' container reference.
@@ -19021,13 +19021,22 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER__UPPER_BOUND = TYPE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Template Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
+	int TEMPLATE_PARAMETER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -24909,15 +24918,15 @@ public interface PivotPackage
 	EReference getTemplateParameter_ConstrainingClass();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getDefault <em>Default</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getLowerBound <em>Lower Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Default</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getDefault()
+	 * @return the meta object for the reference '<em>Lower Bound</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getLowerBound()
 	 * @see #getTemplateParameter()
 	 * @generated
 	 */
-	EReference getTemplateParameter_Default();
+	EReference getTemplateParameter_LowerBound();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}'.
@@ -24929,6 +24938,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameter_OwningTemplateSignature();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getUpperBound <em>Upper Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Upper Bound</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getUpperBound()
+	 * @see #getTemplateParameter()
+	 * @generated
+	 */
+	EReference getTemplateParameter_UpperBound();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution <em>Template Parameter Substitution</em>}'.
@@ -29018,12 +29038,12 @@ public interface PivotPackage
 		EReference TEMPLATE_PARAMETER__CONSTRAINING_CLASS = eINSTANCE.getTemplateParameter_ConstrainingClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Default</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Lower Bound</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_PARAMETER__DEFAULT = eINSTANCE.getTemplateParameter_Default();
+		EReference TEMPLATE_PARAMETER__LOWER_BOUND = eINSTANCE.getTemplateParameter_LowerBound();
 
 		/**
 		 * The meta object literal for the '<em><b>Owning Template Signature</b></em>' container reference feature.
@@ -29032,6 +29052,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE = eINSTANCE.getTemplateParameter_OwningTemplateSignature();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper Bound</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PARAMETER__UPPER_BOUND = eINSTANCE.getTemplateParameter_UpperBound();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.

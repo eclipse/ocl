@@ -1945,7 +1945,7 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClass = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS));
 		public static final @NonNull ExecutorProperty _Class__instanceSpecification__classes = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
 		public static final @NonNull ExecutorProperty _Class__subClasses__superClasses = new ExecutorPropertyWithImplementation("subClasses", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
-		public static final @NonNull ExecutorProperty _Class__templateParameter__default = new ExecutorPropertyWithImplementation("templateParameter", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT));
+		public static final @NonNull ExecutorProperty _Class__templateParameter__lowerBound = new ExecutorPropertyWithImplementation("templateParameter", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
 
 		public static final @NonNull ExecutorProperty _CollectionItem__item = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, Types._CollectionItem, 0);
 
@@ -2256,9 +2256,10 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _TemplateBinding__templateSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, Types._TemplateBinding, 2);
 
 		public static final @NonNull ExecutorProperty _TemplateParameter__constrainingClass = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, Types._TemplateParameter, 0);
-		public static final @NonNull ExecutorProperty _TemplateParameter__default = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, Types._TemplateParameter, 1);
+		public static final @NonNull ExecutorProperty _TemplateParameter__lowerBound = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND, Types._TemplateParameter, 1);
 		public static final @NonNull ExecutorProperty _TemplateParameter__owningTemplateSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE, Types._TemplateParameter, 2);
-		public static final @NonNull ExecutorProperty _TemplateParameter__templateParameterSubstitution__formal = new ExecutorPropertyWithImplementation("templateParameterSubstitution", Types._TemplateParameter, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
+		public static final @NonNull ExecutorProperty _TemplateParameter__upperBound = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND, Types._TemplateParameter, 3);
+		public static final @NonNull ExecutorProperty _TemplateParameter__templateParameterSubstitution__formal = new ExecutorPropertyWithImplementation("templateParameterSubstitution", Types._TemplateParameter, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
 
 		public static final @NonNull ExecutorProperty _TemplateParameterSubstitution__actual = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, Types._TemplateParameterSubstitution, 0);
 		public static final @NonNull ExecutorProperty _TemplateParameterSubstitution__formal = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, Types._TemplateParameterSubstitution, 1);
@@ -9919,7 +9920,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -9969,7 +9970,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10058,7 +10059,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10111,7 +10112,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10164,7 +10165,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10293,7 +10294,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10361,7 +10362,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10482,7 +10483,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10640,7 +10641,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10709,7 +10710,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10785,7 +10786,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10864,7 +10865,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10948,7 +10949,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11258,7 +11259,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11427,7 +11428,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11669,7 +11670,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11718,7 +11719,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12050,7 +12051,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12198,7 +12199,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12397,7 +12398,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12519,7 +12520,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12586,7 +12587,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12639,7 +12640,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12689,7 +12690,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12828,7 +12829,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12878,7 +12879,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12933,14 +12934,15 @@ public class PivotTables
 		private static final @NonNull ExecutorProperty[] _TemplateParameter = {
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._TemplateParameter__constrainingClass,
-			PivotTables.Properties._TemplateParameter__default,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._TemplateParameter__lowerBound,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._TemplateParameter__owningTemplateSignature,
+			PivotTables.Properties._TemplateParameter__upperBound,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Type__CollectionType__elementType,
@@ -13072,7 +13074,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13187,7 +13189,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13358,7 +13360,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13546,7 +13548,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__default,
+			PivotTables.Properties._Class__templateParameter__lowerBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};

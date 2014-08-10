@@ -1666,7 +1666,7 @@
         <details key="documentation" value="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//Class">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Class">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="templateParameter"/>
       </eAnnotations>
@@ -1677,6 +1677,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateSignature" lowerBound="1" eType="#//TemplateSignature" eOpposite="#//TemplateSignature/ownedTemplateParameters">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The template signature that owns this template parameter."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//Class">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="templateParameter"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The element that is the default for this formal template parameter."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

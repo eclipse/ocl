@@ -628,17 +628,11 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * @since 3.5
 	 */
-	@Deprecated
-	public static @NonNull TemplateParameter createTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.Class type) {		// FIXME name, lowerBound
-		TemplateParameter pivotTemplateParameter = PivotFactory.eINSTANCE.createTemplateParameter();
-		pivotTemplateParameter.setName(type.getName());
-		pivotTemplateParameter.setDefault(type);		// FIXME temporary fudge
-		return pivotTemplateParameter;
-	}
-	public static @NonNull TemplateParameter createTemplateParameter(@NonNull String name, @Nullable org.eclipse.ocl.examples.pivot.Class lowerBound) {		// FIXME name, lowerBound
+	public static @NonNull TemplateParameter createTemplateParameter(@NonNull String name, @Nullable org.eclipse.ocl.examples.pivot.Class lowerBound, @Nullable org.eclipse.ocl.examples.pivot.Class upperBound) {
 		TemplateParameter pivotTemplateParameter = PivotFactory.eINSTANCE.createTemplateParameter();
 		pivotTemplateParameter.setName(name);
-		pivotTemplateParameter.setDefault(lowerBound);		// FIXME temporary fudge
+		pivotTemplateParameter.setLowerBound(lowerBound);
+		pivotTemplateParameter.setUpperBound(upperBound);
 		return pivotTemplateParameter;
 	}
 
