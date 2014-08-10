@@ -5,7 +5,6 @@
       <packagedElement xmi:type="uml:Package" xmi:id="AuxiliaryConstructs-Templates" name="Templates">
         <packagedElement xmi:type="uml:Class" xmi:id="_RHSqABpbEeSM9LreJtBwBg" name="Class">
           <generalization xmi:id="_XnqLPH7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
-          <generalization xmi:id="_CAMZUB-QEeSG6YCqNQ2wgQ" general="AuxiliaryConstructs-Templates-PackageableElement"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_nFdeAJwSEd-STLWP-FLKew" name="Element" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_iWKggA3IEeSm6471J7pVhQ" name="NamedElement" isAbstract="true"/>
@@ -20,13 +19,6 @@
             <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLP37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-TemplateableElement"/>
-          <generalization xmi:id="_X9N50Bp4EeSM9LreJtBwBg" general="AuxiliaryConstructs-Templates-PackageableElement"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-PackageableElement" name="PackageableElement" isAbstract="true">
-          <ownedComment xmi:id="AuxiliaryConstructs-Templates-PackageableElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-PackageableElement">
-            <body>Packageable elements are able to serve as a template parameter.</body>
-          </ownedComment>
-          <generalization xmi:id="_XnqLO37VEeOu79LxSz8Ylw" general="_iWKggA3IEeSm6471J7pVhQ"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="AuxiliaryConstructs-Templates-TemplateBinding" name="TemplateBinding">
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding">
@@ -153,7 +145,6 @@
           <ownedComment xmi:id="AuxiliaryConstructs-Templates-ValueSpecification-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ValueSpecification">
             <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
           </ownedComment>
-          <generalization xmi:id="_XnqLN37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-PackageableElement"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedTemplateParameters_owningTemplateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedTemplateBinding_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
@@ -207,7 +198,9 @@
               <body>self.specification.booleanValue().oclIsKindOf(Boolean)</body>
             </specification>
           </ownedRule>
-          <generalization xmi:id="_XnqLQH7VEeOu79LxSz8Ylw" general="_q7-KoA3GEeSm6471J7pVhQ"/>
+          <generalization xmi:id="_VY5XECDHEeSNlrewQPlAjA">
+            <general xmi:type="uml:Class" href="Infrastructure.uml#Core-Basic-NamedElement"/>
+          </generalization>
           <ownedAttribute xmi:id="_JhArua5oEd-xTJkHwX_SlQ" name="constrainedElement" isOrdered="true">
             <ownedComment xmi:id="_JhAruq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArua5oEd-xTJkHwX_SlQ">
               <body>The ordered set of Elements referenced by this Constraint.</body>
@@ -331,7 +324,6 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQVn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_q7-KoA3GEeSm6471J7pVhQ" name="PackageableElement" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_VcCqIBlSEeSM9LreJtBwBg" name="LanguageExpression" isAbstract="true">
           <ownedComment xmi:id="_VcCqIRlSEeSM9LreJtBwBg" annotatedElement="_VcCqIBlSEeSM9LreJtBwBg">
             <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>

@@ -105,7 +105,6 @@ public interface Visitor<R>
 	@Nullable R visitOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.pivot.OppositePropertyCallExp object);
 	@Nullable R visitOrderedSetType(@NonNull org.eclipse.ocl.examples.pivot.OrderedSetType object);
 	@Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object);
-	@Nullable R visitPackageableElement(@NonNull org.eclipse.ocl.examples.pivot.PackageableElement object);
 	@Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object);
 	@Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object);
 	@Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object);

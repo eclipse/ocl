@@ -179,7 +179,6 @@
       <generalization xmi:id="Ppivot.TClass.g0" general="Ppivot.TType"/>
       <generalization xmi:id="Ppivot.TClass.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TClass.g2" general="Ppivot.TTemplateableElement"/>
-      <generalization xmi:id="Ppivot.TClass.g3" general="Ppivot.TPackageableElement"/>
       <ownedAttribute xmi:id="Ppivot.TClass.PisAbstract" name="isAbstract" type="Ppivot.TBoolean">
         <ownedComment xmi:id="Ppivot.TClass.PisAbstract.oC0" annotatedElement="Ppivot.TClass.PisAbstract">
           <body>True when a class is abstract.</body>
@@ -322,7 +321,7 @@
       <ownedComment xmi:id="Ppivot.TConstraint.oC0" annotatedElement="Ppivot.TConstraint">
         <body>A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.</body>
       </ownedComment>
-      <generalization xmi:id="Ppivot.TConstraint.g0" general="Ppivot.TPackageableElement"/>
+      <generalization xmi:id="Ppivot.TConstraint.g0" general="Ppivot.TNamedElement"/>
       <ownedAttribute xmi:id="Ppivot.TConstraint.PconstrainedElement" name="constrainedElement" type="Ppivot.TElement" isOrdered="true">
         <ownedComment xmi:id="Ppivot.TConstraint.PconstrainedElement.oC0" annotatedElement="Ppivot.TConstraint.PconstrainedElement">
           <body>The ordered set of Elements referenced by this Constraint.</body>
@@ -553,7 +552,7 @@
       <ownedComment xmi:id="Ppivot.TInstanceSpecification.oC0" annotatedElement="Ppivot.TInstanceSpecification">
         <body>An instance specification is a model element that represents an instance in a modeled system.</body>
       </ownedComment>
-      <generalization xmi:id="Ppivot.TInstanceSpecification.g0" general="Ppivot.TPackageableElement"/>
+      <generalization xmi:id="Ppivot.TInstanceSpecification.g0" general="Ppivot.TNamedElement"/>
       <ownedAttribute xmi:id="Ppivot.TInstanceSpecification.Pslots" name="slots" type="Ppivot.TSlot" aggregation="composite" association="Ppivot.A_slot_owningInstance">
         <ownedComment xmi:id="Ppivot.TInstanceSpecification.Pslots.oC0" annotatedElement="Ppivot.TInstanceSpecification.Pslots">
           <body>A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.</body>
@@ -830,7 +829,6 @@
       <generalization xmi:id="Ppivot.TPackage.g0" general="Ppivot.TNamedElement"/>
       <generalization xmi:id="Ppivot.TPackage.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TPackage.g2" general="Ppivot.TTemplateableElement"/>
-      <generalization xmi:id="Ppivot.TPackage.g3" general="Ppivot.TPackageableElement"/>
       <ownedAttribute xmi:id="Ppivot.TPackage.PownedPackages" name="ownedPackages" type="Ppivot.TPackage" aggregation="composite" association="Ppivot.A_nestedPackage_nestingPackage">
         <ownedComment xmi:id="Ppivot.TPackage.PownedPackages.oC0" annotatedElement="Ppivot.TPackage.PownedPackages">
           <body>The set of contained packages.</body>
@@ -874,12 +872,6 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PownedInstances.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TPackage.PownedInstances.uV" value="*"/>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPackageableElement" name="PackageableElement" isAbstract="true">
-      <ownedComment xmi:id="Ppivot.TPackageableElement.oC0" annotatedElement="Ppivot.TPackageableElement">
-        <body>Packageable elements are able to serve as a template parameter.</body>
-      </ownedComment>
-      <generalization xmi:id="Ppivot.TPackageableElement.g0" general="Ppivot.TNamedElement"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameter" name="Parameter">
       <ownedComment xmi:id="Ppivot.TParameter.oC0" annotatedElement="Ppivot.TParameter">
@@ -1567,7 +1559,6 @@
         <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TValueSpecification.g0" general="Ppivot.TTypedElement"/>
-      <generalization xmi:id="Ppivot.TValueSpecification.g1" general="Ppivot.TPackageableElement"/>
       <ownedOperation xmi:id="Ppivot.TValueSpecification.OisComputable" name="isComputable" isQuery="true">
         <ownedComment xmi:id="Ppivot.TValueSpecification.OisComputable.oC0" annotatedElement="Ppivot.TValueSpecification.OisComputable">
           <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>

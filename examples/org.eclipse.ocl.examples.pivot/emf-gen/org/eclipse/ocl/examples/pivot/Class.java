@@ -47,7 +47,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Class
-		extends Type, Namespace, TemplateableElement, PackageableElement, org.eclipse.ocl.examples.domain.elements.DomainClass {
+		extends Type, Namespace, TemplateableElement, org.eclipse.ocl.examples.domain.elements.DomainClass {
 
 	/**
 	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.

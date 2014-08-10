@@ -315,10 +315,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitPackage(object);
 	}
 
-	public @Nullable R visitPackageableElement(@NonNull org.eclipse.ocl.examples.pivot.PackageableElement object) {
-		return delegate.visitPackageableElement(object);
-	}
-
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {
 		return delegate.visitParameter(object);
 	}

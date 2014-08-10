@@ -26,7 +26,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface ValueSpecification
-		extends TypedElement, PackageableElement {
+		extends TypedElement {
 
 	/**
 	 * <!-- begin-user-doc -->

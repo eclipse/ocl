@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.pivot.Slot;
  *
  * @generated
  */
-public class InstanceSpecificationImpl extends PackageableElementImpl implements InstanceSpecification
+public class InstanceSpecificationImpl extends NamedElementImpl implements InstanceSpecification
 {
 	/**
 	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' reference list.

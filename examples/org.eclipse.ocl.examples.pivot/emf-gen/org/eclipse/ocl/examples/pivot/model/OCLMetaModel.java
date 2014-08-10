@@ -206,7 +206,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _OppositePropertyCallExp = createClass(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP);
 		protected final @NonNull Class _OrderedSetType = createClass(PivotPackage.Literals.ORDERED_SET_TYPE);
 		protected final @NonNull Class _Package = createClass(PivotPackage.Literals.PACKAGE);
-		protected final @NonNull Class _PackageableElement = createClass(PivotPackage.Literals.PACKAGEABLE_ELEMENT);
 		protected final @NonNull Class _Parameter = createClass(PivotPackage.Literals.PARAMETER);
 		protected final @NonNull Class _Pivotable = createClass(PivotPackage.Literals.PIVOTABLE);
 		protected final @NonNull Class _Precedence = createClass(PivotPackage.Literals.PRECEDENCE);
@@ -512,7 +511,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Type);
 			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
-			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _CollectionItem);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionLiteralPart);
@@ -536,7 +534,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Vertex);
 			ownedTypes.add(type = _Constraint);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_PackageableElement);
+			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _ConstructorExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
@@ -601,7 +599,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _InstanceSpecification);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_PackageableElement);
+			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _IntegerLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NumericLiteralExp);
@@ -699,10 +697,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
-			superClasses.add(_PackageableElement);
-			ownedTypes.add(type = _PackageableElement);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
@@ -838,7 +832,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
@@ -4158,7 +4151,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");
 			installComment(pr_Package_ownedPackages, "The set of contained packages.");
 			installComment(pr_Package_owningPackage, "The containing package.");
-			installComment(_PackageableElement, "Packageable elements are able to serve as a template parameter.");
 			installComment(_Parameter, "A parameter is a typed element that represents a parameter of an operation.");
 			installComment(pr_Parameter_operation, "The operation that owns the parameter.");
 			installComment(_PrimitiveType, "A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");

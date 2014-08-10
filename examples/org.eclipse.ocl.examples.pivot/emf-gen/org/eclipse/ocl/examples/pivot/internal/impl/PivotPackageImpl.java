@@ -87,7 +87,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -489,13 +488,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass orderedSetTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass packageableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2839,15 +2831,6 @@ public class PivotPackageImpl
 	 */
 	public EClass getOrderedSetType() {
 		return orderedSetTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPackageableElement() {
-		return packageableElementEClass;
 	}
 
 	/**
@@ -5777,8 +5760,6 @@ public class PivotPackageImpl
 		createEReference(packageEClass, PACKAGE__OWNING_PACKAGE);
 		createEReference(packageEClass, PACKAGE__PROFILE_APPLICATION);
 
-		packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
-
 		parameterEClass = createEClass(PARAMETER);
 		createEReference(parameterEClass, PARAMETER__OPERATION);
 
@@ -6064,7 +6045,6 @@ public class PivotPackageImpl
 		classEClass.getESuperTypes().add(this.getType());
 		classEClass.getESuperTypes().add(this.getNamespace());
 		classEClass.getESuperTypes().add(this.getTemplateableElement());
-		classEClass.getESuperTypes().add(this.getPackageableElement());
 		collectionItemEClass.getESuperTypes().add(this.getCollectionLiteralPart());
 		collectionLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		collectionLiteralPartEClass.getESuperTypes().add(this.getTypedElement());
@@ -6072,7 +6052,7 @@ public class PivotPackageImpl
 		collectionTypeEClass.getESuperTypes().add(this.getDataType());
 		commentEClass.getESuperTypes().add(this.getElement());
 		connectionPointReferenceEClass.getESuperTypes().add(this.getVertex());
-		constraintEClass.getESuperTypes().add(this.getPackageableElement());
+		constraintEClass.getESuperTypes().add(this.getNamedElement());
 		constructorExpEClass.getESuperTypes().add(this.getOCLExpression());
 		constructorPartEClass.getESuperTypes().add(this.getTypedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
@@ -6095,7 +6075,7 @@ public class PivotPackageImpl
 		finalStateEClass.getESuperTypes().add(this.getState());
 		ifExpEClass.getESuperTypes().add(this.getOCLExpression());
 		importEClass.getESuperTypes().add(this.getNamedElement());
-		instanceSpecificationEClass.getESuperTypes().add(this.getPackageableElement());
+		instanceSpecificationEClass.getESuperTypes().add(this.getNamedElement());
 		integerLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		invalidLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		invalidTypeEClass.getESuperTypes().add(this.getClass_());
@@ -6129,8 +6109,6 @@ public class PivotPackageImpl
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
 		packageEClass.getESuperTypes().add(this.getNamespace());
 		packageEClass.getESuperTypes().add(this.getTemplateableElement());
-		packageEClass.getESuperTypes().add(this.getPackageableElement());
-		packageableElementEClass.getESuperTypes().add(this.getNamedElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
@@ -6175,7 +6153,6 @@ public class PivotPackageImpl
 		unspecifiedTypeEClass.getESuperTypes().add(this.getClass_());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOCLExpression());
 		valueSpecificationEClass.getESuperTypes().add(this.getTypedElement());
-		valueSpecificationEClass.getESuperTypes().add(this.getPackageableElement());
 		variableEClass.getESuperTypes().add(this.getVariableDeclaration());
 		variableDeclarationEClass.getESuperTypes().add(this.getTypedElement());
 		variableExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -6966,8 +6943,6 @@ public class PivotPackageImpl
 		initEReference(getPackage_OwnedPackages(), this.getPackage(), this.getPackage_OwningPackage(), "ownedPackages", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_OwningPackage(), this.getPackage(), this.getPackage_OwnedPackages(), "owningPackage", null, 0, 1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackage_ProfileApplication(), this.getProfileApplication(), this.getProfileApplication_ApplyingPackage(), "profileApplication", null, 0, -1, org.eclipse.ocl.examples.pivot.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getParameter_Operation(), this.getOperation(), this.getOperation_OwnedParameter(), "operation", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -34,7 +34,7 @@ import java.util.List;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getInstanceSpecification()
  * @generated
  */
-public interface InstanceSpecification extends PackageableElement
+public interface InstanceSpecification extends NamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Classes</b></em>' reference list.

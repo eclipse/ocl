@@ -84,7 +84,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -835,8 +834,6 @@ public class PivotValidator
 				return validateOrderedSetType((OrderedSetType)value, diagnostics, context);
 			case PivotPackage.PACKAGE:
 				return validatePackage((org.eclipse.ocl.examples.pivot.Package)value, diagnostics, context);
-			case PivotPackage.PACKAGEABLE_ELEMENT:
-				return validatePackageableElement((PackageableElement)value, diagnostics, context);
 			case PivotPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
 			case PivotPackage.PIVOTABLE:
@@ -2898,17 +2895,6 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)orderedSetType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(orderedSetType, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePackageableElement(
-			PackageableElement packageableElement, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)packageableElement, diagnostics, context);
 	}
 
 	/**

@@ -62,7 +62,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public class ConstraintImpl
-		extends PackageableElementImpl
+		extends NamedElementImpl
 		implements Constraint {
 
 	/**

@@ -78,7 +78,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -523,11 +522,6 @@ public class PivotAdapterFactory
 			public Adapter casePackage(org.eclipse.ocl.examples.pivot.Package object)
 			{
 				return createPackageAdapter();
-			}
-			@Override
-			public Adapter casePackageableElement(PackageableElement object)
-			{
-				return createPackageableElementAdapter();
 			}
 			@Override
 			public Adapter caseParameter(Parameter object)
@@ -1478,20 +1472,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createOrderedSetTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.PackageableElement <em>Packageable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.PackageableElement
-	 * @generated
-	 */
-	public Adapter createPackageableElementAdapter() {
 		return null;
 	}
 
