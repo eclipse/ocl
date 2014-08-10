@@ -162,13 +162,13 @@ public class OperationFilter extends AbstractOperationFilter
 			return null;
 		}
 		HashMap<TemplateParameter, Type> bindings = new HashMap<TemplateParameter, Type>();
-		bindings.put(candidateIteration.getOwningClass().getOwnedTemplateSignature().getOwnedParameter().get(0), ((CollectionType)sourceType).getElementType());
+		bindings.put(candidateIteration.getOwningClass().getOwnedTemplateSignature().getOwnedTemplateParameters().get(0), ((CollectionType)sourceType).getElementType());
 		if (sourceType instanceof TemplateableElement) {
 			PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
 		}
 		TemplateSignature templateSignature = candidateIteration.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 			int accIndex = 0;
 			for (NavigatingArgCS csArgument : csArguments) {
 				if (csArgument.getRole() == NavigationRole.ACCUMULATOR) {
@@ -204,14 +204,14 @@ public class OperationFilter extends AbstractOperationFilter
 				elementType = metaModelManager.getOclInvalidType();
 			}
 			bindings = new HashMap<TemplateParameter, Type>();
-			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameter().get(0), elementType);
+			bindings.put(containingType.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0), elementType);
 		}			
 		if (sourceType instanceof TemplateableElement) {
 			bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
 		}
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
 				if (bindings == null) {
 					bindings = new HashMap<TemplateParameter, Type>();
 				}

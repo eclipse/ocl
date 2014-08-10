@@ -463,7 +463,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 			if (type.getOwnedTemplateSignature() == null) {
 				throw new IllegalLibraryException(name + " is not a templated type");
 			}
-			else if (type.getOwnedTemplateSignature().getOwnedParameter().size() != parameterCount) {
+			else if (type.getOwnedTemplateSignature().getOwnedTemplateParameters().size() != parameterCount) {
 				throw new IllegalLibraryException(name + " is not a templated type with " + parameterCount + " argument" + (parameterCount != 1 ? "s" : ""));
 			}
 			@SuppressWarnings("unchecked")

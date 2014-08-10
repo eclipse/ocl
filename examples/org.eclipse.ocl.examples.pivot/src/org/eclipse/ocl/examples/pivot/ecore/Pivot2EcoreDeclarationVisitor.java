@@ -258,7 +258,7 @@ public class Pivot2EcoreDeclarationVisitor
 	protected void copyTemplateSignature(@NonNull List<ETypeParameter> eTypeParameters, TemplateableElement pivotElement) {
 		TemplateSignature templateSignature = pivotElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> parameters = templateSignature.getOwnedParameter();
+			List<TemplateParameter> parameters = templateSignature.getOwnedTemplateParameters();
 			safeVisitAll(eTypeParameters, parameters);
 		}
 	}

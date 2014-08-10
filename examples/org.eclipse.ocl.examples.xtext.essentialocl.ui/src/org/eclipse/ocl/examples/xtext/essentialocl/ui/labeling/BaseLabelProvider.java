@@ -236,7 +236,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				s.append("(");
-				Collection<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+				Collection<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (!templateParameters.isEmpty()) {
 					String prefix = "";
 					for (TemplateParameter templateParameter : templateParameters) {

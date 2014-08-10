@@ -353,7 +353,7 @@ public class Pivot2UMLDeclarationVisitor
 	@Override
 	public org.eclipse.uml2.uml.TemplateSignature visitTemplateSignature(@NonNull TemplateSignature pivotTemplateSignature) {
 		org.eclipse.uml2.uml.TemplateSignature umlTemplateSignature = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
-		safeVisitAll(umlTemplateSignature.getOwnedParameters(), pivotTemplateSignature.getOwnedParameter());
+		safeVisitAll(umlTemplateSignature.getOwnedParameters(), pivotTemplateSignature.getOwnedTemplateParameters());
 //		safeVisitAll(umlTemplateSignature.getParameters(), pivotTemplateSignature.getParameter());
 		return umlTemplateSignature;
 	}

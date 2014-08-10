@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getOwnedParameter <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getOwnedTemplateParameters <em>Owned Template Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getTemplate <em>Template</em>}</li>
  * </ul>
  * </p>
@@ -56,15 +56,14 @@ public class TemplateSignatureImpl
 		implements TemplateSignature {
 
 	/**
-	 * The cached value of the '{@link #getOwnedParameter() <em>Owned Parameter</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedTemplateParameters() <em>Owned Template Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedParameter()
+	 * @see #getOwnedTemplateParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateParameter> ownedParameter;
-
+	protected EList<TemplateParameter> ownedTemplateParameters;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,13 +89,13 @@ public class TemplateSignatureImpl
 	 * @generated
 	 */
 	@SuppressWarnings("null")
-	public @NonNull List<TemplateParameter> getOwnedParameter()
+	public @NonNull List<TemplateParameter> getOwnedTemplateParameters()
 	{
-		if (ownedParameter == null)
+		if (ownedTemplateParameters == null)
 		{
-			ownedParameter = new EObjectContainmentWithInverseEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE);
+			ownedTemplateParameters = new EObjectContainmentWithInverseEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS, PivotPackage.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE);
 		}
-		return ownedParameter;
+		return ownedTemplateParameters;
 	}
 
 	/**
@@ -159,8 +158,8 @@ public class TemplateSignatureImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameter()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateParameters()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -187,8 +186,8 @@ public class TemplateSignatureImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
+				return ((InternalEList<?>)getOwnedTemplateParameters()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				return basicSetTemplate(null, msgs);
 		}
@@ -228,8 +227,8 @@ public class TemplateSignatureImpl
 				return getOwnedAnnotation();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				return getOwnedComment();
-			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return getOwnedParameter();
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
+				return getOwnedTemplateParameters();
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				return getTemplate();
 		}
@@ -262,9 +261,9 @@ public class TemplateSignatureImpl
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				getOwnedParameter().clear();
-				getOwnedParameter().addAll((Collection<? extends TemplateParameter>)newValue);
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
+				getOwnedTemplateParameters().clear();
+				getOwnedTemplateParameters().addAll((Collection<? extends TemplateParameter>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				setTemplate((TemplateableElement)newValue);
@@ -294,8 +293,8 @@ public class TemplateSignatureImpl
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
-			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				getOwnedParameter().clear();
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
+				getOwnedTemplateParameters().clear();
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				setTemplate((TemplateableElement)null);
@@ -321,8 +320,8 @@ public class TemplateSignatureImpl
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
-			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return ownedParameter != null && !ownedParameter.isEmpty();
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
+				return ownedTemplateParameters != null && !ownedTemplateParameters.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				return getTemplate() != null;
 		}
@@ -338,7 +337,7 @@ public class TemplateSignatureImpl
 		if (templateSignature == null) {
 			return DomainTypeParameters.EMPTY_LIST;
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		int iMax = templateParameters.size();
 		DomainTemplateParameter[] typeParameters = new DomainTemplateParameter[iMax];
 		for (int i = 0; i < iMax; i++) {

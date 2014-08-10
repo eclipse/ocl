@@ -492,7 +492,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«FOR templateSignature : allTemplateSignatures»
 			protected final @NonNull TemplateSignature «templateSignature.getPrefixedSymbolName(
 						"ts_" + templateSignature.partialName())» = createTemplateSignature(«templateSignature.template.getSymbolName()»«FOR templateParameter : templateSignature.
-						ownedParameter», «templateParameter.getSymbolName()»«ENDFOR»);
+						ownedTemplateParameters», «templateParameter.getSymbolName()»«ENDFOR»);
 			«ENDFOR»
 		'''
 	}
@@ -584,7 +584,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			Property: return getPartialName(element)
 			TemplateBinding case element.signature.template == null: return "null"
 			TemplateBinding: return element.boundElement.partialName()
-			TemplateParameter case element.signature.template == null: return "[" + element.signature.partialName() + "]"
+			TemplateParameter case element.getOwningTemplateSignature.template == null: return "[" + element.getOwningTemplateSignature.partialName() + "]"
 			TemplateParameter: return element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
 			TemplateParameterSubstitution case element.owningTemplateBinding.boundElement == null: return "null"
@@ -597,8 +597,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String simpleName(EObject element) {
 		switch element {
-			TemplateParameter case element.signature.template == null: return "null"
-			TemplateParameter: return element.signature.template.simpleName() + "_" + element.javaName()
+			TemplateParameter case element.getOwningTemplateSignature.template == null: return "null"
+			TemplateParameter: return element.getOwningTemplateSignature.template.simpleName() + "_" + element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
 			TemplateParameterSubstitution case element.owningTemplateBinding.boundElement == null: return "null"
 			TemplateParameterSubstitution: return element.owningTemplateBinding.boundElement.simpleName()

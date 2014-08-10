@@ -1679,7 +1679,7 @@
         <details key="documentation" value="The element that is the default for this formal template parameter."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1" eType="#//TemplateSignature" eOpposite="#//TemplateSignature/ownedParameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateSignature" lowerBound="1" eType="#//TemplateSignature" eOpposite="#//TemplateSignature/ownedTemplateParameters">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The template signature that owns this template parameter."/>
       </eAnnotations>
@@ -1715,8 +1715,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A template signature bundles the set of formal template parameters for a templated element."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameter" upperBound="-1" eType="#//TemplateParameter" containment="true"
-        eOpposite="#//TemplateParameter/signature">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateParameters" upperBound="-1" eType="#//TemplateParameter" containment="true"
+        eOpposite="#//TemplateParameter/owningTemplateSignature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The formal template parameters that are owned by this template signature."/>
       </eAnnotations>

@@ -56,7 +56,7 @@
             <body>A template parameter exposes a parameterable element as a formal template parameter of a template.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLMX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-Classifier"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature" name="owningTemplateSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-signature">
               <body>The template signature that owns this template parameter.</body>
             </ownedComment>
@@ -101,7 +101,7 @@
             <body>A template signature bundles the set of formal template parameters for a templated element.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLMH7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedTemplateParameters" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter">
               <body>The formal template parameters that are owned by this template signature.</body>
             </ownedComment>
@@ -155,7 +155,7 @@
           </ownedComment>
           <generalization xmi:id="_XnqLN37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-PackageableElement"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedParameter_signature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedTemplateParameters_owningTemplateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_templateBinding_boundElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution" name="A_formal_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution">

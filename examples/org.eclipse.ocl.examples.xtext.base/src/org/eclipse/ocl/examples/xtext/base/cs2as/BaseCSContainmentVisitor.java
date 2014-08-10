@@ -513,7 +513,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 				newPivotTemplateParameters.add(pivotTemplateParameter);
 			}
 		}
-		PivotUtil.refreshList(pivotElement.getOwnedParameter(), newPivotTemplateParameters);
+		PivotUtil.refreshList(pivotElement.getOwnedTemplateParameters(), newPivotTemplateParameters);
 		return null;
 	}
 

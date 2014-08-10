@@ -49,7 +49,7 @@ public abstract class AbstractOperationFilter implements ScopeFilter
 //			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
 				if (bindings == null) {
 					bindings = new HashMap<TemplateParameter, Type>();
 				}

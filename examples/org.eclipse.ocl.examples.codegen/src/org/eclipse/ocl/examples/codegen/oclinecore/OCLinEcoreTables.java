@@ -454,7 +454,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append("new ");
 					s.appendClassReference(DomainTypeParameters.class);
 					s.append("(");
-					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedParameter()) {
+					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
 						if (parameter != null) {
 							s.append("TypeParameters._");
 							op.accept(emitLiteralVisitor);
@@ -646,7 +646,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append(", PACKAGE, ");
 		appendTypeFlags(pClass);
 		if (pClass.getOwnedTemplateSignature() != null) {
-			for (TemplateParameter parameter : pClass.getOwnedTemplateSignature().getOwnedParameter()) {
+			for (TemplateParameter parameter : pClass.getOwnedTemplateSignature().getOwnedTemplateParameters()) {
 				if (parameter != null) {
 					s.append(", TypeParameters.");
 					s.appendScopedTypeName(pClass);
@@ -822,7 +822,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			TemplateSignature templateSignature = pClass.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				s.append("\n");
-				for (TemplateParameter parameter : templateSignature.getOwnedParameter()) {
+				for (TemplateParameter parameter : templateSignature.getOwnedTemplateParameters()) {
 					if (parameter != null) {
 						s.append("		public static final " + atNonNull() + " ");
 						s.appendClassReference(ExecutorTypeParameter.class);
@@ -854,7 +854,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				assert operation != null;
 				templateSignature = operation.getOwnedTemplateSignature();
 				if (templateSignature != null) {
-					for (/*@NonNull*/ TemplateParameter parameter : templateSignature.getOwnedParameter()) {
+					for (/*@NonNull*/ TemplateParameter parameter : templateSignature.getOwnedTemplateParameters()) {
 						if (parameter != null) {
 							s.append("		public static final " + atNonNull() + " ");
 							s.appendClassReference(ExecutorTypeParameter.class);

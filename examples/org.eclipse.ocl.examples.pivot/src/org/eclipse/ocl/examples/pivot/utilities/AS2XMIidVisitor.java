@@ -374,7 +374,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitTemplateParameter(@NonNull TemplateParameter object) {
-		NamedElement template = (NamedElement) object.getSignature().getTemplate();
+		NamedElement template = (NamedElement) object.getOwningTemplateSignature().getTemplate();
 		if ((template instanceof org.eclipse.ocl.examples.pivot.Class) && Orphanage.isTypeOrphanage(((org.eclipse.ocl.examples.pivot.Class)template).getOwningPackage())) {
 			return false;
 		}

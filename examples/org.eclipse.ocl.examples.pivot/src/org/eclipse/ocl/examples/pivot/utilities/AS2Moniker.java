@@ -233,7 +233,7 @@ public class AS2Moniker implements PivotConstants
 				if (parent instanceof TemplateableElement) {
 					TemplateSignature ownedTemplateSignature = ((TemplateableElement)parent).getOwnedTemplateSignature();
 					if (ownedTemplateSignature != null) {
-						for (TemplateParameter templateParameter : ownedTemplateSignature.getOwnedParameter()) {
+						for (TemplateParameter templateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
 							emittedTemplateParameter(templateParameter);
 					}
 					}
@@ -323,7 +323,7 @@ public class AS2Moniker implements PivotConstants
 	public void appendTemplateParameters(TemplateableElement templateableElement) {
 		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 			if (!templateParameters.isEmpty()) {
 				s.append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$

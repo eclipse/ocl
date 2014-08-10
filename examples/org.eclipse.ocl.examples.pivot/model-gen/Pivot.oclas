@@ -707,7 +707,7 @@
       <ownedProperties xmi:id="p.pivot.Metaclass.instanceType" name="instanceType"
           opposite="#p.pivot.Type.Metaclass" type="#T.pivot.Type"/>
       <ownedTemplateSignature xmi:id="s.T.pivot.Metaclass">
-        <ownedParameter xmi:id="t.pivot..MetaclassT" name="T"/>
+        <ownedTemplateParameters xmi:id="t.pivot..MetaclassT" name="T"/>
       </ownedTemplateSignature>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MorePivotable" instanceClassName="org.eclipse.ocl.examples.pivot.util.MorePivotable"
@@ -1314,8 +1314,9 @@
           name="default" opposite="#p.pivot.Class.templateParameter" type="#T.pivot.Class">
         <ownedComment body="The element that is the default for this formal template parameter."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.TemplateParameter.signature" name="signature"
-          opposite="#p.pivot.TemplateSignature.ownedParameter" type="#T.pivot.TemplateSignature">
+      <ownedProperties xmi:id="p.pivot.TemplateParameter.owningTemplateSignature"
+          name="owningTemplateSignature" opposite="#p.pivot.TemplateSignature.ownedTemplateParameters"
+          type="#T.pivot.TemplateSignature">
         <ownedComment body="The template signature that owns this template parameter."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.templateParameterSubstitution"
@@ -1341,8 +1342,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.TemplateSignature" name="TemplateSignature" superClasses="#T.pivot.Element">
       <ownedComment body="A template signature bundles the set of formal template parameters for a templated element."/>
-      <ownedProperties xmi:id="p.pivot.TemplateSignature.ownedParameter" isComposite="true"
-          name="ownedParameter" opposite="#p.pivot.TemplateParameter.signature" type="#//@ownedPackages.1/@ownedClasses.120">
+      <ownedProperties xmi:id="p.pivot.TemplateSignature.ownedTemplateParameters"
+          isComposite="true" name="ownedTemplateParameters" opposite="#p.pivot.TemplateParameter.owningTemplateSignature"
+          type="#//@ownedPackages.1/@ownedClasses.120">
         <ownedComment body="The formal template parameters that are owned by this template signature."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateSignature.template" name="template"

@@ -1324,8 +1324,9 @@
         <body>A template parameter exposes a parameterable element as a formal template parameter of a template.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TTemplateParameter.g0" general="Ppivot.TType"/>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.Psignature" name="signature" type="Ppivot.TTemplateSignature" association="Ppivot.A_ownedParameter_signature">
-        <ownedComment xmi:id="Ppivot.TTemplateParameter.Psignature.oC0" annotatedElement="Ppivot.TTemplateParameter.Psignature">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PowningTemplateSignature" name="owningTemplateSignature" type="Ppivot.TTemplateSignature"
+          association="Ppivot.A_ownedTemplateParameters_owningTemplateSignature">
+        <ownedComment xmi:id="Ppivot.TTemplateParameter.PowningTemplateSignature.oC0" annotatedElement="Ppivot.TTemplateParameter.PowningTemplateSignature">
           <body>The template signature that owns this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
@@ -1370,13 +1371,13 @@
         <body>A template signature bundles the set of formal template parameters for a templated element.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TTemplateSignature.g0" general="Ppivot.TElement"/>
-      <ownedAttribute xmi:id="Ppivot.TTemplateSignature.PownedParameter" name="ownedParameter" type="Ppivot.TTemplateParameter" isOrdered="true"
-          aggregation="composite" association="Ppivot.A_ownedParameter_signature">
-        <ownedComment xmi:id="Ppivot.TTemplateSignature.PownedParameter.oC0" annotatedElement="Ppivot.TTemplateSignature.PownedParameter">
+      <ownedAttribute xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters" name="ownedTemplateParameters" type="Ppivot.TTemplateParameter"
+          isOrdered="true" aggregation="composite" association="Ppivot.A_ownedTemplateParameters_owningTemplateSignature">
+        <ownedComment xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.oC0" annotatedElement="Ppivot.TTemplateSignature.PownedTemplateParameters">
           <body>The formal template parameters that are owned by this template signature.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateSignature.PownedParameter.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateSignature.PownedParameter.uV" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTemplateSignature.Ptemplate" name="template" type="Ppivot.TTemplateableElement" association="Ppivot.A_ownedTemplateSignature_template">
         <ownedComment xmi:id="Ppivot.TTemplateSignature.Ptemplate.oC0" annotatedElement="Ppivot.TTemplateSignature.Ptemplate">
@@ -1748,10 +1749,11 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedLiteral_enumeration" name="A_ownedLiteral_enumeration" memberEnd="Ppivot.TEnumeration.PownedLiteral Ppivot.TEnumerationLiteral.Penumeration"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedOperations_owningClass" name="A_ownedOperations_owningClass" memberEnd="Ppivot.TClass.PownedOperations Ppivot.TOperation.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Ppivot.TOperation.PownedParameter Ppivot.TParameter.Poperation"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_signature" name="A_ownedParameter_signature" memberEnd="Ppivot.TTemplateSignature.PownedParameter Ppivot.TTemplateParameter.Psignature"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedProperties_owningClass" name="A_ownedProperties_owningClass" memberEnd="Ppivot.TClass.PownedProperties Ppivot.TProperty.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateParameterSubstitutions_templateBinding" name="A_ownedTemplateParameterSubstitutions_templateBinding"
         memberEnd="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions Ppivot.TTemplateParameterSubstitution.PowningTemplateBinding"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateParameters_owningTemplateSignature" name="A_ownedTemplateParameters_owningTemplateSignature"
+        memberEnd="Ppivot.TTemplateSignature.PownedTemplateParameters Ppivot.TTemplateParameter.PowningTemplateSignature"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template"
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.Ptemplate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningPackage_ownedInstance" name="A_owningPackage_ownedInstance" memberEnd="Ppivot.TInstanceSpecification.PowningPackage Ppivot.TPackage.PownedInstances"/>

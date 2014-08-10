@@ -149,8 +149,8 @@ public class PivotUtil extends DomainUtil
 		public int compare(TemplateParameterSubstitution o1, TemplateParameterSubstitution o2) {
 			TemplateParameter f1 = o1.getFormal();
 			TemplateParameter f2 = o2.getFormal();
-			int i1 = f1.getSignature().getOwnedParameter().indexOf(f1);
-			int i2 = f2.getSignature().getOwnedParameter().indexOf(f2);
+			int i1 = f1.getOwningTemplateSignature().getOwnedTemplateParameters().indexOf(f1);
+			int i2 = f2.getOwningTemplateSignature().getOwnedTemplateParameters().indexOf(f2);
 			return i1 - i2;
 		}
 	}
@@ -657,7 +657,7 @@ public class PivotUtil extends DomainUtil
 	 */
 	public static @NonNull TemplateSignature createTemplateSignature(@NonNull TemplateableElement templateableElement, TemplateParameter... templateParameters) {
 		TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedParameter();
+		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedTemplateParameters();
 		for (TemplateParameter templateParameter : templateParameters) {
 			parameters.add(templateParameter);
 		}
@@ -933,7 +933,7 @@ public class PivotUtil extends DomainUtil
 		for (TemplateBinding templateBinding : templateBindings) {	// FIXME Establish ordering
 			TemplateSignature templateSignature = templateBinding.getSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (templateParameters.size() > 0) {
 					if (list == null) {
 						list = new ArrayList<TemplateParameter>();
@@ -956,7 +956,7 @@ public class PivotUtil extends DomainUtil
 			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (templateParameters.size() > 0) {
 					if (result == null) {
 						result = new ArrayList<List<TemplateParameter>>();
@@ -979,7 +979,7 @@ public class PivotUtil extends DomainUtil
 			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (templateParameters.size() > 0) {
 					if (result == null) {
 						result = new ArrayList<TemplateParameter>();
@@ -1004,12 +1004,12 @@ public class PivotUtil extends DomainUtil
 //			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 			TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (templateParameters.size() > 0) {
 					if (result == null) {
 						result = new HashMap<TemplateParameter, Type>();
 					}
-					for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
+					for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
 						result.put(templateParameter, null);
 					}
 				}
@@ -1521,7 +1521,7 @@ public class PivotUtil extends DomainUtil
 		if (templateableElement != null) {
 			TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
 			if (ownedTemplateSignature != null) {
-				return ownedTemplateSignature.getOwnedParameter();
+				return ownedTemplateSignature.getOwnedTemplateParameters();
 			}
 		}
 		return MetaModelManager.EMPTY_TEMPLATE_PARAMETER_LIST;

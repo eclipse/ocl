@@ -64,7 +64,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);
 		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
-		@SuppressWarnings("null")@NonNull TemplateParameter formalParameter = templateSignature.getOwnedParameter().get(0);
+		@SuppressWarnings("null")@NonNull TemplateParameter formalParameter = templateSignature.getOwnedTemplateParameters().get(0);
 		allBindings.put(formalParameter, type);
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, type);
 		templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
@@ -119,7 +119,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 		org.eclipse.ocl.examples.pivot.Class pivotType = getPivotType();
 		assert pivotType instanceof Metaclass;
 		TemplateSignature templateSignature = pivotType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		if (templateParameters.size() != 1) {
 			throw new IllegalArgumentException("Incompatible metaclass template argument count");
 		}

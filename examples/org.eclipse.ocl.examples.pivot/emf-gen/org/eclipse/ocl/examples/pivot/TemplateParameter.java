@@ -27,7 +27,7 @@ import java.util.List;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getConstrainingClass <em>Constraining Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getDefault <em>Default</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,30 +52,30 @@ public interface TemplateParameter
 	List<org.eclipse.ocl.examples.pivot.Class> getConstrainingClass();
 
 	/**
-	 * Returns the value of the '<em><b>Signature</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter <em>Owned Parameter</em>}'.
+	 * Returns the value of the '<em><b>Owning Template Signature</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedTemplateParameters <em>Owned Template Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The template signature that owns this template parameter.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Signature</em>' container reference.
-	 * @see #setSignature(TemplateSignature)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_Signature()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter
+	 * @return the value of the '<em>Owning Template Signature</em>' container reference.
+	 * @see #setOwningTemplateSignature(TemplateSignature)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_OwningTemplateSignature()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedTemplateParameters
 	 * @generated
 	 */
-	TemplateSignature getSignature();
+	TemplateSignature getOwningTemplateSignature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Signature</em>' container reference.
-	 * @see #getSignature()
+	 * @param value the new value of the '<em>Owning Template Signature</em>' container reference.
+	 * @see #getOwningTemplateSignature()
 	 * @generated
 	 */
-	void setSignature(TemplateSignature value);
+	void setOwningTemplateSignature(TemplateSignature value);
 
 	/**
 	 * Returns the value of the '<em><b>Default</b></em>' reference.

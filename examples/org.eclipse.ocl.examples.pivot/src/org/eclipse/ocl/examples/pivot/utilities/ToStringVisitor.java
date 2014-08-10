@@ -350,7 +350,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	protected void appendTemplateSignature(TemplateSignature templateSignature) {
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 			if (!templateParameters.isEmpty()) {
 				append("(");
 				String prefix = ""; //$NON-NLS-1$
@@ -1051,7 +1051,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitTemplateParameter(@NonNull TemplateParameter object) {
-		TemplateSignature signature = object.getSignature();
+		TemplateSignature signature = object.getOwningTemplateSignature();
 		appendName(signature != null ? (NamedElement) signature.getTemplate() : null);
 		append(".");
 		appendName(object);

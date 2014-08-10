@@ -75,13 +75,13 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Package metamodel;
 		protected final @NonNull CollectionType _Bag = standardLibrary.getBagType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _Bag_ = _Bag.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Bag_T = _Bag_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Bag_T = _Bag_.getOwnedTemplateParameters().get(0);
 		
 		protected final @NonNull PrimitiveType _Boolean = standardLibrary.getBooleanType();
 		
 		protected final @NonNull CollectionType _Collection = standardLibrary.getCollectionType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _Collection_ = _Collection.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Collection_T = _Collection_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Collection_T = _Collection_.getOwnedTemplateParameters().get(0);
 		
 		protected final @NonNull PrimitiveType _Integer = standardLibrary.getIntegerType();
 		
@@ -90,21 +90,21 @@ public class OCLMetaModel extends ASResourceImpl
 		
 		protected final @NonNull CollectionType _OrderedCollection = standardLibrary.getOrderedCollectionType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _OrderedCollection_ = _OrderedCollection.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _OrderedCollection_T = _OrderedCollection_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _OrderedCollection_T = _OrderedCollection_.getOwnedTemplateParameters().get(0);
 		
 		protected final @NonNull CollectionType _OrderedSet = standardLibrary.getOrderedSetType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _OrderedSet_ = _OrderedSet.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _OrderedSet_T = _OrderedSet_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _OrderedSet_T = _OrderedSet_.getOwnedTemplateParameters().get(0);
 		
 		protected final @NonNull PrimitiveType _Real = standardLibrary.getRealType();
 		
 		protected final @NonNull CollectionType _Sequence = standardLibrary.getSequenceType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _Sequence_ = _Sequence.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Sequence_T = _Sequence_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Sequence_T = _Sequence_.getOwnedTemplateParameters().get(0);
 		
 		protected final @NonNull CollectionType _Set = standardLibrary.getSetType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _Set_ = _Set.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Set_T = _Set_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _Set_T = _Set_.getOwnedTemplateParameters().get(0);
 		
 		protected final @NonNull PrimitiveType _String = standardLibrary.getStringType();
 		
@@ -112,7 +112,7 @@ public class OCLMetaModel extends ASResourceImpl
 		
 		protected final @NonNull CollectionType _UniqueCollection = standardLibrary.getUniqueCollectionType();
 		@SuppressWarnings("null") protected final @NonNull TemplateSignature _UniqueCollection_ = _UniqueCollection.getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter _UniqueCollection_T = _UniqueCollection_.getOwnedParameter().get(0);
+		@SuppressWarnings("null") protected final @NonNull TemplateParameter _UniqueCollection_T = _UniqueCollection_.getOwnedTemplateParameters().get(0);
 
 		protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
@@ -2246,12 +2246,12 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TemplateBinding_signature = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE, _TemplateSignature);
 		protected final @NonNull Property pr_TemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
 		protected final @NonNull Property pr_TemplateParameter_default = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, _Class);
-		protected final @NonNull Property pr_TemplateParameter_signature = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__SIGNATURE, _TemplateSignature);
+		protected final @NonNull Property pr_TemplateParameter_owningTemplateSignature = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE, _TemplateSignature);
 		protected final @NonNull Property pr_TemplateParameter_templateParameterSubstitution_formal = createProperty("templateParameterSubstitution", _TemplateParameterSubstitution);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_actual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, _Type);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_formal = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, _TemplateParameter);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_owningTemplateBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, _TemplateBinding);
-		protected final @NonNull Property pr_TemplateSignature_ownedParameter = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETER, _OrderedSet_TemplateParameter);
+		protected final @NonNull Property pr_TemplateSignature_ownedTemplateParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS, _OrderedSet_TemplateParameter);
 		protected final @NonNull Property pr_TemplateSignature_template = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateSignature_templateBinding_signature = createProperty("templateBinding", _TemplateBinding);
 		protected final @NonNull Property pr_TemplateableElement_ownedTemplateSignature = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, _TemplateSignature);
@@ -3461,9 +3461,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_templateParameter_default);
-			ownedProperties.add(property = pr_TemplateParameter_signature);
+			ownedProperties.add(property = pr_TemplateParameter_owningTemplateSignature);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateSignature_ownedParameter);
+			property.setOpposite(pr_TemplateSignature_ownedTemplateParameters);
 			ownedProperties.add(property = pr_TemplateParameter_templateParameterSubstitution_formal);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -3480,10 +3480,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_ownedTemplateParameterSubstitutions);
 			ownedProperties = _TemplateSignature.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateSignature_ownedParameter);
+			ownedProperties.add(property = pr_TemplateSignature_ownedTemplateParameters);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_signature);
+			property.setOpposite(pr_TemplateParameter_owningTemplateSignature);
 			ownedProperties.add(property = pr_TemplateSignature_template);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateableElement_ownedTemplateSignature);
@@ -4220,13 +4220,13 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_TemplateParameter, "A template parameter exposes a parameterable element as a formal template parameter of a template.");
 			installComment(pr_TemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
 			installComment(pr_TemplateParameter_default, "The element that is the default for this formal template parameter.");
-			installComment(pr_TemplateParameter_signature, "The template signature that owns this template parameter.");
+			installComment(pr_TemplateParameter_owningTemplateSignature, "The template signature that owns this template parameter.");
 			installComment(_TemplateParameterSubstitution, "A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
 			installComment(pr_TemplateParameterSubstitution_actual, "The element that is the actual parameter for this substitution.");
 			installComment(pr_TemplateParameterSubstitution_formal, "The formal template parameter that is associated with this substitution.");
 			installComment(pr_TemplateParameterSubstitution_owningTemplateBinding, "The optional bindings from this element to templates.");
 			installComment(_TemplateSignature, "A template signature bundles the set of formal template parameters for a templated element.");
-			installComment(pr_TemplateSignature_ownedParameter, "The formal template parameters that are owned by this template signature.");
+			installComment(pr_TemplateSignature_ownedTemplateParameters, "The formal template parameters that are owned by this template signature.");
 			installComment(pr_TemplateSignature_template, "The element that owns this template signature.");
 			installComment(_TemplateableElement, "A templateable element is an element that can optionally be defined as a template and bound to other templates.");
 			installComment(pr_TemplateableElement_ownedTemplateSignature, "The optional template signature specifying the formal template parameters.");

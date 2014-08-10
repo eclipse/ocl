@@ -436,7 +436,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitTemplateParameter(@NonNull TemplateParameter type) {
-			TemplateableElement template = type.getSignature().getTemplate();
+			TemplateableElement template = type.getOwningTemplateSignature().getTemplate();
 			if (template instanceof org.eclipse.ocl.examples.pivot.Class) {
 				org.eclipse.ocl.examples.pivot.Class containerType = (org.eclipse.ocl.examples.pivot.Class) template;
 				assert containerType != null;
@@ -1041,7 +1041,7 @@ public class OCLinEcoreTablesUtils
 	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull DomainType element) {
 		DomainTemplateParameter templateParameter = element.isTemplateParameter();
 		if (templateParameter != null) {
-			TemplateableElement template = ((TemplateParameter)templateParameter).getSignature().getTemplate();		// FIXME cast
+			TemplateableElement template = ((TemplateParameter)templateParameter).getOwningTemplateSignature().getTemplate();		// FIXME cast
 			if (template instanceof Operation) {
 				s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningClass())));
 				s.append("_");

@@ -182,7 +182,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		}
 		else if (object.eContainer() instanceof TemplateParameterSubstitution) {
 			TemplateParameter formal = ((TemplateParameterSubstitution)object.eContainer()).getFormal();
-			int index = formal.getSignature().getOwnedParameter().indexOf(formal);
+			int index = formal.getOwningTemplateSignature().getOwnedTemplateParameters().indexOf(formal);
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.append(WILDCARD_INDICATOR + index);
 		}
@@ -467,7 +467,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTemplateParameter(@NonNull TemplateParameter object) {
-		TemplateableElement owningTemplateElement = object.getSignature().getTemplate();
+		TemplateableElement owningTemplateElement = object.getOwningTemplateSignature().getTemplate();
 		context.appendElement(owningTemplateElement);
 		context.append(TEMPLATE_PARAMETER_PREFIX);
 		context.appendName(object);

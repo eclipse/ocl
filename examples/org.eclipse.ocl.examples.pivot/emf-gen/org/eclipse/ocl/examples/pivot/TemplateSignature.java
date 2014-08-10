@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedTemplateParameters <em>Owned Template Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}</li>
  * </ul>
  * </p>
@@ -38,20 +38,20 @@ public interface TemplateSignature
 		extends Element {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Template Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The formal template parameters that are owned by this template signature.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedParameter()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature
+	 * @return the value of the '<em>Owned Template Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedTemplateParameters()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature
 	 * @generated
 	 */
-	@NonNull List<TemplateParameter> getOwnedParameter();
+	@NonNull List<TemplateParameter> getOwnedTemplateParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Template</b></em>' container reference.

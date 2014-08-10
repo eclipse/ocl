@@ -54,7 +54,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		EClass eClass = unspecializedType.eClass();
 		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
 		org.eclipse.ocl.examples.pivot.Class specializedType = (org.eclipse.ocl.examples.pivot.Class) eFactoryInstance.create(eClass);		
@@ -93,7 +93,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 
 	public synchronized @Nullable Type findSpecializedType(@NonNull DomainTypeParameters templateArguments) {
 		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			return null;
@@ -124,7 +124,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 
 	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull DomainTypeParameters templateArguments) {
 		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			throw new IllegalArgumentException("Incompatible template argument count");

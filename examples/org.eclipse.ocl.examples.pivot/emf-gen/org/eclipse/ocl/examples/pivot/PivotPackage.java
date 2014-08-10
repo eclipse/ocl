@@ -19103,13 +19103,13 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER__DEFAULT = TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Signature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Template Signature</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__SIGNATURE = TYPE_FEATURE_COUNT + 2;
+	int TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter</em>' class.
@@ -19310,13 +19310,13 @@ public interface PivotPackage
 	int TEMPLATE_SIGNATURE__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Template Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE__OWNED_PARAMETER = ELEMENT_FEATURE_COUNT + 0;
+	int TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -24967,15 +24967,15 @@ public interface PivotPackage
 	EClass getTemplateSignature();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter <em>Owned Parameter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedTemplateParameters <em>Owned Template Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter()
+	 * @return the meta object for the containment reference list '<em>Owned Template Parameters</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedTemplateParameters()
 	 * @see #getTemplateSignature()
 	 * @generated
 	 */
-	EReference getTemplateSignature_OwnedParameter();
+	EReference getTemplateSignature_OwnedTemplateParameters();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}'.
@@ -25010,17 +25010,6 @@ public interface PivotPackage
 	EReference getTemplateParameter_ConstrainingClass();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Signature</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature()
-	 * @see #getTemplateParameter()
-	 * @generated
-	 */
-	EReference getTemplateParameter_Signature();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getDefault <em>Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25030,6 +25019,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameter_Default();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Template Signature</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getOwningTemplateSignature()
+	 * @see #getTemplateParameter()
+	 * @generated
+	 */
+	EReference getTemplateParameter_OwningTemplateSignature();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution <em>Template Parameter Substitution</em>}'.
@@ -29095,12 +29095,12 @@ public interface PivotPackage
 		EClass TEMPLATE_SIGNATURE = eINSTANCE.getTemplateSignature();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Parameter</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Template Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_SIGNATURE__OWNED_PARAMETER = eINSTANCE.getTemplateSignature_OwnedParameter();
+		EReference TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS = eINSTANCE.getTemplateSignature_OwnedTemplateParameters();
 
 		/**
 		 * The meta object literal for the '<em><b>Template</b></em>' container reference feature.
@@ -29129,20 +29129,20 @@ public interface PivotPackage
 		EReference TEMPLATE_PARAMETER__CONSTRAINING_CLASS = eINSTANCE.getTemplateParameter_ConstrainingClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Signature</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PARAMETER__SIGNATURE = eINSTANCE.getTemplateParameter_Signature();
-
-		/**
 		 * The meta object literal for the '<em><b>Default</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER__DEFAULT = eINSTANCE.getTemplateParameter_Default();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Template Signature</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE = eINSTANCE.getTemplateParameter_OwningTemplateSignature();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.

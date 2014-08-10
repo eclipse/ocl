@@ -685,7 +685,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (!eTypeParameters.isEmpty()) {
 			TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
 			pivotElement.setOwnedTemplateSignature(pivotTemplateSignature);
-			doSwitchAll(pivotTemplateSignature.getOwnedParameter(), eTypeParameters);
+			doSwitchAll(pivotTemplateSignature.getOwnedTemplateParameters(), eTypeParameters);
 		}
 	}
 

@@ -883,7 +883,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			if (!umlTemplateParameters.isEmpty()) {
 				TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
 				pivotElement.setOwnedTemplateSignature(pivotTemplateSignature);
-				doSwitchAll(pivotTemplateSignature.getOwnedParameter(), umlTemplateParameters, null);
+				doSwitchAll(pivotTemplateSignature.getOwnedTemplateParameters(), umlTemplateParameters, null);
 			}
 		}
 	}

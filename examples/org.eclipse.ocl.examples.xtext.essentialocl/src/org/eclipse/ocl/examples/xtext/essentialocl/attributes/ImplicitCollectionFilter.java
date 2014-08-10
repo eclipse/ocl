@@ -44,7 +44,7 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter
 			Map<TemplateParameter, Type> bindings = sourceType instanceof TemplateableElement ? PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement)sourceType) : null;
 			TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
+				for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
 					if (bindings == null) {
 						bindings = new HashMap<TemplateParameter, Type>();
 					}

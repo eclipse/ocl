@@ -59,7 +59,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		org.eclipse.ocl.examples.pivot.Class unspecializedType = getPivotType();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		EClass eClass = unspecializedType.eClass();
 		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
 		CollectionType specializedType = (CollectionType) eFactoryInstance.create(eClass);		
@@ -96,7 +96,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 
 	public synchronized @Nullable Type findSpecializedType(@NonNull CollectionTypeParameters<Type> typeParameters) {
 		TemplateSignature templateSignature = getPivotType().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		if (templateParameters.size() != 1) {
 			return null;
 		}

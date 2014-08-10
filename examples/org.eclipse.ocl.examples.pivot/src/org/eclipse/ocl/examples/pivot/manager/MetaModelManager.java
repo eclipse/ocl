@@ -1490,7 +1490,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (templateSignature == null) {
 			throw new IllegalArgumentException("Collection type must have a template signature");
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		if (templateParameters.size() != 1) {
 			throw new IllegalArgumentException("Collection type must have exactly one template parameter");
 		}
@@ -1795,7 +1795,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		assert !(libraryType instanceof Metaclass<?>);
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getOwnedParameter() : EMPTY_TEMPLATE_PARAMETER_LIST;
+		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getOwnedTemplateParameters() : EMPTY_TEMPLATE_PARAMETER_LIST;
 		if (templateParameters.isEmpty()) {
 			return libraryType;
 		}
@@ -1899,7 +1899,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return metaclassType;
 		}
 		TemplateSignature templateSignature = metaclassType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		boolean isUnspecialized = instanceType == templateParameters.get(0);	// Checked in getMetaclassType().
 		if (isUnspecialized) {
 			return metaclassType;	
@@ -2547,7 +2547,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		PivotUtil.getAllTemplateParameterSubstitutions(typeBindings, type);
 		if ((typeBindings != null) && !typeBindings.isEmpty()) {
 			rebindTemplateBindings(typeBindings, usageBindings);	//	Re-bind the type bindings to use those of the usage.
-			TemplateParameter templateParameter = unspecializedType.getOwnedTemplateSignature().getOwnedParameter().get(0);
+			TemplateParameter templateParameter = unspecializedType.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0);
 			Type templateArgument = typeBindings.get(templateParameter);
 			if (templateArgument == null) {
 				templateArgument = templateParameter;
@@ -2575,7 +2575,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		PivotUtil.getAllTemplateParameterSubstitutions(typeBindings, type);
 		if ((typeBindings != null) && !typeBindings.isEmpty()) {
 			rebindTemplateBindings(typeBindings, usageBindings);	//	Re-bind the type bindings to use those of the usage.
-			TemplateParameter templateParameter = getMetaclassType().getOwnedTemplateSignature().getOwnedParameter().get(0);
+			TemplateParameter templateParameter = getMetaclassType().getOwnedTemplateSignature().getOwnedTemplateParameters().get(0);
 			Type templateArgument = typeBindings.get(templateParameter);
 			if (templateArgument == null) {
 				templateArgument = templateParameter;

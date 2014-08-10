@@ -52,7 +52,7 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 		if (templateSignature == null) {
 			return false;
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		if (templateParameters.size() != 1) {
 			return false;
 		}

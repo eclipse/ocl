@@ -1026,7 +1026,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //		PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, operation);
 		TemplateSignature templateSignature = operation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedTemplateParameters()) {
 				templateBindings.put(templateParameter, null);
 			}
 		}
@@ -1037,7 +1037,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				elementType = ((CollectionType)elementType).getElementType();
 			}
 			if (elementType != null) {
-				templateBindings.put(operation.getOwnedTemplateSignature().getOwnedParameter().get(0), elementType);
+				templateBindings.put(operation.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0), elementType);
 			}
 		}
 		@SuppressWarnings("unused")		// Should never happen; just for debugging
@@ -1142,7 +1142,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			org.eclipse.ocl.examples.pivot.Class owningType = property.getOwningClass();
 			if (owningType instanceof Metaclass) {
 				owningType = PivotUtil.getUnspecializedTemplateableElement(owningType);
-				templateBindings.put(owningType.getOwnedTemplateSignature().getOwnedParameter().get(0), sourceType);		// Use the null key to pass OclSelf without creating an object
+				templateBindings.put(owningType.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0), sourceType);		// Use the null key to pass OclSelf without creating an object
 			}
 		}
 		if (sourceType instanceof TemplateableElement) {
