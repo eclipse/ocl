@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getFormal <em>Formal</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getTemplateBinding <em>Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getOwningTemplateBinding <em>Owning Template Binding</em>}</li>
  * </ul>
  * </p>
  *
@@ -176,8 +176,8 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBinding getTemplateBinding() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING) return null;
+	public TemplateBinding getOwningTemplateBinding() {
+		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING) return null;
 		return (TemplateBinding)eInternalContainer();
 	}
 
@@ -186,9 +186,9 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTemplateBinding(
-			TemplateBinding newTemplateBinding, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newTemplateBinding, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING, msgs);
+	public NotificationChain basicSetOwningTemplateBinding(TemplateBinding newOwningTemplateBinding, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateBinding, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, msgs);
 		return msgs;
 	}
 
@@ -197,21 +197,21 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplateBinding(TemplateBinding newTemplateBinding) {
-		if (newTemplateBinding != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING && newTemplateBinding != null))
+	public void setOwningTemplateBinding(TemplateBinding newOwningTemplateBinding) {
+		if (newOwningTemplateBinding != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING && newOwningTemplateBinding != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newTemplateBinding))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateBinding))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newTemplateBinding != null)
-				msgs = ((InternalEObject)newTemplateBinding).eInverseAdd(this, PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, TemplateBinding.class, msgs);
-			msgs = basicSetTemplateBinding(newTemplateBinding, msgs);
+			if (newOwningTemplateBinding != null)
+				msgs = ((InternalEObject)newOwningTemplateBinding).eInverseAdd(this, PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS, TemplateBinding.class, msgs);
+			msgs = basicSetOwningTemplateBinding(newOwningTemplateBinding, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING, newTemplateBinding, newTemplateBinding));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, newOwningTemplateBinding, newOwningTemplateBinding));
 	}
 
 	/**
@@ -231,10 +231,10 @@ public class TemplateParameterSubstitutionImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetTemplateBinding((TemplateBinding)otherEnd, msgs);
+				return basicSetOwningTemplateBinding((TemplateBinding)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -257,8 +257,8 @@ public class TemplateParameterSubstitutionImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				return basicSetTemplateBinding(null, msgs);
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
+				return basicSetOwningTemplateBinding(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -273,8 +273,8 @@ public class TemplateParameterSubstitutionImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, TemplateBinding.class, msgs);
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS, TemplateBinding.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -302,8 +302,8 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				if (resolve) return getFormal();
 				return basicGetFormal();
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				return getTemplateBinding();
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
+				return getOwningTemplateBinding();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -340,8 +340,8 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)newValue);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				setTemplateBinding((TemplateBinding)newValue);
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
+				setOwningTemplateBinding((TemplateBinding)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -374,8 +374,8 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)null);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				setTemplateBinding((TemplateBinding)null);
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
+				setOwningTemplateBinding((TemplateBinding)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -402,8 +402,8 @@ public class TemplateParameterSubstitutionImpl
 				return actual != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				return formal != null;
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				return getTemplateBinding() != null;
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING:
+				return getOwningTemplateBinding() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

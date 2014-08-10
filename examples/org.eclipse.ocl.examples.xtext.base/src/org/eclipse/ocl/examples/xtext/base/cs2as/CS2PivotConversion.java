@@ -1127,7 +1127,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 					}
 				}
 				installPivotReference(csTemplateBinding, templateBinding, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
-				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitution();
+				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
 				@NonNull List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitutionCS> csParameterSubstitutions = csTemplateBinding.getOwnedParameterSubstitution();
 				specializeTemplateParameterSubstitutions(parameterSubstitutions, templateParameters, csParameterSubstitutions);

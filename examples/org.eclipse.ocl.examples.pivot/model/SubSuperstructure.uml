@@ -43,7 +43,7 @@
               <body>The template signature for the template that is the target of the binding.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="parameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" aggregation="composite" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="ownedTemplateParameterSubstitutions" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" aggregation="composite" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution">
               <body>The parameter substitutions owned by this template binding.</body>
             </ownedComment>
@@ -85,7 +85,7 @@
               <body>The formal template parameter that is associated with this substitution.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding" name="templateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding" name="owningTemplateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding">
               <body>The optional bindings from this element to templates.</body>
             </ownedComment>
@@ -169,7 +169,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQQ37VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding" name="A_parameterSubstitution_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding" name="A_ownedTemplateParameterSubstitutions_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution" name="A_actual_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQRH7VEeOu79LxSz8Ylw"/>

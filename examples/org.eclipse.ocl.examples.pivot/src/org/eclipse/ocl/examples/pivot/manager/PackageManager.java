@@ -631,7 +631,7 @@ public class PackageManager implements PackageServerParent
 			if (superTemplateBindings.size() > 0) {
 				List<Type> superTemplateArgumentList = new ArrayList<Type>();
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
-					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getParameterSubstitution()) {
+					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
 						Type superActual = superParameterSubstitution.getActual();
 						TemplateParameter superTemplateParameter = superActual.isTemplateParameter();
 						Type actualActual = allBindings.get(superTemplateParameter);

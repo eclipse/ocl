@@ -578,7 +578,7 @@ public class PrettyPrinter
 				append("(");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 						append(prefix);
 						Namespace savedScope = pushScope((Namespace) typeRef);
 						try {

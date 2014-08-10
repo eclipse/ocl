@@ -468,7 +468,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR templateableElement : allTemplateableElements»
 					«FOR templateBinding : templateableElement.templateBinding»
 						«templateableElement.getSymbolName()».getTemplateBinding().add(createTemplateBinding(«templateBinding.signature.getSymbolName()»,
-							«FOR templateParameterSubstitution : templateBinding.parameterSubstitution SEPARATOR (",\n")»
+							«FOR templateParameterSubstitution : templateBinding.ownedTemplateParameterSubstitutions SEPARATOR (",\n")»
 							createTemplateParameterSubstitution(«templateParameterSubstitution.formal.getSymbolName()», «templateParameterSubstitution.actual.getSymbolName()»)«ENDFOR»));
 					«ENDFOR»
 				«ENDFOR»
@@ -586,9 +586,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			TemplateBinding: return element.boundElement.partialName()
 			TemplateParameter case element.signature.template == null: return "[" + element.signature.partialName() + "]"
 			TemplateParameter: return element.javaName()
-			TemplateParameterSubstitution case element.templateBinding == null: return "null"
-			TemplateParameterSubstitution case element.templateBinding.boundElement == null: return "null"
-			TemplateParameterSubstitution: return element.templateBinding.boundElement.partialName()
+			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
+			TemplateParameterSubstitution case element.owningTemplateBinding.boundElement == null: return "null"
+			TemplateParameterSubstitution: return element.owningTemplateBinding.boundElement.partialName()
 			TemplateSignature case element.template == null: return "null"
 			TemplateSignature: return element.template.partialName()
 			default: return "xyzzy" + element.eClass().name
@@ -599,9 +599,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		switch element {
 			TemplateParameter case element.signature.template == null: return "null"
 			TemplateParameter: return element.signature.template.simpleName() + "_" + element.javaName()
-			TemplateParameterSubstitution case element.templateBinding == null: return "null"
-			TemplateParameterSubstitution case element.templateBinding.boundElement == null: return "null"
-			TemplateParameterSubstitution: return element.templateBinding.boundElement.simpleName()
+			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
+			TemplateParameterSubstitution case element.owningTemplateBinding.boundElement == null: return "null"
+			TemplateParameterSubstitution: return element.owningTemplateBinding.boundElement.simpleName()
 			Class: return element.javaName()
 			Operation case element.owningClass == null: return "null_" + element.javaName()
 			Operation: return element.owningClass.simpleName() + "_" + element.javaName()

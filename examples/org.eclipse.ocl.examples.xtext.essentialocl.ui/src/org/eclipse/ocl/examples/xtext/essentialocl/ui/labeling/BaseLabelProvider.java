@@ -220,7 +220,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 			for (TemplateBinding templateBinding : templateableElement.getTemplateBinding()) {
 				s.append("(");
 				String prefix = "";
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 					s.append(prefix);
 					Type actual = templateParameterSubstitution.getActual();
 					appendType(s, actual);

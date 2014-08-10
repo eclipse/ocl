@@ -1055,7 +1055,7 @@ public class OCLinEcoreTablesUtils
 			if (templateBindings.size() > 0) {
 				s.append("_");
 				for (TemplateBinding templateBinding : templateBindings) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 						s.append("_");
 						getTemplateBindingsName(s, DomainUtil.nonNullModel(templateParameterSubstitution.getActual()));
 					}

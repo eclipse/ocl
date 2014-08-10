@@ -67,7 +67,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 		@SuppressWarnings("null")@NonNull TemplateParameter formalParameter = templateSignature.getOwnedParameter().get(0);
 		allBindings.put(formalParameter, type);
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, type);
-		templateBinding.getParameterSubstitution().add(templateParameterSubstitution);
+		templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 		metaclass.getTemplateBinding().add(templateBinding);
 		//
 		packageManager.resolveSuperClasses(metaclass, metaclassType, allBindings);

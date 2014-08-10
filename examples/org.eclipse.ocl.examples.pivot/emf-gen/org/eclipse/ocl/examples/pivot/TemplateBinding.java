@@ -25,7 +25,7 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution <em>Parameter Substitution</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}</li>
  * </ul>
  * </p>
@@ -61,20 +61,20 @@ public interface TemplateBinding
 	void setSignature(TemplateSignature value);
 
 	/**
-	 * Returns the value of the '<em><b>Parameter Substitution</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding <em>Template Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The parameter substitutions owned by this template binding.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Parameter Substitution</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_ParameterSubstitution()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding
+	 * @return the value of the '<em>Owned Template Parameter Substitutions</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_OwnedTemplateParameterSubstitutions()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwningTemplateBinding
 	 * @generated
 	 */
-	List<TemplateParameterSubstitution> getParameterSubstitution();
+	List<TemplateParameterSubstitution> getOwnedTemplateParameterSubstitutions();
 
 	/**
 	 * Returns the value of the '<em><b>Bound Element</b></em>' container reference.

@@ -2242,7 +2242,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Stereotype_ElementExtension_stereotype = createProperty("ElementExtension", _Bag_ElementExtension);
 		protected final @NonNull Property pr_StringLiteralExp_stringSymbol = createProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL, _String);
 		protected final @NonNull Property pr_TemplateBinding_boundElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__BOUND_ELEMENT, _TemplateableElement);
-		protected final @NonNull Property pr_TemplateBinding_parameterSubstitution = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, _Set_TemplateParameterSubstitution);
+		protected final @NonNull Property pr_TemplateBinding_ownedTemplateParameterSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS, _Set_TemplateParameterSubstitution);
 		protected final @NonNull Property pr_TemplateBinding_signature = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE, _TemplateSignature);
 		protected final @NonNull Property pr_TemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
 		protected final @NonNull Property pr_TemplateParameter_default = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, _Class);
@@ -2250,7 +2250,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TemplateParameter_templateParameterSubstitution_formal = createProperty("templateParameterSubstitution", _TemplateParameterSubstitution);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_actual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, _Type);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_formal = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, _TemplateParameter);
-		protected final @NonNull Property pr_TemplateParameterSubstitution_templateBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING, _TemplateBinding);
+		protected final @NonNull Property pr_TemplateParameterSubstitution_owningTemplateBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, _TemplateBinding);
 		protected final @NonNull Property pr_TemplateSignature_ownedParameter = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETER, _OrderedSet_TemplateParameter);
 		protected final @NonNull Property pr_TemplateSignature_template = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateSignature_templateBinding_signature = createProperty("templateBinding", _TemplateBinding);
@@ -3446,10 +3446,10 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_TemplateBinding_boundElement);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateableElement_templateBinding);
-			ownedProperties.add(property = pr_TemplateBinding_parameterSubstitution);
+			ownedProperties.add(property = pr_TemplateBinding_ownedTemplateParameterSubstitutions);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameterSubstitution_templateBinding);
+			property.setOpposite(pr_TemplateParameterSubstitution_owningTemplateBinding);
 			ownedProperties.add(property = pr_TemplateBinding_signature);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateSignature_templateBinding_signature);
@@ -3476,9 +3476,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_formal);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_templateParameterSubstitution_formal);
-			ownedProperties.add(property = pr_TemplateParameterSubstitution_templateBinding);
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_owningTemplateBinding);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateBinding_parameterSubstitution);
+			property.setOpposite(pr_TemplateBinding_ownedTemplateParameterSubstitutions);
 			ownedProperties = _TemplateSignature.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateSignature_ownedParameter);
 			property.setIsComposite(true);
@@ -4215,7 +4215,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_StateMachine_submachineState, "References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state.");
 			installComment(_TemplateBinding, "A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
 			installComment(pr_TemplateBinding_boundElement, "The element that is bound by this binding.");
-			installComment(pr_TemplateBinding_parameterSubstitution, "The parameter substitutions owned by this template binding.");
+			installComment(pr_TemplateBinding_ownedTemplateParameterSubstitutions, "The parameter substitutions owned by this template binding.");
 			installComment(pr_TemplateBinding_signature, "The template signature for the template that is the target of the binding.");
 			installComment(_TemplateParameter, "A template parameter exposes a parameterable element as a formal template parameter of a template.");
 			installComment(pr_TemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
@@ -4224,7 +4224,7 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_TemplateParameterSubstitution, "A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
 			installComment(pr_TemplateParameterSubstitution_actual, "The element that is the actual parameter for this substitution.");
 			installComment(pr_TemplateParameterSubstitution_formal, "The formal template parameter that is associated with this substitution.");
-			installComment(pr_TemplateParameterSubstitution_templateBinding, "The optional bindings from this element to templates.");
+			installComment(pr_TemplateParameterSubstitution_owningTemplateBinding, "The optional bindings from this element to templates.");
 			installComment(_TemplateSignature, "A template signature bundles the set of formal template parameters for a templated element.");
 			installComment(pr_TemplateSignature_ownedParameter, "The formal template parameters that are owned by this template signature.");
 			installComment(pr_TemplateSignature_template, "The element that owns this template signature.");

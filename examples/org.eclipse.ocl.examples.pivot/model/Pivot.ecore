@@ -1647,8 +1647,8 @@
         <details key="documentation" value="The element that is bound by this binding."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterSubstitution" ordered="false" upperBound="-1" eType="#//TemplateParameterSubstitution"
-        containment="true" eOpposite="#//TemplateParameterSubstitution/templateBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateParameterSubstitutions" ordered="false" upperBound="-1" eType="#//TemplateParameterSubstitution"
+        containment="true" eOpposite="#//TemplateParameterSubstitution/owningTemplateBinding">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The parameter substitutions owned by this template binding."/>
       </eAnnotations>
@@ -1705,7 +1705,7 @@
         <details key="documentation" value="The formal template parameter that is associated with this substitution."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateBinding" lowerBound="1" eType="#//TemplateBinding" eOpposite="#//TemplateBinding/parameterSubstitution">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateBinding" lowerBound="1" eType="#//TemplateBinding" eOpposite="#//TemplateBinding/ownedTemplateParameterSubstitutions">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The optional bindings from this element to templates."/>
       </eAnnotations>

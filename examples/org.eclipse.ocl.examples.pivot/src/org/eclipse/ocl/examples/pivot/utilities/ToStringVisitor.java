@@ -338,7 +338,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			append("(");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 					append(prefix);
 					safeVisit(templateParameterSubstitution.getActual());
 					prefix = ",";

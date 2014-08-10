@@ -287,7 +287,7 @@ public class AS2Moniker implements PivotConstants
 				s.append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitution();
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
 					if (parameterSubstitutions.size() > 1) {
 						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
 						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
@@ -304,7 +304,7 @@ public class AS2Moniker implements PivotConstants
 				s.append(TEMPLATE_BINDING_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitution();
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
 					if (parameterSubstitutions.size() > 1) {
 						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
 						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
@@ -389,7 +389,7 @@ public class AS2Moniker implements PivotConstants
 			return true;
 		}
 		for (TemplateBinding templateBinding : templateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 				Type actual = templateParameterSubstitution.getActual();
 				if (actual == null) {
 					return true;

@@ -476,7 +476,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
-		context.appendElement(object.getTemplateBinding());
+		context.appendElement(object.getOwningTemplateBinding());
 		context.appendName(object.getFormal());
 		return true;
 	}

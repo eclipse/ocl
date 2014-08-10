@@ -617,7 +617,7 @@ public class PivotUtil extends DomainUtil
 	 */
 	public static @NonNull TemplateBinding createTemplateBinding(@NonNull TemplateSignature templateSignature, TemplateParameterSubstitution... templateParameterSubstitutions) {
 		TemplateBinding pivotTemplateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getParameterSubstitution();
+		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getOwnedTemplateParameterSubstitutions();
 		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
 			parameterSubstitutions.add(templateParameterSubstitution);
 		}
@@ -1023,7 +1023,7 @@ public class PivotUtil extends DomainUtil
 		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
 				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getTemplateBinding()) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 						if (map == null) {
 							map = new HashMap<TemplateParameter, Type>();
 						}

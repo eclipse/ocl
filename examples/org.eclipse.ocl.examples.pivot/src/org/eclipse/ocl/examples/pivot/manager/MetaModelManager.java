@@ -2871,7 +2871,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		org.eclipse.ocl.examples.pivot.Class asClass = type.isClass();
 		if (asClass != null) {
 			for (TemplateBinding templateBinding : asClass.getTemplateBinding()) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 					if (isUnderspecified(templateParameterSubstitution.getActual())) {
 						return true;
 					}

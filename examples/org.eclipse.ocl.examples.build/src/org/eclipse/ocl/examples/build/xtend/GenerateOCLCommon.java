@@ -696,7 +696,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	protected @NonNull List<TemplateParameterSubstitution> getTemplateParameterSubstitutions(@NonNull TemplateableElement element) {
 		List<TemplateParameterSubstitution> allElements = new ArrayList<TemplateParameterSubstitution>();
 		for (TemplateBinding templateBinding : element.getTemplateBinding()) {
-			allElements.addAll(templateBinding.getParameterSubstitution());
+			allElements.addAll(templateBinding.getOwnedTemplateParameterSubstitutions());
 		}
 		return allElements;
 	}

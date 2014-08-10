@@ -46,7 +46,7 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 	@Override
 	public @Nullable Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
 		for (TemplateBinding templateBinding : object.getTemplateBinding()) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 				safeVisit(templateParameterSubstitution.getActual());
 			}
 		}

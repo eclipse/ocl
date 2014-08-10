@@ -18968,13 +18968,13 @@ public interface PivotPackage
 	int TEMPLATE_BINDING__BOUND_ELEMENT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parameter Substitution</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION = ELEMENT_FEATURE_COUNT + 1;
+	int TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Signature</b></em>' reference.
@@ -19229,13 +19229,13 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Template Binding</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 2;
+	int TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Substitution</em>' class.
@@ -24935,17 +24935,6 @@ public interface PivotPackage
 	EReference getTemplateBinding_Signature();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution <em>Parameter Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parameter Substitution</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution()
-	 * @see #getTemplateBinding()
-	 * @generated
-	 */
-	EReference getTemplateBinding_ParameterSubstitution();
-
-	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24955,6 +24944,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateBinding_BoundElement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Template Parameter Substitutions</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions()
+	 * @see #getTemplateBinding()
+	 * @generated
+	 */
+	EReference getTemplateBinding_OwnedTemplateParameterSubstitutions();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateSignature <em>Template Signature</em>}'.
@@ -25053,6 +25053,17 @@ public interface PivotPackage
 	EReference getTemplateParameterSubstitution_Formal();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Template Binding</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwningTemplateBinding()
+	 * @see #getTemplateParameterSubstitution()
+	 * @generated
+	 */
+	EReference getTemplateParameterSubstitution_OwningTemplateBinding();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25062,17 +25073,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameterSubstitution_Actual();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding <em>Template Binding</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Template Binding</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding()
-	 * @see #getTemplateParameterSubstitution()
-	 * @generated
-	 */
-	EReference getTemplateParameterSubstitution_TemplateBinding();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Package <em>Package</em>}'.
@@ -29069,20 +29069,20 @@ public interface PivotPackage
 		EReference TEMPLATE_BINDING__SIGNATURE = eINSTANCE.getTemplateBinding_Signature();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameter Substitution</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_BINDING__PARAMETER_SUBSTITUTION = eINSTANCE.getTemplateBinding_ParameterSubstitution();
-
-		/**
 		 * The meta object literal for the '<em><b>Bound Element</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TEMPLATE_BINDING__BOUND_ELEMENT = eINSTANCE.getTemplateBinding_BoundElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS = eINSTANCE.getTemplateBinding_OwnedTemplateParameterSubstitutions();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -29163,20 +29163,20 @@ public interface PivotPackage
 		EReference TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL = eINSTANCE.getTemplateParameterSubstitution_Formal();
 
 		/**
+		 * The meta object literal for the '<em><b>Owning Template Binding</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING = eINSTANCE.getTemplateParameterSubstitution_OwningTemplateBinding();
+
+		/**
 		 * The meta object literal for the '<em><b>Actual</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL = eINSTANCE.getTemplateParameterSubstitution_Actual();
-
-		/**
-		 * The meta object literal for the '<em><b>Template Binding</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING = eINSTANCE.getTemplateParameterSubstitution_TemplateBinding();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl <em>Package</em>}' class.

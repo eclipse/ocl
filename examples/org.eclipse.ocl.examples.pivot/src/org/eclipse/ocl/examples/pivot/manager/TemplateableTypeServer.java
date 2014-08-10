@@ -72,7 +72,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 					TemplateParameterSubstitution templateParameterSubstitution = AbstractTypeServer
 						.createTemplateParameterSubstitution(formalParameter,
 							actualType);
-					templateBinding.getParameterSubstitution().add(
+					templateBinding.getOwnedTemplateParameterSubstitutions().add(
 						templateParameterSubstitution);
 				}
 			}

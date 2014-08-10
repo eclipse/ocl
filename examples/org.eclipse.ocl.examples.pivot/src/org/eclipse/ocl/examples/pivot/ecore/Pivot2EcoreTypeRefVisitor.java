@@ -127,7 +127,7 @@ public class Pivot2EcoreTypeRefVisitor
 		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)pivotType));
 		eGenericType.setEClassifier((EClassifier) rawType);
 		// FIXME signature ordering, multiple bindings
-		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitution());
+		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getOwnedTemplateParameterSubstitutions());
 		return eGenericType;
 	}
 
@@ -136,7 +136,7 @@ public class Pivot2EcoreTypeRefVisitor
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		EClassifier eClassifier = EcoreUtils.getNamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
 		eGenericType.setEClassifier(eClassifier);
-		safeVisitAll(eGenericType.getETypeArguments(), object.getTemplateBinding().get(0).getParameterSubstitution());
+		safeVisitAll(eGenericType.getETypeArguments(), object.getTemplateBinding().get(0).getOwnedTemplateParameterSubstitutions());
 		// FIXME bounds, supers
 		return eGenericType;
 	}

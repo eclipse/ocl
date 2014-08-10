@@ -72,7 +72,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		Type elementType = typeParameters.getElementType();
 		allBindings.put(formalParameter, elementType);
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, elementType);
-		templateBinding.getParameterSubstitution().add(templateParameterSubstitution);
+		templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 		specializedType.getTemplateBinding().add(templateBinding);
 		packageManager.resolveSuperClasses(specializedType, unspecializedType, allBindings);
 		CollectionType specializedCollectionType = specializedType;
