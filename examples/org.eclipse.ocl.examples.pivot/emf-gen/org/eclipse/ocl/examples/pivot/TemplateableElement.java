@@ -54,7 +54,7 @@ public interface TemplateableElement
 
 	/**
 	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -63,7 +63,7 @@ public interface TemplateableElement
 	 * @return the value of the '<em>Owned Template Signature</em>' containment reference.
 	 * @see #setOwnedTemplateSignature(TemplateSignature)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_OwnedTemplateSignature()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwningTemplateableElement
 	 * @generated
 	 */
 	TemplateSignature getOwnedTemplateSignature();

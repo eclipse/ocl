@@ -2303,7 +2303,7 @@ public class PivotTables
 
 		public static final @NonNull ExecutorProperty _TemplateBinding__ownedTemplateParameterSubstitutions = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS, Types._TemplateBinding, 0);
 		public static final @NonNull ExecutorProperty _TemplateBinding__owningTemplateableElement = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT, Types._TemplateBinding, 1);
-		public static final @NonNull ExecutorProperty _TemplateBinding__signature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE, Types._TemplateBinding, 2);
+		public static final @NonNull ExecutorProperty _TemplateBinding__templateSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, Types._TemplateBinding, 2);
 
 		public static final @NonNull ExecutorProperty _TemplateParameter__constrainingClass = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, Types._TemplateParameter, 0);
 		public static final @NonNull ExecutorProperty _TemplateParameter__default = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, Types._TemplateParameter, 1);
@@ -2315,8 +2315,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _TemplateParameterSubstitution__owningTemplateBinding = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, Types._TemplateParameterSubstitution, 2);
 
 		public static final @NonNull ExecutorProperty _TemplateSignature__ownedTemplateParameters = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS, Types._TemplateSignature, 0);
-		public static final @NonNull ExecutorProperty _TemplateSignature__template = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE, Types._TemplateSignature, 1);
-		public static final @NonNull ExecutorProperty _TemplateSignature__templateBinding__signature = new ExecutorPropertyWithImplementation("templateBinding", Types._TemplateSignature, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE));
+		public static final @NonNull ExecutorProperty _TemplateSignature__owningTemplateableElement = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, Types._TemplateSignature, 1);
+		public static final @NonNull ExecutorProperty _TemplateSignature__templateBinding__templateSignature = new ExecutorPropertyWithImplementation("templateBinding", Types._TemplateSignature, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_BINDING__TEMPLATE_SIGNATURE));
 
 		public static final @NonNull ExecutorProperty _TemplateableElement__ownedTemplateBindings = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS, Types._TemplateableElement, 0);
 		public static final @NonNull ExecutorProperty _TemplateableElement__ownedTemplateSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, Types._TemplateableElement, 1);
@@ -13156,7 +13156,7 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._TemplateBinding__ownedTemplateParameterSubstitutions,
 			PivotTables.Properties._TemplateBinding__owningTemplateableElement,
-			PivotTables.Properties._TemplateBinding__signature,
+			PivotTables.Properties._TemplateBinding__templateSignature,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -13213,12 +13213,12 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._TemplateSignature__ownedTemplateParameters,
-			PivotTables.Properties._TemplateSignature__template,
+			PivotTables.Properties._TemplateSignature__owningTemplateableElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Element__Element__ownedAnnotation,
-			PivotTables.Properties._TemplateSignature__templateBinding__signature
+			PivotTables.Properties._TemplateSignature__templateBinding__templateSignature
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateableElement = {

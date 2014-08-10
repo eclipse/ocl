@@ -467,7 +467,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			protected void installTemplateBindings() {
 				«FOR templateableElement : allTemplateableElements»
 					«FOR templateBinding : templateableElement.ownedTemplateBindings»
-						«templateableElement.getSymbolName()».getOwnedTemplateBindings().add(createTemplateBinding(«templateBinding.signature.getSymbolName()»,
+						«templateableElement.getSymbolName()».getOwnedTemplateBindings().add(createTemplateBinding(«templateBinding.getTemplateSignature().getSymbolName()»,
 							«FOR templateParameterSubstitution : templateBinding.ownedTemplateParameterSubstitutions SEPARATOR (",\n")»
 							createTemplateParameterSubstitution(«templateParameterSubstitution.formal.getSymbolName()», «templateParameterSubstitution.actual.getSymbolName()»)«ENDFOR»));
 					«ENDFOR»
@@ -491,7 +491,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«FOR templateSignature : allTemplateSignatures»
 			protected final @NonNull TemplateSignature «templateSignature.getPrefixedSymbolName(
-						"ts_" + templateSignature.partialName())» = createTemplateSignature(«templateSignature.template.getSymbolName()»«FOR templateParameter : templateSignature.
+						"ts_" + templateSignature.partialName())» = createTemplateSignature(«templateSignature.owningTemplateableElement.getSymbolName()»«FOR templateParameter : templateSignature.
 						ownedTemplateParameters», «templateParameter.getSymbolName()»«ENDFOR»);
 			«ENDFOR»
 		'''
@@ -582,23 +582,23 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			Parameter: return element.eContainer().partialName() + "_" + element.javaName()
 			Precedence: return element.javaName()
 			Property: return getPartialName(element)
-			TemplateBinding case element.signature.template == null: return "null"
+			TemplateBinding case element.getTemplateSignature().owningTemplateableElement == null: return "null"
 			TemplateBinding: return element.owningTemplateableElement.partialName()
-			TemplateParameter case element.getOwningTemplateSignature.template == null: return "[" + element.getOwningTemplateSignature.partialName() + "]"
+			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement == null: return "[" + element.getOwningTemplateSignature.partialName() + "]"
 			TemplateParameter: return element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
 			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
 			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.partialName()
-			TemplateSignature case element.template == null: return "null"
-			TemplateSignature: return element.template.partialName()
+			TemplateSignature case element.owningTemplateableElement == null: return "null"
+			TemplateSignature: return element.owningTemplateableElement.partialName()
 			default: return "xyzzy" + element.eClass().name
 		}		
 	}
 
 	protected def String simpleName(EObject element) {
 		switch element {
-			TemplateParameter case element.getOwningTemplateSignature.template == null: return "null"
-			TemplateParameter: return element.getOwningTemplateSignature.template.simpleName() + "_" + element.javaName()
+			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement == null: return "null"
+			TemplateParameter: return element.getOwningTemplateSignature.owningTemplateableElement.simpleName() + "_" + element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
 			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
 			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.simpleName()

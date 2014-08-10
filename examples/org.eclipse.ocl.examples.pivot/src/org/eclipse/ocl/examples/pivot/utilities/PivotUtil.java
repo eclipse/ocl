@@ -621,7 +621,7 @@ public class PivotUtil extends DomainUtil
 		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
 			parameterSubstitutions.add(templateParameterSubstitution);
 		}
-		pivotTemplateBinding.setSignature(templateSignature);
+		pivotTemplateBinding.setTemplateSignature(templateSignature);
 		return pivotTemplateBinding;
 	}
 
@@ -661,7 +661,7 @@ public class PivotUtil extends DomainUtil
 		for (TemplateParameter templateParameter : templateParameters) {
 			parameters.add(templateParameter);
 		}
-		pivotTemplateSignature.setTemplate(templateableElement);
+		pivotTemplateSignature.setOwningTemplateableElement(templateableElement);
 		return pivotTemplateSignature;
 	}
 	
@@ -931,7 +931,7 @@ public class PivotUtil extends DomainUtil
 	public static List<TemplateParameter> getAllTemplateParameters(Collection<TemplateBinding> templateBindings) {
 		List<TemplateParameter> list = null;
 		for (TemplateBinding templateBinding : templateBindings) {	// FIXME Establish ordering
-			TemplateSignature templateSignature = templateBinding.getSignature();
+			TemplateSignature templateSignature = templateBinding.getTemplateSignature();
 			if (templateSignature != null) {
 				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				if (templateParameters.size() > 0) {

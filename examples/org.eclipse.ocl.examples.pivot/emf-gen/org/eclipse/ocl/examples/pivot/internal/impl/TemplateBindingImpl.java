@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -43,13 +42,12 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl#getTemplateSignature <em>Template Signature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class TemplateBindingImpl
 		extends ElementImpl
 		implements TemplateBinding {
@@ -65,14 +63,14 @@ public class TemplateBindingImpl
 	protected EList<TemplateParameterSubstitution> ownedTemplateParameterSubstitutions;
 
 	/**
-	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' reference.
+	 * The cached value of the '{@link #getTemplateSignature() <em>Template Signature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSignature()
+	 * @see #getTemplateSignature()
 	 * @generated
 	 * @ordered
 	 */
-	protected TemplateSignature signature;
+	protected TemplateSignature templateSignature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,46 +89,6 @@ public class TemplateBindingImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TEMPLATE_BINDING;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature getSignature() {
-		if (signature != null && ((EObject)signature).eIsProxy())
-		{
-			InternalEObject oldSignature = (InternalEObject)signature;
-			signature = (TemplateSignature)eResolveProxy(oldSignature);
-			if (signature != oldSignature)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_BINDING__SIGNATURE, oldSignature, signature));
-			}
-		}
-		return signature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature basicGetSignature() {
-		return signature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSignature(TemplateSignature newSignature) {
-		TemplateSignature oldSignature = signature;
-		signature = newSignature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_BINDING__SIGNATURE, oldSignature, signature));
 	}
 
 	/**
@@ -258,9 +216,9 @@ public class TemplateBindingImpl
 				return getOwnedTemplateParameterSubstitutions();
 			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
 				return getOwningTemplateableElement();
-			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
-				if (resolve) return getSignature();
-				return basicGetSignature();
+			case PivotPackage.TEMPLATE_BINDING__TEMPLATE_SIGNATURE:
+				if (resolve) return getTemplateSignature();
+				return basicGetTemplateSignature();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -298,8 +256,8 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
 				setOwningTemplateableElement((TemplateableElement)newValue);
 				return;
-			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
-				setSignature((TemplateSignature)newValue);
+			case PivotPackage.TEMPLATE_BINDING__TEMPLATE_SIGNATURE:
+				setTemplateSignature((TemplateSignature)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -332,8 +290,8 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
 				setOwningTemplateableElement((TemplateableElement)null);
 				return;
-			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
-				setSignature((TemplateSignature)null);
+			case PivotPackage.TEMPLATE_BINDING__TEMPLATE_SIGNATURE:
+				setTemplateSignature((TemplateSignature)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -360,8 +318,8 @@ public class TemplateBindingImpl
 				return ownedTemplateParameterSubstitutions != null && !ownedTemplateParameterSubstitutions.isEmpty();
 			case PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT:
 				return getOwningTemplateableElement() != null;
-			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
-				return signature != null;
+			case PivotPackage.TEMPLATE_BINDING__TEMPLATE_SIGNATURE:
+				return templateSignature != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -374,5 +332,48 @@ public class TemplateBindingImpl
 	public void setOwningTemplateableElement(TemplateableElement value) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateSignature getTemplateSignature()
+	{
+		if (templateSignature != null && ((EObject)templateSignature).eIsProxy())
+		{
+			InternalEObject oldTemplateSignature = (InternalEObject)templateSignature;
+			templateSignature = (TemplateSignature)eResolveProxy(oldTemplateSignature);
+			if (templateSignature != oldTemplateSignature)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, oldTemplateSignature, templateSignature));
+			}
+		}
+		return templateSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateSignature basicGetTemplateSignature()
+	{
+		return templateSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTemplateSignature(TemplateSignature newTemplateSignature)
+	{
+		TemplateSignature oldTemplateSignature = templateSignature;
+		templateSignature = newTemplateSignature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, oldTemplateSignature, templateSignature));
 	}
 } //TemplateBindingImpl

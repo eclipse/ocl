@@ -27,7 +27,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedTemplateParameters <em>Owned Template Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,29 +54,29 @@ public interface TemplateSignature
 	@NonNull List<TemplateParameter> getOwnedTemplateParameters();
 
 	/**
-	 * Returns the value of the '<em><b>Template</b></em>' container reference.
+	 * Returns the value of the '<em><b>Owning Templateable Element</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that owns this template signature.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Template</em>' container reference.
-	 * @see #setTemplate(TemplateableElement)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_Template()
+	 * @return the value of the '<em>Owning Templateable Element</em>' container reference.
+	 * @see #setOwningTemplateableElement(TemplateableElement)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwningTemplateableElement()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature
 	 * @generated
 	 */
-	TemplateableElement getTemplate();
+	TemplateableElement getOwningTemplateableElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Template</em>' container reference.
-	 * @see #getTemplate()
+	 * @param value the new value of the '<em>Owning Templateable Element</em>' container reference.
+	 * @see #getOwningTemplateableElement()
 	 * @generated
 	 */
-	void setTemplate(TemplateableElement value);
+	void setOwningTemplateableElement(TemplateableElement value);
 
 } // TemplateSignature

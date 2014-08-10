@@ -1653,7 +1653,7 @@
         <details key="documentation" value="The element that is bound by this binding."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1" eType="#//TemplateSignature">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateSignature" lowerBound="1" eType="#//TemplateSignature">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="templateBinding"/>
       </eAnnotations>
@@ -1721,7 +1721,7 @@
         <details key="documentation" value="The formal template parameters that are owned by this template signature."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="template" lowerBound="1" eType="#//TemplateableElement" eOpposite="#//TemplateableElement/ownedTemplateSignature">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateableElement" lowerBound="1" eType="#//TemplateableElement" eOpposite="#//TemplateableElement/ownedTemplateSignature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that owns this template signature."/>
       </eAnnotations>
@@ -1737,7 +1737,7 @@
         <details key="documentation" value="The optional bindings from this element to templates."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateSignature" eType="#//TemplateSignature" containment="true" eOpposite="#//TemplateSignature/template">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateSignature" eType="#//TemplateSignature" containment="true" eOpposite="#//TemplateSignature/owningTemplateableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The optional template signature specifying the formal template parameters."/>
       </eAnnotations>

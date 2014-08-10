@@ -451,7 +451,7 @@ public class TemplateParameterImpl
 					TemplateSignature signature = getOwningTemplateSignature();
 					if (signature != null) {
 						int parentTemplateParametersCount = 0;
-						TemplateableElement template = signature.getTemplate();
+						TemplateableElement template = signature.getOwningTemplateableElement();
 						if (template != null) {
 							EObject eContainer = template.eContainer();
 							if (eContainer != null) {
@@ -493,10 +493,12 @@ public class TemplateParameterImpl
 		return getElementId();
 	}
 	
+	@Override
 	public @Nullable org.eclipse.ocl.examples.pivot.Class isClass() {
 		return null;
 	}
 
+	@Override
 	public @NonNull TemplateParameter isTemplateParameter() {
 		return this;
 	}

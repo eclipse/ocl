@@ -271,7 +271,7 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//TemplateSignature"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateSignature/template"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateSignature/owningTemplateableElement"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateSignature/ownedTemplateParameters"/>
@@ -292,7 +292,7 @@
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//TemplateBinding"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateBinding/signature"/>
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateBinding/templateSignature"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//TemplateBinding/ownedTemplateParameterSubstitutions"/>

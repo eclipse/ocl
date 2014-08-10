@@ -457,9 +457,9 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTemplateBinding(@NonNull TemplateBinding object) {
-		TemplateSignature signature = object.getSignature();
+		TemplateSignature signature = object.getTemplateSignature();
 		if (signature != null) {
-			context.appendElement(signature.getTemplate());
+			context.appendElement(signature.getOwningTemplateableElement());
 		}
 		context.append(BINDINGS_PREFIX);
 		return true;
@@ -467,7 +467,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTemplateParameter(@NonNull TemplateParameter object) {
-		TemplateableElement owningTemplateElement = object.getOwningTemplateSignature().getTemplate();
+		TemplateableElement owningTemplateElement = object.getOwningTemplateSignature().getOwningTemplateableElement();
 		context.appendElement(owningTemplateElement);
 		context.append(TEMPLATE_PARAMETER_PREFIX);
 		context.appendName(object);

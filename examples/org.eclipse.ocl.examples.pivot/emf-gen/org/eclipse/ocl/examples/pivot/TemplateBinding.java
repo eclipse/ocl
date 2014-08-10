@@ -26,7 +26,7 @@ import java.util.List;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getTemplateSignature <em>Template Signature</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,30 +35,6 @@ import java.util.List;
  */
 public interface TemplateBinding
 		extends Element {
-
-	/**
-	 * Returns the value of the '<em><b>Signature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The template signature for the template that is the target of the binding.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Signature</em>' reference.
-	 * @see #setSignature(TemplateSignature)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_Signature()
-	 * @generated
-	 */
-	TemplateSignature getSignature();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Signature</em>' reference.
-	 * @see #getSignature()
-	 * @generated
-	 */
-	void setSignature(TemplateSignature value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list.
@@ -101,5 +77,29 @@ public interface TemplateBinding
 	 * @generated
 	 */
 	void setOwningTemplateableElement(TemplateableElement value);
+
+	/**
+	 * Returns the value of the '<em><b>Template Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The template signature for the template that is the target of the binding.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Template Signature</em>' reference.
+	 * @see #setTemplateSignature(TemplateSignature)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_TemplateSignature()
+	 * @generated
+	 */
+	TemplateSignature getTemplateSignature();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getTemplateSignature <em>Template Signature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Template Signature</em>' reference.
+	 * @see #getTemplateSignature()
+	 * @generated
+	 */
+	void setTemplateSignature(TemplateSignature value);
 
 } // TemplateBinding

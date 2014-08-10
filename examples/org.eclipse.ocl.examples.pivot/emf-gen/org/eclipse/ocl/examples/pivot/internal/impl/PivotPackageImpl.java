@@ -4044,15 +4044,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateBinding_Signature() {
-		return (EReference)templateBindingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTemplateBinding_OwnedTemplateParameterSubstitutions()
 	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(0);
@@ -4066,6 +4057,16 @@ public class PivotPackageImpl
 	public EReference getTemplateBinding_OwningTemplateableElement()
 	{
 		return (EReference)templateBindingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateBinding_TemplateSignature()
+	{
+		return (EReference)templateBindingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4092,7 +4093,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateSignature_Template() {
+	public EReference getTemplateSignature_OwningTemplateableElement()
+	{
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5901,7 +5903,7 @@ public class PivotPackageImpl
 		templateBindingEClass = createEClass(TEMPLATE_BINDING);
 		createEReference(templateBindingEClass, TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS);
 		createEReference(templateBindingEClass, TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT);
-		createEReference(templateBindingEClass, TEMPLATE_BINDING__SIGNATURE);
+		createEReference(templateBindingEClass, TEMPLATE_BINDING__TEMPLATE_SIGNATURE);
 
 		templateParameterEClass = createEClass(TEMPLATE_PARAMETER);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__CONSTRAINING_CLASS);
@@ -5915,7 +5917,7 @@ public class PivotPackageImpl
 
 		templateSignatureEClass = createEClass(TEMPLATE_SIGNATURE);
 		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS);
-		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__TEMPLATE);
+		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT);
 
 		templateableElementEClass = createEClass(TEMPLATEABLE_ELEMENT);
 		createEReference(templateableElementEClass, TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS);
@@ -7123,7 +7125,7 @@ public class PivotPackageImpl
 		initEClass(templateBindingEClass, TemplateBinding.class, "TemplateBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateBinding_OwnedTemplateParameterSubstitutions(), this.getTemplateParameterSubstitution(), this.getTemplateParameterSubstitution_OwningTemplateBinding(), "ownedTemplateParameterSubstitutions", null, 0, -1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateBinding_OwningTemplateableElement(), this.getTemplateableElement(), this.getTemplateableElement_OwnedTemplateBindings(), "owningTemplateableElement", null, 1, 1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateBinding_Signature(), this.getTemplateSignature(), null, "signature", null, 1, 1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateBinding_TemplateSignature(), this.getTemplateSignature(), null, "templateSignature", null, 1, 1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterEClass, TemplateParameter.class, "TemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameter_ConstrainingClass(), this.getClass_(), null, "constrainingClass", null, 0, -1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -7137,11 +7139,11 @@ public class PivotPackageImpl
 
 		initEClass(templateSignatureEClass, TemplateSignature.class, "TemplateSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateSignature_OwnedTemplateParameters(), this.getTemplateParameter(), this.getTemplateParameter_OwningTemplateSignature(), "ownedTemplateParameters", null, 0, -1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateSignature_Template(), this.getTemplateableElement(), this.getTemplateableElement_OwnedTemplateSignature(), "template", null, 1, 1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateSignature_OwningTemplateableElement(), this.getTemplateableElement(), this.getTemplateableElement_OwnedTemplateSignature(), "owningTemplateableElement", null, 1, 1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateableElementEClass, TemplateableElement.class, "TemplateableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateableElement_OwnedTemplateBindings(), this.getTemplateBinding(), this.getTemplateBinding_OwningTemplateableElement(), "ownedTemplateBindings", null, 0, -1, TemplateableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateableElement_OwnedTemplateSignature(), this.getTemplateSignature(), this.getTemplateSignature_Template(), "ownedTemplateSignature", null, 0, 1, TemplateableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateableElement_OwnedTemplateSignature(), this.getTemplateSignature(), this.getTemplateSignature_OwningTemplateableElement(), "ownedTemplateSignature", null, 0, 1, TemplateableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateableElement_UnspecializedElement(), this.getTemplateableElement(), null, "unspecializedElement", null, 0, 1, TemplateableElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7416,7 +7418,7 @@ public class PivotPackageImpl
 			 "body", "owningSlot" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
-		  (getTemplateBinding_Signature(), 
+		  (getTemplateBinding_TemplateSignature(), 
 		   source, 
 		   new String[] 
 		   {

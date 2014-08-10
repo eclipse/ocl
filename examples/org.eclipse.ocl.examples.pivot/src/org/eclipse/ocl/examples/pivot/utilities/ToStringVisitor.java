@@ -1052,7 +1052,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitTemplateParameter(@NonNull TemplateParameter object) {
 		TemplateSignature signature = object.getOwningTemplateSignature();
-		appendName(signature != null ? (NamedElement) signature.getTemplate() : null);
+		appendName(signature != null ? (NamedElement) signature.getOwningTemplateableElement() : null);
 		append(".");
 		appendName(object);
 		return null;

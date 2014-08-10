@@ -38,7 +38,7 @@
               <body>The element that is bound by this binding.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature" name="templateSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-signature">
               <body>The template signature for the template that is the target of the binding.</body>
             </ownedComment>
@@ -108,7 +108,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QUaIYBsHEeSM9LreJtBwBg"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfQn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="template" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="owningTemplateableElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-template">
               <body>The element that owns this template signature.</body>
             </ownedComment>
@@ -156,7 +156,7 @@
           <generalization xmi:id="_XnqLN37VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-PackageableElement"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedTemplateParameters_owningTemplateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedTemplateBindings_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedTemplateBinding_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution" name="A_formal_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQQH7VEeOu79LxSz8Ylw"/>
@@ -176,7 +176,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQRX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter" name="A_default_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-default AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQRn7VEeOu79LxSz8Ylw"/>

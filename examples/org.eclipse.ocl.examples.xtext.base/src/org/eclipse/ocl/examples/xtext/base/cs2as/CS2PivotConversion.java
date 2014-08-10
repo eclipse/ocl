@@ -1105,7 +1105,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				TemplateBinding templateBinding = null;;
 				for (int j = i; j < oldMax; j++) {
 					TemplateBinding oldTemplateBinding = templateBindings.get(j);
-					if (oldTemplateBinding.getSignature() == templateSignature) {
+					if (oldTemplateBinding.getTemplateSignature() == templateSignature) {
 						if (j != i) {
 							templateBindings.add(i, templateBindings.remove(j));
 						}
@@ -1118,7 +1118,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				if (templateBinding == null) {
 	//				templateBinding = refreshElement(TemplateBinding.class, PivotPackage.Literals.TEMPLATE_BINDING, csTemplateBinding);
 					templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-					templateBinding.setSignature(templateSignature);
+					templateBinding.setTemplateSignature(templateSignature);
 					if (i < oldMax) {
 						templateBindings.add(i, templateBinding);
 					}
@@ -1131,7 +1131,7 @@ public class CS2PivotConversion extends AbstractBase2PivotConversion
 				@NonNull List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitutionCS> csParameterSubstitutions = csTemplateBinding.getOwnedParameterSubstitution();
 				specializeTemplateParameterSubstitutions(parameterSubstitutions, templateParameters, csParameterSubstitutions);
-				assert templateSignatures.get(i) == templateBindings.get(i).getSignature();
+				assert templateSignatures.get(i) == templateBindings.get(i).getTemplateSignature();
 			}
 		}
 		for (int k = templateBindings.size(); k > newMax; ) {

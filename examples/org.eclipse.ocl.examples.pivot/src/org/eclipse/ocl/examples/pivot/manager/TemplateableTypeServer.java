@@ -60,7 +60,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		org.eclipse.ocl.examples.pivot.Class specializedType = (org.eclipse.ocl.examples.pivot.Class) eFactoryInstance.create(eClass);		
 		specializedType.setName(typeName);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		templateBinding.setSignature(templateSignature);
+		templateBinding.setTemplateSignature(templateSignature);
 		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		for (int i = 0; i < templateParameters.size(); i++) {
 			TemplateParameter formalParameter = templateParameters.get(i);

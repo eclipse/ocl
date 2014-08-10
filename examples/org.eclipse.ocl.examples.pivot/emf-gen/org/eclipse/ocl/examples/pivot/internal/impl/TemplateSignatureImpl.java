@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getOwnedTemplateParameters <em>Owned Template Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getTemplate <em>Template</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,8 +103,8 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement getTemplate() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE) return null;
+	public TemplateableElement getOwningTemplateableElement() {
+		if (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT) return null;
 		return (TemplateableElement)eInternalContainer();
 	}
 
@@ -113,9 +113,9 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTemplate(TemplateableElement newTemplate,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newTemplate, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, msgs);
+	public NotificationChain basicSetOwningTemplateableElement(TemplateableElement newOwningTemplateableElement, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateableElement, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, msgs);
 		return msgs;
 	}
 
@@ -124,21 +124,21 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplate(TemplateableElement newTemplate) {
-		if (newTemplate != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE && newTemplate != null))
+	public void setOwningTemplateableElement(TemplateableElement newOwningTemplateableElement) {
+		if (newOwningTemplateableElement != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT && newOwningTemplateableElement != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newTemplate))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateableElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newTemplate != null)
-				msgs = ((InternalEObject)newTemplate).eInverseAdd(this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, TemplateableElement.class, msgs);
-			msgs = basicSetTemplate(newTemplate, msgs);
+			if (newOwningTemplateableElement != null)
+				msgs = ((InternalEObject)newOwningTemplateableElement).eInverseAdd(this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, TemplateableElement.class, msgs);
+			msgs = basicSetOwningTemplateableElement(newOwningTemplateableElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, newTemplate, newTemplate));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, newOwningTemplateableElement, newOwningTemplateableElement));
 	}
 
 	/**
@@ -160,10 +160,10 @@ public class TemplateSignatureImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateParameters()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetTemplate((TemplateableElement)otherEnd, msgs);
+				return basicSetOwningTemplateableElement((TemplateableElement)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -188,8 +188,8 @@ public class TemplateSignatureImpl
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
 				return ((InternalEList<?>)getOwnedTemplateParameters()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				return basicSetTemplate(null, msgs);
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
+				return basicSetOwningTemplateableElement(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,7 +204,7 @@ public class TemplateSignatureImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, TemplateableElement.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
@@ -229,8 +229,8 @@ public class TemplateSignatureImpl
 				return getOwnedComment();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
 				return getOwnedTemplateParameters();
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				return getTemplate();
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
+				return getOwningTemplateableElement();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -265,8 +265,8 @@ public class TemplateSignatureImpl
 				getOwnedTemplateParameters().clear();
 				getOwnedTemplateParameters().addAll((Collection<? extends TemplateParameter>)newValue);
 				return;
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				setTemplate((TemplateableElement)newValue);
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
+				setOwningTemplateableElement((TemplateableElement)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -296,8 +296,8 @@ public class TemplateSignatureImpl
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
 				getOwnedTemplateParameters().clear();
 				return;
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				setTemplate((TemplateableElement)null);
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
+				setOwningTemplateableElement((TemplateableElement)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -322,8 +322,8 @@ public class TemplateSignatureImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS:
 				return ownedTemplateParameters != null && !ownedTemplateParameters.isEmpty();
-			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				return getTemplate() != null;
+			case PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT:
+				return getOwningTemplateableElement() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

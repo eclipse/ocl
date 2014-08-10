@@ -374,7 +374,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitTemplateParameter(@NonNull TemplateParameter object) {
-		NamedElement template = (NamedElement) object.getOwningTemplateSignature().getTemplate();
+		NamedElement template = (NamedElement) object.getOwningTemplateSignature().getOwningTemplateableElement();
 		if ((template instanceof org.eclipse.ocl.examples.pivot.Class) && Orphanage.isTypeOrphanage(((org.eclipse.ocl.examples.pivot.Class)template).getOwningPackage())) {
 			return false;
 		}
@@ -389,7 +389,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	@Override
 	public @Nullable Boolean visitTemplateSignature(@NonNull TemplateSignature object) {
 		s.append(TEMPLATE_SIGNATURE_PREFIX);
-		TemplateableElement template = object.getTemplate();
+		TemplateableElement template = object.getOwningTemplateableElement();
 		template.accept(this);
 		return true;
 	}

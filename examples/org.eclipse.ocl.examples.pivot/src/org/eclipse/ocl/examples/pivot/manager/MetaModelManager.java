@@ -3289,8 +3289,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		Map<TemplateParameter, Type> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, pivotClass);
 		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
 		for (TemplateBinding templateBinding : pivotClass.getOwnedTemplateBindings()) {
-			TemplateSignature signature = templateBinding.getSignature();
-			TemplateableElement template = signature.getTemplate();
+			TemplateSignature signature = templateBinding.getTemplateSignature();
+			TemplateableElement template = signature.getOwningTemplateableElement();
 			if (template instanceof org.eclipse.ocl.examples.pivot.Class) {
 				Set<Operation> morePivotOperations = resolveLocalOperation((org.eclipse.ocl.examples.pivot.Class) template, operationName, pivotArguments);
 				if (morePivotOperations != null) {

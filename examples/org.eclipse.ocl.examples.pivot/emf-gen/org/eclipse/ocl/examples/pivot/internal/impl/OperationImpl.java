@@ -371,9 +371,9 @@ public class OperationImpl
 		{
 			NotificationChain msgs = null;
 			if (ownedTemplateSignature != null)
-				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
+				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
 			if (newOwnedTemplateSignature != null)
-				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
+				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
 			msgs = basicSetOwnedTemplateSignature(newOwnedTemplateSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}

@@ -340,9 +340,9 @@ public class ClassImpl
 		{
 			NotificationChain msgs = null;
 			if (ownedTemplateSignature != null)
-				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
+				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
 			if (newOwnedTemplateSignature != null)
-				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
+				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
 			msgs = basicSetOwnedTemplateSignature(newOwnedTemplateSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -1181,9 +1181,9 @@ public class ClassImpl
 	{
 		if (unspecializedElement == null) {
 			for (TemplateBinding templateBinding : getOwnedTemplateBindings()) {
-				TemplateSignature signature = templateBinding.getSignature();
+				TemplateSignature signature = templateBinding.getTemplateSignature();
 				if (signature != null) {
-					unspecializedElement = signature.getTemplate();
+					unspecializedElement = signature.getOwningTemplateableElement();
 					if (unspecializedElement != null) {
 						break;
 					}
@@ -1193,10 +1193,12 @@ public class ClassImpl
 		return unspecializedElement;
 	}
 	
+	@Override
 	public @NonNull org.eclipse.ocl.examples.pivot.Class isClass() {
 		return this;
 	}
 
+	@Override
 	public @Nullable TemplateParameter isTemplateParameter() {
 		return null;
 	}

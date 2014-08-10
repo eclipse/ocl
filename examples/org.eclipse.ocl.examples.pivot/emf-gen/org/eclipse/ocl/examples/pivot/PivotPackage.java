@@ -18977,13 +18977,13 @@ public interface PivotPackage
 	int TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * The feature id for the '<em><b>Template Signature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING__SIGNATURE = ELEMENT_FEATURE_COUNT + 2;
+	int TEMPLATE_BINDING__TEMPLATE_SIGNATURE = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Template Binding</em>' class.
@@ -19319,13 +19319,13 @@ public interface PivotPackage
 	int TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Templateable Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE__TEMPLATE = ELEMENT_FEATURE_COUNT + 1;
+	int TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Signature</em>' class.
@@ -24924,17 +24924,6 @@ public interface PivotPackage
 	EClass getTemplateBinding();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Signature</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature()
-	 * @see #getTemplateBinding()
-	 * @generated
-	 */
-	EReference getTemplateBinding_Signature();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24955,6 +24944,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateBinding_OwningTemplateableElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getTemplateSignature <em>Template Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Template Signature</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getTemplateSignature()
+	 * @see #getTemplateBinding()
+	 * @generated
+	 */
+	EReference getTemplateBinding_TemplateSignature();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateSignature <em>Template Signature</em>}'.
@@ -24978,15 +24978,15 @@ public interface PivotPackage
 	EReference getTemplateSignature_OwnedTemplateParameters();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Template</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate()
+	 * @return the meta object for the container reference '<em>Owning Templateable Element</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwningTemplateableElement()
 	 * @see #getTemplateSignature()
 	 * @generated
 	 */
-	EReference getTemplateSignature_Template();
+	EReference getTemplateSignature_OwningTemplateableElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameter <em>Template Parameter</em>}'.
@@ -29061,14 +29061,6 @@ public interface PivotPackage
 		EClass TEMPLATE_BINDING = eINSTANCE.getTemplateBinding();
 
 		/**
-		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_BINDING__SIGNATURE = eINSTANCE.getTemplateBinding_Signature();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29083,6 +29075,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT = eINSTANCE.getTemplateBinding_OwningTemplateableElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Template Signature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_BINDING__TEMPLATE_SIGNATURE = eINSTANCE.getTemplateBinding_TemplateSignature();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -29103,12 +29103,12 @@ public interface PivotPackage
 		EReference TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS = eINSTANCE.getTemplateSignature_OwnedTemplateParameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Template</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Templateable Element</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEMPLATE_SIGNATURE__TEMPLATE = eINSTANCE.getTemplateSignature_Template();
+		EReference TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT = eINSTANCE.getTemplateSignature_OwningTemplateableElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.

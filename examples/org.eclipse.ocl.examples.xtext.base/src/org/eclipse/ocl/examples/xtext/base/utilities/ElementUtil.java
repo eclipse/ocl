@@ -267,7 +267,7 @@ public class ElementUtil
 			return null;
 		}
 		TemplateBinding templateBinding = (TemplateBinding) csTemplateBinding.getPivot();
-		TemplateSignature templateSignature = templateBinding.getSignature();
+		TemplateSignature templateSignature = templateBinding.getTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		if (templateParameters.size() <= index) {
 			return null;
@@ -448,7 +448,7 @@ public class ElementUtil
 				return true;
 			}
 			TemplateSignature signature = templateParameter.getOwningTemplateSignature();
-			TemplateableElement template = signature.getTemplate();
+			TemplateableElement template = signature.getOwningTemplateableElement();
 			if (template != type) {
 				return true;
 			}
