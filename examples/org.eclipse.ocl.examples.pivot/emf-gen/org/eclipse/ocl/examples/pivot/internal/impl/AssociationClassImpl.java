@@ -118,7 +118,7 @@ public class AssociationClassImpl
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
@@ -158,7 +158,7 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
@@ -205,7 +205,7 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
-				return getTemplateBinding();
+				return getOwnedTemplateBinding();
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
@@ -278,8 +278,8 @@ public class AssociationClassImpl
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				getOwnedTemplateBinding().clear();
+				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -365,7 +365,7 @@ public class AssociationClassImpl
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
+				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);

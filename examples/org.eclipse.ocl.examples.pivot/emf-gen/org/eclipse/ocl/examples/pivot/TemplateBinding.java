@@ -85,21 +85,21 @@ public interface TemplateBinding
 	 * The element that is bound by this binding.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bound Element</em>' container reference.
-	 * @see #setBoundElement(TemplateableElement)
+	 * @see #setOwningTemplateableElement(TemplateableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_BoundElement()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding
 	 * @generated
 	 */
-	TemplateableElement getBoundElement();
+	TemplateableElement getOwningTemplateableElement();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bound Element</em>' container reference.
-	 * @see #getBoundElement()
+	 * @see #getOwningTemplateableElement()
 	 * @generated
 	 */
-	void setBoundElement(TemplateableElement value);
+	void setOwningTemplateableElement(TemplateableElement value);
 
 } // TemplateBinding

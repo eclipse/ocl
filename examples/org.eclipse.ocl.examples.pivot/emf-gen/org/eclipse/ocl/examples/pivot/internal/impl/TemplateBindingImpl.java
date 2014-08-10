@@ -152,7 +152,7 @@ public class TemplateBindingImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement getBoundElement() {
+	public TemplateableElement getOwningTemplateableElement() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT) return null;
 		return (TemplateableElement)eInternalContainer();
 	}
@@ -277,7 +277,7 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return getOwnedComment();
 			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return getBoundElement();
+				return getOwningTemplateableElement();
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				return getOwnedTemplateParameterSubstitutions();
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:
@@ -379,7 +379,7 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__OWNED_COMMENT:
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return getBoundElement() != null;
+				return getOwningTemplateableElement() != null;
 			case PivotPackage.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS:
 				return ownedTemplateParameterSubstitutions != null && !ownedTemplateParameterSubstitutions.isEmpty();
 			case PivotPackage.TEMPLATE_BINDING__SIGNATURE:

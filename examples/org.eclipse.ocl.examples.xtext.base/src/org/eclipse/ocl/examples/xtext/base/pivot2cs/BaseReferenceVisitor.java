@@ -68,7 +68,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 				context.importNamespace(objectPackage, null);
 			}
 		}
-		List<TemplateBinding> templateBindings = object.getTemplateBinding();
+		List<TemplateBinding> templateBindings = object.getOwnedTemplateBinding();
 		if (templateBindings.isEmpty()) {
 		}
 		else {

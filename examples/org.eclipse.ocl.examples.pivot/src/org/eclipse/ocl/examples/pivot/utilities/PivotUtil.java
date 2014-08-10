@@ -1022,7 +1022,7 @@ public class PivotUtil extends DomainUtil
 			@Nullable TemplateableElement templateableElement) {
 		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
-				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getTemplateBinding()) {
+				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getOwnedTemplateBinding()) {
 					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 						if (map == null) {
 							map = new HashMap<TemplateParameter, Type>();
@@ -1665,7 +1665,7 @@ public class PivotUtil extends DomainUtil
 			return false;			
 		}
 		else if (type instanceof TemplateableElement){
-			return ((TemplateableElement)type).getTemplateBinding().isEmpty();			
+			return ((TemplateableElement)type).getOwnedTemplateBinding().isEmpty();			
 		}
 		else {
 			return false;

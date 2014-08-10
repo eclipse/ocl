@@ -654,7 +654,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
 			if ((eObject instanceof TemplateableElement) &&
-				(((TemplateableElement)eObject).getTemplateBinding().size() > 0)) {
+				(((TemplateableElement)eObject).getOwnedTemplateBinding().size() > 0)) {
 				allElements.add((TemplateableElement)eObject);
 			}
 		}
@@ -695,7 +695,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 
 	protected @NonNull List<TemplateParameterSubstitution> getTemplateParameterSubstitutions(@NonNull TemplateableElement element) {
 		List<TemplateParameterSubstitution> allElements = new ArrayList<TemplateParameterSubstitution>();
-		for (TemplateBinding templateBinding : element.getTemplateBinding()) {
+		for (TemplateBinding templateBinding : element.getOwnedTemplateBinding()) {
 			allElements.addAll(templateBinding.getOwnedTemplateParameterSubstitutions());
 		}
 		return allElements;

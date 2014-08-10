@@ -174,7 +174,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		if (!object.getTemplateBinding().isEmpty()) {
+		if (!object.getOwnedTemplateBinding().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(templateableClass);
@@ -366,7 +366,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitOperation(@NonNull Operation object) {
-		if (!object.getTemplateBinding().isEmpty()) {
+		if (!object.getOwnedTemplateBinding().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
 			Map<TemplateParameter, Type> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);

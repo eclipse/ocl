@@ -144,7 +144,7 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE, null, msgs);
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_PROPERTIES:
@@ -186,7 +186,7 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_BEHAVIOR:
@@ -254,7 +254,7 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
-				return getTemplateBinding();
+				return getOwnedTemplateBinding();
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ABSTRACT:
@@ -333,8 +333,8 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				getOwnedTemplateBinding().clear();
+				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -427,7 +427,7 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
+				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);

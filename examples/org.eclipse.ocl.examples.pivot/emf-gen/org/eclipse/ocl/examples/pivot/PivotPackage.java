@@ -24766,7 +24766,7 @@ public interface PivotPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Template Binding</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateBinding()
 	 * @see #getTemplateableElement()
 	 * @generated
 	 */
@@ -24939,7 +24939,7 @@ public interface PivotPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Bound Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getOwningTemplateableElement()
 	 * @see #getTemplateBinding()
 	 * @generated
 	 */

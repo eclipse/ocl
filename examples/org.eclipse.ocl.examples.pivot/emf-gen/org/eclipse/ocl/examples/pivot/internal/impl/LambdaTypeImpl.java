@@ -241,7 +241,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.LAMBDA_TYPE__TEMPLATE_BINDING:
-				return getTemplateBinding();
+				return getOwnedTemplateBinding();
 			case PivotPackage.LAMBDA_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.LAMBDA_TYPE__IS_ABSTRACT:
@@ -326,8 +326,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				getOwnedTemplateBinding().clear();
+				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -426,7 +426,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.LAMBDA_TYPE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
+				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.LAMBDA_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);

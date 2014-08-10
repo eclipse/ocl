@@ -50,7 +50,7 @@ public interface TemplateableElement
 	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement
 	 * @generated
 	 */
-	List<TemplateBinding> getTemplateBinding();
+	List<TemplateBinding> getOwnedTemplateBinding();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.

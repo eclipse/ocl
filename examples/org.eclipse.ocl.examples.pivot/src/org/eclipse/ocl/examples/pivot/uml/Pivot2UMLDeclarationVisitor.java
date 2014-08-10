@@ -153,7 +153,7 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.Classifier visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class pivotClass) {
-		if (pivotClass.getTemplateBinding().size() > 0) {
+		if (pivotClass.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		Classifier umlClassifier;
@@ -228,7 +228,7 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.DataType visitDataType(@NonNull DataType pivotDataType) {
-		if (pivotDataType.getTemplateBinding().size() > 0) {
+		if (pivotDataType.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -239,7 +239,7 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.Enumeration visitEnumeration(@NonNull Enumeration pivotEnumeration) {
-		if (pivotEnumeration.getTemplateBinding().size() > 0) {
+		if (pivotEnumeration.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -265,7 +265,7 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.Operation visitOperation(@NonNull Operation pivotOperation) {
-		if (pivotOperation.getTemplateBinding().size() > 0) {
+		if (pivotOperation.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -312,7 +312,7 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.Element visitPrimitiveType(@NonNull PrimitiveType pivotPrimitiveType) {
-		if (pivotPrimitiveType.getTemplateBinding().size() > 0) {
+		if (pivotPrimitiveType.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")

@@ -128,10 +128,10 @@ public class ClassImpl
 	protected TemplateSignature ownedTemplateSignature;
 
 	/**
-	 * The cached value of the '{@link #getTemplateBinding() <em>Template Binding</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedTemplateBinding() <em>Template Binding</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTemplateBinding()
+	 * @see #getOwnedTemplateBinding()
 	 * @generated
 	 * @ordered
 	 */
@@ -355,7 +355,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<TemplateBinding> getTemplateBinding()
+	public List<TemplateBinding> getOwnedTemplateBinding()
 	{
 		if (templateBinding == null)
 		{
@@ -534,7 +534,7 @@ public class ClassImpl
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
@@ -572,7 +572,7 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
@@ -757,7 +757,7 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				return getTemplateBinding();
+				return getOwnedTemplateBinding();
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.CLASS__IS_ABSTRACT:
@@ -828,8 +828,8 @@ public class ClassImpl
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				getOwnedTemplateBinding().clear();
+				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -911,7 +911,7 @@ public class ClassImpl
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
+				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -1180,7 +1180,7 @@ public class ClassImpl
 	public TemplateableElement getUnspecializedElement()
 	{
 		if (unspecializedElement == null) {
-			for (TemplateBinding templateBinding : getTemplateBinding()) {
+			for (TemplateBinding templateBinding : getOwnedTemplateBinding()) {
 				TemplateSignature signature = templateBinding.getSignature();
 				if (signature != null) {
 					unspecializedElement = signature.getTemplate();
@@ -1219,7 +1219,7 @@ public class ClassImpl
 			visitor.visit((CallExp)expr);
 			return visitor.specialize(this);
 		}
-		List<TemplateBinding> templateBindings = getTemplateBinding();
+		List<TemplateBinding> templateBindings = getOwnedTemplateBinding();
 		if ((templateBindings != null) && !templateBindings.isEmpty()) {
 			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(((EObject) expr).eResource());
 			TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);

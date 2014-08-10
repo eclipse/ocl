@@ -117,7 +117,7 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.LIBRARY__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_CLASSES:
 				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LIBRARY__OWNED_INSTANCES:
@@ -159,7 +159,7 @@ public class LibraryImpl extends PackageImpl implements Library
 			case PivotPackage.LIBRARY__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.LIBRARY__TEMPLATE_BINDING:
-				return getTemplateBinding();
+				return getOwnedTemplateBinding();
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.LIBRARY__URI:
@@ -222,8 +222,8 @@ public class LibraryImpl extends PackageImpl implements Library
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.LIBRARY__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				getOwnedTemplateBinding().clear();
+				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -297,7 +297,7 @@ public class LibraryImpl extends PackageImpl implements Library
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.LIBRARY__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
+				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.LIBRARY__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);

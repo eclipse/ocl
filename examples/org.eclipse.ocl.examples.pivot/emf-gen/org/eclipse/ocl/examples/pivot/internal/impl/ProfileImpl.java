@@ -116,7 +116,7 @@ public class ProfileImpl extends PackageImpl implements Profile
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
 				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_CLASSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
@@ -158,7 +158,7 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_CLASSES:
 				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROFILE__OWNED_INSTANCES:
@@ -200,7 +200,7 @@ public class ProfileImpl extends PackageImpl implements Profile
 			case PivotPackage.PROFILE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
-				return getTemplateBinding();
+				return getOwnedTemplateBinding();
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.PROFILE__URI:
@@ -263,8 +263,8 @@ public class ProfileImpl extends PackageImpl implements Profile
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
-				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
+				getOwnedTemplateBinding().clear();
+				getOwnedTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -338,7 +338,7 @@ public class ProfileImpl extends PackageImpl implements Profile
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.PROFILE__TEMPLATE_BINDING:
-				getTemplateBinding().clear();
+				getOwnedTemplateBinding().clear();
 				return;
 			case PivotPackage.PROFILE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);

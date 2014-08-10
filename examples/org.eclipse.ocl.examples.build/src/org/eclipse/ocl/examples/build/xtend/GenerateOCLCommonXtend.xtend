@@ -466,7 +466,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			protected void installTemplateBindings() {
 				«FOR templateableElement : allTemplateableElements»
-					«FOR templateBinding : templateableElement.templateBinding»
+					«FOR templateBinding : templateableElement.ownedTemplateBinding»
 						«templateableElement.getSymbolName()».getTemplateBinding().add(createTemplateBinding(«templateBinding.signature.getSymbolName()»,
 							«FOR templateParameterSubstitution : templateBinding.ownedTemplateParameterSubstitutions SEPARATOR (",\n")»
 							createTemplateParameterSubstitution(«templateParameterSubstitution.formal.getSymbolName()», «templateParameterSubstitution.actual.getSymbolName()»)«ENDFOR»));
@@ -569,7 +569,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			CollectionType: return element.javaName() + "_" + element.elementType.partialName()
 			LambdaType case element.contextType == null: return "null"
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
-			Class case element.templateBinding.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
+			Class case element.ownedTemplateBinding.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
 			Class: return element.javaName()
 			Comment case element.body == null: return "null"
 			Comment: return element.javaName(element.body.substring(0, Math.min(11, element.body.length() - 1)))
@@ -583,12 +583,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			Precedence: return element.javaName()
 			Property: return getPartialName(element)
 			TemplateBinding case element.signature.template == null: return "null"
-			TemplateBinding: return element.boundElement.partialName()
+			TemplateBinding: return element.owningTemplateableElement.partialName()
 			TemplateParameter case element.getOwningTemplateSignature.template == null: return "[" + element.getOwningTemplateSignature.partialName() + "]"
 			TemplateParameter: return element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
-			TemplateParameterSubstitution case element.owningTemplateBinding.boundElement == null: return "null"
-			TemplateParameterSubstitution: return element.owningTemplateBinding.boundElement.partialName()
+			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
+			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.partialName()
 			TemplateSignature case element.template == null: return "null"
 			TemplateSignature: return element.template.partialName()
 			default: return "xyzzy" + element.eClass().name
@@ -600,8 +600,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			TemplateParameter case element.getOwningTemplateSignature.template == null: return "null"
 			TemplateParameter: return element.getOwningTemplateSignature.template.simpleName() + "_" + element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
-			TemplateParameterSubstitution case element.owningTemplateBinding.boundElement == null: return "null"
-			TemplateParameterSubstitution: return element.owningTemplateBinding.boundElement.simpleName()
+			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
+			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.simpleName()
 			Class: return element.javaName()
 			Operation case element.owningClass == null: return "null_" + element.javaName()
 			Operation: return element.owningClass.simpleName() + "_" + element.javaName()

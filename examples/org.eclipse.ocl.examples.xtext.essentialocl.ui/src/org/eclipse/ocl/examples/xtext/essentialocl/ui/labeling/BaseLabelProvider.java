@@ -217,7 +217,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected void appendTemplateBindings(@NonNull StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
-			for (TemplateBinding templateBinding : templateableElement.getTemplateBinding()) {
+			for (TemplateBinding templateBinding : templateableElement.getOwnedTemplateBinding()) {
 				s.append("(");
 				String prefix = "";
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {

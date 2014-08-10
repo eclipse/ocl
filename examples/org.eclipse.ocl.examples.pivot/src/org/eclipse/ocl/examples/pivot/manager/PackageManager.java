@@ -627,7 +627,7 @@ public class PackageManager implements PackageServerParent
 
 	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass, Map<TemplateParameter, Type> allBindings) {
 		for (org.eclipse.ocl.examples.pivot.Class superClass : unspecializedClass.getSuperClasses()) {
-			List<TemplateBinding> superTemplateBindings = superClass.getTemplateBinding();
+			List<TemplateBinding> superTemplateBindings = superClass.getOwnedTemplateBinding();
 			if (superTemplateBindings.size() > 0) {
 				List<Type> superTemplateArgumentList = new ArrayList<Type>();
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {

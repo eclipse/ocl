@@ -381,7 +381,7 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitClass(@NonNull Class pivotClass) {
-		if (pivotClass.getTemplateBinding().size() > 0) {
+		if (pivotClass.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -471,7 +471,7 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitDataType(@NonNull DataType pivotDataType) {
-		if (pivotDataType.getTemplateBinding().size() > 0) {
+		if (pivotDataType.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -482,7 +482,7 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitEnumeration(@NonNull Enumeration pivotEnumeration) {
-		if (pivotEnumeration.getTemplateBinding().size() > 0) {
+		if (pivotEnumeration.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -509,7 +509,7 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
-		if (pivotOperation.getTemplateBinding().size() > 0) {
+		if (pivotOperation.getOwnedTemplateBinding().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")

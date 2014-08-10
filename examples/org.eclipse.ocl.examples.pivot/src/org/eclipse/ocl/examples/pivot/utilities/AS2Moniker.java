@@ -280,7 +280,7 @@ public class AS2Moniker implements PivotConstants
 	}
 	
 	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, Type> bindings) {
-		List<TemplateBinding> templateBindings = templateableElement.getTemplateBinding();
+		List<TemplateBinding> templateBindings = templateableElement.getOwnedTemplateBinding();
 		if (!templateBindings.isEmpty()) {
 			boolean isSpecialized = isSpecialized(templateBindings, bindings);
 			if (!isSpecialized) {			
