@@ -47,7 +47,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.Metaclass;
@@ -99,7 +99,7 @@ public final class DebugAction extends Action
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
 			PivotIdResolver idResolver = metaModelManager.getIdResolver();
-			DomainType staticType = idResolver.getStaticTypeOf(contextObject);
+			DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
 			org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
 			if (contextType instanceof Metaclass) {
 				contextType = (org.eclipse.ocl.examples.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast

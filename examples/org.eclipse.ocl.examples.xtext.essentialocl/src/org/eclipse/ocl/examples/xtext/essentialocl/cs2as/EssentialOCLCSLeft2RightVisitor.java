@@ -61,7 +61,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -143,8 +142,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	{
 		public static TypeArgumentFilter INSTANCE = new TypeArgumentFilter();
 		
-		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
-				@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
+		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
+				@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
 			return 0;
 		}
 
@@ -352,7 +351,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			if (asType == null) {
 				return null;
 			}
-			if (asType.getOwningTemplateParameter() != null) {
+			if (asType.isTemplateParameter() != null) {
 				asType = metaModelManager.getOclAnyType();
 			}
 			List<NamedElement> invocations = getInvocations(asType, name, iteratorCount, expressionCount);
@@ -1009,7 +1008,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (operation == null) {
 			return;
 		}
-		Map<TemplateParameter, ParameterableElement> templateBindings = new HashMap<TemplateParameter, ParameterableElement>();
+		Map<TemplateParameter, Type> templateBindings = new HashMap<TemplateParameter, Type>();
 		Type sourceType = null;
 		OCLExpression source = callExp.getSource();
 		if (source != null) {
@@ -1087,8 +1086,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 		}
-		org.eclipse.ocl.examples.pivot.Class behavioralType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(operation);
-		org.eclipse.ocl.examples.pivot.Class returnType = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
+		Type behavioralType = PivotUtil.getType(operation);
+		Type returnType = behavioralType != null ? metaModelManager.getSpecializedType(behavioralType, templateBindings) : null;
 		//
 		//	The flattening of collect() and consequently implicit-collect is not modelled accurately so we need to code it.
 		//
@@ -1109,7 +1108,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 		}
-		if (operation.isStatic() && (behavioralType != null) && (behavioralType.getOwningTemplateParameter() != null) && (returnType != null)) {
+		if (operation.isStatic() && (behavioralType != null) && (behavioralType.isTemplateParameter() != null) && (returnType != null)) {
 			returnType = metaModelManager.getMetaclass(returnType);
 		}
 		context.setType(callExp, returnType, operation.isRequired());
@@ -1133,7 +1132,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	protected Type resolvePropertyReturnType(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csNameExp, @NonNull Property property) {
-		Map<TemplateParameter, ParameterableElement> templateBindings = new HashMap<TemplateParameter, ParameterableElement>();
+		Map<TemplateParameter, Type> templateBindings = new HashMap<TemplateParameter, Type>();
 		Type sourceType = sourceExp.getType();
 		if (sourceType != null) {
 			if (property.isStatic() && (sourceType instanceof Metaclass<?>)) {
@@ -1149,11 +1148,11 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (sourceType instanceof TemplateableElement) {
 			PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, (TemplateableElement)sourceType);
 		}
-		org.eclipse.ocl.examples.pivot.Class returnType = null;
-		org.eclipse.ocl.examples.pivot.Class behavioralType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(property);
+		Type returnType = null;
+		Type behavioralType = PivotUtil.getType(property);
 		if (behavioralType != null) {
 			returnType = metaModelManager.getSpecializedType(behavioralType, templateBindings);
-			if (property.isStatic() && (behavioralType.getOwningTemplateParameter() != null)) {
+			if (property.isStatic() && (behavioralType.isTemplateParameter() != null)) {
 				returnType = metaModelManager.getMetaclass(returnType);
 			}
 		}
@@ -1263,7 +1262,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				commonType = (Type) ownedElementType.getPivot();
 			}
 			if (commonType == null) {
-				commonType = metaModelManager.createUnspecifiedType();
+				commonType = metaModelManager.createUnspecifiedType(null, null);
 			}
 			Type type = metaModelManager.getCollectionType(collectionTypeName, commonType, null, null);
 			context.setType(expression, type, true);

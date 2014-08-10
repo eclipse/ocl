@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -108,16 +106,16 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return bestType;
 	}
 
-	public @NonNull org.eclipse.ocl.examples.pivot.Class specialize(@NonNull TemplateableElement templateableElement) {
-		Map<TemplateParameter, ParameterableElement> usageBindings = new HashMap<TemplateParameter, ParameterableElement>();
+	public @NonNull Type specialize(@NonNull Type templateableElement) {
+		Map<TemplateParameter, Type> usageBindings = new HashMap<TemplateParameter, Type>();
 		for (TemplateParameter templateParameter : context.keySet()) {
 			DomainType specialize = specialize(templateParameter);
 			if (specialize != null) {
-				org.eclipse.ocl.examples.pivot.Class specialized = metaModelManager.getType(specialize);
+				Type specialized = metaModelManager.getType(specialize);
 				usageBindings.put(templateParameter, specialized);
 			}
 		}
-		return metaModelManager.getSpecializedType((org.eclipse.ocl.examples.pivot.Class) templateableElement, usageBindings);
+		return metaModelManager.getSpecializedType(templateableElement, usageBindings);
 	}
 
 	@Override
@@ -208,19 +206,12 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
-			owningTemplateParameter.accept(this);
-			return null;
-		}
-		else {
-			for (TemplateBinding templateBinding : object.getTemplateBinding()) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
-					safeVisit(templateParameterSubstitution.getActual());
-				}
+		for (TemplateBinding templateBinding : object.getTemplateBinding()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
+				safeVisit(templateParameterSubstitution.getActual());
 			}
-			return null;
 		}
+		return null;
 	}
 
 	@Override
@@ -349,11 +340,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (actual instanceof TupleType) {
 			visitAllTypedElements(object.getOwnedProperties(), ((TupleType)actual).getOwnedProperties());
 		}
-		return null;
-	}
-
-	@Override
-	public @Nullable Object visitType(@NonNull Type object) {
 		return null;
 	}
 }

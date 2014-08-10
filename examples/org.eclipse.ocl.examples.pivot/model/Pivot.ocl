@@ -30,9 +30,9 @@ oclContents()
 
 --	def: mustBeOwned() : Boolean = true
 
-context ParameterableElement
-def: isCompatibleWith(p : ParameterableElement) : Boolean =
-p.oclIsKindOf(self.oclType())
+--context ParameterableElement
+--def: isCompatibleWith(p : ParameterableElement) : Boolean =
+--p.oclIsKindOf(self.oclType())
 
 context Property
 def: isAttribute(p : Property) : Boolean =

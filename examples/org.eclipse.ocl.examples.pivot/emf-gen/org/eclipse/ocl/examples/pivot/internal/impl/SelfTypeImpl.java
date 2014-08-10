@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -82,8 +81,10 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return allOwnedElements();
 			case PivotPackage.SELF_TYPE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
-			case PivotPackage.SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
-				return isCompatibleWith((ParameterableElement)arguments.get(0));
+			case PivotPackage.SELF_TYPE___IS_CLASS:
+				return isClass();
+			case PivotPackage.SELF_TYPE___IS_TEMPLATE_PARAMETER:
+				return isTemplateParameter();
 			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.SELF_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:

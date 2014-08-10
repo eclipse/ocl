@@ -18,11 +18,10 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -51,8 +50,9 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitCollectionType(@NonNull CollectionType object) {
 		Type referredType = object.getElementType();
-		if (referredType != null) {
-			context.addSpecializingElement(object, referredType);
+		org.eclipse.ocl.examples.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		if (referredClass != null) {
+			context.addSpecializingElement(object, referredClass);
 		}
 		return super.visitCollectionType(object);
 	}
@@ -61,17 +61,20 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		boolean doneIt = false;
 		Type referredType = object.getContextType();
-		if ((referredType != null) && context.addSpecializingElement(object, referredType)) {
+		org.eclipse.ocl.examples.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 			doneIt = true;
 		}
 		if (!doneIt) {
 			referredType = object.getResultType();
-			if ((referredType != null) && context.addSpecializingElement(object, referredType)) {
+			referredClass = referredType != null ? referredType.isClass() : null;
+			if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 				doneIt = true;
 			}
 			if (!doneIt) {
 				for (Type parameterType : object.getParameterType()) {
-					if ((parameterType != null) && context.addSpecializingElement(object, parameterType)) {
+					referredClass = parameterType != null ? parameterType.isClass() : null;
+					if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 						break;
 					}
 				}
@@ -110,9 +113,10 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
-		ParameterableElement actual = object.getActual();
-		if (actual instanceof Type) {
-			context.addSpecializingElement(object, (Type) actual);
+		Type actual = object.getActual();
+		org.eclipse.ocl.examples.pivot.Class referredClass = actual != null ? actual.isClass() : null;
+		if (referredClass != null) {
+			context.addSpecializingElement(object, referredClass);
 		}
 		return null;
 	}
@@ -120,14 +124,15 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitTypedElement(@NonNull TypedElement object) {
 		Type referredType = object.getType();
-		if (referredType != null) {
-			context.addSpecializingElement(object, referredType);
+		org.eclipse.ocl.examples.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		if (referredClass != null) {
+			context.addSpecializingElement(object, referredClass);
 		}
 		return null;
 	}
 
 	@Override
-	public Object visitTypeTemplateParameter(@NonNull TypeTemplateParameter object) {
+	public Object visitTemplateParameter(@NonNull TemplateParameter object) {
 		for (org.eclipse.ocl.examples.pivot.Class constrainingType : object.getConstrainingClass()) {
 			if ((constrainingType != null) && context.addSpecializingElement(object, constrainingType)) {
 				break;

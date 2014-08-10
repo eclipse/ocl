@@ -16,6 +16,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -23,6 +24,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.OperationId;
 import org.eclipse.ocl.examples.domain.ids.ParametersId;
@@ -226,7 +228,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		throw new UnsupportedOperationException();					// FIXME
 	}
 
-	public @NonNull DomainType getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
 	}
 
@@ -246,6 +248,10 @@ public abstract class AbstractInheritance implements DomainInheritance
 	
 	public final @NonNull DomainPackage getOwningPackage() {
 		return evaluationPackage;
+	}
+
+	public @NonNull DomainClass isClass() {
+		return this;
 	}
 
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
@@ -270,6 +276,10 @@ public abstract class AbstractInheritance implements DomainInheritance
 
 	public boolean isSuperInheritanceOf(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainInheritance thatInheritance) {
 		return thatInheritance.getFragment(this) != null;
+	}
+
+	public @Nullable DomainTemplateParameter isTemplateParameter() {
+		return null;
 	}
 
 	public boolean isUndefined() {

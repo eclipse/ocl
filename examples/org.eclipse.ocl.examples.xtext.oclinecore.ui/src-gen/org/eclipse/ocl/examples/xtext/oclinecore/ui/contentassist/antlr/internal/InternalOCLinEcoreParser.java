@@ -2701,7 +2701,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:890:1: ( rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment()); 
+               before(grammarAccess.getTemplateParameterSubstitutionCSAccess().getActualParameterAssignment()); 
             }
             // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:891:1: ( rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment )
             // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:891:2: rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment
@@ -2715,7 +2715,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment()); 
+               after(grammarAccess.getTemplateParameterSubstitutionCSAccess().getActualParameterAssignment()); 
             }
 
             }
@@ -72155,7 +72155,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24689:1: ruleTypeRefCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0()); 
+               before(grammarAccess.getTemplateParameterSubstitutionCSAccess().getActualParameterTypeRefCSParserRuleCall_0()); 
             }
             pushFollow(FollowSets002.FOLLOW_ruleTypeRefCS_in_rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment50219);
             ruleTypeRefCS();
@@ -72163,7 +72163,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0()); 
+               after(grammarAccess.getTemplateParameterSubstitutionCSAccess().getActualParameterTypeRefCSParserRuleCall_0()); 
             }
 
             }

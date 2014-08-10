@@ -191,7 +191,7 @@ public abstract class TypedElementImpl
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@NonInvalid*/ DomainProperty CTORid_name = idResolver.getProperty(PivotTables.PROPid_name);
-		final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_Parameter_0 = idResolver.getType(PivotTables.CLSSid_Parameter, null);
+		final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_Parameter_0 = idResolver.getClass(PivotTables.CLSSid_Parameter, null);
 		final @NonNull /*@Thrown*/ DomainTypedElement symbol_0 = (DomainTypedElement)TYP_pivot_c_c_Parameter_0.createInstance();
 		CTORid_name.initValue(symbol_0, PivotTables.STR_name);
 		return (Parameter)symbol_0;

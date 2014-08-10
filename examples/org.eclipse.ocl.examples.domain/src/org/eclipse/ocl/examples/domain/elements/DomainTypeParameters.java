@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-
 /**
  * DomainTypeParameters provides a hashable list of type
  * parameters suitable for use when indexing specializations.
@@ -23,25 +22,27 @@ public class DomainTypeParameters
 {
 	public static final @NonNull DomainTypeParameters EMPTY_LIST = new DomainTypeParameters();
 	
-	private final @NonNull DomainElement[] typeParameters;
+	private final @NonNull DomainType[] typeParameters;
 	private final int hashCode;
 
 	public DomainTypeParameters(@NonNull DomainTemplateParameter... typeParameters) {
-		this.typeParameters = typeParameters;
+		this.typeParameters = new DomainType[typeParameters.length];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
-			hash = 111 * hash + typeParameters[i].hashCode();
+			DomainType parameter = typeParameters[i];
+			hash = 111 * hash + parameter.hashCode();
+			this.typeParameters[i] = parameter;
 		}
 		hashCode = hash;
 	}
 	
-	public DomainTypeParameters(@NonNull List<? extends DomainElement> parameters) {
-		typeParameters = new DomainElement[parameters.size()];
+	public DomainTypeParameters(@NonNull List<? extends DomainType> parameters) {
+		typeParameters = new DomainType[parameters.size()];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
-			DomainElement parameter = parameters.get(i);
+			DomainType parameter = parameters.get(i);
 			hash = 111 * hash + parameter.hashCode();
-			typeParameters[i] = parameter;
+			this.typeParameters[i] = parameter;
 		}
 		hashCode = hash;
 	}
@@ -60,8 +61,8 @@ public class DomainTypeParameters
 			return false;
 		}
 		for (int i = 0; i < iMax; i++) {
-			Object thisParameter = this.typeParameters[i];
-			Object thatParameter = that.typeParameters[i];
+			DomainType thisParameter = this.typeParameters[i];
+			DomainType thatParameter = that.typeParameters[i];
 			if (thisParameter != null) {
 				if (thatParameter != null) {
 					if (!thisParameter.equals(thatParameter)) {
@@ -84,7 +85,7 @@ public class DomainTypeParameters
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull DomainElement get(int i) {
+	public @NonNull DomainType get(int i) {
 		return typeParameters[i];
 	}		
 

@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -225,7 +224,7 @@ public class EnvironmentView
 	protected final @Nullable String name;
 
 	private final @NonNull Map<String, Object> contentsByName = new HashMap<String, Object>(); // Single Object or MyList
-	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+	private Map<Object, Map<TemplateParameter, Type>> templateBindings = null;
 
 	private int contentsSize = 0; // Deep size of contentsByName;
 
@@ -450,40 +449,34 @@ public class EnvironmentView
 			String name2 = name;
 			if (name2 != null) {
 				for (TemplateParameter templateParameter : templateParameters) {
-					if (templateParameter != null) {
-						Nameable parameteredElement = (Nameable)templateParameter.getParameteredElement();
-						if (name2.equals(parameteredElement.getName())) {
-							addElement(name2, parameteredElement);
-						}
+					if ((templateParameter != null) && name2.equals(templateParameter.getName())) {
+						addElement(name2, templateParameter);
 					}
 				}
 			}
 			else {
 				for (TemplateParameter templateParameter : templateParameters) {
 					if (templateParameter != null) {
-						Nameable parameteredElement = (Nameable)templateParameter.getParameteredElement();
-						if (parameteredElement != null) {
-							addNamedElement(parameteredElement);
-						}
+						addNamedElement(templateParameter);
 					}
 				}
 			}
 		}
 	}
 
-	public void addAllTypeTemplateParameterables(@NonNull TemplateableElement pivot) {
+	public void addAllTemplateParameterables(@NonNull TemplateableElement pivot) {
 		if (accepts(PivotPackage.Literals.TYPE)) {
-			List<Type> types = PivotUtil.getTypeTemplateParameterables(pivot);
+			List<TemplateParameter> types = PivotUtil.getTemplateParameters(pivot);
 			String name2 = name;
 			if (name2 != null) {
-				for (Type type : types) {
+				for (TemplateParameter type : types) {
 					if (name2.equals(type.getName())) {
 						addElement(name2, type);
 					}
 				}
 			}
 			else {
-				for (Type type : types) {
+				for (TemplateParameter type : types) {
 					if (type != null) {
 						addNamedElement(type);
 					}
@@ -836,7 +829,7 @@ public class EnvironmentView
 					for (int i = 0; i < values.size()-1;) {
 						boolean iRemoved = false;
 						@SuppressWarnings("null") @NonNull Object iValue = values.get(i);
-						Map<TemplateParameter, ParameterableElement> iBindings = templateBindings != null ? templateBindings.get(iValue) : null;
+						Map<TemplateParameter, Type> iBindings = templateBindings != null ? templateBindings.get(iValue) : null;
 						for (int j = i + 1; j < values.size();) {
 							Class<?> iClass = iValue.getClass();
 							@SuppressWarnings("null") @NonNull Object jValue = values.get(j);
@@ -861,7 +854,7 @@ public class EnvironmentView
 								}
 							}
 							if ((verdict == 0) && (resolvers != null)) {
-								Map<TemplateParameter, ParameterableElement> jBindings = templateBindings != null ? templateBindings.get(jValue) : null;
+								Map<TemplateParameter, Type> jBindings = templateBindings != null ? templateBindings.get(jValue) : null;
 								for (ScopeFilter filter : resolvers) {
 									verdict = filter.compareMatches(metaModelManager, iValue, iBindings, jValue, jBindings);
 									if (verdict != 0) {
@@ -893,9 +886,9 @@ public class EnvironmentView
 		return getSize();
 	}
 
-	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+	public void setBindings(@NonNull Object object, @Nullable Map<TemplateParameter, Type> bindings) {
 		if (templateBindings == null) {
-			templateBindings = new HashMap<Object, Map<TemplateParameter, ParameterableElement>>();
+			templateBindings = new HashMap<Object, Map<TemplateParameter, Type>>();
 		}
 		templateBindings.put(object, bindings);
 	}

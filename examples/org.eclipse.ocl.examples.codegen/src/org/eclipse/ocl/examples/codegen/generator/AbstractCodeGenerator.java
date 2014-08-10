@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.FinalAnalysis;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -101,7 +100,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	}
 
 	@Override
-	public @Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull Type staticType) {
+	public @Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.examples.pivot.Class staticType) {
 		FinalAnalysis finalAnalysis = metaModelManager.getPackageManager().getFinalAnalysis();
 		return finalAnalysis.isFinal(anOperation, metaModelManager.getInheritance(staticType));
 	}

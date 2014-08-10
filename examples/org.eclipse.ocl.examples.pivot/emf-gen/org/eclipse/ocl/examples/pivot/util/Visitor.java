@@ -107,7 +107,6 @@ public interface Visitor<R>
 	@Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object);
 	@Nullable R visitPackageableElement(@NonNull org.eclipse.ocl.examples.pivot.PackageableElement object);
 	@Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object);
-	@Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.examples.pivot.ParameterableElement object);
 	@Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object);
 	@Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp object);
 	@Nullable R visitPrimitiveType(@NonNull org.eclipse.ocl.examples.pivot.PrimitiveType object);
@@ -133,7 +132,6 @@ public interface Visitor<R>
 	@Nullable R visitTemplateBinding(@NonNull org.eclipse.ocl.examples.pivot.TemplateBinding object);
 	@Nullable R visitTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameter object);
 	@Nullable R visitTemplateParameterSubstitution(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution object);
-	@Nullable R visitTemplateParameterType(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterType object);
 	@Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.examples.pivot.TemplateSignature object);
 	@Nullable R visitTemplateableElement(@NonNull org.eclipse.ocl.examples.pivot.TemplateableElement object);
 	@Nullable R visitTransition(@NonNull org.eclipse.ocl.examples.pivot.Transition object);
@@ -144,7 +142,6 @@ public interface Visitor<R>
 	@Nullable R visitType(@NonNull org.eclipse.ocl.examples.pivot.Type object);
 	@Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object);
 	@Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object);
-	@Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object);
 	@Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object);
 	@Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object);
 	@Nullable R visitUnspecifiedType(@NonNull org.eclipse.ocl.examples.pivot.UnspecifiedType object);

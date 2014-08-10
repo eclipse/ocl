@@ -16,11 +16,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Type;
-
 import com.google.common.base.Function;
 
 /**
@@ -53,7 +51,7 @@ class PackageTracker implements Adapter.Internal
 
 	void dispose() {
 		PackageManager packageManager = packageServer.getPackageManager();
-		for (DomainType type : target.getOwnedClasses()) {
+		for (DomainClass type : target.getOwnedClasses()) {
 			if (type != null) {
 				packageManager.removedType(type);
 			}
@@ -97,8 +95,8 @@ class PackageTracker implements Adapter.Internal
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
-					if (value instanceof Type) {
-						packageServer.addedMemberType((Type)value);
+					if (value instanceof DomainClass) {
+						packageServer.addedMemberType((DomainClass)value);
 					}
 					break;
 				}
@@ -106,16 +104,16 @@ class PackageTracker implements Adapter.Internal
 					@SuppressWarnings("unchecked")
 					List<Object> values = (List<Object>)notification.getNewValue();
 					for (Object value : values) {
-						if (value instanceof Type) {
-							packageServer.addedMemberType((Type)value);
+						if (value instanceof DomainClass) {
+							packageServer.addedMemberType((DomainClass)value);
 						}
 					}
 					break;
 				}
 				case Notification.REMOVE: {
 					Object value = notification.getOldValue();
-					if (value instanceof Type) {
-						packageServer.removedMemberType((Type) value);
+					if (value instanceof DomainClass) {
+						packageServer.removedMemberType((DomainClass) value);
 					}
 					break;
 				}
@@ -123,8 +121,8 @@ class PackageTracker implements Adapter.Internal
 					@SuppressWarnings("unchecked")
 					List<Object> values = (List<Object>)notification.getOldValue();
 					for (Object value : values) {
-						if (value instanceof Type) {
-							packageServer.removedMemberType((Type) value);
+						if (value instanceof DomainClass) {
+							packageServer.removedMemberType((DomainClass) value);
 						}
 					}
 					break;

@@ -1312,7 +1312,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		js.appendDeclaration(cgExecutorType);
 		js.append(" = ");
 		js.appendValueName(localContext.getIdResolverVariable(cgExecutorType));
-		js.append(".getType(");
+		js.append(".getClass(");
 		js.appendIdReference(cgExecutorType.getUnderlyingTypeId().getElementId());
 		js.append(", null);\n");
 		return true;

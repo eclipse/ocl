@@ -76,7 +76,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		this.packageManager = packageManager;
 	}
 	
-	void addedMemberType(@NonNull DomainType pivotType) {
+	void addedMemberType(@NonNull DomainClass pivotType) {
 		if ((pivotType instanceof LambdaType) || (pivotType instanceof TupleType)) {	// FIXME parent not necessarily in place
 			return;
 		}
@@ -392,7 +392,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 			}
 		}
 		if (typeServer instanceof ExtensibleTypeServer) {
-			((ExtensibleTypeServer)typeServer).getTypeTracker(pivotType);
+			((ExtensibleTypeServer)typeServer).getTypeTracker((DomainClass) pivotType);		// FIXME cast
 		}
 		return typeServer;
 	}
@@ -419,7 +419,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 	}
 
 	private void initMemberTypes(@NonNull DomainPackage pivotPackage) {
-		for (DomainType pivotType : pivotPackage.getOwnedClasses()) {
+		for (DomainClass pivotType : pivotPackage.getOwnedClasses()) {
 			if (pivotType != null) {
 				addedMemberType(pivotType);
 			}
@@ -430,7 +430,7 @@ public abstract class PackageServer extends ReflectivePackage implements Package
 		packageManager.removedPackage(pivotPackage);
 	}
 
-	void removedMemberType(@NonNull DomainType pivotType) {
+	void removedMemberType(@NonNull DomainClass pivotType) {
 		packageManager.removedType(pivotType);
 	}
 

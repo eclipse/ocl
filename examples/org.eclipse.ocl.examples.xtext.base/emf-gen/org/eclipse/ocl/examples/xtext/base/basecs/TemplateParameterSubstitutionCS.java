@@ -20,7 +20,7 @@ package org.eclipse.ocl.examples.xtext.base.basecs;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwningTemplateBinding <em>Owning Template Binding</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getActualParameter <em>Owned Actual Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,14 +86,14 @@ public interface TemplateParameterSubstitutionCS extends ModelElementCS {
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeRefCS getOwnedActualParameter();
+	TypeRefCS getActualParameter();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getActualParameter <em>Owned Actual Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Actual Parameter</em>' containment reference.
-	 * @see #getOwnedActualParameter()
+	 * @see #getActualParameter()
 	 * @generated
 	 */
 	void setOwnedActualParameter(TypeRefCS value);

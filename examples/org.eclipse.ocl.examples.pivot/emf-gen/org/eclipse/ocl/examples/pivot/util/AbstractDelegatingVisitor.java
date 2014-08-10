@@ -323,10 +323,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitParameter(object);
 	}
 
-	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.examples.pivot.ParameterableElement object) {
-		return delegate.visitParameterableElement(object);
-	}
-
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object) {
 		return delegate.visitPrecedence(object);
 	}
@@ -427,10 +423,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 		return delegate.visitTemplateParameterSubstitution(object);
 	}
 
-	public @Nullable R visitTemplateParameterType(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterType object) {
-		return delegate.visitTemplateParameterType(object);
-	}
-
 	public @Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.examples.pivot.TemplateSignature object) {
 		return delegate.visitTemplateSignature(object);
 	}
@@ -469,10 +461,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 
 	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
 		return delegate.visitTypeExtension(object);
-	}
-
-	public @Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object) {
-		return delegate.visitTypeTemplateParameter(object);
 	}
 
 	public @Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object) {

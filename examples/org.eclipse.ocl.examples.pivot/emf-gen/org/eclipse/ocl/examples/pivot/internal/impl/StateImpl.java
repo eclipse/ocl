@@ -20,8 +20,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Behavior;
@@ -30,13 +31,14 @@ import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Pseudostate;
 import org.eclipse.ocl.examples.pivot.Region;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.StateMachine;
+import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.Trigger;
+import org.eclipse.ocl.examples.pivot.Vertex;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -46,7 +48,9 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getOwnedRule <em>Owned Rule</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getConnection <em>Connection</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getConnectionPoint <em>Connection Point</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl#getDeferrableTrigger <em>Deferrable Trigger</em>}</li>
@@ -67,18 +71,27 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public class StateImpl
-		extends VertexImpl
+		extends NamespaceImpl
 		implements State {
 
 	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
+	 * @see #getIncoming()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> ownedRule;
+	protected EList<Transition> incoming;
+	/**
+	 * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutgoing()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Transition> outgoing;
 	/**
 	 * The cached value of the '{@link #getConnection() <em>Connection</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -230,14 +243,72 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getOwnedRule()
+	public Region getContainer()
 	{
-		if (ownedRule == null)
+		if (eContainerFeatureID() != PivotPackage.STATE__CONTAINER) return null;
+		return (Region)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(Region newContainer, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newContainer, PivotPackage.STATE__CONTAINER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainer(Region newContainer)
+	{
+		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.STATE__CONTAINER && newContainer != null))
 		{
-			ownedRule = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.STATE__OWNED_RULE);
+			if (EcoreUtil.isAncestor(this, (EObject)newContainer))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject)newContainer).eInverseAdd(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return ownedRule;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__CONTAINER, newContainer, newContainer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<Transition> getIncoming()
+	{
+		if (incoming == null)
+		{
+			incoming = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.STATE__INCOMING, PivotPackage.TRANSITION__TARGET);
+		}
+		return incoming;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<Transition> getOutgoing()
+	{
+		if (outgoing == null)
+		{
+			outgoing = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.STATE__OUTGOING, PivotPackage.TRANSITION__SOURCE);
+		}
+		return outgoing;
 	}
 
 	/**
@@ -702,14 +773,14 @@ public class StateImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__CONTAINER:
 				return basicSetContainer(null, msgs);
 			case PivotPackage.STATE__INCOMING:
 				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__OUTGOING:
 				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__CONNECTION:
 				return ((InternalEList<?>)getConnection()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE__CONNECTION_POINT:
@@ -738,6 +809,22 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.STATE__CONTAINER:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
@@ -752,14 +839,14 @@ public class StateImpl
 				return getOwnedComment();
 			case PivotPackage.STATE__NAME:
 				return getName();
+			case PivotPackage.STATE__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.STATE__CONTAINER:
 				return getContainer();
 			case PivotPackage.STATE__INCOMING:
 				return getIncoming();
 			case PivotPackage.STATE__OUTGOING:
 				return getOutgoing();
-			case PivotPackage.STATE__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.STATE__CONNECTION:
 				return getConnection();
 			case PivotPackage.STATE__CONNECTION_POINT:
@@ -824,12 +911,12 @@ public class StateImpl
 			case PivotPackage.STATE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.STATE__CONTAINER:
-				setContainer((Region)newValue);
-				return;
 			case PivotPackage.STATE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.STATE__CONTAINER:
+				setContainer((Region)newValue);
 				return;
 			case PivotPackage.STATE__CONNECTION:
 				getConnection().clear();
@@ -894,11 +981,11 @@ public class StateImpl
 			case PivotPackage.STATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.STATE__CONTAINER:
-				setContainer((Region)null);
-				return;
 			case PivotPackage.STATE__OWNED_RULE:
 				getOwnedRule().clear();
+				return;
+			case PivotPackage.STATE__CONTAINER:
+				setContainer((Region)null);
 				return;
 			case PivotPackage.STATE__CONNECTION:
 				getConnection().clear();
@@ -954,14 +1041,14 @@ public class StateImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.STATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.STATE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.STATE__CONTAINER:
 				return getContainer() != null;
 			case PivotPackage.STATE__INCOMING:
 				return incoming != null && !incoming.isEmpty();
 			case PivotPackage.STATE__OUTGOING:
 				return outgoing != null && !outgoing.isEmpty();
-			case PivotPackage.STATE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.STATE__CONNECTION:
 				return connection != null && !connection.isEmpty();
 			case PivotPackage.STATE__CONNECTION_POINT:
@@ -1002,11 +1089,13 @@ public class StateImpl
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Namespace.class)
+		if (baseClass == Vertex.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.STATE__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
+				case PivotPackage.STATE__CONTAINER: return PivotPackage.VERTEX__CONTAINER;
+				case PivotPackage.STATE__INCOMING: return PivotPackage.VERTEX__INCOMING;
+				case PivotPackage.STATE__OUTGOING: return PivotPackage.VERTEX__OUTGOING;
 				default: return -1;
 			}
 		}
@@ -1021,11 +1110,13 @@ public class StateImpl
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Namespace.class)
+		if (baseClass == Vertex.class)
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.STATE__OWNED_RULE;
+				case PivotPackage.VERTEX__CONTAINER: return PivotPackage.STATE__CONTAINER;
+				case PivotPackage.VERTEX__INCOMING: return PivotPackage.STATE__INCOMING;
+				case PivotPackage.VERTEX__OUTGOING: return PivotPackage.STATE__OUTGOING;
 				default: return -1;
 			}
 		}

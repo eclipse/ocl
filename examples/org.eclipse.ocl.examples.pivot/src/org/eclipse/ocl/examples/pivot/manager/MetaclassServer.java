@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -64,7 +63,7 @@ public class MetaclassServer extends ExtensibleTypeServer
 		TemplateSignature templateSignature = metaclassType.getOwnedTemplateSignature();
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);
-		Map<TemplateParameter, ParameterableElement> allBindings = new HashMap<TemplateParameter, ParameterableElement>();
+		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		@SuppressWarnings("null")@NonNull TemplateParameter formalParameter = templateSignature.getOwnedParameter().get(0);
 		allBindings.put(formalParameter, type);
 		TemplateParameterSubstitution templateParameterSubstitution = createTemplateParameterSubstitution(formalParameter, type);

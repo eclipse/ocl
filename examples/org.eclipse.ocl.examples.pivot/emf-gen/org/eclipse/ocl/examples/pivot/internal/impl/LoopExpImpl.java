@@ -247,7 +247,7 @@ public abstract class LoopExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		try {
-		    final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getType(PivotTables.CLSSid_CollectionType, null);
+		    final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		    final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
 		    if (source == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");

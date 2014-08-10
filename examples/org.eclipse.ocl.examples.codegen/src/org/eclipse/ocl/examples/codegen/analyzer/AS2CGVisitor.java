@@ -1000,7 +1000,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		else if (libraryOperation instanceof ConstrainedOperation) {
 			if (pSource != null) {
-				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, DomainUtil.nonNullState(pSource.getType()));
+				Type sourceType = DomainUtil.nonNullState(pSource.getType());
+				DomainOperation finalOperation = codeGenerator.isFinal(asOperation, (org.eclipse.ocl.examples.pivot.Class)sourceType);	// FIXME cast
 				if (finalOperation != null) {
 					LanguageExpression bodyExpression = asOperation.getBodyExpression();
 					if (bodyExpression != null) {

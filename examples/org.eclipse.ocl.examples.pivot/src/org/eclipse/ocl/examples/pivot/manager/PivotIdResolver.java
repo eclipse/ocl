@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Stereotype;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.uml.UML2PivotUtil;
@@ -66,6 +65,13 @@ public class PivotIdResolver extends AbstractIdResolver
 			}
 		}
 		return super.boxedValueOf(unboxedValue);
+	}
+
+	@Override
+	public @NonNull org.eclipse.ocl.examples.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
+		DomainElement type = typeId.accept(this);
+		assert type != null;
+		return (org.eclipse.ocl.examples.pivot.Class)type;
 	}
 
 	@Override
@@ -197,9 +203,9 @@ public class PivotIdResolver extends AbstractIdResolver
 				}
 			}
 		}
-		Type pivotType;
+		org.eclipse.ocl.examples.pivot.Class pivotType;
 		try {
-			pivotType = metaModelManager.getPivotOf(Type.class, eType);
+			pivotType = metaModelManager.getPivotOf(org.eclipse.ocl.examples.pivot.Class.class, eType);
 			if (pivotType != null) {
 				return metaModelManager.getPrimaryType(pivotType);
 			}
@@ -211,13 +217,10 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.examples.pivot.Class getType(@NonNull TypeId typeId, @Nullable Object context) {
+	public @NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
-		if (type instanceof TemplateParameter) {
-			type = ((TemplateParameter)type).getParameteredElement();
-		}
 		assert type != null;
-		return (org.eclipse.ocl.examples.pivot.Class)type;
+		return (Type)type;
 	}
 
 	@Override

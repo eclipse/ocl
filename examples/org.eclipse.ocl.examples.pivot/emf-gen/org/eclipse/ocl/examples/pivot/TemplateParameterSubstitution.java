@@ -24,7 +24,6 @@ package org.eclipse.ocl.examples.pivot;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getFormal <em>Formal</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedActual <em>Owned Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding <em>Template Binding</em>}</li>
  * </ul>
  * </p>
@@ -67,11 +66,11 @@ public interface TemplateParameterSubstitution
 	 * The element that is the actual parameter for this substitution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actual</em>' reference.
-	 * @see #setActual(ParameterableElement)
+	 * @see #setActual(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_Actual()
 	 * @generated
 	 */
-	ParameterableElement getActual();
+	Type getActual();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}' reference.
@@ -81,37 +80,7 @@ public interface TemplateParameterSubstitution
 	 * @see #getActual()
 	 * @generated
 	 */
-	void setActual(ParameterableElement value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Actual</b></em>' containment reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * <ul>
-	 *   <li>'{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getActual() <em>Actual</em>}'</li>
-	 * </ul>
-	 * </p>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The actual parameter that is owned by this substitution.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Actual</em>' containment reference.
-	 * @see #setOwnedActual(ParameterableElement)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_OwnedActual()
-	 * @generated
-	 */
-	ParameterableElement getOwnedActual();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedActual <em>Owned Actual</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Actual</em>' containment reference.
-	 * @see #getOwnedActual()
-	 * @generated
-	 */
-	void setOwnedActual(ParameterableElement value);
+	void setActual(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Template Binding</b></em>' container reference.

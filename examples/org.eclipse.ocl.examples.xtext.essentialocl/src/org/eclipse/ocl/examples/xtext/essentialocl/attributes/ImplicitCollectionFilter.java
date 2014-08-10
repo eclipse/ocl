@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -42,12 +41,12 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter
 			if (candidateParameters.size() != 0) {
 				return false;
 			}
-			Map<TemplateParameter, ParameterableElement> bindings = sourceType instanceof TemplateableElement ? PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement)sourceType) : null;
+			Map<TemplateParameter, Type> bindings = sourceType instanceof TemplateableElement ? PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement)sourceType) : null;
 			TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 					if (bindings == null) {
-						bindings = new HashMap<TemplateParameter, ParameterableElement>();
+						bindings = new HashMap<TemplateParameter, Type>();
 					}
 					bindings.put(templateParameter, null);
 				}

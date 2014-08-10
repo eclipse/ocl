@@ -176,7 +176,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 72;
+	int PRIMITIVE_LITERAL_EXP = 71;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -286,7 +286,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 114;
+	int VARIABLE = 111;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -376,7 +376,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 84;
+	int SEND_SIGNAL_ACTION = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SignalImpl <em>Signal</em>}' class.
@@ -386,7 +386,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSignal()
 	 * @generated
 	 */
-	int SIGNAL = 87;
+	int SIGNAL = 86;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -446,7 +446,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 73;
+	int PRIMITIVE_TYPE = 72;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -456,7 +456,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 77;
+	int PROPERTY_CALL_EXP = 76;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -466,7 +466,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 79;
+	int REAL_LITERAL_EXP = 78;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -476,7 +476,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 85;
+	int SEQUENCE_TYPE = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
@@ -486,7 +486,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 86;
+	int SET_TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl <em>State</em>}' class.
@@ -496,7 +496,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 89;
+	int STATE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -506,7 +506,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 90;
+	int STATE_EXP = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -516,17 +516,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 93;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterType()
-	 * @generated
-	 */
-	int TEMPLATE_PARAMETER_TYPE = 97;
+	int STRING_LITERAL_EXP = 92;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -536,7 +526,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 102;
+	int TUPLE_LITERAL_EXP = 100;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -546,7 +536,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 103;
+	int TUPLE_LITERAL_PART = 101;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -556,7 +546,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 104;
+	int TUPLE_TYPE = 102;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -566,7 +556,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 106;
+	int TYPE_EXP = 104;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -576,7 +566,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 110;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 107;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -586,7 +576,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 112;
+	int UNSPECIFIED_VALUE_EXP = 109;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -596,7 +586,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 116;
+	int VARIABLE_EXP = 113;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -606,7 +596,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 119;
+	int VOID_TYPE = 116;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -616,7 +606,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPivotable()
 	 * @generated
 	 */
-	int PIVOTABLE = 70;
+	int PIVOTABLE = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Visitable <em>Visitable</em>}' class.
@@ -626,7 +616,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 118;
+	int VISITABLE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -666,7 +656,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 105;
+	int TYPE = 103;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl <em>Class</em>}' class.
@@ -686,7 +676,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 99;
+	int TEMPLATEABLE_ELEMENT = 97;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -696,7 +686,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 94;
+	int TEMPLATE_BINDING = 93;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -706,7 +696,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 98;
+	int TEMPLATE_SIGNATURE = 96;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -716,17 +706,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 95;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameterableElement()
-	 * @generated
-	 */
-	int PARAMETERABLE_ELEMENT = 69;
+	int TEMPLATE_PARAMETER = 94;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -736,7 +716,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 96;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 95;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl <em>Package</em>}' class.
@@ -766,17 +746,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrecedence()
 	 * @generated
 	 */
-	int PRECEDENCE = 71;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl <em>Type Template Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeTemplateParameter()
-	 * @generated
-	 */
-	int TYPE_TEMPLATE_PARAMETER = 108;
+	int PRECEDENCE = 70;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
@@ -786,7 +756,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 76;
+	int PROPERTY = 75;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -796,7 +766,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 109;
+	int TYPED_ELEMENT = 106;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
@@ -836,7 +806,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 115;
+	int VARIABLE_DECLARATION = 112;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -866,7 +836,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 113;
+	int VALUE_SPECIFICATION = 110;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.domain.elements.Nameable <em>Nameable</em>}' class.
@@ -1325,7 +1295,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 117;
+	int VERTEX = 114;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ConnectionPointReferenceImpl <em>Connection Point Reference</em>}' class.
@@ -1336,15 +1306,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	int CONNECTION_POINT_REFERENCE = 16;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__COMMENT = NAMED_ELEMENT__COMMENT;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DynamicBehaviorImpl <em>Dynamic Behavior</em>}' class.
@@ -1384,7 +1345,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfile()
 	 * @generated
 	 */
-	int PROFILE = 74;
+	int PROFILE = 73;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PseudostateImpl <em>Pseudostate</em>}' class.
@@ -1394,7 +1355,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostate()
 	 * @generated
 	 */
-	int PSEUDOSTATE = 78;
+	int PSEUDOSTATE = 77;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.ReferringElement <em>Referring Element</em>}' class.
@@ -1404,7 +1365,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReferringElement()
 	 * @generated
 	 */
-	int REFERRING_ELEMENT = 80;
+	int REFERRING_ELEMENT = 79;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RegionImpl <em>Region</em>}' class.
@@ -1414,7 +1375,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRegion()
 	 * @generated
 	 */
-	int REGION = 81;
+	int REGION = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RootImpl <em>Root</em>}' class.
@@ -1424,7 +1385,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRoot()
 	 * @generated
 	 */
-	int ROOT = 82;
+	int ROOT = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SelfTypeImpl <em>Self Type</em>}' class.
@@ -1434,7 +1395,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSelfType()
 	 * @generated
 	 */
-	int SELF_TYPE = 83;
+	int SELF_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FinalStateImpl <em>Final State</em>}' class.
@@ -1477,112 +1438,13 @@ public interface PivotPackage
 	int OPPOSITE_PROPERTY_CALL_EXP = 64;
 
 	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__EXTENSION = NAMED_ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Packageable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Packageable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__COMMENT = PACKAGEABLE_ELEMENT__COMMENT;
+	int TYPE__COMMENT = NAMED_ELEMENT__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -1591,7 +1453,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__EXTENSION = PACKAGEABLE_ELEMENT__EXTENSION;
+	int TYPE__EXTENSION = NAMED_ELEMENT__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1600,7 +1462,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__OWNED_ANNOTATION = PACKAGEABLE_ELEMENT__OWNED_ANNOTATION;
+	int TYPE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -1609,7 +1471,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
+	int TYPE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1618,25 +1480,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__NAME = PACKAGEABLE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNING_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
+	int TYPE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
@@ -1645,7 +1489,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__EXTENDED_BYS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
+	int TYPE__EXTENDED_BYS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -1654,7 +1498,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__INSTANCE_CLASS_NAME = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+	int TYPE__INSTANCE_CLASS_NAME = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Type</em>' class.
@@ -1663,7 +1507,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -1672,7 +1516,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___ALL_OWNED_ELEMENTS = PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS;
+	int TYPE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -1681,16 +1525,25 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___GET_VALUE__TYPE_STRING = PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING;
+	int TYPE___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int TYPE___IS_CLASS = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -1699,7 +1552,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Type</em>' class.
@@ -1708,7 +1561,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
+	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -1756,24 +1609,6 @@ public interface PivotPackage
 	int CLASS__NAME = TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNING_TEMPLATE_PARAMETER = TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__TEMPLATE_PARAMETER = TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1792,13 +1627,22 @@ public interface PivotPackage
 	int CLASS__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__OWNED_RULE = TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 0;
+	int CLASS__OWNED_TEMPLATE_SIGNATURE = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -1807,7 +1651,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__TEMPLATE_BINDING = TYPE_FEATURE_COUNT + 1;
+	int CLASS__TEMPLATE_BINDING = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -1816,16 +1660,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__UNSPECIALIZED_ELEMENT = TYPE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_RULE = TYPE_FEATURE_COUNT + 3;
+	int CLASS__UNSPECIALIZED_ELEMENT = TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -1945,13 +1780,22 @@ public interface PivotPackage
 	int CLASS___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int CLASS___IS_CLASS = TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -2026,24 +1870,6 @@ public interface PivotPackage
 	int ANY_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2060,6 +1886,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -2087,15 +1922,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -2215,13 +2041,22 @@ public interface PivotPackage
 	int ANY_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int ANY_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -2296,24 +2131,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2330,6 +2147,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -2357,15 +2183,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -2494,13 +2311,22 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int ASSOCIATION_CLASS___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -3475,24 +3301,6 @@ public interface PivotPackage
 	int DATA_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3509,6 +3317,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -3536,15 +3353,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -3682,13 +3490,22 @@ public interface PivotPackage
 	int DATA_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int DATA_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -3763,24 +3580,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER = DATA_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__TEMPLATE_PARAMETER = DATA_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3797,6 +3596,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -3824,15 +3632,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -3997,13 +3796,22 @@ public interface PivotPackage
 	int COLLECTION_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int COLLECTION_TYPE___IS_CLASS = DATA_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -4078,24 +3886,6 @@ public interface PivotPackage
 	int BAG_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNING_TEMPLATE_PARAMETER = COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__TEMPLATE_PARAMETER = COLLECTION_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4112,6 +3902,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -4139,15 +3938,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -4312,13 +4102,22 @@ public interface PivotPackage
 	int BAG_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int BAG_TYPE___IS_CLASS = COLLECTION_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -4393,24 +4192,6 @@ public interface PivotPackage
 	int BEHAVIOR__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4427,6 +4208,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -4454,15 +4244,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -4591,13 +4372,22 @@ public interface PivotPackage
 	int BEHAVIOR___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int BEHAVIOR___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -6064,6 +5854,87 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
+	int PACKAGEABLE_ELEMENT__COMMENT = NAMED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT__EXTENSION = NAMED_ELEMENT__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Packageable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The number of operations of the '<em>Packageable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int CONSTRAINT__COMMENT = PACKAGEABLE_ELEMENT__COMMENT;
 
 	/**
@@ -6101,24 +5972,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRAINT__NAME = PACKAGEABLE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__OWNING_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Constrained Element</b></em>' reference list.
@@ -6227,15 +6080,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CONSTRAINT___GET_VALUE__TYPE_STRING = PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Name</em>' operation.
@@ -6679,24 +6523,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6713,6 +6539,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -6740,15 +6575,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -6886,13 +6712,22 @@ public interface PivotPackage
 	int DYNAMIC_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int DYNAMIC_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -6967,24 +6802,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__NAME = DYNAMIC_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNING_TEMPLATE_PARAMETER = DYNAMIC_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__TEMPLATE_PARAMETER = DYNAMIC_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7001,6 +6818,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME = DYNAMIC_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_RULE = DYNAMIC_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -7028,15 +6854,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_RULE = DYNAMIC_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -7183,13 +7000,22 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR___GET_VALUE__TYPE_STRING = DYNAMIC_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DYNAMIC_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int DYNAMIC_BEHAVIOR___IS_CLASS = DYNAMIC_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -7462,31 +7288,13 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION__TYPE = TYPED_ELEMENT__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION__TEMPLATE_PARAMETER = TYPED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Value Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int VALUE_SPECIFICATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -7525,22 +7333,13 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___BOOLEAN_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 1;
+	int VALUE_SPECIFICATION___BOOLEAN_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Integer Value</em>' operation.
@@ -7549,7 +7348,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___INTEGER_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 2;
+	int VALUE_SPECIFICATION___INTEGER_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Computable</em>' operation.
@@ -7558,7 +7357,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___IS_COMPUTABLE = TYPED_ELEMENT_OPERATION_COUNT + 3;
+	int VALUE_SPECIFICATION___IS_COMPUTABLE = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Null</em>' operation.
@@ -7567,7 +7366,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___IS_NULL = TYPED_ELEMENT_OPERATION_COUNT + 4;
+	int VALUE_SPECIFICATION___IS_NULL = TYPED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>String Value</em>' operation.
@@ -7576,7 +7375,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___STRING_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 5;
+	int VALUE_SPECIFICATION___STRING_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Unlimited Value</em>' operation.
@@ -7585,7 +7384,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___UNLIMITED_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 6;
+	int VALUE_SPECIFICATION___UNLIMITED_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Value Specification</em>' class.
@@ -7594,7 +7393,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
+	int VALUE_SPECIFICATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -7669,24 +7468,6 @@ public interface PivotPackage
 	int DYNAMIC_VALUE_SPECIFICATION__TYPE = VALUE_SPECIFICATION__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER = VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION__TEMPLATE_PARAMETER = VALUE_SPECIFICATION__TEMPLATE_PARAMETER;
-
-	/**
 	 * The number of structural features of the '<em>Dynamic Value Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7730,15 +7511,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION___MAKE_PARAMETER = VALUE_SPECIFICATION___MAKE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -7849,24 +7621,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7883,6 +7637,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -7910,15 +7673,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -8074,13 +7828,22 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int ELEMENT_EXTENSION___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -8299,24 +8062,6 @@ public interface PivotPackage
 	int ENUMERATION__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__OWNING_TEMPLATE_PARAMETER = DATA_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__TEMPLATE_PARAMETER = DATA_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8333,6 +8078,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -8360,15 +8114,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -8515,13 +8260,22 @@ public interface PivotPackage
 	int ENUMERATION___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int ENUMERATION___IS_CLASS = DATA_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -8596,24 +8350,6 @@ public interface PivotPackage
 	int INSTANCE_SPECIFICATION__NAME = PACKAGEABLE_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Classes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8677,15 +8413,6 @@ public interface PivotPackage
 	int INSTANCE_SPECIFICATION___GET_VALUE__TYPE_STRING = PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
 	 * The number of operations of the '<em>Instance Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8738,24 +8465,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL__NAME = INSTANCE_SPECIFICATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL__OWNING_TEMPLATE_PARAMETER = INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL__TEMPLATE_PARAMETER = INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' reference list.
@@ -8837,15 +8546,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL___GET_VALUE__TYPE_STRING = INSTANCE_SPECIFICATION___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = INSTANCE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Enumeration Literal</em>' class.
@@ -8939,24 +8639,6 @@ public interface PivotPackage
 	int LANGUAGE_EXPRESSION__TYPE = VALUE_SPECIFICATION__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER = VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER = VALUE_SPECIFICATION__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9027,15 +8709,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LANGUAGE_EXPRESSION___MAKE_PARAMETER = VALUE_SPECIFICATION___MAKE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -9173,24 +8846,6 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL__TYPE = LANGUAGE_EXPRESSION__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER = LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__TEMPLATE_PARAMETER = LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9297,15 +8952,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL___MAKE_PARAMETER = LANGUAGE_EXPRESSION___MAKE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = LANGUAGE_EXPRESSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -9524,13 +9170,73 @@ public interface PivotPackage
 	int FEATURE_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl <em>Profile Application</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfileApplication()
+	 * @generated
+	 */
+	int PROFILE_APPLICATION = 74;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSlot()
+	 * @generated
+	 */
+	int SLOT = 87;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl <em>State Machine</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateMachine()
+	 * @generated
+	 */
+	int STATE_MACHINE = 90;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl <em>Stereotype</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStereotype()
+	 * @generated
+	 */
+	int STEREOTYPE = 91;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransition()
+	 * @generated
+	 */
+	int TRANSITION = 98;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl <em>Trigger</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTrigger()
+	 * @generated
+	 */
+	int TRIGGER = 99;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__COMMENT = VERTEX__COMMENT;
+	int NAMESPACE__COMMENT = NAMED_ELEMENT__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -9539,7 +9245,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__EXTENSION = VERTEX__EXTENSION;
+	int NAMESPACE__EXTENSION = NAMED_ELEMENT__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -9548,7 +9254,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNED_ANNOTATION = VERTEX__OWNED_ANNOTATION;
+	int NAMESPACE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -9557,7 +9263,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNED_COMMENT = VERTEX__OWNED_COMMENT;
+	int NAMESPACE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9566,34 +9272,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NAME = VERTEX__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__CONTAINER = VERTEX__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__INCOMING = VERTEX__INCOMING;
-
-	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__OUTGOING = VERTEX__OUTGOING;
+	int NAMESPACE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -9602,142 +9281,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__OWNED_RULE = VERTEX_FEATURE_COUNT + 0;
+	int NAMESPACE__OWNED_RULE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Connection</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Namespace</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__CONNECTION = VERTEX_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Connection Point</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__CONNECTION_POINT = VERTEX_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Deferrable Trigger</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__DEFERRABLE_TRIGGER = VERTEX_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Do Activity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__DO_ACTIVITY = VERTEX_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__ENTRY = VERTEX_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Exit</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__EXIT = VERTEX_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__IS_COMPOSITE = VERTEX_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Is Orthogonal</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__IS_ORTHOGONAL = VERTEX_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Is Simple</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__IS_SIMPLE = VERTEX_FEATURE_COUNT + 9;
-
-	/**
-	 * The feature id for the '<em><b>Is Submachine State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__IS_SUBMACHINE_STATE = VERTEX_FEATURE_COUNT + 10;
-
-	/**
-	 * The feature id for the '<em><b>Redefined State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__REDEFINED_STATE = VERTEX_FEATURE_COUNT + 11;
-
-	/**
-	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__REGION = VERTEX_FEATURE_COUNT + 12;
-
-	/**
-	 * The feature id for the '<em><b>State Invariant</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__STATE_INVARIANT = VERTEX_FEATURE_COUNT + 13;
-
-	/**
-	 * The feature id for the '<em><b>Submachine</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__SUBMACHINE = VERTEX_FEATURE_COUNT + 14;
-
-	/**
-	 * The number of structural features of the '<em>State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_FEATURE_COUNT = VERTEX_FEATURE_COUNT + 15;
+	int NAMESPACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -9746,7 +9299,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE___ALL_OWNED_ELEMENTS = VERTEX___ALL_OWNED_ELEMENTS;
+	int NAMESPACE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -9755,7 +9308,250 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE___GET_VALUE__TYPE_STRING = VERTEX___GET_VALUE__TYPE_STRING;
+	int NAMESPACE___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The number of operations of the '<em>Namespace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__COMMENT = NAMESPACE__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__EXTENSION = NAMESPACE__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNED_ANNOTATION = NAMESPACE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__NAME = NAMESPACE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OWNED_RULE = NAMESPACE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__CONTAINER = NAMESPACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__INCOMING = NAMESPACE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__OUTGOING = NAMESPACE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Connection</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__CONNECTION = NAMESPACE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Connection Point</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__CONNECTION_POINT = NAMESPACE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Deferrable Trigger</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__DEFERRABLE_TRIGGER = NAMESPACE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Do Activity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__DO_ACTIVITY = NAMESPACE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__ENTRY = NAMESPACE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Exit</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__EXIT = NAMESPACE_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__IS_COMPOSITE = NAMESPACE_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Is Orthogonal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__IS_ORTHOGONAL = NAMESPACE_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Is Simple</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__IS_SIMPLE = NAMESPACE_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Is Submachine State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__IS_SUBMACHINE_STATE = NAMESPACE_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Redefined State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__REDEFINED_STATE = NAMESPACE_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Region</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__REGION = NAMESPACE_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>State Invariant</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__STATE_INVARIANT = NAMESPACE_FEATURE_COUNT + 15;
+
+	/**
+	 * The feature id for the '<em><b>Submachine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__SUBMACHINE = NAMESPACE_FEATURE_COUNT + 16;
+
+	/**
+	 * The number of structural features of the '<em>State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 17;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE___ALL_OWNED_ELEMENTS = NAMESPACE___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE___GET_VALUE__TYPE_STRING = NAMESPACE___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -9764,7 +9560,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = VERTEX_OPERATION_COUNT + 0;
+	int STATE_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -9812,6 +9608,15 @@ public interface PivotPackage
 	int FINAL_STATE__NAME = STATE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__OWNED_RULE = STATE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Container</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9837,15 +9642,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FINAL_STATE__OUTGOING = STATE__OUTGOING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__OWNED_RULE = STATE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Connection</b></em>' containment reference list.
@@ -10703,24 +10499,6 @@ public interface PivotPackage
 	int INVALID_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10737,6 +10515,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -10764,15 +10551,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -10892,13 +10670,22 @@ public interface PivotPackage
 	int INVALID_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int INVALID_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -11450,13 +11237,22 @@ public interface PivotPackage
 	int OPERATION__IS_STATIC = FEATURE__IS_STATIC;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_RULE = FEATURE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 0;
+	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -11465,7 +11261,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 1;
+	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
@@ -11474,16 +11270,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__UNSPECIALIZED_ELEMENT = FEATURE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_RULE = FEATURE_FEATURE_COUNT + 3;
+	int OPERATION__UNSPECIALIZED_ELEMENT = FEATURE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -11765,6 +11552,15 @@ public interface PivotPackage
 	int ITERATION__IS_STATIC = OPERATION__IS_STATIC;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11790,15 +11586,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION__UNSPECIALIZED_ELEMENT = OPERATION__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -12521,24 +12308,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__OWNING_TEMPLATE_PARAMETER = DATA_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__TEMPLATE_PARAMETER = DATA_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12555,6 +12324,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -12582,15 +12360,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -12755,13 +12524,22 @@ public interface PivotPackage
 	int LAMBDA_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int LAMBDA_TYPE___IS_CLASS = DATA_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -12950,7 +12728,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__COMMENT = PACKAGEABLE_ELEMENT__COMMENT;
+	int PACKAGE__COMMENT = NAMESPACE__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -12959,7 +12737,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__EXTENSION = PACKAGEABLE_ELEMENT__EXTENSION;
+	int PACKAGE__EXTENSION = NAMESPACE__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -12968,7 +12746,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_ANNOTATION = PACKAGEABLE_ELEMENT__OWNED_ANNOTATION;
+	int PACKAGE__OWNED_ANNOTATION = NAMESPACE__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -12977,7 +12755,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_COMMENT = PACKAGEABLE_ELEMENT__OWNED_COMMENT;
+	int PACKAGE__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12986,52 +12764,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NAME = PACKAGEABLE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNING_TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__TEMPLATE_PARAMETER = PACKAGEABLE_ELEMENT__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__TEMPLATE_BINDING = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__UNSPECIALIZED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+	int PACKAGE__NAME = NAMESPACE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -13040,7 +12773,34 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_RULE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
+	int PACKAGE__OWNED_RULE = NAMESPACE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = NAMESPACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__TEMPLATE_BINDING = NAMESPACE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__UNSPECIALIZED_ELEMENT = NAMESPACE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -13049,7 +12809,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__URI = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+	int PACKAGE__URI = NAMESPACE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Imported Package</b></em>' reference list.
@@ -13058,7 +12818,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__IMPORTED_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
+	int PACKAGE__IMPORTED_PACKAGE = NAMESPACE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
@@ -13067,7 +12827,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__NS_PREFIX = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
+	int PACKAGE__NS_PREFIX = NAMESPACE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Classes</b></em>' containment reference list.
@@ -13076,7 +12836,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_CLASSES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
+	int PACKAGE__OWNED_CLASSES = NAMESPACE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned Instances</b></em>' containment reference list.
@@ -13085,7 +12845,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_INSTANCES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PACKAGE__OWNED_INSTANCES = NAMESPACE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -13094,7 +12854,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNED_PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PACKAGE__OWNED_PACKAGES = NAMESPACE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -13103,7 +12863,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__OWNING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 10;
+	int PACKAGE__OWNING_PACKAGE = NAMESPACE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Profile Application</b></em>' containment reference list.
@@ -13112,7 +12872,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__PROFILE_APPLICATION = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 11;
+	int PACKAGE__PROFILE_APPLICATION = NAMESPACE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Package</em>' class.
@@ -13121,7 +12881,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 12;
+	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -13130,7 +12890,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE___ALL_OWNED_ELEMENTS = PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS;
+	int PACKAGE___ALL_OWNED_ELEMENTS = NAMESPACE___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -13139,16 +12899,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE___GET_VALUE__TYPE_STRING = PACKAGEABLE_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int PACKAGE___GET_VALUE__TYPE_STRING = NAMESPACE___GET_VALUE__TYPE_STRING;
 
 	/**
 	 * The number of operations of the '<em>Package</em>' class.
@@ -13157,7 +12908,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+	int PACKAGE_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -13205,22 +12956,13 @@ public interface PivotPackage
 	int LIBRARY__NAME = PACKAGE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY__OWNING_TEMPLATE_PARAMETER = PACKAGE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__TEMPLATE_PARAMETER = PACKAGE__TEMPLATE_PARAMETER;
+	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -13248,15 +12990,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -13365,15 +13098,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LIBRARY___GET_VALUE__TYPE_STRING = PACKAGE___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Library</em>' class.
@@ -13610,24 +13334,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13644,6 +13350,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -13671,15 +13386,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -13817,13 +13523,22 @@ public interface PivotPackage
 	int MESSAGE_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int MESSAGE_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -13898,24 +13613,6 @@ public interface PivotPackage
 	int METACLASS__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13932,6 +13629,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -13959,15 +13665,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int METACLASS__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METACLASS__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -14096,13 +13793,22 @@ public interface PivotPackage
 	int METACLASS___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METACLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int METACLASS___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -14166,96 +13872,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAMEABLE_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__COMMENT = NAMED_ELEMENT__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__EXTENSION = NAMED_ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__OWNED_RULE = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Namespace</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE___GET_VALUE__TYPE_STRING = NAMED_ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The number of operations of the '<em>Namespace</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -14807,24 +14423,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNING_TEMPLATE_PARAMETER = COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__TEMPLATE_PARAMETER = COLLECTION_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14841,6 +14439,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -14868,15 +14475,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -15041,13 +14639,22 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int ORDERED_SET_TYPE___IS_CLASS = COLLECTION_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -15075,66 +14682,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE_OPERATION_COUNT = COLLECTION_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl <em>Profile Application</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.ProfileApplicationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProfileApplication()
-	 * @generated
-	 */
-	int PROFILE_APPLICATION = 75;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.SlotImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSlot()
-	 * @generated
-	 */
-	int SLOT = 88;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl <em>State Machine</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StateMachineImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateMachine()
-	 * @generated
-	 */
-	int STATE_MACHINE = 91;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl <em>Stereotype</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.StereotypeImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStereotype()
-	 * @generated
-	 */
-	int STEREOTYPE = 92;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TransitionImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransition()
-	 * @generated
-	 */
-	int TRANSITION = 100;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl <em>Trigger</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.TriggerImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTrigger()
-	 * @generated
-	 */
-	int TRIGGER = 101;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -15398,105 +14945,6 @@ public interface PivotPackage
 	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__COMMENT = ELEMENT__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__EXTENSION = ELEMENT__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__OWNED_ANNOTATION = ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Parameterable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Parameterable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Pivotable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15659,24 +15107,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNING_TEMPLATE_PARAMETER = DATA_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__TEMPLATE_PARAMETER = DATA_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15693,6 +15123,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -15720,15 +15159,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -15866,13 +15296,22 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int PRIMITIVE_TYPE___IS_CLASS = DATA_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -15947,22 +15386,13 @@ public interface PivotPackage
 	int PROFILE__NAME = PACKAGE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__OWNING_TEMPLATE_PARAMETER = PACKAGE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__TEMPLATE_PARAMETER = PACKAGE__TEMPLATE_PARAMETER;
+	int PROFILE__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -15990,15 +15420,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE__UNSPECIALIZED_ELEMENT = PACKAGE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__OWNED_RULE = PACKAGE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>URI</b></em>' attribute.
@@ -16107,15 +15528,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROFILE___GET_VALUE__TYPE_STRING = PACKAGE___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PACKAGE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Profile</em>' class.
@@ -17378,24 +16790,6 @@ public interface PivotPackage
 	int SELF_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17412,6 +16806,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -17439,15 +16842,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -17567,13 +16961,22 @@ public interface PivotPackage
 	int SELF_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int SELF_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -17747,24 +17150,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNING_TEMPLATE_PARAMETER = COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__TEMPLATE_PARAMETER = COLLECTION_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17781,6 +17166,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -17808,15 +17202,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -17981,13 +17366,22 @@ public interface PivotPackage
 	int SEQUENCE_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int SEQUENCE_TYPE___IS_CLASS = COLLECTION_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -18062,24 +17456,6 @@ public interface PivotPackage
 	int SET_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNING_TEMPLATE_PARAMETER = COLLECTION_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__TEMPLATE_PARAMETER = COLLECTION_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18096,6 +17472,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__INSTANCE_CLASS_NAME = COLLECTION_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -18123,15 +17508,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -18296,13 +17672,22 @@ public interface PivotPackage
 	int SET_TYPE___GET_VALUE__TYPE_STRING = COLLECTION_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int SET_TYPE___IS_CLASS = COLLECTION_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -18377,24 +17762,6 @@ public interface PivotPackage
 	int SIGNAL__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18411,6 +17778,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -18438,15 +17814,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -18566,13 +17933,22 @@ public interface PivotPackage
 	int SIGNAL___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int SIGNAL___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -18881,24 +18257,6 @@ public interface PivotPackage
 	int STATE_MACHINE__NAME = BEHAVIOR__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__OWNING_TEMPLATE_PARAMETER = BEHAVIOR__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__TEMPLATE_PARAMETER = BEHAVIOR__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18915,6 +18273,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE__INSTANCE_CLASS_NAME = BEHAVIOR__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__OWNED_RULE = BEHAVIOR__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -18942,15 +18309,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE__UNSPECIALIZED_ELEMENT = BEHAVIOR__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__OWNED_RULE = BEHAVIOR__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -19115,13 +18473,22 @@ public interface PivotPackage
 	int STATE_MACHINE___GET_VALUE__TYPE_STRING = BEHAVIOR___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = BEHAVIOR___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int STATE_MACHINE___IS_CLASS = BEHAVIOR___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE___IS_TEMPLATE_PARAMETER = BEHAVIOR___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -19196,24 +18563,6 @@ public interface PivotPackage
 	int STEREOTYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19230,6 +18579,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -19257,15 +18615,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -19394,13 +18743,22 @@ public interface PivotPackage
 	int STEREOTYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int STEREOTYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -19670,7 +19028,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__COMMENT = ELEMENT__COMMENT;
+	int TEMPLATE_PARAMETER__COMMENT = TYPE__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
@@ -19679,7 +19037,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__EXTENSION = ELEMENT__EXTENSION;
+	int TEMPLATE_PARAMETER__EXTENSION = TYPE__EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -19688,7 +19046,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__OWNED_ANNOTATION = ELEMENT__OWNED_ANNOTATION;
+	int TEMPLATE_PARAMETER__OWNED_ANNOTATION = TYPE__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -19697,7 +19055,43 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
+	int TEMPLATE_PARAMETER__OWNED_COMMENT = TYPE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER__NAME = TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER__EXTENDED_BYS = TYPE__EXTENDED_BYS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Constraining Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER__CONSTRAINING_CLASS = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' reference.
@@ -19706,34 +19100,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__DEFAULT = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Default</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER__OWNED_DEFAULT = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parametered Element</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Parametered Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER__PARAMETERED_ELEMENT = ELEMENT_FEATURE_COUNT + 3;
+	int TEMPLATE_PARAMETER__DEFAULT = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Signature</b></em>' container reference.
@@ -19742,7 +19109,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER__SIGNATURE = ELEMENT_FEATURE_COUNT + 4;
+	int TEMPLATE_PARAMETER__SIGNATURE = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter</em>' class.
@@ -19751,7 +19118,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 5;
+	int TEMPLATE_PARAMETER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -19760,7 +19127,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+	int TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -19769,7 +19136,34 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
+	int TEMPLATE_PARAMETER___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Class</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER___IS_CLASS = TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Specialize In</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
 
 	/**
 	 * The number of operations of the '<em>Template Parameter</em>' class.
@@ -19778,7 +19172,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int TEMPLATE_PARAMETER_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -19835,22 +19229,13 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Actual</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 3;
+	int TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Substitution</em>' class.
@@ -19859,7 +19244,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -19887,150 +19272,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_SUBSTITUTION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__COMMENT = TYPE__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__EXTENSION = TYPE__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_ANNOTATION = TYPE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT = TYPE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__NAME = TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER = TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER = TYPE__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__EXTENDED_BYS = TYPE__EXTENDED_BYS;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Specification</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___GET_VALUE__TYPE_STRING = TYPE___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-
-	/**
-	 * The operation id for the '<em>Specialize In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
-	 * The number of operations of the '<em>Template Parameter Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -20789,24 +20030,6 @@ public interface PivotPackage
 	int TUPLE_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNING_TEMPLATE_PARAMETER = DATA_TYPE__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__TEMPLATE_PARAMETER = DATA_TYPE__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20823,6 +20046,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__INSTANCE_CLASS_NAME = DATA_TYPE__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -20850,15 +20082,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNED_RULE = DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -20996,13 +20219,22 @@ public interface PivotPackage
 	int TUPLE_TYPE___GET_VALUE__TYPE_STRING = DATA_TYPE___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int TUPLE_TYPE___IS_CLASS = DATA_TYPE___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -21183,7 +20415,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExtension()
 	 * @generated
 	 */
-	int TYPE_EXTENSION = 107;
+	int TYPE_EXTENSION = 105;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -21283,132 +20515,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_EXTENSION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__COMMENT = TEMPLATE_PARAMETER__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__EXTENSION = TEMPLATE_PARAMETER__EXTENSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__OWNED_ANNOTATION = TEMPLATE_PARAMETER__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT = TEMPLATE_PARAMETER__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Default</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__DEFAULT = TEMPLATE_PARAMETER__DEFAULT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Default</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__OWNED_DEFAULT = TEMPLATE_PARAMETER__OWNED_DEFAULT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parametered Element</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT = TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Parametered Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT = TEMPLATE_PARAMETER__PARAMETERED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Signature</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__SIGNATURE = TEMPLATE_PARAMETER__SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Constraining Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS = TEMPLATE_PARAMETER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Type Template Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS = TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER___GET_VALUE__TYPE_STRING = TEMPLATE_PARAMETER___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The number of operations of the '<em>Type Template Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER_OPERATION_COUNT = TEMPLATE_PARAMETER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -21553,7 +20659,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedType()
 	 * @generated
 	 */
-	int UNSPECIFIED_TYPE = 111;
+	int UNSPECIFIED_TYPE = 108;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -21601,24 +20707,6 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21635,6 +20723,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -21662,15 +20759,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -21808,13 +20896,22 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int UNSPECIFIED_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -22330,24 +21427,6 @@ public interface PivotPackage
 	int VOID_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
 	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22364,6 +21443,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -22391,15 +21479,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -22519,13 +21598,22 @@ public interface PivotPackage
 	int VOID_TYPE___GET_VALUE__TYPE_STRING = CLASS___GET_VALUE__TYPE_STRING;
 
 	/**
-	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * The operation id for the '<em>Is Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+	int VOID_TYPE___IS_CLASS = CLASS___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Specialize In</em>' operation.
@@ -22562,7 +21650,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 120;
+	int ASSOCIATIVITY_KIND = 117;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -22572,7 +21660,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 121;
+	int COLLECTION_KIND = 118;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -22582,7 +21670,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 122;
+	int PSEUDOSTATE_KIND = 119;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.TransitionKind <em>Transition Kind</em>}' enum.
@@ -22592,7 +21680,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTransitionKind()
 	 * @generated
 	 */
-	int TRANSITION_KIND = 123;
+	int TRANSITION_KIND = 120;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -22601,7 +21689,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 124;
+	int BOOLEAN = 121;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -22611,7 +21699,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 125;
+	int INTEGER = 122;
 
 	/**
 	 * The meta object id for the '<em>Library Feature</em>' data type.
@@ -22621,7 +21709,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
 	 * @generated
 	 */
-	int LIBRARY_FEATURE = 126;
+	int LIBRARY_FEATURE = 123;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -22631,7 +21719,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 127;
+	int OBJECT = 124;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -22641,7 +21729,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 128;
+	int REAL = 125;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -22651,7 +21739,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 129;
+	int STRING = 126;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -22661,7 +21749,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 130;
+	int THROWABLE = 127;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -22671,7 +21759,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 131;
+	int UNLIMITED_NATURAL = 128;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -25188,27 +24276,6 @@ public interface PivotPackage
 	EAttribute getStringLiteralExp_StringSymbol();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterType <em>Template Parameter Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Template Parameter Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterType
-	 * @generated
-	 */
-	EClass getTemplateParameterType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.TemplateParameterType#getSpecification <em>Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Specification</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterType#getSpecification()
-	 * @see #getTemplateParameterType()
-	 * @generated
-	 */
-	EAttribute getTemplateParameterType_Specification();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TupleLiteralExp <em>Tuple Literal Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25655,6 +24722,26 @@ public interface PivotPackage
 	EAttribute getType_InstanceClassName();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#isClass() <em>Is Class</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Class</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Type#isClass()
+	 * @generated
+	 */
+	EOperation getType__IsClass();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#isTemplateParameter() <em>Is Template Parameter</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Template Parameter</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Type#isTemplateParameter()
+	 * @generated
+	 */
+	EOperation getType__IsTemplateParameter();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#specializeIn(org.eclipse.ocl.examples.pivot.OCLExpression, org.eclipse.ocl.examples.pivot.Type) <em>Specialize In</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25912,6 +24999,17 @@ public interface PivotPackage
 	EClass getTemplateParameter();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getConstrainingClass <em>Constraining Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraining Class</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getConstrainingClass()
+	 * @see #getTemplateParameter()
+	 * @generated
+	 */
+	EReference getTemplateParameter_ConstrainingClass();
+
+	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25923,28 +25021,6 @@ public interface PivotPackage
 	EReference getTemplateParameter_Signature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getParameteredElement <em>Parametered Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parametered Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getParameteredElement()
-	 * @see #getTemplateParameter()
-	 * @generated
-	 */
-	EReference getTemplateParameter_ParameteredElement();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedParameteredElement <em>Owned Parametered Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Parametered Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedParameteredElement()
-	 * @see #getTemplateParameter()
-	 * @generated
-	 */
-	EReference getTemplateParameter_OwnedParameteredElement();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getDefault <em>Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25954,59 +25030,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameter_Default();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedDefault <em>Owned Default</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Default</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedDefault()
-	 * @see #getTemplateParameter()
-	 * @generated
-	 */
-	EReference getTemplateParameter_OwnedDefault();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.ParameterableElement <em>Parameterable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Parameterable Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement
-	 * @generated
-	 */
-	EClass getParameterableElement();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#getOwningTemplateParameter <em>Owning Template Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Template Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#getOwningTemplateParameter()
-	 * @see #getParameterableElement()
-	 * @generated
-	 */
-	EReference getParameterableElement_OwningTemplateParameter();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#getTemplateParameter <em>Template Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Template Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#getTemplateParameter()
-	 * @see #getParameterableElement()
-	 * @generated
-	 */
-	EReference getParameterableElement_TemplateParameter();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#isCompatibleWith(org.eclipse.ocl.examples.pivot.ParameterableElement) <em>Is Compatible With</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Compatible With</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#isCompatibleWith(org.eclipse.ocl.examples.pivot.ParameterableElement)
-	 * @generated
-	 */
-	EOperation getParameterableElement__IsCompatibleWith__ParameterableElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution <em>Template Parameter Substitution</em>}'.
@@ -26039,17 +25062,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameterSubstitution_Actual();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedActual <em>Owned Actual</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Actual</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getOwnedActual()
-	 * @see #getTemplateParameterSubstitution()
-	 * @generated
-	 */
-	EReference getTemplateParameterSubstitution_OwnedActual();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding <em>Template Binding</em>}'.
@@ -26212,27 +25224,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getPrecedence_Order();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter <em>Type Template Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Type Template Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter
-	 * @generated
-	 */
-	EClass getTypeTemplateParameter();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClass <em>Constraining Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraining Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingClass()
-	 * @see #getTypeTemplateParameter()
-	 * @generated
-	 */
-	EReference getTypeTemplateParameter_ConstrainingClass();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Property <em>Property</em>}'.
@@ -29544,24 +28535,6 @@ public interface PivotPackage
 		EAttribute STRING_LITERAL_EXP__STRING_SYMBOL = eINSTANCE.getStringLiteralExp_StringSymbol();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterType()
-		 * @generated
-		 */
-		EClass TEMPLATE_PARAMETER_TYPE = eINSTANCE.getTemplateParameterType();
-
-		/**
-		 * The meta object literal for the '<em><b>Specification</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEMPLATE_PARAMETER_TYPE__SPECIFICATION = eINSTANCE.getTemplateParameterType_Specification();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29928,6 +28901,22 @@ public interface PivotPackage
 		EAttribute TYPE__INSTANCE_CLASS_NAME = eINSTANCE.getType_InstanceClassName();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Class</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPE___IS_CLASS = eINSTANCE.getType__IsClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Template Parameter</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPE___IS_TEMPLATE_PARAMETER = eINSTANCE.getType__IsTemplateParameter();
+
+		/**
 		 * The meta object literal for the '<em><b>Specialize In</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30132,6 +29121,14 @@ public interface PivotPackage
 		EClass TEMPLATE_PARAMETER = eINSTANCE.getTemplateParameter();
 
 		/**
+		 * The meta object literal for the '<em><b>Constraining Class</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PARAMETER__CONSTRAINING_CLASS = eINSTANCE.getTemplateParameter_ConstrainingClass();
+
+		/**
 		 * The meta object literal for the '<em><b>Signature</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30140,70 +29137,12 @@ public interface PivotPackage
 		EReference TEMPLATE_PARAMETER__SIGNATURE = eINSTANCE.getTemplateParameter_Signature();
 
 		/**
-		 * The meta object literal for the '<em><b>Parametered Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PARAMETER__PARAMETERED_ELEMENT = eINSTANCE.getTemplateParameter_ParameteredElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Parametered Element</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT = eINSTANCE.getTemplateParameter_OwnedParameteredElement();
-
-		/**
 		 * The meta object literal for the '<em><b>Default</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER__DEFAULT = eINSTANCE.getTemplateParameter_Default();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Default</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PARAMETER__OWNED_DEFAULT = eINSTANCE.getTemplateParameter_OwnedDefault();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameterableElement()
-		 * @generated
-		 */
-		EClass PARAMETERABLE_ELEMENT = eINSTANCE.getParameterableElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Owning Template Parameter</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER = eINSTANCE.getParameterableElement_OwningTemplateParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Template Parameter</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER = eINSTANCE.getParameterableElement_TemplateParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Compatible With</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = eINSTANCE.getParameterableElement__IsCompatibleWith__ParameterableElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -30230,14 +29169,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL = eINSTANCE.getTemplateParameterSubstitution_Actual();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Actual</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL = eINSTANCE.getTemplateParameterSubstitution_OwnedActual();
 
 		/**
 		 * The meta object literal for the '<em><b>Template Binding</b></em>' container reference feature.
@@ -30364,24 +29295,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute PRECEDENCE__ORDER = eINSTANCE.getPrecedence_Order();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl <em>Type Template Parameter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeTemplateParameter()
-		 * @generated
-		 */
-		EClass TYPE_TEMPLATE_PARAMETER = eINSTANCE.getTypeTemplateParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraining Class</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS = eINSTANCE.getTypeTemplateParameter_ConstrainingClass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.

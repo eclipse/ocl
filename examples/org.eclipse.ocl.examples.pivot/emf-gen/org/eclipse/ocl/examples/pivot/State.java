@@ -46,7 +46,7 @@ import java.util.List;
  * @generated
  */
 public interface State
-		extends Vertex, Namespace {
+		extends Namespace, Vertex {
 
 	/**
 	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.

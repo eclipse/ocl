@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -92,7 +91,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	*/	}
 	}
 	
-	protected final @Nullable Map<TemplateParameter, ParameterableElement> templateBindings;
+	protected final @Nullable Map<TemplateParameter, Type> templateBindings;
 	
 	public AS2MonikerVisitor(@NonNull AS2Moniker context) {
 		super(context);
@@ -102,7 +101,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		}
 	}
 
-	public AS2MonikerVisitor(@NonNull AS2Moniker context, @Nullable Map<TemplateParameter, ParameterableElement> templateBindings) {
+	public AS2MonikerVisitor(@NonNull AS2Moniker context, @Nullable Map<TemplateParameter, Type> templateBindings) {
 		super(context);
 		this.templateBindings = templateBindings;
 	}
@@ -175,23 +174,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {		
-			if (templateBindings != null) {
-				ParameterableElement parameterableElement = templateBindings.get(owningTemplateParameter);
-				if ((parameterableElement != null) && (parameterableElement != object) ){
-					context.appendElement(parameterableElement);
-					return true;
-				}
-			}
-			TemplateableElement owningTemplateElement = owningTemplateParameter.getSignature().getTemplate();
-			if (!context.hasEmitted(owningTemplateParameter)/* || !context.isTemplateParameter(owningTemplateParameter)*/) {
-				context.appendElement(owningTemplateElement);
-				context.append(TEMPLATE_PARAMETER_PREFIX);
-			}
-			context.appendName(object);
-		}
-		else if (!object.getTemplateBinding().isEmpty()) {
+		if (!object.getTemplateBinding().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(templateableClass);
@@ -340,7 +323,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		context.append(object.getName());
 //		context.appendTemplateParameters(object);
-		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
+		Map<TemplateParameter, Type> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
 		context.appendLambdaType(object.getContextType(), object.getParameterType(), object.getResultType(), bindings);
 		return true;
 	}
@@ -386,7 +369,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		if (!object.getTemplateBinding().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
-			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
+			Map<TemplateParameter, Type> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
 			if (templateBindings != null) {
 				if (bindings == null) {
 					bindings = templateBindings;
@@ -487,14 +470,14 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		TemplateableElement owningTemplateElement = object.getSignature().getTemplate();
 		context.appendElement(owningTemplateElement);
 		context.append(TEMPLATE_PARAMETER_PREFIX);
-		context.appendName(object.getParameteredElement());
+		context.appendName(object);
 		return true;
 	}
 
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
 		context.appendElement(object.getTemplateBinding());
-		context.appendName(object.getFormal().getParameteredElement());
+		context.appendName(object.getFormal());
 		return true;
 	}
 

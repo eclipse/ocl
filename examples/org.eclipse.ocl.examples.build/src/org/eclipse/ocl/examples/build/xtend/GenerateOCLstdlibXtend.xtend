@@ -305,7 +305,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 						installOperations();
 						installIterations();
 						installProperties();
-						installTemplateSignatures();
 						installTemplateBindings();
 						installPrecedences();
 						installComments();
@@ -322,7 +321,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					«lib.declareEnumerations()»
 					«ENDIF»
 
-					«lib.declareParameterTypes()»
+					«lib.defineTemplateParameters()»
 
 					«lib.declareCollectionTypes()»
 

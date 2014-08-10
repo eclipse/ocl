@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
@@ -96,7 +95,7 @@ public class TupleTypeManager
 		tupleid2tuple = null;
 	}
 
-    public @Nullable Type getCommonType(@NonNull TupleType leftType, @NonNull TupleType rightType, @Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+    public @Nullable Type getCommonType(@NonNull TupleType leftType, @NonNull TupleType rightType, @Nullable Map<TemplateParameter, Type> bindings) {
 		List<Property> leftProperties = leftType.getOwnedProperties();
 		List<Property> rightProperties = rightType.getOwnedProperties();
 		int iSize = leftProperties.size();
@@ -153,7 +152,7 @@ public class TupleTypeManager
 					List<Property> ownedAttributes = tupleType.getOwnedProperties();
 					for (TuplePartId partId : partIds) {
 						DomainType partType = idResolver.getType(partId.getTypeId(), tupleType);
-						org.eclipse.ocl.examples.pivot.Class partType2 = metaModelManager.getType(partType);
+						Type partType2 = metaModelManager.getType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
 					tupleType.getSuperClasses().add(metaModelManager.getOclTupleType());
@@ -166,12 +165,12 @@ public class TupleTypeManager
 	}
 
 	public @NonNull TupleType getTupleType(@NonNull String tupleName, @NonNull Collection<? extends DomainTypedElement> parts,
-			@Nullable Map<TemplateParameter, ParameterableElement> usageBindings) {
+			@Nullable Map<TemplateParameter, Type> usageBindings) {
 		Map<String, Type> partMap = new HashMap<String, Type>();
 		for (DomainTypedElement part : parts) {
 			DomainType type1 = part.getType();
 			if (type1 != null) {
-				org.eclipse.ocl.examples.pivot.Class type2 = metaModelManager.getType(type1);
+				Type type2 = metaModelManager.getType(type1);
 				Type type3 = metaModelManager.getSpecializedType(type2, usageBindings);
 				partMap.put(part.getName(), type3);
 			}
@@ -229,16 +228,16 @@ public class TupleTypeManager
 		return tupleType;
 	}
 
-	public @NonNull TupleType getTupleType(@NonNull TupleType type, @Nullable Map<TemplateParameter, ParameterableElement> usageBindings) {	// FIXME Remove duplication, unify type/multiplicity
+	public @NonNull TupleType getTupleType(@NonNull TupleType type, @Nullable Map<TemplateParameter, Type> usageBindings) {	// FIXME Remove duplication, unify type/multiplicity
 //		return getTupleType(type.getName(), type.getOwnedAttribute(), usageBindings);
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
 		List<Property> parts = specializedTupleType.getOwnedProperties();
 		for (Property part : parts) {
 			if (part != null) {
-				org.eclipse.ocl.examples.pivot.Class propertyType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(part);	// FIXME cast
+				Type propertyType = PivotUtil.getType(part);
 				if (propertyType != null) {
-					org.eclipse.ocl.examples.pivot.Class resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, usageBindings);
+					Type resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, usageBindings);
 					if (resolvedPropertyType != propertyType) {
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();

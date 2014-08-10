@@ -183,7 +183,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return this;
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainType dynamicType, @NonNull DomainOperation staticOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainClass dynamicType, @NonNull DomainOperation staticOperation) {
 		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
 		return inheritance.lookupImplementation(metaModelManager, staticOperation);
 	}
@@ -477,7 +477,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OCLExpression source = iterateExp.getSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValuesUtil.asCollectionValue(acceptedValue);
-		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getType(sourceValue.getTypeId(), null);
+		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -552,7 +552,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
-		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getType(sourceValue.getTypeId(), null);
+		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {

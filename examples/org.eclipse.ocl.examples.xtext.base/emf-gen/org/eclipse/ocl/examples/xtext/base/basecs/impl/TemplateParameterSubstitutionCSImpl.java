@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterSubstitutionCSImpl#getOwningTemplateBinding <em>Owning Template Binding</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterSubstitutionCSImpl#getOwnedActualParameter <em>Owned Actual Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.basecs.impl.TemplateParameterSubstitutionCSImpl#getActualParameter <em>Owned Actual Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,10 +40,10 @@ import org.eclipse.ocl.examples.xtext.base.basecs.util.BaseCSVisitor;
  */
 public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl implements TemplateParameterSubstitutionCS {
 	/**
-	 * The cached value of the '{@link #getOwnedActualParameter() <em>Owned Actual Parameter</em>}' containment reference.
+	 * The cached value of the '{@link #getActualParameter() <em>Owned Actual Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedActualParameter()
+	 * @see #getActualParameter()
 	 * @generated
 	 * @ordered
 	 */
@@ -138,7 +138,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeRefCS getOwnedActualParameter() {
+	public TypeRefCS getActualParameter() {
 		return ownedActualParameter;
 	}
 
@@ -241,7 +241,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_TEMPLATE_BINDING:
 				return getOwningTemplateBinding();
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER:
-				return getOwnedActualParameter();
+				return getActualParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

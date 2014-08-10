@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -85,7 +84,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				if (iMax != candidateParameters.size()) {
 					return false;
 				}
-				Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
+				Map<TemplateParameter, Type> bindings = getOperationBindings(metaModelManager, candidateOperation);
 				for (int i = 0; i < iMax; i++) {
 					Parameter candidateParameter = candidateParameters.get(i);
 					if (candidateParameter != null) {

@@ -24,6 +24,6 @@ public interface DomainPackage extends DomainNamespace
 	/*@Nullable*/ DomainPackage getOwningPackage();
 	/*@Nullable*/ String getNsPrefix();
 	/*@Nullable*/ String getURI();
-	/*@NonNull*/ List<? extends DomainType> getOwnedClasses();
+	/*@NonNull*/ List<? extends DomainClass> getOwnedClasses();
 	@NonNull PackageId getPackageId();
 }

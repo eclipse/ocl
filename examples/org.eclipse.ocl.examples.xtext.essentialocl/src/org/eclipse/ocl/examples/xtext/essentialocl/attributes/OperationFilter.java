@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -70,16 +69,16 @@ public class OperationFilter extends AbstractOperationFilter
 	}
 
 	@Override
-	public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> referenceBindings,
-			@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> candidateBindings) {
+	public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> referenceBindings,
+			@NonNull Object match2, @Nullable Map<TemplateParameter, Type> candidateBindings) {
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.examples.pivot.Class referenceClass = reference.getOwningClass();
 		org.eclipse.ocl.examples.pivot.Class candidateClass = candidate.getOwningClass();
-		org.eclipse.ocl.examples.pivot.Class referenceType = referenceClass != null ? (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(referenceClass) : null;
-		org.eclipse.ocl.examples.pivot.Class candidateType = candidateClass != null ? (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(candidateClass) : null;
-		org.eclipse.ocl.examples.pivot.Class specializedReferenceType = referenceType != null ? metaModelManager.getSpecializedType(referenceType, referenceBindings) : null;
-		org.eclipse.ocl.examples.pivot.Class specializedCandidateType = candidateType != null ? metaModelManager.getSpecializedType(candidateType, candidateBindings) : null;
+		Type referenceType = referenceClass != null ? PivotUtil.getType(referenceClass) : null;
+		Type candidateType = candidateClass != null ? PivotUtil.getType(candidateClass) : null;
+		Type specializedReferenceType = referenceType != null ? metaModelManager.getSpecializedType(referenceType, referenceBindings) : null;
+		Type specializedCandidateType = candidateType != null ? metaModelManager.getSpecializedType(candidateType, candidateBindings) : null;
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration) && (specializedReferenceType != null) && (specializedCandidateType != null)) {
 			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
 			if (iteratorCountDelta != 0) {
@@ -122,8 +121,8 @@ public class OperationFilter extends AbstractOperationFilter
 				candidateConversions = Integer.MIN_VALUE;
 			}
 			else {
-				referenceType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(DomainUtil.nonNullModel(referenceParameter.getType()));
-				candidateType = (org.eclipse.ocl.examples.pivot.Class)PivotUtil.getType(DomainUtil.nonNullModel(candidateParameter.getType()));
+				referenceType = PivotUtil.getType(DomainUtil.nonNullModel(referenceParameter.getType()));
+				candidateType = PivotUtil.getType(DomainUtil.nonNullModel(candidateParameter.getType()));
 				specializedReferenceType = metaModelManager.getSpecializedType(referenceType, referenceBindings);
 				specializedCandidateType = metaModelManager.getSpecializedType(candidateType, candidateBindings);
 				if (argumentType != specializedReferenceType) {
@@ -154,7 +153,7 @@ public class OperationFilter extends AbstractOperationFilter
 		return null;
 	}
 
-	protected @Nullable Map<TemplateParameter, ParameterableElement> getIterationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Iteration candidateIteration) {
+	protected @Nullable Map<TemplateParameter, Type> getIterationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Iteration candidateIteration) {
 		Type sourceType = this.sourceType;
 		if (!(sourceType instanceof CollectionType) && (candidateIteration.getOwningClass() instanceof CollectionType) && (sourceType != null)) {
 			sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()
@@ -162,7 +161,7 @@ public class OperationFilter extends AbstractOperationFilter
 		if (!(sourceType instanceof CollectionType)) {			// May be InvalidType
 			return null;
 		}
-		HashMap<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
+		HashMap<TemplateParameter, Type> bindings = new HashMap<TemplateParameter, Type>();
 		bindings.put(candidateIteration.getOwningClass().getOwnedTemplateSignature().getOwnedParameter().get(0), ((CollectionType)sourceType).getElementType());
 		if (sourceType instanceof TemplateableElement) {
 			PivotUtil.getAllTemplateParameterSubstitutions(bindings, (TemplateableElement)sourceType);
@@ -189,9 +188,9 @@ public class OperationFilter extends AbstractOperationFilter
 	}
 
 	@Override
-	protected @Nullable Map<TemplateParameter, ParameterableElement> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
+	protected @Nullable Map<TemplateParameter, Type> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
 		Type sourceType = this.sourceType;
-		Map<TemplateParameter, ParameterableElement> bindings = null;
+		Map<TemplateParameter, Type> bindings = null;
 		org.eclipse.ocl.examples.pivot.Class containingType = candidateOperation.getOwningClass();
 		if ((containingType instanceof CollectionType) && (sourceType != null)) {
 			if (!(sourceType instanceof CollectionType)) {
@@ -204,7 +203,7 @@ public class OperationFilter extends AbstractOperationFilter
 			else {
 				elementType = metaModelManager.getOclInvalidType();
 			}
-			bindings = new HashMap<TemplateParameter, ParameterableElement>();
+			bindings = new HashMap<TemplateParameter, Type>();
 			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameter().get(0), elementType);
 		}			
 		if (sourceType instanceof TemplateableElement) {
@@ -214,7 +213,7 @@ public class OperationFilter extends AbstractOperationFilter
 		if (templateSignature != null) {
 			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 				if (bindings == null) {
-					bindings = new HashMap<TemplateParameter, ParameterableElement>();
+					bindings = new HashMap<TemplateParameter, Type>();
 				}
 				bindings.put(templateParameter, null);
 			}
@@ -224,7 +223,7 @@ public class OperationFilter extends AbstractOperationFilter
 
 	@Override
 	protected void installBindings(@NonNull EnvironmentView environmentView, @NonNull Object object,
-			@Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+			@Nullable Map<TemplateParameter, Type> bindings) {
 		List<Parameter> parameters = ((Operation)object).getOwnedParameter();
 		int iMax = parameters.size();
 		if (iMax > 0) {
@@ -254,7 +253,7 @@ public class OperationFilter extends AbstractOperationFilter
 			if (accumulatorCount != accumulators) {
 				return false;
 			}
-			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(metaModelManager, candidateIteration);
+			Map<TemplateParameter, Type> bindings = getIterationBindings(metaModelManager, candidateIteration);
 			if (bindings != null) {
 				installBindings(environmentView, object, bindings);
 			}
@@ -272,7 +271,7 @@ public class OperationFilter extends AbstractOperationFilter
 			if (expressions != candidateParameters.size()) {
 				return false;
 			}
-			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
+			Map<TemplateParameter, Type> bindings = getOperationBindings(metaModelManager, candidateOperation);
 			for (int i = 0; i < expressions; i++) {
 				Parameter candidateParameter = candidateParameters.get(i);
 				if (candidateParameter != null) {

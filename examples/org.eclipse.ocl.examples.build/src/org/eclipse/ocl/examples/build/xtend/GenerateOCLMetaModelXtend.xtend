@@ -212,9 +212,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 						installOperations();
 						installIterations();
 						installProperties();
-						«IF allTemplateSignatures.size() > 0»
-						installTemplateSignatures();
-						«ENDIF»
 						«IF allTemplateBindings.size() > 0»
 						installTemplateBindings();
 						«ENDIF»
@@ -236,7 +233,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					«pkg.declareEnumerations()»
 					«ENDIF»
 
-					«pkg.declareParameterTypes()»
+					«pkg.defineTemplateParameters()»
 					«IF allCollectionTypes.size() > 0»
 
 					«pkg.declareCollectionTypes()»

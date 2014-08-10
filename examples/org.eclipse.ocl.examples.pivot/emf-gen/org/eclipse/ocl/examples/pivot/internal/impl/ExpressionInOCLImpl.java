@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -285,10 +284,6 @@ public class ExpressionInOCLImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
 				return basicSetOwningConstraint(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
@@ -329,11 +324,6 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				return getBody();
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
@@ -386,12 +376,6 @@ public class ExpressionInOCLImpl
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				setType((Type)newValue);
-				return;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				setBody((String)newValue);
@@ -446,12 +430,6 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				setBody(BODY_EDEFAULT);
 				return;
@@ -499,10 +477,6 @@ public class ExpressionInOCLImpl
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				return type != null;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:

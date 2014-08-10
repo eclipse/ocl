@@ -356,7 +356,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					append(prefix);
-					safeVisit(templateParameter.getParameteredElement());
+					appendName(templateParameter);
 					prefix = ",";
 				}
 				append(")");
@@ -439,25 +439,19 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class cls) {
-		TemplateParameter owningTemplateParameter = cls.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
+		org.eclipse.ocl.examples.pivot.Package pkg = cls.getOwningPackage();
+		if (pkg == null) {
+			append("null::");
 			appendName(cls);
 		}
-		else {
-			org.eclipse.ocl.examples.pivot.Package pkg = cls.getOwningPackage();
-			if (pkg == null) {
-				append("null::");
-				appendName(cls);
-			}
-			else if (!(pkg.eContainer() instanceof Root) || !PivotConstants.OCL_NAME.equals(pkg.getName())) {
-				appendQualifiedName(pkg, "::", cls);
-			}
-			else {
-				appendName(cls);
-			}
-			appendTemplateBindings(cls.getTemplateBinding());
-			appendTemplateSignature(cls.getOwnedTemplateSignature());
+		else if (!(pkg.eContainer() instanceof Root) || !PivotConstants.OCL_NAME.equals(pkg.getName())) {
+			appendQualifiedName(pkg, "::", cls);
 		}
+		else {
+			appendName(cls);
+		}
+		appendTemplateBindings(cls.getTemplateBinding());
+		appendTemplateSignature(cls.getOwnedTemplateSignature());
 		return null;
 	}
     
@@ -1060,16 +1054,16 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		TemplateSignature signature = object.getSignature();
 		appendName(signature != null ? (NamedElement) signature.getTemplate() : null);
 		append(".");
-		appendName((NamedElement) object.getParameteredElement());
+		appendName(object);
 		return null;
 	}
 
 	@Override
 	public String visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
 		TemplateParameter formal = object.getFormal();
-		appendName(formal != null ? (NamedElement) formal.getParameteredElement() : null);
+		appendName(formal != null ? formal : null);
 		append("/");
-		appendName((NamedElement) object.getActual());
+		appendName(object.getActual());
 		return null;
 	}
 

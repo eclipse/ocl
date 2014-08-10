@@ -438,16 +438,16 @@ public class ElementUtil
 		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
 		Element type = csTypedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
-			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getActualParameter();
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {
 				return true;
 			}
 			Type actualParameterClass = (Type) ownedActualParameter.getPivot();
-			TemplateParameter owningTemplateParameter = actualParameterClass.getOwningTemplateParameter();
-			if (owningTemplateParameter == null) {
+			TemplateParameter templateParameter = actualParameterClass.isTemplateParameter();
+			if (templateParameter == null) {
 				return true;
 			}
-			TemplateSignature signature = owningTemplateParameter.getSignature();
+			TemplateSignature signature = templateParameter.getSignature();
 			TemplateableElement template = signature.getTemplate();
 			if (template != type) {
 				return true;

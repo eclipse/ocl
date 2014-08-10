@@ -25,5 +25,5 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface PackageableElement
-		extends NamedElement, ParameterableElement {
+		extends NamedElement {
 } // PackageableElement

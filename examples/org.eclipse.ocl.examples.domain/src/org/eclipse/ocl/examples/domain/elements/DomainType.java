@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.domain.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.OCLValue;
@@ -45,7 +46,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	/**
 	 * Return the unique executable form of this type within standardLibrary.
 	 */
-	@NonNull DomainType getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
+	@NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
 	
 	/**
 	 * Return the package containing this type.
@@ -69,4 +70,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	boolean isInvalid();
 
 	/*@NonNull*/ DomainType specializeIn(@NonNull DomainCallExp expr, /*@NonNull*/ DomainType selfType);
+
+	@Nullable DomainClass isClass();
+	@Nullable DomainTemplateParameter isTemplateParameter();
 }

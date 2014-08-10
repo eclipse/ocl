@@ -164,7 +164,6 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclAny = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclElement = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclType = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclType);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__ParameterableElement = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__TemplateableElement = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__Type = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__Visitable = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Visitable);
@@ -246,7 +245,6 @@ public class CodegencompanyTables
 			Fragments._CompanySizeKind__Visitable /* 2 */,
 			Fragments._CompanySizeKind__Element /* 3 */,
 			Fragments._CompanySizeKind__NamedElement /* 4 */,
-			Fragments._CompanySizeKind__ParameterableElement /* 4 */,
 			Fragments._CompanySizeKind__TemplateableElement /* 4 */,
 			Fragments._CompanySizeKind__Namespace /* 5 */,
 			Fragments._CompanySizeKind__Type /* 5 */,
@@ -342,9 +340,7 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompanySizeKind__ParameterableElement = {
-			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement) */
-		};
+		private static final @NonNull ExecutorOperation[] _CompanySizeKind__ParameterableElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Type = {
 			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
@@ -398,7 +394,6 @@ public class CodegencompanyTables
 			Fragments._CompanySizeKind__OclAny.initOperations(_CompanySizeKind__OclAny);
 			Fragments._CompanySizeKind__OclElement.initOperations(_CompanySizeKind__OclElement);
 			Fragments._CompanySizeKind__OclType.initOperations(_CompanySizeKind__OclType);
-			Fragments._CompanySizeKind__ParameterableElement.initOperations(_CompanySizeKind__ParameterableElement);
 			Fragments._CompanySizeKind__TemplateableElement.initOperations(_CompanySizeKind__TemplateableElement);
 			Fragments._CompanySizeKind__Type.initOperations(_CompanySizeKind__Type);
 			Fragments._CompanySizeKind__Visitable.initOperations(_CompanySizeKind__Visitable);

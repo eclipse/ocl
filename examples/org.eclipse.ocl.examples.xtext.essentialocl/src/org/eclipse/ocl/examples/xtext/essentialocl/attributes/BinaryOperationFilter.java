@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -52,7 +51,7 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 				return false;
 			}
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(metaModelManager, candidateOperation);
+			Map<TemplateParameter, Type> bindings = getOperationBindings(metaModelManager, candidateOperation);
 			if (!metaModelManager.conformsTo(argumentType, candidateType, bindings)) {
 				return false;
 			}

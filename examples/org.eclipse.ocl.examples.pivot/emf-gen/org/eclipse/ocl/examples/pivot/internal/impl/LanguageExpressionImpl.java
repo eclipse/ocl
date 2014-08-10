@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -193,14 +192,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -227,10 +218,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
 				return basicSetOwningConstraint(null, msgs);
 		}
@@ -247,8 +234,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.CONSTRAINT__SPECIFICATION, Constraint.class, msgs);
 		}
@@ -282,11 +267,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:
 				return getBody();
 			case PivotPackage.LANGUAGE_EXPRESSION__LANGUAGE:
@@ -333,12 +313,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:
 				setBody((String)newValue);
 				return;
@@ -380,12 +354,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:
 				setBody(BODY_EDEFAULT);
 				return;
@@ -422,10 +390,6 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.LANGUAGE_EXPRESSION__TYPE:
 				return type != null;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.LANGUAGE_EXPRESSION__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.LANGUAGE_EXPRESSION__BODY:
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
 			case PivotPackage.LANGUAGE_EXPRESSION__LANGUAGE:

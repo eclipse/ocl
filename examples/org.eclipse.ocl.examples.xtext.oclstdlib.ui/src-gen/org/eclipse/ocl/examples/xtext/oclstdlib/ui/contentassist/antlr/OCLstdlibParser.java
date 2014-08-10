@@ -324,7 +324,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment(), "rule__SpecificationCS__OwnedExpressionAssignment");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_2_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_2_1");
-					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
+					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
 					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedTemplateParameterAssignment_1(), "rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_1");
 					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedTemplateParameterAssignment_2_1(), "rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_2_1");
 					put(grammarAccess.getLibTupleCSAccess().getNameAssignment_0(), "rule__LibTupleCS__NameAssignment_0");

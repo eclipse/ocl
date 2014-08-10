@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.Type;
+//import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.resource.ASResource;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -85,7 +85,7 @@ public class ASSaver
 		}
 	}
 
-	public boolean addSpecializingElement(@NonNull Element object, @NonNull Type referredType) {
+	public boolean addSpecializingElement(@NonNull Element object, @NonNull org.eclipse.ocl.examples.pivot.Class referredType) {
 		if (PivotUtil.isLibraryType(referredType)) {
 			return false;
 		}
@@ -290,14 +290,14 @@ public class ASSaver
 	 * Return the resolved variant of referredType, which may require creation
 	 * of a local copy of a specialization.
 	 */
-	public @NonNull <T extends Type> T resolveType(@NonNull T referredType) {
+	public @NonNull <T extends org.eclipse.ocl.examples.pivot.Class> T resolveType(@NonNull T referredType) {
 		if (PivotUtil.isLibraryType(referredType)) {
 			return referredType;
 		}
 		org.eclipse.ocl.examples.pivot.Class resolvedType = specializations.get(referredType);
 		if (resolvedType == null) {
-			resolvedType = DomainUtil.nonNullEMF(EcoreUtil.copy((org.eclipse.ocl.examples.pivot.Class)referredType));	// FIXME cast
-			specializations.put((org.eclipse.ocl.examples.pivot.Class)referredType, resolvedType);	// FIXME cast
+			resolvedType = DomainUtil.nonNullEMF(EcoreUtil.copy(referredType));	// FIXME cast
+			specializations.put(referredType, resolvedType);	// FIXME cast
 			specializations.put(resolvedType, resolvedType);
 			EObject eContainer = resolvedType.eContainer();
 			if (eContainer == null) {

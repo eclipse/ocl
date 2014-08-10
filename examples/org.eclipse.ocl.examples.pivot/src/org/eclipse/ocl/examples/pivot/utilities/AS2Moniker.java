@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -105,7 +104,7 @@ public class AS2Moniker implements PivotConstants
 		}		
 	}
 	
-	public void appendElement(Element element, Map<TemplateParameter, ParameterableElement> templateBindings) {
+	public void appendElement(Element element, Map<TemplateParameter, Type> templateBindings) {
 		if (toString().length() >= MONIKER_OVERFLOW_LIMIT) {
 			append(OVERFLOW_MARKER);
 		}
@@ -137,7 +136,7 @@ public class AS2Moniker implements PivotConstants
 	}
 
 	public void appendLambdaType(Type contextType, List<? extends Type> parameterTypes,
-			Type resultType, Map<TemplateParameter, ParameterableElement> bindings) {
+			Type resultType, Map<TemplateParameter, Type> bindings) {
 		if (contextType != null) {
 			append(MONIKER_OPERATOR_SEPARATOR);
 			appendElement(contextType, bindings);
@@ -189,7 +188,7 @@ public class AS2Moniker implements PivotConstants
 		}
 	}
 	
-	public void appendParameters(Operation operation, Map<TemplateParameter, ParameterableElement> templateBindings) {
+	public void appendParameters(Operation operation, Map<TemplateParameter, Type> templateBindings) {
 		s.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
@@ -267,11 +266,11 @@ public class AS2Moniker implements PivotConstants
 		}
 	}
 
-	public void appendTemplateArguments(List<? extends ParameterableElement> templateArguments, Map<TemplateParameter, ParameterableElement> templateBindings) {
+	public void appendTemplateArguments(List<? extends Type> templateArguments, Map<TemplateParameter, Type> templateBindings) {
 		if (!templateArguments.isEmpty()) {
 			append(TEMPLATE_BINDING_PREFIX);
 			String prefix = ""; //$NON-NLS-1$
-			for (ParameterableElement templateArgument : templateArguments) {
+			for (Type templateArgument : templateArguments) {
 				append(prefix);
 				appendElement(templateArgument, templateBindings);
 				prefix = TEMPLATE_BINDING_SEPARATOR;
@@ -280,7 +279,7 @@ public class AS2Moniker implements PivotConstants
 		}
 	}
 	
-	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, ParameterableElement> bindings) {
+	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, Type> bindings) {
 		List<TemplateBinding> templateBindings = templateableElement.getTemplateBinding();
 		if (!templateBindings.isEmpty()) {
 			boolean isSpecialized = isSpecialized(templateBindings, bindings);
@@ -295,7 +294,7 @@ public class AS2Moniker implements PivotConstants
 					}
 					for (TemplateParameterSubstitution templateParameterSubstitution : parameterSubstitutions) {
 						s.append(prefix);
-						appendName(templateParameterSubstitution.getFormal().getParameteredElement());
+						appendName(templateParameterSubstitution.getFormal());
 						prefix = TEMPLATE_SIGNATURE_SEPARATOR;
 					}
 				}
@@ -331,7 +330,7 @@ public class AS2Moniker implements PivotConstants
 				for (TemplateParameter templateParameter : templateParameters) {
 					s.append(prefix);
 					emittedTemplateParameter(templateParameter);
-					appendName(templateParameter.getParameteredElement());
+					appendName(templateParameter);
 					prefix = TEMPLATE_SIGNATURE_SEPARATOR;
 				}
 				s.append(TEMPLATE_SIGNATURE_SUFFIX);
@@ -355,13 +354,7 @@ public class AS2Moniker implements PivotConstants
 			append(TUPLE_SIGNATURE_TYPE_SEPARATOR);
 			Type type = part.getType();
 			if (type != null) {
-				TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
-				if (owningTemplateParameter != null) {		
-					appendName(type);
-				}
-				else {
-					appendElement(type);
-				}
+				appendElement(type);
 			}
 			prefix = TUPLE_SIGNATURE_PART_SEPARATOR;
 		}
@@ -391,19 +384,18 @@ public class AS2Moniker implements PivotConstants
 		return (emittedParameters != null) && emittedParameters.contains(templateParameter);
 	}
 
-	protected boolean isSpecialized(List<TemplateBinding> templateBindings,
-			Map<TemplateParameter, ParameterableElement> bindings) {
+	protected boolean isSpecialized(List<TemplateBinding> templateBindings, Map<TemplateParameter, Type> bindings) {
 		if (bindings == null) {
 			return true;
 		}
 		for (TemplateBinding templateBinding : templateBindings) {
 			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
-				ParameterableElement actual = templateParameterSubstitution.getActual();
+				Type actual = templateParameterSubstitution.getActual();
 				if (actual == null) {
 					return true;
 				}
-				ParameterableElement parameterableElement = bindings.get(actual.getOwningTemplateParameter());
-				if ((parameterableElement == null) || (parameterableElement.getOwningTemplateParameter() != templateParameterSubstitution.getFormal())) {
+				Type parameterableElement = bindings.get(actual);
+				if ((parameterableElement == null) || (parameterableElement != templateParameterSubstitution.getFormal())) {
 					return true;
 				}
 			}

@@ -73,9 +73,12 @@ public class PruneSuperClasses extends WorkflowComponentWithModelSlot
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
 		Resource resource = (Resource) ctx.get(getModelSlot());
 		log.info("Pruning Super Classes in '" + resource.getURI() + "'");
+		orderedNames.add("Feature");
 		orderedNames.add("TypedElement");
-		orderedNames.add("TypedMultiplicityElement");
+		orderedNames.add("Type");
 		orderedNames.add("NamedElement");
+		orderedNames.add("Namespace");
+		orderedNames.add("TemplateableElement");
 		pruneSuperClasses(resource.getContents());
 	}
 

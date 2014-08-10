@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.library.executor.CollectionTypeParameters;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -67,7 +66,7 @@ public class CollectionTypeServer extends ExtensibleTypeServer
 		specializedType.setName(typeName);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);
-		Map<TemplateParameter, ParameterableElement> allBindings = new HashMap<TemplateParameter, ParameterableElement>();
+		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		TemplateParameter formalParameter = templateParameters.get(0);
 		assert formalParameter != null;
 		Type elementType = typeParameters.getElementType();

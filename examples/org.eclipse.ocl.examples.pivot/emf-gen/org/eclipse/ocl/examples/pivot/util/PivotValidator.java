@@ -86,7 +86,6 @@ import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -115,7 +114,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Transition;
@@ -127,7 +125,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -842,8 +839,6 @@ public class PivotValidator
 				return validatePackageableElement((PackageableElement)value, diagnostics, context);
 			case PivotPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
-			case PivotPackage.PARAMETERABLE_ELEMENT:
-				return validateParameterableElement((ParameterableElement)value, diagnostics, context);
 			case PivotPackage.PIVOTABLE:
 				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
@@ -898,8 +893,6 @@ public class PivotValidator
 				return validateTemplateParameter((TemplateParameter)value, diagnostics, context);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION:
 				return validateTemplateParameterSubstitution((TemplateParameterSubstitution)value, diagnostics, context);
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE:
-				return validateTemplateParameterType((TemplateParameterType)value, diagnostics, context);
 			case PivotPackage.TEMPLATE_SIGNATURE:
 				return validateTemplateSignature((TemplateSignature)value, diagnostics, context);
 			case PivotPackage.TEMPLATEABLE_ELEMENT:
@@ -920,8 +913,6 @@ public class PivotValidator
 				return validateTypeExp((TypeExp)value, diagnostics, context);
 			case PivotPackage.TYPE_EXTENSION:
 				return validateTypeExtension((TypeExtension)value, diagnostics, context);
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER:
-				return validateTypeTemplateParameter((TypeTemplateParameter)value, diagnostics, context);
 			case PivotPackage.TYPED_ELEMENT:
 				return validateTypedElement((TypedElement)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP:
@@ -1164,17 +1155,6 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)unspecifiedType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(unspecifiedType, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameterableElement(
-			ParameterableElement parameterableElement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)parameterableElement, diagnostics, context);
 	}
 
 	/**
@@ -1458,17 +1438,6 @@ public class PivotValidator
 			org.eclipse.ocl.examples.pivot.Package package_,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)package_, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypeTemplateParameter(
-			TypeTemplateParameter typeTemplateParameter,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)typeTemplateParameter, diagnostics, context);
 	}
 
 	/**
@@ -3213,17 +3182,6 @@ public class PivotValidator
 	public boolean validateStringLiteralExp(StringLiteralExp stringLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)stringLiteralExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTemplateParameterType(
-			TemplateParameterType templateParameterType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)templateParameterType, diagnostics, context);
 	}
 
 	/**

@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.pivot.InstanceSpecification;
 import org.eclipse.ocl.examples.pivot.LanguageExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Slot;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -240,14 +239,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -276,10 +267,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__SLOTS:
@@ -300,8 +287,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_INSTANCES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 		}
@@ -328,11 +313,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 				return getOwnedComment();
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				return getName();
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
 				return getClasses();
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE:
@@ -374,12 +354,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				setName((String)newValue);
-				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
 				getClasses().clear();
@@ -424,12 +398,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
 				getClasses().clear();
 				return;
@@ -466,10 +434,6 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.INSTANCE_SPECIFICATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.INSTANCE_SPECIFICATION__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.INSTANCE_SPECIFICATION__CLASSES:
 				return classes != null && !classes.isEmpty();
 			case PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE:

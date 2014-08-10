@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -51,7 +50,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -379,7 +377,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		return castElement;
 	}
 	
-	public org.eclipse.ocl.examples.pivot.Class getPivotType(@NonNull EObject eObject) {
+	public Type getPivotType(@NonNull EObject eObject) {
 		Element pivotElement = newCreateMap.get(eObject);
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
@@ -399,11 +397,11 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		if (pivotElement == null) {
 			error("Unresolved " + eObject);
 		}
-		else if (!(pivotElement instanceof org.eclipse.ocl.examples.pivot.Class)) {
+		else if (!(pivotElement instanceof Type)) {
 			error("Incompatible " + eObject);
 		}
 		else {
-			return (org.eclipse.ocl.examples.pivot.Class) pivotElement;
+			return (Type) pivotElement;
 		}
 		return null;
 	}
@@ -723,18 +721,20 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 		EClassifier eClassifier = eGenericType.getEClassifier();
 		List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		assert eTypeParameters.size() == eTypeArguments.size();
-		org.eclipse.ocl.examples.pivot.Class unspecializedPivotType = getPivotType(eClassifier);
+		Type unspecializedPivotType = getPivotType(eClassifier);
 		if (unspecializedPivotType == null) {
 			return null;
 		}
- 		List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
+ 		List<Type> templateArguments = new ArrayList<Type>();
 		for (EGenericType eTypeArgument : eTypeArguments) {
 			if (eTypeArgument != null) {
 				Type typeArgument = resolveType(resolvedSpecializations, eTypeArgument);
 				templateArguments.add(typeArgument);
 			}
 		}
-		return metaModelManager.getLibraryType(unspecializedPivotType, templateArguments);
+		org.eclipse.ocl.examples.pivot.Class unspecializedPivotClass = unspecializedPivotType.isClass(); 
+		assert unspecializedPivotClass != null;			// FIXME
+		return metaModelManager.getLibraryType(unspecializedPivotClass, templateArguments);
 	}
 
 	protected Type resolveSimpleType(@NonNull EClassifier eClassifier) {
@@ -795,7 +795,8 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 //			csTypeRef.setExtends(doSwitchAll(eGenericType.getExtends()));
 //			csTypeRef.setSuper(doSwitchAll(eGenericType.getSuper()));
 			return csTypeRef; */
-		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
+		return metaModelManager.createUnspecifiedType(null, null);		// FIXME bounds
+/*		org.eclipse.ocl.examples.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
 		String name = PivotConstants.WILDCARD_NAME;
 		EStructuralFeature eFeature = eGenericType.eContainmentFeature();
 		if ((eFeature != null) && eFeature.isMany()) {
@@ -807,7 +808,7 @@ public class Ecore2Pivot extends AbstractEcore2Pivot
 			}
 		}
 		pivotElement.setName(name);		
-		return pivotElement;
+		return pivotElement; */
 	}
 
 	public void setEcoreURI(URI ecoreURI) {

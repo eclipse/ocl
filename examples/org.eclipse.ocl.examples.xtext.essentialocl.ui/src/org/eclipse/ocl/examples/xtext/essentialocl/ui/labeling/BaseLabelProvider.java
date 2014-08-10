@@ -66,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -82,7 +81,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -224,10 +222,8 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 				String prefix = "";
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					s.append(prefix);
-					ParameterableElement actual = templateParameterSubstitution.getActual();
-					if (actual instanceof Type) {
-						appendType(s, (Type)actual);
-					}
+					Type actual = templateParameterSubstitution.getActual();
+					appendType(s, actual);
 					prefix = ", ";
 				}
 				s.append(")");
@@ -245,7 +241,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 					String prefix = "";
 					for (TemplateParameter templateParameter : templateParameters) {
 						s.append(prefix);
-						appendName(s, (NamedElement) templateParameter.getParameteredElement());
+						appendName(s, templateParameter);
 						prefix = ", ";
 					}
 				}
@@ -348,12 +344,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String image(org.eclipse.ocl.examples.pivot.Class ele) {
-		if (ele.getOwningTemplateParameter() != null) {
-			return "/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif";
-		}
-		else {
-			return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif";
-		}
+		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif";
 	}
 
 	protected String text(org.eclipse.ocl.examples.pivot.Class ele) {
@@ -759,12 +750,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(TemplateParameter ele) {
-		ParameterableElement parameteredElement = ele.getParameteredElement();
-		return parameteredElement != null ? text(parameteredElement) : "<<null>>";
-	}
-
-	protected String image(TemplateParameterType ele) {
-		return "/org.eclipse.ocl.edit/icons/full/obj16/TemplateParameterType.gif";
+		return ele.getName();
 	}
 
 	protected String image(TupleLiteralExp ele) {

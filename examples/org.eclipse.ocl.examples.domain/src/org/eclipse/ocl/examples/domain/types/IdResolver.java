@@ -76,6 +76,8 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	void dispose();
 
+	@NonNull DomainClass getClass(@NonNull TypeId typeId, @Nullable Object context);
+
 	@NonNull DomainType getCollectionType(@NonNull CollectionTypeId typeId);
 
 	@NonNull DomainType getDynamicTypeOf(@Nullable Object value);
@@ -106,7 +108,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainType getType(@NonNull EClassifier eClassifier);
 
-	@NonNull DomainClass getType(@NonNull TypeId typeId, @Nullable Object context);
+	@NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context);
 
 	boolean oclEquals(@Nullable Object thisValue, @Nullable Object thatValue);
 

@@ -13,12 +13,15 @@ package org.eclipse.ocl.examples.domain.types;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -35,6 +38,11 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 
 	public @NonNull Value createInstance(@NonNull String value) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+		return standardLibrary.getInheritance(this);
 	}
 
 	public @NonNull List<? extends DomainConstraint> getOwnedInvariants() {
@@ -60,9 +68,17 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return DomainTypeParameters.EMPTY_LIST;
 	}
+	
+	public @NonNull DomainClass isClass() {
+		return this;
+	}
 
 	public boolean isOrdered() {
 		return false;
+	}
+
+	public @Nullable DomainTemplateParameter isTemplateParameter() {
+		return null;
 	}
 
 	public boolean isUnique() {

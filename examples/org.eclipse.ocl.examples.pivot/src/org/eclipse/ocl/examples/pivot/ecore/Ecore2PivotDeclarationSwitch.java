@@ -71,7 +71,7 @@ import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
@@ -523,21 +523,21 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public Object caseETypeParameter(ETypeParameter eObject) {
 		@SuppressWarnings("null") @NonNull ETypeParameter eObject2 = eObject;
-		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject2);
+		TemplateParameter pivotElement = converter.refreshNamedElement(TemplateParameter.class, PivotPackage.Literals.TEMPLATE_PARAMETER, eObject2);
 		converter.addMapping(eObject2, pivotElement);
 		String name = AbstractEcore2Pivot.getOriginalName(eObject2);
 		pivotElement.setName(name);
-		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-		if (typeTemplateParameter == null) {
-			typeTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-			typeTemplateParameter.setOwnedParameteredElement(pivotElement);
-		}
+//		TemplateParameter templateParameter = pivotElement.isTemplateParameter();
+//		if (templateParameter == null) {
+//			templateParameter = PivotFactory.eINSTANCE.createTemplateParameter();
+//			templateParameter.setOwnedParameteredElement(pivotElement);
+//		}
 		List<EGenericType> eBounds = eObject2.getEBounds();
 		if (!eBounds.isEmpty()) {
 			doSwitchAll(eBounds);
 			converter.queueReference(eObject2);
 		}
-		return typeTemplateParameter;
+		return pivotElement;
 	}
 
 	protected @NonNull Constraint convertEOperation2Constraint(@NonNull EOperation eOperation) {

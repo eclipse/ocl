@@ -352,7 +352,7 @@ public abstract class AbstractIdResolver implements IdResolver
 				if (enumerator2enumerationLiteralId2 == null) {
 					enumerator2enumerationLiteralId = enumerator2enumerationLiteralId2 = new HashMap<Enumerator, EnumerationLiteralId>();
 					for (DomainPackage dPackage : standardLibrary.getAllPackages()) {
-						for (DomainType dType : dPackage.getOwnedClasses()) {
+						for (DomainClass dType : dPackage.getOwnedClasses()) {
 							if (dType instanceof DomainEnumeration) {
 								for (DomainEnumerationLiteral dEnumerationLiteral : ((DomainEnumeration) dType).getEnumerationLiterals()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();
@@ -489,6 +489,12 @@ public abstract class AbstractIdResolver implements IdResolver
 		key2type.clear();
 		enumerationLiteral2enumerator = null;
 		enumerator2enumerationLiteralId = null;
+	}
+
+	public @NonNull DomainClass getClass(@NonNull TypeId typeId, @Nullable Object context) {
+		DomainElement type = typeId.accept(this);
+		assert type != null;
+		return (DomainClass)type;
 	}
 
 	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId) {
@@ -793,10 +799,10 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	public abstract @NonNull DomainClass getType(@NonNull EClassifier eClassifier);
 
-	public @NonNull DomainClass getType(@NonNull TypeId typeId, @Nullable Object context) {
+	public @NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
-		return (DomainClass)type;
+		return (DomainType)type;
 	}
 
 	private @NonNull Object getTypeKeyOf(@Nullable Object value) {
@@ -1057,7 +1063,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	public @NonNull DomainOperation visitOperationId(@NonNull OperationId id) {
-		DomainType domainType = (DomainType) id.getParent().accept(this);
+		DomainClass domainType = (DomainClass) id.getParent().accept(this);
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}
@@ -1078,7 +1084,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	public @NonNull DomainProperty visitPropertyId(@NonNull PropertyId id) {
-		DomainType domainType = (DomainType) id.getParent().accept(this);
+		DomainClass domainType = (DomainClass) id.getParent().accept(this);
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}

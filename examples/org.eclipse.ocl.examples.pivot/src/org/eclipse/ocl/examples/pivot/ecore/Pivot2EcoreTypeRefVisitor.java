@@ -96,6 +96,42 @@ public class Pivot2EcoreTypeRefVisitor
 	}
 
 	@Override
+	public EObject visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class pivotType) {
+		if (pivotType.getTemplateBinding().size() == 0) {
+			EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
+			if (eClassifier != null) {
+				return eClassifier;
+			}
+			if (metaModelManager.isTypeServeable(pivotType)) {
+				for (DomainClass type : metaModelManager.getPartialTypes(pivotType)) {
+					if (type instanceof PivotObjectImpl) {
+						EObject eTarget = ((PivotObjectImpl)type).getETarget();
+						if (eTarget != null) {
+							return eTarget;
+						}
+					}
+				}
+			}
+			else {
+				if (pivotType instanceof PivotObjectImpl) {
+					EObject eTarget = ((PivotObjectImpl)pivotType).getETarget();
+					if (eTarget != null) {
+						return eTarget;
+					}
+				}
+			}
+			return null;	// FIXME may be null if not from Ecore
+		}
+		List<TemplateBinding> templateBindings = ((TemplateableElement)pivotType).getTemplateBinding();
+		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)pivotType));
+		eGenericType.setEClassifier((EClassifier) rawType);
+		// FIXME signature ordering, multiple bindings
+		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitution());
+		return eGenericType;
+	}
+
+	@Override
 	public EObject visitCollectionType(@NonNull CollectionType object) {
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		EClassifier eClassifier = EcoreUtils.getNamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
@@ -160,6 +196,14 @@ public class Pivot2EcoreTypeRefVisitor
 	}
 
 	@Override
+	public EObject visitTemplateParameter(@NonNull TemplateParameter pivotType) {
+		ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, pivotType);
+		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+		eGenericType.setETypeParameter(eTypeParameter);
+		return eGenericType;
+	}
+
+	@Override
 	public EObject visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution pivotTemplateParameterSubstitution) {
 		EObject actualType = safeVisit(pivotTemplateParameterSubstitution.getActual());
 		if (actualType instanceof EGenericType) {
@@ -167,49 +211,6 @@ public class Pivot2EcoreTypeRefVisitor
 		}
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		eGenericType.setEClassifier((EClassifier) actualType);
-		return eGenericType;
-	}
-
-	@Override
-	public EObject visitType(@NonNull Type pivotType) {
-		TemplateParameter templateParameter = pivotType.getTemplateParameter();
-		if (templateParameter != null) {
-			ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, templateParameter);
-			EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-			eGenericType.setETypeParameter(eTypeParameter);
-			return eGenericType;
-		}
-		if (!(pivotType instanceof TemplateableElement) || (((TemplateableElement)pivotType).getTemplateBinding().size() == 0)) {
-			EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
-			if (eClassifier != null) {
-				return eClassifier;
-			}
-			if (metaModelManager.isTypeServeable(pivotType)) {
-				for (DomainClass type : metaModelManager.getPartialTypes(pivotType)) {
-					if (type instanceof PivotObjectImpl) {
-						EObject eTarget = ((PivotObjectImpl)type).getETarget();
-						if (eTarget != null) {
-							return eTarget;
-						}
-					}
-				}
-			}
-			else {
-				if (pivotType instanceof PivotObjectImpl) {
-					EObject eTarget = ((PivotObjectImpl)pivotType).getETarget();
-					if (eTarget != null) {
-						return eTarget;
-					}
-				}
-			}
-			return null;	// FIXME may be null if not from Ecore
-		}
-		List<TemplateBinding> templateBindings = ((TemplateableElement)pivotType).getTemplateBinding();
-		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)pivotType));
-		eGenericType.setEClassifier((EClassifier) rawType);
-		// FIXME signature ordering, multiple bindings
-		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitution());
 		return eGenericType;
 	}
 

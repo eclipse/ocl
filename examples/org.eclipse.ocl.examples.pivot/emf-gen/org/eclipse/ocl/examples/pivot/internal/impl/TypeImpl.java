@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -28,9 +29,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -65,7 +63,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  */
 @SuppressWarnings({"null","cast"})
 public abstract class TypeImpl
-		extends PackageableElementImpl
+		extends NamedElementImpl
 		implements Type {
 
 	/**
@@ -145,6 +143,26 @@ public abstract class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public org.eclipse.ocl.examples.pivot.Class isClass()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!isClass()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateParameter isTemplateParameter()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!isTemplateParameter()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<TypeExtension> getExtendedBys()
 	{
 		if (extendedBys == null)
@@ -171,14 +189,6 @@ public abstract class TypeImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 		}
@@ -203,10 +213,6 @@ public abstract class TypeImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 		}
@@ -232,11 +238,6 @@ public abstract class TypeImpl
 				return getOwnedComment();
 			case PivotPackage.TYPE__NAME:
 				return getName();
-			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return getExtendedBys();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
@@ -274,12 +275,6 @@ public abstract class TypeImpl
 			case PivotPackage.TYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
@@ -315,12 +310,6 @@ public abstract class TypeImpl
 			case PivotPackage.TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
@@ -350,10 +339,6 @@ public abstract class TypeImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.TYPE__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
@@ -376,8 +361,10 @@ public abstract class TypeImpl
 				return allOwnedElements();
 			case PivotPackage.TYPE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
-			case PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
-				return isCompatibleWith((ParameterableElement)arguments.get(0));
+			case PivotPackage.TYPE___IS_CLASS:
+				return isClass();
+			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:
+				return isTemplateParameter();
 			case PivotPackage.TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 		}
@@ -391,28 +378,12 @@ public abstract class TypeImpl
 	 */
 	@Override
 	public String toString() {
-		TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
-			return owningTemplateParameter.toString();
-		}
 		return super.toString();
 	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitType(this);
-	}
-	
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
-		DomainInheritance thisInheritance;
-		if (getOwningTemplateParameter() != null) {
-			thisInheritance = standardLibrary.getOclAnyType().getInheritance(standardLibrary);
-		}
-		else {
-			thisInheritance = this.getInheritance(standardLibrary);
-		}
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance.isSubInheritanceOf(thatInheritance);
 	}
 
 	public @NonNull EObject createInstance() {
@@ -446,19 +417,6 @@ public abstract class TypeImpl
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.getCommonInheritance(thatInheritance);
-	}
-
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return standardLibrary.getInheritance(this);
-	}
-
-	public @NonNull DomainType getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
-		try {
-			return standardLibrary.getInheritance(this);
-		}
-		catch (Throwable e) {
-			return this;			// WIP FIXME should never happen
-		}
 	}
 
 	public @NonNull String getMetaTypeName() {
@@ -520,21 +478,7 @@ public abstract class TypeImpl
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	@NonNull
-	public List<? extends DomainProperty> getOwnedProperties() {
-		throw new UnsupportedOperationException();		// FIXME
-	}
-
-	@NonNull
-	public List<? extends DomainOperation> getOwnedOperations() {
-		throw new UnsupportedOperationException();		// FIXME
-	}
-
 	public @NonNull DomainTypeParameters getTypeParameters() {
-		throw new UnsupportedOperationException();		// FIXME
-	}
-
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 } //TypeImpl

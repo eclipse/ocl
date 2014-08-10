@@ -444,7 +444,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_0_2_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_0_2_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_1_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_1_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_1_2_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_1_2_1");
-					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
+					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
 					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedTemplateParameterAssignment_0_1(), "rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_0_1");
 					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedTemplateParameterAssignment_0_2_1(), "rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_0_2_1");
 					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedTemplateParameterAssignment_1_1(), "rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_1_1");

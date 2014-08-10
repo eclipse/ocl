@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.ReflectiveType;
 import org.eclipse.ocl.examples.pivot.Behavior;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Region;
@@ -321,15 +320,10 @@ public abstract class AbstractTypeServer extends ReflectiveType implements TypeS
 		}
 	}
 
-	public static @NonNull TemplateParameterSubstitution createTemplateParameterSubstitution(@NonNull TemplateParameter formalParameter, @NonNull ParameterableElement type) {
+	public static @NonNull TemplateParameterSubstitution createTemplateParameterSubstitution(@NonNull TemplateParameter formalParameter, @NonNull Type type) {
 		TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 		templateParameterSubstitution.setFormal(formalParameter);
-		if (type.eResource() == null) {
-			templateParameterSubstitution.setOwnedActual(type);
-		}
-		else {
-			templateParameterSubstitution.setActual(type);
-		}
+		templateParameterSubstitution.setActual(type);
 		return templateParameterSubstitution;
 	}
 

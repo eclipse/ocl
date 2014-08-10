@@ -45,10 +45,6 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 
 	@Override
 	public @Nullable Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
-			owningTemplateParameter.accept(this);
-		}
 		for (TemplateBinding templateBinding : object.getTemplateBinding()) {
 			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 				safeVisit(templateParameterSubstitution.getActual());
@@ -106,10 +102,5 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 			safeVisit(tuplePart.getType());
 		}
 		return super.visitTupleType(object);
-	}
-
-	@Override
-	public @Nullable Object visitType(@NonNull Type object) {
-		return null;
 	}
 }

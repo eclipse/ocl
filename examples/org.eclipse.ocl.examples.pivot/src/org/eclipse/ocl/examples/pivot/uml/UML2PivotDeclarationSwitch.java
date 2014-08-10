@@ -67,7 +67,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2PivotDeclarationSwitch;
 import org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl;
@@ -158,24 +158,24 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Object caseClassifierTemplateParameter(org.eclipse.uml2.uml.ClassifierTemplateParameter umlTemplateParameter) {
 		assert umlTemplateParameter != null;
 		@SuppressWarnings("null") @NonNull org.eclipse.uml2.uml.Class umlParameterClass = (org.eclipse.uml2.uml.Class) umlTemplateParameter.getParameteredElement();
-		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, umlParameterClass);
-//		TypeTemplateParameter pivotTemplateParameter = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, umlTemplateParameter);
+		TemplateParameter pivotElement = converter.refreshElement(TemplateParameter.class, PivotPackage.Literals.TEMPLATE_PARAMETER, umlTemplateParameter);
+//		TemplateParameter pivotTemplateParameter = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, umlTemplateParameter);
 //		setOriginalMapping(pivotElement, umlTemplateParameter);
 //		String name = umlTemplateParameter.getName();
-//		pivotElement.setName(name);
-		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-		if (typeTemplateParameter == null) {
-			typeTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-			typeTemplateParameter.setOwnedParameteredElement(pivotElement);
-			converter.setOriginalMapping(typeTemplateParameter, umlTemplateParameter);
-		}
-		converter.setOriginalMapping(pivotElement, umlParameterClass);
+		pivotElement.setName(umlParameterClass.getName());
+//		TemplateParameter templateParameter = pivotElement.isTemplateParameter();
+//		if (templateParameter == null) {
+//			templateParameter = PivotFactory.eINSTANCE.createTemplateParameter();
+//			templateParameter.setOwnedParameteredElement(pivotElement);
+//			converter.setOriginalMapping(templateParameter, umlTemplateParameter);
+//		}
+		converter.setOriginalMapping(pivotElement, umlTemplateParameter);
 //		List<EGenericType> eBounds = umlTemplateParameter.getEBounds();
 //		if (!eBounds.isEmpty()) {
 //			doSwitchAll(eBounds);
 //			converter.queueReference(umlTemplateParameter);
 //		}
-		return typeTemplateParameter;
+		return pivotElement;
 	}
 
 	@Override

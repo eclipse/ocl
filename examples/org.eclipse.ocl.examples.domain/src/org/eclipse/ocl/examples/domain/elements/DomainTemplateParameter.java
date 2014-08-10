@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
 
-public interface DomainTemplateParameter extends DomainElement
+public interface DomainTemplateParameter extends DomainType
 {
 	@NonNull TemplateParameterId getElementId();
 }

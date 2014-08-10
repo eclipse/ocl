@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -35,11 +34,10 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.InstanceSpecification;
-import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ProfileApplication;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -54,7 +52,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
@@ -70,7 +67,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  */
 @SuppressWarnings("cast")
 public class PackageImpl
-		extends PackageableElementImpl
+		extends NamespaceImpl
 		implements org.eclipse.ocl.examples.pivot.Package {
 		
 	/**
@@ -102,16 +99,6 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected TemplateableElement unspecializedElement;
-
-	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> ownedRule;
 
 	/**
 	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute.
@@ -227,36 +214,8 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getOwnedRule()
+	public TemplateSignature getOwnedTemplateSignature()
 	{
-		if (ownedRule == null)
-		{
-			ownedRule = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.PACKAGE__OWNED_RULE);
-		}
-		return ownedRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List<TemplateBinding> getTemplateBinding()
-	{
-		if (templateBinding == null)
-		{
-			templateBinding = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
-		}
-		return templateBinding;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature getOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
@@ -265,8 +224,8 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedTemplateSignature(
-			TemplateSignature newOwnedTemplateSignature, NotificationChain msgs) {
+	public NotificationChain basicSetOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature, NotificationChain msgs)
+	{
 		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
 		ownedTemplateSignature = newOwnedTemplateSignature;
 		if (eNotificationRequired())
@@ -282,8 +241,8 @@ public class PackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedTemplateSignature(
-			TemplateSignature newOwnedTemplateSignature) {
+	public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
+	{
 		if (newOwnedTemplateSignature != ownedTemplateSignature)
 		{
 			NotificationChain msgs = null;
@@ -296,6 +255,20 @@ public class PackageImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<TemplateBinding> getTemplateBinding()
+	{
+		if (templateBinding == null)
+		{
+			templateBinding = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+		}
+		return templateBinding;
 	}
 
 	/**
@@ -484,14 +457,6 @@ public class PackageImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -532,16 +497,12 @@ public class PackageImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_CLASSES:
 				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_INSTANCES:
@@ -566,8 +527,6 @@ public class PackageImpl
 			NotificationChain msgs) {
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 			case PivotPackage.PACKAGE__OWNING_PACKAGE:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_PACKAGES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 		}
@@ -593,19 +552,14 @@ public class PackageImpl
 				return getOwnedComment();
 			case PivotPackage.PACKAGE__NAME:
 				return getName();
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.PACKAGE__URI:
 				return getURI();
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
@@ -655,11 +609,9 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -670,10 +622,6 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
-				return;
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PACKAGE__URI:
 				setURI((String)newValue);
@@ -732,11 +680,8 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
@@ -746,9 +691,6 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
-				return;
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				getOwnedRule().clear();
 				return;
 			case PivotPackage.PACKAGE__URI:
 				setURI(URI_EDEFAULT);
@@ -797,18 +739,14 @@ public class PackageImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.PACKAGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.PACKAGE__TEMPLATE_PARAMETER:
-				return templateParameter != null;
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
-			case PivotPackage.PACKAGE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PACKAGE__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case PivotPackage.PACKAGE__IMPORTED_PACKAGE:
@@ -846,11 +784,10 @@ public class PackageImpl
 				default: return -1;
 			}
 		}
-		if (baseClass == Namespace.class)
+		if (baseClass == PackageableElement.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.PACKAGE__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
 				default: return -1;
 			}
 		}
@@ -874,11 +811,10 @@ public class PackageImpl
 				default: return -1;
 			}
 		}
-		if (baseClass == Namespace.class)
+		if (baseClass == PackageableElement.class)
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.PACKAGE__OWNED_RULE;
 				default: return -1;
 			}
 		}

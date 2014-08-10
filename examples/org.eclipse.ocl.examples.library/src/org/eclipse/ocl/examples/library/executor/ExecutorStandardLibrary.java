@@ -99,7 +99,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		throw new IllegalStateException("No extension package defines Enumeration type"); //$NON-NLS-1$
 	}
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainType type) {
+	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
 		if (type instanceof DomainInheritance) {
 			return (DomainInheritance) type;
 		}
@@ -115,7 +115,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 				return containerType.getInheritance(this);
 			}
 		}
-		DomainPackage domainPackage = ((DomainClass)type).getOwningPackage();		// FIXME cast
+		DomainPackage domainPackage = type.getOwningPackage();
 		Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap2;
 		synchronized (this) {
 			String nsURI = domainPackage.getURI();
@@ -176,8 +176,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @Nullable DomainType getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
-		DomainType nestedType = super.getNestedType(parentPackage, name);
+	public @Nullable DomainClass getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
+		DomainClass nestedType = super.getNestedType(parentPackage, name);
 		if (nestedType != null) {
 			return nestedType;
 		}

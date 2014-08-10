@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.examples.pivot.scoping.ScopeView;
@@ -29,20 +28,12 @@ public class ClassAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Class targetClass = (org.eclipse.ocl.examples.pivot.Class) target;
 		assert !(target instanceof Metaclass<?>);
-		if (targetClass.getOwningTemplateParameter() != null) {
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			org.eclipse.ocl.examples.pivot.Class type = metaModelManager.getOclAnyType(); // WIP use lowerbound
-			environmentView.addAllOperations(type, null);
-			environmentView.addAllProperties(type, null);
-			environmentView.addAllStates(type);
-			return null;
-		}
 		if (targetClass.getTemplateBinding().size() == 0) {
 			EObject scopeTarget = scopeView.getTarget();
 			if (scopeTarget instanceof Pivotable) {
 				Element pivot = ((Pivotable)scopeTarget).getPivot();
 				if (pivot == target) {		// Inherited template parameters are invisible.
-					environmentView.addAllTypeTemplateParameterables(targetClass);
+					environmentView.addAllTemplateParameterables(targetClass);
 				}
 			}
 		}

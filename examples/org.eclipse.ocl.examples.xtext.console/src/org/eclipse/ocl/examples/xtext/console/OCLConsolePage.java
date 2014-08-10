@@ -44,7 +44,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ocl.examples.debug.vm.core.VMVariable;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.evaluation.EvaluationHaltedException;
@@ -881,7 +881,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 			    MetaModelManager metaModelManager = getMetaModelManager(contextObject);
 				PivotIdResolver idResolver = metaModelManager.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
-				DomainType staticType = idResolver.getStaticTypeOf(contextObject);
+				DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
 				org.eclipse.ocl.examples.pivot.Class contextType = metaModelManager.getType(staticType);
 //				if (contextType != null) {
 					parserContext = new ClassContext(metaModelManager, null, contextType);

@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -39,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -163,9 +161,9 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			if (eContainer instanceof Root) {
 			}
 			else if (eContainer != null) {
-				if (!(eContainer instanceof ParameterableElement) || (((ParameterableElement)eContainer).getOwningTemplateParameter() == null)) {
+//				if (!(eContainer instanceof TemplateParameter)) {
 					appendParent(eContainer);
-				}
+//				}
 				appendNameOf(eContainer);
 				s.append(SCOPE_SEPARATOR);
 			}
@@ -177,7 +175,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			s.append(NULL_MARKER);	
 		}
 		else {
-			if (type.getOwningTemplateParameter() == null) {
+			if (type.isClass() != null) {
 				appendParent(type);
 			}
 			appendName(type.getName());
@@ -204,7 +202,6 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public Boolean visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
-		
 		if (Orphanage.isTypeOrphanage(object.getOwningPackage())) {
 			return false;
 		}
@@ -214,23 +211,9 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 				return false;
 			}
 		}
-		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
-			NamedElement template = (NamedElement) owningTemplateParameter.getSignature().getTemplate();
-			if ((template instanceof org.eclipse.ocl.examples.pivot.Class) && Orphanage.isTypeOrphanage(((org.eclipse.ocl.examples.pivot.Class)template).getOwningPackage())) {
-				return false;
-			}
-			s.append(TYPE_PREFIX);
-			appendParent(template);
-			s.append(SCOPE_SEPARATOR);
-			appendName(template.getName());
-			appendName(name);
-		}
-		else {
-			s.append(TYPE_PREFIX);
-			appendParent(object);
-			appendName(name);
-		}
+		s.append(TYPE_PREFIX);
+		appendParent(object);
+		appendName(name);
 		return true;
 	}
 
@@ -391,12 +374,15 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitTemplateParameter(@NonNull TemplateParameter object) {
-		s.append(TEMPLATE_PARAMETER_PREFIX);
 		NamedElement template = (NamedElement) object.getSignature().getTemplate();
+		if ((template instanceof org.eclipse.ocl.examples.pivot.Class) && Orphanage.isTypeOrphanage(((org.eclipse.ocl.examples.pivot.Class)template).getOwningPackage())) {
+			return false;
+		}
+		s.append(TEMPLATE_PARAMETER_PREFIX);
 		appendParent(template);
 		s.append(SCOPE_SEPARATOR);
 		appendName(template.getName());
-		appendName(((NamedElement)object.getParameteredElement()).getName());
+		appendName(object.getName());
 		return true;
 	}
 
@@ -411,17 +397,6 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	@Override
 	public @Nullable Boolean visitTupleType(@NonNull TupleType object) {
 		return false;
-	}
-
-	@Override
-	public @Nullable Boolean visitTypeTemplateParameter(@NonNull TypeTemplateParameter object) {
-		s.append(TEMPLATE_PARAMETER_PREFIX);
-		NamedElement template = (NamedElement) object.getSignature().getTemplate();
-		appendParent(template);
-		s.append(SCOPE_SEPARATOR);
-		appendName(template.getName());
-		appendName(((NamedElement)object.getParameteredElement()).getName());
-		return true;
 	}
 
 	@Override

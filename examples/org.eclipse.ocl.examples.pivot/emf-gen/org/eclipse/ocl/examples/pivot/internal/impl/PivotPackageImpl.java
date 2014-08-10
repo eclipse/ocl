@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -90,7 +89,6 @@ import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -120,7 +118,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Transition;
@@ -132,7 +129,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -625,13 +621,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass templateParameterTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass tupleLiteralExpEClass = null;
 
 	/**
@@ -779,13 +768,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass parameterableElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass templateParameterSubstitutionEClass = null;
 
 	/**
@@ -808,13 +790,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass precedenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeTemplateParameterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3478,24 +3453,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateParameterType() {
-		return templateParameterTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTemplateParameterType_Specification() {
-		return (EAttribute)templateParameterTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTupleLiteralExp() {
 		return tupleLiteralExpEClass;
 	}
@@ -3900,9 +3857,29 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getType__SpecializeIn__OCLExpression_Type()
+	public EOperation getType__IsClass()
 	{
 		return typeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getType__IsTemplateParameter()
+	{
+		return typeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getType__SpecializeIn__OCLExpression_Type()
+	{
+		return typeEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -4129,25 +4106,17 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTemplateParameter_ConstrainingClass()
+	{
+		return (EReference)templateParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getTemplateParameter_Signature() {
-		return (EReference)templateParameterEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTemplateParameter_ParameteredElement() {
-		return (EReference)templateParameterEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTemplateParameter_OwnedParameteredElement() {
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -4157,53 +4126,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EReference getTemplateParameter_Default() {
-		return (EReference)templateParameterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTemplateParameter_OwnedDefault() {
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getParameterableElement() {
-		return parameterableElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getParameterableElement_OwningTemplateParameter() {
-		return (EReference)parameterableElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getParameterableElement_TemplateParameter() {
-		return (EReference)parameterableElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getParameterableElement__IsCompatibleWith__ParameterableElement()
-	{
-		return parameterableElementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -4238,17 +4161,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplateParameterSubstitution_OwnedActual() {
-		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTemplateParameterSubstitution_TemplateBinding() {
-		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(3);
+		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4383,25 +4297,6 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getPrecedence_Order() {
 		return (EAttribute)precedenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeTemplateParameter() {
-		return typeTemplateParameterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeTemplateParameter_ConstrainingClass()
-	{
-		return (EReference)typeTemplateParameterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -5879,11 +5774,6 @@ public class PivotPackageImpl
 		parameterEClass = createEClass(PARAMETER);
 		createEReference(parameterEClass, PARAMETER__OPERATION);
 
-		parameterableElementEClass = createEClass(PARAMETERABLE_ELEMENT);
-		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER);
-		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER);
-		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT);
-
 		pivotableEClass = createEClass(PIVOTABLE);
 
 		precedenceEClass = createEClass(PRECEDENCE);
@@ -6008,20 +5898,14 @@ public class PivotPackageImpl
 		createEReference(templateBindingEClass, TEMPLATE_BINDING__SIGNATURE);
 
 		templateParameterEClass = createEClass(TEMPLATE_PARAMETER);
+		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__CONSTRAINING_CLASS);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__DEFAULT);
-		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__OWNED_DEFAULT);
-		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT);
-		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__PARAMETERED_ELEMENT);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__SIGNATURE);
 
 		templateParameterSubstitutionEClass = createEClass(TEMPLATE_PARAMETER_SUBSTITUTION);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL);
-		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING);
-
-		templateParameterTypeEClass = createEClass(TEMPLATE_PARAMETER_TYPE);
-		createEAttribute(templateParameterTypeEClass, TEMPLATE_PARAMETER_TYPE__SPECIFICATION);
 
 		templateSignatureEClass = createEClass(TEMPLATE_SIGNATURE);
 		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__OWNED_PARAMETER);
@@ -6056,6 +5940,8 @@ public class PivotPackageImpl
 		typeEClass = createEClass(TYPE);
 		createEReference(typeEClass, TYPE__EXTENDED_BYS);
 		createEAttribute(typeEClass, TYPE__INSTANCE_CLASS_NAME);
+		createEOperation(typeEClass, TYPE___IS_CLASS);
+		createEOperation(typeEClass, TYPE___IS_TEMPLATE_PARAMETER);
 		createEOperation(typeEClass, TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
 
 		typeExpEClass = createEClass(TYPE_EXP);
@@ -6065,9 +5951,6 @@ public class PivotPackageImpl
 		createEAttribute(typeExtensionEClass, TYPE_EXTENSION__IS_REQUIRED);
 		createEReference(typeExtensionEClass, TYPE_EXTENSION__STEREOTYPE);
 		createEReference(typeExtensionEClass, TYPE_EXTENSION__TYPE);
-
-		typeTemplateParameterEClass = createEClass(TYPE_TEMPLATE_PARAMETER);
-		createEReference(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS);
 
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_MANY);
@@ -6171,8 +6054,9 @@ public class PivotPackageImpl
 		callExpEClass.getESuperTypes().add(this.getOCLExpression());
 		callOperationActionEClass.getESuperTypes().add(this.getNamedElement());
 		classEClass.getESuperTypes().add(this.getType());
-		classEClass.getESuperTypes().add(this.getTemplateableElement());
 		classEClass.getESuperTypes().add(this.getNamespace());
+		classEClass.getESuperTypes().add(this.getTemplateableElement());
+		classEClass.getESuperTypes().add(this.getPackageableElement());
 		collectionItemEClass.getESuperTypes().add(this.getCollectionLiteralPart());
 		collectionLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		collectionLiteralPartEClass.getESuperTypes().add(this.getTypedElement());
@@ -6229,19 +6113,17 @@ public class PivotPackageImpl
 		numericLiteralExpEClass.getESuperTypes().add(this.getPrimitiveLiteralExp());
 		oclExpressionEClass.getESuperTypes().add(this.getTypedElement());
 		operationEClass.getESuperTypes().add(this.getFeature());
-		operationEClass.getESuperTypes().add(this.getTemplateableElement());
 		operationEClass.getESuperTypes().add(this.getNamespace());
+		operationEClass.getESuperTypes().add(this.getTemplateableElement());
 		operationCallExpEClass.getESuperTypes().add(this.getFeatureCallExp());
 		operationCallExpEClass.getESuperTypes().add(this.getReferringElement());
 		oppositePropertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
-		packageEClass.getESuperTypes().add(this.getPackageableElement());
-		packageEClass.getESuperTypes().add(this.getTemplateableElement());
 		packageEClass.getESuperTypes().add(this.getNamespace());
+		packageEClass.getESuperTypes().add(this.getTemplateableElement());
+		packageEClass.getESuperTypes().add(this.getPackageableElement());
 		packageableElementEClass.getESuperTypes().add(this.getNamedElement());
-		packageableElementEClass.getESuperTypes().add(this.getParameterableElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
-		parameterableElementEClass.getESuperTypes().add(this.getElement());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		primitiveTypeEClass.getESuperTypes().add(this.getDataType());
@@ -6260,16 +6142,15 @@ public class PivotPackageImpl
 		setTypeEClass.getESuperTypes().add(this.getCollectionType());
 		signalEClass.getESuperTypes().add(this.getClass_());
 		slotEClass.getESuperTypes().add(this.getElement());
-		stateEClass.getESuperTypes().add(this.getVertex());
 		stateEClass.getESuperTypes().add(this.getNamespace());
+		stateEClass.getESuperTypes().add(this.getVertex());
 		stateExpEClass.getESuperTypes().add(this.getOCLExpression());
 		stateMachineEClass.getESuperTypes().add(this.getBehavior());
 		stereotypeEClass.getESuperTypes().add(this.getClass_());
 		stringLiteralExpEClass.getESuperTypes().add(this.getPrimitiveLiteralExp());
 		templateBindingEClass.getESuperTypes().add(this.getElement());
-		templateParameterEClass.getESuperTypes().add(this.getElement());
+		templateParameterEClass.getESuperTypes().add(this.getType());
 		templateParameterSubstitutionEClass.getESuperTypes().add(this.getElement());
-		templateParameterTypeEClass.getESuperTypes().add(this.getType());
 		templateSignatureEClass.getESuperTypes().add(this.getElement());
 		templateableElementEClass.getESuperTypes().add(this.getElement());
 		transitionEClass.getESuperTypes().add(this.getNamespace());
@@ -6277,11 +6158,10 @@ public class PivotPackageImpl
 		tupleLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		tupleLiteralPartEClass.getESuperTypes().add(this.getVariableDeclaration());
 		tupleTypeEClass.getESuperTypes().add(this.getDataType());
-		typeEClass.getESuperTypes().add(this.getPackageableElement());
+		typeEClass.getESuperTypes().add(this.getNamedElement());
 		typeExpEClass.getESuperTypes().add(this.getOCLExpression());
 		typeExpEClass.getESuperTypes().add(this.getReferringElement());
 		typeExtensionEClass.getESuperTypes().add(this.getElement());
-		typeTemplateParameterEClass.getESuperTypes().add(this.getTemplateParameter());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
 		unlimitedNaturalLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		unspecifiedTypeEClass.getESuperTypes().add(this.getClass_());
@@ -7084,13 +6964,6 @@ public class PivotPackageImpl
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getParameter_Operation(), this.getOperation(), this.getOperation_OwnedParameter(), "operation", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(parameterableElementEClass, ParameterableElement.class, "ParameterableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getParameterableElement_OwningTemplateParameter(), this.getTemplateParameter(), this.getTemplateParameter_OwnedParameteredElement(), "owningTemplateParameter", null, 0, 1, ParameterableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getParameterableElement_TemplateParameter(), this.getTemplateParameter(), this.getTemplateParameter_ParameteredElement(), "templateParameter", null, 0, 1, ParameterableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getParameterableElement__IsCompatibleWith__ParameterableElement(), this.getBoolean(), "isCompatibleWith", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getParameterableElement(), "p", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(pivotableEClass, Pivotable.class, "Pivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(precedenceEClass, Precedence.class, "Precedence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7247,20 +7120,14 @@ public class PivotPackageImpl
 		initEReference(getTemplateBinding_Signature(), this.getTemplateSignature(), null, "signature", null, 1, 1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterEClass, TemplateParameter.class, "TemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplateParameter_Default(), this.getParameterableElement(), null, "default", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateParameter_OwnedDefault(), this.getParameterableElement(), null, "ownedDefault", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateParameter_OwnedParameteredElement(), this.getParameterableElement(), this.getParameterableElement_OwningTemplateParameter(), "ownedParameteredElement", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateParameter_ParameteredElement(), this.getParameterableElement(), this.getParameterableElement_TemplateParameter(), "parameteredElement", null, 1, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateParameter_ConstrainingClass(), this.getClass_(), null, "constrainingClass", null, 0, -1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateParameter_Default(), this.getClass_(), null, "default", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameter_Signature(), this.getTemplateSignature(), this.getTemplateSignature_OwnedParameter(), "signature", null, 1, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterSubstitutionEClass, TemplateParameterSubstitution.class, "TemplateParameterSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplateParameterSubstitution_Actual(), this.getParameterableElement(), null, "actual", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateParameterSubstitution_Actual(), this.getType(), null, "actual", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_Formal(), this.getTemplateParameter(), null, "formal", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateParameterSubstitution_OwnedActual(), this.getParameterableElement(), null, "ownedActual", null, 0, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_TemplateBinding(), this.getTemplateBinding(), this.getTemplateBinding_ParameterSubstitution(), "templateBinding", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(templateParameterTypeEClass, TemplateParameterType.class, "TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTemplateParameterType_Specification(), this.getString(), "specification", null, 0, 1, TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateSignatureEClass, TemplateSignature.class, "TemplateSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateSignature_OwnedParameter(), this.getTemplateParameter(), this.getTemplateParameter_Signature(), "ownedParameter", null, 0, -1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7296,6 +7163,10 @@ public class PivotPackageImpl
 		initEReference(getType_ExtendedBys(), this.getTypeExtension(), this.getTypeExtension_Type(), "extendedBys", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getType_InstanceClassName(), this.getString(), "instanceClassName", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEOperation(getType__IsClass(), this.getClass_(), "isClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getType__IsTemplateParameter(), this.getTemplateParameter(), "isTemplateParameter", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		op = initEOperation(getType__SpecializeIn__OCLExpression_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getOCLExpression(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getType(), "selfType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7307,9 +7178,6 @@ public class PivotPackageImpl
 		initEAttribute(getTypeExtension_IsRequired(), this.getBoolean(), "isRequired", "false", 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTypeExtension_Stereotype(), this.getStereotype(), this.getStereotype_ExtensionOfs(), "stereotype", null, 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeExtension_Type(), this.getType(), this.getType_ExtendedBys(), "type", null, 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(typeTemplateParameterEClass, TypeTemplateParameter.class, "TypeTemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTypeTemplateParameter_ConstrainingClass(), this.getClass_(), null, "constrainingClass", null, 0, -1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTypedElement_IsMany(), this.getBoolean(), "isMany", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7422,8 +7290,6 @@ public class PivotPackageImpl
 		createEcoreAnnotations();
 		// http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
 		createEmofAnnotations();
-		// subsets
-		createSubsetsAnnotations();
 	}
 
 	/**
@@ -7558,13 +7424,6 @@ public class PivotPackageImpl
 			 "body", "templateParameter" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
-		  (getTemplateParameter_OwnedDefault(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "templateParameter" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
 		  (getTemplateParameterSubstitution_Actual(), 
 		   source, 
 		   new String[] 
@@ -7577,20 +7436,6 @@ public class PivotPackageImpl
 		   new String[] 
 		   {
 			 "body", "templateParameterSubstitution" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getTemplateParameterSubstitution_OwnedActual(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "owningTemplateParameterSubstitution" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getTypeTemplateParameter_ConstrainingClass(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "typeTemplateParameter" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getTypedElement_Type(), 
@@ -7615,57 +7460,6 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>subsets</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createSubsetsAnnotations()
-	{
-		String source = "subsets"; //$NON-NLS-1$	
-		addAnnotation
-		  (getParameterableElement_OwningTemplateParameter(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//ParameterableElement/templateParameter") //$NON-NLS-1$
-		   });	
-		addAnnotation
-		  (getTemplateParameter_OwnedDefault(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//TemplateParameter/default") //$NON-NLS-1$
-		   });	
-		addAnnotation
-		  (getTemplateParameter_OwnedParameteredElement(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//TemplateParameter/parameteredElement") //$NON-NLS-1$
-		   });	
-		addAnnotation
-		  (getTemplateParameterSubstitution_OwnedActual(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//TemplateParameterSubstitution/actual") //$NON-NLS-1$
 		   });
 	}
 } //PivotPackageImpl

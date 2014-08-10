@@ -168,7 +168,7 @@ public class BooleanLiteralExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Boolean_0 = idResolver.getType(TypeId.BOOLEAN, null);
+		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		    ;

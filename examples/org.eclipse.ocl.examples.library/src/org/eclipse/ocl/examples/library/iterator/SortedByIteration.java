@@ -150,7 +150,7 @@ public class SortedByIteration extends AbstractIteration
 		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
 		DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		if (staticOperation != null) {
-			DomainClass bodyType = evaluator.getIdResolver().getType(bodyTypeId, null);
+			DomainClass bodyType = evaluator.getIdResolver().getClass(bodyTypeId, null);
 			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);
 			return new SortingValue(evaluator, (CollectionTypeId)accumulatorTypeId, (LibraryBinaryOperation) implementation);
 		}

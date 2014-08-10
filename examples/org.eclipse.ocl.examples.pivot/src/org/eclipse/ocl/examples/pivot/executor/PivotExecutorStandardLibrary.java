@@ -75,7 +75,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(domainPackage.getName());
 		pivotPackage.setURI(domainPackage.getURI());
-		for (DomainType domainType : domainPackage.getOwnedClasses()) {
+		for (DomainClass domainType : domainPackage.getOwnedClasses()) {
 			if (domainType != null) {
 				org.eclipse.ocl.examples.pivot.Class pivotType = createType(domainType);
 				pivotPackage.getOwnedClasses().add(pivotType);
@@ -84,7 +84,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return pivotPackage;
 	}
 
-	protected @NonNull org.eclipse.ocl.examples.pivot.Class createType(@NonNull DomainType domainType) {
+	protected @NonNull org.eclipse.ocl.examples.pivot.Class createType(@NonNull DomainClass domainType) {
 		org.eclipse.ocl.examples.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
 		pivotType.setName(domainType.getName());
 		return pivotType;
@@ -98,7 +98,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return metaModelManager.getMetaclassType();
 	}
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainType type) {
+	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
 		return metaModelManager.getInheritance(type);
 	}
 

@@ -27,7 +27,7 @@ public class MetaclassAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		Metaclass<?> targetClass = (Metaclass<?>) target;
-		environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetClass));
+		environmentView.addElements(PivotUtil.getTemplateParameters(targetClass));
 		Type instanceType = targetClass.getInstanceType();
 		if (instanceType instanceof org.eclipse.ocl.examples.pivot.Class) {
 			environmentView.addAllOperations((org.eclipse.ocl.examples.pivot.Class)instanceType, null);
@@ -78,7 +78,7 @@ public class MetaclassAttribution extends AbstractAttribution
 			if (scopeTarget instanceof Pivotable) {
 				Element pivot = ((Pivotable)scopeTarget).getPivot();
 				if (pivot == target) {		// Inherited template parameters are invisible.
-					environmentView.addAllTypeTemplateParameterables(targetClass);
+					environmentView.addAllTemplateParameterables(targetClass);
 				}
 			}
 		}

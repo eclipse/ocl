@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
+import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.domain.ids.BuiltInTypeId;
@@ -60,7 +61,6 @@ import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -336,6 +336,50 @@ public class OCLinEcoreTablesUtils
 		}
 
 		@Override
+		public @Nullable Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+//			TemplateParameter owningTemplateParameter = type.isTemplateParameter();
+//			if (owningTemplateParameter == null) {
+				type.accept(emitQualifiedLiteralVisitor);
+/*			}
+			else if (owningTemplateParameter.getSignature().getTemplate() instanceof org.eclipse.ocl.examples.pivot.Class) {
+				org.eclipse.ocl.examples.pivot.Class containerType = (org.eclipse.ocl.examples.pivot.Class) owningTemplateParameter.getSignature().getTemplate();
+				assert containerType != null;
+				String prefix = getQualifiedTablesClassName(containerType);
+				if (prefix.length() <= 0) {
+					s.append("(");
+					s.appendClassReference(DomainType.class);
+					s.append(")null/*containerType._package.name/");
+				}
+				else {
+					s.appendClassReference(prefix);
+					s.append(".TypeParameters.");
+					s.appendScopedTypeName(containerType);
+					s.append("_");
+					s.appendParameterName(type);
+				}
+			}
+			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
+				Operation containerOperation  = (Operation) owningTemplateParameter.getSignature().getTemplate();
+				org.eclipse.ocl.examples.pivot.Class containerType = containerOperation.getOwningClass();
+				assert containerType != null;
+				String prefix = getQualifiedTablesClassName(containerType);
+				if (prefix.length() <= 0) {
+					s.append("(");
+					s.appendClassReference(DomainType.class);
+					s.append(")null/*containerOperation.owningType._package.name/");
+				}
+				else {
+					s.appendClassReference(prefix);
+					s.append(".TypeParameters._");
+					containerOperation.accept(emitLiteralVisitor);
+					s.append("_");
+					s.appendParameterName(type);
+				}
+			} */
+			return null;
+		}		
+
+		@Override
 		public @Nullable Object visitCollectionType(@NonNull CollectionType type) {
 			s.append("new ");
 			s.appendClassReference(ExecutorSpecializedType.class);
@@ -391,13 +435,10 @@ public class OCLinEcoreTablesUtils
 		}		
 
 		@Override
-		public @Nullable Object visitType(@NonNull Type type) {
-			TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
-			if (owningTemplateParameter == null) {
-				type.accept(emitQualifiedLiteralVisitor);
-			}
-			else if (owningTemplateParameter.getSignature().getTemplate() instanceof org.eclipse.ocl.examples.pivot.Class) {
-				org.eclipse.ocl.examples.pivot.Class containerType = (org.eclipse.ocl.examples.pivot.Class) owningTemplateParameter.getSignature().getTemplate();
+		public @Nullable Object visitTemplateParameter(@NonNull TemplateParameter type) {
+			TemplateableElement template = type.getSignature().getTemplate();
+			if (template instanceof org.eclipse.ocl.examples.pivot.Class) {
+				org.eclipse.ocl.examples.pivot.Class containerType = (org.eclipse.ocl.examples.pivot.Class) template;
 				assert containerType != null;
 				String prefix = getQualifiedTablesClassName(containerType);
 				if (prefix.length() <= 0) {
@@ -413,8 +454,8 @@ public class OCLinEcoreTablesUtils
 					s.appendParameterName(type);
 				}
 			}
-			else if (owningTemplateParameter.getSignature().getTemplate() instanceof Operation) {
-				Operation containerOperation  = (Operation) owningTemplateParameter.getSignature().getTemplate();
+			else if (template instanceof Operation) {
+				Operation containerOperation  = (Operation) template;
 				org.eclipse.ocl.examples.pivot.Class containerType = containerOperation.getOwningClass();
 				assert containerType != null;
 				String prefix = getQualifiedTablesClassName(containerType);
@@ -445,6 +486,13 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visiting(@NonNull Visitable visitable) {
 			throw new UnsupportedOperationException("Unsupported EmitLiteralVisitor for " + visitable.eClass().getName());
 		}
+
+		@Override
+		public @Nullable Object visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class type) {
+			s.append("Types.");
+			s.appendScopedTypeName(type);
+			return null;
+		}		
 
 		@Override
 		public @Nullable Object visitCollectionType(@NonNull CollectionType type) {
@@ -506,14 +554,8 @@ public class OCLinEcoreTablesUtils
 		}
 
 		@Override
-		public @Nullable Object visitType(@NonNull Type type) {
-			if (type.getOwningTemplateParameter() != null) {
-				s.append("null");
-			}
-			else {
-				s.append("Types.");
-				s.appendScopedTypeName(type);
-			}
+		public @Nullable Object visitTemplateParameter(@NonNull TemplateParameter type) {
+			s.append("null");
 			return null;
 		}		
 	}
@@ -631,7 +673,7 @@ public class OCLinEcoreTablesUtils
 		}
 		else if (pivotMetaModel == pPackage) {
 			Set<org.eclipse.ocl.examples.pivot.Class> types = new HashSet<org.eclipse.ocl.examples.pivot.Class>();
-			for (DomainType type : pivotMetaModel.getOwnedClasses()) {
+			for (DomainClass type : pivotMetaModel.getOwnedClasses()) {
 				assert type != null;
 				boolean pruned = false;
 				Type myType = null;
@@ -692,7 +734,7 @@ public class OCLinEcoreTablesUtils
 			return depth;
 		}
 		int myDepth = 0;
-		for (@NonNull DomainType superType : metaModelManager.getAllSuperClasses(theClass)) {
+		for (@NonNull DomainClass superType : metaModelManager.getAllSuperClasses(theClass)) {
 			org.eclipse.ocl.examples.pivot.Class superClass = metaModelManager.getType(superType);
 			if (superClass != theClass) {
 				superClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
@@ -996,20 +1038,18 @@ public class OCLinEcoreTablesUtils
 		}
 		return name2;
 	}
-	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull Nameable element) {
-		if (element instanceof ParameterableElement) {
-			TemplateParameter templateParameter = ((ParameterableElement)element).getOwningTemplateParameter();
-			if (templateParameter != null) {
-				TemplateableElement template = templateParameter.getSignature().getTemplate();
-				if (template instanceof Operation) {
-					s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningClass())));
-					s.append("_");
-				}
-				s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel((NamedElement) template)));
+	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull DomainType element) {
+		DomainTemplateParameter templateParameter = element.isTemplateParameter();
+		if (templateParameter != null) {
+			TemplateableElement template = ((TemplateParameter)templateParameter).getSignature().getTemplate();		// FIXME cast
+			if (template instanceof Operation) {
+				s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningClass())));
 				s.append("_");
 			}
+			s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel((NamedElement) template)));
+			s.append("_");
 		}
-		s.append(AbstractGenModelHelper.encodeName((NamedElement)element));
+		s.append(AbstractGenModelHelper.encodeName(element));
 		if (element instanceof TemplateableElement) {
 			List<TemplateBinding> templateBindings = ((TemplateableElement)element).getTemplateBinding();
 			if (templateBindings.size() > 0) {
@@ -1017,7 +1057,7 @@ public class OCLinEcoreTablesUtils
 				for (TemplateBinding templateBinding : templateBindings) {
 					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 						s.append("_");
-						getTemplateBindingsName(s, DomainUtil.nonNullModel((Nameable) templateParameterSubstitution.getActual()));
+						getTemplateBindingsName(s, DomainUtil.nonNullModel(templateParameterSubstitution.getActual()));
 					}
 				}
 				s.append("__");

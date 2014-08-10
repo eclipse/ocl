@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
@@ -43,7 +42,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 	}
 
 	@Override
-	protected @NonNull Iterable<? extends DomainType> getDomainTypes() {
+	protected @NonNull Iterable<? extends DomainClass> getDomainTypes() {
 		return DomainUtil.nonNullPivot(domainPackage.getOwnedClasses());
 	}
 

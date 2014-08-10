@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.pivot.AbstractEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -132,7 +132,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 
 	@Override
 	protected @NonNull org.eclipse.ocl.examples.pivot.Class getClassifier(@NonNull Object context) {
-		DomainType dType = metaModelManager.getIdResolver().getStaticTypeOf(context);
+		DomainClass dType = metaModelManager.getIdResolver().getStaticTypeOf(context);
 		return metaModelManager.getType(dType);
 	}
 	

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
@@ -107,7 +108,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
 			IdResolver idResolver = metaModelManager.getIdResolver();
 			Object targetValue = idResolver.boxedValueOf(target);
-			DomainType targetType = idResolver.getStaticTypeOf(targetValue);
+			DomainClass targetType = idResolver.getStaticTypeOf(targetValue);
 			DomainType requiredType = nonNullSpecification.getContextVariable().getType();
 			if ((requiredType == null) || !targetType.conformsTo(metaModelManager, requiredType)) {
 				String message = DomainUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);

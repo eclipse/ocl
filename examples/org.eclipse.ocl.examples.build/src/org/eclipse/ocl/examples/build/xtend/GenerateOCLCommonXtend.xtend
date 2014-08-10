@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding
 import org.eclipse.ocl.examples.pivot.TemplateParameter
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.pivot.TemplateSignature
-import org.eclipse.ocl.examples.pivot.Type
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -58,9 +57,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String declareMetaclasses(Package pkg) {
 		'''
-			«FOR type : pkg.getRootPackage().getSortedMetaclasses()»
-				protected final @NonNull Metaclass<?> «type.getPrefixedSymbolName("_" + type.partialName())» = createMetaclass("«type.
-				name»");
+			«FOR metaclass : pkg.getRootPackage().getSortedMetaclasses()»
+				protected final @NonNull Metaclass<?> «metaclass.getPrefixedSymbolName("_" + metaclass.partialName())» = createMetaclass("«metaclass.name»");
 			«ENDFOR»
 		'''
 	}
@@ -70,14 +68,6 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«FOR type : pkg.getSortedOclTypes()»
 				protected final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
 				eClass.name»("«type.name»");
-			«ENDFOR»
-		'''
-	}
-
-	protected def String declareParameterTypes(Package pkg) {
-		'''
-			«FOR type : pkg.getRootPackage().getSortedParameterTypes()»
-				protected final @NonNull Class «type.getPrefixedSymbolName("_" + type.partialName())» = createClass("«type.name»");
 			«ENDFOR»
 		'''
 	}
@@ -125,7 +115,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				type.setUnspecializedElement(«type.unspecializedElement.getSymbolName()»);
 				«ENDIF»
 				type.setElementType(«type.elementType.getSymbolName()»);
-				«type.emitSuperClasses()»
+				«type.emitSuperClasses("type")»
 			«ENDFOR»
 			}
 		'''
@@ -249,7 +239,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						type.getParameterType().add(«parameterType.getSymbolName()»);
 					«ENDFOR»
 					type.setResultType(«type.resultType.getSymbolName()»);
-					«type.emitSuperClasses()»
+					«type.emitSuperClasses("type")»
 				«ENDFOR»
 			}
 		'''
@@ -264,17 +254,17 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«IF orphanPackage != null»
 					final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				«ENDIF»
-				Metaclass<?> type;
+				Metaclass<?> metaclass;
 				List<Class> superClasses;
-				«FOR type : allMetaclasses»
-					«IF type.unspecializedElement == null»
-						ownedTypes.add(type = «type.getSymbolName()»);
+				«FOR metaclass : allMetaclasses»
+					«IF metaclass.unspecializedElement == null»
+						ownedTypes.add(metaclass = «metaclass.getSymbolName()»);
 					«ELSE»
-						orphanTypes.add(type = «type.getSymbolName()»);
-						type.setUnspecializedElement(«type.unspecializedElement.getSymbolName()»);
+						orphanTypes.add(metaclass = «metaclass.getSymbolName()»);
+						metaclass.setUnspecializedElement(«metaclass.unspecializedElement.getSymbolName()»);
 					«ENDIF»
-					type.setInstanceType(«type.instanceType.getSymbolName()»);
-					«type.emitSuperClasses()»
+					metaclass.setInstanceType(«metaclass.instanceType.getSymbolName()»);
+					«metaclass.emitSuperClasses("metaclass")»
 				«ENDFOR»
 			}
 		'''
@@ -290,7 +280,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR type : allOclTypes»
 					ownedTypes.add(type = «type.getSymbolName()»);
 					«IF !(type instanceof AnyType)»
-						«type.emitSuperClasses()»
+						«type.emitSuperClasses("type")»
 					«ENDIF»
 				«ENDFOR»
 			}
@@ -486,24 +476,24 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTemplateSignatures(Package pkg) {
+	protected def String defineTemplateParameters(Package pkg) {
 		var allTemplateParameters = pkg.getRootPackage().getSortedTemplateParameters();
-		var allTemplateSignatures = pkg.getRootPackage().getSortedTemplateSignatures();
 		'''
 			«FOR templateParameter : allTemplateParameters»
-			protected final @NonNull TypeTemplateParameter «templateParameter.getPrefixedSymbolName(
-						"tp_" + templateParameter.partialName())» = createTypeTemplateParameter(«templateParameter.
-						ownedParameteredElement.getSymbolName()»);
+			protected final @NonNull TemplateParameter «templateParameter.getPrefixedSymbolName(
+						"tp_" + templateParameter.partialName())» = createTemplateParameter("«templateParameter.getName()»", null);
 			«ENDFOR»
-			
+		'''
+	}
+
+	protected def String defineTemplateSignatures(Package pkg) {
+		var allTemplateSignatures = pkg.getRootPackage().getSortedTemplateSignatures();
+		'''
 			«FOR templateSignature : allTemplateSignatures»
 			protected final @NonNull TemplateSignature «templateSignature.getPrefixedSymbolName(
 						"ts_" + templateSignature.partialName())» = createTemplateSignature(«templateSignature.template.getSymbolName()»«FOR templateParameter : templateSignature.
 						ownedParameter», «templateParameter.getSymbolName()»«ENDFOR»);
 			«ENDFOR»
-			
-			protected void installTemplateSignatures() {
-			}
 		'''
 	}
 
@@ -523,7 +513,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 							«property.getSymbolName()».setImplementation(«property.implementationClass».INSTANCE);
 						«ENDIF»
 					«ENDFOR»
-					«type.emitSuperClasses()»
+					«type.emitSuperClasses("type")»
 				«ENDFOR»
 			}
 		'''
@@ -555,19 +545,19 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String emitSuperClasses(Class type) {
+	protected def String emitSuperClasses(Class type, String typeName) {
 		var superClasses = type.getSuperclassesInPackage();
 		'''
 			«IF superClasses.size() > 0»
-				superClasses = type.getSuperClasses();
+				superClasses = «typeName».getSuperClasses();
 				«FOR superClass : superClasses»
 					superClasses.add(«superClass.getSymbolName()»);
 				«ENDFOR»
 			«ELSEIF (type instanceof CollectionType)»
-				superClasses = type.getSuperClasses();
+				superClasses = «typeName».getSuperClasses();
 				superClasses.add(_OclAny);
 			«ELSEIF !(type instanceof AnyType)»
-				superClasses = type.getSuperClasses();
+				superClasses = «typeName».getSuperClasses();
 				superClasses.add(_OclElement);
 			«ENDIF»
 		'''
@@ -577,13 +567,10 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		switch element {
 			CollectionType case element.elementType == null: return element.javaName()
 			CollectionType: return element.javaName() + "_" + element.elementType.partialName()
-//			InvalidType: return "invalid"		
 			LambdaType case element.contextType == null: return "null"
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
-//			VoidType: return "void"		
-			Type case element.getTemplateParameter() != null: return element.getTemplateParameter().simpleName() + "_" + element.javaName()
 			Class case element.templateBinding.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
-			Type: return element.javaName()
+			Class: return element.javaName()
 			Comment case element.body == null: return "null"
 			Comment: return element.javaName(element.body.substring(0, Math.min(11, element.body.length() - 1)))
 			EnumerationLiteral case element.enumeration == null: return "null"
@@ -598,9 +585,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			TemplateBinding case element.signature.template == null: return "null"
 			TemplateBinding: return element.boundElement.partialName()
 			TemplateParameter case element.signature.template == null: return "[" + element.signature.partialName() + "]"
-			TemplateParameter case element.parameteredElement == null: return element.signature.template.partialName()
-			TemplateParameter case true: return element.signature.template.partialName()
-			TemplateParameter: return element.signature.template.partialName() + "_" + element.parameteredElement.simpleName()
+			TemplateParameter: return element.javaName()
 			TemplateParameterSubstitution case element.templateBinding == null: return "null"
 			TemplateParameterSubstitution case element.templateBinding.boundElement == null: return "null"
 			TemplateParameterSubstitution: return element.templateBinding.boundElement.partialName()
@@ -612,15 +597,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String simpleName(EObject element) {
 		switch element {
-//			InvalidType: return "invalid"		
-//			VoidType: return "void"		
 			TemplateParameter case element.signature.template == null: return "null"
-			TemplateParameter: return element.signature.template.simpleName()
+			TemplateParameter: return element.signature.template.simpleName() + "_" + element.javaName()
 			TemplateParameterSubstitution case element.templateBinding == null: return "null"
 			TemplateParameterSubstitution case element.templateBinding.boundElement == null: return "null"
 			TemplateParameterSubstitution: return element.templateBinding.boundElement.simpleName()
-			Type case element.getTemplateParameter() == null: return element.javaName()
-			Type: return element.getTemplateParameter().simpleName() + "_" + element.javaName()
+			Class: return element.javaName()
 			Operation case element.owningClass == null: return "null_" + element.javaName()
 			Operation: return element.owningClass.simpleName() + "_" + element.javaName()
 			default: return "xyzzy" + element.eClass().name

@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Metaclass;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -248,8 +247,8 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	{
 		public static TypeValueFilter INSTANCE = new TypeValueFilter();
 		
-		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
-				@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
+		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
+				@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
 			return 0;
 		}
 
@@ -268,8 +267,8 @@ public abstract class CS2Pivot extends AbstractConversion implements MetaModelMa
 	{
 		public static UndecoratedNameFilter INSTANCE = new UndecoratedNameFilter();
 		
-		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
-				@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
+		public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
+				@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
 			return 0;
 		}
 

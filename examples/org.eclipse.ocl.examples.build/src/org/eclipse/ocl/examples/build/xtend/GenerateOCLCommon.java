@@ -253,7 +253,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
 				!(eObject instanceof Metaclass<?>) && !(eObject instanceof TupleType) &&
-				(((org.eclipse.ocl.examples.pivot.Class)eObject).getOwningTemplateParameter() == null)) {
+				(((org.eclipse.ocl.examples.pivot.Class)eObject).isTemplateParameter() == null)) {
 				allElements.add((org.eclipse.ocl.examples.pivot.Class)eObject);
 			}
 		}
@@ -554,7 +554,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
 				org.eclipse.ocl.examples.pivot.Class t = (org.eclipse.ocl.examples.pivot.Class)eObject;
-				if (t.getOwningTemplateParameter() != null) {
+				if (t.isTemplateParameter() != null) {			// FIXME can never happen
 					allElements.add(t);
 				}
 			}

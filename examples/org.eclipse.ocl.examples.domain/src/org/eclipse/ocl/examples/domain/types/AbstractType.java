@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainConstraint;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -33,8 +34,8 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	}
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return standardLibrary.getInheritance(this);
-//		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+//		return standardLibrary.getInheritance(this);
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 
 //	public @NonNull String getMetaTypeName() {
@@ -50,17 +51,13 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 		return name;
 	}
 
-	public @NonNull DomainType getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
-		return getInheritance(standardLibrary);
+	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+		throw new UnsupportedOperationException();			// FIXME
 	}
 
 	public @NonNull List<? extends DomainConstraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
-
-//	public DomainPackage getPackage() {
-//		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
-//	}
 	
 	public final DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;

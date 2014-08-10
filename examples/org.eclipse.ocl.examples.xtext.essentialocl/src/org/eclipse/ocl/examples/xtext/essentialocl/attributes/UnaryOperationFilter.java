@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.scoping.EnvironmentView;
@@ -38,7 +37,7 @@ public class UnaryOperationFilter extends AbstractOperationFilter
 			if (candidateParameters.size() != 0) {
 				return false;
 			}
-			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(environmentView.getMetaModelManager(), candidateOperation);
+			Map<TemplateParameter, Type> bindings = getOperationBindings(environmentView.getMetaModelManager(), candidateOperation);
 			if (bindings != null) {
 				installBindings(environmentView, object, bindings);
 			}

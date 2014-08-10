@@ -818,17 +818,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
-	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.examples.pivot.ParameterableElement object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitParameterableElement(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object) {
 		P prologue = preVisit(object);
 		try {
@@ -1104,17 +1093,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		}
 	}
 
-	public @Nullable R visitTemplateParameterType(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterType object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitTemplateParameterType(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
 	public @Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.examples.pivot.TemplateSignature object) {
 		P prologue = preVisit(object);
 		try {
@@ -1218,17 +1196,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTypeExtension(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
-	public @Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitTypeTemplateParameter(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

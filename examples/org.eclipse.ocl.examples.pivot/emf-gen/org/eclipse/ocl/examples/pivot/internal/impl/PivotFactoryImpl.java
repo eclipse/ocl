@@ -100,7 +100,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Transition;
 import org.eclipse.ocl.examples.pivot.TransitionKind;
@@ -110,7 +109,6 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
@@ -246,7 +244,6 @@ public class PivotFactoryImpl
 			case PivotPackage.TEMPLATE_BINDING: return (EObject)createTemplateBinding();
 			case PivotPackage.TEMPLATE_PARAMETER: return (EObject)createTemplateParameter();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION: return (EObject)createTemplateParameterSubstitution();
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE: return (EObject)createTemplateParameterType();
 			case PivotPackage.TEMPLATE_SIGNATURE: return (EObject)createTemplateSignature();
 			case PivotPackage.TRANSITION: return (EObject)createTransition();
 			case PivotPackage.TRIGGER: return (EObject)createTrigger();
@@ -255,7 +252,6 @@ public class PivotFactoryImpl
 			case PivotPackage.TUPLE_TYPE: return (EObject)createTupleType();
 			case PivotPackage.TYPE_EXP: return (EObject)createTypeExp();
 			case PivotPackage.TYPE_EXTENSION: return (EObject)createTypeExtension();
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER: return (EObject)createTypeTemplateParameter();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP: return (EObject)createUnlimitedNaturalLiteralExp();
 			case PivotPackage.UNSPECIFIED_TYPE: return (EObject)createUnspecifiedType();
 			case PivotPackage.UNSPECIFIED_VALUE_EXP: return (EObject)createUnspecifiedValueExp();
@@ -454,16 +450,6 @@ public class PivotFactoryImpl
 	public Precedence createPrecedence() {
 		PrecedenceImpl precedence = new PrecedenceImpl();
 		return precedence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeTemplateParameter createTypeTemplateParameter() {
-		TypeTemplateParameterImpl typeTemplateParameter = new TypeTemplateParameterImpl();
-		return typeTemplateParameter;
 	}
 
 	/**
@@ -1182,16 +1168,6 @@ public class PivotFactoryImpl
 	public StringLiteralExp createStringLiteralExp() {
 		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
 		return stringLiteralExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameterType createTemplateParameterType() {
-		TemplateParameterTypeImpl templateParameterType = new TemplateParameterTypeImpl();
-		return templateParameterType;
 	}
 
 	/**

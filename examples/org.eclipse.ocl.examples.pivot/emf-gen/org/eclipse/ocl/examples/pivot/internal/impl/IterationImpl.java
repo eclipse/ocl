@@ -142,12 +142,12 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
@@ -199,14 +199,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getImplementationClass();
 			case PivotPackage.ITERATION__IS_STATIC:
 				return isStatic();
+			case PivotPackage.ITERATION__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.ITERATION__IS_INVALIDATING:
@@ -281,6 +281,10 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
+			case PivotPackage.ITERATION__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -290,10 +294,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
-				return;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)newValue);
@@ -382,6 +382,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
+			case PivotPackage.ITERATION__OWNED_RULE:
+				getOwnedRule().clear();
+				return;
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -390,9 +393,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
-				return;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				getOwnedRule().clear();
 				return;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)null);
@@ -466,14 +466,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.ITERATION__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
+			case PivotPackage.ITERATION__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.ITERATION__IS_INVALIDATING:

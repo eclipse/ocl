@@ -11,6 +11,8 @@
 package org.eclipse.ocl.examples.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -42,8 +44,16 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 	public @NonNull TemplateParameterId getTypeId() {
 		return typeid;
 	}
+	
+	public @Nullable DomainClass isClass() {
+		return null;
+	}
 
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	public @NonNull DomainTemplateParameter isTemplateParameter() {
+		return this;
 	}
 }

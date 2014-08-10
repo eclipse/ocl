@@ -179,7 +179,7 @@
       <generalization xmi:id="Ppivot.TClass.g0" general="Ppivot.TType"/>
       <generalization xmi:id="Ppivot.TClass.g1" general="Ppivot.TNamespace"/>
       <generalization xmi:id="Ppivot.TClass.g2" general="Ppivot.TTemplateableElement"/>
-      <generalization xmi:id="Ppivot.TClass.g3" general="Ppivot.TParameterableElement"/>
+      <generalization xmi:id="Ppivot.TClass.g3" general="Ppivot.TPackageableElement"/>
       <ownedAttribute xmi:id="Ppivot.TClass.PisAbstract" name="isAbstract" type="Ppivot.TBoolean">
         <ownedComment xmi:id="Ppivot.TClass.PisAbstract.oC0" annotatedElement="Ppivot.TClass.PisAbstract">
           <body>True when a class is abstract.</body>
@@ -880,7 +880,6 @@
         <body>Packageable elements are able to serve as a template parameter.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TPackageableElement.g0" general="Ppivot.TNamedElement"/>
-      <generalization xmi:id="Ppivot.TPackageableElement.g1" general="Ppivot.TParameterableElement"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameter" name="Parameter">
       <ownedComment xmi:id="Ppivot.TParameter.oC0" annotatedElement="Ppivot.TParameter">
@@ -893,26 +892,6 @@
           <body>The operation that owns the parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameter.Poperation.lV"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameterableElement" name="ParameterableElement" isAbstract="true">
-      <ownedComment xmi:id="Ppivot.TParameterableElement.oC0" annotatedElement="Ppivot.TParameterableElement">
-        <body>A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.</body>
-      </ownedComment>
-      <generalization xmi:id="Ppivot.TParameterableElement.g0" general="Ppivot.TElement"/>
-      <ownedAttribute xmi:id="Ppivot.TParameterableElement.PtemplateParameter" name="templateParameter" type="Ppivot.TTemplateParameter"
-          association="Ppivot.A_parameteredElement_templateParameter">
-        <ownedComment xmi:id="Ppivot.TParameterableElement.PtemplateParameter.oC0" annotatedElement="Ppivot.TParameterableElement.PtemplateParameter">
-          <body>The template parameter that exposes this element as a formal parameter.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameterableElement.PtemplateParameter.lV"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TParameterableElement.PowningTemplateParameter" name="owningTemplateParameter" type="Ppivot.TTemplateParameter"
-          subsettedProperty="Ppivot.TParameterableElement.PtemplateParameter" association="Ppivot.A_ownedParameteredElement_owningTemplateParameter">
-        <ownedComment xmi:id="Ppivot.TParameterableElement.PowningTemplateParameter.oC0" annotatedElement="Ppivot.TParameterableElement.PowningTemplateParameter">
-          <body>The formal template parameter that owns this element.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameterableElement.PowningTemplateParameter.lV"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
@@ -1344,37 +1323,24 @@
       <ownedComment xmi:id="Ppivot.TTemplateParameter.oC0" annotatedElement="Ppivot.TTemplateParameter">
         <body>A template parameter exposes a parameterable element as a formal template parameter of a template.</body>
       </ownedComment>
-      <generalization xmi:id="Ppivot.TTemplateParameter.g0" general="Ppivot.TElement"/>
+      <generalization xmi:id="Ppivot.TTemplateParameter.g0" general="Ppivot.TType"/>
       <ownedAttribute xmi:id="Ppivot.TTemplateParameter.Psignature" name="signature" type="Ppivot.TTemplateSignature" association="Ppivot.A_ownedParameter_signature">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.Psignature.oC0" annotatedElement="Ppivot.TTemplateParameter.Psignature">
           <body>The template signature that owns this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PparameteredElement" name="parameteredElement" type="Ppivot.TParameterableElement"
-          association="Ppivot.A_parameteredElement_templateParameter">
-        <ownedComment xmi:id="Ppivot.TTemplateParameter.PparameteredElement.oC0" annotatedElement="Ppivot.TTemplateParameter.PparameteredElement">
-          <body>The element exposed by this template parameter.</body>
-        </ownedComment>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PownedParameteredElement" name="ownedParameteredElement" type="Ppivot.TParameterableElement"
-          aggregation="composite" subsettedProperty="Ppivot.TTemplateParameter.PparameteredElement" association="Ppivot.A_ownedParameteredElement_owningTemplateParameter">
-        <ownedComment xmi:id="Ppivot.TTemplateParameter.PownedParameteredElement.oC0" annotatedElement="Ppivot.TTemplateParameter.PownedParameteredElement">
-          <body>The element that is owned by this template parameter.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PownedParameteredElement.lV"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.Pdefault" name="default" type="Ppivot.TParameterableElement" association="Ppivot.A_default_templateParameter">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.Pdefault" name="default" type="Ppivot.TClass" association="Ppivot.A_default_templateParameter">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.Pdefault.oC0" annotatedElement="Ppivot.TTemplateParameter.Pdefault">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.Pdefault.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PownedDefault" name="ownedDefault" type="Ppivot.TParameterableElement" aggregation="composite"
-          subsettedProperty="Ppivot.TTemplateParameter.Pdefault" association="Ppivot.A_ownedDefault_templateParameter">
-        <ownedComment xmi:id="Ppivot.TTemplateParameter.PownedDefault.oC0" annotatedElement="Ppivot.TTemplateParameter.PownedDefault">
-          <body>The element that is owned by this template parameter for the purpose of providing a default.</body>
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PconstrainingClass" name="constrainingClass" type="Ppivot.TClass">
+        <ownedComment xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.oC0" annotatedElement="Ppivot.TTemplateParameter.PconstrainingClass">
+          <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PownedDefault.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTemplateParameterSubstitution" name="TemplateParameterSubstitution">
@@ -1393,23 +1359,10 @@
           <body>The optional bindings from this element to templates.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual" name="actual" type="Ppivot.TParameterableElement" association="Ppivot.A_actual_templateParameterSubstitution">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual" name="actual" type="Ppivot.TType" association="Ppivot.A_actual_templateParameterSubstitution">
         <ownedComment xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual.oC0" annotatedElement="Ppivot.TTemplateParameterSubstitution.Pactual">
           <body>The element that is the actual parameter for this substitution.</body>
         </ownedComment>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.PownedActual" name="ownedActual" type="Ppivot.TParameterableElement"
-          aggregation="composite" subsettedProperty="Ppivot.TTemplateParameterSubstitution.Pactual" association="Ppivot.A_ownedActual_owningTemplateParameterSubstitution">
-        <ownedComment xmi:id="Ppivot.TTemplateParameterSubstitution.PownedActual.oC0" annotatedElement="Ppivot.TTemplateParameterSubstitution.PownedActual">
-          <body>The actual parameter that is owned by this substitution.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameterSubstitution.PownedActual.lV"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTemplateParameterType" name="TemplateParameterType">
-      <generalization xmi:id="Ppivot.TTemplateParameterType.g0" general="Ppivot.TType"/>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameterType.Pspecification" name="specification" type="Ppivot.TString">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameterType.Pspecification.lV"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTemplateSignature" name="TemplateSignature">
@@ -1535,14 +1488,6 @@
         <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TType.g0" general="Ppivot.TNamedElement"/>
-      <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TPackageableElement"/>
-      <ownedAttribute xmi:id="Ppivot.TType.PtemplateParameter" name="templateParameter" type="Ppivot.TTypeTemplateParameter" redefinedProperty="Ppivot.TParameterableElement.PtemplateParameter"
-          association="Ppivot.A_type_templateParameter_parameteredElement">
-        <ownedComment xmi:id="Ppivot.TType.PtemplateParameter.oC0" annotatedElement="Ppivot.TType.PtemplateParameter">
-          <body>The template parameter that exposes this element as a formal parameter.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PtemplateParameter.lV"/>
-      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TType.PinstanceClassName" name="instanceClassName" type="Ppivot.TString">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PinstanceClassName.lV"/>
       </ownedAttribute>
@@ -1550,6 +1495,16 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PextendedBys.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TType.PextendedBys.uV" value="*"/>
       </ownedAttribute>
+      <ownedOperation xmi:id="Ppivot.TType.OisClass" name="isClass">
+        <ownedParameter xmi:id="Ppivot.TType.OisClass.Presult" name="result" type="Ppivot.TClass" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.OisClass.Presult.lV"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="Ppivot.TType.OisTemplateParameter" name="isTemplateParameter">
+        <ownedParameter xmi:id="Ppivot.TType.OisTemplateParameter.Presult" name="result" type="Ppivot.TTemplateParameter" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.OisTemplateParameter.Presult.lV"/>
+        </ownedParameter>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypeExp" name="TypeExp">
       <generalization xmi:id="Ppivot.TTypeExp.g0" general="Ppivot.TOCLExpression"/>
@@ -1571,25 +1526,6 @@
       <ownedAttribute xmi:id="Ppivot.TTypeExtension.Ptype" name="type" type="Ppivot.TType" association="Ppivot.A_extendedBys_type">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTypeExtension.Ptype.lV" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTypeExtension.Ptype.uV" value="1"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypeTemplateParameter" name="TypeTemplateParameter">
-      <ownedComment xmi:id="Ppivot.TTypeTemplateParameter.oC0" annotatedElement="Ppivot.TTypeTemplateParameter">
-        <body>A type template parameter exposes a type as a formal template parameter.</body>
-      </ownedComment>
-      <generalization xmi:id="Ppivot.TTypeTemplateParameter.g0" general="Ppivot.TTemplateParameter"/>
-      <ownedAttribute xmi:id="Ppivot.TTypeTemplateParameter.PparameteredElement" name="parameteredElement" type="Ppivot.TType" redefinedProperty="Ppivot.TTemplateParameter.PparameteredElement"
-          association="Ppivot.A_type_templateParameter_parameteredElement">
-        <ownedComment xmi:id="Ppivot.TTypeTemplateParameter.PparameteredElement.oC0" annotatedElement="Ppivot.TTypeTemplateParameter.PparameteredElement">
-          <body>The parameterable classifier for this template parameter.</body>
-        </ownedComment>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClass" name="constrainingClass" type="Ppivot.TClass" association="Ppivot.A_constrainingClass_typeTemplateParameter">
-        <ownedComment xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClass.oC0" annotatedElement="Ppivot.TTypeTemplateParameter.PconstrainingClass">
-          <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
-        </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClass.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTypeTemplateParameter.PconstrainingClass.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypedElement" name="TypedElement" isAbstract="true">
@@ -1757,15 +1693,6 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connectionPoint_state" name="A_connectionPoint_state" memberEnd="Ppivot.TState.PconnectionPoint Ppivot.TPseudostate.Pstate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connectionPoint_stateMachine" name="A_connectionPoint_stateMachine" memberEnd="Ppivot.TStateMachine.PconnectionPoint Ppivot.TPseudostate.PstateMachine"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_connection_state" name="A_connection_state" memberEnd="Ppivot.TState.Pconnection Ppivot.TConnectionPointReference.Pstate"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_constrainingClass_typeTemplateParameter" name="A_constrainingClass_typeTemplateParameter"
-        memberEnd="Ppivot.TTypeTemplateParameter.PconstrainingClass Ppivot.A_constrainingClass_typeTemplateParameter.PtypeTemplateParameter">
-      <ownedEnd xmi:id="Ppivot.A_constrainingClass_typeTemplateParameter.PtypeTemplateParameter" name="typeTemplateParameter" type="Ppivot.TTypeTemplateParameter"
-          association="Ppivot.A_constrainingClass_typeTemplateParameter">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_constrainingClass_typeTemplateParameter.PtypeTemplateParameter.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_constrainingClass_typeTemplateParameter.PtypeTemplateParameter.uV"
-            value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_constraint_redefinedConstraint" name="A_constraint_redefinedConstraint"
         memberEnd="Ppivot.A_constraint_redefinedConstraint.Pconstraint Ppivot.TConstraint.PredefinedConstraint">
       <ownedEnd xmi:id="Ppivot.A_constraint_redefinedConstraint.Pconstraint" name="constraint" type="Ppivot.TConstraint" association="Ppivot.A_constraint_redefinedConstraint">
@@ -1816,28 +1743,12 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_outgoing_source" name="A_outgoing_source" memberEnd="Ppivot.TVertex.Poutgoing Ppivot.TTransition.Psource"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedActual_owningTemplateParameterSubstitution" name="A_ownedActual_owningTemplateParameterSubstitution"
-        memberEnd="Ppivot.TTemplateParameterSubstitution.PownedActual Ppivot.A_ownedActual_owningTemplateParameterSubstitution.PowningTemplateParameterSubstitution">
-      <ownedEnd xmi:id="Ppivot.A_ownedActual_owningTemplateParameterSubstitution.PowningTemplateParameterSubstitution" name="owningTemplateParameterSubstitution"
-          type="Ppivot.TTemplateParameterSubstitution" association="Ppivot.A_ownedActual_owningTemplateParameterSubstitution">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_ownedActual_owningTemplateParameterSubstitution.PowningTemplateParameterSubstitution.lV"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedClasses_owningPackage" name="A_ownedClasses_owningPackage" memberEnd="Ppivot.TPackage.PownedClasses Ppivot.TClass.PowningPackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedComment_owningElement" name="A_ownedComment_owningElement" memberEnd="Ppivot.TElement.PownedComment Ppivot.TComment.PowningElement"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedDefault_templateParameter" name="A_ownedDefault_templateParameter"
-        memberEnd="Ppivot.TTemplateParameter.PownedDefault Ppivot.A_ownedDefault_templateParameter.PtemplateParameter">
-      <ownedEnd xmi:id="Ppivot.A_ownedDefault_templateParameter.PtemplateParameter" name="templateParameter" type="Ppivot.TTemplateParameter"
-          association="Ppivot.A_ownedDefault_templateParameter">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_ownedDefault_templateParameter.PtemplateParameter.lV"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedLiteral_enumeration" name="A_ownedLiteral_enumeration" memberEnd="Ppivot.TEnumeration.PownedLiteral Ppivot.TEnumerationLiteral.Penumeration"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedOperations_owningClass" name="A_ownedOperations_owningClass" memberEnd="Ppivot.TClass.PownedOperations Ppivot.TOperation.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Ppivot.TOperation.PownedParameter Ppivot.TParameter.Poperation"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameter_signature" name="A_ownedParameter_signature" memberEnd="Ppivot.TTemplateSignature.PownedParameter Ppivot.TTemplateParameter.Psignature"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameteredElement_owningTemplateParameter" name="A_ownedParameteredElement_owningTemplateParameter"
-        memberEnd="Ppivot.TTemplateParameter.PownedParameteredElement Ppivot.TParameterableElement.PowningTemplateParameter"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedProperties_owningClass" name="A_ownedProperties_owningClass" memberEnd="Ppivot.TClass.PownedProperties Ppivot.TProperty.PowningClass"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_template"
         memberEnd="Ppivot.TTemplateableElement.PownedTemplateSignature Ppivot.TTemplateSignature.Ptemplate"/>
@@ -1845,8 +1756,6 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_owningState_stateInvariant" name="A_owningState_stateInvariant" memberEnd="Ppivot.TState.PstateInvariant Ppivot.TConstraint.PowningState"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameterSubstitution_templateBinding" name="A_parameterSubstitution_templateBinding"
         memberEnd="Ppivot.TTemplateBinding.PparameterSubstitution Ppivot.TTemplateParameterSubstitution.PtemplateBinding"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameteredElement_templateParameter" name="A_parameteredElement_templateParameter"
-        memberEnd="Ppivot.TTemplateParameter.PparameteredElement Ppivot.TParameterableElement.PtemplateParameter"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_postcondition_postContext" name="A_postcondition_postContext" memberEnd="Ppivot.TOperation.Ppostcondition Ppivot.TConstraint.PpostContext"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_precondition_preContext" name="A_precondition_preContext" memberEnd="Ppivot.TOperation.Pprecondition Ppivot.TConstraint.PpreContext"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_property_redefinedProperty" name="A_property_redefinedProperty" memberEnd="Ppivot.A_property_redefinedProperty.Pproperty Ppivot.TProperty.PredefinedProperty">
@@ -1901,8 +1810,6 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_type_instanceSpecification.PinstanceSpecification.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_templateParameter_parameteredElement" name="A_type_templateParameter_parameteredElement"
-        memberEnd="Ppivot.TType.PtemplateParameter Ppivot.TTypeTemplateParameter.PparameteredElement"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_typedElement" name="A_type_typedElement" memberEnd="Ppivot.TTypedElement.Ptype Ppivot.A_type_typedElement.PtypedElement">
       <ownedEnd xmi:id="Ppivot.A_type_typedElement.PtypedElement" name="typedElement" type="Ppivot.TTypedElement" association="Ppivot.A_type_typedElement">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_type_typedElement.PtypedElement.lV"/>

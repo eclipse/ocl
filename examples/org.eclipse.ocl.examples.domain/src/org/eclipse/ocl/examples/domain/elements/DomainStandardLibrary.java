@@ -81,7 +81,7 @@ public interface DomainStandardLibrary
 	/**
 	 * Return the Inheritance dispatch table for a given type.
 	 */
-	@NonNull DomainInheritance getInheritance(@NonNull DomainType type);
+	@NonNull DomainInheritance getInheritance(@NonNull DomainClass type);
 	
     /**
      * Obtains the instance of the PrimitiveType metatype, named

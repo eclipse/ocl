@@ -5557,11 +5557,11 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTemplateParameterSubstitutionCS_OwningTemplateBinding();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getActualParameter <em>Owned Actual Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Owned Actual Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter()
+	 * @see org.eclipse.ocl.examples.xtext.base.basecs.TemplateParameterSubstitutionCS#getActualParameter()
 	 * @see #getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */

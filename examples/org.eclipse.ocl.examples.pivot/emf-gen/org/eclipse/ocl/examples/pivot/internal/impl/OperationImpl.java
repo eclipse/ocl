@@ -82,10 +82,10 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isValidating <em>Is Validating</em>}</li>
@@ -105,6 +105,16 @@ import org.eclipse.osgi.util.NLS;
 public class OperationImpl
 		extends FeatureImpl
 		implements Operation {
+
+	/**
+	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRule()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> ownedRule;
 
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
@@ -135,16 +145,6 @@ public class OperationImpl
 	 * @ordered
 	 */
 	protected TemplateableElement unspecializedElement;
-
-	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> ownedRule;
 
 	/**
 	 * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.
@@ -652,20 +652,20 @@ public class OperationImpl
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		        @NonNull /*@Caught*/ Object CAUGHT_self_70;
 		        try {
 		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = this.getBodyExpression();
-		            final /*@Thrown*/ boolean self_71 = bodyExpression != null;
-		            CAUGHT_self_71 = self_71;
+		            final /*@Thrown*/ boolean self_70 = bodyExpression != null;
+		            CAUGHT_self_70 = self_70;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
 		        }
 		        final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
-		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getType(PivotTables.CLSSid_ExpressionInOCL, null);
+		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
 		            final @Nullable /*@Thrown*/ DomainExpression oclAsType = (DomainExpression)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {
@@ -678,16 +678,16 @@ public class OperationImpl
 		        catch (Exception e) {
 		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
 		        if (symbol_0) {
 		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
 		            /*@Thrown*/ boolean symbol_3;
 		            if (symbol_1) {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
+		                if (CAUGHT_self_70 instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_self_70;
 		                }
-		                symbol_3 = (Boolean)CAUGHT_self_71;
+		                symbol_3 = (Boolean)CAUGHT_self_70;
 		            }
 		            else {
 		                if (CAUGHT_b instanceof InvalidValueException) {
@@ -699,20 +699,20 @@ public class OperationImpl
 		                    symbol_2 = ValuesUtil.FALSE_VALUE;
 		                }
 		                else {
-		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_71;
+		                    if (CAUGHT_self_70 instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_self_70;
 		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_71;
+		                    symbol_2 = (Boolean)CAUGHT_self_70;
 		                }
 		                symbol_3 = symbol_2;
 		            }
 		            symbol_8 = symbol_3;
 		        }
 		        else {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
+		            if (CAUGHT_self_70 instanceof InvalidValueException) {
+		                throw (InvalidValueException)CAUGHT_self_70;
 		            }
-		            final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
+		            final /*@Thrown*/ boolean eq_0 = CAUGHT_self_70 == Boolean.FALSE;
 		            /*@Thrown*/ boolean symbol_7;
 		            if (eq_0) {
 		                symbol_7 = ValuesUtil.FALSE_VALUE;
@@ -1011,12 +1011,12 @@ public class OperationImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.OPERATION__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
@@ -1079,14 +1079,14 @@ public class OperationImpl
 				return getImplementationClass();
 			case PivotPackage.OPERATION__IS_STATIC:
 				return isStatic();
+			case PivotPackage.OPERATION__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.OPERATION__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
-			case PivotPackage.OPERATION__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.OPERATION__IS_INVALIDATING:
@@ -1156,6 +1156,10 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
+			case PivotPackage.OPERATION__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+				return;
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
@@ -1165,10 +1169,6 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
-				return;
-			case PivotPackage.OPERATION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)newValue);
@@ -1248,6 +1248,9 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
+			case PivotPackage.OPERATION__OWNED_RULE:
+				getOwnedRule().clear();
+				return;
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
@@ -1256,9 +1259,6 @@ public class OperationImpl
 				return;
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
-				return;
-			case PivotPackage.OPERATION__OWNED_RULE:
-				getOwnedRule().clear();
 				return;
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				setBodyExpression((LanguageExpression)null);
@@ -1325,14 +1325,14 @@ public class OperationImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.OPERATION__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
+			case PivotPackage.OPERATION__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.OPERATION__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
-			case PivotPackage.OPERATION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return bodyExpression != null;
 			case PivotPackage.OPERATION__IS_INVALIDATING:
@@ -1364,6 +1364,14 @@ public class OperationImpl
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Namespace.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case PivotPackage.OPERATION__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
+				default: return -1;
+			}
+		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (derivedFeatureID)
@@ -1371,14 +1379,6 @@ public class OperationImpl
 				case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
 				case PivotPackage.OPERATION__TEMPLATE_BINDING: return PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING;
 				case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == Namespace.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.OPERATION__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
 				default: return -1;
 			}
 		}
@@ -1392,6 +1392,14 @@ public class OperationImpl
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Namespace.class)
+		{
+			switch (baseFeatureID)
+			{
+				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.OPERATION__OWNED_RULE;
+				default: return -1;
+			}
+		}
 		if (baseClass == TemplateableElement.class)
 		{
 			switch (baseFeatureID)
@@ -1399,14 +1407,6 @@ public class OperationImpl
 				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING: return PivotPackage.OPERATION__TEMPLATE_BINDING;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == Namespace.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.OPERATION__OWNED_RULE;
 				default: return -1;
 			}
 		}

@@ -18,7 +18,6 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -109,19 +108,19 @@ public class LambdaTypeManager
 	} */
 	   
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-			@Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+			@Nullable Map<TemplateParameter, Type> bindings) {
 		if (bindings == null) {
 			return getLambdaType(typeName, contextType, parameterTypes, resultType);
 		}
 		else {
-			org.eclipse.ocl.examples.pivot.Class specializedContextType = metaModelManager.getSpecializedType(contextType, bindings);
+			Type specializedContextType = metaModelManager.getSpecializedType(contextType, bindings);
 			List<Type> specializedParameterTypes = new ArrayList<Type>();
 			for (Type parameterType : parameterTypes) {
 				if (parameterType != null) {
 					specializedParameterTypes.add(metaModelManager.getSpecializedType(parameterType, bindings));
 				}
 			}
-			org.eclipse.ocl.examples.pivot.Class specializedResultType = metaModelManager.getSpecializedType(resultType, bindings);
+			Type specializedResultType = metaModelManager.getSpecializedType(resultType, bindings);
 			return getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
 		}
 	}

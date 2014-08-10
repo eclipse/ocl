@@ -80,7 +80,6 @@ import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -108,7 +107,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Transition;
@@ -119,7 +117,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -538,11 +535,6 @@ public class PivotAdapterFactory
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseParameterableElement(ParameterableElement object)
-			{
-				return createParameterableElementAdapter();
-			}
-			@Override
 			public Adapter casePivotable(Pivotable object)
 			{
 				return createPivotableAdapter();
@@ -678,11 +670,6 @@ public class PivotAdapterFactory
 				return createTemplateParameterSubstitutionAdapter();
 			}
 			@Override
-			public Adapter caseTemplateParameterType(TemplateParameterType object)
-			{
-				return createTemplateParameterTypeAdapter();
-			}
-			@Override
 			public Adapter caseTemplateSignature(TemplateSignature object)
 			{
 				return createTemplateSignatureAdapter();
@@ -731,11 +718,6 @@ public class PivotAdapterFactory
 			public Adapter caseTypeExtension(TypeExtension object)
 			{
 				return createTypeExtensionAdapter();
-			}
-			@Override
-			public Adapter caseTypeTemplateParameter(TypeTemplateParameter object)
-			{
-				return createTypeTemplateParameterAdapter();
 			}
 			@Override
 			public Adapter caseTypedElement(TypedElement object)
@@ -1761,20 +1743,6 @@ public class PivotAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterType <em>Template Parameter Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterType
-	 * @generated
-	 */
-	public Adapter createTemplateParameterTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.TupleLiteralExp <em>Tuple Literal Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2074,20 +2042,6 @@ public class PivotAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.ParameterableElement <em>Parameterable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement
-	 * @generated
-	 */
-	public Adapter createParameterableElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution <em>Template Parameter Substitution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2140,20 +2094,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createPrecedenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter <em>Type Template Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter
-	 * @generated
-	 */
-	public Adapter createTypeTemplateParameterAdapter() {
 		return null;
 	}
 

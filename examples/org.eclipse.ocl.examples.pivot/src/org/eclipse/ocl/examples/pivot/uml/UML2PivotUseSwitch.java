@@ -468,8 +468,8 @@ public class UML2PivotUseSwitch extends UMLSwitch<Object>
 //	@Override
 //	public Object caseETypeParameter(ETypeParameter eObject) {
 //		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
-//		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-//		doSwitchAll(Type.class, typeTemplateParameter.getConstrainingType(), eObject.getEBounds());
+//		TemplateParameter TemplateParameter = (TemplateParameter) pivotElement.getTemplateParameter();
+//		doSwitchAll(Type.class, TemplateParameter.getConstrainingType(), eObject.getEBounds());
 //		return null;
 //	}
 

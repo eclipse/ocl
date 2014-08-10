@@ -30,7 +30,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
@@ -56,7 +55,6 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.SequenceType;
@@ -64,7 +62,6 @@ import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -458,12 +455,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.appendClassReference(DomainTypeParameters.class);
 					s.append("(");
 					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedParameter()) {
-						ParameterableElement parameteredElement = parameter.getParameteredElement();
-						if (parameteredElement instanceof Nameable) {
+						if (parameter != null) {
 							s.append("TypeParameters._");
 							op.accept(emitLiteralVisitor);
 							s.append("_");
-							s.appendParameterName((NamedElement)parameteredElement);
+							s.appendParameterName(parameter);
 						}
 					}
 					s.append(")");
@@ -651,12 +647,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		appendTypeFlags(pClass);
 		if (pClass.getOwnedTemplateSignature() != null) {
 			for (TemplateParameter parameter : pClass.getOwnedTemplateSignature().getOwnedParameter()) {
-				if (parameter instanceof TypeTemplateParameter) {
-					Type parameteredElement = DomainUtil.nonNullModel((Type) parameter.getParameteredElement());
+				if (parameter != null) {
 					s.append(", TypeParameters.");
 					s.appendScopedTypeName(pClass);
 					s.append("_");
-					s.appendParameterName(parameteredElement);
+					s.appendParameterName(parameter);
 				}
 			}
 		}
@@ -828,14 +823,13 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			if (templateSignature != null) {
 				s.append("\n");
 				for (TemplateParameter parameter : templateSignature.getOwnedParameter()) {
-					if (parameter instanceof TypeTemplateParameter) {
-						Type parameteredElement = DomainUtil.nonNullModel((Type) parameter.getParameteredElement());
+					if (parameter != null) {
 						s.append("		public static final " + atNonNull() + " ");
 						s.appendClassReference(ExecutorTypeParameter.class);
 						s.append(" ");
 						s.appendScopedTypeName(pClass);
 						s.append("_");
-						s.appendParameterName(parameteredElement);
+						s.appendParameterName(parameter);
 						s.append(" = new ");
 						s.appendClassReference(ExecutorTypeParameter.class);
 						s.append("(");
@@ -851,7 +845,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.append(".getTemplateParameterId(" + elementId.getIndex() + ")");
 						}
  						s.append(", LIBRARY, ");
-						s.appendString(DomainUtil.nonNullModel(parameteredElement.getName()));
+						s.appendString(DomainUtil.nonNullModel(parameter.getName()));
 						s.append(");\n");
 					}
 				}
@@ -861,14 +855,13 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				templateSignature = operation.getOwnedTemplateSignature();
 				if (templateSignature != null) {
 					for (/*@NonNull*/ TemplateParameter parameter : templateSignature.getOwnedParameter()) {
-						if (parameter instanceof TypeTemplateParameter) {
-							Type parameteredElement = DomainUtil.nonNullModel((Type) parameter.getParameteredElement());
+						if (parameter != null) {
 							s.append("		public static final " + atNonNull() + " ");
 							s.appendClassReference(ExecutorTypeParameter.class);
 							s.append(" _");
 							operation.accept(emitLiteralVisitor);
 							s.append("_");
-							s.appendParameterName(parameteredElement);
+							s.appendParameterName(parameter);
 							s.append(" = new ");
 							s.appendClassReference(ExecutorTypeParameter.class);
 							s.append("(");
@@ -884,7 +877,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 								s.append(".getTemplateParameterId(" + elementId.getIndex() + ")");
 							}
 							s.append(", LIBRARY, ");
-							s.appendString(DomainUtil.nonNullModel(parameteredElement.getName()));
+							s.appendString(DomainUtil.nonNullModel(parameter.getName()));
 							s.append(");\n");
 						}
 					}

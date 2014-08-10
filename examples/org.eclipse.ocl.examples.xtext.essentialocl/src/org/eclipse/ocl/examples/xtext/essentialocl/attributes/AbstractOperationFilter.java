@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
@@ -35,24 +34,24 @@ public abstract class AbstractOperationFilter implements ScopeFilter
 		this.sourceType = sourceType != null ? PivotUtil.getType(sourceType) : null;		// FIXME redundant
 	}
 
-	public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, ParameterableElement> bindings1,
-			@NonNull Object match2, @Nullable Map<TemplateParameter, ParameterableElement> bindings2) {
+	public int compareMatches(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @Nullable Map<TemplateParameter, Type> bindings1,
+			@NonNull Object match2, @Nullable Map<TemplateParameter, Type> bindings2) {
 		return metaModelManager.compareOperationMatches((Operation)match1, bindings1, (Operation)match2, bindings2);
 	}
 
-	protected @Nullable Map<TemplateParameter, ParameterableElement> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
+	protected @Nullable Map<TemplateParameter, Type> getOperationBindings(@NonNull MetaModelManager metaModelManager, @NonNull Operation candidateOperation) {
 		Type sourceType = this.sourceType;
 		if (!(sourceType instanceof CollectionType) && (candidateOperation.getOwningClass() instanceof CollectionType) && (sourceType != null)) {
 			assert sourceType != null;
 			sourceType = metaModelManager.getSetType(sourceType, null, null);		// Implicit oclAsSet()
 		}			
-		Map<TemplateParameter, ParameterableElement> bindings = sourceType instanceof TemplateableElement ? PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement)sourceType) : null;
+		Map<TemplateParameter, Type> bindings = sourceType instanceof TemplateableElement ? PivotUtil.getAllTemplateParameterSubstitutions(null, (TemplateableElement)sourceType) : null;
 //			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 				if (bindings == null) {
-					bindings = new HashMap<TemplateParameter, ParameterableElement>();
+					bindings = new HashMap<TemplateParameter, Type>();
 				}
 				bindings.put(templateParameter, null);
 			}
@@ -61,7 +60,7 @@ public abstract class AbstractOperationFilter implements ScopeFilter
 	}
 
 	protected void installBindings(@NonNull EnvironmentView environmentView, @NonNull Object object,
-			@Nullable Map<TemplateParameter, ParameterableElement> bindings) {
+			@Nullable Map<TemplateParameter, Type> bindings) {
 		environmentView.setBindings(object, bindings);
 	}
 }

@@ -302,10 +302,6 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.examples.pivot.ParameterableElement object) {
-		return null;
-	}
-
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object) {
 		return null;
 	}
@@ -406,10 +402,6 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
-	public @Nullable R visitTemplateParameterType(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterType object) {
-		return null;
-	}
-
 	public @Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.examples.pivot.TemplateSignature object) {
 		return null;
 	}
@@ -447,10 +439,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
-		return null;
-	}
-
-	public @Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object) {
 		return null;
 	}
 

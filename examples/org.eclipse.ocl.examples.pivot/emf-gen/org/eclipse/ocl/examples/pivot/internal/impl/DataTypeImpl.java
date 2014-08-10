@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Behavior;
@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -192,23 +191,18 @@ public class DataTypeImpl
 				return getOwnedComment();
 			case PivotPackage.DATA_TYPE__NAME:
 				return getName();
-			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.DATA_TYPE__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				return getExtendedBys();
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
+			case PivotPackage.DATA_TYPE__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.DATA_TYPE__IS_ACTIVE:
@@ -268,18 +262,16 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.DATA_TYPE__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -290,10 +282,6 @@ public class DataTypeImpl
 				return;
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -366,17 +354,14 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.DATA_TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.DATA_TYPE__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
@@ -386,9 +371,6 @@ public class DataTypeImpl
 				return;
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
-				return;
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				getOwnedRule().clear();
 				return;
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -450,22 +432,18 @@ public class DataTypeImpl
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.DATA_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.DATA_TYPE__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.DATA_TYPE__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.DATA_TYPE__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.DATA_TYPE__IS_ACTIVE:
@@ -512,11 +490,7 @@ public class DataTypeImpl
 	
 	@Override
 	public @NonNull TypeId computeId() {
-		TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {
-			return owningTemplateParameter.getElementId();
-		}
-		else if (eContainer() instanceof Library) {
+		if (eContainer() instanceof Library) {
 			String name2 = name;
 			if (name2 == null) {
 				name2 = "";
@@ -534,7 +508,7 @@ public class DataTypeImpl
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		DomainType behavioralType = getBehavioralClass();
+		DomainClass behavioralType = getBehavioralClass();
 		return standardLibrary.getInheritance(behavioralType != null ? behavioralType : this);
 	}
 } //DataTypeImpl

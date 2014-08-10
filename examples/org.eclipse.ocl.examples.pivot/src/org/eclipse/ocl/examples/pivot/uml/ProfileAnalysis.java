@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.pivot.Profile;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -352,7 +352,7 @@ public class ProfileAnalysis
 				if (subMetatype != null) {
 					Set<Type> superMetatypeClosure = new HashSet<Type>();
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);
-					for (DomainType asSuperMetatype : metaModelManager.getAllSuperClasses(subMetatype)) {
+					for (DomainClass asSuperMetatype : metaModelManager.getAllSuperClasses(subMetatype)) {
 						if (asSuperMetatype instanceof TypeServer) {
 							asSuperMetatype = ((TypeServer)asSuperMetatype).getPivotType();
 						}
@@ -376,7 +376,7 @@ public class ProfileAnalysis
 			if (subStereotype != null) {
 				Set<Stereotype> superStereotypeClosure = new HashSet<Stereotype>();
 				stereotype2superStereotypeClosure.put(subStereotype, superStereotypeClosure);
-				for (DomainType asSuperStereotype : metaModelManager.getAllSuperClasses(subStereotype)) {
+				for (DomainClass asSuperStereotype : metaModelManager.getAllSuperClasses(subStereotype)) {
 					if (asSuperStereotype instanceof TypeServer) {
 						asSuperStereotype = ((TypeServer)asSuperStereotype).getPivotType();
 					}

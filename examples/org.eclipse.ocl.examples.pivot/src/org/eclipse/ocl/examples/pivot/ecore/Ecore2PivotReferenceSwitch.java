@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.library.JavaCompareToOperation;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -440,10 +440,9 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 	@Override
 	public Object caseETypeParameter(ETypeParameter eObject) {
 		@SuppressWarnings("null") @NonNull ETypeParameter eObject2 = eObject;
-		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject2);
+		TemplateParameter pivotElement = converter.getCreated(TemplateParameter.class, eObject2);
 		if (pivotElement != null) {
-			TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, typeTemplateParameter.getConstrainingClass(), eObject2.getEBounds());
+			doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getConstrainingClass(), eObject2.getEBounds());
 		}
 		return null;
 	}

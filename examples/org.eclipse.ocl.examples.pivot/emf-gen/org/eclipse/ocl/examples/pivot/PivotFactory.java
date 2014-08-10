@@ -131,15 +131,6 @@ public interface PivotFactory
 	Precedence createPrecedence();
 
 	/**
-	 * Returns a new object of class '<em>Type Template Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Template Parameter</em>'.
-	 * @generated
-	 */
-	TypeTemplateParameter createTypeTemplateParameter();
-
-	/**
 	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -759,15 +750,6 @@ public interface PivotFactory
 	 * @generated
 	 */
 	StringLiteralExp createStringLiteralExp();
-
-	/**
-	 * Returns a new object of class '<em>Template Parameter Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Template Parameter Type</em>'.
-	 * @generated
-	 */
-	TemplateParameterType createTemplateParameterType();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp</em>'.

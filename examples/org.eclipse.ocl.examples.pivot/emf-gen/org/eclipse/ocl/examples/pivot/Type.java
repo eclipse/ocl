@@ -12,6 +12,8 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
@@ -35,7 +37,7 @@ import java.util.List;
  * @generated
  */
 public interface Type
-		extends PackageableElement, org.eclipse.ocl.examples.domain.elements.DomainType {
+		extends NamedElement, org.eclipse.ocl.examples.domain.elements.DomainType {
 
 	/**
 	 * Returns the value of the '<em><b>Extended Bys</b></em>' reference list.
@@ -85,5 +87,9 @@ public interface Type
 	 * @generated
 	 */
 	Type specializeIn(OCLExpression expr, Type selfType);
+
+	@Nullable org.eclipse.ocl.examples.pivot.Class isClass();
+
+	@Nullable TemplateParameter isTemplateParameter();
 
 } // Type

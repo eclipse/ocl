@@ -295,7 +295,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.examples.pivot.Package object) {
-		return visitPackageableElement(object);
+		return visitNamespace(object);
 	}
 
 	public @Nullable R visitPackageableElement(@NonNull org.eclipse.ocl.examples.pivot.PackageableElement object) {
@@ -304,10 +304,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.examples.pivot.Parameter object) {
 		return visitVariableDeclaration(object);
-	}
-
-	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.examples.pivot.ParameterableElement object) {
-		return visitElement(object);
 	}
 
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.examples.pivot.Precedence object) {
@@ -379,7 +375,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitState(@NonNull org.eclipse.ocl.examples.pivot.State object) {
-		return visitVertex(object);
+		return visitNamespace(object);
 	}
 
 	public @Nullable R visitStateExp(@NonNull org.eclipse.ocl.examples.pivot.StateExp object) {
@@ -403,15 +399,11 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameter object) {
-		return visitElement(object);
+		return visitType(object);
 	}
 
 	public @Nullable R visitTemplateParameterSubstitution(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution object) {
 		return visitElement(object);
-	}
-
-	public @Nullable R visitTemplateParameterType(@NonNull org.eclipse.ocl.examples.pivot.TemplateParameterType object) {
-		return visitType(object);
 	}
 
 	public @Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.examples.pivot.TemplateSignature object) {
@@ -443,7 +435,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public @Nullable R visitType(@NonNull org.eclipse.ocl.examples.pivot.Type object) {
-		return visitPackageableElement(object);
+		return visitNamedElement(object);
 	}
 
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.examples.pivot.TypeExp object) {
@@ -452,10 +444,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.examples.pivot.TypeExtension object) {
 		return visitElement(object);
-	}
-
-	public @Nullable R visitTypeTemplateParameter(@NonNull org.eclipse.ocl.examples.pivot.TypeTemplateParameter object) {
-		return visitTemplateParameter(object);
 	}
 
 	public @Nullable R visitTypedElement(@NonNull org.eclipse.ocl.examples.pivot.TypedElement object) {

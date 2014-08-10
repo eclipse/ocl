@@ -33,14 +33,13 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 
 public class Pivot2UMLDeclarationVisitor
@@ -361,13 +360,14 @@ public class Pivot2UMLDeclarationVisitor
 
 
 	@Override
-	public org.eclipse.uml2.uml.ClassifierTemplateParameter visitTypeTemplateParameter(@NonNull TypeTemplateParameter pivotTypeTemplateParameter) {
+	public org.eclipse.uml2.uml.ClassifierTemplateParameter visitTemplateParameter(@NonNull TemplateParameter pivotTemplateParameter) {
 		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
-		umlTypeParameter.setOwnedParameteredElement((ParameterableElement) safeVisit(pivotTypeTemplateParameter.getOwnedParameteredElement()));
-//		umlTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
-		context.putCreated(pivotTypeTemplateParameter, umlTypeParameter);
-		if (!pivotTypeTemplateParameter.getConstrainingClass().isEmpty()) {
-			context.defer(pivotTypeTemplateParameter);
+		org.eclipse.uml2.uml.Class umlClass = UMLFactory.eINSTANCE.createClass();
+		umlClass.setName(pivotTemplateParameter.getName());
+		umlTypeParameter.setOwnedParameteredElement(umlClass);
+		context.putCreated(pivotTemplateParameter, umlTypeParameter);
+		if (!pivotTemplateParameter.getConstrainingClass().isEmpty()) {
+			context.defer(pivotTemplateParameter);
 		}
 		return umlTypeParameter;
 	}

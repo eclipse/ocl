@@ -26,8 +26,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 
 /**
@@ -51,14 +49,9 @@ public class TemplateSpecialisation
 		if (referencedType == null) {
 			return true;
 		}
-		if (referencedType instanceof DomainTemplateParameter) {
+		DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
+		if (templateParameter != null) {
 			return true;
-		}
-		if (referencedType instanceof ParameterableElement) {
-			TemplateParameter templateParameter = ((ParameterableElement)referencedType).getOwningTemplateParameter();
-			if (templateParameter != null) {
-				return true;
-			}
 		}
 		if (referencedType instanceof DomainCollectionType) {
 			DomainType elementType = ((DomainCollectionType)referencedType).getElementType();
@@ -116,11 +109,8 @@ public class TemplateSpecialisation
 	 * Returns null if specialisation not available or not distinct from referencedType.
 	 */
 	private @Nullable DomainType getResolution(@Nullable DomainType referencedType) {
-		if (referencedType instanceof DomainTemplateParameter) {
-			return bindings != null ? bindings.get(referencedType) : null;
-		}
-		if (referencedType instanceof ParameterableElement) {
-			DomainTemplateParameter templateParameter = ((ParameterableElement)referencedType).getOwningTemplateParameter();
+		if (referencedType != null) {
+			DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
 			if (templateParameter != null) {
 				return bindings != null ? bindings.get(templateParameter) : null;
 			}
@@ -168,8 +158,8 @@ public class TemplateSpecialisation
 		if (referencedType instanceof DomainMetaclass) {
 			referencedType = DomainUtil.nonNullState(((DomainMetaclass)referencedType).getInstanceType());			// FIXME must be a more regular way
 		}
-		if (referencedType instanceof DomainTemplateParameter) {
-			DomainTemplateParameter templateParameter = (DomainTemplateParameter) referencedType;
+		DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
+		if (templateParameter != null) {
 			if (bindings == null) {
 				bindings = new HashMap<DomainTemplateParameter, DomainType>();
 			}
@@ -177,18 +167,6 @@ public class TemplateSpecialisation
 				bindings.put(templateParameter, null);
 			}
 			return;
-		}
-		if (referencedType instanceof ParameterableElement) {
-			DomainTemplateParameter templateParameter = ((ParameterableElement)referencedType).getOwningTemplateParameter();
-			if (templateParameter != null) {
-				if (bindings == null) {
-					bindings = new HashMap<DomainTemplateParameter, DomainType>();
-				}
-				if (bindings.put(templateParameter, resolvedType) != null) {
-					bindings.put(templateParameter, null);
-				}
-				return;
-			}
 		}
 		if (referencedType instanceof DomainCollectionType) {
 			if (resolvedType instanceof DomainCollectionType) {

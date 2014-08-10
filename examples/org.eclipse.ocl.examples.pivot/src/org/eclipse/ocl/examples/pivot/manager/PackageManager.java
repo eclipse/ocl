@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Root;
 import org.eclipse.ocl.examples.pivot.Stereotype;
@@ -89,7 +88,7 @@ public class PackageManager implements PackageServerParent
 	 * Map from each merged type to the TypeTracker that supervises its merge. TypeTrackers are only
 	 * created for merged types, so a missing entry just denotes an unmerged type. 
 	 */
-	private final @NonNull Map<DomainType, TypeTracker> type2tracker = new WeakHashMap<DomainType, TypeTracker>();
+	private final @NonNull Map<DomainClass, TypeTracker> type2tracker = new WeakHashMap<DomainClass, TypeTracker>();
 
 	/**
 	 * Map from each primitive type name to the TypeServer that supervises its merge. 
@@ -191,7 +190,7 @@ public class PackageManager implements PackageServerParent
 		}
 	}
 
-	void addTypeTracker(@NonNull DomainType pivotType, @NonNull TypeTracker typeTracker) {
+	void addTypeTracker(@NonNull DomainClass pivotType, @NonNull TypeTracker typeTracker) {
 		TypeTracker oldTracker = type2tracker.put(pivotType, typeTracker);
 		assert oldTracker == null;
 	}
@@ -574,7 +573,7 @@ public class PackageManager implements PackageServerParent
 		}
 		else if (pivotType instanceof PrimitiveType) {
 			PrimitiveTypeServer primitiveTypeServer = getPrimitiveTypeServer((PrimitiveType) pivotType);
-			primitiveTypeServer.getTypeTracker(pivotType);
+			primitiveTypeServer.getTypeTracker((PrimitiveType)pivotType);
 			return primitiveTypeServer;
 		}
 		else if (pivotType instanceof DomainClass) {
@@ -619,39 +618,39 @@ public class PackageManager implements PackageServerParent
 		}
 	}
 
-	void removedType(@NonNull DomainType pivotType) {
+	void removedType(@NonNull DomainClass pivotType) {
 		TypeTracker typeTracker = type2tracker.get(pivotType);
 		if (typeTracker != null) {
 			typeTracker.dispose();
 		}
 	}
 
-	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass, Map<TemplateParameter, ParameterableElement> allBindings) {
-		for (org.eclipse.ocl.examples.pivot.Class superType : unspecializedClass.getSuperClasses()) {
-			List<TemplateBinding> superTemplateBindings = superType.getTemplateBinding();
+	void resolveSuperClasses(@NonNull org.eclipse.ocl.examples.pivot.Class specializedClass, @NonNull org.eclipse.ocl.examples.pivot.Class unspecializedClass, Map<TemplateParameter, Type> allBindings) {
+		for (org.eclipse.ocl.examples.pivot.Class superClass : unspecializedClass.getSuperClasses()) {
+			List<TemplateBinding> superTemplateBindings = superClass.getTemplateBinding();
 			if (superTemplateBindings.size() > 0) {
-				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
+				List<Type> superTemplateArgumentList = new ArrayList<Type>();
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
 					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getParameterSubstitution()) {
-						ParameterableElement superActual = superParameterSubstitution.getActual();
-						TemplateParameter superTemplateParameter = superActual.getTemplateParameter();
-						ParameterableElement actualActual = allBindings.get(superTemplateParameter);
+						Type superActual = superParameterSubstitution.getActual();
+						TemplateParameter superTemplateParameter = superActual.isTemplateParameter();
+						Type actualActual = allBindings.get(superTemplateParameter);
 						superTemplateArgumentList.add(actualActual);
 					}
 				}
-				@NonNull Type unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(superType);
-				TypeServer superTypeServer = metaModelManager.getTypeServer(unspecializedSuperType);
+				@NonNull org.eclipse.ocl.examples.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
+				TypeServer superTypeServer = metaModelManager.getTypeServer(unspecializedSuperClass);
 				if ((superTypeServer instanceof CollectionTypeServer) && (superTemplateArgumentList.size() == 1)) {
-					ParameterableElement templateArgument = superTemplateArgumentList.get(0);
-					if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Class) {
-						org.eclipse.ocl.examples.pivot.Class specializedSuperType = ((CollectionTypeServer)superTypeServer).getSpecializedType((org.eclipse.ocl.examples.pivot.Class)templateArgument, null, null);
-						specializedClass.getSuperClasses().add(specializedSuperType);
+					Type templateArgument = superTemplateArgumentList.get(0);
+					if (templateArgument != null) {
+						org.eclipse.ocl.examples.pivot.Class specializedSuperClass = ((CollectionTypeServer)superTypeServer).getSpecializedType(templateArgument, null, null);
+						specializedClass.getSuperClasses().add(specializedSuperClass);
 					}
 				}
 				else if ((superTypeServer instanceof MetaclassServer) && (superTemplateArgumentList.size() == 1)) {
-					ParameterableElement templateArgument = superTemplateArgumentList.get(0);
-					if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Class) {
-						org.eclipse.ocl.examples.pivot.Class superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass((org.eclipse.ocl.examples.pivot.Class)templateArgument);
+					Type templateArgument = superTemplateArgumentList.get(0);
+					if (templateArgument != null) {
+						org.eclipse.ocl.examples.pivot.Class superMetaclass = ((MetaclassServer)superTypeServer).getMetaclass(templateArgument);
 						specializedClass.getSuperClasses().add(superMetaclass);
 					}
 				}
@@ -661,7 +660,7 @@ public class PackageManager implements PackageServerParent
 				}
 			}
 			else {
-				specializedClass.getSuperClasses().add(superType);
+				specializedClass.getSuperClasses().add(superClass);
 			}
 		}
 	}

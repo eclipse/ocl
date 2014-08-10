@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -165,9 +165,9 @@ public class Pivot2UMLReferenceVisitor
 	}
 
 	@Override
-	public EObject visitTypeTemplateParameter(@NonNull TypeTemplateParameter pivotTypeTemplateParameter) {
-//		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = context.getCreated(org.eclipse.uml2.uml.ClassifierTemplateParameter.class, pivotTypeTemplateParameter);
-//		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingType()) {
+	public EObject visitTemplateParameter(@NonNull TemplateParameter pivotTemplateParameter) {
+//		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = context.getCreated(org.eclipse.uml2.uml.ClassifierTemplateParameter.class, pivotTemplateParameter);
+//		for (Type constrainingType : pivotTemplateParameter.getConstrainingType()) {
 //			EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 //			umlTypeParameter.getEBounds().add(eGenericType);
 //		}

@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.Import;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Root;
@@ -492,13 +491,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	@Override
 	public Continuation<?> visitTemplateParameterCS(@NonNull TemplateParameterCS csElement) {
-		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CLASS;
-		org.eclipse.ocl.examples.pivot.Class pivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, eClass, csElement);
-		TemplateParameter pivotTemplateParameter = pivotElement.getOwningTemplateParameter();
-		if (pivotTemplateParameter == null) {
-			pivotTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-			pivotTemplateParameter.setOwnedParameteredElement(pivotElement);
-		}
+		@SuppressWarnings("unused")
+		TemplateParameter pivotElement = refreshNamedElement(TemplateParameter.class, PivotPackage.Literals.TEMPLATE_PARAMETER, csElement);
 		return null;
 	}
 
@@ -514,9 +508,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		List<TemplateParameter> newPivotTemplateParameters = new ArrayList<TemplateParameter>();
 		List<TemplateParameterCS> csTemplateParameters = csElement.getOwnedTemplateParameter();
 		for (TemplateParameterCS csTemplateParameter : csTemplateParameters) {
-			org.eclipse.ocl.examples.pivot.Class pivotTemplateParameterClass = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csTemplateParameter);
-			if (pivotTemplateParameterClass != null) {
-				TemplateParameter pivotTemplateParameter = pivotTemplateParameterClass.getOwningTemplateParameter();
+			TemplateParameter pivotTemplateParameter = PivotUtil.getPivot(TemplateParameter.class, csTemplateParameter);
+			if (pivotTemplateParameter != null) {
 				newPivotTemplateParameters.add(pivotTemplateParameter);
 			}
 		}

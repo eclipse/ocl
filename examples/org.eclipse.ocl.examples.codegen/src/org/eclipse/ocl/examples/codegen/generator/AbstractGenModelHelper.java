@@ -30,6 +30,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
+import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.domain.library.AbstractOperation;
@@ -40,7 +41,6 @@ import org.eclipse.ocl.examples.domain.library.LibraryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -53,7 +53,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	public static final @NonNull String TABLES_CLASS_SUFFIX = "Tables";
 	public static final @NonNull String TABLES_PACKAGE_NAME = "";
 	
-	public static @NonNull String encodeName(@NonNull NamedElement element) {
+	public static @NonNull String encodeName(@NonNull DomainNamedElement element) {
 		int arity = element instanceof DomainOperation ? ((DomainOperation)element).getOwnedParameter().size() : 0;
 		String rawEncodeName = rawEncodeName(DomainUtil.nonNullModel(element.getName()), arity);
 		if (element instanceof DomainOperation) {

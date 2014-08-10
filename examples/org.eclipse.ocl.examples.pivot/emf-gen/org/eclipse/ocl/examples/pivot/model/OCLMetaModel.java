@@ -126,7 +126,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installOperations();
 			installIterations();
 			installProperties();
-			installTemplateSignatures();
 			installTemplateBindings();
 			installComments();
 		}
@@ -209,7 +208,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _Package = createClass(PivotPackage.Literals.PACKAGE);
 		protected final @NonNull Class _PackageableElement = createClass(PivotPackage.Literals.PACKAGEABLE_ELEMENT);
 		protected final @NonNull Class _Parameter = createClass(PivotPackage.Literals.PARAMETER);
-		protected final @NonNull Class _ParameterableElement = createClass(PivotPackage.Literals.PARAMETERABLE_ELEMENT);
 		protected final @NonNull Class _Pivotable = createClass(PivotPackage.Literals.PIVOTABLE);
 		protected final @NonNull Class _Precedence = createClass(PivotPackage.Literals.PRECEDENCE);
 		protected final @NonNull Class _PrimitiveLiteralExp = createClass(PivotPackage.Literals.PRIMITIVE_LITERAL_EXP);
@@ -237,7 +235,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _TemplateBinding = createClass(PivotPackage.Literals.TEMPLATE_BINDING);
 		protected final @NonNull Class _TemplateParameter = createClass(PivotPackage.Literals.TEMPLATE_PARAMETER);
 		protected final @NonNull Class _TemplateParameterSubstitution = createClass(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION);
-		protected final @NonNull Class _TemplateParameterType = createClass(PivotPackage.Literals.TEMPLATE_PARAMETER_TYPE);
 		protected final @NonNull Class _TemplateSignature = createClass(PivotPackage.Literals.TEMPLATE_SIGNATURE);
 		protected final @NonNull Class _TemplateableElement = createClass(PivotPackage.Literals.TEMPLATEABLE_ELEMENT);
 		protected final @NonNull DataType _Throwable = createDataType(PivotPackage.Literals.THROWABLE);
@@ -249,7 +246,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Class _Type = createClass(PivotPackage.Literals.TYPE);
 		protected final @NonNull Class _TypeExp = createClass(PivotPackage.Literals.TYPE_EXP);
 		protected final @NonNull Class _TypeExtension = createClass(PivotPackage.Literals.TYPE_EXTENSION);
-		protected final @NonNull Class _TypeTemplateParameter = createClass(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER);
 		protected final @NonNull Class _TypedElement = createClass(PivotPackage.Literals.TYPED_ELEMENT);
 		protected final @NonNull Class _UnlimitedNaturalLiteralExp = createClass(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP);
 		protected final @NonNull Class _UnspecifiedType = createClass(PivotPackage.Literals.UNSPECIFIED_TYPE);
@@ -287,7 +283,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull EnumerationLiteral el__TransitionKind_local = createEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral(TransitionKind.LOCAL_VALUE));
 		protected final @NonNull EnumerationLiteral el__TransitionKind_external = createEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral(TransitionKind.EXTERNAL_VALUE));
 
-		protected final @NonNull Class _Metaclass_T = createClass("T");
+		protected final @NonNull TemplateParameter tp_T = createTemplateParameter("T", null);
 
 		protected final @NonNull BagType _Bag_Annotation = createBagType("Bag"/*Annotation*/, "0", "*");
 		protected final @NonNull BagType _Bag_AssociationClassCallExp = createBagType("Bag"/*AssociationClassCallExp*/, "0", "*");
@@ -317,6 +313,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull BagType _Bag_State = createBagType("Bag"/*State*/, "0", "*");
 		protected final @NonNull BagType _Bag_StateExp = createBagType("Bag"/*StateExp*/, "0", "*");
 		protected final @NonNull BagType _Bag_StateMachine = createBagType("Bag"/*StateMachine*/, "0", "*");
+		protected final @NonNull BagType _Bag_TemplateParameter = createBagType("Bag"/*TemplateParameter*/, "0", "*");
 		protected final @NonNull BagType _Bag_TypeExp = createBagType("Bag"/*TypeExp*/, "0", "*");
 		protected final @NonNull BagType _Bag_UnspecifiedType = createBagType("Bag"/*UnspecifiedType*/, "0", "*");
 		protected final @NonNull BagType _Bag_Variable = createBagType("Bag"/*Variable*/, "0", "*");
@@ -513,8 +510,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Class);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Type);
-			superClasses.add(_TemplateableElement);
 			superClasses.add(_Namespace);
+			superClasses.add(_TemplateableElement);
+			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _CollectionItem);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionLiteralPart);
@@ -685,8 +683,8 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Feature);
-			superClasses.add(_TemplateableElement);
 			superClasses.add(_Namespace);
+			superClasses.add(_TemplateableElement);
 			ownedTypes.add(type = _OperationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_FeatureCallExp);
@@ -699,19 +697,15 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_CollectionType);
 			ownedTypes.add(type = _Package);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_PackageableElement);
-			superClasses.add(_TemplateableElement);
 			superClasses.add(_Namespace);
+			superClasses.add(_TemplateableElement);
+			superClasses.add(_PackageableElement);
 			ownedTypes.add(type = _PackageableElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			superClasses.add(_ParameterableElement);
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
-			ownedTypes.add(type = _ParameterableElement);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Element);
 			ownedTypes.add(type = _Pivotable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
@@ -772,8 +766,8 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Element);
 			ownedTypes.add(type = _State);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_Vertex);
 			superClasses.add(_Namespace);
+			superClasses.add(_Vertex);
 			ownedTypes.add(type = _StateExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
@@ -791,13 +785,10 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_Element);
 			ownedTypes.add(type = _TemplateParameter);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_Element);
+			superClasses.add(_Type);
 			ownedTypes.add(type = _TemplateParameterSubstitution);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _TemplateParameterType);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Type);
 			ownedTypes.add(type = _TemplateSignature);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
@@ -824,7 +815,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_DataType);
 			ownedTypes.add(type = _Type);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_PackageableElement);
+			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _TypeExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
@@ -832,9 +823,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _TypeExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _TypeTemplateParameter);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_TemplateParameter);
 			ownedTypes.add(type = _TypedElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
@@ -1068,6 +1056,11 @@ public class OCLMetaModel extends ASResourceImpl
 			type.setElementType(_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StateMachine);
+			orphanTypes.add(type = _Bag_TemplateParameter);
+			type.setUnspecializedElement(_Bag);
+			type.setElementType(_TemplateParameter);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_TemplateParameter);
 			orphanTypes.add(type = _Bag_TypeExp);
 			type.setUnspecializedElement(_Bag);
 			type.setElementType(_TypeExp);
@@ -1893,12 +1886,13 @@ public class OCLMetaModel extends ASResourceImpl
 
 		protected final @NonNull Operation op_Element_allOwnedElements = createOperation("allOwnedElements", _Set_Element, null, null);
 		protected final @NonNull Operation op_Element_getValue = createOperation("getValue", _Element, null, null);
-		protected final @NonNull Operation op_ParameterableElement_isCompatibleWith = createOperation("isCompatibleWith", _Boolean, null, null);
 		protected final @NonNull Operation op_Property_isAttribute = createOperation("isAttribute", _Boolean, null, null);
 		protected final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyOwningType = createOperation("getSpecializedReferredPropertyOwningType", _Class, null, null);
 		protected final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyType = createOperation("getSpecializedReferredPropertyType", _Class, null, null);
 		protected final @NonNull Operation op_ReferringElement_getReferredElement = createOperation("getReferredElement", _Element, null, null);
 		protected final @NonNull Operation op_SelfType_specializeIn = createOperation("specializeIn", _Type, null, null);
+		protected final @NonNull Operation op_Type_isClass = createOperation("isClass", _Class, null, null);
+		protected final @NonNull Operation op_Type_isTemplateParameter = createOperation("isTemplateParameter", _TemplateParameter, null, null);
 		protected final @NonNull Operation op_Type_specializeIn = createOperation("specializeIn", _Type, null, null);
 		protected final @NonNull Operation op_TypedElement_CompatibleBody = createOperation("CompatibleBody", _Boolean, null, null);
 		protected final @NonNull Operation op_TypedElement_makeParameter = createOperation("makeParameter", _Parameter, null, null);
@@ -1923,11 +1917,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameter();
 			ownedParameters.add(parameter = createParameter("stereotype", _Type, true));
 			ownedParameters.add(parameter = createParameter("propertyName", _String, true));
-			ownedOperations = _ParameterableElement.getOwnedOperations();
-			ownedOperations.add(operation = op_ParameterableElement_isCompatibleWith);
-			operation.setBodyExpression(createExpressionInOCL(_Boolean, "p.oclIsKindOf(self.oclType())"));
-			ownedParameters = operation.getOwnedParameter();
-			ownedParameters.add(parameter = createParameter("p", _ParameterableElement, true));
 			ownedOperations = _Property.getOwnedOperations();
 			ownedOperations.add(operation = op_Property_isAttribute);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))\nlet container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)"));
@@ -1947,6 +1936,10 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("expr", _OCLExpression, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
 			ownedOperations = _Type.getOwnedOperations();
+			ownedOperations.add(operation = op_Type_isClass);
+			operation.setIsRequired(false);
+			ownedOperations.add(operation = op_Type_isTemplateParameter);
+			operation.setIsRequired(false);
 			ownedOperations.add(operation = op_Type_specializeIn);
 			operation.setBodyExpression(createExpressionInOCL(_Type, "self"));
 			ownedParameters = operation.getOwnedParameter();
@@ -2003,9 +1996,10 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Class_superClasses = createProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, _Set_Class);
 		protected final @NonNull Property pr_Class_Class_nestedClassifier = createProperty("Class", _Class);
 		protected final @NonNull Property pr_Class_DataType_behavioralClass = createProperty("DataType", _Bag_DataType);
+		protected final @NonNull Property pr_Class_TemplateParameter_constrainingClass = createProperty("TemplateParameter", _Bag_TemplateParameter);
 		protected final @NonNull Property pr_Class_instanceSpecification_classes = createProperty("instanceSpecification", _InstanceSpecification);
 		protected final @NonNull Property pr_Class_subClasses_superClasses = createProperty("subClasses", _Class);
-		protected final @NonNull Property pr_Class_typeTemplateParameter_constrainingClass = createProperty("typeTemplateParameter", _TypeTemplateParameter);
+		protected final @NonNull Property pr_Class_templateParameter_default = createProperty("templateParameter", _TemplateParameter);
 		protected final @NonNull Property pr_CollectionItem_item = createProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, _OCLExpression);
 		protected final @NonNull Property pr_CollectionLiteralExp_kind = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND, _CollectionKind);
 		protected final @NonNull Property pr_CollectionLiteralExp_part = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART, _OrderedSet_CollectionLiteralPart);
@@ -2162,12 +2156,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Parameter_Iteration_ownedAccumulator = createProperty("Iteration", _Iteration);
 		protected final @NonNull Property pr_Parameter_Iteration_ownedIterator = createProperty("Iteration", _Iteration);
 		protected final @NonNull Property pr_Parameter_Variable_representedParameter = createProperty("Variable", _Bag_Variable);
-		protected final @NonNull Property pr_ParameterableElement_owningTemplateParameter = createProperty(PivotPackage.Literals.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER, _TemplateParameter);
-		protected final @NonNull Property pr_ParameterableElement_templateParameter = createProperty(PivotPackage.Literals.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER, _TemplateParameter);
-		protected final @NonNull Property pr_ParameterableElement_owningTemplateParameterSubstitution_ownedActual = createProperty("owningTemplateParameterSubstitution", _TemplateParameterSubstitution);
-		protected final @NonNull Property pr_ParameterableElement_templateParameter_default = createProperty("templateParameter", _TemplateParameter);
-		protected final @NonNull Property pr_ParameterableElement_templateParameter_ownedDefault = createProperty("templateParameter", _TemplateParameter);
-		protected final @NonNull Property pr_ParameterableElement_templateParameterSubstitution_actual = createProperty("templateParameterSubstitution", _TemplateParameterSubstitution);
 		protected final @NonNull Property pr_Precedence_associativity = createProperty(PivotPackage.Literals.PRECEDENCE__ASSOCIATIVITY, _AssociativityKind);
 		protected final @NonNull Property pr_Precedence_order = createProperty(PivotPackage.Literals.PRECEDENCE__ORDER, _Integer);
 		protected final @NonNull Property pr_Precedence_Library_ownedPrecedence = createProperty("Library", _Library);
@@ -2256,17 +2244,13 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TemplateBinding_boundElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__BOUND_ELEMENT, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateBinding_parameterSubstitution = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, _Set_TemplateParameterSubstitution);
 		protected final @NonNull Property pr_TemplateBinding_signature = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE, _TemplateSignature);
-		protected final @NonNull Property pr_TemplateParameter_default = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, _ParameterableElement);
-		protected final @NonNull Property pr_TemplateParameter_ownedDefault = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNED_DEFAULT, _ParameterableElement);
-		protected final @NonNull Property pr_TemplateParameter_ownedParameteredElement = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, _ParameterableElement);
-		protected final @NonNull Property pr_TemplateParameter_parameteredElement = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, _ParameterableElement);
+		protected final @NonNull Property pr_TemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
+		protected final @NonNull Property pr_TemplateParameter_default = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT, _Class);
 		protected final @NonNull Property pr_TemplateParameter_signature = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__SIGNATURE, _TemplateSignature);
 		protected final @NonNull Property pr_TemplateParameter_templateParameterSubstitution_formal = createProperty("templateParameterSubstitution", _TemplateParameterSubstitution);
-		protected final @NonNull Property pr_TemplateParameterSubstitution_actual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, _ParameterableElement);
+		protected final @NonNull Property pr_TemplateParameterSubstitution_actual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, _Type);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_formal = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, _TemplateParameter);
-		protected final @NonNull Property pr_TemplateParameterSubstitution_ownedActual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, _ParameterableElement);
 		protected final @NonNull Property pr_TemplateParameterSubstitution_templateBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING, _TemplateBinding);
-		protected final @NonNull Property pr_TemplateParameterType_specification = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_TYPE__SPECIFICATION, _String);
 		protected final @NonNull Property pr_TemplateSignature_ownedParameter = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETER, _OrderedSet_TemplateParameter);
 		protected final @NonNull Property pr_TemplateSignature_template = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE, _TemplateableElement);
 		protected final @NonNull Property pr_TemplateSignature_templateBinding_signature = createProperty("templateBinding", _TemplateBinding);
@@ -2297,12 +2281,12 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_Type_UnspecifiedType_lowerBound = createProperty("UnspecifiedType", _Bag_UnspecifiedType);
 		protected final @NonNull Property pr_Type_UnspecifiedType_upperBound = createProperty("UnspecifiedType", _Bag_UnspecifiedType);
 		protected final @NonNull Property pr_Type_operation_raisedException = createProperty("operation", _Operation);
+		protected final @NonNull Property pr_Type_templateParameterSubstitution_actual = createProperty("templateParameterSubstitution", _TemplateParameterSubstitution);
 		protected final @NonNull Property pr_Type_typedElement_type = createProperty("typedElement", _TypedElement);
 		protected final @NonNull Property pr_TypeExp_referredType = createProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, _Type);
 		protected final @NonNull Property pr_TypeExtension_isRequired = createProperty(PivotPackage.Literals.TYPE_EXTENSION__IS_REQUIRED, _Boolean);
 		protected final @NonNull Property pr_TypeExtension_stereotype = createProperty(PivotPackage.Literals.TYPE_EXTENSION__STEREOTYPE, _Stereotype);
 		protected final @NonNull Property pr_TypeExtension_type = createProperty(PivotPackage.Literals.TYPE_EXTENSION__TYPE, _Type);
-		protected final @NonNull Property pr_TypeTemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
 		protected final @NonNull Property pr_TypedElement_isMany = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_MANY, _Boolean);
 		protected final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
 		protected final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
@@ -2444,6 +2428,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DataType_behavioralClass);
+			ownedProperties.add(property = pr_Class_TemplateParameter_constrainingClass);
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameter_constrainingClass);
 			ownedProperties.add(property = pr_Class_instanceSpecification_classes);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -2454,11 +2442,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_superClasses);
-			ownedProperties.add(property = pr_Class_typeTemplateParameter_constrainingClass);
+			ownedProperties.add(property = pr_Class_templateParameter_default);
 			property.setImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TypeTemplateParameter_constrainingClass);
+			property.setOpposite(pr_TemplateParameter_default);
 			ownedProperties = _CollectionItem.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionItem_item);
 			property.setIsComposite(true);
@@ -3117,35 +3105,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_representedParameter);
-			ownedProperties = _ParameterableElement.getOwnedProperties();
-			ownedProperties.add(property = pr_ParameterableElement_owningTemplateParameter);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_ownedParameteredElement);
-			ownedProperties.add(property = pr_ParameterableElement_templateParameter);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_parameteredElement);
-			ownedProperties.add(property = pr_ParameterableElement_owningTemplateParameterSubstitution_ownedActual);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameterSubstitution_ownedActual);
-			ownedProperties.add(property = pr_ParameterableElement_templateParameter_default);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_default);
-			ownedProperties.add(property = pr_ParameterableElement_templateParameter_ownedDefault);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_ownedDefault);
-			ownedProperties.add(property = pr_ParameterableElement_templateParameterSubstitution_actual);
-			property.setImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameterSubstitution_actual);
 			ownedProperties = _Precedence.getOwnedProperties();
 			ownedProperties.add(property = pr_Precedence_associativity);
 			property.setIsRequired(false);
@@ -3495,23 +3454,13 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateSignature_templateBinding_signature);
 			ownedProperties = _TemplateParameter.getOwnedProperties();
+			ownedProperties.add(property = pr_TemplateParameter_constrainingClass);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Class_TemplateParameter_constrainingClass);
 			ownedProperties.add(property = pr_TemplateParameter_default);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ParameterableElement_templateParameter_default);
-			ownedProperties.add(property = pr_TemplateParameter_ownedDefault);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ParameterableElement_templateParameter_ownedDefault);
-			ownedProperties.add(property = pr_TemplateParameter_ownedParameteredElement);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ParameterableElement_owningTemplateParameter);
-			ownedProperties.add(property = pr_TemplateParameter_parameteredElement);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ParameterableElement_templateParameter);
+			property.setOpposite(pr_Class_templateParameter_default);
 			ownedProperties.add(property = pr_TemplateParameter_signature);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateSignature_ownedParameter);
@@ -3523,22 +3472,13 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties = _TemplateParameterSubstitution.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_actual);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ParameterableElement_templateParameterSubstitution_actual);
+			property.setOpposite(pr_Type_templateParameterSubstitution_actual);
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_formal);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_templateParameterSubstitution_formal);
-			ownedProperties.add(property = pr_TemplateParameterSubstitution_ownedActual);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ParameterableElement_owningTemplateParameterSubstitution_ownedActual);
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_templateBinding);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_parameterSubstitution);
-			ownedProperties = _TemplateParameterType.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateParameterType_specification);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
 			ownedProperties = _TemplateSignature.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateSignature_ownedParameter);
 			property.setIsComposite(true);
@@ -3664,6 +3604,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_raisedException);
+			ownedProperties.add(property = pr_Type_templateParameterSubstitution_actual);
+			property.setImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameterSubstitution_actual);
 			ownedProperties.add(property = pr_Type_typedElement_type);
 			property.setImplicit(true);
 			property.setIsRequired(false);
@@ -3683,10 +3628,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_TypeExtension_type);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_extendedBys);
-			ownedProperties = _TypeTemplateParameter.getOwnedProperties();
-			ownedProperties.add(property = pr_TypeTemplateParameter_constrainingClass);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Class_typeTemplateParameter_constrainingClass);
 			ownedProperties = _TypedElement.getOwnedProperties();
 			ownedProperties.add(property = pr_TypedElement_isMany);
 			property.setIsDerived(true);
@@ -3787,12 +3728,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setOpposite(pr_Transition_source);
 		}
 
-		protected final @NonNull TypeTemplateParameter tp_Metaclass = createTypeTemplateParameter(_Metaclass_T);
-		
-		protected final @NonNull TemplateSignature ts_Metaclass = createTemplateSignature(_Metaclass, tp_Metaclass);
-		
-		protected void installTemplateSignatures() {
-		}
+		protected final @NonNull TemplateSignature ts_Metaclass = createTemplateSignature(_Metaclass, tp_T);
 
 		protected void installTemplateBindings() {
 			_Bag_Annotation.getTemplateBinding().add(createTemplateBinding(_Bag_,
@@ -3851,6 +3787,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _StateMachine)));
 			_Bag_State.getTemplateBinding().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _State)));
+			_Bag_TemplateParameter.getTemplateBinding().add(createTemplateBinding(_Bag_,
+				createTemplateParameterSubstitution(_Bag_T, _TemplateParameter)));
 			_Bag_TypeExp.getTemplateBinding().add(createTemplateBinding(_Bag_,
 				createTemplateParameterSubstitution(_Bag_T, _TypeExp)));
 			_Bag_UnspecifiedType.getTemplateBinding().add(createTemplateBinding(_Bag_,
@@ -4223,9 +4161,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(_PackageableElement, "Packageable elements are able to serve as a template parameter.");
 			installComment(_Parameter, "A parameter is a typed element that represents a parameter of an operation.");
 			installComment(pr_Parameter_operation, "The operation that owns the parameter.");
-			installComment(_ParameterableElement, "A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.");
-			installComment(pr_ParameterableElement_owningTemplateParameter, "The formal template parameter that owns this element.");
-			installComment(pr_ParameterableElement_templateParameter, "The template parameter that exposes this element as a formal parameter.");
 			installComment(_PrimitiveType, "A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");
 			installComment(_Property, "A property is a typed element that represents an attribute of a class.");
 			installComment(pr_Property_default, "A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.");
@@ -4283,15 +4218,12 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_TemplateBinding_parameterSubstitution, "The parameter substitutions owned by this template binding.");
 			installComment(pr_TemplateBinding_signature, "The template signature for the template that is the target of the binding.");
 			installComment(_TemplateParameter, "A template parameter exposes a parameterable element as a formal template parameter of a template.");
+			installComment(pr_TemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
 			installComment(pr_TemplateParameter_default, "The element that is the default for this formal template parameter.");
-			installComment(pr_TemplateParameter_ownedDefault, "The element that is owned by this template parameter for the purpose of providing a default.");
-			installComment(pr_TemplateParameter_ownedParameteredElement, "The element that is owned by this template parameter.");
-			installComment(pr_TemplateParameter_parameteredElement, "The element exposed by this template parameter.");
 			installComment(pr_TemplateParameter_signature, "The template signature that owns this template parameter.");
 			installComment(_TemplateParameterSubstitution, "A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
 			installComment(pr_TemplateParameterSubstitution_actual, "The element that is the actual parameter for this substitution.");
 			installComment(pr_TemplateParameterSubstitution_formal, "The formal template parameter that is associated with this substitution.");
-			installComment(pr_TemplateParameterSubstitution_ownedActual, "The actual parameter that is owned by this substitution.");
 			installComment(pr_TemplateParameterSubstitution_templateBinding, "The optional bindings from this element to templates.");
 			installComment(_TemplateSignature, "A template signature bundles the set of formal template parameters for a templated element.");
 			installComment(pr_TemplateSignature_ownedParameter, "The formal template parameters that are owned by this template signature.");
@@ -4311,8 +4243,6 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(el__TransitionKind_internal, "Implies that the transition, if triggered, occurs without exiting or entering the source state. Thus, it does not cause a state change. This means that the entry or exit condition of the source state will not be invoked. An internal transition can be taken even if the state machine is in one or more regions nested within this state.");
 			installComment(el__TransitionKind_local, "Implies that the transition, if triggered, will not exit the composite (source) state, but it will apply to any state within the composite state, and these will be exited and entered.");
 			installComment(_Type, "A type is a named element that is used as the type for a typed element. A type can be contained in a package.\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
-			installComment(_TypeTemplateParameter, "A type template parameter exposes a type as a formal template parameter.");
-			installComment(pr_TypeTemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
 			installComment(_TypedElement, "A typed element is a kind of named element that represents an element with a type.");
 			installComment(pr_TypedElement_type, "The type of the TypedElement.");
 			installComment(_ValueSpecification, "A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");

@@ -42,9 +42,9 @@ class TypeTracker implements Adapter.Internal
 	/**
 	 * The Type tracked by this tracker.
 	 */
-	private final @NonNull DomainType type;
+	private final @NonNull DomainClass type;
 	
-	TypeTracker(@NonNull ExtensibleTypeServer typeServer, @NonNull DomainType type) {
+	TypeTracker(@NonNull ExtensibleTypeServer typeServer, @NonNull DomainClass type) {
 		this.typeServer = typeServer;
 		this.type = type;
 		assert !(type instanceof ExtensibleTypeServer);

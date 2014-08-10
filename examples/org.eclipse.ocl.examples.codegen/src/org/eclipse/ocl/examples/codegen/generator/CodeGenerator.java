@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public interface CodeGenerator
@@ -55,7 +54,7 @@ public interface CodeGenerator
 	@NonNull ReferencesVisitor createReferencesVisitor();
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement);
 	@NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId);
-	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull Type staticType);
+	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.examples.pivot.Class staticType);
 
 	/**
 	 * Return true if asOperationCallExp may return a nonNull value,

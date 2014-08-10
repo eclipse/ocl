@@ -69,7 +69,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.examples.pivot.manager.Orphanage;
@@ -693,12 +692,12 @@ public class Pivot2EcoreDeclarationVisitor
 	}
 
 	@Override
-	public EObject visitTypeTemplateParameter(@NonNull TypeTemplateParameter pivotTypeTemplateParameter) {
+	public EObject visitTemplateParameter(@NonNull TemplateParameter pivotTemplateParameter) {
 		ETypeParameter eTypeParameter = EcoreFactory.eINSTANCE.createETypeParameter();
-		eTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
-		context.putCreated(pivotTypeTemplateParameter, eTypeParameter);
-		if (!pivotTypeTemplateParameter.getConstrainingClass().isEmpty()) {
-			context.defer(pivotTypeTemplateParameter);
+		eTypeParameter.setName(pivotTemplateParameter.getName());
+		context.putCreated(pivotTemplateParameter, eTypeParameter);
+		if (!pivotTemplateParameter.getConstrainingClass().isEmpty()) {
+			context.defer(pivotTemplateParameter);
 		}
 		return eTypeParameter;
 	}

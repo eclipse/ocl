@@ -43,7 +43,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Package
-		extends PackageableElement, TemplateableElement, Namespace, org.eclipse.ocl.examples.domain.elements.DomainPackage {
+		extends Namespace, TemplateableElement, PackageableElement, org.eclipse.ocl.examples.domain.elements.DomainPackage {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.

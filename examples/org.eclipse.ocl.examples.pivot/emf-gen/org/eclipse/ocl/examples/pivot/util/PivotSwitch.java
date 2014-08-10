@@ -79,7 +79,6 @@ import org.eclipse.ocl.examples.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PackageableElement;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
@@ -107,7 +106,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Transition;
@@ -118,7 +116,6 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
-import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -208,11 +205,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseAnyType(anyType);
 				if (result == null) result = caseClass(anyType);
 				if (result == null) result = caseType(anyType);
-				if (result == null) result = caseTemplateableElement(anyType);
 				if (result == null) result = caseNamespace(anyType);
+				if (result == null) result = caseTemplateableElement(anyType);
 				if (result == null) result = casePackageableElement(anyType);
 				if (result == null) result = caseNamedElement(anyType);
-				if (result == null) result = caseParameterableElement(anyType);
 				if (result == null) result = caseElement(anyType);
 				if (result == null) result = caseNameable(anyType);
 				if (result == null) result = caseVisitable(anyType);
@@ -225,11 +221,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseAssociationClass(associationClass);
 				if (result == null) result = caseClass(associationClass);
 				if (result == null) result = caseType(associationClass);
-				if (result == null) result = caseTemplateableElement(associationClass);
 				if (result == null) result = caseNamespace(associationClass);
+				if (result == null) result = caseTemplateableElement(associationClass);
 				if (result == null) result = casePackageableElement(associationClass);
 				if (result == null) result = caseNamedElement(associationClass);
-				if (result == null) result = caseParameterableElement(associationClass);
 				if (result == null) result = caseElement(associationClass);
 				if (result == null) result = caseNameable(associationClass);
 				if (result == null) result = caseVisitable(associationClass);
@@ -260,11 +255,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(bagType);
 				if (result == null) result = caseClass(bagType);
 				if (result == null) result = caseType(bagType);
-				if (result == null) result = caseTemplateableElement(bagType);
 				if (result == null) result = caseNamespace(bagType);
+				if (result == null) result = caseTemplateableElement(bagType);
 				if (result == null) result = casePackageableElement(bagType);
 				if (result == null) result = caseNamedElement(bagType);
-				if (result == null) result = caseParameterableElement(bagType);
 				if (result == null) result = caseElement(bagType);
 				if (result == null) result = caseNameable(bagType);
 				if (result == null) result = caseVisitable(bagType);
@@ -277,11 +271,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseBehavior(behavior);
 				if (result == null) result = caseClass(behavior);
 				if (result == null) result = caseType(behavior);
-				if (result == null) result = caseTemplateableElement(behavior);
 				if (result == null) result = caseNamespace(behavior);
+				if (result == null) result = caseTemplateableElement(behavior);
 				if (result == null) result = casePackageableElement(behavior);
 				if (result == null) result = caseNamedElement(behavior);
-				if (result == null) result = caseParameterableElement(behavior);
 				if (result == null) result = caseElement(behavior);
 				if (result == null) result = caseNameable(behavior);
 				if (result == null) result = caseVisitable(behavior);
@@ -332,11 +325,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				org.eclipse.ocl.examples.pivot.Class class_ = (org.eclipse.ocl.examples.pivot.Class)theEObject;
 				T1 result = caseClass(class_);
 				if (result == null) result = caseType(class_);
-				if (result == null) result = caseTemplateableElement(class_);
 				if (result == null) result = caseNamespace(class_);
+				if (result == null) result = caseTemplateableElement(class_);
 				if (result == null) result = casePackageableElement(class_);
 				if (result == null) result = caseNamedElement(class_);
-				if (result == null) result = caseParameterableElement(class_);
 				if (result == null) result = caseElement(class_);
 				if (result == null) result = caseNameable(class_);
 				if (result == null) result = caseVisitable(class_);
@@ -402,11 +394,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(collectionType);
 				if (result == null) result = caseClass(collectionType);
 				if (result == null) result = caseType(collectionType);
-				if (result == null) result = caseTemplateableElement(collectionType);
 				if (result == null) result = caseNamespace(collectionType);
+				if (result == null) result = caseTemplateableElement(collectionType);
 				if (result == null) result = casePackageableElement(collectionType);
 				if (result == null) result = caseNamedElement(collectionType);
-				if (result == null) result = caseParameterableElement(collectionType);
 				if (result == null) result = caseElement(collectionType);
 				if (result == null) result = caseNameable(collectionType);
 				if (result == null) result = caseVisitable(collectionType);
@@ -440,7 +431,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseConstraint(constraint);
 				if (result == null) result = casePackageableElement(constraint);
 				if (result == null) result = caseNamedElement(constraint);
-				if (result == null) result = caseParameterableElement(constraint);
 				if (result == null) result = caseElement(constraint);
 				if (result == null) result = caseNameable(constraint);
 				if (result == null) result = caseVisitable(constraint);
@@ -478,11 +468,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseDataType(dataType);
 				if (result == null) result = caseClass(dataType);
 				if (result == null) result = caseType(dataType);
-				if (result == null) result = caseTemplateableElement(dataType);
 				if (result == null) result = caseNamespace(dataType);
+				if (result == null) result = caseTemplateableElement(dataType);
 				if (result == null) result = casePackageableElement(dataType);
 				if (result == null) result = caseNamedElement(dataType);
-				if (result == null) result = caseParameterableElement(dataType);
 				if (result == null) result = caseElement(dataType);
 				if (result == null) result = caseNameable(dataType);
 				if (result == null) result = caseVisitable(dataType);
@@ -509,11 +498,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseClass(dynamicBehavior);
 				if (result == null) result = caseDynamicElement(dynamicBehavior);
 				if (result == null) result = caseType(dynamicBehavior);
-				if (result == null) result = caseTemplateableElement(dynamicBehavior);
 				if (result == null) result = caseNamespace(dynamicBehavior);
+				if (result == null) result = caseTemplateableElement(dynamicBehavior);
 				if (result == null) result = casePackageableElement(dynamicBehavior);
 				if (result == null) result = caseNamedElement(dynamicBehavior);
-				if (result == null) result = caseParameterableElement(dynamicBehavior);
 				if (result == null) result = caseElement(dynamicBehavior);
 				if (result == null) result = caseNameable(dynamicBehavior);
 				if (result == null) result = caseVisitable(dynamicBehavior);
@@ -545,11 +533,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseClass(dynamicType);
 				if (result == null) result = caseDynamicElement(dynamicType);
 				if (result == null) result = caseType(dynamicType);
-				if (result == null) result = caseTemplateableElement(dynamicType);
 				if (result == null) result = caseNamespace(dynamicType);
+				if (result == null) result = caseTemplateableElement(dynamicType);
 				if (result == null) result = casePackageableElement(dynamicType);
 				if (result == null) result = caseNamedElement(dynamicType);
-				if (result == null) result = caseParameterableElement(dynamicType);
 				if (result == null) result = caseElement(dynamicType);
 				if (result == null) result = caseNameable(dynamicType);
 				if (result == null) result = caseVisitable(dynamicType);
@@ -564,7 +551,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseTypedElement(dynamicValueSpecification);
 				if (result == null) result = casePackageableElement(dynamicValueSpecification);
 				if (result == null) result = caseNamedElement(dynamicValueSpecification);
-				if (result == null) result = caseParameterableElement(dynamicValueSpecification);
 				if (result == null) result = caseElement(dynamicValueSpecification);
 				if (result == null) result = caseNameable(dynamicValueSpecification);
 				if (result == null) result = caseVisitable(dynamicValueSpecification);
@@ -585,11 +571,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseElementExtension(elementExtension);
 				if (result == null) result = caseClass(elementExtension);
 				if (result == null) result = caseType(elementExtension);
-				if (result == null) result = caseTemplateableElement(elementExtension);
 				if (result == null) result = caseNamespace(elementExtension);
+				if (result == null) result = caseTemplateableElement(elementExtension);
 				if (result == null) result = casePackageableElement(elementExtension);
 				if (result == null) result = caseNamedElement(elementExtension);
-				if (result == null) result = caseParameterableElement(elementExtension);
 				if (result == null) result = caseElement(elementExtension);
 				if (result == null) result = caseNameable(elementExtension);
 				if (result == null) result = caseVisitable(elementExtension);
@@ -617,11 +602,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(enumeration);
 				if (result == null) result = caseClass(enumeration);
 				if (result == null) result = caseType(enumeration);
-				if (result == null) result = caseTemplateableElement(enumeration);
 				if (result == null) result = caseNamespace(enumeration);
+				if (result == null) result = caseTemplateableElement(enumeration);
 				if (result == null) result = casePackageableElement(enumeration);
 				if (result == null) result = caseNamedElement(enumeration);
-				if (result == null) result = caseParameterableElement(enumeration);
 				if (result == null) result = caseElement(enumeration);
 				if (result == null) result = caseNameable(enumeration);
 				if (result == null) result = caseVisitable(enumeration);
@@ -635,7 +619,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseInstanceSpecification(enumerationLiteral);
 				if (result == null) result = casePackageableElement(enumerationLiteral);
 				if (result == null) result = caseNamedElement(enumerationLiteral);
-				if (result == null) result = caseParameterableElement(enumerationLiteral);
 				if (result == null) result = caseElement(enumerationLiteral);
 				if (result == null) result = caseNameable(enumerationLiteral);
 				if (result == null) result = caseVisitable(enumerationLiteral);
@@ -651,7 +634,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseTypedElement(expressionInOCL);
 				if (result == null) result = casePackageableElement(expressionInOCL);
 				if (result == null) result = caseNamedElement(expressionInOCL);
-				if (result == null) result = caseParameterableElement(expressionInOCL);
 				if (result == null) result = caseElement(expressionInOCL);
 				if (result == null) result = caseNameable(expressionInOCL);
 				if (result == null) result = caseVisitable(expressionInOCL);
@@ -689,8 +671,8 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				FinalState finalState = (FinalState)theEObject;
 				T1 result = caseFinalState(finalState);
 				if (result == null) result = caseState(finalState);
-				if (result == null) result = caseVertex(finalState);
 				if (result == null) result = caseNamespace(finalState);
+				if (result == null) result = caseVertex(finalState);
 				if (result == null) result = caseNamedElement(finalState);
 				if (result == null) result = caseElement(finalState);
 				if (result == null) result = caseNameable(finalState);
@@ -728,7 +710,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseInstanceSpecification(instanceSpecification);
 				if (result == null) result = casePackageableElement(instanceSpecification);
 				if (result == null) result = caseNamedElement(instanceSpecification);
-				if (result == null) result = caseParameterableElement(instanceSpecification);
 				if (result == null) result = caseElement(instanceSpecification);
 				if (result == null) result = caseNameable(instanceSpecification);
 				if (result == null) result = caseVisitable(instanceSpecification);
@@ -771,11 +752,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseInvalidType(invalidType);
 				if (result == null) result = caseClass(invalidType);
 				if (result == null) result = caseType(invalidType);
-				if (result == null) result = caseTemplateableElement(invalidType);
 				if (result == null) result = caseNamespace(invalidType);
+				if (result == null) result = caseTemplateableElement(invalidType);
 				if (result == null) result = casePackageableElement(invalidType);
 				if (result == null) result = caseNamedElement(invalidType);
-				if (result == null) result = caseParameterableElement(invalidType);
 				if (result == null) result = caseElement(invalidType);
 				if (result == null) result = caseNameable(invalidType);
 				if (result == null) result = caseVisitable(invalidType);
@@ -804,8 +784,8 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseIteration(iteration);
 				if (result == null) result = caseOperation(iteration);
 				if (result == null) result = caseFeature(iteration);
-				if (result == null) result = caseTemplateableElement(iteration);
 				if (result == null) result = caseNamespace(iteration);
+				if (result == null) result = caseTemplateableElement(iteration);
 				if (result == null) result = caseTypedElement(iteration);
 				if (result == null) result = caseNamedElement(iteration);
 				if (result == null) result = caseElement(iteration);
@@ -837,11 +817,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(lambdaType);
 				if (result == null) result = caseClass(lambdaType);
 				if (result == null) result = caseType(lambdaType);
-				if (result == null) result = caseTemplateableElement(lambdaType);
 				if (result == null) result = caseNamespace(lambdaType);
+				if (result == null) result = caseTemplateableElement(lambdaType);
 				if (result == null) result = casePackageableElement(lambdaType);
 				if (result == null) result = caseNamedElement(lambdaType);
-				if (result == null) result = caseParameterableElement(lambdaType);
 				if (result == null) result = caseElement(lambdaType);
 				if (result == null) result = caseNameable(lambdaType);
 				if (result == null) result = caseVisitable(lambdaType);
@@ -856,7 +835,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseTypedElement(languageExpression);
 				if (result == null) result = casePackageableElement(languageExpression);
 				if (result == null) result = caseNamedElement(languageExpression);
-				if (result == null) result = caseParameterableElement(languageExpression);
 				if (result == null) result = caseElement(languageExpression);
 				if (result == null) result = caseNameable(languageExpression);
 				if (result == null) result = caseVisitable(languageExpression);
@@ -881,11 +859,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				Library library = (Library)theEObject;
 				T1 result = caseLibrary(library);
 				if (result == null) result = casePackage(library);
-				if (result == null) result = casePackageableElement(library);
-				if (result == null) result = caseTemplateableElement(library);
 				if (result == null) result = caseNamespace(library);
+				if (result == null) result = caseTemplateableElement(library);
+				if (result == null) result = casePackageableElement(library);
 				if (result == null) result = caseNamedElement(library);
-				if (result == null) result = caseParameterableElement(library);
 				if (result == null) result = caseElement(library);
 				if (result == null) result = caseNameable(library);
 				if (result == null) result = caseVisitable(library);
@@ -938,11 +915,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseMessageType(messageType);
 				if (result == null) result = caseClass(messageType);
 				if (result == null) result = caseType(messageType);
-				if (result == null) result = caseTemplateableElement(messageType);
 				if (result == null) result = caseNamespace(messageType);
+				if (result == null) result = caseTemplateableElement(messageType);
 				if (result == null) result = casePackageableElement(messageType);
 				if (result == null) result = caseNamedElement(messageType);
-				if (result == null) result = caseParameterableElement(messageType);
 				if (result == null) result = caseElement(messageType);
 				if (result == null) result = caseNameable(messageType);
 				if (result == null) result = caseVisitable(messageType);
@@ -955,11 +931,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseMetaclass(metaclass);
 				if (result == null) result = caseClass(metaclass);
 				if (result == null) result = caseType(metaclass);
-				if (result == null) result = caseTemplateableElement(metaclass);
 				if (result == null) result = caseNamespace(metaclass);
+				if (result == null) result = caseTemplateableElement(metaclass);
 				if (result == null) result = casePackageableElement(metaclass);
 				if (result == null) result = caseNamedElement(metaclass);
-				if (result == null) result = caseParameterableElement(metaclass);
 				if (result == null) result = caseElement(metaclass);
 				if (result == null) result = caseNameable(metaclass);
 				if (result == null) result = caseVisitable(metaclass);
@@ -1063,8 +1038,8 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				Operation operation = (Operation)theEObject;
 				T1 result = caseOperation(operation);
 				if (result == null) result = caseFeature(operation);
-				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseNamespace(operation);
+				if (result == null) result = caseTemplateableElement(operation);
 				if (result == null) result = caseTypedElement(operation);
 				if (result == null) result = caseNamedElement(operation);
 				if (result == null) result = caseElement(operation);
@@ -1113,11 +1088,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(orderedSetType);
 				if (result == null) result = caseClass(orderedSetType);
 				if (result == null) result = caseType(orderedSetType);
-				if (result == null) result = caseTemplateableElement(orderedSetType);
 				if (result == null) result = caseNamespace(orderedSetType);
+				if (result == null) result = caseTemplateableElement(orderedSetType);
 				if (result == null) result = casePackageableElement(orderedSetType);
 				if (result == null) result = caseNamedElement(orderedSetType);
-				if (result == null) result = caseParameterableElement(orderedSetType);
 				if (result == null) result = caseElement(orderedSetType);
 				if (result == null) result = caseNameable(orderedSetType);
 				if (result == null) result = caseVisitable(orderedSetType);
@@ -1128,11 +1102,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				org.eclipse.ocl.examples.pivot.Package package_ = (org.eclipse.ocl.examples.pivot.Package)theEObject;
 				T1 result = casePackage(package_);
-				if (result == null) result = casePackageableElement(package_);
-				if (result == null) result = caseTemplateableElement(package_);
 				if (result == null) result = caseNamespace(package_);
+				if (result == null) result = caseTemplateableElement(package_);
+				if (result == null) result = casePackageableElement(package_);
 				if (result == null) result = caseNamedElement(package_);
-				if (result == null) result = caseParameterableElement(package_);
 				if (result == null) result = caseElement(package_);
 				if (result == null) result = caseNameable(package_);
 				if (result == null) result = caseVisitable(package_);
@@ -1144,7 +1117,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				PackageableElement packageableElement = (PackageableElement)theEObject;
 				T1 result = casePackageableElement(packageableElement);
 				if (result == null) result = caseNamedElement(packageableElement);
-				if (result == null) result = caseParameterableElement(packageableElement);
 				if (result == null) result = caseElement(packageableElement);
 				if (result == null) result = caseNameable(packageableElement);
 				if (result == null) result = caseVisitable(packageableElement);
@@ -1161,15 +1133,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseElement(parameter);
 				if (result == null) result = caseNameable(parameter);
 				if (result == null) result = caseVisitable(parameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.PARAMETERABLE_ELEMENT:
-			{
-				ParameterableElement parameterableElement = (ParameterableElement)theEObject;
-				T1 result = caseParameterableElement(parameterableElement);
-				if (result == null) result = caseElement(parameterableElement);
-				if (result == null) result = caseVisitable(parameterableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1212,11 +1175,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(primitiveType);
 				if (result == null) result = caseClass(primitiveType);
 				if (result == null) result = caseType(primitiveType);
-				if (result == null) result = caseTemplateableElement(primitiveType);
 				if (result == null) result = caseNamespace(primitiveType);
+				if (result == null) result = caseTemplateableElement(primitiveType);
 				if (result == null) result = casePackageableElement(primitiveType);
 				if (result == null) result = caseNamedElement(primitiveType);
-				if (result == null) result = caseParameterableElement(primitiveType);
 				if (result == null) result = caseElement(primitiveType);
 				if (result == null) result = caseNameable(primitiveType);
 				if (result == null) result = caseVisitable(primitiveType);
@@ -1228,11 +1190,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				Profile profile = (Profile)theEObject;
 				T1 result = caseProfile(profile);
 				if (result == null) result = casePackage(profile);
-				if (result == null) result = casePackageableElement(profile);
-				if (result == null) result = caseTemplateableElement(profile);
 				if (result == null) result = caseNamespace(profile);
+				if (result == null) result = caseTemplateableElement(profile);
+				if (result == null) result = casePackageableElement(profile);
 				if (result == null) result = caseNamedElement(profile);
-				if (result == null) result = caseParameterableElement(profile);
 				if (result == null) result = caseElement(profile);
 				if (result == null) result = caseNameable(profile);
 				if (result == null) result = caseVisitable(profile);
@@ -1343,11 +1304,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseSelfType(selfType);
 				if (result == null) result = caseClass(selfType);
 				if (result == null) result = caseType(selfType);
-				if (result == null) result = caseTemplateableElement(selfType);
 				if (result == null) result = caseNamespace(selfType);
+				if (result == null) result = caseTemplateableElement(selfType);
 				if (result == null) result = casePackageableElement(selfType);
 				if (result == null) result = caseNamedElement(selfType);
-				if (result == null) result = caseParameterableElement(selfType);
 				if (result == null) result = caseElement(selfType);
 				if (result == null) result = caseNameable(selfType);
 				if (result == null) result = caseVisitable(selfType);
@@ -1373,11 +1333,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(sequenceType);
 				if (result == null) result = caseClass(sequenceType);
 				if (result == null) result = caseType(sequenceType);
-				if (result == null) result = caseTemplateableElement(sequenceType);
 				if (result == null) result = caseNamespace(sequenceType);
+				if (result == null) result = caseTemplateableElement(sequenceType);
 				if (result == null) result = casePackageableElement(sequenceType);
 				if (result == null) result = caseNamedElement(sequenceType);
-				if (result == null) result = caseParameterableElement(sequenceType);
 				if (result == null) result = caseElement(sequenceType);
 				if (result == null) result = caseNameable(sequenceType);
 				if (result == null) result = caseVisitable(sequenceType);
@@ -1392,11 +1351,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(setType);
 				if (result == null) result = caseClass(setType);
 				if (result == null) result = caseType(setType);
-				if (result == null) result = caseTemplateableElement(setType);
 				if (result == null) result = caseNamespace(setType);
+				if (result == null) result = caseTemplateableElement(setType);
 				if (result == null) result = casePackageableElement(setType);
 				if (result == null) result = caseNamedElement(setType);
-				if (result == null) result = caseParameterableElement(setType);
 				if (result == null) result = caseElement(setType);
 				if (result == null) result = caseNameable(setType);
 				if (result == null) result = caseVisitable(setType);
@@ -1409,11 +1367,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseSignal(signal);
 				if (result == null) result = caseClass(signal);
 				if (result == null) result = caseType(signal);
-				if (result == null) result = caseTemplateableElement(signal);
 				if (result == null) result = caseNamespace(signal);
+				if (result == null) result = caseTemplateableElement(signal);
 				if (result == null) result = casePackageableElement(signal);
 				if (result == null) result = caseNamedElement(signal);
-				if (result == null) result = caseParameterableElement(signal);
 				if (result == null) result = caseElement(signal);
 				if (result == null) result = caseNameable(signal);
 				if (result == null) result = caseVisitable(signal);
@@ -1433,8 +1390,8 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				State state = (State)theEObject;
 				T1 result = caseState(state);
-				if (result == null) result = caseVertex(state);
 				if (result == null) result = caseNamespace(state);
+				if (result == null) result = caseVertex(state);
 				if (result == null) result = caseNamedElement(state);
 				if (result == null) result = caseElement(state);
 				if (result == null) result = caseNameable(state);
@@ -1462,11 +1419,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseBehavior(stateMachine);
 				if (result == null) result = caseClass(stateMachine);
 				if (result == null) result = caseType(stateMachine);
-				if (result == null) result = caseTemplateableElement(stateMachine);
 				if (result == null) result = caseNamespace(stateMachine);
+				if (result == null) result = caseTemplateableElement(stateMachine);
 				if (result == null) result = casePackageableElement(stateMachine);
 				if (result == null) result = caseNamedElement(stateMachine);
-				if (result == null) result = caseParameterableElement(stateMachine);
 				if (result == null) result = caseElement(stateMachine);
 				if (result == null) result = caseNameable(stateMachine);
 				if (result == null) result = caseVisitable(stateMachine);
@@ -1479,11 +1435,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseStereotype(stereotype);
 				if (result == null) result = caseClass(stereotype);
 				if (result == null) result = caseType(stereotype);
-				if (result == null) result = caseTemplateableElement(stereotype);
 				if (result == null) result = caseNamespace(stereotype);
+				if (result == null) result = caseTemplateableElement(stereotype);
 				if (result == null) result = casePackageableElement(stereotype);
 				if (result == null) result = caseNamedElement(stereotype);
-				if (result == null) result = caseParameterableElement(stereotype);
 				if (result == null) result = caseElement(stereotype);
 				if (result == null) result = caseNameable(stereotype);
 				if (result == null) result = caseVisitable(stereotype);
@@ -1518,7 +1473,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				TemplateParameter templateParameter = (TemplateParameter)theEObject;
 				T1 result = caseTemplateParameter(templateParameter);
+				if (result == null) result = caseType(templateParameter);
+				if (result == null) result = caseNamedElement(templateParameter);
 				if (result == null) result = caseElement(templateParameter);
+				if (result == null) result = caseNameable(templateParameter);
 				if (result == null) result = caseVisitable(templateParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -1529,20 +1487,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseTemplateParameterSubstitution(templateParameterSubstitution);
 				if (result == null) result = caseElement(templateParameterSubstitution);
 				if (result == null) result = caseVisitable(templateParameterSubstitution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.TEMPLATE_PARAMETER_TYPE:
-			{
-				TemplateParameterType templateParameterType = (TemplateParameterType)theEObject;
-				T1 result = caseTemplateParameterType(templateParameterType);
-				if (result == null) result = caseType(templateParameterType);
-				if (result == null) result = casePackageableElement(templateParameterType);
-				if (result == null) result = caseNamedElement(templateParameterType);
-				if (result == null) result = caseParameterableElement(templateParameterType);
-				if (result == null) result = caseElement(templateParameterType);
-				if (result == null) result = caseNameable(templateParameterType);
-				if (result == null) result = caseVisitable(templateParameterType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1621,11 +1565,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseDataType(tupleType);
 				if (result == null) result = caseClass(tupleType);
 				if (result == null) result = caseType(tupleType);
-				if (result == null) result = caseTemplateableElement(tupleType);
 				if (result == null) result = caseNamespace(tupleType);
+				if (result == null) result = caseTemplateableElement(tupleType);
 				if (result == null) result = casePackageableElement(tupleType);
 				if (result == null) result = caseNamedElement(tupleType);
-				if (result == null) result = caseParameterableElement(tupleType);
 				if (result == null) result = caseElement(tupleType);
 				if (result == null) result = caseNameable(tupleType);
 				if (result == null) result = caseVisitable(tupleType);
@@ -1636,9 +1579,7 @@ public class PivotSwitch<T1> extends Switch<T1> {
 			{
 				Type type = (Type)theEObject;
 				T1 result = caseType(type);
-				if (result == null) result = casePackageableElement(type);
 				if (result == null) result = caseNamedElement(type);
-				if (result == null) result = caseParameterableElement(type);
 				if (result == null) result = caseElement(type);
 				if (result == null) result = caseNameable(type);
 				if (result == null) result = caseVisitable(type);
@@ -1665,16 +1606,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseTypeExtension(typeExtension);
 				if (result == null) result = caseElement(typeExtension);
 				if (result == null) result = caseVisitable(typeExtension);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.TYPE_TEMPLATE_PARAMETER:
-			{
-				TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter)theEObject;
-				T1 result = caseTypeTemplateParameter(typeTemplateParameter);
-				if (result == null) result = caseTemplateParameter(typeTemplateParameter);
-				if (result == null) result = caseElement(typeTemplateParameter);
-				if (result == null) result = caseVisitable(typeTemplateParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1711,11 +1642,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseUnspecifiedType(unspecifiedType);
 				if (result == null) result = caseClass(unspecifiedType);
 				if (result == null) result = caseType(unspecifiedType);
-				if (result == null) result = caseTemplateableElement(unspecifiedType);
 				if (result == null) result = caseNamespace(unspecifiedType);
+				if (result == null) result = caseTemplateableElement(unspecifiedType);
 				if (result == null) result = casePackageableElement(unspecifiedType);
 				if (result == null) result = caseNamedElement(unspecifiedType);
-				if (result == null) result = caseParameterableElement(unspecifiedType);
 				if (result == null) result = caseElement(unspecifiedType);
 				if (result == null) result = caseNameable(unspecifiedType);
 				if (result == null) result = caseVisitable(unspecifiedType);
@@ -1742,7 +1672,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseTypedElement(valueSpecification);
 				if (result == null) result = casePackageableElement(valueSpecification);
 				if (result == null) result = caseNamedElement(valueSpecification);
-				if (result == null) result = caseParameterableElement(valueSpecification);
 				if (result == null) result = caseElement(valueSpecification);
 				if (result == null) result = caseNameable(valueSpecification);
 				if (result == null) result = caseVisitable(valueSpecification);
@@ -1812,11 +1741,10 @@ public class PivotSwitch<T1> extends Switch<T1> {
 				T1 result = caseVoidType(voidType);
 				if (result == null) result = caseClass(voidType);
 				if (result == null) result = caseType(voidType);
-				if (result == null) result = caseTemplateableElement(voidType);
 				if (result == null) result = caseNamespace(voidType);
+				if (result == null) result = caseTemplateableElement(voidType);
 				if (result == null) result = casePackageableElement(voidType);
 				if (result == null) result = caseNamedElement(voidType);
-				if (result == null) result = caseParameterableElement(voidType);
 				if (result == null) result = caseElement(voidType);
 				if (result == null) result = caseNameable(voidType);
 				if (result == null) result = caseVisitable(voidType);
@@ -2858,21 +2786,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseTemplateParameterType(TemplateParameterType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Tuple Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3193,21 +3106,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseParameterableElement(ParameterableElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Substitution</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3265,21 +3163,6 @@ public class PivotSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 casePrecedence(Precedence object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Template Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Template Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseTypeTemplateParameter(TypeTemplateParameter object) {
 		return null;
 	}
 

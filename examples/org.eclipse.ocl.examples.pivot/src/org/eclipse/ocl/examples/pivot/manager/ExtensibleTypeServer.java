@@ -94,7 +94,7 @@ public abstract class ExtensibleTypeServer extends AbstractTypeServer
 		return representativeType2;
 	}
 
-	public @NonNull TypeTracker getTypeTracker(@NonNull DomainType pivotType) {
+	public @NonNull TypeTracker getTypeTracker(@NonNull DomainClass pivotType) {
 		for (TypeTracker typeTracker : trackers) {
 			if (typeTracker.getTarget() == pivotType) {
 				return typeTracker;

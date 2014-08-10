@@ -135,7 +135,7 @@ public class IntegerLiteralExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Integer_0 = idResolver.getType(TypeId.INTEGER, null);
+		    final @NonNull /*@NonInvalid*/ DomainClass TYP_Integer_0 = idResolver.getClass(TypeId.INTEGER, null);
 		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Integer_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		    ;

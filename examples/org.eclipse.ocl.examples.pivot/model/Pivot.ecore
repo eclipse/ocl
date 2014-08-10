@@ -155,7 +155,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1" eType="#//Operation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//TemplateableElement #//Namespace">
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Type #//Namespace #//TemplateableElement #//PackageableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A class is a type that has objects as its instances."/>
     </eAnnotations>
@@ -1116,7 +1116,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true" eSuperTypes="#//TypedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//TemplateableElement #//Namespace">
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//Namespace #//TemplateableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -1232,7 +1232,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType" eSuperTypes="#//CollectionType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//PackageableElement #//TemplateableElement #//Namespace">
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace #//TemplateableElement #//PackageableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A package is a container for types and other packages.&#xA;Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter."/>
     </eAnnotations>
@@ -1265,7 +1265,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="profileApplication" ordered="false" upperBound="-1" eType="#//ProfileApplication"
         containment="true" eOpposite="#//ProfileApplication/applyingPackage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true" eSuperTypes="#//NamedElement #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Packageable elements are able to serve as a template parameter."/>
     </eAnnotations>
@@ -1277,28 +1277,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation" eOpposite="#//Operation/ownedParameter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The operation that owns the parameter."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParameterableElement" abstract="true" eSuperTypes="#//Element">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template."/>
-    </eAnnotations>
-    <eOperations name="isCompatibleWith" lowerBound="1" eType="#//Boolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;p.oclIsKindOf(self.oclType())&#xA;&#xA;"/>
-      </eAnnotations>
-      <eParameters name="p" lowerBound="1" eType="#//ParameterableElement"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateParameter" eType="#//TemplateParameter" eOpposite="#//TemplateParameter/ownedParameteredElement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The formal template parameter that owns this element."/>
-      </eAnnotations>
-      <eAnnotations source="subsets" references="#//ParameterableElement/templateParameter"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateParameter" eType="#//TemplateParameter" eOpposite="#//TemplateParameter/parameteredElement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The template parameter that exposes this element as a formal parameter."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -1540,7 +1518,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//Vertex #//Namespace">
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//Namespace #//Vertex">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A state models a situation during which some (usually implicit) invariant condition holds."/>
     </eAnnotations>
@@ -1684,37 +1662,21 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameter" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameter" eSuperTypes="#//Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A template parameter exposes a parameterable element as a formal template parameter of a template."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//ParameterableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingClass" ordered="false" upperBound="-1" eType="#//Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//Class">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="templateParameter"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is the default for this formal template parameter."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDefault" eType="#//ParameterableElement" containment="true">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="templateParameter"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The element that is owned by this template parameter for the purpose of providing a default."/>
-      </eAnnotations>
-      <eAnnotations source="subsets" references="#//TemplateParameter/default"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameteredElement" eType="#//ParameterableElement" containment="true"
-        eOpposite="#//ParameterableElement/owningTemplateParameter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The element that is owned by this template parameter."/>
-      </eAnnotations>
-      <eAnnotations source="subsets" references="#//TemplateParameter/parameteredElement"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameteredElement" lowerBound="1" eType="#//ParameterableElement" eOpposite="#//ParameterableElement/templateParameter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The element exposed by this template parameter."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1" eType="#//TemplateSignature" eOpposite="#//TemplateSignature/ownedParameter">
@@ -1727,7 +1689,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actual" lowerBound="1" eType="#//ParameterableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actual" lowerBound="1" eType="#//Type">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="templateParameterSubstitution"/>
       </eAnnotations>
@@ -1743,23 +1705,11 @@
         <details key="documentation" value="The formal template parameter that is associated with this substitution."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActual" eType="#//ParameterableElement" containment="true">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="owningTemplateParameterSubstitution"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The actual parameter that is owned by this substitution."/>
-      </eAnnotations>
-      <eAnnotations source="subsets" references="#//TemplateParameterSubstitution/actual"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateBinding" lowerBound="1" eType="#//TemplateBinding" eOpposite="#//TemplateBinding/parameterSubstitution">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The optional bindings from this element to templates."/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterType" eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" eType="#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateSignature" eSuperTypes="#//Element">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1846,10 +1796,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" eType="#//OCLExpression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//DataType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//PackageableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A type is a named element that is used as the type for a typed element. A type can be contained in a package.&#xA;Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter."/>
     </eAnnotations>
+    <eOperations name="isClass" eType="#//Class"/>
+    <eOperations name="isTemplateParameter" eType="#//TemplateParameter"/>
     <eOperations name="specializeIn" lowerBound="1" eType="#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self&#xA;&#xA;"/>
@@ -1867,19 +1819,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" lowerBound="1" eType="#//Stereotype" eOpposite="#//Stereotype/extensionOfs"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type" eOpposite="#//Type/extendedBys"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeTemplateParameter" eSuperTypes="#//TemplateParameter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A type template parameter exposes a type as a formal template parameter."/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingClass" ordered="false" upperBound="-1" eType="#//Class">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="typeTemplateParameter"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

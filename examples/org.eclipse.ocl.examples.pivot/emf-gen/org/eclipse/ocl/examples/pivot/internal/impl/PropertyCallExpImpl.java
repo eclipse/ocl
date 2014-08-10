@@ -472,34 +472,34 @@ public class PropertyCallExpImpl
 		try {
 		    @Nullable /*@Caught*/ Object CAUGHT_symbol_2;
 		    try {
-		        @Nullable /*@Caught*/ Object CAUGHT_self_71;
+		        @Nullable /*@Caught*/ Object CAUGHT_self_70;
 		        try {
 		            final @Nullable /*@Thrown*/ DomainProperty referredProperty = this.getReferredProperty();
 		            if (referredProperty == null) {
 		                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
 		            }
-		            final @Nullable /*@Thrown*/ Boolean self_71 = ((Feature)referredProperty).isStatic();
-		            CAUGHT_self_71 = self_71;
+		            final @Nullable /*@Thrown*/ Boolean self_70 = ((Feature)referredProperty).isStatic();
+		            CAUGHT_self_70 = self_70;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
 		        }
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
+		        if (CAUGHT_self_70 instanceof InvalidValueException) {
+		            throw (InvalidValueException)CAUGHT_self_70;
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
 		        @Nullable /*@Thrown*/ Boolean symbol_2;
 		        if (symbol_0) {
-		            symbol_2 = (Boolean)CAUGHT_self_71;
+		            symbol_2 = (Boolean)CAUGHT_self_70;
 		        }
 		        else {
-		            final /*@Thrown*/ boolean eq = CAUGHT_self_71 == null;
+		            final /*@Thrown*/ boolean eq = CAUGHT_self_70 == null;
 		            @Nullable /*@Thrown*/ Boolean symbol_1;
 		            if (eq) {
 		                symbol_1 = null;
 		            }
 		            else {
-		                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
+		                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_70 == Boolean.FALSE;
 		                symbol_1 = (Boolean)eq_0;
 		            }
 		            symbol_2 = symbol_1;

@@ -345,30 +345,30 @@ public class MessageExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_1;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    @NonNull /*@Caught*/ Object CAUGHT_self_70;
 		    try {
-		        final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getType(PivotTables.CLSSid_CollectionType, null);
+		        final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		        final @Nullable /*@Thrown*/ DomainExpression target = this.getTarget();
 		        if (target == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType type = target.getType();
-		        final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
-		        CAUGHT_self_71 = self_71;
+		        final /*@Thrown*/ boolean self_70 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
+		        CAUGHT_self_70 = self_70;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_70 = ValuesUtil.createInvalidValue(e);
 		    }
-		    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		        throw (InvalidValueException)CAUGHT_self_71;
+		    if (CAUGHT_self_70 instanceof InvalidValueException) {
+		        throw (InvalidValueException)CAUGHT_self_70;
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
+		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_70 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_1;
 		    if (symbol_0) {
-		        symbol_1 = (Boolean)CAUGHT_self_71;
+		        symbol_1 = (Boolean)CAUGHT_self_70;
 		    }
 		    else {
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
+		        final /*@Thrown*/ boolean eq = CAUGHT_self_70 == Boolean.FALSE;
 		        symbol_1 = eq;
 		    }
 		    CAUGHT_symbol_1 = symbol_1;

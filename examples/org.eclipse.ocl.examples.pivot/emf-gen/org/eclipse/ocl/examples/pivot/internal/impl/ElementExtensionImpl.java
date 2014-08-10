@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Stereotype;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeExtension;
@@ -276,14 +275,6 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_COMMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
@@ -326,18 +317,14 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_BINDING:
 				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIOR:
@@ -366,8 +353,6 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__OWNING_PACKAGE:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_CLASSES, org.eclipse.ocl.examples.pivot.Package.class, msgs);
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
@@ -396,23 +381,18 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return getOwnedComment();
 			case PivotPackage.ELEMENT_EXTENSION__NAME:
 				return getName();
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter();
-			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
-				if (resolve) return getTemplateParameter();
-				return basicGetTemplateParameter();
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				return getExtendedBys();
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				return getOwnedRule();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_BINDING:
 				return getTemplateBinding();
 			case PivotPackage.ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
-				return getOwnedRule();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:
@@ -476,18 +456,16 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -498,10 +476,6 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -580,17 +554,14 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
@@ -600,9 +571,6 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
-				return;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
-				getOwnedRule().clear();
 				return;
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -670,22 +638,18 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.ELEMENT_EXTENSION__OWNING_TEMPLATE_PARAMETER:
-				return getOwningTemplateParameter() != null;
-			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_PARAMETER:
-				return templateParameter != null;
 			case PivotPackage.ELEMENT_EXTENSION__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
+			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.ELEMENT_EXTENSION__TEMPLATE_BINDING:
 				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
-			case PivotPackage.ELEMENT_EXTENSION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:

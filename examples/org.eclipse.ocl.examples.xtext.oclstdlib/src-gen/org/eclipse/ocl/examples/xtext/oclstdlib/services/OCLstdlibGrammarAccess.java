@@ -2005,10 +2005,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		public ParserRule getRule() { return rule; }
 
 		//ownedActualParameter=TypeRefCS
-		public Assignment getOwnedActualParameterAssignment() { return cOwnedActualParameterAssignment; }
+		public Assignment getActualParameterAssignment() { return cOwnedActualParameterAssignment; }
 
 		//TypeRefCS
-		public RuleCall getOwnedActualParameterTypeRefCSParserRuleCall_0() { return cOwnedActualParameterTypeRefCSParserRuleCall_0; }
+		public RuleCall getActualParameterTypeRefCSParserRuleCall_0() { return cOwnedActualParameterTypeRefCSParserRuleCall_0; }
 	}
 
 	public class TemplateSignatureCSElements extends AbstractParserRuleElementFinder {

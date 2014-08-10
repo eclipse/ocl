@@ -59,7 +59,7 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
@@ -102,6 +102,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectVal
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
+
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -1280,7 +1281,7 @@ public class DelegatesTest extends PivotTestSuite
 		return null;
 	}
 
-	protected DomainType getType(EObject eObject) {
+	protected DomainClass getType(EObject eObject) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(eObject);
 	}
 

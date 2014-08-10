@@ -18,18 +18,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ElementExtension;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -41,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getFormal <em>Formal</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getOwnedActual <em>Owned Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl#getTemplateBinding <em>Template Binding</em>}</li>
  * </ul>
  * </p>
@@ -61,7 +59,7 @@ public class TemplateParameterSubstitutionImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected ParameterableElement actual;
+	protected Type actual;
 
 	/**
 	 * The cached value of the '{@link #getFormal() <em>Formal</em>}' reference.
@@ -72,16 +70,6 @@ public class TemplateParameterSubstitutionImpl
 	 * @ordered
 	 */
 	protected TemplateParameter formal;
-
-	/**
-	 * The cached value of the '{@link #getOwnedActual() <em>Owned Actual</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedActual()
-	 * @generated
-	 * @ordered
-	 */
-	protected ParameterableElement ownedActual;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,11 +95,11 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterableElement getActual() {
+	public Type getActual() {
 		if (actual != null && ((EObject)actual).eIsProxy())
 		{
 			InternalEObject oldActual = (InternalEObject)actual;
-			actual = (ParameterableElement)eResolveProxy(oldActual);
+			actual = (Type)eResolveProxy(oldActual);
 			if (actual != oldActual)
 			{
 				if (eNotificationRequired())
@@ -126,7 +114,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterableElement basicGetActual() {
+	public Type basicGetActual() {
 		return actual;
 	}
 
@@ -135,18 +123,12 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActual(ParameterableElement newActual) {
-		ParameterableElement oldActual = actual;
+	public void setActual(Type newActual)
+	{
+		Type oldActual = actual;
 		actual = newActual;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, oldActual, actual));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedActual != null && ownedActual != newActual)
-			{
-				setOwnedActual(null);
-			}
-		}
 	}
 
 	/**
@@ -187,62 +169,6 @@ public class TemplateParameterSubstitutionImpl
 		formal = newFormal;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, oldFormal, formal));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParameterableElement getOwnedActual() {
-		return ownedActual;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedActual(
-			ParameterableElement newOwnedActual, NotificationChain msgs) {
-		ParameterableElement oldOwnedActual = ownedActual;
-		ownedActual = newOwnedActual;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, oldOwnedActual, newOwnedActual);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedActual != null)
-			{
-				if (newOwnedActual != actual)
-				{
-					setActual(newOwnedActual);
-				}
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedActual(ParameterableElement newOwnedActual) {
-		if (newOwnedActual != ownedActual)
-		{
-			NotificationChain msgs = null;
-			if (ownedActual != null)
-				msgs = ((InternalEObject)ownedActual).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, null, msgs);
-			if (newOwnedActual != null)
-				msgs = ((InternalEObject)newOwnedActual).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, null, msgs);
-			msgs = basicSetOwnedActual(newOwnedActual, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, newOwnedActual, newOwnedActual));
 	}
 
 	/**
@@ -331,8 +257,6 @@ public class TemplateParameterSubstitutionImpl
 				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
-				return basicSetOwnedActual(null, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
 				return basicSetTemplateBinding(null, msgs);
 		}
@@ -378,8 +302,6 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				if (resolve) return getFormal();
 				return basicGetFormal();
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
-				return getOwnedActual();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
 				return getTemplateBinding();
 		}
@@ -413,13 +335,10 @@ public class TemplateParameterSubstitutionImpl
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL:
-				setActual((ParameterableElement)newValue);
+				setActual((Type)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
-				setOwnedActual((ParameterableElement)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
 				setTemplateBinding((TemplateBinding)newValue);
@@ -450,13 +369,10 @@ public class TemplateParameterSubstitutionImpl
 				getOwnedComment().clear();
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL:
-				setActual((ParameterableElement)null);
+				setActual((Type)null);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)null);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
-				setOwnedActual((ParameterableElement)null);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
 				setTemplateBinding((TemplateBinding)null);
@@ -486,8 +402,6 @@ public class TemplateParameterSubstitutionImpl
 				return actual != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				return formal != null;
-			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
-				return ownedActual != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
 				return getTemplateBinding() != null;
 		}

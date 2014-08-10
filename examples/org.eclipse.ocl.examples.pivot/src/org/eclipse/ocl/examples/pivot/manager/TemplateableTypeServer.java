@@ -21,8 +21,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainClass;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -61,13 +61,13 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		specializedType.setName(typeName);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);
-		Map<TemplateParameter, ParameterableElement> allBindings = new HashMap<TemplateParameter, ParameterableElement>();
+		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		for (int i = 0; i < templateParameters.size(); i++) {
 			TemplateParameter formalParameter = templateParameters.get(i);
 			if (formalParameter != null) {
-				Object templateArgument = templateArguments.get(i);
-				if (templateArgument instanceof ParameterableElement) {
-					ParameterableElement actualType = (ParameterableElement) templateArgument;
+				DomainElement templateArgument = templateArguments.get(i);
+				if (templateArgument instanceof Type) {
+					Type actualType = (Type) templateArgument;
 					allBindings.put(formalParameter, actualType);
 					TemplateParameterSubstitution templateParameterSubstitution = AbstractTypeServer
 						.createTemplateParameterSubstitution(formalParameter,
@@ -118,7 +118,7 @@ public class TemplateableTypeServer extends ExtensibleTypeServer
 		return type;
 	}
 
-	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull List<? extends DomainElement> templateArguments) {
+	public synchronized @NonNull org.eclipse.ocl.examples.pivot.Class getSpecializedType(@NonNull List<? extends DomainType> templateArguments) {
 		return getSpecializedType(new DomainTypeParameters(templateArguments));
 	}
 

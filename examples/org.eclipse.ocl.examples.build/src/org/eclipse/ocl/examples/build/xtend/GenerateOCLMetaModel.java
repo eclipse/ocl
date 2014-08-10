@@ -164,7 +164,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			if ((eObject instanceof org.eclipse.ocl.examples.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
 				!(eObject instanceof Metaclass<?>) && !(eObject instanceof TupleType) &&
-				(((org.eclipse.ocl.examples.pivot.Class)eObject).getOwningTemplateParameter() == null)) {
+				(((org.eclipse.ocl.examples.pivot.Class)eObject).isTemplateParameter() == null)) {
 				allElements.put(((org.eclipse.ocl.examples.pivot.Class)eObject).getName(), (org.eclipse.ocl.examples.pivot.Class)eObject);
 			}
 		}
