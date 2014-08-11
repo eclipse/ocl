@@ -181,8 +181,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.DYNAMIC_TYPE__NESTED_CLASSIFIER:
-				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_INVARIANTS:
@@ -237,8 +235,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return isActive();
 			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.DYNAMIC_TYPE__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_INVARIANTS:
@@ -319,10 +315,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return;
 			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.DYNAMIC_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -410,9 +402,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.DYNAMIC_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -479,8 +468,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.DYNAMIC_TYPE__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_INVARIANTS:

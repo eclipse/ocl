@@ -311,7 +311,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitTemplateParameter(@NonNull TemplateParameter object) {
-		TemplateParameterId elementId = object.getElementId();
+		TemplateParameterId elementId = object.getTemplateParameterId();
 		List<DomainType> actualList = context.get(object);
 		if (actualList == null) {
 			actualList = new ArrayList<DomainType>();

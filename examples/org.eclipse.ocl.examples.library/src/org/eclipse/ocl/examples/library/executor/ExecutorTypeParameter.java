@@ -37,7 +37,7 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 	
-	public @NonNull TemplateParameterId getElementId() {
+	public @NonNull TemplateParameterId getTemplateParameterId() {
 		return typeid;
 	}
 

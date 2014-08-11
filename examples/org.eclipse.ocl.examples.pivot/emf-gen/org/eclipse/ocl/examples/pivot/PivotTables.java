@@ -235,7 +235,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_5 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_CollectionType);
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_6 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_ExpressionInOCL);
     public static final @NonNull /*@NonInvalid*/ MetaclassId METAid_Metaclass_7 = TypeId.METACLASS.getSpecializedId(PivotTables.CLSSid_Class);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Class = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Class);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_CollectionLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_CollectionLiteralPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConstructorPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ConstructorPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Detail = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Detail);
@@ -1931,19 +1930,17 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Class__isAbstract = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT, Types._Class, 1);
 		public static final @NonNull ExecutorProperty _Class__isActive = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_ACTIVE, Types._Class, 2);
 		public static final @NonNull ExecutorProperty _Class__isInterface = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, Types._Class, 3);
-		public static final @NonNull ExecutorProperty _Class__nestedClassifier = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__NESTED_CLASSIFIER, Types._Class, 4);
-		public static final @NonNull ExecutorProperty _Class__ownedBehavior = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, Types._Class, 5);
-		public static final @NonNull ExecutorProperty _Class__ownedInvariants = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_INVARIANTS, Types._Class, 6);
-		public static final @NonNull ExecutorProperty _Class__ownedOperations = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_OPERATIONS, Types._Class, 7);
-		public static final @NonNull ExecutorProperty _Class__ownedProperties = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_PROPERTIES, Types._Class, 8);
-		public static final @NonNull ExecutorProperty _Class__owningPackage = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNING_PACKAGE, Types._Class, 9);
-		public static final @NonNull ExecutorProperty _Class__superClasses = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, Types._Class, 10);
-		public static final @NonNull ExecutorProperty _Class__Class__nestedClassifier = new ExecutorPropertyWithImplementation("Class", Types._Class, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__NESTED_CLASSIFIER));
-		public static final @NonNull ExecutorProperty _Class__DataType__behavioralClass = new ExecutorPropertyWithImplementation("DataType", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS));
-		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClass = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS));
-		public static final @NonNull ExecutorProperty _Class__instanceSpecification__classes = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
-		public static final @NonNull ExecutorProperty _Class__subClasses__superClasses = new ExecutorPropertyWithImplementation("subClasses", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
-		public static final @NonNull ExecutorProperty _Class__templateParameter__lowerBound = new ExecutorPropertyWithImplementation("templateParameter", Types._Class, 16, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Class__ownedBehavior = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, Types._Class, 4);
+		public static final @NonNull ExecutorProperty _Class__ownedInvariants = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_INVARIANTS, Types._Class, 5);
+		public static final @NonNull ExecutorProperty _Class__ownedOperations = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_OPERATIONS, Types._Class, 6);
+		public static final @NonNull ExecutorProperty _Class__ownedProperties = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_PROPERTIES, Types._Class, 7);
+		public static final @NonNull ExecutorProperty _Class__owningPackage = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNING_PACKAGE, Types._Class, 8);
+		public static final @NonNull ExecutorProperty _Class__superClasses = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, Types._Class, 9);
+		public static final @NonNull ExecutorProperty _Class__DataType__behavioralClass = new ExecutorPropertyWithImplementation("DataType", Types._Class, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS));
+		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClass = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS));
+		public static final @NonNull ExecutorProperty _Class__instanceSpecification__classes = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
+		public static final @NonNull ExecutorProperty _Class__subClasses__superClasses = new ExecutorPropertyWithImplementation("subClasses", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
+		public static final @NonNull ExecutorProperty _Class__templateParameter__upperBound = new ExecutorPropertyWithImplementation("templateParameter", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND));
 
 		public static final @NonNull ExecutorProperty _CollectionItem__item = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, Types._CollectionItem, 0);
 
@@ -9874,7 +9871,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -9889,7 +9885,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -9908,7 +9903,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -9922,7 +9917,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -9939,7 +9933,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
 			PivotTables.Properties._AssociationClass__AssociationClassCallExp__referredAssociationClass,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -9958,7 +9951,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10012,7 +10005,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10028,7 +10020,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10047,7 +10038,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10065,7 +10056,6 @@ public class PivotTables
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10081,7 +10071,6 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10100,7 +10089,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10114,7 +10103,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10130,7 +10118,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Behavior__Class__ownedBehavior,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -10153,7 +10140,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10248,7 +10235,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10263,7 +10249,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10282,7 +10267,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10315,7 +10300,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10331,7 +10315,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10350,7 +10333,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10436,7 +10419,6 @@ public class PivotTables
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10452,7 +10434,6 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10471,7 +10452,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10595,7 +10576,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10610,7 +10590,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10629,7 +10608,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10658,7 +10637,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DynamicElement__metaType,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10675,7 +10653,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Behavior__Class__ownedBehavior,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -10698,7 +10675,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10739,7 +10716,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DynamicElement__metaType,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10755,7 +10731,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10774,7 +10749,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10818,7 +10793,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._ElementExtension__isRequired,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10834,7 +10808,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10853,7 +10826,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -10902,7 +10875,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -10918,7 +10890,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -10937,7 +10908,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11213,7 +11184,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -11228,7 +11198,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -11247,7 +11216,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11380,7 +11349,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -11397,7 +11365,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -11416,7 +11383,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11619,7 +11586,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -11636,7 +11602,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -11655,7 +11620,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -11670,7 +11635,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -11685,7 +11649,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -11704,7 +11667,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12001,7 +11964,6 @@ public class PivotTables
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12017,7 +11979,6 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12036,7 +11997,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12147,7 +12108,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12162,7 +12122,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12181,7 +12140,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12342,7 +12301,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12358,7 +12316,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12377,7 +12334,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12465,7 +12422,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12480,7 +12436,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12499,7 +12454,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12531,7 +12486,6 @@ public class PivotTables
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12547,7 +12501,6 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12566,7 +12519,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12584,7 +12537,6 @@ public class PivotTables
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12600,7 +12552,6 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12619,7 +12570,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12633,7 +12584,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12648,7 +12598,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12669,7 +12618,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12766,7 +12715,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12784,7 +12732,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Behavior__Class__ownedBehavior,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -12808,7 +12755,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -12823,7 +12770,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -12838,7 +12784,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -12858,7 +12803,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13017,7 +12962,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -13033,7 +12977,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -13052,7 +12995,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13133,7 +13076,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -13148,7 +13090,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -13167,7 +13108,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13302,7 +13243,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._UnspecifiedType__lowerBound,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -13318,7 +13258,6 @@ public class PivotTables
 			PivotTables.Properties._UnspecifiedType__upperBound,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -13337,7 +13276,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};
@@ -13491,7 +13430,6 @@ public class PivotTables
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
 			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Class__nestedClassifier,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Class__ownedBehavior,
 			PivotTables.Properties._Element__ownedComment,
@@ -13506,7 +13444,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContent,
 			PivotTables.Properties._Element__Annotation__reference,
-			PivotTables.Properties._Class__Class__nestedClassifier,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
 			PivotTables.Properties._Namespace__Constraint__context,
@@ -13525,7 +13462,7 @@ public class PivotTables
 			PivotTables.Properties._Class__instanceSpecification__classes,
 			PivotTables.Properties._Type__operation__raisedException,
 			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Class__templateParameter__lowerBound,
+			PivotTables.Properties._Class__templateParameter__upperBound,
 			PivotTables.Properties._Type__templateParameterSubstitution__actual,
 			PivotTables.Properties._Type__typedElement__type
 		};

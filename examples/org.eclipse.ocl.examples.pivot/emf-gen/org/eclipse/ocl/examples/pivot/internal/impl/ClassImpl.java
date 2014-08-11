@@ -91,7 +91,6 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getNestedClassifier <em>Nested Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedBehavior <em>Owned Behavior</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
@@ -226,16 +225,6 @@ public class ClassImpl
 	 * @ordered
 	 */
 	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
-
-	/**
-	 * The cached value of the '{@link #getNestedClassifier() <em>Nested Classifier</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedClassifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> nestedClassifier;
 
 	/**
 	 * The cached value of the '{@link #getOwnedBehavior() <em>Owned Behavior</em>}' containment reference list.
@@ -616,8 +605,6 @@ public class ClassImpl
 				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.CLASS__NESTED_CLASSIFIER:
-				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
@@ -748,20 +735,6 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<org.eclipse.ocl.examples.pivot.Class> getNestedClassifier()
-	{
-		if (nestedClassifier == null)
-		{
-			nestedClassifier = new EObjectContainmentEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__NESTED_CLASSIFIER);
-		}
-		return nestedClassifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("null")
 	public @NonNull List<Property> getOwnedProperties()
 	{
@@ -809,8 +782,6 @@ public class ClassImpl
 				return isActive();
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.CLASS__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
@@ -885,10 +856,6 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.CLASS__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -968,9 +935,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.CLASS__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -1030,8 +994,6 @@ public class ClassImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.CLASS__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.CLASS__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.CLASS__OWNED_INVARIANTS:

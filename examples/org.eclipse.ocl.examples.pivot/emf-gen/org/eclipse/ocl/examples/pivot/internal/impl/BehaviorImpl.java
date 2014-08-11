@@ -185,8 +185,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
-				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.BEHAVIOR__OWNED_INVARIANTS:
@@ -259,8 +257,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return isActive();
 			case PivotPackage.BEHAVIOR__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.BEHAVIOR__OWNED_INVARIANTS:
@@ -338,10 +334,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return;
 			case PivotPackage.BEHAVIOR__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -425,9 +417,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -491,8 +480,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.BEHAVIOR__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.BEHAVIOR__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_INVARIANTS:

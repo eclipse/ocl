@@ -154,7 +154,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQQX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding" name="A_signature_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-signature AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding" name="A_templateSignature_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-signature AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding">
           <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding" name="templateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQQn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQQ37VEeOu79LxSz8Ylw" value="*"/>
@@ -357,10 +357,6 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
         <packagedElement xmi:type="uml:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class">
           <generalization xmi:id="_XnqLQn7VEeOu79LxSz8Ylw" general="_97IzQrB0Ed-sntd82PWy7Q"/>
-          <ownedAttribute xmi:id="_ygH8IPVREeK4b-GfCh5JXA" name="nestedClassifier" type="_97IzMbB0Ed-sntd82PWy7Q" isOrdered="true" aggregation="composite">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQV37VEeOu79LxSz8Ylw"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQWH7VEeOu79LxSz8Ylw" value="*"/>
-          </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_97JaTbB0Ed-sntd82PWy7Q" name="NamedElement" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_97IzQrB0Ed-sntd82PWy7Q" name="Namespace" isAbstract="true">

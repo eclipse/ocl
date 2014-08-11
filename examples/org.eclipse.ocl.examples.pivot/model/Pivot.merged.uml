@@ -220,10 +220,6 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PowningPackage.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TClass.PnestedClassifier" name="nestedClassifier" type="Ppivot.TClass" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PnestedClassifier.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PnestedClassifier.uV" value="*"/>
-      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TClass.PownedBehavior" name="ownedBehavior" type="Ppivot.TBehavior" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PownedBehavior.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TClass.PownedBehavior.uV" value="*"/>
@@ -1294,7 +1290,7 @@
           <body>The element that is bound by this binding.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateBinding.PtemplateSignature" name="templateSignature" type="Ppivot.TTemplateSignature" association="Ppivot.A_signature_templateBinding">
+      <ownedAttribute xmi:id="Ppivot.TTemplateBinding.PtemplateSignature" name="templateSignature" type="Ppivot.TTemplateSignature" association="Ppivot.A_templateSignature_templateBinding">
         <ownedComment xmi:id="Ppivot.TTemplateBinding.PtemplateSignature.oC0" annotatedElement="Ppivot.TTemplateBinding.PtemplateSignature">
           <body>The template signature for the template that is the target of the binding.</body>
         </ownedComment>
@@ -1774,12 +1770,6 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_region_state" name="A_region_state" memberEnd="Ppivot.TState.Pregion Ppivot.TRegion.Pstate"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_region_stateMachiine" name="A_region_stateMachiine" memberEnd="Ppivot.TStateMachine.Pregion Ppivot.TRegion.PstateMachine"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_signature_templateBinding" name="A_signature_templateBinding" memberEnd="Ppivot.TTemplateBinding.PtemplateSignature Ppivot.A_signature_templateBinding.PtemplateBinding">
-      <ownedEnd xmi:id="Ppivot.A_signature_templateBinding.PtemplateBinding" name="templateBinding" type="Ppivot.TTemplateBinding" association="Ppivot.A_signature_templateBinding">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_signature_templateBinding.PtemplateBinding.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_signature_templateBinding.PtemplateBinding.uV" value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_slot_owningInstance" name="A_slot_owningInstance" memberEnd="Ppivot.TInstanceSpecification.Pslots Ppivot.TSlot.PowningInstance"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_specification_owningConstraint" name="A_specification_owningConstraint"
         memberEnd="Ppivot.TConstraint.Pspecification Ppivot.TLanguageExpression.PowningConstraint"/>
@@ -1795,6 +1785,14 @@
       <ownedEnd xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses" name="subClasses" type="Ppivot.TClass" association="Ppivot.A_superClasses_subClasses">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses.uV" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_templateSignature_templateBinding" name="A_templateSignature_templateBinding"
+        memberEnd="Ppivot.TTemplateBinding.PtemplateSignature Ppivot.A_templateSignature_templateBinding.PtemplateBinding">
+      <ownedEnd xmi:id="Ppivot.A_templateSignature_templateBinding.PtemplateBinding" name="templateBinding" type="Ppivot.TTemplateBinding"
+          association="Ppivot.A_templateSignature_templateBinding">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_templateSignature_templateBinding.PtemplateBinding.lV"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_templateSignature_templateBinding.PtemplateBinding.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_transition_trigger" name="A_transition_trigger" memberEnd="Ppivot.TTrigger.Ptransition Ppivot.TTransition.Ptrigger"/>

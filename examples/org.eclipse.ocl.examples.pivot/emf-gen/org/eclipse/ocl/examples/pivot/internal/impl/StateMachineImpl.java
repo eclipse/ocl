@@ -249,8 +249,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
-				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANTS:
@@ -311,8 +309,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return isActive();
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANTS:
@@ -398,10 +394,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return;
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -501,9 +493,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -579,8 +568,6 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.STATE_MACHINE__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANTS:

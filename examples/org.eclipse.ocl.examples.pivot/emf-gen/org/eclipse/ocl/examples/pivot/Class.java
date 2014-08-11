@@ -34,7 +34,6 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getNestedClassifier <em>Nested Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operations</em>}</li>
@@ -243,21 +242,6 @@ public interface Class
 	 * @generated
 	 */
 	void setIsInterface(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Nested Classifier</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Class}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Classifier</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nested Classifier</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_NestedClassifier()
-	 * @generated
-	 */
-	List<Class> getNestedClassifier();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Properties</b></em>' containment reference list.

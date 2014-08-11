@@ -208,8 +208,6 @@ public class MessageTypeImpl
 				return isActive();
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:
@@ -290,10 +288,6 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -379,9 +373,6 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -447,8 +438,6 @@ public class MessageTypeImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.MESSAGE_TYPE__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:

@@ -209,8 +209,6 @@ public class DataTypeImpl
 				return isActive();
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.DATA_TYPE__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:
@@ -291,10 +289,6 @@ public class DataTypeImpl
 				return;
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -381,9 +375,6 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.DATA_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -450,8 +441,6 @@ public class DataTypeImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.DATA_TYPE__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:

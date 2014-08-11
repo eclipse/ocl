@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -32,7 +33,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -495,37 +495,6 @@ public class TemplateParameterImpl
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitTemplateParameter(this);
 	}
-
-	private TemplateParameterId elementId;
-	
-	public @NonNull TemplateParameterId getElementId() {
-		TemplateParameterId elementId2 = elementId;
-		if (elementId2 == null) {
-			synchronized (this) {
-				elementId2 = elementId;
-				if (elementId2 == null) {
-					int index = 0;
-					TemplateSignature signature = getOwningTemplateSignature();
-					if (signature != null) {
-						int parentTemplateParametersCount = 0;
-						TemplateableElement template = signature.getOwningTemplateableElement();
-						if (template != null) {
-							EObject eContainer = template.eContainer();
-							if (eContainer != null) {
-								List<TemplateParameter> parentTemplateParameters = PivotUtil.getAllTemplateParameters(eContainer);
-								if (parentTemplateParameters != null) {
-									parentTemplateParametersCount = parentTemplateParameters.size();
-								}
-							}
-						}
-						index = parentTemplateParametersCount + signature.getOwnedTemplateParameters().indexOf(this);
-					}
-					elementId = elementId2 = IdManager.getTemplateParameterId(index);
-				}
-			}
-		}
-		return elementId2;
-	}
 	
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
 		DomainInheritance thisInheritance = standardLibrary.getOclAnyType().getInheritance(standardLibrary);
@@ -545,9 +514,40 @@ public class TemplateParameterImpl
 			return standardLibrary.getOclAnyType();			// WIP FIXME should never happen
 		}
 	}
+
+	private /*@LazyNonNull*/ TemplateParameterId templateParameterId;
 	
-	public @NonNull TypeId getTypeId() {
-		return getElementId();
+	public @NonNull TemplateParameterId getTemplateParameterId() {
+		TemplateParameterId templateParameterId2 = templateParameterId;
+		if (templateParameterId2 == null) {
+			synchronized (this) {
+				templateParameterId2 = templateParameterId;
+				if (templateParameterId2 == null) {
+					int index = 0;
+					TemplateSignature templateSignature = getOwningTemplateSignature();
+					if (templateSignature != null) {
+						int parentTemplateParametersCount = 0;
+						TemplateableElement template = templateSignature.getOwningTemplateableElement();
+						if (template != null) {
+							EObject eContainer = template.eContainer();
+							if (eContainer != null) {
+								List<TemplateParameter> parentTemplateParameters = PivotUtil.getAllTemplateParameters(eContainer);
+								if (parentTemplateParameters != null) {
+									parentTemplateParametersCount = parentTemplateParameters.size();
+								}
+							}
+						}
+						index = parentTemplateParametersCount + templateSignature.getOwnedTemplateParameters().indexOf(this);
+					}
+					templateParameterId = templateParameterId2 = IdManager.getTemplateParameterId(index);
+				}
+			}
+		}
+		return templateParameterId2;
+	}
+
+	public @NonNull TemplateParameterId getTypeId() {
+		return getTemplateParameterId();
 	}
 	
 	@Override
@@ -561,9 +561,15 @@ public class TemplateParameterImpl
 	}
 
 	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(((EObject) expr).eResource());
-		TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, (Type)selfType);
-		visitor.visit((CallExp)expr);
-		return visitor.specialize(this);
+		if (expr instanceof EObject) {
+			Resource eResource = ((EObject) expr).eResource();
+			if (eResource != null) {
+				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+				TemplateParameterSubstitutionVisitor visitor = new TemplateParameterSubstitutionVisitor(metaModelManager, selfType instanceof Type ? (Type)selfType : null);
+				visitor.visit((CallExp)expr);
+				return visitor.specialize(this);
+			}
+		}
+		return null;
 	}
 } //TemplateParameterImpl

@@ -3733,7 +3733,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedBehavior()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(5);
+		return (EReference)classEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3743,7 +3743,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedInvariants()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(6);
+		return (EReference)classEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3753,7 +3753,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedOperations()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(7);
+		return (EReference)classEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -3763,7 +3763,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedProperties()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(8);
+		return (EReference)classEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3773,7 +3773,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwningPackage()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(9);
+		return (EReference)classEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -3783,7 +3783,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_SuperClasses()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(10);
+		return (EReference)classEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -3804,16 +3804,6 @@ public class PivotPackageImpl
 	public EAttribute getClass_IsInterface()
 	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClass_NestedClassifier()
-	{
-		return (EReference)classEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -5482,7 +5472,6 @@ public class PivotPackageImpl
 		createEAttribute(classEClass, CLASS__IS_ABSTRACT);
 		createEAttribute(classEClass, CLASS__IS_ACTIVE);
 		createEAttribute(classEClass, CLASS__IS_INTERFACE);
-		createEReference(classEClass, CLASS__NESTED_CLASSIFIER);
 		createEReference(classEClass, CLASS__OWNED_BEHAVIOR);
 		createEReference(classEClass, CLASS__OWNED_INVARIANTS);
 		createEReference(classEClass, CLASS__OWNED_OPERATIONS);
@@ -6214,7 +6203,6 @@ public class PivotPackageImpl
 		initEAttribute(getClass_IsAbstract(), this.getBoolean(), "isAbstract", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getClass_IsActive(), this.getBoolean(), "isActive", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getClass_IsInterface(), this.getBoolean(), "isInterface", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getClass_NestedClassifier(), this.getClass_(), null, "nestedClassifier", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedBehavior(), this.getBehavior(), null, "ownedBehavior", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedInvariants(), this.getConstraint(), null, "ownedInvariants", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClass_OwnedOperations(), this.getOperation(), this.getOperation_OwningClass(), "ownedOperations", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

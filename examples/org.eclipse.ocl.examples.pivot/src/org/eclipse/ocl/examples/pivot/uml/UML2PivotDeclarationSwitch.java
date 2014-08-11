@@ -624,7 +624,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				metaModelManager.addOrphanClass(pivotObject);
 			}
 		} */
-		doSwitchAll(pivotElement.getNestedClassifier(), umlClass.getNestedClassifiers(), null);
+//		doSwitchAll(pivotElement.getNestedClassifier(), umlClass.getNestedClassifiers(), null);
 		doSwitchAll(pivotElement.getOwnedBehavior(), umlClass.getOwnedBehaviors(), null);
 	}
 

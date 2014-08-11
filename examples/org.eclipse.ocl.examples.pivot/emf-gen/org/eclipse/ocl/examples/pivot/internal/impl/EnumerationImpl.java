@@ -165,8 +165,6 @@ public class EnumerationImpl
 				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.ENUMERATION__NESTED_CLASSIFIER:
-				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_BEHAVIOR:
 				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_INVARIANTS:
@@ -220,8 +218,6 @@ public class EnumerationImpl
 				return isActive();
 			case PivotPackage.ENUMERATION__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.ENUMERATION__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.ENUMERATION__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.ENUMERATION__OWNED_INVARIANTS:
@@ -303,10 +299,6 @@ public class EnumerationImpl
 				return;
 			case PivotPackage.ENUMERATION__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.ENUMERATION__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ENUMERATION__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -396,9 +388,6 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.ENUMERATION__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.ENUMERATION__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -467,8 +456,6 @@ public class EnumerationImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.ENUMERATION__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.ENUMERATION__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.ENUMERATION__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.ENUMERATION__OWNED_INVARIANTS:

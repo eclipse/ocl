@@ -250,8 +250,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return isActive();
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
-				return getNestedClassifier();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				return getOwnedBehavior();
 			case PivotPackage.LAMBDA_TYPE__OWNED_INVARIANTS:
@@ -340,10 +338,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return;
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				getNestedClassifier().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
@@ -440,9 +434,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
-				getNestedClassifier().clear();
-				return;
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				getOwnedBehavior().clear();
 				return;
@@ -518,8 +509,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.LAMBDA_TYPE__NESTED_CLASSIFIER:
-				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIOR:
 				return ownedBehavior != null && !ownedBehavior.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__OWNED_INVARIANTS:

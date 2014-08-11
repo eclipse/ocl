@@ -82,7 +82,7 @@ public class TemplateParameterReferenceVisitor extends AbstractExtendingVisitor<
 
 	@Override
 	public @Nullable Object visitTemplateParameter(@NonNull TemplateParameter object) {
-		TemplateParameterId elementId = object.getElementId();
+		TemplateParameterId elementId = object.getTemplateParameterId();
 		int index = elementId.getIndex();
 		if (index < context.size()) {
 			context.set(index, object);

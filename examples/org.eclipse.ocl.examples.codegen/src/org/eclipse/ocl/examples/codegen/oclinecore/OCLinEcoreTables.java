@@ -833,7 +833,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 						s.append(" = new ");
 						s.appendClassReference(ExecutorTypeParameter.class);
 						s.append("(");
-						TemplateParameterId elementId = parameter.getElementId();
+						TemplateParameterId elementId = parameter.getTemplateParameterId();
 						String idName = elementId.getLiteralName();
 						if (idName != null) {
 							s.appendClassReference(TypeId.class);
@@ -865,7 +865,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.append(" = new ");
 							s.appendClassReference(ExecutorTypeParameter.class);
 							s.append("(");
-							TemplateParameterId elementId = parameter.getElementId();
+							TemplateParameterId elementId = parameter.getTemplateParameterId();
 							String idName = elementId.getLiteralName();
 							if (idName != null) {
 								s.appendClassReference(TypeId.class);
