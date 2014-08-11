@@ -7397,35 +7397,35 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-			 "body", "templateBinding" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "templateBindings" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getTemplateParameter_LowerBound(), 
 		   source, 
 		   new String[] 
 		   {
-			 "body", "templateParameter" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "lowerBounds" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getTemplateParameter_UpperBound(), 
 		   source, 
 		   new String[] 
 		   {
-			 "body", "templateParameter" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "upperBounds" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getTemplateParameterSubstitution_Actual(), 
 		   source, 
 		   new String[] 
 		   {
-			 "body", "templateParameterSubstitution" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "templateParameterSubstitutions" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getTemplateParameterSubstitution_Formal(), 
 		   source, 
 		   new String[] 
 		   {
-			 "body", "templateParameterSubstitution" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "templateParameterSubstitutions" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (getTypedElement_Type(), 

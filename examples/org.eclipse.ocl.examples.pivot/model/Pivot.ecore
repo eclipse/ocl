@@ -1650,7 +1650,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateSignature" lowerBound="1" eType="#//TemplateSignature">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="templateBinding"/>
+        <details key="body" value="templateBindings"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The template signature for the template that is the target of the binding."/>
@@ -1668,7 +1668,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Class">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="templateParameter"/>
+        <details key="body" value="lowerBounds"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is the default for this formal template parameter."/>
@@ -1681,7 +1681,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//Class">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="templateParameter"/>
+        <details key="body" value="upperBounds"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is the default for this formal template parameter."/>
@@ -1694,7 +1694,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actual" lowerBound="1" eType="#//Type">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="templateParameterSubstitution"/>
+        <details key="body" value="templateParameterSubstitutions"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The element that is the actual parameter for this substitution."/>
@@ -1702,7 +1702,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="formal" lowerBound="1" eType="#//TemplateParameter">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="templateParameterSubstitution"/>
+        <details key="body" value="templateParameterSubstitutions"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The formal template parameter that is associated with this substitution."/>

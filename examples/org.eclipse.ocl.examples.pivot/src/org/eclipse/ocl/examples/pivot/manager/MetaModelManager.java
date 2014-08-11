@@ -1185,8 +1185,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public @NonNull UnspecifiedType createUnspecifiedType(@Nullable Type lowerBound, @Nullable Type upperBound) {
 		UnspecifiedType unspecifiedType = PivotFactory.eINSTANCE.createUnspecifiedType();
 		unspecifiedType.setName("?");			// Name is not significant
-		unspecifiedType.setLowerBound(lowerBound != null ? lowerBound : getOclAnyType());
-		unspecifiedType.setUpperBound(upperBound != null ? upperBound : getOclVoidType());
+		unspecifiedType.setLowerBound(lowerBound);
+		unspecifiedType.setUpperBound(upperBound);
 		addOrphanClass(unspecifiedType);
 		return unspecifiedType;
 	}

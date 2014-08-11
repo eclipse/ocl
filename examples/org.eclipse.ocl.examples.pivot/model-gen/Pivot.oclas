@@ -131,12 +131,12 @@
       <ownedProperties xmi:id="p.pivot.Class.instanceSpecification" implicit="true"
           isRequired="false" name="instanceSpecification" opposite="#p.pivot.InstanceSpecification.classes"
           type="#T.pivot.InstanceSpecification"/>
+      <ownedProperties xmi:id="p.pivot.Class.lowerBounds" implicit="true" isRequired="false"
+          name="lowerBounds" opposite="#p.pivot.TemplateParameter.lowerBound" type="#T.pivot.TemplateParameter"/>
       <ownedProperties xmi:id="p.pivot.Class.subClasses" implicit="true" isRequired="false"
           name="subClasses" opposite="#p.pivot.Class.superClasses" type="#T.pivot.Class"/>
-      <ownedProperties implicit="true" isRequired="false" name="templateParameter"
-          opposite="#p.pivot.TemplateParameter.lowerBound" type="#T.pivot.TemplateParameter"/>
-      <ownedProperties implicit="true" isRequired="false" name="templateParameter"
-          opposite="#p.pivot.TemplateParameter.upperBound" type="#T.pivot.TemplateParameter"/>
+      <ownedProperties xmi:id="p.pivot.Class.upperBounds" implicit="true" isRequired="false"
+          name="upperBounds" opposite="#p.pivot.TemplateParameter.upperBound" type="#T.pivot.TemplateParameter"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionItem" name="CollectionItem" superClasses="#T.pivot.CollectionLiteralPart">
       <ownedInvariants xmi:id="cipivot.CollectionItem.TypeIsItemType" isCallable="true"
@@ -1297,7 +1297,7 @@
         <ownedComment body="The element that is bound by this binding."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateBinding.templateSignature" name="templateSignature"
-          opposite="#p.pivot.TemplateSignature.templateBinding" type="#T.pivot.TemplateSignature">
+          opposite="#p.pivot.TemplateSignature.templateBindings" type="#T.pivot.TemplateSignature">
         <ownedComment body="The template signature for the template that is the target of the binding."/>
       </ownedProperties>
     </ownedClasses>
@@ -1308,8 +1308,7 @@
         <ownedComment body="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.lowerBound" isRequired="false"
-          name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.15/@ownedProperties.14"
-          type="#T.pivot.Class">
+          name="lowerBound" opposite="#p.pivot.Class.lowerBounds" type="#T.pivot.Class">
         <ownedComment body="The element that is the default for this formal template parameter."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.owningTemplateSignature"
@@ -1318,23 +1317,22 @@
         <ownedComment body="The template signature that owns this template parameter."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.upperBound" isRequired="false"
-          name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.15/@ownedProperties.15"
-          type="#T.pivot.Class">
+          name="upperBound" opposite="#p.pivot.Class.upperBounds" type="#T.pivot.Class">
         <ownedComment body="The element that is the default for this formal template parameter."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.TemplateParameter.templateParameterSubstitution"
-          implicit="true" isRequired="false" name="templateParameterSubstitution"
+      <ownedProperties xmi:id="p.pivot.TemplateParameter.templateParameterSubstitutions"
+          implicit="true" isRequired="false" name="templateParameterSubstitutions"
           opposite="#p.pivot.TemplateParameterSubstitution.formal" type="#T.pivot.TemplateParameterSubstitution"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.TemplateParameterSubstitution" name="TemplateParameterSubstitution"
         superClasses="#T.pivot.Element">
       <ownedComment body="A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding."/>
       <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.actual" name="actual"
-          opposite="#p.pivot.Type.templateParameterSubstitution" type="#T.pivot.Type">
+          opposite="#p.pivot.Type.templateParameterSubstitutions" type="#T.pivot.Type">
         <ownedComment body="The element that is the actual parameter for this substitution."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.formal" name="formal"
-          opposite="#p.pivot.TemplateParameter.templateParameterSubstitution" type="#T.pivot.TemplateParameter">
+          opposite="#p.pivot.TemplateParameter.templateParameterSubstitutions" type="#T.pivot.TemplateParameter">
         <ownedComment body="The formal template parameter that is associated with this substitution."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.owningTemplateBinding"
@@ -1355,8 +1353,8 @@
           type="#T.pivot.TemplateableElement">
         <ownedComment body="The element that owns this template signature."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.TemplateSignature.templateBinding" implicit="true"
-          isRequired="false" name="templateBinding" opposite="#p.pivot.TemplateBinding.templateSignature"
+      <ownedProperties xmi:id="p.pivot.TemplateSignature.templateBindings" implicit="true"
+          isRequired="false" name="templateBindings" opposite="#p.pivot.TemplateBinding.templateSignature"
           type="#T.pivot.TemplateBinding"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.TemplateableElement" isAbstract="true" name="TemplateableElement"
@@ -1477,8 +1475,8 @@
           type="#//@ownedPackages.1/@ownedClasses.30"/>
       <ownedProperties xmi:id="p.pivot.Type.operation" implicit="true" isRequired="false"
           name="operation" opposite="#p.pivot.Operation.raisedException" type="#T.pivot.Operation"/>
-      <ownedProperties xmi:id="p.pivot.Type.templateParameterSubstitution" implicit="true"
-          isRequired="false" name="templateParameterSubstitution" opposite="#p.pivot.TemplateParameterSubstitution.actual"
+      <ownedProperties xmi:id="p.pivot.Type.templateParameterSubstitutions" implicit="true"
+          isRequired="false" name="templateParameterSubstitutions" opposite="#p.pivot.TemplateParameterSubstitution.actual"
           type="#T.pivot.TemplateParameterSubstitution"/>
       <ownedProperties xmi:id="p.pivot.Type.typedElement" implicit="true" isRequired="false"
           name="typedElement" opposite="#p.pivot.TypedElement.type" type="#T.pivot.TypedElement"/>

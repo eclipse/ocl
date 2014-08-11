@@ -148,34 +148,34 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedTemplateParameters_owningTemplateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedTemplateBinding_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution" name="A_formal_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution">
-          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution" name="A_formal_templateParameterSubstitutions" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-formal AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution">
+          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitutions" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_formal_templateParameterSubstitution">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQQH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQQX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding" name="A_templateSignature_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-signature AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding">
-          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding" name="templateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding" name="A_templateSignature_templateBindings" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-signature AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding">
+          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_signature_templateBinding-templateBinding" name="templateBindings" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_signature_templateBinding">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQQn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQQ37VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding" name="A_ownedTemplateParameterSubstitutions_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution" name="A_actual_templateParameterSubstitution" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution">
-          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitution" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution" name="A_actual_templateParameterSubstitutions" memberEnd="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-actual AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution">
+          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution-templateParameterSubstitution" name="templateParameterSubstitutions" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" association="AuxiliaryConstructs-Templates-A_actual_templateParameterSubstitution">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQRH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQRX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter" name="A_lowerBound_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-default AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter">
-          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter" name="A_lowerBounds_templateParameter" memberEnd="AuxiliaryConstructs-Templates-TemplateParameter-default AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter">
+          <ownedEnd xmi:id="AuxiliaryConstructs-Templates-A_default_templateParameter-templateParameter" name="lowerBounds" type="AuxiliaryConstructs-Templates-TemplateParameter" association="AuxiliaryConstructs-Templates-A_default_templateParameter">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQRn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQR37VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_qpt-cCDJEeSNlrewQPlAjA" name="A_upperBound_templateParameter" memberEnd="_lUe_ICDJEeSNlrewQPlAjA _qpt-cSDJEeSNlrewQPlAjA">
-          <ownedEnd xmi:id="_qpt-cSDJEeSNlrewQPlAjA" name="templateParameter" type="AuxiliaryConstructs-Templates-TemplateParameter" association="_qpt-cCDJEeSNlrewQPlAjA">
+        <packagedElement xmi:type="uml:Association" xmi:id="_qpt-cCDJEeSNlrewQPlAjA" name="A_upperBounds_templateParameter" memberEnd="_lUe_ICDJEeSNlrewQPlAjA _qpt-cSDJEeSNlrewQPlAjA">
+          <ownedEnd xmi:id="_qpt-cSDJEeSNlrewQPlAjA" name="upperBounds" type="AuxiliaryConstructs-Templates-TemplateParameter" association="_qpt-cCDJEeSNlrewQPlAjA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qpt-ciDJEeSNlrewQPlAjA"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qpt-cyDJEeSNlrewQPlAjA" value="*"/>
           </ownedEnd>
