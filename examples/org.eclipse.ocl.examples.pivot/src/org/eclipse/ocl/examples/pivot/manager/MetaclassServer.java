@@ -62,7 +62,6 @@ public class MetaclassServer extends ExtensibleTypeServer
 		//
 		TemplateSignature templateSignature = metaclassType.getOwnedTemplateSignature();
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		templateBinding.setTemplateSignature(templateSignature);
 		Map<TemplateParameter, Type> allBindings = new HashMap<TemplateParameter, Type>();
 		@SuppressWarnings("null")@NonNull TemplateParameter formalParameter = templateSignature.getOwnedTemplateParameters().get(0);
 		allBindings.put(formalParameter, type);

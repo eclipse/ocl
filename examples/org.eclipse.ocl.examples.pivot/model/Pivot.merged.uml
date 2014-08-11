@@ -1290,7 +1290,8 @@
           <body>The element that is bound by this binding.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateBinding.PtemplateSignature" name="templateSignature" type="Ppivot.TTemplateSignature" association="Ppivot.A_templateSignature_templateBindings">
+      <ownedAttribute xmi:id="Ppivot.TTemplateBinding.PtemplateSignature" name="templateSignature" type="Ppivot.TTemplateSignature" isReadOnly="true"
+          isDerived="true">
         <ownedComment xmi:id="Ppivot.TTemplateBinding.PtemplateSignature.oC0" annotatedElement="Ppivot.TTemplateBinding.PtemplateSignature">
           <body>The template signature for the template that is the target of the binding.</body>
         </ownedComment>
@@ -1300,7 +1301,7 @@
         <ownedComment xmi:id="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions.oC0" annotatedElement="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions">
           <body>The parameter substitutions owned by this template binding.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions.lV" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateBinding.PownedTemplateParameterSubstitutions.uV" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -1322,13 +1323,13 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateParameter.PconstrainingClass.uV" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PlowerBound" name="lowerBound" type="Ppivot.TClass" association="Ppivot.A_lowerBounds_templateParameter">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PlowerBound" name="lowerBound" type="Ppivot.TClass">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.PlowerBound.oC0" annotatedElement="Ppivot.TTemplateParameter.PlowerBound">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PlowerBound.lV"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PupperBound" name="upperBound" type="Ppivot.TClass" association="Ppivot.A_upperBounds_templateParameter">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PupperBound" name="upperBound" type="Ppivot.TClass">
         <ownedComment xmi:id="Ppivot.TTemplateParameter.PupperBound.oC0" annotatedElement="Ppivot.TTemplateParameter.PupperBound">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
@@ -1340,7 +1341,7 @@
         <body>A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TTemplateParameterSubstitution.g0" general="Ppivot.TElement"/>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pformal" name="formal" type="Ppivot.TTemplateParameter" association="Ppivot.A_formal_templateParameterSubstitutions">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pformal" name="formal" type="Ppivot.TTemplateParameter">
         <ownedComment xmi:id="Ppivot.TTemplateParameterSubstitution.Pformal.oC0" annotatedElement="Ppivot.TTemplateParameterSubstitution.Pformal">
           <body>The formal template parameter that is associated with this substitution.</body>
         </ownedComment>
@@ -1351,7 +1352,7 @@
           <body>The optional bindings from this element to templates.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual" name="actual" type="Ppivot.TType" association="Ppivot.A_actual_templateParameterSubstitutions">
+      <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual" name="actual" type="Ppivot.TType">
         <ownedComment xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual.oC0" annotatedElement="Ppivot.TTemplateParameterSubstitution.Pactual">
           <body>The element that is the actual parameter for this substitution.</body>
         </ownedComment>
@@ -1367,7 +1368,7 @@
         <ownedComment xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.oC0" annotatedElement="Ppivot.TTemplateSignature.PownedTemplateParameters">
           <body>The formal template parameters that are owned by this template signature.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.lV" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TTemplateSignature.PownedTemplateParameters.uV" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TTemplateSignature.PowningTemplateableElement" name="owningTemplateableElement" type="Ppivot.TTemplateableElement"
@@ -1649,15 +1650,6 @@
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TVoidType" name="VoidType">
       <generalization xmi:id="Ppivot.TVoidType.g0" general="Ppivot.TClass"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_actual_templateParameterSubstitutions" name="A_actual_templateParameterSubstitutions"
-        memberEnd="Ppivot.TTemplateParameterSubstitution.Pactual Ppivot.A_actual_templateParameterSubstitutions.PtemplateParameterSubstitutions">
-      <ownedEnd xmi:id="Ppivot.A_actual_templateParameterSubstitutions.PtemplateParameterSubstitutions" name="templateParameterSubstitutions"
-          type="Ppivot.TTemplateParameterSubstitution" association="Ppivot.A_actual_templateParameterSubstitutions">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_actual_templateParameterSubstitutions.PtemplateParameterSubstitutions.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_actual_templateParameterSubstitutions.PtemplateParameterSubstitutions.uV"
-            value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_annotatedElement_comment" name="A_annotatedElement_comment" memberEnd="Ppivot.TComment.PannotatedElement Ppivot.TElement.Pcomment"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_appliedProfile_application" name="A_appliedProfile_application" memberEnd="Ppivot.TProfileApplication.PappliedProfile Ppivot.TProfile.Papplication"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_applyingPackage_profileApplication" name="A_applyingPackage_profileApplication"
@@ -1701,24 +1693,8 @@
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_effect_transition" name="A_effect_transition" memberEnd="Ppivot.TTransition.Peffect Ppivot.TBehavior.Ptransition"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_extendedBys_type" name="A_extendedBys_type" memberEnd="Ppivot.TType.PextendedBys Ppivot.TTypeExtension.Ptype"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_extensionOfs_stereotype" name="A_extensionOfs_stereotype" memberEnd="Ppivot.TStereotype.PextensionOfs Ppivot.TTypeExtension.Pstereotype"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_formal_templateParameterSubstitutions" name="A_formal_templateParameterSubstitutions"
-        memberEnd="Ppivot.TTemplateParameterSubstitution.Pformal Ppivot.A_formal_templateParameterSubstitutions.PtemplateParameterSubstitutions">
-      <ownedEnd xmi:id="Ppivot.A_formal_templateParameterSubstitutions.PtemplateParameterSubstitutions" name="templateParameterSubstitutions"
-          type="Ppivot.TTemplateParameterSubstitution" association="Ppivot.A_formal_templateParameterSubstitutions">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_formal_templateParameterSubstitutions.PtemplateParameterSubstitutions.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_formal_templateParameterSubstitutions.PtemplateParameterSubstitutions.uV"
-            value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_guard_transition" name="A_guard_transition" memberEnd="Ppivot.TTransition.Pguard Ppivot.TConstraint.Ptransition"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_incoming_target" name="A_incoming_target" memberEnd="Ppivot.TVertex.Pincoming Ppivot.TTransition.Ptarget"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_lowerBounds_templateParameter" name="A_lowerBounds_templateParameter"
-        memberEnd="Ppivot.TTemplateParameter.PlowerBound Ppivot.A_lowerBounds_templateParameter.PlowerBounds">
-      <ownedEnd xmi:id="Ppivot.A_lowerBounds_templateParameter.PlowerBounds" name="lowerBounds" type="Ppivot.TTemplateParameter" association="Ppivot.A_lowerBounds_templateParameter">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_lowerBounds_templateParameter.PlowerBounds.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_lowerBounds_templateParameter.PlowerBounds.uV" value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_nestedPackage_nestingPackage" name="A_nestedPackage_nestingPackage" memberEnd="Ppivot.TPackage.PownedPackages Ppivot.TPackage.PowningPackage"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_operation_redefinedOperation" name="A_operation_redefinedOperation" memberEnd="Ppivot.A_operation_redefinedOperation.Poperation Ppivot.TOperation.PredefinedOperation">
       <ownedEnd xmi:id="Ppivot.A_operation_redefinedOperation.Poperation" name="operation" type="Ppivot.TOperation" association="Ppivot.A_operation_redefinedOperation">
@@ -1787,14 +1763,6 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_superClasses_subClasses.PsubClasses.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_templateSignature_templateBindings" name="A_templateSignature_templateBindings"
-        memberEnd="Ppivot.TTemplateBinding.PtemplateSignature Ppivot.A_templateSignature_templateBindings.PtemplateBindings">
-      <ownedEnd xmi:id="Ppivot.A_templateSignature_templateBindings.PtemplateBindings" name="templateBindings" type="Ppivot.TTemplateBinding"
-          association="Ppivot.A_templateSignature_templateBindings">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_templateSignature_templateBindings.PtemplateBindings.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_templateSignature_templateBindings.PtemplateBindings.uV" value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_transition_trigger" name="A_transition_trigger" memberEnd="Ppivot.TTrigger.Ptransition Ppivot.TTransition.Ptrigger"/>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_instanceSpecification" name="A_type_instanceSpecification" memberEnd="Ppivot.TInstanceSpecification.Pclasses Ppivot.A_type_instanceSpecification.PinstanceSpecification">
       <ownedEnd xmi:id="Ppivot.A_type_instanceSpecification.PinstanceSpecification" name="instanceSpecification" type="Ppivot.TInstanceSpecification"
@@ -1807,13 +1775,6 @@
       <ownedEnd xmi:id="Ppivot.A_type_typedElement.PtypedElement" name="typedElement" type="Ppivot.TTypedElement" association="Ppivot.A_type_typedElement">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_type_typedElement.PtypedElement.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_type_typedElement.PtypedElement.uV" value="*"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_upperBounds_templateParameter" name="A_upperBounds_templateParameter"
-        memberEnd="Ppivot.TTemplateParameter.PupperBound Ppivot.A_upperBounds_templateParameter.PupperBounds">
-      <ownedEnd xmi:id="Ppivot.A_upperBounds_templateParameter.PupperBounds" name="upperBounds" type="Ppivot.TTemplateParameter" association="Ppivot.A_upperBounds_templateParameter">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.A_upperBounds_templateParameter.PupperBounds.lV"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.A_upperBounds_templateParameter.PupperBounds.uV" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_value_owningSlot" name="A_value_owningSlot" memberEnd="Ppivot.TSlot.Pvalues Ppivot.A_value_owningSlot.PowningSlot">
@@ -1845,6 +1806,8 @@
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisOrthogonal" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisOrthogonal"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSimple" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSimple"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TState.PisSubmachineState" isTransient="true" isVolatile="true" base_Property="Ppivot.TState.PisSubmachineState"/>
+  <Ecore:EReference xmi:id="PA.Ppivot.TTemplateBinding.PtemplateSignature" isTransient="true" isVolatile="true" base_Property="Ppivot.TTemplateBinding.PtemplateSignature"
+      isResolveProxies="false"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TTemplateableElement.PunspecializedElement" isTransient="true" base_Property="Ppivot.TTemplateableElement.PunspecializedElement"
       isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TFeature.Pimplementation" isTransient="true" base_Property="Ppivot.TFeature.Pimplementation"/>

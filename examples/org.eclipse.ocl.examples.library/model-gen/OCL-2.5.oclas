@@ -2464,865 +2464,865 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..collectNestedV"
         name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.39">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..collectNestedV" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..collectV" name="Bag"
         superClasses="#//@ownedPackages.1/@ownedClasses.40">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..collectV" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..flattenT2" name="Bag"
         superClasses="#//@ownedPackages.1/@ownedClasses.41">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..flattenT2" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..selectByKindTT"
         name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.42">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..selectByKindTT" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..selectByTypeTT"
         name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.43">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..selectByTypeTT" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl..CollectionT" name="Bag"
         superClasses="#//@ownedPackages.1/@ownedClasses.53">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#T.ocl.Enumeration" name="Bag"
         superClasses="#//@ownedPackages.1/@ownedClasses.55">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.Enumeration" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Set..collectNestedV"
         name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.72">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..collectNestedV" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Set..collectV" name="Bag"
         superClasses="#//@ownedPackages.1/@ownedClasses.73">
-      <ownedTemplateBindings templateSignature="#s.Bag">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..collectV" formal="#t.ocl..BagT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#Integer" name="Collection"
         superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#Integer" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#String" name="Collection"
         superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#String" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#//@ownedPackages.1/@ownedClasses.26"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#//@ownedPackages.1/@ownedClasses.26"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Bag..collectNestedV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..collectNestedV" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Bag..collectV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..collectV" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Bag..flattenT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..flattenT2" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Bag..selectByKindTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Bag..selectByTypeTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..BagT" name="Collection"
         superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..BagT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..collectNestedV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..collectNestedV"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..collectV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..collectV"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..excludesAllT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..excludesAllT2"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..flattenT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..flattenT2"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..includesAllT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..includesAllT2"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..productT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..productT2"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..selectByKindTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..selectByKindTT"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..selectByTypeTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..selectByTypeTT"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..CollectionT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.EnumerationLiteral"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.Enumeration"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.Enumeration" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.OclAny" name="Collection"
         superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclAny" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.OclElement"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclElement" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#OclSelf" name="Collection"
         superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#OclSelf" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..OrderedCollectionT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..OrderedCollectionT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..collectNestedV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..collectNestedV"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..collectV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..collectV"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..flattenT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..flattenT2"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..selectByKindTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByKindTT"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..selectByTypeTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByTypeTT"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..OrderedSetT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..OrderedSetT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..collectNestedV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..collectNestedV"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..collectV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..collectV" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..flattenT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..flattenT2" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..selectByKindTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByKindTT"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..selectByTypeTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByTypeTT"
             formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..SequenceT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SequenceT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..collectNestedV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..collectNestedV" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..collectV"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..collectV" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..flattenT2"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..flattenT2" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..selectByKindTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..selectByTypeTT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..SetT" name="Collection"
         superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SetT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..UniqueCollectionT"
         name="Collection" superClasses="#T.ocl.OclAny">
-      <ownedTemplateBindings templateSignature="#s.Collection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..CollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.UnlimitedNatural..oclAsTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.UnlimitedNatural..oclAsTypeTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Bag..selectByKindTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Bag..selectByTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Bag..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Collection..selectByKindTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..selectByKindTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Collection..selectByTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Collection..selectByTypeTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OclAny..oclAsTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OclAny..oclAsTypeTT" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OclAny..oclIsKindOfT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OclAny..oclIsKindOfT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OclAny..oclIsTypeOfT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OclAny..oclIsTypeOfT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OclInvalid..oclAsTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OclInvalid..oclAsTypeTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OclInvalid..oclIsKindOfT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OclInvalid..oclIsKindOfT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OclInvalid..oclIsTypeOfT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OclInvalid..oclIsTypeOfT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclInvalid" name="Metaclass"
         superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclInvalid" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#OclSelf" name="Metaclass"
         superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#OclSelf" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#T.ocl.OclVoid" name="Metaclass"
         superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclVoid" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OrderedSet..selectByKindTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByKindTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.OrderedSet..selectByTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByTypeTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Sequence..selectByKindTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByKindTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Sequence..selectByTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByTypeTT"
             formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Set..selectByKindTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByKindTT" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:Metaclass" instanceType="#t.ocl.Set..selectByTypeTT"
         name="Metaclass" superClasses="#T.ocl.Class #T.ocl.OclType">
-      <ownedTemplateBindings templateSignature="#s.Metaclass">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByTypeTT" formal="#t.ocl..MetaclassT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#Integer" name="OrderedCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.36">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#Integer" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#String" name="OrderedCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.37">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#String" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..BagT" name="OrderedCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.44">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..BagT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..CollectionT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.53">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.EnumerationLiteral"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.54">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..collectNestedV"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.60">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..collectNestedV"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..collectV"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.61">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..collectV"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..flattenT2"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.62">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..flattenT2"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..selectByKindTT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.63">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByKindTT"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..selectByTypeTT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.64">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByTypeTT"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..OrderedSetT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.65">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..OrderedSetT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..collectNestedV"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.66">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..collectNestedV"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..collectV"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.67">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..collectV" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..flattenT2"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.68">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..flattenT2" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..selectByKindTT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.69">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByKindTT"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Sequence..selectByTypeTT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.70">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByTypeTT"
             formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..SequenceT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.71">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SequenceT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..SetT" name="OrderedCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.77">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SetT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..UniqueCollectionT"
         name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.78">
-      <ownedTemplateBindings templateSignature="#s.OrderedCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..CollectionT"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.102 #//@ownedPackages.1/@ownedClasses.148">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#T.ocl.EnumerationLiteral"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.103 #//@ownedPackages.1/@ownedClasses.149">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..flattenT2"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.106 #//@ownedPackages.1/@ownedClasses.153">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..flattenT2"
             formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..selectByKindTT"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.107 #//@ownedPackages.1/@ownedClasses.154">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByKindTT"
             formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..selectByTypeTT"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.108 #//@ownedPackages.1/@ownedClasses.155">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByTypeTT"
             formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..SequenceT"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.115 #//@ownedPackages.1/@ownedClasses.157">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SequenceT" formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..SetT" name="OrderedSet"
         superClasses="#//@ownedPackages.1/@ownedClasses.116 #//@ownedPackages.1/@ownedClasses.161">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SetT" formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..UniqueCollectionT"
         name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.117 #//@ownedPackages.1/@ownedClasses.162">
-      <ownedTemplateBindings templateSignature="#s.OrderedSet">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..OrderedSetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#Integer" name="Sequence"
         superClasses="#//@ownedPackages.1/@ownedClasses.99">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#Integer" formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#String" name="Sequence"
         superClasses="#//@ownedPackages.1/@ownedClasses.100">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#String" formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl..BagT" name="Sequence"
         superClasses="#//@ownedPackages.1/@ownedClasses.101">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..BagT" formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl..CollectionT"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.102">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.OrderedSet..collectNestedV"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.104">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..collectNestedV"
             formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.OrderedSet..collectV"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.105">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..collectV"
             formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..collectNestedV"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.110">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..collectNestedV"
             formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..collectV"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.111">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..collectV" formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..flattenT2"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.112">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..flattenT2" formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..selectByKindTT"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.113">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByKindTT"
             formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..selectByTypeTT"
         name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.114">
-      <ownedTemplateBindings templateSignature="#s.Sequence">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Sequence..selectByTypeTT"
             formal="#t.ocl..SequenceT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#//@ownedPackages.1/@ownedClasses.26"
         name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.146">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#//@ownedPackages.1/@ownedClasses.26"
             formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..BagT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.147">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..BagT" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..CollectionT" name="Set"
         superClasses="#//@ownedPackages.1/@ownedClasses.148">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#T.ocl.OclElement" name="Set"
         superClasses="#//@ownedPackages.1/@ownedClasses.151">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclElement" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.152">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#OclSelf" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..flattenT2" name="Set"
         superClasses="#//@ownedPackages.1/@ownedClasses.158">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..flattenT2" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..selectByKindTT"
         name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.159">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByKindTT" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..selectByTypeTT"
         name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.160">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByTypeTT" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..UniqueCollectionT"
         name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.162">
-      <ownedTemplateBindings templateSignature="#s.Set">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..SetT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#//@ownedPackages.1/@ownedClasses.26"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.38">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#//@ownedPackages.1/@ownedClasses.26"
             formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..BagT" name="UniqueCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.44">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..BagT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..CollectionT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.53">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.EnumerationLiteral"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.54">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.OclAny" name="UniqueCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.56">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclAny" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#T.ocl.OclElement"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.57">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#T.ocl.OclElement" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#OclSelf" name="UniqueCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.58">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#OclSelf" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..flattenT2"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.62">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..flattenT2"
             formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..selectByKindTT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.63">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByKindTT"
             formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.OrderedSet..selectByTypeTT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.64">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.OrderedSet..selectByTypeTT"
             formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..OrderedSetT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.65">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..OrderedSetT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..SequenceT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.71">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SequenceT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..flattenT2"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.74">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..flattenT2" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..selectByKindTT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.75">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByKindTT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Set..selectByTypeTT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.76">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl.Set..selectByTypeTT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..SetT" name="UniqueCollection"
         superClasses="#//@ownedPackages.1/@ownedClasses.77">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..SetT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl..UniqueCollectionT"
         name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.78">
-      <ownedTemplateBindings templateSignature="#s.UniqueCollection">
+      <ownedTemplateBindings>
         <ownedTemplateParameterSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..UniqueCollectionT"/>
       </ownedTemplateBindings>
     </ownedClasses>

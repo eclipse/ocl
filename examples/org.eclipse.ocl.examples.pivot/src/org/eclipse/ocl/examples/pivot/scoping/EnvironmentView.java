@@ -247,29 +247,29 @@ public class EnvironmentView
 		return (name == null) || PivotUtil.conformsTo(requiredType, eClass) || ((requiredType != null) && PivotUtil.conformsTo(eClass, requiredType));
 	}
 
-	public void addAllElements(@NonNull org.eclipse.ocl.examples.pivot.Class type, @NonNull ScopeView scopeView) {
-		Element element = PivotUtil.getLowerBound(type);
-		Attribution attribution = PivotUtil.getAttribution(element);
-		attribution.computeLookup(element, this, scopeView);
-		TemplateableElement type2 = type.getUnspecializedElement();
-		element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getOwningPackage();
-		if (element != null) {
-			attribution = PivotUtil.getAttribution(element);
-			attribution.computeLookup(element, this, scopeView);
+	public void addAllElements(@NonNull org.eclipse.ocl.examples.pivot.Class asClass, @NonNull ScopeView scopeView) {
+		Type asType = PivotUtil.getLowerBound(asClass);
+		Attribution attribution = PivotUtil.getAttribution(asType);
+		attribution.computeLookup(asType, this, scopeView);
+		org.eclipse.ocl.examples.pivot.Class asUnspecializedClass = PivotUtil.getUnspecializedTemplateableElement(asClass);
+		org.eclipse.ocl.examples.pivot.Package asPackage = asUnspecializedClass.getOwningPackage();
+		if (asPackage != null) {
+			attribution = PivotUtil.getAttribution(asPackage);
+			attribution.computeLookup(asPackage, this, scopeView);
 		}
-		if (type instanceof Metaclass<?>) {
-			Type instanceType = ((Metaclass<?>)type).getInstanceType();
+		if (asClass instanceof Metaclass<?>) {
+			Type instanceType = ((Metaclass<?>)asClass).getInstanceType();
 			if (instanceType != null) {
-				element = PivotUtil.getLowerBound(instanceType);
-				attribution = PivotUtil.getAttribution(element);
-				attribution.computeLookup(element, this, scopeView);
+				asType = PivotUtil.getLowerBound(instanceType);
+				attribution = PivotUtil.getAttribution(asType);
+				attribution.computeLookup(asType, this, scopeView);
 			}
 		}
-		else {
-			element = (type2 instanceof org.eclipse.ocl.examples.pivot.Class ? (org.eclipse.ocl.examples.pivot.Class)type2 : type).getOwningPackage();
-			if (element != null) {
-				attribution = PivotUtil.getAttribution(element);
-				attribution.computeLookup(element, this, scopeView);
+		else {	// FIXME redundant
+			asPackage = asUnspecializedClass.getOwningPackage();
+			if (asPackage != null) {
+				attribution = PivotUtil.getAttribution(asPackage);
+				attribution.computeLookup(asPackage, this, scopeView);
 			}
 		}
 	}
@@ -625,11 +625,13 @@ public class EnvironmentView
 		}
 	}
 
-	public void addElementsOfScope(@Nullable Element element, @NonNull ScopeView scopeView) {
-		if (element != null) {
-			element = PivotUtil.getLowerBound(element);
-			Attribution attribution = PivotUtil.getAttribution(element);
-			attribution.computeLookup(element, this, scopeView);
+	public void addElementsOfScope(@Nullable Element asElement, @NonNull ScopeView scopeView) {
+		if (asElement != null) {
+			if (asElement instanceof Type) {
+				asElement = PivotUtil.getLowerBound((Type)asElement);
+			}
+			Attribution attribution = PivotUtil.getAttribution(asElement);
+			attribution.computeLookup(asElement, this, scopeView);
 		}
 	}
 

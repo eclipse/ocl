@@ -19,13 +19,13 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 {
 	protected def String defineConstantType(DataType type) {'''
 		«IF "Boolean".equals(type.name)»
-			protected final PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Boolean;«ELSEIF "Classifier".equals(type.name)»
-			protected final PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Classifier;«ELSEIF "Integer".equals(type.name)»
-			protected final PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Integer;«ELSEIF "Real".equals(type.name)»
-			protected final PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Real;«ELSEIF "String".equals(type.name)»
-			protected final PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._String;«ELSEIF "UnlimitedNatural".equals(type.name)»
-			protected final PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._UnlimitedNatural;«ELSE»
-			protected final DataType «type.getPrefixedSymbolName("_"+type.partialName())» = createDataType("«type.name»");«ENDIF»
+			private void PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Boolean;«ELSEIF "Classifier".equals(type.name)»
+			private void PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Classifier;«ELSEIF "Integer".equals(type.name)»
+			private void PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Integer;«ELSEIF "Real".equals(type.name)»
+			private void PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._Real;«ELSEIF "String".equals(type.name)»
+			private void PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._String;«ELSEIF "UnlimitedNatural".equals(type.name)»
+			private void PrimitiveType «type.getPrefixedSymbolName("_"+type.partialName())» = OCLstdlib._UnlimitedNatural;«ELSE»
+			private void DataType «type.getPrefixedSymbolName("_"+type.partialName())» = createDataType("«type.name»");«ENDIF»
 	'''}
 
 	@NonNull protected override String generateMetamodel(@NonNull Root root) {
@@ -213,7 +213,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				/**
 				 *	Construct an OCL Standard Library with specified resource URI and library content.
 				 */
-				public «javaClassName»(@NonNull String asURI, @NonNull Root libraryModel) {
+				private «javaClassName»(@NonNull String asURI, @NonNull Root libraryModel) {
 					super(DomainUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
 					assert PivotUtil.isASURI(asURI);
 					getContents().add(libraryModel);
@@ -281,13 +281,13 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					}
 				}
 			
-				protected static class Contents extends AbstractContents
+				private static class Contents extends AbstractContents
 				{
-					protected Root «root.getPrefixedSymbolName("root")»;
-					protected Library «lib.getPrefixedSymbolName("library")»;
-					// protected Package «root.getOrphanPackage().getPrefixedSymbolName("orphans")»;
+					private Root «root.getPrefixedSymbolName("root")»;
+					private Library «lib.getPrefixedSymbolName("library")»;
+					// private Package «root.getOrphanPackage().getPrefixedSymbolName("orphans")»;
 			
-					protected @NonNull Root create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
+					private @NonNull Root create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
 					{
 						Root theRoot = «root.getSymbolName()» = createRoot(asURI);
 						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
@@ -323,11 +323,11 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 
 					«lib.defineTemplateParameters()»
 
+					«lib.declareTupleTypes()»
+
 					«lib.declareCollectionTypes()»
 
 					«lib.declareMetaclasses()»
-
-					«lib.declareTupleTypes()»
 
 					«lib.defineOclTypes()»
 
@@ -354,8 +354,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					«lib.declareProperties()»
 
 					«lib.defineProperties()»
-
-					«lib.defineTemplateSignatures()»
 
 					«lib.defineTemplateBindings()»
 

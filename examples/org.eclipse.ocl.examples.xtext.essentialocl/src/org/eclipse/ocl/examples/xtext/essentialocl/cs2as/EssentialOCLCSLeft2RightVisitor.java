@@ -643,7 +643,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, "collect");
 		environmentView.addFilter(new ImplicitCollectFilter((CollectionType) actualSourceType, elementType));
-		Type lowerBoundType = (Type) PivotUtil.getLowerBound(actualSourceType);
+		Type lowerBoundType = PivotUtil.getLowerBound(actualSourceType);
 		environmentView.computeLookups(lowerBoundType, null);
 		Iteration resolvedIteration = (Iteration)environmentView.getContent();
 		if (resolvedIteration == null) {
@@ -954,7 +954,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		Type sourceType = PivotUtil.getType(expression.getSource());
 		int size = 0;
 		if (sourceType != null) {
-			Type lowerBoundType = (Type) PivotUtil.getLowerBound(sourceType);
+			Type lowerBoundType = PivotUtil.getLowerBound(sourceType);
 			size = environmentView.computeLookups(lowerBoundType, null);
 		}
 		if (size == 1) {

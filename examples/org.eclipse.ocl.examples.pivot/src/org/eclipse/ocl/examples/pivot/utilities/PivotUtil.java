@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.PackageId;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.Unlimited;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.pivot.AnyType;
@@ -246,12 +245,8 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull BagType createBagType(@NonNull String name, @Nullable String lower, @Nullable String upper) {
-		BagType pivotType = PivotFactory.eINSTANCE.createBagType();
-		pivotType.setName(name);
-		pivotType.setLower(lower != null ? DomainUtil.createNumberFromString(lower) : Integer.valueOf(0));
-		pivotType.setUpper(upper != null ? DomainUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
-		return pivotType;
+	public static @NonNull BagType createBagType(@NonNull BagType unspecializedType, @NonNull Type elementType) {
+		return createCollectionType(PivotFactory.eINSTANCE.createBagType(), unspecializedType, elementType);
 	}
 
 	/**
@@ -276,12 +271,20 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull CollectionType createCollectionType(@NonNull String name, @Nullable String lower, @Nullable String upper) {
-		CollectionType pivotType = PivotFactory.eINSTANCE.createCollectionType();
-		pivotType.setName(name);
-		pivotType.setLower(lower != null ? DomainUtil.createNumberFromString(lower) : Integer.valueOf(0));
-		pivotType.setUpper(upper != null ? DomainUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
-		return pivotType;
+	public static @NonNull CollectionType createCollectionType(@NonNull CollectionType unspecializedType, @NonNull Type elementType) {
+		return createCollectionType(PivotFactory.eINSTANCE.createCollectionType(), unspecializedType, elementType);
+	}
+
+	/**
+	 * @since 3.5
+	 */
+	protected static @NonNull  <T extends CollectionType> T createCollectionType(/*@NonNull*/ T specializedType, @NonNull T unspecializedType, @NonNull Type instanceType) {
+		specializedType.setName(unspecializedType.getName());
+		specializedType.setLower(unspecializedType.getLower());
+		specializedType.setUpper(unspecializedType.getUpper());
+		specializedType.setUnspecializedElement(unspecializedType);
+		specializedType.setElementType(instanceType);
+		return specializedType;
 	}
 
 	/**
@@ -412,10 +415,24 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull Metaclass<?> createMetaclass(@NonNull String name) {
+	public static @NonNull Metaclass<?> createMetaclass(@NonNull Metaclass<?> unspecializedMetaclass, @NonNull Type instanceType) {
 		Metaclass<?> pivotType = PivotFactory.eINSTANCE.createMetaclass();
-		pivotType.setName(name);
+		pivotType.setName(unspecializedMetaclass.getName());
+		pivotType.setUnspecializedElement(unspecializedMetaclass);
+		pivotType.setInstanceType(instanceType);
 		return pivotType;
+	}
+	
+	/**
+	 * @since 3.5
+	 */
+	public static @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation) {
+		Operation pivotOperation = PivotFactory.eINSTANCE.createOperation();
+		pivotOperation.setName(name);
+		pivotOperation.setType(type);
+		pivotOperation.setImplementationClass(implementationClass);
+		pivotOperation.setImplementation(implementation);
+		return pivotOperation;
 	}
 	
 	/**
@@ -428,18 +445,6 @@ public class PivotUtil extends DomainUtil
 		pivotOperation.setImplementationClass(implementationClass);
 		pivotOperation.setImplementation(implementation);
 		((PivotObjectImpl)pivotOperation).setTarget(eOperation);
-		return pivotOperation;
-	}
-	
-	/**
-	 * @since 3.5
-	 */
-	public static @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation) {
-		Operation pivotOperation = PivotFactory.eINSTANCE.createOperation();
-		pivotOperation.setName(name);
-		pivotOperation.setType(type);
-		pivotOperation.setImplementationClass(implementationClass);
-		pivotOperation.setImplementation(implementation);
 		return pivotOperation;
 	}
 
@@ -474,12 +479,8 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull OrderedSetType createOrderedSetType(@NonNull String name, @Nullable String lower, @Nullable String upper) {
-		OrderedSetType pivotType = PivotFactory.eINSTANCE.createOrderedSetType();
-		pivotType.setName(name);
-		pivotType.setLower(lower != null ? DomainUtil.createNumberFromString(lower) : Integer.valueOf(0));
-		pivotType.setUpper(upper != null ? DomainUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
-		return pivotType;
+	public static @NonNull OrderedSetType createOrderedSetType(@NonNull OrderedSetType unspecializedType, @NonNull Type elementType) {
+		return createCollectionType(PivotFactory.eINSTANCE.createOrderedSetType(), unspecializedType, elementType);
 	}
 
 	/**
@@ -593,35 +594,26 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull SequenceType createSequenceType(@NonNull String name, @Nullable String lower, @Nullable String upper) {
-		SequenceType pivotType = PivotFactory.eINSTANCE.createSequenceType();
-		pivotType.setName(name);
-		pivotType.setLower(lower != null ? DomainUtil.createNumberFromString(lower) : Integer.valueOf(0));
-		pivotType.setUpper(upper != null ? DomainUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
-		return pivotType;
+	public static @NonNull SequenceType createSequenceType(@NonNull SequenceType unspecializedType, @NonNull Type elementType) {
+		return createCollectionType(PivotFactory.eINSTANCE.createSequenceType(), unspecializedType, elementType);
 	}
 
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull SetType createSetType(@NonNull String name, @Nullable String lower, @Nullable String upper) {
-		SetType pivotType = PivotFactory.eINSTANCE.createSetType();
-		pivotType.setName(name);
-		pivotType.setLower(lower != null ? DomainUtil.createNumberFromString(lower) : Integer.valueOf(0));
-		pivotType.setUpper(upper != null ? DomainUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
-		return pivotType;
+	public static @NonNull SetType createSetType(@NonNull SetType unspecializedType, @NonNull Type elementType) {
+		return createCollectionType(PivotFactory.eINSTANCE.createSetType(), unspecializedType, elementType);
 	}
 
 	/**
 	 * @since 3.5
 	 */
-	public static @NonNull TemplateBinding createTemplateBinding(@NonNull TemplateSignature templateSignature, TemplateParameterSubstitution... templateParameterSubstitutions) {
+	public static @NonNull TemplateBinding createTemplateBinding(TemplateParameterSubstitution... templateParameterSubstitutions) {
 		TemplateBinding pivotTemplateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getOwnedTemplateParameterSubstitutions();
 		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
 			parameterSubstitutions.add(templateParameterSubstitution);
 		}
-		pivotTemplateBinding.setTemplateSignature(templateSignature);
 		return pivotTemplateBinding;
 	}
 
@@ -1255,14 +1247,11 @@ public class PivotUtil extends DomainUtil
 	 * Return the lower bound for scope resolution lookups in element. This is element
 	 * unless element is an UnspecifiedType in which case the derived type is returned.
 	 */
-	public static @NonNull Element getLowerBound(@NonNull Element element) {
-		if (element instanceof UnspecifiedType) {
-			Type lowerBound = ((UnspecifiedType)element).getLowerBound();
-			if (lowerBound != null) {
-				return lowerBound;
-			}
+	public static @NonNull Type getLowerBound(@NonNull Type type) {
+		if (type instanceof UnspecifiedType) {
+			return DomainUtil.nonNullModel(((UnspecifiedType)type).getLowerBound());
 		}
-		return element;
+		return type;
 	}
 
 	public static @NonNull MetaModelManager getMetaModelManager(@NonNull Resource resource) {

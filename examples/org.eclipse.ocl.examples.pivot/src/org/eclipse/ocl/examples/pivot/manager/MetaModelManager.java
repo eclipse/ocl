@@ -900,9 +900,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return true;
 		}
 		else if (firstElementType instanceof UnspecifiedType) {
-			Type lowerBound = ((UnspecifiedType)firstElementType).getLowerBound();
-			if ((lowerBound != null) && conformsTo(secondElementType, lowerBound, bindings)) {
-				((UnspecifiedType)firstElementType).setLowerBound(secondElementType);
+			UnspecifiedType unspecifiedType = (UnspecifiedType)firstElementType;
+			Type lowerBound = DomainUtil.nonNullModel(unspecifiedType.getLowerBound());
+			if (conformsTo(secondElementType, lowerBound, bindings)) {
+				unspecifiedType.setLowerBound(secondElementType);
 				return true;
 			}
 			else {
@@ -910,9 +911,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		else if (secondElementType instanceof UnspecifiedType) {
-			Type upperBound = ((UnspecifiedType)secondElementType).getUpperBound();
-			if ((upperBound != null) && conformsTo(upperBound, firstElementType, bindings)) {
-				((UnspecifiedType)secondElementType).setUpperBound(firstElementType);
+			UnspecifiedType unspecifiedType = (UnspecifiedType)secondElementType;
+			Type upperBound = DomainUtil.nonNullModel(unspecifiedType.getUpperBound());
+			if (conformsTo(upperBound, firstElementType, bindings)) {
+				unspecifiedType.setUpperBound(firstElementType);
 				return true;
 			}
 			else {
@@ -1185,8 +1187,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public @NonNull UnspecifiedType createUnspecifiedType(@Nullable Type lowerBound, @Nullable Type upperBound) {
 		UnspecifiedType unspecifiedType = PivotFactory.eINSTANCE.createUnspecifiedType();
 		unspecifiedType.setName("?");			// Name is not significant
-		unspecifiedType.setLowerBound(lowerBound);
-		unspecifiedType.setUpperBound(upperBound);
+		unspecifiedType.setLowerBound(lowerBound != null ? lowerBound : getOclAnyType());
+		unspecifiedType.setUpperBound(upperBound != null ? upperBound : getOclVoidType());
 		addOrphanClass(unspecifiedType);
 		return unspecifiedType;
 	}

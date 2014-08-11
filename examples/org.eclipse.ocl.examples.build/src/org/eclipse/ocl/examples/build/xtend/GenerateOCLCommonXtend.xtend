@@ -36,8 +36,17 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String declareCollectionTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedCollectionTypes()»
-				protected final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
-				eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»");
+				«IF type.getOwnedTemplateSignature() != null»
+					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.
+					eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedTemplateSignature() != null»«FOR templateParameter : type.getOwnedTemplateSignature().getOwnedTemplateParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+				«ENDIF»
+			«ENDFOR»
+
+			«FOR type : pkg.getRootPackage().getSortedCollectionTypes()»
+				«IF type.getOwnedTemplateSignature() == null»
+					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.
+					eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
+				«ENDIF»
 			«ENDFOR»
 		'''
 	}
@@ -46,9 +55,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«FOR enumeration : pkg.getRootPackage().getSortedEnumerations()»
 				«var enumerationName = enumeration.getPrefixedSymbolName("_" + enumeration.partialName())»
-				protected final @NonNull Enumeration «enumerationName» = createEnumeration("«enumeration.name»");
+				private final @NonNull Enumeration «enumerationName» = createEnumeration("«enumeration.name»");
 				«FOR enumerationLiteral : enumeration.ownedLiteral»
-					protected final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName(
+					private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName(
 				"el_" + enumerationName + "_" + enumerationLiteral.name)» = createEnumerationLiteral("«enumerationLiteral.name»");
 				«ENDFOR»
 			«ENDFOR»
@@ -58,7 +67,14 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String declareMetaclasses(Package pkg) {
 		'''
 			«FOR metaclass : pkg.getRootPackage().getSortedMetaclasses()»
-				protected final @NonNull Metaclass<?> «metaclass.getPrefixedSymbolName("_" + metaclass.partialName())» = createMetaclass("«metaclass.name»");
+				«IF metaclass.getOwnedTemplateSignature() != null»
+					private final @NonNull Metaclass<?> «metaclass.getPrefixedSymbolName("_" + metaclass.partialName())» = createMetaclass("«metaclass.name»", «metaclass.instanceType.getSymbolName()»«IF metaclass.getOwnedTemplateSignature() != null»«FOR templateParameter : metaclass.getOwnedTemplateSignature().getOwnedTemplateParameters()»«ENDFOR»«ENDIF»);
+				«ENDIF»
+			«ENDFOR»
+			«FOR metaclass : pkg.getRootPackage().getSortedMetaclasses()»
+				«IF metaclass.getOwnedTemplateSignature() == null»
+					private final @NonNull Metaclass<?> «metaclass.getPrefixedSymbolName("_" + metaclass.partialName())» = createMetaclass(«metaclass.getUnspecializedElement().getSymbolName()», «metaclass.instanceType.getSymbolName()»);
+				«ENDIF»
 			«ENDFOR»
 		'''
 	}
@@ -66,7 +82,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String declareOclTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getSortedOclTypes()»
-				protected final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
+				private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
 				eClass.name»("«type.name»");
 			«ENDFOR»
 		'''
@@ -74,7 +90,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String declarePrimitiveTypes(Package pkg) {'''
 		«FOR type : pkg.getRootPackage().getSortedPrimitiveTypes()»
-		protected final @NonNull PrimitiveType «type.getPrefixedSymbolName("_" + type.partialName())» = createPrimitiveType("«type.name»");
+		private final @NonNull PrimitiveType «type.getPrefixedSymbolName("_" + type.partialName())» = createPrimitiveType("«type.name»");
 		«ENDFOR»
 	'''}
 
@@ -82,7 +98,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allProperties = getAllProperties(pkg.getRootPackage());
 		'''
 			«FOR property : allProperties»
-				protected final @NonNull Property «property.getPrefixedSymbolName("pr_" + property.partialName())» = createProperty("«property.name»", «property.type.getSymbolName()»);
+				private final @NonNull Property «property.getPrefixedSymbolName("pr_" + property.partialName())» = createProperty("«property.name»", «property.type.getSymbolName()»);
 			«ENDFOR»
 		'''
 	}
@@ -90,7 +106,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String declareTupleTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedTupleTypes()»
-				protected final @NonNull TupleType «type.getPrefixedSymbolName("_" + type.partialName())» = createTupleType("«type.name»",
+				private final @NonNull TupleType «type.getPrefixedSymbolName("_" + type.partialName())» = createTupleType("«type.name»",
 				«FOR property : type.getSortedTupleParts() BEFORE ("\t") SEPARATOR (",\n\t")»
 				createProperty("«property.name»", «property.type.getSymbolName()»)«ENDFOR»);
 			«ENDFOR»
@@ -100,7 +116,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String defineCollectionTypes(Package pkg) {
 		var Package orphanPackage = pkg.getOrphanPackage();
 		'''
-			protected void installCollectionTypes() {
+			private void installCollectionTypes() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				«IF orphanPackage != null»
 				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
@@ -112,9 +128,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				ownedTypes.add(type = «type.getSymbolName()»);
 				«ELSE»
 				orphanTypes.add(type = «type.getSymbolName()»);
-				type.setUnspecializedElement(«type.unspecializedElement.getSymbolName()»);
 				«ENDIF»
-				type.setElementType(«type.elementType.getSymbolName()»);
 				«type.emitSuperClasses("type")»
 			«ENDFOR»
 			}
@@ -123,7 +137,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String defineComments(Package pkg) {
 		'''
-			protected void installComments() {
+			private void installComments() {
 				«FOR pElement : pkg.getRootPackage().getSortedCommentedElements()»
 				«FOR pComment : pElement.getSortedComments()»
 					installComment(«pElement.getSymbolName()», "«pComment.javaString()»");
@@ -135,7 +149,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String defineEnumerations(Package pkg) {
 		'''
-			protected void installEnumerations() {
+			private void installEnumerations() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				Enumeration type;
 				List<EnumerationLiteral> enumerationLiterals;
@@ -156,13 +170,13 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«IF allIterations.size() > 0»
 				«FOR iteration : allIterations»
-					protected final @NonNull Iteration «iteration.getPrefixedSymbolName("it_" + iteration.partialName())» = createIteration("«iteration.
+					private final @NonNull Iteration «iteration.getPrefixedSymbolName("it_" + iteration.partialName())» = createIteration("«iteration.
 					name»", «iteration.type.getSymbolName()», «IF iteration.implementationClass != null»"«iteration.
-					implementationClass»", «iteration.implementationClass».INSTANCE«ELSE»null, null«ENDIF»);
+					implementationClass»", «iteration.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF iteration.getOwnedTemplateSignature() != null»«FOR templateParameter : iteration.getOwnedTemplateSignature().getOwnedTemplateParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 				«ENDFOR»
 
 			«ENDIF»
-			protected void installIterations() {
+			private void installIterations() {
 				List<Operation> ownedIterations;
 				List<Parameter> ownedParameters;
 				Iteration iteration;
@@ -186,31 +200,19 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF iteration.ownedIterator.size() > 0»
 							ownedParameters = iteration.getOwnedIterator();
 							«FOR parameter : iteration.ownedIterator»
-								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.
-				isRequired»));
-								«IF !parameter.isRequired»
-									parameter.setIsRequired(false);
-								«ENDIF»
+								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 							«ENDFOR»
 						«ENDIF»
 						«IF iteration.ownedAccumulator.size() > 0»
 							ownedParameters = iteration.getOwnedAccumulator();
 							«FOR parameter : iteration.ownedAccumulator»
-								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.
-				isRequired»));
-								«IF !parameter.isRequired»
-									parameter.setIsRequired(false);
-								«ENDIF»
+								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 							«ENDFOR»
 						«ENDIF»
 						«IF iteration.ownedParameter.size() > 0»
 							ownedParameters = iteration.getOwnedParameter();
 							«FOR parameter : iteration.ownedParameter»
-								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.
-				isRequired»));
-								«IF !parameter.isRequired»
-									parameter.setIsRequired(false);
-								«ENDIF»
+								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 							«ENDFOR»
 						«ENDIF»
 					«ENDFOR»
@@ -224,11 +226,11 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
 			«FOR type : allLambdaTypes»
-				protected final @NonNull LambdaType «type.getPrefixedSymbolName("_" + type.partialName())» = createLambdaType("«type.
+				private final @NonNull LambdaType «type.getPrefixedSymbolName("_" + type.partialName())» = createLambdaType("«type.
 				name»");
 			«ENDFOR»
 			
-			protected void installLambdaTypes() {
+			private void installLambdaTypes() {
 				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				LambdaType type;
 				List<Class> superClasses;
@@ -249,7 +251,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allMetaclasses = pkg.getRootPackage().getSortedMetaclasses();
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
-			protected void installMetaclasses() {
+			private void installMetaclasses() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				«IF orphanPackage != null»
 					final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
@@ -261,9 +263,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						ownedTypes.add(metaclass = «metaclass.getSymbolName()»);
 					«ELSE»
 						orphanTypes.add(metaclass = «metaclass.getSymbolName()»);
-						metaclass.setUnspecializedElement(«metaclass.unspecializedElement.getSymbolName()»);
 					«ENDIF»
-					metaclass.setInstanceType(«metaclass.instanceType.getSymbolName()»);
 					«metaclass.emitSuperClasses("metaclass")»
 				«ENDFOR»
 			}
@@ -273,7 +273,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String defineOclTypes(Package pkg) {
 		var allOclTypes = pkg.getSortedOclTypes();
 		'''
-			protected void installOclTypes() {
+			private void installOclTypes() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				Class type;
 				List<Class> superClasses;
@@ -291,12 +291,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allOperations = pkg.getRootPackage().getSortedOperations();
 		'''
 			«FOR operation : allOperations»
-				protected final @NonNull Operation «operation.getPrefixedSymbolName("op_" + operation.partialName())» = createOperation("«operation.
+				private final @NonNull Operation «operation.getPrefixedSymbolName("op_" + operation.partialName())» = createOperation("«operation.
 				name»", «operation.type.getSymbolName()», «IF operation.implementationClass != null»"«operation.
-				implementationClass»", «operation.implementationClass».INSTANCE«ELSE»null, null«ENDIF»);
+				implementationClass»", «operation.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF operation.getOwnedTemplateSignature() != null»«FOR templateParameter : operation.getOwnedTemplateSignature().getOwnedTemplateParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 			«ENDFOR»
 			
-			protected void installOperations() {
+			private void installOperations() {
 				List<Operation> ownedOperations;
 				List<Parameter> ownedParameters;
 				Operation operation;
@@ -340,11 +340,11 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«IF morePackages.size() > 0»
 				«FOR pkg1 : morePackages»
-					protected final @NonNull «pkg1.eClass().name» «pkg1.getPrefixedSymbolName("pk_" + pkg1.partialName())» = create«pkg1.eClass().name»("«pkg1.name»", «IF pkg1.nsPrefix != null»"«pkg1.nsPrefix»"«ELSE»null«ENDIF», «IF pkg1.getURI != null»"«pkg1.getURI»"«ELSE»null«ENDIF», null);
+					private final @NonNull «pkg1.eClass().name» «pkg1.getPrefixedSymbolName("pk_" + pkg1.partialName())» = create«pkg1.eClass().name»("«pkg1.name»", «IF pkg1.nsPrefix != null»"«pkg1.nsPrefix»"«ELSE»null«ENDIF», «IF pkg1.getURI != null»"«pkg1.getURI»"«ELSE»null«ENDIF», null);
 				«ENDFOR»
 
 			«ENDIF»
-			protected void installPackages() {
+			private void installPackages() {
 				«emitRoot(rootPackage)»
 				«IF allPackages.size() > 0»
 				«FOR pkg2 : allPackages»
@@ -357,7 +357,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 	protected def String defineParameterTypes(Package pkg) {
 		'''
-			protected void installParameterTypes() {
+			private void installParameterTypes() {
 			}
 		'''
 	}
@@ -367,7 +367,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allOperations = pkg.getRootPackage().getSortedOperationsWithPrecedence();
 		'''
 			«IF allLibraries.size() > 0»
-				protected void installPrecedences() {
+				private void installPrecedences() {
 					«FOR lib : allLibraries»
 						«var allPrecedences = lib.getSortedPrecedences()»
 						«FOR precedence : allPrecedences»
@@ -391,7 +391,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String definePrimitiveTypes(Package pkg) {
 		var allTypes = pkg.getRootPackage().getSortedPrimitiveTypes();
 		'''
-			protected void installPrimitiveTypes() {
+			private void installPrimitiveTypes() {
 				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
 				PrimitiveType type;
 				«FOR type : allTypes»
@@ -408,7 +408,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String defineProperties(Package pkg) {
 		var allProperties = getAllProperties(pkg.getRootPackage());
 		'''
-			protected void installProperties() {
+			private void installProperties() {
 				List<Property> ownedProperties;
 				Property property;
 				«FOR type : allProperties.getSortedOwningTypes2()»
@@ -464,10 +464,10 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String defineTemplateBindings(Package pkg) {
 		var allTemplateableElements = pkg.getRootPackage().getSortedTemplateableElements();
 		'''
-			protected void installTemplateBindings() {
+			private void installTemplateBindings() {
 				«FOR templateableElement : allTemplateableElements»
 					«FOR templateBinding : templateableElement.ownedTemplateBindings»
-						«templateableElement.getSymbolName()».getOwnedTemplateBindings().add(createTemplateBinding(«templateBinding.getTemplateSignature().getSymbolName()»,
+						«templateableElement.getSymbolName()».getOwnedTemplateBindings().add(createTemplateBinding(
 							«FOR templateParameterSubstitution : templateBinding.ownedTemplateParameterSubstitutions SEPARATOR (",\n")»
 							createTemplateParameterSubstitution(«templateParameterSubstitution.formal.getSymbolName()», «templateParameterSubstitution.actual.getSymbolName()»)«ENDFOR»));
 					«ENDFOR»
@@ -480,19 +480,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allTemplateParameters = pkg.getRootPackage().getSortedTemplateParameters();
 		'''
 			«FOR templateParameter : allTemplateParameters»
-			protected final @NonNull TemplateParameter «templateParameter.getPrefixedSymbolName(
+			private final @NonNull TemplateParameter «templateParameter.getPrefixedSymbolName(
 						"tp_" + templateParameter.partialName())» = createTemplateParameter("«templateParameter.getName()»", null, null);
-			«ENDFOR»
-		'''
-	}
-
-	protected def String defineTemplateSignatures(Package pkg) {
-		var allTemplateSignatures = pkg.getRootPackage().getSortedTemplateSignatures();
-		'''
-			«FOR templateSignature : allTemplateSignatures»
-			protected final @NonNull TemplateSignature «templateSignature.getPrefixedSymbolName(
-						"ts_" + templateSignature.partialName())» = createTemplateSignature(«templateSignature.owningTemplateableElement.getSymbolName()»«FOR templateParameter : templateSignature.
-						ownedTemplateParameters», «templateParameter.getSymbolName()»«ENDFOR»);
 			«ENDFOR»
 		'''
 	}
@@ -501,7 +490,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var allTupleTypes = pkg.getRootPackage().getSortedTupleTypes();
 		var orphanPackage = pkg.getOrphanPackage();
 		'''
-			protected void installTupleTypes() {
+			private void installTupleTypes() {
 				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
 				TupleType type;
 				List<Class> superClasses;
@@ -563,10 +552,13 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
+	/**
+	 * Generate a name for element suitable for embedding in a surrounding punctuation context.
+	 */
 	protected override String partialName(EObject element) {
 		switch element {
 			CollectionType case element.elementType == null: return element.javaName()
-			CollectionType: return element.javaName() + "_" + element.elementType.partialName()
+			CollectionType: return element.javaName()
 			LambdaType case element.contextType == null: return "null"
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
 			Class case element.ownedTemplateBindings.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
@@ -585,7 +577,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			TemplateBinding case element.getTemplateSignature().owningTemplateableElement == null: return "null"
 			TemplateBinding: return element.owningTemplateableElement.partialName()
 			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement == null: return "[" + element.getOwningTemplateSignature.partialName() + "]"
-			TemplateParameter: return element.javaName()
+//			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement.getUnspecializedElement() == null: return element.javaName()
+			TemplateParameter: return element.getOwningTemplateSignature.owningTemplateableElement.partialName() + "_" + element.javaName()
 			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
 			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
 			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.partialName()

@@ -23,9 +23,9 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 	'''
 		«FOR enumeration : allEnumerations»
 			«var enumerationName = enumeration.getPrefixedSymbolName("_"+enumeration.partialName())»
-			protected final @NonNull Enumeration «enumerationName» = createEnumeration(«getEcoreLiteral(enumeration)»);
+			private final @NonNull Enumeration «enumerationName» = createEnumeration(«getEcoreLiteral(enumeration)»);
 			«FOR enumerationLiteral : enumeration.ownedLiteral»
-			protected final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName("el_"+enumerationName+"_"+enumerationLiteral.name)» = createEnumerationLiteral(«getEcoreLiteral(enumerationLiteral)»);
+			private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName("el_"+enumerationName+"_"+enumerationLiteral.name)» = createEnumerationLiteral(«getEcoreLiteral(enumerationLiteral)»);
 			«ENDFOR»
 		«ENDFOR»
 	'''}
@@ -34,7 +34,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		var allOclTypes = pkg.getSortedOclTypes();
 	'''
 		«FOR type : allOclTypes»
-		protected final @NonNull «type.eClass().name» «type.getPrefixedSymbolName("_"+type.partialName())» = create«type.eClass().name»(«getEcoreLiteral(type)»);
+		private final @NonNull «type.eClass().name» «type.getPrefixedSymbolName("_"+type.partialName())» = create«type.eClass().name»(«getEcoreLiteral(type)»);
 		«ENDFOR»
 	'''}
 	
@@ -43,7 +43,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 	'''
 			«FOR type : allProperties.getSortedOwningTypes2()»
 				«FOR property : type.getSortedProperties(allProperties)»
-					protected final @NonNull Property «property.getPrefixedSymbolName("pr_"+property.partialName())» = createProperty(«getEcorePropertyLiteral(property)», «property.type.getSymbolName()»);
+					private final @NonNull Property «property.getPrefixedSymbolName("pr_"+property.partialName())» = createProperty(«getEcorePropertyLiteral(property)», «property.type.getSymbolName()»);
 				«ENDFOR»
 			«ENDFOR»
 	'''}
@@ -53,17 +53,18 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		var collectionName = collectionType.getPrefixedSymbolName("_"+typeName);
 		var signatureName = collectionType.ownedTemplateSignature.getPrefixedSymbolName("_"+typeName+"_");
 		var parameterName = collectionType.ownedTemplateSignature.getOwnedTemplateParameters().get(0).getPrefixedSymbolName("_"+typeName+"_T");
+		var collectionTypeName = collectionType.eClass().getName();
 	'''
-		protected final @NonNull CollectionType «collectionName» = standardLibrary.get«typeName»Type();
-		@SuppressWarnings("null") protected final @NonNull TemplateSignature «signatureName» = «collectionName».getOwnedTemplateSignature();
-		@SuppressWarnings("null") protected final @NonNull TemplateParameter «parameterName» = «signatureName».getOwnedTemplateParameters().get(0);
+		private final @NonNull «collectionTypeName» «collectionName» = standardLibrary.get«typeName»Type();
+		@SuppressWarnings("null") private final @NonNull TemplateSignature «signatureName» = «collectionName».getOwnedTemplateSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter «parameterName» = «signatureName».getOwnedTemplateParameters().get(0);
 	'''
 	}
 	
 	protected def String definePrimitiveTypeName(Set<org.eclipse.ocl.examples.pivot.Class> allTypes, String typeName) {
 		var DataType primitiveType = allTypes.findPrimitiveType(typeName);
 	'''
-		protected final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();
+		private final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();
 	'''}
 
 	protected override String generateMetamodel(Root root) {
@@ -78,7 +79,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		var allPrecedences = root.getAllPrecedences();
 		var allPrimitiveTypes = root.getAllPrimitiveTypes();
 		var allTemplateBindings = root.getAllTemplateBindings();
-		var allTemplateSignatures = root.getAllTemplateSignatures();
+//		var allTemplateSignatures = root.getAllTemplateSignatures();
 		var allTupleTypes = root.getAllTupleTypes();
 		var allTypes = root.getAllTypes();
 		'''
@@ -153,7 +154,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					}
 				}
 
-				protected static class Contents extends LibraryContents
+				private static class Contents extends LibraryContents
 				{
 					protected final @NonNull Root «root.getPrefixedSymbolName("root")»;
 					protected final @NonNull Package «pkg.getPrefixedSymbolName("metamodel")»;
@@ -165,8 +166,8 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					
 					«allTypes.definePrimitiveTypeName("Integer")»
 					
-					protected final @NonNull Class _OclAny = standardLibrary.getOclAnyType();
-					protected final @NonNull Class _OclElement = standardLibrary.getOclElementType();
+					private final @NonNull Class _OclAny = standardLibrary.getOclAnyType();
+					private final @NonNull Class _OclElement = standardLibrary.getOclElementType();
 					
 					«allTypes.defineCollectionTypeName("OrderedCollection")»
 					
@@ -280,10 +281,6 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					«pkg.declareProperties()»
 
 					«pkg.defineProperties()»
-					«IF allTemplateSignatures.size() > 0»
-
-					«pkg.defineTemplateSignatures()»
-					«ENDIF»
 					«IF allTemplateBindings.size() > 0»
 
 					«pkg.defineTemplateBindings()»

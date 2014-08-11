@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.examples.domain.elements.Nameable;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -653,9 +654,11 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
 			EObject eObject = tit.next();
-			if ((eObject instanceof TemplateableElement) &&
-				(((TemplateableElement)eObject).getOwnedTemplateBindings().size() > 0)) {
-				allElements.add((TemplateableElement)eObject);
+			if (eObject instanceof TemplateableElement) {
+				TemplateableElement asTemplateableElement = (TemplateableElement)eObject;
+				if (asTemplateableElement.getOwnedTemplateBindings().size() > 0) {
+					allElements.add(asTemplateableElement);
+				}
 			}
 		}
 		List<TemplateableElement> sortedElements = new ArrayList<TemplateableElement>(allElements);
