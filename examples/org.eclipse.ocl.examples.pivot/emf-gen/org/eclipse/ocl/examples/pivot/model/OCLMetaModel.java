@@ -1976,6 +1976,7 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_CallExp_source = createProperty(PivotPackage.Literals.CALL_EXP__SOURCE, _OCLExpression);
 		protected final @NonNull Property pr_CallOperationAction_operation = createProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION, _Operation);
 		protected final @NonNull Property pr_CallOperationAction_MessageExp_calledOperation = createProperty("MessageExp", _MessageExp);
+		protected final @NonNull Property pr_Class_instanceClassName = createProperty(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME, _String);
 		protected final @NonNull Property pr_Class_isAbstract = createProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT, _Boolean);
 		protected final @NonNull Property pr_Class_isActive = createProperty(PivotPackage.Literals.CLASS__IS_ACTIVE, _Boolean);
 		protected final @NonNull Property pr_Class_isInterface = createProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, _Boolean);
@@ -2264,7 +2265,6 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Property pr_TupleLiteralPart_initExpression = createProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__INIT_EXPRESSION, _OCLExpression);
 		protected final @NonNull Property pr_TupleLiteralPart_TupleLiteralExp_part = createProperty("TupleLiteralExp", _TupleLiteralExp);
 		protected final @NonNull Property pr_Type_extendedBys = createProperty(PivotPackage.Literals.TYPE__EXTENDED_BYS, _Set_TypeExtension);
-		protected final @NonNull Property pr_Type_instanceClassName = createProperty(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME, _String);
 		protected final @NonNull Property pr_Type_CollectionType_elementType = createProperty("CollectionType", _Bag_CollectionType);
 		protected final @NonNull Property pr_Type_DynamicElement_metaType = createProperty("DynamicElement", _Bag_DynamicElement);
 		protected final @NonNull Property pr_Type_LambdaType_contextType = createProperty("LambdaType", _Bag_LambdaType);
@@ -2380,6 +2380,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MessageExp_calledOperation);
 			ownedProperties = _Class.getOwnedProperties();
+			ownedProperties.add(property = pr_Class_instanceClassName);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Class_isAbstract);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Class_isActive);
@@ -3563,9 +3566,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Type_extendedBys);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TypeExtension_type);
-			ownedProperties.add(property = pr_Type_instanceClassName);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Type_CollectionType_elementType);
 			property.setImplicit(true);
 			property.setIsResolveProxies(true);

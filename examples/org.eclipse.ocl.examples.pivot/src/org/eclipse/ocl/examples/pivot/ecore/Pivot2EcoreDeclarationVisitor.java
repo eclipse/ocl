@@ -188,7 +188,7 @@ public class Pivot2EcoreDeclarationVisitor
 		copyTemplateSignature(eTypeParameters, pivotType);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eClassifier.getEAnnotations();
 		safeVisitAll(eAnnotations, pivotType.getOwnedAnnotation());
-		if (pivotType.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
+		if (pivotType.eIsSet(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME)) {
 			eClassifier.setInstanceClassName(pivotType.getInstanceClassName());
 		}
 		else {

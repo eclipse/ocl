@@ -351,8 +351,6 @@ public class TemplateParameterImpl
 				return getName();
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.TEMPLATE_PARAMETER__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
 				return getConstrainingClass();
 			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:
@@ -400,9 +398,6 @@ public class TemplateParameterImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
 				getConstrainingClass().clear();
 				getConstrainingClass().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
@@ -447,9 +442,6 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
 				getConstrainingClass().clear();
 				return;
@@ -487,8 +479,6 @@ public class TemplateParameterImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASS:
 				return constrainingClass != null && !constrainingClass.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:

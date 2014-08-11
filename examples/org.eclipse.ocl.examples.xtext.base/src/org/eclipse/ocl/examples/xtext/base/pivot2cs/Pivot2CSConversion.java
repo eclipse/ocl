@@ -312,7 +312,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		if (ownedTemplateSignature != null) {
 			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
-		if (object.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
+		if (object.eIsSet(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME)) {
 			csElement.setInstanceClassName(object.getInstanceClassName());
 		}
 		else {

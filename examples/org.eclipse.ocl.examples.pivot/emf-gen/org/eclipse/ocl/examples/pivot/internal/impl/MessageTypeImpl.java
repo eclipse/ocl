@@ -192,8 +192,6 @@ public class MessageTypeImpl
 				return getName();
 			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.MESSAGE_TYPE__OWNED_TEMPLATE_BINDINGS:
@@ -202,6 +200,8 @@ public class MessageTypeImpl
 				return getOwnedTemplateSignature();
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.MESSAGE_TYPE__IS_ACTIVE:
@@ -265,9 +265,6 @@ public class MessageTypeImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
@@ -281,6 +278,9 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -355,9 +355,6 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
@@ -369,6 +366,9 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -431,8 +431,6 @@ public class MessageTypeImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.MESSAGE_TYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_TEMPLATE_BINDINGS:
@@ -441,6 +439,8 @@ public class MessageTypeImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.MESSAGE_TYPE__IS_ACTIVE:

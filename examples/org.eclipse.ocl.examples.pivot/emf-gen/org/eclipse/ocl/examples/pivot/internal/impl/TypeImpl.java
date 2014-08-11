@@ -14,14 +14,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -55,7 +53,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getExtendedBys <em>Extended Bys</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,26 +74,6 @@ public abstract class TypeImpl
 	protected EList<TypeExtension> extendedBys;
 
 	/**
-	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceClassName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String INSTANCE_CLASS_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceClassName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -113,29 +90,6 @@ public abstract class TypeImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getInstanceClassName()
-	{
-		return instanceClassName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInstanceClassName(String newInstanceClassName)
-	{
-		String oldInstanceClassName = instanceClassName;
-		instanceClassName = newInstanceClassName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName));
 	}
 
 	/**
@@ -240,8 +194,6 @@ public abstract class TypeImpl
 				return getName();
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -279,9 +231,6 @@ public abstract class TypeImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -313,9 +262,6 @@ public abstract class TypeImpl
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -341,8 +287,6 @@ public abstract class TypeImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 		}
 		return eDynamicIsSet(featureID);
 	}

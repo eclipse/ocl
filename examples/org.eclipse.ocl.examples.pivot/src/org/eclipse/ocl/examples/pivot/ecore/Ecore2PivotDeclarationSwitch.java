@@ -670,7 +670,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			pivotElement.setInstanceClassName(eClassifier.getInstanceClassName());
 		}
 		else {
-			pivotElement.eUnset(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME);
+			pivotElement.eUnset(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME);
 		}
 		@SuppressWarnings("null") @NonNull List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		copyTemplateSignature(pivotElement, eTypeParameters);

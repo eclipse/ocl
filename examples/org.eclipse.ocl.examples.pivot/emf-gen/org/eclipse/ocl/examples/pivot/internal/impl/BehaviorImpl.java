@@ -243,8 +243,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return getName();
 			case PivotPackage.BEHAVIOR__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.BEHAVIOR__OWNED_TEMPLATE_BINDINGS:
@@ -253,6 +251,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return getOwnedTemplateSignature();
 			case PivotPackage.BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.BEHAVIOR__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.BEHAVIOR__IS_ACTIVE:
@@ -313,9 +313,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
@@ -329,6 +326,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return;
 			case PivotPackage.BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
 				return;
 			case PivotPackage.BEHAVIOR__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -401,9 +401,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
@@ -415,6 +412,9 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return;
 			case PivotPackage.BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
 			case PivotPackage.BEHAVIOR__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -475,8 +475,6 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.BEHAVIOR__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.BEHAVIOR__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.BEHAVIOR__OWNED_TEMPLATE_BINDINGS:
@@ -485,6 +483,8 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 				return ownedTemplateSignature != null;
 			case PivotPackage.BEHAVIOR__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.BEHAVIOR__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.BEHAVIOR__IS_ACTIVE:

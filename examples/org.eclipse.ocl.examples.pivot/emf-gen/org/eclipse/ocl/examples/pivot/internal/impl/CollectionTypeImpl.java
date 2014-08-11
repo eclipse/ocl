@@ -240,8 +240,6 @@ public class CollectionTypeImpl
 				return getName();
 			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS:
@@ -250,6 +248,8 @@ public class CollectionTypeImpl
 				return getOwnedTemplateSignature();
 			case PivotPackage.COLLECTION_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:
@@ -319,9 +319,6 @@ public class CollectionTypeImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
@@ -335,6 +332,9 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -418,9 +418,6 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
@@ -432,6 +429,9 @@ public class CollectionTypeImpl
 				return;
 			case PivotPackage.COLLECTION_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -503,8 +503,6 @@ public class CollectionTypeImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_TYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__OWNED_TEMPLATE_BINDINGS:
@@ -513,6 +511,8 @@ public class CollectionTypeImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.COLLECTION_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:

@@ -82,6 +82,9 @@
         <ownedAttribute xmi:id="_I7AsgRNOEeCpr6XKiuQP7w" name="isInterface" type="_rfGIcBNKEeCpr6XKiuQP7w">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N8n7VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_U4vxMBNLEeCpr6XKiuQP7w" name="instanceClassName" type="_jh_vABNKEeCpr6XKiuQP7w">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N_n7VEeOu79LxSz8Ylw"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_zKEaoBNLEeCpr6XKiuQP7w" name="DataType">
         <ownedAttribute xmi:id="_1oqkABNLEeCpr6XKiuQP7w" name="isSerializable" type="_rfGIcBNKEeCpr6XKiuQP7w">
@@ -120,11 +123,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jh_vABNKEeCpr6XKiuQP7w" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_qClRsBNLEeCpr6XKiuQP7w" name="Type" isAbstract="true">
-        <ownedAttribute xmi:id="_U4vxMBNLEeCpr6XKiuQP7w" name="instanceClassName" type="_jh_vABNKEeCpr6XKiuQP7w">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N_n7VEeOu79LxSz8Ylw"/>
-        </ownedAttribute>
-      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qClRsBNLEeCpr6XKiuQP7w" name="Type" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_tN9O4HwBEeCD_bbcqKnJ_g" name="Constraint">
         <ownedAttribute xmi:id="_tN9O4XwBEeCD_bbcqKnJ_g" name="isCallable" type="_rfGIcBNKEeCpr6XKiuQP7w">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N_37VEeOu79LxSz8Ylw" value="false"/>

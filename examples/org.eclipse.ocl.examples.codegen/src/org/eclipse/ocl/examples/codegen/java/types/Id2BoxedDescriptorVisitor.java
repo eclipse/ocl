@@ -96,7 +96,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitClassId(@NonNull ClassId id) {
-		Type type = idResolver.getType(id, null);
+		org.eclipse.ocl.examples.pivot.Class type = idResolver.getClass(id, null);
 		EClassifier eClassifier = getEClassifier(type);
 		if (eClassifier != null) {
 			try {
@@ -123,25 +123,25 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			}
 			catch (Exception e) {}
 		} */
-		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-			org.eclipse.ocl.examples.pivot.Package asPackage = ((org.eclipse.ocl.examples.pivot.Class)type).getOwningPackage();
+//		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+			org.eclipse.ocl.examples.pivot.Package asPackage = type.getOwningPackage();
 			if ((asPackage != null) && (asPackage.eContainer() instanceof Orphanage)) {
 				return new SimpleDataTypeDescriptor(id, asPackage.getName() + "." + type.getName());
 			}
-		}
+//		}
 		return new RootObjectDescriptor(id);
 	}
 	
 	@Override
 	public @NonNull BoxedDescriptor visitCollectionTypeId(@NonNull CollectionTypeId id) {
 		TypeId generalizedId = id.getGeneralizedId();
-		Type type;
+		org.eclipse.ocl.examples.pivot.Class type;
 		if (generalizedId == id) {
-			type = idResolver.getType(id, null);
+			type = idResolver.getClass(id, null);
 		}
 		else {
 			TypeId typeId = id.getElementTypeId();
-			type = idResolver.getType(typeId, null);
+			type = idResolver.getClass(typeId, null);
 		}
 		CollectionDescriptor unboxedDescriptor = null;
 		EClassifier eClassifier = getEClassifier(type);
@@ -187,7 +187,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitDataTypeId(@NonNull DataTypeId id) {
-		Type type = idResolver.getType(id, null);
+		org.eclipse.ocl.examples.pivot.Class type = idResolver.getClass(id, null);
 		String instanceClassName = type.getInstanceClassName();
 		if (instanceClassName != null) {
 			if (BigDecimal.class.getName().equals(instanceClassName)) {

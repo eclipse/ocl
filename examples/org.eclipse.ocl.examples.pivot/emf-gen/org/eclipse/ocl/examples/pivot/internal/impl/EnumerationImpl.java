@@ -204,8 +204,6 @@ public class EnumerationImpl
 				return getName();
 			case PivotPackage.ENUMERATION__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				return getOwnedRule();
 			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_BINDINGS:
@@ -214,6 +212,8 @@ public class EnumerationImpl
 				return getOwnedTemplateSignature();
 			case PivotPackage.ENUMERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				return isAbstract();
 			case PivotPackage.ENUMERATION__IS_ACTIVE:
@@ -278,9 +278,6 @@ public class EnumerationImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				getOwnedRule().clear();
 				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
@@ -294,6 +291,9 @@ public class EnumerationImpl
 				return;
 			case PivotPackage.ENUMERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
 				return;
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				setIsAbstract((Boolean)newValue);
@@ -372,9 +372,6 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				getOwnedRule().clear();
 				return;
@@ -386,6 +383,9 @@ public class EnumerationImpl
 				return;
 			case PivotPackage.ENUMERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
@@ -451,8 +451,6 @@ public class EnumerationImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUMERATION__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.ENUMERATION__OWNED_RULE:
 				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_BINDINGS:
@@ -461,6 +459,8 @@ public class EnumerationImpl
 				return ownedTemplateSignature != null;
 			case PivotPackage.ENUMERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
+				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.ENUMERATION__IS_ACTIVE:

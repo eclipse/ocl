@@ -1927,22 +1927,23 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _CallOperationAction__operation = new EcoreExecutorProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION, Types._CallOperationAction, 0);
 		public static final @NonNull ExecutorProperty _CallOperationAction__MessageExp__calledOperation = new ExecutorPropertyWithImplementation("MessageExp", Types._CallOperationAction, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__CALLED_OPERATION));
 
-		public static final @NonNull ExecutorProperty _Class__isAbstract = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT, Types._Class, 0);
-		public static final @NonNull ExecutorProperty _Class__isActive = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_ACTIVE, Types._Class, 1);
-		public static final @NonNull ExecutorProperty _Class__isInterface = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, Types._Class, 2);
-		public static final @NonNull ExecutorProperty _Class__nestedClassifier = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__NESTED_CLASSIFIER, Types._Class, 3);
-		public static final @NonNull ExecutorProperty _Class__ownedBehavior = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, Types._Class, 4);
-		public static final @NonNull ExecutorProperty _Class__ownedInvariants = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_INVARIANTS, Types._Class, 5);
-		public static final @NonNull ExecutorProperty _Class__ownedOperations = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_OPERATIONS, Types._Class, 6);
-		public static final @NonNull ExecutorProperty _Class__ownedProperties = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_PROPERTIES, Types._Class, 7);
-		public static final @NonNull ExecutorProperty _Class__owningPackage = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNING_PACKAGE, Types._Class, 8);
-		public static final @NonNull ExecutorProperty _Class__superClasses = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, Types._Class, 9);
-		public static final @NonNull ExecutorProperty _Class__Class__nestedClassifier = new ExecutorPropertyWithImplementation("Class", Types._Class, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__NESTED_CLASSIFIER));
-		public static final @NonNull ExecutorProperty _Class__DataType__behavioralClass = new ExecutorPropertyWithImplementation("DataType", Types._Class, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS));
-		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClass = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS));
-		public static final @NonNull ExecutorProperty _Class__instanceSpecification__classes = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
-		public static final @NonNull ExecutorProperty _Class__subClasses__superClasses = new ExecutorPropertyWithImplementation("subClasses", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
-		public static final @NonNull ExecutorProperty _Class__templateParameter__lowerBound = new ExecutorPropertyWithImplementation("templateParameter", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Class__instanceClassName = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME, Types._Class, 0);
+		public static final @NonNull ExecutorProperty _Class__isAbstract = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT, Types._Class, 1);
+		public static final @NonNull ExecutorProperty _Class__isActive = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_ACTIVE, Types._Class, 2);
+		public static final @NonNull ExecutorProperty _Class__isInterface = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, Types._Class, 3);
+		public static final @NonNull ExecutorProperty _Class__nestedClassifier = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__NESTED_CLASSIFIER, Types._Class, 4);
+		public static final @NonNull ExecutorProperty _Class__ownedBehavior = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, Types._Class, 5);
+		public static final @NonNull ExecutorProperty _Class__ownedInvariants = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_INVARIANTS, Types._Class, 6);
+		public static final @NonNull ExecutorProperty _Class__ownedOperations = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_OPERATIONS, Types._Class, 7);
+		public static final @NonNull ExecutorProperty _Class__ownedProperties = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_PROPERTIES, Types._Class, 8);
+		public static final @NonNull ExecutorProperty _Class__owningPackage = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNING_PACKAGE, Types._Class, 9);
+		public static final @NonNull ExecutorProperty _Class__superClasses = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, Types._Class, 10);
+		public static final @NonNull ExecutorProperty _Class__Class__nestedClassifier = new ExecutorPropertyWithImplementation("Class", Types._Class, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__NESTED_CLASSIFIER));
+		public static final @NonNull ExecutorProperty _Class__DataType__behavioralClass = new ExecutorPropertyWithImplementation("DataType", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS));
+		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClass = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS));
+		public static final @NonNull ExecutorProperty _Class__instanceSpecification__classes = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
+		public static final @NonNull ExecutorProperty _Class__subClasses__superClasses = new ExecutorPropertyWithImplementation("subClasses", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
+		public static final @NonNull ExecutorProperty _Class__templateParameter__lowerBound = new ExecutorPropertyWithImplementation("templateParameter", Types._Class, 16, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
 
 		public static final @NonNull ExecutorProperty _CollectionItem__item = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, Types._CollectionItem, 0);
 
@@ -2287,19 +2288,18 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _TupleLiteralPart__TupleLiteralExp__part = new ExecutorPropertyWithImplementation("TupleLiteralExp", Types._TupleLiteralPart, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__PART));
 
 		public static final @NonNull ExecutorProperty _Type__extendedBys = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__EXTENDED_BYS, Types._Type, 0);
-		public static final @NonNull ExecutorProperty _Type__instanceClassName = new EcoreExecutorProperty(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME, Types._Type, 1);
-		public static final @NonNull ExecutorProperty _Type__CollectionType__elementType = new ExecutorPropertyWithImplementation("CollectionType", Types._Type, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__DynamicElement__metaType = new ExecutorPropertyWithImplementation("DynamicElement", Types._Type, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE));
-		public static final @NonNull ExecutorProperty _Type__LambdaType__contextType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__LambdaType__parameterType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
-		public static final @NonNull ExecutorProperty _Type__LambdaType__resultType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__Metaclass__instanceType = new ExecutorPropertyWithImplementation("Metaclass", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.METACLASS__INSTANCE_TYPE));
-		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
-		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__lowerBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__upperBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__operation__raisedException = new ExecutorPropertyWithImplementation("operation", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
-		public static final @NonNull ExecutorProperty _Type__templateParameterSubstitution__actual = new ExecutorPropertyWithImplementation("templateParameterSubstitution", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
-		public static final @NonNull ExecutorProperty _Type__typedElement__type = new ExecutorPropertyWithImplementation("typedElement", Types._Type, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+		public static final @NonNull ExecutorProperty _Type__CollectionType__elementType = new ExecutorPropertyWithImplementation("CollectionType", Types._Type, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
+		public static final @NonNull ExecutorProperty _Type__DynamicElement__metaType = new ExecutorPropertyWithImplementation("DynamicElement", Types._Type, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE));
+		public static final @NonNull ExecutorProperty _Type__LambdaType__contextType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
+		public static final @NonNull ExecutorProperty _Type__LambdaType__parameterType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
+		public static final @NonNull ExecutorProperty _Type__LambdaType__resultType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
+		public static final @NonNull ExecutorProperty _Type__Metaclass__instanceType = new ExecutorPropertyWithImplementation("Metaclass", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.METACLASS__INSTANCE_TYPE));
+		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
+		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__lowerBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__UnspecifiedType__upperBound = new ExecutorPropertyWithImplementation("UnspecifiedType", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__operation__raisedException = new ExecutorPropertyWithImplementation("operation", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
+		public static final @NonNull ExecutorProperty _Type__templateParameterSubstitution__actual = new ExecutorPropertyWithImplementation("templateParameterSubstitution", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
+		public static final @NonNull ExecutorProperty _Type__typedElement__type = new ExecutorPropertyWithImplementation("typedElement", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
 
 		public static final @NonNull ExecutorProperty _TypeExp__referredType = new EcoreExecutorProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, Types._TypeExp, 0);
 
@@ -9869,7 +9869,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -9917,7 +9917,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10006,7 +10006,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10058,7 +10058,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__elementType,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10109,7 +10109,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10243,7 +10243,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10309,7 +10309,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10429,7 +10429,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__elementType,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10589,7 +10589,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10652,7 +10652,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10733,7 +10733,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -10811,7 +10811,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._ElementExtension__isApplied,
@@ -10896,7 +10896,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -11208,7 +11208,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -11374,7 +11374,7 @@ public class PivotTables
 			PivotTables.Properties._LambdaType__contextType,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -11614,7 +11614,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -11664,7 +11664,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Metaclass__instanceType,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
@@ -11994,7 +11994,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__elementType,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12141,7 +12141,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12336,7 +12336,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12460,7 +12460,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12524,7 +12524,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__elementType,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12577,7 +12577,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__elementType,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12628,7 +12628,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12761,7 +12761,7 @@ public class PivotTables
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._StateMachine__extendedStateMachine,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12818,7 +12818,7 @@ public class PivotTables
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Stereotype__extensionOfs,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -12915,7 +12915,6 @@ public class PivotTables
 			PivotTables.Properties._TemplateParameter__constrainingClass,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
 			PivotTables.Properties._TemplateParameter__lowerBound,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
@@ -13012,7 +13011,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -13128,7 +13127,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -13177,7 +13176,6 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
@@ -13298,7 +13296,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
@@ -13488,7 +13486,7 @@ public class PivotTables
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Type__extendedBys,
 			PivotTables.Properties._Element__extension,
-			PivotTables.Properties._Type__instanceClassName,
+			PivotTables.Properties._Class__instanceClassName,
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,

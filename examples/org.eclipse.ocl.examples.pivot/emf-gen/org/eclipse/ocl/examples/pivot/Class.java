@@ -30,6 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Class#isInterface <em>Is Interface</em>}</li>
@@ -48,6 +49,31 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface Class
 		extends Type, Namespace, TemplateableElement, org.eclipse.ocl.examples.domain.elements.DomainClass {
+
+	/**
+	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Class Name</em>' attribute.
+	 * @see #setInstanceClassName(String)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_InstanceClassName()
+	 * @generated
+	 */
+	String getInstanceClassName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance Class Name</em>' attribute.
+	 * @see #getInstanceClassName()
+	 * @generated
+	 */
+	void setInstanceClassName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.

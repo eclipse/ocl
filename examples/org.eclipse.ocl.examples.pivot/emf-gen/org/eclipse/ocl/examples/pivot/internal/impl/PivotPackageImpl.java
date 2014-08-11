@@ -3702,8 +3702,18 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClass_IsAbstract() {
+	public EAttribute getClass_InstanceClassName()
+	{
 		return (EAttribute)classEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getClass_IsAbstract() {
+		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3713,7 +3723,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getClass_IsActive()
 	{
-		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3723,7 +3733,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedBehavior()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(4);
+		return (EReference)classEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3733,7 +3743,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedInvariants()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(5);
+		return (EReference)classEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -3743,7 +3753,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedOperations()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(6);
+		return (EReference)classEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3753,7 +3763,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwnedProperties()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(7);
+		return (EReference)classEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -3763,7 +3773,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_OwningPackage()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(8);
+		return (EReference)classEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -3773,7 +3783,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_SuperClasses()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(9);
+		return (EReference)classEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -3793,7 +3803,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getClass_IsInterface()
 	{
-		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3803,7 +3813,7 @@ public class PivotPackageImpl
 	 */
 	public EReference getClass_NestedClassifier()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(3);
+		return (EReference)classEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3823,16 +3833,6 @@ public class PivotPackageImpl
 	public EReference getType_ExtendedBys()
 	{
 		return (EReference)typeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getType_InstanceClassName()
-	{
-		return (EAttribute)typeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5478,6 +5478,7 @@ public class PivotPackageImpl
 		createEReference(callOperationActionEClass, CALL_OPERATION_ACTION__OPERATION);
 
 		classEClass = createEClass(CLASS);
+		createEAttribute(classEClass, CLASS__INSTANCE_CLASS_NAME);
 		createEAttribute(classEClass, CLASS__IS_ABSTRACT);
 		createEAttribute(classEClass, CLASS__IS_ACTIVE);
 		createEAttribute(classEClass, CLASS__IS_INTERFACE);
@@ -5940,7 +5941,6 @@ public class PivotPackageImpl
 
 		typeEClass = createEClass(TYPE);
 		createEReference(typeEClass, TYPE__EXTENDED_BYS);
-		createEAttribute(typeEClass, TYPE__INSTANCE_CLASS_NAME);
 		createEOperation(typeEClass, TYPE___IS_CLASS);
 		createEOperation(typeEClass, TYPE___IS_TEMPLATE_PARAMETER);
 		createEOperation(typeEClass, TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
@@ -6210,6 +6210,7 @@ public class PivotPackageImpl
 		initEReference(getCallOperationAction_Operation(), this.getOperation(), null, "operation", null, 1, 1, CallOperationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(classEClass, org.eclipse.ocl.examples.pivot.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getClass_InstanceClassName(), this.getString(), "instanceClassName", null, 0, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getClass_IsAbstract(), this.getBoolean(), "isAbstract", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getClass_IsActive(), this.getBoolean(), "isActive", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getClass_IsInterface(), this.getBoolean(), "isInterface", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -7156,7 +7157,6 @@ public class PivotPackageImpl
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getType_ExtendedBys(), this.getTypeExtension(), this.getTypeExtension_Type(), "extendedBys", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getType_InstanceClassName(), this.getString(), "instanceClassName", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getType__IsClass(), this.getClass_(), "isClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

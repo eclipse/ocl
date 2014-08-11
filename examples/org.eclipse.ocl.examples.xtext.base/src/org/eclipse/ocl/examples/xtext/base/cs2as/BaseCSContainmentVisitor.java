@@ -124,7 +124,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 			pivotElement.setInstanceClassName(csElement.getInstanceClassName());
 		}
 		else {
-			pivotElement.eUnset(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME);
+			pivotElement.eUnset(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME);
 		}
 		String newInstanceClassName = csElement.getInstanceClassName();
 		String oldInstanceClassName = pivotElement.getInstanceClassName();

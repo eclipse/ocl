@@ -1485,9 +1485,6 @@
         <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
       </ownedComment>
       <generalization xmi:id="Ppivot.TType.g0" general="Ppivot.TNamedElement"/>
-      <ownedAttribute xmi:id="Ppivot.TType.PinstanceClassName" name="instanceClassName" type="Ppivot.TString">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PinstanceClassName.lV"/>
-      </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TType.PextendedBys" name="extendedBys" type="Ppivot.TTypeExtension" association="Ppivot.A_extendedBys_type">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.PextendedBys.lV"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TType.PextendedBys.uV" value="*"/>

@@ -92,6 +92,8 @@
           name="UniqueInvariantName">
         <specification xsi:type="pivot:ExpressionInOCL" body="ownedInvariants->isUnique(name)&#xA;&#xA;"/>
       </ownedInvariants>
+      <ownedProperties xmi:id="p.pivot.Class.instanceClassName" isRequired="false"
+          name="instanceClassName" type="#String"/>
       <ownedProperties xmi:id="p.pivot.Class.isAbstract" default="false" name="isAbstract"
           type="#Boolean">
         <ownedComment body="True when a class is abstract."/>
@@ -619,10 +621,10 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.LambdaType" name="LambdaType" superClasses="#T.pivot.DataType">
       <ownedProperties xmi:id="p.pivot.LambdaType.contextType" name="contextType"
-          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.4" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.3" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.LambdaType.parameterType" name="parameterType"
-          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.5" type="#//@ownedPackages.1/@ownedClasses.124"/>
-      <ownedProperties xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.6"
+          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.4" type="#//@ownedPackages.1/@ownedClasses.124"/>
+      <ownedProperties xmi:id="p.pivot.LambdaType.resultType" name="resultType" opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.5"
           type="#T.pivot.Type"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.LanguageExpression" isAbstract="true" name="LanguageExpression"
@@ -1310,7 +1312,7 @@
         <ownedComment body="The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.lowerBound" isRequired="false"
-          name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.15/@ownedProperties.15"
+          name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.15/@ownedProperties.16"
           type="#T.pivot.Class">
         <ownedComment body="The element that is the default for this formal template parameter."/>
       </ownedProperties>
@@ -1320,7 +1322,7 @@
         <ownedComment body="The template signature that owns this template parameter."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.upperBound" isRequired="false"
-          name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.15/@ownedProperties.16"
+          name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.15/@ownedProperties.17"
           type="#T.pivot.Class">
         <ownedComment body="The element that is the default for this formal template parameter."/>
       </ownedProperties>
@@ -1459,8 +1461,6 @@
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.Type.extendedBys" name="extendedBys" opposite="#p.pivot.TypeExtension.type"
           type="#//@ownedPackages.1/@ownedClasses.149"/>
-      <ownedProperties xmi:id="p.pivot.Type.instanceClassName" isRequired="false"
-          name="instanceClassName" type="#String"/>
       <ownedProperties xmi:id="p.pivot.Type.CollectionType" implicit="true" name="CollectionType"
           opposite="#p.pivot.CollectionType.elementType" type="#//@ownedPackages.1/@ownedClasses.3"/>
       <ownedProperties xmi:id="p.pivot.Type.DynamicElement" implicit="true" name="DynamicElement"
@@ -1528,9 +1528,9 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.UnspecifiedType" name="UnspecifiedType" superClasses="#T.pivot.Class">
       <ownedProperties xmi:id="p.pivot.UnspecifiedType.lowerBound" name="lowerBound"
-          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.9" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.8" type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.UnspecifiedType.upperBound" name="upperBound"
-          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.10" type="#T.pivot.Type"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.114/@ownedProperties.9" type="#T.pivot.Type"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.UnspecifiedValueExp" name="UnspecifiedValueExp"
         superClasses="#T.pivot.OCLExpression"/>

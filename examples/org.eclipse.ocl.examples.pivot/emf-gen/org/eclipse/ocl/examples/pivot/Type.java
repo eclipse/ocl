@@ -29,7 +29,6 @@ import org.eclipse.jdt.annotation.Nullable;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getExtendedBys <em>Extended Bys</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,31 +54,6 @@ public interface Type
 	 * @generated
 	 */
 	List<TypeExtension> getExtendedBys();
-
-	/**
-	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Instance Class Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Class Name</em>' attribute.
-	 * @see #setInstanceClassName(String)
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_InstanceClassName()
-	 * @generated
-	 */
-	String getInstanceClassName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance Class Name</em>' attribute.
-	 * @see #getInstanceClassName()
-	 * @generated
-	 */
-	void setInstanceClassName(String value);
 
 	/**
 	 * <!-- begin-user-doc -->
